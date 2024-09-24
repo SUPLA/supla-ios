@@ -17,6 +17,8 @@
  */
 
 extension SAChannel {
+    var onlineState: ListOnlineState { .from(isOnline()) }
+    
     func item() -> ItemBundle {
         ItemBundle(remoteId: remote_id, deviceId: device_id, subjectType: .channel, function: self.func)
     }

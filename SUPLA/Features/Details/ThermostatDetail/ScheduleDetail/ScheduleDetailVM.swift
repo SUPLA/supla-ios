@@ -276,7 +276,7 @@ struct ScheduleDetailViewState: ViewState {
 
 struct ScheduleDetailProgram: Equatable, Changeable {
     var scheduleProgram: SuplaWeeklyScheduleProgram
-    var icon: UIImage? = nil
+    var icon: String? = nil
     
     var text: String {
         get { scheduleProgram.description }
@@ -366,7 +366,7 @@ fileprivate extension SuplaChannelWeeklyScheduleConfig {
         return result
     }
     
-    private func getProgramIcon(_ program: SuplaWeeklyScheduleProgram) -> UIImage? {
+    private func getProgramIcon(_ program: SuplaWeeklyScheduleProgram) -> String? {
         if (channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL) {
             return program.mode.icon
         }

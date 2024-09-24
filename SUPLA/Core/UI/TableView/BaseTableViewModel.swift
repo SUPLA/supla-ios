@@ -45,8 +45,8 @@ class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
 
     func onClicked(onItem item: Any) {}
 
-    func isAvailableInOffline(_ function: Int32, subValueType: Int32? = nil) -> Bool {
-        switch (function) {
+    func isAvailableInOffline(_ channel: SAChannelBase, children: [ChannelChild]? = nil) -> Bool {
+        switch (channel.func) {
         case SUPLA_CHANNELFNC_THERMOMETER,
              SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
              SUPLA_CHANNELFNC_ELECTRICITY_METER,
@@ -70,12 +70,16 @@ class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
         case SUPLA_CHANNELFNC_LIGHTSWITCH,
              SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER:
-            switch subValueType {
-            case SUBV_TYPE_IC_MEASUREMENTS,
-                 SUBV_TYPE_ELECTRICITY_MEASUREMENTS:
+            if (children?.first(where: { $0.relationType == .meter }) != nil) {
                 return true
-            default:
-                return false
+            } else {
+                switch (Int32((channel as? SAChannel)?.value?.sub_value_type ?? 0)) {
+                case SUBV_TYPE_IC_MEASUREMENTS,
+                     SUBV_TYPE_ELECTRICITY_MEASUREMENTS:
+                    return true
+                default:
+                    return false
+                }
             }
         default:
             return false

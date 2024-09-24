@@ -317,6 +317,8 @@
         case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
         case SUPLA_CHANNELFNC_MAILSENSOR:
         case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_PUMPSWITCH:
+        case SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.shapeType = stRing;

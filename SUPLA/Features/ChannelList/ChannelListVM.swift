@@ -21,9 +21,10 @@ import Foundation
 class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelListViewEvent> {
     @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
     @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
-    @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
+    @Singleton<ProvideChannelDetailTypeUseCase> private var provideDetailTypeUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
 
     override init() {
         super.init()
@@ -53,31 +54,13 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     override func onClicked(onItem item: Any) {
         guard let item = item as? SAChannel else { return }
         
-        let subValueType = item.value?.sub_value_type ?? 0
-        if (!isAvailableInOffline(item.func, subValueType: Int32(subValueType)) && !item.isOnline()) {
-            return // do not open details for offline channels
-        }
-        
-        guard
-            let detailType = provideDetailTypeUseCase.invoke(channelBase: item)
-        else {
-            return
-        }
-        
-        switch (detailType) {
-        case let .legacy(type: legacyDetailType):
-            send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-        case let .switchDetail(pages):
-            send(event: .navigateToSwitchDetail(item: item.item(), pages: pages))
-        case let .thermostatDetail(pages):
-            send(event: .navigateToThermostatDetail(item: item.item(), pages: pages))
-        case let .thermometerDetail(pages):
-            send(event: .navigateToThermometerDetail(item: item.item(), pages: pages))
-        case let .gpmDetail(pages):
-            send(event: .navigateToGpmDetail(item: item.item(), pages: pages))
-        case let .windowDetail(pages):
-            send(event: .navigateToRollerShutterDetail(item: item.item(), pages: pages))
-        }
+        readChannelWithChildrenUseCase
+            .invoke(remoteId: item.remote_id)
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] in self?.handleClickedItem($0) }
+            )
+            .disposed(by: self)
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
@@ -93,6 +76,35 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     
     func onNoContentButtonClicked() {
         send(event: .showAddWizard)
+    }
+    
+    private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
+        let channel = channelWithChildren.channel
+        let subValueType = channel.value?.sub_value_type ?? 0
+        if (!isAvailableInOffline(channel, children: channelWithChildren.children) && !channel.isOnline()) {
+            return // do not open details for offline channels
+        }
+        
+        guard
+            let detailType = provideDetailTypeUseCase.invoke(channelWithChildren: channelWithChildren)
+        else {
+            return
+        }
+        
+        switch (detailType) {
+        case let .legacy(type: legacyDetailType):
+            send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: channel))
+        case let .switchDetail(pages):
+            send(event: .navigateToSwitchDetail(item: channel.item(), pages: pages))
+        case let .thermostatDetail(pages):
+            send(event: .navigateToThermostatDetail(item: channel.item(), pages: pages))
+        case let .thermometerDetail(pages):
+            send(event: .navigateToThermometerDetail(item: channel.item(), pages: pages))
+        case let .gpmDetail(pages):
+            send(event: .navigateToGpmDetail(item: channel.item(), pages: pages))
+        case let .windowDetail(pages):
+            send(event: .navigateToRollerShutterDetail(item: channel.item(), pages: pages))
+        }
     }
 }
 

@@ -209,7 +209,7 @@ final class UseCaseLegacyWrapper: NSObject {
     @objc
     static func getChannelIcon(_ channel: SAChannelBase, _ iconType: IconType) -> UIImage? {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
-        return getChannelBaseIconUseCase.invoke(channel: channel, type: iconType)
+        return getChannelBaseIconUseCase.invoke(channel: channel, type: iconType).uiImage
     }
     
     @objc

@@ -24,18 +24,18 @@ final class ThermostatIconNameProducer: IconNameProducer {
     
     func produce(iconData: IconData) -> String {
         if (iconData.function == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER) {
-            return "fnc_thermostat_dhw"
+            return .Icons.fncThermostatDhw
         }
         
         if let subfunction = iconData.subfunction {
             switch (subfunction) {
-            case .heat: return "fnc_thermostat_heat"
-            case .cool: return "fnc_thermostat_cool"
-            default: return CHANNEL_UNKNOWN_ICON_NAME
+            case .heat: return .Icons.fncThermostatHeat
+            case .cool: return .Icons.fncThermostatCool
+            default: return .Icons.fncUnknown
             }
         }
         
-        return CHANNEL_UNKNOWN_ICON_NAME
+        return .Icons.fncUnknown
     }
     
     

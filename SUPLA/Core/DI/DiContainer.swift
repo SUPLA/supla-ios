@@ -123,6 +123,7 @@ extension DiContainer {
         register(CreateProfileChannelsListUseCase.self, CreateProfileChannelsListUseCaseImpl())
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
         register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
+        register(ReadChannelWithChildrenTreeUseCase.self, ReadChannelWithChildrenTreeUseCaseImpl())
         register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
         register(DownloadChannelMeasurementsUseCase.self, DownloadChannelMeasurementsUseCaseImpl())
         register(DownloadTemperatureLogUseCase.self,
@@ -176,7 +177,8 @@ extension DiContainer {
         register(DisconnectUseCase.self, DisconnectUseCaseImpl())
         register(ReconnectUseCase.self, ReconnectUseCaseImpl())
         // Usecases - Detail
-        register(ProvideDetailTypeUseCase.self, ProvideDetailTypeUseCaseImpl())
+        register(ProvideChannelDetailTypeUseCase.self, ProvideChannelDetailTypeUseCaseImpl())
+        register(ProvideGroupDetailTypeUseCase.self, ProvideGroupDetailTypeUseCaseImpl())
         // Usecases - Group
         register(SwapGroupPositionsUseCase.self, SwapGroupPositionsUseCaseImpl())
         register(CreateProfileGroupsListUseCase.self, CreateProfileGroupsListUseCaseImpl())

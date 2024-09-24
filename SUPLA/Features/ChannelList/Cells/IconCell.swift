@@ -75,10 +75,10 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         
         caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
-        leftStatusIndicatorView.configure(filled: hasLeftButton(), online: channel.isOnline())
-        rightStatusIndicatorView.configure(filled: hasRightButton(), online: channel.isOnline())
+        leftStatusIndicatorView.configure(filled: hasLeftButton(), onlineState: channel.onlineState)
+        rightStatusIndicatorView.configure(filled: hasRightButton(), onlineState: channel.onlineState)
         
-        iconView.image = getChannelBaseIconUseCase.invoke(channel: channel)
+        iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         
         issueIcon = nil
     }

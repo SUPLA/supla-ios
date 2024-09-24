@@ -1,23 +1,22 @@
 /*
-Copyright (C) AC SOFTWARE SP. Z O.O.
+ Copyright (C) AC SOFTWARE SP. Z O.O.
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
-final class DeviceState {
-    
+enum DeviceState {
     static func endDateText(_ timerEndDate: Date?) -> String {
         guard let date = timerEndDate else { return "" }
         
@@ -26,18 +25,14 @@ final class DeviceState {
         return Strings.TimerDetail.stateLabelForTimerDays.arguments(dateString)
     }
     
-    static func currentStateIcon(_ mode: SuplaHvacMode?) -> UIImage? {
-        mode?.icon
-    }
+    static func currentStateIcon(_ mode: SuplaHvacMode?) -> String? { mode?.icon }
     
-    static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor {
-        return mode?.iconColor ?? .disabled
-    }
+    static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor { mode?.iconColor ?? .disabled }
     
     static func currentStateValue(_ mode: SuplaHvacMode?, heatSetpoint: Float?, coolSetpoint: Float?) -> String {
         @Singleton<ValuesFormatter> var formatter
         
-        return switch(mode) {
+        return switch (mode) {
         case .off: "OFF"
         case .heat: formatter.temperatureToString(heatSetpoint, withUnit: false)
         case .cool: formatter.temperatureToString(coolSetpoint, withUnit: false)
@@ -47,7 +42,6 @@ final class DeviceState {
 }
 
 final class DeviceStateView: UIStackView {
-    
     var label: String? = nil {
         didSet { labelView.text = label?.uppercased() }
     }
@@ -96,6 +90,7 @@ final class DeviceStateView: UIStackView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

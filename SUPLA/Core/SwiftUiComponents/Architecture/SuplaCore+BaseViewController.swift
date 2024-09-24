@@ -100,7 +100,7 @@ extension SuplaCore {
             NSLayoutConstraint.activate([
                 hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
                 hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-                hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 8),
                 hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
         }

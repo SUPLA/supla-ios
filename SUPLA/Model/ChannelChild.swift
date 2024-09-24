@@ -21,4 +21,39 @@ import Foundation
 struct ChannelChild: Equatable {
     let channel: SAChannel
     let relationType: ChannelRelationType
+    let children: [ChannelChild]
+    
+    init(channel: SAChannel, relationType: ChannelRelationType, children: [ChannelChild] = []) {
+        self.channel = channel
+        self.relationType = relationType
+        self.children = children
+    }
+}
+
+extension Array where Element == ChannelChild {
+    var indicatorIcon: ThermostatIndicatorIcon {
+        filter { $0.relationType == .masterThermostat }
+            .map { $0.channel.value?.asThermostatValue().indicatorIcon }
+            .compactMap { $0 }
+            .reduce(ThermostatIndicatorIcon.off) { result, value in value.moreImportantThan(result) ? value : result }
+    }
+    
+    var onlineState: ListOnlineState {
+        filter { $0.relationType == .masterThermostat }
+            .map { $0.channel.value?.online }
+            .compactMap { $0 }
+            .reduce(.unknown) { result, online in
+                if (result == .unknown && online) {
+                    .online
+                } else if (result == .unknown) {
+                    .offline
+                } else if (result == .online && !online) {
+                    .partiallyOnline
+                } else if (result == .offline && online) {
+                    .partiallyOnline
+                } else {
+                    result
+                }
+            }
+    }
 }

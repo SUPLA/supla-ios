@@ -249,7 +249,7 @@ fileprivate class ButtonsRowView: UIView {
         for program in programs {
             let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
             buttonView.backgroundColor = program.scheduleProgram.program.color()
-            buttonView.icon = program.icon != nil ? .suplaIcon(icon: program.icon) : nil
+            buttonView.icon = program.icon != nil ? .suplaIcon(name: program.icon!) : nil
             buttonView.text = program.text
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral

@@ -318,7 +318,7 @@ private class DataSetsRowView: HorizontalyScrollableView<DataSetItem> {
 
 private class DataSetItem: UIView {
     private var color: UIColor
-    private var icon: UIImage?
+    private var icon: IconResult?
     private var value: String
     
     var tapEvents: ControlEvent<Void> { buttonView.rx.tap }
@@ -347,7 +347,7 @@ private class DataSetItem: UIView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
-        view.image = icon
+        view.image = icon?.uiImage
         return view
     }()
     
@@ -367,7 +367,7 @@ private class DataSetItem: UIView {
         return button
     }()
     
-    init(icon: UIImage?, color: UIColor, value: String) {
+    init(icon: IconResult?, color: UIColor, value: String) {
         self.icon = icon
         self.color = color
         self.value = value

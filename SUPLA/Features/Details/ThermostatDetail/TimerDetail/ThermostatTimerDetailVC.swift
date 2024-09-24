@@ -143,7 +143,7 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
         configurationView.editMode = state.editTime
         
         deviceStateView.label = state.endDateText
-        deviceStateView.icon = state.currentStateIcon
+        deviceStateView.icon = state.currentStateIcon?.uiImage
         deviceStateView.iconTint = state.currentStateIconColor
         deviceStateView.value = state.currentStateValue
         

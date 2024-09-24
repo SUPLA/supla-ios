@@ -19,6 +19,6 @@
 import Foundation
 
 struct MeasurementValue: Equatable {
-    let icon: UIImage?
+    let icon: IconResult
     let value: String
 }

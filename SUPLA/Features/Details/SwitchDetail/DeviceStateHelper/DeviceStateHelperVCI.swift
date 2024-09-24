@@ -39,6 +39,6 @@ extension DeviceStateHelperVCI {
             view.label =  Strings.SwitchDetail.stateLabel
         }
         
-        view.icon = getChannelBaseIconUseCase.invoke(iconData: state.iconData).icon
+        view.icon = getChannelBaseIconUseCase.invoke(iconData: state.iconData).uiImage
     }
 }

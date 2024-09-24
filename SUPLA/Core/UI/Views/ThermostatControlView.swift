@@ -104,7 +104,9 @@ final class ThermostatControlView: UIView {
     
     var operationalMode: ThermostatOperationalMode = .offline {
         didSet {
-            temperatureCircleShape.operationalMode = operationalMode
+            traitCollection.performAsCurrent {
+                temperatureCircleShape.operationalMode = operationalMode
+            }
             indicatorHeatingShape.isHidden = operationalMode != .heating
             indicatorCoolingShape.isHidden = operationalMode != .cooling
             currentPowerLabel.isHidden = operationalMode != .heating && operationalMode != .cooling || currentPower <= 1
@@ -260,7 +262,6 @@ final class ThermostatControlView: UIView {
             width: currentPowerLabel.intrinsicContentSize.width,
             height: currentPowerLabel.intrinsicContentSize.height
         )
-        
     }
     
     override func draw(_ rect: CGRect) {

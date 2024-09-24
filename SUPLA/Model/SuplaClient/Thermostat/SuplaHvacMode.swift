@@ -30,11 +30,11 @@ public enum SuplaHvacMode: UInt8, CaseIterable {
     case cmdWeeklySchedule = 9
     case cmdSwitchToManual = 10
 
-    var icon: UIImage? {
+    var icon: String? {
         switch self {
-        case .off: return .iconPowerButton
-        case .heat: return .iconHeat
-        case .cool: return .iconCool
+        case .off: return .Icons.powerButton
+        case .heat: return .Icons.heat
+        case .cool: return .Icons.cool
         default: return nil
         }
     }

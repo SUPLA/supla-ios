@@ -105,6 +105,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(captionLongPressRecongizer)
         label.textColor = .onBackground
+        label.textAlignment = .center
         return label
     }()
     
@@ -309,8 +310,9 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         let bottomAnchor = contentView.bottomAnchor
         
         var constraints = [
-            captionView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             captionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -scale(Dimens.ListItem.verticalPadding)),
+            captionView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Dimens.distanceDefault),
+            captionView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Dimens.distanceDefault),
             
             timerView.topAnchor.constraint(equalTo: topAnchor, constant: scale(10)),
             timerView.rightAnchor.constraint(equalTo: rightMarginAnchor, constant: -Dimens.ListItem.horizontalPadding),
@@ -503,6 +505,26 @@ enum CellScalingLimit {
 }
 
 class CellStatusIndicatorView: UIView {
+    private lazy var topLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.cornerRadius = Dimens.ListItem.statusIndicatorSize / 2
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.primary.cgColor
+        layer.backgroundColor = UIColor.primary.cgColor
+        return layer
+    }()
+    
+    private lazy var bottomLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.cornerRadius = Dimens.ListItem.statusIndicatorSize / 2
+        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.error.cgColor
+        layer.backgroundColor = UIColor.error.cgColor
+        return layer
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -513,20 +535,40 @@ class CellStatusIndicatorView: UIView {
         setupView()
     }
     
-    func configure(filled: Bool, online: Bool) {
-        let color = online ? UIColor.primary : UIColor.error
-        if (filled) {
-            layer.borderColor = color.cgColor
-            backgroundColor = color
-        } else {
-            layer.borderColor = color.cgColor
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        topLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height / 2)
+        bottomLayer.frame = CGRect(x: 0, y: frame.height / 2, width: frame.width, height: frame.height / 2)
+    }
+    
+    func configure(filled: Bool, onlineState: ListOnlineState) {
+        let color = onlineState.online ? UIColor.primary : UIColor.error
+        
+        switch (onlineState) {
+        case .online, .offline, .unknown:
+            topLayer.isHidden = true
+            bottomLayer.isHidden = true
+            
+            if (filled) {
+                layer.borderColor = color.cgColor
+                backgroundColor = color
+            } else {
+                layer.borderColor = color.cgColor
+                backgroundColor = .clear
+            }
+        case .partiallyOnline:
+            layer.borderColor = UIColor.clear.cgColor
             backgroundColor = .clear
+            topLayer.isHidden = false
+            bottomLayer.isHidden = false
         }
     }
     
     func setInvisible() {
         layer.borderColor = UIColor.clear.cgColor
         backgroundColor = .clear
+        topLayer.isHidden = true
+        bottomLayer.isHidden = true
     }
     
     func constraints() -> [NSLayoutConstraint] {
@@ -542,5 +584,8 @@ class CellStatusIndicatorView: UIView {
         layer.borderWidth = 1
         
         setInvisible()
+        
+        layer.addSublayer(topLayer)
+        layer.addSublayer(bottomLayer)
     }
 }

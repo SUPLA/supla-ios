@@ -21,13 +21,13 @@ import Foundation
 enum IssueIconType {
     case warning
     case error
-    
+
     func icon() -> UIImage? {
-        switch(self) {
+        switch (self) {
         case .warning:
             return .iconWarning
         case .error:
-            return.iconError
+            return .iconError
         }
     }
 }

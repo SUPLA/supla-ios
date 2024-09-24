@@ -29,6 +29,9 @@ enum ChannelRelationType: Int16, CaseIterable {
     case auxThermometerWater = 6
     case auxThermometerGenericHeater = 7
     case auxThermometerGenericCooler = 8
+    case masterThermostat = 20
+    case heatOrColdSourceSwitch = 21
+    case pumpSwitch = 22
     
     func isAux() -> Bool {
         switch (self) {

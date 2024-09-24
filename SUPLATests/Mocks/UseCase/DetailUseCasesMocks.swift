@@ -21,14 +21,22 @@ import RxSwift
 
 @testable import SUPLA
 
-final class ProvideDetailTypeUseCaseMock: ProvideDetailTypeUseCase {
-    
+final class ProvideChannelDetailTypeUseCaseMock: ProvideChannelDetailTypeUseCase {
     var detailType: DetailType? = nil
-    var channelBaseArray: [SAChannelBase] = []
-    
-    func invoke(channelBase: SAChannelBase) -> DetailType? {
-        channelBaseArray.append(channelBase)
-        
+    var channelBaseArray: [ChannelWithChildren] = []
+
+    func invoke(channelWithChildren: ChannelWithChildren) -> DetailType? {
+        channelBaseArray.append(channelWithChildren)
+        return detailType
+    }
+}
+
+final class ProvideGroupDetailTypeUseCaseMock: ProvideGroupDetailTypeUseCase {
+    var detailType: DetailType? = nil
+    var channelBaseArray: [SAChannelGroup] = []
+
+    func invoke(group: SAChannelGroup) -> DetailType? {
+        channelBaseArray.append(group)
         return detailType
     }
 }

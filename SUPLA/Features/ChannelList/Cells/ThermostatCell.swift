@@ -79,13 +79,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     override func online() -> Bool { data?.channel.isOnline() ?? false }
     
     override func issueMessage() -> String? {
-        if (data?.channel.value?.asThermostatValue().flags.contains(.thermometerError) == true) {
-            return Strings.ThermostatDetail.thermometerError
-        } else if (data?.channel.value?.asThermostatValue().flags.contains(.clockError) == true) {
-            return Strings.ThermostatDetail.clockError
-        } else {
-            return nil
-        }
+        data?.channel.value?.asThermostatValue().issueText
     }
     
     override func derivedClassControls() -> [UIView] {
@@ -164,26 +158,22 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         
         caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
-        leftStatusIndicatorView.configure(filled: true, online: channel.isOnline())
-        rightStatusIndicatorView.configure(filled: true, online: channel.isOnline())
+        let onlineState = ListOnlineState.from(channel.isOnline()).mergeWith(data.children.onlineState)
+        leftStatusIndicatorView.configure(filled: true, onlineState: onlineState)
+        rightStatusIndicatorView.configure(filled: true, onlineState: onlineState)
         
         thermostatIconView.image = getChannelBaseIconUseCase.invoke(
             channel: channel,
             subfunction: thermostatValue?.subfunction
-        )
+        ).uiImage
         
         indicatorView.image = .iconStandby
         issueIcon = nil
         
         if let thermostatValue = thermostatValue {
-            setpointTemperatureView.text = getSetpointTemperatureString(channel, thermostatValue)
-            indicatorView.image = getIndicatorIcon(channel, thermostatValue)
-            
-            if (channel.isOnline() && thermostatValue.flags.contains(.thermometerError)) {
-                issueIcon = .error
-            } else if (channel.isOnline() && thermostatValue.flags.contains(.clockError)) {
-                issueIcon = .warning
-            }
+            setpointTemperatureView.text = thermostatValue.setpointText
+            indicatorView.image = thermostatValue.indicatorIcon.mergeWith(data.children.indicatorIcon).resource
+            issueIcon = thermostatValue.issueIcon
         }
         
         if let mainThermometer = data.children.first(where: { $0.relationType == .mainThermometer })?.channel {
@@ -195,35 +185,5 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func timerEndDate() -> Date? {
         data?.channel.getTimerEndDate()
-    }
-    
-    private func getSetpointTemperatureString(_ channel: SAChannel, _ thermostatValue: ThermostatValue) -> String {
-        if (!channel.isOnline()) {
-            return ""
-        }
-        switch (thermostatValue.mode) {
-        case .cool: return formatter.temperatureToString(thermostatValue.setpointTemperatureCool)
-        case .heat: return formatter.temperatureToString(thermostatValue.setpointTemperatureHeat)
-        case .off: return "Off"
-        case .auto:
-            let min = formatter.temperatureToString(thermostatValue.setpointTemperatureHeat)
-            let max = formatter.temperatureToString(thermostatValue.setpointTemperatureCool)
-            return "\(min) - \(max)"
-        default: return ""
-        }
-    }
-    
-    private func getIndicatorIcon(_ channel: SAChannel, _ thermostatValue: ThermostatValue) -> UIImage? {
-        if (thermostatValue.flags.contains(.forcedOffBySensor)) {
-            return .iconSensorAlert
-        } else if (channel.isOnline() && thermostatValue.flags.contains(.cooling)) {
-            return .iconCooling
-        } else if (channel.isOnline() && thermostatValue.flags.contains(.heating)) {
-            return .iconHeating
-        } else if (channel.isOnline() && thermostatValue.mode != .off) {
-            return .iconStandby
-        } else {
-            return nil
-        }
     }
 }

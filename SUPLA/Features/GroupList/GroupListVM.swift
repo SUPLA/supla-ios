@@ -21,7 +21,7 @@ import Foundation
 class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEvent> {
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
     @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
-    @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
+    @Singleton<ProvideGroupDetailTypeUseCase> private var provideDetailTypeUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
     
@@ -53,12 +53,12 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     override func onClicked(onItem item: Any) {
         guard let item = item as? SAChannelGroup else { return }
         
-        if (!isAvailableInOffline(item.func) && !item.isOnline()) {
+        if (!isAvailableInOffline(item) && !item.isOnline()) {
             return // do not open details for offline channels
         }
         
         guard
-            let detailType = provideDetailTypeUseCase.invoke(channelBase: item)
+            let detailType = provideDetailTypeUseCase.invoke(group: item)
         else {
             return
         }

@@ -150,7 +150,7 @@ extension BaseLoadMeasurementsUseCase {
         }
     }
     
-    private func channelIcon(_ channel: SAChannel, _ type: ChartEntryType) -> UIImage? {
+    private func channelIcon(_ channel: SAChannel, _ type: ChartEntryType) -> IconResult? {
         @Singleton<ValuesFormatter> var formatter
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         

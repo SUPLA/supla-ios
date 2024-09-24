@@ -123,6 +123,10 @@ final class GetChannelBaseDefaultCaptionUseCaseImpl: GetChannelBaseDefaultCaptio
             return Strings.General.Channel.captionVerticalBlind
         case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return Strings.General.Channel.captionGarageDoor
+        case SUPLA_CHANNELFNC_PUMPSWITCH:
+            return Strings.General.Channel.captionPumpSwitch
+        case SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH:
+            return Strings.General.Channel.captionHeatOrCouldSourceSwitch
         default:
             return NSLocalizedString("Not supported function", comment: "")
         }

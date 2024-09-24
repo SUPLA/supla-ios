@@ -31,7 +31,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
 
     private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
 
-    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = ProvideDetailTypeUseCaseMock()
+    private lazy var provideDetailTypeUseCase: ProvideGroupDetailTypeUseCaseMock! = ProvideGroupDetailTypeUseCaseMock()
 
     private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
 
@@ -40,7 +40,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, createProfileGroupsListUseCase!)
         DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, swapGroupPositionsUseCase!)
-        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
+        DiContainer.shared.register(type: ProvideGroupDetailTypeUseCase.self, provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
         DiContainer.shared.register(type: LoadActiveProfileUrlUseCase.self, loadActiveProfileUrlUseCase!)

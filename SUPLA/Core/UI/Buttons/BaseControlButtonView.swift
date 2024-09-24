@@ -54,15 +54,15 @@ class BaseControlButtonView: UIView {
         didSet {
             switch (icon) {
             case .suplaIcon(let icon):
-                iconView.image = icon?.withRenderingMode(.alwaysTemplate)
+                iconView.image = .init(named: icon)?.withRenderingMode(.alwaysTemplate)
                 iconView.tintColor = iconColor
             case .userIcon(let icon):
                 iconView.image = icon
             default:
-                iconView.image = icon?.icon
+                iconView.image = icon?.uiImage
             }
 
-            iconView.isHidden = icon?.icon == nil
+            iconView.isHidden = icon == nil
             setupLayout()
         }
     }

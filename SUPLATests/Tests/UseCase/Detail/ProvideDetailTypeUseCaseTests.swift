@@ -22,7 +22,7 @@ import XCTest
 
 final class ProvideDetailTypeUseCaseTests: XCTestCase {
     
-    private lazy var useCase: ProvideDetailTypeUseCase! = { ProvideDetailTypeUseCaseImpl() }()
+    private lazy var useCase: ProvideChannelDetailTypeUseCase! = { ProvideChannelDetailTypeUseCaseImpl() }()
     
     override func tearDown() {
         useCase = nil
@@ -228,7 +228,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     
     func test_shouldProvideStandardDetailWithGeneralPage_forGroupOfSwitches() {
         doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
-            let channel = SAChannelBase(testContext: nil)
+            let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
             return channel
@@ -318,12 +318,12 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
-    private func doTest(expectedResult: DetailType?, provider: () -> SAChannelBase) {
+    private func doTest(expectedResult: DetailType?, provider: () -> SAChannel) {
         // given
         let channel = provider()
         
         // when
-        let type = useCase.invoke(channelBase: channel)
+        let type = useCase.invoke(channelWithChildren: ChannelWithChildren(channel: channel, children: []))
         
         // then
         XCTAssertEqual(type, expectedResult)

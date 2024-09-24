@@ -21,6 +21,25 @@ import Foundation
 struct ChannelWithChildren: Equatable {
     let channel: SAChannel
     let children: [ChannelChild]
+
+    var allDescendantFlat: [ChannelChild] { getChildren(children) }
+
+    var pumpSwitchChild: ChannelChild? { children.first(where: { $0.relationType == .pumpSwitch }) }
+
+    var heatOrColdSourceSwitchChild: ChannelChild? {
+        children.first(where: { $0.relationType == .heatOrColdSourceSwitch })
+    }
+
+    private func getChildren(_ tree: [ChannelChild]) -> [ChannelChild] {
+        var children: [ChannelChild] = []
+        for item in tree {
+            children.append(item)
+            if (!item.children.isEmpty) {
+                children.append(contentsOf: getChildren(item.children))
+            }
+        }
+        return children
+    }
 }
 
 extension ChannelWithChildren: BaseCellData {

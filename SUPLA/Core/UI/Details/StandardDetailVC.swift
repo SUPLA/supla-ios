@@ -75,6 +75,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(legacyDetail(type: .ic))
             case .thermostatGeneral:
                 viewControllers.append(thermostatGeneral())
+            case .thermostatList:
+                viewControllers.append(thermostatList())
             case .schedule:
                 viewControllers.append(scheduleDetail())
             case .thermostatHistory:
@@ -156,6 +158,16 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             tag: DetailTabTag.Thermostat.rawValue
         )
         vc.navigationBarMaintainedByParent = true
+        return vc
+    }
+    
+    private func thermostatList() -> UIViewController {
+        let vc = ThermostatSlavesFeature.ViewController.create(item: item)
+        vc.tabBarItem = UITabBarItem(
+            title: "List",
+            image: UIImage(named: "list"),
+            tag: DetailTabTag.List.rawValue
+        )
         return vc
     }
     
@@ -315,4 +327,5 @@ fileprivate enum DetailTabTag: Int {
     case Schedule = 5
     case ThermostatHistory = 6
     case Window = 7
+    case List = 8
 }
