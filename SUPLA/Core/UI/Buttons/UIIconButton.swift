@@ -104,12 +104,14 @@ class UIIconButton: UIButton {
     }
     
     private func setColors() {
-        backgroundColor = isEnabled ? config.backgroundColor : config.backgroundDisabledColor
-        tintColor = isEnabled ? config.contentColor : config.contentDisabledColor
-        
-        if let borderColor = config.borderColor {
-            layer.borderColor = isEnabled ? borderColor.cgColor : config.contentDisabledColor.cgColor
-            layer.borderWidth = 1
+        traitCollection.performAsCurrent {
+            backgroundColor = isEnabled ? config.backgroundColor : config.backgroundDisabledColor
+            tintColor = isEnabled ? config.contentColor : config.contentDisabledColor
+            
+            if let borderColor = config.borderColor {
+                layer.borderColor = isEnabled ? borderColor.cgColor : config.contentDisabledColor.cgColor
+                layer.borderWidth = 1
+            }
         }
     }
     

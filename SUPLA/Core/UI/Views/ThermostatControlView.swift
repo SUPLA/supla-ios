@@ -129,7 +129,7 @@ final class ThermostatControlView: UIView {
     var currentPower: Int = 0 {
         didSet {
             temperatureCircleShape.currentPower = currentPower
-            currentPowerLabel.isHidden = !operationalMode.isStrictHeating && !operationalMode.isStrictCooling || currentPower <= 1
+            currentPowerLabel.isHidden = !operationalMode.isHeating && !operationalMode.isCooling || currentPower <= 1
             currentPowerLabel.text = "\(currentPower - 1)%"
             
             setNeedsLayout()
@@ -251,7 +251,7 @@ final class ThermostatControlView: UIView {
             height: maxTemperatureView.intrinsicContentSize.height
         )
         
-        let correction: CGFloat = (operationalMode.isStrictCooling || operationalMode.isStrictHeating) && currentPower > 1 ? 75 : 55
+        let correction: CGFloat = (operationalMode.isCooling || operationalMode.isHeating) && currentPower > 1 ? 75 : 55
         indicatorHeatingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 - correction)
         indicatorCoolingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 + correction)
         
@@ -416,7 +416,7 @@ private class TemperatureCircleLayer: CAShapeLayer {
     
     var operationalMode: ThermostatOperationalMode = .offline {
         didSet {
-            let powerHidden = !operationalMode.isStrictCooling && !operationalMode.isStrictHeating || currentPower <= 1
+            let powerHidden = !operationalMode.isCooling && !operationalMode.isHeating || currentPower <= 1
             powerBackgroundSublayer.isHidden = powerHidden
             powerIndicatorSublayer.isHidden = powerHidden
             
@@ -429,7 +429,7 @@ private class TemperatureCircleLayer: CAShapeLayer {
     
     var currentPower: Int = 0 {
         didSet {
-            let powerHidden = !operationalMode.isStrictCooling && !operationalMode.isStrictHeating || currentPower <= 1
+            let powerHidden = !operationalMode.isCooling && !operationalMode.isHeating || currentPower <= 1
             powerBackgroundSublayer.isHidden = powerHidden
             powerIndicatorSublayer.isHidden = powerHidden
             
