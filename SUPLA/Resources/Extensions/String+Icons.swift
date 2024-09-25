@@ -54,6 +54,7 @@ extension String {
         static let invisible = "icon_invisible"
         static let empty = "icon_empty"
         static let more = "icon_more"
+        static let list = "icon_list"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"

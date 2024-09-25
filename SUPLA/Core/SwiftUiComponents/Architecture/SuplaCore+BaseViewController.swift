@@ -89,11 +89,16 @@ extension SuplaCore {
             
             NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+            NotificationCenter.default.removeObserver(self)
         }
         
         override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
             onViewDisappeared()
+        }
+        
+        func observeNotification(name: NSNotification.Name?, selector: Selector) {
+            NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
         }
         
         private func setupConstraints() {

@@ -82,10 +82,12 @@ class BaseControlButtonView: UIView {
 
     var active: Bool = false {
         didSet {
-            layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-            layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
-            textView.textColor = active ? type.textColor : type.inactiveColor
-            iconView.tintColor = active ? type.textColor : iconColor
+            traitCollection.performAsCurrent {
+                layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
+                layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+                textView.textColor = active ? type.textColor : type.inactiveColor
+                iconView.tintColor = active ? type.textColor : iconColor
+            }
             innerShadowView.isHidden = !active
 
             setNeedsLayout()
@@ -255,7 +257,7 @@ class BaseControlButtonView: UIView {
             switch (self) {
             case .positive: return .green
             case .negative: return .negativeBorder
-            case .neutral: return .black
+            case .neutral: return .onBackground
             }
         }
 

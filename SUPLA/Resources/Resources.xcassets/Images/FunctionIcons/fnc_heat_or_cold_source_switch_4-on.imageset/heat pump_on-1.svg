@@ -1,16 +1,16 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_5999_1776)">
-<rect x="374" y="76" width="124" height="360" stroke="#FCFCFC" stroke-width="20" stroke-linejoin="round"/>
-<rect x="14" y="76" width="360" height="360" stroke="#FCFCFC" stroke-width="20" stroke-linejoin="round"/>
+<rect x="374" y="76" width="124" height="360" stroke="#B4B7BA" stroke-width="20" stroke-linejoin="round"/>
+<rect x="14" y="76" width="360" height="360" stroke="#B4B7BA" stroke-width="20" stroke-linejoin="round"/>
 <path d="M194 116.474V392.812" stroke="#12A71E" stroke-width="20"/>
 <path d="M291.695 156.943L96.2949 352.344" stroke="#12A71E" stroke-width="20"/>
 <path d="M332.164 254.643L55.8262 254.643" stroke="#12A71E" stroke-width="20"/>
 <path d="M291.695 352.343L96.2949 156.942" stroke="#12A71E" stroke-width="20"/>
-<path d="M275.434 481.686C249.986 490.777 222.57 495.729 193.998 495.729C165.426 495.729 138.01 490.777 112.562 481.686" stroke="#FCFCFC" stroke-width="20" stroke-linecap="round"/>
+<path d="M275.434 481.686C249.986 490.777 222.57 495.729 193.998 495.729C165.426 495.729 138.01 490.777 112.562 481.686" stroke="#B4B7BA" stroke-width="20" stroke-linecap="round"/>
 <path d="M100.552 502.002L92.2695 471.093L123.179 462.811" stroke="#FCFCFC" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M92.2694 30.3164C117.717 21.2245 145.133 16.2729 173.705 16.2729C202.277 16.2729 229.693 21.2245 255.141 30.3164" stroke="#FCFCFC" stroke-width="20" stroke-linecap="round"/>
-<path d="M267.151 9.99955L275.434 40.9092L244.524 49.1914" stroke="#FCFCFC" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="194" cy="256" r="140" stroke="#FCFCFC" stroke-width="20"/>
+<path d="M92.2694 30.3164C117.717 21.2245 145.133 16.2729 173.705 16.2729C202.277 16.2729 229.693 21.2245 255.141 30.3164" stroke="#B4B7BA" stroke-width="20" stroke-linecap="round"/>
+<path d="M267.151 9.99955L275.434 40.9092L244.524 49.1914" stroke="#B4B7BA" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="194" cy="256" r="140" stroke="#B4B7BA" stroke-width="20"/>
 </g>
 <defs>
 <clipPath id="clip0_5999_1776">

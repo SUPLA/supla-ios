@@ -44,6 +44,15 @@ extension ThermostatSlavesFeature {
             viewModel.loadData(item.remoteId)
         }
         
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            observeNotification(
+                name: NSNotification.Name.saChannelValueChanged,
+                selector: #selector(handleValueChange)
+            )
+        }
+        
         func onIssueIconTapped(issueMessage: String) {
             let alert = UIAlertController(title: "SUPLA", message: issueMessage, preferredStyle: .alert)
             let okButton = UIAlertAction(title: Strings.General.ok, style: .default)
@@ -51,6 +60,17 @@ extension ThermostatSlavesFeature {
             alert.title = NSLocalizedString("Warning", comment: "")
             alert.addAction(okButton)
             coordinator.present(alert, animated: true)
+        }
+        
+        @objc
+        private func handleValueChange(notification: Notification) {
+            if
+                let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
+                let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
+                !isGroup.boolValue
+            {
+                viewModel.reloadData(item.remoteId, remoteId.int32Value)
+            }
         }
         
         static func create(item: ItemBundle) -> UIViewController {
