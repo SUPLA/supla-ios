@@ -21,6 +21,8 @@ extension ThermostatSlavesFeature {
         @Published var master: ThermostatData? = nil
         @Published var slaves: [ThermostatData] = []
         @Published var scale: CGFloat = 1
+        
+        var relatedIds: [Int32] = []
     }
 
     struct ThermostatData: Equatable, Identifiable {

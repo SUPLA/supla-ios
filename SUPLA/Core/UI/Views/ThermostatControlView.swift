@@ -107,18 +107,18 @@ final class ThermostatControlView: UIView {
             traitCollection.performAsCurrent {
                 temperatureCircleShape.operationalMode = operationalMode
             }
-            indicatorHeatingShape.isHidden = operationalMode != .heating
-            indicatorCoolingShape.isHidden = operationalMode != .cooling
-            currentPowerLabel.isHidden = operationalMode != .heating && operationalMode != .cooling || currentPower <= 1
+            indicatorHeatingShape.isHidden = !operationalMode.isHeating
+            indicatorCoolingShape.isHidden = !operationalMode.isCooling
+            currentPowerLabel.isHidden = !operationalMode.isHeating && !operationalMode.isCooling || currentPower <= 1
             
-            if (oldValue == .heating && operationalMode != .heating) {
+            if (oldValue.isHeating && !operationalMode.isHeating) {
                 indicatorHeatingShape.removeAllAnimations()
-            } else if (operationalMode == .heating && oldValue != .heating) {
+            } else if (operationalMode.isHeating && !oldValue.isHeating) {
                 indicatorHeatingShape.add(blinkingAnimation, forKey: "heat blinking")
             }
-            if (oldValue == .cooling && operationalMode != .cooling) {
+            if (oldValue.isCooling && !operationalMode.isCooling) {
                 indicatorCoolingShape.removeAllAnimations()
-            } else if (operationalMode == .cooling && oldValue != .cooling) {
+            } else if (operationalMode.isCooling && !oldValue.isCooling) {
                 indicatorCoolingShape.add(blinkingAnimation, forKey: "cool blinking")
             }
             
@@ -129,7 +129,7 @@ final class ThermostatControlView: UIView {
     var currentPower: Int = 0 {
         didSet {
             temperatureCircleShape.currentPower = currentPower
-            currentPowerLabel.isHidden = operationalMode != .heating && operationalMode != .cooling || currentPower <= 1
+            currentPowerLabel.isHidden = !operationalMode.isStrictHeating && !operationalMode.isStrictCooling || currentPower <= 1
             currentPowerLabel.text = "\(currentPower - 1)%"
             
             setNeedsLayout()
@@ -251,11 +251,11 @@ final class ThermostatControlView: UIView {
             height: maxTemperatureView.intrinsicContentSize.height
         )
         
-        let correction: CGFloat = currentPower > 1 ? 75 : 55
+        let correction: CGFloat = (operationalMode.isStrictCooling || operationalMode.isStrictHeating) && currentPower > 1 ? 75 : 55
         indicatorHeatingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 - correction)
         indicatorCoolingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 + correction)
         
-        let textCorrection: CGFloat = operationalMode == .heating ? -45 : 45
+        let textCorrection: CGFloat = operationalMode.isHeating ? -45 : 45
         currentPowerLabel.frame = CGRect(
             x: CGFloat(frame.width / 2 - currentPowerLabel.intrinsicContentSize.width / 2),
             y: CGFloat(frame.height / 2 - currentPowerLabel.intrinsicContentSize.height / 2) + textCorrection,
@@ -416,8 +416,9 @@ private class TemperatureCircleLayer: CAShapeLayer {
     
     var operationalMode: ThermostatOperationalMode = .offline {
         didSet {
-            powerBackgroundSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
-            powerIndicatorSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
+            let powerHidden = !operationalMode.isStrictCooling && !operationalMode.isStrictHeating || currentPower <= 1
+            powerBackgroundSublayer.isHidden = powerHidden
+            powerIndicatorSublayer.isHidden = powerHidden
             
             powerBackgroundSublayer.strokeColor = operationalMode.backgroundColor.cgColor
             powerIndicatorSublayer.strokeColor = operationalMode.foregroundColor.cgColor
@@ -428,8 +429,9 @@ private class TemperatureCircleLayer: CAShapeLayer {
     
     var currentPower: Int = 0 {
         didSet {
-            powerBackgroundSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
-            powerIndicatorSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
+            let powerHidden = !operationalMode.isStrictCooling && !operationalMode.isStrictHeating || currentPower <= 1
+            powerBackgroundSublayer.isHidden = powerHidden
+            powerIndicatorSublayer.isHidden = powerHidden
             
             updatePowerPath()
         }

@@ -58,6 +58,15 @@ extension SAChannelBase {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
     }
 
+    func switchWithButtons() -> Bool {
+        return switch (self.func) {
+            case SUPLA_CHANNELFNC_POWERSWITCH,
+                 SUPLA_CHANNELFNC_STAIRCASETIMER,
+                 SUPLA_CHANNELFNC_LIGHTSWITCH: true
+            default: false
+        }
+    }
+
     @objc
     func isRGBW() -> Bool {
         return self.func == SUPLA_CHANNELFNC_RGBLIGHTING || self.func == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING || self.func == SUPLA_CHANNELFNC_DIMMER

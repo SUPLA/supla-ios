@@ -16,13 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
 import RxRelay
+import RxSwift
 
 private let REFRESH_DELAY_S: Double = 3
 
 class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
-    
     @Singleton<ReadChannelWithChildrenTreeUseCase> private var readChannelWithChildrenTreeUseCase
     @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
@@ -67,7 +66,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         
         Observable.combineLatest(
             channelRelay.asObservable()
-                .map { [weak self] in ($0, self?.createTemperaturesListUseCase.invoke(channelWithChildren: $0))},
+                .map { [weak self] in ($0, self?.createTemperaturesListUseCase.invoke(channelWithChildren: $0)) },
             channelConfigEventManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
             channelConfigEventManager.observeConfig(id: remoteId)
@@ -102,7 +101,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     
     func handleDataChangedEvent(remoteId: Int32, otherId: Int32) {
         if let state = currentState(),
-           state.childrenIds.contains(otherId) {
+           state.childrenIds.contains(otherId)
+        {
             triggerDataLoad(remoteId: remoteId)
         }
     }
@@ -272,7 +272,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             }
             
             if let lastInteractionTime = state.lastInteractionTime,
-               lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp() {
+               lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp()
+            {
                 SALog.info("Update skipped because of last interaction time")
                 updateRelay.accept(())
                 return state // Do not change anything during 3 secs after last user interaction
@@ -302,7 +303,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             changedState = handleButtons(changedState, channel: channel.channel)
             
             if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }),
-               channel.channel.isOnline() {
+               channel.channel.isOnline()
+            {
                 let temperature = mainTermometer.channel.temperatureValue()
                 changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
             }
@@ -396,12 +398,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     private func handleFlags(_ state: ThermostatGeneralViewState, value: ThermostatValue, channelWithChildren: ChannelWithChildren, isOnline: Bool) -> ThermostatGeneralViewState {
         return state
             .changing(
-                path: \.heatingIndicatorInactive,
-                to: !isActive(channelWithChildren, .heating)
+                path: \.heatingIndicatorActive,
+                to: isActive(channelWithChildren, .heating)
             )
             .changing(
-                path: \.coolingIndicatorInactive,
-                to: !isActive(channelWithChildren, .cooling)
+                path: \.coolingIndicatorActive,
+                to: isActive(channelWithChildren, .cooling)
             )
     }
     
@@ -421,7 +423,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             return getChannelBaseIconUseCase.invoke(channel: child.channel)
         }
         
-        let switches = channelWithChildren.allDescendantFlat.filter({ $0.relationType == .pumpSwitch })
+        let switches = channelWithChildren.allDescendantFlat.filter { $0.relationType == .pumpSwitch }
         if (switches.count == 1) {
             return getChannelBaseIconUseCase.invoke(channel: switches.first!.channel)
         }
@@ -434,7 +436,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             return getChannelBaseIconUseCase.invoke(channel: child.channel)
         }
         
-        let switches = channelWithChildren.allDescendantFlat.filter({ $0.relationType == .heatOrColdSourceSwitch })
+        let switches = channelWithChildren.allDescendantFlat.filter { $0.relationType == .heatOrColdSourceSwitch }
         if (switches.count == 1) {
             return getChannelBaseIconUseCase.invoke(channel: switches.first!.channel)
         }
@@ -489,7 +491,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         }
         
         if let sensor = children.first(where: { $0.relationType == .defaultType }) {
-            let message = switch(sensor.channel.func) {
+            let message = switch (sensor.channel.func) {
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
                 Strings.ThermostatDetail.offByWindow
             case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
@@ -523,7 +525,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         builder.currentMode = value.mode
         builder.channelOnline = channelOnline
         
-        switch(value.subfunction) {
+        switch (value.subfunction) {
         case .heat: builder.currentTemperature = value.setpointTemperatureHeat
         case .cool: builder.currentTemperature = value.setpointTemperatureCool
         default: break
@@ -541,11 +543,9 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
 }
 
-enum ThermostatGeneralViewEvent: ViewEvent {
-}
+enum ThermostatGeneralViewEvent: ViewEvent {}
 
 struct ThermostatGeneralViewState: ViewState {
-    
     /* Logic properties */
     
     var remoteId: Int32? = nil
@@ -558,7 +558,7 @@ struct ThermostatGeneralViewState: ViewState {
     var sent: Bool = false
     var lastInteractionTime: TimeInterval? = nil
     var changing: Bool = false
-    var loadingState: LoadingState = LoadingState()
+    var loadingState: LoadingState = .init()
     var subfunction: ThermostatSubfunction? = nil
     var timerEndDate: Date? = nil
     
@@ -570,8 +570,8 @@ struct ThermostatGeneralViewState: ViewState {
     var setpointCool: Float? = nil
     var activeSetpointType: SetpointType? = nil
     var currentTemperaturePercentage: Float? = nil
-    var heatingIndicatorInactive: Bool? = nil
-    var coolingIndicatorInactive: Bool? = nil
+    var heatingIndicatorActive: Bool? = nil
+    var coolingIndicatorActive: Bool? = nil
     var manualActive: Bool = false
     var weeklyScheduleActive: Bool = false
     var plusMinusHidden: Bool = false
@@ -588,10 +588,10 @@ struct ThermostatGeneralViewState: ViewState {
         if (offline) {
             .offline
         } else if (mode == .off || mode == .notSet) {
-            .off
-        } else if (heatingIndicatorInactive == false) {
+            .off(heating: heatingIndicatorActive == true, cooling: coolingIndicatorActive == true)
+        } else if (heatingIndicatorActive == true) {
             .heating
-        } else if (coolingIndicatorInactive == false) {
+        } else if (coolingIndicatorActive == true) {
             .cooling
         } else {
             .standby
@@ -599,80 +599,73 @@ struct ThermostatGeneralViewState: ViewState {
     }
     
     var off: Bool {
-        get {
-            offline || mode == .off || mode == .notSet
-        }
+        offline || mode == .off || mode == .notSet
     }
+
     var setpointText: String? {
-        get {
-            @Singleton<ValuesFormatter> var formatter
+        @Singleton<ValuesFormatter> var formatter
             
-            if (offline) {
-                return "offline"
-            } else if (off) {
-                return "off"
-            } else if (mode == .heat) {
-                return formatter.temperatureToString(setpointHeat, withUnit: false)
-            } else if (mode == .cool) {
-                return formatter.temperatureToString(setpointCool, withUnit: false)
-            }
-            
-            return nil
+        if (offline) {
+            return "offline"
+        } else if (off) {
+            return "off"
+        } else if (mode == .heat) {
+            return formatter.temperatureToString(setpointHeat, withUnit: false)
+        } else if (mode == .cool) {
+            return formatter.temperatureToString(setpointCool, withUnit: false)
         }
+            
+        return nil
     }
+
     var setpointHeatPercentage: Float? {
-        get {
-            guard let min = configMin,
-                  let max = configMax,
-                  let current = setpointHeat,
-                  !off || weeklyScheduleActive
-            else { return nil }
-            return (current - min) / (max - min)
-        }
+        guard let min = configMin,
+              let max = configMax,
+              let current = setpointHeat,
+              !off || weeklyScheduleActive
+        else { return nil }
+        return (current - min) / (max - min)
     }
+
     var setpointCoolPercentage: Float? {
-        get {
-            guard let min = configMin,
-                  let max = configMax,
-                  let current = setpointCool,
-                  !off || weeklyScheduleActive
-            else { return nil }
-            return (current - min) / (max - min)
-        }
+        guard let min = configMin,
+              let max = configMax,
+              let current = setpointCool,
+              !off || weeklyScheduleActive
+        else { return nil }
+        return (current - min) / (max - min)
     }
+
     var plusButtonEnabled: Bool {
-        get {
-            if (mode == .off && !weeklyScheduleActive) {
-                return false
-            }
-            switch (activeSetpointType) {
-            case .heat: return (setpointHeat ?? 0) < (configMax ?? 0)
-            case .cool: return (setpointCool ?? 0) < (configMax ?? 0)
-            default: return false
-            }
+        if (mode == .off && !weeklyScheduleActive) {
+            return false
+        }
+        switch (activeSetpointType) {
+        case .heat: return (setpointHeat ?? 0) < (configMax ?? 0)
+        case .cool: return (setpointCool ?? 0) < (configMax ?? 0)
+        default: return false
         }
     }
+
     var minusButtonEnabled: Bool {
-        get {
-            if (mode == .off && !weeklyScheduleActive) {
-                return false
-            }
-            switch (activeSetpointType) {
-            case .heat: return (setpointHeat ?? 0) > (configMin ?? 0)
-            case .cool: return (setpointCool ?? 0) > (configMin ?? 0)
-            default: return false
-            }
+        if (mode == .off && !weeklyScheduleActive) {
+            return false
+        }
+        switch (activeSetpointType) {
+        case .heat: return (setpointHeat ?? 0) > (configMin ?? 0)
+        case .cool: return (setpointCool ?? 0) > (configMin ?? 0)
+        default: return false
         }
     }
+
     var powerIconColor: UIColor {
-        get {
-            if ((off && !weeklyScheduleActive) || offline) {
-                return .red
-            } else {
-                return .primary
-            }
+        if ((off && !weeklyScheduleActive) || offline) {
+            return .red
+        } else {
+            return .primary
         }
     }
+
     var controlButtonsEnabled: Bool { !offline }
     var configMinMaxHidden: Bool { offline }
     var grayOutSetpoints: Bool { !offline && off && weeklyScheduleActive }
@@ -680,6 +673,7 @@ struct ThermostatGeneralViewState: ViewState {
     var timerInfoHidden: Bool {
         sensorIssue != nil || timerEndDate == nil || timerEndDate!.timeIntervalSince1970 < Date().timeIntervalSince1970
     }
+
     var endDateText: String { DeviceState.endDateText(timerEndDate) }
     var currentStateIcon: UIImage? { DeviceState.currentStateIcon(mode)?.uiImage }
     var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(mode) }
@@ -692,12 +686,20 @@ struct ThermostatGeneralViewState: ViewState {
     }
 }
 
-enum ThermostatOperationalMode {
-    case offline, off, heating, cooling, standby
+enum ThermostatOperationalMode: Equatable {
+    case offline, off(heating: Bool, cooling: Bool), heating, cooling, standby
     
     var foregroundColor: UIColor {
         switch (self) {
-        case .offline, .off: .black
+        case .offline: .black
+        case .off(let heating, let cooling):
+            if (heating) {
+                .error
+            } else if (cooling) {
+                .secondary
+            } else {
+                .black
+            }
         case .heating: .error
         case .cooling: .secondary
         case .standby: .primary
@@ -711,9 +713,39 @@ enum ThermostatOperationalMode {
         default: .transparent
         }
     }
+    
+    var isHeating: Bool {
+        switch self {
+        case .heating: true
+        case .off(let heating, _): heating
+        default: false
+        }
+    }
+    
+    var isCooling: Bool {
+        switch self {
+        case .cooling: true
+        case .off(_, let cooling): cooling
+        default: false
+        }
+    }
+    
+    var isStrictHeating: Bool {
+        switch self {
+        case .heating: true
+        default: false
+        }
+    }
+    
+    var isStrictCooling: Bool {
+        switch self {
+        case .cooling: true
+        default: false
+        }
+    }
 }
 
-fileprivate extension SAChannel {
+private extension SAChannel {
     func isThermostatOff() -> Bool {
         guard let value = value?.asThermostatValue() else { return false }
         return !isOnline() || value.mode == .off || value.mode == .notSet
@@ -737,7 +769,7 @@ struct SensorIssue: Equatable {
     let message: String
 }
 
-fileprivate extension SAChannel {
+private extension SAChannel {
     func isActive(_ flag: SuplaThermostatFlag) -> Bool {
         guard let value = value?.asThermostatValue() else { return false }
         return isOnline() && value.state.isOn() && value.flags.contains(flag)

@@ -83,6 +83,8 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
             )
         }
         
+        powerOnButtonView.isHidden = !state.showButtons
+        powerOffButtonView.isHidden = !state.showButtons
         powerOnButtonView.isEnabled = state.deviceState?.isOnline == true
         powerOffButtonView.isEnabled = state.deviceState?.isOnline == true
         

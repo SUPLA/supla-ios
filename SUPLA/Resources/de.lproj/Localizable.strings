@@ -344,6 +344,7 @@
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_metrics_tab" = "Messungen";
 "standard_detail_history_tab" = "Historie";
+"standard_detail_list_tab" = "Liste";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktuellen Zustand:";

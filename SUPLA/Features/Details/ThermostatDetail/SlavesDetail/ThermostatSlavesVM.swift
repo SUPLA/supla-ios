@@ -33,9 +33,16 @@ extension ThermostatSlavesFeature {
             readChannelWithChildrenTreeUseCase.invoke(remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(
-                    onNext: { [weak self] in self?.handle(channel: $0) }
+                    onNext: { [weak self] in self?.handle(channel: $0) },
+                    onCompleted: { SALog.debug("Completed!!") }
                 )
                 .disposed(by: disposeBag)
+        }
+        
+        func reloadData(_ remoteId: Int32, _ relatedId: Int32) {
+            if (state.relatedIds.contains(relatedId)) {
+                loadData(remoteId)
+            }
         }
         
         private func handle(channel: ChannelWithChildren) {
@@ -43,11 +50,37 @@ extension ThermostatSlavesFeature {
             state.slaves = channel.allDescendantFlat
                 .filter { $0.relationType == .masterThermostat }
                 .map { $0.toThermostatData() }
+            
+            state.relatedIds = channel.relatedIds
+            state.relatedIds.append(
+                contentsOf: channel.allDescendantFlat
+                    .filter { $0.relationType == .masterThermostat }
+                    .flatMap { $0.relatedIds }
+            )
         }
     }
 }
 
 private extension ChannelChild {
+    var relatedIds: [Int32] {
+        var ids: [Int32] = []
+        ids.append(channel.remote_id)
+        
+        if let thermometer = children.first(where: { $0.relationType == .mainThermometer }) {
+            ids.append(thermometer.channel.remote_id)
+        }
+        
+        if let pumpSwitch = children.first(where: { $0.relationType == .pumpSwitch }) {
+            ids.append(pumpSwitch.channel.remote_id)
+        }
+        
+        if let heatOrColdSourceSwitch = children.first(where: { $0.relationType == .heatOrColdSourceSwitch }) {
+            ids.append(heatOrColdSourceSwitch.channel.remote_id)
+        }
+        
+        return ids
+    }
+    
     func toThermostatData() -> ThermostatSlavesFeature.ThermostatData {
         @Singleton var getChannelCaptionUseCase: GetChannelBaseCaptionUseCase
         @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
@@ -78,11 +111,28 @@ private extension ChannelChild {
             channel: channel
         )
     }
-    
-
 }
 
 private extension ChannelWithChildren {
+    var relatedIds: [Int32] {
+        var ids: [Int32] = []
+        ids.append(channel.remote_id)
+        
+        if let thermometer = children.first(where: { $0.relationType == .mainThermometer }) {
+            ids.append(thermometer.channel.remote_id)
+        }
+        
+        if let pumpSwitch = children.first(where: { $0.relationType == .pumpSwitch }) {
+            ids.append(pumpSwitch.channel.remote_id)
+        }
+        
+        if let heatOrColdSourceSwitch = children.first(where: { $0.relationType == .heatOrColdSourceSwitch }) {
+            ids.append(heatOrColdSourceSwitch.channel.remote_id)
+        }
+        
+        return ids
+    }
+    
     func toThermostatData() -> ThermostatSlavesFeature.ThermostatData {
         @Singleton var getChannelCaptionUseCase: GetChannelBaseCaptionUseCase
         @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase

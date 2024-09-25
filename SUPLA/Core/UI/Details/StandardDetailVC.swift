@@ -164,8 +164,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     private func thermostatList() -> UIViewController {
         let vc = ThermostatSlavesFeature.ViewController.create(item: item)
         vc.tabBarItem = UITabBarItem(
-            title: "List",
-            image: UIImage(named: "list"),
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabList : nil,
+            image: .iconList,
             tag: DetailTabTag.List.rawValue
         )
         return vc
