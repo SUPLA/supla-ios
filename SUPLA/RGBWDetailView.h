@@ -42,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *tabDimmer;
 @property (weak, nonatomic) IBOutlet UIButton *tabWheel;
 @property (weak, nonatomic) IBOutlet UIButton *tabSlider;
+@property (weak, nonatomic) IBOutlet UITextField *percentageValue;
 - (IBAction)onPowerBtnTouch:(id)sender;
 - (IBAction)rgbInfoTouch:(id)sender;
 - (IBAction)onSettingsTouch:(id)sender;

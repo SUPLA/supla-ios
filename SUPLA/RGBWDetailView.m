@@ -98,6 +98,7 @@
 }
 
 - (void)showValues {
+    [self.percentageValue setHidden: true];
     if ( self.cbPicker.colorWheelHidden == NO ) {
         
         if (!isGroup) {
@@ -106,6 +107,8 @@
             };
             
             self.cbPicker.color = _color;
+            [self.percentageValue setHidden: false];
+            self.percentageValue.text = [NSString stringWithFormat:@"%d%%", _colorBrightness];
         }
         
         self.cbPicker.brightnessMarkers = _colorBrightnessMarkers;
@@ -117,6 +120,8 @@
         }
         
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
+        [self.percentageValue setHidden: false];
+        self.percentageValue.text = [NSString stringWithFormat:@"%d%%", _brightness];
     }
     
     [self pickerToExtraButton];
@@ -392,6 +397,8 @@
 -(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker {
     [self sendNewValues];
     [self pickerToExtraButton];
+    
+    self.percentageValue.text = [NSString stringWithFormat:@"%.0f%%", picker.brightness];
 }
 
 -(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker {

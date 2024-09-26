@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -156,8 +156,19 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="28%" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VI8-Wj-u5v">
+                            <rect key="frame" x="284" y="16" width="70" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="cvU-jt-8Qx"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="VI8-Wj-u5v" firstAttribute="top" secondItem="423-RM-o46" secondAttribute="top" constant="16" id="fXN-gN-KvA"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pA2-nT-bk6" userLabel="Cl Picker" customClass="SAColorListPicker">
                     <rect key="frame" x="15" y="786" width="363" height="31"/>
@@ -225,6 +236,7 @@
                 <constraint firstAttribute="trailing" secondItem="gny-hI-jTV" secondAttribute="trailing" constant="15" id="Nte-iB-Ax0"/>
                 <constraint firstAttribute="trailing" secondItem="pA2-nT-bk6" secondAttribute="trailing" constant="15" id="X5V-OO-KcK"/>
                 <constraint firstAttribute="trailing" secondItem="hGF-sg-Xa0" secondAttribute="trailing" constant="15" id="ZAs-oO-6fN"/>
+                <constraint firstAttribute="trailing" secondItem="VI8-Wj-u5v" secondAttribute="trailing" constant="24" id="Zn7-gc-4ub"/>
                 <constraint firstAttribute="trailing" secondItem="byQ-th-xcl" secondAttribute="trailing" constant="15" id="aT0-wq-0Fu"/>
                 <constraint firstItem="tyr-Ao-Ful" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="gVJ-s3-pms"/>
                 <constraint firstItem="hGF-sg-Xa0" firstAttribute="top" secondItem="gny-hI-jTV" secondAttribute="bottom" constant="5" id="lyV-Iu-wlz"/>
@@ -247,6 +259,7 @@
                 <outlet property="clPicker" destination="pA2-nT-bk6" id="zdW-tc-OjK"/>
                 <outlet property="clPickerBottomMargin" destination="IQf-oL-IG9" id="i3w-nb-fyr"/>
                 <outlet property="onlineStatus" destination="O0k-Bs-rUY" id="0ps-b2-Qcu"/>
+                <outlet property="percentageValue" destination="VI8-Wj-u5v" id="71a-vQ-Nem"/>
                 <outlet property="tabDimmer" destination="CmH-xi-e3y" id="CLz-4M-9DW"/>
                 <outlet property="tabRGB" destination="ZfE-Sn-N5Y" id="qHJ-Tq-2WK"/>
                 <outlet property="tabSlider" destination="yOa-IT-DZF" id="nZY-aa-GhH"/>
