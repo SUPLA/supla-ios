@@ -20,7 +20,6 @@ import Foundation
 import RxSwift
 
 class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, ThermostatGeneralViewEvent, ThermostatGeneralVM> {
-    
     @Singleton<ValuesFormatter> private var formatter
     
     private let item: ItemBundle
@@ -55,9 +54,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
-    private lazy var deviceStateView: DeviceStateView = {
-        DeviceStateView(iconSize: 16)
-    }()
+    private lazy var deviceStateView: DeviceStateView = .init(iconSize: 16)
     
     private lazy var thermostatControlView: ThermostatControlView = {
         let view = ThermostatControlView()
@@ -79,7 +76,21 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return button
     }()
     
-    private lazy var loaderView: LoadingScrimView = LoadingScrimView()
+    // MARK: Pump/Source switches icons
+    
+    private lazy var pumpSwitchImage: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var heatOrColdSourceSwitchImage: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var loaderView: LoadingScrimView = .init()
     
     private lazy var firstIssueRowView: IssueView = {
         let view = IssueView()
@@ -99,6 +110,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         viewModel = ThermostatGeneralVM()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -124,7 +136,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     
     override func handle(state: ThermostatGeneralViewState) {
         temperaturesView.measurements = state.measurements
-        
+    
         if (state.activeSetpointType != nil && thermostatControlView.setpointToDrag == nil) {
             // Set it only once at the begining.
             thermostatControlView.setpointToDrag = state.activeSetpointType
@@ -139,6 +151,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         thermostatControlView.operationalMode = state.operationalMode
         thermostatControlView.currentPower = state.currentPower
         thermostatControlView.greyOutSetpoins = state.grayOutSetpoints
+        pumpSwitchImage.image = state.pumpSwitchIcon?.uiImage
+        heatOrColdSourceSwitchImage.image = state.heatOrColdSourceSwitchIcon?.uiImage
         minusButton.isEnabled = state.minusButtonEnabled
         minusButton.isHidden = state.plusMinusHidden
         minusButton.setColor(activeSetpointType: state.activeSetpointType)
@@ -182,7 +196,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         }
         
         sensorIssueView.isHidden = state.sensorIssue == nil
-        sensorIssueView.icon = state.sensorIssue?.sensorIcon
+        sensorIssueView.icon = state.sensorIssue?.sensorIcon?.uiImage
         sensorIssueView.message = state.sensorIssue?.message
     }
     
@@ -218,6 +232,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         view.addSubview(secondProgramInfoView)
         view.addSubview(sensorIssueView)
         view.addSubview(deviceStateView)
+        view.addSubview(pumpSwitchImage)
+        view.addSubview(heatOrColdSourceSwitchImage)
         
         setupLayout()
     }
@@ -255,6 +271,16 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             minusButton.topAnchor.constraint(equalTo: thermostatControlView.centerYAnchor, constant: 108),
             minusButton.rightAnchor.constraint(equalTo: thermostatControlView.centerXAnchor, constant: -20),
             
+            pumpSwitchImage.centerYAnchor.constraint(equalTo: minusButton.centerYAnchor),
+            pumpSwitchImage.rightAnchor.constraint(equalTo: minusButton.leftAnchor, constant: -Dimens.distanceSmall),
+            pumpSwitchImage.widthAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+            pumpSwitchImage.heightAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+            
+            heatOrColdSourceSwitchImage.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor),
+            heatOrColdSourceSwitchImage.leftAnchor.constraint(equalTo: plusButton.rightAnchor, constant: Dimens.distanceSmall),
+            heatOrColdSourceSwitchImage.widthAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+            heatOrColdSourceSwitchImage.heightAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+            
             loaderView.topAnchor.constraint(equalTo: view.topAnchor),
             loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             loaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -275,11 +301,12 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         if
             let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
             let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
-            !isGroup.boolValue {
-            if (remoteId.int32Value == self.item.remoteId) {
-                viewModel.triggerDataLoad(remoteId: self.item.remoteId)
+            !isGroup.boolValue
+        {
+            if (remoteId.int32Value == item.remoteId) {
+                viewModel.triggerDataLoad(remoteId: item.remoteId)
             } else {
-                viewModel.loadTemperatures(remoteId: self.item.remoteId, otherId: remoteId.int32Value)
+                viewModel.handleDataChangedEvent(remoteId: item.remoteId, otherId: remoteId.int32Value)
             }
         }
     }
@@ -287,8 +314,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
 
 // MARK: - Buttons view
 
-fileprivate class ThermostatGeneralButtons: UIView {
-    
+private class ThermostatGeneralButtons: UIView {
     var powerTapEvents: Observable<Void> { powerButtonView.tapObservable }
     var manualTapEvents: Observable<Void> { manualModeButtonView.tapObservable }
     var weeklyScheduleTapEvents: Observable<Void> { weeklyScheduleModeButtonView.tapObservable }
@@ -303,6 +329,7 @@ fileprivate class ThermostatGeneralButtons: UIView {
             weeklyScheduleModeButtonView.isEnabled = newValue
         }
     }
+
     var powerIconColor: UIColor {
         get { powerButtonView.iconColor }
         set { powerButtonView.iconColor = newValue }
@@ -321,7 +348,7 @@ fileprivate class ThermostatGeneralButtons: UIView {
     private lazy var powerButtonView: RoundedControlButtonView = {
         let view = RoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.icon = .suplaIcon(icon: .iconPowerButton)
+        view.icon = .suplaIcon(name: .Icons.powerButton)
         view.iconColor = .primary
         return view
     }()
@@ -356,9 +383,7 @@ fileprivate class ThermostatGeneralButtons: UIView {
         setupView()
     }
     
-    override var intrinsicContentSize: CGSize {
-        get { CGSize(width: UIView.noIntrinsicMetric, height: 96)}
-    }
+    override var intrinsicContentSize: CGSize { CGSize(width: UIView.noIntrinsicMetric, height: 96) }
     
     private func setupView() {
         addSubview(powerButtonView)
@@ -391,11 +416,8 @@ fileprivate class ThermostatGeneralButtons: UIView {
 
 // MARK: - Program view -
 
-fileprivate class ProgramView: UIView {
-    
-    override var intrinsicContentSize: CGSize {
-        get { CGSize(width: UIView.noIntrinsicMetric, height: 20) }
-    }
+private class ProgramView: UIView {
+    override var intrinsicContentSize: CGSize { CGSize(width: UIView.noIntrinsicMetric, height: 20) }
     
     var info: ThermostatProgramInfo? {
         get { nil }
@@ -405,8 +427,9 @@ fileprivate class ProgramView: UIView {
             infoTypeLabel.text = info.type.text().uppercased()
             iconView.isHidden = info.icon == nil || info.iconColor == nil
             if let icon = info.icon,
-               let color = info.iconColor {
-                iconView.image = icon.withRenderingMode(.alwaysTemplate)
+               let color = info.iconColor
+            {
+                iconView.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
                 iconView.tintColor = color
             }
             descriptionLabel.isHidden = info.description == nil
@@ -467,6 +490,7 @@ fileprivate class ProgramView: UIView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -533,8 +557,7 @@ fileprivate class ProgramView: UIView {
     }
 }
 
-fileprivate class SensorIssueView: UIView {
-    
+private class SensorIssueView: UIView {
     var icon: UIImage? {
         get { iconView.image }
         set {
@@ -580,6 +603,7 @@ fileprivate class SensorIssueView: UIView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -596,7 +620,7 @@ fileprivate class SensorIssueView: UIView {
         setupChangeableConstraints()
         
         NSLayoutConstraint.activate([
-            messageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            messageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     

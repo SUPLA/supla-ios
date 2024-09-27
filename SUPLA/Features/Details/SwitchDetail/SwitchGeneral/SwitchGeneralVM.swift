@@ -32,6 +32,7 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
                 
                 self.updateView() {
                     $0.changing(path: \.deviceState, to: self.createDeviceState(from: channel))
+                        .changing(path: \.showButtons, to: channel.switchWithButtons())
                 }
             })
             .disposed(by: self)
@@ -58,5 +59,6 @@ enum SwitchGeneralViewEvent: ViewEvent {
 
 struct SwitchGeneralViewState: ViewState {
     var deviceState: DeviceStateViewState? = nil
+    var showButtons: Bool = false
 }
 

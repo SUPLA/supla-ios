@@ -76,6 +76,15 @@ final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
     }
 }
 
+final class ReadChannelWithChildrenTreeUseCaseMock: ReadChannelWithChildrenTreeUseCase {
+    var returns: Observable<ChannelWithChildren> = Observable.empty()
+    var parameters: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
 final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
     var parameters: [(Int32, Int32)] = []
     func invoke(remoteId: Int32, function: Int32) {

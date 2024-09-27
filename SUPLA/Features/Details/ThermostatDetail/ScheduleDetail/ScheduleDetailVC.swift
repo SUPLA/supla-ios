@@ -191,7 +191,7 @@ fileprivate class ButtonsRowView: HorizontalyScrollableView<RoundedControlButton
             let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
             buttonView.backgroundColor = program.scheduleProgram.program.color()
             buttonView.translatesAutoresizingMaskIntoConstraints = false
-            buttonView.icon = program.icon != nil ? .suplaIcon(icon: program.icon) : nil
+            buttonView.icon = program.icon != nil ? .suplaIcon(name: program.icon!) : nil
             buttonView.text = program.text
             buttonView.iconColor = .black
             buttonView.active = false

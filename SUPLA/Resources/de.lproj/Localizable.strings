@@ -314,6 +314,8 @@
 "channel_caption_curtain" = "Vorhang";
 "channel_caption_vertical_blind" = "Vertikaljalousien";
 "channel_caption_garage_door" = "Garagentor";
+"channel_caption_pump_switch" = "Pumpenschalter";
+"channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -342,6 +344,7 @@
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_metrics_tab" = "Messungen";
 "standard_detail_history_tab" = "Historie";
+"standard_detail_list_tab" = "Liste";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktuellen Zustand:";
@@ -391,6 +394,7 @@
 /* Thermostat Detail */
 "thermostat_thermometer_error" = "Fehler beim Temperaturelesen";
 "thermostat_clock_error" = "Uhrfehler";
+"thermostat_battery_cover_open" = "Batteriefachdeckel offen";
 "thermostat_detail_mode_manual" = "Handbetrieb";
 "thermostat_detail_mode_weekly_schedule" = "Wöchentlich";
 "schedule_detail_program_dialog_header" = "Program %d Einstellungen";
@@ -407,6 +411,9 @@
 "thermostat_detail_program_info" = "Tippen, um es zu aktivieren. Lang halten, um es zu ändern.";
 "thermostat_detail_box_info" = "Tippen, um das aktivierten Program zu setzen. Long halten, um die Viertelstunde anzupassen.";
 "thermostat_detail_arrow_info" = "Die dunkle Ecke zeigt aktuelles Tag und Zeit.";
+"thermostat_detail_list" = "Liste";
+"thermostat_detail_main_thermostat" = "Hauptthermostat";
+"thermostat_detail_other_thermostats" = "Andere Thermostate";
 
 /* Combined Chart */
 "history_range_label" = "Bereich";

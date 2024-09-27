@@ -174,6 +174,7 @@ struct Strings {
         static let tabMetrics = "standard_detail_metrics_tab".toLocalized()
         static let tabSchedule = "standard_detail_schedule_tab".toLocalized()
         static let tabHistory = "standard_detail_history_tab".toLocalized()
+        static let tabList = "standard_detail_list_tab".toLocalized()
     }
     
     struct SwitchDetail {
@@ -231,6 +232,7 @@ struct Strings {
     struct ThermostatDetail {
         static let thermometerError = "thermostat_thermometer_error".toLocalized()
         static let clockError = "thermostat_clock_error".toLocalized()
+        static let batteryCoverOpen = "thermostat_battery_cover_open".toLocalized()
         
         static let modeManual = "thermostat_detail_mode_manual".toLocalized()
         static let modeWeeklySchedule = "thermostat_detail_mode_weekly_schedule".toLocalized()
@@ -253,6 +255,10 @@ struct Strings {
         static let programInfo = "thermostat_detail_program_info".toLocalized()
         static let boxInfo = "thermostat_detail_box_info".toLocalized()
         static let arrowInfo = "thermostat_detail_arrow_info".toLocalized()
+        
+        static let list = "thermostat_detail_list".toLocalized()
+        static let mainThermostat = "thermostat_detail_main_thermostat".toLocalized()
+        static let otherThermostats = "thermostat_detail_other_thermostats".toLocalized()
     }
     
     struct Notifications {
@@ -312,6 +318,8 @@ struct Strings {
             static let captionCurtain = "channel_caption_curtain".toLocalized()
             static let captionVerticalBlind = "channel_caption_vertical_blind".toLocalized()
             static let captionGarageDoor = "channel_caption_garage_door".toLocalized()
+            static let captionPumpSwitch = "channel_caption_pump_switch".toLocalized()
+            static let captionHeatOrCouldSourceSwitch = "channel_caption_heat_or_cold_source_switch".toLocalized()
         }
     }
     

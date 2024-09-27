@@ -161,4 +161,60 @@ struct Text {
             }
         }
     }
+    
+    struct CellValue: SuplaText {
+        @Environment(\.scaleFactor) var scaleFactor: CGFloat
+        
+        var text: String
+        
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(Font.Supla.cellValue(scaleFactor, limit: .lower(1)))
+                    .foregroundStyle(Color.Supla.onBackground)
+            } else {
+                SwiftUI.Text(text)
+                    .font(Font.Supla.cellValue(scaleFactor, limit: .lower(1)))
+                    .foregroundColor(Color.Supla.onBackground)
+            }
+        }
+    }
+    
+    struct CellCaption: SuplaText {
+        @Environment(\.scaleFactor) var scaleFactor: CGFloat
+        
+        var text: String
+        
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .lineLimit(1)
+                    .font(Font.Supla.cellCaption(scaleFactor, limit: .lower(1)))
+                    .foregroundStyle(Color.Supla.onBackground)
+            } else {
+                SwiftUI.Text(text)
+                    .lineLimit(1)
+                    .font(Font.Supla.cellCaption(scaleFactor, limit: .lower(1)))
+                    .foregroundColor(Color.Supla.onBackground)
+            }
+        }
+    }
+    
+    struct CellSubValue: SuplaText {
+        @Environment(\.scaleFactor) var scaleFactor: CGFloat
+        
+        var text: String
+        
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
+                    .foregroundStyle(Color.Supla.onBackground)
+            } else {
+                SwiftUI.Text(text)
+                    .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
+                    .foregroundColor(Color.Supla.onBackground)
+            }
+        }
+    }
 }

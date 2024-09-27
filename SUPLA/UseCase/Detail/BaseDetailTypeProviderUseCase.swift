@@ -18,12 +18,8 @@
 
 import Foundation
 
-protocol ProvideDetailTypeUseCase {
-    func invoke(channelBase: SAChannelBase) -> DetailType?
-}
-
-final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
-    func invoke(channelBase: SAChannelBase) -> DetailType? {
+class BaseDetailTypeProviderUseCase {
+    func provide(_ channelBase: SAChannelBase) -> DetailType? {
         switch channelBase.func {
         case
             SUPLA_CHANNELFNC_DIMMER,
@@ -46,11 +42,6 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             return .windowDetail(pages: [.verticalBlind])
         case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return .windowDetail(pages: [.garageDoor])
-        case
-            SUPLA_CHANNELFNC_LIGHTSWITCH,
-            SUPLA_CHANNELFNC_POWERSWITCH,
-            SUPLA_CHANNELFNC_STAIRCASETIMER:
-            return .switchDetail(pages: getSwitchDetailPages(channelBase: channelBase))
         case
             SUPLA_CHANNELFNC_ELECTRICITY_METER:
             return .legacy(type: .em)
@@ -83,28 +74,6 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             return nil
         }
     }
-    
-    private func getSwitchDetailPages(channelBase: SAChannelBase) -> [DetailPage] {
-        guard let channel = channelBase as? SAChannel
-        else { return [.switchGeneral] }
-        
-        var pages: [DetailPage] = [.switchGeneral]
-        
-        if channel.flags & Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED) > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER {
-            pages.append(.switchTimer)
-        }
-        
-        if let type = channel.value?.sub_value_type {
-            if type == SUBV_TYPE_IC_MEASUREMENTS {
-                pages.append(.historyIc)
-            }
-            if type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS {
-                pages.append(.historyEm)
-            }
-        }
-        
-        return pages
-    }
 }
 
 enum DetailType: Equatable {
@@ -129,6 +98,7 @@ enum DetailPage {
     
     // Thermostat
     case thermostatGeneral
+    case thermostatList
     case schedule
     case thermostatTimer
     case thermostatHistory

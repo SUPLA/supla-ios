@@ -106,7 +106,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
         let channelListVC = ChannelListVC()
         channelListVC.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.Main.channels : nil,
-            image: UIImage(named: "list"),
+            image: .iconList,
             tag: HomeTabTag.Channels.rawValue
         )
         channelListVC.navigationBarMaintainedByParent = true

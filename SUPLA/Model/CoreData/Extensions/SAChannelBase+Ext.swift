@@ -31,6 +31,20 @@ extension SAChannelBase {
         )
     }
 
+    func isElectricityMeter() -> Bool {
+        self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+    }
+
+    func isImpulseCounter() -> Bool {
+        switch (self.func) {
+            case SUPLA_CHANNELFNC_IC_GAS_METER,
+                 SUPLA_CHANNELFNC_IC_HEAT_METER,
+                 SUPLA_CHANNELFNC_IC_WATER_METER,
+                 SUPLA_CHANNELFNC_IC_ELECTRICITY_METER: true
+            default: false
+        }
+    }
+
     func isThermometer() -> Bool {
         return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
@@ -42,6 +56,15 @@ extension SAChannelBase {
 
     func isHvacThermostat() -> Bool {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+    }
+
+    func switchWithButtons() -> Bool {
+        return switch (self.func) {
+            case SUPLA_CHANNELFNC_POWERSWITCH,
+                 SUPLA_CHANNELFNC_STAIRCASETIMER,
+                 SUPLA_CHANNELFNC_LIGHTSWITCH: true
+            default: false
+        }
     }
 
     @objc

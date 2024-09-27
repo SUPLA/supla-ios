@@ -381,7 +381,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 .changing(path: \.programs, to: [
                     ScheduleDetailProgram(
                         scheduleProgram: .OFF,
-                        icon: .iconPowerButton
+                        icon: .Icons.powerButton
                     )
                 ])
                 .changing(path: \.configMin, to: 10)
@@ -590,7 +590,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 .changing(path: \.programs, to: [
                     ScheduleDetailProgram(
                         scheduleProgram: .OFF,
-                        icon: .iconPowerButton
+                        icon: .Icons.powerButton
                     )
                 ])
                 .changing(path: \.configMin, to: 10)
@@ -601,7 +601,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 .changing(path: \.programs, to: [
                     ScheduleDetailProgram(
                         scheduleProgram: .OFF,
-                        icon: .iconPowerButton
+                        icon: .Icons.powerButton
                     )
                 ])
                 .changing(path: \.configMin, to: 10)

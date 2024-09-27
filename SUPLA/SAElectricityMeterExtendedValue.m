@@ -19,11 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAElectricityMeterExtendedValue.h"
 #import "supla-client.h"
 
-_supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
-                       TElectricityMeter_ExtendedValue_V2 *v2);
 
 @implementation SAElectricityMeterExtendedValue {
-    TElectricityMeter_ExtendedValue_V2 _emev;
+    TElectricityMeter_ExtendedValue_V3 _emev;
 }
 
 -(id)initWithExtendedValue:(SAChannelExtendedValue *)ev {
@@ -34,7 +32,7 @@ _supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
     return nil;
 }
 
-- (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue_V2*)emev {
+- (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue_V3*)emev {
     if (emev == NULL) {
         return NO;
     }
@@ -42,7 +40,7 @@ _supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
     __block BOOL result = NO;
     
     [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
-        if (srpc_evtool_v2_extended2emextended(ev, emev)) {
+        if (srpc_evtool_v3_extended2emextended(ev, emev)) {
             result = YES;
         }
         return !result;

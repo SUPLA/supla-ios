@@ -71,6 +71,8 @@
 "channel_caption_curtain" = "Curtain";
 "channel_caption_vertical_blind" = "Vertical blind";
 "channel_caption_garage_door" = "Garage door";
+"channel_caption_pump_switch" = "Pump sitch";
+"channel_caption_heat_or_cold_source_switch" = "Heat or cold source switch";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -104,6 +106,7 @@
 "standard_detail_metrics_tab" = "Metrics";
 "standard_detail_schedule_tab" = "Week";
 "standard_detail_history_tab" = "History";
+"standard_detail_list_tab" = "List";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Current state:";
@@ -158,6 +161,7 @@
 /* Thermostat Detail */
 "thermostat_thermometer_error" = "Temperature reading error";
 "thermostat_clock_error" = "Clock error";
+"thermostat_battery_cover_open" = "Battery cover open";
 "thermostat_detail_mode_manual" = "Manual";
 "thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Program %d Settings";
@@ -174,6 +178,10 @@
 "thermostat_detail_program_info" = "Tap to select program. Press long to modify.";
 "thermostat_detail_box_info" = "Tap to set selected program. Press long to set quarters.";
 "thermostat_detail_arrow_info" = "Black corner indicates current day and hour.";
+"thermostat_detail_list" = "List";
+"thermostat_detail_main_thermostat" = "Main thermostat";
+"thermostat_detail_other_thermostats" = "Ohter thermostats";
+
 
 /* Combined Chart */
 "history_range_label" = "Range";

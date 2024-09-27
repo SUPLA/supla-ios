@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "unknown_channel@3x.png",
+      "filename" : "0.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "unknown_channel-nm@3x 1.png",
+      "filename" : "0 1.svg",
       "idiom" : "universal"
     }
   ],

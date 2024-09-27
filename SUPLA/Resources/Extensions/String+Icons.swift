@@ -20,6 +20,8 @@ import Foundation
 
 extension String {
     
+    var uiImage: UIImage? { UIImage(named: self) }
+    
     struct Icons {
         // MARK: Bars
         static let general = "icon_general"
@@ -52,6 +54,7 @@ extension String {
         static let invisible = "icon_invisible"
         static let empty = "icon_empty"
         static let more = "icon_more"
+        static let list = "icon_list"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
@@ -137,6 +140,15 @@ extension String {
         static let fncThermostatDhw = "fnc_thermostat_dhw"
         // ShadingSystems
         static let fncTerraceAwning = "fnc_terrace_awning"
+        // Pump switch
+        static let fncPumpSwitch = "fnc_pump_switch"
+        // Heat or cold source switch
+        static let fncHeatOrColdSourceSwitch = "fnc_heat_or_cold_source_switch"
+        static let fncHeatOrColdSourceSwitch2 = "fnc_heat_or_cold_source_switch_2"
+        static let fncHeatOrColdSourceSwitch3 = "fnc_heat_or_cold_source_switch_3"
+        static let fncHeatOrColdSourceSwitch4 = "fnc_heat_or_cold_source_switch_4"
+        static let fncHeatOrColdSourceSwitch5 = "fnc_heat_or_cold_source_switch_5"
+        static let fncHeatOrColdSourceSwitch6 = "fnc_heat_or_cold_source_switch_6"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

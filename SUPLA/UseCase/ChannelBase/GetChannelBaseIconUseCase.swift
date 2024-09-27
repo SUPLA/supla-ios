@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SwiftUI
+
 protocol GetChannelBaseIconUseCase {
     func invoke(iconData: IconData) -> IconResult
 }
@@ -25,8 +27,8 @@ extension GetChannelBaseIconUseCase {
         channel: SAChannelBase,
         type: IconType = .single,
         subfunction: ThermostatSubfunction? = nil
-    ) -> UIImage? {
-        return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction)).icon
+    ) -> IconResult {
+        return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction))
     }
 }
 
@@ -46,7 +48,7 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
 
         let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
 
-        return .suplaIcon(icon: .init(named: name))
+        return .suplaIcon(name: name)
     }
 
     private func getUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType, _ subfunction: ThermostatSubfunction?) -> UIImage? {
@@ -96,7 +98,7 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
                 default:
                     return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
                 }
-            default: 
+            default:
                 return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
             }
         default:
@@ -106,15 +108,29 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
 }
 
 enum IconResult: Equatable {
-    case suplaIcon(icon: UIImage?)
+    case suplaIcon(name: String)
     case userIcon(icon: UIImage?)
 }
 
 extension IconResult {
-    var icon: UIImage? {
+    var uiImage: UIImage? {
         switch (self) {
-        case .suplaIcon(let icon): return icon
+        case .suplaIcon(let name): return .init(named: name)
         case .userIcon(let icon): return icon
         }
     }
+    
+    var image: Image {
+        switch (self) {
+        case .suplaIcon(let name):
+            Image(name)
+        case .userIcon(let icon):
+            if let icon = icon {
+                Image(uiImage: icon)
+            } else {
+                Image(.Icons.fncUnknown)
+            }
+        }
+    }
 }
+

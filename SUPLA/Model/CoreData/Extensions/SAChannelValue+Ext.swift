@@ -20,7 +20,7 @@ import Foundation
 
 extension SAChannelValue {
     func asThermostatValue() -> ThermostatValue {
-        ThermostatValue.from(hvacValue: hvacValue())
+        ThermostatValue.from(hvacValue(), online: online)
     }
     
     func asRollerShutterValue() -> RollerShutterValue {

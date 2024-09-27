@@ -89,6 +89,7 @@ extension SuplaCore {
             
             NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+            NotificationCenter.default.removeObserver(self)
         }
         
         override func viewDidDisappear(_ animated: Bool) {
@@ -96,11 +97,15 @@ extension SuplaCore {
             onViewDisappeared()
         }
         
+        func observeNotification(name: NSNotification.Name?, selector: Selector) {
+            NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
+        }
+        
         private func setupConstraints() {
             NSLayoutConstraint.activate([
                 hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
                 hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-                hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 8),
                 hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
         }
