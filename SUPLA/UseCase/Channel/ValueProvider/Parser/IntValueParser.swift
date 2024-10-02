@@ -23,7 +23,13 @@ extension IntValueParser {
         if let value = channelValue?.dataValue(),
            value.count >= MemoryLayout<Int32>.size + startingFromByte
         {
-            return Int(value.withUnsafeBytes { $0.load(fromByteOffset: startingFromByte, as: Int32.self) })
+            var result = 0
+            for i in 0 ..< MemoryLayout<Int32>.size {
+                let current = Int(value[startingFromByte + i])
+                result |= current << (i*8)
+            }
+            
+            return result
         }
 
         return nil

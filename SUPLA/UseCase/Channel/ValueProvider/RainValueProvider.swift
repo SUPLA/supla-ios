@@ -23,8 +23,8 @@ final class RainValueProviderImpl: DefaultDoubleValueProvider, RainValueProvider
     
     override var unknownValue: Double { RainValueProviderImpl.UNKNOWN_VALUE }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_RAINSENSOR
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_RAINSENSOR
     }
     
     static let UNKNOWN_VALUE = -1.0

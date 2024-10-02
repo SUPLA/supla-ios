@@ -19,10 +19,10 @@
 @testable import SUPLA
 
 final class DepthValueProviderMock: DepthValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -35,10 +35,10 @@ final class DepthValueProviderMock: DepthValueProvider {
 }
 
 final class DistanceValueProviderMock: DistanceValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -51,10 +51,10 @@ final class DistanceValueProviderMock: DistanceValueProvider {
 }
 
 final class GpmValueProviderMock: GpmValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -67,10 +67,10 @@ final class GpmValueProviderMock: GpmValueProvider {
 }
 
 final class HumidityValueProviderMock: HumidityValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -83,10 +83,10 @@ final class HumidityValueProviderMock: HumidityValueProvider {
 }
 
 final class PressureValueProviderMock: PressureValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -99,10 +99,10 @@ final class PressureValueProviderMock: PressureValueProvider {
 }
 
 final class RainValueProviderMock: RainValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -115,10 +115,10 @@ final class RainValueProviderMock: RainValueProvider {
 }
 
 final class ThermometerAndHumidityValueProviderMock: ThermometerAndHumidityValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -131,10 +131,10 @@ final class ThermometerAndHumidityValueProviderMock: ThermometerAndHumidityValue
 }
 
 final class ThermometerValueProviderMock: ThermometerValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -147,10 +147,10 @@ final class ThermometerValueProviderMock: ThermometerValueProvider {
 }
 
 final class WeightValueProviderMock: WeightValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 
@@ -163,10 +163,10 @@ final class WeightValueProviderMock: WeightValueProvider {
 }
 
 final class WindValueProviderMock: WindValueProvider {
-    var handleParameters: [Int32] = []
+    var handleParameters: [SAChannel] = []
     var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
+    func handle(_ channel: SAChannel) -> Bool {
+        handleParameters.append(channel)
         return handleReturns
     }
 

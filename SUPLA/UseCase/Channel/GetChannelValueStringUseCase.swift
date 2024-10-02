@@ -38,7 +38,8 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         ThermometerAndHumidityValueStringProvider(),
         ThermometerValueStringProvider(),
         WeigthValueStringProvider(),
-        WindValueStringProvider()
+        WindValueStringProvider(),
+        ElectricityMeterValueStringProvider()
     ]
     
     func invoke(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String {

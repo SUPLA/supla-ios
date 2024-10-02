@@ -280,7 +280,6 @@
 "Default" = "По умолчанию";
 "Delete account" = "Удалить учётную запись";
 "Select active account" = "Выберите активную учетную запись";
-"Phase 1+2+3" = "Фаза 1+2+3";
 "Phase %d" = "Фаза %d";
 
 "AccountCreation.title" = "Редактировать учётную запись";
@@ -321,3 +320,5 @@
 /* About */
 "about_version" = "версия %@";
 "about_license" = "Эта программа с открытым кодом; вы можете использовать ее и/или изменять ее по условиям GNU General Public License которая публикуется Free Software Foundation; по версии 2 Лицензии, или (по вашему усмотрению) любой поздней версии.\n\n Эта пррграмма распространяется в надежде ее полезности, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте\n GNU General Public License.\n\n Если к программе не приложена копия GNU General Public License отправте запрос по адресу: Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA";
+
+/* Electricity meter detail */

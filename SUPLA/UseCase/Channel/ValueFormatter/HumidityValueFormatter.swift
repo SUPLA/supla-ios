@@ -21,10 +21,12 @@ final class HumidityValueFormatter: ChannelValueFormatter {
         function == SUPLA_CHANNELFNC_HUMIDITY
     }
 
-    func format(_ value: Any, withUnit: Bool, precision: Int) -> String {
+    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double,
            doubleValue > HumidityValueProviderImpl.UNKNOWN_VALUE
         {
+            let precision = getPrecision(precision)
+            
             return if (withUnit) {
                 String(format: "%.\(precision)f%%", doubleValue)
             } else {
@@ -32,6 +34,13 @@ final class HumidityValueFormatter: ChannelValueFormatter {
             }
         } else {
             return NO_VALUE_TEXT
+        }
+    }
+
+    private func getPrecision(_ precision: ChannelValuePrecision) -> Int {
+        switch (precision) {
+        case .defaultPrecision(let value): value
+        case .customPrecision(let value): value
         }
     }
 }

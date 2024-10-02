@@ -109,7 +109,8 @@ extension LockScreenFeature {
                             .onChange(onPinChange)
                     )
                 if (wrongPin) {
-                    Text.BodySmall(text: Strings.LockScreen.wrongPin, color: .Supla.error)
+                    Text.BodySmall(text: Strings.LockScreen.wrongPin)
+                        .textColor(.Supla.error)
                         .frame(height: 16)
                 } else {
                     Spacer().frame(height: 16)

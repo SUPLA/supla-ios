@@ -32,7 +32,7 @@ final class ThermometerValueFormatter: ChannelValueFormatter {
         function == SUPLA_CHANNELFNC_THERMOMETER
     }
     
-    func format(_ value: Any, withUnit: Bool, precision: Int) -> String {
+    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double,
            doubleValue > ThermometerValueProviderImpl.UNKNOWN_VALUE,
            let stringValue = formatter.string(from: NSNumber(value: convert(doubleValue)))

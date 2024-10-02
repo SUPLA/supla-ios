@@ -38,7 +38,7 @@ extension Font {
         static let bodySmall: Font = .custom("OpenSans", size: 12)
 
         static let labelLarge: Font = .custom("OpenSans-Medium", size: 17)
-        static let labelMedium: Font = .custom("OpenSans-SemiBold", size: 12)
+        static let labelMedium: Font = .custom("OpenSans-SemiBold", size: 14)
         static let labelSmall: Font = .custom("OpenSans-SemiBold", size: 10)
 
         static func cellValue(_ scale: CGFloat, limit: CellScalingLimit = .none) -> Font {

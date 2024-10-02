@@ -127,15 +127,6 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
-    func test_shouldProvideEm_forEmFunction() {
-        doTest(expectedResult: .legacy(type: .em)) {
-            let channel = SAChannel(testContext: nil)
-            channel.func = SUPLA_CHANNELFNC_ELECTRICITY_METER
-            
-            return channel
-        }
-    }
-    
     func test_shouldProvideElectricityIc_forElectricityMetterFunction() {
         doTest(expectedResult: .legacy(type: .ic)) {
             let channel = SAChannel(testContext: nil)

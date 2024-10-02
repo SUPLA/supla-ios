@@ -24,6 +24,7 @@ extension UIImage {
     static let iconMetrics = UIImage(named: .Icons.metrics)
     static let iconSchedule = UIImage(named: .Icons.schedule)
     static let iconHistory = UIImage(named: .Icons.history)
+    static let iconSettings = UIImage(named: .Icons.settings)
     
     // MARK: Icons
     static let pencil = UIImage(named: .Icons.pencil)

@@ -38,7 +38,7 @@ import Charts
     override func refreshContent(entry: ChartDataEntry,
                                  highlight: Highlight)
     {
-        setLabel(label: allTitle, text: Strings.Charts.Electricity.allPhasesTitle)
+        setLabel(label: allTitle, text: Strings.ElectricityMeter.allPhases)
 
         let si = highlight.stackIndex
         let lbl = String(format: Strings.Charts.Electricity.selPhaseTitle, si+1)

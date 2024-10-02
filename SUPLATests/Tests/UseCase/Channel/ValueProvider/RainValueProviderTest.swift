@@ -21,10 +21,10 @@ final class RainValueProviderTest: XCTestCase {
     
     func test_shouldHandleFunction() {
         // given
-        let function = SUPLA_CHANNELFNC_RAINSENSOR
+        let channel = SAChannel.mock(function: SUPLA_CHANNELFNC_RAINSENSOR)
         
         // when
-        let handle = provider.handle(function: function)
+        let handle = provider.handle(channel)
         
         // then
         XCTAssertTrue(handle)

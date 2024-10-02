@@ -317,3 +317,24 @@
 
 /* About */
 "about_version" = "verze %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Pobíraná činná energie";
+"details_em_reverse_active_energy" = "Zpětná činná energie";
+"details_em_forward_reactive_energy" = "Pobíraná jalová energie";
+"details_em_reverse_reactive_energy" = "Zpětná jalová energie";
+"details_em_frequency" = "Frekvence";
+"details_em_voltage" = "Napětí";
+"details_em_current" = "Intenzita";
+"details_em_power_active" = "Činný výkon";
+"details_em_power_reactive" = "Jalový výkon";
+"details_em_power_factor" = "Účiník";
+"details_em_phase_angle" = "Fázový úhel";
+"details_em_power_apparent" = "Zdánlivý výkon";
+"details_em_phase1" = "Fáze 1";
+"details_em_phase2" = "Fáze 2";
+"details_em_phase3" = "Fáze 3";
+"details_em_balance_arithmetic" = "Aritmetická rovnováha";
+"details_em_balance_vector" = "Vektorová rovnováha";
+"em_phase_to_phase_balance" = "Vektorová mezifázová rovnováha";
+"em_chart_all_phases" = "Fáze 1+2+3";

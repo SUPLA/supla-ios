@@ -277,7 +277,6 @@
 "Default" = "Προεπιλογή";
 "Delete account" = "Διαγραφή λογαριασμού";
 "Select active account" = "Επιλέξτε έναν ενεργό λογαριασμό";
-"Phase 1+2+3" = "Στάδιο 1+2+3";
 "Phase %d" = "Στάδιο %d";
 
 "AccountCreation.title" = "Επεξεργασία λογαριασμού";
@@ -317,3 +316,24 @@
 
 /* About */
 "about_version" = "Η έκδοση %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Ληφθείσα ενεργή ενέργεια";
+"details_em_reverse_active_energy" = "Επιστραφείσα ενεργή ενέργεια";
+"details_em_forward_reactive_energy" = "Ληφθείσα παθητική ενέργεια";
+"details_em_reverse_reactive_energy" = "Επιστραφείσα παθητική ενέργεια";
+"details_em_frequency" = "Συχνότητα";
+"details_em_voltage" = "Τάση";
+"details_em_current" = "Ένταση";
+"details_em_power_active" = "Ενεργός ισχύς";
+"details_em_power_reactive" = "Παθητική ισχύς";
+"details_em_power_factor" = "Συντελεστής ισχύος";
+"details_em_phase_angle" = "Γωνία φάσης";
+"details_em_power_apparent" = "Φαινομενική ισχύς";
+"details_em_phase1" = "Φάση 1";
+"details_em_phase2" = "Φάση 2";
+"details_em_phase3" = "Φάση 3";
+"details_em_balance_arithmetic" = "Αριθμητικός ισολογισμός";
+"details_em_balance_vector" = "Διανυσματικός ισολογισμός";
+"em_phase_to_phase_balance" = "Διανυσματικός ισολογισμός φάσεων";
+"em_chart_all_phases" = "Στάδιο 1+2+3";

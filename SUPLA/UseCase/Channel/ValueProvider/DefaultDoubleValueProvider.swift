@@ -22,7 +22,7 @@ class DefaultDoubleValueProvider: ChannelValueProvider, DoubleValueParser {
         fatalError("unknownValue: has not been implemented")
     }
     
-    func handle(function: Int32) -> Bool {
+    func handle(_ channel: SAChannel) -> Bool {
         fatalError("handle(function:) has not been implemented")
     }
     

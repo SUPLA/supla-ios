@@ -105,8 +105,6 @@ class DetailViewController: BaseViewController {
     
     private func detailView(forDetailType detailType: LegacyDetailType) -> SADetailView? {
         switch(detailType) {
-        case .em:
-            return Bundle.main.loadNibNamed("ElectricityMeterDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .ic:
             return Bundle.main.loadNibNamed("ImpulseCounterDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .rgbw:

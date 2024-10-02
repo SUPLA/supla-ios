@@ -151,6 +151,7 @@ extension DiContainer {
         register(ThermometerValueProvider.self, ThermometerValueProviderImpl())
         register(WeightValueProvider.self, WeightValueProviderImpl())
         register(WindValueProvider.self, WindValueProviderImpl())
+        register(ElectricityMeterValueProvider.self, ElectricityMeterValueProviderImpl())
         // Usecases - ChannelBase
         register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())
@@ -207,6 +208,11 @@ extension DiContainer {
         register(NotificationCenterWrapper.self, NotificationCenterWrapperImpl())
         // Usecases - Lock
         register(CheckPinUseCase.self, CheckPinUseCaseImpl())
+        
+        // MARK: Features
+        
+        // Electricity
+        register(ElectricityMeterGeneralStateHandler.self, ElectricityMeterGeneralStateHandlerImpl())
         
         // MARK: Not singletons
 

@@ -277,7 +277,6 @@
 "Default" = "Standardmäßig";
 "Delete account" = "Konto löschen";
 "Select active account" = "Aktives Konto wählen";
-"Phase 1+2+3" = "Phase 1+2+3";
 "Phase %d" = "Phase %d";
 
 "AccountCreation.title" = "Konto bearbeiten";
@@ -345,6 +344,7 @@
 "standard_detail_metrics_tab" = "Messungen";
 "standard_detail_history_tab" = "Historie";
 "standard_detail_list_tab" = "Liste";
+"standard_detail_settings_tab" = "Einstellungen";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktuellen Zustand:";
@@ -508,3 +508,38 @@
 "about_version" = "version %@";
 "about_license" = "Dieses Programm ist freie Software, es darf weitergegeben und / oder modifiziert werden unter den Bedingungen der GNU General Public License die von der Free Software Foundation veröffentlicht wurde, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.\n\nDieses Programm wird vertrieben um nützlich zu sein, aber OHNE IRGENDEINE GARANTIE. Sogar ohne Gewähr Marktgängigkeit oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Lesen Sie bitte General Public License für weitere Details.\n\nSie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA";
 "about_build_time" = "Version des Tages: %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Wirkenergie aufgenommen";
+"details_em_reverse_active_energy" = "Wirkenergie zurückgegeben";
+"details_em_forward_reactive_energy" = "Blindenergie aufgenommen";
+"details_em_reverse_reactive_energy" = "Blindenergie zurückgegeben";
+"details_em_frequency" = "Frequenz";
+"details_em_voltage" = "Spannung";
+"details_em_current" = "Stärke";
+"details_em_power_active" = "Wirkleistung";
+"details_em_power_reactive" = "Blindleistung";
+"details_em_power_factor" = "Leistungsfaktor";
+"details_em_phase_angle" = "Phasenwinkel";
+"details_em_power_apparent" = "Scheinleistung";
+"details_em_phase1" = "Phase 1";
+"details_em_phase2" = "Phase 2";
+"details_em_phase3" = "Phase 3";
+"details_em_balance_arithmetic" = "Arithmetisches Gleichgewicht";
+"details_em_balance_vector" = "Vektorgleichgewicht";
+"details_em_chart_data_type" = "Daten";
+"details_em_phases" = "Phasen";
+"details_em_balance_hourly" = "Stundensaldo";
+"details_em_balance_chart_aggregated" = "Diagramm aggregiertes Bilanz";
+"details_em_sum" = "Summe";
+"details_em_select_range" = "Bereich auswählen";
+"details_em_active_energy" = "Wirkenergie";
+"details_em_forwarded_energy" = "Aufgenommen";
+"details_em_reversed_energy" = "Zurückgegeben";
+"details_em_cost" = "Kosten";
+"details_em_settings_list_item" = "In der Kanalliste angezeigte Metrik";
+"details_em_settings_title" = "Einstellungen - %1$s";
+"details_em_total_suffix" = "(Zählerstand)";
+"details_em_current_month_suffix" = "(aktueller Monat)";
+"em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
+"em_chart_all_phases" = "Phase 1+2+3";
