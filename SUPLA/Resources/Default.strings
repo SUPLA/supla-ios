@@ -107,6 +107,7 @@
 "standard_detail_schedule_tab" = "Week";
 "standard_detail_history_tab" = "History";
 "standard_detail_list_tab" = "List";
+"standard_detail_settings_tab" = "Settings";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Current state:";
@@ -284,3 +285,39 @@
 "about_license" = "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA";
 "about_address" = "www.supla.org";
 "about_build_time" = "Version of the day: %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Forward active energy";
+"details_em_reverse_active_energy" = "Reverse active energy";
+"details_em_forward_reactive_energy" = "Forward reactive energy";
+"details_em_reverse_reactive_energy" = "Reverse reactive energy";
+"details_em_frequency" = "Frequency";
+"details_em_voltage" = "Voltage";
+"details_em_current" = "Current";
+"details_em_power_active" = "Active Power";
+"details_em_power_reactive" = "Reactive Power";
+"details_em_power_factor" = "Power factor";
+"details_em_phase_angle" = "Phase angle";
+"details_em_power_apparent" = "Apparent Power";
+"details_em_phase1" = "Phase 1";
+"details_em_phase2" = "Phase 2";
+"details_em_phase3" = "Phase 3";
+"details_em_balance_arithmetic" = "Arythmetic balance";
+"details_em_balance_vector" = "Vector balance";
+"details_em_chart_data_type" = "Data";
+"details_em_phases" = "Phases";
+"details_em_balance_hourly" = "Hourly balance";
+"details_em_balance_chart_aggregated" = "Chart aggregated balance";
+"details_em_sum" = "Sum";
+"details_em_select_range" = "Select range";
+"details_em_active_energy" = "Active energy";
+"details_em_forwarded_energy" = "Forward";
+"details_em_reversed_energy" = "Reverse";
+"details_em_cost" = "Cost";
+"details_em_settings_list_item" = "Metric shown on the channel list";
+"details_em_settings_title" = "Settings - %1$s";
+"details_em_total_suffix" = "(meter reading)";
+"details_em_current_month_suffix" = "(current month)";
+"details_em_last_month_balancing" = "Type of balance for current month";
+"em_phase_to_phase_balance" = "Vector phase-to-phase balancing";
+"em_chart_all_phases" = "Phase 1+2+3";

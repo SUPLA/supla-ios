@@ -18,11 +18,16 @@
 
 protocol ChannelValueFormatter {
     func handle(function: Int) -> Bool
-    func format(_ value: Any, withUnit: Bool, precision: Int) -> String
+    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String
 }
 
 extension ChannelValueFormatter {
     func format(_ value: Any, withUnit: Bool = true, precision: Int = 1) -> String {
-        format(value, withUnit: withUnit, precision: precision)
+        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
+}
+
+enum ChannelValuePrecision {
+    case defaultPrecision(value: Int)
+    case customPrecision(value: Int)
 }

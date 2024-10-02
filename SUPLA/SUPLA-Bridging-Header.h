@@ -42,5 +42,7 @@
 #import "SAChannelConfig+CoreDataClass.h"
 #import "SANotification+CoreDataClass.h"
 #import "SASuperuserAuthorizationResult.h"
+#import "SAElectricityMeterExtendedValue.h"
+#import "SAIncrementalMeterExtendedValue.h"
 
 #import "supla-client.h"

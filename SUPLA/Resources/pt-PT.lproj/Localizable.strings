@@ -277,7 +277,6 @@
 "Default" = "Predefinição";
 "Delete account" = "Apagar Conta";
 "Select active account" = "Selecione uma conta ativa";
-"Phase 1+2+3" = "Fase 1+2+3";
 "Phase %d" = "Fase %d";
 
 "AccountCreation.title" = "Editar Conta";
@@ -317,3 +316,24 @@
 
 /* About */
 "about_version" = "versão %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Energia ativa direta";
+"details_em_reverse_active_energy" = "Energia ativa reversa";
+"details_em_forward_reactive_energy" = "Energia reativa direta";
+"details_em_reverse_reactive_energy" = "Energia reativa reversa";
+"details_em_frequency" = "Frequência";
+"details_em_voltage" = "Tensão";
+"details_em_current" = "Corrente";
+"details_em_power_active" = "Potência ativa";
+"details_em_power_reactive" = "Potência reativa";
+"details_em_power_factor" = "Fator de potência";
+"details_em_phase_angle" = "Ângulo de fase";
+"details_em_power_apparent" = "Potência aparente";
+"details_em_phase1" = "Fase 1";
+"details_em_phase2" = "Fase 2";
+"details_em_phase3" = "Fase 3";
+"details_em_balance_arithmetic" = "Balanço aritmético";
+"details_em_balance_vector" = "Balanço vetorial";
+"em_phase_to_phase_balance" = "Balanço interfacial vetorial";
+"em_chart_all_phases" = "Fase 1+2+3";

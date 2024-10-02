@@ -18,10 +18,10 @@ final class DepthValueProviderTest: XCTestCase {
     
     func test_shouldHandleFunction() {
         // given
-        let function = SUPLA_CHANNELFNC_DEPTHSENSOR
+        let channel = SAChannel.mock(function: SUPLA_CHANNELFNC_DEPTHSENSOR)
         
         // when
-        let handle = provider.handle(function: function)
+        let handle = provider.handle(channel)
         
         // then
         XCTAssertTrue(handle)

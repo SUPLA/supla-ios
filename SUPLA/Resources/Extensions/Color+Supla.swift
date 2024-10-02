@@ -29,6 +29,9 @@ extension Color {
         
         static let onBackground = Color(UIColor.onBackground)
         static let onPrimary = Color(UIColor.onPrimary)
+        static let onSurfaceVariant = Color(UIColor.onSurfaceVariant)
+        
+        static let outline = Color(UIColor.outline)
         
         static let blue = Color(UIColor.blue)
         static let disabled = Color(UIColor.disabled)

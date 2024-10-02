@@ -38,6 +38,7 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
     @Singleton<ThermometerValueProvider> private var thermometerValueProvider
     @Singleton<WeightValueProvider> private var weightValueProvider
     @Singleton<WindValueProvider> private var windValueProvider
+    @Singleton<ElectricityMeterValueProvider> private var electricityMeterValueProvider
     
     private lazy var providers: [ChannelValueProvider] = {
         [
@@ -50,13 +51,14 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
             thermometerAndHumidityValueProvider,
             thermometerValueProvider,
             weightValueProvider,
-            windValueProvider
+            windValueProvider,
+            electricityMeterValueProvider
         ]
     }()
     
     func invoke<T>(_ channel: SAChannel, valueType: ValueType = .first) -> T {
         for provider in providers {
-            if (provider.handle(function: channel.func)) {
+            if (provider.handle(channel)) {
                 return provider.value(channel, valueType: valueType) as! T
             }
         }
@@ -70,7 +72,7 @@ enum ValueType {
 }
 
 protocol ChannelValueProvider {
-    func handle(function: Int32) -> Bool
+    func handle(_ channel: SAChannel) -> Bool
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any
 }

@@ -20,8 +20,8 @@ protocol ThermometerAndHumidityValueProvider: ChannelValueProvider {
 }
 
 final class ThermometerAndHumidityValueProviderImpl: ThermometerAndHumidityValueProvider, IntValueParser {
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {

@@ -97,6 +97,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage]) {
     }
     
+    func navigateToElectricityMeterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    }
+    
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
     }
     

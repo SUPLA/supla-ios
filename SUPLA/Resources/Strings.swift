@@ -139,7 +139,6 @@ struct Strings {
         static let markerClosing = "chart_marker_closing".toLocalized()
         
         struct Electricity {
-            static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
             static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
         }
     }
@@ -174,6 +173,7 @@ struct Strings {
         static let tabSchedule = "standard_detail_schedule_tab".toLocalized()
         static let tabHistory = "standard_detail_history_tab".toLocalized()
         static let tabList = "standard_detail_list_tab".toLocalized()
+        static let tabSettings = "standard_detail_settings_tab".toLocalized()
     }
     
     struct SwitchDetail {
@@ -405,6 +405,43 @@ struct Strings {
         static let license = "about_license".toLocalized()
         static let address = "about_address".toLocalized()
         static let buildTime = "about_build_time".toLocalized()
+    }
+    
+    struct ElectricityMeter {
+        static let forwardActiveEnergy = "details_em_forward_active_energy".toLocalized()
+        static let reverseActiveEnergy = "details_em_reverse_active_energy".toLocalized()
+        static let forwardReactiveEnergy = "details_em_forward_reactive_energy".toLocalized()
+        static let reverseReactiveEnergy = "details_em_reverse_reactive_energy".toLocalized()
+        static let frequency = "details_em_frequency".toLocalized()
+        static let voltage = "details_em_voltage".toLocalized()
+        static let current = "details_em_current".toLocalized()
+        static let powerActive = "details_em_power_active".toLocalized()
+        static let powerReactive = "details_em_power_reactive".toLocalized()
+        static let powerFactor = "details_em_power_factor".toLocalized()
+        static let phaseAngle = "details_em_phase_angle".toLocalized()
+        static let powerApparent = "details_em_power_apparent".toLocalized()
+        static let phase1 = "details_em_phase1".toLocalized()
+        static let phase2 = "details_em_phase2".toLocalized()
+        static let phase3 = "details_em_phase3".toLocalized()
+        static let balanceArithmetic = "details_em_balance_arithmetic".toLocalized()
+        static let balanceVector = "details_em_balance_vector".toLocalized()
+        static let chartDataType = "details_em_chart_data_type".toLocalized()
+        static let phases = "details_em_phases".toLocalized()
+        static let balanceHourly = "details_em_balance_hourly".toLocalized()
+        static let balanceChartAggregated = "details_em_balance_chart_aggregated".toLocalized()
+        static let sum = "details_em_sum".toLocalized()
+        static let selectRange = "details_em_select_range".toLocalized()
+        static let activeEnergy = "details_em_active_energy".toLocalized()
+        static let forwardedEnergy = "details_em_forwarded_energy".toLocalized()
+        static let reversedEnergy = "details_em_reversed_energy".toLocalized()
+        static let cost = "details_em_cost".toLocalized()
+        static let settingsListItem = "details_em_settings_list_item".toLocalized()
+        static let settingsTitle = "details_em_settings_title".toLocalized()
+        static let totalSufix = "details_em_total_suffix".toLocalized()
+        static let currentMonthSuffix = "details_em_current_month_suffix".toLocalized()
+        static let lastMonthBalancing = "details_em_last_month_balancing".toLocalized()
+        static let phaseToPhaseBalance = "em_phase_to_phase_balance".toLocalized()
+        static let allPhases = "em_chart_all_phases".toLocalized()
     }
 }
 

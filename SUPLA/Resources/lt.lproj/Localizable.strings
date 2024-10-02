@@ -279,7 +279,6 @@
 "Default" = "Numatyta";
 "Delete account" = "Pašalinti paskyrą";
 "Select active account" = "Pasirinkite aktyvią paskyrą";
-"Phase 1+2+3" = "1+2+3 fazė";
 "Phase %d" = "%d fazė";
 
 "AccountCreation.title" = "Koreguoti paskyrą";
@@ -319,3 +318,24 @@
 
 /* About */
 "about_version" = "versija %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Aktyvioji energija parsisiųsta";
+"details_em_reverse_active_energy" = "Aktyvioji energija grąžinta";
+"details_em_forward_reactive_energy" = "Reaktyvioji energija parsisiųsta";
+"details_em_reverse_reactive_energy" = "Reaktyvioji energija grąžinta";
+"details_em_frequency" = "Dažnumas";
+"details_em_voltage" = "Įtampa";
+"details_em_current" = "Intensyvumas";
+"details_em_power_active" = "Aktyvioji galia";
+"details_em_power_reactive" = "Reaktyvioji galia";
+"details_em_power_factor" = "Galios koeficientas";
+"details_em_phase_angle" = "Fazės kampas";
+"details_em_power_apparent" = "Pilnutinė galia";
+"details_em_phase1" = "1 fazė";
+"details_em_phase2" = "2 fazė";
+"details_em_phase3" = "3 fazė";
+"details_em_balance_arithmetic" = "Asimetrinis balansas";
+"details_em_balance_vector" = "Vektorinis balansas";
+"em_phase_to_phase_balance" = "Tarpfazis vektorinis balansas";
+"em_chart_all_phases" = "1+2+3 fazė";

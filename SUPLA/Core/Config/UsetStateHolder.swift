@@ -22,6 +22,8 @@ protocol UserStateHolder {
     func getTemperatureChartState(profileId: String, remoteId: Int32) -> TemperatureChartState
     func setTemperatureChartState(_ state: TemperatureChartState, profileId: String, remoteId: Int32)
     
+    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32)
 }
 
 final class UserStateHolderImpl: UserStateHolder {
@@ -49,6 +51,33 @@ final class UserStateHolderImpl: UserStateHolder {
         do {
             let encoder = JSONEncoder()
             userDefaults.set(try encoder.encode(state), forKey: key)
+        } catch {
+            let errorString = String(describing: error)
+            SALog.error("Could not encode state: \(errorString)")
+        }
+    }
+    
+    private let electricityMeterSettingsKey = "UserStateHolder.electricity_meter_settings"
+    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, profileId, String(remoteId))
+        if let data = userDefaults.data(forKey: key) {
+            do {
+                let decoder = JSONDecoder()
+                return try decoder.decode(ElectricityMeterSettings.self, from: data)
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not decode state: \(errorString)")
+            }
+        }
+        
+        return ElectricityMeterSettings.defaultSettings()
+    }
+    
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32) {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, profileId, String(remoteId))
+        do {
+            let encoder = JSONEncoder()
+            userDefaults.set(try encoder.encode(settings), forKey: key)
         } catch {
             let errorString = String(describing: error)
             SALog.error("Could not encode state: \(errorString)")

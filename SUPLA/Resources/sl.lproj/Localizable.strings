@@ -277,7 +277,6 @@
 "Default" = "Privzeti";
 "Delete account" = "Izbrišite račun";
 "Select active account" = "Izberite aktivni račun";
-"Phase 1+2+3" = "Faza 1+2+3";
 "Phase %d" = "Faza %d";
 
 "AccountCreation.title" = "Uredite račun";
@@ -317,3 +316,24 @@
 
 /* About */
 "about_version" = "različica %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Aktivna porabljena energija";
+"details_em_reverse_active_energy" = "Aktivna vrnjena energija";
+"details_em_forward_reactive_energy" = "Reaktivna porabljena energija";
+"details_em_reverse_reactive_energy" = "Reaktivna vrnjena energija";
+"details_em_frequency" = "Pogostost";
+"details_em_voltage" = "Napetost";
+"details_em_current" = "Intenzivnost";
+"details_em_power_active" = "Aktivna moč";
+"details_em_power_reactive" = "Reaktivna moč";
+"details_em_power_factor" = "Faktor moči";
+"details_em_phase_angle" = "Fazni kot";
+"details_em_power_apparent" = "Navidezna moč";
+"details_em_phase1" = "1. faza";
+"details_em_phase2" = "2. faza";
+"details_em_phase3" = "3. faza";
+"details_em_balance_arithmetic" = "Aritmetično ravnotežje";
+"details_em_balance_vector" = "Vektorsko ravnotežje";
+"em_phase_to_phase_balance" = "Vektorsko medfazno ravnotežje";
+"em_chart_all_phases" = "Faza 1+2+3";

@@ -277,7 +277,6 @@
 "Default" = "Predvolené";
 "Delete account" = "Odstrániť účet";
 "Select active account" = "Vybrať aktívny účet";
-"Phase 1+2+3" = "Fáza 1+2+3";
 "Phase %d" = "Fáza %d";
 
 "AccountCreation.title" = "Upraviť účet";
@@ -317,3 +316,24 @@
 
 /* About */
 "about_version" = "verzia %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Činná energia prijatá";
+"details_em_reverse_active_energy" = "Činná energia odovzdaná";
+"details_em_forward_reactive_energy" = "Jalová energia prijatá";
+"details_em_reverse_reactive_energy" = "Jalová energia odovzdaná";
+"details_em_frequency" = "Frekvencia";
+"details_em_voltage" = "Napätie";
+"details_em_current" = "Intenzita";
+"details_em_power_active" = "Činný výkon";
+"details_em_power_reactive" = "Jalový výkon";
+"details_em_power_factor" = "Účinník";
+"details_em_phase_angle" = "Fázový uhol";
+"details_em_power_apparent" = "Zdanlivý výkon";
+"details_em_phase1" = "Fáza 1";
+"details_em_phase2" = "Fáza 2";
+"details_em_phase3" = "Fáza 3";
+"details_em_balance_arithmetic" = "Aritmetická bilancia";
+"details_em_balance_vector" = "Vektorová bilancia";
+"em_phase_to_phase_balance" = "Medzifázová vektorová bilancia";
+"em_chart_all_phases" = "Fáza 1+2+3";

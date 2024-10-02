@@ -697,6 +697,16 @@
 		A58472042C2EACA600713D36 /* SuplaResultCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58472032C2EACA600713D36 /* SuplaResultCode.swift */; };
 		A58472062C2EC7E500713D36 /* DisconnectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58472052C2EC7E500713D36 /* DisconnectUseCase.swift */; };
 		A58472082C2ED60E00713D36 /* SuplaAppProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58472072C2ED60E00713D36 /* SuplaAppProvider.swift */; };
+		A584E1F62CA6897400232A98 /* EnergySummaryBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */; };
+		A584E1F82CA6CA8A00232A98 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F72CA6CA8800232A98 /* Distance.swift */; };
+		A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */; };
+		A584E1FC2CAA770800232A98 /* ElectricityMeterGeneralStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */; };
+		A584E1FF2CAAC88900232A98 /* ElectricityMeterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */; };
+		A584E2012CAACD9B00232A98 /* ElectricityMeterValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2002CAACD9900232A98 /* ElectricityMeterValueProvider.swift */; };
+		A584E2032CAAD48200232A98 /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2022CAAD48000232A98 /* Phase.swift */; };
+		A584E2052CAB390700232A98 /* ElectricityMeterValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */; };
+		A584E2072CABCE3F00232A98 /* SAExectricityMeterExtendedValue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */; };
+		A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */; };
 		A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */; };
 		A58A63072C07163E00A9D02D /* VerticalBlindWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */; };
 		A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */; };
@@ -960,6 +970,25 @@
 		A5EC524A2C10432D0022F055 /* BaseBlindsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC52492C10432D0022F055 /* BaseBlindsViewModel.swift */; };
 		A5EC524C2C1043B30022F055 /* ShadingBlindWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC524B2C1043B30022F055 /* ShadingBlindWindowState.swift */; };
 		A5EC524E2C10799B0022F055 /* BaseWindowViewDimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC524D2C10799B0022F055 /* BaseWindowViewDimens.swift */; };
+		A5EDE2172CA55FA800BEDAE4 /* ElectricityMeterDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2162CA55F9F00BEDAE4 /* ElectricityMeterDetailVM.swift */; };
+		A5EDE2192CA55FB400BEDAE4 /* ElectricityMeterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2182CA55FAD00BEDAE4 /* ElectricityMeterDetailVC.swift */; };
+		A5EDE21C2CA5693500BEDAE4 /* ElectricityMeterGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE21B2CA5692A00BEDAE4 /* ElectricityMeterGeneralFeature.swift */; };
+		A5EDE21E2CA56A5900BEDAE4 /* ElectricityMeterGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE21D2CA56A4A00BEDAE4 /* ElectricityMeterGeneralViewState.swift */; };
+		A5EDE2212CA56B4B00BEDAE4 /* EnergyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2202CA56B4600BEDAE4 /* EnergyData.swift */; };
+		A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */; };
+		A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */; };
+		A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */; };
+		A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */; };
+		A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */; };
+		A5EDE2332CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2302CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift */; };
+		A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */; };
+		A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */; };
+		A5EDE2362CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22F2CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift */; };
+		A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */; };
+		A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */; };
+		A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */; };
+		A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */; };
+		A5EDE2402CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
@@ -2095,6 +2124,16 @@
 		A58472032C2EACA600713D36 /* SuplaResultCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaResultCode.swift; sourceTree = "<group>"; };
 		A58472052C2EC7E500713D36 /* DisconnectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectUseCase.swift; sourceTree = "<group>"; };
 		A58472072C2ED60E00713D36 /* SuplaAppProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppProvider.swift; sourceTree = "<group>"; };
+		A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySummaryBox.swift; sourceTree = "<group>"; };
+		A584E1F72CA6CA8800232A98 /* Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralState.swift; sourceTree = "<group>"; };
+		A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralStateHandler.swift; sourceTree = "<group>"; };
+		A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettings.swift; sourceTree = "<group>"; };
+		A584E2002CAACD9900232A98 /* ElectricityMeterValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueProvider.swift; sourceTree = "<group>"; };
+		A584E2022CAAD48000232A98 /* Phase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
+		A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueFormatter.swift; sourceTree = "<group>"; };
+		A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAExectricityMeterExtendedValue+Ext.swift"; sourceTree = "<group>"; };
+		A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueStringProvider.swift; sourceTree = "<group>"; };
 		A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalBlindsVM.swift; path = SUPLA/Features/Details/WindowDetail/VerticalBlind/VerticalBlindsVM.swift; sourceTree = SOURCE_ROOT; };
 		A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindWindowState.swift; sourceTree = "<group>"; };
 		A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVC.swift; sourceTree = "<group>"; };
@@ -2360,6 +2399,25 @@
 		A5EC52492C10432D0022F055 /* BaseBlindsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBlindsViewModel.swift; sourceTree = "<group>"; };
 		A5EC524B2C1043B30022F055 /* ShadingBlindWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadingBlindWindowState.swift; sourceTree = "<group>"; };
 		A5EC524D2C10799B0022F055 /* BaseWindowViewDimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowViewDimens.swift; sourceTree = "<group>"; };
+		A5EDE2162CA55F9F00BEDAE4 /* ElectricityMeterDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterDetailVM.swift; sourceTree = "<group>"; };
+		A5EDE2182CA55FAD00BEDAE4 /* ElectricityMeterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterDetailVC.swift; sourceTree = "<group>"; };
+		A5EDE21B2CA5692A00BEDAE4 /* ElectricityMeterGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralFeature.swift; sourceTree = "<group>"; };
+		A5EDE21D2CA56A4A00BEDAE4 /* ElectricityMeterGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralViewState.swift; sourceTree = "<group>"; };
+		A5EDE2202CA56B4600BEDAE4 /* EnergyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyData.swift; sourceTree = "<group>"; };
+		A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaElectricityMeasurementType.swift; sourceTree = "<group>"; };
+		A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralView.swift; sourceTree = "<group>"; };
+		A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralVM.swift; sourceTree = "<group>"; };
+		A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterGeneralVC.swift; sourceTree = "<group>"; };
+		A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterHistoryVC.swift; sourceTree = "<group>"; };
+		A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryVM.swift; sourceTree = "<group>"; };
+		A5EDE22F2CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryView.swift; sourceTree = "<group>"; };
+		A5EDE2302CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryViewState.swift; sourceTree = "<group>"; };
+		A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryFeature.swift; sourceTree = "<group>"; };
+		A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterSettingsVC.swift; sourceTree = "<group>"; };
+		A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsVM.swift; sourceTree = "<group>"; };
+		A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsView.swift; sourceTree = "<group>"; };
+		A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsViewState.swift; sourceTree = "<group>"; };
+		A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsFeature.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
@@ -3186,6 +3244,7 @@
 		A503ABB62B6BB060008CDA1F /* ValueFormatter */ = {
 			isa = PBXGroup;
 			children = (
+				A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */,
 				A503ABB72B6BB082008CDA1F /* ChannelValueFormatter.swift */,
 				A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter.swift */,
 				A503ABBB2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift */,
@@ -3294,6 +3353,7 @@
 		A5074BD42BCE9DB60081B6B1 /* Values */ = {
 			isa = PBXGroup;
 			children = (
+				A584E1F72CA6CA8800232A98 /* Distance.swift */,
 				AE74528E2827F09400A3AFAD /* Dimens.swift */,
 				A5074BD52BCE9DD40081B6B1 /* ShadowValues.swift */,
 			);
@@ -3843,6 +3903,7 @@
 		A54149242B6302B100B44BD6 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				A5EDE2152CA55F7C00BEDAE4 /* ElectricityMeterDetail */,
 				A55A8D6C2BA831AD00C540D4 /* WindowDetail */,
 				A54149252B6302EA00B44BD6 /* GpmDetail */,
 				A5D837D52AF1067A002A420D /* DetailBase */,
@@ -3900,6 +3961,7 @@
 		A5477DB02AA1DB4600220B4A /* SuplaClient */ = {
 			isa = PBXGroup;
 			children = (
+				A5EDE2222CA56C3300BEDAE4 /* Channel */,
 				A5074BE02BCFE6100081B6B1 /* FacadeBlinds */,
 				A55A8D942BAB149900C540D4 /* RollerShutter */,
 				A55A8D922BAB143A00C540D4 /* Thermostat */,
@@ -4148,6 +4210,7 @@
 		A55A8D932BAB147700C540D4 /* SuplaApp */ = {
 			isa = PBXGroup;
 			children = (
+				A584E1FD2CAAC87900232A98 /* ElectricityMeter */,
 				A50B5CFE2BEA323C00918D18 /* ShadingSystem */,
 				A5074BD72BCFB99E0081B6B1 /* FacadeBlind */,
 				A55A8D8F2BAB13A200C540D4 /* RollerShutter */,
@@ -4513,6 +4576,15 @@
 				AE74528A2827E38900A3AFAD /* ProfilesVC.swift */,
 			);
 			path = Profiles;
+			sourceTree = "<group>";
+		};
+		A584E1FD2CAAC87900232A98 /* ElectricityMeter */ = {
+			isa = PBXGroup;
+			children = (
+				A584E2022CAAD48000232A98 /* Phase.swift */,
+				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
+			);
+			path = ElectricityMeter;
 			sourceTree = "<group>";
 		};
 		A58A63032C07154700A9D02D /* VerticalBlind */ = {
@@ -5140,6 +5212,7 @@
 		A5B3CBE02B62524200F95AC3 /* ValueProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A584E2002CAACD9900232A98 /* ElectricityMeterValueProvider.swift */,
 				A5B3CBE12B62525500F95AC3 /* DefaultDoubleValueProvider.swift */,
 				A5B3CBE82B625CB300F95AC3 /* DepthValueProvider.swift */,
 				A5B3CBEA2B625D2F00F95AC3 /* DistanceValueProvider.swift */,
@@ -5168,6 +5241,7 @@
 		A5B3CBF92B62692400F95AC3 /* ValueStringProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */,
 				A5B3CBFD2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift */,
 				A5B3CBFA2B62693F00F95AC3 /* DepthValueStringProvider.swift */,
 				A5B3CBFF2B62770F00F95AC3 /* DistanceValueStringProvider.swift */,
@@ -5327,6 +5401,7 @@
 		A5D837D52AF1067A002A420D /* DetailBase */ = {
 			isa = PBXGroup;
 			children = (
+				A5EDE21F2CA56B3700BEDAE4 /* ElectricityMeter */,
 				A5D837D62AF10684002A420D /* History */,
 			);
 			path = DetailBase;
@@ -5463,6 +5538,73 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
+		A5EDE2152CA55F7C00BEDAE4 /* ElectricityMeterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A5EDE22C2CA5734300BEDAE4 /* Settings */,
+				A5EDE22B2CA5733900BEDAE4 /* History */,
+				A5EDE21A2CA560E200BEDAE4 /* General */,
+				A5EDE2182CA55FAD00BEDAE4 /* ElectricityMeterDetailVC.swift */,
+				A5EDE2162CA55F9F00BEDAE4 /* ElectricityMeterDetailVM.swift */,
+			);
+			path = ElectricityMeterDetail;
+			sourceTree = "<group>";
+		};
+		A5EDE21A2CA560E200BEDAE4 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */,
+				A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */,
+				A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */,
+				A5EDE21D2CA56A4A00BEDAE4 /* ElectricityMeterGeneralViewState.swift */,
+				A5EDE21B2CA5692A00BEDAE4 /* ElectricityMeterGeneralFeature.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		A5EDE21F2CA56B3700BEDAE4 /* ElectricityMeter */ = {
+			isa = PBXGroup;
+			children = (
+				A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */,
+				A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */,
+				A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */,
+				A5EDE2202CA56B4600BEDAE4 /* EnergyData.swift */,
+			);
+			path = ElectricityMeter;
+			sourceTree = "<group>";
+		};
+		A5EDE2222CA56C3300BEDAE4 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		A5EDE22B2CA5733900BEDAE4 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */,
+				A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */,
+				A5EDE22F2CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift */,
+				A5EDE2302CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift */,
+				A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		A5EDE22C2CA5734300BEDAE4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */,
+				A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */,
+				A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */,
+				A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */,
+				A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -5597,6 +5739,7 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */,
 				A57668EC2AEA85150025509D /* Array+Ext.swift */,
 				A56233EA2AB31A45001CB948 /* CALayer+Ext.swift */,
 				A56233E82AB31A26001CB948 /* CGPoint+Ext.swift */,
@@ -6272,6 +6415,7 @@
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
 				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
 				A57668F32AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift in Sources */,
+				A584E2052CAB390700232A98 /* ElectricityMeterValueFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
 				A5B3CBF12B625DBA00F95AC3 /* PressureValueProvider.swift in Sources */,
 				018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */,
@@ -6296,6 +6440,7 @@
 				A55A8D722BA8406900C540D4 /* WindowDetailVC.swift in Sources */,
 				A5E9CE272C32CE3500509702 /* SALoginDialogVC.swift in Sources */,
 				A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */,
+				A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
 				A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */,
@@ -6305,6 +6450,7 @@
 				A530EE1A2A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A5EC524E2C10799B0022F055 /* BaseWindowViewDimens.swift in Sources */,
+				A5EDE21C2CA5693500BEDAE4 /* ElectricityMeterGeneralFeature.swift in Sources */,
 				A5AD70232C00C71200A36318 /* WindowHorizontalControls.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
@@ -6367,6 +6513,11 @@
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
+				A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */,
+				A5EDE2332CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift in Sources */,
+				A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */,
+				A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */,
+				A5EDE2362CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift in Sources */,
 				AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */,
 				A55501E82B7F96E600FD3296 /* String+Icons.swift in Sources */,
 				A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */,
@@ -6384,15 +6535,19 @@
 				A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */,
 				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
 				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
+				A5EDE2212CA56B4B00BEDAE4 /* EnergyData.swift in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
 				A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */,
 				A5F29BEB2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
+				A584E1FF2CAAC88900232A98 /* ElectricityMeterSettings.swift in Sources */,
 				A594ADC92C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift in Sources */,
+				A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */,
 				A503ABAD2B67AC44008CDA1F /* LoadChannelConfigUseCase.swift in Sources */,
 				A56233E52AB1AB69001CB948 /* UIIconButton.swift in Sources */,
 				A56233DA2AB061EB001CB948 /* SACustomDialogVC.swift in Sources */,
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
+				A584E1F82CA6CA8A00232A98 /* Distance.swift in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
 				A5A160112C2AD0F70049AA73 /* SuplaAppStateHolder.swift in Sources */,
 				A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */,
@@ -6449,6 +6604,7 @@
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
 				A5D712982C411B2E00A8EF52 /* BuildInfo.swift in Sources */,
+				A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */,
 				A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */,
 				A57668EB2AEA81C00025509D /* ChartRange.swift in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
@@ -6462,6 +6618,7 @@
 				A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */,
 				A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
+				A5EDE2192CA55FB400BEDAE4 /* ElectricityMeterDetailVC.swift in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
 				A5477DC52AA5C47F00220B4A /* SAChannelValue+Ext.swift in Sources */,
@@ -6475,6 +6632,7 @@
 				A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */,
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
+				A584E1F62CA6897400232A98 /* EnergySummaryBox.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				A55A8D982BAB28CC00C540D4 /* ScopeFunctions.swift in Sources */,
 				A5E9CE292C32CE4700509702 /* SALoginDialogVM.swift in Sources */,
@@ -6499,6 +6657,7 @@
 				A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */,
 				A5A15FEF2C298AAD0049AA73 /* StatusVM.swift in Sources */,
 				A5B3CC062B62802600F95AC3 /* RainValueStringProvider.swift in Sources */,
+				A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */,
 				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
 				A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */,
@@ -6506,6 +6665,7 @@
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
 				A5FE675C2A65CA1700147D1F /* SuplaCloudClientRepository.swift in Sources */,
+				A5EDE21E2CA56A5900BEDAE4 /* ElectricityMeterGeneralViewState.swift in Sources */,
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
 				A5074BDF2BCFE5CA0081B6B1 /* SuplaChannelFacadeBlindConfig.swift in Sources */,
 				A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */,
@@ -6558,12 +6718,14 @@
 				A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */,
 				A50B5D062BEA4DA700918D18 /* RollerShutterWindowState.swift in Sources */,
 				A5F5C3FC2C3698040058E255 /* PinSetupVC.swift in Sources */,
+				A584E2012CAACD9B00232A98 /* ElectricityMeterValueProvider.swift in Sources */,
 				A58316FA2B64507D006113F8 /* ThermometerValueProvider.swift in Sources */,
 				A5F29BC92A26168E00ED700A /* UpdateChannelGroupTotalValueUseCase.swift in Sources */,
 				A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */,
 				A55A8D7D2BA9A15200C540D4 /* UIImageView+Ext.swift in Sources */,
 				A57668D52AE94A060025509D /* DownloadEventsManager.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
+				A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */,
 				A50B5D522BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift in Sources */,
 				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
@@ -6615,6 +6777,7 @@
 				A5477DBD2AA52F5700220B4A /* ThermostatValue.swift in Sources */,
 				A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */,
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
+				A584E2032CAAD48200232A98 /* Phase.swift in Sources */,
 				A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */,
 				A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */,
 				A50B5D3A2BFB6E3500918D18 /* ProjectorScreenVC.swift in Sources */,
@@ -6710,6 +6873,7 @@
 				A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */,
 				A57C4AAC2AAB20B100D9C695 /* RequestResult.swift in Sources */,
 				A57668CF2AE914140025509D /* TemperatureMeasurement.swift in Sources */,
+				A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */,
 				A5477DC32AA5BE7A00220B4A /* Int+Ext.swift in Sources */,
 				01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */,
 				A58316FC2B64510A006113F8 /* ThermometerValueStringProvider.swift in Sources */,
@@ -6819,6 +6983,7 @@
 				A5B3CBED2B625D6000F95AC3 /* WindValueProvider.swift in Sources */,
 				A5F5C3EA2C3580000058E255 /* LockScreenScope.swift in Sources */,
 				A5F29B902A20B23E00ED700A /* BaseTableViewModel.swift in Sources */,
+				A584E2072CABCE3F00232A98 /* SAExectricityMeterExtendedValue+Ext.swift in Sources */,
 				A55A8DA42BAC2B0E00C540D4 /* SAAlertDialogVM.swift in Sources */,
 				A5B3A4BB2BB5B8F20001D006 /* WindowType.swift in Sources */,
 				A56233ED2AB38CED001CB948 /* TemperatureChangeStep.swift in Sources */,
@@ -6888,6 +7053,7 @@
 				A5843DE42C1088C800DA0784 /* ShadingSystemPositionPresentation.swift in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				A50B5D2D2BF49F7700918D18 /* TerraceAwningWindowState.swift in Sources */,
+				A584E1FC2CAA770800232A98 /* ElectricityMeterGeneralStateHandler.swift in Sources */,
 				A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */,
@@ -6904,9 +7070,15 @@
 				A58472042C2EACA600713D36 /* SuplaResultCode.swift in Sources */,
 				A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */,
 				A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */,
+				A5EDE2172CA55FA800BEDAE4 /* ElectricityMeterDetailVM.swift in Sources */,
 				A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */,
 				A55A8DB72BAC766A00C540D4 /* SALabeledTextField.swift in Sources */,
 				A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */,
+				A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */,
+				A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */,
+				A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */,
+				A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */,
+				A5EDE2402CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift in Sources */,
 				A5E9CE332C342ADC00509702 /* ReconnectUseCase.swift in Sources */,
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
@@ -7733,6 +7905,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -7764,6 +7937,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

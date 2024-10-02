@@ -21,8 +21,8 @@ protocol HumidityValueProvider: ChannelValueProvider {
 
 final class HumidityValueProviderImpl: HumidityValueProvider, IntValueParser {
     
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_HUMIDITY
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_HUMIDITY
     }
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {

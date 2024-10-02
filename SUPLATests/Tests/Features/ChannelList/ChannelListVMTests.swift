@@ -125,7 +125,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value?.online = true
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .em)
+        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
         
         // when
         observe(viewModel)
@@ -136,7 +136,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .em, channelBase: channel))
+            .next(0, .navigateToDetail(legacy: .ic, channelBase: channel))
         ])
     }
     
@@ -146,7 +146,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .em)
+        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
         
         // when
         observe(viewModel)
@@ -157,7 +157,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .em, channelBase: channel))
+            .next(0, .navigateToDetail(legacy: .ic, channelBase: channel))
         ])
     }
     
@@ -167,7 +167,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .em)
+        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
         
         // when
         observe(viewModel)

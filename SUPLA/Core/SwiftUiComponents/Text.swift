@@ -19,24 +19,31 @@
 
 import SwiftUI
 
+extension View {
+    func textColor(_ color: Color) -> some View {
+        if #available(iOS 15.0, *) {
+            return foregroundStyle(color)
+        } else {
+            return foregroundColor(color)
+        }
+    }
+}
+
 struct Text {
     protocol SuplaText: View {}
     
     struct HeadlineLarge: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onBackground
         
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.headlineLarge)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.headlineLarge)
-                    .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }
         }
@@ -45,18 +52,15 @@ struct Text {
     struct HeadlineSmall: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onBackground
         
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.headlineSmall)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.headlineSmall)
-                    .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }
         }
@@ -65,18 +69,15 @@ struct Text {
     struct BodyLarge: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onBackground
 
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.bodyLarge)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.bodyLarge)
-                    .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }
         }
@@ -85,18 +86,15 @@ struct Text {
     struct BodyMedium: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onBackground
 
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.bodyMedium)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.bodyMedium)
-                    .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }
         }
@@ -105,18 +103,15 @@ struct Text {
     struct BodySmall: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onBackground
 
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.bodySmall)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.bodySmall)
-                    .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }
         }
@@ -125,18 +120,32 @@ struct Text {
     struct LabelLarge: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onPrimary
         
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.labelLarge)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.labelLarge)
-                    .foregroundColor(color)
+                    .multilineTextAlignment(alignment)
+            }
+        }
+    }
+    
+    struct LabelMedium: SuplaText {
+        var text: String
+        var alignment: SwiftUI.TextAlignment = .center
+        
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(.Supla.labelMedium)
+                    .multilineTextAlignment(alignment)
+            } else {
+                SwiftUI.Text(text)
+                    .font(.Supla.labelMedium)
                     .multilineTextAlignment(alignment)
             }
         }
@@ -145,18 +154,15 @@ struct Text {
     struct LabelSmall: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
-        var color: Color = Color.Supla.onBackground
         
         var body: some View {
             if #available(iOS 15.0, *) {
                 SwiftUI.Text(text)
                     .font(.Supla.labelSmall)
-                    .foregroundStyle(color)
                     .multilineTextAlignment(alignment)
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.labelSmall)
-                    .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }
         }

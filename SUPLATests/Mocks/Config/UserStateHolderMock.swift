@@ -32,5 +32,16 @@ final class UserStateHolderMock: UserStateHolder {
         setTemperatureChartStateParameters.append((state, profileId, remoteId))
     }
     
+    var getElectricityMeterSettingsParameters: [(String, Int32)] = []
+    var getElectricityMeterSettingsReturns: ElectricityMeterSettings = .defaultSettings()
+    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings {
+        getTemperatureCharStateParameters.append((profileId, remoteId))
+        return getElectricityMeterSettingsReturns
+    }
+    
+    var setElectricityMeterSettingsParameters: [(ElectricityMeterSettings, String, Int32)] = []
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32) {
+        setElectricityMeterSettingsParameters.append((settings, profileId, remoteId))
+    }
     
 }
