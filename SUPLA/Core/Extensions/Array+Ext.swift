@@ -23,6 +23,10 @@ extension Array where Iterator.Element == Double {
         return reduce(Double(0)) { $0 + $1 } / Double(count)
     }
     
+    func sum() -> Double {
+        return reduce(Double(0)) { $0 + $1 }
+    }
+    
     func maxOrNull() -> Double? {
         if (self.count == 0) {
             return nil

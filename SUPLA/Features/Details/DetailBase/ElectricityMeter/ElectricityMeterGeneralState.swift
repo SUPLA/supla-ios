@@ -15,9 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
-class ElectricityMeterGeneralState: ObservableObject {
+class ElectricityMeterGeneralState: ObservableObject, Equatable {
     @Published var online: Bool = false
     @Published var totalForwardActiveEnergy: EnergyData? = nil
     @Published var totalReverseActiveEnergy: EnergyData? = nil
@@ -27,9 +26,20 @@ class ElectricityMeterGeneralState: ObservableObject {
     @Published var phaseMeasurementTypes: [SuplaElectricityMeasurementType] = []
     @Published var phaseMeasurementValues: [PhaseWithMeasurements] = []
     @Published var vectorBalancedValues: [SuplaElectricityMeasurementType: String]? = nil
+
+    static func == (lhs: ElectricityMeterGeneralState, rhs: ElectricityMeterGeneralState) -> Bool {
+        lhs.online == rhs.online &&
+            lhs.totalForwardActiveEnergy == rhs.totalForwardActiveEnergy &&
+            lhs.totalReverseActiveEnergy == rhs.totalReverseActiveEnergy &&
+            lhs.currentMonthDownloading == rhs.currentMonthDownloading &&
+            lhs.currentMonthForwardActiveEnergy == rhs.currentMonthForwardActiveEnergy &&
+            lhs.phaseMeasurementTypes == rhs.phaseMeasurementTypes &&
+            lhs.phaseMeasurementValues == rhs.phaseMeasurementValues &&
+            lhs.vectorBalancedValues == rhs.vectorBalancedValues
+    }
 }
 
-struct PhaseWithMeasurements: Identifiable {
+struct PhaseWithMeasurements: Identifiable, Equatable {
     let id: Int
     let phase: String
     let values: [SuplaElectricityMeasurementType: String]

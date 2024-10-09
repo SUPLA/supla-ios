@@ -53,7 +53,11 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
         }
     }
     
-    func aggregator(item: SAMeasurementItem) -> TimeInterval {
+    var isRank: Bool {
+        false
+    }
+    
+    func aggregator(item: Reduceable) -> TimeInterval {
         let year = Double(item.year)
         if (self == .years) {
             return TimeInterval(year)
@@ -89,5 +93,24 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
     func between(min: ChartDataAggregation, max: ChartDataAggregation) -> Bool {
         self.timeInSec >= min.timeInSec && self.timeInSec <= max.timeInSec
     }
+    
+    func reductor<T: Reduceable>(
+        _ map: [TimeInterval: LinkedList<T>],
+        _ item: T
+    ) -> [TimeInterval: LinkedList<T>] {
+        var map = map
+        let aggregator = aggregator(item: item)
+        if (map[aggregator] == nil) {
+            map[aggregator] = LinkedList<T>()
+        }
+        map[aggregator]?.append(item)
+        return map
+    }
+    
+    protocol Reduceable {
+        var day: Int16 { get }
+        var month: Int16 { get }
+        var year: Int16 { get }
+        var hour: Int16 { get }
+    }
 }
-

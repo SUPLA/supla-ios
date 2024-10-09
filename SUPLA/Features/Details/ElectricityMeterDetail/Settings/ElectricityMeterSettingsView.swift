@@ -22,10 +22,60 @@ extension ElectricityMeterSettingsFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         
+        var onShowOnChannelsListChange: (SuplaElectricityMeasurementType) -> Void
+        var onBalancingChange: (ElectricityMeterBalanceType?) -> Void
+        
         var body: some SwiftUI.View {
-            BackgroundStack {
-                Text.BodyMedium(text: "Settings")
+            let selectedTypeBinding = Binding<SuplaElectricityMeasurementType>(
+                get: { viewState.showOnChannelsList.selected },
+                set: { onShowOnChannelsListChange($0) }
+            )
+            let selectedBalancingBinding = Binding<ElectricityMeterBalanceType?>(
+                get: { viewState.balancing?.selected },
+                set: { onBalancingChange($0) }
+            )
+            
+            return BackgroundStack(alignment: .topLeading) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text.BodyMedium(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName).uppercased())
+                        .padding([.leading, .trailing], Distance.standard)
+                        .padding([.bottom], Distance.small)
+                    VStack(alignment: .leading, spacing: 0) {
+                        SuplaCore.Divider().color(Color.Supla.separator)
+                            .padding([.bottom], Distance.small)
+                        
+                        Text.BodySmall(text: Strings.ElectricityMeter.settingsListItem.uppercased())
+                            .textColor(Color.Supla.onSurfaceVariant)
+                            .padding([.leading, .trailing], Distance.standard)
+                        SuplaCore.Picker(selected: selectedTypeBinding, items: viewState.showOnChannelsList.items)
+                        
+                        if let balancingUnwrapped = Binding(selectedBalancingBinding) {
+                            SuplaCore.Divider().color(Color.Supla.separator)
+                                .padding([.top, .bottom], Distance.small)
+                            
+                            Text.BodySmall(text: Strings.ElectricityMeter.lastMonthBalancing.uppercased())
+                                .textColor(Color.Supla.onSurfaceVariant)
+                                .padding([.leading, .trailing], Distance.standard)
+                            SuplaCore.Picker(selected: balancingUnwrapped, items: viewState.balancing!.items)
+                        }
+                        
+                        SuplaCore.Divider().color(Color.Supla.separator)
+                            .padding([.top], Distance.small)
+                    }.background(Color.Supla.surface)
+                }
+                .padding([.top, .bottom], Distance.standard)
             }
         }
     }
+}
+
+#Preview {
+    let state = ElectricityMeterSettingsFeature.ViewState()
+    state.channelName = "Electricity Meter"
+    
+    return ElectricityMeterSettingsFeature.View(
+        viewState: state,
+        onShowOnChannelsListChange: { _ in },
+        onBalancingChange: { _ in }
+    )
 }

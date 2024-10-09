@@ -25,7 +25,17 @@ extension ElectricityMeterSettingsFeature {
             self.item = item
             super.init(viewModel: viewModel)
             
-            contentView = View(viewState: state)
+            contentView = View(
+                viewState: state,
+                onShowOnChannelsListChange: viewModel.onShowOnChannelsListChange,
+                onBalancingChange: viewModel.onBalanceValueChange
+            )
+        }
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            viewModel.loadData(item.remoteId)
         }
         
         static func create(item: ItemBundle) -> UIViewController {

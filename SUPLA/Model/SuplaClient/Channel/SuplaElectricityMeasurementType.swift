@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable {
+enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, PickerItem {
     case frequency
     case voltage
     case current
@@ -37,6 +37,7 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable {
     case powerApparentKva
     
     var id: Int32 { self.value }
+    var label: String { self.string }
     
     var value: Int32 {
         switch (self) {
@@ -78,6 +79,29 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable {
         case .currentOver65a: Strings.ElectricityMeter.current
         case .forwardActiveEnergyBanalced: Strings.ElectricityMeter.forwardActiveEnergy
         case .reverseActiveEnergyBalanced: Strings.ElectricityMeter.reverseActiveEnergy
+        case .powerActiveKw: Strings.ElectricityMeter.powerActive
+        case .powerReactiveKvar: Strings.ElectricityMeter.powerReactive
+        case .powerApparentKva: Strings.ElectricityMeter.powerApparent
+        }
+    }
+    
+    var shortString: String {
+        switch self {
+        case .frequency: Strings.ElectricityMeter.frequency
+        case .voltage: Strings.ElectricityMeter.voltage
+        case .current: Strings.ElectricityMeter.current
+        case .powerActive: Strings.ElectricityMeter.powerActive
+        case .powerReactive: Strings.ElectricityMeter.powerReactive
+        case .powerApparent: Strings.ElectricityMeter.powerApparent
+        case .powerFactor: Strings.ElectricityMeter.powerFactor
+        case .phaseAngle: Strings.ElectricityMeter.phaseAngle
+        case .forwardActiveEnergy: Strings.ElectricityMeter.forwardActiveEnergyShort
+        case .reverseActiveEnergy: Strings.ElectricityMeter.reverseActiveEnergyShort
+        case .forwardReactiveEnergy: Strings.ElectricityMeter.forwardReactiveEnergyShort
+        case .reverseReactiveEnergy: Strings.ElectricityMeter.reverseReactiveEnergyShort
+        case .currentOver65a: Strings.ElectricityMeter.current
+        case .forwardActiveEnergyBanalced: Strings.ElectricityMeter.forwardActiveEnergyShort
+        case .reverseActiveEnergyBalanced: Strings.ElectricityMeter.reverseActiveEnergyShort
         case .powerActiveKw: Strings.ElectricityMeter.powerActive
         case .powerReactiveKvar: Strings.ElectricityMeter.powerReactive
         case .powerApparentKva: Strings.ElectricityMeter.powerApparent
@@ -181,18 +205,28 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable {
         }
     }
     
-    func merge(_ values: [Double]) -> Double? {
+    func merge(_ values: [Double]) -> Value? {
         switch (self) {
-        case .frequency: values.first
-        case .voltage: values.avgOrNan()
+        case .frequency: .single(value: values.first!)
+        case .voltage: .double(first: values.min()!, second: values.max()!)
         case .powerActive,
              .powerReactive,
              .powerApparent,
              .forwardActiveEnergy,
              .reverseActiveEnergy,
              .forwardReactiveEnergy,
-             .reverseReactiveEnergy: values.sumOrNan()
+             .reverseReactiveEnergy: .single(value: values.sumOrNan())
         default: nil
+        }
+    }
+    
+    var showEnergyLabel: Bool {
+        switch (self) {
+        case .forwardActiveEnergy,
+             .reverseActiveEnergy,
+             .forwardReactiveEnergy,
+             .reverseReactiveEnergy: true
+        default: false
         }
     }
         
@@ -219,6 +253,11 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable {
         
         return result
     }
+    
+    enum Value {
+        case single(value: Double)
+        case double(first: Double, second: Double)
+    }
 }
 
 extension SAElectricityMeterExtendedValue {
@@ -229,6 +268,10 @@ extension SAElectricityMeterExtendedValue {
 
 extension Array where Element == SuplaElectricityMeasurementType {
     var hasForwardAndReverseEnergy: Bool {
+        contains(.forwardActiveEnergyBanalced) && contains(.reverseActiveEnergyBalanced)
+    }
+
+    var hasBalance: Bool {
         contains(.forwardActiveEnergyBanalced) && contains(.reverseActiveEnergyBalanced)
     }
 }

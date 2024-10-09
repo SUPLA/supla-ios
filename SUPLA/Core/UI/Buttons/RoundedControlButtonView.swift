@@ -67,13 +67,15 @@ final class RoundedControlButtonView: BaseControlButtonView {
         ]
     }
     
-    override func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView) -> [NSLayoutConstraint] {
+    override func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView, _ container: UIView) -> [NSLayoutConstraint] {
         [
+            container.centerXAnchor.constraint(equalTo: centerXAnchor),
+            container.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
+            iconView.leftAnchor.constraint(equalTo: container.leftAnchor),
             textView.centerYAnchor.constraint(equalTo: centerYAnchor),
             textView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceSmall),
-            textView.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceSmall)
+            textView.rightAnchor.constraint(equalTo: container.rightAnchor)
         ]
     }
 }

@@ -16,12 +16,28 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct EnergyData {
+struct EnergyData: Equatable {
     let energy: String
     let price: String?
-    
+
     init(energy: String, price: String? = nil) {
         self.energy = energy
         self.price = price
+    }
+
+    init(formatter: ChannelValueFormatter, energy: Double, pricePerUnit: Double, currency: String) {
+        self.energy = formatter.format(energy)
+        self.price = pricePerUnit.ifNotZero {
+            let priceFormatter = NumberFormatter()
+            priceFormatter.decimalSeparator = Locale.current.decimalSeparator
+            priceFormatter.maximumFractionDigits = 2
+            priceFormatter.minimumFractionDigits = 2
+            
+            return if let price = priceFormatter.string(from: NSNumber(value: energy * $0)) {
+                "\(price) \(currency)"
+            } else {
+                nil
+            }
+        }
     }
 }

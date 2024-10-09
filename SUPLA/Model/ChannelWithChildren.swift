@@ -51,6 +51,11 @@ struct ChannelWithChildren: Equatable {
     }
 }
 
+extension ChannelWithChildren {
+    var remoteId: Int32 { channel.remote_id }
+    var function: Int32 { channel.func }
+}
+
 extension ChannelWithChildren: BaseCellData {
     var infoSupported: Bool {
         channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0

@@ -32,10 +32,15 @@ extension Color {
         static let onSurfaceVariant = Color(UIColor.onSurfaceVariant)
         
         static let outline = Color(UIColor.outline)
+        static let separator = Color("Colors/separator")
         
         static let blue = Color(UIColor.blue)
         static let disabled = Color(UIColor.disabled)
         static let error = Color(UIColor.error)
         static let buttonPressed = Color(UIColor.buttonPressed)
+        
+        static let chartPhase1 = Color(UIColor.chartPhase1)
+        static let chartPhase2 = Color(UIColor.chartPhase2)
+        static let chartPhase3 = Color(UIColor.chartPhase3)
     }
 }

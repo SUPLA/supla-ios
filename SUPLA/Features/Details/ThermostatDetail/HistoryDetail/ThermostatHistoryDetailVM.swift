@@ -28,15 +28,13 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
     
     override func measurementsObservable(
         remoteId: Int32,
-        start: Date,
-        end: Date,
-        chartRange: ChartRange,
-        aggregation: ChartDataAggregation
+        spec: ChartDataSpec,
+        chartRange: ChartRange
     ) -> Observable<(ChartData, DaysRange?)> {
         Observable.zip(
-            loadChannelWithChildrenMeasurementsUseCase.invoke(remoteId: remoteId, startDate: start, endDate: end, aggregation: aggregation),
+            loadChannelWithChildrenMeasurementsUseCase.invoke(remoteId: remoteId, spec: spec),
             loadChannelWithChildrenMeasurementsDateRangeUseCase.invoke(remoteId: remoteId)
-        ) { (LineChartData(DaysRange(start: start, end: end), chartRange, aggregation, $0), $1) }
+        ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, $0), $1) }
     }
     
     override func triggerDataLoad(remoteId: Int32) {
@@ -44,7 +42,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
             readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
             profileRepository.getActiveProfile().map {
                 @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getTemperatureChartState(
+                return userStateHolder.getDefaultChartState(
                     profileId: $0.idString,
                     remoteId: remoteId
                 )
@@ -57,7 +55,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
             .disposed(by: self)
     }
     
-    private func handleData(channel: ChannelWithChildren, chartState: TemperatureChartState) {
+    private func handleData(channel: ChannelWithChildren, chartState: DefaultChartState) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.idString)
                 .changing(path: \.channelFunction, to: channel.channel.func)

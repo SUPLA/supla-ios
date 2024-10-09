@@ -22,52 +22,73 @@ struct EnergySummaryBox: View {
     var label: String?
     var forwardEnergy: EnergyData?
     var reverseEnergy: EnergyData?
-    var loading: Bool
+    @Binding var loading: Bool
     
     var body: some View {
-        VStack {
-            let showLabel = forwardEnergy != nil && reverseEnergy != nil && label != nil
-            if (showLabel) {
-                if let label = label {
-                    Text.BodyMedium(text: label)
-                        .textColor(Color.Supla.onSurfaceVariant)
-                        .padding(Dimens.distanceTiny)
+        ZStack {
+            VStack {
+                let showLabel = forwardEnergy != nil && reverseEnergy != nil && label != nil
+                if (showLabel) {
+                    if let label = label {
+                        Text.BodyMedium(text: label)
+                            .textColor(Color.Supla.onSurfaceVariant)
+                            .padding(Dimens.distanceTiny)
+                    }
                 }
-            }
-            HStack(alignment: .top, spacing: showLabel ? 1 : 0) {
-                if let forwardEnergy = forwardEnergy,
-                   let reverseEnergy = reverseEnergy {
-                    EnergySummaryItemBox(
-                        iconName: .Icons.forwardEnergy,
-                        label: Strings.ElectricityMeter.forwardedEnergy,
-                        value: forwardEnergy.energy,
-                        price: forwardEnergy.price)
-                    
-                    EnergySummaryItemBox(
-                        iconName: .Icons.reversedEnergy,
-                        label: Strings.ElectricityMeter.reversedEnergy,
-                        value: reverseEnergy.energy,
-                        price: reverseEnergy.price)
-                } else if let forwardEnergy = forwardEnergy {
-                    EnergySummarySingleItemBox(
-                        iconName: .Icons.forwardEnergy,
-                        label: label!,
-                        value: forwardEnergy.energy,
-                        price: forwardEnergy.price)
-                } else if let reverseEnergy = reverseEnergy {
-                    EnergySummarySingleItemBox(
-                        iconName: .Icons.reversedEnergy,
-                        label: label!,
-                        value: reverseEnergy.energy,
-                        price: reverseEnergy.price)
+                HStack(alignment: .top, spacing: showLabel ? 1 : 0) {
+                    if let forwardEnergy = forwardEnergy,
+                       let reverseEnergy = reverseEnergy {
+                        EnergySummaryItemBox(
+                            iconName: .Icons.forwardEnergy,
+                            label: Strings.ElectricityMeter.forwardedEnergy,
+                            value: forwardEnergy.energy,
+                            price: forwardEnergy.price)
+                        
+                        EnergySummaryItemBox(
+                            iconName: .Icons.reversedEnergy,
+                            label: Strings.ElectricityMeter.reversedEnergy,
+                            value: reverseEnergy.energy,
+                            price: reverseEnergy.price)
+                    } else if let forwardEnergy = forwardEnergy {
+                        EnergySummarySingleItemBox(
+                            iconName: .Icons.forwardEnergy,
+                            label: label!,
+                            value: forwardEnergy.energy,
+                            price: forwardEnergy.price)
+                    } else if let reverseEnergy = reverseEnergy {
+                        EnergySummarySingleItemBox(
+                            iconName: .Icons.reversedEnergy,
+                            label: label!,
+                            value: reverseEnergy.energy,
+                            price: reverseEnergy.price)
+                    }
                 }
+                .frame(maxWidth: .infinity)
+                .padding([.top], 1)
+                .background(Color.Supla.outline)
+                .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: .infinity)
-            .padding([.top], 1)
-            .background(Color.Supla.outline)
-            .fixedSize(horizontal: false, vertical: true)
-
+            
+            if (loading) {
+                Color(UIColor.loadingScrim)
+                ActivityIndicator(isAnimating: $loading, style: .medium)
+            }
+            
         }.suplaCard()
+    }
+}
+
+struct ActivityIndicator: UIViewRepresentable {
+
+    @Binding var isAnimating: Bool
+    let style: UIActivityIndicatorView.Style
+
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView(style: style)
+    }
+
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }
 
@@ -86,7 +107,7 @@ private struct EnergySummaryItemBox: View {
             }
             Text.LabelLarge(text: value)
             if let price = price {
-                Divider().frame(height: 1).overlay(Color.Supla.outline)
+                SuplaCore.Divider()
                 HStack {
                     Text.BodyMedium(text: Strings.ElectricityMeter.cost)
                         .textColor(Color.Supla.onSurfaceVariant)
@@ -120,7 +141,7 @@ private struct EnergySummarySingleItemBox: View {
             }
             if let price = price {
                 Spacer()
-                Divider().frame(width: 1).overlay(Color.Supla.outline)
+                SuplaCore.Divider(.vertical)
                 Spacer()
                 VStack(alignment: .trailing, spacing: Dimens.distanceTiny) {
                     Text.BodyMedium(text: Strings.ElectricityMeter.cost)
@@ -142,39 +163,39 @@ struct ContentView_Previews: PreviewProvider {
                 label: "Active energy \(Strings.ElectricityMeter.totalSufix)",
                 forwardEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
                 reverseEnergy: EnergyData(energy: "23,45 kWh", price: "15,00 PLN"),
-                loading: false
+                loading: .constant(true)
             )
             EnergySummaryBox(
                 label: "Active energy",
                 forwardEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
                 reverseEnergy: EnergyData(energy: "23,45 kWh"),
-                loading: false
+                loading: .constant(false)
             )
             EnergySummaryBox(
                 label: "Active energy",
                 forwardEnergy: EnergyData(energy: "12,34 kWh"),
                 reverseEnergy: EnergyData(energy: "23,45 kWh"),
-                loading: false
+                loading: .constant(false)
             )
             EnergySummaryBox(
                 label: "Forward active energy",
                 forwardEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
-                loading: false
+                loading: .constant(false)
             )
             EnergySummaryBox(
                 label: "Forward active energy",
                 forwardEnergy: EnergyData(energy: "12,34 kWh"),
-                loading: false
+                loading: .constant(false)
             )
             EnergySummaryBox(
                 label: "Reverse active energy",
                 reverseEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
-                loading: false
+                loading: .constant(false)
             )
             EnergySummaryBox(
                 label: "Reverse active energy",
                 reverseEnergy: EnergyData(energy: "12,34 kWh"),
-                loading: false
+                loading: .constant(false)
             )
         }.previewLayout(.sizeThatFits)
     }

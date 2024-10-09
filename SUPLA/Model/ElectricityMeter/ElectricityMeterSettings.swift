@@ -20,13 +20,31 @@ struct ElectricityMeterSettings: Codable {
     let showOnList: SuplaElectricityMeasurementType
     let balancing: ElectricityMeterBalanceType
     
+    var showOnListSafe: SuplaElectricityMeasurementType {
+        ElectricityMeterSettings.showOnListAllItems.contains(showOnList) ? showOnList : ElectricityMeterSettings.showOnListAllItems.first!
+    }
+    
+    func copy(showOnList: SuplaElectricityMeasurementType? = nil, balancing: ElectricityMeterBalanceType? = nil) -> ElectricityMeterSettings {
+        ElectricityMeterSettings(showOnList: showOnList ?? self.showOnList, balancing: balancing ?? self.balancing)
+    }
+    
     static func defaultSettings() -> ElectricityMeterSettings {
         return .init(showOnList: .forwardActiveEnergy, balancing: .defaultValue)
     }
+    
+    static var showOnListAllItems: [SuplaElectricityMeasurementType] {
+        [.forwardActiveEnergy, .reverseActiveEnergy, .powerActive, .voltage]
+    }
+    
+    static var balancingAllItems: [ElectricityMeterBalanceType] {
+        [.vector, .arithmetic, .hourly]
+    }
 }
 
-enum ElectricityMeterBalanceType: Codable {
+enum ElectricityMeterBalanceType: Int, Codable, PickerItem {
     case defaultValue, vector, arithmetic, hourly
+    
+    var id: Int { self.rawValue }
     
     var label: String {
         switch self {

@@ -16,24 +16,65 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import RxSwift
+
 extension ElectricityMeterGeneralFeature {
     class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+        @Singleton private var dateProvider: DateProvider
+        @Singleton private var downloadEventsManager: DownloadEventsManager
         @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
+        @Singleton private var downloadChannelMeasurementsUseCase: DownloadChannelMeasurementsUseCase
         @Singleton private var electricityMeterGeneralStateHandler: ElectricityMeterGeneralStateHandler
+        @Singleton private var loadElectricityMeterMeasurementsUseCase: LoadElectricityMeterMeasurementsUseCase
         
         init() {
             super.init(state: ViewState())
         }
         
-        func loadData(_ remoteId: Int32) {
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+        func observerDownload(_ remoteId: Int32) {
+            downloadEventsManager.observeProgress(remoteId: remoteId)
                 .asDriverWithoutError()
-                .drive(onNext: { [weak self] in self?.handleChannel($0) })
+                .drive(onNext: { [weak self] in self?.handleDownloadEvents(downloadState: $0) })
                 .disposed(by: disposeBag)
         }
         
-        private func handleChannel(_ channel: ChannelWithChildren) {
-            electricityMeterGeneralStateHandler.updateState(state, channel: channel)
+        func loadData(_ remoteId: Int32, downloadingFinished: Bool = false) {
+            Observable.zip(
+                readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
+                loadElectricityMeterMeasurementsUseCase.invoke(remoteId: remoteId, startDate: dateProvider.currentDate().monthStart())
+            ) { channel, measurements in (channel, measurements) }
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] channel, measurements in
+                    self?.handleChannel(channel, measurements, downloadingFinished)
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        private func handleChannel(
+            _ channel: ChannelWithChildren,
+            _ measurements: ElectricityMeasurements,
+            _ downloadingFinished: Bool
+        ) {
+            if (!state.initialDataLoadStarted) {
+                downloadChannelMeasurementsUseCase.invoke(remoteId: channel.remoteId, function: channel.function)
+            }
+            state.remoteId = channel.remoteId
+            state.initialDataLoadStarted = true
+            if (downloadingFinished) {
+                state.currentMonthDownloading = false
+            }
+            electricityMeterGeneralStateHandler.updateState(state, channel, measurements)
+        }
+        
+        private func handleDownloadEvents(downloadState: DownloadEventsManagerState?) {
+            switch (downloadState) {
+            case .inProgress(_), .started:
+                state.currentMonthDownloading = true
+            default:
+                if let remoteId = state.remoteId {
+                    loadData(remoteId, downloadingFinished: true)
+                }
+            }
         }
     }
 }

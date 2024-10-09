@@ -18,12 +18,11 @@
     
 extension ElectricityMeterSettingsFeature {
     class ViewState: ObservableObject {
-        @Published var online: Bool = false
-        @Published var totalForwardActiveEnergy: EnergyData? = nil
-        @Published var totalReverseActiveEnergy: EnergyData? = nil
-        @Published var currentMonthDownloading: Bool = false
-        @Published var currentMonthForwardActiveEnergy: EnergyData? = nil
-        @Published var currentMonthReverseActiveEnergy: EnergyData? = nil
-        @Published var phaseMeasurementTypes: [SuplaElectricityMeasurementType] = []
+        var remoteId: Int32 = 0
+        var profileId: String = ""
+        
+        @Published var channelName: String = ""
+        @Published var showOnChannelsList: SelectableList<SuplaElectricityMeasurementType> = .init(selected: .frequency, items: [.frequency])
+        @Published var balancing: SelectableList<ElectricityMeterBalanceType>? = nil
     }
 }

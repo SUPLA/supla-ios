@@ -20,7 +20,11 @@ protocol IntValueParser {}
 
 extension IntValueParser {
     func asIntValue(_ channelValue: SAChannelValue?, startingFromByte: Int = 0) -> Int? {
-        if let value = channelValue?.dataValue(),
+        return asIntValue(channelValue?.dataValue(), startingFromByte: startingFromByte)
+    }
+    
+    func asIntValue(_ data: Data?, startingFromByte: Int = 0) -> Int? {
+        if let value = data,
            value.count >= MemoryLayout<Int32>.size + startingFromByte
         {
             var result = 0

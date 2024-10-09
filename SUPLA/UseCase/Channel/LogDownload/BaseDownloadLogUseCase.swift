@@ -20,7 +20,7 @@ import RxSwift
 
 fileprivate let ALLOWED_TIME_DIFFERENCE: Double = 1800
 
-class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
+class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementItem> {
     
     @Singleton<SuplaCloudService> var cloudService
     @Singleton<ProfileRepository> var profileRepository

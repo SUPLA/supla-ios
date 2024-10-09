@@ -16,14 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-extension ElectricityMeterHistoryFeature {
-    class ViewState: ObservableObject {
-        @Published var online: Bool = false
-        @Published var totalForwardActiveEnergy: EnergyData? = nil
-        @Published var totalReverseActiveEnergy: EnergyData? = nil
-        @Published var currentMonthDownloading: Bool = false
-        @Published var currentMonthForwardActiveEnergy: EnergyData? = nil
-        @Published var currentMonthReverseActiveEnergy: EnergyData? = nil
-        @Published var phaseMeasurementTypes: [SuplaElectricityMeasurementType] = []
+extension Equatable {
+    func isEqualTo(_ other: Any?) -> Bool {
+        if let other = other as? Self {
+            return self == other
+        } else {
+            return false
+        }
+    }
+}
+
+extension Equatable? {
+    func equalTo(_ other: Any?) -> Bool {
+        guard let self = self else { return other == nil }
+        return self.isEqualTo(other)
     }
 }

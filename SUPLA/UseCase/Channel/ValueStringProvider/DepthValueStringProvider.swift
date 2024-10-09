@@ -28,8 +28,8 @@ final class DepthValueStringProvider: BaseDistanceValueStringProvider {
         DepthValueProviderImpl.UNKNOWN_VALUE
     }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_DEPTHSENSOR
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_DEPTHSENSOR
     }
     
 }

@@ -20,8 +20,13 @@ import RxSwift
 
 class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent> {
     @Singleton<DateProvider> var dateProvider
+    @Singleton<UserStateHolder> var userStateHolder
     @Singleton<ProfileRepository> var profileRepository
     @Singleton<DeleteChannelMeasurementsUseCase> var deleteChannelMeasurementsUseCase
+    
+    var chartStyle: any ChartStyle {
+        ThermometerChartStyle()
+    }
     
     override func defaultViewState() -> BaseHistoryDetailViewState { BaseHistoryDetailViewState() }
     
@@ -29,7 +34,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         fatalError("triggedDataLoad(remoteId:) needs to be implemented")
     }
     
-    func measurementsObservable(remoteId: Int32, start: Date, end: Date, chartRange: ChartRange, aggregation: ChartDataAggregation) -> Observable<(ChartData, DaysRange?)> {
+    func measurementsObservable(remoteId: Int32, spec: ChartDataSpec, chartRange: ChartRange) -> Observable<(ChartData, DaysRange?)> {
         fatalError("measurementsObservable(remoteId: start: end: aggregation:) needs to be implemented")
     }
     
@@ -49,20 +54,28 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         }
     }
     
-    func changeSetActive(setId: HistoryDataSet.Id) {
+    func changeSetActive(remoteId: Int32, type: ChartEntryType) {
         send(event: .clearHighlight)
         updateView { state in
-            let chartData = state.chartData.activateSet(setId: setId)
+            guard let channelSets = state.chartData.sets.first(where: { $0.remoteId == remoteId }) else { return state }
             
-            return state.changing(path: \.chartData, to: chartData)
-                .changing(
-                    path: \.withRightAxis,
-                    to: chartData.sets.first(where: { $0.setId.type.rightAxis() && $0.active }) != nil
-                )
-                .changing(
-                    path: \.withLeftAxis,
-                    to: chartData.sets.first(where: { $0.setId.type.leftAxis() && $0.active }) != nil
-                )
+            if (channelSets.hasCustomFilters == true) {
+                send(event: .showDataSelectionDialog(channelSets: channelSets, filters: state.chartCustomFilters))
+                return state
+            } else if (state.chartData.onlyOneSetAndActive) {
+                return state
+            } else {
+                let chartData = state.chartData.toggleActive(remoteId: remoteId, type: type)
+                return state.changing(path: \.chartData, to: chartData)
+                    .changing(
+                        path: \.withRightAxis,
+                        to: chartData.withRightAxis
+                    )
+                    .changing(
+                        path: \.withLeftAxis,
+                        to: chartData.withLeftAxis
+                    )
+            }
         }
         updateUserState()
     }
@@ -94,7 +107,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                 return state
                     .changing(path: \.ranges, to: state.ranges?.changing(path: \.selected, to: range))
                     .changing(path: \.range, to: newRange)
-                    .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected))
+                    .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected, state.chartCustomFilters?.filters))
                     .changing(path: \.chartData, to: state.chartData.empty())
                     .changing(path: \.chartParameters, to: HideableValue(ChartParameters(scaleX: 1, scaleY: 1, x: 0, y: 0)))
                     .changing(path: \.loading, to: true)
@@ -151,6 +164,10 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         updateUserState()
     }
     
+    func loadChartState(_ profileId: String, _ remoteId: Int32) -> ChartState {
+        userStateHolder.getDefaultChartState(profileId: profileId, remoteId: remoteId)
+    }
+    
     func triggerMeasurementsLoad(state: BaseHistoryDetailViewState) {
         guard let start = state.range?.start,
               let end = state.range?.end,
@@ -161,30 +178,27 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             return
         }
         let aggregation = state.aggregations?.selected ?? .minutes
+        let filters = state.chartCustomFilters?.filters
+        let spec = ChartDataSpec(startDate: start, endDate: end, aggregation: aggregation, customFilters: filters)
         measurementsObservable(
             remoteId: remoteId,
-            start: start,
-            end: end,
-            chartRange: chartRange,
-            aggregation: aggregation
+            spec: spec,
+            chartRange: chartRange
         )
         .asDriverWithoutError()
         .drive(onNext: { [weak self] in
-            @Singleton<UserStateHolder> var userStateHolder
-                
-            self?.handleMeasurements(
+            guard let self = self else { return }
+            self.handleMeasurements(
                 data: $0.0,
                 range: $0.1,
-                chartState: userStateHolder.getTemperatureChartState(
-                    profileId: profileId,
-                    remoteId: remoteId
-                )
+                chartState: self.loadChartState(profileId, remoteId)
             )
         })
         .disposed(by: self)
     }
     
-    func restoreRange(chartState: TemperatureChartState) {
+    func restoreRange(chartState: ChartState?) {
+        guard let chartState = chartState else { return }
         let selectedRange = chartState.chartRange
         let chartParameters = chartState.chartParameters != nil ? HideableValue(chartState.chartParameters!) : nil
         
@@ -192,7 +206,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         
         updateView {
             $0.changing(path: \.ranges, to: SelectableList(selected: selectedRange, items: ChartRange.allCases))
-                .changing(path: \.aggregations, to: aggregations(dateRange, chartState.aggregation))
+                .changing(path: \.aggregations, to: aggregations(dateRange, chartState.aggregation, $0.chartCustomFilters?.filters))
                 .changing(path: \.range, to: dateRange)
                 .changing(path: \.chartParameters, to: chartParameters)
         }
@@ -247,7 +261,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             
             return state
                 .changing(path: \.range, to: newRange)
-                .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected))
+                .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected, state.chartCustomFilters?.filters))
                 .changing(path: \.chartData, to: state.chartData.empty())
                 .changing(path: \.chartParameters, to: HideableValue(ChartParameters(scaleX: 1, scaleY: 1, x: 0, y: 0)))
                 .changing(path: \.loading, to: true)
@@ -280,7 +294,11 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             .disposed(by: self)
     }
     
-    private func aggregations(_ currentRange: DaysRange, _ selectedAggregation: ChartDataAggregation? = .minutes) -> SelectableList<ChartDataAggregation> {
+    func aggregations(
+        _ currentRange: DaysRange,
+        _ selectedAggregation: ChartDataAggregation? = .minutes,
+        _ customFilters: ChartDataSpec.Filters?
+    ) -> SelectableList<ChartDataAggregation> {
         let minAggregation = currentRange.minAggregation
         let maxAggregation = currentRange.maxAggregation
         let aggregation = selectedAggregation?.between(min: minAggregation, max: maxAggregation) == true ? selectedAggregation! : minAggregation
@@ -367,15 +385,15 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             .changing(path: \.loading, to: true)
     }
     
-    private func handleMeasurements(data: ChartData, range: DaysRange?, chartState: TemperatureChartState) {
+    private func handleMeasurements(data: ChartData, range: DaysRange?, chartState: ChartState) {
         updateView {
-            let dataWithActiveSet = data.activateSets(setIds: chartState.visibleSets)
+            let dataWithActiveSet = data.activateSets(visibleSets: chartState.visibleSets)
             
             return $0.changing(path: \.chartData, to: dataWithActiveSet)
-                .changing(path: \.withRightAxis, to: dataWithActiveSet.sets.first(where: { $0.setId.type.rightAxis() && $0.active }) != nil)
-                .changing(path: \.withLeftAxis, to: dataWithActiveSet.sets.first(where: { $0.setId.type.leftAxis() && $0.active }) != nil)
+                .changing(path: \.withRightAxis, to: dataWithActiveSet.withRightAxis)
+                .changing(path: \.withLeftAxis, to: dataWithActiveSet.withLeftAxis)
                 .changing(path: \.maxLeftAxis, to: dataWithActiveSet.getAxisMaxValue { $0.leftAxis() })
-                .changing(path: \.minLeftAxis, to: dataWithActiveSet.getAxisMinValueRaw { $0.leftAxis() }?.minus(2))
+                .changing(path: \.minLeftAxis, to: dataWithActiveSet.getAxisMinValueRaw { $0.leftAxis() })
                 .changing(path: \.maxRightAxis, to: dataWithActiveSet.getAxisMaxValue { $0.rightAxis() })
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
@@ -383,24 +401,31 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         }
     }
     
-    private func updateUserState() {
-        @Singleton<UserStateHolder> var userStateHolder
-        
+    func exportChartState(_: BaseHistoryDetailViewState) -> ChartState? {
         guard let state = currentState(),
               let aggregation = state.aggregations?.selected,
               let chartRange = state.ranges?.selected,
-              let dateRange = state.range,
+              let dateRange = state.range else { return nil }
+        
+        return DefaultChartState(
+            aggregation: aggregation,
+            chartRange: chartRange,
+            dateRange: dateRange,
+            chartParameters: state.chartParameters?.value,
+            visibleSets: state.chartData.visibleSets
+        )
+    }
+    
+    func updateUserState() {
+        guard let state = currentState(),
+              let chartState = exportChartState(state),
               let profileId = state.profileId,
               let remoteId = state.remoteId else { return }
         
-        userStateHolder.setTemperatureChartState(
-            TemperatureChartState(
-                aggregation: aggregation,
-                chartRange: chartRange,
-                dateRange: dateRange,
-                chartParameters: state.chartParameters?.value,
-                visibleSets: state.chartData.sets.filter { $0.active }.map { $0.setId }
-            ),
+        @Singleton<UserStateHolder> var userStateHolder
+        
+        userStateHolder.setChartState(
+            chartState,
             profileId: profileId,
             remoteId: remoteId
         )
@@ -410,6 +435,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
 enum BaseHistoryDetailViewEvent: ViewEvent {
     case clearHighlight
     case showDownloadInProgress
+    case showDataSelectionDialog(channelSets: ChannelChartSets, filters: CustomChartFiltersContainer?)
 }
 
 struct BaseHistoryDetailViewState: ViewState {
@@ -424,6 +450,7 @@ struct BaseHistoryDetailViewState: ViewState {
     var aggregations: SelectableList<ChartDataAggregation>? = nil
     var loading: Bool = true
     var downloadState: DownloadEventsManagerState? = nil
+    var chartCustomFilters: CustomChartFiltersContainer? = nil
     
     var minDate: Date? = nil
     var maxDate: Date? = nil
@@ -550,5 +577,13 @@ struct BaseHistoryDetailViewState: ViewState {
         let rangeStart = formatter.getFullDateString(date: range.start) ?? ""
         let rangeEnd = formatter.getFullDateString(date: range.end) ?? ""
         return "\(rangeStart) - \(rangeEnd)"
+    }
+}
+
+struct CustomChartFiltersContainer: Equatable {
+    let filters: ChartDataSpec.Filters?
+    
+    static func == (lhs: CustomChartFiltersContainer, rhs: CustomChartFiltersContainer) -> Bool {
+        (lhs.filters == nil && rhs.filters == nil) || lhs.filters?.isEqualTo(rhs.filters) == true
     }
 }

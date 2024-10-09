@@ -546,6 +546,10 @@
 "details_em_reverse_active_energy" = "Energia czynna zwrócona";
 "details_em_forward_reactive_energy" = "Energia bierna indukcyjna";
 "details_em_reverse_reactive_energy" = "Energia bierna pojemnościowa";
+"details_em_forward_active_energy_short" = "Czynna pobrana";
+"details_em_reverse_active_energy_short" = "Czynna zwrócona";
+"details_em_forward_reactive_energy_short" = "Indukcyjna";
+"details_em_reverse_reactive_energy_short" = "Pojemnościowa";
 "details_em_frequency" = "Częstotliwość";
 "details_em_voltage" = "Napięcie";
 "details_em_current" = "Natężenie";
@@ -570,7 +574,7 @@
 "details_em_reversed_energy" = "Zwrócona";
 "details_em_cost" = "Koszt";
 "details_em_settings_list_item" = "Wartość pokazywana na liście kanałów";
-"details_em_settings_title" = "Ustawienia - %1$s";
+"details_em_settings_title" = "Ustawienia - %@";
 "details_em_total_suffix" = "(stan licznika)";
 "details_em_current_month_suffix" = "(bieżący miesiąc)";
 "details_em_last_month_balancing" = "Bilansowanie bieżącego miesiąca";

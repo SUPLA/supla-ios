@@ -35,12 +35,7 @@ extension SAElectricityMeterExtendedValue {
     
     func getForwardEnergy(formatter: ListElectricityMeterValueFormatter) -> EnergyData? {
         hasForwardEnergy.ifTrue {
-            let energy = totalForwardActiveEnergy()
-            return if let price = priceFormatter.string(from: NSNumber(value: energy * pricePerUnit())) {
-                EnergyData(energy: formatter.format(energy), price: "\(price) \(currency())")
-            } else {
-                EnergyData(energy: formatter.format(energy))
-            }
+            EnergyData(formatter: formatter, energy: totalForwardActiveEnergy(), pricePerUnit: pricePerUnit(), currency: currency())
         }
     }
     
@@ -54,14 +49,14 @@ extension SAElectricityMeterExtendedValue {
     func measuredValues(
         _ types: [SuplaElectricityMeasurementType],
         _ phase: Phase
-    ) -> [SuplaElectricityMeasurementType: Double] {
-        var result: [SuplaElectricityMeasurementType: Double] = [:]
+    ) -> [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value] {
+        var result: [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value] = [:]
         
         for type in types {
             if let provider = type.provider,
                let value = provider(self, phase)
             {
-                result[type] = value
+                result[type] = .single(value: value)
             }
         }
         

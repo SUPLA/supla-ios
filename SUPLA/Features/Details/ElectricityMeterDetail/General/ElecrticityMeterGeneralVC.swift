@@ -28,6 +28,12 @@ extension ElectricityMeterGeneralFeature {
             contentView = View(viewState: state)
         }
         
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            viewModel.observerDownload(item.remoteId)
+        }
+        
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             

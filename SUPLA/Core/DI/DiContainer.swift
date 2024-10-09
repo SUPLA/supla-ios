@@ -98,7 +98,8 @@ extension DiContainer {
         register((any ChannelValueRepository).self, ChannelValueRepositoryImpl())
         register((any ChannelGroupRelationRepository).self, ChannelGroupRelationRepositoryImpl())
         register((any ChannelExtendedValueRepository).self, ChannelExtendedValueRepositoryImpl())
-        register((any ElectricityMeasurementItemRepository).self, ElectricityMeasurementItemRepositoryImpl())
+        let electricityMeasurementItemRepository = ElectricityMeasurementItemRepositoryImpl()
+        register((any ElectricityMeasurementItemRepository).self, electricityMeasurementItemRepository)
         register((any ImpulseCounterMeasurementItemRepository).self, ImpulseCounterMeasurementItemRepositoryImpl())
         register((any UserIconRepository).self, UserIconRepositoryImpl())
         register((any ThermostatMeasurementItemRepository).self, ThermostatMeasurementItemRepositoryImpl())
@@ -134,12 +135,15 @@ extension DiContainer {
                  DownloadGeneralPurposeMeasurementLogUseCaseImpl(generalPurposeMeasurementItemRepository))
         register(DownloadGeneralPurposeMeterLogUseCase.self,
                  DownloadGeneralPurposeMeterLogUseCaseImpl(generalPurposeMeterItemRepository))
+        register(DownloadElectricityMeterLogUseCase.self,
+                 DownloadElectricityMeterLogUseCaseImpl(electricityMeasurementItemRepository))
         register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
         register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
         register(GetChannelValueStringUseCase.self, GetChannelValueStringUseCaseImpl())
         register(LoadChannelConfigUseCase.self, LoadChannelConfigUseCaseImpl())
         register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
+        register(LoadElectricityMeterMeasurementsUseCase.self, LoadElectricityMeterMeasurementsUseCaseImpl())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())
@@ -152,6 +156,13 @@ extension DiContainer {
         register(WeightValueProvider.self, WeightValueProviderImpl())
         register(WindValueProvider.self, WindValueProviderImpl())
         register(ElectricityMeterValueProvider.self, ElectricityMeterValueProviderImpl())
+        register(SwitchWithElectricityMeterValueProvider.self, SwitchWithElectricityMeterValueProviderImpl())
+        // Usecases - Channel - MeasurementProvider
+        register(TemperatureMeasurementsProvider.self, TemperatureMeasurementsProviderImpl())
+        register(TemperatureAndHumidityMeasurementsProvider.self, TemperatureAndHumidityMeasurementsProviderImpl())
+        register(GeneralPurposeMeterMeasurementsProvider.self, GeneralPurposeMeterMeasurementsProviderImpl())
+        register(GeneralPurposeMeasurementMeasurementsProvider.self, GeneralPurposeMeasurementMeasurementsProviderImpl())
+        register(ElectricityMeasurementsProvider.self, ElectricityMeasurementsProviderImpl())
         // Usecases - ChannelBase
         register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())

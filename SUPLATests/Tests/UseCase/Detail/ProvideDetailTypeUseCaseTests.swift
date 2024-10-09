@@ -270,7 +270,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .historyEm])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchEmHistory, .switchEmSettings])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
             
