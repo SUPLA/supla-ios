@@ -19,7 +19,6 @@
 import RxSwift
 
 final class IconValueCell: BaseCell<ChannelWithChildren> {
-    
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
@@ -58,7 +57,8 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     
     override func onInfoPress(_ gr: UITapGestureRecognizer) {
         if let delegate = delegate as? BaseCellDelegate,
-           let channel = data?.channel {
+           let channel = data?.channel
+        {
             delegate.onInfoIconTapped(channel)
         }
     }
@@ -99,5 +99,39 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         valueView.text = getChannelValueStringUseCase.invoke(channel)
         
         issueIcon = nil
+    }
+    
+    override func leftButtonSettings() -> CellButtonSettings {
+        if (hasLeftButton()) {
+            return CellButtonSettings(visible: online(), title: Strings.General.turnOff)
+        } else {
+            return super.leftButtonSettings()
+        }
+    }
+    
+    override func rightButtonSettings() -> CellButtonSettings {
+        if (hasLeftButton()) {
+            return CellButtonSettings(visible: online(), title: Strings.General.turnOn)
+        } else {
+            return super.rightButtonSettings()
+        }
+    }
+    
+    private func hasLeftButton() -> Bool {
+        switch (data?.channel.func) {
+        case SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER: true
+        default: false
+        }
+    }
+    
+    private func hasRightButton() -> Bool {
+        switch (data?.channel.func) {
+        case SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER: true
+        default: false
+        }
     }
 }

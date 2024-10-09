@@ -18,6 +18,8 @@
 
 import Foundation
 
-protocol SuplaCloudMeasurement: Codable {
-    var date_timestamp: Date { get }
+extension SuplaCloudClient {
+    protocol Measurement: Codable {
+        var date_timestamp: Date { get }
+    }
 }

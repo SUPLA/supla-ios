@@ -59,7 +59,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
             case .rightButton: Action.upOrStop
             }
         }
-        if (channelBase.isHvacThermostat()) {
+        if (channelBase.isHvacThermostat() || channelBase.isSwitch()) {
             return switch (buttonType) {
             case .leftButton: Action.turnOff
             case .rightButton: Action.turnOn
@@ -77,5 +77,16 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
         }
 
         fatalError("Unknown instance of SAChannelBase!")
+    }
+}
+
+private extension SAChannelBase {
+    func isSwitch() -> Bool {
+        switch (self.func) {
+        case SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER: true
+        default: false
+        }
     }
 }

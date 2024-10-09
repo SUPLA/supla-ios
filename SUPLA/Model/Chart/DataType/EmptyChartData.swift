@@ -24,5 +24,5 @@ final class EmptyChartData: ChartData {
     
     override func combinedData() -> CombinedChartData? { nil }
     
-    override func newInstance(sets: [HistoryDataSet]) -> ChartData { EmptyChartData() }
+    override func newInstance(sets: [ChannelChartSets]) -> ChartData { EmptyChartData() }
 }

@@ -93,10 +93,10 @@ final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsU
 }
 
 final class LoadChannelMeasurementsUseCaseMock: LoadChannelMeasurementsUseCase {
-    var parameters: [(Int32, Date, Date, ChartDataAggregation)] = []
-    var returns: Observable<[HistoryDataSet]> = Observable.empty()
-    func invoke(remoteId: Int32, startDate: Date, endDate: Date, aggregation: ChartDataAggregation) -> Observable<[HistoryDataSet]> {
-        parameters.append((remoteId, startDate, endDate, aggregation))
+    var parameters: [(Int32, ChartDataSpec)] = []
+    var returns: Observable<ChannelChartSets> = Observable.empty()
+    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+        parameters.append((remoteId, spec))
         return returns
     }
 }

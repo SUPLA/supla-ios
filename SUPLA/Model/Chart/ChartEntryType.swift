@@ -18,17 +18,19 @@
 
 import Foundation
 
-enum ChartEntryType: Codable {
+enum ChartEntryType: Int, Codable {
     case temperature
     case humidity
     case generalPurposeMeasurement
     case generalPurposeMeter
+    case electricity
 
     func leftAxis() -> Bool {
         switch (self) {
         case .temperature,
              .generalPurposeMeter,
-             .generalPurposeMeasurement: true
+             .generalPurposeMeasurement,
+             .electricity: true
         case .humidity: false
         }
     }
@@ -37,7 +39,8 @@ enum ChartEntryType: Codable {
         switch (self) {
         case .temperature,
              .generalPurposeMeter,
-             .generalPurposeMeasurement: false
+             .generalPurposeMeasurement,
+             .electricity: false
         case .humidity: true
         }
     }

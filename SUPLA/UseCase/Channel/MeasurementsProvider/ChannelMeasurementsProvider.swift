@@ -1,0 +1,175 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+import RxSwift
+
+private let MAX_ALLOWED_DISTANCE_MUTLIPLIER = 1.5
+// Server provides data for each 10 minutes
+private let AGGREGATING_MINUTES_DISTANCE_SEC = 600 * MAX_ALLOWED_DISTANCE_MUTLIPLIER
+    
+protocol ChannelMeasurementsProvider {
+    func handle(_ function: Int32) -> Bool
+    func provide(
+        _ channel: SAChannel,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<ChannelChartSets>
+}
+
+extension ChannelMeasurementsProvider {
+    func provide(_ channel: SAChannel, _ spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+        provide(channel, spec, nil)
+    }
+    
+    func historyDataSet(
+        _ channel: SAChannel,
+        _ type: ChartEntryType,
+        _ color: UIColor,
+        _ aggregation: ChartDataAggregation,
+        _ measurements: [AggregatedEntity]
+    ) -> HistoryDataSet {
+        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
+        @Singleton<GetChannelValueStringUseCase> var getChannelValueStringUseCase
+        
+        let icon = switch(type) {
+        case .humidity: getChannelBaseIconUseCase.invoke(channel: channel, type: .second)
+        default: getChannelBaseIconUseCase.invoke(channel: channel)
+        }
+        
+        let value = switch(type) {
+        case .humidity: getChannelValueStringUseCase.invoke(channel, valueType: .second)
+        default: getChannelValueStringUseCase.invoke(channel)
+        }
+        
+        return HistoryDataSet(
+            type: type,
+            label: singleLabel(icon, value, color),
+            valueFormatter: getValueFormatter(type, config: channel.config),
+            entries: divideSetToSubsets(measurements, aggregation),
+            active: true
+        )
+    }
+    
+    func getValueFormatter(_ type: ChartEntryType, config: SAChannelConfig? = nil) -> ChannelValueFormatter {
+        switch (type) {
+        case .humidity: HumidityValueFormatter()
+        case .temperature: ThermometerValueFormatter()
+        case .generalPurposeMeasurement, .generalPurposeMeter:
+            GpmValueFormatter(config: config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
+        case .electricity: ChartAxisElectricityMeterValueFormatter()
+        }
+    }
+    
+    func divideSetToSubsets(_ entities: [AggregatedEntity], _ aggregation: ChartDataAggregation) -> [[AggregatedEntity]] {
+        var result: [[AggregatedEntity]] = []
+        var currentSet: [AggregatedEntity] = []
+        
+        for entity in entities {
+            if let lastInCurrentSet = currentSet.last {
+                let distance = aggregation == .minutes ? AGGREGATING_MINUTES_DISTANCE_SEC : aggregation.timeInSec * MAX_ALLOWED_DISTANCE_MUTLIPLIER
+                
+                if (entity.date - lastInCurrentSet.date > distance) {
+                    result.append(currentSet)
+                    currentSet = []
+                }
+            }
+            
+            currentSet.append(entity)
+        }
+        
+        if (!currentSet.isEmpty) {
+            result.append(currentSet)
+        }
+        
+        return result
+    }
+    
+    func aggregatingTemperature<T: BaseTemperatureEntity>(
+        _ measurements: [T],
+        _ aggregation: ChartDataAggregation
+    ) -> [AggregatedEntity] {
+        if (aggregation == .minutes) {
+            return measurements
+                .filter { $0.temperature != nil }
+                .map { $0.toAggregatedEntity(aggregation) }
+        }
+        
+        return measurements
+            .filter { $0.temperature != nil }
+            .reduce([TimeInterval: LinkedList<T>]()) { aggregation.reductor($0, $1) }
+            .map { group in
+                AggregatedEntity(
+                    date: aggregation.groupTimeProvider(date: group.value.head!.value.date!),
+                    value: .single(
+                        value: group.value.avg { $0.temperature!.toDouble() },
+                        min: group.value.min { $0.temperature!.toDouble() },
+                        max: group.value.max { $0.temperature!.toDouble() },
+                        open: group.value.head!.value.temperature!.toDouble(),
+                        close: group.value.tail!.value.temperature!.toDouble()
+                    )
+                )
+            }
+            .sorted { $0.date < $1.date }
+    }
+    
+    func aggregatingHumidity<T: BaseHumidityEntity>(
+        _ measurements: [T],
+        _ aggregation: ChartDataAggregation
+    ) -> [AggregatedEntity] {
+        if (aggregation == .minutes) {
+            return measurements
+                .filter { $0.humidity != nil }
+                .map { $0.toAggregatedEntity(aggregation) }
+        }
+        
+        return measurements
+            .filter { $0.humidity != nil }
+            .reduce([TimeInterval: LinkedList<T>]()) { aggregation.reductor($0, $1) }
+            .map { group in
+                AggregatedEntity(
+                    date: aggregation.groupTimeProvider(date: group.value.head!.value.date!),
+                    value: .single(
+                        value: group.value.avg { $0.humidity!.toDouble() },
+                        min: group.value.min { $0.humidity!.toDouble() },
+                        max: group.value.max { $0.humidity!.toDouble() },
+                        open: group.value.head!.value.humidity!.toDouble(),
+                        close: group.value.tail!.value.humidity!.toDouble()
+                    )
+                )
+            }
+            .sorted { $0.date < $1.date }
+    }
+}
+
+private extension BaseTemperatureEntity {
+    func toAggregatedEntity(_ aggregation: ChartDataAggregation) -> AggregatedEntity {
+        AggregatedEntity(
+            date: date!.timeIntervalSince1970,
+            value: .single(value: temperature!.toDouble(), min: nil, max: nil, open: nil, close: nil)
+        )
+    }
+}
+
+private extension BaseHumidityEntity {
+    func toAggregatedEntity(_ aggregation: ChartDataAggregation) -> AggregatedEntity {
+        AggregatedEntity(
+            date: date!.timeIntervalSince1970,
+            value: .single(value: humidity!.toDouble(), min: nil, max: nil, open: nil, close: nil)
+        )
+    }
+}

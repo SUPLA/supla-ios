@@ -87,4 +87,34 @@ final class SuplaCloudServiceMock: SuplaCloudService {
             return .empty()
         }
     }
+    
+    var electricityMeasurementsParameters: [(Int32, TimeInterval)] = []
+    var electricityMeasurementsReturns: [Observable<[SuplaCloudClient.ElectricityMeasurement]>] = []
+    private var electricityMeasurementsCurrent = 0
+    func getElectricityMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.ElectricityMeasurement]> {
+        electricityMeasurementsParameters.append((remoteId, afterTimestamp))
+        
+        let id = electricityMeasurementsCurrent
+        electricityMeasurementsCurrent += 1
+        if (id < electricityMeasurementsReturns.count) {
+            return electricityMeasurementsReturns[id]
+        } else {
+            return .empty()
+        }
+    }
+    
+    var lastElectricityMeasurementsParameters: [(Int32, TimeInterval)] = []
+    var lastElectricityMeasurementsReturns: [Observable<[SuplaCloudClient.ElectricityMeasurement]>] = []
+    private var lastElectricityMeasurementsCurrent = 0
+    func getLastElectricityMeasurements(remoteId: Int32, beforeTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.ElectricityMeasurement]> {
+        lastElectricityMeasurementsParameters.append((remoteId, beforeTimestamp))
+        
+        let id = lastElectricityMeasurementsCurrent
+        lastElectricityMeasurementsCurrent += 1
+        if (id < lastElectricityMeasurementsReturns.count) {
+            return lastElectricityMeasurementsReturns[id]
+        } else {
+            return .empty()
+        }
+    }
 }

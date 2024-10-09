@@ -18,6 +18,7 @@
 
 import RxSwift
 import RxCocoa
+import SwiftUI
 
 class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGeneralViewEvent, SwitchGeneralVM>, DeviceStateHelperVCI {
     
@@ -29,16 +30,23 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
         return DeviceStateView()
     }()
     
-    private lazy var powerOnButtonView: CircleControlButtonView = {
-        let view = CircleControlButtonView()
+    private lazy var electricityMeterDetails: UIHostingController = {
+        let view = UIHostingController(rootView: SwitchElectricityDetailsView(viewState: viewModel.electricityState))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        view.view.isHidden = true
+        return view
+    }()
+    
+    private lazy var powerOnButtonView: RoundedControlButtonView = {
+        let view = RoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.type = .positive
         view.text = Strings.General.on
         return view
     }()
     
-    private lazy var powerOffButtonView: CircleControlButtonView = {
-        let view = CircleControlButtonView()
+    private lazy var powerOffButtonView: RoundedControlButtonView = {
+        let view = RoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.type = .negative
         view.text = Strings.General.off
@@ -58,6 +66,7 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        viewModel.observerDownload(remoteId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,16 +96,24 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
         powerOffButtonView.isHidden = !state.showButtons
         powerOnButtonView.isEnabled = state.deviceState?.isOnline == true
         powerOffButtonView.isEnabled = state.deviceState?.isOnline == true
+        powerOnButtonView.active = state.deviceState?.isOn == true
+        powerOffButtonView.active = state.deviceState?.isOn == false
         
         if let deviceState = state.deviceState {
             updateDeviceStateView(deviceStateView, with: deviceState)
         }
+        
+        deviceStateView.isHidden = state.showElectricityState
+        electricityMeterDetails.view.isHidden = !state.showElectricityState
     }
     
     private func setupView() {
+        addChild(electricityMeterDetails)
         view.addSubview(deviceStateView)
         view.addSubview(powerOnButtonView)
         view.addSubview(powerOffButtonView)
+        view.addSubview(electricityMeterDetails.view)
+        electricityMeterDetails.didMove(toParent: self)
         
         viewModel.bind(powerOnButtonView.tapObservable) { [weak self] in
             guard let self = self else { return }
@@ -113,17 +130,20 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     private func setupLayout() {
         NSLayoutConstraint.activate([
             deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.distanceDefault),
+            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Distance.standard),
             
-            powerOnButtonView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
-            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault),
-            powerOnButtonView.widthAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE),
-            powerOnButtonView.heightAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE),
+            powerOffButtonView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Distance.standard),
+            powerOffButtonView.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -Distance.standard/2),
+            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Distance.standard),
             
-            powerOffButtonView.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -12),
-            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault),
-            powerOffButtonView.widthAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE),
-            powerOffButtonView.heightAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE)
+            powerOnButtonView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: Distance.standard/2),
+            powerOnButtonView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Distance.standard),
+            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Distance.standard),
+            
+            electricityMeterDetails.view.topAnchor.constraint(equalTo: view.topAnchor),
+            electricityMeterDetails.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            electricityMeterDetails.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            electricityMeterDetails.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -88)
         ])
     }
     

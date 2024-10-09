@@ -514,6 +514,10 @@
 "details_em_reverse_active_energy" = "Wirkenergie zurückgegeben";
 "details_em_forward_reactive_energy" = "Blindenergie aufgenommen";
 "details_em_reverse_reactive_energy" = "Blindenergie zurückgegeben";
+"details_em_forward_active_energy_short" = "Wirk- aufgenommen";
+"details_em_reverse_active_energy_short" = "Wirk- zurückgegeben";
+"details_em_forward_reactive_energy_short" = "Blind- aufgenommen";
+"details_em_reverse_reactive_energy_short" = "Blind- zurückgegeben";
 "details_em_frequency" = "Frequenz";
 "details_em_voltage" = "Spannung";
 "details_em_current" = "Stärke";
@@ -538,7 +542,7 @@
 "details_em_reversed_energy" = "Zurückgegeben";
 "details_em_cost" = "Kosten";
 "details_em_settings_list_item" = "In der Kanalliste angezeigte Metrik";
-"details_em_settings_title" = "Einstellungen - %1$s";
+"details_em_settings_title" = "Einstellungen - %@";
 "details_em_total_suffix" = "(Zählerstand)";
 "details_em_current_month_suffix" = "(aktueller Monat)";
 "em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";

@@ -39,6 +39,7 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
     @Singleton<WeightValueProvider> private var weightValueProvider
     @Singleton<WindValueProvider> private var windValueProvider
     @Singleton<ElectricityMeterValueProvider> private var electricityMeterValueProvider
+    @Singleton<SwitchWithElectricityMeterValueProvider> private var switchWithElectricityMeterValueProvider
     
     private lazy var providers: [ChannelValueProvider] = {
         [
@@ -52,7 +53,8 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
             thermometerValueProvider,
             weightValueProvider,
             windValueProvider,
-            electricityMeterValueProvider
+            electricityMeterValueProvider,
+            switchWithElectricityMeterValueProvider
         ]
     }()
     

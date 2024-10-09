@@ -48,6 +48,9 @@ extension UIFont {
         @objc static let body2 = UIFont(name: "OpenSans", size: 14)!
         static let button = UIFont(name: "OpenSans-Medium", size: 17)!
         static let caption = UIFont(name: "OpenSans-Medium", size: 10)!
+        
+        static let marker = UIFont(name: "OpenSans", size: 11)!
+        static let markerBold = UIFont(name: "OpenSans-Bold", size: 11)!
     }
     
     static func openSansLight(style: UIFont.TextStyle, size: CGFloat) -> UIFont {

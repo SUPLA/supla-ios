@@ -18,8 +18,8 @@
 final class PressureValueStringProvider: ChannelValueStringProvider {
     @Singleton<PressureValueProvider> private var pressureValueProvider
 
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_PRESSURESENSOR
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_PRESSURESENSOR
     }
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {

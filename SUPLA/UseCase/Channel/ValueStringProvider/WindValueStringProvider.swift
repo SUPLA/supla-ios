@@ -28,8 +28,8 @@ final class WindValueStringProvider: ChannelValueStringProvider {
         return formatter
     }()
     
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_WINDSENSOR
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_WINDSENSOR
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {

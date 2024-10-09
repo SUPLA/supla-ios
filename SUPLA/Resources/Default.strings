@@ -291,6 +291,10 @@
 "details_em_reverse_active_energy" = "Reverse active energy";
 "details_em_forward_reactive_energy" = "Forward reactive energy";
 "details_em_reverse_reactive_energy" = "Reverse reactive energy";
+"details_em_forward_active_energy_short" = "Forward active";
+"details_em_reverse_active_energy_short" = "Reverse active";
+"details_em_forward_reactive_energy_short" = "Forward reactive";
+"details_em_reverse_reactive_energy_short" = "Reverse reactive";
 "details_em_frequency" = "Frequency";
 "details_em_voltage" = "Voltage";
 "details_em_current" = "Current";
@@ -315,7 +319,7 @@
 "details_em_reversed_energy" = "Reverse";
 "details_em_cost" = "Cost";
 "details_em_settings_list_item" = "Metric shown on the channel list";
-"details_em_settings_title" = "Settings - %1$s";
+"details_em_settings_title" = "Settings - %@";
 "details_em_total_suffix" = "(meter reading)";
 "details_em_current_month_suffix" = "(current month)";
 "details_em_last_month_balancing" = "Type of balance for current month";

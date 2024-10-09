@@ -223,4 +223,20 @@ struct Text {
             }
         }
     }
+    
+    struct PickerLabel: SuplaText {
+        var text: String
+
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text.uppercased())
+                    .font(.Supla.bodySmall)
+                    .textColor(Color.Supla.onSurfaceVariant)
+            } else {
+                SwiftUI.Text(text.uppercased())
+                    .font(.Supla.bodySmall)
+                    .textColor(Color.Supla.onSurfaceVariant)
+            }
+        }
+    }
 }

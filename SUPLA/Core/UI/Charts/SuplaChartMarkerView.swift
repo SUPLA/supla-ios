@@ -18,16 +18,8 @@
 
 import Charts
 
-@objc class SuplaChartMarkerView: MarkerView {
+@objc class SuplaChartMarkerView: BaseChartMarkerView {
     @Singleton<ValuesFormatter> private var formatter
-    
-    private lazy var title: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption
-        label.textColor = .onBackground
-        return label
-    }()
     
     private lazy var text: UILabel = {
         let label = UILabel()
@@ -89,11 +81,8 @@ import Charts
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
-        backgroundColor = .surface
-        layer.borderWidth = 1
-        layer.cornerRadius = Dimens.radiusDefault
-        layer.borderColor = UIColor.primary.cgColor
+    override func setupView() {
+        super.setupView()
         
         addSubview(title)
         addSubview(text)
@@ -108,9 +97,6 @@ import Charts
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: topAnchor, constant: Dimens.distanceTiny),
-            title.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny),
-            
             text.topAnchor.constraint(equalTo: title.bottomAnchor),
             text.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny),
             
@@ -131,41 +117,9 @@ import Charts
         ])
     }
     
-    override func offsetForDrawing(atPoint point: CGPoint) -> CGPoint {
-        guard let chart = chartView else { return self.offset }
-        
-        var top = -frame.size.height - 20
-        if (point.y + top < 0) {
-            top = -point.y
-        }
-        
-        let halfWidth = frame.size.width / 2
-        var left = -halfWidth
-        if (point.x + left < 0) {
-            left = -point.x
-        } else if (point.x + halfWidth > chart.bounds.maxX) {
-            left = chart.bounds.maxX - frame.size.width - point.x
-        }
-        
-        return CGPoint(x: left, y: top)
-    }
-    
     override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
         if let details = entry.data as? ChartEntryDetails {
-            switch (details.aggregation) {
-            case .hours:
-                let text = formatter.getFullDateString(date: details.date)?.substringIndexed(to: -3) ?? ""
-                title.text = "\(text):00"
-            case .days:
-                title.text = formatter.getFullDateString(date: details.date)?.substringIndexed(to: -5)
-            case .months:
-                title.text = formatter.getMonthAndYearString(date: details.date)
-            case .years:
-                title.text = formatter.getYearString(date: details.date)
-            default:
-                title.text = formatter.getFullDateString(date: details.date)
-            }
-            
+            updateTitle(details: details)
             text.text = getValueString(details, entry.y, precision: 2)
             
             if let min = details.min,
@@ -210,6 +164,8 @@ import Charts
         case .generalPurposeMeasurement:
             details.valueFormatter.format(value, withUnit: false)
         case .generalPurposeMeter:
+            details.valueFormatter.format(value, withUnit: true)
+        case .electricity:
             details.valueFormatter.format(value, withUnit: true)
         }
     }

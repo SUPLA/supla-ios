@@ -50,6 +50,17 @@ final class ListElectricityMeterValueFormatter: BaseElectricityMeterValueFormatt
         return false
     }
 }
+
+final class ChartAxisElectricityMeterValueFormatter: BaseElectricityMeterValueFormatter {
+    
+    override func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+        if let value = value as? Double {
+            return format(value, unit: withUnit ? "kWh" : "", precision: value == 0.0 ? 0 : precision.value, checkNoValue: false)
+        }
+        
+        return format(0.0, unit: withUnit ? "kWh" : "", precision: 0, checkNoValue: false)
+    }
+}
     
 class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
     

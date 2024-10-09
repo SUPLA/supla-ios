@@ -17,7 +17,13 @@
  */
     
 protocol ElectricityMeterGeneralStateHandler {
-    func updateState(_ state: ElectricityMeterGeneralState, channel: ChannelWithChildren)
+    func updateState(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?)
+}
+
+extension ElectricityMeterGeneralStateHandler {
+    func updateState(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren) {
+        updateState(state, channel, nil)
+    }
 }
 
 final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStateHandler {
@@ -25,9 +31,13 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
     
     private let formatter = ListElectricityMeterValueFormatter(useNoValue: false)
     
-    func updateState(_ state: ElectricityMeterGeneralState, channel: ChannelWithChildren) {
+    func updateState(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
+        if (!channel.channel.isElectricityMeter() && !channel.hasElectricityMeter) {
+            return
+        }
+        
         guard let extendedValue = channel.channel.ev?.electricityMeter() else {
-            handleNoExtendedValue(state, channel: channel)
+            handleNoExtendedValue(state, channel, measurements)
             return
         }
         
@@ -37,25 +47,21 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         state.online = channel.channel.isOnline()
         state.totalForwardActiveEnergy = extendedValue.getForwardEnergy(formatter: formatter)
         state.totalReverseActiveEnergy = extendedValue.getReverseEnergy(formatter: formatter)
-        state.currentMonthForwardActiveEnergy = nil
-        state.currentMonthReverseActiveEnergy = nil
+        state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter, value: extendedValue)
+        state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter, value: extendedValue)
         state.phaseMeasurementTypes = phaseTypes
         state.phaseMeasurementValues = getPhaseData(phaseTypes, channel.channel.flags, extendedValue, formatter)
         state.vectorBalancedValues = vectorBalancedValues(channel.channel, extendedValue, allTypes)
     }
     
-    private func handleNoExtendedValue(_ state: ElectricityMeterGeneralState, channel: ChannelWithChildren) {
-        if (!channel.channel.isElectricityMeter() && !channel.hasElectricityMeter) {
-            return
-        }
-        
+    private func handleNoExtendedValue(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
         let value: Double = getChannelValueUseCase.invoke(channel.channel)
         
         state.online = channel.channel.isOnline()
         state.totalForwardActiveEnergy = EnergyData(energy: formatter.format(value))
         state.totalReverseActiveEnergy = nil
-        state.currentMonthForwardActiveEnergy = nil
-        state.currentMonthReverseActiveEnergy = nil
+        state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter)
+        state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter)
         state.phaseMeasurementTypes = []
         state.phaseMeasurementValues = []
         state.vectorBalancedValues = [:]
@@ -67,7 +73,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         _ extendedValue: SAElectricityMeterExtendedValue,
         _ formatter: ListElectricityMeterValueFormatter
     ) -> [PhaseWithMeasurements] {
-        var phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: Double])] = Phase.allCases
+        var phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value])] = Phase.allCases
             .filter { channelFlags & $0.disabledFlag == 0 }
             .map { (Int($0.rawValue), $0.label, extendedValue.measuredValues(types, $0)) }
         
@@ -77,24 +83,48 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         
         return phasesWithData
             .map {
-                let measurements = $2.map { ($0.key, formatter.format($0.value, withUnit: false, precision: .customPrecision(value: $0.key.precision), custom: nil)) }
+                let measurements = $2.map {
+                    ($0.key, format(formatter, $0.value, $0.key.precision))
+                }
                 return PhaseWithMeasurements(id: $0, phase: $1, values: Dictionary(uniqueKeysWithValues: measurements))
             }
             .sorted(by: { $0.id < $1.id })
     }
     
+    private func format(
+        _ formatter: ListElectricityMeterValueFormatter,
+        _ value: SuplaElectricityMeasurementType.Value,
+        _ precision: Int
+    ) -> String {
+        let precision: ChannelValuePrecision = .customPrecision(value: precision)
+        
+        switch (value) {
+        case .single(let value):
+            return formatter.format(value, withUnit: false, precision: precision)
+        case .double(let first, let second):
+            let firstFormatted = formatter.format(first, withUnit: false, precision: .customPrecision(value: 0))
+            let secondFormatted = formatter.format(second, withUnit: false, precision: .customPrecision(value: 0))
+            return "\(firstFormatted) - \(secondFormatted)"
+        }
+    }
+    
     private func extractAllPhasesData(
-        _ phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: Double])]
-    ) -> (Int, String, [SuplaElectricityMeasurementType: Double]) {
+        _ phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value])]
+    ) -> (Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value]) {
         var allValues: [SuplaElectricityMeasurementType: [Double]] = [:]
         
         phasesWithData.map { $2 }
             .forEach { phaseValues in
                 for phaseValue in phaseValues {
+                    let value: Double = switch (phaseValue.value) {
+                    case .single(let value): value
+                    default: 0
+                    }
+                    
                     if allValues[phaseValue.key] != nil {
-                        allValues[phaseValue.key]?.append(phaseValue.value)
+                        allValues[phaseValue.key]?.append(value)
                     } else {
-                        allValues[phaseValue.key] = [phaseValue.value]
+                        allValues[phaseValue.key] = [value]
                     }
                 }
             }
@@ -108,7 +138,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
     private func mergeForAllPhases(
         _ type: SuplaElectricityMeasurementType,
         _ values: [Double]
-    ) -> (SuplaElectricityMeasurementType, Double)? {
+    ) -> (SuplaElectricityMeasurementType, SuplaElectricityMeasurementType.Value)? {
         if let mergedValue = type.merge(values) {
             (type, mergedValue)
         } else {
@@ -120,7 +150,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         _ channel: SAChannel,
         _ value: SAElectricityMeterExtendedValue,
         _ types: [SuplaElectricityMeasurementType]
-    ) -> [SuplaElectricityMeasurementType: String] {
+    ) -> [SuplaElectricityMeasurementType: String]? {
         let moreThanOnePhase = Phase.allCases
             .filter { channel.flags & $0.disabledFlag == 0 }
             .count > 1
@@ -132,6 +162,6 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
             ]
         }
         
-        return [:]
+        return nil
     }
 }

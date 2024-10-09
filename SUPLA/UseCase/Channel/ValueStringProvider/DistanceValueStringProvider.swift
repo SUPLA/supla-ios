@@ -28,8 +28,8 @@ final class DistanceValueStringProvider: BaseDistanceValueStringProvider {
         DistanceValueProviderImpl.UNKNOWN_VALUE
     }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_DISTANCESENSOR
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_DISTANCESENSOR
     }
     
 }

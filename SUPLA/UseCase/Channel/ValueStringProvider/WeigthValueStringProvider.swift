@@ -28,8 +28,8 @@ final class WeigthValueStringProvider: ChannelValueStringProvider {
         return formatter
     }()
     
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_WEIGHTSENSOR
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {

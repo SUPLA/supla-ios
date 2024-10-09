@@ -21,8 +21,8 @@ final class HumidityValueStringProvider: ChannelValueStringProvider {
     
     let formatter = HumidityValueFormatter()
     
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_HUMIDITY
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_HUMIDITY
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {

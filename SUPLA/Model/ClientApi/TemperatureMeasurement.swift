@@ -17,7 +17,7 @@
  */
 
 extension SuplaCloudClient {
-    struct TemperatureMeasurement: SuplaCloudMeasurement {
+    struct TemperatureMeasurement: Measurement {
         let date_timestamp: Date
         let temperature: String
         

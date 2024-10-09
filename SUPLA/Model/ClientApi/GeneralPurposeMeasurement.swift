@@ -17,7 +17,7 @@
  */
 
 extension SuplaCloudClient {
-    struct GeneralPurposeMeasurement: SuplaCloudMeasurement {
+    struct GeneralPurposeMeasurement: Measurement {
         let date_timestamp: Date
         let avg_value: String
         let min_value: String

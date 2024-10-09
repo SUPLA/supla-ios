@@ -743,6 +743,13 @@
 		A596838A2ABE1FD10005E73C /* SAChannel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */; };
 		A596838D2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A596838C2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift */; };
 		A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SAScene+Ext.swift */; };
+		A598CAB32CBE90B300A784FA /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAB22CBE90AE00A784FA /* Divider.swift */; };
+		A598CAB52CBEFD0E00A784FA /* LoadElectricityMeterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */; };
+		A598CAB92CC0EDFD00A784FA /* ElectricityMeterGeneralBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAB82CC0EDF300A784FA /* ElectricityMeterGeneralBaseView.swift */; };
+		A598CABB2CC0EE5200A784FA /* View+SuplaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */; };
+		A598CABD2CC0F45300A784FA /* SwitchElectricityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */; };
+		A598CABF2CC1340C00A784FA /* SwitchWithElectricityMeterValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CABE2CC1340B00A784FA /* SwitchWithElectricityMeterValueProvider.swift */; };
+		A598CAC12CC13AFB00A784FA /* SwitchWithElectricityMeterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAC02CC13AF200A784FA /* SwitchWithElectricityMeterValueStringProvider.swift */; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -879,6 +886,20 @@
 		A5B3CC0A2B6282B800F95AC3 /* WindValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC092B6282B800F95AC3 /* WindValueStringProvider.swift */; };
 		A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC0B2B6291FF00F95AC3 /* GpmValueStringProvider.swift */; };
 		A5B3CC0E2B62934D00F95AC3 /* SAChannelConfig+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC0D2B62934D00F95AC3 /* SAChannelConfig+Ext.swift */; };
+		A5B8A4782CB869E8002FA7B2 /* ElectricityChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */; };
+		A5B8A47A2CB86AF7002FA7B2 /* ChartStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4792CB86AF4002FA7B2 /* ChartStyle.swift */; };
+		A5B8A47C2CB9BB8A002FA7B2 /* DataSetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A47B2CB9BB79002FA7B2 /* DataSetsRow.swift */; };
+		A5B8A47E2CBD0806002FA7B2 /* SuplaCore+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A47D2CBD07FE002FA7B2 /* SuplaCore+Dialog.swift */; };
+		A5B8A4812CBD0A09002FA7B2 /* ElectricityDataSelectionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4802CBD09FF002FA7B2 /* ElectricityDataSelectionFeature.swift */; };
+		A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4822CBD0A24002FA7B2 /* ElectricityDataSelectionState.swift */; };
+		A5B8A4852CBD0AC3002FA7B2 /* ElectricityDataSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4842CBD0ABA002FA7B2 /* ElectricityDataSelectionView.swift */; };
+		A5B8A4872CBD0B4F002FA7B2 /* ElectricityDataSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4862CBD0B48002FA7B2 /* ElectricityDataSelectionVM.swift */; };
+		A5B8A4892CBD0CD8002FA7B2 /* ElectricityDataSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4882CBD0CD1002FA7B2 /* ElectricityDataSelectionVC.swift */; };
+		A5B8A48B2CBD2843002FA7B2 /* FlowHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */; };
+		A5B8A48D2CBD35BB002FA7B2 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A48C2CBD35B8002FA7B2 /* Picker.swift */; };
+		A5B8A48F2CBD3F4F002FA7B2 /* SelectableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A48E2CBD3F4A002FA7B2 /* SelectableItem.swift */; };
+		A5B8A4912CBD4756002FA7B2 /* WithFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */; };
+		A5B8A4932CBDA0A4002FA7B2 /* Binding+onChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
 		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
@@ -915,7 +936,6 @@
 		A5D837D42AF1062B002A420D /* ThermometerHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */; };
 		A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */; };
 		A5D837DB2AF106A8002A420D /* BaseHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */; };
-		A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DC2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift */; };
 		A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */; };
 		A5D837E12AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */; };
 		A5D837E32AF3A728002A420D /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837E22AF3A728002A420D /* LinkedList.swift */; };
@@ -923,6 +943,33 @@
 		A5E039E52CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */; };
 		A5E039E72CA18E350018CEB7 /* Bool+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */; };
 		A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E82CA1F85C0018CEB7 /* LazyList.swift */; };
+		A5E05B9B2CAFF82B00202583 /* ElectricityMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */; };
+		A5E05B9D2CB00EEE00202583 /* DownloadElectricityMeterLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05B9C2CB00EC900202583 /* DownloadElectricityMeterLogUseCase.swift */; };
+		A5E05B9F2CB3C94900202583 /* ElectricityMeterChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05B9E2CB3C94000202583 /* ElectricityMeterChartType.swift */; };
+		A5E05BA12CB3D12400202583 /* ChartDataSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BA02CB3D12000202583 /* ChartDataSpec.swift */; };
+		A5E05BA52CB3DBA800202583 /* ElectricityChartFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BA42CB3DBA700202583 /* ElectricityChartFilters.swift */; };
+		A5E05BA92CB4661800202583 /* ChannelChartSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BA82CB4661400202583 /* ChannelChartSets.swift */; };
+		A5E05BAB2CB469CE00202583 /* ChannelMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BAA2CB469C600202583 /* ChannelMeasurementsProvider.swift */; };
+		A5E05BAD2CB46DFE00202583 /* BaseTemperatureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BAC2CB46DEF00202583 /* BaseTemperatureEntity.swift */; };
+		A5E05BAF2CB46E3D00202583 /* BaseHumidityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BAE2CB46E3800202583 /* BaseHumidityEntity.swift */; };
+		A5E05BB12CB46E6800202583 /* SATemperatureMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB02CB46E6500202583 /* SATemperatureMeasurementItem+Ext.swift */; };
+		A5E05BB32CB46F0200202583 /* SATempHumidityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB22CB46EFF00202583 /* SATempHumidityMeasurementItem+Ext.swift */; };
+		A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB42CB470F400202583 /* TemperatureMeasurementsProvider.swift */; };
+		A5E05BB72CB50C2D00202583 /* TemperatureAndHumidityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB62CB50C2A00202583 /* TemperatureAndHumidityMeasurementsProvider.swift */; };
+		A5E05BB92CB5127C00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */; };
+		A5E05BBB2CB5184700202583 /* GeneralPurposeMeterMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */; };
+		A5E05BBD2CB5274000202583 /* ElectricityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */; };
+		A5E05BBF2CB52D3700202583 /* AggregatedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBE2CB52D2E00202583 /* AggregatedEntity.swift */; };
+		A5E05BC12CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC02CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift */; };
+		A5E05BC32CB552DE00202583 /* ElectricityMarkerCustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC22CB552D900202583 /* ElectricityMarkerCustomData.swift */; };
+		A5E05BC52CB666D500202583 /* SAGeneralPurposeMeterItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC42CB666D200202583 /* SAGeneralPurposeMeterItem+Ext.swift */; };
+		A5E05BC82CB6677C00202583 /* SAGeneralPurposeMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC72CB6677800202583 /* SAGeneralPurposeMeasurementItem+Ext.swift */; };
+		A5E05BCA2CB67A1400202583 /* ChartColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC92CB67A1100202583 /* ChartColors.swift */; };
+		A5E05BCC2CB6A90F00202583 /* Equatable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BCB2CB6A90A00202583 /* Equatable+Ext.swift */; };
+		A5E05BCE2CB7154B00202583 /* NSDecimalNumber+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BCD2CB7154100202583 /* NSDecimalNumber+Ext.swift */; };
+		A5E05BD02CB7F7ED00202583 /* BaseChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */; };
+		A5E05BD42CB809A700202583 /* HistoryDataSet+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BD32CB809A300202583 /* HistoryDataSet+Test.swift */; };
+		A5E05BD62CB80CCF00202583 /* AggregatedValue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BD52CB80CC900202583 /* AggregatedValue+Ext.swift */; };
 		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
 		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */; };
@@ -980,10 +1027,8 @@
 		A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */; };
 		A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */; };
 		A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */; };
-		A5EDE2332CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2302CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift */; };
 		A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */; };
 		A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */; };
-		A5EDE2362CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22F2CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift */; };
 		A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */; };
 		A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */; };
 		A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */; };
@@ -2171,6 +2216,13 @@
 		A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Mock.swift"; sourceTree = "<group>"; };
 		A596838C2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationUseCaseTests.swift; sourceTree = "<group>"; };
 		A597271029DAEA480090A044 /* SAScene+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAScene+Ext.swift"; sourceTree = "<group>"; };
+		A598CAB22CBE90AE00A784FA /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
+		A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadElectricityMeterMeasurementsUseCase.swift; sourceTree = "<group>"; };
+		A598CAB82CC0EDF300A784FA /* ElectricityMeterGeneralBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralBaseView.swift; sourceTree = "<group>"; };
+		A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SuplaCard.swift"; sourceTree = "<group>"; };
+		A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchElectricityDetailsView.swift; sourceTree = "<group>"; };
+		A598CABE2CC1340B00A784FA /* SwitchWithElectricityMeterValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchWithElectricityMeterValueProvider.swift; sourceTree = "<group>"; };
+		A598CAC02CC13AF200A784FA /* SwitchWithElectricityMeterValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchWithElectricityMeterValueStringProvider.swift; sourceTree = "<group>"; };
 		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVMTests.swift; sourceTree = "<group>"; };
 		A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -2308,6 +2360,20 @@
 		A5B3CC092B6282B800F95AC3 /* WindValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CC0B2B6291FF00F95AC3 /* GpmValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CC0D2B62934D00F95AC3 /* SAChannelConfig+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelConfig+Ext.swift"; sourceTree = "<group>"; };
+		A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityChartMarkerView.swift; sourceTree = "<group>"; };
+		A5B8A4792CB86AF4002FA7B2 /* ChartStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStyle.swift; sourceTree = "<group>"; };
+		A5B8A47B2CB9BB79002FA7B2 /* DataSetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSetsRow.swift; sourceTree = "<group>"; };
+		A5B8A47D2CBD07FE002FA7B2 /* SuplaCore+Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaCore+Dialog.swift"; sourceTree = "<group>"; };
+		A5B8A4802CBD09FF002FA7B2 /* ElectricityDataSelectionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityDataSelectionFeature.swift; sourceTree = "<group>"; };
+		A5B8A4822CBD0A24002FA7B2 /* ElectricityDataSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityDataSelectionState.swift; sourceTree = "<group>"; };
+		A5B8A4842CBD0ABA002FA7B2 /* ElectricityDataSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityDataSelectionView.swift; sourceTree = "<group>"; };
+		A5B8A4862CBD0B48002FA7B2 /* ElectricityDataSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityDataSelectionVM.swift; sourceTree = "<group>"; };
+		A5B8A4882CBD0CD1002FA7B2 /* ElectricityDataSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityDataSelectionVC.swift; sourceTree = "<group>"; };
+		A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowHStack.swift; sourceTree = "<group>"; };
+		A5B8A48C2CBD35B8002FA7B2 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
+		A5B8A48E2CBD3F4A002FA7B2 /* SelectableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableItem.swift; sourceTree = "<group>"; };
+		A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithFunction.swift; sourceTree = "<group>"; };
+		A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+onChange.swift"; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
 		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
@@ -2344,7 +2410,6 @@
 		A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailVC.swift; sourceTree = "<group>"; };
 		A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A5D837DC2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoadMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsDateRangeUseCase.swift; sourceTree = "<group>"; };
 		A5D837E22AF3A728002A420D /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
@@ -2352,6 +2417,33 @@
 		A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatOrColdSourceSwitchIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Ext.swift"; sourceTree = "<group>"; };
 		A5E039E82CA1F85C0018CEB7 /* LazyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
+		A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeasurement.swift; sourceTree = "<group>"; };
+		A5E05B9C2CB00EC900202583 /* DownloadElectricityMeterLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadElectricityMeterLogUseCase.swift; sourceTree = "<group>"; };
+		A5E05B9E2CB3C94000202583 /* ElectricityMeterChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterChartType.swift; sourceTree = "<group>"; };
+		A5E05BA02CB3D12000202583 /* ChartDataSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataSpec.swift; sourceTree = "<group>"; };
+		A5E05BA42CB3DBA700202583 /* ElectricityChartFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityChartFilters.swift; sourceTree = "<group>"; };
+		A5E05BA82CB4661400202583 /* ChannelChartSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChartSets.swift; sourceTree = "<group>"; };
+		A5E05BAA2CB469C600202583 /* ChannelMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BAC2CB46DEF00202583 /* BaseTemperatureEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTemperatureEntity.swift; sourceTree = "<group>"; };
+		A5E05BAE2CB46E3800202583 /* BaseHumidityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHumidityEntity.swift; sourceTree = "<group>"; };
+		A5E05BB02CB46E6500202583 /* SATemperatureMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SATemperatureMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BB22CB46EFF00202583 /* SATempHumidityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SATempHumidityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BB42CB470F400202583 /* TemperatureMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BB62CB50C2A00202583 /* TemperatureAndHumidityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureAndHumidityMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BBE2CB52D2E00202583 /* AggregatedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedEntity.swift; sourceTree = "<group>"; };
+		A5E05BC02CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAElectricityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BC22CB552D900202583 /* ElectricityMarkerCustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMarkerCustomData.swift; sourceTree = "<group>"; };
+		A5E05BC42CB666D200202583 /* SAGeneralPurposeMeterItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeterItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BC72CB6677800202583 /* SAGeneralPurposeMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BC92CB67A1100202583 /* ChartColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColors.swift; sourceTree = "<group>"; };
+		A5E05BCB2CB6A90A00202583 /* Equatable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Equatable+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BCD2CB7154100202583 /* NSDecimalNumber+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDecimalNumber+Ext.swift"; sourceTree = "<group>"; };
+		A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChartMarkerView.swift; sourceTree = "<group>"; };
+		A5E05BD32CB809A300202583 /* HistoryDataSet+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryDataSet+Test.swift"; sourceTree = "<group>"; };
+		A5E05BD52CB80CC900202583 /* AggregatedValue+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AggregatedValue+Ext.swift"; sourceTree = "<group>"; };
 		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeterLogUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2410,8 +2502,6 @@
 		A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterGeneralVC.swift; sourceTree = "<group>"; };
 		A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterHistoryVC.swift; sourceTree = "<group>"; };
 		A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryVM.swift; sourceTree = "<group>"; };
-		A5EDE22F2CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryView.swift; sourceTree = "<group>"; };
-		A5EDE2302CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryViewState.swift; sourceTree = "<group>"; };
 		A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryFeature.swift; sourceTree = "<group>"; };
 		A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterSettingsVC.swift; sourceTree = "<group>"; };
 		A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsVM.swift; sourceTree = "<group>"; };
@@ -3752,6 +3842,7 @@
 		A530EDF12A54001F00F8DAEE /* SwitchGeneral */ = {
 			isa = PBXGroup;
 			children = (
+				A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */,
 				A530EDF22A54018A00F8DAEE /* SwitchGeneralVM.swift */,
 				A530EDF42A5401BE00F8DAEE /* SwitchGeneralVC.swift */,
 			);
@@ -3937,6 +4028,8 @@
 		A54149312B63B02100B44BD6 /* LogDownload */ = {
 			isa = PBXGroup;
 			children = (
+				A5E05BA32CB3DB9800202583 /* Electricity */,
+				A5E05B9C2CB00EC900202583 /* DownloadElectricityMeterLogUseCase.swift */,
 				A57668EE2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift */,
 				A57668F02AEA9F5B0025509D /* BaseDownloadLogUseCase.swift */,
 				A57668F22AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift */,
@@ -4465,6 +4558,8 @@
 		A57638C429E5D4A7003E15A3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5E05BD52CB80CC900202583 /* AggregatedValue+Ext.swift */,
+				A5E05BD32CB809A300202583 /* HistoryDataSet+Test.swift */,
 				A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */,
 				A59AB8A72A306B4E00D91F1F /* NSManagedObject+Test.swift */,
 				A5F5C3E32C3545F90058E255 /* Observable+Test.swift */,
@@ -4506,6 +4601,12 @@
 		A57668BF2AE799590025509D /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				A5B8A4792CB86AF4002FA7B2 /* ChartStyle.swift */,
+				A5E05BC92CB67A1100202583 /* ChartColors.swift */,
+				A5E05BC22CB552D900202583 /* ElectricityMarkerCustomData.swift */,
+				A5E05BBE2CB52D2E00202583 /* AggregatedEntity.swift */,
+				A5E05BA82CB4661400202583 /* ChannelChartSets.swift */,
+				A5E05BA02CB3D12000202583 /* ChartDataSpec.swift */,
 				A54149382B63D7CB00B44BD6 /* DataType */,
 				A57668C02AE7996D0025509D /* HistoryDataSet.swift */,
 				A57668C22AE799AC0025509D /* ChartEntryType.swift */,
@@ -4522,6 +4623,8 @@
 		A57668C62AE7CE480025509D /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */,
+				A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */,
 				A57668C72AE7CE890025509D /* SuplaCombinedChartView.swift */,
 				A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */,
 			);
@@ -4724,6 +4827,7 @@
 				A5477DCC2AA5F7A900220B4A /* IssueIconType.swift */,
 				A57C882F2ACAA445000B0F10 /* ValuesFormatter.swift */,
 				A57668DC2AE995590025509D /* GeneralError.swift */,
+				A5B8A48E2CBD3F4A002FA7B2 /* SelectableItem.swift */,
 				A57668E82AEA7AF50025509D /* SelectableList.swift */,
 				A57668F82AEAB12D0025509D /* HideableValue.swift */,
 				A5D837E22AF3A728002A420D /* LinkedList.swift */,
@@ -4737,6 +4841,8 @@
 		A59AB8972A2F6D4000D91F1F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				A5E05BAE2CB46E3800202583 /* BaseHumidityEntity.swift */,
+				A5E05BAC2CB46DEF00202583 /* BaseTemperatureEntity.swift */,
 				A5B3CC0F2B62935800F95AC3 /* Extensions */,
 				6E8004D228493463009A917A /* AuthProfileItem.swift */,
 				AECB1BEA2711CB67001A9714 /* AuthInfo.swift */,
@@ -4992,15 +5098,18 @@
 		A5A15FF52C299C390049AA73 /* SwiftUiComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */,
-				A547821E2CA2B4BB00CD3010 /* UiSettings.swift */,
+				A5A1600A2C2AB4520049AA73 /* Architecture */,
 				A5A15FF62C299C8A0049AA73 /* BackgroundStack.swift */,
 				A5A1601B2C2BEE7F0049AA73 /* Button */,
-				A5A1600A2C2AB4520049AA73 /* Architecture */,
-				A5A160022C2AAEDE0049AA73 /* Text.swift */,
-				A5A160192C2BEC6B0049AA73 /* FilledButton.swift */,
-				A5F5C3F92C36963B0058E255 /* PinTextField.swift */,
+				A598CAB22CBE90AE00A784FA /* Divider.swift */,
+				A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */,
 				A5E039E82CA1F85C0018CEB7 /* LazyList.swift */,
+				A5B8A48C2CBD35B8002FA7B2 /* Picker.swift */,
+				A5F5C3F92C36963B0058E255 /* PinTextField.swift */,
+				A5A160022C2AAEDE0049AA73 /* Text.swift */,
+				A547821E2CA2B4BB00CD3010 /* UiSettings.swift */,
+				A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */,
+				A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */,
 			);
 			path = SwiftUiComponents;
 			sourceTree = "<group>";
@@ -5008,6 +5117,7 @@
 		A5A1600A2C2AB4520049AA73 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				A5B8A47D2CBD07FE002FA7B2 /* SuplaCore+Dialog.swift */,
 				A5A160062C2AB3ED0049AA73 /* SuplaCore+BaseViewModel.swift */,
 				A5A160082C2AB42F0049AA73 /* SuplaCore+BaseViewController.swift */,
 			);
@@ -5035,6 +5145,7 @@
 		A5A1601B2C2BEE7F0049AA73 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				A5A160192C2BEC6B0049AA73 /* FilledButton.swift */,
 				A5A15FF32C2994BF0049AA73 /* BorderedButton.swift */,
 				A5A1601C2C2BEE8D0049AA73 /* TextButton.swift */,
 			);
@@ -5212,6 +5323,7 @@
 		A5B3CBE02B62524200F95AC3 /* ValueProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A598CABE2CC1340B00A784FA /* SwitchWithElectricityMeterValueProvider.swift */,
 				A584E2002CAACD9900232A98 /* ElectricityMeterValueProvider.swift */,
 				A5B3CBE12B62525500F95AC3 /* DefaultDoubleValueProvider.swift */,
 				A5B3CBE82B625CB300F95AC3 /* DepthValueProvider.swift */,
@@ -5241,6 +5353,7 @@
 		A5B3CBF92B62692400F95AC3 /* ValueStringProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A598CAC02CC13AF200A784FA /* SwitchWithElectricityMeterValueStringProvider.swift */,
 				A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */,
 				A5B3CBFD2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift */,
 				A5B3CBFA2B62693F00F95AC3 /* DepthValueStringProvider.swift */,
@@ -5260,6 +5373,11 @@
 		A5B3CC0F2B62935800F95AC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5E05BC72CB6677800202583 /* SAGeneralPurposeMeasurementItem+Ext.swift */,
+				A5E05BC42CB666D200202583 /* SAGeneralPurposeMeterItem+Ext.swift */,
+				A5E05BC02CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift */,
+				A5E05BB22CB46EFF00202583 /* SATempHumidityMeasurementItem+Ext.swift */,
+				A5E05BB02CB46E6500202583 /* SATemperatureMeasurementItem+Ext.swift */,
 				A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */,
 				A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */,
 				A5B3CC0D2B62934D00F95AC3 /* SAChannelConfig+Ext.swift */,
@@ -5271,6 +5389,18 @@
 				A55A8D782BA850B800C540D4 /* SAChannelGroup+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5B8A47F2CBD09B4002FA7B2 /* DataSelectionDialog */ = {
+			isa = PBXGroup;
+			children = (
+				A5B8A4882CBD0CD1002FA7B2 /* ElectricityDataSelectionVC.swift */,
+				A5B8A4862CBD0B48002FA7B2 /* ElectricityDataSelectionVM.swift */,
+				A5B8A4842CBD0ABA002FA7B2 /* ElectricityDataSelectionView.swift */,
+				A5B8A4822CBD0A24002FA7B2 /* ElectricityDataSelectionState.swift */,
+				A5B8A4802CBD09FF002FA7B2 /* ElectricityDataSelectionFeature.swift */,
+			);
+			path = DataSelectionDialog;
 			sourceTree = "<group>";
 		};
 		A5CE73252B45A6C8003F882C /* Esp */ = {
@@ -5410,10 +5540,32 @@
 		A5D837D62AF10684002A420D /* History */ = {
 			isa = PBXGroup;
 			children = (
+				A5B8A47B2CB9BB79002FA7B2 /* DataSetsRow.swift */,
 				A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */,
 				A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		A5E05BA32CB3DB9800202583 /* Electricity */ = {
+			isa = PBXGroup;
+			children = (
+				A5E05BA42CB3DBA700202583 /* ElectricityChartFilters.swift */,
+			);
+			path = Electricity;
+			sourceTree = "<group>";
+		};
+		A5E05BA72CB40EF900202583 /* MeasurementsProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */,
+				A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */,
+				A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */,
+				A5E05BB62CB50C2A00202583 /* TemperatureAndHumidityMeasurementsProvider.swift */,
+				A5E05BB42CB470F400202583 /* TemperatureMeasurementsProvider.swift */,
+				A5E05BAA2CB469C600202583 /* ChannelMeasurementsProvider.swift */,
+			);
+			path = MeasurementsProvider;
 			sourceTree = "<group>";
 		};
 		A5E40B4D2B85EB0500DB6ABE /* LogDownload */ = {
@@ -5565,6 +5717,7 @@
 		A5EDE21F2CA56B3700BEDAE4 /* ElectricityMeter */ = {
 			isa = PBXGroup;
 			children = (
+				A598CAB82CC0EDF300A784FA /* ElectricityMeterGeneralBaseView.swift */,
 				A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */,
 				A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */,
 				A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */,
@@ -5584,10 +5737,10 @@
 		A5EDE22B2CA5733900BEDAE4 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				A5B8A47F2CBD09B4002FA7B2 /* DataSelectionDialog */,
+				A5E05B9E2CB3C94000202583 /* ElectricityMeterChartType.swift */,
 				A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */,
 				A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */,
-				A5EDE22F2CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift */,
-				A5EDE2302CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift */,
 				A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */,
 			);
 			path = History;
@@ -5739,6 +5892,10 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */,
+				A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */,
+				A5E05BCD2CB7154100202583 /* NSDecimalNumber+Ext.swift */,
+				A5E05BCB2CB6A90A00202583 /* Equatable+Ext.swift */,
 				A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */,
 				A57668EC2AEA85150025509D /* Array+Ext.swift */,
 				A56233EA2AB31A45001CB948 /* CALayer+Ext.swift */,
@@ -5829,6 +5986,8 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */,
+				A5E05BA72CB40EF900202583 /* MeasurementsProvider */,
 				A503ABB62B6BB060008CDA1F /* ValueFormatter */,
 				A54149312B63B02100B44BD6 /* LogDownload */,
 				A5B3CBF92B62692400F95AC3 /* ValueStringProvider */,
@@ -5846,7 +6005,6 @@
 				A57668D22AE941630025509D /* DownloadChannelMeasurementsUseCase.swift */,
 				A57668DE2AE99CCD0025509D /* LoadChannelWithChildrenMeasurementsUseCase.swift */,
 				A57668E42AEA67E00025509D /* LoadChannelWithChildrenMeasurementsDateRangeUseCase.swift */,
-				A5D837DC2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift */,
 				A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */,
 				A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */,
 				A5B3CBDE2B62504D00F95AC3 /* GetChannelValueUseCase.swift */,
@@ -5978,6 +6136,7 @@
 		A5FE675D2A65CC2A00147D1F /* ClientApi */ = {
 			isa = PBXGroup;
 			children = (
+				A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */,
 				A5FE675E2A65CC4300147D1F /* Autodiscover.swift */,
 				A5FE67602A65CC9900147D1F /* SuplaCloudClient.swift */,
 				A57668CE2AE914140025509D /* TemperatureMeasurement.swift */,
@@ -6393,6 +6552,7 @@
 				A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */,
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
+				A598CABD2CC0F45300A784FA /* SwitchElectricityDetailsView.swift in Sources */,
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
 				A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */,
 				A57668F52AEAA8410025509D /* TemperatureChartState.swift in Sources */,
@@ -6428,6 +6588,7 @@
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				A5A14A3A2B612F1C004B1598 /* ChannelConfigRepository.swift in Sources */,
+				A5B8A4892CBD0CD8002FA7B2 /* ElectricityDataSelectionVC.swift in Sources */,
 				A5A160012C2AA4950049AA73 /* StatusViewState.swift in Sources */,
 				6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */,
 				A541493A2B63D81000B44BD6 /* ChartData.swift in Sources */,
@@ -6453,6 +6614,7 @@
 				A5EDE21C2CA5693500BEDAE4 /* ElectricityMeterGeneralFeature.swift in Sources */,
 				A5AD70232C00C71200A36318 /* WindowHorizontalControls.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
+				A5E05BD02CB7F7ED00202583 /* BaseChartMarkerView.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
 				A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */,
@@ -6464,6 +6626,7 @@
 				A5477DB22AA1DB5900220B4A /* ChannelRelationType.swift in Sources */,
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
 				A55A8DAA2BAC608C00C540D4 /* SAAuthorizationDialogVC.swift in Sources */,
+				A5B8A47E2CBD0806002FA7B2 /* SuplaCore+Dialog.swift in Sources */,
 				A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */,
 				A530EE182A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift in Sources */,
 				A503ABAF2B6A9944008CDA1F /* DownloadGeneralPurposeMeterLogUseCase.swift in Sources */,
@@ -6482,12 +6645,14 @@
 				A50B5D292BF49F2700918D18 /* TerraceAwningVM.swift in Sources */,
 				A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */,
 				A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */,
+				A5E05B9F2CB3C94900202583 /* ElectricityMeterChartType.swift in Sources */,
 				A5A15FE82C2985780049AA73 /* Coordinator.swift in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				011021C425CC39AC00621D41 /* SARegistrationEnabled.m in Sources */,
 				A58472062C2EC7E500713D36 /* DisconnectUseCase.swift in Sources */,
 				A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */,
 				A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */,
+				A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */,
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
 				6EC4B005286F420500731079 /* SAElectricityMeterChartMarkerView.swift in Sources */,
 				A5A160182C2AE9F30049AA73 /* InitializationUseCase.swift in Sources */,
@@ -6511,16 +6676,14 @@
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
-				A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */,
-				A5EDE2332CA5745300BEDAE4 /* ElectricityMeterHistoryViewState.swift in Sources */,
 				A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */,
 				A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */,
-				A5EDE2362CA5745300BEDAE4 /* ElectricityMeterHistoryView.swift in Sources */,
 				AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */,
 				A55501E82B7F96E600FD3296 /* String+Icons.swift in Sources */,
 				A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */,
+				A598CAB92CC0EDFD00A784FA /* ElectricityMeterGeneralBaseView.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */,
 				A594ADC02C9C07C600780EF3 /* ThermostatIndicatorIcon.swift in Sources */,
@@ -6552,9 +6715,11 @@
 				A5A160112C2AD0F70049AA73 /* SuplaAppStateHolder.swift in Sources */,
 				A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */,
 				A5F29BC22A24E30100ED700A /* ChangeChannelsVisibilityUseCase.swift in Sources */,
+				A5E05BC32CB552DE00202583 /* ElectricityMarkerCustomData.swift in Sources */,
 				A57C4AB72AAF4F7600D9C695 /* FilteredTapGestureDelegate.swift in Sources */,
 				A58A631F2C09C0F200A9D02D /* GarageDoorView.swift in Sources */,
 				A55A8DAF2BAC64A700C540D4 /* SADialogTitleLabel.swift in Sources */,
+				A5B8A48F2CBD3F4F002FA7B2 /* SelectableItem.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */,
 				A58472082C2ED60E00713D36 /* SuplaAppProvider.swift in Sources */,
@@ -6616,6 +6781,7 @@
 				A530EE282A57E02C00F8DAEE /* MailSensorIconNameProducer.swift in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */,
+				A598CAB52CBEFD0E00A784FA /* LoadElectricityMeterMeasurementsUseCase.swift in Sources */,
 				A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				A5EDE2192CA55FB400BEDAE4 /* ElectricityMeterDetailVC.swift in Sources */,
@@ -6688,10 +6854,12 @@
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
 				A52BFED02B07AF5500A2F64C /* GetDeviceConfigUseCase.swift in Sources */,
+				A5B8A48D2CBD35BB002FA7B2 /* Picker.swift in Sources */,
 				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
 				A5074BE42BD251590081B6B1 /* ExecuteFacadeBlindActionUseCase.swift in Sources */,
 				A51BE9032AA746C100718F2F /* RoundedControlButtonView.swift in Sources */,
 				A58A63192C09C03500A9D02D /* GarageDoorState.swift in Sources */,
+				A5E05BC12CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift in Sources */,
 				A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */,
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
 				A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */,
@@ -6706,6 +6874,7 @@
 				A5F29B832A1F8D9B00ED700A /* SALocation+Ext.swift in Sources */,
 				A5A15FEA2C2987450049AA73 /* UINavigationController+Ext.swift in Sources */,
 				A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */,
+				A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */,
 				A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */,
@@ -6730,12 +6899,17 @@
 				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
+				A5B8A4782CB869E8002FA7B2 /* ElectricityChartMarkerView.swift in Sources */,
+				A5E05BB92CB5127C00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift in Sources */,
 				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
 				A5A1600F2C2AC18F0049AA73 /* SuplaAppEvent.swift in Sources */,
+				A5E05BAB2CB469CE00202583 /* ChannelMeasurementsProvider.swift in Sources */,
 				A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */,
 				A503ABB82B6BB082008CDA1F /* ChannelValueFormatter.swift in Sources */,
+				A598CAC12CC13AFB00A784FA /* SwitchWithElectricityMeterValueStringProvider.swift in Sources */,
 				A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */,
 				A50B5CFD2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift in Sources */,
+				A5B8A47C2CB9BB8A002FA7B2 /* DataSetsRow.swift in Sources */,
 				A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */,
 				A5D712922C41084B00A8EF52 /* AboutVM.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
@@ -6760,6 +6934,7 @@
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */,
 				A5F29BA12A20D6DD00ED700A /* ChannelBaseTableViewController.swift in Sources */,
+				A5B8A47A2CB86AF7002FA7B2 /* ChartStyle.swift in Sources */,
 				A5F5C3F82C3683270058E255 /* PinSetupView.swift in Sources */,
 				A530EE0D2A56C65D00F8DAEE /* UIImage+Supla.swift in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
@@ -6777,6 +6952,7 @@
 				A5477DBD2AA52F5700220B4A /* ThermostatValue.swift in Sources */,
 				A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */,
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
+				A5E05BC52CB666D500202583 /* SAGeneralPurposeMeterItem+Ext.swift in Sources */,
 				A584E2032CAAD48200232A98 /* Phase.swift in Sources */,
 				A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */,
 				A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */,
@@ -6790,6 +6966,7 @@
 				A5B3CBFB2B62693F00F95AC3 /* DepthValueStringProvider.swift in Sources */,
 				A5AD701D2C00B2CC00A36318 /* LeftRightControlButton.swift in Sources */,
 				AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */,
+				A5E05BC82CB6677C00202583 /* SAGeneralPurposeMeasurementItem+Ext.swift in Sources */,
 				A55A8D9F2BAC263000C540D4 /* ExecuteRollerShutterActionUseCase.swift in Sources */,
 				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
 				A52D13B12C8F0F3000134961 /* SuplaClient+Ext.swift in Sources */,
@@ -6801,11 +6978,13 @@
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				A51BE9052AA754F200718F2F /* BaseControlButtonView.swift in Sources */,
 				A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */,
+				A5E05BCA2CB67A1400202583 /* ChartColors.swift in Sources */,
 				A553862B29E0202700B5CF3F /* Singleton.swift in Sources */,
 				A5A160032C2AAEDE0049AA73 /* Text.swift in Sources */,
 				A5074BC02BCE61C20081B6B1 /* RoofWindowVM.swift in Sources */,
 				A5F29BBC2A24D62300ED700A /* UpdateChannelExtendedValueUseCase.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
+				A5E05BAD2CB46DFE00202583 /* BaseTemperatureEntity.swift in Sources */,
 				A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */,
 				A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */,
 				A5EC524C2C1043B30022F055 /* ShadingBlindWindowState.swift in Sources */,
@@ -6831,6 +7010,7 @@
 				A5AD701F2C00B45E00A36318 /* WindowControlButton.swift in Sources */,
 				A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */,
 				A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */,
+				A5E05BB72CB50C2D00202583 /* TemperatureAndHumidityMeasurementsProvider.swift in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
 				A5B3CC042B627F3800F95AC3 /* PressureValueStringProvider.swift in Sources */,
@@ -6840,6 +7020,7 @@
 				A5074BDD2BCFE4D80081B6B1 /* SuplaChannelRollerShutterConfig.swift in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
 				A530EE202A56FE4F00F8DAEE /* IconType.swift in Sources */,
+				A5B8A4912CBD4756002FA7B2 /* WithFunction.swift in Sources */,
 				A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */,
 				A5F29B6F2A1E305500ED700A /* Repository.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
@@ -6854,6 +7035,7 @@
 				A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */,
 				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
 				A58A631B2C09C09100A9D02D /* GarageDoorVC.swift in Sources */,
+				A5E05BA92CB4661800202583 /* ChannelChartSets.swift in Sources */,
 				A5D7126E2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift in Sources */,
 				A57668DD2AE995590025509D /* GeneralError.swift in Sources */,
 				A55A8D882BAAFFE700C540D4 /* ChannelIssueItem.swift in Sources */,
@@ -6865,12 +7047,14 @@
 				A56233F02AB3949D001CB948 /* ReadChannelWithChildrenUseCase.swift in Sources */,
 				A54A064C2AF3E55700C03DBC /* SuplaSchedulers.swift in Sources */,
 				A57668E52AEA67E00025509D /* LoadChannelWithChildrenMeasurementsDateRangeUseCase.swift in Sources */,
+				A5B8A48B2CBD2843002FA7B2 /* FlowHStack.swift in Sources */,
 				A50B5D082BEA4E2A00918D18 /* FacadeBlindWindowState.swift in Sources */,
 				A5A14A422B614242004B1598 /* SuplaChannelGeneralPurposeMeasurementConfig.swift in Sources */,
 				A50B5D302BF4A10200918D18 /* TerraceAwningView.swift in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */,
+				A5E05BCC2CB6A90F00202583 /* Equatable+Ext.swift in Sources */,
 				A57C4AAC2AAB20B100D9C695 /* RequestResult.swift in Sources */,
 				A57668CF2AE914140025509D /* TemperatureMeasurement.swift in Sources */,
 				A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */,
@@ -6910,7 +7094,9 @@
 				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
 				AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */,
 				A5074BD92BCFB9B60081B6B1 /* FacadeBlindValue.swift in Sources */,
+				A5E05B9B2CAFF82B00202583 /* ElectricityMeasurement.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
+				A5E05BBB2CB5184700202583 /* GeneralPurposeMeterMeasurementsProvider.swift in Sources */,
 				A52BFEBB2B074D7900A2F64C /* SuplaDeviceConfig.swift in Sources */,
 				A5F29BB82A24D16000ED700A /* ChannelGroupRelationRepository.swift in Sources */,
 				A5477DBB2AA202A800220B4A /* SAChannelRelation+Ext.swift in Sources */,
@@ -6964,14 +7150,18 @@
 				A530EDF52A5401BE00F8DAEE /* SwitchGeneralVC.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
 				A5812CBC2BBC305200FC5998 /* NightModeCell.swift in Sources */,
+				A5E05BBD2CB5274000202583 /* ElectricityMeasurementsProvider.swift in Sources */,
 				A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */,
 				A5F29BD22A26239C00ED700A /* TemperatureMeasurementItemRepository.swift in Sources */,
+				A5E05BA52CB3DBA800202583 /* ElectricityChartFilters.swift in Sources */,
 				A5F29BB42A24C96600ED700A /* ChannelValueRepository.swift in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				A5A1601A2C2BEC6B0049AA73 /* FilledButton.swift in Sources */,
 				AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */,
 				A5D837E12AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift in Sources */,
+				A5B8A4852CBD0AC3002FA7B2 /* ElectricityDataSelectionView.swift in Sources */,
 				A5A160152C2ADE270049AA73 /* SuplaAppCoordinator.swift in Sources */,
+				A5B8A4812CBD0A09002FA7B2 /* ElectricityDataSelectionFeature.swift in Sources */,
 				A5F29B932A20B56500ED700A /* CreateProfileScenesListUseCase.swift in Sources */,
 				A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */,
 				A5A15FF12C298B700049AA73 /* StatusView.swift in Sources */,
@@ -6985,7 +7175,9 @@
 				A5F29B902A20B23E00ED700A /* BaseTableViewModel.swift in Sources */,
 				A584E2072CABCE3F00232A98 /* SAExectricityMeterExtendedValue+Ext.swift in Sources */,
 				A55A8DA42BAC2B0E00C540D4 /* SAAlertDialogVM.swift in Sources */,
+				A5E05BB12CB46E6800202583 /* SATemperatureMeasurementItem+Ext.swift in Sources */,
 				A5B3A4BB2BB5B8F20001D006 /* WindowType.swift in Sources */,
+				A5E05BCE2CB7154B00202583 /* NSDecimalNumber+Ext.swift in Sources */,
 				A56233ED2AB38CED001CB948 /* TemperatureChangeStep.swift in Sources */,
 				A51BE90F2AAAFB1400718F2F /* SetChannelConfigUseCase.swift in Sources */,
 				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
@@ -6996,6 +7188,7 @@
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
+				A5E05BAF2CB46E3D00202583 /* BaseHumidityEntity.swift in Sources */,
 				A5AD70252C012F5300A36318 /* WindowControls.swift in Sources */,
 				A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */,
 				A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */,
@@ -7005,15 +7198,18 @@
 				A55A8D802BA9AD8000C540D4 /* RollerShutterView.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
+				A5E05BA12CB3D12400202583 /* ChartDataSpec.swift in Sources */,
 				A5F5C3F42C3682500058E255 /* PinSetupVM.swift in Sources */,
 				A5A14A382B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
+				A598CABF2CC1340C00A784FA /* SwitchWithElectricityMeterValueProvider.swift in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				A5E490612A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */,
 				A57668FF2AEFB96A0025509D /* Double+Ext.swift in Sources */,
+				A598CAB32CBE90B300A784FA /* Divider.swift in Sources */,
 				A55A8DA62BAC4F5500C540D4 /* AuthorizeUseCase.swift in Sources */,
 				A5F29B982A20B9D200ED700A /* ChannelRepository.swift in Sources */,
 				A57668EF2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift in Sources */,
@@ -7024,6 +7220,7 @@
 				A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
+				A5B8A4872CBD0B4F002FA7B2 /* ElectricityDataSelectionVM.swift in Sources */,
 				A5EC52402C0F22F40022F055 /* RequestChannelConfigUseCase.swift in Sources */,
 				A58A9C052AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift in Sources */,
 				A52BFEAD2B050D2500A2F64C /* SATextField.swift in Sources */,
@@ -7037,9 +7234,11 @@
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */,
 				A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */,
+				A598CABB2CC0EE5200A784FA /* View+SuplaCard.swift in Sources */,
 				A58A9BFE2AA0A4BD00D28848 /* UIView+Ext.swift in Sources */,
 				A5477DC92AA5E6EE00220B4A /* ChannelWithChildren.swift in Sources */,
 				A50B5D2B2BF49F3000918D18 /* TerraceAwningVC.swift in Sources */,
+				A5B8A4932CBDA0A4002FA7B2 /* Binding+onChange.swift in Sources */,
 				A5EC52462C0F3DC10022F055 /* ReadGroupTiltingDetailsUseCase.swift in Sources */,
 				A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */,
 				A594ADC72C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift in Sources */,
@@ -7065,6 +7264,7 @@
 				A56233F52AB856B3001CB948 /* DelayedCommandSubject.swift in Sources */,
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */,
 				A58316FE2B6452AB006113F8 /* ThermometerAndHumidityValueProvider.swift in Sources */,
+				A5E05BBF2CB52D3700202583 /* AggregatedEntity.swift in Sources */,
 				A5B3CBF62B625E2400F95AC3 /* HumidityValueProvider.swift in Sources */,
 				A50E5D732BFF543500303BAE /* CurtainVM.swift in Sources */,
 				A58472042C2EACA600713D36 /* SuplaResultCode.swift in Sources */,
@@ -7099,6 +7299,7 @@
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
 				A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */,
 				A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */,
+				A5E05BB32CB46F0200202583 /* SATempHumidityMeasurementItem+Ext.swift in Sources */,
 				A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
@@ -7119,6 +7320,7 @@
 				A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
 				A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */,
+				A5E05B9D2CB00EEE00202583 /* DownloadElectricityMeterLogUseCase.swift in Sources */,
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,
 				A55A8D912BAB13B300C540D4 /* RollerShutterValue.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
@@ -7182,6 +7384,7 @@
 				A59AB8CB2A30911A00D91F1F /* ElectricityMeasurementItemRepositoryMock.swift in Sources */,
 				A5ABE5C92ABCD76300FFA50B /* ThermostatUseCasesMocks.swift in Sources */,
 				A54A06582AF3FDCA00C03DBC /* ObservableTestCase.swift in Sources */,
+				A5E05BD62CB80CCF00202583 /* AggregatedValue+Ext.swift in Sources */,
 				A59AB8BF2A30820900D91F1F /* ChannelRepositoryMock.swift in Sources */,
 				A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */,
 				A5E40B592B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift in Sources */,
@@ -7219,6 +7422,7 @@
 				A5E40B6D2B86353600DB6ABE /* ChannelConfigRepositoryMock.swift in Sources */,
 				A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */,
 				A5519B3C2B6D36BD00811747 /* GpmValueProviderTest.swift in Sources */,
+				A5E05BD42CB809A700202583 /* HistoryDataSet+Test.swift in Sources */,
 				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
 				A5F5C3E62C35501D0058E255 /* SuplaAppProviderMock.swift in Sources */,
 				A54A06612AF50E2200C03DBC /* SuplaCloudServiceTests.swift in Sources */,

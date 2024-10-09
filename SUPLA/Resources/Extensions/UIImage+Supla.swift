@@ -68,6 +68,8 @@ extension UIImage {
     static let iconArrowRevealHold = UIImage(named: .Icons.arrowRevealHold)
     
     static let iconFingerprint = UIImage(named: .Icons.fingerprint)
+    static let iconForwardEnergy = UIImage(named: .Icons.forwardEnergy)
+    static let iconReversedEnergy = UIImage(named: .Icons.reversedEnergy)
     
     // MARK: Functions
     static let fncUnknown = UIImage(named: .Icons.fncUnknown)

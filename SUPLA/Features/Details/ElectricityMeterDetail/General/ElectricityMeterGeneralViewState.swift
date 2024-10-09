@@ -18,5 +18,7 @@
 
 extension ElectricityMeterGeneralFeature {
     class ViewState: ElectricityMeterGeneralState {
+        var remoteId: Int32? = nil
+        var initialDataLoadStarted: Bool = false
     }
 }

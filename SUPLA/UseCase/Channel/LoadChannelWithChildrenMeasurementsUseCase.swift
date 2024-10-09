@@ -19,34 +19,23 @@
 import RxSwift
 
 protocol LoadChannelWithChildrenMeasurementsUseCase {
-    func invoke(
-        remoteId: Int32,
-        startDate: Date,
-        endDate: Date,
-        aggregation: ChartDataAggregation
-    ) -> Observable<[HistoryDataSet]>
+    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<[ChannelChartSets]>
 }
 
-final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChildrenMeasurementsUseCase, BaseLoadMeasurementsUseCase {
-    
+final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChildrenMeasurementsUseCase {
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChidlrenUseCase
-    @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
-    @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
+    @Singleton<TemperatureMeasurementsProvider> private var temperatureMeasurementsProvider
+    @Singleton<TemperatureAndHumidityMeasurementsProvider> private var temperatureAndHumidityMeasurementsProvider
     @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke(
-        remoteId: Int32,
-        startDate: Date,
-        endDate: Date,
-        aggregation: ChartDataAggregation
-    ) -> Observable<[HistoryDataSet]> {
+
+    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<[ChannelChartSets]> {
         readChannelWithChidlrenUseCase.invoke(remoteId: remoteId)
             .flatMapFirst { channelWithChildren in
                 self.profileRepository.getActiveProfile().map { (channelWithChildren, $0) }
             }
             .flatMapFirst {
                 if ($0.0.channel.isHvacThermostat()) {
-                    return self.buildDataSets($0.0, $0.1, startDate, endDate, aggregation)
+                    return self.buildDataSets($0.0, $0.1, spec)
                 } else {
                     return Observable.error(
                         GeneralError.illegalArgument(message: "LoadChannelWithChildrenMeasurementsUseCase: channel function not supported (\($0.0.channel.func)")
@@ -54,14 +43,12 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
                 }
             }
     }
-    
+
     private func buildDataSets(
         _ channelWithChildren: ChannelWithChildren,
         _ profile: AuthProfileItem,
-        _ startDate: Date,
-        _ endDate: Date,
-        _ aggregation: ChartDataAggregation
-    ) -> Observable<[HistoryDataSet]> {
+        _ spec: ChartDataSpec
+    ) -> Observable<[ChannelChartSets]> {
         var channelsWithMeasurements = channelWithChildren.children
             .sorted(by: { $0.relationType.rawValue < $1.relationType.rawValue })
             .filter { $0.channel.hasMeasurements() }
@@ -69,57 +56,22 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
         if (channelWithChildren.channel.hasMeasurements()) {
             channelsWithMeasurements.append(channelWithChildren.channel)
         }
-        
+
         let temperatureColors = TemperatureColors()
         let humidityColors = HumidityColors()
-        var observables: [Observable<[HistoryDataSet]>] = []
-        
-        channelsWithMeasurements.forEach { channel in
+        var observables: [Observable<ChannelChartSets>] = []
+
+        for channel in channelsWithMeasurements {
             if (channel.func == SUPLA_CHANNELFNC_THERMOMETER) {
                 let color = temperatureColors.nextColor()
-                observables.append(
-                    temperatureMeasurementItemRepository.findMeasurements(
-                        remoteId: channel.remote_id,
-                        profile: profile,
-                        startDate: startDate,
-                        endDate: endDate
-                    )
-                    .map { list in
-                        self.aggregatingTemperature(list, aggregation)
-                    }
-                        .map { [self.historyDataSet(channel, .temperature, color, aggregation, $0)] }
-                )
+                observables.append(temperatureMeasurementsProvider.provide(channel, spec) { _ in color })
             } else if (channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
                 let firstColor = temperatureColors.nextColor()
                 let secondColor = humidityColors.nextColor()
-                observables.append(
-                    tempHumidityMeasurementItemRepository.findMeasurements(
-                        remoteId: channel.remote_id,
-                        profile: profile,
-                        startDate: startDate,
-                        endDate: endDate
-                    )
-                        .map {
-                            let temperatures = self.aggregatingTemperatureOrHumidity($0, aggregation, .temperature) {
-                                $0.temperature!.toDouble()
-                            }
-                            let humidities = self.aggregatingTemperatureOrHumidity($0, aggregation, .humidity) {
-                                $0.humidity!.toDouble()
-                            }
-                            return [
-                                self.historyDataSet(channel, .temperature, firstColor, aggregation, temperatures),
-                                self.historyDataSet(channel, .humidity, secondColor, aggregation, humidities)
-                            ]
-                        }
-                )
+                observables.append(temperatureAndHumidityMeasurementsProvider.provide(channel, spec) { type in type == .humidity ? secondColor : firstColor })
             }
         }
-        
-        return Observable.zip(observables) { items in
-            var allSets: [HistoryDataSet] = []
-            items.forEach { allSets.append(contentsOf: $0) }
-            return allSets
-        }
+
+        return Observable.zip(observables)
     }
 }
-

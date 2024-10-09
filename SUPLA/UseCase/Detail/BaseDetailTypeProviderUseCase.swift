@@ -98,8 +98,9 @@ enum DetailPage {
     // Switches
     case switchGeneral
     case switchTimer
+    case switchEmHistory
+    case switchEmSettings
     case historyIc
-    case historyEm
     
     // Thermostat
     case thermostatGeneral

@@ -117,5 +117,12 @@ extension SuplaCore {
         @objc func onViewDisappeared() {
             viewModel.onViewDisappeared()
         }
+
+        #if DEBUG
+            deinit {
+                let className = NSStringFromClass(type(of: self))
+                SALog.debug("[DEINIT] VC:\(className)")
+            }
+        #endif
     }
 }

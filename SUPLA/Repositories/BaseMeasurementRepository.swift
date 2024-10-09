@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol BaseMeasurementRepository<M, E>: RepositoryProtocol {
-    associatedtype M: SuplaCloudMeasurement
+    associatedtype M: SuplaCloudClient.Measurement
     associatedtype E: SAMeasurementItem
     
     func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>

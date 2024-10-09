@@ -42,6 +42,23 @@ class SuplaCombinedChartView: UIView {
         }
     }
     
+    var chartStyle: (any ChartStyle)? = nil {
+        didSet {
+            guard let chartStyle = chartStyle else { return }
+            if (chartStyle.isEqualTo(oldValue) == true) { return }
+            
+            combinedChart.leftAxis.labelTextColor = chartStyle.leftAxisColor
+            combinedChart.leftAxis.gridColor = chartStyle.leftAxisColor
+            combinedChart.rightAxis.labelTextColor = chartStyle.rightAxisColor
+            combinedChart.rightAxis.gridColor = chartStyle.rightAxisColor
+            combinedChart.drawBarShadowEnabled = chartStyle.drawBarShadow
+            
+            let marker = chartStyle.provideMarkerView()
+            marker.chartView = combinedChart
+            combinedChart.marker = marker
+        }
+    }
+    
     var rangeStart: Double? {
         get { combinedChart.xAxis.axisMinimum }
         set { if let minimum = newValue { combinedChart.xAxis.axisMinimum = minimum } }
@@ -79,7 +96,7 @@ class SuplaCombinedChartView: UIView {
                let function = channelFunction,
                isNotGmp(function: function)
             {
-                combinedChart.leftAxis.axisMinimum = min < 0 ? min : 0
+                combinedChart.leftAxis.axisMinimum = min > 0 ? 0 : min
             }
         }
     }
@@ -99,8 +116,6 @@ class SuplaCombinedChartView: UIView {
         
         // Left axis
         view.leftAxis.drawAxisLineEnabled = false
-        view.leftAxis.labelTextColor = .darkRed
-        view.leftAxis.gridColor = .darkRed
         view.leftAxis.zeroLineColor = .onBackground
         view.leftAxis.gridLineDashLengths = [1.5]
         view.leftAxis.gridLineDashLengths = [3]
@@ -124,10 +139,8 @@ class SuplaCombinedChartView: UIView {
         view.delegate = self
         view.noDataTextColor = .onBackground
         view.noDataFont = .body2
-        let marker = SuplaChartMarkerView()
-        marker.chartView = view
-        view.marker = marker
         view.drawMarkers = true
+        view.highlightFullBarEnabled = false
         return view
     }()
     

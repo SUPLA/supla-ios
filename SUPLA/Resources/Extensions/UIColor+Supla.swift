@@ -68,6 +68,11 @@ extension UIColor {
     static let chartGpm = UIColor(argb: 0xFF01C2FB)
     static let chartGpmBorder = UIColor(argb: 0xFF005F6E)
     static let chartGpmShadow = UIColor(argb: 0x3398C4CA)
+    static let chartPhase1 = UIColor(named: "Colors/phase1")!
+    static let chartPhase2 = UIColor(named: "Colors/phase2")!
+    static let chartPhase3 = UIColor(named: "Colors/phase3")!
+    static let chartValuePositive = UIColor(named: "Colors/value_positive")!
+    static let chartValueNegative = UIColor(named: "Colors/value_negative")!
     
     @objc static let separator = UIColor(named: "Colors/separator")!
     static let separatorLight = UIColor(named: "Colors/separator_light")!

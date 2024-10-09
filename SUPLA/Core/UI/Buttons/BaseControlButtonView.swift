@@ -112,6 +112,12 @@ class BaseControlButtonView: UIView {
         view.contentMode = .scaleAspectFit
         return view
     }()
+    
+    private lazy var containerView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     private lazy var innerShadowView: InnerShadowView = {
         let view = InnerShadowView(height: height)
@@ -168,6 +174,7 @@ class BaseControlButtonView: UIView {
         addSubview(textView)
         addSubview(iconView)
         addSubview(disabledOverlay)
+        addSubview(containerView)
 
         setupLayout()
     }
@@ -194,7 +201,7 @@ class BaseControlButtonView: UIView {
         ])
 
         if (!textView.isHidden && !iconView.isHidden) {
-            activeConstraints.append(contentsOf: textAndIconConstraints(textView, iconView))
+            activeConstraints.append(contentsOf: textAndIconConstraints(textView, iconView, containerView))
         }
         else if (!textView.isHidden) {
             activeConstraints.append(contentsOf: textConstraints(textView))
@@ -210,7 +217,7 @@ class BaseControlButtonView: UIView {
 
     func iconConstraints(_ iconView: UIImageView) -> [NSLayoutConstraint] { return [] }
 
-    func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView) -> [NSLayoutConstraint] { return [] }
+    func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView, _ container: UIView) -> [NSLayoutConstraint] { return [] }
 
     @objc private func onTap() {
         if (isEnabled && isClickable) {

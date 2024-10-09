@@ -17,19 +17,29 @@
  */
     
 extension ElectricityMeterHistoryFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        private let item: ItemBundle
-        
-        init(viewModel: ViewModel, item: ItemBundle) {
-            self.item = item
-            super.init(viewModel: viewModel)
-            
-            contentView = View(viewState: state)
+    class ViewController: BaseHistoryDetailVC {
+        init(viewModel: ViewModel, item: ItemBundle, navigationItemProvider: NavigationItemProvider) {
+            super.init(remoteId: item.remoteId, navigationItemProvider: navigationItemProvider)
+            self.viewModel = viewModel
         }
         
-        static func create(item: ItemBundle) -> UIViewController {
-            ViewController(viewModel: ViewModel(), item: item)
+        override func showDataSelectionDialog(_ channelSets: ChannelChartSets, _ filters: CustomChartFiltersContainer?) {
+            guard let filters = filters?.filters as? ElectricityChartFilters else { return }
+            if (filters.availableTypes.count == 1 && filters.availablePhases.count == 1) {
+                return
+            }
+            
+            let dialog = ElectricityDataSelectionFeature.ViewController.create(name: channelSets.name, filters: filters)
+            dialog.onFinishCallback = { [weak self] type, phases in
+                if let viewModel = self?.viewModel as? ElectricityMeterHistoryFeature.ViewModel {
+                    viewModel.onDataSelectionChange(type: type, phases: phases)
+                }
+            }
+            present(dialog, animated: true)
+        }
+        
+        static func create(item: ItemBundle, navigationItemProvider: NavigationItemProvider) -> UIViewController {
+            ViewController(viewModel: ViewModel(), item: item, navigationItemProvider: navigationItemProvider)
         }
     }
 }

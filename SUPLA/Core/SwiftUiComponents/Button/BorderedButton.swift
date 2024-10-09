@@ -21,11 +21,19 @@ import SwiftUI
 
 struct BorderedButton: View {
     var title: String
+    var fullWidth: Bool = false
     var action: () -> Void
 
     var body: some View {
-        Button(title, action: action)
-            .buttonStyle(BorderedButtonStyle())
+        Button(action: action) {
+            if (fullWidth) {
+                Text.LabelLarge(text: title)
+                    .frame(maxWidth: .infinity)
+            } else {
+                Text.LabelLarge(text: title)
+            }
+        }
+        .buttonStyle(BorderedButtonStyle())
     }
 }
 

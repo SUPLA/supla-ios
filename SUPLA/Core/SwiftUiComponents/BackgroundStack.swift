@@ -28,6 +28,7 @@ struct BackgroundStack<Content: View>: View {
         color: Color = .Supla.background,
         @ViewBuilder content: @escaping () -> Content
     ) {
+        self.alignment = alignment
         self.color = color
         self.content = content
     }

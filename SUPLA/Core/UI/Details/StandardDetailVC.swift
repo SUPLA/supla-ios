@@ -68,8 +68,6 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(switchGeneral())
             case .switchTimer:
                 viewControllers.append(switchTimerDetail())
-            case .historyEm:
-                viewControllers.append(electricityMeterHistoryDetail())
             case .historyIc:
                 viewControllers.append(legacyDetail(type: .ic))
             case .thermostatGeneral:
@@ -104,9 +102,11 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(garageDoorDetail())
             case .electricityMeterGeneral:
                 viewControllers.append(electricityMeterGeneralDetail())
-            case .electricityMeterHistory:
+            case .electricityMeterHistory,
+                 .switchEmHistory:
                 viewControllers.append(electricityMeterHistoryDetail())
-            case .electricityMeterSettings:
+            case .electricityMeterSettings,
+                 .switchEmSettings:
                 viewControllers.append(electricityMeterSettingsDetail())
             }
         }
@@ -330,7 +330,7 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
     }
     
     private func electricityMeterHistoryDetail() -> UIViewController {
-        let vc = ElectricityMeterHistoryFeature.ViewController.create(item: item)
+        let vc = ElectricityMeterHistoryFeature.ViewController.create(item: item, navigationItemProvider: self)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,

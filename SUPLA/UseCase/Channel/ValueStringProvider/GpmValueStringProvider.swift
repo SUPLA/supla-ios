@@ -19,9 +19,9 @@
 class GpmValueStringProvider: ChannelValueStringProvider {
     @Singleton<GpmValueProvider> private var gpmValueProvider
     
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-            || function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+            || channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
@@ -42,5 +42,4 @@ class GpmValueStringProvider: ChannelValueStringProvider {
         let formatter = GpmValueFormatter(config: config)
         return formatter.format(value, withUnit: withUnit)
     }
-    
 }

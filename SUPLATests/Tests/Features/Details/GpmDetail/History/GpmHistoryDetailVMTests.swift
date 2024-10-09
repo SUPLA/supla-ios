@@ -77,13 +77,13 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         channel.config = SAChannelConfig.mock(type: .generalPurposeMeter, config: config.toJson())
         let profile = AuthProfileItem(testContext: nil)
-        let chartState = TemperatureChartState.defaultState()
+        let chartState = DefaultChartState.empty()
         let currentDate = Date()
         
         dateProvider.currentDateReturns = currentDate
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         profileRepository.activeProfileObservable = Observable.just(profile)
-        userStateHolder.getTemperatureChartStateReturns = chartState
+        userStateHolder.getDefaultChartStateReturns = chartState
         
         let expectation = expectation(description: "States loaded")
         
@@ -120,7 +120,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         ])
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertEqual(userStateHolder.getTemperatureCharStateParameters.count, 1)
+        XCTAssertEqual(userStateHolder.getDefaultCharStateParameters.count, 1)
         XCTAssertEqual(downloadEventsManager.observeProgressParameters, [remoteId])
         XCTAssertTuples(downloadChannelMeasurementsUseCase.parameters, [(remoteId, SUPLA_CHANNELFNC_THERMOMETER)])
     }
@@ -129,7 +129,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeterConfig.mock(),
             configType: .generalPurposeMeter,
-            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, defaultChannelSet()) }
         )
     }
     
@@ -137,7 +137,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeterConfig.mock(chartType: .linear),
             configType: .generalPurposeMeter,
-            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, defaultChannelSet()) }
         )
     }
     
@@ -145,7 +145,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeasurementConfig.mock(),
             configType: .generalPurposeMeasurement,
-            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, defaultChannelSet()) }
         )
     }
     
@@ -153,7 +153,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeasurementConfig.mock(chartType: .linear),
             configType: .generalPurposeMeasurement,
-            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, defaultChannelSet()) }
         )
     }
     
@@ -161,7 +161,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeasurementConfig.mock(chartType: .candle),
             configType: .generalPurposeMeasurement,
-            expectedChartDataProvider: { CandleChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { CandleChartData($0, .lastWeek, .minutes, defaultChannelSet()) }
         )
     }
     
@@ -177,15 +177,15 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         channel.config = SAChannelConfig.mock(type: configType, config: config.toJson())
         let profile = AuthProfileItem(testContext: nil)
-        let chartState = TemperatureChartState.defaultState()
+        let chartState = DefaultChartState.empty()
         let currentDate = Date()
         
         dateProvider.currentDateReturns = currentDate
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         profileRepository.activeProfileObservable = Observable.just(profile)
-        userStateHolder.getTemperatureChartStateReturns = chartState
+        userStateHolder.getDefaultChartStateReturns = chartState
         loadChannelConfigUseCase.returns = .just(config)
-        loadChannelMeasurementsUseCase.returns = .just([])
+        loadChannelMeasurementsUseCase.returns = .just(ChannelChartSets(remoteId: remoteId, function: channel.func, name: "", aggregation: .minutes, dataSets: []))
         loadChannelMeasurementsDateRangeUseCase.returns = .just(nil)
         
         let expectation = expectation(description: "States loaded")
@@ -229,8 +229,12 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         ])
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertEqual(userStateHolder.getTemperatureCharStateParameters.count, 2)
+        XCTAssertEqual(userStateHolder.getDefaultCharStateParameters.count, 2)
         XCTAssertEqual(downloadEventsManager.observeProgressParameters, [])
         XCTAssertEqual(downloadChannelMeasurementsUseCase.parameters.count, 0)
+    }
+    
+    private func defaultChannelSet() -> [ChannelChartSets] {
+        [ChannelChartSets(remoteId: 123, function: SUPLA_CHANNELFNC_THERMOMETER, name: "", aggregation: .minutes, dataSets: [])]
     }
 }
