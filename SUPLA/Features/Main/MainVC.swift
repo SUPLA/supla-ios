@@ -43,7 +43,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Strings.NavBar.titleSupla
+        title = Strings.appName
         
         setupTabBarController()
         setupToolbar()

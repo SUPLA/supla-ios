@@ -34,7 +34,7 @@ extension AboutFeature {
                         .aspectRatio(contentMode: .fit)
                         .frame(maxHeight: 100)
                         .foregroundColor(Color.Supla.onBackground)
-                    Text.HeadlineLarge(text: Strings.NavBar.titleSupla)
+                    Text.HeadlineLarge(text: Strings.appName)
                     Text.BodyMedium(text: Strings.About.version.arguments(viewState.version))
                     Text.LabelSmall(text: Strings.About.license)
                     Spacer()
