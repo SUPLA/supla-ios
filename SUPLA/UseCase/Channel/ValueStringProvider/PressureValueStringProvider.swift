@@ -27,9 +27,9 @@ final class PressureValueStringProvider: ChannelValueStringProvider {
            value > PressureValueProviderImpl.UNKNOWN_VALUE
         {
             return if (withUnit) {
-                "\(Int(value)) hPa"
+                "\(value.toString()) hPa"
             } else {
-                "\(Int(value))"
+                "\(value.toString())"
             }
         } else {
             return NO_VALUE_TEXT

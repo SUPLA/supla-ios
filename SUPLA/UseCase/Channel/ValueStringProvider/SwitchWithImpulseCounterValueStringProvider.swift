@@ -19,15 +19,6 @@
 class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
     @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
     
-    private lazy var formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
     func handle(_ channel: SAChannel) -> Bool {
         switchWithImpulseCounterValueProvider.handle(channel)
     }
@@ -41,15 +32,11 @@ class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
             return NO_VALUE_TEXT
         }
         
-        if let stringValue = formatter.string(from: NSNumber(value: value)) {
-            if (withUnit) {
-                let unit = channel.unit()
-                return "\(stringValue) \(unit)"
-            } else {
-                return stringValue
-            }
+        if (withUnit) {
+            let unit = channel.unit()
+            return "\(value.toString(precision: 2)) \(unit)"
+        } else {
+            return value.toString(precision: 2)
         }
-        
-        return NO_VALUE_TEXT
     }
 }

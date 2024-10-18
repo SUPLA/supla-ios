@@ -19,25 +19,15 @@
 final class WindValueStringProvider: ChannelValueStringProvider {
     @Singleton<WindValueProvider> private var windValueProvider
     
-    private lazy var formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 1
-        formatter.minimumFractionDigits = 1
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
     func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_WINDSENSOR
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         if let value = windValueProvider.value(channel, valueType: valueType) as? Double,
-           value > WindValueProviderImpl.UNKNOWN_VALUE,
-           let stringValue = formatter.string(from: NSNumber(value: value))
+           value > WindValueProviderImpl.UNKNOWN_VALUE
         {
-            return withUnit ? "\(stringValue) m/s" : "\(stringValue)"
+            return withUnit ? "\(value.toString(precision: 1)) m/s" : value.toString(precision: 1)
         } else {
             return NO_VALUE_TEXT
         }

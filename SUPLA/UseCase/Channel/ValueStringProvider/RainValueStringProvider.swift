@@ -18,25 +18,16 @@
 
 final class RainValueStringProvider: ChannelValueStringProvider {
     @Singleton<RainValueProvider> private var rainValueProvider
-    
-    private lazy var formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 1
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
+
     func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_RAINSENSOR
     }
-    
+
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         if let value = rainValueProvider.value(channel, valueType: valueType) as? Double,
-           value > RainValueProviderImpl.UNKNOWN_VALUE,
-           let stringValue = formatter.string(from: NSNumber(value: value / 1000.0))
+           value > RainValueProviderImpl.UNKNOWN_VALUE
         {
+            let stringValue = (value / 1000.0).toString(minPrecision: 1, maxPrecision: 2)
             return withUnit ? "\(stringValue) l/m²" : stringValue
         } else {
             return NO_VALUE_TEXT

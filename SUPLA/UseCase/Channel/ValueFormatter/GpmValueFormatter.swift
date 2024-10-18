@@ -19,7 +19,6 @@
 final class GpmValueFormatter: ChannelValueFormatter {
     private let beforeValue: String
     private let afterValue: String
-    private let valueFormatter: NumberFormatter
     private let precision: Int
 
     init(config: SuplaChannelGeneralPurposeBaseConfig?) {
@@ -28,10 +27,6 @@ final class GpmValueFormatter: ChannelValueFormatter {
         let unitAfter = config?.unitAfterValue ?? ""
         self.afterValue = config?.noSpaceAfterValue ?? false ? unitAfter : " \(unitAfter)"
         self.precision = Int(config?.valuePrecision ?? 2)
-        self.valueFormatter = NumberFormatter()
-        valueFormatter.decimalSeparator = Locale.current.decimalSeparator
-        valueFormatter.minimumFractionDigits = precision
-        valueFormatter.maximumFractionDigits = precision
     }
 
     func handle(function: Int) -> Bool {
@@ -45,7 +40,7 @@ final class GpmValueFormatter: ChannelValueFormatter {
             return NO_VALUE_TEXT
         }
 
-        let formatterValue = valueFormatter.string(from: NSNumber(value: doubleValue)) ?? String(format: "%.\(precision)f", doubleValue)
+        let formatterValue = doubleValue.toString(precision: self.precision)
         if (withUnit) {
             return "\(beforeValue)\(formatterValue)\(afterValue)"
         } else {
