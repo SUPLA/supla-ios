@@ -25,10 +25,10 @@ final class ListElectricityMeterValueFormatter: BaseElectricityMeterValueFormatt
     }
     
     override func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
-        let unit = if (withUnit) {
+        let unit: String? = if (withUnit) {
             (custom as? SuplaElectricityMeasurementType)?.unit ?? "kWh"
         } else {
-            ""
+            nil
         }
         let checkNoValue = checkNoValue(custom)
         
@@ -55,23 +55,14 @@ final class ChartAxisElectricityMeterValueFormatter: BaseElectricityMeterValueFo
     
     override func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let value = value as? Double {
-            return format(value, unit: withUnit ? "kWh" : "", precision: value == 0.0 ? 0 : precision.value, checkNoValue: false)
+            return format(value, unit: withUnit ? "kWh" : nil, precision: value == 0.0 ? 0 : precision.value, checkNoValue: false)
         }
         
-        return format(0.0, unit: withUnit ? "kWh" : "", precision: 0, checkNoValue: false)
+        return format(0.0, unit: withUnit ? "kWh" : nil, precision: 0, checkNoValue: false)
     }
 }
     
 class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
-    
-    private let formatter: NumberFormatter
-    
-    init() {
-        formatter = NumberFormatter()
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        formatter.groupingSeparator = Locale.current.groupingSeparator
-        formatter.usesGroupingSeparator = true
-    }
     
     func handle(function: Int) -> Bool {
         function == SUPLA_CHANNELFNC_ELECTRICITY_METER
@@ -81,7 +72,7 @@ class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
         fatalError("format(_:withUnit:precision:) has not been implemented!")
     }
     
-    fileprivate func format(_ value: Double, unit: String, precision: Int, checkNoValue: Bool = true) -> String {
+    fileprivate func format(_ value: Double, unit: String?, precision: Int, checkNoValue: Bool = true) -> String {
         if (value.isNaN) {
             // Nan is possible when user selected other type than default (ex voltage) and currently there is no data
             return NO_VALUE_TEXT
@@ -90,10 +81,11 @@ class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
             return NO_VALUE_TEXT
         }
         
-        formatter.minimumFractionDigits = precision
-        formatter.maximumFractionDigits = precision
-        
-        return formatter.string(from: NSNumber(value: value))! + " " + unit
+        return if let unit {
+            "\(value.toString(precision: precision)) \(unit)"
+        } else {
+            value.toString(precision: precision)
+        }
     }
     
     fileprivate func getPrecision(_ value: Double, precision: ChannelValuePrecision) -> Int {

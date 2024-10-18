@@ -19,24 +19,15 @@
 final class ThermometerValueFormatter: ChannelValueFormatter {
     @Singleton<GlobalSettings> private var settings
     
-    private lazy var formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 1
-        formatter.minimumFractionDigits = 1
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
     func handle(function: Int) -> Bool {
         function == SUPLA_CHANNELFNC_THERMOMETER
     }
     
     func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double,
-           doubleValue > ThermometerValueProviderImpl.UNKNOWN_VALUE,
-           let stringValue = formatter.string(from: NSNumber(value: convert(doubleValue)))
+           doubleValue > ThermometerValueProviderImpl.UNKNOWN_VALUE
         {
+            let stringValue = convert(doubleValue).toString(precision: 1)
             return withUnit ? "\(stringValue) \(settings.temperatureUnit.symbol)" : "\(stringValue)°"
         } else {
             return NO_VALUE_TEXT

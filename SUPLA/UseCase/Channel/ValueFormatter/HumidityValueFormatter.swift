@@ -28,9 +28,9 @@ final class HumidityValueFormatter: ChannelValueFormatter {
             let precision = getPrecision(precision)
             
             return if (withUnit) {
-                String(format: "%.\(precision)f%%", doubleValue)
+                "\(doubleValue.toString(precision: precision))%"
             } else {
-                String(format: "%.\(precision)f", doubleValue)
+                doubleValue.toString(precision: precision)
             }
         } else {
             return NO_VALUE_TEXT

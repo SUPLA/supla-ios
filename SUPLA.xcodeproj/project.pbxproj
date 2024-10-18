@@ -755,6 +755,7 @@
 		A598CAC72CC24EC400A784FA /* ImpulseCounterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAC62CC24EC300A784FA /* ImpulseCounterValueStringProvider.swift */; };
 		A598CAC92CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAC82CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift */; };
 		A598CACB2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */; };
+		A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACC2CC2997900A784FA /* DoubleFormatter.swift */; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -2233,6 +2234,7 @@
 		A598CAC62CC24EC300A784FA /* ImpulseCounterValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterValueStringProvider.swift; sourceTree = "<group>"; };
 		A598CAC82CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithImpulseCounterValueProvider.swift; sourceTree = "<group>"; };
 		A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithImpulseCounterValueStringProvider.swift; sourceTree = "<group>"; };
+		A598CACC2CC2997900A784FA /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVMTests.swift; sourceTree = "<group>"; };
 		A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -5643,6 +5645,7 @@
 		A5E4904E2A3C7987006801FE /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				A598CACC2CC2997900A784FA /* DoubleFormatter.swift */,
 				A5A1C0A729F2AAFA0083818D /* VibrationService.swift */,
 				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
 				A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */,
@@ -6591,6 +6594,7 @@
 				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
 				A57668F32AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift in Sources */,
 				A584E2052CAB390700232A98 /* ElectricityMeterValueFormatter.swift in Sources */,
+				A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
 				A5B3CBF12B625DBA00F95AC3 /* PressureValueProvider.swift in Sources */,
 				018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */,

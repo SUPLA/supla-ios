@@ -15,11 +15,10 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
 struct ElectricityMeterGeneralBaseView: View {
-    
     @Binding var online: Bool
     @Binding var totalForwardActiveEnergy: EnergyData?
     @Binding var totalReverseActiveEnergy: EnergyData?
@@ -30,7 +29,7 @@ struct ElectricityMeterGeneralBaseView: View {
     @Binding var phaseMeasurementValues: [PhaseWithMeasurements]
     @Binding var vectorBalancedValues: [SuplaElectricityMeasurementType: String]?
     @State private var space: CGFloat? = nil
-    
+
     var body: some View {
         BackgroundStack {
             let label = Strings.ElectricityMeter.forwardActiveEnergy
@@ -56,7 +55,7 @@ struct ElectricityMeterGeneralBaseView: View {
                                 values: phaseMeasurementValues,
                                 parentWidth: gp.size.width
                             )
-                            
+
                             VectorBalancedValuesView(
                                 vectorValues: vectorBalancedValues,
                                 parentWidth: gp.size.width
@@ -85,27 +84,33 @@ private struct PhasesView: View {
     var parentWidth: CGFloat
 
     @State private var horizontalSpace: CGFloat? = nil
+    @State private var highlightedType: SuplaElectricityMeasurementType? = nil
 
     var body: some View {
         ScrollView(.horizontal) {
             HStack(alignment: .top, spacing: 0) {
                 PhaseDataLabelsView(
                     types: types,
-                    showHeader: values.count > 1
+                    showHeader: values.count > 1,
+                    onItemSelected: { highlightedType = $0 },
+                    selectedType: $highlightedType
                 )
                 if let horizontalSpace = horizontalSpace {
                     PhaseDataSpaceView(
                         width: horizontalSpace,
                         types: types,
-                        showHeader: values.count > 1
+                        showHeader: values.count > 1,
+                        onItemSelected: { highlightedType = $0 },
+                        selectedType: $highlightedType
                     )
                 }
                 PhaseDataValuesView(
                     types: types,
-                    values: values
+                    values: values,
+                    onItemSelected: { highlightedType = $0 },
+                    selectedType: $highlightedType
                 )
             }
-            .padding([.leading, .trailing], Dimens.distanceDefault)
             .frame(maxWidth: .infinity)
             .background(GeometryReader {
                 Color.clear.preference(
@@ -184,14 +189,24 @@ private struct PhaseDataLabelsView: View {
     let types: [SuplaElectricityMeasurementType]
     let showHeader: Bool
     let showLabel: Bool
-    
+    let onItemSelected: ((SuplaElectricityMeasurementType) -> Void)?
+    var selectedType: Binding<SuplaElectricityMeasurementType?>
+
     private let showEnergyLabelForType: SuplaElectricityMeasurementType?
-    
-    init(types: [SuplaElectricityMeasurementType], showHeader: Bool = true, showLabel: Bool = true) {
+
+    init(
+        types: [SuplaElectricityMeasurementType],
+        showHeader: Bool = true,
+        showLabel: Bool = true,
+        onItemSelected: ((SuplaElectricityMeasurementType) -> Void)? = nil,
+        selectedType: Binding<SuplaElectricityMeasurementType?> = .constant(nil)
+    ) {
         self.types = types
         self.showHeader = showHeader
         self.showLabel = showLabel
         self.showEnergyLabelForType = showLabel.ifTrue { types.first(where: \.showEnergyLabel) }
+        self.onItemSelected = onItemSelected
+        self.selectedType = selectedType
     }
 
     var body: some View {
@@ -200,35 +215,38 @@ private struct PhaseDataLabelsView: View {
                 Text.BodyMedium(text: " ")
                     .padding([.top, .bottom], Distance.emList)
             }
-            
-            ForEach(types) {
-                if ($0 == showEnergyLabelForType) {
+
+            ForEach(types) { type in
+                if (type == showEnergyLabelForType) {
                     EnergyLabelView(text: Strings.ElectricityMeter.energyLabel)
                 }
-                
-                Text.BodyMedium(text: $0.shortString)
-                    .padding([.top, .bottom], Distance.emList)
 
-                if ($0 != types.last) {
-                    SuplaCore.Divider().color(Color.Supla.outline)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text.BodyMedium(text: type.shortString)
+                        .padding([.top, .bottom], Distance.emList)
+                        .padding([.leading], Distance.standard)
+
+                    SuplaCore.Divider().color(type != types.last ? Color.Supla.outline : Color.clear)
                 }
+                .background(selectedType.wrappedValue == type ? Color.Supla.outline : Color.clear)
+                .onTapGesture { onItemSelected?(type) }
             }
         }
     }
 }
 
 private struct EnergyLabelView: View {
-    
     let text: String
-    
+
     init(text: String = " ") {
         self.text = text
     }
-    
+
     var body: some View {
         Text.LabelMedium(text: text)
             .padding([.top], Distance.small)
             .padding([.bottom], Distance.emList)
+            .padding([.leading], Distance.standard)
     }
 }
 
@@ -237,16 +255,26 @@ private struct PhaseDataSpaceView: View {
     let types: [SuplaElectricityMeasurementType]
     let showHeader: Bool
     let showLabel: Bool
-    
+    let onItemSelected: ((SuplaElectricityMeasurementType) -> Void)?
+    var selectedType: Binding<SuplaElectricityMeasurementType?>
+
     private let showEnergyLabelForType: SuplaElectricityMeasurementType?
-    
-    init(width: CGFloat, types: [SuplaElectricityMeasurementType], showHeader: Bool = true, showLabel: Bool = true) {
+
+    init(
+        width: CGFloat,
+        types: [SuplaElectricityMeasurementType],
+        showHeader: Bool = true,
+        showLabel: Bool = true,
+        onItemSelected: ((SuplaElectricityMeasurementType) -> Void)? = nil,
+        selectedType: Binding<SuplaElectricityMeasurementType?> = .constant(nil)
+    ) {
         self.width = width
         self.types = types
         self.showHeader = showHeader
         self.showLabel = showLabel
-        
-        
+        self.onItemSelected = onItemSelected
+        self.selectedType = selectedType
+
         self.showEnergyLabelForType = showLabel.ifTrue { types.first(where: \.showEnergyLabel) }
     }
 
@@ -260,13 +288,15 @@ private struct PhaseDataSpaceView: View {
                 if (types[idx] == showEnergyLabelForType) {
                     EnergyLabelView()
                 }
-                
-                Text.BodyMedium(text: " ")
-                    .padding([.top, .bottom], Distance.emList)
 
-                if (idx < types.count - 1) {
-                    SuplaCore.Divider().color(Color.Supla.outline)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text.BodyMedium(text: " ")
+                        .padding([.top, .bottom], Distance.emList)
+
+                    SuplaCore.Divider().color(idx < types.count - 1 ? Color.Supla.outline : Color.clear)
                 }
+                .background(selectedType.wrappedValue == types[idx] ? Color.Supla.outline : Color.clear)
+                .onTapGesture { onItemSelected?(types[idx]) }
             }
         }.frame(width: width)
     }
@@ -275,18 +305,30 @@ private struct PhaseDataSpaceView: View {
 private struct PhaseDataValuesView: View {
     let types: [SuplaElectricityMeasurementType]
     let values: [PhaseWithMeasurements]
-    
-    init(types: [SuplaElectricityMeasurementType], values: [PhaseWithMeasurements]) {
+    let onItemSelected: ((SuplaElectricityMeasurementType) -> Void)?
+    var selectedType: Binding<SuplaElectricityMeasurementType?>
+
+    init(
+        types: [SuplaElectricityMeasurementType],
+        values: [PhaseWithMeasurements],
+        onItemSelected: ((SuplaElectricityMeasurementType) -> Void)? = nil,
+        selectedType: Binding<SuplaElectricityMeasurementType?> = .constant(nil)
+    ) {
         self.types = types
         self.values = values
+        self.onItemSelected = onItemSelected
+        self.selectedType = selectedType
     }
 
     var body: some View {
-        ForEach(values) { phase in
+        ForEach(0 ..< values.count, id: \.self) { idx in
             SinglePhaseDataValuesView(
-                header: (values.count > 1).ifTrue { phase.phase },
+                header: (values.count > 1).ifTrue { values[idx].phase },
                 types: types,
-                values: phase.values
+                values: values[idx].values,
+                isLast: idx == values.count - 1,
+                onItemSelected: onItemSelected,
+                selectedType: selectedType
             )
         }
     }
@@ -297,27 +339,36 @@ private struct SinglePhaseDataValuesView: View {
     let types: [SuplaElectricityMeasurementType]
     let values: [SuplaElectricityMeasurementType: String]
     let showLabel: Bool
+    let isLast: Bool
+    let onItemSelected: ((SuplaElectricityMeasurementType) -> Void)?
+    var selectedType: Binding<SuplaElectricityMeasurementType?>
     let valueMaxWidth: CGFloat
-    
+
     private let showEnergyLabelForType: SuplaElectricityMeasurementType?
-    
+
     init(
         header: String?,
         types: [SuplaElectricityMeasurementType],
         values: [SuplaElectricityMeasurementType: String],
-        showLabel: Bool = true
+        showLabel: Bool = true,
+        isLast: Bool = true,
+        onItemSelected: ((SuplaElectricityMeasurementType) -> Void)? = nil,
+        selectedType: Binding<SuplaElectricityMeasurementType?> = .constant(nil)
     ) {
         self.header = header
         self.types = types
         self.values = values
         self.showLabel = showLabel
+        self.isLast = isLast
+        self.onItemSelected = onItemSelected
+        self.selectedType = selectedType
 
         let attributes = [NSAttributedString.Key.font: UIFont.body2]
-        valueMaxWidth = values.values.reduce(0.0) { result, item in
+        self.valueMaxWidth = values.values.reduce(0.0) { result, item in
             let size = item.size(withAttributes: attributes).width
             return size > result ? size : result
         } + Distance.tiny
-        
+
         self.showEnergyLabelForType = showLabel.ifTrue { types.first(where: \.showEnergyLabel) }
     }
 
@@ -334,16 +385,18 @@ private struct SinglePhaseDataValuesView: View {
                         if (type == showEnergyLabelForType) {
                             EnergyLabelView()
                         }
-                        
-                        Text.BodyMedium(text: values[type] ?? NO_VALUE_TEXT)
-                            .lineLimit(1)
-                            .frame(width: valueMaxWidth, alignment: .trailing)
-                            .padding([.top, .bottom], Distance.emList)
-                        if (type != types.last) {
+
+                        VStack(alignment: .trailing, spacing: 0) {
+                            Text.BodyMedium(text: values[type] ?? NO_VALUE_TEXT)
+                                .lineLimit(1)
+                                .frame(width: valueMaxWidth, alignment: .trailing)
+                                .padding([.top, .bottom], Distance.emList)
                             SuplaCore.Divider()
-                                .color(Color.Supla.outline)
+                                .color(type != types.last ? Color.Supla.outline : Color.clear)
                                 .frame(width: valueMaxWidth, height: 1)
                         }
+                        .background(selectedType.wrappedValue == type ? Color.Supla.outline : Color.clear)
+                        .onTapGesture { onItemSelected?(type) }
                     }
                 }
                 VStack(alignment: .leading, spacing: 0) {
@@ -351,17 +404,20 @@ private struct SinglePhaseDataValuesView: View {
                         if (type == showEnergyLabelForType) {
                             EnergyLabelView()
                         }
-                        
-                        Text.BodyMedium(text: values[type] == nil ? " " : type.unit)
-                            .textColor(Color.Supla.onSurfaceVariant)
-                            .lineLimit(1)
-                            .fixedSize(horizontal: true, vertical: true)
-                            .padding([.top, .bottom], Distance.emList)
-                            .padding([.leading], 4)
-                            .padding([.trailing], Distance.tiny)
-                        if (type != types.last) {
-                            SuplaCore.Divider().color(Color.Supla.outline)
+
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text.BodyMedium(text: values[type] == nil ? " " : type.unit)
+                                .textColor(Color.Supla.onSurfaceVariant)
+                                .lineLimit(1)
+                                .fixedSize(horizontal: true, vertical: true)
+                                .padding([.top, .bottom], Distance.emList)
+                                .padding([.leading], 4)
+                                .padding([.trailing], isLast ? Distance.standard : Distance.tiny)
+
+                            SuplaCore.Divider().color(type != types.last ? Color.Supla.outline : Color.clear)
                         }
+                        .background(selectedType.wrappedValue == type ? Color.Supla.outline : Color.clear)
+                        .onTapGesture { onItemSelected?(type) }
                     }
                 }
             }
