@@ -40,7 +40,9 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         WeigthValueStringProvider(),
         WindValueStringProvider(),
         ElectricityMeterValueStringProvider(),
-        SwitchWithElectricityMeterValueStringProvider()
+        SwitchWithElectricityMeterValueStringProvider(),
+        ImpulseCounterValueStringProvider(),
+        SwitchWithImpulseCounterValueStringProvider()
     ]
     
     func invoke(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String {

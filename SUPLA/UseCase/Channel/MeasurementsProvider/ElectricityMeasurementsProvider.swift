@@ -195,7 +195,11 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
                         let forwarded = group.value.map { $0.phase1_fae + $0.phase2_fae + $0.phase3_fae }.sum { $0 }
                         let reversed = group.value.map { $0.phase1_rae + $0.phase2_rae + $0.phase3_rae }.sum { $0 }
                         
-                        return BalancedValue(item: group.value.head!.value, forwarded, reversed)
+                        return BalancedValue(
+                            item: group.value.head!.value,
+                            forwarded > reversed ? forwarded - reversed : 0,
+                            reversed > forwarded ? reversed - forwarded : 0
+                        )
                     }
                 
                 return [

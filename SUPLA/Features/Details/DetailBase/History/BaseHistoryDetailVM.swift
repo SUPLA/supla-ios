@@ -548,8 +548,9 @@ struct BaseHistoryDetailViewState: ViewState {
             
         case .lastWeek, .lastMonth: dayAndHourString(formatter, dateRange)
             
-        case .week, .month, .lastQuarter, .quarter: dateString(formatter, dateRange)
+        case .week, .lastQuarter, .quarter: dateString(formatter, dateRange)
             
+        case .month: formatter.getMonthAndYearString(date: dateRange.start)?.capitalized
         case .year: formatter.getYearString(date: dateRange.start)
         case .custom, .allHistory: longDateString(formatter, dateRange)
         }

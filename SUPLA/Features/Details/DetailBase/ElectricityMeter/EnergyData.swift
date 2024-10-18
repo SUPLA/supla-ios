@@ -32,6 +32,7 @@ struct EnergyData: Equatable {
             priceFormatter.decimalSeparator = Locale.current.decimalSeparator
             priceFormatter.maximumFractionDigits = 2
             priceFormatter.minimumFractionDigits = 2
+            priceFormatter.usesGroupingSeparator = true
             
             return if let price = priceFormatter.string(from: NSNumber(value: energy * $0)) {
                 "\(price) \(currency)"

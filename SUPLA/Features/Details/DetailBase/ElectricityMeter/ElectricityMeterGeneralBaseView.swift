@@ -50,16 +50,28 @@ struct ElectricityMeterGeneralBaseView: View {
                             loading: $currentMonthDownloading
                         )
 
-                        PhasesView(
-                            types: phaseMeasurementTypes,
-                            values: phaseMeasurementValues,
-                            parentWidth: gp.size.width
-                        )
-
-                        VectorBalancedValuesView(
-                            vectorValues: vectorBalancedValues,
-                            parentWidth: gp.size.width
-                        )
+                        if (online) {
+                            PhasesView(
+                                types: phaseMeasurementTypes,
+                                values: phaseMeasurementValues,
+                                parentWidth: gp.size.width
+                            )
+                            
+                            VectorBalancedValuesView(
+                                vectorValues: vectorBalancedValues,
+                                parentWidth: gp.size.width
+                            )
+                        } else {
+                            HStack {
+                                Spacer()
+                                Image(.Icons.powerOff)
+                                    .foregroundColor(Color.Supla.onSurfaceVariant)
+                                Text.BodyMedium(text: Strings.General.channelOffline)
+                                    .textColor(Color.Supla.onSurfaceVariant)
+                                Spacer()
+                            }
+                            .padding(Distance.standard)
+                        }
                     }
                 }
             }
@@ -191,7 +203,7 @@ private struct PhaseDataLabelsView: View {
             
             ForEach(types) {
                 if ($0 == showEnergyLabelForType) {
-                    EnergyLabelView(text: "Energy")
+                    EnergyLabelView(text: Strings.ElectricityMeter.energyLabel)
                 }
                 
                 Text.BodyMedium(text: $0.shortString)
@@ -355,4 +367,91 @@ private struct SinglePhaseDataValuesView: View {
             }
         }
     }
+}
+
+#Preview("One phases") {
+    ElectricityMeterGeneralBaseView(
+        online: .constant(true),
+        totalForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
+        totalReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        currentMonthDownloading: .constant(false),
+        currentMonthForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
+        currentMonthReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
+        phaseMeasurementValues: .constant(
+            [
+                .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
+                    .frequency: "50.00",
+                    .voltage: "220.00",
+                    .current: "10.00",
+                    .powerApparent: "100.00",
+                    .reverseReactiveEnergy: "100.00"
+                ])
+            ]
+        ),
+        vectorBalancedValues: .constant(nil)
+    )
+}
+
+#Preview("Three phases") {
+    ElectricityMeterGeneralBaseView(
+        online: .constant(true),
+        totalForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
+        totalReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        currentMonthDownloading: .constant(false),
+        currentMonthForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
+        currentMonthReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
+        phaseMeasurementValues: .constant([
+            .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
+                .frequency: "50.00",
+                .voltage: "220.00",
+                .current: "10.00",
+                .powerApparent: "100.00",
+                .reverseReactiveEnergy: "2066.96312"
+            ]),
+            .init(id: 2, phase: Strings.ElectricityMeter.phase2, values: [
+                .frequency: "50.00",
+                .voltage: "220.00",
+                .current: "10.00",
+                .powerApparent: "100.00",
+                .reverseReactiveEnergy: "100.00"
+            ]),
+            .init(id: 3, phase: Strings.ElectricityMeter.phase3, values: [
+                .frequency: "50.00",
+                .voltage: "220.00",
+                .current: "10.00",
+                .powerApparent: "100.00",
+                .reverseReactiveEnergy: "2066.96312"
+            ])
+        ]),
+        vectorBalancedValues: .constant([
+            .forwardActiveEnergy: "4273",
+            .reverseActiveEnergy: "5715"
+        ])
+    )
+}
+
+#Preview("Offline") {
+    ElectricityMeterGeneralBaseView(
+        online: .constant(false),
+        totalForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
+        totalReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        currentMonthDownloading: .constant(false),
+        currentMonthForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
+        currentMonthReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
+        phaseMeasurementValues: .constant(
+            [
+                .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
+                    .frequency: "50.00",
+                    .voltage: "220.00",
+                    .current: "10.00",
+                    .powerApparent: "100.00",
+                    .reverseReactiveEnergy: "100.00"
+                ])
+            ]
+        ),
+        vectorBalancedValues: .constant(nil)
+    )
 }

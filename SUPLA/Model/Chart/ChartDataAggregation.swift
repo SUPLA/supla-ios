@@ -48,7 +48,7 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
             case .hours: Strings.Charts.hours
             case .days: Strings.Charts.days
             case .months: Strings.Charts.months
-            case .years: Strings.Charts.year
+            case .years: Strings.Charts.years
             }
         }
     }

@@ -27,7 +27,6 @@ extension GetChannelValueUseCase {
 }
 
 final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
-    
     @Singleton<DepthValueProvider> private var depthValueProvider
     @Singleton<DistanceValueProvider> private var distanceValueProvider
     @Singleton<GpmValueProvider> private var gpmValueProvider
@@ -40,31 +39,33 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
     @Singleton<WindValueProvider> private var windValueProvider
     @Singleton<ElectricityMeterValueProvider> private var electricityMeterValueProvider
     @Singleton<SwitchWithElectricityMeterValueProvider> private var switchWithElectricityMeterValueProvider
-    
-    private lazy var providers: [ChannelValueProvider] = {
-        [
-            depthValueProvider,
-            distanceValueProvider,
-            gpmValueProvider,
-            humidityValueProvider,
-            pressureValueProvider,
-            rainValueProvider,
-            thermometerAndHumidityValueProvider,
-            thermometerValueProvider,
-            weightValueProvider,
-            windValueProvider,
-            electricityMeterValueProvider,
-            switchWithElectricityMeterValueProvider
-        ]
-    }()
-    
+    @Singleton<ImpulseCounterValueProvider> private var impulseCounterValueProvider
+    @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
+
+    private lazy var providers: [ChannelValueProvider] = [
+        depthValueProvider,
+        distanceValueProvider,
+        gpmValueProvider,
+        humidityValueProvider,
+        pressureValueProvider,
+        rainValueProvider,
+        thermometerAndHumidityValueProvider,
+        thermometerValueProvider,
+        weightValueProvider,
+        windValueProvider,
+        electricityMeterValueProvider,
+        switchWithElectricityMeterValueProvider,
+        impulseCounterValueProvider,
+        switchWithImpulseCounterValueProvider
+    ]
+
     func invoke<T>(_ channel: SAChannel, valueType: ValueType = .first) -> T {
         for provider in providers {
             if (provider.handle(channel)) {
                 return provider.value(channel, valueType: valueType) as! T
             }
         }
-        
+
         fatalError("No value provider for channel function `\(channel.func)`")
     }
 }
@@ -75,6 +76,6 @@ enum ValueType {
 
 protocol ChannelValueProvider {
     func handle(_ channel: SAChannel) -> Bool
-    
+
     func value(_ channel: SAChannel, valueType: ValueType) -> Any
 }
