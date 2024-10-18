@@ -15,7 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
 protocol PickerItem: Hashable, Identifiable {
@@ -24,16 +24,17 @@ protocol PickerItem: Hashable, Identifiable {
 
 extension SuplaCore {
     struct Picker<T: PickerItem>: View {
-        
         var selected: Binding<T>
         let items: [T]
-        
+
         var body: some View {
             if #available(iOS 14.0, *) {
                 Menu {
                     SwiftUI.Picker(selection: selected) {
                         ForEach(items) { item in
                             Text.BodyMedium(text: item.label).tag(item)
+                                .padding([.top, .bottom], 4)
+                                .padding([.leading, .trailing], Distance.standard)
                         }
                     } label: {}
                 } label: {
@@ -43,18 +44,19 @@ extension SuplaCore {
                             .resizable()
                             .frame(width: 16, height: 16)
                     }
+                    .padding([.top, .bottom], 4)
+                    .padding([.leading, .trailing], Distance.standard)
                 }
                 .accentColor(Color.Supla.onBackground)
-                .padding([.leading, .trailing], Distance.standard)
-                .padding(.top, 4)
             } else {
                 SwiftUI.Picker("", selection: selected) {
                     ForEach(items) { item in
                         Text.BodyMedium(text: item.label).tag(item)
+                            .padding([.top, .bottom], 4)
+                            .padding([.leading, .trailing], 11)
                     }
                 }
                 .accentColor(Color.Supla.onBackground)
-                .padding([.leading, .trailing], 11)
                 .padding(.top, 4)
             }
         }

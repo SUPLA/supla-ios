@@ -44,7 +44,7 @@ extension ElectricityMeterSettingsFeature {
 
         func onBalanceValueChange(_ item: ElectricityMeterBalanceType?) {
             guard let item else { return }
-            
+
             let settings = userStateHolder.getElectricityMeterSettings(profileId: state.profileId, remoteId: state.remoteId)
             userStateHolder.setElectricityMeterSettings(settings.copy(balancing: item), profileId: state.profileId, remoteId: state.remoteId)
 
@@ -52,7 +52,13 @@ extension ElectricityMeterSettingsFeature {
         }
 
         private func handleChannel(_ channel: SAChannel) {
-            guard let measuredValues = channel.ev?.electricityMeter().suplaElectricityMeterMeasuredTypes else { return }
+            let measuredValues: [SuplaElectricityMeasurementType] =
+                if let types = channel.ev?.electricityMeter().suplaElectricityMeterMeasuredTypes {
+                    types
+                } else {
+                    []
+                }
+
             let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.idString, remoteId: channel.remote_id)
             let phases = channel.phases
 

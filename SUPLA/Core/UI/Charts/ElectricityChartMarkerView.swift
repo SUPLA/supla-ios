@@ -111,15 +111,24 @@ struct RowData {
     }
     
     private func updateContainerSize() {
-        var width = Distance.tiny + title.intrinsicContentSize.width + Distance.tiny
+        let titleWidth = Distance.tiny + title.intrinsicContentSize.width + Distance.tiny
         var height = Distance.tiny + title.intrinsicContentSize.height
         
+        var imageWidth: CGFloat = 0
+        var labelWidth: CGFloat = 0
+        var valueWidth: CGFloat = 0
+        var priceWidth: CGFloat = 0
+        
         for row in rows {
-            width = max(width, row.width)
+            imageWidth = max(imageWidth, row.imageView.image == nil ? Row.DOT_SIZE : Row.ICON_SIZE)
+            labelWidth = max(labelWidth, row.labelView.intrinsicContentSize.width)
+            valueWidth = max(valueWidth, row.valueView.intrinsicContentSize.width)
+            priceWidth = max(priceWidth, row.priceView.intrinsicContentSize.width)
             height += row.valueView.intrinsicContentSize.height + Row.CELL_DISTANCE
         }
+        let tableWidth = Distance.tiny + imageWidth + labelWidth + valueWidth + priceWidth + Row.CELL_DISTANCE * 3 + Distance.tiny
         
-        frame.size.width = width
+        frame.size.width = max(titleWidth, tableWidth)
         frame.size.height = height + Row.CELL_DISTANCE
     }
     
@@ -246,22 +255,6 @@ private class Row {
     static let CELL_DISTANCE: CGFloat = Distance.tiny / 2
     static let DOT_SIZE: CGFloat = 8
     static let ICON_SIZE: CGFloat = 18
-    
-    var width: CGFloat {
-        var width: CGFloat = Distance.tiny
-        if (!imageView.isHidden) {
-            width += (imageView.image == nil ? Row.DOT_SIZE : Row.ICON_SIZE) + Row.CELL_DISTANCE
-        }
-        if (!labelView.isHidden) {
-            width += labelView.intrinsicContentSize.width + Row.CELL_DISTANCE
-        }
-        width += valueView.intrinsicContentSize.width + Row.CELL_DISTANCE
-        if (!priceView.isHidden) {
-            width += priceView.intrinsicContentSize.width + Row.CELL_DISTANCE
-        }
-        
-        return width + Row.CELL_DISTANCE
-    }
     
     fileprivate lazy var imageView: UIImageView = {
         let view = UIImageView()

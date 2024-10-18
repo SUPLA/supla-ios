@@ -340,6 +340,7 @@
 "channel_caption_garage_door" = "Brama garażowa";
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
+"channel_offline" = "Kanał jest offline";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -578,5 +579,6 @@
 "details_em_total_suffix" = "(stan licznika)";
 "details_em_current_month_suffix" = "(bieżący miesiąc)";
 "details_em_last_month_balancing" = "Bilansowanie bieżącego miesiąca";
+"details_em_energy_label" = "Energia";
 "em_phase_to_phase_balance" = "Bilans międzyfazowy wektorowy";
 "em_chart_all_phases" = "Fazy 1+2+3";

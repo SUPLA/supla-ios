@@ -79,10 +79,10 @@ struct iOSCheckboxToggleStyle: ToggleStyle {
         }, label: {
             HStack {
                 if let color = color {
-                    Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+                    Image(configuration.isOn ? .Icons.checkboxChecked : .Icons.checkboxEmpty)
                         .accentColor(Color(color))
                 } else {
-                    Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+                    Image(configuration.isOn ? .Icons.checkboxChecked : .Icons.checkboxEmpty)
                 }
                 configuration.label
                     .accentColor(Color.Supla.onBackground)

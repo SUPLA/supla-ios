@@ -69,6 +69,8 @@ class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
     init() {
         formatter = NumberFormatter()
         formatter.decimalSeparator = Locale.current.decimalSeparator
+        formatter.groupingSeparator = Locale.current.groupingSeparator
+        formatter.usesGroupingSeparator = true
     }
     
     func handle(function: Int) -> Bool {

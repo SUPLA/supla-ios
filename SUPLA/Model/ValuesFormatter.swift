@@ -191,7 +191,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
     }
     
     func getMonthAndYearString(date: Date?) -> String? {
-        formattedDate(date: date, format: "yyyy MMM")
+        formattedDate(date: date, format: "LLLL yyyy")
     }
     
     func getYearString(date: Date?) -> String? {

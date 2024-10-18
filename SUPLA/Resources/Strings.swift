@@ -306,6 +306,8 @@ struct Strings {
         static let time_just_minutes = "time_just_mintes".toLocalized()
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
         
+        static let channelOffline = "channel_offline".toLocalized()
+        
         struct Channel {
             static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
             static let captionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
@@ -446,6 +448,7 @@ struct Strings {
         static let lastMonthBalancing = "details_em_last_month_balancing".toLocalized()
         static let phaseToPhaseBalance = "em_phase_to_phase_balance".toLocalized()
         static let allPhases = "em_chart_all_phases".toLocalized()
+        static let energyLabel = "details_em_energy_label".toLocalized()
     }
 }
 

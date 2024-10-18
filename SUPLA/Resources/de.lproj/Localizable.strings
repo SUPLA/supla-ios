@@ -315,6 +315,7 @@
 "channel_caption_garage_door" = "Garagentor";
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
+"channel_offline" = "Das Kanal ist offline";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -545,5 +546,6 @@
 "details_em_settings_title" = "Einstellungen - %@";
 "details_em_total_suffix" = "(Zählerstand)";
 "details_em_current_month_suffix" = "(aktueller Monat)";
+"details_em_energy_label" = "Energie";
 "em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
 "em_chart_all_phases" = "Phase 1+2+3";

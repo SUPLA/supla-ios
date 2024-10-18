@@ -73,6 +73,7 @@
 "channel_caption_garage_door" = "Garage door";
 "channel_caption_pump_switch" = "Pump sitch";
 "channel_caption_heat_or_cold_source_switch" = "Heat or cold source switch";
+"channel_offline" = "Channel is offline";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -323,5 +324,6 @@
 "details_em_total_suffix" = "(meter reading)";
 "details_em_current_month_suffix" = "(current month)";
 "details_em_last_month_balancing" = "Type of balance for current month";
+"details_em_energy_label" = "Energy";
 "em_phase_to_phase_balance" = "Vector phase-to-phase balancing";
 "em_chart_all_phases" = "Phase 1+2+3";

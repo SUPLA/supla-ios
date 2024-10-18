@@ -25,56 +25,58 @@ struct EnergySummaryBox: View {
     @Binding var loading: Bool
     
     var body: some View {
-        ZStack {
-            VStack {
-                let showLabel = forwardEnergy != nil && reverseEnergy != nil && label != nil
-                if (showLabel) {
-                    if let label = label {
-                        Text.BodyMedium(text: label)
-                            .textColor(Color.Supla.onSurfaceVariant)
-                            .padding(Dimens.distanceTiny)
+        if (forwardEnergy != nil || reverseEnergy != nil) {
+            ZStack {
+                VStack {
+                    let showLabel = forwardEnergy != nil && reverseEnergy != nil && label != nil
+                    if (showLabel) {
+                        if let label = label {
+                            Text.BodyMedium(text: label)
+                                .textColor(Color.Supla.onSurfaceVariant)
+                                .padding(Dimens.distanceTiny)
+                        }
                     }
-                }
-                HStack(alignment: .top, spacing: showLabel ? 1 : 0) {
-                    if let forwardEnergy = forwardEnergy,
-                       let reverseEnergy = reverseEnergy {
-                        EnergySummaryItemBox(
-                            iconName: .Icons.forwardEnergy,
-                            label: Strings.ElectricityMeter.forwardedEnergy,
-                            value: forwardEnergy.energy,
-                            price: forwardEnergy.price)
-                        
-                        EnergySummaryItemBox(
-                            iconName: .Icons.reversedEnergy,
-                            label: Strings.ElectricityMeter.reversedEnergy,
-                            value: reverseEnergy.energy,
-                            price: reverseEnergy.price)
-                    } else if let forwardEnergy = forwardEnergy {
-                        EnergySummarySingleItemBox(
-                            iconName: .Icons.forwardEnergy,
-                            label: label!,
-                            value: forwardEnergy.energy,
-                            price: forwardEnergy.price)
-                    } else if let reverseEnergy = reverseEnergy {
-                        EnergySummarySingleItemBox(
-                            iconName: .Icons.reversedEnergy,
-                            label: label!,
-                            value: reverseEnergy.energy,
-                            price: reverseEnergy.price)
+                    HStack(alignment: .top, spacing: showLabel ? 1 : 0) {
+                        if let forwardEnergy = forwardEnergy,
+                           let reverseEnergy = reverseEnergy {
+                            EnergySummaryItemBox(
+                                iconName: .Icons.forwardEnergy,
+                                label: Strings.ElectricityMeter.forwardedEnergy,
+                                value: forwardEnergy.energy,
+                                price: forwardEnergy.price)
+                            
+                            EnergySummaryItemBox(
+                                iconName: .Icons.reversedEnergy,
+                                label: Strings.ElectricityMeter.reversedEnergy,
+                                value: reverseEnergy.energy,
+                                price: reverseEnergy.price)
+                        } else if let forwardEnergy = forwardEnergy {
+                            EnergySummarySingleItemBox(
+                                iconName: .Icons.forwardEnergy,
+                                label: label!,
+                                value: forwardEnergy.energy,
+                                price: forwardEnergy.price)
+                        } else if let reverseEnergy = reverseEnergy {
+                            EnergySummarySingleItemBox(
+                                iconName: .Icons.reversedEnergy,
+                                label: label!,
+                                value: reverseEnergy.energy,
+                                price: reverseEnergy.price)
+                        }
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding([.top], 1)
+                    .background(Color.Supla.outline)
+                    .fixedSize(horizontal: false, vertical: true)
                 }
-                .frame(maxWidth: .infinity)
-                .padding([.top], 1)
-                .background(Color.Supla.outline)
-                .fixedSize(horizontal: false, vertical: true)
-            }
-            
-            if (loading) {
-                Color(UIColor.loadingScrim)
-                ActivityIndicator(isAnimating: $loading, style: .medium)
-            }
-            
-        }.suplaCard()
+                
+                if (loading) {
+                    Color(UIColor.loadingScrim)
+                    ActivityIndicator(isAnimating: $loading, style: .medium)
+                }
+                
+            }.suplaCard()
+        }
     }
 }
 

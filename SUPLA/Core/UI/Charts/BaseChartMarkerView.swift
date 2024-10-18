@@ -56,7 +56,7 @@ import Charts
         case .days:
             title.text = formatter.getFullDateString(date: details.date)?.substringIndexed(to: -5)
         case .months:
-            title.text = formatter.getMonthAndYearString(date: details.date)
+            title.text = formatter.getMonthAndYearString(date: details.date)?.capitalized
         case .years:
             title.text = formatter.getYearString(date: details.date)
         default:
