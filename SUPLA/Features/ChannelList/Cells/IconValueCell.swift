@@ -92,8 +92,8 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         
         caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
-        leftStatusIndicatorView.configure(filled: false, onlineState: channel.onlineState)
-        rightStatusIndicatorView.configure(filled: false, onlineState: channel.onlineState)
+        leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
+        rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         valueView.text = getChannelValueStringUseCase.invoke(channel)
@@ -102,36 +102,22 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     }
     
     override func leftButtonSettings() -> CellButtonSettings {
-        if (hasLeftButton()) {
-            return CellButtonSettings(visible: online(), title: Strings.General.turnOff)
+        if let title = getLeftButtonText(data?.channel.func) {
+            return CellButtonSettings(visible: online(), title: title)
         } else {
             return super.leftButtonSettings()
         }
     }
     
     override func rightButtonSettings() -> CellButtonSettings {
-        if (hasLeftButton()) {
-            return CellButtonSettings(visible: online(), title: Strings.General.turnOn)
+        if let title = getRightButtonText(data?.channel.func) {
+            return CellButtonSettings(visible: online(), title: title)
         } else {
             return super.rightButtonSettings()
         }
     }
     
-    private func hasLeftButton() -> Bool {
-        switch (data?.channel.func) {
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER: true
-        default: false
-        }
-    }
-    
-    private func hasRightButton() -> Bool {
-        switch (data?.channel.func) {
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER: true
-        default: false
-        }
+    override func timerEndDate() -> Date? {
+        data?.channel.getTimerEndDate()
     }
 }

@@ -75,8 +75,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         
         caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
-        leftStatusIndicatorView.configure(filled: hasLeftButton(), onlineState: channel.onlineState)
-        rightStatusIndicatorView.configure(filled: hasRightButton(), onlineState: channel.onlineState)
+        leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
+        rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         
@@ -84,46 +84,22 @@ final class IconCell: BaseCell<ChannelWithChildren> {
     }
     
     override func leftButtonSettings() -> CellButtonSettings {
-        if (hasLeftButton()) {
-            return CellButtonSettings(visible: online(), title: Strings.General.close)
+        if let title = getLeftButtonText(data?.channel.func) {
+            return CellButtonSettings(visible: online(), title: title)
         } else {
             return super.leftButtonSettings()
         }
     }
     
     override func rightButtonSettings() -> CellButtonSettings {
-        if (hasLeftButton()) {
-            return CellButtonSettings(visible: online(), title: Strings.General.open)
+        if let title = getRightButtonText(data?.channel.func) {
+            return CellButtonSettings(visible: online(), title: title)
         } else {
             return super.rightButtonSettings()
         }
     }
     
-    private func hasLeftButton() -> Bool {
-        switch (data?.channel.func) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: true
-        default: false
-        }
-    }
-    
-    private func hasRightButton() -> Bool {
-        switch (data?.channel.func) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: true
-        default: false
-        }
+    override func timerEndDate() -> Date? {
+        data?.channel.getTimerEndDate()
     }
 }

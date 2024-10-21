@@ -28,7 +28,11 @@ extension SAChannel {
     }
 
     func getTimerEndDate() -> Date? {
-        ev?.channelState().countdownEndsAt()
+        if let state = ev?.channelState() {
+            return state.countdownEndsAt()
+        } else {
+            return nil
+        }
     }
 
     @objc func isFacadeBlindClosed() -> Bool {
