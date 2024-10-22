@@ -16,11 +16,11 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import shared_core
+import SharedCore
 
 protocol GetChannelActionStringUseCase {
     func rightButton(function: SuplaChannelFunction) -> LocalizedString?
     func leftButton(function: SuplaChannelFunction) -> LocalizedString?
 }
 
-extension shared_core.GetChannelActionStringUseCase: GetChannelActionStringUseCase {}
+extension SharedCore.GetChannelActionStringUseCase: GetChannelActionStringUseCase {}

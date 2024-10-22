@@ -315,6 +315,8 @@
 		A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BF02BDA73250081B6B1 /* GroupTotalValue.swift */; };
 		A5074BF42BDA8D3D0081B6B1 /* GroupTotalValueTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BF32BDA8D3D0081B6B1 /* GroupTotalValueTest.swift */; };
 		A5074BF62BDC42F30081B6B1 /* GroupTotalValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BF52BDC42F30081B6B1 /* GroupTotalValueTransformer.swift */; };
+		A5085AE92CC84FF100ACA8C4 /* SharedCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; };
+		A5085AEA2CC84FF100ACA8C4 /* SharedCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A50B5CF92BE9FD4700918D18 /* UpdateChannelGroupTotalValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5CF82BE9FD4700918D18 /* UpdateChannelGroupTotalValueUseCaseTests.swift */; };
 		A50B5CFB2BEA144A00918D18 /* HeatpolThermostatValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5CFA2BEA144A00918D18 /* HeatpolThermostatValue.swift */; };
 		A50B5CFD2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5CFC2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift */; };
@@ -761,8 +763,6 @@
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
-		A598CADB2CC7BA5E00A784FA /* shared_core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A598CACE2CC6D63800A784FA /* shared_core.xcframework */; };
-		A598CADC2CC7BA5E00A784FA /* shared_core.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A598CACE2CC6D63800A784FA /* shared_core.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -1191,7 +1191,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A598CADC2CC7BA5E00A784FA /* shared_core.xcframework in Embed Frameworks */,
+				A5085AEA2CC84FF100ACA8C4 /* SharedCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1809,6 +1809,7 @@
 		A5074BF02BDA73250081B6B1 /* GroupTotalValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTotalValue.swift; sourceTree = "<group>"; };
 		A5074BF32BDA8D3D0081B6B1 /* GroupTotalValueTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTotalValueTest.swift; sourceTree = "<group>"; };
 		A5074BF52BDC42F30081B6B1 /* GroupTotalValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTotalValueTransformer.swift; sourceTree = "<group>"; };
+		A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SharedCore.xcframework; sourceTree = "<group>"; };
 		A50B5CF82BE9FD4700918D18 /* UpdateChannelGroupTotalValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChannelGroupTotalValueUseCaseTests.swift; sourceTree = "<group>"; };
 		A50B5CFA2BEA144A00918D18 /* HeatpolThermostatValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolThermostatValue.swift; sourceTree = "<group>"; };
 		A50B5CFC2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaHeatpolThermostatFlag.swift; sourceTree = "<group>"; };
@@ -2256,7 +2257,6 @@
 		A598CAC82CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithImpulseCounterValueProvider.swift; sourceTree = "<group>"; };
 		A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithImpulseCounterValueStringProvider.swift; sourceTree = "<group>"; };
 		A598CACC2CC2997900A784FA /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
-		A598CACE2CC6D63800A784FA /* shared_core.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = shared_core.xcframework; sourceTree = "<group>"; };
 		A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelActionStringUseCase.swift; sourceTree = "<group>"; };
 		A598CAD22CC6E5CE00A784FA /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
 		A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+SuplaChannelFunction.swift"; sourceTree = "<group>"; };
@@ -2749,9 +2749,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */,
-				A598CADB2CC7BA5E00A784FA /* shared_core.xcframework in Frameworks */,
 				40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */,
 				01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */,
+				A5085AE92CC84FF100ACA8C4 /* SharedCore.xcframework in Frameworks */,
 				01EF60E129BCA42A00F691A0 /* LibSsl.xcframework in Frameworks */,
 				407ECDC21DAFBB9600F01C7E /* AudioToolbox.framework in Frameworks */,
 				01EF60E829BCA7FA00F691A0 /* LibSuplaClient.xcframework in Frameworks */,
@@ -3249,7 +3249,7 @@
 		407ECDC01DAFBB9600F01C7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A598CACE2CC6D63800A784FA /* shared_core.xcframework */,
+				A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */,
 				A50CD3D02A4D78610012DD9B /* libc++abi.tbd */,
 				01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */,
 				01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */,
