@@ -25,7 +25,7 @@ class SuplaCombinedChartView: UIView {
     
     var combinedData: DGCharts.CombinedChartData? = nil
     
-    var data: ChartData? {
+    var data: CombinedChartData? {
         didSet {
             combinedData = data?.combinedData()
             if (combinedData == nil || data?.isEmpty == true) {
@@ -107,6 +107,12 @@ class SuplaCombinedChartView: UIView {
     }
     
     var channelFunction: Int32? = nil
+    
+    override var isHidden: Bool {
+        didSet {
+            combinedChart.isHidden = isHidden
+        }
+    }
     
     private lazy var combinedChart: DGCharts.CombinedChartView = {
         let view = DGCharts.CombinedChartView()

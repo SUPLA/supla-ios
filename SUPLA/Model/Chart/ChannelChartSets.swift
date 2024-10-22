@@ -61,7 +61,7 @@ struct ChannelChartSets: Equatable, Identifiable {
             function: function,
             name: name,
             aggregation: aggregation,
-            dataSets: [],
+            dataSets: dataSets.map { $0.changing(path: \.entries, to: []) },
             customData: customData,
             typeName: typeName
         )

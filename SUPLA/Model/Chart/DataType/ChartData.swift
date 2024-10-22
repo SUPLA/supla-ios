@@ -45,6 +45,12 @@ protocol CoordinatesConverter {
     func toCoordinate(x: Double) -> Double
 }
 
+class CombinedChartData: ChartData {
+    func combinedData() -> DGCharts.CombinedChartData? {
+        fatalError("combinedData() has not been implented!")
+    }
+}
+
 class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
     
     var divider: Double { 1.0 }
@@ -147,10 +153,6 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
     
     func toggleActive(remoteId: Int32, type: ChartEntryType) -> ChartData {
         newInstance(sets: sets.map { $0.remoteId == remoteId ? $0.toggleActive(type: type) : $0 })
-    }
-    
-    func combinedData() -> CombinedChartData? {
-        fatalError("combinedData() has not been implented!")
     }
     
     func fromCoordinate(x: Double) -> Double { x * divider }

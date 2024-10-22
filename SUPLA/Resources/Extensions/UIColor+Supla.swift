@@ -74,6 +74,31 @@ extension UIColor {
     static let chartValuePositive = UIColor(named: "Colors/value_positive")!
     static let chartValueNegative = UIColor(named: "Colors/value_negative")!
     
+    static let chartPie1 = UIColor(named: "Colors/pie_1")!
+    static let chartPie2 = UIColor(named: "Colors/pie_2")!
+    static let chartPie3 = UIColor(named: "Colors/pie_3")!
+    static let chartPie4 = UIColor(named: "Colors/pie_4")!
+    static let chartPie5 = UIColor(named: "Colors/pie_5")!
+    static let chartPie6 = UIColor(named: "Colors/pie_6")!
+    static let chartPie7 = UIColor(named: "Colors/pie_7")!
+    static let chartPie8 = UIColor(named: "Colors/pie_8")!
+    static let chartPie9 = UIColor(named: "Colors/pie_9")!
+    static let chartPie10 = UIColor(named: "Colors/pie_10")!
+    static let chartPie11 = UIColor(named: "Colors/pie_11")!
+    static let chartPie12 = UIColor(named: "Colors/pie_12")!
+    static let chartPie13 = UIColor(named: "Colors/pie_13")!
+    static let chartPie14 = UIColor(named: "Colors/pie_14")!
+    static let chartPie15 = UIColor(named: "Colors/pie_15")!
+    static let chartPie16 = UIColor(named: "Colors/pie_16")!
+    static let chartPie17 = UIColor(named: "Colors/pie_17")!
+    static let chartPie18 = UIColor(named: "Colors/pie_18")!
+    static let chartPie19 = UIColor(named: "Colors/pie_19")!
+    static let chartPie20 = UIColor(named: "Colors/pie_20")!
+    static let chartPie21 = UIColor(named: "Colors/pie_21")!
+    static let chartPie22 = UIColor(named: "Colors/pie_22")!
+    static let chartPie23 = UIColor(named: "Colors/pie_23")!
+    static let chartPie24 = UIColor(named: "Colors/pie_24")!
+    
     @objc static let separator = UIColor(named: "Colors/separator")!
     static let separatorLight = UIColor(named: "Colors/separator_light")!
     

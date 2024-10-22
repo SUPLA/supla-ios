@@ -16,13 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class EmptyChartData: ChartData {
+final class EmptyChartData: CombinedChartData {
     
     init() {
         super.init(nil, nil, nil, [])
     }
     
-    override func combinedData() -> CombinedChartData? { nil }
+    override func combinedData() -> DGCharts.CombinedChartData? { nil }
     
     override func newInstance(sets: [ChannelChartSets]) -> ChartData { EmptyChartData() }
 }

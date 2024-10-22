@@ -134,6 +134,9 @@ struct Strings {
         static let days = "Days".toLocalized()
         static let months = "Months".toLocalized()
         static let years = "Years".toLocalized()
+        static let rankOfHours = "Ranking of hours".toLocalized()
+        static let rankOfWeekdays = "Ranking of weekdays".toLocalized()
+        static let rankOfMonths = "Ranking of months".toLocalized()
         
         static let markerOpening = "chart_marker_opening".toLocalized()
         static let markerClosing = "chart_marker_closing".toLocalized()
@@ -453,6 +456,7 @@ struct Strings {
         static let phaseToPhaseBalance = "em_phase_to_phase_balance".toLocalized()
         static let allPhases = "em_chart_all_phases".toLocalized()
         static let energyLabel = "details_em_energy_label".toLocalized()
+        static let hourMarkerTitle = "details_em_hour_marker_title".toLocalized()
     }
 }
 

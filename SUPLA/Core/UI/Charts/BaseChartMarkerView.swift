@@ -59,6 +59,8 @@ import Charts
             title.text = formatter.getMonthAndYearString(date: details.date)?.capitalized
         case .years:
             title.text = formatter.getYearString(date: details.date)
+        case .rankHours, .rankWeekdays, .rankMonths:
+            title.text = details.aggregation.label(details.date.timeIntervalSince1970)
         default:
             title.text = formatter.getFullDateString(date: details.date)
         }
@@ -80,5 +82,18 @@ import Charts
             title.topAnchor.constraint(equalTo: topAnchor, constant: Dimens.distanceTiny),
             title.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny),
         ])
+    }
+}
+
+private extension ChartDataAggregation {
+    func label(_ value: TimeInterval) -> String {
+        let formatter = DateFormatter()
+        
+        return switch (self) {
+        case .rankHours: Strings.ElectricityMeter.hourMarkerTitle.arguments(String(format: "%.0f", value))
+        case .rankWeekdays: "\(formatter.weekdaySymbols[Int(value - 1)])".capitalized
+        case .rankMonths: "\(formatter.standaloneMonthSymbols[Int(value - 1)])".capitalized
+        default: ""
+        }
     }
 }

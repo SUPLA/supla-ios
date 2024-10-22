@@ -547,5 +547,6 @@
 "details_em_total_suffix" = "(Zählerstand)";
 "details_em_current_month_suffix" = "(aktueller Monat)";
 "details_em_energy_label" = "Energie";
+"details_em_hour_marker_title" = "%@ Uhr";
 "em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
 "em_chart_all_phases" = "Phase 1+2+3";

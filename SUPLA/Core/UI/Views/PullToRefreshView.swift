@@ -17,17 +17,18 @@
  */
 
 import Foundation
-import RxSwift
 import RxRelay
+import RxSwift
 
-fileprivate let MAX_SWIPE_DOWN: CGFloat = 100
-fileprivate let INITIAL_Y: CGFloat = -30
+private let MAX_SWIPE_DOWN: CGFloat = 100
+private let INITIAL_Y: CGFloat = -30
+
+protocol PullToRefreshHolder {
+    func shouldReceive(touch: UITouch) -> Bool
+}
 
 final class PullToRefreshView: UIActivityIndicatorView {
-    
-    var refreshObservable: Observable<Void> {
-        get { refreshRelay.asObservable() }
-    }
+    var refreshObservable: Observable<Void> { refreshRelay.asObservable() }
     
     var isRefreshing: Bool {
         get { refreshing }
@@ -48,12 +49,15 @@ final class PullToRefreshView: UIActivityIndicatorView {
     private var configured = false
     private var refreshing = false
     private let refreshRelay = PublishRelay<Void>()
+    private let holder: PullToRefreshHolder?
     
-    init() {
+    init(_ holder: PullToRefreshHolder? = nil) {
+        self.holder = holder
         super.init(frame: .zero)
         setupView()
     }
     
+    @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -65,7 +69,9 @@ final class PullToRefreshView: UIActivityIndicatorView {
         
         frame = CGRect(x: superview.center.x - 12, y: INITIAL_Y, width: 24, height: 24)
         if (!configured) {
-            superview.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPan)))
+            let recognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+            recognizer.delegate = self
+            superview.addGestureRecognizer(recognizer)
             configured = true
         }
     }
@@ -126,5 +132,15 @@ final class PullToRefreshView: UIActivityIndicatorView {
             }
         default: break
         }
+    }
+}
+
+extension PullToRefreshView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if let holder {
+            return holder.shouldReceive(touch: touch)
+        }
+        
+        return true
     }
 }

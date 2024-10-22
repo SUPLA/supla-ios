@@ -584,5 +584,6 @@
 "details_em_current_month_suffix" = "(bieżący miesiąc)";
 "details_em_last_month_balancing" = "Bilansowanie bieżącego miesiąca";
 "details_em_energy_label" = "Energia";
+"details_em_hour_marker_title" = "Godzina %@";
 "em_phase_to_phase_balance" = "Bilans międzyfazowy wektorowy";
 "em_chart_all_phases" = "Fazy 1+2+3";

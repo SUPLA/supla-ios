@@ -28,6 +28,10 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         ThermometerChartStyle()
     }
     
+    var aggregations: [ChartDataAggregation] {
+        ChartDataAggregation.defaultEntries
+    }
+    
     override func defaultViewState() -> BaseHistoryDetailViewState { BaseHistoryDetailViewState() }
     
     func triggerDataLoad(remoteId: Int32) {
@@ -305,7 +309,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         
         return SelectableList(
             selected: aggregation,
-            items: ChartDataAggregation.allCases.filter { $0.between(min: minAggregation, max: maxAggregation) }
+            items: aggregations.filter { $0.between(min: minAggregation, max: maxAggregation) }
         )
     }
     
