@@ -797,7 +797,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
     
-    [SuplaAppStateHolderProxy connected];
+    if (!self.isCancelled) {
+        [SuplaAppStateHolderProxy connected];
+    }
 }
 
 - (void) _onConnecting {
