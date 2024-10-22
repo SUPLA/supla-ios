@@ -16,10 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class CandleChartData: ChartData {
+final class CandleChartData: CombinedChartData {
     override var divider: Double { aggregation?.timeInSec ?? 1.0 }
 
-    override func combinedData() -> CombinedChartData? {
+    override func combinedData() -> DGCharts.CombinedChartData? {
         var candleDataSets: [ChartDataSetProtocol] = []
         sets.flatMap { $0.dataSets }
             .forEach {
@@ -32,7 +32,7 @@ final class CandleChartData: ChartData {
             return nil
         }
 
-        let data = CombinedChartData()
+        let data = DGCharts.CombinedChartData()
         data.candleData = DGCharts.CandleChartData(dataSets: candleDataSets)
         return data
     }

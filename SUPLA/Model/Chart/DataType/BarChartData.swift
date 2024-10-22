@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class BarChartData: ChartData {
-    override func combinedData() -> CombinedChartData? {
+final class BarChartData: CombinedChartData {
+    override func combinedData() -> DGCharts.CombinedChartData? {
         var barDataSets: [BarChartDataSet] = []
 
         for channelSet in sets {
@@ -36,7 +36,7 @@ final class BarChartData: ChartData {
             return nil
         }
 
-        let data = CombinedChartData()
+        let data = DGCharts.CombinedChartData()
         data.barData = DGCharts.BarChartData(dataSets: barDataSets)
         data.barData.barWidth = (aggregation?.timeInSec ?? 1) * 0.8
         return data

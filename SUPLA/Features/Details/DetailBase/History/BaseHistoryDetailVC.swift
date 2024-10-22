@@ -49,8 +49,14 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         return label
     }()
     
-    private lazy var chartView: SuplaCombinedChartView = {
+    private lazy var combinedChartView: SuplaCombinedChartView = {
         let view = SuplaCombinedChartView()
+        view.chartStyle = viewModel.chartStyle
+        return view
+    }()
+    
+    private lazy var pieChartView: SuplaPieChartView = {
+        let view = SuplaPieChartView()
         view.chartStyle = viewModel.chartStyle
         return view
     }()
@@ -66,7 +72,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     }()
     
     private lazy var pullToRefresh: PullToRefreshView = {
-        let view = PullToRefreshView()
+        let view = PullToRefreshView(self)
         return view
     }()
     
@@ -118,7 +124,8 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     override func handle(event: BaseHistoryDetailViewEvent) {
         switch (event) {
         case .clearHighlight:
-            chartView.clearHighlight()
+            combinedChartView.clearHighlight()
+            pieChartView.clearHighlight()
         case .showDownloadInProgress:
             showToast(Strings.Charts.historyWaitForDownload)
         case .showDataSelectionDialog(let channelSets, let filters):
@@ -136,28 +143,40 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         dataSetsRowState.channelsSets = state.chartData.sets
         dataSetsRowState.historyEnabled = state.showHistory
         
-        chartView.channelFunction = state.channelFunction
-        chartView.data = state.chartData
-        chartView.maxLeftAxis = state.maxLeftAxis
-        chartView.minLeftAxis = state.minLeftAxis
-        chartView.maxRightAxis = state.maxRightAxis
-        chartView.rangeStart = state.range?.start.timeIntervalSince1970
-        chartView.rangeEnd = state.range?.end.timeIntervalSince1970
-        chartView.emptyChartMessage = state.emptyChartMessage
-        chartView.rangeStart = state.chartData.xMin
-        chartView.rangeEnd = state.chartData.xMax
-        chartView.withLeftAxis = state.withLeftAxis
-        chartView.withRightAxis = state.withRightAxis
-        if (chartView.combinedData != nil) {
-            if let chartParameters = state.chartParameters?.getOptional() {
-                if (chartParameters.hasDefaultValues()) {
-                    chartView.fitScreen()
-                } else {
-                    chartView.zoom(parameters: chartParameters)
+        let data = state.chartData
+        if let combinedData = data as? CombinedChartData {
+            combinedChartView.isHidden = !state.showHistory
+            pieChartView.isHidden = true
+            
+            combinedChartView.channelFunction = state.channelFunction
+            combinedChartView.data = combinedData
+            combinedChartView.maxLeftAxis = state.maxLeftAxis
+            combinedChartView.minLeftAxis = state.minLeftAxis
+            combinedChartView.maxRightAxis = state.maxRightAxis
+            combinedChartView.rangeStart = state.range?.start.timeIntervalSince1970
+            combinedChartView.rangeEnd = state.range?.end.timeIntervalSince1970
+            combinedChartView.emptyChartMessage = state.emptyChartMessage
+            combinedChartView.rangeStart = state.chartData.xMin
+            combinedChartView.rangeEnd = state.chartData.xMax
+            combinedChartView.withLeftAxis = state.withLeftAxis
+            combinedChartView.withRightAxis = state.withRightAxis
+            if (combinedChartView.combinedData != nil) {
+                if let chartParameters = state.chartParameters?.getOptional() {
+                    if (chartParameters.hasDefaultValues()) {
+                        combinedChartView.fitScreen()
+                    } else {
+                        combinedChartView.zoom(parameters: chartParameters)
+                    }
                 }
             }
         }
-        chartView.isHidden = !state.showHistory
+        if let pieData = data as? PieChartData {
+            pieChartView.isHidden = !state.showHistory
+            combinedChartView.isHidden = true
+            
+            pieChartView.data = pieData
+            pieChartView.emptyChartMessage = state.emptyChartMessage
+        }
         
         let customRangeSelected = state.ranges?.selected == .custom
         paginationView.isHidden = !state.showHistory || customRangeSelected
@@ -189,7 +208,8 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         
         view.addSubview(dataSetsRowController.view)
         view.addSubview(filtersRow)
-        view.addSubview(chartView)
+        view.addSubview(combinedChartView)
+        view.addSubview(pieChartView)
         view.addSubview(paginationView)
         view.addSubview(rangeSelectionView)
         view.addSubview(pullToRefresh)
@@ -209,7 +229,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             self?.viewModel.changeAggregation(aggregation: $0)
         }
         
-        viewModel.bind(chartView.parametersObservable) { [weak self] in
+        viewModel.bind(combinedChartView.parametersObservable) { [weak self] in
             self?.viewModel.updateChartPosition(parameters: $0)
         }
         
@@ -250,10 +270,15 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             filtersRow.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             filtersRow.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
-            chartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
-            chartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
-            chartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
-            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
+            combinedChartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
+            combinedChartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
+            combinedChartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
+            combinedChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
+            
+            pieChartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
+            pieChartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
+            pieChartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
+            pieChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
             
             paginationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceSmall),
             paginationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceSmall),
@@ -272,6 +297,16 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             historyDisabledLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             historyDisabledLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault)
         ]))
+    }
+}
+
+extension BaseHistoryDetailVC: PullToRefreshHolder {
+    func shouldReceive(touch: UITouch) -> Bool {
+        if (!pieChartView.isHidden) {
+            let touchPoint = touch.location(in: view)
+            return !pieChartView.frame.contains(touchPoint)
+        }
+        return true
     }
 }
 

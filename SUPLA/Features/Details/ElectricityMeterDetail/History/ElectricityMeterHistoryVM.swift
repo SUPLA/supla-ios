@@ -30,6 +30,10 @@ extension ElectricityMeterHistoryFeature {
             ElectricityChartStyle()
         }
         
+        override var aggregations: [ChartDataAggregation] {
+            ChartDataAggregation.allCases
+        }
+        
         override func loadChartState(_ profileId: String, _ remoteId: Int32) -> ChartState {
             userStateHolder.getElectricityChartState(profileId: profileId, remoteId: remoteId)
                 .copy(visibleSets: .value(nil))
@@ -67,7 +71,7 @@ extension ElectricityMeterHistoryFeature {
             Observable.zip(
                 loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, spec: spec),
                 loadChannelMeasurementsDateRangeUseCase.invoke(remoteId: remoteId)
-            ) { (BarChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [$0]), $1) }
+            ) { (getChartData(spec, chartRange, $0), $1) }
         }
         
         override func aggregations(
@@ -75,10 +79,12 @@ extension ElectricityMeterHistoryFeature {
             _ selectedAggregation: ChartDataAggregation? = .minutes,
             _ customFilters: (any ChartDataSpec.Filters)?
         ) -> SelectableList<ChartDataAggregation> {
-            let aggregations = super.aggregations(currentRange, selectedAggregation, customFilters)
+            let rawAggregations = super.aggregations(currentRange, selectedAggregation, customFilters)
             
             guard let filters = customFilters as? ElectricityChartFilters
-            else { return aggregations }
+            else { return rawAggregations }
+            
+            let aggregations = filterRank(filters, rawAggregations)
             
             return if (filters.type == .balanceHourly && aggregations.items.contains(.minutes)) {
                 SelectableList(
@@ -154,5 +160,27 @@ extension ElectricityMeterHistoryFeature {
                 )
             }
         }
+        
+        private func filterRank(
+            _ filters: ElectricityChartFilters,
+            _ aggregations: SelectableList<ChartDataAggregation>
+        ) -> SelectableList<ChartDataAggregation> {
+            if (filters.type.isBalance) {
+                let items = aggregations.items.filter { !$0.isRank }
+                let selected = aggregations.selected.isRank ? items.first! : aggregations.selected
+                
+                return SelectableList(selected: selected, items: items)
+            } else {
+                return aggregations
+            }
+        }
+    }
+}
+
+private func getChartData(_ spec: ChartDataSpec, _ chartRange: ChartRange, _ sets: ChannelChartSets) -> ChartData {
+    if (spec.aggregation.isRank) {
+        PieChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
+    } else {
+        BarChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
     }
 }

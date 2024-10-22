@@ -61,7 +61,8 @@ struct RowData {
         else { return }
         
         if (details.aggregation.isRank) {
-            // TODO: Add later
+            guard let pieEntry = entry as? PieChartDataEntry else { return }
+            showRank(pieEntry, details.aggregation, customData, highlight.x)
         } else {
             guard let barEntry = entry as? BarChartDataEntry else { return }
             
@@ -239,6 +240,29 @@ struct RowData {
             highlight.stackIndex == 0 ? rows[yIdx].bold() : rows[yIdx].regular()
             yIdx += 1
         }
+    }
+    
+    private func showRank(_ pieEntry: PieChartDataEntry, _ aggregation: ChartDataAggregation, _ customData: ElectricityMarkerCustomData, _ idx: Double?) {
+        var color: UIColor? = nil
+        
+        if let idx {
+            let intIdx = switch(aggregation) {
+            case .rankMonths, .rankWeekdays: Int(idx - 1)
+            default: Int(idx)
+            }
+            let colors = aggregation.colors
+            
+            if (intIdx >= 0 && intIdx < colors.count) {
+                color = colors[intIdx]
+            }
+        }
+        
+        rows[0].setData(
+            value: formatter.format(pieEntry.value),
+            color: color,
+            price: customData.priceString(pieEntry.value)
+        )
+        rows[0].regular()
     }
 }
 

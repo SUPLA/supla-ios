@@ -117,6 +117,7 @@ struct BalancedValue: ChartDataAggregation.Reduceable {
     var day: Int16
     var month: Int16
     var year: Int16
+    var weekday: Int16
     
     init(item: SAMeasurementItem, _ forwarded: Double, _ reversed: Double) {
         self.date = item.date!
@@ -124,6 +125,7 @@ struct BalancedValue: ChartDataAggregation.Reduceable {
         self.day = item.day
         self.month = item.month
         self.year = item.year
+        self.weekday = item.weekday
         self.forwarded = forwarded
         self.reversed = reversed
     }

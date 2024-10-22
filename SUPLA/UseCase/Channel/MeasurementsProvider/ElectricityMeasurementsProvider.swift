@@ -134,7 +134,6 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
     
     private func aggregating(_ measurements: [SAElectricityMeasurementItem], _ spec: ChartDataSpec) -> AggregationResult {
         let aggregatedEntities = aggregatedEntities(measurements, spec)
-            .sorted { $0.date < $1.date }
         let sum = measurementsSum(measurements, spec)
         
         return AggregationResult(list: aggregatedEntities, sum: sum)
@@ -152,10 +151,10 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
         }
         
         let type = (spec.customFilters as? ElectricityChartFilters)?.type
-        switch (type) {
-        case .balanceHourly: return aggregatedHourly(measurements, spec)
+        let aggregatedEntities = switch (type) {
+        case .balanceHourly: aggregatedHourly(measurements, spec)
         default:
-            return measurements
+            measurements
                 .reduce([TimeInterval: LinkedList<SAElectricityMeasurementItem>]()) { spec.aggregation.reductor($0, $1) }
                 .filter { $0.value.isEmpty == false }
                 .map { group in
@@ -166,6 +165,12 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
                     default: aggregatedPhases(spec, group)
                     }
                 }
+        }
+        
+        return if (spec.aggregation.isRank) {
+            aggregatedEntities.sorted { $0.value.max < $1.value.max }
+        } else {
+            aggregatedEntities.sorted { $0.date < $1.date }
         }
     }
     
@@ -285,9 +290,20 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
             }
         }
         
+        let value: AggregatedValue = if (spec.aggregation.isRank) {
+            .single(value: values.sum(), min: nil, max: nil, open: nil, close: nil)
+        } else {
+            .multiple(values: values)
+        }
+        let date: TimeInterval = if (spec.aggregation.isRank) {
+            group.key
+        } else {
+            spec.aggregation.groupTimeProvider(date: group.value.head!.value.date!)
+        }
+        
         return AggregatedEntity(
-            date: spec.aggregation.groupTimeProvider(date: group.value.head!.value.date!),
-            value: .multiple(values: values)
+            date: date,
+            value: value
         )
     }
     

@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class LineChartData: ChartData {
-    override func combinedData() -> CombinedChartData? {
+final class LineChartData: CombinedChartData {
+    override func combinedData() -> DGCharts.CombinedChartData? {
         var lineDataSets: [LineChartDataSet] = []
         sets.flatMap { $0.dataSets }
             .forEach {
@@ -30,7 +30,7 @@ final class LineChartData: ChartData {
             return nil
         }
 
-        let data = CombinedChartData()
+        let data = DGCharts.CombinedChartData()
         data.lineData = DGCharts.LineChartData(dataSets: lineDataSets)
         return data
     }

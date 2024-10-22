@@ -43,6 +43,7 @@ extension SuplaCore {
                         Image(.Icons.arrowDown)
                             .resizable()
                             .frame(width: 16, height: 16)
+                            .foregroundColor(Color.Supla.onBackground)
                     }
                     .padding([.top, .bottom], 4)
                     .padding([.leading, .trailing], Distance.standard)

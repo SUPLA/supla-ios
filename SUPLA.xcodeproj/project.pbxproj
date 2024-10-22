@@ -756,10 +756,13 @@
 		A598CAC92CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAC82CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift */; };
 		A598CACB2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */; };
 		A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACC2CC2997900A784FA /* DoubleFormatter.swift */; };
-		A598CACF2CC6D63800A784FA /* shared_core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A598CACE2CC6D63800A784FA /* shared_core.xcframework */; };
 		A598CAD12CC6D6A700A784FA /* GetChannelActionStringUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */; };
 		A598CAD32CC6E5DA00A784FA /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD22CC6E5CE00A784FA /* LocalizedString+Ext.swift */; };
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
+		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
+		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
+		A598CADB2CC7BA5E00A784FA /* shared_core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A598CACE2CC6D63800A784FA /* shared_core.xcframework */; };
+		A598CADC2CC7BA5E00A784FA /* shared_core.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A598CACE2CC6D63800A784FA /* shared_core.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -1180,6 +1183,20 @@
 			remoteInfo = SUPLA;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A598CADD2CC7BA5E00A784FA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A598CADC2CC7BA5E00A784FA /* shared_core.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsDialog.h; sourceTree = "<group>"; };
@@ -2243,6 +2260,8 @@
 		A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelActionStringUseCase.swift; sourceTree = "<group>"; };
 		A598CAD22CC6E5CE00A784FA /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
 		A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+SuplaChannelFunction.swift"; sourceTree = "<group>"; };
+		A598CAD72CC77D3A00A784FA /* PieChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartData.swift; sourceTree = "<group>"; };
+		A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaPieChartView.swift; sourceTree = "<group>"; };
 		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVMTests.swift; sourceTree = "<group>"; };
 		A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -2730,7 +2749,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */,
-				A598CACF2CC6D63800A784FA /* shared_core.xcframework in Frameworks */,
+				A598CADB2CC7BA5E00A784FA /* shared_core.xcframework in Frameworks */,
 				40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */,
 				01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */,
 				01EF60E129BCA42A00F691A0 /* LibSsl.xcframework in Frameworks */,
@@ -4065,6 +4084,7 @@
 		A54149382B63D7CB00B44BD6 /* DataType */ = {
 			isa = PBXGroup;
 			children = (
+				A598CAD72CC77D3A00A784FA /* PieChartData.swift */,
 				A54149392B63D81000B44BD6 /* ChartData.swift */,
 				A541493B2B63E0D300B44BD6 /* LineChartData.swift */,
 				A541493D2B63E42900B44BD6 /* EmptyChartData.swift */,
@@ -4646,6 +4666,7 @@
 		A57668C62AE7CE480025509D /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */,
 				A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */,
 				A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */,
 				A57668C72AE7CE890025509D /* SuplaCombinedChartView.swift */,
@@ -6234,6 +6255,7 @@
 				401CA1B61BA067DB00117AF4 /* Frameworks */,
 				401CA1B71BA067DB00117AF4 /* Resources */,
 				66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */,
+				A598CADD2CC7BA5E00A784FA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -6868,6 +6890,7 @@
 				A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */,
 				A5A15FEF2C298AAD0049AA73 /* StatusVM.swift in Sources */,
 				A5B3CC062B62802600F95AC3 /* RainValueStringProvider.swift in Sources */,
+				A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */,
 				A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */,
 				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
@@ -7043,6 +7066,7 @@
 				A5F29BCC2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
+				A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */,
 				AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */,
 				A50B5D242BEE4CE600918D18 /* UIViewController+Toast.swift in Sources */,
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
