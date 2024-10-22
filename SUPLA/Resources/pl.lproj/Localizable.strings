@@ -310,6 +310,10 @@
 "save" = "Zapisz";
 "turn_on" = "Włącz";
 "turn_off" = "Wyłącz";
+"general_shut" = "Zasłoń";
+"general_reveal" = "Odsłoń";
+"general_collapse" = "Zwiń";
+"general_expand" = "Rozwiń";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
