@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import shared_core
+import SharedCore
 
 protocol DiContainerProtocol {
     func register<Component>(type: Component.Type, _ component: Any)
@@ -145,7 +145,7 @@ extension DiContainer {
         register(LoadChannelConfigUseCase.self, LoadChannelConfigUseCaseImpl())
         register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
         register(LoadElectricityMeterMeasurementsUseCase.self, LoadElectricityMeterMeasurementsUseCaseImpl())
-        register(GetChannelActionStringUseCase.self, shared_core.GetChannelActionStringUseCase())
+        register(GetChannelActionStringUseCase.self, SharedCore.GetChannelActionStringUseCase())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())
