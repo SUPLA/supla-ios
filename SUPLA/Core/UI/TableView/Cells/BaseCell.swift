@@ -26,6 +26,7 @@ protocol BaseCellData {
 class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     @Singleton<GlobalSettings> private var settings
     @Singleton<UpdateEventsManager> private var updateEventsManager
+    @Singleton<GetChannelActionStringUseCase> private var getChannelActionStringUseCase
     
     var scaleFactor: CGFloat = 1.0 {
         didSet {
@@ -300,37 +301,13 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     }
     
     func getRightButtonText(_ function: Int32?) -> String? {
-        switch (function) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: Strings.General.open
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER: Strings.General.turnOn
-        default: nil
-        }
+        guard let function else { return nil }
+        return getChannelActionStringUseCase.rightButton(function: function.suplaFuntion)?.value
     }
     
     func getLeftButtonText(_ function: Int32?) -> String? {
-        switch (function) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: Strings.General.close
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER: Strings.General.turnOff
-        default: nil
-        }
+        guard let function else { return nil }
+        return getChannelActionStringUseCase.leftButton(function: function.suplaFuntion)?.value
     }
     
     // MARK: Private content
