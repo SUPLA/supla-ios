@@ -252,6 +252,7 @@
     self.tabDimmer.selected = YES;
     self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
     self.cbPicker.brightness = _brightness;
+    self.percentageValue.text = [NSString stringWithFormat:@"%d%%", _brightness];
     [self pickerToExtraButton];
 }
 
@@ -267,6 +268,7 @@
     self.tabDimmer.selected = NO;
     self.tabDimmer.backgroundColor = [UIColor surface];
     self.cbPicker.brightness = _colorBrightness;
+    self.percentageValue.text = [NSString stringWithFormat:@"%d%%", _colorBrightness];
 }
 
 -(void)updateView {
