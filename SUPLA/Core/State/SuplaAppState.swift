@@ -107,7 +107,7 @@ enum SuplaAppState: Equatable {
     
     private func connectingNextState(for event: SuplaAppEvent, previousReason: Reason?) -> SuplaAppState? {
         switch (event) {
-        case .connecting, .initialized, .onStart: nil
+        case .connecting, .initialized, .onStart, .addWizardFinished: nil
         case .connected: .connected
         case .lock: .locked
         case .cancel(let reason): .disconnecting(reason: reason)
@@ -116,7 +116,6 @@ enum SuplaAppState: Equatable {
         case .finish(let reason): .finished(reason: reason == nil ? previousReason : reason)
         case .noAccount: try! illegalNoAccountEvent()
         case .unlock: try! illegalUnlockEvent()
-        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
@@ -137,14 +136,13 @@ enum SuplaAppState: Equatable {
     
     private func disconnectingNextState(for event: SuplaAppEvent, previousReason: Reason?) -> SuplaAppState? {
         switch (event) {
-        case .onStart, .cancel, .networkConnected, .connecting, .connected: nil
+        case .onStart, .cancel, .networkConnected, .connecting, .connected, .addWizardFinished: nil
         case .lock: .locking
         case .finish(let reason): .finished(reason: previousReason ?? reason)
         case .error(let reason): .finished(reason: reason)
         case .initialized: try! illegalInitializedEvent()
         case .noAccount: try! illegalNoAccountEvent()
         case .unlock: try! illegalUnlockEvent()
-        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
