@@ -293,6 +293,13 @@
 
 "general_error" = "Помилка";
 
+/* Combined Chart */
+"history_range_last_day" = "Останні 24 години";
+"history_range_last_week" = "Останні 7 днів";
+"history_range_last_30_days" = "Останні 30 днів";
+"history_range_last_90_days" = "Останні 90 днів";
+"history_range_last_365_days" = "Останні 365 днів";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Немає даних для діаграми.";
 

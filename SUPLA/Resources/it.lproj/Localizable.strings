@@ -308,6 +308,13 @@
 
 "general_error" = "Errore";
 
+/* Combined Chart */
+"history_range_last_day" = "Ultime 24 ore";
+"history_range_last_week" = "Ultimi 7 giorni";
+"history_range_last_30_days" = "Ultimi 30 giorni";
+"history_range_last_90_days" = "Ultimi 90 giorni";
+"history_range_last_365_days" = "Ultimi 365 giorni";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nessun dato per il grafico.";
 

@@ -290,6 +290,13 @@
 
 "general_error" = "Erro";
 
+/* Combined Chart */
+"history_range_last_day" = "Últimas 24 horas";
+"history_range_last_week" = "Últimos 7 dias";
+"history_range_last_30_days" = "Últimos 30 dias";
+"history_range_last_90_days" = "Últimos 90 dias";
+"history_range_last_365_days" = "Últimos 365 dias";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nenhum dado para o gráfico.";
 

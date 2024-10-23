@@ -23,6 +23,7 @@ enum ChartRange: CaseIterable, Codable {
     case lastWeek
     case lastMonth
     case lastQuarter
+    case lastYear
     
     case day
     case week
@@ -40,7 +41,7 @@ enum ChartRange: CaseIterable, Codable {
             case .lastWeek, .week: 7
             case .lastMonth, .month: 30
             case .lastQuarter, .quarter: 90
-            case .year: 365
+            case .year, .lastYear: 365
             case .custom, .allHistory: -1
             }
         }
@@ -53,6 +54,7 @@ enum ChartRange: CaseIterable, Codable {
             case .lastWeek: Strings.Charts.lastWeek
             case .lastMonth: Strings.Charts.last30Days
             case .lastQuarter: Strings.Charts.last90Days
+            case .lastYear: Strings.Charts.last365Days
                 
             case .day: Strings.Charts.day
             case .week: Strings.Charts.week

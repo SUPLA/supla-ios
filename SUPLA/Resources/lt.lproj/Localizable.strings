@@ -292,6 +292,13 @@
 
 "general_error" = "Klaida";
 
+/* Combined Chart */
+"history_range_last_day" = "Pastarosios 24 valandos";
+"history_range_last_week" = "Pastarosios 7 dienos";
+"history_range_last_30_days" = "Pastarosios 30 dienų";
+"history_range_last_90_days" = "Pastarosios 90 dienų";
+"history_range_last_365_days" = "Pastarosios 365 dienų";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nėra duomenų diagramai.";
 
