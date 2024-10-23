@@ -112,6 +112,7 @@ struct Strings {
         static let lastWeek = "history_range_last_week".toLocalized()
         static let last30Days = "history_range_last_30_days".toLocalized()
         static let last90Days = "history_range_last_90_days".toLocalized()
+        static let last365Days = "history_range_last_365_days".toLocalized()
         static let day = "history_range_current_day".toLocalized()
         static let week = "history_range_current_week".toLocalized()
         static let month = "history_range_current_month".toLocalized()

@@ -290,6 +290,13 @@
 
 "general_error" = "Fout";
 
+/* Combined Chart */
+"history_range_last_day" = "De laatste 24 uur";
+"history_range_last_week" = "De laatste 7 dni";
+"history_range_last_30_days" = "De laatste 30 dni";
+"history_range_last_90_days" = "De laatste 90 dni";
+"history_range_last_365_days" = "De laatste 365 dni";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Er zijn geen gegevens voor de grafiek.";
 

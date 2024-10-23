@@ -290,6 +290,13 @@
 
 "general_error" = "Λάθος";
 
+/* Combined Chart */
+"history_range_last_day" = "Οι τελευταίες 24 ώρες";
+"history_range_last_week" = "Οι τελευταίες 7 ημέρες";
+"history_range_last_30_days" = "Οι τελευταίες 30 ημέρες";
+"history_range_last_90_days" = "Οι τελευταίες 90 ημέρες";
+"history_range_last_365_days" = "Οι τελευταίες 365 ημέρες";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Δεν υπάρχουν δεδομένα για το γράφημα.";
 

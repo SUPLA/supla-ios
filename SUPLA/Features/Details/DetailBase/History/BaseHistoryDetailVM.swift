@@ -326,7 +326,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func getStartDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ minDate: Date) -> Date {
         switch (range) {
         case .day: date.dayStart()
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter: currentDate.shift(days: -range.roundedDaysCount)
+        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .lastYear: currentDate.shift(days: -range.roundedDaysCount)
             
         case .week: date.weekStart()
         case .month: date.monthStart()
@@ -340,7 +340,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func getEndDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ maxDate: Date) -> Date {
         switch (range) {
         case .day: date.dayEnd()
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter: currentDate
+        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .lastYear: currentDate
             
         case .week: date.weekEnd()
         case .month: date.monthEnd()
@@ -552,7 +552,7 @@ struct BaseHistoryDetailViewState: ViewState {
             
         case .lastWeek, .lastMonth: dayAndHourString(formatter, dateRange)
             
-        case .week, .lastQuarter, .quarter: dateString(formatter, dateRange)
+        case .week, .lastQuarter, .quarter, .lastYear: dateString(formatter, dateRange)
             
         case .month: formatter.getMonthAndYearString(date: dateRange.start)?.capitalized
         case .year: formatter.getYearString(date: dateRange.start)

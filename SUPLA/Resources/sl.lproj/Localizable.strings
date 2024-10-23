@@ -290,6 +290,13 @@
 
 "general_error" = "Napaka";
 
+/* Combined Chart */
+"history_range_last_day" = "Zadnjih 24 ur";
+"history_range_last_week" = "Zadnjih 7 dni";
+"history_range_last_30_days" = "Zadnjih 30 dni";
+"history_range_last_90_days" = "Zadnjih 90 dni";
+"history_range_last_365_days" = "Zadnjih 365 dni";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Za tabelo ni podatkov.";
 

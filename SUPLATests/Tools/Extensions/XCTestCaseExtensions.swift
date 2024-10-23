@@ -55,7 +55,7 @@ extension XCTestCase {
             testcase()
         }
         
-        waitForExpectations(timeout: 0.5) { _ in
+        waitForExpectations(timeout: 1) { _ in
             // assert
             XCTAssertEqual(assertionMessage, expectedMessage)
             

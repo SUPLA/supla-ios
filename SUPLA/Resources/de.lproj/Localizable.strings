@@ -423,6 +423,7 @@
 "history_range_last_week" = "Letzte 7 Tagen";
 "history_range_last_30_days" = "Letzte 30 Tagen";
 "history_range_last_90_days" = "Letzte 90 Tagen";
+"history_range_last_365_days" = "Letzte 365 Tagen";
 "history_range_current_day" = "Tag";
 "history_range_current_week" = "Woche";
 "history_range_current_month" = "Monat";

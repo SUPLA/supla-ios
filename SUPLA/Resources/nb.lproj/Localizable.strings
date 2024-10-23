@@ -291,6 +291,13 @@
 
 "general_error" = "Feil";
 
+/* Combined Chart */
+"history_range_last_day" = "Siste 24 timer";
+"history_range_last_week" = "Siste 7 dager";
+"history_range_last_30_days" = "Siste 30 dager";
+"history_range_last_90_days" = "Siste 90 dager";
+"history_range_last_365_days" = "Siste 365 dager";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Manglende data for diagrammet.";
 

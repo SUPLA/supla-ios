@@ -291,6 +291,13 @@
 
 "general_error" = "Chyba";
 
+/* Combined Chart */
+"history_range_last_day" = "Posledních 24 hodin";
+"history_range_last_week" = "Posledních 7 dní";
+"history_range_last_30_days" = "Posledních 30 dní";
+"history_range_last_90_days" = "Posledních 90 dní";
+"history_range_last_365_days" = "Posledních 365 dní";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Žádné údaje o graf.";
 

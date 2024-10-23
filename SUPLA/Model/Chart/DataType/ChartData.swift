@@ -209,7 +209,7 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
     
     private func chartMarginNotNeeded() -> Bool {
         switch (chartRange) {
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .custom, .allHistory: false
+        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .lastYear, .custom, .allHistory: false
         default: true
         }
     }
