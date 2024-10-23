@@ -803,9 +803,9 @@
     NSURL * urlCheck2 = [NSURL URLWithString:[[NSString alloc] initWithData:d2 encoding:NSUTF8StringEncoding]];
     
     if ([[UIApplication sharedApplication] canOpenURL:urlCheck1]) {
-        [[UIApplication sharedApplication] openURL:urlCheck1];
+        [[UIApplication sharedApplication] openURL:urlCheck1 options: @{} completionHandler: nil];
     } else if ([[UIApplication sharedApplication] canOpenURL:urlCheck2]) {
-        [[UIApplication sharedApplication] openURL:urlCheck2];
+        [[UIApplication sharedApplication] openURL:urlCheck2 options: @{} completionHandler: nil];
     } else {
         NSLog(@"Unable to open settings app.");
     }
