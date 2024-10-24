@@ -120,7 +120,8 @@
         }
         
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
-        [self.percentageValue setHidden: false];
+        
+        [self.percentageValue setHidden: isGroup];
         self.percentageValue.text = [NSString stringWithFormat:@"%d%%", _brightness];
     }
     
