@@ -47,7 +47,7 @@ struct Dimens {
         static let caption = CGFloat(12)
         static let label = CGFloat(14)
         
-        static let value = CGFloat(21)
+        static let value = CGFloat(20)
     }
     
     struct ListItem {
