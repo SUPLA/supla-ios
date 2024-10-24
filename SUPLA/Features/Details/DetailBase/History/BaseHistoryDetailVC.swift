@@ -190,9 +190,11 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         rangeSelectionView.endDate = state.range?.end
         
         datePicker.isHidden = !state.showHistory || state.editDate == nil
-        datePicker.minDate = state.minDate
-        datePicker.maxDate = state.maxDate
-        datePicker.date = state.dateForEdit
+        if (!datePicker.isHidden) {
+            datePicker.date = state.dateForEdit
+            datePicker.minDate = state.minDate
+            datePicker.maxDate = state.maxDate
+        }
         
         pullToRefresh.isRefreshing = state.loading
         
