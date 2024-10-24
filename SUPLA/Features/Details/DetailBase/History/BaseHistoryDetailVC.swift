@@ -381,7 +381,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .caption
         label.textColor = .gray
-        label.text = Strings.Charts.aggregationLabel.uppercased()
+        label.text = Strings.Charts.dataTypeLabel.uppercased()
         return label
     }()
     

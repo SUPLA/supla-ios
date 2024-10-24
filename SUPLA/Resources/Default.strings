@@ -191,7 +191,7 @@
 
 /* Combined Chart */
 "history_range_label" = "Range";
-"history_aggregation_label" = "Aggregation";
+"history_data_type" = "Data type";
 "history_range_last_day" = "Last 24 hours";
 "history_range_last_week" = "Last 7 days";
 "history_range_last_30_days" = "Last 30 days";
@@ -213,11 +213,11 @@
 "history_wait_for_download_completed" = "Please wait, downloading...";
 "chart_marker_opening" = "Open";
 "chart_marker_closing" = "Close";
-"Minutes" = "Minuty";
-"Hours" = "Godziny";
-"Days" = "Dni";
-"Months" = "Miesiące";
-"Years" = "Lata";
+"Minutes" = "Minutes";
+"Hours" = "Hours";
+"Days" = "Days";
+"Months" = "Months";
+"Years" = "Years";
 
 /* Notifications */
 "notifications_log_profile" = "Profile:";

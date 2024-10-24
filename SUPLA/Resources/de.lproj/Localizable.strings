@@ -418,7 +418,7 @@
 
 /* Combined Chart */
 "history_range_label" = "Bereich";
-"history_aggregation_label" = "Anhäufung";
+"history_data_type" = "Datentyp";
 "history_range_last_day" = "Letzte 24 Stunden";
 "history_range_last_week" = "Letzte 7 Tagen";
 "history_range_last_30_days" = "Letzte 30 Tagen";

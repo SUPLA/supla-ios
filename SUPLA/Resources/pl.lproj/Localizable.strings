@@ -452,7 +452,7 @@
 
 /* Combined Chart */
 "history_range_label" = "Zakres";
-"history_aggregation_label" = "Agregacja";
+"history_data_type" = "Typ danych";
 "history_range_last_day" = "Ostatnie 24 godziny";
 "history_range_last_week" = "Ostatnie 7 dni";
 "history_range_last_30_days" = "Ostatnie 30 dni";

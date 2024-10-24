@@ -107,7 +107,7 @@ struct Strings {
 
     struct Charts {
         static let rangeLabel = "history_range_label".toLocalized()
-        static let aggregationLabel = "history_aggregation_label".toLocalized()
+        static let dataTypeLabel = "history_data_type".toLocalized()
         static let lastDay = "history_range_last_day".toLocalized()
         static let lastWeek = "history_range_last_week".toLocalized()
         static let last30Days = "history_range_last_30_days".toLocalized()
