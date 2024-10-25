@@ -20,17 +20,35 @@
 
 final class UserStateHolderMock: UserStateHolder {
     
-    var getTemperatureCharStateParameters: [(String, Int32)] = []
-    var getTemperatureChartStateReturns: TemperatureChartState = .defaultState()
-    func getTemperatureChartState(profileId: String, remoteId: Int32) -> TemperatureChartState {
-        getTemperatureCharStateParameters.append((profileId, remoteId))
-        return getTemperatureChartStateReturns
+    var getDefaultCharStateParameters: [(String, Int32)] = []
+    var getDefaultChartStateReturns: DefaultChartState = .empty()
+    func getDefaultChartState(profileId: String, remoteId: Int32) -> DefaultChartState {
+        getDefaultCharStateParameters.append((profileId, remoteId))
+        return getDefaultChartStateReturns
     }
     
-    var setTemperatureChartStateParameters: [(TemperatureChartState, String, Int32)] = []
-    func setTemperatureChartState(_ state: TemperatureChartState, profileId: String, remoteId: Int32) {
-        setTemperatureChartStateParameters.append((state, profileId, remoteId))
+    var getElectricityCharStateParameters: [(String, Int32)] = []
+    var getElectricityChartStateReturns: ElectricityChartState = .empty()
+    func getElectricityChartState(profileId: String, remoteId: Int32) -> ElectricityChartState {
+        getElectricityCharStateParameters.append((profileId, remoteId))
+        return getElectricityChartStateReturns
     }
     
+    var setChartStateParameters: [(ChartState, String, Int32)] = []
+    func setChartState(_ state: ChartState, profileId: String, remoteId: Int32) {
+        setChartStateParameters.append((state, profileId, remoteId))
+    }
+    
+    var getElectricityMeterSettingsParameters: [(String, Int32)] = []
+    var getElectricityMeterSettingsReturns: ElectricityMeterSettings = .defaultSettings()
+    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings {
+        getElectricityMeterSettingsParameters.append((profileId, remoteId))
+        return getElectricityMeterSettingsReturns
+    }
+    
+    var setElectricityMeterSettingsParameters: [(ElectricityMeterSettings, String, Int32)] = []
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32) {
+        setElectricityMeterSettingsParameters.append((settings, profileId, remoteId))
+    }
     
 }

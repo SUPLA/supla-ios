@@ -18,10 +18,10 @@ final class GpmValueProviderTest: XCTestCase {
     
     func test_shouldHandleFunctionMeasurement() {
         // given
-        let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        let channel = SAChannel.mock(function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT)
         
         // when
-        let handle = provider.handle(function: function)
+        let handle = provider.handle(channel)
         
         // then
         XCTAssertTrue(handle)
@@ -29,10 +29,10 @@ final class GpmValueProviderTest: XCTestCase {
     
     func test_shouldHandleFunctionMeter() {
         // given
-        let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        let channel = SAChannel.mock(function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER)
         
         // when
-        let handle = provider.handle(function: function)
+        let handle = provider.handle(channel)
         
         // then
         XCTAssertTrue(handle)

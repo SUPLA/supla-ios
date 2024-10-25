@@ -34,6 +34,10 @@ extension Double {
     func also(_ transformation: (Double) -> Double) -> Double {
         return transformation(self)
     }
+    
+    func ifNotZero<T>(function: (Double) -> T?) -> T? {
+        self == 0.0 ? nil : function(self)
+    }
 }
 
 extension Double? {

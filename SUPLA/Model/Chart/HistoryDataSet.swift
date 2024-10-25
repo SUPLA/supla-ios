@@ -18,39 +18,114 @@
 
 import Foundation
 
-struct HistoryDataSet: Equatable, Changeable {
-    let setId: Id
-    let icon: IconResult?
-    let value: String
+struct HistoryDataSet: Equatable, Changeable, Identifiable {
+    var id: Int { type.rawValue }
+    
+    let type: ChartEntryType
+    let label: Label
     let valueFormatter: ChannelValueFormatter
-    let color: UIColor
     var entries: [[AggregatedEntity]]
     var active: Bool
 
-    struct Id: Equatable, Codable {
-        let remoteId: Int32
-        let type: ChartEntryType
-    }
+    var min: Double? { entries.map { $0.map { $0.value.min }.min() }.minOrNull() }
+    var max: Double? { entries.map { $0.map { $0.value.max }.max() }.maxOrNull() }
+    var isEmpty: Bool { entries.isEmpty }
+    var minDate: TimeInterval? { entries.flatMap { $0 }.map { $0.date }.min() }
+    var maxDate: TimeInterval? { entries.flatMap { $0 }.map { $0.date }.max() }
 
-    func toDetails(_ entity: AggregatedEntity) -> ChartEntryDetails {
-        ChartEntryDetails(
-            aggregation: entity.aggregation,
-            type: entity.type,
-            date: Date(timeIntervalSince1970: entity.date),
-            min: entity.min,
-            max: entity.max,
-            open: entity.open,
-            close: entity.close,
-            valueFormatter: valueFormatter
-        )
+    func toChartDetails(aggregation: ChartDataAggregation, entity: AggregatedEntity, customData: (any Equatable)? = nil) -> ChartEntryDetails {
+        switch (entity.value) {
+        case .single(_, let min, let max, let open, let close):
+            ChartEntryDetails(
+                aggregation: aggregation,
+                type: type,
+                date: Date(timeIntervalSince1970: entity.date),
+                min: min,
+                max: max,
+                open: open,
+                close: close,
+                valueFormatter: valueFormatter,
+                customData: customData
+            )
+        case .multiple(_):
+            ChartEntryDetails(
+                aggregation: aggregation,
+                type: type,
+                date: Date(timeIntervalSince1970: entity.date),
+                min: nil,
+                max: nil,
+                open: nil,
+                close: nil,
+                valueFormatter: valueFormatter,
+                customData: customData
+            )
+        }
     }
 
     static func == (lhs: HistoryDataSet, rhs: HistoryDataSet) -> Bool {
-        lhs.setId == rhs.setId
-            && lhs.icon == rhs.icon
-            && lhs.value == rhs.value
-            && lhs.color == rhs.color
+        lhs.type == rhs.type
+            && lhs.label == rhs.label
             && lhs.entries == rhs.entries
             && lhs.active == rhs.active
     }
+
+    enum Label: Equatable {
+        case single(LabelData)
+        case multiple([LabelData])
+        
+        var colors: [UIColor] {
+            switch (self) {
+            case .single(let data): [data.color]
+            case .multiple(let datas): datas.filter { $0.useColor }.map { $0.color }
+            }
+        }
+    }
+
+    struct LabelData: Equatable {
+        let icon: IconResult?
+        let value: String
+        let color: UIColor
+        let presentColor: Bool
+        let useColor: Bool
+        let justColor: Bool
+        let iconSize: CGFloat?
+
+        init(
+            icon: IconResult?,
+            value: String,
+            color: UIColor,
+            presentColor: Bool = true,
+            useColor: Bool = true,
+            justColor: Bool = false,
+            iconSize: CGFloat? = nil
+        ) {
+            self.icon = icon
+            self.value = value
+            self.color = color
+            self.presentColor = presentColor
+            self.useColor = useColor
+            self.justColor = justColor
+            self.iconSize = iconSize
+        }
+
+        init(color: UIColor) {
+            self.icon = nil
+            self.value = ""
+            self.color = color
+            self.presentColor = false
+            self.useColor = true
+            self.justColor = true
+            self.iconSize = nil
+        }
+        
+        func getIconSize() -> CGFloat { iconSize ?? Dimens.iconSizeBig }
+    }
+}
+
+func singleLabel(
+    _ image: IconResult?,
+    _ value: String,
+    _ color: UIColor
+) -> HistoryDataSet.Label {
+    .single(HistoryDataSet.LabelData(icon: image, value: value, color: color))
 }

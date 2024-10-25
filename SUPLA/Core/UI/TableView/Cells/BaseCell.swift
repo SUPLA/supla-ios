@@ -26,6 +26,7 @@ protocol BaseCellData {
 class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     @Singleton<GlobalSettings> private var settings
     @Singleton<UpdateEventsManager> private var updateEventsManager
+    @Singleton<GetChannelActionStringUseCase> private var getChannelActionStringUseCase
     
     var scaleFactor: CGFloat = 1.0 {
         didSet {
@@ -297,6 +298,16 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         currentConstraints.append(contentsOf: setupConstraints())
         currentConstraints.append(contentsOf: derivedClassConstraints())
         NSLayoutConstraint.activate(currentConstraints)
+    }
+    
+    func getRightButtonText(_ function: Int32?) -> String? {
+        guard let function else { return nil }
+        return getChannelActionStringUseCase.rightButton(function: function.suplaFuntion)?.value
+    }
+    
+    func getLeftButtonText(_ function: Int32?) -> String? {
+        guard let function else { return nil }
+        return getChannelActionStringUseCase.leftButton(function: function.suplaFuntion)?.value
     }
     
     // MARK: Private content

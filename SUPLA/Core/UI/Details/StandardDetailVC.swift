@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>> : SuplaTabBarController<S, E, VM>, NavigationItemProvider {
-    
+class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: SuplaTabBarController<S, E, VM>, NavigationItemProvider {
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
     
@@ -30,6 +29,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         super.init(viewModel: viewModel)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,14 +48,13 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         var openedPage = 0
-        if let viewControllers = self.viewControllers {
+        if let viewControllers = viewControllers {
             for controller in viewControllers {
                 if (controller.tabBarItem == item) {
                     break
                 }
                 openedPage += 1
             }
-            
         }
         
         runtimeConfig.setDetailOpenedPage(remoteId: self.item.remoteId, openedPage: openedPage)
@@ -64,13 +63,11 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     private func setupViewController() {
         var viewControllers: [UIViewController] = []
         for page in pages {
-            switch(page) {
+            switch (page) {
             case .switchGeneral:
                 viewControllers.append(switchGeneral())
             case .switchTimer:
                 viewControllers.append(switchTimerDetail())
-            case .historyEm:
-                viewControllers.append(legacyDetail(type: .em))
             case .historyIc:
                 viewControllers.append(legacyDetail(type: .ic))
             case .thermostatGeneral:
@@ -103,6 +100,14 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(verticalBlindDetail())
             case .garageDoor:
                 viewControllers.append(garageDoorDetail())
+            case .electricityMeterGeneral:
+                viewControllers.append(electricityMeterGeneralDetail())
+            case .electricityMeterHistory,
+                 .switchEmHistory:
+                viewControllers.append(electricityMeterHistoryDetail())
+            case .electricityMeterSettings,
+                 .switchEmSettings:
+                viewControllers.append(electricityMeterSettingsDetail())
             }
         }
         
@@ -110,9 +115,9 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         
         let pageToOpen = runtimeConfig.getDetailOpenedPage(remoteId: item.remoteId)
         if (pageToOpen < 0 || pageToOpen >= viewControllers.count) {
-            self.selectedViewController = viewControllers[0]
+            selectedViewController = viewControllers[0]
         } else {
-            self.selectedViewController = viewControllers[pageToOpen]
+            selectedViewController = viewControllers[pageToOpen]
         }
         
         tabBar.isHidden = pages.count == 1
@@ -313,13 +318,44 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         vc.navigationBarMaintainedByParent = true
         return vc
     }
+    
+    private func electricityMeterGeneralDetail() -> UIViewController {
+        let vc = ElectricityMeterGeneralFeature.ViewController.create(item: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.General.rawValue
+        )
+        return vc
+    }
+    
+    private func electricityMeterHistoryDetail() -> UIViewController {
+        let vc = ElectricityMeterHistoryFeature.ViewController.create(item: item, navigationItemProvider: self)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
+            image: .iconHistory,
+            tag: DetailTabTag.History.rawValue
+        )
+        return vc
+    }
+    
+    private func electricityMeterSettingsDetail() -> UIViewController {
+        let vc = ElectricityMeterSettingsFeature.ViewController.create(item: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
+            image: .iconSettings,
+            tag: DetailTabTag.History.rawValue
+        )
+        return vc
+    }
 }
 
 protocol NavigationItemProvider: AnyObject {
     var navigationItem: UINavigationItem { get }
 }
 
-fileprivate enum DetailTabTag: Int {
+private enum DetailTabTag: Int {
+    case General = 0
     case Switch = 1
     case Timer = 2
     case History = 3

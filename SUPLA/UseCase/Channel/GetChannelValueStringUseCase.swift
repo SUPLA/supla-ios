@@ -38,7 +38,11 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         ThermometerAndHumidityValueStringProvider(),
         ThermometerValueStringProvider(),
         WeigthValueStringProvider(),
-        WindValueStringProvider()
+        WindValueStringProvider(),
+        ElectricityMeterValueStringProvider(),
+        SwitchWithElectricityMeterValueStringProvider(),
+        ImpulseCounterValueStringProvider(),
+        SwitchWithImpulseCounterValueStringProvider()
     ]
     
     func invoke(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String {
@@ -47,7 +51,7 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         }
         
         for provider in providers {
-            if (provider.handle(function: channel.func)) {
+            if (provider.handle(channel)) {
                 return provider.value(channel, valueType: valueType, withUnit: withUnit)
             }
         }
@@ -59,6 +63,6 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
 
 
 protocol ChannelValueStringProvider {
-    func handle(function: Int32) -> Bool
+    func handle(_ channel: SAChannel) -> Bool
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String
 }

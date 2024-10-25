@@ -16,26 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 class BaseDistanceValueStringProvider: ChannelValueStringProvider {
-    
-    private lazy var smallValueFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 1
-        formatter.minimumFractionDigits = 1
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
-    private lazy var bigValueFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 1
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
     
     var valueProvider: ChannelValueProvider {
         fatalError("valueProvider has not been implemented")
@@ -45,46 +26,41 @@ class BaseDistanceValueStringProvider: ChannelValueStringProvider {
         fatalError("unknownValue has not been implemented")
     }
     
-    func handle(function: Int32) -> Bool {
+    func handle(_ channel: SAChannel) -> Bool {
         fatalError("handle(function:) has not been implemented")
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         if let value = valueProvider.value(channel, valueType: valueType) as? Double,
-           value > unknownValue {
+           value > unknownValue
+        {
             return formatDistance(value, withUnit)
-        }
-        else {
+        } else {
             return NO_VALUE_TEXT
         }
     }
     
     func formatDistance(_ value: Double, _ withUnit: Bool) -> String {
         if (fabs(value) >= 1000) {
-            return stringValue(value / 1000, "km", bigValueFormatter, withUnit)
-        }
-        else if (fabs(value) >= 1) {
-            return stringValue(value, "m", bigValueFormatter, withUnit)
+            return stringValue(value / 1000, "km", 2, withUnit)
+        } else if (fabs(value) >= 1) {
+            return stringValue(value, "m", 2, withUnit)
         }
         
         let value = value * 100
         
         if (fabs(value) >= 1) {
-            return stringValue(value, "cm", smallValueFormatter, withUnit)
+            return stringValue(value, "cm", 1, withUnit)
         } else {
-            return stringValue(value * 10, "mm", smallValueFormatter, withUnit)
+            return stringValue(value * 10, "mm", 1, withUnit)
         }
     }
     
-    private func stringValue(_ value: Double, _ unit: String, _ formatter: NumberFormatter, _ withUnit: Bool) -> String {
-        if let stringValue = formatter.string(from: NSNumber(value: value)) {
-            if (withUnit) {
-                return String(format: "%@ \(unit)", stringValue)
-            } else {
-                return stringValue
-            }
+    private func stringValue(_ value: Double, _ unit: String, _ maxPrecision: Int, _ withUnit: Bool) -> String {
+        if (withUnit) {
+            return "\(value.toString(minPrecision: 1, maxPrecision: maxPrecision)) \(unit)"
+        } else {
+            return value.toString(minPrecision: 1, maxPrecision: maxPrecision)
         }
-        
-        return NO_VALUE_TEXT
     }
 }

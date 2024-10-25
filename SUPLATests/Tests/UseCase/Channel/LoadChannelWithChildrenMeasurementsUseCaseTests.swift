@@ -19,27 +19,18 @@
 @testable import SUPLA
 import XCTest
 
-final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
+final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[ChannelChartSets]> {
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
     
-    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = {
-        ReadChannelWithChildrenUseCaseMock()
-    }()
+    private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = TemperatureMeasurementItemRepositoryMock()
     
-    private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = {
-        TemperatureMeasurementItemRepositoryMock()
-    }()
+    private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = TempHumidityMeasurementItemRepositoryMock()
     
-    private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = {
-        TempHumidityMeasurementItemRepositoryMock()
-    }()
+    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
+    private lazy var getChannelValueStringUseCase: GetChannelValueStringUseCaseMock! = GetChannelValueStringUseCaseMock()
     
-    private lazy var useCase: LoadChannelWithChildrenMeasurementsUseCase! = {
-        LoadChannelWithChildrenMeasurementsUseCaseImpl()
-    }()
+    private lazy var useCase: LoadChannelWithChildrenMeasurementsUseCase! = LoadChannelWithChildrenMeasurementsUseCaseImpl()
     
     override func setUp() {
         super.setUp()
@@ -48,6 +39,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Histor
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: GetChannelValueStringUseCase.self, getChannelValueStringUseCase!)
     }
     
     override func tearDown() {
@@ -88,27 +80,31 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Histor
             SATempHumidityMeasurementItem.mock(child1Max, 10.9, 51.2)
         ]
         tempHumidityMeasurementItemRepository.findMeasurementsReturns = .just(tempAndHumidityMeasurements)
+        getChannelValueStringUseCase.returns = "---"
+        let spec = ChartDataSpec(startDate: child2Min, endDate: child1Max, aggregation: .minutes)
         
         // when
-        useCase.invoke(remoteId: channelId, startDate: child2Min, endDate: child1Max, aggregation: .minutes).subscribe(observer).disposed(by: disposeBag)
+        useCase.invoke(remoteId: channelId, spec: spec).subscribe(observer).disposed(by: disposeBag)
         
         // then
         XCTAssertEqual(observer.events.count, 2)
         let historyDataSets = observer.events[0].value.element!
         
-        XCTAssertEqual(historyDataSets.count, 3)
-        XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: child1Id, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
-        XCTAssertEqual(historyDataSets[0].active, true)
-        XCTAssertEqual(historyDataSets[0].value, "---")
-        XCTAssertEqual(historyDataSets[1].setId, HistoryDataSet.Id(remoteId: child1Id, type: .humidity))
-        XCTAssertEqual(historyDataSets[1].color, .chartHumidity1)
-        XCTAssertEqual(historyDataSets[1].active, true)
-        XCTAssertEqual(historyDataSets[1].value, "---")
-        XCTAssertEqual(historyDataSets[2].setId, HistoryDataSet.Id(remoteId: child2Id, type: .temperature))
-        XCTAssertEqual(historyDataSets[2].color, .chartTemperature2)
-        XCTAssertEqual(historyDataSets[2].active, true)
-        XCTAssertEqual(historyDataSets[2].value, "---")
+        XCTAssertEqual(historyDataSets.count, 2)
+        XCTAssertEqual(historyDataSets[0].remoteId, child1Id)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].type, .temperature)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].active, true)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].label.value, "---")
+        XCTAssertEqual(historyDataSets[0].dataSets[1].type, .humidity)
+        XCTAssertEqual(historyDataSets[0].dataSets[1].label.color, .chartHumidity1)
+        XCTAssertEqual(historyDataSets[0].dataSets[1].active, true)
+        XCTAssertEqual(historyDataSets[0].dataSets[1].label.value, "---")
+        XCTAssertEqual(historyDataSets[1].remoteId, child2Id)
+        XCTAssertEqual(historyDataSets[1].dataSets[0].type, .temperature)
+        XCTAssertEqual(historyDataSets[1].dataSets[0].label.color, .chartTemperature2)
+        XCTAssertEqual(historyDataSets[1].dataSets[0].active, true)
+        XCTAssertEqual(historyDataSets[1].dataSets[0].label.value, "---")
     }
     
     func test_shouldLoadMeasurements_whenOneChannelHasNoMeasurements() {
@@ -133,19 +129,22 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Histor
         temperatureMeasurementItemRepository.findMeasurementsReturns = .just(tempMeasurements)
         
         tempHumidityMeasurementItemRepository.findMeasurementsReturns = .just([])
+        getChannelValueStringUseCase.returns = "---"
+        let spec = ChartDataSpec(startDate: child2Min, endDate: child2Max, aggregation: .minutes)
         
         // when
-        useCase.invoke(remoteId: channelId, startDate: child2Min, endDate: child2Max, aggregation: .minutes).subscribe(observer).disposed(by: disposeBag)
+        useCase.invoke(remoteId: channelId, spec: spec).subscribe(observer).disposed(by: disposeBag)
         
         // then
         XCTAssertEqual(observer.events.count, 2)
         let historyDataSets = observer.events[0].value.element!
         
-        XCTAssertEqual(historyDataSets.count, 3)
-        XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: child1Id, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
-        XCTAssertEqual(historyDataSets[0].active, true)
-        XCTAssertEqual(historyDataSets[0].value, "---")
+        XCTAssertEqual(historyDataSets.count, 2)
+        XCTAssertEqual(historyDataSets[0].remoteId, child1Id)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].type, .temperature)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].active, true)
+        XCTAssertEqual(historyDataSets[0].dataSets[0].label.value, "---")
     }
     
     private func mockChannelWithChildren(_ channelId: Int32, _ child1Id: Int32, _ child2Id: Int32) -> ChannelWithChildren {

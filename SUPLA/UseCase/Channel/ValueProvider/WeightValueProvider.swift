@@ -23,8 +23,8 @@ final class WeightValueProviderImpl: DefaultDoubleValueProvider, WeightValueProv
     
     override var unknownValue: Double { WeightValueProviderImpl.UNKNOWN_VALUE }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_WEIGHTSENSOR
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
     }
     
     static let UNKNOWN_VALUE = -1.0

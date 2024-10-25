@@ -16,31 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGeneralViewEvent> {
+    private lazy var viewModel: SwitchGeneralVM! = SwitchGeneralVM()
     
-    private lazy var viewModel: SwitchGeneralVM! = { SwitchGeneralVM() }()
-    
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
-    }()
-    private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = {
-        GetChannelBaseStateUseCaseMock()
-    }()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
-        ExecuteSimpleActionUseCaseMock()
-    }()
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
+
+    private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = GetChannelBaseStateUseCaseMock()
+
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase!)
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
@@ -49,7 +43,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
     override func tearDown() {
         viewModel = nil
         
-        readChannelByRemoteIdUseCase = nil
+        readChannelWithChildrenUseCase = nil
         getChannelBaseStateUseCase = nil
         executeSimpleActionUseCase = nil
         dateProvider = nil
@@ -60,7 +54,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
     func test_loadChannel() {
         // given
         var suplaValue = TSuplaChannelValue_B()
-        suplaValue.value = (1,1,1,1,1,1,1,1)
+        suplaValue.value = (1, 1, 1, 1, 1, 1, 1, 1)
         
         var suplaTimer = TTimerState_ExtendedValue()
         suplaTimer.CountdownEndsAt = 122
@@ -93,7 +87,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         channel.usericon = userIcon
         channel.ev = extendedValue
         
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(0)
         
@@ -113,7 +107,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.userIcon, userIcon)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
         
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
     }
     
@@ -145,7 +139,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         channel.usericon = userIcon
         channel.ev = extendedValue
         
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(124)
         
@@ -165,7 +159,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.userIcon, userIcon)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
         
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
     }
     

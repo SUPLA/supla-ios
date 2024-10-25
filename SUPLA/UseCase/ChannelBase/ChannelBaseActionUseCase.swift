@@ -34,7 +34,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
     }
 
     private func getAction(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Action? {
-        if (channelBase.isShadingSystem()) {
+        if (isDownOrUp(channelBase)) {
             if (channelBase.flags & Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS) > 0) {
                 return switch (buttonType) {
                 case .leftButton: Action.downOrStop
@@ -47,19 +47,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
                 }
             }
         }
-        if (channelBase.func == SUPLA_CHANNELFNC_PROJECTOR_SCREEN) {
-            return switch (buttonType) {
-            case .leftButton: Action.upOrStop
-            case .rightButton: Action.downOrStop
-            }
-        }
-        if (channelBase.func == SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR) {
-            return switch (buttonType) {
-            case .leftButton: Action.downOrStop
-            case .rightButton: Action.upOrStop
-            }
-        }
-        if (channelBase.isHvacThermostat()) {
+        if (channelBase.isHvacThermostat() || channelBase.isSwitch()) {
             return switch (buttonType) {
             case .leftButton: Action.turnOff
             case .rightButton: Action.turnOn
@@ -77,5 +65,30 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
         }
 
         fatalError("Unknown instance of SAChannelBase!")
+    }
+
+    private func isDownOrUp(_ channelBase: SAChannelBase) -> Bool {
+        switch (channelBase.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+             SUPLA_CHANNELFNC_TERRACE_AWNING,
+             SUPLA_CHANNELFNC_CURTAIN,
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: true
+        default: false
+        }
+    }
+}
+
+private extension SAChannelBase {
+    func isSwitch() -> Bool {
+        switch (self.func) {
+        case SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER: true
+        default: false
+        }
     }
 }

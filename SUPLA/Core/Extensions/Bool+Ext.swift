@@ -17,7 +17,7 @@
  */
 
 extension Bool {
-    func ifTrue<T>(_ valueProvider: () -> T) -> T? {
+    func ifTrue<T>(_ valueProvider: () -> T?) -> T? {
         if (self) {
             return valueProvider()
         }

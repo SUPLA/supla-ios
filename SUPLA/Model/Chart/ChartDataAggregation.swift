@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-fileprivate let formatter: DateFormatter = {
+private let formatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMddHHmm"
     return formatter
@@ -28,32 +28,49 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
     case days
     case months
     case years
+    case rankHours
+    case rankWeekdays
+    case rankMonths
     
     var timeInSec: TimeInterval {
-        get {
-            switch (self) {
-            case .minutes: 600
-            case .hours: 3600
-            case .days: 86400
-            case .months: 2592000
-            case .years: 31536000
-            }
+        switch (self) {
+        case .minutes: 600
+        case .hours, .rankHours: 3600
+        case .days, .rankWeekdays: 86400
+        case .months, .rankMonths: 2592000
+        case .years: 31536000
         }
     }
     
     var label: String {
-        get {
-            switch (self) {
-            case .minutes: Strings.Charts.minutes
-            case .hours: Strings.Charts.hours
-            case .days: Strings.Charts.days
-            case .months: Strings.Charts.months
-            case .years: Strings.Charts.year
-            }
+        switch (self) {
+        case .minutes: Strings.Charts.minutes
+        case .hours: Strings.Charts.hours
+        case .days: Strings.Charts.days
+        case .months: Strings.Charts.months
+        case .years: Strings.Charts.years
+        case .rankHours: Strings.Charts.rankOfHours
+        case .rankWeekdays: Strings.Charts.rankOfWeekdays
+        case .rankMonths: Strings.Charts.rankOfMonths
         }
     }
     
-    func aggregator(item: SAMeasurementItem) -> TimeInterval {
+    var isRank: Bool {
+        switch (self) {
+        case .rankHours, .rankWeekdays, .rankMonths: true
+        default: false
+        }
+    }
+    
+    func aggregator(item: Reduceable) -> TimeInterval {
+        if (self == .rankHours) {
+            return Double(item.hour)
+        } else if (self == .rankWeekdays) {
+            return Double(item.weekday)
+        } else if (self == .rankMonths) {
+            return Double(item.month)
+        }
+        
         let year = Double(item.year)
         if (self == .years) {
             return TimeInterval(year)
@@ -77,17 +94,102 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
     }
     
     func groupTimeProvider(date: Date) -> TimeInterval {
-        return switch(self) {
+        return switch (self) {
         case .minutes: date.timeIntervalSince1970
-        case .hours: date.inHalfOfHour().timeIntervalSince1970
-        case .days: date.dayNoon().timeIntervalSince1970
-        case .months: date.monthHalf().timeIntervalSince1970
+        case .hours, .rankHours: date.inHalfOfHour().timeIntervalSince1970
+        case .days, .rankWeekdays: date.dayNoon().timeIntervalSince1970
+        case .months, .rankMonths: date.monthHalf().timeIntervalSince1970
         case .years: date.yearHalf().timeIntervalSince1970
         }
     }
     
     func between(min: ChartDataAggregation, max: ChartDataAggregation) -> Bool {
-        self.timeInSec >= min.timeInSec && self.timeInSec <= max.timeInSec
+        if (isRank) {
+            timeInSec <= max.timeInSec
+        } else {
+            timeInSec >= min.timeInSec && timeInSec <= max.timeInSec
+        }
+    }
+    
+    func reductor<T: Reduceable>(
+        _ map: [TimeInterval: LinkedList<T>],
+        _ item: T
+    ) -> [TimeInterval: LinkedList<T>] {
+        var map = map
+        let aggregator = aggregator(item: item)
+        if (map[aggregator] == nil) {
+            map[aggregator] = LinkedList<T>()
+        }
+        map[aggregator]?.append(item)
+        return map
+    }
+    
+    static var defaultEntries: [ChartDataAggregation] {
+        return [.minutes, .hours, .days, .months, .years]
+    }
+    
+    protocol Reduceable {
+        var day: Int16 { get }
+        var month: Int16 { get }
+        var year: Int16 { get }
+        var hour: Int16 { get }
+        var weekday: Int16 { get }
     }
 }
 
+extension ChartDataAggregation {
+    var colors: [UIColor] {
+        switch self {
+        case .rankHours: [
+                .chartPie1,
+                .chartPie2,
+                .chartPie3,
+                .chartPie4,
+                .chartPie5,
+                .chartPie6,
+                .chartPie7,
+                .chartPie8,
+                .chartPie9,
+                .chartPie10,
+                .chartPie11,
+                .chartPie12,
+                .chartPie13,
+                .chartPie14,
+                .chartPie15,
+                .chartPie16,
+                .chartPie17,
+                .chartPie18,
+                .chartPie19,
+                .chartPie20,
+                .chartPie21,
+                .chartPie22,
+                .chartPie23,
+                .chartPie24
+            ]
+        case .rankWeekdays: [
+                .chartPie1,
+                .chartPie2,
+                .chartPie3,
+                .chartPie4,
+                .chartPie5,
+                .chartPie6,
+                .chartPie7
+            ]
+        case .rankMonths: [
+                .chartPie1,
+                .chartPie2,
+                .chartPie3,
+                .chartPie4,
+                .chartPie5,
+                .chartPie6,
+                .chartPie7,
+                .chartPie8,
+                .chartPie9,
+                .chartPie10,
+                .chartPie11,
+                .chartPie12
+            ]
+        default: []
+        }
+    }
+}

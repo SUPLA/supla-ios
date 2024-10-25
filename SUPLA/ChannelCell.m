@@ -332,9 +332,11 @@
     
     
     if ( _channelBase.func == SUPLA_CHANNELFNC_THERMOMETER ) {
+        self.temp.font = UIFont.cellValueFont;
         [self.temp setText:[[_channelBase attrStringValue] string]];
     } else if ( _channelBase.func== SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
-        
+        self.temp.font = UIFont.cellValueFont;
+        self.humidity.font = UIFont.cellValueFont;
         [self.temp setText:[[_channelBase attrStringValue] string]];
         [self.humidity setText:[[_channelBase attrStringValueWithIndex:1 font:nil] string]];
        
@@ -344,8 +346,11 @@
                  || _channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
                  || _channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR
                  || _channelBase.func == SUPLA_CHANNELFNC_HUMIDITY ) {
+        
+        self.measuredValue.font = UIFont.cellValueFont;
         [self.measuredValue setText:[[_channelBase attrStringValue] string]];
     } else if ( _channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
+        self.distance.font = UIFont.cellValueFont;
         [self.distance setText:[[_channelBase attrStringValue] string]];
     } else if ( _channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
                 || _channelBase.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
@@ -353,10 +358,12 @@
                 || _channelBase.func == SUPLA_CHANNELFNC_IC_GAS_METER
                 || _channelBase.func == SUPLA_CHANNELFNC_IC_HEAT_METER ) {
         
+        self.measuredValue.font = UIFont.cellValueFont;
         [self.measuredValue setText:[[_channelBase attrStringValue] string]];
                 
     } else {
         if ( _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
+            self.temp.font = UIFont.cellValueFont;
             [self.temp setAttributedText:[_channelBase attrStringValueWithIndex:0 font:self.temp.font]];
         }
         

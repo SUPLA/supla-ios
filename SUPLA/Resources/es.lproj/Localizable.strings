@@ -278,7 +278,6 @@
 "Default" = "Defecto";
 "Delete account" = "Borrar cuenta";
 "Select active account" = "Seleccionar una cuenta activa";
-"Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
 
 "AccountCreation.title" = "Editar cuenta";
@@ -291,6 +290,13 @@
 "Cfg.removal.dialog.incomplete" = "Completar los datos requeridos";
 
 "general_error" = "Error";
+
+/* Combined Chart */
+"history_range_last_day" = "Últimas 24 horas";
+"history_range_last_week" = "Últimos 7 días";
+"history_range_last_30_days" = "Últimos 30 días";
+"history_range_last_90_days" = "Derniers 90 jours";
+"history_range_last_365_days" = "Últimos 365 días";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "No hay datos para el gráfico.";
@@ -318,3 +324,24 @@
 
 /* About */
 "about_version" = "versión %@";
+
+/* Electricity meter detail */
+"details_em_reverse_active_energy" = "Energía activa devuelta";
+"details_em_forward_active_energy" = "Energía activa recibida";
+"details_em_forward_reactive_energy" = "Energía reactiva recibida";
+"details_em_reverse_reactive_energy" = "Energía reactiva devuelta";
+"details_em_frequency" = "Frecuencia";
+"details_em_voltage" = "Voltaje";
+"details_em_current" = "Intensidad";
+"details_em_power_active" = "Potencia activa";
+"details_em_power_reactive" = "Potencia reactiva";
+"details_em_power_factor" = "Factor de potencia";
+"details_em_phase_angle" = "Ángulo de fase";
+"details_em_power_apparent" = "Potencia aparente";
+"details_em_phase1" = "Fase 1";
+"details_em_phase2" = "Fase 2";
+"details_em_phase3" = "Fase 3";
+"details_em_balance_arithmetic" = "Balance aritmético";
+"details_em_balance_vector" = "Balance vectorial";
+"em_phase_to_phase_balance" = "Balance de interfaz vectorial";
+"em_chart_all_phases" = "Fase 1 + 2 + 3";

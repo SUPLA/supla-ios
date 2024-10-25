@@ -277,7 +277,6 @@
 "Default" = "Standaard";
 "Delete account" = "Account verwijderen";
 "Select active account" = "Selecteer actieve rekening";
-"Phase 1+2+3" = "Fase 1+2+3";
 "Phase %d" = "Fase %d";
 
 "AccountCreation.title" = "Rekening bewerken";
@@ -290,6 +289,13 @@
 "Cfg.removal.dialog.incomplete" = "Vul de vereiste gegevens in";
 
 "general_error" = "Fout";
+
+/* Combined Chart */
+"history_range_last_day" = "De laatste 24 uur";
+"history_range_last_week" = "De laatste 7 dni";
+"history_range_last_30_days" = "De laatste 30 dni";
+"history_range_last_90_days" = "De laatste 90 dni";
+"history_range_last_365_days" = "De laatste 365 dni";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Er zijn geen gegevens voor de grafiek.";
@@ -317,3 +323,24 @@
 
 /* About */
 "about_version" = "wersie %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Opgenomen actieve energie";
+"details_em_reverse_active_energy" = "Actieve energie geretourneerd";
+"details_em_forward_reactive_energy" = "Reactieve energie verzameld";
+"details_em_reverse_reactive_energy" = "Reactieve energie geretourneerd";
+"details_em_frequency" = "Frequentie";
+"details_em_voltage" = "Spanning";
+"details_em_current" = "Intensiteit";
+"details_em_power_active" = "Actieve kracht";
+"details_em_power_reactive" = "Reactief vermogen";
+"details_em_power_factor" = "Arbeidsfactor";
+"details_em_phase_angle" = "Fase hoek";
+"details_em_power_apparent" = "Schijnbare kracht";
+"details_em_phase1" = "Fase 1";
+"details_em_phase2" = "Fase 2";
+"details_em_phase3" = "Fase 3";
+"details_em_balance_arithmetic" = "Rekenkundig saldo";
+"details_em_balance_vector" = "Vector saldo";
+"em_phase_to_phase_balance" = "Vector interfase saldo";
+"em_chart_all_phases" = "Fase 1+2+3";

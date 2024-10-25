@@ -269,7 +269,7 @@ struct AccountCreationViewState: ViewState {
     
     var title: String {
         if (!profileNameVisible) {
-            return Strings.NavBar.titleSupla
+            return Strings.appName
         } else if (profileId != nil) {
             return Strings.AccountCreation.creationTitle
         } else {

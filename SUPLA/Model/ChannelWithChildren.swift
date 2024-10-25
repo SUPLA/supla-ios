@@ -29,6 +29,15 @@ struct ChannelWithChildren: Equatable {
     var heatOrColdSourceSwitchChild: ChannelChild? {
         children.first(where: { $0.relationType == .heatOrColdSourceSwitch })
     }
+    
+    var hasElectricityMeter: Bool {
+        if let child = children.first(where: { $0.relationType == .meter }),
+           child.channel.isElectricityMeter() {
+            return true
+        }
+        
+        return (channel.value?.sub_value_type ?? 0) == SUBV_TYPE_ELECTRICITY_MEASUREMENTS
+    }
 
     private func getChildren(_ tree: [ChannelChild]) -> [ChannelChild] {
         var children: [ChannelChild] = []
@@ -40,6 +49,11 @@ struct ChannelWithChildren: Equatable {
         }
         return children
     }
+}
+
+extension ChannelWithChildren {
+    var remoteId: Int32 { channel.remote_id }
+    var function: Int32 { channel.func }
 }
 
 extension ChannelWithChildren: BaseCellData {

@@ -18,39 +18,34 @@
 
 final class WeigthValueStringProvider: ChannelValueStringProvider {
     @Singleton<WeightValueProvider> private var weightValueProvider
-    
-    private lazy var formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 1
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_WEIGHTSENSOR
+
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
     }
-    
+
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         if let value = weightValueProvider.value(channel, valueType: valueType) as? Double,
            value > WeightValueProviderImpl.UNKNOWN_VALUE
         {
             if (value > 2000) {
-                return formatWeightKg(value, withUnit)
+                return formatWeightKg(value / 1000, withUnit)
             }
-            
-            return withUnit ? "\(Int(value)) g" : "\(Int(value))"
+
+            return if (withUnit) {
+                "\(value.toString()) g"
+            } else {
+                value.toString()
+            }
         } else {
             return NO_VALUE_TEXT
         }
     }
-    
+
     private func formatWeightKg(_ value: Double, _ withUnit: Bool) -> String {
-        if let stringValue = formatter.string(from: NSNumber(value: value / 1000.0)) {
-            return withUnit ? "\(stringValue) kg": "\(stringValue)"
+        return if (withUnit) {
+            "\(value.toString(minPrecision: 1, maxPrecision: 2)) kg"
+        } else {
+            value.toString(minPrecision: 1, maxPrecision: 2)
         }
-        
-        return NO_VALUE_TEXT
     }
 }

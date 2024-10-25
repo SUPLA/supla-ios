@@ -30,13 +30,7 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
     override func triggerDataLoad(remoteId: Int32) {
         Observable.zip(
             readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
-            profileRepository.getActiveProfile().map {
-                @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getTemperatureChartState(
-                    profileId: $0.idString,
-                    remoteId: remoteId
-                )
-            }
+            profileRepository.getActiveProfile().map { [weak self] in self?.loadChartState($0.idString, remoteId) }
         ) { ($0, $1) }
             .asDriverWithoutError()
             .drive(
@@ -47,18 +41,16 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
     
     override func measurementsObservable(
         remoteId: Int32,
-        start: Date,
-        end: Date,
-        chartRange: ChartRange,
-        aggregation: ChartDataAggregation
+        spec: ChartDataSpec,
+        chartRange: ChartRange
     ) -> Observable<(ChartData, DaysRange?)> {
         Observable.zip(
-            loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, startDate: start, endDate: end, aggregation: aggregation),
+            loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, spec: spec),
             loadChannelMeasurementsDateRangeUseCase.invoke(remoteId: remoteId)
-        ) { (LineChartData(DaysRange(start: start, end: end), chartRange, aggregation, $0), $1) }
+        ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [$0]), $1) }
     }
     
-    private func handleData(channel: SAChannel, chartState: TemperatureChartState) {
+    private func handleData(channel: SAChannel, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.profile.idString)
                 .changing(path: \.channelFunction, to: channel.func)

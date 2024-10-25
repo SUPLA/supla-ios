@@ -16,52 +16,76 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class LineChartData: ChartData {
-    
-    override func combinedData() -> CombinedChartData? {
+final class LineChartData: CombinedChartData {
+    override func combinedData() -> DGCharts.CombinedChartData? {
         var lineDataSets: [LineChartDataSet] = []
-        sets.forEach { set in
-            if (set.active && !set.entries.isEmpty) {
-                set.entries.forEach {
-                    let entries = $0.map { ChartDataEntry(x: $0.date, y: $0.value, data: set.toDetails($0)) }
-                    lineDataSets.append(lineDataSet(entries, set.color, set.setId.type))
+        sets.flatMap { $0.dataSets }
+            .forEach {
+                if let set = $0.asLineChartData(aggregation: aggregation!) {
+                    lineDataSets.append(contentsOf: set)
                 }
             }
-        }
-        
+
         if (lineDataSets.isEmpty) {
             return nil
         }
-        
-        let data = CombinedChartData()
+
+        let data = DGCharts.CombinedChartData()
         data.lineData = DGCharts.LineChartData(dataSets: lineDataSets)
         return data
     }
-    
-    override func newInstance(sets: [HistoryDataSet]) -> ChartData {
+
+    override func newInstance(sets: [ChannelChartSets]) -> ChartData {
         LineChartData(dateRange, chartRange, aggregation, sets)
     }
-    
-    func lineDataSet(_ set: [ChartDataEntry], _ color: UIColor, _ type: ChartEntryType) -> LineChartDataSet {
-        let set = LineChartDataSet(entries: set, label: "")
-        set.drawValuesEnabled = false
-        set.mode = .horizontalBezier
-        set.cubicIntensity = 0.05
-        set.colors = [color]
-        set.circleColors = [color]
-        set.drawCircleHoleEnabled = false
-        set.drawCirclesEnabled = false
-        set.lineWidth = 2
-        switch (type) {
-        case .humidity: set.axisDependency = .right
-        default: set.axisDependency = .left
+}
+
+private extension HistoryDataSet {
+    func asLineChartData(aggregation: ChartDataAggregation) -> [LineChartDataSet]? {
+        if (!active || entries.isEmpty) {
+            return nil
         }
-        set.highlightColor = .primary
-        
-        set.drawFilledEnabled = true
-        set.fillColor = color
-        set.fillAlpha = 0.08
-        return set
+
+        return entries
+            .map { aggregatedEntries in
+                lineDataSet(
+                    set: aggregatedEntries.map {
+                        ChartDataEntry(x: $0.date, y: $0.value.y, data: toChartDetails(aggregation: aggregation, entity: $0))
+                    },
+                    label: label,
+                    type: type
+                )
+            }
     }
-    
+}
+
+private extension AggregatedValue {
+    var y: Double {
+        switch (self) {
+        case .single(let value, _, _, _, _): return value
+        case .multiple(let values): return values.reduce(0, +)
+        }
+    }
+}
+
+private func lineDataSet(set: [ChartDataEntry], label: HistoryDataSet.Label, type: ChartEntryType) -> LineChartDataSet {
+    let set = LineChartDataSet(entries: set, label: "")
+    set.drawValuesEnabled = false
+    set.mode = .horizontalBezier
+    set.cubicIntensity = 0.05
+    set.colors = label.colors
+    set.circleColors = label.colors
+    set.fillColor = label.colors.first!
+    set.drawCircleHoleEnabled = false
+    set.drawCirclesEnabled = false
+    set.lineWidth = 2
+    switch (type) {
+    case .humidity: set.axisDependency = .right
+    default: set.axisDependency = .left
+    }
+    set.highlightColor = .primary
+
+    set.drawFilledEnabled = true
+    set.fillAlpha = 0.08
+    return set
 }

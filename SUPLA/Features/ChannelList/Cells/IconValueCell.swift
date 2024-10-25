@@ -19,7 +19,6 @@
 import RxSwift
 
 final class IconValueCell: BaseCell<ChannelWithChildren> {
-    
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
@@ -58,7 +57,8 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     
     override func onInfoPress(_ gr: UITapGestureRecognizer) {
         if let delegate = delegate as? BaseCellDelegate,
-           let channel = data?.channel {
+           let channel = data?.channel
+        {
             delegate.onInfoIconTapped(channel)
         }
     }
@@ -92,12 +92,32 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         
         caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
-        leftStatusIndicatorView.configure(filled: false, onlineState: channel.onlineState)
-        rightStatusIndicatorView.configure(filled: false, onlineState: channel.onlineState)
+        leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
+        rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         valueView.text = getChannelValueStringUseCase.invoke(channel)
         
         issueIcon = nil
+    }
+    
+    override func leftButtonSettings() -> CellButtonSettings {
+        if let title = getLeftButtonText(data?.channel.func) {
+            return CellButtonSettings(visible: online(), title: title)
+        } else {
+            return super.leftButtonSettings()
+        }
+    }
+    
+    override func rightButtonSettings() -> CellButtonSettings {
+        if let title = getRightButtonText(data?.channel.func) {
+            return CellButtonSettings(visible: online(), title: title)
+        } else {
+            return super.rightButtonSettings()
+        }
+    }
+    
+    override func timerEndDate() -> Date? {
+        data?.channel.getTimerEndDate()
     }
 }

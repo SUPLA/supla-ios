@@ -40,6 +40,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToPinSetup(lockScreenScope: LockScreenScope)
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
     
@@ -195,6 +196,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage]) {
         navigateTo(WindowDetailVC(item: item, pages: pages))
+    }
+    
+    func navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(ElectricityMeterDetailVC(item: item, pages: pages))
     }
     
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {

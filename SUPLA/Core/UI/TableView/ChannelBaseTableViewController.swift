@@ -162,14 +162,10 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
                 if (channelValue.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS
                     || channelValue.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
                 {
-                    return cellIdForIncremental
+                    return cellIdForIconValue
                 }
             }
-            return cellIdForChannel
-        case SUPLA_CHANNELFNC_THERMOMETER:
-            return cellIdForThermometer
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return cellIdForTempHumidity
+            return cellIdForIcon
         case SUPLA_CHANNELFNC_DEPTHSENSOR,
              SUPLA_CHANNELFNC_WINDSENSOR,
              SUPLA_CHANNELFNC_WEIGHTSENSOR,
@@ -178,16 +174,12 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
              SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
              SUPLA_CHANNELFNC_HUMIDITY,
-             SUPLA_CHANNELFNC_DISTANCESENSOR:
+             SUPLA_CHANNELFNC_DISTANCESENSOR,
+             SUPLA_CHANNELFNC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_THERMOMETER:
             return cellIdForIconValue
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_IC_GAS_METER,
-             SUPLA_CHANNELFNC_IC_WATER_METER,
-             SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return cellIdForIncremental
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-            return cellIdForHomePlus
+        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+            return cellIdForIconValue
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             return cellIdForHvacThermostat
@@ -200,6 +192,15 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_VERTICAL_BLIND,
              SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return cellIdForIcon
+            // Old
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+            return cellIdForHomePlus
+        case SUPLA_CHANNELFNC_IC_GAS_METER,
+             SUPLA_CHANNELFNC_IC_WATER_METER,
+             SUPLA_CHANNELFNC_IC_HEAT_METER:
+            return cellIdForIncremental
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            return cellIdForTempHumidity
         default:
             return cellIdForChannel
         }

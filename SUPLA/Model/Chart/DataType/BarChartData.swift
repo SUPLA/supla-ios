@@ -16,16 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class BarChartData: ChartData {
-    override func combinedData() -> CombinedChartData? {
+final class BarChartData: CombinedChartData {
+    override func combinedData() -> DGCharts.CombinedChartData? {
         var barDataSets: [BarChartDataSet] = []
-        for set in sets {
-            if (set.active && !set.entries.isEmpty) {
-                for entry in set.entries {
-                    let entries = entry.map {
-                        BarChartDataEntry(x: $0.date, y: $0.value, data: set.toDetails($0))
-                    }
-                    barDataSets.append(barDataSet(entries, set.color, set.setId.type))
+
+        for channelSet in sets {
+            for dataSet in channelSet.dataSets {
+                if let set = dataSet.asBarChartData(
+                    toCoordinate: toCoordinate,
+                    aggregation: aggregation!,
+                    customData: channelSet.customData
+                ) {
+                    barDataSets.append(contentsOf: set)
                 }
             }
         }
@@ -34,34 +36,67 @@ final class BarChartData: ChartData {
             return nil
         }
 
-        let data = CombinedChartData()
+        let data = DGCharts.CombinedChartData()
         data.barData = DGCharts.BarChartData(dataSets: barDataSets)
         data.barData.barWidth = (aggregation?.timeInSec ?? 1) * 0.8
         return data
     }
 
-    override func newInstance(sets: [HistoryDataSet]) -> ChartData {
+    override func newInstance(sets: [ChannelChartSets]) -> ChartData {
         BarChartData(dateRange, chartRange, aggregation, sets)
     }
-    
+
     override func getAxisMaxValue(_ filter: (ChartEntryType) -> Bool) -> Double? {
         let maxValue = super.getAxisMaxValue(filter)
-        
+
         if let maxValue = maxValue, maxValue <= 0 {
             if let minValue = getAxisMinValueRaw(filter) {
                 return abs(minValue) * CHART_TOP_MARGIN
             }
         }
-        
+
         return maxValue
     }
+}
 
-    private func barDataSet(_ set: [ChartDataEntry], _ color: UIColor, _ type: ChartEntryType) -> BarChartDataSet {
-        let set = BarChartDataSet(entries: set, label: "")
-        set.drawValuesEnabled = false
-        set.colors = [color]
-        set.barShadowColor = .transparent
+private extension HistoryDataSet {
+    func asBarChartData(toCoordinate: (Double) -> Double, aggregation: ChartDataAggregation, customData: (any Equatable)?) -> [BarChartDataSet]? {
+        if (!active || entries.isEmpty) {
+            return nil
+        }
 
-        return set
+        return entries
+            .map { aggregatedEntries in
+                barDataSet(
+                    set: aggregatedEntries.map {
+                        $0.toBarChartDataEntry(
+                            toCoordinate: toCoordinate,
+                            data: toChartDetails(aggregation: aggregation, entity: $0, customData: customData)
+                        )
+                    },
+                    label: label,
+                    type: type
+                )
+            }
     }
+}
+
+private extension AggregatedEntity {
+    func toBarChartDataEntry(toCoordinate: (Double) -> Double, data: Any? = nil) -> BarChartDataEntry {
+        switch (value) {
+        case .single(let value, _, _, _, _):
+            BarChartDataEntry(x: toCoordinate(date), y: value, data: data)
+        case .multiple(let values):
+            BarChartDataEntry(x: toCoordinate(date), yValues: values, data: data)
+        }
+    }
+}
+
+private func barDataSet(set: [ChartDataEntry], label: HistoryDataSet.Label, type: ChartEntryType) -> BarChartDataSet {
+    let set = BarChartDataSet(entries: set, label: "")
+    set.drawValuesEnabled = false
+    set.colors = label.colors
+    set.barShadowColor = .transparent
+
+    return set
 }

@@ -52,7 +52,7 @@ final class CircleControlButtonView: BaseControlButtonView {
         ]
     }
     
-    override func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView) -> [NSLayoutConstraint] {
+    override func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView, _ container: UIView) -> [NSLayoutConstraint] {
         return [
             textView.centerXAnchor.constraint(equalTo: centerXAnchor),
             textView.topAnchor.constraint(equalTo: centerYAnchor, constant: 2),

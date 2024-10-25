@@ -277,7 +277,6 @@
 "Default" = "Standardmäßig";
 "Delete account" = "Konto löschen";
 "Select active account" = "Aktives Konto wählen";
-"Phase 1+2+3" = "Phase 1+2+3";
 "Phase %d" = "Phase %d";
 
 "AccountCreation.title" = "Konto bearbeiten";
@@ -316,6 +315,7 @@
 "channel_caption_garage_door" = "Garagentor";
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
+"channel_offline" = "Das Kanal ist offline";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -345,6 +345,7 @@
 "standard_detail_metrics_tab" = "Messungen";
 "standard_detail_history_tab" = "Historie";
 "standard_detail_list_tab" = "Liste";
+"standard_detail_settings_tab" = "Einstellungen";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktuellen Zustand:";
@@ -417,11 +418,12 @@
 
 /* Combined Chart */
 "history_range_label" = "Bereich";
-"history_aggregation_label" = "Anhäufung";
+"history_data_type" = "Datentyp";
 "history_range_last_day" = "Letzte 24 Stunden";
 "history_range_last_week" = "Letzte 7 Tagen";
 "history_range_last_30_days" = "Letzte 30 Tagen";
 "history_range_last_90_days" = "Letzte 90 Tagen";
+"history_range_last_365_days" = "Letzte 365 Tagen";
 "history_range_current_day" = "Tag";
 "history_range_current_week" = "Woche";
 "history_range_current_month" = "Monat";
@@ -508,3 +510,44 @@
 "about_version" = "version %@";
 "about_license" = "Dieses Programm ist freie Software, es darf weitergegeben und / oder modifiziert werden unter den Bedingungen der GNU General Public License die von der Free Software Foundation veröffentlicht wurde, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.\n\nDieses Programm wird vertrieben um nützlich zu sein, aber OHNE IRGENDEINE GARANTIE. Sogar ohne Gewähr Marktgängigkeit oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Lesen Sie bitte General Public License für weitere Details.\n\nSie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA";
 "about_build_time" = "Version des Tages: %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Wirkenergie aufgenommen";
+"details_em_reverse_active_energy" = "Wirkenergie zurückgegeben";
+"details_em_forward_reactive_energy" = "Blindenergie aufgenommen";
+"details_em_reverse_reactive_energy" = "Blindenergie zurückgegeben";
+"details_em_forward_active_energy_short" = "Wirk- aufgenommen";
+"details_em_reverse_active_energy_short" = "Wirk- zurückgegeben";
+"details_em_forward_reactive_energy_short" = "Blind- aufgenommen";
+"details_em_reverse_reactive_energy_short" = "Blind- zurückgegeben";
+"details_em_frequency" = "Frequenz";
+"details_em_voltage" = "Spannung";
+"details_em_current" = "Stärke";
+"details_em_power_active" = "Wirkleistung";
+"details_em_power_reactive" = "Blindleistung";
+"details_em_power_factor" = "Leistungsfaktor";
+"details_em_phase_angle" = "Phasenwinkel";
+"details_em_power_apparent" = "Scheinleistung";
+"details_em_phase1" = "Phase 1";
+"details_em_phase2" = "Phase 2";
+"details_em_phase3" = "Phase 3";
+"details_em_balance_arithmetic" = "Arithmetisches Gleichgewicht";
+"details_em_balance_vector" = "Vektorgleichgewicht";
+"details_em_chart_data_type" = "Daten";
+"details_em_phases" = "Phasen";
+"details_em_balance_hourly" = "Stundensaldo";
+"details_em_balance_chart_aggregated" = "Diagramm aggregiertes Bilanz";
+"details_em_sum" = "Summe";
+"details_em_select_range" = "Bereich auswählen";
+"details_em_active_energy" = "Wirkenergie";
+"details_em_forwarded_energy" = "Aufgenommen";
+"details_em_reversed_energy" = "Zurückgegeben";
+"details_em_cost" = "Kosten";
+"details_em_settings_list_item" = "In der Kanalliste angezeigte Metrik";
+"details_em_settings_title" = "Einstellungen - %@";
+"details_em_total_suffix" = "(Zählerstand)";
+"details_em_current_month_suffix" = "(aktueller Monat)";
+"details_em_energy_label" = "Energie";
+"details_em_hour_marker_title" = "%@ Uhr";
+"em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
+"em_chart_all_phases" = "Phase 1+2+3";

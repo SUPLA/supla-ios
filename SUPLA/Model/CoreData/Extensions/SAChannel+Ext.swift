@@ -19,12 +19,20 @@
 extension SAChannel {
     var onlineState: ListOnlineState { .from(isOnline()) }
     
+    var phases: [Phase] {
+        Phase.allCases.filter { $0.disabledFlag & flags == 0 }
+    }
+
     func item() -> ItemBundle {
         ItemBundle(remoteId: remote_id, deviceId: device_id, subjectType: .channel, function: self.func)
     }
 
     func getTimerEndDate() -> Date? {
-        ev?.channelState().countdownEndsAt()
+        if let state = ev?.channelState() {
+            return state.countdownEndsAt()
+        } else {
+            return nil
+        }
     }
 
     @objc func isFacadeBlindClosed() -> Bool {
@@ -40,7 +48,8 @@ extension SAChannel {
             case SUPLA_CHANNELFNC_THERMOMETER,
                  SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
                  SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-                 SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT: true
+                 SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
+                 SUPLA_CHANNELFNC_ELECTRICITY_METER: true
             default: false
         }
     }

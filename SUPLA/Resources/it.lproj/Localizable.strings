@@ -308,6 +308,13 @@
 
 "general_error" = "Errore";
 
+/* Combined Chart */
+"history_range_last_day" = "Ultime 24 ore";
+"history_range_last_week" = "Ultimi 7 giorni";
+"history_range_last_30_days" = "Ultimi 30 giorni";
+"history_range_last_90_days" = "Ultimi 90 giorni";
+"history_range_last_365_days" = "Ultimi 365 giorni";
+
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nessun dato per il grafico.";
 
@@ -333,3 +340,23 @@
 
 /* About */
 "about_version" = "versione %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Energia attiva prelevata";
+"details_em_reverse_active_energy" = "Energia attiva restituita";
+"details_em_forward_reactive_energy" = "Energia reattiva prelevata";
+"details_em_reverse_reactive_energy" = "Energia reattiva restituita";
+"details_em_frequency" = "Frequenza";
+"details_em_voltage" = "Tensione";
+"details_em_current" = "Intensità";
+"details_em_power_active" = "Potenza attiva";
+"details_em_power_reactive" = "Potenza reattiva";
+"details_em_power_factor" = "Fattore di potenza";
+"details_em_phase_angle" = "Angolo di fase";
+"details_em_power_apparent" = "Potenza apparente";
+"details_em_phase1" = "Fase 1";
+"details_em_phase2" = "Fase 2";
+"details_em_phase3" = "Fase 3";
+"details_em_balance_arithmetic" = "Equilibrio aritmetico";
+"details_em_balance_vector" = "Equilibrio vettoriale";
+"em_phase_to_phase_balance" = "Equilibrio interfase vettoriale";

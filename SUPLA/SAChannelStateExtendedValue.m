@@ -357,7 +357,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return [NSDate dateWithTimeIntervalSince1970: _tsev.CountdownEndsAt + timeDiff];
 }
 
-
 @end
 
 @implementation SAChannelExtendedValue (SAChannelStateExtendedValue)

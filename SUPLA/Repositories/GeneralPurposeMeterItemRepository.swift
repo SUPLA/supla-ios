@@ -22,11 +22,7 @@ protocol GeneralPurposeMeterItemRepository:
     T == SAGeneralPurposeMeterItem
 {
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeterItem]>
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
         latestItem: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?,
@@ -49,7 +45,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         )
     }
 
-    func deleteAll(for profile: AuthProfileItem) -> RxSwift.Observable<Void> {
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(
             SAGeneralPurposeMeterItem
                 .fetchRequest()
@@ -145,16 +141,16 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         var saveError: Error? = nil
         context.performAndWait {
             for measurement in measurements {
-                if (oldestEntity == nil) {
+                if let oldest = oldestEntity {
+                    let entity = createEntityAndComplementMissing(measurement, oldest, remoteId, profile, channelConfig)
+                    if (oldest.date!.timeIntervalSince1970 < entity.date!.timeIntervalSince1970) {
+                        oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(value: entity.value, date: entity.date)
+                    }
+                } else {
                     oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(
                         value: NSDecimalNumber(string: measurement.value),
                         date: measurement.date_timestamp
                     )
-                } else {
-                    let entity = createEntityAndComplementMissing(measurement, oldestEntity!, remoteId, profile, channelConfig)
-                    if (oldestEntity == nil || oldestEntity!.date!.timeIntervalSince1970 < entity.date!.timeIntervalSince1970) {
-                        oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(value: entity.value, date: entity.date)
-                    }
                 }
             }
             

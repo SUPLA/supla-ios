@@ -19,9 +19,12 @@
 import Foundation
 
 protocol UserStateHolder {
-    func getTemperatureChartState(profileId: String, remoteId: Int32) -> TemperatureChartState
-    func setTemperatureChartState(_ state: TemperatureChartState, profileId: String, remoteId: Int32)
+    func getDefaultChartState(profileId: String, remoteId: Int32) -> DefaultChartState
+    func getElectricityChartState(profileId: String, remoteId: Int32) -> ElectricityChartState
+    func setChartState(_ state: ChartState, profileId: String, remoteId: Int32)
     
+    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32)
 }
 
 final class UserStateHolderImpl: UserStateHolder {
@@ -29,26 +32,67 @@ final class UserStateHolderImpl: UserStateHolder {
     let userDefaults = UserDefaults.standard
     
     private let temperatureChartStateKey = "UserStateHolder.temperature_chart_state"
-    func getTemperatureChartState(profileId: String, remoteId: Int32) -> TemperatureChartState {
+    func getDefaultChartState(profileId: String, remoteId: Int32) -> DefaultChartState {
         let key = parametrizedKey(key: temperatureChartStateKey, profileId, String(remoteId))
         if let data = userDefaults.data(forKey: key) {
             do {
                 let decoder = JSONDecoder()
-                return try decoder.decode(TemperatureChartState.self, from: data)
+                return try decoder.decode(DefaultChartState.self, from: data)
             } catch {
                 let errorString = String(describing: error)
                 SALog.error("Could not decode state: \(errorString)")
             }
         }
         
-        return TemperatureChartState.defaultState()
+        return DefaultChartState.empty()
     }
     
-    func setTemperatureChartState(_ state: TemperatureChartState, profileId: String, remoteId: Int32) {
+    func getElectricityChartState(profileId: String, remoteId: Int32) -> ElectricityChartState {
+        let key = parametrizedKey(key: temperatureChartStateKey, profileId, String(remoteId))
+        if let data = userDefaults.data(forKey: key) {
+            do {
+                let decoder = JSONDecoder()
+                return try decoder.decode(ElectricityChartState.self, from: data)
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not decode state: \(errorString)")
+            }
+        }
+        
+        return ElectricityChartState.empty()
+    }
+    
+    func setChartState(_ state: ChartState, profileId: String, remoteId: Int32) {
         let key = parametrizedKey(key: temperatureChartStateKey, profileId, String(remoteId))
         do {
+            userDefaults.set(try state.toJson(), forKey: key)
+        } catch {
+            let errorString = String(describing: error)
+            SALog.error("Could not encode state: \(errorString)")
+        }
+    }
+    
+    private let electricityMeterSettingsKey = "UserStateHolder.electricity_meter_settings"
+    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, profileId, String(remoteId))
+        if let data = userDefaults.data(forKey: key) {
+            do {
+                let decoder = JSONDecoder()
+                return try decoder.decode(ElectricityMeterSettings.self, from: data)
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not decode state: \(errorString)")
+            }
+        }
+        
+        return ElectricityMeterSettings.defaultSettings()
+    }
+    
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32) {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, profileId, String(remoteId))
+        do {
             let encoder = JSONEncoder()
-            userDefaults.set(try encoder.encode(state), forKey: key)
+            userDefaults.set(try encoder.encode(settings), forKey: key)
         } catch {
             let errorString = String(describing: error)
             SALog.error("Could not encode state: \(errorString)")

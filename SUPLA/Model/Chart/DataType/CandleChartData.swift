@@ -16,64 +16,88 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
-final class CandleChartData: ChartData {
+final class CandleChartData: CombinedChartData {
     override var divider: Double { aggregation?.timeInSec ?? 1.0 }
-    
-    override func combinedData() -> CombinedChartData? {
+
+    override func combinedData() -> DGCharts.CombinedChartData? {
         var candleDataSets: [ChartDataSetProtocol] = []
-        for set in sets {
-            if (set.active && !set.entries.isEmpty) {
-                for entries in set.entries {
-                    let candleEntries = entries.map { entry in
-                        let min = entry.min ?? entry.value
-                        let max = entry.max ?? entry.value
-                        let open = entry.open ?? entry.value
-                        let close = entry.close ?? entry.value
-                        return CandleChartDataEntry(
-                            x: toCoordinate(x: entry.date),
-                            shadowH: max,
-                            shadowL: min,
-                            open: open,
-                            close: close,
-                            data: set.toDetails(entry)
-                        )
-                    }
-                    candleDataSets.append(candleDataSet(candleEntries, set.color, set.setId.type))
+        sets.flatMap { $0.dataSets }
+            .forEach {
+                if let set = $0.asCandleChartData(toCoordinate: toCoordinate, aggregation: aggregation!) {
+                    candleDataSets.append(contentsOf: set)
                 }
             }
-        }
-        
+
         if (candleDataSets.isEmpty) {
             return nil
         }
-        
-        let data = CombinedChartData()
+
+        let data = DGCharts.CombinedChartData()
         data.candleData = DGCharts.CandleChartData(dataSets: candleDataSets)
         return data
     }
-    
-    override func newInstance(sets: [HistoryDataSet]) -> ChartData {
+
+    override func newInstance(sets: [ChannelChartSets]) -> ChartData {
         CandleChartData(dateRange, chartRange, aggregation, sets)
     }
-    
-    private func candleDataSet(_ set: [CandleChartDataEntry], _ color: UIColor, _ type: ChartEntryType) -> CandleChartDataSet {
-        let set = CandleChartDataSet(entries: set, label: "")
-        set.drawValuesEnabled = false
-        set.colors = [color]
-        switch (type) {
-        case .humidity: set.axisDependency = .right
-        default: set.axisDependency = .left
+}
+
+private extension HistoryDataSet {
+    func asCandleChartData(toCoordinate: (Double) -> Double, aggregation: ChartDataAggregation) -> [ChartDataSetProtocol]? {
+        if (!active || entries.isEmpty) {
+            return nil
         }
-        set.highlightColor = .primary
-        set.shadowColor = .onBackground
-        set.shadowWidth = 0.7
-        set.decreasingColor = .red
-        set.decreasingFilled = true
-        set.increasingColor = .suplaGreen
-        set.increasingFilled = true
-        set.neutralColor = .blue
-        
-        return set
+
+        return entries
+            .map { aggregatedEntries in
+                candleDataSet(
+                    set: aggregatedEntries.map {
+                        $0.toCandleChartDataEntry(
+                            toCoordinate: toCoordinate,
+                            data: toChartDetails(aggregation: aggregation, entity: $0)
+                        )
+                    },
+                    label: label,
+                    type: type
+                )
+            }
     }
+}
+
+private extension AggregatedEntity {
+    func toCandleChartDataEntry(toCoordinate: (Double) -> Double, data: Any? = nil) -> CandleChartDataEntry {
+        switch (value) {
+        case .single(let value, let min, let max, let open, let close):
+            CandleChartDataEntry(
+                x: toCoordinate(date),
+                shadowH: max ?? value,
+                shadowL: min ?? value,
+                open: open ?? value,
+                close: close ?? value,
+                data: data
+            )
+        case .multiple(_):
+            fatalError("Candle chart is not supported for multiple values!")
+        }
+    }
+}
+
+private func candleDataSet(set: [CandleChartDataEntry], label: HistoryDataSet.Label, type: ChartEntryType) -> CandleChartDataSet {
+    let set = CandleChartDataSet(entries: set, label: "")
+    set.drawValuesEnabled = false
+    set.colors = label.colors
+    switch (type) {
+    case .humidity: set.axisDependency = .right
+    default: set.axisDependency = .left
+    }
+    set.highlightColor = .primary
+    set.shadowColor = .onBackground
+    set.shadowWidth = 0.7
+    set.decreasingColor = .red
+    set.decreasingFilled = true
+    set.increasingColor = .suplaGreen
+    set.increasingFilled = true
+    set.neutralColor = .blue
+
+    return set
 }

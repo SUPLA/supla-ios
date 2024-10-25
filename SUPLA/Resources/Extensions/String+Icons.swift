@@ -29,6 +29,7 @@ extension String {
         static let metrics = "icon_metrics"
         static let schedule = "icon_schedule"
         static let history = "icon_history"
+        static let settings = "icon_settings"
         
         // MARK: Icons
         static let pencil = "pencil"
@@ -55,6 +56,9 @@ extension String {
         static let empty = "icon_empty"
         static let more = "icon_more"
         static let list = "icon_list"
+        static let forwardEnergy = "icon_forward_energy"
+        static let reversedEnergy = "icon_reversed_energy"
+        static let powerOff = "icon_power_off"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
@@ -70,6 +74,9 @@ extension String {
         static let arrowCoverHold = "icon_arrow_cover_hold"
         static let arrowRevealTap = "icon_arrow_reveal_tap"
         static let arrowRevealHold = "icon_arrow_reveal_hold"
+        
+        static let checkboxEmpty = "icon_checkbox_empty"
+        static let checkboxChecked = "icon_checkbox_checked"
         
         static let fingerprint = "icon_fingerprint"
         

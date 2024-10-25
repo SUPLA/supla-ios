@@ -43,7 +43,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
             profileRepository.getActiveProfile().map {
                 @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getTemperatureChartState(
+                return userStateHolder.getDefaultChartState(
                     profileId: $0.idString,
                     remoteId: remoteId
                 )
@@ -58,16 +58,14 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     
     override func measurementsObservable(
         remoteId: Int32,
-        start: Date,
-        end: Date,
-        chartRange: ChartRange,
-        aggregation: ChartDataAggregation
+        spec: ChartDataSpec,
+        chartRange: ChartRange
     ) -> Observable<(ChartData, DaysRange?)> {
         Observable.zip(
-            loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, startDate: start, endDate: end, aggregation: aggregation),
+            loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, spec: spec),
             loadChannelMeasurementsDateRangeUseCase.invoke(remoteId: remoteId),
             loadChannelConfigUseCase.invoke(remoteId: remoteId)
-        ) { (self.createChartData($0, DaysRange(start: start, end: end), chartRange, aggregation, $2), $1) }
+        ) { (self.createChartData($0, DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, $2), $1) }
     }
     
     func reloadMeasurements() {
@@ -88,7 +86,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             .disposed(by: self)
     }
     
-    private func handleData(channel: SAChannel, chartState: TemperatureChartState) {
+    private func handleData(channel: SAChannel, chartState: DefaultChartState) {
         updateView {
             $0.changing(path: \.profileId, to: channel.profile.idString)
                 .changing(path: \.channelFunction, to: channel.func)
@@ -132,7 +130,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     }
     
     private func createChartData(
-        _ sets: [HistoryDataSet],
+        _ sets: ChannelChartSets,
         _ daysRange: DaysRange,
         _ chartRange: ChartRange,
         _ aggregation: ChartDataAggregation,
@@ -140,19 +138,19 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     ) -> ChartData {
         if let config = config as? SuplaChannelGeneralPurposeMeterConfig {
             switch (config.chartType) {
-            case .bar: return BarChartData(daysRange, chartRange, aggregation, sets)
-            case .linear: return LineChartData(daysRange, chartRange, aggregation, sets)
+            case .bar: return BarChartData(daysRange, chartRange, aggregation, [sets])
+            case .linear: return LineChartData(daysRange, chartRange, aggregation, [sets])
             }
         }
         
         if let config = config as? SuplaChannelGeneralPurposeMeasurementConfig {
             switch (config.chartType) {
-            case .bar: return BarChartData(daysRange, chartRange, aggregation, sets)
-            case .linear: return LineChartData(daysRange, chartRange, aggregation, sets)
-            case .candle: return CandleChartData(daysRange, chartRange, aggregation, sets)
+            case .bar: return BarChartData(daysRange, chartRange, aggregation, [sets])
+            case .linear: return LineChartData(daysRange, chartRange, aggregation, [sets])
+            case .candle: return CandleChartData(daysRange, chartRange, aggregation, [sets])
             }
         }
         
-        return LineChartData(daysRange, chartRange, aggregation, sets)
+        return LineChartData(daysRange, chartRange, aggregation, [sets])
     }
 }

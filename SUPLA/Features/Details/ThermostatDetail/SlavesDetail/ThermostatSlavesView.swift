@@ -18,16 +18,6 @@
 
 import SwiftUI
 
-extension SwiftUI.View {
-    func listRowSeparatorInvisible() -> some View {
-        if #available(iOS 15.0, *) {
-            return self.listRowSeparator(.hidden)
-        } else {
-            return self
-        }
-    }
-}
-
 extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
@@ -37,17 +27,18 @@ extension ThermostatSlavesFeature {
 
         var body: some SwiftUI.View {
             BackgroundStack {
-                VStack {
+                VStack(spacing: 0) {
                     if let master = viewState.master {
                         HeaderText(title: Strings.ThermostatDetail.mainThermostat)
+                            .padding([.bottom], Distance.tiny)
                         ThermostatRow(data: master, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
                     }
                     HeaderText(title: Strings.ThermostatDetail.otherThermostats)
-                        .padding([.top], Dimens.distanceSmall)
+                        .padding([.top], Distance.standard)
+                        .padding([.bottom], Distance.tiny)
                     LazyList(items: viewState.slaves) {
                         ThermostatRow(data: $0, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
                     }
-                    Spacer()
                 }.padding([.top], Dimens.distanceDefault)
             }.environment(\.scaleFactor, viewState.scale)
         }

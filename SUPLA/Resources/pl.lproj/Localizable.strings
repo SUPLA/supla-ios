@@ -279,7 +279,6 @@
 "Default" = "Domyślne";
 "Delete account" = "Usuń konto";
 "Select active account" = "Wybierz aktywne konto";
-"Phase 1+2+3" = "Faza 1+2+3";
 "Phase %d" = "Faza %d";
 "Channels" = "Kanały";
 "Groups" = "Grupy";
@@ -311,6 +310,10 @@
 "save" = "Zapisz";
 "turn_on" = "Włącz";
 "turn_off" = "Wyłącz";
+"general_shut" = "Zasłoń";
+"general_reveal" = "Odsłoń";
+"general_collapse" = "Zwiń";
+"general_expand" = "Rozwiń";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -341,6 +344,7 @@
 "channel_caption_garage_door" = "Brama garażowa";
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
+"channel_offline" = "Kanał jest offline";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -375,6 +379,7 @@
 "standard_detail_schedule_tab" = "Tydzień";
 "standard_detail_history_tab" = "Historia";
 "standard_detail_list_tab" = "Lista";
+"standard_detail_settings_tab" = "Ustawienia";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktualny stan:";
@@ -447,11 +452,12 @@
 
 /* Combined Chart */
 "history_range_label" = "Zakres";
-"history_aggregation_label" = "Agregacja";
+"history_data_type" = "Typ danych";
 "history_range_last_day" = "Ostatnie 24 godziny";
 "history_range_last_week" = "Ostatnie 7 dni";
 "history_range_last_30_days" = "Ostatnie 30 dni";
 "history_range_last_90_days" = "Ostatnie 90 dni";
+"history_range_last_365_days" = "Ostatnie 365 dni";
 "history_range_current_day" = "Dzień";
 "history_range_current_week" = "Tydzień";
 "history_range_current_month" = "Miesiąc";
@@ -540,3 +546,45 @@
 "about_version" = "wersja %@";
 "about_license" = "Ten program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i / lub modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 Licencji lub (według Twojego wyboru) dowolnej późniejszej wersji.\n\n Ten program jest rozpowszechniany w nadziei, że będzie użyteczny, ale BEZ JAKIEJKOLWIEK GWARANCJI; nawet bez gwarancji handlowej lub przydatności do KONKRETNEGO CELU. Przeczytaj General Public Licence aby zapoznać się ze szczegółami.\n\n Powinieneś otrzymać kopię GNU General Public License wraz z tym programem; jeśli nie, napisz do Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA";
 "about_build_time" = "Wersja z dnia: %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Energia czynna pobrana";
+"details_em_reverse_active_energy" = "Energia czynna zwrócona";
+"details_em_forward_reactive_energy" = "Energia bierna indukcyjna";
+"details_em_reverse_reactive_energy" = "Energia bierna pojemnościowa";
+"details_em_forward_active_energy_short" = "Czynna pobrana";
+"details_em_reverse_active_energy_short" = "Czynna zwrócona";
+"details_em_forward_reactive_energy_short" = "Indukcyjna";
+"details_em_reverse_reactive_energy_short" = "Pojemnościowa";
+"details_em_frequency" = "Częstotliwość";
+"details_em_voltage" = "Napięcie";
+"details_em_current" = "Natężenie";
+"details_em_power_active" = "Moc czynna";
+"details_em_power_reactive" = "Moc bierna";
+"details_em_power_factor" = "Współczynnik mocy";
+"details_em_phase_angle" = "Kąt fazowy";
+"details_em_power_apparent" = "Moc pozorna";
+"details_em_phase1" = "Faza 1";
+"details_em_phase2" = "Faza 2";
+"details_em_phase3" = "Faza 3";
+"details_em_balance_arithmetic" = "Bilans arytmetyczny";
+"details_em_balance_vector" = "Bilans wektorowy";
+"details_em_chart_data_type" = "Dane";
+"details_em_phases" = "Faza";
+"details_em_balance_hourly" = "Bilans godzinowy";
+"details_em_balance_chart_aggregated" = "Bilans agregowany wykresem";
+"details_em_sum" = "Suma";
+"details_em_select_range" = "Wybierz okres";
+"details_em_active_energy" = "Energia czynna";
+"details_em_forwarded_energy" = "Pobrana";
+"details_em_reversed_energy" = "Zwrócona";
+"details_em_cost" = "Koszt";
+"details_em_settings_list_item" = "Wartość pokazywana na liście kanałów";
+"details_em_settings_title" = "Ustawienia - %@";
+"details_em_total_suffix" = "(stan licznika)";
+"details_em_current_month_suffix" = "(bieżący miesiąc)";
+"details_em_last_month_balancing" = "Bilansowanie bieżącego miesiąca";
+"details_em_energy_label" = "Energia";
+"details_em_hour_marker_title" = "Godzina %@";
+"em_phase_to_phase_balance" = "Bilans międzyfazowy wektorowy";
+"em_chart_all_phases" = "Fazy 1+2+3";

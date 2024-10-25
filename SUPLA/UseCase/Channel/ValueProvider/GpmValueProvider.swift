@@ -22,9 +22,9 @@ final class GpmValueProviderImpl: DefaultDoubleValueProvider, GpmValueProvider {
     
     override var unknownValue: Double { GpmValueProviderImpl.UNKNOWN_VALUE }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-        || function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        || channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
     
     static let UNKNOWN_VALUE = Double.nan

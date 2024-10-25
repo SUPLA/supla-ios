@@ -121,13 +121,14 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
         
         // when
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
         assertEvents([.next(()), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenGarageDoor() {
@@ -136,6 +137,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
         
         // when
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
@@ -151,13 +153,14 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
         
         // when
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
         assertEvents([.next(()), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldTurnOnThermostat() {

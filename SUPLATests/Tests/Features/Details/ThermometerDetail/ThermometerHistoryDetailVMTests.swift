@@ -91,13 +91,13 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         let profile = AuthProfileItem(testContext: nil)
-        let chartState = TemperatureChartState.defaultState()
+        let chartState = DefaultChartState.empty()
         let currentDate = Date()
         
         dateProvider.currentDateReturns = currentDate
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         profileRepository.activeProfileObservable = Observable.just(profile)
-        userStateHolder.getTemperatureChartStateReturns = chartState
+        userStateHolder.getDefaultChartStateReturns = chartState
         
         let expectation = expectation(description: "States loaded")
         
@@ -134,7 +134,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         ])
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertEqual(userStateHolder.getTemperatureCharStateParameters.count, 1)
+        XCTAssertEqual(userStateHolder.getDefaultCharStateParameters.count, 1)
         XCTAssertEqual(downloadEventsManager.observeProgressParameters, [remoteId])
         XCTAssertTuples(downloadChannelMeasurementsUseCase.parameters, [(remoteId, SUPLA_CHANNELFNC_THERMOMETER)])
     }
@@ -161,21 +161,41 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
     }
     
     func test_shouldChangeActiveSet() {
-        let setId = HistoryDataSet.Id(remoteId: 123, type: .temperature)
-        let set = HistoryDataSet(setId: setId, icon: nil, value: "", valueFormatter: ChannelValueFormatterMock(), color: .red, entries: [], active: true)
-        let state = mockState(remoteId: 123, chartData: LineChartData(nil, nil, nil, [set]))
+        let temperatureSet = HistoryDataSet(
+            type: .temperature,
+            label: .single(HistoryDataSet.LabelData(icon: nil, value: "", color: .red)),
+            valueFormatter: ChannelValueFormatterMock(),
+            entries: [],
+            active: true
+        )
+        let humiditySet = HistoryDataSet(
+            type: .humidity,
+            label: .single(HistoryDataSet.LabelData(icon: nil, value: "", color: .red)),
+            valueFormatter: ChannelValueFormatterMock(),
+            entries: [],
+            active: true
+        )
+        let channelSets = ChannelChartSets(
+            remoteId: 123,
+            function: SUPLA_CHANNELFNC_THERMOMETER,
+            name: "",
+            aggregation: .minutes,
+            dataSets: [temperatureSet, humiditySet]
+        )
+        let state = mockState(remoteId: 123, chartData: LineChartData(nil, nil, nil, [channelSets]))
         viewModel.updateView { _ in state }
         
         // when
         observe(viewModel)
-        viewModel.changeSetActive(setId: setId)
+        viewModel.changeSetActive(remoteId: 123, type: .temperature)
         
         // then
         assertStates(expected: [
             state,
-            state.changing(path: \.chartData, to: state.chartData.newInstance(sets: state.chartData.sets.map { $0.changing(path: \.active, to: false) }))
+            state.changing(path: \.chartData, to: state.chartData.activateSets(visibleSets: [ChartStateVisibleSet(id: 123, type: .humidity)]))
+                .changing(path: \.withRightAxis, to: true)
         ])
-        XCTAssertEqual(userStateHolder.setTemperatureChartStateParameters.count, 1)
+        XCTAssertEqual(userStateHolder.setChartStateParameters.count, 1)
     }
     
     func mockState(

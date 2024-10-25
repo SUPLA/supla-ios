@@ -19,13 +19,19 @@
 import RxCocoa
 import RxRelay
 import RxSwift
+import SwiftUI
 
 class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent, BaseHistoryDetailVM> {
     let remoteId: Int32
     
-    private lazy var dataSetsRow: DataSetsRowView = {
-        let rowView = DataSetsRowView()
-        return rowView
+    private var dataSetsRowState = DataSetsViewState()
+    private lazy var dataSetsRow: DataSetsRow = DataSetsRow(viewState: dataSetsRowState)
+    private lazy var dataSetsRowController: UIHostingController = {
+        let view = UIHostingController(rootView: dataSetsRow)
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        ShadowValues.apply(toLayer: view.view.layer)
+        view.view.layer.masksToBounds = false
+        return view
     }()
     
     private lazy var filtersRow: FiltersRowView = {
@@ -43,8 +49,15 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         return label
     }()
     
-    private lazy var chartView: SuplaCombinedChartView = {
+    private lazy var combinedChartView: SuplaCombinedChartView = {
         let view = SuplaCombinedChartView()
+        view.chartStyle = viewModel.chartStyle
+        return view
+    }()
+    
+    private lazy var pieChartView: SuplaPieChartView = {
+        let view = SuplaPieChartView()
+        view.chartStyle = viewModel.chartStyle
         return view
     }()
     
@@ -59,7 +72,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     }()
     
     private lazy var pullToRefresh: PullToRefreshView = {
-        let view = PullToRefreshView()
+        let view = PullToRefreshView(self)
         return view
     }()
     
@@ -111,9 +124,12 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     override func handle(event: BaseHistoryDetailViewEvent) {
         switch (event) {
         case .clearHighlight:
-            chartView.clearHighlight()
+            combinedChartView.clearHighlight()
+            pieChartView.clearHighlight()
         case .showDownloadInProgress:
             showToast(Strings.Charts.historyWaitForDownload)
+        case .showDataSelectionDialog(let channelSets, let filters):
+            showDataSelectionDialog(channelSets, filters)
         }
     }
     
@@ -124,64 +140,88 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         filtersRow.selectedAggregation = state.aggregations?.selected
         filtersRow.isHidden = !state.showHistory
         
-        dataSetsRow.showHistory = state.showHistory
-        dataSetsRow.sets = state.chartData.sets
+        dataSetsRowState.channelsSets = state.chartData.sets
+        dataSetsRowState.historyEnabled = state.showHistory
         
-        chartView.channelFunction = state.channelFunction
-        chartView.data = state.chartData
-        chartView.maxLeftAxis = state.maxLeftAxis
-        chartView.minLeftAxis = state.minLeftAxis
-        chartView.maxRightAxis = state.maxRightAxis
-        chartView.rangeStart = state.range?.start.timeIntervalSince1970
-        chartView.rangeEnd = state.range?.end.timeIntervalSince1970
-        chartView.emptyChartMessage = state.emptyChartMessage
-        chartView.rangeStart = state.chartData.xMin
-        chartView.rangeEnd = state.chartData.xMax
-        chartView.withLeftAxis = state.withLeftAxis
-        chartView.withRightAxis = state.withRightAxis
-        if (chartView.combinedData != nil) {
-            if let chartParameters = state.chartParameters?.getOptional() {
-                if (chartParameters.hasDefaultValues()) {
-                    chartView.fitScreen()
-                } else {
-                    chartView.zoom(parameters: chartParameters)
+        let data = state.chartData
+        if let combinedData = data as? CombinedChartData {
+            combinedChartView.isHidden = !state.showHistory
+            pieChartView.isHidden = true
+            
+            combinedChartView.channelFunction = state.channelFunction
+            combinedChartView.data = combinedData
+            combinedChartView.maxLeftAxis = state.maxLeftAxis
+            combinedChartView.minLeftAxis = state.minLeftAxis
+            combinedChartView.maxRightAxis = state.maxRightAxis
+            combinedChartView.rangeStart = state.range?.start.timeIntervalSince1970
+            combinedChartView.rangeEnd = state.range?.end.timeIntervalSince1970
+            combinedChartView.emptyChartMessage = state.emptyChartMessage
+            combinedChartView.rangeStart = state.chartData.xMin
+            combinedChartView.rangeEnd = state.chartData.xMax
+            combinedChartView.withLeftAxis = state.withLeftAxis
+            combinedChartView.withRightAxis = state.withRightAxis
+            if (combinedChartView.combinedData != nil) {
+                if let chartParameters = state.chartParameters?.getOptional() {
+                    if (chartParameters.hasDefaultValues()) {
+                        combinedChartView.fitScreen()
+                    } else {
+                        combinedChartView.zoom(parameters: chartParameters)
+                    }
                 }
             }
         }
-        chartView.isHidden = !state.showHistory
+        if let pieData = data as? PieChartData {
+            pieChartView.isHidden = !state.showHistory
+            combinedChartView.isHidden = true
+            
+            pieChartView.data = pieData
+            pieChartView.emptyChartMessage = state.emptyChartMessage
+        }
         
-        paginationView.isHidden = !state.showHistory || state.paginationHidden
+        let customRangeSelected = state.ranges?.selected == .custom
+        paginationView.isHidden = !state.showHistory || customRangeSelected
         paginationView.paginationAllowed = state.paginationAllowed
         paginationView.leftEnabled = state.shiftLeftEnabled
         paginationView.rightEnabled = state.shiftRightEnabled
         paginationView.text = state.rangeText
         
-        rangeSelectionView.isHidden = !state.showHistory || (state.ranges?.selected != nil && state.ranges?.selected != .custom)
+        rangeSelectionView.isHidden = !state.showHistory || !customRangeSelected
         rangeSelectionView.startDate = state.range?.start
         rangeSelectionView.endDate = state.range?.end
         
         datePicker.isHidden = !state.showHistory || state.editDate == nil
-        datePicker.minDate = state.minDate
-        datePicker.maxDate = state.maxDate
-        datePicker.date = state.dateForEdit
+        if (!datePicker.isHidden) {
+            datePicker.date = state.dateForEdit
+            datePicker.minDate = state.minDate
+            datePicker.maxDate = state.maxDate
+        }
         
         pullToRefresh.isRefreshing = state.loading
         
         historyDisabledLabel.isHidden = state.showHistory
     }
     
+    func showDataSelectionDialog(_ channelSets: ChannelChartSets, _ filters: CustomChartFiltersContainer?) {
+        fatalError("showDataSelectionDialog(_:_:) needs to be implemented!")
+    }
+    
     private func setupView() {
-        view.addSubview(dataSetsRow)
+        addChild(dataSetsRowController)
+        
+        view.addSubview(dataSetsRowController.view)
         view.addSubview(filtersRow)
-        view.addSubview(chartView)
+        view.addSubview(combinedChartView)
+        view.addSubview(pieChartView)
         view.addSubview(paginationView)
         view.addSubview(rangeSelectionView)
         view.addSubview(pullToRefresh)
         view.addSubview(datePicker)
         view.addSubview(historyDisabledLabel)
         
-        viewModel.bind(dataSetsRow.tapEvents) { [weak self] in
-            self?.viewModel.changeSetActive(setId: $0)
+        dataSetsRowController.didMove(toParent: self)
+        
+        viewModel.bind(dataSetsRow.tap) { [weak self] event in
+            self?.viewModel.changeSetActive(remoteId: event.remoteId, type: event.type)
         }
         
         viewModel.bind(filtersRow.rangesObservable) { [weak self] in
@@ -191,7 +231,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             self?.viewModel.changeAggregation(aggregation: $0)
         }
         
-        viewModel.bind(chartView.parametersObservable) { [weak self] in
+        viewModel.bind(combinedChartView.parametersObservable) { [weak self] in
             self?.viewModel.updateChartPosition(parameters: $0)
         }
         
@@ -223,19 +263,24 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     
     private func setupLayout() {
         NSLayoutConstraint.activate(([
-            dataSetsRow.topAnchor.constraint(equalTo: view.topAnchor),
-            dataSetsRow.leftAnchor.constraint(equalTo: view.leftAnchor),
-            dataSetsRow.rightAnchor.constraint(equalTo: view.rightAnchor),
-            dataSetsRow.heightAnchor.constraint(equalToConstant: 80),
+            dataSetsRowController.view!.topAnchor.constraint(equalTo: view.topAnchor),
+            dataSetsRowController.view!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            dataSetsRowController.view!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            dataSetsRowController.view!.heightAnchor.constraint(equalToConstant: 80),
             
-            filtersRow.topAnchor.constraint(equalTo: dataSetsRow.bottomAnchor, constant: Dimens.distanceTiny),
+            filtersRow.topAnchor.constraint(equalTo: dataSetsRowController.view!.bottomAnchor, constant: Dimens.distanceTiny),
             filtersRow.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             filtersRow.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
-            chartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
-            chartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
-            chartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
-            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
+            combinedChartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
+            combinedChartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
+            combinedChartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
+            combinedChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
+            
+            pieChartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
+            pieChartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
+            pieChartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
+            pieChartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
             
             paginationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceSmall),
             paginationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceSmall),
@@ -250,161 +295,19 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             datePicker.rightAnchor.constraint(equalTo: view.rightAnchor),
             datePicker.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            historyDisabledLabel.topAnchor.constraint(equalTo: dataSetsRow.bottomAnchor, constant: Dimens.distanceDefault),
+            historyDisabledLabel.topAnchor.constraint(equalTo: dataSetsRowController.view!.bottomAnchor, constant: Dimens.distanceDefault),
             historyDisabledLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             historyDisabledLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault)
         ]))
     }
 }
 
-private class DataSetsRowView: HorizontalyScrollableView<DataSetItem> {
-    var tapEvents: Observable<HistoryDataSet.Id> { tapRelay.asObservable() }
-
-    var sets: [HistoryDataSet] = [] {
-        didSet {
-            if (oldValue != sets) {
-                setNeedsLayout()
-            }
+extension BaseHistoryDetailVC: PullToRefreshHolder {
+    func shouldReceive(touch: UITouch) -> Bool {
+        if (!pieChartView.isHidden) {
+            let touchPoint = touch.location(in: view)
+            return !pieChartView.frame.contains(touchPoint)
         }
-    }
-
-    var showHistory: Bool = true
-    
-    private let tapRelay: PublishRelay<HistoryDataSet.Id> = PublishRelay()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: 80)
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
-    
-    override func createItems() -> [DataSetItem] {
-        var items: [DataSetItem] = []
-        
-        for set in sets {
-            let item = DataSetItem(icon: set.icon, color: set.color, value: set.value)
-            item.active = set.active && showHistory
-            item.tapEvents
-                .subscribe(onNext: { [weak self] in if (self?.showHistory == true) { self?.tapRelay.accept(set.setId) } })
-                .disposed(by: disposeBag)
-            items.append(item)
-        }
-        
-        return items
-    }
-    
-    override func horizontalConstraint(item: DataSetItem) -> NSLayoutConstraint {
-        item.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Dimens.distanceDefault)
-    }
-    
-    private func setupView() {
-        ShadowValues.apply(toLayer: layer)
-        layer.masksToBounds = false
-        backgroundColor = .surface
-    }
-}
-
-private class DataSetItem: UIView {
-    private var color: UIColor
-    private var icon: IconResult?
-    private var value: String
-    
-    var tapEvents: ControlEvent<Void> { buttonView.rx.tap }
-    
-    var active: Bool = false {
-        didSet {
-            if (active) {
-                buttonView.backgroundColor = color
-                buttonView.titleLabel?.textColor = UIColor.onPrimary
-            } else {
-                buttonView.backgroundColor = nil
-                buttonView.titleLabel?.textColor = UIColor.onBackground
-            }
-        }
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        let buttonWidth = buttonView.intrinsicContentSize.width + 4 + 2 * Dimens.distanceSmall
-        return CGSize(
-            width: Dimens.buttonSmallHeight + buttonWidth,
-            height: Dimens.buttonSmallHeight
-        )
-    }
-    
-    private lazy var iconView: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        view.image = icon?.uiImage
-        return view
-    }()
-    
-    private lazy var buttonView: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = Dimens.buttonSmallHeight / 2
-        button.layer.borderWidth = 2
-        button.layer.borderColor = color.cgColor
-        button.titleLabel?.font = UIFont(name: "OpenSans-Bold", size: 14)
-        button.setAttributedTitle(value)
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowOffset = CGSizeMake(0, 2)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: Dimens.distanceSmall, bottom: 0, right: Dimens.distanceSmall)
-        return button
-    }()
-    
-    init(icon: IconResult?, color: UIColor, value: String) {
-        self.icon = icon
-        self.color = color
-        self.value = value
-        super.init(frame: CGRect.zero)
-        setupView()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        addSubview(iconView)
-        addSubview(buttonView)
-        
-        setupLayout()
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            iconView.topAnchor.constraint(equalTo: topAnchor),
-            iconView.leftAnchor.constraint(equalTo: leftAnchor),
-            iconView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            iconView.heightAnchor.constraint(equalToConstant: Dimens.buttonSmallHeight),
-            iconView.widthAnchor.constraint(equalToConstant: Dimens.buttonSmallHeight),
-            
-            buttonView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: 4),
-            buttonView.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
-            buttonView.rightAnchor.constraint(equalTo: rightAnchor),
-            buttonView.heightAnchor.constraint(equalToConstant: Dimens.buttonSmallHeight)
-        ])
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 }
@@ -478,7 +381,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .caption
         label.textColor = .gray
-        label.text = Strings.Charts.aggregationLabel.uppercased()
+        label.text = Strings.Charts.dataTypeLabel.uppercased()
         return label
     }()
     
@@ -710,15 +613,13 @@ private class BottomPaginationView: UIView {
             doubleLeftButton.leftAnchor.constraint(equalTo: leftAnchor),
             doubleLeftButton.topAnchor.constraint(equalTo: topAnchor),
             
-            leftButton.leftAnchor.constraint(equalTo: doubleLeftButton.rightAnchor),
+            leftButton.leftAnchor.constraint(equalTo: doubleLeftButton.rightAnchor, constant: Distance.small),
             leftButton.topAnchor.constraint(equalTo: topAnchor),
             
-            rangeTextLabel.leftAnchor.constraint(equalTo: leftButton.rightAnchor),
-            rangeTextLabel.rightAnchor.constraint(equalTo: rightButton.leftAnchor),
+            rangeTextLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             rangeTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            rangeTextLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
             
-            rightButton.rightAnchor.constraint(equalTo: doubleRightButton.leftAnchor),
+            rightButton.rightAnchor.constraint(equalTo: doubleRightButton.leftAnchor, constant: -Distance.small),
             rightButton.topAnchor.constraint(equalTo: topAnchor),
             
             doubleRightButton.rightAnchor.constraint(equalTo: rightAnchor),

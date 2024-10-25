@@ -28,6 +28,7 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     @Singleton<DownloadTempHumidityLogUseCase> private var downloadTempHumidityLogUseCase
     @Singleton<DownloadGeneralPurposeMeasurementLogUseCase> private var downloadGeneralPurposeMeasurementLogUseCase
     @Singleton<DownloadGeneralPurposeMeterLogUseCase> private var downloadGeneralPurposeMeterLogUseCase
+    @Singleton<DownloadElectricityMeterLogUseCase> private var downloadElectricityMeterLogUseCase
     @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
@@ -41,12 +42,17 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
                 return
             }
             
+            do {
+                try startDownload(remoteId, function)
+            } catch {
+                SALog.error(error.localizedDescription)
+                return
+            }
             workingList.append(remoteId)
-            startDownload(remoteId, function)
         }
     }
     
-    private func startDownload(_ remoteId: Int32, _ function: Int32) {
+    private func startDownload(_ remoteId: Int32, _ function: Int32) throws {
         switch (function) {
         case SUPLA_CHANNELFNC_THERMOMETER:
             startTemperatureDownload(remoteId)
@@ -56,7 +62,13 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
             startGeneralPurposeMeasurementDownload(remoteId)
         case SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER:
             startGeneralPurposeMeterDownload(remoteId)
-        default: break // Do nothing
+        case SUPLA_CHANNELFNC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER:
+            startElectricityMeasurementsDownload(remoteId)
+        default:
+            throw GeneralError.illegalArgument(message: "Trying to start download for unsupported function \(function)")
         }
     }
     
@@ -85,6 +97,13 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
         setupObservable(
             remoteId: remoteId,
             observable: downloadGeneralPurposeMeterLogUseCase.invoke(remoteId: remoteId)
+        )
+    }
+    
+    private func startElectricityMeasurementsDownload(_ remoteId: Int32) {
+        setupObservable(
+            remoteId: remoteId,
+            observable: downloadElectricityMeterLogUseCase.invoke(remoteId: remoteId)
         )
     }
     

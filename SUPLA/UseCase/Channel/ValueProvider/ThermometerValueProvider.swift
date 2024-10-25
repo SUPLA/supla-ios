@@ -23,8 +23,8 @@ final class ThermometerValueProviderImpl: DefaultDoubleValueProvider, Thermomete
     
     override var unknownValue: Double { ThermometerValueProviderImpl.UNKNOWN_VALUE }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_THERMOMETER
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_THERMOMETER
     }
     
     static let UNKNOWN_VALUE = -273.0

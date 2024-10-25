@@ -18,8 +18,8 @@
 final class PressureValueStringProvider: ChannelValueStringProvider {
     @Singleton<PressureValueProvider> private var pressureValueProvider
 
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_PRESSURESENSOR
+    func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_PRESSURESENSOR
     }
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
@@ -27,9 +27,9 @@ final class PressureValueStringProvider: ChannelValueStringProvider {
            value > PressureValueProviderImpl.UNKNOWN_VALUE
         {
             return if (withUnit) {
-                "\(Int(value)) hPa"
+                "\(value.toString()) hPa"
             } else {
-                "\(Int(value))"
+                "\(value.toString())"
             }
         } else {
             return NO_VALUE_TEXT

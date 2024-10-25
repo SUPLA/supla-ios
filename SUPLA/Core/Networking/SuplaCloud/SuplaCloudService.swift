@@ -42,6 +42,16 @@ protocol SuplaCloudService {
         remoteId: Int32,
         afterTimestamp: TimeInterval
     ) -> Observable<[SuplaCloudClient.GeneralPurposeMeter]>
+    
+    func getElectricityMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ElectricityMeasurement]>
+    
+    func getLastElectricityMeasurements(
+        remoteId: Int32,
+        beforeTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ElectricityMeasurement]>
 }
 
 final class SuplaCloudServiceImpl: SuplaCloudService {
@@ -155,6 +165,54 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         }
     }
     
+    func getElectricityMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ElectricityMeasurement]> {
+        do {
+            return requestHelper.getOAuthRequest(urlString: try buildMeasurementsUrl(remoteId, afterTimestamp))
+                .flatMap { (response, data) in
+                    if (response.statusCode != 200) {
+                        return Observable<[SuplaCloudClient.ElectricityMeasurement]>
+                            .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                    }
+                    
+                    do {
+                        let measurements = try SuplaCloudClient.ElectricityMeasurement.fromJson(data: data)
+                        return Observable.just(measurements)
+                    } catch {
+                        return Observable.error(error)
+                    }
+                }
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
+    func getLastElectricityMeasurements(
+        remoteId: Int32,
+        beforeTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ElectricityMeasurement]> {
+        do {
+            return requestHelper.getOAuthRequest(urlString: try buildFirstMeasurementBeforeUrl(remoteId, beforeTimestamp))
+                .flatMap { (response, data) in
+                    if (response.statusCode != 200) {
+                        return Observable<[SuplaCloudClient.ElectricityMeasurement]>
+                            .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                    }
+                    
+                    do {
+                        let measurements = try SuplaCloudClient.ElectricityMeasurement.fromJson(data: data)
+                        return Observable.just(measurements)
+                    } catch {
+                        return Observable.error(error)
+                    }
+                }
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
     private func buildMeasurementsUrl(_ remoteId: Int32, _ afterTimestamp: TimeInterval) throws -> String {
         let host = try configHolder.requireUrl()
         let urlPath = Constants.urlMeasurements.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
@@ -167,12 +225,20 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         return "\(host)\(urlPath)"
     }
     
+    private func buildFirstMeasurementBeforeUrl(_ remoteId: Int32, _ beforeTimestamp: TimeInterval) throws -> String {
+        let host = try configHolder.requireUrl()
+        let urlPath = Constants.urlFirstMeasurementBefore.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
+        return "\(host)\(urlPath)\(Int(beforeTimestamp))"
+    }
+    
     fileprivate enum Constants {
         static let apiVersion = "2.2.0"
         
         static let urlInitialMeasurements = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=ASC&limit=2&offset=0"
         
         static let urlMeasurements = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=ASC&limit=5000&afterTimestamp="
+        
+        static let urlFirstMeasurementBefore = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=DESC&limit=1&beforeTimestamp="
     }
 }
 

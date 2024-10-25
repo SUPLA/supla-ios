@@ -25,7 +25,8 @@ struct ChartEntryDetails: Equatable {
     let open: Double?
     let close: Double?
     let valueFormatter: ChannelValueFormatter
-    
+    let customData: (any Equatable)?
+
     static func == (lhs: ChartEntryDetails, rhs: ChartEntryDetails) -> Bool {
         lhs.aggregation == rhs.aggregation
             && lhs.type == rhs.type
@@ -34,5 +35,6 @@ struct ChartEntryDetails: Equatable {
             && lhs.max == rhs.max
             && lhs.open == rhs.open
             && lhs.close == rhs.close
+            && lhs.customData?.isEqualTo(rhs.customData) == true
     }
 }

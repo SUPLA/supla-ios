@@ -23,8 +23,8 @@ final class DepthValueProviderImpl: DefaultDoubleValueProvider, DepthValueProvid
     
     override var unknownValue: Double { DepthValueProviderImpl.UNKNOWN_VALUE }
     
-    override func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_DEPTHSENSOR
+    override func handle(_ channel: SAChannel) -> Bool {
+        channel.func == SUPLA_CHANNELFNC_DEPTHSENSOR
     }
     
     static let UNKNOWN_VALUE = -1.0

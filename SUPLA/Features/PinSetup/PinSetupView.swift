@@ -51,7 +51,8 @@ extension PinSetupFeature {
                                 .error(viewState.errorString != nil)
                         )
                     if let errorString = viewState.errorString {
-                        Text.BodyMedium(text: errorString, color: Color.Supla.error)
+                        Text.BodyMedium(text: errorString)
+                            .textColor(Color.Supla.error)
                     }
                     Spacer()
                         .frame(maxHeight: Dimens.distanceDefault)
@@ -62,7 +63,8 @@ extension PinSetupFeature {
                             })
                         }
                     } else {
-                        Text.BodySmall(text: Strings.PinSetup.biometricNotEnrolled, color: Color.Supla.error)
+                        Text.BodySmall(text: Strings.PinSetup.biometricNotEnrolled)
+                            .textColor(.Supla.error)
                     }
                     Spacer()
                     FilledButton(

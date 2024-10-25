@@ -34,7 +34,7 @@ extension AboutFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            title = Strings.NavBar.titleSupla
+            title = Strings.appName
         }
         
         static func create() -> UIViewController {

@@ -22,3 +22,14 @@ enum GeneralError: Error {
     case illegalState(message: String)
     case illegalArgument(message: String)
 }
+
+extension GeneralError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .illegalState(message: let message):
+            return "Illegal state: \(message)"
+        case .illegalArgument(message: let message):
+            return "Illegal argument: \(message)"
+        }
+    }
+}

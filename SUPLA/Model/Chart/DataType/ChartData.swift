@@ -45,39 +45,35 @@ protocol CoordinatesConverter {
     func toCoordinate(x: Double) -> Double
 }
 
-class ChartData: CoordinatesConverter, Equatable {
+class CombinedChartData: ChartData {
+    func combinedData() -> DGCharts.CombinedChartData? {
+        fatalError("combinedData() has not been implented!")
+    }
+}
+
+class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
+    
     var divider: Double { 1.0 }
     
     let dateRange: DaysRange?
     let chartRange: ChartRange?
     let aggregation: ChartDataAggregation?
-    let sets: [HistoryDataSet]
+    let sets: [ChannelChartSets]
     
-    var isEmpty: Bool {
-        var empty = true
-        if (sets.isEmpty) {
-            return empty
-        }
-        
-        for set in sets {
-            if (!set.entries.isEmpty) {
-                empty = false
-                continue
-            }
-        }
-        return empty
-    }
-
     init(
         _ dateRange: DaysRange?,
         _ chartRange: ChartRange?,
         _ aggregation: ChartDataAggregation?,
-        _ sets: [HistoryDataSet]
+        _ sets: [ChannelChartSets]
     ) {
         self.dateRange = dateRange
         self.chartRange = chartRange
         self.aggregation = aggregation
         self.sets = sets
+    }
+    
+    var description: String {
+        "SUPLA.ChartData(dateRange: \(String(describing: dateRange)), chartRange: \(String(describing: chartRange)), aggregation: \(String(describing: aggregation)), sets: \(String(describing: sets)))"
     }
     
     var xMin: Double? {
@@ -97,42 +93,73 @@ class ChartData: CoordinatesConverter, Equatable {
     }
     
     var leftAxisFormatter: ChannelValueFormatter {
-        sets.first { $0.setId.type.leftAxis() }?.valueFormatter ?? DefaultValueFormatter()
+        sets.flatMap { $0.dataSets }.first { $0.type.leftAxis() }?.valueFormatter ?? DefaultValueFormatter()
     }
     
     var rightAxisFormatter: ChannelValueFormatter {
-        sets.first { $0.setId.type.rightAxis() }?.valueFormatter ?? DefaultValueFormatter()
+        sets.flatMap { $0.dataSets }.first { $0.type.rightAxis() }?.valueFormatter ?? DefaultValueFormatter()
     }
     
     var distanceInDays: Int? { dateRange?.daysCount }
     
-    func empty() -> ChartData { newInstance(sets: sets.map { $0.changing(path: \.entries, to: []) }) }
+    var isEmpty: Bool {
+        var empty = true
+        
+        sets.flatMap { $0.dataSets }
+            .forEach {
+                if ($0.isEmpty == false) {
+                    empty = false
+                }
+            }
+        
+        return empty
+    }
     
-    func activateSet(setId: HistoryDataSet.Id) -> ChartData {
+    var onlyOneSetAndActive: Bool {
+        sets.count == 1 && sets.first!.dataSets.count == 1 && sets.first!.active
+    }
+    
+    var visibleSets: [ChartStateVisibleSet] {
+        sets.flatMap { set in set.dataSets.map { (set.remoteId, $0.active, $0.type) }}
+            .filter { $0.1 }
+            .map { ChartStateVisibleSet(id: $0.0, type: $0.2) }
+    }
+    
+    var withRightAxis: Bool {
+        sets.flatMap { $0.dataSets }.first(where: { $0.type.rightAxis() && $0.active }) != nil
+    }
+    
+    var withLeftAxis: Bool {
+        sets.flatMap { $0.dataSets }.first(where: { $0.type.leftAxis() && $0.active }) != nil
+    }
+    
+    func empty() -> ChartData { newInstance(sets: emptySets()) }
+    
+    func activateSets(visibleSets: [ChartStateVisibleSet]?) -> ChartData {
         newInstance(
-            sets: sets.map {
-                if ($0.setId == setId) {
-                    return $0.changing(path: \.active, to: !$0.active)
+            sets: sets.map { set in
+                if let visibleSets = visibleSets {
+                    if (visibleSets.map { $0.id }.contains(set.remoteId)) {
+                        set.setActive(types: visibleSets.map(\.type))
+                    } else {
+                        set.deactivate()
+                    }
                 } else {
-                    return $0
+                    set
                 }
             }
         )
     }
     
-    func activateSets(setIds: [HistoryDataSet.Id]?) -> ChartData {
-        newInstance(sets: sets.map { $0.changing(path: \.active, to: setIds?.contains($0.setId) ?? true) })
-    }
-    
-    func combinedData() -> CombinedChartData? {
-        fatalError("combinedData() has not been implented!")
+    func toggleActive(remoteId: Int32, type: ChartEntryType) -> ChartData {
+        newInstance(sets: sets.map { $0.remoteId == remoteId ? $0.toggleActive(type: type) : $0 })
     }
     
     func fromCoordinate(x: Double) -> Double { x * divider }
     
     func toCoordinate(x: Double) -> Double { toCoordinate(x)! }
     
-    func newInstance(sets: [HistoryDataSet]) -> ChartData {
+    func newInstance(sets: [ChannelChartSets]) -> ChartData {
         fatalError("newInstance(sets:) has not been implented!")
     }
     
@@ -156,15 +183,17 @@ class ChartData: CoordinatesConverter, Equatable {
     
     func getAxisMinValueRaw(_ filter: (ChartEntryType) -> Bool) -> Double? {
         sets
-            .filter { filter($0.setId.type) }
-            .map { $0.entries.map { $0.map { $0.value } }.minOrNull() }
+            .flatMap { $0.dataSets }
+            .filter { filter($0.type) }
+            .map { $0.entries.map { $0.map { $0.value.min } }.minOrNull() }
             .minOrNull()
     }
     
     func getAxisMaxValueRaw(_ filter: (ChartEntryType) -> Bool) -> Double? {
         sets
-            .filter { filter($0.setId.type) }
-            .map { $0.entries.map { $0.map { $0.value } }.maxOrNull() }
+            .flatMap { $0.dataSets }
+            .filter { filter($0.type) }
+            .map { $0.entries.map { $0.map { $0.value.max } }.maxOrNull() }
             .maxOrNull()
     }
     
@@ -176,11 +205,11 @@ class ChartData: CoordinatesConverter, Equatable {
         }
     }
     
-    private func emptySets() -> [HistoryDataSet] { sets.map { $0.changing(path: \.entries, to: []) } }
+    private func emptySets() -> [ChannelChartSets] { sets.map { $0.empty() } }
     
     private func chartMarginNotNeeded() -> Bool {
         switch (chartRange) {
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .custom, .allHistory: false
+        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .lastYear, .custom, .allHistory: false
         default: true
         }
     }
@@ -208,7 +237,7 @@ class ChartData: CoordinatesConverter, Equatable {
 private class DefaultValueFormatter: ChannelValueFormatter {
     func handle(function: Int) -> Bool { true }
     
-    func format(_ value: Any, withUnit: Bool, precision: Int) -> String {
+    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double {
             return String(format: "%.2f", doubleValue)
         }

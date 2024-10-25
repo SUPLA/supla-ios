@@ -20,7 +20,11 @@ import Foundation
 
 extension Array where Iterator.Element == Double {
     func avg() -> Double {
-        return self.reduce(Double(0)) { return $0 + $1 } / Double(self.count)
+        return reduce(Double(0)) { $0 + $1 } / Double(count)
+    }
+    
+    func sum() -> Double {
+        return reduce(Double(0)) { $0 + $1 }
     }
     
     func maxOrNull() -> Double? {
@@ -29,6 +33,22 @@ extension Array where Iterator.Element == Double {
         }
         
         return self.max()
+    }
+    
+    func sumOrNan() -> Double {
+        if (isEmpty) {
+            return Double.nan
+        }
+        
+        return reduce(Double(0)) { $0 + $1 }
+    }
+    
+    func avgOrNan() -> Double {
+        if (isEmpty) {
+            return Double.nan
+        }
+        
+        return reduce(Double(0)) { $0 + $1 } / Double(count)
     }
 }
 

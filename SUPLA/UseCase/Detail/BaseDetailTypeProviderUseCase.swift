@@ -44,7 +44,11 @@ class BaseDetailTypeProviderUseCase {
             return .windowDetail(pages: [.garageDoor])
         case
             SUPLA_CHANNELFNC_ELECTRICITY_METER:
-            return .legacy(type: .em)
+            return .electricityMeterDetail(pages: [
+                .electricityMeterGeneral,
+                .electricityMeterHistory,
+                .electricityMeterSettings
+            ])
         case
             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
             SUPLA_CHANNELFNC_IC_GAS_METER,
@@ -83,18 +87,20 @@ enum DetailType: Equatable {
     case thermometerDetail(pages: [DetailPage])
     case gpmDetail(pages: [DetailPage])
     case windowDetail(pages: [DetailPage])
+    case electricityMeterDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
-    case rgbw, ic, em, thermostat_hp, digiglass
+    case rgbw, ic, thermostat_hp, digiglass
 }
 
 enum DetailPage {
     // Switches
     case switchGeneral
     case switchTimer
+    case switchEmHistory
+    case switchEmSettings
     case historyIc
-    case historyEm
     
     // Thermostat
     case thermostatGeneral
@@ -118,4 +124,9 @@ enum DetailPage {
     case curtain
     case verticalBlind
     case garageDoor
+    
+    // EM
+    case electricityMeterGeneral
+    case electricityMeterHistory
+    case electricityMeterSettings
 }
