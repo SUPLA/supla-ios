@@ -46,6 +46,22 @@ final class ThermometerValueProviderTest: XCTestCase {
         XCTAssertEqual(value as! Double, doubleValue)
     }
     
+    func test_shouldGetNegativeDoubleValue() {
+        // given
+        var doubleValue = -18.5
+        let channel = SAChannel(testContext: nil)
+        let channelValue = SAChannelValue(testContext: nil)
+        channelValue.value = withUnsafeBytes(of: &doubleValue) { Data($0) as NSData }
+        
+        channel.value = channelValue
+        
+        // when
+        let value = provider.value(channel, valueType: .first)
+        
+        // then
+        XCTAssertEqual(value as! Double, doubleValue)
+    }
+    
     func test_shouldGetUnknownValue() {
         // given
         let channel = SAChannel(testContext: nil)

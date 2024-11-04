@@ -43,6 +43,22 @@ final class ThermometerAndHumidityValueProviderTest: XCTestCase {
         XCTAssertEqual(value as! Double, 23.1)
     }
     
+    func test_shouldGetNegativeDoubleValueForTemperature() {
+        // given
+        let intValue: [Int32] = [-18500, 55000]
+        let channel = SAChannel(testContext: nil)
+        let channelValue = SAChannelValue(testContext: nil)
+        channelValue.value = intValue.withUnsafeBufferPointer { Data(buffer: $0) as NSData }
+        
+        channel.value = channelValue
+        
+        // when
+        let value = provider.value(channel, valueType: .first)
+        
+        // then
+        XCTAssertEqual(value as! Double, -18.5)
+    }
+    
     func test_shouldGetDoubleValueForHumidity() {
         // given
         let intValue: [Int32] = [23000, 55050]
