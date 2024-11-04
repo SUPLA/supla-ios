@@ -726,6 +726,7 @@
 		A58B2CB42AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */; };
 		A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */; };
 		A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */; };
+		A593185F2CD8C11C009C7301 /* ElectricityMeterValueProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */; };
 		A594ADC02C9C07C600780EF3 /* ThermostatIndicatorIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADBF2C9C07C600780EF3 /* ThermostatIndicatorIcon.swift */; };
 		A594ADC32C9C0A9500780EF3 /* ThermostatIndicatorIconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADC22C9C0A9500780EF3 /* ThermostatIndicatorIconTests.swift */; };
 		A594ADC52C9C19E900780EF3 /* ListOnlineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADC42C9C19E900780EF3 /* ListOnlineState.swift */; };
@@ -2207,6 +2208,7 @@
 		A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTemperaturesListUseCaseTests.swift; sourceTree = "<group>"; };
 		A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseUseCasesMocks.swift; sourceTree = "<group>"; };
 		A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
+		A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueProviderTest.swift; sourceTree = "<group>"; };
 		A594ADBF2C9C07C600780EF3 /* ThermostatIndicatorIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIndicatorIcon.swift; sourceTree = "<group>"; };
 		A594ADC22C9C0A9500780EF3 /* ThermostatIndicatorIconTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIndicatorIconTests.swift; sourceTree = "<group>"; };
 		A594ADC42C9C19E900780EF3 /* ListOnlineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOnlineState.swift; sourceTree = "<group>"; };
@@ -4220,6 +4222,7 @@
 		A5519B2C2B6D1D0300811747 /* ValueProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */,
 				A5519B3F2B6D383900811747 /* DepthValueProviderTest.swift */,
 				A5519B3D2B6D37F100811747 /* DistanceValueProviderTest.swift */,
 				A5519B3B2B6D36BD00811747 /* GpmValueProviderTest.swift */,
@@ -7540,6 +7543,7 @@
 				A54A06732AF8D31D00C03DBC /* HideableValueTests.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
 				A52BFEBF2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift in Sources */,
+				A593185F2CD8C11C009C7301 /* ElectricityMeterValueProviderTest.swift in Sources */,
 				A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */,
 				A50B5D132BECC5A100918D18 /* RoofWindowVMTests.swift in Sources */,
 				A55A8DBD2BB2EC5600C540D4 /* AuthorizeUseCaseTests.swift in Sources */,
