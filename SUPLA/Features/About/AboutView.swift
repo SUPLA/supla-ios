@@ -29,6 +29,7 @@ extension AboutFeature {
         var body: some SwiftUI.View {
             BackgroundStack {
                 VStack(spacing: Dimens.distanceDefault) {
+                    Spacer()
                     Image(.logoLight)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
