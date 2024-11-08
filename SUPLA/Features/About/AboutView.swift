@@ -36,7 +36,9 @@ extension AboutFeature {
                         .foregroundColor(Color.Supla.onBackground)
                     Text.HeadlineLarge(text: Strings.appName)
                     Text.BodyMedium(text: Strings.About.version.arguments(viewState.version))
-                    Text.LabelSmall(text: Strings.About.license)
+                    if (BrandingConfiguration.SHOW_LICENCE) {
+                        Text.LabelSmall(text: Strings.About.license)
+                    }
                     Spacer()
                     TextButton(
                         title: Strings.About.address,

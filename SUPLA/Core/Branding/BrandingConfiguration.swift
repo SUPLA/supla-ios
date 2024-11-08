@@ -24,4 +24,7 @@
         @objc static let ABOUT_OPTION_VISIBLE = true
         @objc static let HELP_OPTION_VISIBLE = true
     }
+    
+    static let SHOW_LICENCE = true
+    static let ASK_FOR_RATE = true
 }
