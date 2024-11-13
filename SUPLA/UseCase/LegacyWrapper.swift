@@ -214,8 +214,8 @@ final class UseCaseLegacyWrapper: NSObject {
     
     @objc
     static func getChannelBaseCaption(_ channelBase: SAChannelBase) -> String {
-        @Singleton<GetChannelBaseCaptionUseCase> var getChannelBaseCaptionUseCase
-        return getChannelBaseCaptionUseCase.invoke(channelBase: channelBase)
+        @Singleton<GetCaptionUseCase> var getCaptionUseCase
+        return getCaptionUseCase.invoke(data: channelBase.shareableBase).string
     }
     
     @objc

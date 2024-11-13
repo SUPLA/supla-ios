@@ -24,6 +24,6 @@ protocol GetChannelBaseDefaultCaptionUseCase {
 
 extension SharedCore.GetChannelDefaultCaptionUseCase: GetChannelBaseDefaultCaptionUseCase {
     func invoke(function: Int32) -> String {
-        return invoke(function: SuplaFunction.companion.from(value: function)).string
+        invoke(function: SuplaFunction.companion.from(value: function)).string
     }
 }

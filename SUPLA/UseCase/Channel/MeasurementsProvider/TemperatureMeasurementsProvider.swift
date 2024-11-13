@@ -22,7 +22,7 @@ protocol TemperatureMeasurementsProvider: ChannelMeasurementsProvider {}
 
 final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider {
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
     func handle(_ function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_THERMOMETER
@@ -45,7 +45,7 @@ final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider
                 ChannelChartSets(
                     remoteId: channel.remote_id,
                     function: channel.func,
-                    name: self.getChannelBaseCaptionUseCase.invoke(channelBase: channel),
+                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
                     aggregation: spec.aggregation,
                     dataSets: $0
                 )

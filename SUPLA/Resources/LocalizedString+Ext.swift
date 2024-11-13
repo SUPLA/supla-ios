@@ -15,21 +15,16 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-protocol GetChannelBaseCaptionUseCase {
-    func invoke(channelBase: SAChannelBase) -> String
-}
-
-final class GetChannelBaseCaptionUseCaseImpl: GetChannelBaseCaptionUseCase {
     
-    @Singleton<GetChannelBaseDefaultCaptionUseCase> private var getChannelBaseDefaultCaptionUseCase
-    
-    func invoke(channelBase: SAChannelBase) -> String {
-        if let caption = channelBase.caption,
-           caption.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false {
-            return caption
-        } else {
-            return getChannelBaseDefaultCaptionUseCase.invoke(function: channelBase.func)
+import SharedCore
+
+extension LocalizedString {
+    var string: String {
+        switch onEnum(of: self) {
+        case .constant(let constant): constant.text
+        case .withId(let id): id.id.value
+        case .withIdIntStringInt(let localized): localized.id.value.arguments(localized.arg1, localized.arg2.string, localized.arg3)
+        case .empty(_), .else: ""
         }
     }
 }

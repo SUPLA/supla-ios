@@ -22,7 +22,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     @Singleton<ValuesFormatter> private var formatter
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
     @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var thermostatIconView: UIImageView = {
@@ -157,7 +157,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         let channel = data.channel
         let thermostatValue = channel.value?.asThermostatValue()
         
-        caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
+        caption = getCaptionUseCase.invoke(data: channel.shareable).string
         
         let onlineState = ListOnlineState.from(channel.isOnline()).mergeWith(data.children.onlineState)
         leftStatusIndicatorView.configure(filled: true, onlineState: onlineState)

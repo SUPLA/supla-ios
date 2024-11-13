@@ -20,11 +20,9 @@ import Foundation
 
 class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseTableViewController<S, E, VM> {
     let cellIdForChannel = "ChannelCell"
-    let cellIdForThermometer = "ThermometerCell"
-    let cellIdForTempHumidity = "TempHumidityCell"
     let cellIdForIconValue = "IconValueCell"
+    let cellIdForDoubleIconValue = "DoubleIconValueCell"
     let cellIdForIcon = "IconCell"
-    let cellIdForDistance = "DistanceCell"
     let cellIdForIncremental = "IncrementalCell"
     let cellIdForHomePlus = "HomePlusCell"
     let cellIdForHvacThermostat = "HvacThermostatCell"
@@ -33,14 +31,12 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
     
     override func setupTableView() {
         register(nib: Nibs.channelCell, for: cellIdForChannel)
-        register(nib: Nibs.thermometerCell, for: cellIdForThermometer)
-        register(nib: Nibs.tempHumidityCell, for: cellIdForTempHumidity)
-        register(nib: Nibs.distanceCell, for: cellIdForDistance)
         register(nib: Nibs.incrementalMeterCell, for: cellIdForIncremental)
         register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
         tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
         tableView.register(IconValueCell.self, forCellReuseIdentifier: cellIdForIconValue)
         tableView.register(IconCell.self, forCellReuseIdentifier: cellIdForIcon)
+        tableView.register(DoubleIconValueCell.self, forCellReuseIdentifier: cellIdForDoubleIconValue)
         
         super.setupTableView()
     }
@@ -52,7 +48,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
         switch (cellId) {
         case cellIdForHvacThermostat,
              cellIdForIconValue,
-             cellIdForIcon:
+             cellIdForIcon,
+             cellIdForDoubleIconValue:
             return setupBaseCell(cell, channelBase: channelBase, children: children)
         default:
             return setupLegacyCell(cell, cellId: cellId, channelBase: channelBase, indexPath: indexPath)
@@ -214,7 +211,7 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_IC_HEAT_METER:
             return cellIdForIncremental
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return cellIdForTempHumidity
+            return cellIdForDoubleIconValue
         default:
             return cellIdForChannel
         }

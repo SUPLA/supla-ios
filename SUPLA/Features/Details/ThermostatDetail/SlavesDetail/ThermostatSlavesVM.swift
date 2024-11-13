@@ -82,7 +82,7 @@ private extension ChannelChild {
     }
     
     func toThermostatData() -> ThermostatSlavesFeature.ThermostatData {
-        @Singleton var getChannelCaptionUseCase: GetChannelBaseCaptionUseCase
+        @Singleton var getCaptionUseCase: GetCaptionUseCase
         @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
         @Singleton var getChannelValueStringUseCase: GetChannelValueStringUseCase
         @Singleton var valuesFormatter: ValuesFormatter
@@ -97,7 +97,7 @@ private extension ChannelChild {
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
             onlineState: ListOnlineState.from(channel.isOnline()),
-            caption: getChannelCaptionUseCase.invoke(channelBase: channel),
+            caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             icon: getChannelIcon(channel),
             currentPower: thermostatValue?.state.power?.also { valuesFormatter.percentageToString($0/100) },
             value: value,
@@ -134,7 +134,7 @@ private extension ChannelWithChildren {
     }
     
     func toThermostatData() -> ThermostatSlavesFeature.ThermostatData {
-        @Singleton var getChannelCaptionUseCase: GetChannelBaseCaptionUseCase
+        @Singleton var getCaptionUseCase: GetCaptionUseCase
         @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
         @Singleton var getChannelValueStringUseCase: GetChannelValueStringUseCase
         @Singleton var valuesFormatter: ValuesFormatter
@@ -149,7 +149,7 @@ private extension ChannelWithChildren {
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
             onlineState: ListOnlineState.from(channel.isOnline()),
-            caption: getChannelCaptionUseCase.invoke(channelBase: channel),
+            caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             icon: getChannelIcon(channel),
             currentPower: thermostatValue?.state.power?.also { valuesFormatter.percentageToString($0/100) },
             value: value,

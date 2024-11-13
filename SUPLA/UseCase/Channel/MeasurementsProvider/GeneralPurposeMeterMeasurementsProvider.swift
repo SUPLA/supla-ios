@@ -22,7 +22,7 @@ protocol GeneralPurposeMeterMeasurementsProvider: ChannelMeasurementsProvider {}
 
 class GeneralPurposeMeterMeasurementsProviderImpl: GeneralPurposeMeterMeasurementsProvider {
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
     func handle(_ function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
@@ -42,7 +42,7 @@ class GeneralPurposeMeterMeasurementsProviderImpl: GeneralPurposeMeterMeasuremen
                 ChannelChartSets(
                     remoteId: channel.remote_id,
                     function: channel.func,
-                    name: self.getChannelBaseCaptionUseCase.invoke(channelBase: channel),
+                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
                     aggregation: spec.aggregation,
                     dataSets: $0
                 )

@@ -173,7 +173,6 @@
 		401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1DB1BA067DB00117AF4 /* SUPLATests.m */; };
 		401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1F11BA0A28A00117AF4 /* SuplaClient.m */; };
 		403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 403150FA1DC769430075D2D2 /* RGBWDetailView.m */; };
-		4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5531CE32B6800180B5D /* TempHumidityCell.xib */; };
 		403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 403EB1121FBDF47F00AD6460 /* AddWizardVC.m */; };
 		404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
 		404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */; };
@@ -186,7 +185,6 @@
 		405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405AC4331BC15C08004F7311 /* logo-supla@2x.png */; };
 		405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405C499E1FCAFFD100C15602 /* wizard_error@2x.png */; };
 		405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */; };
-		406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 406778281BCBBC83008DD37F /* ThermometerCell.xib */; };
 		4067782C1BCBC647008DD37F /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4067782A1BCBC647008DD37F /* menu@2x.png */; };
 		4067782D1BCBC647008DD37F /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4067782B1BCBC647008DD37F /* menu@3x.png */; };
 		406778551BCBF9F4008DD37F /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 406778531BCBF9F4008DD37F /* SectionCell.m */; };
@@ -240,8 +238,6 @@
 		40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */; };
 		40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */; };
 		40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4FC1F2B841400753796 /* SAColorListPicker.m */; };
-		40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */; };
-		40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */; };
 		40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */; };
 		40CF96D81BC81A470030EFFF /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D41BC81A470030EFFF /* error@2x.png */; };
 		40CF96D91BC81A470030EFFF /* error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D51BC81A470030EFFF /* error@3x.png */; };
@@ -478,6 +474,8 @@
 		A541493C2B63E0D300B44BD6 /* LineChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541493B2B63E0D300B44BD6 /* LineChartData.swift */; };
 		A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541493D2B63E42900B44BD6 /* EmptyChartData.swift */; };
 		A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */; };
+		A54260272CE769C300BE74FE /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */; };
+		A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */; };
 		A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */; };
 		A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */; };
 		A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB82AA1F56400220B4A /* ChannelChild.swift */; };
@@ -767,7 +765,7 @@
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
-		A599E8F92CD3AB9100C83A2B /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A599E8F82CD3AB8D00C83A2B /* LocalizedString+Ext.swift */; };
+		A599E8F92CD3AB9100C83A2B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -807,7 +805,6 @@
 		A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */; };
 		A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A302B60F76A004B1598 /* IconValueCell.swift */; };
 		A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */; };
-		A5A14A382B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A372B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift */; };
 		A5A14A3A2B612F1C004B1598 /* ChannelConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */; };
 		A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A3C2B6134C4004B1598 /* InsertChannelConfigUseCase.swift */; };
 		A5A14A402B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A3F2B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift */; };
@@ -995,7 +992,6 @@
 		A5E40B532B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B522B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift */; };
 		A5E40B552B85F70900DB6ABE /* SAGeneralPurposeMeterItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B542B85F70900DB6ABE /* SAGeneralPurposeMeterItem+Mock.swift */; };
 		A5E40B572B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */; };
-		A5E40B592B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B582B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift */; };
 		A5E40B5B2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B5A2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift */; };
 		A5E40B5D2B86075500DB6ABE /* ValueProviderMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B5C2B86075500DB6ABE /* ValueProviderMocks.swift */; };
 		A5E40B5F2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B5E2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift */; };
@@ -1608,7 +1604,6 @@
 		401CA1F11BA0A28A00117AF4 /* SuplaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuplaClient.m; sourceTree = "<group>"; };
 		403150F91DC769430075D2D2 /* RGBWDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBWDetailView.h; sourceTree = "<group>"; };
 		403150FA1DC769430075D2D2 /* RGBWDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBWDetailView.m; sourceTree = "<group>"; };
-		4038A5531CE32B6800180B5D /* TempHumidityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempHumidityCell.xib; sourceTree = "<group>"; };
 		403EB1111FBDF47F00AD6460 /* AddWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddWizardVC.h; sourceTree = "<group>"; };
 		403EB1121FBDF47F00AD6460 /* AddWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddWizardVC.m; sourceTree = "<group>"; };
 		405AC4031BC15898004F7311 /* app_icon-1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon-1024.png"; sourceTree = "<group>"; };
@@ -1620,7 +1615,6 @@
 		405C499E1FCAFFD100C15602 /* wizard_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard_error@2x.png"; sourceTree = "<group>"; };
 		405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard_ok@2x.png"; sourceTree = "<group>"; };
 		406223DB1CE3211F00E81C76 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		406778281BCBBC83008DD37F /* ThermometerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThermometerCell.xib; sourceTree = "<group>"; };
 		4067782A1BCBC647008DD37F /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		4067782B1BCBC647008DD37F /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
 		406778521BCBF9F4008DD37F /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
@@ -1706,8 +1700,6 @@
 		40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40C9E4FB1F2B841400753796 /* SAColorListPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorListPicker.h; sourceTree = "<group>"; };
 		40C9E4FC1F2B841400753796 /* SAColorListPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorListPicker.m; sourceTree = "<group>"; };
-		40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementCell.xib; sourceTree = "<group>"; };
-		40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DistanceCell.xib; sourceTree = "<group>"; };
 		40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-supla@3x.png"; sourceTree = "<group>"; };
 		40CF96D41BC81A470030EFFF /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		40CF96D51BC81A470030EFFF /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@3x.png"; sourceTree = "<group>"; };
@@ -1961,6 +1953,8 @@
 		A541493B2B63E0D300B44BD6 /* LineChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartData.swift; sourceTree = "<group>"; };
 		A541493D2B63E42900B44BD6 /* EmptyChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChartData.swift; sourceTree = "<group>"; };
 		A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemIssues+iOS.swift"; sourceTree = "<group>"; };
+		A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
+		A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleIconValueCell.swift; sourceTree = "<group>"; };
 		A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationsAsRemovableUseCase.swift; sourceTree = "<group>"; };
 		A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5477DB82AA1F56400220B4A /* ChannelChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChild.swift; sourceTree = "<group>"; };
@@ -2255,7 +2249,6 @@
 		A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+SuplaChannelFunction.swift"; sourceTree = "<group>"; };
 		A598CAD72CC77D3A00A784FA /* PieChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartData.swift; sourceTree = "<group>"; };
 		A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaPieChartView.swift; sourceTree = "<group>"; };
-		A599E8F82CD3AB8D00C83A2B /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
 		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVMTests.swift; sourceTree = "<group>"; };
 		A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -2296,7 +2289,6 @@
 		A5A14A302B60F76A004B1598 /* IconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueCell.swift; sourceTree = "<group>"; };
 		A5A14A322B61005F004B1598 /* SUPLA 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 16.xcdatamodel"; sourceTree = "<group>"; };
 		A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
-		A5A14A372B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseCaptionUseCase.swift; sourceTree = "<group>"; };
 		A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelConfigRepository.swift; sourceTree = "<group>"; };
 		A5A14A3C2B6134C4004B1598 /* InsertChannelConfigUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelConfigUseCase.swift; sourceTree = "<group>"; };
 		A5A14A3F2B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelGeneralPurposeBaseConfig.swift; sourceTree = "<group>"; };
@@ -2484,7 +2476,6 @@
 		A5E40B522B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaChannelGeneralPurposeMeterConfig+Mock.swift"; sourceTree = "<group>"; };
 		A5E40B542B85F70900DB6ABE /* SAGeneralPurposeMeterItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeterItem+Mock.swift"; sourceTree = "<group>"; };
 		A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCaseTests.swift; sourceTree = "<group>"; };
-		A5E40B582B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseCaptionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B5A2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelValueStringUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B5C2B86075500DB6ABE /* ValueProviderMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueProviderMocks.swift; sourceTree = "<group>"; };
 		A5E40B5E2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelConfig+Mock.swift"; sourceTree = "<group>"; };
@@ -2770,12 +2761,8 @@
 			isa = PBXGroup;
 			children = (
 				A57777D029E6A319004513E6 /* CreateAccountVC.xib */,
-				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
-				4038A5531CE32B6800180B5D /* TempHumidityCell.xib */,
-				40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */,
 				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
-				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
 				019F848225F7C0F800A18C3B /* SACaptionEditor.xib */,
@@ -3222,6 +3209,7 @@
 		407E7C331BBEB81B00D8878C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */,
 				A598CAD22CC6E5CE00A784FA /* LocalizedStringId+Ext.swift */,
 				A5074BD42BCE9DB60081B6B1 /* Values */,
 				A530EE0B2A56C5C700F8DAEE /* Extensions */,
@@ -3942,7 +3930,6 @@
 				A530EE352A57F65F00F8DAEE /* GetChannelBaseStateUseCase.swift */,
 				A530EE3A2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift */,
 				A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */,
-				A5A14A372B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift */,
 				A50E5D6F2BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift */,
 			);
 			path = ChannelBase;
@@ -3954,7 +3941,6 @@
 				A530EE382A57FCE200F8DAEE /* GetChannelBaseStateUseCaseTests.swift */,
 				A573B0AB2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift */,
 				A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */,
-				A5E40B582B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift */,
 				A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */,
 			);
 			path = ChannelBase;
@@ -4785,6 +4771,7 @@
 		A58A9BFF2AA0ACFC00D28848 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */,
 				A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */,
 				A5A14A302B60F76A004B1598 /* IconValueCell.swift */,
 				A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */,
@@ -6386,7 +6373,6 @@
 				01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */,
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
 				010714C42656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib in Resources */,
-				40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */,
 				A57C4ABA2AAF539600D9C695 /* OpenSans-SemiBold.ttf in Resources */,
 				0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */,
 				407D4AF81BC6C7DE009A5505 /* app_icon57x57.png in Resources */,
@@ -6441,9 +6427,7 @@
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
-				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
 				0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */,
-				4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
 				019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */,
 				01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */,
@@ -6456,7 +6440,6 @@
 				40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */,
 				017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBWDetail.xib in Resources */,
-				40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */,
 				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */,
@@ -6810,7 +6793,7 @@
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5477DC12AA5B4EC00220B4A /* SuplaThermostatFlag.swift in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
-				A599E8F92CD3AB9100C83A2B /* LocalizedString+Ext.swift in Sources */,
+				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
 				A55A8DA82BAC50B100C540D4 /* NotificationCenterWrapper.swift in Sources */,
 				A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */,
@@ -6899,6 +6882,7 @@
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
 				A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */,
 				A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */,
+				A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
 				A5FE675C2A65CA1700147D1F /* SuplaCloudClientRepository.swift in Sources */,
@@ -7180,6 +7164,7 @@
 				A5477DBB2AA202A800220B4A /* SAChannelRelation+Ext.swift in Sources */,
 				A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
+				A54260272CE769C300BE74FE /* LocalizedString+Ext.swift in Sources */,
 				01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */,
 				A5F5C3F62C36827B0058E255 /* PinSetupViewState.swift in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
@@ -7281,7 +7266,6 @@
 				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
 				A5E05BA12CB3D12400202583 /* ChartDataSpec.swift in Sources */,
 				A5F5C3F42C3682500058E255 /* PinSetupVM.swift in Sources */,
-				A5A14A382B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
 				A598CABF2CC1340C00A784FA /* SwitchWithElectricityMeterValueProvider.swift in Sources */,
@@ -7468,7 +7452,6 @@
 				A5E05BD62CB80CCF00202583 /* AggregatedValue+Ext.swift in Sources */,
 				A59AB8BF2A30820900D91F1F /* ChannelRepositoryMock.swift in Sources */,
 				A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */,
-				A5E40B592B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift in Sources */,
 				A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */,
 				A54A06772AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift in Sources */,
 				A5519B402B6D383900811747 /* DepthValueProviderTest.swift in Sources */,

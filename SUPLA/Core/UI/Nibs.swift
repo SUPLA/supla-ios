@@ -21,10 +21,6 @@ import Foundation
 struct Nibs {
     static let locationCell = "SectionCell"
     static let channelCell = "ChannelCell"
-    static let thermometerCell = "ThermometerCell"
-    static let tempHumidityCell = "TempHumidityCell"
-    static let measurementCell = "MeasurementCell"
-    static let distanceCell = "DistanceCell"
     static let incrementalMeterCell = "IncrementalMeterCell"
     static let homePlusCell = "HomePlusCell"
 }
