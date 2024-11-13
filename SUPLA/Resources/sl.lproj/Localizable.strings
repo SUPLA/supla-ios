@@ -344,3 +344,211 @@
 "details_em_balance_vector" = "Vektorsko ravnotežje";
 "em_phase_to_phase_balance" = "Vektorsko medfazno ravnotežje";
 "em_chart_all_phases" = "Faza 1+2+3";
+
+"menu_notifications" = "Zgodovina obvestil";
+"turn_on" = "Vklopi";
+"turn_off" = "Izklopi";
+"Groups" = "Skupine";
+"Scenes" = "Prizori";
+"The function of the channel associated with the push notification cannot be changed." = "Funkcije kanala, povezanega s potisnimi obvestili, ni mogoče spremeniti.";
+"The channel function associated with reactions cannot be changed." = "Funkcije kanala, povezanega z reakcijami, ni mogoče spremeniti.";
+"rs_display_mode" = "Rolete, žaluzije, zavese %.";
+"Channels" = "Kanali";
+
+"Scenes.ActionButtons.execute" = "Izvedi";
+"Scenes.ActionButtons.abort" = "Prekini";
+
+"Cfg.removal.title" = "Želite izbrisati račun?";
+"Cfg.removal.action.logout" = "Pozabite na to napravo";
+"Cfg.removal.action.remove" = "Pozabite in izbrišite v strežniku";
+
+"push_notification_limit_exceeded" = "Presežen je limit potisnih obvestil, ki znaša %@ na uro.";
+"dialog_new_gesture_info_text" = "Odstranili smo gesto za premikanje, s katero se odprejo podrobnosti, za ogled podrobnosti tapnite izbrani kanal.";
+"channel_offline" = "Kanal je brez povezave";
+
+"app_settings.notifications_label" = "Obvestila";
+"app_settings.location_label" = "Lokacija";
+"app_settings.permissions_header" = "Dovoljenja";
+"standard_detail_general_tab" = "Splošno";
+
+"history_range_current_week" = "Teden";
+"standard_detail_schedule_tab" = "Teden";
+
+"standard_detail_metrics_tab" = "Meritve";
+"standard_detail_history_tab" = "Zgodovina";
+"timer_detail_wrong_time_message" = "Čas mora biti večji od 0";
+"timer_detail_header" = "Določite čas, ko naj bo naprava:";
+
+"timer_detail_turned_on" = "Vklopljena";
+"timer_detail_edit_header_on" = "vklopljena";
+"timer_detail_info_on" = "vklopljena";
+
+"timer_detail_turned_off" = "Izklopljena";
+"timer_detail_edit_header_off" = "izklopljena";
+"timer_detail_info_off" = "izklopljena";
+
+"timer_detail_info" = "Naprava bo %@  %@, nato pa bo %@";
+"timer_detail_stop" = "Pusti %@";
+"timer_detail_cancel" = "Prekliči in %@";
+"timer_detail_end_hour" = "do ure %@";
+"switch_detail_state_label" = "Trenutno stanje:";
+"switch_detail_state_label_for_timer" = "Stanje do ure %@:";
+
+"switch_detail_state_on" = "vklopljeno";
+"switch_detail_state_off" = "izklopljeno";
+"timer_detail_edit_time" = "Nastavi čas";
+"timer_detail_edit_header" = "Nastavite čas, ob katerem bo naprava %@";
+
+"timer_detail_edit_cancel" = "Prekliči urejanje";
+"save" = "Shrani";
+"thermostat_detail_mode_manual" = "Ročni";
+"thermostat_detail_mode_weekly_schedule" = "Program";
+
+"monday" = "Ponedeljek";
+"tuesday" = "Torek";
+"wednesday" = "Sreda";
+"thursday" = "Četrtek";
+"friday" = "Petek";
+"saturday" = "Sobota";
+"sunday" = "Nedelja";
+"schedule_detail_quarters_dialog_header" = "Ura %02d:00";
+"schedule_detail_program_dialog_header" = "Nastavitve programa %d";
+
+"hvac_mode_temperature_heating" = "Temperatura ogrevanja";
+"hvac_mode_temperature_cooling" = "Temperatura hlajenja";
+
+"monday_short" = "PON";
+"tuesday_short" = "TOR";
+"wednesday_short" = "SRE";
+"thursday_short" = "ČET";
+"friday_short" = "PET";
+"saturday_short" = "SOB";
+"sunday_short" = "NED";
+
+"thermostat_thermometer_error" = "Napaka pri odčitavanju temperature";
+"thermostat_clock_error" = "Napaka ure";
+"Not supported function" = "Nepodprta funkcija";
+"thermostat_detail_program_current" = "Trenutno:";
+"thermostat_detail_program_next" = "Naslednje:";
+
+"time_just_mintes" = "%d min.";
+"timer_detail_minute_pattern" = "%d min.";
+
+"time_hours_and_minutes" = "%d ur %d min.";
+"thermostat_detail_program_time" = "prek %@";
+"history_range_label" = "Območje";
+
+"history_range_current_day" = "Dan";
+"history_range_current_month" = "Mesec";
+"history_range_current_quarter" = "Četrtletje";
+"history_range_current_year" = "Leto";
+"history_range_custom" = "Drugo območje";
+"history_refreshing" = "Osveževanje...";
+"history_refreshing_failed" = "Osveževanje ni uspelo";
+"history_no_data_selected" = "PZa prikaz ni izbran noben podatek.";
+"history_no_data_available" = "Brez meritev";
+"channel_caption_hotelcard" = "Senzor za hotelsko kartico";
+"thermostat_detail_off_by_window" = "Izklopljeno čez odprto okno";
+"thermostat_detail_off_by_card" = "Izključeno zaradi neprisotnosti hotelske kartice";
+"thermostat_detail_off_by_sensor" = "Deaktivirano s senzorjem";
+"channel_caption_alarm_armament" = "Senzor za nastavitev alarma";
+"timer_detail_select_mode" = "Izberite način";
+"timer_detail_manual_mode" = "Ročni način";
+
+"timer_detail_info_thermostat_off" = "Termostat se izklopi z\n%@";
+"timer_detail_info_thermostat_heating" = "Termostat bo v načinu ogrevanja\n%@";
+"timer_detail_info_thermostat_cooling" = "Termostat bo v načinu hlajenja\n%@";
+"timer_detail_select_time" = "Določite čas";
+"timer_detail_counter" = "Števec";
+"timer_detail_calendar" = "Koledar";
+"timer_detail_min_temp" = "Temperatura min.";
+"timer_detail_max_temp" = "Temperatura maks.";
+"timer_detail_state_label_for_timer_days" = "Stanje do %@:";
+"timer_detail_cancel_thermostat" = "Ustavite časovnik in vklopite način:";
+"thermostat_detail_program_info" = "Dotaknite se, da aktivirate program. Če želite spremeniti program, pridržite.";
+"thermostat_detail_box_info" = "Dotaknite se, da nastavite izbrani program. Držite pritisnjeno, da nastavite izbrane četrturne dele.";
+"thermostat_detail_arrow_info" = "V črnem kotu sta označena trenutni čas in dan.";
+
+"channel_caption_general_purpose_measurment" = "Merilni kanal";
+"chart_marker_opening" = "Odpiranje";
+"chart_marker_closing" = "Zapiranje";
+"channel_caption_general_purpose_meter" = "Kanal za štetje";
+"history_disabled" = "Zgodovina je za ta kanal onemogočena";
+
+"notification_delete_button_delete_older_than_month" = "Odstrani starejše od 30 dni";
+"notification_delete_all_title" = "Zbrišem?";
+"notification_delete_all_message" = "Brisanje obvestil je nepovratno, ali želite nadaljevati?";
+"notifications_log_profile" = "Profil:";
+"notifications_log_date" = "Datum:";
+"settings_show_labels" = "Prikaži oznake v spodnjem meniju";
+"main_no_entries" = "Prazno";
+"groups_empty_list_button" = "Dodaj skupino na Supla Cloud";
+"scenes_empty_list_button" = "Dodaj prizor na Supla Cloud";
+"roller_shutter_closing_percentage" = "Zapiranje:";
+"roller_shutter_opening_percentage" = "Odpiranje:";
+"roller_shutter_calibration_needed" = "Potrebna je kalibracija";
+"settings_dark_mode" = "Nočni pogled";
+"menu_device_catalog" = "Katalog naprav";
+"facade_blinds_slat_tilt" = "Naklon: ";
+"channel_caption_facade_blinds" = "Fasadna žaluzija";
+"facade_blinds_no_tilt" = "Ni konfiguracije";
+"history_delete_data" = "Izbriši zgodovino in znova prenesi";
+"history_wait_for_download_completed" = "Počakajte, prenašam...";
+"channel_caption_terrace_awning" = "Terasna markiza";
+"channel_caption_projector_screen" = "Projekcijski zaslon";
+"channel_caption_curtain" = "Zavese";
+"channel_caption_vertical_blind" = "Vertikalne žaluzije";
+"channel_caption_garage_door" = "Garažna vrata";
+"roller_shutter_extension_percentage" = "Razvijanje:";
+"status_initializing" = "Prižiganje...";
+"status_try_again" = "Poskusi ponovno";
+"lock_screen_hello" = "Dobrodošli nazaj!";
+"lock_screen_enter_pin" = "Vnesite kodo PIN";
+"pin_setup_header" = "Opredelite svojo kodo PIN";
+"settings_lock_screen" = "Zaslon blokade";
+"settings_lock_screen_app" = "Aplikacija";
+"settings_lock_screen_none" = "Ni";
+"pin_setup_title" = "Konfiguracija kode PIN";
+"pin_setup_repeat" = "Ponovite kodo PIN";
+"pin_setup_entry_different" = "Vnesene kode so različne!";
+"lock_screen_wrong_pin" = "Vnesena napačna koda PIN!";
+"lock_screen_remove_pin" = "Brisanje kode PIN";
+"lock_screen_forgotten_code" = "Ne spomnim se kode za dostop";
+"lock_screen_forgotten_code_title" = "Koda za dostop";
+
+"lock_screen_forgotten_code_message" = "Če se ne spomnite kode za dostop, odstranite aplikacijo iz telefona in jo nato znova namestite. Po ponovni namestitvi dodajte konfiguracijo računa iz oblaka Supla Cloud.\n\nNe ustvarjajte novega računa. Zgodovinski podatki in vse naprave ne bodo izgubljeni."
+
+"lock_screen_forgotten_code_button" = "Razumem";
+"lock_screen_confirm_authorize_app" = "Sprememba območja dovoljenja";
+"pin_setup_use_biometric" = "Biometrično preverjanje pristnosti: ";
+"pin_setup_biometric_not_enrolled" = "Biometrično preverjanje pristnosti ni bilo konfigurirano. Če želite uporabljati biometrijo, jo najprej konfigurirajte v sistemskih nastavitvah.";
+"biometric_prompt_subtitle" = "Odklepanje s prstnim odtisom";
+"lock_screen_pin_locked" = "Preveč napačnih poskusov. Pin je bil blokiran na %@.";
+"status_disconnecting" = "Prekinjanje povezave...";
+"status_awaiting_network" = "Čakanje na omrežje...";
+"about_build_time" = "Različica z dne: %@";
+"settings_show_bottom_menu" = "Prikaži spodnji meni";
+"details_em_chart_data_type" = "Podatki";
+"details_em_phases" = "Faza";
+"details_em_balance_hourly" = "Urna bilanca";
+"details_em_balance_chart_aggregated" = "Pregledna bilanca stanja";
+"details_em_sum" = "Skupaj";
+"details_em_select_range" = "Izberite obdobje";
+"details_em_active_energy" = "Aktivna energija";
+"details_em_forwarded_energy" = "Prenesena";
+"details_em_reversed_energy" = "Vrnjena";
+"details_em_cost" = "Strošek";
+"details_em_settings_list_item" = "Vrednost, prikazana na seznamu kanalov";
+"details_em_settings_title" = "Nastavitve - %@";
+"details_em_total_suffix" = "(stanje števca)";
+"details_em_current_month_suffix" = "(tekoči mesec)";
+"details_em_last_month_balancing" = "Poravnava tekočega meseca";
+"channel_caption_pump_switch" = "Stikalo črpalke";
+"channel_caption_heat_or_cold_source_switch" = "Stikalo za vir toplote ali hladu";
+
+"standard_detail_list_tab" = "Seznam";
+"thermostat_detail_list" = "Seznam";
+
+"thermostat_detail_main_thermostat" = "Glavni termostat";
+"thermostat_detail_other_thermostats" = "Odvisni termostati";
+"thermostat_battery_cover_open" = "Odprt pokrov baterije";
