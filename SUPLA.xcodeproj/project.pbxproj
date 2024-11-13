@@ -82,10 +82,6 @@
 		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
 		0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */; };
-		0182FCA62464691D00270CDC /* channel_warning_level2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */; };
-		0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */; };
-		0182FCA82464691D00270CDC /* channel_warning_level1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */; };
-		0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */; };
 		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
 		0186054B25BF673800C1332A /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054A25BF673700C1332A /* time@3x.png */; };
 		0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055625BF80AC00C1332A /* wakeup@3x.png */; };
@@ -470,6 +466,7 @@
 		A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */; };
 		A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */; };
 		A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */; };
+		A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54058192CE34B4500EC98C8 /* EditTextCell.swift */; };
 		A54149272B63031800B44BD6 /* GpmDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149262B63031800B44BD6 /* GpmDetailVM.swift */; };
 		A54149292B63034500B44BD6 /* GpmDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149282B63034500B44BD6 /* GpmDetailVC.swift */; };
 		A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */; };
@@ -480,7 +477,7 @@
 		A541493A2B63D81000B44BD6 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149392B63D81000B44BD6 /* ChartData.swift */; };
 		A541493C2B63E0D300B44BD6 /* LineChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541493B2B63E0D300B44BD6 /* LineChartData.swift */; };
 		A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541493D2B63E42900B44BD6 /* EmptyChartData.swift */; };
-		A5477DB22AA1DB5900220B4A /* ChannelRelationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB12AA1DB5900220B4A /* ChannelRelationType.swift */; };
+		A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */; };
 		A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */; };
 		A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */; };
 		A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB82AA1F56400220B4A /* ChannelChild.swift */; };
@@ -725,6 +722,14 @@
 		A58A9C072AA1D64A00D28848 /* ChannelRelationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */; };
 		A58B2CB42AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */; };
 		A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */; };
+		A58D1B7E2CDCB11B00B5A019 /* IssueIcon+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B7D2CDCB11600B5A019 /* IssueIcon+iOS.swift */; };
+		A58D1B802CDCD58900B5A019 /* KotlinByteArray+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B7F2CDCD58100B5A019 /* KotlinByteArray+iOS.swift */; };
+		A58D1B822CDCE29900B5A019 /* KotlinInt+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B812CDCE29000B5A019 /* KotlinInt+iOS.swift */; };
+		A58D1B842CDCF28700B5A019 /* Supla+Shareable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B832CDCF28100B5A019 /* Supla+Shareable.swift */; };
+		A58D1B862CDCFABB00B5A019 /* GetChannelIssuesForListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B852CDCFAA800B5A019 /* GetChannelIssuesForListUseCase.swift */; };
+		A58D1B882CDCFBDF00B5A019 /* GetChannelLowBatteryIssueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B872CDCFBDA00B5A019 /* GetChannelLowBatteryIssueUseCase.swift */; };
+		A58D1B8A2CDCFC4900B5A019 /* GetCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B892CDCFC4400B5A019 /* GetCaptionUseCase.swift */; };
+		A58D1B8C2CDD695400B5A019 /* GetChannelDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B8B2CDD694900B5A019 /* GetChannelDefaultCaptionUseCase.swift */; };
 		A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */; };
 		A593185F2CD8C11C009C7301 /* ElectricityMeterValueProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */; };
 		A594ADC02C9C07C600780EF3 /* ThermostatIndicatorIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADBF2C9C07C600780EF3 /* ThermostatIndicatorIcon.swift */; };
@@ -762,6 +767,7 @@
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
+		A599E8F92CD3AB9100C83A2B /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A599E8F82CD3AB8D00C83A2B /* LocalizedString+Ext.swift */; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -1388,10 +1394,6 @@
 		017D393329244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		017D393429244AF5005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = uk; path = Resources/uk.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChannelStatePopup.xib; sourceTree = "<group>"; };
-		0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level2@2x.png"; sourceTree = "<group>"; };
-		0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level2@3x.png"; sourceTree = "<group>"; };
-		0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level1@3x.png"; sourceTree = "<group>"; };
-		0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level1@2x.png"; sourceTree = "<group>"; };
 		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "z_wave@3x.png"; sourceTree = "<group>"; };
 		0186054A25BF673700C1332A /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@3x.png"; sourceTree = "<group>"; };
 		0186055625BF80AC00C1332A /* wakeup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wakeup@3x.png"; sourceTree = "<group>"; };
@@ -1947,6 +1949,7 @@
 		A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCase.swift; sourceTree = "<group>"; };
 		A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlainButton.swift; sourceTree = "<group>"; };
 		A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgressView.swift; sourceTree = "<group>"; };
+		A54058192CE34B4500EC98C8 /* EditTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
 		A54149262B63031800B44BD6 /* GpmDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmDetailVM.swift; sourceTree = "<group>"; };
 		A54149282B63034500B44BD6 /* GpmDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmDetailVC.swift; sourceTree = "<group>"; };
 		A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVM.swift; sourceTree = "<group>"; };
@@ -1957,7 +1960,7 @@
 		A54149392B63D81000B44BD6 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		A541493B2B63E0D300B44BD6 /* LineChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartData.swift; sourceTree = "<group>"; };
 		A541493D2B63E42900B44BD6 /* EmptyChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChartData.swift; sourceTree = "<group>"; };
-		A5477DB12AA1DB5900220B4A /* ChannelRelationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationType.swift; sourceTree = "<group>"; };
+		A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemIssues+iOS.swift"; sourceTree = "<group>"; };
 		A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationsAsRemovableUseCase.swift; sourceTree = "<group>"; };
 		A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5477DB82AA1F56400220B4A /* ChannelChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChild.swift; sourceTree = "<group>"; };
@@ -2207,6 +2210,14 @@
 		A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationRepository.swift; sourceTree = "<group>"; };
 		A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTemperaturesListUseCaseTests.swift; sourceTree = "<group>"; };
 		A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseUseCasesMocks.swift; sourceTree = "<group>"; };
+		A58D1B7D2CDCB11600B5A019 /* IssueIcon+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IssueIcon+iOS.swift"; sourceTree = "<group>"; };
+		A58D1B7F2CDCD58100B5A019 /* KotlinByteArray+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KotlinByteArray+iOS.swift"; sourceTree = "<group>"; };
+		A58D1B812CDCE29000B5A019 /* KotlinInt+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KotlinInt+iOS.swift"; sourceTree = "<group>"; };
+		A58D1B832CDCF28100B5A019 /* Supla+Shareable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Supla+Shareable.swift"; sourceTree = "<group>"; };
+		A58D1B852CDCFAA800B5A019 /* GetChannelIssuesForListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelIssuesForListUseCase.swift; sourceTree = "<group>"; };
+		A58D1B872CDCFBDA00B5A019 /* GetChannelLowBatteryIssueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelLowBatteryIssueUseCase.swift; sourceTree = "<group>"; };
+		A58D1B892CDCFC4400B5A019 /* GetCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCaptionUseCase.swift; sourceTree = "<group>"; };
+		A58D1B8B2CDD694900B5A019 /* GetChannelDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
 		A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueProviderTest.swift; sourceTree = "<group>"; };
 		A594ADBF2C9C07C600780EF3 /* ThermostatIndicatorIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIndicatorIcon.swift; sourceTree = "<group>"; };
@@ -2244,6 +2255,7 @@
 		A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+SuplaChannelFunction.swift"; sourceTree = "<group>"; };
 		A598CAD72CC77D3A00A784FA /* PieChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartData.swift; sourceTree = "<group>"; };
 		A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaPieChartView.swift; sourceTree = "<group>"; };
+		A599E8F82CD3AB8D00C83A2B /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
 		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVMTests.swift; sourceTree = "<group>"; };
 		A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -3060,10 +3072,6 @@
 				0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */,
 				406C92D31BCD8518007BA87A /* btnOK@2x.png */,
 				407D4AFA1BC6D6AA009A5505 /* btnOK@3x.png */,
-				0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */,
-				0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */,
-				0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */,
-				0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */,
 				017554F922F1D2BE00EB58B7 /* clock@3x.png */,
 				012119142368C3B2004C1993 /* collapsed@3x.png */,
 				016EE77323074DDC00FD301C /* consumption@3x.png */,
@@ -4082,7 +4090,6 @@
 				A55A8D922BAB143A00C540D4 /* Thermostat */,
 				A5A14A3E2B61369A004B1598 /* ChannelConfig */,
 				A52BFEC02B078B6F00A2F64C /* DeviceConfig */,
-				A5477DB12AA1DB5900220B4A /* ChannelRelationType.swift */,
 				A57C4AAB2AAB20B100D9C695 /* RequestResult.swift */,
 				A52BFEB82B065BF800A2F64C /* SuplaConfigResult.swift */,
 			);
@@ -4514,6 +4521,7 @@
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A58D1B7C2CDCB10700B5A019 /* Shared */,
 				A5A1600B2C2AC16A0049AA73 /* State */,
 				A5A15FE42C256E320049AA73 /* Navigation */,
 				A5074BA62BC9239C0081B6B1 /* Branding */,
@@ -4800,6 +4808,18 @@
 				A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */,
 			);
 			path = Thermostat;
+			sourceTree = "<group>";
+		};
+		A58D1B7C2CDCB10700B5A019 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */,
+				A58D1B832CDCF28100B5A019 /* Supla+Shareable.swift */,
+				A58D1B812CDCE29000B5A019 /* KotlinInt+iOS.swift */,
+				A58D1B7F2CDCD58100B5A019 /* KotlinByteArray+iOS.swift */,
+				A58D1B7D2CDCB11600B5A019 /* IssueIcon+iOS.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		A594ADC12C9C0A7F00780EF3 /* Thermostat */ = {
@@ -5322,6 +5342,7 @@
 		A5AE7A832A3AC6E80097FA8B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A54058192CE34B4500EC98C8 /* EditTextCell.swift */,
 				A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */,
 				A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */,
 				A5AE7A882A3ADE800097FA8B /* TemperatureUnitCell.swift */,
@@ -5967,6 +5988,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A58D1B892CDCFC4400B5A019 /* GetCaptionUseCase.swift */,
 				A5D7126A2C380D6A00A8EF52 /* Lock */,
 				A5A160162C2AE9DF0049AA73 /* App */,
 				A55501FA2B83F26C00FD3296 /* Notification */,
@@ -6025,6 +6047,9 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A58D1B8B2CDD694900B5A019 /* GetChannelDefaultCaptionUseCase.swift */,
+				A58D1B872CDCFBDA00B5A019 /* GetChannelLowBatteryIssueUseCase.swift */,
+				A58D1B852CDCFAA800B5A019 /* GetChannelIssuesForListUseCase.swift */,
 				A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */,
 				A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */,
 				A5E05BA72CB40EF900202583 /* MeasurementsProvider */,
@@ -6333,7 +6358,6 @@
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
 				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
-				0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */,
 				011021AF25CC337500621D41 /* bridge_disconnected@3x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
@@ -6353,7 +6377,6 @@
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
 				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
-				0182FCA62464691D00270CDC /* channel_warning_level2@2x.png in Resources */,
 				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
 				40B397E21BCED7C000BE7D5A /* OpenSans-Regular.ttf in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
@@ -6377,7 +6400,6 @@
 				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
 				405AC4321BC158E8004F7311 /* Quicksand-Regular.ttf in Resources */,
 				011021B025CC337500621D41 /* zwave_timeout@3x.png in Resources */,
-				0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */,
 				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
@@ -6437,7 +6459,6 @@
 				40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */,
 				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
-				0182FCA82464691D00270CDC /* channel_warning_level1@3x.png in Resources */,
 				01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */,
 				405AC4311BC158E8004F7311 /* Quicksand-Light.ttf in Resources */,
 				01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */,
@@ -6618,6 +6639,7 @@
 				A584E2052CAB390700232A98 /* ElectricityMeterValueFormatter.swift in Sources */,
 				A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
+				A58D1B842CDCF28700B5A019 /* Supla+Shareable.swift in Sources */,
 				A5B3CBF12B625DBA00F95AC3 /* PressureValueProvider.swift in Sources */,
 				018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */,
 				A5F29BE22A27628300ED700A /* SwapScenePositionsUseCase.swift in Sources */,
@@ -6664,7 +6686,6 @@
 				A56233DF2AB0F375001CB948 /* EditProgramDialogVM.swift in Sources */,
 				A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */,
 				A55A8D842BAAD06C00C540D4 /* UpDownControllButton.swift in Sources */,
-				A5477DB22AA1DB5900220B4A /* ChannelRelationType.swift in Sources */,
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
 				A55A8DAA2BAC608C00C540D4 /* SAAuthorizationDialogVC.swift in Sources */,
 				A5B8A47E2CBD0806002FA7B2 /* SuplaCore+Dialog.swift in Sources */,
@@ -6789,6 +6810,7 @@
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5477DC12AA5B4EC00220B4A /* SuplaThermostatFlag.swift in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
+				A599E8F92CD3AB9100C83A2B /* LocalizedString+Ext.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
 				A55A8DA82BAC50B100C540D4 /* NotificationCenterWrapper.swift in Sources */,
 				A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */,
@@ -6814,6 +6836,7 @@
 				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
+				A58D1B7E2CDCB11B00B5A019 /* IssueIcon+iOS.swift in Sources */,
 				A5D712982C411B2E00A8EF52 /* BuildInfo.swift in Sources */,
 				A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */,
 				A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */,
@@ -6865,12 +6888,14 @@
 				A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */,
 				A56233F92AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift in Sources */,
 				A57668E92AEA7AF50025509D /* SelectableList.swift in Sources */,
+				A58D1B8C2CDD695400B5A019 /* GetChannelDefaultCaptionUseCase.swift in Sources */,
 				A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */,
 				A5A15FEF2C298AAD0049AA73 /* StatusVM.swift in Sources */,
 				A5B3CC062B62802600F95AC3 /* RainValueStringProvider.swift in Sources */,
 				A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */,
 				A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */,
 				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
+				A58D1B822CDCE29900B5A019 /* KotlinInt+iOS.swift in Sources */,
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
 				A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */,
 				A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */,
@@ -6993,6 +7018,7 @@
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */,
 				A5D712652C37EB8F00A8EF52 /* LockScreenView.swift in Sources */,
+				A58D1B882CDCFBDF00B5A019 /* GetChannelLowBatteryIssueUseCase.swift in Sources */,
 				A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */,
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
 				A57668C82AE7CE890025509D /* SuplaCombinedChartView.swift in Sources */,
@@ -7033,6 +7059,7 @@
 				A5F29BBC2A24D62300ED700A /* UpdateChannelExtendedValueUseCase.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				A5E05BAD2CB46DFE00202583 /* BaseTemperatureEntity.swift in Sources */,
+				A58D1B8A2CDCFC4900B5A019 /* GetCaptionUseCase.swift in Sources */,
 				A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */,
 				A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */,
 				A5EC524C2C1043B30022F055 /* ShadingBlindWindowState.swift in Sources */,
@@ -7098,6 +7125,7 @@
 				A57668E52AEA67E00025509D /* LoadChannelWithChildrenMeasurementsDateRangeUseCase.swift in Sources */,
 				A5B8A48B2CBD2843002FA7B2 /* FlowHStack.swift in Sources */,
 				A50B5D082BEA4E2A00918D18 /* FacadeBlindWindowState.swift in Sources */,
+				A58D1B802CDCD58900B5A019 /* KotlinByteArray+iOS.swift in Sources */,
 				A5A14A422B614242004B1598 /* SuplaChannelGeneralPurposeMeasurementConfig.swift in Sources */,
 				A50B5D302BF4A10200918D18 /* TerraceAwningView.swift in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
@@ -7137,6 +7165,7 @@
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				A57C88352ACB4903000B0F10 /* ThermostatProgramInfo.swift in Sources */,
+				A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */,
 				A5A14A402B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift in Sources */,
 				A5F29BF32A2A197F00ED700A /* GroupCaptionEditor.swift in Sources */,
 				A51BE8F92AA71EB900718F2F /* ScheduleDetailVC.swift in Sources */,
@@ -7160,6 +7189,7 @@
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
+				A58D1B862CDCFABB00B5A019 /* GetChannelIssuesForListUseCase.swift in Sources */,
 				A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */,
 				A52BFEB12B06163B00A2F64C /* SADateTimePicker.swift in Sources */,
 				A57668F92AEAB12D0025509D /* HideableValue.swift in Sources */,
@@ -7177,6 +7207,7 @@
 				A5A15FFF2C2AA44B0049AA73 /* StatusFeature.swift in Sources */,
 				A55A8D962BAB14A700C540D4 /* SuplaRollerShutterFlag.swift in Sources */,
 				A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */,
+				A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */,
 				A530EE082A557EE400F8DAEE /* CircleControlButtonView.swift in Sources */,
 				A57C88302ACAA445000B0F10 /* ValuesFormatter.swift in Sources */,
 				A52BFEB92B065BF800A2F64C /* SuplaConfigResult.swift in Sources */,

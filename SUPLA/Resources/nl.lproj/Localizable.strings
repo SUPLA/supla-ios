@@ -338,6 +338,7 @@
 "channel_caption_pump_switch" = "Pompschakelaar";
 "channel_caption_heat_or_cold_source_switch" = "Schakelaar voor warmte- of koudebron";
 "channel_offline" = "Het kanaal is offline";
+"channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";

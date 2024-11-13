@@ -20,6 +20,7 @@ import Foundation
 import RxCocoa
 import RxDataSources
 import RxSwift
+import SharedCore
 
 class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
     @Singleton<SuplaAppCoordinator> private var coordinator
@@ -86,7 +87,7 @@ extension SceneListVC: SceneCellDelegate {
         viewModel.onButtonClicked(buttonType: buttonType, sceneId: remoteId)
     }
     
-    func onIssueIconTapped(issueMessage: String) {} // Not relevant for scene
+    func onIssuesIconTapped(issues: ListItemIssues) {} // Not relevant for scene
     
     func onInfoIconTapped(_ channel: SAChannel) {} // Not relevant for scene
     

@@ -30,7 +30,67 @@ extension LocalizedStringId {
         case .generalReveal: Strings.General.reveal
         case .generalCollapse: Strings.General.collapse
         case .generalExpand: Strings.General.expand
-        default: ""
+
+        case .channelCaptionOpenSensorGateway: NSLocalizedString("Gateway opening sensor", comment: "")
+        case .channelCaptionControllingTheGatewayLock: NSLocalizedString("Gateway", comment: "")
+        case .channelCaptionOpenSensorGate: NSLocalizedString("Gate opening sensor", comment: "")
+        case .channelCaptionControllingTheGate: NSLocalizedString("Gate", comment: "")
+        case .channelCaptionOpenSensorGarageDoor: NSLocalizedString("Garage door opening sensor", comment: "")
+        case .channelCaptionControllingTheGarageDoor: NSLocalizedString("Garage door", comment: "")
+        case .channelCaptionOpenSensorDoor: NSLocalizedString("Door opening sensor", comment: "")
+        case .channelCaptionControllingTheDoorLock: NSLocalizedString("Door", comment: "")
+        case .channelCaptionOpenSensorRollerShutter: NSLocalizedString("Roller shutter opening sensor", comment: "")
+        case .channelCaptionOpenSensorRoofWindow: NSLocalizedString("Roof window opening sensor", comment: "")
+        case .channelCaptionControllingTheRollerShutter: NSLocalizedString("Roller shutter", comment: "")
+        case .channelCaptionControllingTheRoofWindow: NSLocalizedString("Roof window", comment: "")
+        case .channelCaptionControllingTheFacadeBlind: Strings.General.Channel.captionFacadeBlinds
+        case .channelCaptionPowerSwitch: NSLocalizedString("Power switch", comment: "")
+        case .channelCaptionLightswitch: NSLocalizedString("Lighting switch", comment: "")
+        case .channelCaptionThermometer: NSLocalizedString("Thermometer", comment: "")
+        case .channelCaptionHumidity: NSLocalizedString("Humidity", comment: "")
+        case .channelCaptionHumidityAndTemperature: NSLocalizedString("Humidity and temperature", comment: "")
+        case .channelCaptionWindSensor: NSLocalizedString("Wind sensor", comment: "")
+        case .channelCaptionPressureSensor: NSLocalizedString("Pressure sensor", comment: "")
+        case .channelCaptionRainSensor: NSLocalizedString("Rain sensor", comment: "")
+        case .channelCaptionWeightSensor: NSLocalizedString("Weight sensor", comment: "")
+        case .channelCaptionNoLiquidSensor: NSLocalizedString("No liquid sensor", comment: "")
+        case .channelCaptionDimmer: NSLocalizedString("Dimmer", comment: "")
+        case .channelCaptionRgbLighting: NSLocalizedString("RGB lighting", comment: "")
+        case .channelCaptionDimmerAndRgbLighting: NSLocalizedString("Dimmer and RGB lighting", comment: "")
+        case .channelCaptionDepthSensor: NSLocalizedString("Depth sensor", comment: "")
+        case .channelCaptionDistanceSensor: NSLocalizedString("Distance sensor", comment: "")
+        case .channelCaptionOpeningSensorWindow: NSLocalizedString("Window opening sensor", comment: "")
+        case .channelCaptionHotelCardSensor: Strings.General.Channel.captionHotelCard
+        case .channelCaptionAlarmArmamentSensor: Strings.General.Channel.captionAlarmArmament
+        case .channelCaptionMailSensor: NSLocalizedString("Mail sensor", comment: "")
+        case .channelCaptionStaircaseTimer: NSLocalizedString("Staircase timer", comment: "")
+        case .channelCaptionIcGasMeter: NSLocalizedString("Gas Meter", comment: "")
+        case .channelCaptionIcWaterMeter: NSLocalizedString("Water Meter", comment: "")
+        case .channelCaptionIcHeatMeter: NSLocalizedString("Heat Meter", comment: "")
+        case .channelCaptionThermostatHeatpolHomeplus: NSLocalizedString("Home+ Heater", comment: "")
+        case .channelCaptionValve: NSLocalizedString("Valve", comment: "")
+        case .channelCaptionGeneralPurposeMeasurement: Strings.General.Channel.captionGeneralPurposeMeasurement
+        case .channelCaptionGeneralPurposeMeter: Strings.General.Channel.captionGeneralPurposeMeter
+        case .channelCaptionThermostat: NSLocalizedString("Thermostat", comment: "")
+        case .channelCaptionElectricityMeter: NSLocalizedString("Electricity Meter", comment: "")
+        case .channelCaptionDigiglass: NSLocalizedString("Digiglass", comment: "")
+        case .channelCaptionTerraceAwning: Strings.General.Channel.captionTerraceAwning
+        case .channelCaptionProjectorScreen: Strings.General.Channel.captionProjectorScreen
+        case .channelCaptionCurtain: Strings.General.Channel.captionCurtain
+        case .channelCaptionVerticalBlind: Strings.General.Channel.captionVerticalBlind
+        case .channelCaptionRollerGarageDoor: Strings.General.Channel.captionGarageDoor
+        case .channelCaptionPumpSwitch: Strings.General.Channel.captionPumpSwitch
+        case .channelCaptionHeatOrColdSourceSwitch: Strings.General.Channel.captionHeatOrCouldSourceSwitch
+        case .channelCaptionUnknown: NSLocalizedString("Not supported function", comment: "")
+
+        case .channelBatteryLevel: Strings.General.Channel.batteryLevel
+
+        case .motorProblem: Strings.RollerShutterDetail.motorProblem
+        case .calibrationLost: Strings.RollerShutterDetail.calibrationLost
+        case .calibrationFailed: Strings.RollerShutterDetail.calibrationFailed
+        case .thermostatThermometerError: Strings.ThermostatDetail.thermometerError
+        case .thermostatBatterCoverOpen: Strings.ThermostatDetail.batteryCoverOpen
+        case .thermostatClockError: Strings.ThermostatDetail.clockError
         }
     }
 }

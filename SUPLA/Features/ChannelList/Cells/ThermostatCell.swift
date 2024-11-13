@@ -23,6 +23,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     @Singleton<ValuesFormatter> private var formatter
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var thermostatIconView: UIImageView = {
         let view = UIImageView()
@@ -168,12 +169,11 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         ).uiImage
         
         indicatorView.image = .iconStandby
-        issueIcon = nil
+        issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
         
         if let thermostatValue = thermostatValue {
             setpointTemperatureView.text = thermostatValue.setpointText
             indicatorView.image = thermostatValue.indicatorIcon.mergeWith(data.children.indicatorIcon).resource
-            issueIcon = thermostatValue.issueIcon
         }
         
         if let mainThermometer = data.children.first(where: { $0.relationType == .mainThermometer })?.channel {

@@ -338,6 +338,7 @@
 "channel_caption_pump_switch" = "Interrupteur de pompe";
 "channel_caption_heat_or_cold_source_switch" = "Interrupteur pour la source de chaleur ou de froid";
 "channel_offline" = "La chaîne est hors ligne";
+"channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Nous avons supprimé le geste de glissement pour voir les détails. Il suffit de taper sur la chaîne sélectionnée pour les consulter.";

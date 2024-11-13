@@ -60,6 +60,7 @@ struct Strings {
         static let lockScreenNone = "settings_lock_screen_none".toLocalized()
         static let lockScreenApp = "settings_lock_screen_app".toLocalized()
         static let lockScreenAccounts = "settings_lock_screen_accounts".toLocalized()
+        static let batteryLevelWarning = "settings_battery_level_warnign".toLocalized()
     }
     
     struct AccountCreation {
@@ -330,6 +331,8 @@ struct Strings {
             static let captionGarageDoor = "channel_caption_garage_door".toLocalized()
             static let captionPumpSwitch = "channel_caption_pump_switch".toLocalized()
             static let captionHeatOrCouldSourceSwitch = "channel_caption_heat_or_cold_source_switch".toLocalized()
+            
+            static let batteryLevel = "channel_battery_level".toLocalized()
         }
     }
     

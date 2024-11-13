@@ -337,6 +337,7 @@
 "channel_caption_general_purpose_measurment" = "Kanál měření";
 "channel_caption_general_purpose_meter" = "Počítací kanál";
 "channel_offline" = "Kanál je v režimu offline";
+"channel_battery_level" = "Stav baterie (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";

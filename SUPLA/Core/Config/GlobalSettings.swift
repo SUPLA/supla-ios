@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
-protocol GlobalSettings {
+protocol GlobalSettings: SharedCore.ApplicationPreferences {
     
     var anyAccountRegistered: Bool { get set }
     var newGestureInfoShown: Bool { get set }
@@ -185,6 +185,14 @@ class GlobalSettingsImpl: GlobalSettings {
             if let time = newValue {
                 defaults.set(time, forKey: backgroundEntryTimeKey)
             }
+        }
+    }
+    
+    private let batteryWarningLevelKey = "supla_battery_warning_level_key"
+    var batteryWarningLevel: Int32 {
+        get { return exists(batteryWarningLevelKey) ? Int32(defaults.integer(forKey: batteryWarningLevelKey)) : 10 }
+        set {
+            defaults.set(newValue, forKey: batteryWarningLevelKey)
         }
     }
     

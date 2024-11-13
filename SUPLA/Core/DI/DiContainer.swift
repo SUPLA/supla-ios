@@ -61,7 +61,7 @@ extension DiContainer {
         // MARK: General
 
         register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
-        register(GlobalSettings.self, GlobalSettingsImpl())
+        let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())
         register(SuplaClientProvider.self, SuplaClientProviderImpl())
         register(SuplaAppProvider.self, SuplaAppProviderImpl())
@@ -172,7 +172,7 @@ extension DiContainer {
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())
         register(LoadChannelWithChildrenMeasurementsUseCase.self, LoadChannelWithChildrenMeasurementsUseCaseImpl())
         register(LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
-        register(GetChannelBaseDefaultCaptionUseCase.self, GetChannelBaseDefaultCaptionUseCaseImpl())
+        register(GetChannelBaseDefaultCaptionUseCase.self, SharedCore.GetChannelDefaultCaptionUseCase())
         register(GetChannelBaseCaptionUseCase.self, GetChannelBaseCaptionUseCaseImpl())
         register(ChannelBaseActionUseCase.self, ChannelBaseActionUseCaseImpl())
         // Usecases - ChannelConfig
@@ -229,6 +229,39 @@ extension DiContainer {
         // Electricity
         register(ElectricityMeterGeneralStateHandler.self, ElectricityMeterGeneralStateHandlerImpl())
         
+        // MARK: Shared
+
+        // level 0
+        let getChannelDefaultCaptionUseCase = registerAndGet(
+            GetChannelDefaultCaptionUseCase.self,
+            SharedCore.GetChannelDefaultCaptionUseCase()
+        )
+        let getChannelBatteryIconUseCase = registerAndGet(
+            GetChannelBatteryIconUseCase.self,
+            SharedCore.GetChannelBatteryIconUseCase()
+        )
+        
+        // level 1
+        let getCaptionUseCase = registerAndGet(
+            GetCaptionUseCase.self,
+            SharedCore.GetCaptionUseCase(getChannelDefaultCaptionUseCase: getChannelDefaultCaptionUseCase)
+        )
+        let getChannelLowBatteryIssueUseCase = registerAndGet(
+            GetChannelLowBatteryIssueUseCase.self,
+            SharedCore.GetChannelLowBatteryIssueUseCase(
+                getCaptionUseCase: getCaptionUseCase,
+                applicationPreferences: globalSettings
+            )
+        )
+        
+        // level 2
+        let getChannelIssuesForListUseCase = registerAndGet(
+            GetChannelIssuesForListUseCase.self,
+            SharedCore.GetChannelIssuesForListUseCase(
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
+            )
+        )
+        
         // MARK: Not singletons
 
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
@@ -236,6 +269,11 @@ extension DiContainer {
     
     static func register<Component>(_ type: Component.Type, _ component: Any) {
         DiContainer.shared.register(type: type, component)
+    }
+    
+    static func registerAndGet<Component, Instance>(_ type: Component.Type, _ component: Instance) -> Instance {
+        DiContainer.shared.register(type: type, component)
+        return component
     }
     
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {

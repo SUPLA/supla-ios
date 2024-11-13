@@ -356,6 +356,7 @@
 "channel_caption_pump_switch" = "Commutatore della pompa";
 "channel_caption_heat_or_cold_source_switch" = "Commutatore della fonte di calore o di freddo";
 "channel_offline" = "Il canale è offline";
+"channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Abbiamo eliminato il gesto di scorrimento che apre i dettagli, per vederli devi toccare il canale selezionato.";

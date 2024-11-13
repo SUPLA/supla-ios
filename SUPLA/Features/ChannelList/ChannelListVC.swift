@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
@@ -100,8 +102,8 @@ extension ChannelListVC: BaseCellDelegate {
         viewModel.onButtonClicked(buttonType: buttonType, data: data)
     }
     
-    func onIssueIconTapped(issueMessage: String) {
-        let alert = UIAlertController(title: "SUPLA", message: issueMessage, preferredStyle: .alert)
+    func onIssuesIconTapped(issues: ListItemIssues) {
+        let alert = UIAlertController(title: "SUPLA", message: issues.message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: Strings.General.ok, style: .default)
         
         alert.title = NSLocalizedString("Warning", comment: "")

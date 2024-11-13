@@ -338,6 +338,7 @@
 "channel_caption_pump_switch" = "Stikalo črpalke";
 "channel_caption_heat_or_cold_source_switch" = "Stikalo za vir toplote ali hladu";
 "channel_offline" = "Kanal je brez povezave";
+"channel_battery_level" = "Raven baterije (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili smo gesto za premikanje, s katero se odprejo podrobnosti, za ogled podrobnosti tapnite izbrani kanal.";

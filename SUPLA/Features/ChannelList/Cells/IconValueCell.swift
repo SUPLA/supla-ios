@@ -22,6 +22,7 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
+    @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var iconView: UIImageView = {
         let view = UIImageView()
@@ -96,9 +97,9 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
-        valueView.text = getChannelValueStringUseCase.invoke(channel)
+        valueView.text = getChannelValueStringUseCase.valueOrNil(channel)
         
-        issueIcon = nil
+        issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
     }
     
     override func leftButtonSettings() -> CellButtonSettings {

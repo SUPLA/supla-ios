@@ -302,7 +302,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.isOnline())
             changedState = handleButtons(changedState, channel: channel.channel)
             
-            if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }),
+            if let mainTermometer = channel.children.first(where: { $0.relation.relationType == .mainThermometer }),
                channel.channel.isOnline()
             {
                 let temperature = mainTermometer.channel.temperatureValue()
@@ -408,7 +408,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     private func isActive(_ channelWithChildren: ChannelWithChildren, _ flag: SuplaThermostatFlag) -> Bool {
-        let children = channelWithChildren.allDescendantFlat.filter { $0.relationType == .masterThermostat }
+        let children = channelWithChildren.allDescendantFlat.filter { $0.relation.relationType == .masterThermostat }
         let channelHasFlag = channelWithChildren.channel.isActive(flag)
         
         return if (children.isEmpty) {
@@ -490,7 +490,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             return nil
         }
         
-        if let sensor = children.first(where: { $0.relationType == .defaultType }) {
+        if let sensor = children.first(where: { $0.relationType == .default }) {
             let message = switch (sensor.channel.func) {
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
                 Strings.ThermostatDetail.offByWindow

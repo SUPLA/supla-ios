@@ -63,7 +63,7 @@ final class ReadChannelWithChildrenTreeUseCaseImpl: ReadChannelWithChildrenTreeU
                     result.append(
                         ChannelChild(
                             channel: child,
-                            relationType: $0.relationType,
+                            relation: $0,
                             children: findChildren(for: $0.channel_id, parentsMap, channelsMap, childrenIds + [channelId])
                         )
                     )

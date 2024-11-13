@@ -340,6 +340,7 @@
 "channel_caption_pump_switch" = "Siurblio perjungiklis";
 "channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
 "channel_offline" = "Kanalas yra offline";
+"channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";

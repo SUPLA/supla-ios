@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 protocol ChannelRelationRepository: RepositoryProtocol where T == SAChannelRelation {
     func getRelation(for profile: AuthProfileItem, with channelId: Int32, with parentId: Int32, and relationType: ChannelRelationType) -> Observable<SAChannelRelation>
@@ -37,7 +38,7 @@ final class ChannelRelationRepositoryImpl: Repository<SAChannelRelation>, Channe
         
         let predicate = NSPredicate(
             format: "profile = %@ AND channel_id = %i AND parent_id = %i AND channel_relation_type = %i",
-            profile, channelId, parentId, relationType.rawValue
+            profile, channelId, parentId, relationType.value
         )
         
         return queryItem(predicate).compactMap { $0 }
