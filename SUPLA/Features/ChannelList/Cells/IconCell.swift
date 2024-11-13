@@ -22,6 +22,7 @@ final class IconCell: BaseCell<ChannelWithChildren> {
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
+    @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var iconView: UIImageView = {
         let view = UIImageView()
@@ -80,7 +81,7 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         
-        issueIcon = nil
+        issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
     }
     
     override func leftButtonSettings() -> CellButtonSettings {

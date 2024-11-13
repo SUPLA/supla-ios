@@ -338,6 +338,7 @@
 "channel_caption_pump_switch" = "Interruptor da bomba";
 "channel_caption_heat_or_cold_source_switch" = "Interruptor da fonte de calor ou frio";
 "channel_offline" = "O canal está offline";
+"channel_battery_level" = "Nível de bateria (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Removemos o gesto de deslizar que abre os detalhes; para os ver, toque no canal selecionado.";

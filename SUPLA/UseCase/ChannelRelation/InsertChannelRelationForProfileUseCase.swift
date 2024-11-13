@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 import RxSwift
+import SharedCore
 
 final class InsertChannelRelationForProfileUseCase {
     
@@ -26,7 +27,7 @@ final class InsertChannelRelationForProfileUseCase {
     func invoke(suplaRelation: TSC_SuplaChannelRelation) -> Observable<Void> {
         profileRepository.getActiveProfile()
             .flatMapFirst { profile in
-                let relationType = ChannelRelationType.from(suplaRelation.Type)
+                let relationType = ChannelRelationType.companion.from(value: suplaRelation.Type)
                 return self.channelRelationRepository
                     .getRelation(for: profile, with: suplaRelation.Id, with: suplaRelation.ParentId, and: relationType)
                     .ifEmpty(switchTo: self.createRelation(profile, suplaRelation.Id, relationType))
@@ -43,7 +44,7 @@ final class InsertChannelRelationForProfileUseCase {
             .modify { relation in
                 relation.profile = profile
                 relation.channel_id = channelId
-                relation.channel_relation_type = relationType.rawValue
+                relation.channel_relation_type = relationType.value
             }
     }
 }

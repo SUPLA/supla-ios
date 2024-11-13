@@ -338,6 +338,7 @@
 "channel_caption_pump_switch" = "Spínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Prepínač pre zdroj tepla alebo chladu";
 "channel_offline" = "Kanál je v režime offline";
+"channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstránili sme gesto potiahnutia, ktoré otvára podrobnosti, zobrazíte ich ťuknutím na vybraný kanál.";

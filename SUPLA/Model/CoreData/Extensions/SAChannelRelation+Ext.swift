@@ -17,10 +17,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 import Foundation
+import SharedCore
 
 extension SAChannelRelation {
     
     var relationType: ChannelRelationType {
-        get { ChannelRelationType.from(channel_relation_type) }
+        get { ChannelRelationType.companion.from(value: channel_relation_type) }
     }
 }

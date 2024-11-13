@@ -78,6 +78,7 @@
 "channel_caption_pump_switch" = "Pump sitch";
 "channel_caption_heat_or_cold_source_switch" = "Heat or cold source switch";
 "channel_offline" = "Channel is offline";
+"channel_battery_level" = "Battery level (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -104,6 +105,7 @@
 "settings_lock_screen_none" = "None";
 "settings_lock_screen_app" = "App";
 "settings_lock_screen_accounts" = "Accounts";
+"settings_battery_level_warnign" = "Low battery alert";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";

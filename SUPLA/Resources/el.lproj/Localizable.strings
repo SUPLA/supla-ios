@@ -338,6 +338,7 @@
 "channel_caption_pump_switch" = "Διακόπτης αντλίας";
 "channel_caption_heat_or_cold_source_switch" = "Διακόπτης πηγής θερμότητας ή κρύου";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
+"channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Αφαιρέσαμε τη συρόμενη κίνηση που ανοίγει τις λεπτομέρειες, πατήστε στο επιλεγμένο κανάλι για να τις δείτε.";

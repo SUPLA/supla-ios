@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import SharedCore
 
 struct ChannelWithChildren: Equatable {
     let channel: SAChannel
@@ -59,5 +60,14 @@ extension ChannelWithChildren {
 extension ChannelWithChildren: BaseCellData {
     var infoSupported: Bool {
         channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0
+    }
+}
+
+extension ChannelWithChildren {
+    var shareable: SharedCore.ChannelWithChildren {
+        SharedCore.ChannelWithChildren(
+            channel: channel.shareable,
+            children: children.map { $0.shareable }
+        )
     }
 }

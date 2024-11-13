@@ -339,6 +339,7 @@
 "channel_caption_pump_switch" = "Pumpebryter";
 "channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
 "channel_offline" = "Kanalen er offline";
+"channel_battery_level" = "Batterinivå (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";

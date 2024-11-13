@@ -66,6 +66,7 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         tableView.register(PermissionCell.self, forCellReuseIdentifier: PermissionCell.id)
         tableView.register(NightModeCell.self, forCellReuseIdentifier: NightModeCell.id)
         tableView.register(LockScreenCell.self, forCellReuseIdentifier: LockScreenCell.id)
+        tableView.register(EditTextCell.self, forCellReuseIdentifier: EditTextCell.id)
         
         viewModel.stateObservable()
             .map { $0.list }
@@ -110,6 +111,10 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
                 case .lockScreenItem(let lockScreenScope, let callback):
                     return LockScreenCell.configure(lockScreenScope, callback) {
                         self.getCell(for: LockScreenCell.id, indexPath)
+                    }
+                case .batteryLevelWarning(let level, let callback):
+                    return EditTextCell.configure(Strings.AppSettings.batteryLevelWarning, level, callback) {
+                        self.getCell(for: EditTextCell.id, indexPath)
                     }
                 }
             }, titleForHeaderInSection: { dataSource, sectionIndex in

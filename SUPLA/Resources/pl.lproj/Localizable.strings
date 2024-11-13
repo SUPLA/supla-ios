@@ -345,6 +345,7 @@
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
 "channel_offline" = "Kanał jest offline";
+"channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -371,6 +372,7 @@
 "settings_lock_screen_none" = "Brak";
 "settings_lock_screen_app" = "Aplikacja";
 "settings_lock_screen_accounts" = "Konta";
+"settings_battery_level_warnign" = "Sygnalizacja słabej baterii";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";

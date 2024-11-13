@@ -316,6 +316,7 @@
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
 "channel_offline" = "Das Kanal ist offline";
+"channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -338,6 +339,7 @@
 "settings_lock_screen_none" = "Keine";
 "settings_lock_screen_app" = "Anwendung";
 "settings_lock_screen_accounts" = "Konten";
+"settings_battery_level_warnign" = "Batteriestandswarnung";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";

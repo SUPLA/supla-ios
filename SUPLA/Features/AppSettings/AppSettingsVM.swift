@@ -59,7 +59,6 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     }
     
     private func createPreferencesList() -> SettingsList {
-        var settings = self.settings
         return .preferences(items: [
             .heightItem(
                 channelHeight: settings.channelHeight,
@@ -72,37 +71,41 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             .switchItem(
                 title: Strings.Cfg.buttonAutoHide,
                 selected: settings.autohideButtons,
-                callback: { settings.autohideButtons = $0 }
+                callback: { [weak self] in self?.settings.autohideButtons = $0 }
             ),
             .switchItem(
                 title: Strings.Cfg.showChannelInfo,
                 selected: settings.showChannelInfo,
-                callback: { settings.showChannelInfo = $0 }
+                callback: { [weak self] in self?.settings.showChannelInfo = $0 }
             ),
             .switchItem(
                 title: Strings.AppSettings.showBottomMenu,
                 selected: settings.showBottomMenu,
-                callback: { settings.showBottomMenu = $0 }
+                callback: { [weak self] in self?.settings.showBottomMenu = $0 }
             ),
             .switchItem(
                 title: Strings.AppSettings.showLabels,
                 selected: settings.showBottomLabels,
-                callback: { settings.showBottomLabels = $0 }
+                callback: { [weak self] in self?.settings.showBottomLabels = $0 }
             ),
             .rsOpeningPercentageItem(
                 opening: settings.showOpeningPercent,
-                callback: { settings.showOpeningPercent = $0 }
+                callback: { [weak self] in self?.settings.showOpeningPercent = $0 }
             ),
             .darkModeItem(
                 darkModeSetting: settings.darkMode,
                 callback: { [weak self] in
-                    settings.darkMode = $0
+                    self?.settings.darkMode = $0
                     self?.send(event: .changeInterfaceStyle(style: $0.interfaceStyle))
                 }
             ),
             .lockScreenItem(
                 lockScreenScope: settings.lockScreenSettings.scope,
                 callback: { [weak self] in self?.updateLockScreen(scope: $0) }
+            ),
+            .batteryLevelWarning(
+                level: settings.batteryWarningLevel,
+                callback: { [weak self] in self?.settings.batteryWarningLevel = $0 }
             ),
             .arrowButtonItem(
                 title: Strings.Cfg.locationOrdering,
@@ -122,14 +125,12 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     }
     
     private func updateChannelHeight(selectedItem: Int) {
-        var settings = settings
         if let height = ChannelHeight.allCases.enumerated().first(where: { (i, _) in i == selectedItem })?.element {
             settings.channelHeight = height
         }
     }
     
     private func updateTemperatureUnit(selectedItem: Int) {
-        var settings = settings
         if let unit = TemperatureUnit.allCases.enumerated().first(where: { (i, _) in i == selectedItem })?.element {
             settings.temperatureUnit = unit
         }
@@ -168,6 +169,7 @@ enum SettingsListItem: Equatable {
     case permissionItem(title: String, active: Bool, callback: () -> Void)
     case darkModeItem(darkModeSetting: DarkModeSetting, callback: (DarkModeSetting) -> Void)
     case lockScreenItem(lockScreenScope: LockScreenScope, callback: (LockScreenScope) -> Void)
+    case batteryLevelWarning(level: Int32, callback: (Int32) -> Void)
     
     static func == (lhs: SettingsListItem, rhs: SettingsListItem) -> Bool {
         switch (lhs, rhs) {
@@ -187,6 +189,8 @@ enum SettingsListItem: Equatable {
             return leftSetting == rightSetting
         case (.lockScreenItem(let leftScope, _), .lockScreenItem(let rightScope, _)):
             return leftScope == rightScope
+        case (.batteryLevelWarning(let leftLevel, _), .batteryLevelWarning(let rightLevel, _)):
+            return leftLevel == rightLevel
         default:
             return false
         }

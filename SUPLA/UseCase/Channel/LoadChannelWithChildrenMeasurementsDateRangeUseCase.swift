@@ -62,7 +62,7 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
     
     private func findMinTime(channelWithChildren: ChannelWithChildren, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         var channelsWithMeasurements = channelWithChildren.children
-            .sorted(by: { $0.relationType.rawValue > $1.relationType.rawValue })
+            .sorted(by: { $0.relation.relationType.value > $1.relation.relationType.value })
             .filter { $0.channel.hasMeasurements() }
             .map { $0.channel }
         if (channelWithChildren.channel.hasMeasurements()) {
@@ -111,7 +111,7 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
     
     private func findMaxTime(channelWithChildren: ChannelWithChildren, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         var channelsWithMeasurements = channelWithChildren.children
-            .sorted(by: { $0.relationType.rawValue > $1.relationType.rawValue })
+            .sorted(by: { $0.relationType.value > $1.relationType.value })
             .filter { $0.channel.hasMeasurements() }
             .map { $0.channel }
         if (channelWithChildren.channel.hasMeasurements()) {
