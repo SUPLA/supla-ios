@@ -1,33 +1,56 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
- 
+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
+    
 import RxSwift
 
-final class IconCell: BaseCell<ChannelWithChildren> {
+final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
     @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
-    private lazy var iconView: UIImageView = {
+    private lazy var firstIconView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var firstValueView: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .cellValueFont
+        view.textColor = .onBackground
+        return view
+    }()
+    
+    private lazy var secondIconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var secondValueView: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .cellValueFont
+        view.textColor = .onBackground
         return view
     }()
     
@@ -42,7 +65,12 @@ final class IconCell: BaseCell<ChannelWithChildren> {
     override func online() -> Bool { data?.channel.isOnline() ?? false }
     
     override func derivedClassControls() -> [UIView] {
-        return [iconView]
+        return [
+            firstIconView,
+            firstValueView,
+            secondIconView,
+            secondValueView
+        ]
     }
     
     override func onInfoPress(_ gr: UITapGestureRecognizer) {
@@ -54,18 +82,33 @@ final class IconCell: BaseCell<ChannelWithChildren> {
     }
     
     override func setupView() {
-        container.addSubview(iconView)
+        firstValueView.font = .cellValueFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
+        secondValueView.font = .cellValueFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
+        
+        container.addSubview(firstIconView)
+        container.addSubview(firstValueView)
+        container.addSubview(secondIconView)
+        container.addSubview(secondValueView)
         
         super.setupView()
     }
     
     override func derivedClassConstraints() -> [NSLayoutConstraint] {
         return [
-            iconView.widthAnchor.constraint(equalToConstant: scale(60.0)),
-            iconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
-            iconView.leftAnchor.constraint(equalTo: container.leftAnchor),
-            iconView.topAnchor.constraint(equalTo: container.topAnchor),
-            iconView.rightAnchor.constraint(equalTo: container.rightAnchor)
+            firstIconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
+            firstIconView.leftAnchor.constraint(equalTo: container.leftAnchor),
+            firstIconView.topAnchor.constraint(equalTo: container.topAnchor),
+            
+            firstValueView.leftAnchor.constraint(equalTo: firstIconView.rightAnchor, constant: 4),
+            firstValueView.centerYAnchor.constraint(equalTo: firstIconView.centerYAnchor),
+            
+            secondIconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
+            secondIconView.leftAnchor.constraint(equalTo: firstValueView.rightAnchor, constant: 4),
+            secondIconView.topAnchor.constraint(equalTo: container.topAnchor),
+            
+            secondValueView.leftAnchor.constraint(equalTo: secondIconView.rightAnchor, constant: 4),
+            secondValueView.centerYAnchor.constraint(equalTo: secondIconView.centerYAnchor),
+            secondValueView.rightAnchor.constraint(equalTo: container.rightAnchor)
         ]
     }
     
@@ -79,7 +122,10 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         
-        iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
+        firstIconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
+        firstValueView.text = getChannelValueStringUseCase.valueOrNil(channel)
+        secondIconView.image = getChannelBaseIconUseCase.invoke(channel: channel, type: .second).uiImage
+        secondValueView.text = getChannelValueStringUseCase.valueOrNil(channel, valueType: .second, withUnit: false)
         
         issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
     }
@@ -98,9 +144,5 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         } else {
             return super.rightButtonSettings()
         }
-    }
-    
-    override func timerEndDate() -> Date? {
-        data?.channel.getTimerEndDate()
     }
 }

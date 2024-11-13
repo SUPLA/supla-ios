@@ -19,7 +19,7 @@
 class StandardDetailVM<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
     func loadData(remoteId: Int32, type: SubjectType) {
         switch (type) {
@@ -37,7 +37,7 @@ class StandardDetailVM<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
     }
 
     private func handleChannel(_ channel: SAChannel) {
-        setTitle(getChannelBaseCaptionUseCase.invoke(channelBase: channel))
+        setTitle(getCaptionUseCase.invoke(data: channel.shareable).string)
     }
     
     private func loadGroup(_ remoteId: Int32) {
@@ -48,7 +48,7 @@ class StandardDetailVM<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
     }
     
     private func handleGroup(_ group: SAChannelGroup) {
-        setTitle(getChannelBaseCaptionUseCase.invoke(channelBase: group))
+        setTitle(getCaptionUseCase.invoke(data: group.shareable).string)
     }
 
     func setTitle(_ title: String) { fatalError("setTitle(_:) has not been implemented") }

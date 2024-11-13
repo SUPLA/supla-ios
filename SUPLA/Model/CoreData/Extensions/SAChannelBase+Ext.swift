@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
 extension SAChannelBase {
     func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
@@ -84,5 +84,16 @@ extension SAChannelBase {
 
     func hasMeasurements() -> Bool {
         return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    }
+    
+    var shareableBase: SharedCore.BaseData {
+        if let channel = self as? SAChannel {
+            return channel.shareable
+        }
+        if let group = self as? SAChannelGroup {
+            return group.shareable
+        }
+        
+        fatalError("Unexpected type: \(self)")
     }
 }

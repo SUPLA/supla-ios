@@ -173,7 +173,6 @@ extension DiContainer {
         register(LoadChannelWithChildrenMeasurementsUseCase.self, LoadChannelWithChildrenMeasurementsUseCaseImpl())
         register(LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
         register(GetChannelBaseDefaultCaptionUseCase.self, SharedCore.GetChannelDefaultCaptionUseCase())
-        register(GetChannelBaseCaptionUseCase.self, GetChannelBaseCaptionUseCaseImpl())
         register(ChannelBaseActionUseCase.self, ChannelBaseActionUseCaseImpl())
         // Usecases - ChannelConfig
         register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())

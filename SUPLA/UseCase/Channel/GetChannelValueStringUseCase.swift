@@ -29,6 +29,10 @@ extension GetChannelValueStringUseCase {
     func valueOrNil(_ channel: SAChannel) -> String? {
         valueOrNil(channel, valueType: .first, withUnit: true)
     }
+    
+    func valueOrNil(_ channel: SAChannel, valueType: ValueType = .first) -> String? {
+        valueOrNil(channel, valueType: valueType, withUnit: true)
+    }
 }
 
 final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {

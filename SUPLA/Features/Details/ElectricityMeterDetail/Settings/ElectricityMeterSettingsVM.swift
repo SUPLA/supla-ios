@@ -19,7 +19,7 @@
 extension ElectricityMeterSettingsFeature {
     class ViewModel: SuplaCore.BaseViewModel<ViewState> {
         @Singleton<UserStateHolder> private var userStateHolder
-        @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+        @Singleton<GetCaptionUseCase> private var getCaptionsUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
 
         init() {
@@ -85,7 +85,7 @@ extension ElectricityMeterSettingsFeature {
             state.remoteId = channel.remote_id
             state.profileId = channel.profile.idString
 
-            state.channelName = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
+            state.channelName = getCaptionsUseCase.invoke(data: channel.shareable).string
             state.showOnChannelsList = SelectableList(
                 selected: settings.showOnListSafe,
                 items: ElectricityMeterSettings.showOnListAllItems.filter { measuredValues.contains($0) }
