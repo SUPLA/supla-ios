@@ -345,3 +345,211 @@
 "details_em_balance_vector" = "Balance vectorial";
 "em_phase_to_phase_balance" = "Balance de interfaz vectorial";
 "em_chart_all_phases" = "Fase 1 + 2 + 3";
+
+"menu_notifications" = "Historial de notificaciones";
+"turn_on" = "Activar";
+"turn_off" = "Desactivar";
+"Groups" = "Grupos";
+"Scenes" = "Escenas";
+"The function of the channel associated with the push notification cannot be changed." = "La función del canal asociado a las notificaciones PUSH no puede modificarse.";
+"The channel function associated with reactions cannot be changed." = "La función del canal asociado a las reacciones no puede modificarse.";
+"rs_display_mode" = "Persianas, estores, cortinas % ";
+"Channels" = "Canales";
+
+"Scenes.ActionButtons.execute" = "Ejecutar";
+"Scenes.ActionButtons.abort" = "Anular";
+
+"Cfg.removal.title" = "¿Borrar la cuenta?";
+"Cfg.removal.action.logout" = "Olvidar en este dispositivo";
+"Cfg.removal.action.remove" = "Olvidar y borrar en el servidor";
+
+"push_notification_limit_exceeded" = "Se ha superado el límite de notificaciones PUSH de %@ por hora.";
+"dialog_new_gesture_info_text" = "Hemos eliminado el gesto de deslizar para abrir los detalles, pulsa sobre el canal seleccionado para verlos.";
+"channel_offline" = "El canal está offline";
+
+"app_settings.notifications_label" = "Notificaciones";
+"app_settings.location_label" = "Ubicación";
+"app_settings.permissions_header" = "Permisos";
+"standard_detail_general_tab" = "General";
+
+"history_range_current_week" = "Semana";
+"standard_detail_schedule_tab" = "Semana";
+
+"standard_detail_metrics_tab" = "Mediciones";
+"standard_detail_history_tab" = "Historial";
+"timer_detail_wrong_time_message" = "La hora debe ser mayor que 0";
+"timer_detail_header" = "Especifica la hora en la que el dispositivo debe estar:";
+
+"timer_detail_turned_on" = "Encendido";
+"timer_detail_edit_header_on" = "encendido";
+"timer_detail_info_on" = "encendido";
+
+"timer_detail_turned_off" = "Apagado";
+"timer_detail_edit_header_off" = "apagado";
+"timer_detail_info_off" = "apagado";
+
+"timer_detail_info" = "El dispositivo estará %@ durante %@ y después se %@";
+"timer_detail_stop" = "Dejar %@";
+"timer_detail_cancel" = "Cancelar y %@";
+"timer_detail_end_hour" = "hasta las %@";
+"switch_detail_state_label" = "Estado actual:";
+"switch_detail_state_label_for_timer" = "Estado hasta las %@:";
+
+"switch_detail_state_on" = "encendido";
+"switch_detail_state_off" = "apagado";
+"timer_detail_edit_time" = "Editar hora";
+"timer_detail_edit_header" = "Editar la hora en la que el dispositivo estará %@";
+
+"timer_detail_edit_cancel" = "Cancelar edición";
+"save" = "Guardar";
+"thermostat_detail_mode_manual" = "Manual";
+"thermostat_detail_mode_weekly_schedule" = "Programa";
+
+"monday" = "Lunes";
+"tuesday" = "Martes";
+"wednesday" = "Miércoles";
+"thursday" = "Jueves";
+"friday" = "Viernes";
+"saturday" = "Sábado";
+"sunday" = "Domingo";
+"schedule_detail_quarters_dialog_header" = "Hora %02d:00";
+"schedule_detail_program_dialog_header" = "Ajustes programa %d";
+
+"hvac_mode_temperature_heating" = "Temperatura de calor";
+"hvac_mode_temperature_cooling" = "Temperatura de frío";
+
+"monday_short" = "LUN";
+"tuesday_short" = "MAR";
+"wednesday_short" = "MIER";
+"thursday_short" = "JUE";
+"friday_short" = "VIE";
+"saturday_short" = "SÁB";
+"sunday_short" = "DOM";
+
+"thermostat_thermometer_error" = "Error de lectura de la temperatura";
+"thermostat_clock_error" = "Error de reloj";
+"Not supported function" = "Función no compatible";
+"thermostat_detail_program_current" = "Actual:";
+"thermostat_detail_program_next" = "Siguiente:";
+
+"time_just_mintes" = "%d min.";
+"timer_detail_minute_pattern" = "%d min.";
+
+"time_hours_and_minutes" = "%d hrs. %d min.";
+"thermostat_detail_program_time" = "durante %@";
+"history_range_label" = "Rango";
+
+"history_range_current_day" = "Día";
+"history_range_current_month" = "Mes";
+"history_range_current_quarter" = "Trimestre";
+"history_range_current_year" = "Año";
+"history_range_custom" = "Otro rango";
+"history_refreshing" = "Actualizando...";
+"history_refreshing_failed" = "No se ha podido actualizar";
+"history_no_data_selected" = "No hay datos seleccionados para mostrar.";
+"history_no_data_available" = "No hay mediciones";
+"channel_caption_hotelcard" = "Sensor de tarjeta de hotel";
+"thermostat_detail_off_by_window" = "Apagado por ventana abierta";
+"thermostat_detail_off_by_card" = "Apagado por falta de tarjeta de hotel";
+"thermostat_detail_off_by_sensor" = "Apagado por el sensor";
+"channel_caption_alarm_armament" = "Sensor de ajuste de alarma";
+"timer_detail_select_mode" = "Seleccionar modo";
+"timer_detail_manual_mode" = "Modo manual";
+
+"timer_detail_info_thermostat_off" = "El termostato estará apagado durante\n%@";
+"timer_detail_info_thermostat_heating" = "El termostato estará en modo calor durante\n%@";
+"timer_detail_info_thermostat_cooling" = "El termostato estará en modo frío durante\n%@";
+"timer_detail_select_time" = "Especificar hora";
+"timer_detail_counter" = "Contador";
+"timer_detail_calendar" = "Calendario";
+"timer_detail_min_temp" = "Temp. mín.";
+"timer_detail_max_temp" = "Temp máx.";
+"timer_detail_state_label_for_timer_days" = "Estado hasta %@:";
+"timer_detail_cancel_thermostat" = "Pausar el temporizador y activar el modo:";
+"thermostat_detail_program_info" = "Toca para activar el programa. Mantén pulsado para modificar el programa.";
+"thermostat_detail_box_info" = "Toca para ajustar el programa seleccionado. Mantén pulsado para ajustar los cuartos de hora seleccionados.";
+"thermostat_detail_arrow_info" = "La esquina negra indica la hora y el día actuales.";
+
+"channel_caption_general_purpose_measurment" = "Canal de medición";
+"chart_marker_opening" = "Apertura";
+"chart_marker_closing" = "Cierre";
+"channel_caption_general_purpose_meter" = "Canal del contador";
+"history_disabled" = "El historial está desactivado para este canal";
+
+"notification_delete_button_delete_older_than_month" = "Eliminar mediciones de más de 30 días";
+"notification_delete_all_title" = "¿Eliminar?";
+"notification_delete_all_message" = "La eliminación de notificaciones es irreversible, ¿continuar?";
+"notifications_log_profile" = "Perfil:";
+"notifications_log_date" = "Fecha:";
+"settings_show_labels" = "Mostrar etiquetas en el menú inferior";
+"main_no_entries" = "Vacío";
+"groups_empty_list_button" = "Añadir un grupo en Supla Cloud";
+"scenes_empty_list_button" = "Añadir una escena en Supla Cloud";
+"roller_shutter_closing_percentage" = "Cierre:";
+"roller_shutter_opening_percentage" = "Apertura:";
+"roller_shutter_calibration_needed" = "Calibración necesaria";
+"settings_dark_mode" = "Modo nocturno";
+"menu_device_catalog" = "Catálogo de dispositivos";
+"facade_blinds_slat_tilt" = "Inclinación: ";
+"channel_caption_facade_blinds" = "Estores exteriores";
+"facade_blinds_no_tilt" = "Sin configuración";
+"history_delete_data" = "Borrar historial y volver a descargar";
+"history_wait_for_download_completed" = "Por favor espera, estoy descargando...";
+"channel_caption_terrace_awning" = "Toldo de terraza";
+"channel_caption_projector_screen" = "Pantalla de proyección";
+"channel_caption_curtain" = "Cortina";
+"channel_caption_vertical_blind" = "Persiana vertical";
+"channel_caption_garage_door" = "Puerta de garaje";
+"roller_shutter_extension_percentage" = "Desenrollado:";
+"status_initializing" = "Encendiendo...";
+"status_try_again" = "Inténtalo de nuevo";
+"lock_screen_hello" = "¡Bienvenido de nuevo!";
+"lock_screen_enter_pin" = "Introduce el PIN";
+"pin_setup_header" = "Define tu PIN";
+"settings_lock_screen" = "Pantalla de bloqueo";
+"settings_lock_screen_app" = "Aplicación";
+"settings_lock_screen_none" = "No hay";
+"pin_setup_title" = "Configuración del PIN";
+"pin_setup_repeat" = "Repite el PIN";
+"pin_setup_entry_different" = "¡Los códigos introducidos son diferentes!";
+"lock_screen_wrong_pin" = "¡Código PIN incorrecto!";
+"lock_screen_remove_pin" = "Eliminación del PIN";
+"lock_screen_forgotten_code" = "No recuerdo el código de acceso";
+"lock_screen_forgotten_code_title" = "Código de acceso";
+
+"lock_screen_forgotten_code_message" = "Si no recuerdas el código de acceso, desinstala la aplicación de tu teléfono y vuelve a instalarla. Tras la reinstalación, añade la configuración de la cuenta desde Supla Cloud.\n\nNo crees una cuenta nueva. Los datos del historial y todos los dispositivos no se perderán.";
+
+"lock_screen_forgotten_code_button" = "Entiendo";
+"lock_screen_confirm_authorize_app" = "Modificación del alcance de la autorización";
+"pin_setup_use_biometric" = "Autenticación biométrica: ";
+"pin_setup_biometric_not_enrolled" = "No se ha configurado la autenticación biométrica. Si deseas utilizar la biometría, configúrala primero en los ajustes del sistema.";
+"biometric_prompt_subtitle" = "Desbloqueo con huella dactilar";
+"lock_screen_pin_locked" = "Demasiados intentos fallidos. El pin ha sido bloqueado durante %@.";
+"status_disconnecting" = "Desconectando...";
+"status_awaiting_network" = "Esperando la red...";
+"about_build_time" = "Versión del día: %@";
+"settings_show_bottom_menu" = "Mostrar menú inferior";
+"details_em_chart_data_type" = "Datos";
+"details_em_phases" = "Fase";
+"details_em_balance_hourly" = "Saldo horario";
+"details_em_balance_chart_aggregated" = "Saldo agregado con gráfico";
+"details_em_sum" = "Total";
+"details_em_select_range" = "Selecciona un período";
+"details_em_active_energy" = "Energía activa";
+"details_em_forwarded_energy" = "Tomada";
+"details_em_reversed_energy" = "Devuelta";
+"details_em_cost" = "Costo";
+"details_em_settings_list_item" = "Valor mostrado en la lista de canales";
+"details_em_settings_title" = "Ajustes - %@";
+"details_em_total_suffix" = "(estado del contador)";
+"details_em_current_month_suffix" = "(mes en curso)";
+"details_em_last_month_balancing" = "Balance del mes en curso";
+"channel_caption_pump_switch" = "Interruptor de la bomba";
+"channel_caption_heat_or_cold_source_switch" = "Interruptor para fuente de calor o frío";
+
+"standard_detail_list_tab" = "Lista";
+"thermostat_detail_list" = "Lista";
+
+"thermostat_detail_main_thermostat" = "Termostato principal";
+"thermostat_detail_other_thermostats" = "Termostatos dependientes";
+"thermostat_battery_cover_open" = "Tapa de la batería abierta";
