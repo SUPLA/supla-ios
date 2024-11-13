@@ -493,8 +493,7 @@
 "lock_screen_hello" = "Willkommen zurück!";
 "lock_screen_enter_pin" = "PIN Eingabe";
 "lock_screen_remove_pin" = "PIN Löschen";
-"lock_screen_confirm_authorize_app" = "Änderung des Berechtigungsumfangs - Anwendung";
-"lock_screen_confirm_authorize_accounts" = "Änderung des Berechtigungsumfangs - Konten";
+"lock_screen_confirm_authorize_range_change" = "Änderung des Berechtigungsumfangs";
 "lock_screen_wrong_pin" = "Eingegebenes PIN-Code ist falsch!";
 "lock_screen_forgotten_code" = "PIN-Code vergessen";
 "lock_screen_forgotten_code_title" = "Zugangscode";

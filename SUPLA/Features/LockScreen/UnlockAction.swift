@@ -30,8 +30,8 @@ extension LockScreenFeature {
             switch (self) {
             case .authorizeApplication: Strings.LockScreen.hello
             case .turnOffPin: Strings.LockScreen.removePin
-            case .confirmAuthorizeApplication: Strings.LockScreen.confirmAuthorizeApp
-            case .confirmAuthorizeAccounts: Strings.LockScreen.confirmAuthorizeAccounts
+            case .confirmAuthorizeApplication, .confirmAuthorizeAccounts:
+                Strings.LockScreen.confirmAuthorizeRangeChange
             default: nil
             }
         }

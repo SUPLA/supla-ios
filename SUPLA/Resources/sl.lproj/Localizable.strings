@@ -516,10 +516,10 @@
 "lock_screen_forgotten_code" = "Ne spomnim se kode za dostop";
 "lock_screen_forgotten_code_title" = "Koda za dostop";
 
-"lock_screen_forgotten_code_message" = "Če se ne spomnite kode za dostop, odstranite aplikacijo iz telefona in jo nato znova namestite. Po ponovni namestitvi dodajte konfiguracijo računa iz oblaka Supla Cloud.\n\nNe ustvarjajte novega računa. Zgodovinski podatki in vse naprave ne bodo izgubljeni."
+"lock_screen_forgotten_code_message" = "Če se ne spomnite kode za dostop, odstranite aplikacijo iz telefona in jo nato znova namestite. Po ponovni namestitvi dodajte konfiguracijo računa iz oblaka Supla Cloud.\n\nNe ustvarjajte novega računa. Zgodovinski podatki in vse naprave ne bodo izgubljeni.";
 
 "lock_screen_forgotten_code_button" = "Razumem";
-"lock_screen_confirm_authorize_app" = "Sprememba območja dovoljenja";
+"lock_screen_confirm_authorize_range_change" = "Sprememba območja dovoljenja";
 "pin_setup_use_biometric" = "Biometrično preverjanje pristnosti: ";
 "pin_setup_biometric_not_enrolled" = "Biometrično preverjanje pristnosti ni bilo konfigurirano. Če želite uporabljati biometrijo, jo najprej konfigurirajte v sistemskih nastavitvah.";
 "biometric_prompt_subtitle" = "Odklepanje s prstnim odtisom";

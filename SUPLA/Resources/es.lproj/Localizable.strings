@@ -520,7 +520,7 @@
 "lock_screen_forgotten_code_message" = "Si no recuerdas el código de acceso, desinstala la aplicación de tu teléfono y vuelve a instalarla. Tras la reinstalación, añade la configuración de la cuenta desde Supla Cloud.\n\nNo crees una cuenta nueva. Los datos del historial y todos los dispositivos no se perderán.";
 
 "lock_screen_forgotten_code_button" = "Entiendo";
-"lock_screen_confirm_authorize_app" = "Modificación del alcance de la autorización";
+"lock_screen_confirm_authorize_range_change" = "Modificación del alcance de la autorización";
 "pin_setup_use_biometric" = "Autenticación biométrica: ";
 "pin_setup_biometric_not_enrolled" = "No se ha configurado la autenticación biométrica. Si deseas utilizar la biometría, configúrala primero en los ajustes del sistema.";
 "biometric_prompt_subtitle" = "Desbloqueo con huella dactilar";

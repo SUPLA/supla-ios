@@ -517,7 +517,7 @@
 "lock_screen_forgotten_code_title" = "Código de acesso";
 
 "lock_screen_forgotten_code_button" = "Entendo";
-"lock_screen_confirm_authorize_app" = "Alteração do intervalo de autorização";
+"lock_screen_confirm_authorize_range_change" = "Alteração do intervalo de autorização";
 "pin_setup_use_biometric" = "Autenticação biométrica: ";
 "pin_setup_biometric_not_enrolled" = "A autenticação biométrica não foi configurada. Se deseja utilizar a biometria, configure-a primeiro nas definições do sistema.";
 "biometric_prompt_subtitle" = "Desbloquear com a impressão digital";
