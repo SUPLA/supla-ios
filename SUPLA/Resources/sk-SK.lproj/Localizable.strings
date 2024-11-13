@@ -344,3 +344,211 @@
 "details_em_balance_vector" = "Vektorová bilancia";
 "em_phase_to_phase_balance" = "Medzifázová vektorová bilancia";
 "em_chart_all_phases" = "Fáza 1+2+3";
+
+"menu_notifications" = "História upozornení";
+"turn_on" = "Zapnúť";
+"turn_off" = "Vypnúť";
+"Groups" = "Skupinu";
+"Scenes" = "Scénu";
+"The function of the channel associated with the push notification cannot be changed." = "Funkciu kanála spojeného s oznámeniami PUSH nemožno zmeniť.";
+"The channel function associated with reactions cannot be changed." = "Funkciu kanála spojeného s reakciami nemožno zmeniť.";
+"rs_display_mode" = "Rolety, žalúzie, závesy %.";
+"Channels" = "Kanály";
+
+"Scenes.ActionButtons.execute" = "Vykonať";
+"Scenes.ActionButtons.abort" = "Prerušiť";
+
+"Cfg.removal.title" = "Odstrániť účet?";
+"Cfg.removal.action.logout" = "Zabudnúť na tomto zariadení";
+"Cfg.removal.action.remove" = "Zabudnúť a odstrániť na serveri";
+
+"push_notification_limit_exceeded" = "Bol prekročený hodinový limit pre oznámenia PUSH, ktorý predstavuje %@ za hodinu.";
+"dialog_new_gesture_info_text" = "Odstránili sme gesto potiahnutia, ktoré otvára podrobnosti, zobrazíte ich ťuknutím na vybraný kanál.";
+"channel_offline" = "Kanál je v režime offline";
+
+"app_settings.notifications_label" = "Upozornenia";
+"app_settings.location_label" = "Lokalizácia";
+"app_settings.permissions_header" = "Oprávnenia";
+"standard_detail_general_tab" = "Všeobecné";
+
+"history_range_current_week" = "Týždeň";
+"standard_detail_schedule_tab" = "Týždeň";
+
+"standard_detail_metrics_tab" = "Merania";
+"standard_detail_history_tab" = "História";
+"timer_detail_wrong_time_message" = "Čas musí byť väčší ako 0";
+"timer_detail_header" = "Zadajte čas, kedy má byť zariadenie:";
+
+"timer_detail_turned_on" = "Zapnuté";
+"timer_detail_edit_header_on" = "zapnuté";
+"timer_detail_info_on" = "zapnuté";
+
+"timer_detail_turned_off" = "Vypnuté";
+"timer_detail_edit_header_off" = "vypnuté";
+"timer_detail_info_off" = "vypnuté";
+
+"timer_detail_info" = "Zariadenie bude %@ na  %@, a potom sa %@";
+"timer_detail_stop" = "Ponechať %@";
+"timer_detail_cancel" = "Zrušiť a %@";
+"timer_detail_end_hour" = "do %@ hod.";
+"switch_detail_state_label" = "Súčasný stav:";
+"switch_detail_state_label_for_timer" = "Stav do %@ hod.:";
+
+"switch_detail_state_on" = "zapnutý";
+"switch_detail_state_off" = "vypnutý";
+"timer_detail_edit_time" = "Upravit čas";
+"timer_detail_edit_header" = "Upraviť čas, v ktorom bude zariadenie %@";
+
+"timer_detail_edit_cancel" = "Zrušiť úpravu";
+"save" = "Uložiť";
+"thermostat_detail_mode_manual" = "Manuálny";
+"thermostat_detail_mode_weekly_schedule" = "Program";
+
+"monday" = "Pondelok";
+"tuesday" = "Utorok";
+"wednesday" = "Streda";
+"thursday" = "Štvrtok";
+"friday" = "Piatok";
+"saturday" = "Sobotu";
+"sunday" = "Nedeľa";
+"schedule_detail_quarters_dialog_header" = "Hodina %02d:00";
+"schedule_detail_program_dialog_header" = "NNastavenia programu %d";
+
+"hvac_mode_temperature_heating" = "Teplota ohrievania";
+"hvac_mode_temperature_cooling" = "Teplota chladenia";
+
+"monday_short" = "PO";
+"tuesday_short" = "UT";
+"wednesday_short" = "ST";
+"thursday_short" = "ŠT";
+"friday_short" = "PI";
+"saturday_short" = "SO";
+"sunday_short" = "NE";
+
+"thermostat_thermometer_error" = "Chyba pri čítaní teploty";
+"thermostat_clock_error" = "Chyba hodín";
+"Not supported function" = "Nepodporovaná funkcia";
+"thermostat_detail_program_current" = "Aktuálne:";
+"thermostat_detail_program_next" = "Následne:";
+
+"time_just_mintes" = "%d min.";
+"timer_detail_minute_pattern" = "%d min.";
+
+"time_hours_and_minutes" = "%d hod. %d min.";
+"thermostat_detail_program_time" = "na %@";
+"history_range_label" = "Rozsah";
+
+"history_range_current_day" = "Deň";
+"history_range_current_month" = "Mesiac";
+"history_range_current_quarter" = "Štvrťrok";
+"history_range_current_year" = "Rok";
+"history_range_custom" = "Iný rozsah";
+"history_refreshing" = "Obnova...";
+"history_refreshing_failed" = "Obnova sa nepodarila";
+"history_no_data_selected" = "Na zobrazenie nie sú vybrané žiadne údaje.";
+"history_no_data_available" = "Žiadne merania";
+"channel_caption_hotelcard" = "Snímač hotelovej karty";
+"thermostat_detail_off_by_window" = "Vypnutý cez otvorené okno";
+"thermostat_detail_off_by_card" = "Vypnutý z dôvodu chýbajúcej hotelovej karty";
+"thermostat_detail_off_by_sensor" = "Vypnutý senzorom";
+"channel_caption_alarm_armament" = "Snímač spustenia alarmu";
+"timer_detail_select_mode" = "Vybrať režim";
+"timer_detail_manual_mode" = "Manuálny režim";
+
+"timer_detail_info_thermostat_off" = "Termostat bude vypnutý na\n%@";
+"timer_detail_info_thermostat_heating" = "Termostat bude v režime ohrievania na\n%@";
+"timer_detail_info_thermostat_cooling" = "Termostat bude v režime chladenia na\n%@";
+"timer_detail_select_time" = "Zadať čas";
+"timer_detail_counter" = "Počítadlo";
+"timer_detail_calendar" = "Kalendár";
+"timer_detail_min_temp" = "Min. teplota";
+"timer_detail_max_temp" = "Max. teplota";
+"timer_detail_state_label_for_timer_days" = "Stav do %@:";
+"timer_detail_cancel_thermostat" = "Pozastaviť časovač a zapnúť režim:";
+"thermostat_detail_program_info" = "Dotykom aktivovať program. Podržaním stlačeného tlačidla upraviť program.";
+"thermostat_detail_box_info" = "Dotknite sa pre nastavenie vybraného programu. Podržte stlačené tlačidlo pre nastavenie vybraných štvrťhodín.";
+"thermostat_detail_arrow_info" = "Čierny roh označuje aktuálny čas a deň.";
+
+"channel_caption_general_purpose_measurment" = "Merací kanál";
+"chart_marker_opening" = "Otvorenie";
+"chart_marker_closing" = "Zavretie";
+"channel_caption_general_purpose_meter" = "Počítací kanál";
+"history_disabled" = "História je pre tento kanál vypnutá";
+
+"notification_delete_button_delete_older_than_month" = "Odstrániť staršie ako 30 dní";
+"notification_delete_all_title" = "Odstrániť?";
+"notification_delete_all_message" = "Vymazanie oznámení je nezvratné, pokračovať?";
+"notifications_log_profile" = "Profil:";
+"notifications_log_date" = "Dátum:";
+"settings_show_labels" = "Zobrazenie štítkov v spodnej ponuke";
+"main_no_entries" = "Prázdne";
+"groups_empty_list_button" = "Pridanie skupiny v službe Supla Cloud";
+"scenes_empty_list_button" = "Pridanie scény na Supla Cloud";
+"roller_shutter_closing_percentage" = "Zavretie:";
+"roller_shutter_opening_percentage" = "Otvorenie:";
+"roller_shutter_calibration_needed" = "Potrebná kalibrácia";
+"settings_dark_mode" = "Nočný režim";
+"menu_device_catalog" = "Katalóg zariadení";
+"facade_blinds_slat_tilt" = "Sklon: ";
+"channel_caption_facade_blinds" = "Fasádna žalúzia";
+"facade_blinds_no_tilt" = "Žiadna konfigurácia";
+"history_delete_data" = "Odstrániť históriu a opätovne stiahnuť";
+"history_wait_for_download_completed" = "Počkajte, prosím, sťahujem...";
+"channel_caption_terrace_awning" = "Markíza na terase";
+"channel_caption_projector_screen" = "Projekčné plátno";
+"channel_caption_curtain" = "Záves";
+"channel_caption_vertical_blind" = "Vertikálna žalúzia";
+"channel_caption_garage_door" = "Garážová brána";
+"roller_shutter_extension_percentage" = "Rozvinutie:";
+"status_initializing" = "Zapínanie...";
+"status_try_again" = "Skúsiť znovu";
+"lock_screen_hello" = "Vitajte späť!";
+"lock_screen_enter_pin" = "Zadať PIN";
+"pin_setup_header" = "Definovať PIN kód";
+"settings_lock_screen" = "Uzamknutá obrazovka";
+"settings_lock_screen_app" = "Aplikácia";
+"settings_lock_screen_none" = "Žiadne";
+"pin_setup_title" = "Konfigurácia PIN";
+"pin_setup_repeat" = "Zopakovať kód PIN";
+"pin_setup_entry_different" = "Zadané kódy nie sú rovnaké!";
+"lock_screen_wrong_pin" = "Bol zadaný nesprávny PIN kód!";
+"lock_screen_remove_pin" = "Odstraňovanie PIN kódu";
+"lock_screen_forgotten_code" = "Nepamätám si prístupový kód";
+"lock_screen_forgotten_code_title" = "Prístupový kód";
+
+"lock_screen_forgotten_code_message" = "Ak si nepamätáte prístupový kód, odinštalujte aplikáciu z telefónu a potom ju znova nainštalujte. Po opätovnej inštalácii pridajte konfiguráciu účtu zo služby Supla Cloud.\n\nNevytvárajte nový účet. Údaje z histórie ani zariadenia nezmiznú.";
+
+"lock_screen_forgotten_code_button" = "Rozumiem";
+"lock_screen_confirm_authorize_app" = "Zmena rozsahu povolenia";
+"pin_setup_use_biometric" = "Biometrické overovanie: ";
+"pin_setup_biometric_not_enrolled" = "Biometrické overovanie nebolo nakonfigurované. Ak chcete používať biometriu, najprv ju nakonfigurujte v nastaveniach systému.";
+"biometric_prompt_subtitle" = "Odomknutie pomocou odtlačku prsta";
+"lock_screen_pin_locked" = "Príliš veľa nesprávnych pokusov. PIN kód bol zablokovaný na %@.";
+"status_disconnecting" = "Odpájanie...";
+"status_awaiting_network" = "Čakanie na sieť...";
+"about_build_time" = "Verzia z dňa: %@";
+"settings_show_bottom_menu" = "Zobraziť spodnú ponuku";
+"details_em_chart_data_type" = "Údaje";
+"details_em_phases" = "Fáza";
+"details_em_balance_hourly" = "Hodinová bilancia";
+"details_em_balance_chart_aggregated" = "Bilancia agregovaná podľa grafu";
+"details_em_sum" = "Súčet";
+"details_em_select_range" = "Vyberte obdobie";
+"details_em_active_energy" = "Aktívna energia";
+"details_em_forwarded_energy" = "Prevzatá";
+"details_em_reversed_energy" = "Vrátená";
+"details_em_cost" = "Náklady";
+"details_em_settings_list_item" = "Hodnota zobrazená v zozname kanálov";
+"details_em_settings_title" = "Nastavenia - %@";
+"details_em_total_suffix" = "(stav počítadla)";
+"details_em_current_month_suffix" = "(aktuálny mesiac)";
+"details_em_last_month_balancing" = "Bilancovanie aktuálneho mesiaca";
+"channel_caption_pump_switch" = "Spínač čerpadla";
+"channel_caption_heat_or_cold_source_switch" = "Prepínač pre zdroj tepla alebo chladu";
+
+"standard_detail_list_tab" = "Zoznam";
+"thermostat_detail_list" = "Zoznam";
+
+"thermostat_detail_main_thermostat" = "Hlavný termostat";
+"thermostat_detail_other_thermostats" = "Závislé termostaty";
+"thermostat_battery_cover_open" = "Otvorte kryt batérie";
