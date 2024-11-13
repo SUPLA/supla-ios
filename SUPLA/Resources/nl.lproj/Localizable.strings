@@ -344,3 +344,211 @@
 "details_em_balance_vector" = "Vector saldo";
 "em_phase_to_phase_balance" = "Vector interfase saldo";
 "em_chart_all_phases" = "Fase 1+2+3";
+
+"menu_notifications" = "Geschiedenis meldingen";
+"turn_on" = "Zet in";
+"turn_off" = "Schakel uit";
+"Groups" = "Groepen";
+"Scenes" = "Scènes";
+"The function of the channel associated with the push notification cannot be changed." = "De functie van het kanaal dat is gekoppeld aan PUSH-meldingen kan niet worden gewijzigd.";
+"The channel function associated with reactions cannot be changed." = "De functie van het kanaal dat gekoppeld is aan de reacties kan niet worden gewijzigd.";
+"rs_display_mode" = "Rolluiken, jaloezieën, gordijnen %.";
+"Channels" = "Kanalen";
+
+"Scenes.ActionButtons.execute" = "Ik wil  volgen";
+"Scenes.ActionButtons.abort" = "Onderbreek";
+
+"Cfg.removal.title" = "De account verwijderen?";
+"Cfg.removal.action.logout" = "Vergeet het op dit apparaat";
+"Cfg.removal.action.remove" = "Vergeten en verwijderen op de server";
+
+"push_notification_limit_exceeded" = "%@ De limiet voor PUSH-meldingen per uur is overschreden.";
+"dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";
+"channel_offline" = "Het kanaal is offline";
+
+"app_settings.notifications_label" = "Meldingen";
+"app_settings.location_label" = "Locatie";
+"app_settings.permissions_header" = "Bevoegdheden";
+"standard_detail_general_tab" = "Algemeen";
+
+"history_range_current_week" = "Week";
+"standard_detail_schedule_tab" = "Week";
+
+"standard_detail_metrics_tab" = "Metingen";
+"standard_detail_history_tab" = "Geschiedenis";
+"timer_detail_wrong_time_message" = "Tijd moet groter zijn dan 0";
+"timer_detail_header" = "Geef de tijd op waarop het apparaat moet werken:";
+
+"timer_detail_turned_on" = "Aan";
+"timer_detail_edit_header_on" = "aan";
+"timer_detail_info_on" = "aan";
+
+"timer_detail_turned_off" = "Uitgeschakeld";
+"timer_detail_edit_header_off" = "uitgeschakeld";
+"timer_detail_info_off" = "uitgeschakeld";
+
+"timer_detail_info" = "Het apparaat is %@ voor %@ en wordt dan %@";
+"timer_detail_stop" = "Verlaat %@";
+"timer_detail_cancel" = "Annuleren en %@";
+"timer_detail_end_hour" = "naar uur. %@";
+"switch_detail_state_label" = "Huidige status:";
+"switch_detail_state_label_for_timer" = "Status per uur %@";
+
+"switch_detail_state_on" = "op";
+"switch_detail_state_off" = "uitgeschakeld";
+"timer_detail_edit_time" = "Bewerk tijd";
+"timer_detail_edit_header" = "Bewerk de tijd waarop het apparaat %@";
+
+"timer_detail_edit_cancel" = "Annuleren";
+"save" = "Opslaan";
+"thermostat_detail_mode_manual" = "Handmatig";
+"thermostat_detail_mode_weekly_schedule" = "Programma";
+
+"monday" = "Maandag";
+"tuesday" = "Diensdag";
+"wednesday" = "Woensdag";
+"thursday" = "Donderdag";
+"friday" = "Vrijdag";
+"saturday" = "Zaterdag";
+"sunday" = "Zondag";
+"schedule_detail_quarters_dialog_header" = "Uur %02d:00";
+"schedule_detail_program_dialog_header" = "Programma-instellingen %d";
+
+"hvac_mode_temperature_heating" = "Verwarmingstemperatuur";
+"hvac_mode_temperature_cooling" = "Koeltemperatuur";
+
+"monday_short" = "MA";
+"tuesday_short" = "DI";
+"wednesday_short" = "WO";
+"thursday_short" = "DO";
+"friday_short" = "VR";
+"saturday_short" = "ZA";
+"sunday_short" = "ZO";
+
+"thermostat_thermometer_error" = "Fout bij het aflezen van de temperatuur";
+"thermostat_clock_error" = "Klokfout";
+"Not supported function" = "Niet-ondersteunde functie";
+"thermostat_detail_program_current" = "Actueel:";
+"thermostat_detail_program_next" = "Volgende:";
+
+"time_just_mintes" = "%d min.";
+"timer_detail_minute_pattern" = "%d min.";
+
+"time_hours_and_minutes" = "%d %d uur min.";
+"thermostat_detail_program_time" = "via %@";
+"history_range_label" = "Toepassingsgebied";
+
+"history_range_current_day" = "Dag";
+"history_range_current_month" = "Maand";
+"history_range_current_quarter" = "Kwartaal";
+"history_range_current_year" = "Jaar";
+"history_range_custom" = "Ander toepassingsgebied";
+"history_refreshing" = "Verfrissend...";
+"history_refreshing_failed" = "Vernieuwen mislukt";
+"history_no_data_selected" = "Geen gegevens geselecteerd voor weergave.";
+"history_no_data_available" = "Geen metingen";
+"channel_caption_hotelcard" = "Hotelkaartsensor";
+"thermostat_detail_off_by_window" = "Uitgeschakeld door open venster";
+"thermostat_detail_off_by_card" = "Uitgesloten wegens gebrek aan hotelkaart";
+"thermostat_detail_off_by_sensor" = "Uitgeschakeld door sensor";
+"channel_caption_alarm_armament" = "Sensor voor alarminstelling";
+"timer_detail_select_mode" = "Selecteer modus";
+"timer_detail_manual_mode" = "Handmatige modus";
+
+"timer_detail_info_thermostat_off" = "De thermostaat wordt uitgeschakeld door\n%@";
+"timer_detail_info_thermostat_heating" = "De thermostaat staat in de verwarmingsmodus gedurende\n%@";
+"timer_detail_info_thermostat_cooling" = "De thermostaat staat in de koelmodus gedurende\n%@";
+"timer_detail_select_time" = "Geef de tijd op";
+"timer_detail_counter" = "Tegen";
+"timer_detail_calendar" = "Caledarz";
+"timer_detail_min_temp" = "Temp. min.";
+"timer_detail_max_temp" = "Temp. max.";
+"timer_detail_state_label_for_timer_days" = "Voorwaarde voor %@:";
+"timer_detail_cancel_thermostat" = "Pauzeer de timer en schakel de modus in:";
+"thermostat_detail_program_info" = "Raak aan om het programma te activeren. Ingedrukt houden om het programma te wijzigen.";
+"thermostat_detail_box_info" = "Raak aan om het geselecteerde programma in te stellen. Ingedrukt houden om het geselecteerde kwartier in te stellen.";
+"thermostat_detail_arrow_info" = "De zwarte hoek geeft de huidige tijd en dag aan.";
+
+"channel_caption_general_purpose_measurment" = "Meetkanaal";
+"chart_marker_opening" = "Opening";
+"chart_marker_closing" = "Afsluiting";
+"channel_caption_general_purpose_meter" = "Tellend kanaal";
+"history_disabled" = "Geschiedenis is uitgeschakeld voor dit kanaal";
+
+"notification_delete_button_delete_older_than_month" = "Verwijder ouder dan 30 dagen";
+"notification_delete_all_title" = "Verwijderen?";
+"notification_delete_all_message" = "Het verwijderen van meldingen is onomkeerbaar, doorgaan?";
+"notifications_log_profile" = "Profiel:";
+"notifications_log_date" = "Datum:";
+"settings_show_labels" = "Labels tonen in het onderste menu";
+"main_no_entries" = "Leeg";
+"groups_empty_list_button" = "Een groep toevoegen op Supla Cloud";
+"scenes_empty_list_button" = "Een scène toevoegen op Supla Cloud";
+"roller_shutter_closing_percentage" = "Sluiting:";
+"roller_shutter_opening_percentage" = "Opening:";
+"roller_shutter_calibration_needed" = "Kalibratie vereist";
+"settings_dark_mode" = "Nachtzicht";
+"menu_device_catalog" = "De lijst van apparaten:";
+"facade_blinds_slat_tilt" = "Helling: ";
+"channel_caption_facade_blinds" = "Gevelrooster";
+"facade_blinds_no_tilt" = "Geen configuratie";
+"history_delete_data" = "Geschiedenis verwijderen en opnieuw downloaden";
+"history_wait_for_download_completed" = "Even geduld, ik ben aan het downloaden...";
+"channel_caption_terrace_awning" = "Terraszonwering";
+"channel_caption_projector_screen" = "Projectiescherm";
+"channel_caption_curtain" = "Gordijn";
+"channel_caption_vertical_blind" = "Verticale jaloezie";
+"channel_caption_garage_door" = "Garagedeur";
+"roller_shutter_extension_percentage" = "Uitbreiding:";
+"status_initializing" = "Inbedrijfstelling...";
+"status_try_again" = "Probeer opnieuw";
+"lock_screen_hello" = "Welkom terug! ";
+"lock_screen_enter_pin" = "Voer PIN-code in";
+"pin_setup_header" = "Uw PIN-code instellen";
+"settings_lock_screen" = "Vergrendelscherm";
+"settings_lock_screen_app" = "Toepassing";
+"settings_lock_screen_none" = "Geen";
+"pin_setup_title" = "PIN-instelling";
+"pin_setup_repeat" = "PIN herhalen";
+"pin_setup_entry_different" = "De ingevoerde codes zijn anders!";
+"lock_screen_wrong_pin" = "Onjuiste PIN-code ingevoerd!";
+"lock_screen_remove_pin" = "PIN verwijderen";
+"lock_screen_forgotten_code" = "Ik herinner me de toegangscode niet";
+"lock_screen_forgotten_code_title" = "Toegangscode";
+
+"lock_screen_forgotten_code_message" = "Als je de toegangscode niet meer weet, verwijder dan de app van je telefoon en installeer deze vervolgens opnieuw. Voeg na de herinstallatie de accountconfiguratie toe vanuit Supla Cloud.\n\nMaak geen nieuwe account. Historische gegevens en alle apparaten gaan niet verloren.";
+
+"lock_screen_forgotten_code_button" = "Ik begrijp het";
+"lock_screen_confirm_authorize_app" = "De reikwijdte van autorisatie wijzigen";
+"pin_setup_use_biometric" = "Biometrische verificatie: ";
+"pin_setup_biometric_not_enrolled" = "Biometrische verificatie is niet geconfigureerd. Als je biometrie wilt gebruiken, moet je dit eerst configureren in de systeeminstellingen.";
+"biometric_prompt_subtitle" = "Ontgrendelen met je vingerafdruk";
+"lock_screen_pin_locked" = "Te veel verkeerde pogingen.  De pin is vergrendeld op %@.";
+"status_disconnecting" = "Loskoppelen...";
+"status_awaiting_network" = "Wachten op het netwerk...";
+"about_build_time" = "Versie van de dag: %@";
+"settings_show_bottom_menu" = "Menu onderaan tonen";
+"details_em_chart_data_type" = "Details";
+"details_em_phases" = "Fase";
+"details_em_balance_hourly" = "Uurbalans";
+"details_em_balance_chart_aggregated" = "Grafiek-geaggregeerde balans";
+"details_em_sum" = "Totaal";
+"details_em_select_range" = "Selecteer een periode";
+"details_em_active_energy" = "Actieve energie";
+"details_em_forwarded_energy" = "Gedownload";
+"details_em_reversed_energy" = "Geretourneerd";
+"details_em_cost" = "Prijs";
+"details_em_settings_list_item" = "Waarde die wordt weergegeven in de kanaallijst";
+"details_em_settings_title" = "Instellingen - %@";
+"details_em_total_suffix" = "(tellerstatus)";
+"details_em_current_month_suffix" = "(lopende maand)";
+"details_em_last_month_balancing" = "Balanceren van de huidige maand";
+"channel_caption_pump_switch" = "Pompschakelaar";
+"channel_caption_heat_or_cold_source_switch" = "Schakelaar voor warmte- of koudebron";
+
+"standard_detail_list_tab" = "Vul in";
+"thermostat_detail_list" = "Vul in";
+
+"thermostat_detail_main_thermostat" = "Hoofdthermostaat";
+"thermostat_detail_other_thermostats" = "Afhankelijke thermostaten";
+"thermostat_battery_cover_open" = "Batterijklep openen";
