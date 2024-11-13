@@ -346,3 +346,211 @@
 "details_em_balance_vector" = "Vektorinis balansas";
 "em_phase_to_phase_balance" = "Tarpfazis vektorinis balansas";
 "em_chart_all_phases" = "1+2+3 fazė";
+
+"menu_notifications" = "Pranešimų istorija";
+"turn_on" = "Įjungti";
+"turn_off" = "Išjungti";
+"Groups" = "Grupės";
+"Scenes" = "Scenos";
+"The function of the channel associated with the push notification cannot be changed." = "Negalima pakeisti kanalo, susieto su PUSH pranešimais, funkcijos.";
+"The channel function associated with reactions cannot be changed." = "Negalima pakeisti kanalo, susieto su reakcijomis, funkcijos.";
+"rs_display_mode" = "Roletai, žaliuzės, užuolaidos %";
+"Channels" = "Kanalai";
+
+"Scenes.ActionButtons.execute" = "Atlikti";
+"Scenes.ActionButtons.abort" = "Nutraukti";
+
+"Cfg.removal.title" = "Pašalinti paskyrą?";
+"Cfg.removal.action.logout" = "Pamiršti šiame įrenginyje";
+"Cfg.removal.action.remove" = "Pamiršti ir pašalinti iš serverio";
+
+"push_notification_limit_exceeded" = "Viršijamas PUSH pranešimų limitas, kuris per valandą yra %@.";
+"dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";
+"channel_offline" = "Kanalas yra offline";
+
+"app_settings.notifications_label" = "Pranešimai";
+"app_settings.location_label" = "Vieta";
+"app_settings.permissions_header" = "Įgaliojimai";
+"standard_detail_general_tab" = "Bendrieji";
+
+"history_range_current_week" = "Savaitė";
+"standard_detail_schedule_tab" = "Savaitė";
+
+"standard_detail_metrics_tab" = "Matavimai";
+"standard_detail_history_tab" = "Istorija";
+"timer_detail_wrong_time_message" = "Laikas turi būti didesnis nei 0";
+"timer_detail_header" = "Nurodykite laiką, kada įrenginys turi būti:";
+
+"timer_detail_turned_on" = "Įjungtas";
+"timer_detail_edit_header_on" = "įjungtas";
+"timer_detail_info_on" = "įjungtas";
+
+"timer_detail_turned_off" = "Išjungtas";
+"timer_detail_edit_header_off" = "išjungtas";
+"timer_detail_info_off" = "išjungtas";
+
+"timer_detail_info" = "Įrenginys bus %@ %@, o tada %@";
+"timer_detail_stop" = "Palikti %@";
+"timer_detail_cancel" = "Atšaukti ir %@";
+"timer_detail_end_hour" = "iki %@ val.";
+"switch_detail_state_label" = "Dabartinė būsena:";
+"switch_detail_state_label_for_timer" = "Būsena iki %@ val.:";
+
+"switch_detail_state_on" = "įjungtas";
+"switch_detail_state_off" = "išjungtas";
+"timer_detail_edit_time" = "Koreguoti laiką";
+"timer_detail_edit_header" = "Koreguoti laiką, kada įrenginys bus %@";
+
+"timer_detail_edit_cancel" = "Atšaukti koregavimą";
+"save" = "Išsaugoti";
+"thermostat_detail_mode_manual" = "Rankinis";
+"thermostat_detail_mode_weekly_schedule" = "Programa";
+
+"monday" = "Pirmadienis";
+"tuesday" = "Antradienis";
+"wednesday" = "Trečiadienis";
+"thursday" = "Ketvirtadienis";
+"friday" = "Penktadienis";
+"saturday" = "Šeštadienis";
+"sunday" = "Sekmadienis";
+"schedule_detail_quarters_dialog_header" = "%02d:00 valanda";
+"schedule_detail_program_dialog_header" = "Programos nustatymai %d";
+
+"hvac_mode_temperature_heating" = "Šildymo temperatūra";
+"hvac_mode_temperature_cooling" = "Vėsinimo temperatūra";
+
+"monday_short" = "P";
+"tuesday_short" = "A";
+"wednesday_short" = "T";
+"thursday_short" = "K";
+"friday_short" = "PN";
+"saturday_short" = "Š";
+"sunday_short" = "S";
+
+"thermostat_thermometer_error" = "Temperatūros nuskaitymo klaida";
+"thermostat_clock_error" = "Laikrodžio klaida";
+"Not supported function" = "Nepalaikoma funkcija";
+"thermostat_detail_program_current" = "Dabar:";
+"thermostat_detail_program_next" = "Vėliau:";
+
+"time_just_mintes" = "%d min.";
+"timer_detail_minute_pattern" = "%d min.";
+
+"time_hours_and_minutes" = "%d val. %d min.";
+"thermostat_detail_program_time" = "per %@";
+"history_range_label" = "Diapazonas";
+
+"history_range_current_day" = "Diena";
+"history_range_current_month" = "Mėnuo";
+"history_range_current_quarter" = "Ketvirtis";
+"history_range_current_year" = "Metai";
+"history_range_custom" = "Kitas diapazonas";
+"history_refreshing" = "Atnaujinimas…";
+"history_refreshing_failed" = "Atnaujinimas nepavyko";
+"history_no_data_selected" = "Nepasirinkti duomenys rodymui.";
+"history_no_data_available" = "Nėra matavimų";
+"channel_caption_hotelcard" = "Viešbučio kortelės jutiklis";
+"thermostat_detail_off_by_window" = "Išjungtas dėl atidaryto lango";
+"thermostat_detail_off_by_card" = "Išjungtas dėl viešbučio kortelės trūkumo";
+"thermostat_detail_off_by_sensor" = "Išjungtas jutiklio";
+"channel_caption_alarm_armament" = "Signalizacijos įjungimo jutiklis";
+"timer_detail_select_mode" = "Pasirinkite režimą";
+"timer_detail_manual_mode" = "Rankinis režimas";
+
+"timer_detail_info_thermostat_off" = "Termostatas bus išjungtas\n%@";
+"timer_detail_info_thermostat_heating" = "Termostatas bus šildymo režime\n%@";
+"timer_detail_info_thermostat_cooling" = "Termostatas bus vėsinimo režime\n%@";
+"timer_detail_select_time" = "Nustatykite laiką";
+"timer_detail_counter" = "Skaitiklis";
+"timer_detail_calendar" = "Kalendorius";
+"timer_detail_min_temp" = "Min. temp.";
+"timer_detail_max_temp" = "Maks. temp.";
+"timer_detail_state_label_for_timer_days" = "Būsena iki %@:";
+"timer_detail_cancel_thermostat" = "Nutraukti laikmatį ir įjungti režimą:";
+"thermostat_detail_program_info" = "Palieskite, kad suaktyvintumėte programą. Prilaikykite, kad modifikuotumėte programą.";
+"thermostat_detail_box_info" = "Palieskite, kad nustatytumėte pasirinktą programą. Prulaikykite, kad nustatytumėte pasirinktus ketvirčius.";
+"thermostat_detail_arrow_info" = "Juodas kampas informuoja apie dabartinį laiką ir dieną.";
+
+"channel_caption_general_purpose_measurment" = "Matavimų kanalas";
+"chart_marker_opening" = "Atidarymas";
+"chart_marker_closing" = "Uždarymas";
+"channel_caption_general_purpose_meter" = "Skaitiklio kanalas";
+"history_disabled" = "Šiam kanalui istorija išjungta";
+
+"notification_delete_button_delete_older_than_month" = "Pašalinti senesnius nei 30 dienų";
+"notification_delete_all_title" = "Pašalinti?";
+"notification_delete_all_message" = "Pranešimų pašalinimas yra negrįžtamas, tęsti?";
+"notifications_log_profile" = "Profilis:";
+"notifications_log_date" = "Data:";
+"settings_show_labels" = "Etiketes rodyti apatiniame meniu";
+"main_no_entries" = "Tuščia";
+"groups_empty_list_button" = "Pridėti grupę Supla Cloud programėlėje";
+"scenes_empty_list_button" = "Pridėti sceną Supla Cloud programėlėje";
+"roller_shutter_closing_percentage" = "Uždarymas:";
+"roller_shutter_opening_percentage" = "Atidarymas:";
+"roller_shutter_calibration_needed" = "Reikalingas kalibravimas";
+"settings_dark_mode" = "Naktinis režimas";
+"menu_device_catalog" = "Įrenginių katalogas";
+"facade_blinds_slat_tilt" = "Pakrypimas: ";
+"channel_caption_facade_blinds" = "Fasadinės žaliuzės";
+"facade_blinds_no_tilt" = "Nėra konfigūracijos";
+"history_delete_data" = "Pašalinti istoriją ir dar kartą atsisiųsti";
+"history_wait_for_download_completed" = "Prašome laukti, atsisiunčiu…";
+"channel_caption_terrace_awning" = "Terasos markizė";
+"channel_caption_projector_screen" = "Projekcinis ekranas";
+"channel_caption_curtain" = "Užuolaida";
+"channel_caption_vertical_blind" = "Vertikalios žaliuzės";
+"channel_caption_garage_door" = "Garažo vartai";
+"roller_shutter_extension_percentage" = "Išskleidimas:";
+"status_initializing" = "Paleidimas…";
+"status_try_again" = "Pabandykite dar kartą";
+"lock_screen_hello" = "Sveiki atvykę vėl!";
+"lock_screen_enter_pin" = "Įveskite PIN";
+"pin_setup_header" = "Nustatykite savo PIN kodą";
+"settings_lock_screen" = "Užrakinimo ekranas";
+"settings_lock_screen_app" = "Programėlė";
+"settings_lock_screen_none" = "Nėra";
+"pin_setup_title" = "PIN konfigūravimas";
+"pin_setup_repeat" = "Pakartokite PIN";
+"pin_setup_entry_different" = "Įvesti kodai skiriasi!";
+"lock_screen_wrong_pin" = "Įvestas neteisingas PIN kodas!";
+"lock_screen_remove_pin" = "PIN kodo šalinimas";
+"lock_screen_forgotten_code" = "Pamiršau prieigos kodą";
+"lock_screen_forgotten_code_title" = "Prieigos kodas";
+
+"lock_screen_forgotten_code_message" = "Jei pamiršote prieigos kodą, pašalinkite programėlę iš telefono, o tada įdiekite ją iš naujo. Vėl įdiegę pridėkite paskyros konfigūravimą su Supla Cloud.\n\nNekurkite naujos paskyros. Istorijos duomenys ir visi įrenginiai nebus prarasti.";
+
+"lock_screen_forgotten_code_button" = "Supratau";
+"lock_screen_confirm_authorize_app" = "Autorizacijos apimties keitimas";
+"pin_setup_use_biometric" = "Biometrinis autentifikavimas: ";
+"pin_setup_biometric_not_enrolled" = "Biometrinis autentifikavimas nebuvo sukonfigūruotas. Jei norite pasinaudoti biometrija, pirmiau sukonfigūruokite ją sistemos nustatymuose.";
+"biometric_prompt_subtitle" = "Atrakinti piršto atspaudu";
+"lock_screen_pin_locked" = "Per daug klaidingų bandymų. Pin užblokuotas %@.";
+"status_disconnecting" = "Atsijungimas…";
+"status_awaiting_network" = "Laukiama tinklo…";
+"about_build_time" = "Versija nuo: %@";
+"settings_show_bottom_menu" = "Rodyti apatinį meniu";
+"details_em_chart_data_type" = "Duomenys";
+"details_em_phases" = "Fazė";
+"details_em_balance_hourly" = "Valandinis balansas";
+"details_em_balance_chart_aggregated" = "Balansas apibendrintas diagramoje";
+"details_em_sum" = "Suma";
+"details_em_select_range" = "Pasirinkite periodą";
+"details_em_active_energy" = "Aktyvioji energija";
+"details_em_forwarded_energy" = "Paimta";
+"details_em_reversed_energy" = "Grąžinta";
+"details_em_cost" = "Kaina";
+"details_em_settings_list_item" = "Kanalų sąraše rodoma vertė";
+"details_em_settings_title" = "Nustatymai - %@";
+"details_em_total_suffix" = "(skaitiklio būsena)";
+"details_em_current_month_suffix" = "(einamasis mėnuo)";
+"details_em_last_month_balancing" = "Einamojo mėnesio balansavimas";
+"channel_caption_pump_switch" = "Siurblio perjungiklis";
+"channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
+
+"standard_detail_list_tab" = "Sąrašas";
+"thermostat_detail_list" = "Sąrašas";
+
+"thermostat_detail_main_thermostat" = "Pagrindinis termostatas";
+"thermostat_detail_other_thermostats" = "Priklausomi termostatai";
+"thermostat_battery_cover_open" = "Baterijos dangtelis atidarytas";
