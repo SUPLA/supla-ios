@@ -16,15 +16,37 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SwiftUI
+
 @objc public final class BrandingConfiguration: NSObject {
-    
     @objc(BrandingConfigurationMenu) public final class Menu: NSObject {
         @objc static let DEVICES_OPTION_VISIBLE = true
         @objc static let Z_WAVE_OPTION_VISIBLE = true
         @objc static let ABOUT_OPTION_VISIBLE = true
         @objc static let HELP_OPTION_VISIBLE = true
     }
-    
+
     static let SHOW_LICENCE = true
     static let ASK_FOR_RATE = true
+
+    public enum About {
+        static let LOGO: ImageResource = .logoLight
+        static let COLOR_FILLER: Color = .Supla.onBackground
+    }
+
+    public enum Status {
+        static let LOGO: ImageResource = .logoLight
+        static let COLOR_FILLER: Color = .Supla.primary
+    }
+    
+    public enum LockScreen {
+        static let LOGO: ImageResource = .logoWithName
+    }
+    
+    public enum ProjectorScreen {
+        static let LOGO: UIImage = .logo!.withTintColor(.primary)
+        static let ALPHA: CGFloat = 0.2
+        static let LOGO_WIDTH: CGFloat = 120
+        static let LOGO_HEIGHT: CGFloat = 137
+    }
 }

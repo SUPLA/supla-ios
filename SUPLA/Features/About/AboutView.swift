@@ -30,11 +30,11 @@ extension AboutFeature {
             BackgroundStack {
                 VStack(spacing: Dimens.distanceDefault) {
                     Spacer()
-                    Image(.logoLight)
+                    Image(BrandingConfiguration.About.LOGO)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxHeight: 100)
-                        .foregroundColor(Color.Supla.onBackground)
+                        .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
                     Text.HeadlineLarge(text: Strings.appName)
                     Text.BodyMedium(text: Strings.About.version.arguments(viewState.version))
                     if (BrandingConfiguration.SHOW_LICENCE) {

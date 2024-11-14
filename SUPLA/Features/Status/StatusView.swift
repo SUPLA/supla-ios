@@ -52,11 +52,11 @@ private struct ConnectionStatusView: View {
     var body: some View {
         VStack(spacing: Dimens.distanceSmall) {
             Spacer()
-            Image(uiImage: .logoLight!)
+            Image(BrandingConfiguration.Status.LOGO)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 140, height: 140)
-                .foregroundColor(.Supla.primary)
+                .foregroundColor(BrandingConfiguration.Status.COLOR_FILLER)
             Text.BodyMedium(text: text)
             Spacer()
         }

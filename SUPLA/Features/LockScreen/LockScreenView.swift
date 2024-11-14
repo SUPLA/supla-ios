@@ -39,7 +39,7 @@ extension LockScreenFeature {
             BackgroundStack {
                 VStack(spacing: Dimens.distanceSmall) {
                     if (viewState.unlockAction?.showLogo == true) {
-                        Image(.logoWithName)
+                        Image(BrandingConfiguration.LockScreen.LOGO)
                     }
                     if let message = viewState.unlockAction?.message {
                         Text.HeadlineSmall(text: message)
