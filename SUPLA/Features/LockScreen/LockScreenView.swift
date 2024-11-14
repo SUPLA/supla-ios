@@ -40,6 +40,9 @@ extension LockScreenFeature {
                 VStack(spacing: Dimens.distanceSmall) {
                     if (viewState.unlockAction?.showLogo == true) {
                         Image(BrandingConfiguration.LockScreen.LOGO)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 144)
                     }
                     if let message = viewState.unlockAction?.message {
                         Text.HeadlineSmall(text: message)
