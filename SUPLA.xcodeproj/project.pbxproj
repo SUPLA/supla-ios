@@ -758,7 +758,7 @@
 		A598CACB2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */; };
 		A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACC2CC2997900A784FA /* DoubleFormatter.swift */; };
 		A598CAD12CC6D6A700A784FA /* GetChannelActionStringUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */; };
-		A598CAD32CC6E5DA00A784FA /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD22CC6E5CE00A784FA /* LocalizedString+Ext.swift */; };
+		A598CAD32CC6E5DA00A784FA /* LocalizedStringId+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD22CC6E5CE00A784FA /* LocalizedStringId+Ext.swift */; };
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
@@ -2240,7 +2240,7 @@
 		A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithImpulseCounterValueStringProvider.swift; sourceTree = "<group>"; };
 		A598CACC2CC2997900A784FA /* DoubleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatter.swift; sourceTree = "<group>"; };
 		A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelActionStringUseCase.swift; sourceTree = "<group>"; };
-		A598CAD22CC6E5CE00A784FA /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
+		A598CAD22CC6E5CE00A784FA /* LocalizedStringId+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedStringId+Ext.swift"; sourceTree = "<group>"; };
 		A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+SuplaChannelFunction.swift"; sourceTree = "<group>"; };
 		A598CAD72CC77D3A00A784FA /* PieChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartData.swift; sourceTree = "<group>"; };
 		A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaPieChartView.swift; sourceTree = "<group>"; };
@@ -3214,7 +3214,7 @@
 		407E7C331BBEB81B00D8878C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A598CAD22CC6E5CE00A784FA /* LocalizedString+Ext.swift */,
+				A598CAD22CC6E5CE00A784FA /* LocalizedStringId+Ext.swift */,
 				A5074BD42BCE9DB60081B6B1 /* Values */,
 				A530EE0B2A56C5C700F8DAEE /* Extensions */,
 				401CA1CC1BA067DB00117AF4 /* Resources.xcassets */,
@@ -7237,7 +7237,7 @@
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
-				A598CAD32CC6E5DA00A784FA /* LocalizedString+Ext.swift in Sources */,
+				A598CAD32CC6E5DA00A784FA /* LocalizedStringId+Ext.swift in Sources */,
 				A5E05BAF2CB46E3D00202583 /* BaseHumidityEntity.swift in Sources */,
 				A5AD70252C012F5300A36318 /* WindowControls.swift in Sources */,
 				A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */,

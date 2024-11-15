@@ -252,6 +252,8 @@
 "I understand" = "Розумію";
 "Go to CLOUD" = "Перейдіть до CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Неможливо змінити функцію каналу, пов’язаного з активатором дії.";
+"The function of the channel associated with the push notification cannot be changed." = "Функцію каналу, пов\'язаного з PUSH-сповіщеннями, не можна змінити.";
+"The channel function associated with reactions cannot be changed." = "Функцію каналу, пов\'язаного з реакціями, не можна змінити.";
 "Show ⓘ button" = "Показати кнопку ⓘ";
 "Advanced settings" = "Розширений";
 "Access ID" = "ID";
@@ -278,6 +280,10 @@
 "Delete account" = "Видалити обліковий запси";
 "Select active account" = "Виберіть активний обліковий запис";
 "Phase %d" = "Фаза %d";
+"Channels" = "Канали";
+"Groups" = "Групи";
+"Scenes" = "Сцени";
+"Not supported function" = "Непідтримувана функція";
 
 "AccountCreation.title" = "Редагувати обліковий запис";
 "AccountCreation.modificationTitle" = "Додати обліковий запис";
@@ -290,8 +296,142 @@
 "Cfg.removal.dialog.missing_name" = "Введіть назву облікового запису";
 "Cfg.removal.dialog.duplicated_name" = "Обліковий запис із такою назвою вже існує";
 "Cfg.removal.dialog.incomplete" = "Заповніть необхідні дані";
+"Cfg.removal.title" = "Видалити обліковий запис?";
+"Cfg.removal.action.logout" = "Забути на цьому пристрої";
+"Cfg.removal.action.remove" = "Забути і видалити на сервері";
 
+"push_notification_limit_exceeded" = "Перевищено ліміт PUSH-сповіщень, який становить %@ на годину.";
+
+/* General */
 "general_error" = "Помилка";
+"turn_on" = "Ввімкнути";
+"turn_off" = "Вимкнути";
+"save" = "Зберегти";
+/* General - DayOfWeek */
+"monday" = "Понеділок";
+"tuesday" = "Вівторок";
+"wednesday" = "Середа";
+"thursday" = "Четвер";
+"friday" = "П'ятниця";
+"saturday" = "Субота";
+"sunday" = "Неділя";
+"monday_short" = "ПН";
+"tuesday_short" = "ВТ";
+"wednesday_short" = "СР";
+"thursday_short" = "ЧТ";
+"friday_short" = "ПТ";
+"saturday_short" = "СБ";
+"sunday_short" = "НД";
+"time_just_mintes" = "%d хв.";
+"time_hours_and_minutes" = "%d год %d хв.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Датчик готельної картки";
+"channel_caption_alarm_armament" = "Датчик встановлення будильника";
+"channel_caption_general_purpose_measurment" = "Канал вимірювання";
+"channel_caption_general_purpose_meter" = "Канал лічильника";
+"channel_caption_facade_blinds" = "Фасадніі жалюзі";
+"channel_caption_terrace_awning" = "Тент для тераси";
+"channel_caption_projector_screen" = "Проекційний екран";
+"channel_caption_curtain" = "Штора";
+"channel_caption_vertical_blind" = "Вертикальні жалюзі";
+"channel_caption_garage_door" = "Гаражні двері";
+"channel_caption_pump_switch" = "Перемикач насоса";
+"channel_caption_heat_or_cold_source_switch" = "Перемикач джерела тепла або холоду";
+"channel_offline" = "Канал не в мережі";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Ми прибрали жест прогортування, який відкриває деталі, торкніться вибраного каналу, щоб побачити їх.";
+"main_no_entries" = "Пусто";
+
+/* Menu */
+"menu_notifications" = "Історія сповіщень";
+"menu_device_catalog" = "Каталог приладів";
+
+/* Groups */
+"groups_empty_list_button" = "Додати групу в Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Додати сцену в Supla Cloud";
+
+/* App Settings */
+"app_settings.notifications_label" = "Сповіщення";
+"app_settings.location_label" = "Місцезнаходження";
+"app_settings.permissions_header" = "Права";
+"settings_show_labels" = "Показати мітки в нижньому меню";
+"settings_dark_mode" = "Нічний режим";
+"settings_lock_screen" = "Екран блокування";
+"settings_lock_screen_app" = "Додаток";
+"settings_lock_screen_none" = "Немає";
+"settings_show_bottom_menu" = "Показати нижнє меню";
+
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Загальні";
+"standard_detail_schedule_tab" = "Тиждень";
+"standard_detail_metrics_tab" = "Виміри";
+"standard_detail_history_tab" = "Історія";
+"standard_detail_list_tab" = "Список";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_settings_tab" = "Налаштування";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Поточний стан:";
+"switch_detail_state_label_for_timer" = "Стан до год %@:";
+"switch_detail_state_on" = "увімкнений";
+"switch_detail_state_off" = "вимкнений";
+
+/* Timer Detail */
+"timer_detail_wrong_time_message" = "Час має бути більшим за 0";
+"timer_detail_header" = "Вкажіть час, коли пристрій повинен бути:";
+"timer_detail_turned_on" = "Ввімкнений";
+"timer_detail_edit_header_on" = "ввімкнений";
+"timer_detail_info_on" = "ввімкнений";
+"timer_detail_turned_off" = "Вимкнений";
+"timer_detail_edit_header_off" = "вимкнений";
+"timer_detail_info_off" = "вимкнений";
+"timer_detail_info" = "Пристрій буде %@ протягом %@, а потім %@";
+"timer_detail_stop" = "Залишити %@";
+"timer_detail_cancel" = "Скасувати та %@";
+"timer_detail_end_hour" = "до год %@";
+"timer_detail_edit_time" = "Редагувати час";
+"timer_detail_edit_header" = "Редагувати час, коли пристрій буде %@";
+"timer_detail_edit_cancel" = "Скасувати редагування";
+"timer_detail_minute_pattern" = "%d хв.";
+"timer_detail_select_mode" = "Вибрати режим";
+"timer_detail_manual_mode" = "Ручний режим";
+"timer_detail_info_thermostat_off" = "Терморегулятор вимкнеться за допомогою\n%@";
+"timer_detail_info_thermostat_heating" = "Термостат працюватиме в режимі нагрівання протягом\n%@";
+"timer_detail_info_thermostat_cooling" = "Термостат працюватиме в режимі охолодження протягом\n%@";
+"timer_detail_select_time" = "Вкажіть час";
+"timer_detail_counter" = "Лічильник";
+"timer_detail_calendar" = "Календар";
+"timer_detail_min_temp" = "Мін. темп.";
+"timer_detail_max_temp" = "Макс. темп.";
+"timer_detail_state_label_for_timer_days" = "Стан до %@:";
+"timer_detail_cancel_thermostat" = "Перервати таймер і увімкнути режим:";
+
+/* Thermostat Detail */
+"thermostat_detail_mode_manual" = "Ручний";
+"thermostat_detail_mode_weekly_schedule" = "Програма";
+"schedule_detail_quarters_dialog_header" = "Година %02d:00";
+"schedule_detail_program_dialog_header" = "Налаштування програми %d";
+"hvac_mode_temperature_heating" = "Температура нагрівання";
+"hvac_mode_temperature_cooling" = "Температура охолодження";
+"thermostat_thermometer_error" = "Помилка зчитування температури";
+"thermostat_clock_error" = "Помилка годинника";
+"thermostat_detail_program_current" = "На даний момент:";
+"thermostat_detail_program_next" = "Далі:";
+"thermostat_detail_program_time" = "протягом %@";
+"thermostat_detail_off_by_window" = "Вимикнений через відкрите вікно";
+"thermostat_detail_off_by_card" = "Вимкнений через відсутність готельної картки";
+"thermostat_detail_off_by_sensor" = "Вимкнений через датчик";
+"thermostat_detail_program_info" = "Торкніться, щоб активувати програму. Утримуйте, щоб змінити програму.";
+"thermostat_detail_box_info" = "Торкніться, щоб встановити обрану програму. Утримуйте, щоб встановити вибрані квартали.";
+"thermostat_detail_arrow_info" = "У чорному кутку вказано поточний час і день.";
+"thermostat_detail_list" = "Список";
+"thermostat_detail_main_thermostat" = "Головний термостат";
+"thermostat_detail_other_thermostats" = "Залежні термостати";
+"thermostat_battery_cover_open" = "Кришка акумулятора відкрита";
 
 /* Combined Chart */
 "history_range_last_day" = "Останні 24 години";
@@ -299,20 +439,54 @@
 "history_range_last_30_days" = "Останні 30 днів";
 "history_range_last_90_days" = "Останні 90 днів";
 "history_range_last_365_days" = "Останні 365 днів";
-
-/* Thermometer Chart */
 "history_no_data_in_selected_period" = "Немає даних для діаграми.";
+"history_range_current_week" = "Тиждень";
+"history_range_label" = "Діапазон";
+"history_range_current_day" = "День";
+"history_range_current_month" = "Місяць";
+"history_range_current_quarter" = "Квартал";
+"history_range_current_year" = "Рік";
+"history_range_custom" = "Інший діапазон";
+"history_refreshing" = "Оновлення…";
+"history_refreshing_failed" = "Не вдалося оновити";
+"history_no_data_selected" = "Не вибрано даних для відображення.";
+"history_no_data_available" = "Немає вимірів";
+"history_disabled" = "Історія для цього каналу вимкнена";
+"history_delete_data" = "Видалити історію та повторно завантажити";
+"history_wait_for_download_completed" = "Будь ласка, зачекайте, завантажується...";
+"chart_marker_opening" = "Відкриття";
+"chart_marker_closing" = "Закриття";
+
+/* Notifications */
+"notification_delete_button_delete_older_than_month" = "Видалити старіші за 30 днів";
+"notification_delete_all_title" = "Видалити?";
+"notification_delete_all_message" = "Видалення сповіщень є незворотнім, продовжити?";
+"notifications_log_profile" = "Профіль:";
+"notifications_log_date" = "Дата:";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Ролети, жалюзі, штори %";
 "roller_shutter_calibration_lost" = "Помилка калібрування.";
 "roller_shutter_calibration_failed" = "Калібрування втрачено.";
 "roller_shutter_motor_problem" = "Проблема з двигуном / Несподівана зупинка.";
 "roller_shutter_calibration" = "Калібрування";
 "roller_shutter_start_calibration_message" = "Ви впевнені, що хочете почати калібрування?";
+"roller_shutter_closing_percentage" = "Закриття:";
+"roller_shutter_opening_percentage" = "Відкриття:";
+"roller_shutter_calibration_needed" = "Потрібне калібрування";
+"roller_shutter_extension_percentage" = "Розширення:";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Нахил: ";
+"facade_blinds_no_tilt" = "Немає конфігурації";
 
 /* Status */
 "status_connecting" = "Підключення...";
 "status_unknown_error" = "Невідома помилка";
+"status_initializing" = "Запуск...";
+"status_try_again" = "Спробуйте ще раз";
+"status_disconnecting" = "Відключення...";
+"status_awaiting_network" = "Очікування мережі...";
 "status_temporarily_unavailable" = "Послуга тимчасово недоступна";
 "status_incorrect_data" = "Неправильна адреса електронної пошти або пароль";
 "status_bad_credentials" = "Неправильні облікові дані";
@@ -324,8 +498,30 @@
 "status_access_id_inactive" = "Ідентифікатор доступу неактивний.";
 "status_host_not_found" = "Адреса сервера не знайдена. Переконайтеся, що у вас є підключення до Інтернету та що створено обліковий запис із введеною адресою електронної пошти.";
 
+/* Pin setup */
+"pin_setup_header" = "Встановіть свій PIN-код";
+"pin_setup_title" = "Конфігурація PIN-коду";
+"pin_setup_repeat" = "Повторіть PIN-код";
+"pin_setup_entry_different" = "Введені коди відрізняються!";
+"pin_setup_use_biometric" = "Біометрична автентифікація: ";
+"pin_setup_biometric_not_enrolled" = "Біометричну автентифікацію не налаштовано. Якщо Ви хочете використовувати біометричні дані, спочатку налаштуйте їх у налаштуваннях системи.";
+"biometric_prompt_subtitle" = "Розблокування за допомогою відбитка пальця";
+
+/* Lock screen */
+"lock_screen_hello" = "З поверненням!";
+"lock_screen_enter_pin" = "Введіть PIN-код";
+"lock_screen_wrong_pin" = "Введено неправильний PIN-код!";
+"lock_screen_remove_pin" = "Видалення PIN-коду";
+"lock_screen_forgotten_code" = "Я не пам'ятаю код доступу";
+"lock_screen_forgotten_code_title" = "Код доступу";
+"lock_screen_forgotten_code_message" = "Якщо Ви не пам'ятаєте код доступу, видаліть додаток з телефону, а потім встановіть його знову. Після перевстановлення додайте конфігурацію облікового запису з Supla Cloud.\n\nНе створюйте новий обліковий запис. Історичні дані та всі пристрої не будуть втрачені.";
+"lock_screen_forgotten_code_button" = "Розумію";
+"lock_screen_confirm_authorize_range_change" = "Зміна обсягу авторизації";
+"lock_screen_pin_locked" = "Занадто багато помилкових спроб. PIN-код заблоковано на %@.";
+
 /* About */
 "about_version" = "версія %@";
+"about_build_time" = "Версія від: %@";
 
 /* Electricity meter detail */
 "details_em_forward_active_energy" = "Спожита активна енергія";
@@ -347,190 +543,6 @@
 "details_em_balance_vector" = "Векторний баланс";
 "em_phase_to_phase_balance" = "Векторний міжфазний баланс";
 "em_chart_all_phases" = "Фаза 1+2+3";
-
-"menu_notifications" = "Історія сповіщень";
-"turn_on" = "Ввімкнути";
-"turn_off" = "Вимкнути";
-"Groups" = "Групи";
-"Scenes" = "Сцени";
-"The function of the channel associated with the push notification cannot be changed." = "Функцію каналу, пов\'язаного з PUSH-сповіщеннями, не можна змінити.";
-"The channel function associated with reactions cannot be changed." = "Функцію каналу, пов\'язаного з реакціями, не можна змінити.";
-"rs_display_mode" = "Ролети, жалюзі, штори %";
-"Channels" = "Канали";
-
-"Scenes.ActionButtons.execute" = "Виконати";
-"Scenes.ActionButtons.abort" = "Перервати";
-
-"Cfg.removal.title" = "Видалити обліковий запис?";
-"Cfg.removal.action.logout" = "Забути на цьому пристрої";
-"Cfg.removal.action.remove" = "Забути і видалити на сервері";
-
-"push_notification_limit_exceeded" = "Перевищено ліміт PUSH-сповіщень, який становить %@ на годину.";
-"dialog_new_gesture_info_text" = "Ми прибрали жест прогортування, який відкриває деталі, торкніться вибраного каналу, щоб побачити їх.";
-"channel_offline" = "Канал не в мережі";
-
-"app_settings.notifications_label" = "Сповіщення";
-"app_settings.location_label" = "Місцезнаходження";
-"app_settings.permissions_header" = "Права";
-"standard_detail_general_tab" = "Загальні";
-
-"history_range_current_week" = "Тиждень";
-"standard_detail_schedule_tab" = "Тиждень";
-
-"standard_detail_metrics_tab" = "Виміри";
-"standard_detail_history_tab" = "Історія";
-"timer_detail_wrong_time_message" = "Час має бути більшим за 0";
-"timer_detail_header" = "Вкажіть час, коли пристрій повинен бути:";
-
-"timer_detail_turned_on" = "Ввімкнений";
-"timer_detail_edit_header_on" = "ввімкнений";
-"timer_detail_info_on" = "ввімкнений";
-
-"timer_detail_turned_off" = "Вимкнений";
-"timer_detail_edit_header_off" = "вимкнений";
-"timer_detail_info_off" = "вимкнений";
-
-"timer_detail_info" = "Пристрій буде %@ протягом %@, а потім %@";
-"timer_detail_stop" = "Залишити %@";
-"timer_detail_cancel" = "Скасувати та %@";
-"timer_detail_end_hour" = "до год %@";
-"switch_detail_state_label" = "Поточний стан:";
-"switch_detail_state_label_for_timer" = "Стан до год %@:";
-
-"switch_detail_state_on" = "увімкнений";
-"switch_detail_state_off" = "вимкнений";
-"timer_detail_edit_time" = "Редагувати час";
-"timer_detail_edit_header" = "Редагувати час, коли пристрій буде %@";
-
-"timer_detail_edit_cancel" = "Скасувати редагування";
-"save" = "Зберегти";
-"thermostat_detail_mode_manual" = "Ручний";
-"thermostat_detail_mode_weekly_schedule" = "Програма";
-
-"monday" = "Понеділок";
-"tuesday" = "Вівторок";
-"wednesday" = "Середа";
-"thursday" = "Четвер";
-"friday" = "П'ятниця";
-"saturday" = "Субота";
-"sunday" = "Неділя";
-"schedule_detail_quarters_dialog_header" = "Година %02d:00";
-"schedule_detail_program_dialog_header" = "Налаштування програми %d";
-
-"hvac_mode_temperature_heating" = "Температура нагрівання";
-"hvac_mode_temperature_cooling" = "Температура охолодження";
-
-"monday_short" = "ПН";
-"tuesday_short" = "ВТ";
-"wednesday_short" = "СР";
-"thursday_short" = "ЧТ";
-"friday_short" = "ПТ";
-"saturday_short" = "СБ";
-"sunday_short" = "НД";
-
-"thermostat_thermometer_error" = "Помилка зчитування температури";
-"thermostat_clock_error" = "Помилка годинника";
-"Not supported function" = "Непідтримувана функція";
-"thermostat_detail_program_current" = "На даний момент:";
-"thermostat_detail_program_next" = "Далі:";
-
-"time_just_mintes" = "%d хв.";
-"timer_detail_minute_pattern" = "%d хв.";
-
-"time_hours_and_minutes" = "%d год %d хв.";
-"thermostat_detail_program_time" = "протягом %@";
-"history_range_label" = "Діапазон";
-
-"history_range_current_day" = "День";
-"history_range_current_month" = "Місяць";
-"history_range_current_quarter" = "Квартал";
-"history_range_current_year" = "Рік";
-"history_range_custom" = "Інший діапазон";
-"history_refreshing" = "Оновлення…";
-"history_refreshing_failed" = "Не вдалося оновити";
-"history_no_data_selected" = "Не вибрано даних для відображення.";
-"history_no_data_available" = "Немає вимірів";
-"channel_caption_hotelcard" = "Датчик готельної картки";
-"thermostat_detail_off_by_window" = "Вимикнений через відкрите вікно";
-"thermostat_detail_off_by_card" = "Вимкнений через відсутність готельної картки";
-"thermostat_detail_off_by_sensor" = "Вимкнений через датчик";
-"channel_caption_alarm_armament" = "Датчик встановлення будильника";
-"timer_detail_select_mode" = "Вибрати режим";
-"timer_detail_manual_mode" = "Ручний режим";
-
-"timer_detail_info_thermostat_off" = "Терморегулятор вимкнеться за допомогою\n%@";
-"timer_detail_info_thermostat_heating" = "Термостат працюватиме в режимі нагрівання протягом\n%@";
-"timer_detail_info_thermostat_cooling" = "Термостат працюватиме в режимі охолодження протягом\n%@";
-"timer_detail_select_time" = "Вкажіть час";
-"timer_detail_counter" = "Лічильник";
-"timer_detail_calendar" = "Календар";
-"timer_detail_min_temp" = "Мін. темп.";
-"timer_detail_max_temp" = "Макс. темп.";
-"timer_detail_state_label_for_timer_days" = "Стан до %@:";
-"timer_detail_cancel_thermostat" = "Перервати таймер і увімкнути режим:";
-"thermostat_detail_program_info" = "Торкніться, щоб активувати програму. Утримуйте, щоб змінити програму.";
-"thermostat_detail_box_info" = "Торкніться, щоб встановити обрану програму. Утримуйте, щоб встановити вибрані квартали.";
-"thermostat_detail_arrow_info" = "У чорному кутку вказано поточний час і день.";
-
-"channel_caption_general_purpose_measurment" = "Канал вимірювання";
-"chart_marker_opening" = "Відкриття";
-"chart_marker_closing" = "Закриття";
-"channel_caption_general_purpose_meter" = "Канал лічильника";
-"history_disabled" = "Історія для цього каналу вимкнена";
-
-"notification_delete_button_delete_older_than_month" = "Видалити старіші за 30 днів";
-"notification_delete_all_title" = "Видалити?";
-"notification_delete_all_message" = "Видалення сповіщень є незворотнім, продовжити?";
-"notifications_log_profile" = "Профіль:";
-"notifications_log_date" = "Дата:";
-"settings_show_labels" = "Показати мітки в нижньому меню";
-"main_no_entries" = "Пусто";
-"groups_empty_list_button" = "Додати групу в Supla Cloud";
-"scenes_empty_list_button" = "Додати сцену в Supla Cloud";
-"roller_shutter_closing_percentage" = "Закриття:";
-"roller_shutter_opening_percentage" = "Відкриття:";
-"roller_shutter_calibration_needed" = "Потрібне калібрування";
-"settings_dark_mode" = "Нічний режим";
-"menu_device_catalog" = "Каталог приладів";
-"facade_blinds_slat_tilt" = "Нахил: ";
-"channel_caption_facade_blinds" = "Фасадніі жалюзі";
-"facade_blinds_no_tilt" = "Немає конфігурації";
-"history_delete_data" = "Видалити історію та повторно завантажити";
-"history_wait_for_download_completed" = "Будь ласка, зачекайте, завантажується...";
-"channel_caption_terrace_awning" = "Тент для тераси";
-"channel_caption_projector_screen" = "Проекційний екран";
-"channel_caption_curtain" = "Штора";
-"channel_caption_vertical_blind" = "Вертикальні жалюзі";
-"channel_caption_garage_door" = "Гаражні двері";
-"roller_shutter_extension_percentage" = "Розширення:";
-"status_initializing" = "Запуск...";
-"status_try_again" = "Спробуйте ще раз";
-"lock_screen_hello" = "З поверненням!";
-"lock_screen_enter_pin" = "Введіть PIN-код";
-"pin_setup_header" = "Встановіть свій PIN-код";
-"settings_lock_screen" = "Екран блокування";
-"settings_lock_screen_app" = "Додаток";
-"settings_lock_screen_none" = "Немає";
-"pin_setup_title" = "Конфігурація PIN-коду";
-"pin_setup_repeat" = "Повторіть PIN-код";
-"pin_setup_entry_different" = "Введені коди відрізняються!";
-"lock_screen_wrong_pin" = "Введено неправильний PIN-код!";
-"lock_screen_remove_pin" = "Видалення PIN-коду";
-"lock_screen_forgotten_code" = "Я не пам'ятаю код доступу";
-"lock_screen_forgotten_code_title" = "Код доступу";
-
-"lock_screen_forgotten_code_message" = "Якщо Ви не пам'ятаєте код доступу, видаліть додаток з телефону, а потім встановіть його знову. Після перевстановлення додайте конфігурацію облікового запису з Supla Cloud.\n\nНе створюйте новий обліковий запис. Історичні дані та всі пристрої не будуть втрачені.";
-
-"lock_screen_forgotten_code_button" = "Розумію";
-"lock_screen_confirm_authorize_range_change" = "Зміна обсягу авторизації";
-"pin_setup_use_biometric" = "Біометрична автентифікація: ";
-"pin_setup_biometric_not_enrolled" = "Біометричну автентифікацію не налаштовано. Якщо Ви хочете використовувати біометричні дані, спочатку налаштуйте їх у налаштуваннях системи.";
-"biometric_prompt_subtitle" = "Розблокування за допомогою відбитка пальця";
-"lock_screen_pin_locked" = "Занадто багато помилкових спроб. PIN-код заблоковано на %@.";
-"status_disconnecting" = "Відключення...";
-"status_awaiting_network" = "Очікування мережі...";
-"about_build_time" = "Версія від: %@";
-"settings_show_bottom_menu" = "Показати нижнє меню";
 "details_em_chart_data_type" = "Дані";
 "details_em_phases" = "Фаза";
 "details_em_balance_hourly" = "Погодинний баланс";
@@ -546,12 +558,3 @@
 "details_em_total_suffix" = "(стан лічильника)";
 "details_em_current_month_suffix" = "(поточний місяць)";
 "details_em_last_month_balancing" = "Балансування поточного місяця";
-"channel_caption_pump_switch" = "Перемикач насоса";
-"channel_caption_heat_or_cold_source_switch" = "Перемикач джерела тепла або холоду";
-
-"standard_detail_list_tab" = "Список";
-"thermostat_detail_list" = "Список";
-
-"thermostat_detail_main_thermostat" = "Головний термостат";
-"thermostat_detail_other_thermostats" = "Залежні термостати";
-"thermostat_battery_cover_open" = "Кришка акумулятора відкрита";

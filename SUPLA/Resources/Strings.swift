@@ -278,6 +278,7 @@ struct Strings {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
         static let open = NSLocalizedString("Open", comment: "")
+        static let openClose = NSLocalizedString("Open Close", comment: "")
         static let shut = "general_shut".toLocalized()
         static let reveal = "general_reveal".toLocalized()
         static let collapse = "general_collapse".toLocalized()

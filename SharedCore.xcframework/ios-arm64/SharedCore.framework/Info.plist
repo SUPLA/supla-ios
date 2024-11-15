@@ -5,7 +5,7 @@
     <key>CFBundleExecutable</key>
     <string>SharedCore</string>
     <key>CFBundleIdentifier</key>
-    <string>org.supla.core.shared.SharedCore</string>
+    <string>org.supla.SharedCore</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -21,7 +21,7 @@
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>MinimumOSVersion</key>
-    <string>12.0</string>
+    <string>13.0</string>
     <key>UIDeviceFamily</key>
     <array>
         <integer>1</integer>

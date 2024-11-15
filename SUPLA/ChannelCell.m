@@ -27,6 +27,7 @@
 #import "SuplaApp.h"
 #import "proto.h"
 #import "SUPLA-Swift.h"
+#import "SharedCore/SharedCore.h"
 
 
 @interface MGSwipeTableCell (ExposePrivateMethods)
@@ -54,6 +55,7 @@
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
     UILongPressGestureRecognizer *longPressGr;
+    SharedCoreGetChannelActionStringUseCase *getChannelActionStringUseCase;
 }
 
 @synthesize captionEditable;
@@ -67,6 +69,7 @@
     self.delegate = savedDelegate;
     
     _disposeBagContainer = [[DisposeBagContainer alloc] init];
+    getChannelActionStringUseCase = [[SharedCoreGetChannelActionStringUseCase alloc] init];
 }
 
 - (void)initialize {
@@ -373,15 +376,16 @@
             MGSwipeButton *bl = nil;
             MGSwipeButton *br = nil;
             
+            NSString *leftButtonText = [self leftButtonText:getChannelActionStringUseCase :_channelBase];
+            if (leftButtonText != nil) {
+                bl = [MGSwipeButton buttonWithTitle:leftButtonText icon:nil backgroundColor:[UIColor blackColor]];
+            }
+            NSString *rightButtonText = [self rightButtonText:getChannelActionStringUseCase :_channelBase];
+            if (rightButtonText != nil) {
+                br = [MGSwipeButton buttonWithTitle:rightButtonText icon:nil backgroundColor:[UIColor blackColor]];
+            }
+            
             switch(_channelBase.func) {
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    break;
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    break;
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 case SUPLA_CHANNELFNC_STAIRCASETIMER:
@@ -389,23 +393,9 @@
                 case SUPLA_CHANNELFNC_DIMMER:
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-                    br = [self makeButtonWithTitle: NSLocalizedString(@"On", nil)];
-                    bl = [self makeButtonWithTitle: NSLocalizedString(@"Off", nil)];
-                    
                     if (_measurementSubChannel) {
                         [self.measuredValue setText:[[_channelBase attrStringValue] string]];
                     }
-                    break;
-                case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                case SUPLA_CHANNELFNC_TERRACE_AWNING:
-                case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
-                case SUPLA_CHANNELFNC_CURTAIN:
-                case SUPLA_CHANNELFNC_VERTICAL_BLIND:
-                case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
-                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;
             }
             

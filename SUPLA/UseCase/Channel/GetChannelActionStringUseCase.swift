@@ -19,8 +19,8 @@
 import SharedCore
 
 protocol GetChannelActionStringUseCase {
-    func rightButton(function: SuplaChannelFunction) -> LocalizedString?
-    func leftButton(function: SuplaChannelFunction) -> LocalizedString?
+    func rightButton(function: SuplaFunction) -> LocalizedStringId?
+    func leftButton(function: SuplaFunction) -> LocalizedStringId?
 }
 
 extension SharedCore.GetChannelActionStringUseCase: GetChannelActionStringUseCase {}
