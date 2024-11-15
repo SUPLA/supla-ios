@@ -252,6 +252,8 @@
 "I understand" = "Jeg forstår";
 "Go to CLOUD" = "Gå til CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Funksjonen til kanalen knyttet til handlingsutløseren kan ikke endres.";
+"The function of the channel associated with the push notification cannot be changed." = "Funksjonen til kanalen som er knyttet til PUSH-varsler, kan ikke endres.";
+"The channel function associated with reactions cannot be changed." = "Funksjonen til kanalen som er knyttet til reaksjonene, kan ikke endres.";
 "Show ⓘ button" = "Vis ⓘ-knappen";
 "Advanced settings" = "Avansert";
 "Access ID" = "ID";
@@ -279,17 +281,157 @@
 "Select active account" = "Velg en aktiv konto";
 "Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
+"Channels" = "Kanaler";
+"Groups" = "Grupper";
+"Scenes" = "Scener";
+"Not supported function" = "Ikke-støttet funksjon";
 
 "AccountCreation.title" = "Rediger konto";
 "AccountCreation.modificationTitle" = "Legg til konto";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nb";
 
+"Scenes.ActionButtons.execute" = "Følg";
+"Scenes.ActionButtons.abort" = "Avbryt";
+
 "Cfg.removal.dialog.missing_name" = "Skriv inn et kontonavn";
 "Cfg.removal.dialog.duplicated_name" = "En konto med dette navnet eksisterer allerede";
 "Cfg.removal.dialog.incomplete" = "Fyll ut de nødvendige dataene";
+"Cfg.removal.title" = "Slette kontoen?";
+"Cfg.removal.action.logout" = "Glem det på denne enheten";
+"Cfg.removal.action.remove" = "Glem og slett på serveren";
 
+"push_notification_limit_exceeded" = " %@ Grensen for PUSH-varsling per time er overskredet.";
+
+/* General */
 "general_error" = "Feil";
+"turn_on" = "Slå på";
+"turn_off" = "Slå av";
+"save" = "Lagre";
+/* General - DayOfWeek */
+"monday" = "Mandag";
+"tuesday" = "Tirsdag";
+"wednesday" = "Onsdag";
+"thursday" = "Torsdag";
+"friday" = "Fredag";
+"saturday" = "Lørdag";
+"sunday" = "Søndag";
+"monday_short" = "MAN";
+"tuesday_short" = "TIR";
+"wednesday_short" = "ONS";
+"thursday_short" = "TOR";
+"friday_short" = "FRE";
+"saturday_short" = "LØR";
+"sunday_short" = "SØN";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d kl.%d  min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Sensor for hotellkort";
+"channel_caption_alarm_armament" = "Sensor for alarminnstilling";
+"channel_caption_general_purpose_measurment" = "Målekanal";
+"channel_caption_general_purpose_meter" = "Tellekanal";
+"channel_caption_facade_blinds" = "Fasadelamell";
+"channel_caption_terrace_awning" = "Terrassemarkise";
+"channel_caption_projector_screen" = "Projeksjonsskjerm";
+"channel_caption_curtain" = "Gardin";
+"channel_caption_vertical_blind" = "Vertikal persienne";
+"channel_caption_garage_door" = "Garasjeporten";
+"channel_caption_pump_switch" = "Pumpebryter";
+"channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
+"channel_offline" = "Kanalen er offline";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";
+"main_no_entries" = "Tom";
+
+/* Menu */
+"menu_notifications" = "Varslingshistorikk";
+"menu_device_catalog" = "Utstyrskatalog";
+
+/* Groups */
+"groups_empty_list_button" = "Legg til en gruppe på Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Legg til en scene på Supla Cloud";
+
+/* App Settings */
+"app_settings.notifications_label" = "Varsler";
+"app_settings.location_label" = "Sted";
+"app_settings.permissions_header" = "Rettigheter:";
+"settings_show_labels" = "Vis etiketter i bunnmenyen";
+"settings_dark_mode" = "Nattmodus";
+"settings_lock_screen" = "Låseskjerm";
+"settings_lock_screen_app" = "En app";
+"settings_lock_screen_none" = "Ingen";
+"settings_show_bottom_menu" = "Vis bunnmeny";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Generelt";
+"standard_detail_schedule_tab" = "Uke";
+"standard_detail_metrics_tab" = "Målinger";
+"standard_detail_history_tab" = "Historien";
+"standard_detail_list_tab" = "Liste";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_settings_tab" = "Innstillinger";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Nåværende status:";
+"switch_detail_state_label_for_timer" = "Status til kl. %@:";
+"switch_detail_state_on" = "på";
+"switch_detail_state_off" = "deaktivert";
+
+/* Timer Detail */
+"timer_detail_wrong_time_message" = "Tiden må være større enn 0";
+"timer_detail_header" = "Angi tidspunktet når enheten skal være:";
+"timer_detail_turned_on" = "Aktivert";
+"timer_detail_edit_header_on" = "aktivert";
+"timer_detail_info_on" = "aktivert";
+"timer_detail_turned_off" = "Utelukket";
+"timer_detail_edit_header_off" = "utelukket";
+"timer_detail_info_off" = "utelukket";
+"timer_detail_info" = "Enheten vil være %@ i %@ og deretter bli %@";
+"timer_detail_stop" = "Gå %@";
+"timer_detail_cancel" = "Avbryt og %@";
+"timer_detail_end_hour" = "til kl. %@";
+"timer_detail_edit_time" = "Redigeringstid";
+"timer_detail_edit_header" = "Rediger tidspunktet for når enheten skal %@";
+"timer_detail_edit_cancel" = "Avbryt redigering";
+"timer_detail_minute_pattern" = "%d min.";
+"timer_detail_select_mode" = "Velg modus";
+"timer_detail_manual_mode" = "Manuell modus";
+"timer_detail_info_thermostat_off" = "Termostaten vil bli slått av ved\n%@";
+"timer_detail_info_thermostat_heating" = "Termostaten vil være i oppvarmingsmodus i\n%@";
+"timer_detail_info_thermostat_cooling" = "Termostaten vil være i kjølemodus i\n%@";
+"timer_detail_select_time" = "Angi klokkeslett";
+"timer_detail_counter" = "Teller";
+"timer_detail_calendar" = "Kalender";
+"timer_detail_min_temp" = "Temp. min.";
+"timer_detail_max_temp" = "Temp maks.";
+"timer_detail_state_label_for_timer_days" = "Status til %@";
+"timer_detail_cancel_thermostat" = "Sett timeren på pause og slå på modusen:";
+
+/* Thermostat Detail */
+"thermostat_detail_mode_manual" = "Manuell";
+"thermostat_detail_mode_weekly_schedule" = "Program";
+"schedule_detail_quarters_dialog_header" = "Klokka %02d:00";
+"schedule_detail_program_dialog_header" = "Programinnstillinger %d";
+"hvac_mode_temperature_heating" = "Oppvarmingstemperatur";
+"hvac_mode_temperature_cooling" = "Kjøletemperatur";
+"thermostat_thermometer_error" = "Feil i temperaturavlesningen";
+"thermostat_clock_error" = "Klokkefeil";
+"thermostat_detail_program_current" = "Nåværende:";
+"thermostat_detail_program_next" = "Neste:";
+"thermostat_detail_program_time" = "via %@";
+"thermostat_detail_off_by_window" = "Slått av ved åpent vindu";
+"thermostat_detail_off_by_card" = "Utelukket på grunn av manglende hotellkort";
+"thermostat_detail_off_by_sensor" = "Deaktivert av sensor";
+"thermostat_detail_program_info" = "Trykk på for å aktivere programmet. Hold nede for å endre programmet.";
+"thermostat_detail_box_info" = "Trykk på for å stille inn det valgte programmet. Hold nede for å stille inn det valgte kvarteret.";
+"thermostat_detail_arrow_info" = "Det svarte hjørnet angir gjeldende klokkeslett og dag.";
+"thermostat_detail_list" = "Liste";
+"thermostat_detail_main_thermostat" = "Hovedtermostat";
+"thermostat_detail_other_thermostats" = "Avhengige termostater";
+"thermostat_battery_cover_open" = "Åpne batteridekselet";
 
 /* Combined Chart */
 "history_range_last_day" = "Siste 24 timer";
@@ -297,20 +439,54 @@
 "history_range_last_30_days" = "Siste 30 dager";
 "history_range_last_90_days" = "Siste 90 dager";
 "history_range_last_365_days" = "Siste 365 dager";
-
-/* Thermometer Chart */
 "history_no_data_in_selected_period" = "Manglende data for diagrammet.";
+"history_range_current_week" = "Uke";
+"history_range_label" = "Omfang";
+"history_range_current_day" = "Dag";
+"history_range_current_month" = "Måned";
+"history_range_current_quarter" = "Kvartal";
+"history_range_current_year" = "År";
+"history_range_custom" = "Annet omfang";
+"history_refreshing" = "Forfriskende...";
+"history_refreshing_failed" = "Oppdatering mislyktes";
+"history_no_data_selected" = "Ingen data er valgt for visning.";
+"history_no_data_available" = "Ingen målinger";
+"history_disabled" = "Historikk er deaktivert for denne kanalen";
+"history_delete_data" = "Slett historikk og last ned på nytt";
+"history_wait_for_download_completed" = "Vennligst vent, jeg laster ned...";
+"chart_marker_opening" = "Åpning";
+"chart_marker_closing" = "Avslutning";
+
+/* Notifications */
+"notification_delete_button_delete_older_than_month" = "Slett eldre enn 30 dager";
+"notification_delete_all_title" = "Vil du slette innlegget?";
+"notification_delete_all_message" = "Sletting av varsler er irreversibel, fortsetter du?";
+"notifications_log_profile" = "Profil:";
+"notifications_log_date" = "Dato:";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Rulleskodder, persienner, gardiner %.";
 "roller_shutter_calibration_lost" = "Kalibrering mislyktes.";
 "roller_shutter_calibration_failed" = "Kalibrering tapt.";
 "roller_shutter_motor_problem" = "Motorproblem / Uventet stopp.";
 "roller_shutter_calibration" = "Kalibrering";
 "roller_shutter_start_calibration_message" = "Er du sikker på at du vil starte kalibrering?";
+"roller_shutter_closing_percentage" = "Avsluttende:";
+"roller_shutter_opening_percentage" = "Åpning:";
+"roller_shutter_calibration_needed" = "Kalibrering kreves";
+"roller_shutter_extension_percentage" = "Utvidelse:";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Helling: ";
+"facade_blinds_no_tilt" = "Ingen konfigurasjon";
 
 /* Status */
 "status_connecting" = "Kobling...";
 "status_unknown_error" = "Ukjent feil";
+"status_initializing" = "Idriftsettelse...";
+"status_try_again" = "Prøv igjen";
+"status_disconnecting" = "Koble fra...";
+"status_awaiting_network" = "Venter på nettverket...";
 "status_temporarily_unavailable" = "Tjenesten er midlertidig utilgjengelig";
 "status_incorrect_data" = "Feil e-postadresse eller passord";
 "status_bad_credentials" = "Feil bekreftelser";
@@ -322,8 +498,29 @@
 "status_access_id_inactive" = "Tilgangs-ID inaktiv.";
 "status_host_not_found" = "Serveradresse ikke funnet";
 
+/* Pin setup */
+"pin_setup_header" = "Definer PIN-koden din";
+"pin_setup_title" = "PIN-konfigurasjon";
+"pin_setup_repeat" = "Gjenta PIN-kode";
+"pin_setup_entry_different" = "Kodene som er lagt inn er forskjellige!";
+"pin_setup_use_biometric" = "Biometrisk autentisering: ";
+"pin_setup_biometric_not_enrolled" = "Biometrisk autentisering er ikke konfigurert. Hvis du vil bruke biometri, må du først konfigurere det i systeminnstillingene.";
+"biometric_prompt_subtitle" = "Lås opp med fingeravtrykket ditt";
+
+/* Lock screen */
+"lock_screen_hello" = "Velkommen tilbake!";
+"lock_screen_enter_pin" = "Angi PIN-kode";
+"lock_screen_wrong_pin" = "Feil PIN-kode tastet inn!";
+"lock_screen_remove_pin" = "Sletting av PIN-kode";
+"lock_screen_forgotten_code" = "Jeg husker ikke adgangskoden";
+"lock_screen_forgotten_code_title" = "Adgangskode";
+"lock_screen_forgotten_code_message" = "Hvis du ikke husker tilgangskoden, kan du avinstallere appen fra telefonen og deretter installere den på nytt. Etter reinstallasjon legger du til kontokonfigurasjonen fra Supla Cloud.\n\nIkke opprett en ny konto. Historiske data og alle enheter vil ikke gå tapt.";
+"lock_screen_forgotten_code_button" = "Jeg forstår";
+"lock_screen_confirm_authorize_range_change" = "Endring av autorisasjonens omfang";
+
 /* About */
 "about_version" = "versjon %@";
+"about_build_time" = "Dagens versjon: %@";
 
 /* Electricity meter detail */
 "details_em_forward_active_energy" = "Aktiv strøm mottatt";
@@ -345,190 +542,6 @@
 "details_em_balance_vector" = "Vektorbalanse";
 "em_phase_to_phase_balance" = "Fase-til-fase vektorbalanse";
 "em_chart_all_phases" = "Fase 1 + 2 + 3";
-
-"menu_notifications" = "Varslingshistorikk";
-"turn_on" = "Slå på";
-"turn_off" = "Slå av";
-"Groups" = "Grupper";
-"Scenes" = "Scener";
-"The function of the channel associated with the push notification cannot be changed." = "Funksjonen til kanalen som er knyttet til PUSH-varsler, kan ikke endres.";
-"The channel function associated with reactions cannot be changed." = "Funksjonen til kanalen som er knyttet til reaksjonene, kan ikke endres.";
-"rs_display_mode" = "Rulleskodder, persienner, gardiner %.";
-"Channels" = "Kanaler";
-
-"Scenes.ActionButtons.execute" = "Følg";
-"Scenes.ActionButtons.abort" = "Avbryt";
-
-"Cfg.removal.title" = "Slette kontoen?";
-"Cfg.removal.action.logout" = "Glem det på denne enheten";
-"Cfg.removal.action.remove" = "Glem og slett på serveren";
-
-"push_notification_limit_exceeded" = " %@ Grensen for PUSH-varsling per time er overskredet.";
-"dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";
-"channel_offline" = "Kanalen er offline";
-
-"app_settings.notifications_label" = "Varsler";
-"app_settings.location_label" = "Sted";
-"app_settings.permissions_header" = "Rettigheter:";
-"standard_detail_general_tab" = "Generelt";
-
-"history_range_current_week" = "Uke";
-"standard_detail_schedule_tab" = "Uke";
-
-"standard_detail_metrics_tab" = "Målinger";
-"standard_detail_history_tab" = "Historien";
-"timer_detail_wrong_time_message" = "Tiden må være større enn 0";
-"timer_detail_header" = "Angi tidspunktet når enheten skal være:";
-
-"timer_detail_turned_on" = "Aktivert";
-"timer_detail_edit_header_on" = "aktivert";
-"timer_detail_info_on" = "aktivert";
-
-"timer_detail_turned_off" = "Utelukket";
-"timer_detail_edit_header_off" = "utelukket";
-"timer_detail_info_off" = "utelukket";
-
-"timer_detail_info" = "Enheten vil være %@ i %@ og deretter bli %@";
-"timer_detail_stop" = "Gå %@";
-"timer_detail_cancel" = "Avbryt og %@";
-"timer_detail_end_hour" = "til kl. %@";
-"switch_detail_state_label" = "Nåværende status:";
-"switch_detail_state_label_for_timer" = "Status til kl. %@:";
-
-"switch_detail_state_on" = "på";
-"switch_detail_state_off" = "deaktivert";
-"timer_detail_edit_time" = "Redigeringstid";
-"timer_detail_edit_header" = "Rediger tidspunktet for når enheten skal %@";
-
-"timer_detail_edit_cancel" = "Avbryt redigering";
-"save" = "Lagre";
-"thermostat_detail_mode_manual" = "Manuell";
-"thermostat_detail_mode_weekly_schedule" = "Program";
-
-"monday" = "Mandag";
-"tuesday" = "Tirsdag";
-"wednesday" = "Onsdag";
-"thursday" = "Torsdag";
-"friday" = "Fredag";
-"saturday" = "Lørdag";
-"sunday" = "Søndag";
-"schedule_detail_quarters_dialog_header" = "Klokka %02d:00";
-"schedule_detail_program_dialog_header" = "Programinnstillinger %d";
-
-"hvac_mode_temperature_heating" = "Oppvarmingstemperatur";
-"hvac_mode_temperature_cooling" = "Kjøletemperatur";
-
-"monday_short" = "MAN";
-"tuesday_short" = "TIR";
-"wednesday_short" = "ONS";
-"thursday_short" = "TOR";
-"friday_short" = "FRE";
-"saturday_short" = "LØR";
-"sunday_short" = "SØN";
-
-"thermostat_thermometer_error" = "Feil i temperaturavlesningen";
-"thermostat_clock_error" = "Klokkefeil";
-"Not supported function" = "Ikke-støttet funksjon";
-"thermostat_detail_program_current" = "Nåværende:";
-"thermostat_detail_program_next" = "Neste:";
-
-"time_just_mintes" = "%d min.";
-"timer_detail_minute_pattern" = "%d min.";
-
-"time_hours_and_minutes" = "%d kl.%d  min.";
-"thermostat_detail_program_time" = "via %@";
-"history_range_label" = "Omfang";
-
-"history_range_current_day" = "Dag";
-"history_range_current_month" = "Måned";
-"history_range_current_quarter" = "Kvartal";
-"history_range_current_year" = "År";
-"history_range_custom" = "Annet omfang";
-"history_refreshing" = "Forfriskende...";
-"history_refreshing_failed" = "Oppdatering mislyktes";
-"history_no_data_selected" = "Ingen data er valgt for visning.";
-"history_no_data_available" = "Ingen målinger";
-"channel_caption_hotelcard" = "Sensor for hotellkort";
-"thermostat_detail_off_by_window" = "Slått av ved åpent vindu";
-"thermostat_detail_off_by_card" = "Utelukket på grunn av manglende hotellkort";
-"thermostat_detail_off_by_sensor" = "Deaktivert av sensor";
-"channel_caption_alarm_armament" = "Sensor for alarminnstilling";
-"timer_detail_select_mode" = "Velg modus";
-"timer_detail_manual_mode" = "Manuell modus";
-
-"timer_detail_info_thermostat_off" = "Termostaten vil bli slått av ved\n%@";
-"timer_detail_info_thermostat_heating" = "Termostaten vil være i oppvarmingsmodus i\n%@";
-"timer_detail_info_thermostat_cooling" = "Termostaten vil være i kjølemodus i\n%@";
-"timer_detail_select_time" = "Angi klokkeslett";
-"timer_detail_counter" = "Teller";
-"timer_detail_calendar" = "Kalender";
-"timer_detail_min_temp" = "Temp. min.";
-"timer_detail_max_temp" = "Temp maks.";
-"timer_detail_state_label_for_timer_days" = "Status til %@";
-"timer_detail_cancel_thermostat" = "Sett timeren på pause og slå på modusen:";
-"thermostat_detail_program_info" = "Trykk på for å aktivere programmet. Hold nede for å endre programmet.";
-"thermostat_detail_box_info" = "Trykk på for å stille inn det valgte programmet. Hold nede for å stille inn det valgte kvarteret.";
-"thermostat_detail_arrow_info" = "Det svarte hjørnet angir gjeldende klokkeslett og dag.";
-
-"channel_caption_general_purpose_measurment" = "Målekanal";
-"chart_marker_opening" = "Åpning";
-"chart_marker_closing" = "Avslutning";
-"channel_caption_general_purpose_meter" = "Tellekanal";
-"history_disabled" = "Historikk er deaktivert for denne kanalen";
-
-"notification_delete_button_delete_older_than_month" = "Slett eldre enn 30 dager";
-"notification_delete_all_title" = "Vil du slette innlegget?";
-"notification_delete_all_message" = "Sletting av varsler er irreversibel, fortsetter du?";
-"notifications_log_profile" = "Profil:";
-"notifications_log_date" = "Dato:";
-"settings_show_labels" = "Vis etiketter i bunnmenyen";
-"main_no_entries" = "Tom";
-"groups_empty_list_button" = "Legg til en gruppe på Supla Cloud";
-"scenes_empty_list_button" = "Legg til en scene på Supla Cloud";
-"roller_shutter_closing_percentage" = "Avsluttende:";
-"roller_shutter_opening_percentage" = "Åpning:";
-"roller_shutter_calibration_needed" = "Kalibrering kreves";
-"settings_dark_mode" = "Nattmodus";
-"menu_device_catalog" = "Utstyrskatalog";
-"facade_blinds_slat_tilt" = "Helling: ";
-"channel_caption_facade_blinds" = "Fasadelamell";
-"facade_blinds_no_tilt" = "Ingen konfigurasjon";
-"history_delete_data" = "Slett historikk og last ned på nytt";
-"history_wait_for_download_completed" = "Vennligst vent, jeg laster ned...";
-"channel_caption_terrace_awning" = "Terrassemarkise";
-"channel_caption_projector_screen" = "Projeksjonsskjerm";
-"channel_caption_curtain" = "Gardin";
-"channel_caption_vertical_blind" = "Vertikal persienne";
-"channel_caption_garage_door" = "Garasjeporten";
-"roller_shutter_extension_percentage" = "Utvidelse:";
-"status_initializing" = "Idriftsettelse...";
-"status_try_again" = "Prøv igjen";
-"lock_screen_hello" = "Velkommen tilbake!";
-"lock_screen_enter_pin" = "Angi PIN-kode";
-"pin_setup_header" = "Definer PIN-koden din";
-"settings_lock_screen" = "Låseskjerm";
-"settings_lock_screen_app" = "En app";
-"settings_lock_screen_none" = "Ingen";
-"pin_setup_title" = "PIN-konfigurasjon";
-"pin_setup_repeat" = "Gjenta PIN-kode";
-"pin_setup_entry_different" = "Kodene som er lagt inn er forskjellige!";
-"lock_screen_wrong_pin" = "Feil PIN-kode tastet inn!";
-"lock_screen_remove_pin" = "Sletting av PIN-kode";
-"lock_screen_forgotten_code" = "Jeg husker ikke adgangskoden";
-"lock_screen_forgotten_code_title" = "Adgangskode";
-
-"lock_screen_forgotten_code_message" = "Hvis du ikke husker tilgangskoden, kan du avinstallere appen fra telefonen og deretter installere den på nytt. Etter reinstallasjon legger du til kontokonfigurasjonen fra Supla Cloud.\n\nIkke opprett en ny konto. Historiske data og alle enheter vil ikke gå tapt.";
-
-"lock_screen_forgotten_code_button" = "Jeg forstår";
-"lock_screen_confirm_authorize_range_change" = "Endring av autorisasjonens omfang";
-"pin_setup_use_biometric" = "Biometrisk autentisering: ";
-"pin_setup_biometric_not_enrolled" = "Biometrisk autentisering er ikke konfigurert. Hvis du vil bruke biometri, må du først konfigurere det i systeminnstillingene.";
-"biometric_prompt_subtitle" = "Lås opp med fingeravtrykket ditt";
-
-"status_disconnecting" = "Koble fra...";
-"status_awaiting_network" = "Venter på nettverket...";
-"about_build_time" = "Dagens versjon: %@";
-"settings_show_bottom_menu" = "Vis bunnmeny";
 "details_em_chart_data_type" = "Data";
 "details_em_phases" = "Fase";
 "details_em_balance_hourly" = "Saldo per time";
@@ -544,12 +557,3 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(inneværende måned)";
 "details_em_last_month_balancing" = "Balansering av inneværende måned";
-"channel_caption_pump_switch" = "Pumpebryter";
-"channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
-
-"standard_detail_list_tab" = "Liste";
-"thermostat_detail_list" = "Liste";
-
-"thermostat_detail_main_thermostat" = "Hovedtermostat";
-"thermostat_detail_other_thermostats" = "Avhengige termostater";
-"thermostat_battery_cover_open" = "Åpne batteridekselet";

@@ -254,6 +254,8 @@
 "I understand" = "Suprantu";
 "Go to CLOUD" = "Pereiti į CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Susieto su veiksmo paleidikliu kanalo funkcijų negalima pakeisti.";
+"The function of the channel associated with the push notification cannot be changed." = "Negalima pakeisti kanalo, susieto su PUSH pranešimais, funkcijos.";
+"The channel function associated with reactions cannot be changed." = "Negalima pakeisti kanalo, susieto su reakcijomis, funkcijos.";
 "Show ⓘ button" = "Rodyti mygtuką ⓘ";
 "Advanced settings" = "Išplėstinė";
 "Access ID" = "Identifikatorius";
@@ -280,17 +282,157 @@
 "Delete account" = "Pašalinti paskyrą";
 "Select active account" = "Pasirinkite aktyvią paskyrą";
 "Phase %d" = "%d fazė";
+"Channels" = "Kanalai";
+"Groups" = "Grupės";
+"Scenes" = "Scenos";
+"Not supported function" = "Nepalaikoma funkcija";
 
 "AccountCreation.title" = "Koreguoti paskyrą";
 "AccountCreation.modificationTitle" = "Pridėti paskyrą";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=lt";
 
+"Scenes.ActionButtons.execute" = "Atlikti";
+"Scenes.ActionButtons.abort" = "Nutraukti";
+
 "Cfg.removal.dialog.missing_name" = "Įveskite paskyros pavadinimą";
 "Cfg.removal.dialog.duplicated_name" = "Paskyra su tokiu pavadinimu jau yra";
 "Cfg.removal.dialog.incomplete" = "Užpildykite privalomus duomenis";
+"Cfg.removal.title" = "Pašalinti paskyrą?";
+"Cfg.removal.action.logout" = "Pamiršti šiame įrenginyje";
+"Cfg.removal.action.remove" = "Pamiršti ir pašalinti iš serverio";
 
+"push_notification_limit_exceeded" = "Viršijamas PUSH pranešimų limitas, kuris per valandą yra %@.";
+
+/* General */
 "general_error" = "Klaida";
+"turn_on" = "Įjungti";
+"turn_off" = "Išjungti";
+"save" = "Išsaugoti";
+/* General - DayOfWeek */
+"monday" = "Pirmadienis";
+"tuesday" = "Antradienis";
+"wednesday" = "Trečiadienis";
+"thursday" = "Ketvirtadienis";
+"friday" = "Penktadienis";
+"saturday" = "Šeštadienis";
+"sunday" = "Sekmadienis";
+"monday_short" = "P";
+"tuesday_short" = "A";
+"wednesday_short" = "T";
+"thursday_short" = "K";
+"friday_short" = "PN";
+"saturday_short" = "Š";
+"sunday_short" = "S";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d val. %d min.";
+/* General - Channels */
+"channel_caption_general_purpose_measurment" = "Matavimų kanalas";
+"channel_caption_general_purpose_meter" = "Skaitiklio kanalas";
+"channel_caption_terrace_awning" = "Terasos markizė";
+"channel_caption_projector_screen" = "Projekcinis ekranas";
+"channel_caption_curtain" = "Užuolaida";
+"channel_caption_vertical_blind" = "Vertikalios žaliuzės";
+"channel_caption_garage_door" = "Garažo vartai";
+"channel_caption_facade_blinds" = "Fasadinės žaliuzės";
+"channel_caption_alarm_armament" = "Signalizacijos įjungimo jutiklis";
+"channel_caption_hotelcard" = "Viešbučio kortelės jutiklis";
+"channel_caption_pump_switch" = "Siurblio perjungiklis";
+"channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
+"channel_offline" = "Kanalas yra offline";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";
+"main_no_entries" = "Tuščia";
+
+/* Menu */
+"menu_notifications" = "Pranešimų istorija";
+"menu_device_catalog" = "Įrenginių katalogas";
+
+/* Groups */
+"groups_empty_list_button" = "Pridėti grupę Supla Cloud programėlėje";
+
+/* Scenes */
+"scenes_empty_list_button" = "Pridėti sceną Supla Cloud programėlėje";
+
+/* App Settings */
+"app_settings.notifications_label" = "Pranešimai";
+"app_settings.location_label" = "Vieta";
+"app_settings.permissions_header" = "Įgaliojimai";
+"settings_show_labels" = "Etiketes rodyti apatiniame meniu";
+"settings_dark_mode" = "Naktinis režimas";
+"settings_lock_screen" = "Užrakinimo ekranas";
+"settings_lock_screen_app" = "Programėlė";
+"settings_lock_screen_none" = "Nėra";
+"settings_show_bottom_menu" = "Rodyti apatinį meniu";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Bendrieji";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_metrics_tab" = "Matavimai";
+"standard_detail_schedule_tab" = "Savaitė";
+"standard_detail_history_tab" = "Istorija";
+"standard_detail_list_tab" = "Sąrašas";
+"standard_detail_settings_tab" = "Nustatymai";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Dabartinė būsena:";
+"switch_detail_state_label_for_timer" = "Būsena iki %@ val.:";
+"switch_detail_state_on" = "įjungtas";
+"switch_detail_state_off" = "išjungtas";
+
+/* Timer Detail */
+"timer_detail_wrong_time_message" = "Laikas turi būti didesnis nei 0";
+"timer_detail_header" = "Nurodykite laiką, kada įrenginys turi būti:";
+"timer_detail_turned_on" = "Įjungtas";
+"timer_detail_edit_header_on" = "įjungtas";
+"timer_detail_info_on" = "įjungtas";
+"timer_detail_turned_off" = "Išjungtas";
+"timer_detail_edit_header_off" = "išjungtas";
+"timer_detail_info_off" = "išjungtas";
+"timer_detail_info" = "Įrenginys bus %@ %@, o tada %@";
+"timer_detail_stop" = "Palikti %@";
+"timer_detail_cancel" = "Atšaukti ir %@";
+"timer_detail_end_hour" = "iki %@ val.";
+"timer_detail_edit_time" = "Koreguoti laiką";
+"timer_detail_edit_header" = "Koreguoti laiką, kada įrenginys bus %@";
+"timer_detail_edit_cancel" = "Atšaukti koregavimą";
+"timer_detail_minute_pattern" = "%d min.";
+"timer_detail_select_mode" = "Pasirinkite režimą";
+"timer_detail_manual_mode" = "Rankinis režimas";
+"timer_detail_info_thermostat_off" = "Termostatas bus išjungtas\n%@";
+"timer_detail_info_thermostat_heating" = "Termostatas bus šildymo režime\n%@";
+"timer_detail_info_thermostat_cooling" = "Termostatas bus vėsinimo režime\n%@";
+"timer_detail_select_time" = "Nustatykite laiką";
+"timer_detail_counter" = "Skaitiklis";
+"timer_detail_calendar" = "Kalendorius";
+"timer_detail_min_temp" = "Min. temp.";
+"timer_detail_max_temp" = "Maks. temp.";
+"timer_detail_state_label_for_timer_days" = "Būsena iki %@:";
+"timer_detail_cancel_thermostat" = "Nutraukti laikmatį ir įjungti režimą:";
+
+/* Thermostat Detail */
+"thermostat_detail_mode_manual" = "Rankinis";
+"thermostat_detail_mode_weekly_schedule" = "Programa";
+"schedule_detail_quarters_dialog_header" = "%02d:00 valanda";
+"schedule_detail_program_dialog_header" = "Programos nustatymai %d";
+"hvac_mode_temperature_heating" = "Šildymo temperatūra";
+"hvac_mode_temperature_cooling" = "Vėsinimo temperatūra";
+"thermostat_thermometer_error" = "Temperatūros nuskaitymo klaida";
+"thermostat_clock_error" = "Laikrodžio klaida";
+"thermostat_detail_program_current" = "Dabar:";
+"thermostat_detail_program_next" = "Vėliau:";
+"thermostat_detail_program_time" = "per %@";
+"thermostat_detail_off_by_window" = "Išjungtas dėl atidaryto lango";
+"thermostat_detail_off_by_card" = "Išjungtas dėl viešbučio kortelės trūkumo";
+"thermostat_detail_off_by_sensor" = "Išjungtas jutiklio";
+"thermostat_detail_program_info" = "Palieskite, kad suaktyvintumėte programą. Prilaikykite, kad modifikuotumėte programą.";
+"thermostat_detail_box_info" = "Palieskite, kad nustatytumėte pasirinktą programą. Prulaikykite, kad nustatytumėte pasirinktus ketvirčius.";
+"thermostat_detail_arrow_info" = "Juodas kampas informuoja apie dabartinį laiką ir dieną.";
+"thermostat_detail_list" = "Sąrašas";
+"thermostat_detail_main_thermostat" = "Pagrindinis termostatas";
+"thermostat_detail_other_thermostats" = "Priklausomi termostatai";
+"thermostat_battery_cover_open" = "Baterijos dangtelis atidarytas";
 
 /* Combined Chart */
 "history_range_last_day" = "Pastarosios 24 valandos";
@@ -298,20 +440,54 @@
 "history_range_last_30_days" = "Pastarosios 30 dienų";
 "history_range_last_90_days" = "Pastarosios 90 dienų";
 "history_range_last_365_days" = "Pastarosios 365 dienų";
-
-/* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nėra duomenų diagramai.";
+"history_range_current_week" = "Savaitė";
+"history_range_label" = "Diapazonas";
+"history_range_current_day" = "Diena";
+"history_range_current_month" = "Mėnuo";
+"history_range_current_quarter" = "Ketvirtis";
+"history_range_current_year" = "Metai";
+"history_range_custom" = "Kitas diapazonas";
+"history_refreshing" = "Atnaujinimas…";
+"history_refreshing_failed" = "Atnaujinimas nepavyko";
+"history_no_data_selected" = "Nepasirinkti duomenys rodymui.";
+"history_no_data_available" = "Nėra matavimų";
+"history_disabled" = "Šiam kanalui istorija išjungta";
+"history_delete_data" = "Pašalinti istoriją ir dar kartą atsisiųsti";
+"history_wait_for_download_completed" = "Prašome laukti, atsisiunčiu…";
+"chart_marker_opening" = "Atidarymas";
+"chart_marker_closing" = "Uždarymas";
+
+/* Notifications */
+"notification_delete_button_delete_older_than_month" = "Pašalinti senesnius nei 30 dienų";
+"notification_delete_all_title" = "Pašalinti?";
+"notification_delete_all_message" = "Pranešimų pašalinimas yra negrįžtamas, tęsti?";
+"notifications_log_profile" = "Profilis:";
+"notifications_log_date" = "Data:";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Roletai, žaliuzės, užuolaidos %";
+"roller_shutter_closing_percentage" = "Uždarymas:";
+"roller_shutter_opening_percentage" = "Atidarymas:";
+"roller_shutter_calibration_needed" = "Reikalingas kalibravimas";
+"roller_shutter_extension_percentage" = "Išskleidimas:";
 "roller_shutter_calibration_lost" = "Kalibravimas nepavyko.";
 "roller_shutter_calibration_failed" = "Kalibravimas buvo prarastas.";
 "roller_shutter_motor_problem" = "Variklio problema / Netikėtas sustojimas.";
 "roller_shutter_calibration" = "Kalibravimas";
 "roller_shutter_start_calibration_message" = "Ar tikrai norite pradėti kalibravimą?";
 
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Pakrypimas: ";
+"facade_blinds_no_tilt" = "Nėra konfigūracijos";
+
 /* Status */
 "status_connecting" = "Jungimasis...";
 "status_unknown_error" = "Nenustatyta klaida";
+"status_initializing" = "Paleidimas…";
+"status_try_again" = "Pabandykite dar kartą";
+"status_disconnecting" = "Atsijungimas…";
+"status_awaiting_network" = "Laukiama tinklo…";
 "status_temporarily_unavailable" = "Paslauga laikinai nepasiekiama";
 "status_incorrect_data" = "Neteisingas el. pašto adresas arba slaptažodis";
 "status_bad_credentials" = "Klaidingas autentifikavimas";
@@ -323,8 +499,30 @@
 "status_access_id_inactive" = "Prieigos identifikatorius neaktyvus.";
 "status_host_not_found" = "Serverio adresas nerastas";
 
+/* Pin setup */
+"pin_setup_header" = "Nustatykite savo PIN kodą";
+"pin_setup_title" = "PIN konfigūravimas";
+"pin_setup_repeat" = "Pakartokite PIN";
+"pin_setup_entry_different" = "Įvesti kodai skiriasi!";
+"pin_setup_use_biometric" = "Biometrinis autentifikavimas: ";
+"pin_setup_biometric_not_enrolled" = "Biometrinis autentifikavimas nebuvo sukonfigūruotas. Jei norite pasinaudoti biometrija, pirmiau sukonfigūruokite ją sistemos nustatymuose.";
+
+/* Lock screen */
+"lock_screen_hello" = "Sveiki atvykę vėl!";
+"lock_screen_enter_pin" = "Įveskite PIN";
+"lock_screen_wrong_pin" = "Įvestas neteisingas PIN kodas!";
+"lock_screen_remove_pin" = "PIN kodo šalinimas";
+"lock_screen_forgotten_code" = "Pamiršau prieigos kodą";
+"lock_screen_forgotten_code_title" = "Prieigos kodas";
+"lock_screen_forgotten_code_message" = "Jei pamiršote prieigos kodą, pašalinkite programėlę iš telefono, o tada įdiekite ją iš naujo. Vėl įdiegę pridėkite paskyros konfigūravimą su Supla Cloud.\n\nNekurkite naujos paskyros. Istorijos duomenys ir visi įrenginiai nebus prarasti.";
+"lock_screen_forgotten_code_button" = "Supratau";
+"lock_screen_confirm_authorize_range_change" = "Autorizacijos apimties keitimas";
+"lock_screen_pin_locked" = "Per daug klaidingų bandymų. Pin užblokuotas %@.";
+"biometric_prompt_subtitle" = "Atrakinti piršto atspaudu";
+
 /* About */
 "about_version" = "versija %@";
+"about_build_time" = "Versija nuo: %@";
 
 /* Electricity meter detail */
 "details_em_forward_active_energy" = "Aktyvioji energija parsisiųsta";
@@ -346,190 +544,6 @@
 "details_em_balance_vector" = "Vektorinis balansas";
 "em_phase_to_phase_balance" = "Tarpfazis vektorinis balansas";
 "em_chart_all_phases" = "1+2+3 fazė";
-
-"menu_notifications" = "Pranešimų istorija";
-"turn_on" = "Įjungti";
-"turn_off" = "Išjungti";
-"Groups" = "Grupės";
-"Scenes" = "Scenos";
-"The function of the channel associated with the push notification cannot be changed." = "Negalima pakeisti kanalo, susieto su PUSH pranešimais, funkcijos.";
-"The channel function associated with reactions cannot be changed." = "Negalima pakeisti kanalo, susieto su reakcijomis, funkcijos.";
-"rs_display_mode" = "Roletai, žaliuzės, užuolaidos %";
-"Channels" = "Kanalai";
-
-"Scenes.ActionButtons.execute" = "Atlikti";
-"Scenes.ActionButtons.abort" = "Nutraukti";
-
-"Cfg.removal.title" = "Pašalinti paskyrą?";
-"Cfg.removal.action.logout" = "Pamiršti šiame įrenginyje";
-"Cfg.removal.action.remove" = "Pamiršti ir pašalinti iš serverio";
-
-"push_notification_limit_exceeded" = "Viršijamas PUSH pranešimų limitas, kuris per valandą yra %@.";
-"dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";
-"channel_offline" = "Kanalas yra offline";
-
-"app_settings.notifications_label" = "Pranešimai";
-"app_settings.location_label" = "Vieta";
-"app_settings.permissions_header" = "Įgaliojimai";
-"standard_detail_general_tab" = "Bendrieji";
-
-"history_range_current_week" = "Savaitė";
-"standard_detail_schedule_tab" = "Savaitė";
-
-"standard_detail_metrics_tab" = "Matavimai";
-"standard_detail_history_tab" = "Istorija";
-"timer_detail_wrong_time_message" = "Laikas turi būti didesnis nei 0";
-"timer_detail_header" = "Nurodykite laiką, kada įrenginys turi būti:";
-
-"timer_detail_turned_on" = "Įjungtas";
-"timer_detail_edit_header_on" = "įjungtas";
-"timer_detail_info_on" = "įjungtas";
-
-"timer_detail_turned_off" = "Išjungtas";
-"timer_detail_edit_header_off" = "išjungtas";
-"timer_detail_info_off" = "išjungtas";
-
-"timer_detail_info" = "Įrenginys bus %@ %@, o tada %@";
-"timer_detail_stop" = "Palikti %@";
-"timer_detail_cancel" = "Atšaukti ir %@";
-"timer_detail_end_hour" = "iki %@ val.";
-"switch_detail_state_label" = "Dabartinė būsena:";
-"switch_detail_state_label_for_timer" = "Būsena iki %@ val.:";
-
-"switch_detail_state_on" = "įjungtas";
-"switch_detail_state_off" = "išjungtas";
-"timer_detail_edit_time" = "Koreguoti laiką";
-"timer_detail_edit_header" = "Koreguoti laiką, kada įrenginys bus %@";
-
-"timer_detail_edit_cancel" = "Atšaukti koregavimą";
-"save" = "Išsaugoti";
-"thermostat_detail_mode_manual" = "Rankinis";
-"thermostat_detail_mode_weekly_schedule" = "Programa";
-
-"monday" = "Pirmadienis";
-"tuesday" = "Antradienis";
-"wednesday" = "Trečiadienis";
-"thursday" = "Ketvirtadienis";
-"friday" = "Penktadienis";
-"saturday" = "Šeštadienis";
-"sunday" = "Sekmadienis";
-"schedule_detail_quarters_dialog_header" = "%02d:00 valanda";
-"schedule_detail_program_dialog_header" = "Programos nustatymai %d";
-
-"hvac_mode_temperature_heating" = "Šildymo temperatūra";
-"hvac_mode_temperature_cooling" = "Vėsinimo temperatūra";
-
-"monday_short" = "P";
-"tuesday_short" = "A";
-"wednesday_short" = "T";
-"thursday_short" = "K";
-"friday_short" = "PN";
-"saturday_short" = "Š";
-"sunday_short" = "S";
-
-"thermostat_thermometer_error" = "Temperatūros nuskaitymo klaida";
-"thermostat_clock_error" = "Laikrodžio klaida";
-"Not supported function" = "Nepalaikoma funkcija";
-"thermostat_detail_program_current" = "Dabar:";
-"thermostat_detail_program_next" = "Vėliau:";
-
-"time_just_mintes" = "%d min.";
-"timer_detail_minute_pattern" = "%d min.";
-
-"time_hours_and_minutes" = "%d val. %d min.";
-"thermostat_detail_program_time" = "per %@";
-"history_range_label" = "Diapazonas";
-
-"history_range_current_day" = "Diena";
-"history_range_current_month" = "Mėnuo";
-"history_range_current_quarter" = "Ketvirtis";
-"history_range_current_year" = "Metai";
-"history_range_custom" = "Kitas diapazonas";
-"history_refreshing" = "Atnaujinimas…";
-"history_refreshing_failed" = "Atnaujinimas nepavyko";
-"history_no_data_selected" = "Nepasirinkti duomenys rodymui.";
-"history_no_data_available" = "Nėra matavimų";
-"channel_caption_hotelcard" = "Viešbučio kortelės jutiklis";
-"thermostat_detail_off_by_window" = "Išjungtas dėl atidaryto lango";
-"thermostat_detail_off_by_card" = "Išjungtas dėl viešbučio kortelės trūkumo";
-"thermostat_detail_off_by_sensor" = "Išjungtas jutiklio";
-"channel_caption_alarm_armament" = "Signalizacijos įjungimo jutiklis";
-"timer_detail_select_mode" = "Pasirinkite režimą";
-"timer_detail_manual_mode" = "Rankinis režimas";
-
-"timer_detail_info_thermostat_off" = "Termostatas bus išjungtas\n%@";
-"timer_detail_info_thermostat_heating" = "Termostatas bus šildymo režime\n%@";
-"timer_detail_info_thermostat_cooling" = "Termostatas bus vėsinimo režime\n%@";
-"timer_detail_select_time" = "Nustatykite laiką";
-"timer_detail_counter" = "Skaitiklis";
-"timer_detail_calendar" = "Kalendorius";
-"timer_detail_min_temp" = "Min. temp.";
-"timer_detail_max_temp" = "Maks. temp.";
-"timer_detail_state_label_for_timer_days" = "Būsena iki %@:";
-"timer_detail_cancel_thermostat" = "Nutraukti laikmatį ir įjungti režimą:";
-"thermostat_detail_program_info" = "Palieskite, kad suaktyvintumėte programą. Prilaikykite, kad modifikuotumėte programą.";
-"thermostat_detail_box_info" = "Palieskite, kad nustatytumėte pasirinktą programą. Prulaikykite, kad nustatytumėte pasirinktus ketvirčius.";
-"thermostat_detail_arrow_info" = "Juodas kampas informuoja apie dabartinį laiką ir dieną.";
-
-"channel_caption_general_purpose_measurment" = "Matavimų kanalas";
-"chart_marker_opening" = "Atidarymas";
-"chart_marker_closing" = "Uždarymas";
-"channel_caption_general_purpose_meter" = "Skaitiklio kanalas";
-"history_disabled" = "Šiam kanalui istorija išjungta";
-
-"notification_delete_button_delete_older_than_month" = "Pašalinti senesnius nei 30 dienų";
-"notification_delete_all_title" = "Pašalinti?";
-"notification_delete_all_message" = "Pranešimų pašalinimas yra negrįžtamas, tęsti?";
-"notifications_log_profile" = "Profilis:";
-"notifications_log_date" = "Data:";
-"settings_show_labels" = "Etiketes rodyti apatiniame meniu";
-"main_no_entries" = "Tuščia";
-"groups_empty_list_button" = "Pridėti grupę Supla Cloud programėlėje";
-"scenes_empty_list_button" = "Pridėti sceną Supla Cloud programėlėje";
-"roller_shutter_closing_percentage" = "Uždarymas:";
-"roller_shutter_opening_percentage" = "Atidarymas:";
-"roller_shutter_calibration_needed" = "Reikalingas kalibravimas";
-"settings_dark_mode" = "Naktinis režimas";
-"menu_device_catalog" = "Įrenginių katalogas";
-"facade_blinds_slat_tilt" = "Pakrypimas: ";
-"channel_caption_facade_blinds" = "Fasadinės žaliuzės";
-"facade_blinds_no_tilt" = "Nėra konfigūracijos";
-"history_delete_data" = "Pašalinti istoriją ir dar kartą atsisiųsti";
-"history_wait_for_download_completed" = "Prašome laukti, atsisiunčiu…";
-"channel_caption_terrace_awning" = "Terasos markizė";
-"channel_caption_projector_screen" = "Projekcinis ekranas";
-"channel_caption_curtain" = "Užuolaida";
-"channel_caption_vertical_blind" = "Vertikalios žaliuzės";
-"channel_caption_garage_door" = "Garažo vartai";
-"roller_shutter_extension_percentage" = "Išskleidimas:";
-"status_initializing" = "Paleidimas…";
-"status_try_again" = "Pabandykite dar kartą";
-"lock_screen_hello" = "Sveiki atvykę vėl!";
-"lock_screen_enter_pin" = "Įveskite PIN";
-"pin_setup_header" = "Nustatykite savo PIN kodą";
-"settings_lock_screen" = "Užrakinimo ekranas";
-"settings_lock_screen_app" = "Programėlė";
-"settings_lock_screen_none" = "Nėra";
-"pin_setup_title" = "PIN konfigūravimas";
-"pin_setup_repeat" = "Pakartokite PIN";
-"pin_setup_entry_different" = "Įvesti kodai skiriasi!";
-"lock_screen_wrong_pin" = "Įvestas neteisingas PIN kodas!";
-"lock_screen_remove_pin" = "PIN kodo šalinimas";
-"lock_screen_forgotten_code" = "Pamiršau prieigos kodą";
-"lock_screen_forgotten_code_title" = "Prieigos kodas";
-
-"lock_screen_forgotten_code_message" = "Jei pamiršote prieigos kodą, pašalinkite programėlę iš telefono, o tada įdiekite ją iš naujo. Vėl įdiegę pridėkite paskyros konfigūravimą su Supla Cloud.\n\nNekurkite naujos paskyros. Istorijos duomenys ir visi įrenginiai nebus prarasti.";
-
-"lock_screen_forgotten_code_button" = "Supratau";
-"lock_screen_confirm_authorize_range_change" = "Autorizacijos apimties keitimas";
-"pin_setup_use_biometric" = "Biometrinis autentifikavimas: ";
-"pin_setup_biometric_not_enrolled" = "Biometrinis autentifikavimas nebuvo sukonfigūruotas. Jei norite pasinaudoti biometrija, pirmiau sukonfigūruokite ją sistemos nustatymuose.";
-"biometric_prompt_subtitle" = "Atrakinti piršto atspaudu";
-"lock_screen_pin_locked" = "Per daug klaidingų bandymų. Pin užblokuotas %@.";
-"status_disconnecting" = "Atsijungimas…";
-"status_awaiting_network" = "Laukiama tinklo…";
-"about_build_time" = "Versija nuo: %@";
-"settings_show_bottom_menu" = "Rodyti apatinį meniu";
 "details_em_chart_data_type" = "Duomenys";
 "details_em_phases" = "Fazė";
 "details_em_balance_hourly" = "Valandinis balansas";
@@ -545,12 +559,3 @@
 "details_em_total_suffix" = "(skaitiklio būsena)";
 "details_em_current_month_suffix" = "(einamasis mėnuo)";
 "details_em_last_month_balancing" = "Einamojo mėnesio balansavimas";
-"channel_caption_pump_switch" = "Siurblio perjungiklis";
-"channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
-
-"standard_detail_list_tab" = "Sąrašas";
-"thermostat_detail_list" = "Sąrašas";
-
-"thermostat_detail_main_thermostat" = "Pagrindinis termostatas";
-"thermostat_detail_other_thermostats" = "Priklausomi termostatai";
-"thermostat_battery_cover_open" = "Baterijos dangtelis atidarytas";

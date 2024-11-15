@@ -188,7 +188,6 @@
 "thermostat_detail_main_thermostat" = "Main thermostat";
 "thermostat_detail_other_thermostats" = "Ohter thermostats";
 
-
 /* Combined Chart */
 "history_range_label" = "Range";
 "history_data_type" = "Data type";
