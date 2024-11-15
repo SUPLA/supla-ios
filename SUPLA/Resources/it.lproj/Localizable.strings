@@ -322,9 +322,9 @@
 "turn_on" = "Abilita";
 "turn_off" = "Disabilita";
 "general_shut" = "Chiudi";
-"general_reveal" = "Mostra";
-"general_collapse" = "Comprimi";
-"general_expand" = "Espandi";
+"general_reveal" = "Apri";
+"general_collapse" = "Chiudi";
+"general_expand" = "Apri";
 /* General - DayOfWeek */
 "monday" = "Lunedì";
 "tuesday" = "Martedì";
