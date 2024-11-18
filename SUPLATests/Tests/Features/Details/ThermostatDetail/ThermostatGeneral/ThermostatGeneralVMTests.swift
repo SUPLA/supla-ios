@@ -913,14 +913,14 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         channel.value = channelValue
         
-        return ChannelChild(channel: channel, relationType: .mainThermometer)
+        return ChannelChild(channel: channel, relation: SAChannelRelation.mock(type: .mainThermometer))
     }
     
     private func mockSensorChild() -> ChannelChild {
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_HOTELCARDSENSOR
         
-        return ChannelChild(channel: channel, relationType: .defaultType)
+        return ChannelChild(channel: channel, relation: SAChannelRelation.mock(type: .default))
     }
     
     private func mockHvacConfigEvent(_ remoteId: Int32) -> ChannelConfigEvent {

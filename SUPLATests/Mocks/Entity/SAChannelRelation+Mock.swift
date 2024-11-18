@@ -16,14 +16,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+import SharedCore
 @testable import SUPLA
 
 extension SAChannelRelation {
-    static func mock(_ parentId: Int32, channelId: Int32 = 0, type: ChannelRelationType = .defaultType) -> SAChannelRelation {
+    static func mock(_ parentId: Int32 = 0, channelId: Int32 = 0, type: ChannelRelationType = .default) -> SAChannelRelation {
         let relation = SAChannelRelation(testContext: nil)
         relation.channel_id = channelId
         relation.parent_id = parentId
-        relation.channel_relation_type = type.rawValue
+        relation.channel_relation_type = type.value
         
         return relation
     }

@@ -72,6 +72,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .rsOpeningPercentageItem(opening: true, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
+                .batteryLevelWarning(level: 10, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
             .permissions(items: [
@@ -116,6 +117,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .rsOpeningPercentageItem(opening: false, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
+                .batteryLevelWarning(level: 10, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
             .permissions(items: [
@@ -536,7 +538,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
-    func test_shouldNavigateToLocationOrdering() {
+    func test_shouldSaveBatteryWarningLevel() {
         // given
         setupViewData()
         
@@ -551,6 +553,41 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         }
         
         switch (list[0].items[9]) {
+        case .batteryLevelWarning(_, let callback):
+            callback(20)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events, [])
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.batteryWarningLevelMock.parameters, [20])
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+    }
+    
+    func test_shouldNavigateToLocationOrdering() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[10]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:
@@ -620,6 +657,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         let notificationSettings = AppSettingsTestUserNotificationSettings(coder: AppSettingsTestCoder())!
         notificationSettings.status = notificationStatus
         notificationCenter.notificationSettings = notificationSettings
+        settings.batteryWarningLevelMock.returns = .single(10)
     }
 }
 

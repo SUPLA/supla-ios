@@ -46,9 +46,9 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     func test_createTemperaturesList() {
         // given
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
-            ChannelChild(channel: SAChannel.mock(234, function: SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
-            ChannelChild(channel: SAChannel.mock(345), relationType: .defaultType),
-            ChannelChild(channel: SAChannel.mock(456, function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE), relationType: .auxThermometerFloor)
+            ChannelChild(channel: SAChannel.mock(234, function: SUPLA_CHANNELFNC_THERMOMETER), relation: SAChannelRelation.mock(type: .mainThermometer)),
+            ChannelChild(channel: SAChannel.mock(345), relation: SAChannelRelation.mock(type: .default)),
+            ChannelChild(channel: SAChannel.mock(456, function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE), relation: SAChannelRelation.mock(type: .auxThermometerFloor))
         ])
         
         // when
@@ -65,8 +65,8 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     func test_createTemperaturesList_oneThermometer() {
         // given
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
-            ChannelChild(channel: SAChannel.mock(234, function: SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
-            ChannelChild(channel: SAChannel.mock(345), relationType: .defaultType),
+            ChannelChild(channel: SAChannel.mock(234, function: SUPLA_CHANNELFNC_THERMOMETER), relation: SAChannelRelation.mock(type: .mainThermometer)),
+            ChannelChild(channel: SAChannel.mock(345), relation: SAChannelRelation.mock(type: .default)),
         ])
         
         // when
@@ -88,7 +88,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         channel.value = value
         
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
-            ChannelChild(channel: channel, relationType: .mainThermometer),
+            ChannelChild(channel: channel, relation: SAChannelRelation.mock(type: .mainThermometer))
         ])
         
         // when

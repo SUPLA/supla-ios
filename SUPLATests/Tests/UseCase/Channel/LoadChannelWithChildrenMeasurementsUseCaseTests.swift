@@ -163,8 +163,8 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Channe
         return ChannelWithChildren(
             channel: channel,
             children: [
-                ChannelChild(channel: child1, relationType: .mainThermometer),
-                ChannelChild(channel: child2, relationType: .auxThermometerFloor)
+                ChannelChild(channel: child1, relation: SAChannelRelation.mock(type: .mainThermometer)),
+                ChannelChild(channel: child2, relation: SAChannelRelation.mock(type: .auxThermometerFloor))
             ]
         )
     }
