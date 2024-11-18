@@ -991,7 +991,6 @@
 		A5E40B512B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B502B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift */; };
 		A5E40B532B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B522B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift */; };
 		A5E40B552B85F70900DB6ABE /* SAGeneralPurposeMeterItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B542B85F70900DB6ABE /* SAGeneralPurposeMeterItem+Mock.swift */; };
-		A5E40B572B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */; };
 		A5E40B5B2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B5A2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift */; };
 		A5E40B5D2B86075500DB6ABE /* ValueProviderMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B5C2B86075500DB6ABE /* ValueProviderMocks.swift */; };
 		A5E40B5F2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B5E2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift */; };
@@ -2475,7 +2474,6 @@
 		A5E40B502B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A5E40B522B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaChannelGeneralPurposeMeterConfig+Mock.swift"; sourceTree = "<group>"; };
 		A5E40B542B85F70900DB6ABE /* SAGeneralPurposeMeterItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeterItem+Mock.swift"; sourceTree = "<group>"; };
-		A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B5A2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelValueStringUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B5C2B86075500DB6ABE /* ValueProviderMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueProviderMocks.swift; sourceTree = "<group>"; };
 		A5E40B5E2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelConfig+Mock.swift"; sourceTree = "<group>"; };
@@ -3940,7 +3938,6 @@
 			children = (
 				A530EE382A57FCE200F8DAEE /* GetChannelBaseStateUseCaseTests.swift */,
 				A573B0AB2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift */,
-				A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */,
 				A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */,
 			);
 			path = ChannelBase;
@@ -7423,7 +7420,6 @@
 				A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */,
 				A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
-				A5E40B572B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				A5519B302B6D30D000811747 /* WeightValueProviderTest.swift in Sources */,
 				A55A8DC72BB3139E00C540D4 /* ExecuteRollerShutterActionUseCaseTests.swift in Sources */,

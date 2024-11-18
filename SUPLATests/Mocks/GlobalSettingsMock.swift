@@ -131,4 +131,10 @@ class GlobalSettingsMock: GlobalSettings {
         get { backgroundEntryMock.get() }
         set { backgroundEntryMock.set(newValue) }
     }
+    
+    var batteryWarningLevelMock: FunctionMock<Int32, Int32> = .init()
+    var batteryWarningLevel: Int32 {
+        get { batteryWarningLevelMock.get() }
+        set { batteryWarningLevelMock.set(newValue) }
+    }
 }

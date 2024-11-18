@@ -19,10 +19,11 @@
 import XCTest
 import RxTest
 import RxSwift
+import SharedCore
 
 @testable import SUPLA
 
-final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<ChannelWithChildren> {
+final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithChildren> {
     
     private lazy var useCase: ReadChannelWithChildrenUseCase! = { ReadChannelWithChildrenUseCaseImpl() }()
     
@@ -56,10 +57,10 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<ChannelWithChildren
         
         profileRepository.activeProfileObservable = Observable.just(profile)
         channelRepository.getAllChannelsReturns = Observable.just(channels)
-        channelRelationRepository.getAllRelationsWithParentReturns = Observable.just([
-            SAChannelRelation.mock(channelId, channelId: 1, type: .mainThermometer),
-            SAChannelRelation.mock(channelId, channelId: 2, type: .auxThermometerFloor)
-        ])
+        
+        let relation1 = SAChannelRelation.mock(channelId, channelId: 1, type: .mainThermometer)
+        let relation2 = SAChannelRelation.mock(channelId, channelId: 2, type: .auxThermometerFloor)
+        channelRelationRepository.getAllRelationsWithParentReturns = Observable.just([relation1, relation2])
         
         // when
         useCase.invoke(remoteId: channelId)
@@ -71,8 +72,8 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<ChannelWithChildren
         assertEvents([
             .next(
                 ChannelWithChildren(channel: channels[0], children: [
-                    ChannelChild(channel: channels[1], relationType: .mainThermometer),
-                    ChannelChild(channel: channels[2], relationType: .auxThermometerFloor)
+                    ChannelChild(channel: channels[1], relation: relation1),
+                    ChannelChild(channel: channels[2], relation: relation2)
                 ])
             ),
             .completed

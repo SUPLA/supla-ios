@@ -170,8 +170,8 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         humidityAndThermomereterChild.profile = profile
         
         let channel = ChannelWithChildren(channel: SAChannel(testContext: nil), children: [
-            ChannelChild(channel: humidityAndThermomereterChild, relationType: .mainThermometer),
-            ChannelChild(channel: thermometerChild, relationType: .auxThermometerFloor)
+            ChannelChild(channel: humidityAndThermomereterChild, relation: SAChannelRelation.mock(type: .mainThermometer)),
+            ChannelChild(channel: thermometerChild, relation: SAChannelRelation.mock(type: .auxThermometerFloor))
         ])
         channel.channel.remote_id = remoteId
         channel.channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
