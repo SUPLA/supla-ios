@@ -526,6 +526,7 @@
 "status_registration_disabled" = "La registrazione è attualmente disabilitata. Per abilitarlo, vai alla scheda \"Smartphone\" a pagina \"Supla Cloud\".";
 "status_access_id_not_assigned" = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina \"Supla Cloud\" e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
 "status_host_not_found" = "L’indirizzo del server non è stato trovato";
+"status_cant_connect_to_host" = "Connessione con il server non riuscita";
 
 /* Pin setup */
 "pin_setup_title" = "Configurazione PIN";

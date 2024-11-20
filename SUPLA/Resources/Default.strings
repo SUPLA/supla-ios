@@ -261,6 +261,7 @@
 "status_access_id_not_assigned" = "Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.";
 "status_access_id_inactive" = "Access Identifier inactive.";
 "status_host_not_found" = "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.";
+"status_cant_connect_to_host" = "Can't connect to host";
 
 /* Pin setup */
 "pin_setup_title" = "Configure PIN";

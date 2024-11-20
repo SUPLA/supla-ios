@@ -497,6 +497,7 @@
 "status_access_id_not_assigned" = "Aan dit apparaat is geen toegangs-ID toegewezen. Ga naar de pagina \"Supla Cloud\" en wijs de juiste ID toe op het tabblad \"Smartphones\".";
 "status_access_id_inactive" = "Toegangs ID inactief.";
 "status_host_not_found" = "Serveeradres werd niet gevonden";
+"status_cant_connect_to_host" = "Kon geen verbinding maken met de host";
 
 /* Pin setup */
 "pin_setup_header" = "Uw PIN-code instellen";

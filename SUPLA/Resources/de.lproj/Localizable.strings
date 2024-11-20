@@ -482,6 +482,7 @@
 "status_access_id_not_assigned" = "Diesem Client wurde keine Zugriffskennung zugewiesen. Bitte gehen Sie zu \"Smartphones\" auf \"Supla Cloud\" und holen Sie sich eine gültige ID.";
 "status_access_id_inactive" = "Zugriffskennung nicht aktiv.";
 "status_host_not_found" = "Host nicht gefunden. Überprüfen Sie bitte ob die Internetverbindung korrekt funktioniert und das Konto korrekt erstellt wurde.";
+"status_cant_connect_to_host" = "Die Verbindung mit dem Server konnte nicht erstellt werden";
 
 /* Pin setup */
 "pin_setup_title" = "PIN konfigurieren";

@@ -497,6 +497,7 @@
 "status_access_id_not_assigned" = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page \"Supla Cloud\" et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
 "status_access_id_inactive" = "ID d'accès inactif.";
 "status_host_not_found" = "Nous n'avons pas pu trouver cette adresse du serveur";
+"status_cant_connect_to_host" = "Impossible de se connecter au serveur";
 
 /* Pin setup */
 "pin_setup_header" = "Définissez votre code PIN";

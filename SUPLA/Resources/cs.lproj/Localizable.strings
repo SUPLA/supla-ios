@@ -495,6 +495,7 @@
 "status_access_id_not_assigned" = "Toto zařízení nemá přiřazené ID přístupu. Přejděte na \"Smartphone\" na \"Supla Cloud\" a vyberte příslušné ID na kartě";
 "status_access_id_inactive" = "Identifikátor přístupu není aktivní.";
 "status_host_not_found" = "Adresa serveru nebyla nalezena";
+"status_cant_connect_to_host" = "Nelze se připojit k serveru";
 
 /* Pin setup */
 "pin_setup_header" = "Definujte svůj kód PIN";
