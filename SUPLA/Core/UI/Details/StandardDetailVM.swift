@@ -36,7 +36,7 @@ class StandardDetailVM<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
             .disposed(by: self)
     }
 
-    private func handleChannel(_ channel: SAChannel) {
+    func handleChannel(_ channel: SAChannel) {
         setTitle(getCaptionUseCase.invoke(data: channel.shareable).string)
     }
     

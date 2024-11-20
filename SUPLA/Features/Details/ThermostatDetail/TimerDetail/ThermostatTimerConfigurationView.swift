@@ -16,15 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-import RxRelay
 import RxCocoa
+import RxRelay
+import RxSwift
 
 final class ThermostatTimerConfigurationView: UIView {
-    
     var mode: TimerDetailDeviceMode = .off {
         didSet {
-            switch(mode) {
+            switch (mode) {
             case .off:
                 modeSwitch.selectedSegmentIndex = 0
                 configureTemperatureView.isHidden = true
@@ -141,13 +140,9 @@ final class ThermostatTimerConfigurationView: UIView {
         return view
     }()
     
-    private lazy var configureTemperatureView: ConfigureTemperatureView = {
-        ConfigureTemperatureView()
-    }()
+    private lazy var configureTemperatureView: ConfigureTemperatureView = .init()
     
-    private lazy var timeSelectionHeaderView: TimeSelectionHeaderView = {
-        TimeSelectionHeaderView()
-    }()
+    private lazy var timeSelectionHeaderView: TimeSelectionHeaderView = .init()
     
     private lazy var numberSelectorView: TrippleNumberSelectorView = {
         let view = TrippleNumberSelectorView()
@@ -176,9 +171,7 @@ final class ThermostatTimerConfigurationView: UIView {
         let view = UIDatePicker()
         view.datePickerMode = .dateAndTime
         view.tintColor = .primary
-        if #available(iOS 14.0, *) {
-            view.preferredDatePickerStyle = .inline
-        }
+        view.preferredDatePickerStyle = .inline
         view.addTarget(self, action: #selector(onDateChanged), for: .valueChanged)
         let currentDate = Date()
         return view
@@ -285,7 +278,7 @@ final class ThermostatTimerConfigurationView: UIView {
             startButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimens.distanceSmall),
             
             separatorView.leftAnchor.constraint(equalTo: leftAnchor),
-            separatorView.rightAnchor.constraint(equalTo: rightAnchor),
+            separatorView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
     }
     
@@ -329,7 +322,6 @@ extension ThermostatTimerConfigurationView: UIScrollViewDelegate {
 }
 
 private class ConfigureTemperatureView: UIView {
-    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
@@ -480,7 +472,6 @@ private class ConfigureTemperatureView: UIView {
 }
 
 private class TimeSelectionHeaderView: UIView {
-    
     override var intrinsicContentSize: CGSize {
         CGSize(
             width: UIView.noIntrinsicMetric,
@@ -548,7 +539,7 @@ enum TimerDetailDeviceMode: Int, CaseIterable {
     case manual = 1
     
     var text: String {
-        switch(self) {
+        switch (self) {
         case .off: Strings.General.turnOff
         case .manual: Strings.TimerDetail.manualMode
         }

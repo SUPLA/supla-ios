@@ -128,7 +128,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideElectricityIc_forElectricityMetterFunction() {
-        doTest(expectedResult: .legacy(type: .ic)) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
             
@@ -137,7 +137,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideGasIc_forGasMetterFunction() {
-        doTest(expectedResult: .legacy(type: .ic)) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_GAS_METER
             
@@ -146,7 +146,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideWaterIc_forWaterMetterFunction() {
-        doTest(expectedResult: .legacy(type: .ic)) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_WATER_METER
             
@@ -155,7 +155,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideHeatIc_forHeatMetterFunction() {
-        doTest(expectedResult: .legacy(type: .ic)) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_HEAT_METER
             

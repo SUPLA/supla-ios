@@ -19,8 +19,7 @@
 import SharedCore
 
 extension KotlinByteArray {
-    static func from(data: Data?) -> KotlinByteArray? {
-        guard let data else { return nil }
+    static func from(data: Data) -> KotlinByteArray {
         let swiftByteArray = [UInt8](data)
         return swiftByteArray
             .map(Int8.init(bitPattern:))
@@ -28,5 +27,25 @@ extension KotlinByteArray {
             .reduce(into: KotlinByteArray(size: Int32(swiftByteArray.count))) {
                 $0.set(index: Int32($1.offset), value: $1.element)
             }
+    }
+    
+    static func from(nullable: Data?) -> KotlinByteArray? {
+        guard let nullable else { return nil }
+        let swiftByteArray = [UInt8](nullable)
+        return swiftByteArray
+            .map(Int8.init(bitPattern:))
+            .enumerated()
+            .reduce(into: KotlinByteArray(size: Int32(swiftByteArray.count))) {
+                $0.set(index: Int32($1.offset), value: $1.element)
+            }
+    }
+    
+    func toData() -> Data {
+        var bytes: [UInt8] = []
+        for index in 0..<size {
+            bytes.append(UInt8(bitPattern: get(index: index)))
+        }
+        
+        return Data(bytes: &bytes, count: bytes.count)
     }
 }

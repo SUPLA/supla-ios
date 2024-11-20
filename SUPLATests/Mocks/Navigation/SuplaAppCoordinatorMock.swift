@@ -108,6 +108,12 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
         navigateToLockScreenMock.handle(unlockAction)
     }
     
+    func navigateToImpulseCounterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    }
+    
+    func navigateToCounterPhoto(profileId: Int64, channelId: Int32) {
+    }
+    
     func popToStatus() {
     }
     

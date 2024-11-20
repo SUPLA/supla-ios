@@ -56,7 +56,6 @@ extension PinSetupFeature {
         }
 
         private func setupLockScreen(_ scope: LockScreenScope) {
-            var settings = settings
             let pinHash = state.pin.sha1()
             settings.lockScreenSettings = LockScreenSettings(scope: scope, pinSum: pinHash, biometricAllowed: state.biometricAllowed)
             coordinator.popViewController()

@@ -41,8 +41,10 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToPinSetup(lockScreenScope: LockScreenScope)
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
+    func navigateToCounterPhoto(profileId: Int64, channelId: Int32)
     
     func popToStatus()
     
@@ -202,12 +204,20 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(ElectricityMeterDetailVC(item: item, pages: pages))
     }
     
+    func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(ImpulseCounterDetailVC(item: item, pages: pages))
+    }
+    
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
         navigateTo(PinSetupFeature.ViewController.create(scope: lockScreenScope))
     }
     
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction) {
         navigateTo(LockScreenFeature.ViewController.create(unlockAction: unlockAction))
+    }
+    
+    func navigateToCounterPhoto(profileId: Int64, channelId: Int32) {
+        navigateTo(CounterPhotoFeature.ViewController.create(profileId: profileId, channelId: channelId))
     }
     
     func popToStatus() {
@@ -286,9 +296,7 @@ final class SuplaAppNavigationController: UINavigationController {
             super.setNavigationBarHidden(navigationBarHiddenOverride, animated: false)
         }
         
-        if #available(iOS 14.0, *) {
-            navigationBar.topItem?.backButtonDisplayMode = .minimal
-        }
+        navigationBar.topItem?.backButtonDisplayMode = .minimal
         
         super.pushViewController(viewController, animated: animated)
     }

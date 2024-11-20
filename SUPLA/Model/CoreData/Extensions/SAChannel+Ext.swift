@@ -77,7 +77,7 @@ extension SAChannel {
             online: isOnline(),
             function: self.func.suplaFuntion,
             batteryInfo: batteryInfo,
-            value: KotlinByteArray.from(data: value?.dataValue())
+            value: KotlinByteArray.from(nullable: value?.dataValue())
         )
     }
 }

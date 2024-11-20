@@ -26,4 +26,12 @@ extension KotlinInt {
             nil
         }
     }
+    
+    static func from(_ number: Int32?) -> KotlinInt? {
+        return if let number {
+            KotlinInt(int: number)
+        } else {
+            nil
+        }
+    }
 }

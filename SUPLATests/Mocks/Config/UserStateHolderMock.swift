@@ -51,4 +51,14 @@ final class UserStateHolderMock: UserStateHolder {
         setElectricityMeterSettingsParameters.append((settings, profileId, remoteId))
     }
     
+    var getPhotoCreationTimeMock: FunctionMock<(Int64, Int32), Date?> = .init()
+    func getPhotoCreationTime(profileId: Int64, remoteId: Int32) -> Date? {
+        return getPhotoCreationTimeMock.handle((profileId, remoteId))
+    }
+    
+    var setPhotoCreationTimeMock: FunctionMock<(String, Int64, Int32), Void> = .init()
+    func setPhotoCreationTime(_ time: String, profileId: Int64, remoteId: Int32) {
+        setPhotoCreationTimeMock.handle((time, profileId, remoteId))
+    }
+    
 }

@@ -222,6 +222,8 @@ extension DiContainer {
         register(NotificationCenterWrapper.self, NotificationCenterWrapperImpl())
         // Usecases - Lock
         register(CheckPinUseCase.self, CheckPinUseCaseImpl())
+        // UseCases - Ocr
+        register(DownloadOcrPhotoUseCase.self, DownloadOcrPhotoUseCaseImpl())
         
         // MARK: Features
         
@@ -231,6 +233,10 @@ extension DiContainer {
         // MARK: Shared
 
         // level 0
+        let ocrImageNamingProvider = registerAndGet(OcrImageNamingProvider.self, SharedCore.OcrImageNamingProvider())
+        let cacheFileAccess = registerAndGet(CacheFileAccessProxy.self, CacheFileAccessProxyImpl())
+        let storeFileInDirectoryUseCase = SharedCore.StoreFileInDirectoryUseCase(cacheFileAccess: cacheFileAccess)
+        let base64Helper = SharedCore.Base64Helper()
         let getChannelDefaultCaptionUseCase = registerAndGet(
             GetChannelDefaultCaptionUseCase.self,
             SharedCore.GetChannelDefaultCaptionUseCase()
@@ -252,9 +258,24 @@ extension DiContainer {
                 applicationPreferences: globalSettings
             )
         )
+        register(
+            CheckOcrPhotoExistsUseCase.self,
+            SharedCore.CheckOcrPhotoExistsUseCase(
+                ocrImageNamingProvider: ocrImageNamingProvider,
+                cacheFileAccess: cacheFileAccess
+            )
+        )
+        register(
+            StoreChannelOcrPhotoUseCase.self,
+            SharedCore.StoreChannelOcrPhotoUseCase(
+                storeFileInDirectoryUseCase: storeFileInDirectoryUseCase,
+                ocrImageNamingProvider: ocrImageNamingProvider,
+                base64Helper: base64Helper
+            )
+        )
         
         // level 2
-        let getChannelIssuesForListUseCase = registerAndGet(
+        register(
             GetChannelIssuesForListUseCase.self,
             SharedCore.GetChannelIssuesForListUseCase(
                 getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase

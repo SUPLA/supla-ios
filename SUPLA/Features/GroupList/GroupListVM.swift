@@ -79,10 +79,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
             .asDriverWithoutError()
             .drive(
                 onNext: { [weak self] url in
-                    switch (url) {
-                    case .suplaCloud: self?.send(event: .openCloud)
-                    case let .privateCloud(url): self?.send(event: .openPrivateCloud(url: url))
-                    }
+                    self?.send(event: .open(url: url.url))
                 }
             )
             .disposed(by: self)
@@ -92,8 +89,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
 enum GroupListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
     case naviagetToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
-    case openPrivateCloud(url: URL)
-    case openCloud
+    case open(url: URL)
 }
 
 struct GroupListViewState: ViewState {}
