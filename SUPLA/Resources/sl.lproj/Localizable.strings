@@ -497,6 +497,7 @@
 "status_access_id_not_assigned" = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran \"Supla Cloud\" in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "status_access_id_inactive" = "Identifikator dostopa ni na voljo.";
 "status_host_not_found" = "Naslova strežnika ni mogoče najti";
+"status_cant_connect_to_host" = "Ni mogoče se povezati s strežnikom";
 
 /* Pin setup */
 "pin_setup_header" = "Opredelite svojo kodo PIN";

@@ -497,6 +497,7 @@
 "status_access_id_not_assigned" = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα \"Supla Cloud\" στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
 "status_access_id_inactive" = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
 "status_host_not_found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
+"status_cant_connect_to_host" = "Αδυναμία σύνδεσης με τον διακομιστή";
 
 /* Pin setup */
 "pin_setup_header" = "Ορίστε το PIN σας";

@@ -495,6 +495,7 @@
 "status_access_id_not_assigned" = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku \"Supla Cloud\" a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
 "status_access_id_inactive" = "Prístupový identifikátor nie je aktívny.";
 "status_host_not_found" = "Adresa servera nebola nájdená";
+"status_cant_connect_to_host" = "Nedá sa spojiť so serverom";
 
 /* Pin setup */
 "pin_setup_header" = "Definovať PIN kód";

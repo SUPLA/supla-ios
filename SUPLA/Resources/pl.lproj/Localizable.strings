@@ -518,6 +518,7 @@
 "status_access_id_not_assigned" = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę \"Supla Cloud\" i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "status_access_id_inactive" = "Identyfikator dostępu nieaktywny.";
 "status_host_not_found" = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
+"status_cant_connect_to_host" = "Nie można połączyć się z serwerem";
 
 /* Pin setup */
 "pin_setup_title" = "Konfiguracja PIN";
