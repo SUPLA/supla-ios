@@ -230,7 +230,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
                 .changing(path: \.changing, to: true)
             
-            let newTemperature = Float(Int((min + (max - min) * position) * 10)) / 10
+            let newTemperature = (min + (max - min) * position).roundToTenths()
             switch (type) {
             case .cool:
                 delayedThermostatActionSubject.emit(
@@ -325,7 +325,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         guard let temperature = temperature
         else { return 0 + step.rawValue }
         
-        let newTemperature = temperature + step.rawValue
+        let newTemperature = (temperature + step.rawValue).roundToTenths()
         if (newTemperature < configMin) {
             return configMin
         } else if (newTemperature > configMax) {
