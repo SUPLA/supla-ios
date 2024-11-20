@@ -25,7 +25,7 @@ let MINUTE_IN_SEC = 60
 
 extension Int16 {
     func fromSuplaTemperature() -> Float {
-        return Float(self) / 100
+        return (Float(self) / 100).roundToTenths()
     }
 }
 
