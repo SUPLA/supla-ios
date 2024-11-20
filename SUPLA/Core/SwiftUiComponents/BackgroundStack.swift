@@ -22,7 +22,7 @@ struct BackgroundStack<Content: View>: View {
     var alignment: Alignment = .center
     var color: Color = .Supla.background
     var content: () -> Content
-    
+
     init(
         alignment: Alignment = .center,
         color: Color = .Supla.background,
@@ -35,11 +35,7 @@ struct BackgroundStack<Content: View>: View {
 
     var body: some View {
         ZStack(alignment: alignment) {
-            if #available(iOS 14.0, *) {
-                Color.Supla.background.ignoresSafeArea()
-            } else {
-                Color.Supla.background
-            }
+            Color.Supla.background.ignoresSafeArea()
             content()
         }
     }

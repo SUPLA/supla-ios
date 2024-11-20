@@ -66,6 +66,23 @@ struct Text {
         }
     }
     
+    struct TitleMedium: SuplaText {
+        var text: String
+        var alignment: SwiftUI.TextAlignment = .center
+
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(.Supla.titleMedium)
+                    .multilineTextAlignment(alignment)
+            } else {
+                SwiftUI.Text(text)
+                    .font(.Supla.titleMedium)
+                    .multilineTextAlignment(alignment)
+            }
+        }
+    }
+    
     struct BodyLarge: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center

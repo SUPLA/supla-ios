@@ -552,3 +552,9 @@
 "details_em_hour_marker_title" = "%@ Uhr";
 "em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
 "em_chart_all_phases" = "Phase 1+2+3";
+
+/* Counter photo */
+"counter_photo_toolbar" = "Bilder von Zähler";
+"counter_photo_counter_area" = "Zählerbereich";
+"counter_photo_original_photo" = "Originalbild";
+"counter_photo_settings" = "Cloudkonfiguration";

@@ -54,8 +54,7 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
                 return self.profileRepository
                     .save(profile)
                     .map {
-                        var settings = self.globalSettings
-                        settings.anyAccountRegistered = true
+                        self.globalSettings.anyAccountRegistered = true
                         
                         let needsReauth = profile.isActive && authDataChanged
                         if (needsReauth) {

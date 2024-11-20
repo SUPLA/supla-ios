@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhoto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreDouble, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhoto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreDouble, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
 @protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreChannelIssueItem, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
 
@@ -1029,8 +1029,18 @@ __attribute__((swift_name("CacheFileAccess")))
 - (BOOL)dirExistsName:(NSString *)name __attribute__((swift_name("dirExists(name:)")));
 - (BOOL)fileExistsFile:(SharedCoreCacheFileAccessFile *)file __attribute__((swift_name("fileExists(file:)")));
 - (BOOL)mkdirName:(NSString *)name __attribute__((swift_name("mkdir(name:)")));
-- (SharedCoreKotlinByteArray *)readBytesFile:(SharedCoreCacheFileAccessFile *)file __attribute__((swift_name("readBytes(file:)")));
-- (void)writeBytesFile:(SharedCoreCacheFileAccessFile *)file bytes:(SharedCoreKotlinByteArray *)bytes __attribute__((swift_name("writeBytes(file:bytes:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (SharedCoreKotlinByteArray * _Nullable)readBytesFile:(SharedCoreCacheFileAccessFile *)file error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("readBytes(file:)")));
+
+/**
+ * @note This method converts instances of Exception to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (BOOL)writeBytesFile:(SharedCoreCacheFileAccessFile *)file bytes:(SharedCoreKotlinByteArray *)bytes error:(NSError * _Nullable * _Nullable)error __attribute__((swift_name("writeBytes(file:bytes:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1235,6 +1245,35 @@ __attribute__((swift_name("KotlinArray")))
 - (T _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
 - (id<SharedCoreKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
 - (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
+@end
+
+__attribute__((swift_name("KotlinThrowable")))
+@interface SharedCoreKotlinThrowable : SharedCoreBase
+@property (readonly) SharedCoreKotlinThrowable * _Nullable cause __attribute__((swift_name("cause")));
+@property (readonly) NSString * _Nullable message __attribute__((swift_name("message")));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note annotations
+ *   kotlin.experimental.ExperimentalNativeApi
+*/
+- (SharedCoreKotlinArray<NSString *> *)getStackTrace __attribute__((swift_name("getStackTrace()")));
+- (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+- (NSError *)asError __attribute__((swift_name("asError()")));
+@end
+
+__attribute__((swift_name("KotlinException")))
+@interface SharedCoreKotlinException : SharedCoreKotlinThrowable
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
 __attribute__((swift_name("KotlinIterator")))

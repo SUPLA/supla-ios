@@ -78,4 +78,8 @@ extension AuthProfileItem {
             return objectID.uriRepresentation().dataRepresentation.base64EncodedString()
         }
     }
+    
+    var id: Int64 {
+        Int64(idString.hash)
+    }
 }

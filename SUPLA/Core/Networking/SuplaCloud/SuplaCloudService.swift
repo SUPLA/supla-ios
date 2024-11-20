@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 protocol SuplaCloudService {
     func getInitialMeasurements(
@@ -52,6 +53,10 @@ protocol SuplaCloudService {
         remoteId: Int32,
         beforeTimestamp: TimeInterval
     ) -> Observable<[SuplaCloudClient.ElectricityMeasurement]>
+    
+    func getImpulseCounterPhoto(
+        remoteId: Int32
+    ) -> Observable<SharedCore.ImpulseCounterPhoto>
 }
 
 final class SuplaCloudServiceImpl: SuplaCloudService {
@@ -213,6 +218,29 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         }
     }
     
+    func getImpulseCounterPhoto(
+        remoteId: Int32
+    ) -> Observable<SharedCore.ImpulseCounterPhoto> {
+        do {
+            return requestHelper.getOAuthRequest(urlString: try buildOcrPhotoUrl(remoteId))
+                .flatMap { (response, data) in
+                    if (response.statusCode != 200) {
+                        return Observable<SharedCore.ImpulseCounterPhoto>
+                            .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                    }
+                    
+                    do {
+                        let measurements = try SharedCore.ImpulseCounterPhoto.fromJson(data: data)
+                        return Observable.just(measurements)
+                    } catch {
+                        return Observable.error(error)
+                    }
+                }
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
     private func buildMeasurementsUrl(_ remoteId: Int32, _ afterTimestamp: TimeInterval) throws -> String {
         let host = try configHolder.requireUrl()
         let urlPath = Constants.urlMeasurements.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
@@ -231,6 +259,12 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         return "\(host)\(urlPath)\(Int(beforeTimestamp))"
     }
     
+    private func buildOcrPhotoUrl(_ remoteId: Int32) throws -> String {
+        let host = try configHolder.requireUrl()
+        let urlPath = Constants.urlOcrPhoto.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
+        return "\(host)\(urlPath)"
+    }
+    
     fileprivate enum Constants {
         static let apiVersion = "2.2.0"
         
@@ -239,6 +273,8 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         static let urlMeasurements = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=ASC&limit=5000&afterTimestamp="
         
         static let urlFirstMeasurementBefore = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=DESC&limit=1&beforeTimestamp="
+        
+        static let urlOcrPhoto = "/api/v3/integrations/ocr/{remoteId}/latest"
     }
 }
 

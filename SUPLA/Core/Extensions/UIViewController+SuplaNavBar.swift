@@ -16,7 +16,6 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
 import Foundation
 
@@ -28,14 +27,12 @@ extension UIViewController {
             .foregroundColor: UIColor.onPrimaryContainer,
             .font: toolbarFont
         ]
-        
+
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.tintColor = .onPrimaryContainer
-        
-        if #available(iOS 14.0, *) {
-            navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
-        }
+
+        navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
 }

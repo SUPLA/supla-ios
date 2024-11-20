@@ -54,7 +54,7 @@ class BaseDetailTypeProviderUseCase {
             SUPLA_CHANNELFNC_IC_GAS_METER,
             SUPLA_CHANNELFNC_IC_WATER_METER,
             SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return .legacy(type: .ic)
+            return .impulseCounterDetail(pages: [.historyIc])
         case
             SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
@@ -88,6 +88,7 @@ enum DetailType: Equatable {
     case gpmDetail(pages: [DetailPage])
     case windowDetail(pages: [DetailPage])
     case electricityMeterDetail(pages: [DetailPage])
+    case impulseCounterDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {

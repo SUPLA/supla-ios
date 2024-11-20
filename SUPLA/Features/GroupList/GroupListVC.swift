@@ -38,9 +38,7 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
             coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
         case let .naviagetToRollerShutterDetail(item, pages):
             coordinator.navigateToWindowDetail(item: item, pages: pages)
-        case .openCloud:
-            coordinator.openCloud()
-        case .openPrivateCloud(let url):
+        case .open(let url):
             coordinator.openUrl(url: url)
         }
     }

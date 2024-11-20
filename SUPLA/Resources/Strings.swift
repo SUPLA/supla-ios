@@ -462,6 +462,13 @@ struct Strings {
         static let energyLabel = "details_em_energy_label".toLocalized()
         static let hourMarkerTitle = "details_em_hour_marker_title".toLocalized()
     }
+    
+    struct CounterPhoto {
+        static let toolbar = "counter_photo_toolbar".toLocalized()
+        static let counterArea = "counter_photo_counter_area".toLocalized()
+        static let originalPhoto = "counter_photo_original_photo".toLocalized()
+        static let settings = "counter_photo_settings".toLocalized()
+    }
 }
 
 extension String {

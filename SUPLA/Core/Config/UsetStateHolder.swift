@@ -25,6 +25,9 @@ protocol UserStateHolder {
     
     func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings
     func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32)
+    
+    func getPhotoCreationTime(profileId: Int64, remoteId: Int32) -> Date?
+    func setPhotoCreationTime(_ time: String, profileId: Int64, remoteId: Int32)
 }
 
 final class UserStateHolderImpl: UserStateHolder {
@@ -97,6 +100,21 @@ final class UserStateHolderImpl: UserStateHolder {
             let errorString = String(describing: error)
             SALog.error("Could not encode state: \(errorString)")
         }
+    }
+    
+    private let photoCreationTimeKey = "UserStateHolder.photo_creation_time"
+    func getPhotoCreationTime(profileId: Int64, remoteId: Int32) -> Date? {
+        let key = parametrizedKey(key: photoCreationTimeKey, String(profileId), String(remoteId))
+        if let dateString = userDefaults.string(forKey: key) {
+            let dateFormatter = ISO8601DateFormatter()
+            return dateFormatter.date(from: dateString)
+        }
+        return nil
+    }
+    
+    func setPhotoCreationTime(_ time: String, profileId: Int64, remoteId: Int32) {
+        let key = parametrizedKey(key: photoCreationTimeKey, String(profileId), String(remoteId))
+        userDefaults.set(time, forKey: key)
     }
     
     private func parametrizedKey(key: String, _ parameters: String...) -> String {

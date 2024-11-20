@@ -188,6 +188,79 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "nextByte()"
     ResultType: "int8_t"
+- Name: "SharedCoreKotlinException"
+  SwiftName: "KotlinException"
+  Methods:
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+  - Selector: "initWithMessage:cause:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "initWithCause:"
+    MethodKind: "Instance"
+    SwiftName: "init(cause:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+- Name: "SharedCoreKotlinThrowable"
+  SwiftName: "KotlinThrowable"
+  Properties:
+  - Name: "cause"
+    PropertyKind: "Instance"
+    SwiftName: "cause"
+    Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Name: "message"
+    PropertyKind: "Instance"
+    SwiftName: "message"
+    Type: "NSString * _Nullable"
+  Methods:
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+  - Selector: "initWithCause:"
+    MethodKind: "Instance"
+    SwiftName: "init(cause:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:cause:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "getStackTrace"
+    MethodKind: "Instance"
+    SwiftName: "getStackTrace()"
+    ResultType: "SharedCoreKotlinArray<NSString *> * _Nonnull"
+  - Selector: "printStackTrace"
+    MethodKind: "Instance"
+    SwiftName: "printStackTrace()"
+    ResultType: "void"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreSuplaHvacMode"
   SwiftBridge: "SuplaHvacMode"
   SwiftName: "__SuplaHvacMode"
@@ -2907,17 +2980,17 @@ Protocols:
     Parameters:
     - Position: 0
       Type: "NSString * _Nonnull"
-  - Selector: "readBytesFile:"
+  - Selector: "readBytesFile:error:"
     MethodKind: "Instance"
     SwiftName: "readBytes(file:)"
-    ResultType: "SharedCoreKotlinByteArray * _Nonnull"
+    ResultType: "SharedCoreKotlinByteArray * _Nullable"
     Parameters:
     - Position: 0
       Type: "SharedCoreCacheFileAccessFile * _Nonnull"
-  - Selector: "writeBytesFile:bytes:"
+  - Selector: "writeBytesFile:bytes:error:"
     MethodKind: "Instance"
     SwiftName: "writeBytes(file:bytes:)"
-    ResultType: "void"
+    ResultType: "BOOL"
     Parameters:
     - Position: 0
       Type: "SharedCoreCacheFileAccessFile * _Nonnull"

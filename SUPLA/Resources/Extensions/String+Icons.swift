@@ -88,6 +88,8 @@ extension String {
         static let battery_100 = "icon_battery_100"
         static let battery_not_used = "icon_battery_not_used"
         
+        static let ocrPhoto = "icon_ocr_photo"
+        
         // MARK: Functions
         static let fncUnknown = "unknown_channel"
         // Electricitymeter

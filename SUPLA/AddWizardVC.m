@@ -576,11 +576,7 @@
             }
             NSString *msg = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Connection with the device cannot be set!", NULL), errInfo];
             
-            if (@available(iOS 14.0, *)) {
-                [self showErrorWithAttributedString:[self messageExtendedWithNotificationOfPermissions:msg]];
-            } else {
-                [self showError:msg];
-            }
+            [self showErrorWithAttributedString:[self messageExtendedWithNotificationOfPermissions:msg]];
         }
             break;
         case EspConfigResultCodeFailed:

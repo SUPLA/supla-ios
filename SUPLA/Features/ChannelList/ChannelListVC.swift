@@ -48,6 +48,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             coordinator.navigateToWindowDetail(item: item, pages: pages)
         case .navigateToElectricityMeterDetail(let item, let pages):
             coordinator.navigateToElectricityMeterDetail(item: item, pages: pages)
+        case .navigateToImpulseCounterDetail(let item, let pages):
+            coordinator.navigateToImpulseCounterDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
         }

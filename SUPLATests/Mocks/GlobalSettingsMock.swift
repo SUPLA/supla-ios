@@ -20,6 +20,10 @@
 
 class GlobalSettingsMock: GlobalSettings {
     
+    var nextProfileId: Int32 {
+        1
+    }
+    
     var anyAccountRegisteredReturns: Bool = false
     var anyAccountRegisteredValues: [Bool] = []
     var anyAccountRegistered: Bool {
@@ -136,5 +140,8 @@ class GlobalSettingsMock: GlobalSettings {
     var batteryWarningLevel: Int32 {
         get { batteryWarningLevelMock.get() }
         set { batteryWarningLevelMock.set(newValue) }
+    }
+    
+    func setProfileId(_ id: Int32) {
     }
 }

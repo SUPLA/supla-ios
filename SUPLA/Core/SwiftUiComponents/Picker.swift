@@ -28,38 +28,26 @@ extension SuplaCore {
         let items: [T]
 
         var body: some View {
-            if #available(iOS 14.0, *) {
-                Menu {
-                    SwiftUI.Picker(selection: selected) {
-                        ForEach(items) { item in
-                            Text.BodyMedium(text: item.label).tag(item)
-                                .padding([.top, .bottom], 4)
-                                .padding([.leading, .trailing], Distance.standard)
-                        }
-                    } label: {}
-                } label: {
-                    HStack {
-                        Text.BodyMedium(text: selected.wrappedValue.label)
-                        Image(.Icons.arrowDown)
-                            .resizable()
-                            .frame(width: 16, height: 16)
-                            .foregroundColor(Color.Supla.onBackground)
-                    }
-                    .padding([.top, .bottom], 4)
-                    .padding([.leading, .trailing], Distance.standard)
-                }
-                .accentColor(Color.Supla.onBackground)
-            } else {
-                SwiftUI.Picker("", selection: selected) {
+            Menu {
+                SwiftUI.Picker(selection: selected) {
                     ForEach(items) { item in
                         Text.BodyMedium(text: item.label).tag(item)
                             .padding([.top, .bottom], 4)
-                            .padding([.leading, .trailing], 11)
+                            .padding([.leading, .trailing], Distance.standard)
                     }
+                } label: {}
+            } label: {
+                HStack {
+                    Text.BodyMedium(text: selected.wrappedValue.label)
+                    Image(.Icons.arrowDown)
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                        .foregroundColor(Color.Supla.onBackground)
                 }
-                .accentColor(Color.Supla.onBackground)
-                .padding(.top, 4)
+                .padding([.top, .bottom], 4)
+                .padding([.leading, .trailing], Distance.standard)
             }
+            .accentColor(Color.Supla.onBackground)
         }
     }
 }

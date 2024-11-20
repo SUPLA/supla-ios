@@ -79,6 +79,8 @@ extension UIImage {
     static let iconBattery100 = UIImage(named: .Icons.battery_100)
     static let iconBatteryNotUsed = UIImage(named: .Icons.battery_not_used)
     
+    static let iconOcrPhoto = UIImage(named: .Icons.ocrPhoto)
+    
     // MARK: Functions
     static let fncUnknown = UIImage(named: .Icons.fncUnknown)
     // Thermostat

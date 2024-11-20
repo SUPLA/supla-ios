@@ -985,6 +985,19 @@
 		A5E05BD02CB7F7ED00202583 /* BaseChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */; };
 		A5E05BD42CB809A700202583 /* HistoryDataSet+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BD32CB809A300202583 /* HistoryDataSet+Test.swift */; };
 		A5E05BD62CB80CCF00202583 /* AggregatedValue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BD52CB80CC900202583 /* AggregatedValue+Ext.swift */; };
+		A5E0DF6C2CEB652600362451 /* ImpulseCounterDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF6B2CEB651D00362451 /* ImpulseCounterDetailVM.swift */; };
+		A5E0DF6E2CEB66C900362451 /* ImpulseCounterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */; };
+		A5E0DF702CEB79C300362451 /* CacheFileAccessProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF6F2CEB79BB00362451 /* CacheFileAccessProxy.swift */; };
+		A5E0DF732CEBDBD000362451 /* CheckOcrPhotoExistsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF722CEBDBCF00362451 /* CheckOcrPhotoExistsUseCase.swift */; };
+		A5E0DF7A2CEC802600362451 /* ImpulseCounterPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */; };
+		A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF7B2CEC82A700362451 /* DownloadOcrPhotoUseCase.swift */; };
+		A5E0DF7E2CEC8E7A00362451 /* StoreChannelOcrPhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF7D2CEC8E6F00362451 /* StoreChannelOcrPhotoUseCase.swift */; };
+		A5E0DF862CECA1D500362451 /* CounterPhotoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF852CECA1CE00362451 /* CounterPhotoFeature.swift */; };
+		A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */; };
+		A5E0DF8A2CECA2FA00362451 /* CounterPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */; };
+		A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */; };
+		A5E0DF8E2CECAD3000362451 /* CounterPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */; };
+		A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */; };
 		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
 		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */; };
@@ -2468,6 +2481,19 @@
 		A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChartMarkerView.swift; sourceTree = "<group>"; };
 		A5E05BD32CB809A300202583 /* HistoryDataSet+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryDataSet+Test.swift"; sourceTree = "<group>"; };
 		A5E05BD52CB80CC900202583 /* AggregatedValue+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AggregatedValue+Ext.swift"; sourceTree = "<group>"; };
+		A5E0DF6B2CEB651D00362451 /* ImpulseCounterDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterDetailVM.swift; sourceTree = "<group>"; };
+		A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterDetailVC.swift; sourceTree = "<group>"; };
+		A5E0DF6F2CEB79BB00362451 /* CacheFileAccessProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFileAccessProxy.swift; sourceTree = "<group>"; };
+		A5E0DF722CEBDBCF00362451 /* CheckOcrPhotoExistsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOcrPhotoExistsUseCase.swift; sourceTree = "<group>"; };
+		A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterPhoto.swift; sourceTree = "<group>"; };
+		A5E0DF7B2CEC82A700362451 /* DownloadOcrPhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOcrPhotoUseCase.swift; sourceTree = "<group>"; };
+		A5E0DF7D2CEC8E6F00362451 /* StoreChannelOcrPhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreChannelOcrPhotoUseCase.swift; sourceTree = "<group>"; };
+		A5E0DF852CECA1CE00362451 /* CounterPhotoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoFeature.swift; sourceTree = "<group>"; };
+		A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVM.swift; sourceTree = "<group>"; };
+		A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoView.swift; sourceTree = "<group>"; };
+		A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoViewState.swift; sourceTree = "<group>"; };
+		A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVC.swift; sourceTree = "<group>"; };
+		A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrImageNamingProvider.swift; sourceTree = "<group>"; };
 		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeterLogUseCaseTests.swift; sourceTree = "<group>"; };
@@ -4006,6 +4032,7 @@
 		A54149242B6302B100B44BD6 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				A5E0DF6A2CEB4DE900362451 /* ImpulseCounter */,
 				A5EDE2152CA55F7C00BEDAE4 /* ElectricityMeterDetail */,
 				A55A8D6C2BA831AD00C540D4 /* WindowDetail */,
 				A54149252B6302EA00B44BD6 /* GpmDetail */,
@@ -5611,6 +5638,46 @@
 			path = MeasurementsProvider;
 			sourceTree = "<group>";
 		};
+		A5E0DF6A2CEB4DE900362451 /* ImpulseCounter */ = {
+			isa = PBXGroup;
+			children = (
+				A5E0DF842CECA1A800362451 /* CounterPhoto */,
+				A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */,
+				A5E0DF6B2CEB651D00362451 /* ImpulseCounterDetailVM.swift */,
+			);
+			path = ImpulseCounter;
+			sourceTree = "<group>";
+		};
+		A5E0DF712CEBDBB700362451 /* Ocr */ = {
+			isa = PBXGroup;
+			children = (
+				A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */,
+				A5E0DF7D2CEC8E6F00362451 /* StoreChannelOcrPhotoUseCase.swift */,
+				A5E0DF7B2CEC82A700362451 /* DownloadOcrPhotoUseCase.swift */,
+				A5E0DF722CEBDBCF00362451 /* CheckOcrPhotoExistsUseCase.swift */,
+			);
+			path = Ocr;
+			sourceTree = "<group>";
+		};
+		A5E0DF802CEC986800362451 /* File */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		A5E0DF842CECA1A800362451 /* CounterPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */,
+				A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */,
+				A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */,
+				A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */,
+				A5E0DF852CECA1CE00362451 /* CounterPhotoFeature.swift */,
+			);
+			path = CounterPhoto;
+			sourceTree = "<group>";
+		};
 		A5E40B4D2B85EB0500DB6ABE /* LogDownload */ = {
 			isa = PBXGroup;
 			children = (
@@ -5671,6 +5738,7 @@
 		A5E4904E2A3C7987006801FE /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				A5E0DF6F2CEB79BB00362451 /* CacheFileAccessProxy.swift */,
 				A598CACC2CC2997900A784FA /* DoubleFormatter.swift */,
 				A5A1C0A729F2AAFA0083818D /* VibrationService.swift */,
 				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
@@ -5972,23 +6040,25 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				A58D1B892CDCFC4400B5A019 /* GetCaptionUseCase.swift */,
-				A5D7126A2C380D6A00A8EF52 /* Lock */,
+				A5E0DF802CEC986800362451 /* File */,
 				A5A160162C2AE9DF0049AA73 /* App */,
-				A55501FA2B83F26C00FD3296 /* Notification */,
-				A5A14A3B2B6130E9004B1598 /* ChannelConfig */,
-				A56233F12AB3A375001CB948 /* Thermostat */,
 				A5F29B942A20B74B00ED700A /* Channel */,
 				A530EE342A57F64100F8DAEE /* ChannelBase */,
+				A5A14A3B2B6130E9004B1598 /* ChannelConfig */,
 				A58A9C032AA1D57300D28848 /* ChannelRelation */,
 				A530EE3C2A58412400F8DAEE /* Client */,
 				A5F29BE92A27785F00ED700A /* Detail */,
+				A58D1B892CDCFC4400B5A019 /* GetCaptionUseCase.swift */,
 				A5F29B9B2A20D2DD00ED700A /* Group */,
 				A5E490582A3FA137006801FE /* Icon */,
 				A5F29BAD2A24BA5800ED700A /* LegacyWrapper.swift */,
 				A5F29B852A1F95BA00ED700A /* Location */,
+				A5D7126A2C380D6A00A8EF52 /* Lock */,
+				A55501FA2B83F26C00FD3296 /* Notification */,
+				A5E0DF712CEBDBB700362451 /* Ocr */,
 				A5F29BCA2A2622A900ED700A /* Profile */,
 				A5F29B912A20B53F00ED700A /* Scene */,
+				A56233F12AB3A375001CB948 /* Thermostat */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -6185,6 +6255,7 @@
 		A5FE675D2A65CC2A00147D1F /* ClientApi */ = {
 			isa = PBXGroup;
 			children = (
+				A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */,
 				A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */,
 				A5FE675E2A65CC4300147D1F /* Autodiscover.swift */,
 				A5FE67602A65CC9900147D1F /* SuplaCloudClient.swift */,
@@ -6595,6 +6666,7 @@
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A598CABD2CC0F45300A784FA /* SwitchElectricityDetailsView.swift in Sources */,
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
+				A5E0DF702CEB79C300362451 /* CacheFileAccessProxy.swift in Sources */,
 				A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */,
 				A57668F52AEAA8410025509D /* TemperatureChartState.swift in Sources */,
 				A5B3CBF32B625DE900F95AC3 /* RainValueProvider.swift in Sources */,
@@ -6660,6 +6732,7 @@
 				A5E05BD02CB7F7ED00202583 /* BaseChartMarkerView.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */,
 				A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */,
 				A5B3CC082B62817B00F95AC3 /* WeigthValueStringProvider.swift in Sources */,
 				A57668DB2AE992310025509D /* Measurement.swift in Sources */,
@@ -6667,6 +6740,7 @@
 				A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */,
 				A55A8D842BAAD06C00C540D4 /* UpDownControllButton.swift in Sources */,
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
+				A5E0DF862CECA1D500362451 /* CounterPhotoFeature.swift in Sources */,
 				A55A8DAA2BAC608C00C540D4 /* SAAuthorizationDialogVC.swift in Sources */,
 				A5B8A47E2CBD0806002FA7B2 /* SuplaCore+Dialog.swift in Sources */,
 				A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */,
@@ -6772,6 +6846,7 @@
 				A55A8D822BA9B6B400C540D4 /* WindowColors.swift in Sources */,
 				A5A15FE62C256F850049AA73 /* AppDelegate.swift in Sources */,
 				A5074BD12BCE72400081B6B1 /* FacadeBlindsVC.swift in Sources */,
+				A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */,
 				A5B3CC022B627ADC00F95AC3 /* HumidityValueStringProvider.swift in Sources */,
 				A51BE8ED2AA713A500718F2F /* ThermostatDetailVM.swift in Sources */,
 				A5B3CBDF2B62504D00F95AC3 /* GetChannelValueUseCase.swift in Sources */,
@@ -6927,6 +7002,7 @@
 				A5F29B832A1F8D9B00ED700A /* SALocation+Ext.swift in Sources */,
 				A5A15FEA2C2987450049AA73 /* UINavigationController+Ext.swift in Sources */,
 				A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */,
+				A5E0DF7E2CEC8E7A00362451 /* StoreChannelOcrPhotoUseCase.swift in Sources */,
 				A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */,
 				A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
@@ -6953,6 +7029,7 @@
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
 				A5B8A4782CB869E8002FA7B2 /* ElectricityChartMarkerView.swift in Sources */,
+				A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */,
 				A5E05BB92CB5127C00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift in Sources */,
 				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
 				A5A1600F2C2AC18F0049AA73 /* SuplaAppEvent.swift in Sources */,
@@ -7044,6 +7121,7 @@
 				A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */,
 				A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */,
 				A5EC524C2C1043B30022F055 /* ShadingBlindWindowState.swift in Sources */,
+				A5E0DF6C2CEB652600362451 /* ImpulseCounterDetailVM.swift in Sources */,
 				A57668D32AE941630025509D /* DownloadChannelMeasurementsUseCase.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				A55A8DB32BAC65E500C540D4 /* SADialogNegativeButton.swift in Sources */,
@@ -7070,11 +7148,13 @@
 				A5E05BB72CB50C2D00202583 /* TemperatureAndHumidityMeasurementsProvider.swift in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
+				A5E0DF8A2CECA2FA00362451 /* CounterPhotoView.swift in Sources */,
 				A5B3CC042B627F3800F95AC3 /* PressureValueStringProvider.swift in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				6E8004D328493463009A917A /* AuthProfileItem.swift in Sources */,
 				A55A8D862BAAF52500C540D4 /* IssueView.swift in Sources */,
 				A5074BDD2BCFE4D80081B6B1 /* SuplaChannelRollerShutterConfig.swift in Sources */,
+				A5E0DF7A2CEC802600362451 /* ImpulseCounterPhoto.swift in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
 				A530EE202A56FE4F00F8DAEE /* IconType.swift in Sources */,
 				A5B8A4912CBD4756002FA7B2 /* WithFunction.swift in Sources */,
@@ -7158,6 +7238,7 @@
 				A5E05BBB2CB5184700202583 /* GeneralPurposeMeterMeasurementsProvider.swift in Sources */,
 				A52BFEBB2B074D7900A2F64C /* SuplaDeviceConfig.swift in Sources */,
 				A5F29BB82A24D16000ED700A /* ChannelGroupRelationRepository.swift in Sources */,
+				A5E0DF8E2CECAD3000362451 /* CounterPhotoVC.swift in Sources */,
 				A5477DBB2AA202A800220B4A /* SAChannelRelation+Ext.swift in Sources */,
 				A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
@@ -7239,6 +7320,7 @@
 				A55A8DA42BAC2B0E00C540D4 /* SAAlertDialogVM.swift in Sources */,
 				A5E05BB12CB46E6800202583 /* SATemperatureMeasurementItem+Ext.swift in Sources */,
 				A5B3A4BB2BB5B8F20001D006 /* WindowType.swift in Sources */,
+				A5E0DF732CEBDBD000362451 /* CheckOcrPhotoExistsUseCase.swift in Sources */,
 				A5E05BCE2CB7154B00202583 /* NSDecimalNumber+Ext.swift in Sources */,
 				A56233ED2AB38CED001CB948 /* TemperatureChangeStep.swift in Sources */,
 				A51BE90F2AAAFB1400718F2F /* SetChannelConfigUseCase.swift in Sources */,
@@ -7305,6 +7387,7 @@
 				A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */,
 				A594ADC72C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift in Sources */,
 				A530EE2C2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift in Sources */,
+				A5E0DF6E2CEB66C900362451 /* ImpulseCounterDetailVC.swift in Sources */,
 				A54149302B63059200B44BD6 /* GpmHistoryDetailVC.swift in Sources */,
 				AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */,
 				01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */,
@@ -7366,6 +7449,7 @@
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				A5AD70292C04691100A36318 /* MoveTimeView.swift in Sources */,
+				A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
 				A50B5D4A2BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
@@ -8083,7 +8167,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -8122,7 +8206,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -8157,7 +8241,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SUPLATests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -8185,7 +8269,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SUPLATests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
