@@ -233,4 +233,9 @@ final class UseCaseLegacyWrapper: NSObject {
             SALog.error("Could not update channel state id `\(channelId)`")
         }
     }
+    
+    @objc static func reloadChannelToRootRelation() {
+        @Singleton<ChannelToRootRelationHolderUseCase> var useCase
+        useCase.reloadRelations()
+    }
 }

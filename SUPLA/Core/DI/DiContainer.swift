@@ -147,6 +147,7 @@ extension DiContainer {
         register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
         register(LoadElectricityMeterMeasurementsUseCase.self, LoadElectricityMeterMeasurementsUseCaseImpl())
         register(GetChannelActionStringUseCase.self, SharedCore.GetChannelActionStringUseCase())
+        register(ChannelToRootRelationHolderUseCase.self, ChannelToRootRelationHolderUseCaseImpl())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())

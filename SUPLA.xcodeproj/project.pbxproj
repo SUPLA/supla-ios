@@ -706,6 +706,7 @@
 		A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */; };
 		A5862C092CEF2F5F00DFFD55 /* ChannelStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */; };
 		A5862C0C2CEF816B00DFFD55 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C0B2CEF813B00DFFD55 /* TimerState.swift */; };
+		A5862C0E2CF125AC00DFFD55 /* ChannelToRootRelationHolderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */; };
 		A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */; };
 		A58A63072C07163E00A9D02D /* VerticalBlindWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */; };
 		A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */; };
@@ -2206,6 +2207,7 @@
 		A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueStringProvider.swift; sourceTree = "<group>"; };
 		A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepository.swift; sourceTree = "<group>"; };
 		A5862C0B2CEF813B00DFFD55 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
+		A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToRootRelationHolderUseCase.swift; sourceTree = "<group>"; };
 		A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalBlindsVM.swift; path = SUPLA/Features/Details/WindowDetail/VerticalBlind/VerticalBlindsVM.swift; sourceTree = SOURCE_ROOT; };
 		A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindWindowState.swift; sourceTree = "<group>"; };
 		A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVC.swift; sourceTree = "<group>"; };
@@ -6130,6 +6132,7 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */,
 				A58D1B8B2CDD694900B5A019 /* GetChannelDefaultCaptionUseCase.swift */,
 				A58D1B872CDCFBDA00B5A019 /* GetChannelLowBatteryIssueUseCase.swift */,
 				A58D1B852CDCFAA800B5A019 /* GetChannelIssuesForListUseCase.swift */,
@@ -7044,6 +7047,7 @@
 				A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */,
 				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
 				A5477DBF2AA5B40C00220B4A /* SuplaHvacMode.swift in Sources */,
+				A5862C0E2CF125AC00DFFD55 /* ChannelToRootRelationHolderUseCase.swift in Sources */,
 				A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */,
 				A50B5D062BEA4DA700918D18 /* RollerShutterWindowState.swift in Sources */,
 				A5F5C3FC2C3698040058E255 /* PinSetupVC.swift in Sources */,
