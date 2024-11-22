@@ -30,6 +30,7 @@
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
 #import "SAChannelRelation+CoreDataClass.h"
+#import "SAChannelState+CoreDataClass.h"
 #import "SAEvent.h"
 #import "SARateApp.h"
 #import "SADownloadUserIcons.h"

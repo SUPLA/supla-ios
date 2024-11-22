@@ -31,11 +31,11 @@ final class ExecuteSimpleActionUseCaseImpl: ExecuteSimpleActionUseCase {
         Observable.create { observer in
             
             let suplaClient = self.suplaClientProvider.provide()
-            let result = suplaClient.executeAction(
+            let result = suplaClient?.executeAction(
                 parameters: .simple(action: action, subjectType: type, subjectId: remoteId)
             )
             
-            if (result) {
+            if (result == true) {
                 self.vibrationService.vibrate()
             }
             

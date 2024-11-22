@@ -17,11 +17,13 @@
  */
 
 protocol SuplaClientProvider {
-    func provide() -> SuplaClientProtocol
+    func provide() -> SuplaClientProtocol?
+    func forcedProvide() -> SuplaClientProtocol
 }
 
 class SuplaClientProviderImpl: SuplaClientProvider {
-    func provide() -> SuplaClientProtocol { SAApp.suplaClient() }
+    func provide() -> SuplaClientProtocol? { SAApp.instance().optionalSuplaClient() }
+    func forcedProvide() -> any SuplaClientProtocol { SAApp.suplaClient() }
 }
 
 extension SuplaClientProtocol {

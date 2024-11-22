@@ -29,7 +29,7 @@ final class ExecuteThermostatActionUseCaseImpl: ExecuteThermostatActionUseCase {
     func invoke(type: SubjectType, remoteId: Int32, mode: SuplaHvacMode? = nil, setpointTemperatureHeat: Float? = nil, setpointTemperatureCool: Float? = nil, durationInSec: Int32? = nil) -> Observable<RequestResult> {
         Observable.create { observable in
             
-            let result = self.suplaClientProvider.provide().executeAction(
+            let result = self.suplaClientProvider.provide()?.executeAction(
                 parameters: .hvac(
                     subjectType: type,
                     subjectId: remoteId,
@@ -40,7 +40,7 @@ final class ExecuteThermostatActionUseCaseImpl: ExecuteThermostatActionUseCase {
                 )
             )
             
-            if (result) {
+            if (result == true) {
                 observable.on(.next(.success))
             } else {
                 observable.on(.next(.failure))

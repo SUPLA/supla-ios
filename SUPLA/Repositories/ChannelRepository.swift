@@ -24,6 +24,7 @@ protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
+    func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
@@ -82,6 +83,10 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel> {
         queryItem(NSPredicate(format: "remote_id = %d AND profile = %@", remoteId, profile))
             .compactMap { $0 }
+    }
+    
+    func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile = %@", remoteId, profile))
     }
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {

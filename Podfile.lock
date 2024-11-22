@@ -6,18 +6,18 @@ PODS:
   - FMMoveTableView (1.1.2)
   - PaddingLabel (1.2)
   - QueryKit (0.14.1)
-  - RxBlocking (6.6.0):
-    - RxSwift (= 6.6.0)
-  - RxCocoa (6.6.0):
-    - RxRelay (= 6.6.0)
-    - RxSwift (= 6.6.0)
+  - RxBlocking (6.8.0):
+    - RxSwift (= 6.8.0)
+  - RxCocoa (6.8.0):
+    - RxRelay (= 6.8.0)
+    - RxSwift (= 6.8.0)
   - RxDataSources (5.0.0):
     - Differentiator (~> 5.0)
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxRelay (6.6.0):
-    - RxSwift (= 6.6.0)
-  - RxSwift (6.6.0)
+  - RxRelay (6.8.0):
+    - RxSwift (= 6.8.0)
+  - RxSwift (6.8.0)
   - RxSwiftExt (6.2.1):
     - RxSwiftExt/Core (= 6.2.1)
     - RxSwiftExt/RxCocoa (= 6.2.1)
@@ -26,8 +26,8 @@ PODS:
   - RxSwiftExt/RxCocoa (6.2.1):
     - RxCocoa (~> 6.0)
     - RxSwiftExt/Core
-  - RxTest (6.6.0):
-    - RxSwift (= 6.6.0)
+  - RxTest (6.8.0):
+    - RxSwift (= 6.8.0)
   - SwiftyBeaver (1.9.5)
 
 DEPENDENCIES:
@@ -65,15 +65,15 @@ SPEC CHECKSUMS:
   FMMoveTableView: 63b46cf806133f5220cf92592dc0e6f7eb07633d
   PaddingLabel: 21ab5282c780366018b04c30e3920c2f55a2fd14
   QueryKit: 60dae8ff75d5805f9c703c68c0ef4294c9dd7de6
-  RxBlocking: fbd1f8501443024f686e556f36dac79b0d5f4d7c
-  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxBlocking: a8b634fba6850913bc3df40bb73fd08b2dbf0f01
+  RxCocoa: 2d33c1e1e5d66492052ad46b11024ae287572880
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
-  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
-  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  RxRelay: 335c78b926a2aea8d863a6d25f1ed3b5ad8e8705
+  RxSwift: 4e28be97cbcfeee614af26d83415febbf2bf6f45
   RxSwiftExt: 43aaacb6a4d3c69c55e9d1cf4f79920043d13583
-  RxTest: a23f26bb53a5e146a0a69db4f0fa0b69001ce7f4
+  RxTest: d0fa1ec82feb41efa826a59173ec65eafbbe4aaf
   SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
 
 PODFILE CHECKSUM: 0e3a7627c2a4b42378b1d934c3e7deec11f7336a
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

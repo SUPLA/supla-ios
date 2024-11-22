@@ -58,7 +58,7 @@ final class SuplaCloudConfigHolderImpl: SuplaCloudConfigHolder {
                 return token
             }
 
-            clientProvider.provide().oAuthTokenRequest()
+            clientProvider.provide()?.oAuthTokenRequest()
 
             let rounds: Int32 = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ? 1 : 50
 

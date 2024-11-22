@@ -30,8 +30,8 @@ extension SAChannel {
     }
 
     func getTimerEndDate() -> Date? {
-        if let state = ev?.channelState() {
-            return state.countdownEndsAt()
+        if let state = ev?.timerState {
+            return state.countdownEndsAt
         } else {
             return nil
         }
@@ -57,17 +57,17 @@ extension SAChannel {
     }
     
     var batteryInfo: BatteryInfo? {
-        guard let state = ev?.channelState() else { return nil }
+        guard let state else { return nil }
         
-        if (!state.hasBattery()) {
-            return nil
+        if state.batteryPowered != nil || state.batteryLevel != nil {
+            return BatteryInfo(
+                batteryPowered: state.batteryPowered?.boolValue ?? false,
+                level: KotlinInt.from(state.batteryLevel),
+                health: KotlinInt.from(state.batteryHealth)
+            )
         }
         
-        return BatteryInfo(
-            batteryPowered: state.isBatteryPowered() == 1,
-            level: KotlinInt.from(state.batteryLevel()),
-            health: KotlinInt.from(state.batteryHealth())
-        )
+        return nil
     }
     
     var shareable: SharedCore.Channel {

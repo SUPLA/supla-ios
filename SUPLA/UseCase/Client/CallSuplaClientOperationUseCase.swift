@@ -44,11 +44,11 @@ final class CallSuplaClientOperationUseCaseImpl: CallSuplaClientOperationUseCase
         let client = suplaClientProvider.provide()
         switch(operation) {
         case .moveUp: 
-            return client.cg(remoteId, open: 2, group: type.isGroup)
+            return client?.cg(remoteId, open: 2, group: type.isGroup) == true
         case .moveDown:
-            return client.cg(remoteId, open: 1, group: type.isGroup)
+            return client?.cg(remoteId, open: 1, group: type.isGroup) == true
         case .recalibrate:
-            return client.deviceCalCfgCommand(SUPLA_CALCFG_CMD_RECALIBRATE, cg: remoteId, group: type.isGroup)
+            return client?.deviceCalCfgCommand(SUPLA_CALCFG_CMD_RECALIBRATE, cg: remoteId, group: type.isGroup) == true
         }
     }
     

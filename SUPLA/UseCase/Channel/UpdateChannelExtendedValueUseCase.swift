@@ -20,8 +20,8 @@ import Foundation
 import RxSwift
 
 final class UpdateChannelExtendedValueUseCase {
-    
     @Singleton<ChannelExtendedValueRepository> private var channelExtendedValueRepository
+    @Singleton<UpdateChannelStateUseCase> private var updateChannelStateUseCase
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
     
@@ -31,7 +31,7 @@ final class UpdateChannelExtendedValueUseCase {
         
         do {
             return try profileRepository.getActiveProfile()
-                .flatMapFirst{ profile in
+                .flatMapFirst { profile in
                     self.channelExtendedValueRepository
                         .getChannelValue(for: profile, with: suplaChannelExtendedValue.Id)
                         .ifEmpty(switchTo: self.createValue(channelRemoteId: suplaChannelExtendedValue.Id))
@@ -52,13 +52,14 @@ final class UpdateChannelExtendedValueUseCase {
                             
                             return self.channelRepository.query(channelsUpdateQuery)
                                 .map { channels in
-                                    channels.forEach { channel in
+                                    for channel in channels {
                                         channel.ev = value
                                         changed = true
                                     }
                                     return value
                                 }
                         }
+                        .flatMap { self.updateChannelState(changed, $0) }
                 }
                 .flatMapFirst { value in
                     if (changed) {
@@ -76,7 +77,7 @@ final class UpdateChannelExtendedValueUseCase {
         return changed
     }
     
-    func createValue(channelRemoteId: Int32) -> Observable<SAChannelExtendedValue> {
+    private func createValue(channelRemoteId: Int32) -> Observable<SAChannelExtendedValue> {
         return channelExtendedValueRepository.create()
             .flatMapFirst { value in
                 self.profileRepository.getActiveProfile()
@@ -87,5 +88,17 @@ final class UpdateChannelExtendedValueUseCase {
                         return value
                     }
             }
+    }
+    
+    private func updateChannelState(_ changed: Bool, _ value: SAChannelExtendedValue) -> Observable<SAChannelExtendedValue> {
+        let state: SAChannelStateExtendedValue? = value.channelState()
+            
+        if let state {
+            return updateChannelStateUseCase.invoke(state.state(), channelId: value.channel_id)
+                .ignoreErrors()
+                .map { _ in value }
+        }
+        
+        return Observable.just(value)
     }
 }

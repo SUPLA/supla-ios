@@ -33,11 +33,14 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
 
     private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
+    private lazy var suplaClientProvider: SuplaClientProviderMock! = SuplaClientProviderMock()
+    
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase!)
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
     }
     
     override func tearDown() {
@@ -47,6 +50,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         getChannelBaseStateUseCase = nil
         executeSimpleActionUseCase = nil
         dateProvider = nil
+        suplaClientProvider = nil
         
         super.tearDown()
     }
@@ -90,6 +94,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(0)
+        suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
         observe(viewModel)
@@ -142,6 +147,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(124)
+        suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
         observe(viewModel)

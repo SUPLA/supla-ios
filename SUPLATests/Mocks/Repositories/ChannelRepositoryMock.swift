@@ -41,6 +41,11 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
         return channelObservable
     }
     
+    var getChannelNullableMock: FunctionMock<(AuthProfileItem, Int32), Observable<SAChannel?>> = .init()
+    func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?> {
+        getChannelNullableMock.handle((profile, remoteId))
+    }
+    
     var getAllChannelsParameters: [(AuthProfileItem, [Int32])] = []
     var getAllChannelsReturns: Observable<[SAChannel]> = Observable.empty()
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]> {
