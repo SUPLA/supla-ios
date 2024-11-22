@@ -975,6 +975,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
     if ((relation->EOL & 0x1) > 0) {
         [UseCaseLegacyWrapper deleteRemovableRelations];
+        [UseCaseLegacyWrapper reloadChannelToRootRelation];
         [DiContainer.updateEventsManager emitChannelsUpdate];
     }
 }
