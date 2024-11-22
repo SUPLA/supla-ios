@@ -33,7 +33,7 @@ extension AboutFeature {
         }
         
         func onHomePageClick() {
-            coordinator.openUrl(url: "https://www.supla.org")
+            coordinator.openUrl(url: "https://\(Strings.About.address)")
         }
     }
 }

@@ -59,7 +59,9 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
         } else {
             viewModel.onViewAppear()
             showNewGestureInfoView()
-            SARateApp().showDialog(withDelay: 1)
+            if (BrandingConfiguration.ASK_FOR_RATE) {
+                SARateApp().showDialog(withDelay: 1)
+            }
             updateBottomBarLabels()
             tabBar.isHidden = !settings.showBottomMenu
         }

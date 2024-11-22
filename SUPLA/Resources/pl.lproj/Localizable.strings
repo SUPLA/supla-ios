@@ -529,8 +529,7 @@
 "lock_screen_hello" = "Witaj ponownie!";
 "lock_screen_enter_pin" = "Wprowadź PIN";
 "lock_screen_remove_pin" = "Usuwanie kodu PIN";
-"lock_screen_confirm_authorize_app" = "Zmiana zakresu autoryzacji - aplikacja";
-"lock_screen_confirm_authorize_accounts" = "Zmiana zakresu autoryzacji - konta";
+"lock_screen_confirm_authorize_range_change" = "Zmiana zakresu autoryzacji";
 "lock_screen_wrong_pin" = "Wprowadzono nieprawidłowy kod PIN!";
 "lock_screen_forgotten_code" = "Nie pamiętam kodu dostępu";
 "lock_screen_forgotten_code_title" = "Kod dostępu";

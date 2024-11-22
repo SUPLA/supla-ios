@@ -18,11 +18,12 @@
 
 import SharedCore
 
-extension LocalizedString {
+extension LocalizedStringId {
     var value: String {
         switch (self) {
         case .generalClose: Strings.General.close
         case .generalOpen: Strings.General.open
+        case .generalOpenClose: Strings.General.openClose
         case .generalTurnOn: Strings.General.turnOn
         case .generalTurnOff: Strings.General.turnOff
         case .generalShut: Strings.General.shut

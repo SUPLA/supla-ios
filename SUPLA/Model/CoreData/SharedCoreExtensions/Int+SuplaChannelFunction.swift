@@ -19,7 +19,7 @@
 import SharedCore
 
 extension Int32 {
-    var suplaFuntion: SuplaChannelFunction {
-        return SuplaChannelFunction.companion.from(value: self)
+    var suplaFuntion: SuplaFunction {
+        return SuplaFunction.companion.from(value: self)
     }
 }

@@ -18,6 +18,7 @@
 
 import Foundation
 import RxSwift
+import SharedCore
 
 extension SAChannelCell {
     
@@ -76,6 +77,16 @@ extension SAChannelCell {
         } else {
             executeSimpleAction(channelBase: channelBase, action: .reveal)
         }
+    }
+    
+    @objc
+    func leftButtonText(_ getChannelActionStringUseCase: SharedCore.GetChannelActionStringUseCase, _ channelBase: SAChannelBase) -> String? {
+        getChannelActionStringUseCase.leftButton(function: channelBase.func.suplaFunction())?.value
+    }
+    
+    @objc
+    func rightButtonText(_ getChannelActionStringUseCase: SharedCore.GetChannelActionStringUseCase, _ channelBase: SAChannelBase) -> String? {
+        getChannelActionStringUseCase.rightButton(function: channelBase.func.suplaFunction())?.value
     }
     
     private func executeSimpleAction(channelBase: SAChannelBase, action: Action) {

@@ -21,7 +21,7 @@ import Foundation
 final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
     override var isEnabled: Bool {
         didSet {
-            logo = UIImage.logo?.withTintColor(colors.logoColor)
+            logo = BrandingConfiguration.ProjectorScreen.LOGO
             setNeedsDisplay()
         }
     }
@@ -30,7 +30,7 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
     
     private let dimens = RuntimeDimens()
     private lazy var colors = ProjectorScreenColors.standard(traitCollection)
-    private lazy var logo = UIImage.logo?.withTintColor(colors.logoColor)
+    private lazy var logo = BrandingConfiguration.ProjectorScreen.LOGO
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,11 +69,9 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
         // Logo
         context.saveGState()
         context.clip(to: screenRect)
-        if let logo = logo {
-            let verticalCorrection = screenHeight - dimens.screenMaxHeight
-            context.setShadow(offset: .zero, blur: 0)
-            logo.draw(in: dimens.logoRect.offsetBy(dx: 0, dy: verticalCorrection))
-        }
+        let verticalCorrection = screenHeight - dimens.screenMaxHeight
+        context.setShadow(offset: .zero, blur: 0)
+        logo.draw(in: dimens.logoRect.offsetBy(dx: 0, dy: verticalCorrection), blendMode: .normal, alpha: BrandingConfiguration.ProjectorScreen.ALPHA)
         context.restoreGState()
         // top part
         drawPath(context, fillColor: colors.topRect, withShadow: true) {
@@ -143,8 +141,8 @@ private enum DefaultDimens {
     static let bottomRectWidth: CGFloat = 304
     static let screenWidth: CGFloat = 288
     
-    static let logoWidth: CGFloat = 120
-    static let logoHeight: CGFloat = 137
+    static let logoWidth: CGFloat = BrandingConfiguration.ProjectorScreen.LOGO_WIDTH
+    static let logoHeight: CGFloat = BrandingConfiguration.ProjectorScreen.LOGO_HEIGHT
     static let logoTopMargin: CGFloat = 50
 }
 

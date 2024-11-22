@@ -252,6 +252,8 @@
 "I understand" = "Je comprends.";
 "Go to CLOUD" = "Aller à CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "La fonction de canal associée au déclencheur d\'action ne peut pas être modifiée.";
+"The function of the channel associated with the push notification cannot be changed." = "La fonction de la chaîne associée aux notifications PUSH ne peut pas être modifiée.";
+"The channel function associated with reactions cannot be changed." = "La fonction de la chaîne associée aux réactions ne peut pas être modifiée.";
 "Show ⓘ button" = "Afficher le bouton ⓘ";
 "Advanced settings" = "Avancé";
 "Access ID" = "ID";
@@ -278,38 +280,212 @@
 "Default" = "Défaut";
 "Select active account" = "Sélectionnez le compte actif";
 "Phase %d" = "Phase %d";
+"Channels" = "Chaînes";
+"Groups" = "Groupes";
+"Scenes" = "Scènes";
+"Not supported function" = "Fonction non supportée";
 
 "AccountCreation.title" = "Modifier le compte";
 "AccountCreation.modificationTitle" = "Ajouter un compte";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=fr";
 
+"Scenes.ActionButtons.execute" = "Exécuter";
+"Scenes.ActionButtons.abort" = "Arrêter";
+
+"Cfg.removal.title" = "Supprimer le compte ?";
+"Cfg.removal.action.logout" = "Oublier sur cet appareil";
+"Cfg.removal.action.remove" = "Oublier et supprimer sur le serveur";
 "Cfg.removal.dialog.missing_name" = "Entrez le nom du compte";
 "Cfg.removal.dialog.duplicated_name" = "Le compte avec ce nom existe déjà";
 "Cfg.removal.dialog.incomplete" = "Remplissez les données requises";
 
+"push_notification_limit_exceeded" = "La limite de notification PUSH  %@ par heure a été dépassée.";
+
+/* General */
 "general_error" = "Erreur";
+"turn_on" = "Activez";
+"turn_off" = "Désactivez";
+"save" = "Sauvegarder";
+/* General - DayOfWeek */
+"monday" = "Lundi";
+"tuesday" = "Mardi";
+"wednesday" = "Mercredi";
+"thursday" = "Jeudi";
+"friday" = "Vendredi";
+"saturday" = "Samedi";
+"sunday" = "Dimanche";
+"monday_short" = "Lu";
+"tuesday_short" = "Ma";
+"wednesday_short" = "Me";
+"thursday_short" = "Je";
+"friday_short" = "Ve";
+"saturday_short" = "Sa";
+"sunday_short" = "Di";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d heures %d min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Capteur de carte d\'hôtel";
+"channel_caption_alarm_armament" = "Capteur d\'enclenchement d\'alarme";
+"channel_caption_terrace_awning" = "Auvent de terrasse";
+"channel_caption_projector_screen" = "Écran de projection";
+"channel_caption_curtain" = "Rideau";
+"channel_caption_vertical_blind" = "Store vertical";
+"channel_caption_garage_door" = "Portes de garage";
+"channel_caption_general_purpose_measurment" = "Chaîne de mesure";
+"channel_caption_general_purpose_meter" = "Chaîne de comptage";
+"channel_caption_facade_blinds" = "Store externe";
+"channel_caption_pump_switch" = "Interrupteur de pompe";
+"channel_caption_heat_or_cold_source_switch" = "Interrupteur pour la source de chaleur ou de froid";
+"channel_offline" = "La chaîne est hors ligne";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Nous avons supprimé le geste de glissement pour voir les détails. Il suffit de taper sur la chaîne sélectionnée pour les consulter.";
+"main_no_entries" = "Vide";
+
+/* Menu */
+"menu_device_catalog" = "Catalogue des équipements";
+"menu_notifications" = "Historique des notifications";
+
+/* Groups */
+"groups_empty_list_button" = "Ajouter un groupe sur Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Ajouter une scène sur Supla Cloud";
+
+/* App Settings */
+"app_settings.notifications_label" = "Notifications";
+"app_settings.location_label" = "Lieu";
+"app_settings.permissions_header" = "Autorisations";
+"settings_lock_screen" = "Écran de verrouillage";
+"settings_lock_screen_app" = "Application";
+"settings_lock_screen_none" = "Aucun";
+"settings_show_bottom_menu" = "Afficher le menu du bas";
+"settings_show_labels" = "Afficher les étiquettes dans le menu inférieur";
+"settings_dark_mode" = "Mode nuit";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Générale";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_metrics_tab" = "Mesures";
+"standard_detail_history_tab" = "Histoire";
+"standard_detail_list_tab" = "Liste";
+"standard_detail_schedule_tab" = "Semaine";
+"standard_detail_settings_tab" = "Paramètres";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Etat actuel :";
+"switch_detail_state_label_for_timer" = "Etat à %@ heure :";
+"switch_detail_state_on" = "activé";
+"switch_detail_state_off" = "désactivé";
+
+/* Timer Detail */
+"timer_detail_wrong_time_message" = "Le temps doit être supérieur à 0";
+"timer_detail_header" = "Spécifiez l\'heure à laquelle l\'appareil doit être :";
+"timer_detail_turned_on" = "Activé";
+"timer_detail_edit_header_on" = "activé";
+"timer_detail_info_on" = "activé";
+"timer_detail_turned_off" = "Désactivé";
+"timer_detail_edit_header_off" = "désactivé";
+"timer_detail_info_off" = "désactivé";
+"timer_detail_info" = "Le dispositif sera %@ pendant %@, puis il sera %@";
+"timer_detail_stop" = "Laisser %@";
+"timer_detail_cancel" = "ZAnnuler et %@";
+"timer_detail_end_hour" = "à %@ heure";
+"timer_detail_edit_time" = "Editer le temps";
+"timer_detail_edit_header" = "Editer l\'heure à laquelle l\'appareil %@";
+"timer_detail_edit_cancel" = "Annuler l\'édition";
+"timer_detail_minute_pattern" = "%d min.";
+"timer_detail_select_mode" = "Sélectionnez le mode";
+"timer_detail_manual_mode" = "Mode manuel";
+"timer_detail_info_thermostat_off" = "Le thermostat sera éteint par\n%@";
+"timer_detail_info_thermostat_heating" = "Le thermostat sera en mode chauffage pendant\n%@";
+"timer_detail_info_thermostat_cooling" = "Le thermostat sera en mode refroidissement pendant\n%@";
+"timer_detail_select_time" = "Spécifier le temps";
+"timer_detail_counter" = "Compteur";
+"timer_detail_calendar" = "Calendrier";
+"timer_detail_min_temp" = "Temp. min.";
+"timer_detail_max_temp" = "Temp. max.";
+"timer_detail_state_label_for_timer_days" = "Etat au %@:";
+"timer_detail_cancel_thermostat" = "Mettre en pause la minuterie et activer le mode :";
+
+/* Thermostat Detail */
+"thermostat_detail_mode_manual" = "Manuellement";
+"thermostat_detail_mode_weekly_schedule" = "Programme";
+"thermostat_thermometer_error" = "Erreur de lecture de la température";
+"thermostat_clock_error" = "Erreur d\'horloge";
+"thermostat_detail_program_current" = "Actuellement :";
+"thermostat_detail_program_next" = "Ensuite :";
+"thermostat_detail_program_time" = "pendant %@";
+"thermostat_detail_off_by_window" = "Désactivé par une fenêtre ouverte";
+"thermostat_detail_off_by_card" = "Désactivé en raison de l\'absence de carte d\'hôtel";
+"thermostat_detail_off_by_sensor" = "Désactivé par le capteur";
+"thermostat_detail_program_info" = "Touchez pour activer le programme. Maintenez la touche enfoncée pour modifier le programme.";
+"thermostat_detail_box_info" = "Touchez pour régler le programme sélectionné. Maintenez la touche enfoncée pour régler les quarts d\'heure sélectionnés.";
+"thermostat_detail_arrow_info" = "Le coin noir indique l\'heure et le jour actuels.";
+"thermostat_detail_list" = "Liste";
+"thermostat_detail_main_thermostat" = "Thermostat principal";
+"thermostat_detail_other_thermostats" = "Thermostats dépendants";
+"thermostat_battery_cover_open" = "Couvercle de batterie ouvert";
+"schedule_detail_quarters_dialog_header" = "Heure %02d:00";
+"schedule_detail_program_dialog_header" = "Paramètres du programme %d";
+"hvac_mode_temperature_heating" = "Température de chauffage";
+"hvac_mode_temperature_cooling" = "Température de refroidissement";
 
 /* Combined Chart */
+"history_range_label" = "Plage";
 "history_range_last_day" = "Dernières 24 heures";
 "history_range_last_week" = "Derniers 7 jours";
 "history_range_last_30_days" = "Derniers 30 jours";
 "history_range_last_90_days" = "Derniers 90 jours";
 "history_range_last_365_days" = "Derniers 365 jours";
-
-/* Thermometer Chart */
 "history_no_data_in_selected_period" = "Manquent les données pour pour le graphique";
+"history_range_current_week" = "Semaine";
+"history_range_current_day" = "Jour";
+"history_range_current_month" = "Mois";
+"history_range_current_quarter" = "Trimestre";
+"history_range_current_year" = "Année";
+"history_range_custom" = "Autre plage";
+"history_refreshing" = "Rechargement...";
+"history_refreshing_failed" = "Échec du rechargement";
+"history_no_data_selected" = "Aucune donnée sélectionnée pour l\'affichage.";
+"history_no_data_available" = "Pas de mesures";
+"history_disabled" = "L\'historique est désactivé pour cette chaîne";
+"history_delete_data" = "Effacer l\'historique et télécharger à nouveau";
+"history_wait_for_download_completed" = "Veuillez patienter, le téléchargement est en cours...";
+"chart_marker_opening" = "Ouverture";
+"chart_marker_closing" = "Fermeture";
+
+/* Notifications */
+"notification_delete_button_delete_older_than_month" = "Supprimer les documents datant de plus de 30 jours";
+"notification_delete_all_title" = "Supprimer ?";
+"notification_delete_all_message" = "La suppression des notifications est irréversible, continuer ?";
+"notifications_log_profile" = "Profile:";
+"notifications_log_date" = "Date:";
 
 /* Roller shutter detail */
 "roller_shutter_calibration_lost" = "Le calibrage a échoué.";
 "roller_shutter_calibration_failed" = "Le calibrage a été perdu.";
 "roller_shutter_motor_problem" = "Problème de moteur / Arrêt inattendu.";
 "roller_shutter_calibration" = "Calibration";
-"roller_shutter_start_calibration_message" = "Êtes-vous sûr de vouloir commencer le calibrage ?";
+"roller_shutter_start_calibration_message" = "Êtes-vous sûr de vouloir commencer le calibrage ?";
+"rs_display_mode" = "Volets roulants, stores, rideaux %";
+"roller_shutter_closing_percentage" = "Clôture :";
+"roller_shutter_opening_percentage" = "Ouverture :";
+"roller_shutter_calibration_needed" = "Étalonnage nécessaire";
+"roller_shutter_extension_percentage" = "Déploiement:";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Inclinaison :";
+"facade_blinds_no_tilt" = "Pas de configuration";
 
 /* Status */
 "status_connecting" = "Connexion en cours...";
 "status_unknown_error" = "Erreur inconnue";
+"status_initializing" = "Mise en service...";
+"status_try_again" = "Essayez à nouveau";
+"status_disconnecting" = "Déconnexion...";
+"status_awaiting_network" = "En attendant le réseau...";
 "status_temporarily_unavailable" = "Ce service est temporairement indisponible";
 "status_incorrect_data" = "Adresse e-mail ou mot de passe incorrect(e)";
 "status_bad_credentials" = "Informations d'identification invalides";
@@ -321,8 +497,30 @@
 "status_access_id_inactive" = "ID d'accès inactif.";
 "status_host_not_found" = "Nous n'avons pas pu trouver cette adresse du serveur";
 
+/* Pin setup */
+"pin_setup_header" = "Définissez votre code PIN";
+"pin_setup_title" = "Configuration du code PIN";
+"pin_setup_repeat" = "Répéter le code PIN";
+"pin_setup_entry_different" = "Les codes introduits sont différents !";
+"pin_setup_use_biometric" = "Authentification biométrique : ";
+"pin_setup_biometric_not_enrolled" = "L'authentification biométrique n\'a pas été configurée. Si vous souhaitez utiliser la biométrie, configurez-la d\'abord dans les paramètres du système.";
+
+/* Lock screen */
+"lock_screen_hello" = "C\'est un plaisir de vous revoir !";
+"lock_screen_enter_pin" = "Entrez votre PIN";
+"lock_screen_wrong_pin" = "Code PIN incorrect !";
+"lock_screen_remove_pin" = "Suppression du code PIN";
+"lock_screen_forgotten_code" = "Je ne me souviens pas du code d\'accès";
+"lock_screen_forgotten_code_title" = "Codes d\'accès";
+"lock_screen_forgotten_code_message" = "Si vous ne vous souvenez pas du code d\'accès, désinstallez l\'application de votre téléphone, puis réinstallez-la. Après la réinstallation, ajoutez la configuration du compte à partir de Supla Cloud.\n\nNe créez pas de nouveau compte. Les données historiques et tous les appareils ne seront pas perdus.";
+"lock_screen_forgotten_code_button" = "J\'ai compris";
+"lock_screen_confirm_authorize_range_change" = "Modification du champ d\'application de l\'autorisation";
+"biometric_prompt_subtitle" = "Déverrouillage par empreinte digitale";
+"lock_screen_pin_locked" = "Trop de tentatives à l\'echec. Le code PIN a été verrouillé %@.";
+
 /* About */
 "about_version" = "version %@";
+"about_build_time" = "Version du : %@";
 
 /* Electricity meter detail */
 "details_em_forward_active_energy" = "Energie active importée";
@@ -342,5 +540,20 @@
 "details_em_phase3" = "Phase 3";
 "details_em_balance_arithmetic" = "Bilan arithmétique";
 "details_em_balance_vector" = "Bilan vectorielle";
+"details_em_chart_data_type" = "Données";
+"details_em_phases" = "Phase";
+"details_em_balance_hourly" = "Solde horaire";
+"details_em_balance_chart_aggregated" = "Bilan agrégé sous forme de graphique";
+"details_em_sum" = "Total";
+"details_em_select_range" = "Sélectionner une période";
+"details_em_active_energy" = "Énergie active";
+"details_em_forwarded_energy" = "Prélevée";
+"details_em_reversed_energy" = "Retournée";
+"details_em_cost" = "Coût";
+"details_em_settings_list_item" = "Valeur affichée dans la liste des chaînes";
+"details_em_settings_title" = "Réglages - %@";
+"details_em_total_suffix" = "(état du compteur)";
+"details_em_current_month_suffix" = "(mois en cours)";
+"details_em_last_month_balancing" = "Solde du mois en cours";
 "em_phase_to_phase_balance" = "Bilan interphase vectorielle";
 "em_chart_all_phases" = "Phase 1+2+3";

@@ -29,14 +29,17 @@ extension AboutFeature {
         var body: some SwiftUI.View {
             BackgroundStack {
                 VStack(spacing: Dimens.distanceDefault) {
-                    Image(.logoLight)
+                    Spacer()
+                    Image(BrandingConfiguration.About.LOGO)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxHeight: 100)
-                        .foregroundColor(Color.Supla.onBackground)
+                        .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
                     Text.HeadlineLarge(text: Strings.appName)
                     Text.BodyMedium(text: Strings.About.version.arguments(viewState.version))
-                    Text.LabelSmall(text: Strings.About.license)
+                    if (BrandingConfiguration.SHOW_LICENCE) {
+                        Text.LabelSmall(text: Strings.About.license)
+                    }
                     Spacer()
                     TextButton(
                         title: Strings.About.address,

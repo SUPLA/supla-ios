@@ -188,7 +188,6 @@
 "thermostat_detail_main_thermostat" = "Main thermostat";
 "thermostat_detail_other_thermostats" = "Ohter thermostats";
 
-
 /* Combined Chart */
 "history_range_label" = "Range";
 "history_data_type" = "Data type";
@@ -273,8 +272,7 @@
 "lock_screen_hello" = "Welcome back!";
 "lock_screen_enter_pin" = "Enter PIN";
 "lock_screen_remove_pin" = "PIN removal";
-"lock_screen_confirm_authorize_app" = "Authorization scope change - application";
-"lock_screen_confirm_authorize_accounts" = "Authorization scope change - accounts";
+"lock_screen_confirm_authorize_range_change" = "Authorization scope change";
 "lock_screen_wrong_pin" = "Entered PIN is wrong!";
 "lock_screen_forgotten_code" = "I don\'t remember my PIN code";
 "lock_screen_forgotten_code_title" = "Access code";

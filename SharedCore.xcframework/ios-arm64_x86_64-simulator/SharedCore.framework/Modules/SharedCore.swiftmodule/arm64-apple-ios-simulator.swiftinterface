@@ -1,0 +1,526 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -module-name SharedCore
+import Foundation
+@_exported import SharedCore
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@frozen public enum SuplaHvacMode : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case unknown
+  case notSet
+  case off
+  case heat
+  case cool
+  case heatCool
+  case fanOnly
+  case dry
+  case cmdTurnOn
+  case cmdWeeklySchedule
+  case cmdSwitchToManual
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaHvacMode.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaHvacMode, result: inout SharedCore.SuplaHvacMode?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHvacMode, result: inout SharedCore.SuplaHvacMode?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHvacMode?) -> SharedCore.SuplaHvacMode
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaHvacMode
+  public typealias _ObjectiveCType = SharedCore.__SuplaHvacMode
+  public typealias Companion = SharedCore.__SuplaHvacMode.Companion
+  public static func == (a: SharedCore.SuplaHvacMode, b: SharedCore.SuplaHvacMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaHvacMode]
+  nonisolated public static var allCases: [SharedCore.SuplaHvacMode] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaHvacMode {
+  public func toKotlinEnum() -> SharedCore.__SuplaHvacMode
+}
+extension SharedCore.__SuplaHvacMode {
+  public func toSwiftEnum() -> SharedCore.SuplaHvacMode
+}
+@frozen public enum ThermostatSubfunction : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case notSet
+  case heat
+  case cool
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction, result: inout SharedCore.ThermostatSubfunction?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction, result: inout SharedCore.ThermostatSubfunction?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction?) -> SharedCore.ThermostatSubfunction
+  public func _bridgeToObjectiveC() -> SharedCore.__ThermostatSubfunction
+  public typealias _ObjectiveCType = SharedCore.__ThermostatSubfunction
+  public static func == (a: SharedCore.ThermostatSubfunction, b: SharedCore.ThermostatSubfunction) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.ThermostatSubfunction]
+  nonisolated public static var allCases: [SharedCore.ThermostatSubfunction] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.ThermostatSubfunction {
+  public func toKotlinEnum() -> SharedCore.__ThermostatSubfunction
+}
+extension SharedCore.__ThermostatSubfunction {
+  public func toSwiftEnum() -> SharedCore.ThermostatSubfunction
+}
+@frozen public enum LocalizedStringId : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case generalTurnOn
+  case generalTurnOff
+  case generalOpen
+  case generalClose
+  case generalOpenClose
+  case generalShut
+  case generalReveal
+  case generalCollapse
+  case generalExpand
+  case channelCaptionOpenSensorGateway
+  case channelCaptionControllingTheGatewayLock
+  case channelCaptionOpenSensorGate
+  case channelCaptionControllingTheGate
+  case channelCaptionOpenSensorGarageDoor
+  case channelCaptionControllingTheGarageDoor
+  case channelCaptionOpenSensorDoor
+  case channelCaptionControllingTheDoorLock
+  case channelCaptionOpenSensorRollerShutter
+  case channelCaptionOpenSensorRoofWindow
+  case channelCaptionControllingTheRollerShutter
+  case channelCaptionControllingTheRoofWindow
+  case channelCaptionControllingTheFacadeBlind
+  case channelCaptionPowerSwitch
+  case channelCaptionLightswitch
+  case channelCaptionThermometer
+  case channelCaptionHumidity
+  case channelCaptionHumidityAndTemperature
+  case channelCaptionWindSensor
+  case channelCaptionPressureSensor
+  case channelCaptionRainSensor
+  case channelCaptionWeightSensor
+  case channelCaptionNoLiquidSensor
+  case channelCaptionDimmer
+  case channelCaptionRgbLighting
+  case channelCaptionDimmerAndRgbLighting
+  case channelCaptionDepthSensor
+  case channelCaptionDistanceSensor
+  case channelCaptionOpeningSensorWindow
+  case channelCaptionHotelCardSensor
+  case channelCaptionAlarmArmamentSensor
+  case channelCaptionMailSensor
+  case channelCaptionStaircaseTimer
+  case channelCaptionIcGasMeter
+  case channelCaptionIcWaterMeter
+  case channelCaptionIcHeatMeter
+  case channelCaptionThermostatHeatpolHomeplus
+  case channelCaptionValve
+  case channelCaptionGeneralPurposeMeasurement
+  case channelCaptionGeneralPurposeMeter
+  case channelCaptionThermostat
+  case channelCaptionElectricityMeter
+  case channelCaptionDigiglass
+  case channelCaptionTerraceAwning
+  case channelCaptionProjectorScreen
+  case channelCaptionCurtain
+  case channelCaptionVerticalBlind
+  case channelCaptionRollerGarageDoor
+  case channelCaptionPumpSwitch
+  case channelCaptionHeatOrColdSourceSwitch
+  case channelCaptionUnknown
+  case channelBatteryLevel
+  case motorProblem
+  case calibrationLost
+  case calibrationFailed
+  case thermostatThermometerError
+  case thermostatBatterCoverOpen
+  case thermostatClockError
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__LocalizedStringId, result: inout SharedCore.LocalizedStringId?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__LocalizedStringId, result: inout SharedCore.LocalizedStringId?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__LocalizedStringId?) -> SharedCore.LocalizedStringId
+  public func _bridgeToObjectiveC() -> SharedCore.__LocalizedStringId
+  public typealias _ObjectiveCType = SharedCore.__LocalizedStringId
+  public static func == (a: SharedCore.LocalizedStringId, b: SharedCore.LocalizedStringId) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.LocalizedStringId]
+  nonisolated public static var allCases: [SharedCore.LocalizedStringId] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.LocalizedStringId {
+  public func toKotlinEnum() -> SharedCore.__LocalizedStringId
+}
+extension SharedCore.__LocalizedStringId {
+  public func toSwiftEnum() -> SharedCore.LocalizedStringId
+}
+@frozen public enum SuplaFunction : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case unknown
+  case none
+  case controllingTheGatewayLock
+  case controllingTheGate
+  case controllingTheGarageDoor
+  case thermometer
+  case humidity
+  case humidityAndTemperature
+  case openSensorGateway
+  case openSensorGate
+  case openSensorGarageDoor
+  case noLiquidSensor
+  case controllingTheDoorLock
+  case openSensorDoor
+  case controllingTheRollerShutter
+  case controllingTheRoofWindow
+  case openSensorRollerShutter
+  case openSensorRoofWindow
+  case powerSwitch
+  case lightswitch
+  case ring
+  case alarm
+  case notification
+  case dimmer
+  case rgbLighting
+  case dimmerAndRgbLighting
+  case depthSensor
+  case distanceSensor
+  case openingSensorWindow
+  case hotelCardSensor
+  case alarmArmamentSensor
+  case mailSensor
+  case windSensor
+  case pressureSensor
+  case rainSensor
+  case weightSensor
+  case weatherStation
+  case staircaseTimer
+  case electricityMeter
+  case icElectricityMeter
+  case icGasMeter
+  case icWaterMeter
+  case icHeatMeter
+  case thermostatHeatpolHomeplus
+  case hvacThermostat
+  case hvacThermostatHeatCool
+  case hvacDomesticHotWater
+  case valveOpenClose
+  case valvePercentage
+  case generalPurposeMeasurement
+  case generalPurposeMeter
+  case digiglassHorizontal
+  case digiglassVertical
+  case controllingTheFacadeBlind
+  case terraceAwning
+  case projectorScreen
+  case curtain
+  case verticalBlind
+  case rollerGarageDoor
+  case pumpSwitch
+  case heatOrColdSourceSwitch
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaFunction.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaFunction, result: inout SharedCore.SuplaFunction?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaFunction, result: inout SharedCore.SuplaFunction?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaFunction?) -> SharedCore.SuplaFunction
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaFunction
+  public typealias _ObjectiveCType = SharedCore.__SuplaFunction
+  public typealias Companion = SharedCore.__SuplaFunction.Companion
+  public static func == (a: SharedCore.SuplaFunction, b: SharedCore.SuplaFunction) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaFunction]
+  nonisolated public static var allCases: [SharedCore.SuplaFunction] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaFunction {
+  public func toKotlinEnum() -> SharedCore.__SuplaFunction
+}
+extension SharedCore.__SuplaFunction {
+  public func toSwiftEnum() -> SharedCore.SuplaFunction
+}
+@frozen public enum ChannelRelationType : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case unknown
+  case `default`
+  case openingSensor
+  case partialOpeningSensor
+  case meter
+  case mainThermometer
+  case auxThermometerFloor
+  case auxThermometerWater
+  case auxThermometerGenericHeater
+  case auxThermometerGenericCooler
+  case masterThermostat
+  case heatOrColdSourceSwitch
+  case pumpSwitch
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int16 {
+    get
+  }
+  public static var companion: SharedCore.__ChannelRelationType.Companion {
+    get
+  }
+  public func isAuxThermometer() -> Swift.Bool
+  public func isMainThermometer() -> Swift.Bool
+  public func isThermometer() -> Swift.Bool
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ChannelRelationType, result: inout SharedCore.ChannelRelationType?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ChannelRelationType, result: inout SharedCore.ChannelRelationType?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ChannelRelationType?) -> SharedCore.ChannelRelationType
+  public func _bridgeToObjectiveC() -> SharedCore.__ChannelRelationType
+  public typealias _ObjectiveCType = SharedCore.__ChannelRelationType
+  public typealias Companion = SharedCore.__ChannelRelationType.Companion
+  public static func == (a: SharedCore.ChannelRelationType, b: SharedCore.ChannelRelationType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.ChannelRelationType]
+  nonisolated public static var allCases: [SharedCore.ChannelRelationType] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.ChannelRelationType {
+  public func toKotlinEnum() -> SharedCore.__ChannelRelationType
+}
+extension SharedCore.__ChannelRelationType {
+  public func toSwiftEnum() -> SharedCore.ChannelRelationType
+}
+@frozen public enum SuplaShadingSystemFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case tiltIsSet
+  case calibrationFailed
+  case calibrationLost
+  case motorProblem
+  case calibrationInProgress
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaShadingSystemFlag.Companion {
+    get
+  }
+  public func asChannelIssues() -> (any SharedCore.ChannelIssueItem)?
+  public func isIssueFlag() -> Swift.Bool
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag, result: inout SharedCore.SuplaShadingSystemFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag, result: inout SharedCore.SuplaShadingSystemFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag?) -> SharedCore.SuplaShadingSystemFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaShadingSystemFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaShadingSystemFlag
+  public typealias Companion = SharedCore.__SuplaShadingSystemFlag.Companion
+  public static func == (a: SharedCore.SuplaShadingSystemFlag, b: SharedCore.SuplaShadingSystemFlag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaShadingSystemFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaShadingSystemFlag] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaShadingSystemFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaShadingSystemFlag
+}
+extension SharedCore.__SuplaShadingSystemFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaShadingSystemFlag
+}
+@frozen public enum SuplaThermostatFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case setpointTempMinSet
+  case setpointTempMaxSet
+  case heating
+  case cooling
+  case weeklySchedule
+  case countdownTimer
+  case fanEnabled
+  case thermometerError
+  case clockError
+  case forcedOffBySensor
+  case heatOrCool
+  case weeklyScheduleTemporalOverride
+  case batteryCoverOpen
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaThermostatFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaThermostatFlag, result: inout SharedCore.SuplaThermostatFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaThermostatFlag, result: inout SharedCore.SuplaThermostatFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaThermostatFlag?) -> SharedCore.SuplaThermostatFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaThermostatFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaThermostatFlag
+  public typealias Companion = SharedCore.__SuplaThermostatFlag.Companion
+  public static func == (a: SharedCore.SuplaThermostatFlag, b: SharedCore.SuplaThermostatFlag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaThermostatFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaThermostatFlag] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaThermostatFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaThermostatFlag
+}
+extension SharedCore.__SuplaThermostatFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaThermostatFlag
+}
+public enum Skie {
+  public enum supla_android__shared_core {
+    public enum LocalizedString {
+    }
+    public enum BaseData {
+    }
+    public enum IssueIcon {
+    }
+    public enum ChannelIssueItem {
+    }
+  }
+  public typealias supla_android__shared_core_ = SharedCore.Skie.supla_android__shared_core
+}
+extension SharedCore.Skie.supla_android__shared_core.LocalizedString {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case constant(SharedCore.LocalizedStringConstant)
+    case empty(SharedCore.LocalizedStringEmpty)
+    case withId(SharedCore.LocalizedStringWithId)
+    case withIdIntStringInt(SharedCore.LocalizedStringWithIdIntStringInt)
+    case `else`
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed, b: SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed where __Sealed : SharedCore.LocalizedString
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed? where __Sealed : SharedCore.LocalizedString
+extension SharedCore.Skie.supla_android__shared_core.BaseData {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case channel(SharedCore.Channel)
+    case group(SharedCore.Group)
+    case scene(SharedCore.Scene)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed, b: SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed where __Sealed : SharedCore.BaseData
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed? where __Sealed : SharedCore.BaseData
+extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case battery(SharedCore.IssueIcon.Battery)
+    case battery0(SharedCore.IssueIcon.Battery0)
+    case battery100(SharedCore.IssueIcon.Battery100)
+    case battery25(SharedCore.IssueIcon.Battery25)
+    case battery50(SharedCore.IssueIcon.Battery50)
+    case battery75(SharedCore.IssueIcon.Battery75)
+    case batteryNotUsed(SharedCore.IssueIcon.BatteryNotUsed)
+    case error(SharedCore.IssueIcon.Error)
+    case warning(SharedCore.IssueIcon.Warning)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed, b: SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed where __Sealed : SharedCore.IssueIcon
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed? where __Sealed : SharedCore.IssueIcon
+extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case error(SharedCore.ChannelIssueItemError)
+    case lowBattery(SharedCore.ChannelIssueItemLowBattery)
+    case warning(SharedCore.ChannelIssueItemWarning)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
+public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
+extension Swift.Bool {
+  public func ifFalse(value: Any?) -> Any?
+  public func ifTrue(value: Any?) -> Any?
+  public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
+}
+extension Swift.Int16 {
+  public func fromSuplaTemperature() -> Swift.Float
+}
+extension Swift.String {
+  public func localized() -> any SharedCore.LocalizedString
+}
+public func localizedString(id: SharedCore.LocalizedStringId?) -> any SharedCore.LocalizedString
+public func localizedString(id: SharedCore.LocalizedStringId, arg1: Swift.Int32, arg2: any SharedCore.LocalizedString, arg3: Swift.Int32) -> any SharedCore.LocalizedString
+extension Swift.Int32 {
+  public func suplaFunction() -> SharedCore.SuplaFunction
+}
+extension SharedCore.SuplaHvacMode : Swift.Sendable {}
+extension SharedCore.SuplaHvacMode : Swift.BitwiseCopyable {}
+extension SharedCore.ThermostatSubfunction : Swift.Sendable {}
+extension SharedCore.ThermostatSubfunction : Swift.BitwiseCopyable {}
+extension SharedCore.LocalizedStringId : Swift.Sendable {}
+extension SharedCore.LocalizedStringId : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaFunction : Swift.Sendable {}
+extension SharedCore.SuplaFunction : Swift.BitwiseCopyable {}
+extension SharedCore.ChannelRelationType : Swift.Sendable {}
+extension SharedCore.ChannelRelationType : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaShadingSystemFlag : Swift.Sendable {}
+extension SharedCore.SuplaShadingSystemFlag : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaThermostatFlag : Swift.Sendable {}
+extension SharedCore.SuplaThermostatFlag : Swift.BitwiseCopyable {}

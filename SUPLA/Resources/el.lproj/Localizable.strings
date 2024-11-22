@@ -252,6 +252,8 @@
 "I understand" = "Καταλαβαίνω";
 "Go to CLOUD" = "Μεταβείτε στο CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Δεν μπορείτε να αλλάξετε τη λειτουργία του καναλιού που σχετίζεται με το έναυσμα ενέργειας.";
+"The function of the channel associated with the push notification cannot be changed." = "Η λειτουργία του καναλιού που σχετίζεται με τις ειδοποιήσεις PUSH δεν μπορεί να αλλάξει.";
+"The channel function associated with reactions cannot be changed." = "Η λειτουργία του καναλιού που σχετίζεται με τις αντιδράσεις δεν μπορεί να αλλάξει.";
 "Show ⓘ button" = "Εμφάνιση κουμπιού  ⓘ";
 "Advanced settings" = "Προχωρημένες";
 "Access ID" = "Αναγνωριστικό";
@@ -278,17 +280,157 @@
 "Delete account" = "Διαγραφή λογαριασμού";
 "Select active account" = "Επιλέξτε έναν ενεργό λογαριασμό";
 "Phase %d" = "Στάδιο %d";
+"Channels" = "Κανάλια";
+"Groups" = "Ομάδες";
+"Scenes" = "Σκηνές";
+"Not supported function" = "Μη υποστηριζόμενη λειτουργία";
 
 "AccountCreation.title" = "Επεξεργασία λογαριασμού";
 "AccountCreation.modificationTitle" = "Προσθήκη λογαριασμού";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=el";
 
+"Scenes.ActionButtons.execute" = "Εφαρμογή";
+"Scenes.ActionButtons.abort" = "Παύση";
+
 "Cfg.removal.dialog.missing_name" = "Εισαγάγετε ένα όνομα λογαριασμού";
 "Cfg.removal.dialog.duplicated_name" = "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα";
 "Cfg.removal.dialog.incomplete" = "Συμπληρώστε τα απαιτούμενα δεδομένα";
+"Cfg.removal.title" = "Διαγραφή λογαριασμού;";
+"Cfg.removal.action.logout" = "Ξεχάστε σε αυτή τη συσκευή";
+"Cfg.removal.action.remove" = "Ξεχάστε και διαγράψτε στο διακομιστή";
 
+"push_notification_limit_exceeded" = "Το όριο ειδοποίησης PUSH που είναι %@ ανά ώρα, έχει  ξεπεραστεί.";
+
+/* General */
 "general_error" = "Λάθος";
+"turn_on" = "Ενεργοποίηση";
+"turn_off" = "Απενεργοποίηση";
+"save" = "Αποθήκευση";
+/* General - DayOfWeek */
+"monday" = "Δευτέρα";
+"tuesday" = "Τρίτη";
+"wednesday" = "Τετάρτη";
+"thursday" = "Πέμπτη";
+"friday" = "Παρασκευή";
+"saturday" = "Σάββατο";
+"sunday" = "Κυριακή";
+"monday_short" = "ΔΕΥ";
+"tuesday_short" = "ΤΡ";
+"wednesday_short" = "ΤΕΤ";
+"thursday_short" = "ΠΕΜ";
+"friday_short" = "ΠΑΡ";
+"saturday_short" = "ΣΑΒ";
+"sunday_short" = "ΚΥΡ";
+"time_just_mintes" = "%d λεπτά";
+"time_hours_and_minutes" = "%d ώρες %d λεπτά";
+/* General - Channels */
+"channel_caption_hotelcard" = "Αισθητήρας κάρτας ξενοδοχείου";
+"channel_caption_alarm_armament" = "Αισθητήρας ρύθμισης συναγερμού";
+"channel_caption_general_purpose_measurment" = "Κανάλι μέτρησης";
+"channel_caption_general_purpose_meter" = "Κανάλι καταμέτρησης";
+"channel_caption_facade_blinds" = "Περσίδα πρόσοψης";
+"channel_caption_terrace_awning" = "Τέντα ταράτσας";
+"channel_caption_projector_screen" = "Οθόνη προβολής";
+"channel_caption_curtain" = "Κουρτίνα";
+"channel_caption_vertical_blind" = "Περσίδα κατακόρυφη";
+"channel_caption_garage_door" = "Γκαραζόπορτα";
+"channel_caption_pump_switch" = "Διακόπτης αντλίας";
+"channel_caption_heat_or_cold_source_switch" = "Διακόπτης πηγής θερμότητας ή κρύου";
+"channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Αφαιρέσαμε τη συρόμενη κίνηση που ανοίγει τις λεπτομέρειες, πατήστε στο επιλεγμένο κανάλι για να τις δείτε.";
+"main_no_entries" = "Άδειο";
+
+/* Menu */
+"menu_notifications" = "Ιστορικό ειδοποιήσεων";
+"menu_device_catalog" = "Κατάλογος συσκευών";
+
+/* Groups */
+"groups_empty_list_button" = "Προσθέστε ομάδα στο Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "PΠροσθέστε σκηνή στο Supla Cloud";
+
+/* App Settings */
+"app_settings.notifications_label" = "Ειδοποιήσεις";
+"app_settings.location_label" = "Τοποθεσία";
+"app_settings.permissions_header" = "Δικαιώματα";
+"settings_show_labels" = "Εμφάνιση ετικετών στο κάτω μενού";
+"settings_dark_mode" = "Νυχτερινή λειτουργία";
+"settings_lock_screen" = "Οθόνη κλειδώματος";
+"settings_lock_screen_app" = "Εφαρμογή";
+"settings_lock_screen_none" = "Δεν υπάρχει";
+"settings_show_bottom_menu" = "Εμφάνιση κάτω μενού";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Γενικά";
+"standard_detail_schedule_tab" = "Εβδομάδα";
+"standard_detail_metrics_tab" = "Μετρήσεις";
+"standard_detail_history_tab" = "Ιστορία";
+"standard_detail_list_tab" = "Λίστα";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_settings_tab" = "Ρυθμίσεις";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Τρέχουσα κατάσταση:";
+"switch_detail_state_label_for_timer" = "Κατάσταση μέχρι της %@:";
+"switch_detail_state_on" = "ενεργ.";
+"switch_detail_state_off" = "απενεργ.";
+
+/* Timer Detail */
+"timer_detail_wrong_time_message" = "Ο χρόνος πρέπει να είναι μεγαλύτερος από 0";
+"timer_detail_header" = "Καθορίστε την ώρα που θα πρέπει να είναι η συσκευή:";
+"timer_detail_turned_on" = "Ενεργοποιημένο";
+"timer_detail_edit_header_on" = "ενεργοποιημένο";
+"timer_detail_info_on" = "ενεργοποιημένο";
+"timer_detail_turned_off" = "Απενεργοποιημένο";
+"timer_detail_edit_header_off" = "απενεργοποιημένο";
+"timer_detail_info_off" = "απενεργοποιημένο";
+"timer_detail_info" = "Η συσκευή θα είναι  %@ %@, και στη συνέχεια θα %@";
+"timer_detail_stop" = "Αφήστε %@";
+"timer_detail_cancel" = "Ακύρωση και %@";
+"timer_detail_end_hour" = "μέχρι της %@";
+"timer_detail_edit_time" = "Επεξεργασία ώρας";
+"timer_detail_edit_header" = "Επεξεργαστείτε την ώρα κατά την οποία η συσκευή θα %@";
+"timer_detail_edit_cancel" = "Ακύρωση επεξεργασίας";
+"timer_detail_minute_pattern" = "%d λεπτά";
+"timer_detail_select_mode" = "Επιλέξτε λειτουργία";
+"timer_detail_manual_mode" = "Χειροκίνητη λειτουργία";
+"timer_detail_info_thermostat_off" = "Ο θερμοστάτης θα είναι απενεργοποιημένος για\n%@";
+"timer_detail_info_thermostat_heating" = "Ο θερμοστάτης θα βρίσκεται σε λειτουργία θέρμανσης για\n%@";
+"timer_detail_info_thermostat_cooling" = "Ο θερμοστάτης θα βρίσκεται σε λειτουργία ψύξης για\n%@";
+"timer_detail_select_time" = "Καθορίστε την ώρα";
+"timer_detail_counter" = "Μετρητής";
+"timer_detail_calendar" = "Ημερολόγιο";
+"timer_detail_min_temp" = "Θερμοκρασία τουλάχιστον";
+"timer_detail_max_temp" = "Θερμοκρασία μέγ.";
+"timer_detail_state_label_for_timer_days" = "Κατάσταση μλεχρη της %@:";
+"timer_detail_cancel_thermostat" = "PΔιακόψτε το χρονοδιακόπτη και ενεργοποιήστε τη λειτουργία:";
+
+/* Thermostat Detail */
+"thermostat_detail_mode_manual" = "Χιεροκίνητο";
+"thermostat_detail_mode_weekly_schedule" = "Πρόγραμμα";
+"schedule_detail_quarters_dialog_header" = "Ώρα %02d:00";
+"schedule_detail_program_dialog_header" = "Ρυθμίσεις προγράμματος %d";
+"hvac_mode_temperature_heating" = "Θερμοκρασία θέρμανσης";
+"hvac_mode_temperature_cooling" = "Θερμοκρασία ψύξης";
+"thermostat_thermometer_error" = "Σφάλμα ανάγνωσης θερμοκρασίας";
+"thermostat_clock_error" = "Σφάλμα ρολογιού";
+"thermostat_detail_program_current" = "Τρέχον:";
+"thermostat_detail_program_next" = "Επόμενο:";
+"thermostat_detail_program_time" = "μέσω %@";
+"thermostat_detail_off_by_window" = "Απενεργοποιείται από ανοιχτό παράθυρο";
+"thermostat_detail_off_by_card" = "Εξαιρείται λόγω έλλειψης κάρτας ξενοδοχείου";
+"thermostat_detail_off_by_sensor" = "Απενεργοποιείται από αισθητήρα";
+"thermostat_detail_program_info" = "Αγγίξτε για να ενεργοποιήσετε το πρόγραμμα. Κρατήστε πατημένο για να τροποποιήσετε το πρόγραμμα.";
+"thermostat_detail_box_info" = "Αγγίξτε το για να ρυθμίσετε το επιλεγμένο πρόγραμμα. Κρατήστε πατημένο για να ρυθμίσετε τις επιλεγμένα τέταρτα.";
+"thermostat_detail_arrow_info" = "Η μαύρη γωνία υποδεικνύει την τρέχουσα ώρα και ημέρα.";
+"thermostat_detail_list" = "Λίστα";
+"thermostat_detail_main_thermostat" = "Κύριος θερμοστάτης";
+"thermostat_detail_other_thermostats" = "Εξαρτώμενοι θερμοστάτες";
+"thermostat_battery_cover_open" = "Το κάλυμμα της μπαταρίας είναι ανοιχτό";
 
 /* Combined Chart */
 "history_range_last_day" = "Οι τελευταίες 24 ώρες";
@@ -296,20 +438,54 @@
 "history_range_last_30_days" = "Οι τελευταίες 30 ημέρες";
 "history_range_last_90_days" = "Οι τελευταίες 90 ημέρες";
 "history_range_last_365_days" = "Οι τελευταίες 365 ημέρες";
-
-/* Thermometer Chart */
 "history_no_data_in_selected_period" = "Δεν υπάρχουν δεδομένα για το γράφημα.";
+"history_range_current_week" = "Εβδομάδα";
+"history_range_label" = "Περιοχή";
+"history_range_current_day" = "Ημέρα";
+"history_range_current_month" = "Μήνας";
+"history_range_current_quarter" = "Τρίμηνο";
+"history_range_current_year" = "Έτος";
+"history_range_custom" = "Άλλη περιοχή";
+"history_refreshing" = "Ανανέωση…";
+"history_refreshing_failed" = "Η ανανέωση απέτυχε";
+"history_no_data_selected" = "Δεν έχουν επιλεγεί δεδομένα για εμφάνιση.";
+"history_no_data_available" = "Δεν υπάρχουν μετρήσεις";
+"history_disabled" = "Το ιστορικό είναι απενεργοποιημένο για αυτό το κανάλι";
+"history_delete_data" = "Διαγράψτε το ιστορικό και κατεβάστε ξανά";
+"history_wait_for_download_completed" = "Παρακαλώ περιμένετε, γίνετια λήψη...";
+"chart_marker_opening" = "Άνοιγμα";
+"chart_marker_closing" = "Κλείσιμο";
+
+/* Notifications */
+"notification_delete_button_delete_older_than_month" = "Απομακρύνετε παλαιότερα από 30 ημέρες";
+"notification_delete_all_title" = "Διαγραφή;";
+"notification_delete_all_message" = "Η διαγραφή των ειδοποιήσεων είναι μη αναστρέψιμη, συνέχεια?";
+"notifications_log_profile" = "Πρόφιλ:";
+"notifications_log_date" = "Ημερομηνία:";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Ρολά, περσίδες, κουρτίνες %.";
 "roller_shutter_calibration_lost" = "Η βαθμονόμηση απέτυχε.";
 "roller_shutter_calibration_failed" = "Η βαθμονόμηση έχει χαθεί.";
 "roller_shutter_motor_problem" = "Πρόβλημα κινητήρα / Απροσδόκητη διακοπή.";
 "roller_shutter_calibration" = "Βαθμονόμηση";
 "roller_shutter_start_calibration_message" = "Είστε βέβαιοι ότι θέλετε να ξεκινήσετε τη βαθμονόμηση;";
+"roller_shutter_closing_percentage" = "Κλείσιμο:";
+"roller_shutter_opening_percentage" = "Άνοιγμα:";
+"roller_shutter_calibration_needed" = "Απαιτείται βαθμονόμηση";
+"roller_shutter_extension_percentage" = "Επέκταση:";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Κλίση: ";
+"facade_blinds_no_tilt" = "Καμία διαμόρφωση";
 
 /* Status */
 "status_connecting" = "Σύνδεση...";
 "status_unknown_error" = "Άγνωστο σφάλμα";
+"status_initializing" = "Θέση σε λειτουργία...";
+"status_try_again" = "Δοκιμάστε ξανά";
+"status_disconnecting" = "Αποσύνδεση...";
+"status_awaiting_network" = "Περιμένοντας το δίκτυο...";
 "status_temporarily_unavailable" = "Υπηρεσία προσωρινά μη διαθέσιμη";
 "status_incorrect_data" = "Λάθος διεύθυνση ηλεκτρονικού ταχυδρομείου ή κωδικός πρόσβασης";
 "status_bad_credentials" = "Λανθασμένα διαπιστευτήρια";
@@ -321,8 +497,30 @@
 "status_access_id_inactive" = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
 "status_host_not_found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 
+/* Pin setup */
+"pin_setup_header" = "Ορίστε το PIN σας";
+"pin_setup_title" = "Διαμόρφωση PIN";
+"pin_setup_repeat" = "Επανάληψη PIN";
+"pin_setup_entry_different" = "Οι κωδικοί που εισάγονται είναι διαφορετικοί!";
+"pin_setup_use_biometric" = "Βιομετρικός έλεγχος ταυτότητας: ";
+"pin_setup_biometric_not_enrolled" = "Ο βιομετρικός έλεγχος ταυτότητας δεν έχει ρυθμιστεί. Αν θέλετε να χρησιμοποιήσετε βιομετρικά στοιχεία, ρυθμίστε τα πρώτα στις ρυθμίσεις συστήματος.";
+"biometric_prompt_subtitle" = "Ξεκλείδωμα με το δακτυλικό σας αποτύπωμα";
+
+/* Lock screen */
+"lock_screen_wrong_pin" = "Εισαγωγή λανθασμένου κωδικού PIN!";
+"lock_screen_remove_pin" = "Διαγραφή PIN";
+"lock_screen_forgotten_code" = "Δεν θυμάμαι τον κωδικό πρόσβασης";
+"lock_screen_forgotten_code_title" = "Κωδικός πρόσβασης";
+"lock_screen_hello" = "Καλώς ήρθατε πίσω!";
+"lock_screen_enter_pin" = "Εισαγωγή ΡΙΝ";
+"lock_screen_forgotten_code_message" = "Αν δεν θυμάστε τον κωδικό πρόσβασης, απεγκαταστήστε την εφαρμογή από το τηλέφωνό σας και, στη συνέχεια, εγκαταστήστε την ξανά. Μετά την επανεγκατάσταση, προσθέστε τη διαμόρφωση λογαριασμού από το Supla Cloud.\n\nΜην δημιουργείτε νέο λογαριασμό. Τα ιστορικά δεδομένα και όλες οι συσκευές δεν θα χαθούν.";
+"lock_screen_forgotten_code_button" = "Καταλαβαίνω";
+"lock_screen_confirm_authorize_range_change" = "Αλλαγή του πεδίου εφαρμογής της άδειας";
+"lock_screen_pin_locked" = "Πάρα πολλές λανθασμένες προσπάθειες. Το pin έχει μπλοκαριστεί για %@.";
+
 /* About */
 "about_version" = "Η έκδοση %@";
+"about_build_time" = "Έκδοση της ημέρας: %@";
 
 /* Electricity meter detail */
 "details_em_forward_active_energy" = "Ληφθείσα ενεργή ενέργεια";
@@ -344,3 +542,18 @@
 "details_em_balance_vector" = "Διανυσματικός ισολογισμός";
 "em_phase_to_phase_balance" = "Διανυσματικός ισολογισμός φάσεων";
 "em_chart_all_phases" = "Στάδιο 1+2+3";
+"details_em_chart_data_type" = "Δεδομένα";
+"details_em_phases" = "Φάση";
+"details_em_balance_hourly" = "Ωριαίο ισοζύγιο";
+"details_em_balance_chart_aggregated" = "Ισολογισμός συγκεντρωμένος με διάγραμμα";
+"details_em_sum" = "Σύνολο";
+"details_em_select_range" = "Επιλέξτε περίοδο";
+"details_em_active_energy" = "Ενεργή ενέργεια";
+"details_em_forwarded_energy" = "Έχει γίνει λήψη";
+"details_em_reversed_energy" = "Επιστράφηκε";
+"details_em_cost" = "Κόστος";
+"details_em_settings_list_item" = "Τιμή που εμφανίζεται στη λίστα καναλιών";
+"details_em_settings_title" = "Ρυθμίσεις - %@";
+"details_em_total_suffix" = "(κατάσταση μετρητή)";
+"details_em_current_month_suffix" = "(τρέχων μήνας)";
+"details_em_last_month_balancing" = "Εξισορρόπηση του τρέχοντος μήνα";

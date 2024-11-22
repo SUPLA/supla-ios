@@ -294,39 +294,227 @@
 "Groups" = "Gruppi";
 "Scenes" = "Scenari";
 
+"Not supported function" = "Funzione non supportata";
+
+"The function of the channel associated with the push notification cannot be changed." = "La funzione del canale associato alle notifiche PUSH non può essere modificata.";
+"The channel function associated with reactions cannot be changed." = "La funzione del canale associato alle reazioni non può essere modificata.";
+
 "AccountCreation.title" = "Modifica account";
 "AccountCreation.modificationTitle" = "Aggiungi un account";
 
-"Scenes.ActionButtons.execute" = "Start";
-"Scenes.ActionButtons.abort" = "Stop";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=it";
 
+"Scenes.ActionButtons.execute" = "Esegui";
+"Scenes.ActionButtons.abort" = "Interrompi";
+
+"Cfg.removal.title" = "Eliminare l\'account?";
+"Cfg.removal.action.logout" = "Dimentica su questo dispositivo";
+"Cfg.removal.action.remove" = "Dimentica ed elimina sul server";
 "Cfg.removal.dialog.missing_name" = "Manca il nome dell’account";
 "Cfg.removal.dialog.duplicated_name" = "Un account con lo stesso nome è già esistente";
 "Cfg.removal.dialog.incomplete" = "Informazioni richieste mancanti";
 
+"push_notification_limit_exceeded" = "È stato superato il limite di notifiche PUSH che risulta %@ all\'ora.";
+
+/* General */
 "general_error" = "Errore";
+"save" = "Salva";
+"turn_on" = "Abilita";
+"turn_off" = "Disabilita";
+"general_shut" = "Chiudi";
+"general_reveal" = "Apri";
+"general_collapse" = "Chiudi";
+"general_expand" = "Apri";
+/* General - DayOfWeek */
+"monday" = "Lunedì";
+"tuesday" = "Martedì";
+"wednesday" = "Mercoledì";
+"thursday" = "Giovedì";
+"friday" = "Venerdì";
+"saturday" = "Sabato";
+"sunday" = "Domenica";
+"monday_short" = "LUN";
+"tuesday_short" = "MAR";
+"wednesday_short" = "MER";
+"thursday_short" = "GIO";
+"friday_short" = "VEN";
+"saturday_short" = "SAB";
+"sunday_short" = "DOM";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d ore %d min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Sensore tessera albergo";
+"channel_caption_alarm_armament" = "Sensore di impostazione dell\'allarme";
+"channel_caption_general_purpose_measurment" = "Canale di misurazione";
+"channel_caption_general_purpose_meter" = "Canale contatore";
+"channel_caption_facade_blinds" = "Persiane per facciate";
+"channel_caption_terrace_awning" = "Tenda da sole per terrazza";
+"channel_caption_projector_screen" = "Schermo di proiezione";
+"channel_caption_curtain" = "Tenda";
+"channel_caption_vertical_blind" = "Persiana verticale";
+"channel_caption_garage_door" = "Portone di garage";
+"channel_caption_pump_switch" = "Commutatore della pompa";
+"channel_caption_heat_or_cold_source_switch" = "Commutatore della fonte di calore o di freddo";
+"channel_offline" = "Il canale è offline";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Abbiamo eliminato il gesto di scorrimento che apre i dettagli, per vederli devi toccare il canale selezionato.";
+"main_no_entries" = "Vuoto";
+
+/* Menu */
+"menu_notifications" = "Cronologia delle notifiche";
+"menu_device_catalog" = "Catalogo dispositivi";
+
+/* Groups */
+"groups_empty_list_button" = "Aggiungi un gruppo su Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Aggiungi una scenario su Supla Cloud";
+
+/* App Settings */
+"app_settings.permissions_header" = "Autorizzazioni";
+"app_settings.notifications_label" = "Notifiche";
+"app_settings.location_label" = "Localizzazione";
+"settings_show_bottom_menu" = "Mostra il menu inferiore";
+"settings_show_labels" = "Mostra le etichette in menu inferiore";
+"settings_dark_mode" = "Modalità notte";
+"settings_lock_screen" = "Schermata di blocco";
+"settings_lock_screen_none" = "Nessuno";
+"settings_lock_screen_app" = "Applicazione";
+"settings_lock_screen_accounts" = "Account";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Generali";
+"standard_detail_metrics_tab" = "Misurazioni";
+"standard_detail_schedule_tab" = "Settimana";
+"standard_detail_history_tab" = "Cronologia";
+"standard_detail_list_tab" = "Elenco";
+"standard_detail_settings_tab" = "Impostazioni";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Stato attuale:";
+"switch_detail_state_label_for_timer" = "Stato fino alle ore %@:";
+"switch_detail_state_on" = "abilitato";
+"switch_detail_state_off" = "disabilitato";
+
+/* Timer Detail */
+"timer_detail_header" = "Specifica il tempo in cui il dispositivo deve essere:";
+"timer_detail_edit_header" = "Modifica il tempo in cui il dispositivo sarà %@";
+"timer_detail_edit_header_on" = "acceso";
+"timer_detail_edit_header_off" = "spento";
+"timer_detail_turned_on" = "Acceso";
+"timer_detail_turned_off" = "Spento";
+"timer_detail_day_pattern" = "%d giorno";
+"timer_detail_days_pattern" = "%d giorni";
+"timer_detail_hour_pattern" = "%d ora";
+"timer_detail_hours_pattern" = "%d ore";
+"timer_detail_minute_pattern" = "%d min";
+"timer_detail_second_pattern" = "%d sec";
+"timer_detail_info" = "Il dispositivo sarà %@ per %@ e poi si %@";
+"timer_detail_info_on" = "acceso";
+"timer_detail_info_off" = "spento";
+"timer_detail_info_next_on" = "accenderà";
+"timer_detail_info_next_off" = "spegnerà";
+"timer_detail_stop" = "Lascia %@";
+"timer_detail_cancel" = "Annulla e %@";
+"timer_detail_cancel_on" = "abilita";
+"timer_detail_cancel_off" = "disabilita";
+"timer_detail_edit_time" = "Modifica tempo";
+"timer_detail_save" = "Salva";
+"timer_detail_edit_cancel" = "Annulla modifica";
+"timer_detail_end_hour" = "alle ore %@";
+"timer_detail_wrong_time_title" = "Orario non valido";
+"timer_detail_wrong_time_message" = "Il tempo deve essere superiore a 0";
+"timer_detail_cancel_thermostat" = "Interrompi il timer e attiva la modalità:";
+"timer_detail_select_mode" = "Seleziona modalità";
+"timer_detail_manual_mode" = "Modalità manuale";
+"timer_detail_select_time" = "Specifica tempo";
+"timer_detail_counter" = "Contatore";
+"timer_detail_calendar" = "Calendario";
+"timer_detail_info_thermostat_off" = "Il termostato sarà spento per\n%@";
+"timer_detail_info_thermostat_heating" = "Il termostato sarà in modalità di riscaldamento per\n%@";
+"timer_detail_info_thermostat_cooling" = "Il termostato sarà in modalità di raffreddamento per\n%@";
+"timer_detail_state_label_for_timer_days" = "Stato al %@:";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Errore di lettura della temperatura";
+"thermostat_clock_error" = "Errore orologio";
+"thermostat_battery_cover_open" = "Coperchio della batteria aperto";
+"thermostat_detail_mode_manual" = "Manuale";
+"thermostat_detail_mode_weekly_schedule" = "Automatico";
+"schedule_detail_program_dialog_header" = "Impostazioni del programma %d";
+"hvac_mode_temperature_heating" = "Temperatura di riscaldamento";
+"hvac_mode_temperature_cooling" = "Temperatura di raffreddamento";
+"schedule_detail_quarters_dialog_header" = "Ore %02d:00";
+"schedule_detail_configuration_failure" = "Errore - configurazione canale non valida";
+"thermostat_detail_program_time" = "per %@";
+"thermostat_detail_program_current" = "Attuale:";
+"thermostat_detail_program_next" = "Prossimo:";
+"thermostat_detail_off_by_window" = "Disabilitato dalla finestra aperta";
+"thermostat_detail_off_by_card" = "Disabilitato per mancanza tessera albergo";
+"thermostat_detail_off_by_sensor" = "Disabilitato dal sensore";
+"thermostat_detail_program_info" = "Tocca per attivare il programma. Tieni premuto per modificare il programma.";
+"thermostat_detail_box_info" = "Tocca per impostare il programma selezionato. Tieni premuto per impostare i quarti selezionati.";
+"thermostat_detail_arrow_info" = "L\'angolo nero indica l\'ora e il giorno corrente.";
+"thermostat_detail_list" = "Elenco";
+"thermostat_detail_main_thermostat" = "Termostato principale";
+"thermostat_detail_other_thermostats" = "Termostati dipendenti";
 
 /* Combined Chart */
+"history_range_label" = "Intervallo";
+"history_data_type" = "Tipo dati";
 "history_range_last_day" = "Ultime 24 ore";
 "history_range_last_week" = "Ultimi 7 giorni";
 "history_range_last_30_days" = "Ultimi 30 giorni";
 "history_range_last_90_days" = "Ultimi 90 giorni";
 "history_range_last_365_days" = "Ultimi 365 giorni";
-
-/* Thermometer Chart */
+"history_range_current_day" = "Giorno";
+"history_range_current_week" = "Settimana";
+"history_range_current_month" = "Mese";
+"history_range_current_quarter" = "Trimestre";
+"history_range_current_year" = "Anno";
+"history_range_custom" = "Altro intervallo";
+"history_refreshing" = "Aggiornamento…";
+"history_refreshing_failed" = "Aggiornamento non riuscito";
+"history_no_data_selected" = "Nessun dato selezionato per la visualizzazione.";
+"history_no_data_available" = "Nessuna misurazione";
 "history_no_data_in_selected_period" = "Nessun dato per il grafico.";
+"history_disabled" = "La cronologia è disabilitata per questo canale";
+"history_delete_data" = "Cancella la cronologia e scarica di nuovo";
+"history_wait_for_download_completed" = "Attendere prego, caricamento in corso...";
+"chart_marker_opening" = "Apertura";
+"chart_marker_closing" = "Chiusura";
+
+/* Notification */
+"notifications_log_profile" = "Profilo:";
+"notifications_log_date" = "Data:";
+"notification_delete_all_title" = "Rimuovere?";
+"notification_delete_all_message" = "La cancellazione delle notifiche è irreversibile, continuare?";
+"notification_delete_button_delete_all" = "Cancella tutto";
+"notification_delete_button_delete_older_than_month" = "Rimuovi più vecchi di 30 giorni";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Tapparelle, persiane, tende %";
 "roller_shutter_calibration_lost" = "Calibrazione fallita.";
 "roller_shutter_calibration_failed" = "Calibrazione persa.";
 "roller_shutter_motor_problem" = "Problema al motore / Arresto inaspettato.";
 "roller_shutter_calibration" = "Calibrazione";
 "roller_shutter_start_calibration_message" = "Confermi di voler avviare la calibrazione?";
+"roller_shutter_closing_percentage" = "Chiusura:";
+"roller_shutter_opening_percentage" = "Apertura:";
+"roller_shutter_calibration_needed" = "Calibrazione richiesta";
+"roller_shutter_extension_percentage" = "Srotolamento:";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Inclinazione: ";
+"facade_blinds_no_tilt" = "Nessuna configurazione";
 
 /* Status */
+"status_initializing" = "Avviamento...";
 "status_connecting" = "Connessione in corso...";
+"status_disconnecting" = "Disconnessione...";
+"status_awaiting_network" = "In attesa della rete...";
+"status_try_again" = "Riprova";
 "status_unknown_error" = "Errore sconosciuto";
 "status_temporarily_unavailable" = "Servizio temporaneamente non disponibile";
 "status_incorrect_data" = "Indirizzo Mail o Password errato";
@@ -338,14 +526,40 @@
 "status_access_id_not_assigned" = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina \"Supla Cloud\" e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
 "status_host_not_found" = "L’indirizzo del server non è stato trovato";
 
+/* Pin setup */
+"pin_setup_title" = "Configurazione PIN";
+"pin_setup_header" = "Definisci il Tuo PIN";
+"pin_setup_repeat" = "Ripeti PIN";
+"pin_setup_entry_different" = "Codici inseriti sono diversi!";
+"pin_setup_use_biometric" = "Autenticazione biometrica: ";
+"pin_setup_biometric_not_enrolled" = "Autenticazione biometrica non è stata configurata. Se si desidera utilizzare la biometria, configurarla prima nelle impostazioni di sistema.";
+
+/* Lock screen */
+"lock_screen_hello" = "Bentornato!";
+"lock_screen_enter_pin" = "Inserisci PIN";
+"lock_screen_remove_pin" = "Eliminazione del codice PIN";
+"lock_screen_confirm_authorize_range_change" = "Modifica dell\'ambito dell\'autorizzazione";
+"lock_screen_wrong_pin" = "Il codice PIN inserito è errato!";
+"lock_screen_forgotten_code" = "Non ricordo il codice di accesso";
+"lock_screen_forgotten_code_title" = "Codice di accesso";
+"lock_screen_forgotten_code_message" = "Se hai dimenticato il codice di accesso, disinstalla l'applicazione dal telefono e poi procedi alla reinstallazione. Dopo la reinstallazione, aggiungi la configurazione dell'account da Supla Cloud.\n\nNon creare un nuovo account. I dati storici e tutti i dispositivi non andranno persi.";
+"lock_screen_forgotten_code_button" = "Ho capito";
+"biometric_prompt_subtitle" = "Sblocca con l\'impronta digitale";
+"lock_screen_pin_locked" = "Troppi tentativi errati. Il PIN è stato bloccato per %@.";
+
 /* About */
 "about_version" = "versione %@";
+"about_build_time" = "Versione del: %@";
 
 /* Electricity meter detail */
 "details_em_forward_active_energy" = "Energia attiva prelevata";
 "details_em_reverse_active_energy" = "Energia attiva restituita";
 "details_em_forward_reactive_energy" = "Energia reattiva prelevata";
 "details_em_reverse_reactive_energy" = "Energia reattiva restituita";
+"details_em_forward_active_energy_short" = "Attiva prelevata";
+"details_em_reverse_active_energy_short" = "Attiva restituita";
+"details_em_forward_reactive_energy_short" = "Reattiva prelevata";
+"details_em_reverse_reactive_energy_short" = "Reattiva restituita";
 "details_em_frequency" = "Frequenza";
 "details_em_voltage" = "Tensione";
 "details_em_current" = "Intensità";
@@ -359,4 +573,22 @@
 "details_em_phase3" = "Fase 3";
 "details_em_balance_arithmetic" = "Equilibrio aritmetico";
 "details_em_balance_vector" = "Equilibrio vettoriale";
+"details_em_chart_data_type" = "Dati";
+"details_em_phases" = "Fase";
+"details_em_balance_hourly" = "Bilancio orario";
+"details_em_balance_chart_aggregated" = "Bilancio aggregato in forma di grafico";
+"details_em_sum" = "Somma";
+"details_em_select_range" = "Seleziona il periodo";
+"details_em_active_energy" = "Energia attiva";
+"details_em_forwarded_energy" = "Assorbita";
+"details_em_reversed_energy" = "Restituita";
+"details_em_cost" = "Costo";
+"details_em_settings_list_item" = "Valore visualizzato nell\'elenco dei canali";
+"details_em_settings_title" = "Impostazioni - %@";
+"details_em_total_suffix" = "(stato del contatore)";
+"details_em_current_month_suffix" = "(mese corrente)";
+"details_em_last_month_balancing" = "Bilanciamento del mese corrente";
+"details_em_energy_label" = "Energia";
+"details_em_hour_marker_title" = "%@";
 "em_phase_to_phase_balance" = "Equilibrio interfase vettoriale";
+"em_chart_all_phases" = "Fase 1+2+3";
