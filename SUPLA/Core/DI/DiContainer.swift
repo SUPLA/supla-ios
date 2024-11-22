@@ -116,6 +116,7 @@ extension DiContainer {
         let generalPurposeMeterItemRepository = GeneralPurposeMeterItemRepositoryImpl()
         register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
         register((any NotificationRepository).self, NotificationRepositoryImpl())
+        register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
         
         // MARK: Usecases
 
@@ -224,6 +225,8 @@ extension DiContainer {
         register(CheckPinUseCase.self, CheckPinUseCaseImpl())
         // UseCases - Ocr
         register(DownloadOcrPhotoUseCase.self, DownloadOcrPhotoUseCaseImpl())
+        // UseCases - ChannelState
+        register(UpdateChannelStateUseCase.self, UpdateChannelStateUseCaseImpl())
         
         // MARK: Features
         

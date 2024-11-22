@@ -36,9 +36,9 @@ final class StartTimerUseCaseImpl: StartTimerUseCase {
             }
             
             let suplaClient = self.suplaClientProvider.provide()
-            let result = suplaClient.timerArm(for: remoteId, withTurnOn: turnOn, withTime: durationInSecs * 1000)
+            let result = suplaClient?.timerArm(for: remoteId, withTurnOn: turnOn, withTime: durationInSecs * 1000)
             
-            if (result) {
+            if (result == true) {
                 self.vibrationService.vibrate()
             }
             

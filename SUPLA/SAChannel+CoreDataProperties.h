@@ -18,6 +18,7 @@
 
 #import "SAChannel+CoreDataClass.h"
 #import "SACHannelConfig+CoreDataClass.h"
+#import "SAChannelState+CoreDataClass.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) SAChannelExtendedValue *ev;
 @property (nullable, nonatomic, retain) SAChannelValue *value;
 @property (nullable, nonatomic, retain) SAChannelConfig *config;
+@property (nullable, nonatomic, retain) SAChannelState *state;
 
 @end
 

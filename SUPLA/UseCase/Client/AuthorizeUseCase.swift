@@ -46,7 +46,7 @@ final class AuthorizeUseCaseImpl: AuthorizeUseCase {
                 selector: #selector(observer.onMessageReceived(notification:)),
                 name: NSNotification.Name.saSuperuserAuthorization
             )
-            self.suplaClientProvider.provide().superuserAuthorizationRequest(
+            self.suplaClientProvider.forcedProvide().superuserAuthorizationRequest(
                 withEmail: userName,
                 andPassword: password
             )

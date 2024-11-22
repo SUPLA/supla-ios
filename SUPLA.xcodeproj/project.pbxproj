@@ -611,6 +611,8 @@
 		A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
 		A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */; };
 		A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */; };
+		A56EC92F2CEF1CF800A6E2CB /* UpdateChannelStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EC92E2CEF1CF100A6E2CB /* UpdateChannelStateUseCase.swift */; };
+		A56EC9312CEF1DAF00A6E2CB /* SAChannelState+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EC9302CEF1DAB00A6E2CB /* SAChannelState+Ext.swift */; };
 		A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */; };
 		A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */; };
 		A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */; };
@@ -702,6 +704,8 @@
 		A584E2052CAB390700232A98 /* ElectricityMeterValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */; };
 		A584E2072CABCE3F00232A98 /* SAExectricityMeterExtendedValue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */; };
 		A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */; };
+		A5862C092CEF2F5F00DFFD55 /* ChannelStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */; };
+		A5862C0C2CEF816B00DFFD55 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C0B2CEF813B00DFFD55 /* TimerState.swift */; };
 		A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */; };
 		A58A63072C07163E00A9D02D /* VerticalBlindWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */; };
 		A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */; };
@@ -2104,6 +2108,9 @@
 		A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCallWrapper.m; sourceTree = "<group>"; };
 		A56D5AD02A4C37DA004F45DA /* SingleCallWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleCallWrapper.h; sourceTree = "<group>"; };
 		A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTask.swift; sourceTree = "<group>"; };
+		A56EC92C2CEE86C700A6E2CB /* SUPLA 18.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 18.xcdatamodel"; sourceTree = "<group>"; };
+		A56EC92E2CEF1CF100A6E2CB /* UpdateChannelStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChannelStateUseCase.swift; sourceTree = "<group>"; };
+		A56EC9302CEF1DAB00A6E2CB /* SAChannelState+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelState+Ext.swift"; sourceTree = "<group>"; };
 		A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration11to12ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEntitiesMigrationPolicy.swift; sourceTree = "<group>"; };
 		A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration12to13ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
@@ -2197,6 +2204,8 @@
 		A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueFormatter.swift; sourceTree = "<group>"; };
 		A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAExectricityMeterExtendedValue+Ext.swift"; sourceTree = "<group>"; };
 		A584E2082CAD5ED400232A98 /* ElectricityMeterValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueStringProvider.swift; sourceTree = "<group>"; };
+		A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepository.swift; sourceTree = "<group>"; };
+		A5862C0B2CEF813B00DFFD55 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalBlindsVM.swift; path = SUPLA/Features/Details/WindowDetail/VerticalBlind/VerticalBlindsVM.swift; sourceTree = SOURCE_ROOT; };
 		A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindWindowState.swift; sourceTree = "<group>"; };
 		A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVC.swift; sourceTree = "<group>"; };
@@ -4343,6 +4352,7 @@
 		A55A8D932BAB147700C540D4 /* SuplaApp */ = {
 			isa = PBXGroup;
 			children = (
+				A5862C0A2CEF813300DFFD55 /* ChannelState */,
 				A584E1FD2CAAC87900232A98 /* ElectricityMeter */,
 				A50B5CFE2BEA323C00918D18 /* ShadingSystem */,
 				A5074BD72BCFB99E0081B6B1 /* FacadeBlind */,
@@ -4471,6 +4481,14 @@
 				A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */,
 			);
 			path = UpdateToken;
+			sourceTree = "<group>";
+		};
+		A56EC92D2CEF1CD800A6E2CB /* ChannelState */ = {
+			isa = PBXGroup;
+			children = (
+				A56EC92E2CEF1CF100A6E2CB /* UpdateChannelStateUseCase.swift */,
+			);
+			path = ChannelState;
 			sourceTree = "<group>";
 		};
 		A573B0972A5FD849001E19D0 /* SwitchDetail */ = {
@@ -4730,6 +4748,14 @@
 				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
 			);
 			path = ElectricityMeter;
+			sourceTree = "<group>";
+		};
+		A5862C0A2CEF813300DFFD55 /* ChannelState */ = {
+			isa = PBXGroup;
+			children = (
+				A5862C0B2CEF813B00DFFD55 /* TimerState.swift */,
+			);
+			path = ChannelState;
 			sourceTree = "<group>";
 		};
 		A58A63032C07154700A9D02D /* VerticalBlind */ = {
@@ -5443,6 +5469,7 @@
 		A5B3CC0F2B62935800F95AC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A56EC9302CEF1DAB00A6E2CB /* SAChannelState+Ext.swift */,
 				A5E05BC72CB6677800202583 /* SAGeneralPurposeMeasurementItem+Ext.swift */,
 				A5E05BC42CB666D200202583 /* SAGeneralPurposeMeterItem+Ext.swift */,
 				A5E05BC02CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift */,
@@ -5976,6 +6003,7 @@
 		A5F29B7C2A1E36B300ED700A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */,
 				A5F29B7D2A1E36C200ED700A /* SceneRepository.swift */,
 				A5F29B7F2A1E489300ED700A /* ProfileRepository.swift */,
 				A5F29B882A1F985A00ED700A /* LocationRepository.swift */,
@@ -6040,6 +6068,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A56EC92D2CEF1CD800A6E2CB /* ChannelState */,
 				A5E0DF802CEC986800362451 /* File */,
 				A5A160162C2AE9DF0049AA73 /* App */,
 				A5F29B942A20B74B00ED700A /* Channel */,
@@ -6846,6 +6875,7 @@
 				A55A8D822BA9B6B400C540D4 /* WindowColors.swift in Sources */,
 				A5A15FE62C256F850049AA73 /* AppDelegate.swift in Sources */,
 				A5074BD12BCE72400081B6B1 /* FacadeBlindsVC.swift in Sources */,
+				A56EC9312CEF1DAF00A6E2CB /* SAChannelState+Ext.swift in Sources */,
 				A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */,
 				A5B3CC022B627ADC00F95AC3 /* HumidityValueStringProvider.swift in Sources */,
 				A51BE8ED2AA713A500718F2F /* ThermostatDetailVM.swift in Sources */,
@@ -6891,6 +6921,7 @@
 				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
+				A5862C092CEF2F5F00DFFD55 /* ChannelStateRepository.swift in Sources */,
 				A58D1B7E2CDCB11B00B5A019 /* IssueIcon+iOS.swift in Sources */,
 				A5D712982C411B2E00A8EF52 /* BuildInfo.swift in Sources */,
 				A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */,
@@ -7144,6 +7175,7 @@
 				A594ADD22C9C439F00780EF3 /* ThermstatSlavesViewState.swift in Sources */,
 				A5AD701F2C00B45E00A36318 /* WindowControlButton.swift in Sources */,
 				A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */,
+				A5862C0C2CEF816B00DFFD55 /* TimerState.swift in Sources */,
 				A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */,
 				A5E05BB72CB50C2D00202583 /* TemperatureAndHumidityMeasurementsProvider.swift in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
@@ -7153,6 +7185,7 @@
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				6E8004D328493463009A917A /* AuthProfileItem.swift in Sources */,
 				A55A8D862BAAF52500C540D4 /* IssueView.swift in Sources */,
+				A56EC92F2CEF1CF800A6E2CB /* UpdateChannelStateUseCase.swift in Sources */,
 				A5074BDD2BCFE4D80081B6B1 /* SuplaChannelRollerShutterConfig.swift in Sources */,
 				A5E0DF7A2CEC802600362451 /* ImpulseCounterPhoto.swift in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
@@ -8319,6 +8352,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A56EC92C2CEE86C700A6E2CB /* SUPLA 18.xcdatamodel */,
 				A5812CBD2BBC8B6200FC5998 /* SUPLA 17.xcdatamodel */,
 				A5A14A322B61005F004B1598 /* SUPLA 16.xcdatamodel */,
 				A58A9C022AA1C9D700D28848 /* SUPLA 15.xcdatamodel */,
@@ -8337,7 +8371,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A5812CBD2BBC8B6200FC5998 /* SUPLA 17.xcdatamodel */;
+			currentVersion = A56EC92C2CEE86C700A6E2CB /* SUPLA 18.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -914,7 +914,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue {
-    
+    NSLog(@"Extended value update for : %d", channel_extendedvalue->Id);
     if ( [UseCaseLegacyWrapper updateChannelExtendedValueWithSuplaChannelExtendedValue: *channel_extendedvalue] ) {
         [self onChannelValueChanged: channel_extendedvalue->Id isGroup:NO];
         [self onDataChanged];
@@ -1082,6 +1082,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) onChannelState:(SAChannelStateExtendedValue*)state {
+    NSLog(@"Channel state update for: %d", state.channelId.intValue);
+    [UseCaseLegacyWrapper updateChannelState:state.state channelId:state.state.ChannelID];
+    [self onChannelValueChanged: state.channelId.intValue isGroup:NO];
     [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
 }
 
@@ -1700,4 +1703,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     [SuplaAppStateHolderProxy cancel];
 }
 
+- (int) getServerTimeDiffInSec {
+    return serverTimeDiffInSec;
+}
 @end

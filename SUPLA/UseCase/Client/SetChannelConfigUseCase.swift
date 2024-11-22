@@ -41,7 +41,7 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
             config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
             config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
             
-            if (self.suplaClientProvider.provide().setChannelConfig(&config)) {
+            if (self.suplaClientProvider.provide()?.setChannelConfig(&config) == true) {
                 observer.onNext(.success)
             } else {
                 observer.onNext(.failure)

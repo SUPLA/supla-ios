@@ -223,4 +223,14 @@ final class UseCaseLegacyWrapper: NSObject {
         @Singleton<GetGroupActivePercentageUseCase> var getGroupActivePercentageUseCase
         return Int32(getGroupActivePercentageUseCase.invoke(channelGroup))
     }
+    
+    @objc
+    static func updateChannelState(_ state: TDSC_ChannelState, channelId: Int32) {
+        @Singleton<UpdateChannelStateUseCase> var updateChannelStateUseCase
+        do {
+            try updateChannelStateUseCase.invoke(state, channelId: channelId).subscribeSynchronous()
+        } catch {
+            SALog.error("Could not update channel state id `\(channelId)`")
+        }
+    }
 }

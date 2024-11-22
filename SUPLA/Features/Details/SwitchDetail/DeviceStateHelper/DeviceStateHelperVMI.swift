@@ -47,8 +47,8 @@ extension DeviceStateHelperVMI {
         @Singleton<DateProvider> var dateProvider
         
         if
-            let state = channel.ev?.channelState() {
-            let timerEndTime = state.countdownEndsAt()
+            let state = channel.ev?.timerState,
+            let timerEndTime = state.countdownEndsAt {
             if (timerEndTime.timeIntervalSince1970 > dateProvider.currentTimestamp()) {
                 return timerEndTime
             }

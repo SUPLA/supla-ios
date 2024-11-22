@@ -19,9 +19,12 @@
 @testable import SUPLA
 
 class SuplaClientProviderMock: SuplaClientProvider {
+    
     var suplaClientMock = SuplaClientProtocolMock()
     
-    func provide() -> SuplaClientProtocol { suplaClientMock }
+    func provide() -> SuplaClientProtocol? { suplaClientMock }
+    
+    func forcedProvide() -> any SuplaClientProtocol { suplaClientMock }
 }
 
 class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
@@ -140,5 +143,10 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var superuserAuthorizationRequestParameters: [(String, String)] = []
     func superuserAuthorizationRequest(withEmail email: String!, andPassword password: String!) {
         superuserAuthorizationRequestParameters.append((email, password))
+    }
+    
+    var getServerTimeDiffInSecMock: FunctionMock<Void, Int32> = .init()
+    func getServerTimeDiffInSec() -> Int32 {
+        getServerTimeDiffInSecMock.handle(())
     }
 }

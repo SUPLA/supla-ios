@@ -34,7 +34,7 @@ final class GetDeviceConfigUseCaseImpl: GetDeviceConfigUseCase {
             request.DeviceId = deviceId
             request.Fields = SuplaFieldType.allFields
             
-            if (suplaClient.getDeviceConfig(&request)) {
+            if (suplaClient?.getDeviceConfig(&request) == true) {
                 observer.onNext(.success)
             } else {
                 observer.onNext(.failure)

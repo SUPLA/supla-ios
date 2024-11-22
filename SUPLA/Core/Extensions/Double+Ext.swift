@@ -38,6 +38,10 @@ extension Double {
     func ifNotZero<T>(function: (Double) -> T?) -> T? {
         self == 0.0 ? nil : function(self)
     }
+    
+    func convert<T>(_ transformation: (Double) -> T) -> T {
+        return transformation(self)
+    }
 }
 
 extension Double? {
