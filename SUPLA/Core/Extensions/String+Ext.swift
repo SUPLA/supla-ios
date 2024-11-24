@@ -63,11 +63,44 @@ extension String {
         return digest.map { String(format: "%02hhx", $0) }.joined()
     }
     
+    func utf8StringToBuffer(_ buffer: UnsafeMutablePointer<CChar>, withSize size: Int) {
+         memset(buffer, 0, size)
+         
+         var len = self.count
+         if len > size - 1 {
+             len = size - 1
+         }
+         
+         while len > 0 {
+             let substring = String(self.prefix(len))
+             guard let cstring = substring.cString(using: .utf8) else {
+                 len = 0
+                 continue
+             }
+             
+             let cstringLength = strnlen(cstring, size)
+             if cstringLength < size {
+                 memcpy(buffer, cstring, cstringLength)
+                 len = 0
+             } else {
+                 len -= 1
+             }
+         }
+     }
+    
     static func fromC<T>(_ address: T) -> String {
         return withUnsafePointer(to: address) {
             $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout.size(ofValue: $0)) {
                 String(cString: $0)
             }
         }
+    }
+    
+}
+
+@objc extension NSString {
+    @objc func utf8StringToBuffer(_ buffer: UnsafeMutablePointer<CChar>, withSize size: Int) {
+        let str = self as String
+        str.utf8StringToBuffer(buffer, withSize: size)
     }
 }
