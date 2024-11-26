@@ -30,8 +30,9 @@
 
 - (BOOL) setOnlineState:(char)online {
     
-    if ( self.online != (online != 0) ) {
-        self.online = (online != 0);
+    BOOL newOnline = online == 1;
+    if ( self.online != newOnline ) {
+        self.online = newOnline;
         return YES;
     }
     
