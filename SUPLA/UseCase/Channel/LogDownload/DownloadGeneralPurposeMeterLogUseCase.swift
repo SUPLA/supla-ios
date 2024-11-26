@@ -34,14 +34,14 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
         _ databaseCount: Int,
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ observer: AnyObserver<Float>,
         _ disposable: BooleanDisposable
     ) throws {
         let entriesToImport = totalCount - databaseCount
         var importedEntries = 0
         var lastEntity = generalPurposeMeterItemRepository
-            .findOldestEntity(remoteId: remoteId, profile: profile)
+            .findOldestEntity(remoteId: remoteId, serverId: serverId)
             .subscribeSynchronous(defaultValue: nil)?
             .toLatest()
         var afterTimestamp = lastEntity?.date?.timeIntervalSince1970 ?? 0
@@ -66,7 +66,7 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
             lastEntity = try generalPurposeMeterItemRepository.storeMeasurements(
                 measurements: measurements,
                 latestItem: lastEntity,
-                profile: profile,
+                serverId: serverId,
                 remoteId: remoteId,
                 channelConfig: channelConfig
             )

@@ -27,6 +27,15 @@ extension View {
             return foregroundColor(color)
         }
     }
+    
+    func fontCaptionSmall() -> some View {
+        font(.Supla.captionSmall)
+            .textCase(.uppercase)
+    }
+    
+    func fontBodyMedium() -> some View {
+        font(.Supla.bodyMedium)
+    }
 }
 
 struct Text {

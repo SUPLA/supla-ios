@@ -71,12 +71,15 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
     func test_shouldStartDataDownload() {
         // given
         let remoteId: Int32 = 123
+        let profileId: Int32 = 1
         let config = SuplaChannelGeneralPurposeMeterConfig.mock(keepHistory: true)
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         channel.config = SAChannelConfig.mock(type: .generalPurposeMeter, config: config.toJson())
-        let profile = AuthProfileItem(testContext: nil)
+        channel.profile = profile
         let chartState = DefaultChartState.empty()
         let currentDate = Date()
         
@@ -103,7 +106,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         waitForExpectations(timeout: 1)
         let state1 = BaseHistoryDetailViewState()
         let state2 = state1.changing(path: \.remoteId, to: remoteId)
-        let state3 = state2.changing(path: \.profileId, to: "")
+        let state3 = state2.changing(path: \.profileId, to: profileId)
             .changing(path: \.channelFunction, to: 40)
         let state4 = state3.changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))
             .changing(path: \.range, to: DaysRange(start: currentDate.shift(days: -7), end: currentDate))
@@ -172,11 +175,14 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
     ) {
         // given
         let remoteId: Int32 = 123
+        let profileId: Int32 = 1
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         channel.config = SAChannelConfig.mock(type: configType, config: config.toJson())
-        let profile = AuthProfileItem(testContext: nil)
+        channel.profile = profile
         let chartState = DefaultChartState.empty()
         let currentDate = Date()
         
@@ -207,7 +213,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         let daysRange = DaysRange(start: currentDate.shift(days: -7), end: currentDate)
         let state1 = BaseHistoryDetailViewState()
         let state2 = state1.changing(path: \.remoteId, to: remoteId)
-        let state3 = state2.changing(path: \.profileId, to: "")
+        let state3 = state2.changing(path: \.profileId, to: profileId)
             .changing(path: \.channelFunction, to: 40)
         let state4 = state3
             .changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))

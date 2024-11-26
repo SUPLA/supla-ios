@@ -134,15 +134,12 @@ final class UpdateTokenTaskTests: XCTestCase {
         dateProvider.currentTimestampReturns = .single(12.0)
         
         let profile = AuthProfileItem(testContext: nil)
-        profile.authInfo = AuthInfo(
-            emailAuth: true,
-            serverAutoDetect: true,
-            emailAddress: "test@supla.org",
-            serverForEmail: "supla.org",
-            serverForAccessID: "",
-            accessID: 0,
-            accessIDpwd: ""
-        )
+        profile.authorizationType = .email
+        profile.serverAutoDetect = true
+        profile.email = "test@supla.org"
+        profile.server = SAProfileServer(testContext: nil)
+        profile.server?.address = "supla.org"
+        
         profileRepository.allProfilesObservable = Observable.just([profile])
         let expectation = XCTestExpectation(description: "Update task finished")
         

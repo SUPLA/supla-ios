@@ -304,7 +304,9 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         // given
         let remoteId: Int32 = 231
         let crc32: Int64 = 123
+        let serverId: Int32 = 2
         let profile = AuthProfileItem.mock()
+        profile.server = SAProfileServer.mock(id: serverId)
         let channel = SAChannel.mock()
         let config = SuplaChannelGeneralPurposeMeterConfig.mock(
             remoteId: remoteId,
@@ -332,7 +334,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
         XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (remoteId, profile)
+            (remoteId, serverId)
         ])
         XCTAssertTuples(downloadEventManager.emitProgressStateParameters, [(remoteId, .refresh)])
         XCTAssertEqual(profileRepository.activeProfileCalls, 2)
@@ -347,7 +349,9 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         // given
         let remoteId: Int32 = 231
         let crc32: Int64 = 123
+        let serverId: Int32 = 2
         let profile = AuthProfileItem.mock()
+        profile.server = SAProfileServer.mock(id: serverId)
         let channel = SAChannel.mock()
         let config = SuplaChannelGeneralPurposeMeterConfig.mock(
             remoteId: remoteId,
@@ -375,7 +379,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
         XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (remoteId, profile)
+            (remoteId, serverId)
         ])
         XCTAssertTuples(downloadEventManager.emitProgressStateParameters, [(remoteId, .refresh)])
         XCTAssertEqual(profileRepository.activeProfileCalls, 2)

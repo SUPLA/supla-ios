@@ -23,42 +23,53 @@ protocol TemperatureMeasurementItemRepository:
     T == SATemperatureMeasurementItem
 {
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]>
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
+    func deleteAll(for serverId: Int32?) -> Observable<Void>
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]>
     func storeMeasurements(
         measurements: [SuplaCloudClient.TemperatureMeasurement],
         timestamp: TimeInterval,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32
     ) throws -> TimeInterval
 }
 
 final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMeasurementItem>, TemperatureMeasurementItemRepository {
+    
     @Singleton<SuplaCloudService> private var cloudService
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SATemperatureMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAll(
+            SATemperatureMeasurementItem
+                .fetchRequest()
+                .filtered(by: NSPredicate(format: "server_id = %d", serverId ?? 0))
+        )
     }
     
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SATemperatureMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile)))
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
+        deleteAll(
+            SATemperatureMeasurementItem
+                .fetchRequest()
+                .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
+        )
     }
     
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]> {
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]> {
         return query(
             SATemperatureMeasurementItem.fetchRequest()
-                .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@ AND date >= %@ AND date <= %@", remoteId, profile, startDate as NSDate, endDate as NSDate))
+                .filtered(by: NSPredicate(
+                    format: "channel_id = %d AND server_id = %d AND date >= %@ AND date <= %@",
+                    remoteId,
+                    serverId ?? 0,
+                    startDate as NSDate,
+                    endDate as NSDate
+                ))
                 .ordered(by: "date")
         )
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SATemperatureMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: true)
         request.fetchLimit = 1
         
@@ -71,9 +82,9 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
         }
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SATemperatureMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
         
@@ -86,14 +97,14 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
         }
     }
     
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        count(NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
     }
     
     func storeMeasurements(
         measurements: [SuplaCloudClient.TemperatureMeasurement],
         timestamp: TimeInterval,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32
     ) throws -> TimeInterval {
         var timestampToReturn = timestamp
@@ -106,7 +117,7 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
                 }
                 
                 let entity: SATemperatureMeasurementItem = context.create()
-                entity.profile = profile
+                entity.server_id = serverId
                 entity.channel_id = remoteId
                 entity.temperature = NSDecimalNumber(string: measurement.temperature)
                 entity.setDateAndDateParts(measurement.date_timestamp)

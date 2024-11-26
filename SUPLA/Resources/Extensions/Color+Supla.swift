@@ -42,5 +42,10 @@ extension Color {
         static let chartPhase1 = Color(UIColor.chartPhase1)
         static let chartPhase2 = Color(UIColor.chartPhase2)
         static let chartPhase3 = Color(UIColor.chartPhase3)
+        
+        static let grayLighter = Color(UIColor.grayLighter)
+        
+        static let dialogScrim = Color(UIColor.dialogScrim)
+        static let loadingScrim = Color(UIColor.loadingScrim)
     }
 }

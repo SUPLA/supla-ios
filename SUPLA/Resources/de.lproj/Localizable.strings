@@ -279,9 +279,6 @@
 "Select active account" = "Aktives Konto wählen";
 "Phase %d" = "Phase %d";
 
-"AccountCreation.title" = "Konto bearbeiten";
-"AccountCreation.modificationTitle" = "Konto hinzufügen";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=de";
 
 "Scenes.ActionButtons.execute" = "Ausführen";
@@ -331,6 +328,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Szene in Supla Cloud hinzufügen";
+
+/* Create Profile */
+"create_profile_title_create" = "Konto hinzufügen";
+"create_profile_title_modify" = "Konto bearbeiten";
+"create_profile_basic_warning_title" = "Modus nicht verfügbar";
+"create_profile_basic_warning_message" = "Vor Ausschaltung des fortgeschrittenen Modus wählen Sie die E-Mail-Authentifizierung mit automatischer Erkennung des Servers.";
 
 /* App Settings */
 "settings_dark_mode" = "Nacht-Modus";

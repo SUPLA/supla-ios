@@ -20,40 +20,40 @@ import Foundation
 import RxSwift
 
 protocol ElectricityMeasurementItemRepository: BaseMeasurementRepository<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem> where T == SAElectricityMeasurementItem {
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]>
+    func deleteAll(for serverId: Int32?) -> Observable<Void>
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]>
     func storeMeasurements(
         measurements: [SuplaCloudClient.ElectricityMeasurement],
         latestItem: DownloadElectricityMeterLogUseCaseImpl.Latest?,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32
     ) throws -> DownloadElectricityMeterLogUseCaseImpl.Latest?
-    func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAElectricityMeasurementItem?>
+    func findOldestEntity(remoteId: Int32, serverId: Int32?) -> Observable<SAElectricityMeasurementItem?>
 }
 
 final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMeasurementItem>, ElectricityMeasurementItemRepository {
     @Singleton<SuplaCloudService> private var cloudService
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SAElectricityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAll(SAElectricityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "server_id = %d", serverId ?? 0)))
     }
     
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
         deleteAll(
             SAElectricityMeasurementItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "profile = %@ AND channel_id = %d", profile, remoteId))
+                .filtered(by: NSPredicate(format: "server_id = %d AND channel_id = %d", serverId ?? 0, remoteId))
         )
     }
     
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]> {
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]> {
         return query(
             SAElectricityMeasurementItem
                 .fetchRequest()
                 .filtered(by: NSPredicate(
-                    format: "channel_id = %d AND profile = %@ AND date >= %@ AND date <= %@",
+                    format: "channel_id = %d AND server_id = %d AND date >= %@ AND date <= %@",
                     remoteId,
-                    profile,
+                    serverId ?? 0,
                     startDate as NSDate,
                     endDate as NSDate
                 ))
@@ -61,9 +61,9 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         )
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SAElectricityMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: true)
         request.fetchLimit = 1
         
@@ -76,9 +76,9 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         }
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SAElectricityMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
         
@@ -91,13 +91,13 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         }
     }
     
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        count(NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
     }
     
-    func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAElectricityMeasurementItem?> {
+    func findOldestEntity(remoteId: Int32, serverId: Int32?) -> Observable<SAElectricityMeasurementItem?> {
         let request = SAElectricityMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
         
@@ -114,14 +114,14 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         cloudService.getElectricityMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp)
     }
     
-    func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
+    func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
         fatalError("Intentionally left not implemented")
     }
     
     func storeMeasurements(
         measurements: [SuplaCloudClient.ElectricityMeasurement],
         latestItem: DownloadElectricityMeterLogUseCaseImpl.Latest?,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32
     ) throws -> DownloadElectricityMeterLogUseCaseImpl.Latest? {
         var oldestEntity = latestItem
@@ -130,7 +130,7 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         context.performAndWait {
             for measurement in measurements {
                 if let oldest = oldestEntity {
-                    let entity = createEntityAndComplementMissing(measurement, oldest, remoteId, profile)
+                    let entity = createEntityAndComplementMissing(measurement, oldest, remoteId, serverId)
                     if (oldest.date.timeIntervalSince1970 < entity.date!.timeIntervalSince1970) {
                         oldestEntity = measurement.toLatest()
                     }
@@ -160,13 +160,13 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         _ measurement: SuplaCloudClient.ElectricityMeasurement,
         _ oldest: DownloadElectricityMeterLogUseCaseImpl.Latest,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem
+        _ serverId: Int32
     ) -> SAElectricityMeasurementItem {
         var valueDiff = measurement.diff(oldest)
         let timeDiff = measurement.date_timestamp.timeIntervalSince1970 - oldest.date.timeIntervalSince1970
         
         let entity: SAElectricityMeasurementItem = context.create()
-        entity.profile = profile
+        entity.server_id = serverId
         entity.channel_id = remoteId
         entity.setDateAndDateParts(measurement.date_timestamp)
         
@@ -174,7 +174,7 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
             let missingItemsCount = Int(round(timeDiff / ChartDataAggregation.minutes.timeInSec))
             let valueDivided = valueDiff.div(missingItemsCount)
             
-            generateMissingEntities(missingItemsCount, measurement, remoteId, profile, valueDivided, valueDiff)
+            generateMissingEntities(missingItemsCount, measurement, remoteId, serverId, valueDivided, valueDiff)
             
             valueDiff = valueDivided
         }
@@ -203,14 +203,14 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         _ missingItemsCount: Int,
         _ measurement: SuplaCloudClient.ElectricityMeasurement,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ valueDivided: ElectricityMeterDiff,
         _ valueDiff: ElectricityMeterDiff
     ) {
         for itemNo in 1 ..< missingItemsCount {
             let itemTimestamp = measurement.date_timestamp.timeIntervalSince1970 - (ChartDataAggregation.minutes.timeInSec * Double(itemNo))
             let entity: SAElectricityMeasurementItem = context.create()
-            entity.profile = profile
+            entity.server_id = serverId
             entity.channel_id = remoteId
             entity.setDateAndDateParts(Date(timeIntervalSince1970: itemTimestamp))
             

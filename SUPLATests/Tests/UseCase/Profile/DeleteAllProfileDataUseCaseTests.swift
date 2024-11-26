@@ -54,6 +54,8 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
     private lazy var generalPurposeMeasurementItemRepository: GeneralPurposeMeasurementItemRepositoryMock! = GeneralPurposeMeasurementItemRepositoryMock()
 
     private lazy var channelConfigRepository: ChannelConfigRepositoryMock! = ChannelConfigRepositoryMock()
+    
+    private lazy var channelStateRepository: ChannelStateRepositoryMock! = ChannelStateRepositoryMock()
 
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, channelExtendedValueRepository!)
@@ -71,6 +73,7 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
         DiContainer.shared.register(type: (any ChannelConfigRepository).self, channelConfigRepository!)
+        DiContainer.shared.register(type: (any ChannelStateRepository).self, channelStateRepository!)
     }
 
     override func tearDown() {
@@ -91,13 +94,16 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         generalPurposeMeterItemRepository = nil
         generalPurposeMeasurementItemRepository = nil
         channelConfigRepository = nil
+        channelStateRepository = nil
 
         super.tearDown()
     }
 
     func test() {
         // given
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         channelExtendedValueRepository.deleteAllObservable = .just(())
         channelValueRepository.deleteAllObservable = .just(())
         channelRepository.deleteAllObservable = .just(())
@@ -113,6 +119,7 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         generalPurposeMeterItemRepository.deleteAllForProfileReturns = .just(())
         generalPurposeMeasurementItemRepository.deleteAllForProfileReturns = .just(())
         channelConfigRepository.deleteAllForProfileReturns = .just(())
+        channelStateRepository.deleteAllMock.returns = .single(.just(()))
 
         // when
         useCase.invoke(profile: profile).subscribe(observer).disposed(by: disposeBag)
@@ -127,12 +134,13 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(impulseCounterMeasurementItemRepository.deleteAllCounter, 1)
         XCTAssertEqual(locationRepository.deleteAllCounter, 1)
         XCTAssertEqual(sceneRepository.deleteAllCounter, 1)
-        XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllForProfileParameters, [profile])
-        XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllForProfileParameters, [profile])
+        XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
         XCTAssertEqual(userIconRepository.deleteAllCounter, 1)
         XCTAssertEqual(thermostatMeasurementItemRepository.deleteAllCounter, 1)
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [profile])
-        XCTAssertEqual(generalPurposeMeasurementItemRepository.deleteAllForProfileParameters, [profile])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [serverId])
+        XCTAssertEqual(generalPurposeMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
         XCTAssertEqual(channelConfigRepository.deleteAllForProfileParameters, [profile])
+        XCTAssertEqual(channelStateRepository.deleteAllMock.parameters, [profile])
     }
 }

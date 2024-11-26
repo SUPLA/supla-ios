@@ -20,12 +20,12 @@ import Foundation
 import RxSwift
 
 protocol ImpulseCounterMeasurementItemRepository: RepositoryProtocol where T == SAImpulseCounterMeasurementItem {
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(for serverId: Int32?) -> Observable<Void>
 }
 
 final class ImpulseCounterMeasurementItemRepositoryImpl: Repository<SAImpulseCounterMeasurementItem>, ImpulseCounterMeasurementItemRepository {
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SAImpulseCounterMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAll(SAImpulseCounterMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "server_id = %d", serverId ?? -1)))
     }
 }

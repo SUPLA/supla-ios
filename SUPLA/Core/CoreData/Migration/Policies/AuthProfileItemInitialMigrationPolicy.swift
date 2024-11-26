@@ -40,7 +40,7 @@ final class AuthProfileItemInitialMigrationPolicy: NSEntityMigrationPolicy {
         if let profile = try context.fetch(request).first {
             var bytes = [CChar](repeating: 0, count: Int(SUPLA_GUID_SIZE))
             if (SAApp.getClientGUID(&bytes)) {
-                AuthProfileItemKeychainHelper.setSecureRandom(
+                setSecureRandom(
                     Data(bytes.map { UInt8(bitPattern: $0)}),
                     key: AuthProfileItemKeychainHelper.guidKey,
                     id: profile.objectID
@@ -49,13 +49,28 @@ final class AuthProfileItemInitialMigrationPolicy: NSEntityMigrationPolicy {
             
             bytes = [CChar](repeating: 0, count: Int(SUPLA_AUTHKEY_SIZE))
             if (SAApp.getAuthKey(&bytes)) {
-                AuthProfileItemKeychainHelper.setSecureRandom(
+                setSecureRandom(
                     Data(bytes.map { UInt8(bitPattern: $0) }),
                     key: AuthProfileItemKeychainHelper.authKey,
                     id: profile.objectID
                 )
             }
         }
+    }
+    
+    func setSecureRandom(_ bytes: Data, key: String, id: NSManagedObjectID) {
+        let keychainKey = keychainKey(key: key, id: id)
+        setBytes(bytes, for: keychainKey)
+    }
+    
+    private func setBytes(_ bytes: Data, for key: String) {
+        SAKeychain.deleteObject(withKey: key)
+        SAKeychain.add(bytes, withKey: key)
+    }
+    
+    private func keychainKey(key: String, id: NSManagedObjectID) -> String {
+        let idhash = id.uriRepresentation().dataRepresentation.base64EncodedString()
+        return "\(key)_\(idhash)"
     }
 }
 

@@ -117,6 +117,7 @@ extension DiContainer {
         register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
         register((any NotificationRepository).self, NotificationRepositoryImpl())
         register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
+        register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
         
         // MARK: Usecases
 
@@ -228,6 +229,8 @@ extension DiContainer {
         register(DownloadOcrPhotoUseCase.self, DownloadOcrPhotoUseCaseImpl())
         // UseCases - ChannelState
         register(UpdateChannelStateUseCase.self, UpdateChannelStateUseCaseImpl())
+        // UseCases - ProfileServer
+        register(ReadOrCreateProfileServerUseCase.self, ReadOrCreateProfileServerUseCaseImpl())
         
         // MARK: Features
         

@@ -60,8 +60,14 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSString *serverName = [SAApp.profileManager getCurrentProfile].authInfo
-        .serverForCurrentAuthMethod;
+    NSString *serverName = @"";
+    AuthProfileItem * profile = [SAApp.profileManager getCurrentProfile];
+    if (profile != nil) {
+        SAProfileServer *server = profile.server;
+        if (server != nil) {
+            serverName = server.address;
+        }
+    }
     self.tvInfo.text = NSLocalizedString(
                     [serverName containsString:@"supla.org"] ?
                     @"Please enter your Supla Cloud login details."
@@ -176,7 +182,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
-    _edEmail.text = [SAApp.profileManager getCurrentProfile].authInfo.emailAddress;
+    _edEmail.text = [SAApp.profileManager getCurrentProfile].email;
     _edEmail.enabled = [SAApp isClientRegistered];
     _edPassword.text = @"";
     _edPassword.enabled = YES;

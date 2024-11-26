@@ -28,7 +28,7 @@ class ProfilesVM: BaseViewModel<ProfilesViewState, ProfilesViewEvent> {
     @Singleton<ActivateProfileUseCase> private var activateProfileUseCase
 
     struct Inputs {
-        var onEdit: Observable<ProfileID>
+        var onEdit: Observable<Int32>
         var onAddNew: Observable<Void>
     }
 
@@ -65,7 +65,7 @@ class ProfilesVM: BaseViewModel<ProfilesViewState, ProfilesViewEvent> {
 
     }
     
-    func activateProfile(_ profileId: ProfileID) {
+    func activateProfile(_ profileId: Int32) {
         activateProfileUseCase.invoke(profileId: profileId, force: true)
             .asDriverWithoutError()
             .drive(
@@ -78,14 +78,14 @@ class ProfilesVM: BaseViewModel<ProfilesViewState, ProfilesViewEvent> {
 
     private func reloadProfiles() {
         profileItems.accept(_profileManager.getAllProfiles()
-            .map { ProfileListItem.profileItem(id: $0.objectID,
+            .map { ProfileListItem.profileItem(id: $0.id,
                                                name: $0.displayName,
                                                isActive: $0.isActive) })
     }
 }
 
 enum ProfileListItem {
-    case profileItem(id: ProfileID, name: String, isActive: Bool)
+    case profileItem(id: Int32, name: String, isActive: Bool)
     case addNewProfileItem
 }
 

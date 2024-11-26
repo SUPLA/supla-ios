@@ -41,10 +41,6 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         GeneralPurposeMeterItemRepositoryMock()
     }()
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    
     private lazy var useCase: LoadChannelMeasurementsDateRangeUseCase! = {
         LoadChannelMeasurementsDateRangeUseCaseImpl()
     }()
@@ -55,7 +51,6 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
     }
@@ -67,7 +62,6 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         tempHumidityMeasurementItemRepository = nil
         generalPurposeMeasurementItemRepository = nil
         generalPurposeMeterItemRepository = nil
-        profileRepository = nil
         
         super.tearDown()
     }
@@ -75,17 +69,21 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
     func test_shouldFindRangeForTemperature() {
         // given
         let remoteId: Int32 = 123
+        let serverId: Int32 = 3
+        
+        let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
         let channel = SAChannel(testContext: nil)
+        channel.profile = profile
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         
-        let profile = AuthProfileItem(testContext: nil)
         
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
         readChannelByRemoteIdUseCase.returns = .just(channel)
-        profileRepository.activeProfileObservable = .just(profile)
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -97,24 +95,27 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(remoteId, profile)])
-        XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
     
     func test_shouldFindRangeForTemperatureAndHumidity() {
         // given
         let remoteId: Int32 = 123
-        let channel = SAChannel(testContext: nil)
-        channel.remote_id = remoteId
-        channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+        let serverId: Int32 = 1
         
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
+        let channel = SAChannel(testContext: nil)
+        channel.profile = profile
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
         readChannelByRemoteIdUseCase.returns = .just(channel)
-        profileRepository.activeProfileObservable = .just(profile)
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -126,24 +127,27 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, profile)])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
     
     func test_shouldFindRangeForGeneralPurposeMeasurement() {
         // given
         let remoteId: Int32 = 123
-        let channel = SAChannel(testContext: nil)
-        channel.remote_id = remoteId
-        channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        let serverId: Int32 = 1
         
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
+        let channel = SAChannel(testContext: nil)
+        channel.profile = profile
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
         
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
         readChannelByRemoteIdUseCase.returns = .just(channel)
-        profileRepository.activeProfileObservable = .just(profile)
         generalPurposeMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         generalPurposeMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -155,24 +159,27 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertTuples(generalPurposeMeasurementItemRepository.findMinTimestampParameters, [(remoteId, profile)])
-        XCTAssertTuples(generalPurposeMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(generalPurposeMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
+        XCTAssertTuples(generalPurposeMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
     
     func test_shouldFindRangeForGeneralPurposeMeter() {
         // given
         let remoteId: Int32 = 123
-        let channel = SAChannel(testContext: nil)
-        channel.remote_id = remoteId
-        channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        let serverId: Int32 = 1
         
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
+        let channel = SAChannel(testContext: nil)
+        channel.profile = profile
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
         
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
         readChannelByRemoteIdUseCase.returns = .just(channel)
-        profileRepository.activeProfileObservable = .just(profile)
         generalPurposeMeterItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         generalPurposeMeterItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -184,21 +191,24 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertTuples(generalPurposeMeterItemRepository.findMinTimestampParameters, [(remoteId, profile)])
-        XCTAssertTuples(generalPurposeMeterItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(generalPurposeMeterItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
+        XCTAssertTuples(generalPurposeMeterItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
     
     func test_shouldGetNilWhenTemperatureNotFound() {
         // given
         let remoteId: Int32 = 123
+        let serverId: Int32 = 1
+        
+        let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
         let channel = SAChannel(testContext: nil)
+        channel.profile = profile
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         
-        let profile = AuthProfileItem(testContext: nil)
-        
         readChannelByRemoteIdUseCase.returns = .just(channel)
-        profileRepository.activeProfileObservable = .just(profile)
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(nil)
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(nil)
         
@@ -211,7 +221,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
             .completed
         ])
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, profile)])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
 }

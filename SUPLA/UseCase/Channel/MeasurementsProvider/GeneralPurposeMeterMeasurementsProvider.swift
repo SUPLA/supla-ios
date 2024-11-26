@@ -32,21 +32,13 @@ class GeneralPurposeMeterMeasurementsProviderImpl: GeneralPurposeMeterMeasuremen
         generalPurposeMeterItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingGeneralPurposeMeter(entities, spec.aggregation) }
             .map { [self.historyDataSet(channel, .generalPurposeMeter, .chartGpm, spec.aggregation, $0)] }
-            .map {
-                ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: $0
-                )
-            }
+            .map { self.channelChartSets(channel, spec, $0) }
     }
 
     func aggregatingGeneralPurposeMeter(

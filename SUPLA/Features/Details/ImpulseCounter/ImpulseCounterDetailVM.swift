@@ -32,7 +32,7 @@ class ImpulseCounterDetailVM: StandardDetailVM<ImpulseCounterDetailViewState, Im
     override func handleChannel(_ channel: SAChannel) {
         super.handleChannel(channel)
         updateView {
-            let hasPhoto = checkOcrPhotoExistsUseCase.invoke(profileId: channel.profile.id, remoteId: channel.remote_id)
+            let hasPhoto = checkOcrPhotoExistsUseCase.invoke(profileId: Int64(channel.profile.id), remoteId: channel.remote_id)
             
             if ($0.photoDownloaded) {
                 return $0.changing(path: \.hasPhoto, to: hasPhoto)
@@ -69,13 +69,13 @@ class ImpulseCounterDetailVM: StandardDetailVM<ImpulseCounterDetailViewState, Im
 }
     
 enum ImpulseCounterDetailViewEvent: ViewEvent {
-    case openOcrPhoto(profileId: Int64, remoteId: Int32)
+    case openOcrPhoto(profileId: Int32, remoteId: Int32)
 }
 
 struct ImpulseCounterDetailViewState: ViewState {
     var title: String? = nil
     var channelId: Int32? = nil
-    var profileId: Int64? = nil
+    var profileId: Int32? = nil
     var photoDownloaded: Bool = false
     var hasPhoto: Bool = false
 }

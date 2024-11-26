@@ -154,6 +154,18 @@ extension ChannelMeasurementsProvider {
             }
             .sorted { $0.date < $1.date }
     }
+    
+    func channelChartSets(_ channel: SAChannel, _ spec: ChartDataSpec, _ dataSets: [HistoryDataSet]) -> ChannelChartSets {
+        @Singleton<GetCaptionUseCase> var getCaptionUseCase
+        
+        return ChannelChartSets(
+            remoteId: channel.remote_id,
+            function: channel.func,
+            name: getCaptionUseCase.invoke(data: channel.shareable).string,
+            aggregation: spec.aggregation,
+            dataSets: dataSets
+        )
+    }
 }
 
 private extension BaseTemperatureEntity {

@@ -22,17 +22,21 @@ import RxSwift
 final class UpdateServerHostNameUseCase {
     @Singleton<SuplaCloudClientRepository> private var clientRepository
     @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<ReadOrCreateProfileServerUseCase> private var readOrCreateProfileServerUseCase
     
     func invoke() -> Observable<String> {
         profileRepository.getActiveProfile()
             .flatMapFirst { profile in
-                self.clientRepository.users(email: profile.authInfo!.emailAddress)
+                self.clientRepository.users(email: profile.email ?? "")
                     .map { ($0, profile) }
             }
             .flatMapFirst { (autodiscover, profile) in
-                profile.authInfo = profile.authInfo?.copy(serverForEmail: autodiscover.server)
-                return self.profileRepository.save()
-                    .map { _ in autodiscover.server }
+                self.readOrCreateProfileServerUseCase.invoke(autodiscover.server).map { ($0, profile) }
             }
+            .map { (server, profile) in
+                profile.server = server
+                return profile
+            }
+            .flatMap { profile in self.profileRepository.save(profile).map { profile.server?.address ?? "" } }
     }
 }

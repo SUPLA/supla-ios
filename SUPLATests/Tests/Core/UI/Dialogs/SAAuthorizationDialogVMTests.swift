@@ -175,15 +175,13 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SACredentialsDialogViewS
     
     private func mockProfile(email: String, server: String = "srv1.supla.org") -> AuthProfileItem {
         let profile = AuthProfileItem(testContext: nil)
-        profile.authInfo = AuthInfo(
-            emailAuth: true,
-            serverAutoDetect: true,
-            emailAddress: email,
-            serverForEmail: server,
-            serverForAccessID: "",
-            accessID: 0,
-            accessIDpwd: ""
-        )
+        profile.authorizationType = .email
+        profile.serverAutoDetect = true
+        profile.email = email
+        profile.server = SAProfileServer(testContext: nil)
+        profile.server?.address = server
+        profile.accessId = 0
+        profile.accessIdPassword = ""
         
         return profile
     }

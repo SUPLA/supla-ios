@@ -379,12 +379,16 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
         return @"";
     }
     
-    AuthInfo *authInfo = profile.authInfo;
-    if (authInfo == nil) {
+    SAProfileServer *server = profile.server;
+    if (server == nil) {
         return @"";
     }
     
-    NSString *hostname = authInfo.serverForCurrentAuthMethod;
+    NSString *hostname = server.address;
+    if (hostname == nil) {
+        return @"";
+    }
+    
     if ( [[hostname lowercaseString] containsString:@"supla.org"] ) {
         return @"cloud.supla.org";
     } else {

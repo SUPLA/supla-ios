@@ -27,11 +27,11 @@ class SACredentialsDialogVM: BaseViewModel<SACredentialsDialogViewState, SACrede
             .asDriverWithoutError()
             .drive(
                 onNext: { [weak self] profile in
-                    let isCloud = profile.authInfo?.serverForCurrentAuthMethod.contains(".supla.org") == true
+                    let isCloud = profile.server?.address?.contains(".supla.org") == true
                     let nameEnabled = self?.suplaAppProvider.provide().isClientRegistered() == true
 
                     self?.updateView {
-                        $0.changing(path: \.userName, to: profile.authInfo?.emailAddress ?? "")
+                        $0.changing(path: \.userName, to: profile.email ?? "")
                             .changing(path: \.isCloudAccount, to: isCloud)
                             .changing(path: \.userNameEnabled, to: nameEnabled)
                     }

@@ -87,10 +87,13 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
     func test_shouldLoadTemperaturesAndHumidities() {
         // given
         let remoteId: Int32 = 123
+        let profileId: Int32 = 1
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
-        let profile = AuthProfileItem(testContext: nil)
+        channel.profile = profile
         let chartState = DefaultChartState.empty()
         let currentDate = Date()
         
@@ -117,7 +120,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         waitForExpectations(timeout: 1)
         let state1 = BaseHistoryDetailViewState()
         let state2 = state1.changing(path: \.remoteId, to: remoteId)
-        let state3 = state2.changing(path: \.profileId, to: "")
+        let state3 = state2.changing(path: \.profileId, to: profileId)
             .changing(path: \.channelFunction, to: 40)
         let state4 = state3.changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))
             .changing(path: \.range, to: DaysRange(start: currentDate.shift(days: -7), end: currentDate))
@@ -205,7 +208,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
     ) -> BaseHistoryDetailViewState {
         BaseHistoryDetailViewState(
             remoteId: remoteId,
-            profileId: "",
+            profileId: 1,
             chartData: chartData,
             range: DaysRange(start: currentDate.shift(days: -7), end: currentDate),
             ranges: SelectableList(selected: .lastWeek, items: ChartRange.allCases),

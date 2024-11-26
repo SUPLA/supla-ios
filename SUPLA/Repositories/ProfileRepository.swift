@@ -23,6 +23,7 @@ import RxSwift
 protocol ProfileRepository: RepositoryProtocol where T == AuthProfileItem {
     func getActiveProfile() -> Observable<AuthProfileItem>
     func getAllProfiles() -> Observable<[AuthProfileItem]>
+    func getProfile(withId id: Int32) -> Observable<AuthProfileItem?>
 }
 
 final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepository {
@@ -49,4 +50,7 @@ final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepositor
         return query(request)
     }
     
+    func getProfile(withId id: Int32) -> Observable<AuthProfileItem?> {
+        return queryItem(NSPredicate(format: "id = %d", id))
+    }
 }

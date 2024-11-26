@@ -72,20 +72,32 @@ extension ElectricityDataSelectionFeature {
 
 struct iOSCheckboxToggleStyle: ToggleStyle {
     let color: UIColor?
+    let textFirst: Bool
 
+    init(color: UIColor? = nil, textFirst: Bool = false) {
+        self.color = color
+        self.textFirst = textFirst
+    }
+    
     func makeBody(configuration: Configuration) -> some View {
         Button(action: {
             configuration.isOn.toggle()
         }, label: {
             HStack {
+                if (textFirst) {
+                    configuration.label
+                        .accentColor(Color.Supla.onBackground)
+                }
                 if let color = color {
                     Image(configuration.isOn ? .Icons.checkboxChecked : .Icons.checkboxEmpty)
                         .accentColor(Color(color))
                 } else {
                     Image(configuration.isOn ? .Icons.checkboxChecked : .Icons.checkboxEmpty)
                 }
-                configuration.label
-                    .accentColor(Color.Supla.onBackground)
+                if (!textFirst) {
+                    configuration.label
+                        .accentColor(Color.Supla.onBackground)
+                }
             }
         })
     }

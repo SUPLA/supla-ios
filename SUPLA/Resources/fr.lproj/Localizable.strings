@@ -285,9 +285,6 @@
 "Scenes" = "Scènes";
 "Not supported function" = "Fonction non supportée";
 
-"AccountCreation.title" = "Modifier le compte";
-"AccountCreation.modificationTitle" = "Ajouter un compte";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=fr";
 
 "Scenes.ActionButtons.execute" = "Exécuter";
@@ -353,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Ajouter une scène sur Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Ajouter un compte";
+"create_profile_title_modify" = "Modifier le compte";
+"create_profile_basic_warning_title" = "Mode non disponible";
+"create_profile_basic_warning_message" = "Sélectionnez l'authentification par courriel avec détection automatique du serveur avant de désactiver le mode avancé.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Notifications";

@@ -35,14 +35,13 @@ class UpdateTokenTask: NSObject {
     }
     
     private func doUpdate(token: Data) {
-        var settings = settings
         if (settings.pushToken == token && tokenUpdateNotNeeded()) {
             SALog.info("Token update skipped. Tokens are equal")
             return
         }
         
         do {
-            let profiles = try profileRepository.getAllProfiles().toBlocking().first()
+            let profiles = try profileRepository.getAllProfiles().subscribeSynchronous()
             if (profiles == nil || profiles?.count == 0) {
                 SALog.info("Skipping token update - no profiles found")
                 return
@@ -69,11 +68,11 @@ class UpdateTokenTask: NSObject {
     private func updateToken(token: Data, forProfile profile: AuthProfileItem) -> Bool {
         let name = profile.name ?? "<<>>"
         do {
-            var authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
-            var tokenDetails = SingleCallWrapper.prepareClientToken(for: token, andProfile: profile.name)
+            let authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
+            let tokenDetails = SingleCallWrapper.prepareClientToken(for: token, andProfile: profile.name)
             
-            if let authInfo = profile.authInfo, authInfo.isAuthDataComplete {
-                try singleCall.registerPushToken(authDetails, Int32(authInfo.preferredProtocolVersion), tokenDetails)
+            if (profile.isAuthDataComplete) {
+                try singleCall.registerPushToken(authDetails, profile.preferredProtocolVersion, tokenDetails)
             } else {
                 SALog.debug("Token update skipped for profile with incomplete data \(name)")
             }

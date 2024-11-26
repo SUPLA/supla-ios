@@ -25,36 +25,36 @@ final class ElectricityMeasurementItemRepositoryMock: BaseRepositoryMock<SAElect
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
     }
     
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]> {
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]> {
         return Observable.empty()
     }
     
-    func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], latestItem: DownloadElectricityMeterLogUseCaseImpl.Latest?, profile: AuthProfileItem, remoteId: Int32) throws -> DownloadElectricityMeterLogUseCaseImpl.Latest? {
+    func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], latestItem: DownloadElectricityMeterLogUseCaseImpl.Latest?, serverId: Int32, remoteId: Int32) throws -> DownloadElectricityMeterLogUseCaseImpl.Latest? {
         return nil
     }
     
-    func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAElectricityMeasurementItem?> {
+    func findOldestEntity(remoteId: Int32, serverId: Int32?) -> Observable<SAElectricityMeasurementItem?> {
         return Observable.empty()
     }
     
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
         return Observable.empty()
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         return Observable.empty()
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         return Observable.empty()
     }
     
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
         return Observable.empty()
     }
     
@@ -62,7 +62,7 @@ final class ElectricityMeasurementItemRepositoryMock: BaseRepositoryMock<SAElect
         return Observable.empty()
     }
     
-    func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
+    func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
         return 0.0
     }
     

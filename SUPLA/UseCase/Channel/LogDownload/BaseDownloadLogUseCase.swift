@@ -34,8 +34,8 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
     func invoke(remoteId: Int32) -> Observable<Float> {
         return Observable.create { observer in
             let disposable = BooleanDisposable()
-            guard let profile = self.loadCurrentProfile() else {
-                observer.onError(GeneralError.illegalState(message: "Could not load active profile"))
+            guard let serverId = self.loadCurrentProfile()?.server?.id else {
+                observer.onError(GeneralError.illegalState(message: "Could not load active profile's server ID"))
                 return disposable
             }
             guard let (measurements, totalCount) = self.loadInitialMeasurements(remoteId) else {
@@ -45,13 +45,13 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
             
             SALog.info("Found initial remote entries (count: \(measurements.count), total count: \(totalCount))")
             
-            guard let cleanMeasurements = self.checkCleanNeeded(measurements, remoteId, profile) else {
+            guard let cleanMeasurements = self.checkCleanNeeded(measurements, remoteId, serverId) else {
                 observer.onError(GeneralError.illegalState(message: "Could not verify if clean needed"))
                 return disposable
             }
             
             do {
-                try self.performImport(totalCount, cleanMeasurements, remoteId, profile, observer, disposable)
+                try self.performImport(totalCount, cleanMeasurements, remoteId, serverId, observer, disposable)
                 observer.on(.completed)
             } catch {
                 observer.on(.error(error))
@@ -99,7 +99,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
     private func checkCleanNeeded(
         _ measurements: [M],
         _ remoteId: Int32,
-        _ profile: AuthProfileItem
+        _ serverId: Int32
     ) -> Bool? {
         do {
             if (measurements.isEmpty) {
@@ -108,7 +108,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
             }
             
             let timestamp = try baseMeasurementRepository
-                .findMinTimestamp(remoteId: remoteId, profile: profile)
+                .findMinTimestamp(remoteId: remoteId, serverId: serverId)
                 .subscribeSynchronous()
             
             guard let firstUnwrap = timestamp,
@@ -138,18 +138,18 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         _ totalCount: Int,
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ observer: AnyObserver<Float>,
         _ disposable: BooleanDisposable
     ) throws {
         SALog.debug("Check for cleaning (cleanMeasurements: `\(cleanMeasurements))`")
         if (cleanMeasurements) {
-            try baseMeasurementRepository.deleteAll(remoteId: remoteId, profile: profile).subscribeSynchronous()
+            try baseMeasurementRepository.deleteAll(remoteId: remoteId, serverId: serverId).subscribeSynchronous()
         }
         
         let databaseCount = baseMeasurementRepository.findCount(
             remoteId: remoteId,
-            profile: profile
+            serverId: serverId
         ).subscribeSynchronous(defaultValue: 0)
         if (databaseCount == totalCount && !cleanMeasurements) {
             SALog.info("Database and cloud has same size of measurements. Import skipped")
@@ -157,7 +157,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         }
         
         SALog.info("Measurements import started (db count: \(databaseCount), remote count: \(totalCount))")
-        try iterateAndImport(totalCount, databaseCount, cleanMeasurements, remoteId, profile, observer, disposable)
+        try iterateAndImport(totalCount, databaseCount, cleanMeasurements, remoteId, serverId, observer, disposable)
     }
     
     func iterateAndImport(
@@ -165,14 +165,14 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         _ databaseCount: Int,
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ observer: AnyObserver<Float>,
         _ disposable: BooleanDisposable
     ) throws {
         let entriesToImport = totalCount - databaseCount
         var importedEntries = 0
         var afterTimestamp = baseMeasurementRepository
-            .findMaxTimestamp(remoteId: remoteId, profile: profile)
+            .findMaxTimestamp(remoteId: remoteId, serverId: serverId)
             .subscribeSynchronous(defaultValue: 0) ?? 0
         
         while (!disposable.isDisposed) {
@@ -186,7 +186,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
             afterTimestamp = try baseMeasurementRepository.storeMeasurements(
                 measurements: measurements,
                 timestamp: afterTimestamp,
-                profile: profile,
+                serverId: serverId,
                 remoteId: remoteId
             )
             

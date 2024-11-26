@@ -21,10 +21,10 @@ extension CounterPhotoFeature {
         
         @Singleton<SuplaAppCoordinator> var coordinator
         
-        private var profileId: Int64
+        private var profileId: Int32
         private var channelId: Int32
         
-        init(profileId: Int64, channelId: Int32, viewModel: ViewModel) {
+        init(profileId: Int32, channelId: Int32, viewModel: ViewModel) {
             self.profileId = profileId
             self.channelId = channelId
             super.init(viewModel: viewModel)
@@ -45,7 +45,7 @@ extension CounterPhotoFeature {
             title = Strings.CounterPhoto.toolbar
         }
         
-        static func create(profileId: Int64, channelId: Int32) -> UIViewController {
+        static func create(profileId: Int32, channelId: Int32) -> UIViewController {
             let viewModel = ViewModel()
             return ViewController(profileId: profileId, channelId: channelId, viewModel: viewModel)
         }

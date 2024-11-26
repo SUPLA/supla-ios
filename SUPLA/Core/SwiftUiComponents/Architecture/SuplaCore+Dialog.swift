@@ -135,8 +135,58 @@ extension SuplaCore.Dialog {
         }
     }
     
-    struct Header: SwiftUI.View {
+    struct Base<Content: View>: SwiftUI.View {
+        let onDismiss: () -> Void
+        let content: Content
         
+        var body: some SwiftUI.View {
+            ZStack {
+                Rectangle()
+                    .fill(Color.Supla.dialogScrim)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            onDismiss()
+                        }
+                    }
+
+                content
+                    .frame(maxWidth: UIScreen.main.bounds.size.width - 100)
+                    .background(Color.Supla.surface)
+                    .cornerRadius(Dimens.radiusDefault)
+            }
+        }
+    }
+    
+    struct Alert: SwiftUI.View {
+        
+        var header: String
+        var message: String
+        var button: String
+        var onDismiss: () -> Void
+        
+        var body: some SwiftUI.View {
+            SuplaCore.Dialog.Base(onDismiss: onDismiss) {
+                VStack(spacing: 0) {
+                    SuplaCore.Dialog.Header(title: header)
+                    
+                    SwiftUI.Text(message)
+                        .fontBodyMedium()
+                        .multilineTextAlignment(.center)
+                        .padding([.leading, .trailing], Distance.standard)
+                    
+                    SuplaCore.Dialog.Divider()
+                        .padding([.top], Distance.standard)
+                    
+                    FilledButton(title: button, fullWidth: true) { onDismiss() }
+                    .padding([.top, .bottom], Distance.small)
+                    .padding([.leading, .trailing], Distance.standard)
+                }
+            }
+        }
+    }
+    
+    struct Header: SwiftUI.View {
         let title: String
         
         var body: some SwiftUI.View {
@@ -150,9 +200,15 @@ extension SuplaCore.Dialog {
     }
     
     struct Divider: SwiftUI.View {
-        
         var body: some SwiftUI.View {
             SuplaCore.Divider().color(UIColor.grayLight)
         }
+    }
+}
+
+extension SuplaCore.Dialog.Base {
+    init(onDismiss: @escaping () -> Void = {}, @ViewBuilder _ content: () -> Content) {
+        self.onDismiss = onDismiss
+        self.content = content()
     }
 }

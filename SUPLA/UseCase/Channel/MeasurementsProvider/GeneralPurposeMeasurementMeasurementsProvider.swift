@@ -35,7 +35,7 @@ final class GeneralPurposeMeasurementMeasurementsProviderImpl: GeneralPurposeMea
         return generalPurposeMeasurementItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )

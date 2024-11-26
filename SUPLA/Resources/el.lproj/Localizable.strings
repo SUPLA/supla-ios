@@ -285,9 +285,6 @@
 "Scenes" = "Σκηνές";
 "Not supported function" = "Μη υποστηριζόμενη λειτουργία";
 
-"AccountCreation.title" = "Επεξεργασία λογαριασμού";
-"AccountCreation.modificationTitle" = "Προσθήκη λογαριασμού";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=el";
 
 "Scenes.ActionButtons.execute" = "Εφαρμογή";
@@ -353,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "PΠροσθέστε σκηνή στο Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Προσθήκη λογαριασμού";
+"create_profile_title_modify" = "Επεξεργασία λογαριασμού";
+"create_profile_basic_warning_title" = "Η λειτουργία δεν είναι διαθέσιμη";
+"create_profile_basic_warning_message" = "Πριν απενεργοποιήσετε την λειτουργία για προχωρημένους, επιλέξτε έλεγχος ταυτότητας μέσω ηλεκτρονικού ταχυδρομείου με αυτόματο εντοπισμό διακομιστή.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Ειδοποιήσεις";
