@@ -286,9 +286,6 @@
 "Thermostat" = "Termostat";
 "Not supported function" = "Niewspierana funkcja";
 
-"AccountCreation.title" = "Edytuj konto";
-"AccountCreation.modificationTitle" = "Dodaj konto";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pl";
 
 "Scenes.ActionButtons.execute" = "Wykonaj";
@@ -360,6 +357,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Dodaj scenę na Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Dodaj konto";
+"create_profile_title_modify" = "Edytuj konto";
+"create_profile_basic_warning_title" = "Tryb niedostępny";
+"create_profile_basic_warning_message" = "Przed wyłączeniem trybu zaawansowanego wybierz uwierzytelnianie email z automatycznym wykrywaniem serwera.";
 
 /* App Settings */
 "app_settings.permissions_header" = "Uprawnienia";

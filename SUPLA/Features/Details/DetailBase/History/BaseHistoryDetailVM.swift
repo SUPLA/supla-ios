@@ -168,7 +168,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         updateUserState()
     }
     
-    func loadChartState(_ profileId: String, _ remoteId: Int32) -> ChartState {
+    func loadChartState(_ profileId: Int32, _ remoteId: Int32) -> ChartState {
         userStateHolder.getDefaultChartState(profileId: profileId, remoteId: remoteId)
     }
     
@@ -444,7 +444,7 @@ enum BaseHistoryDetailViewEvent: ViewEvent {
 
 struct BaseHistoryDetailViewState: ViewState {
     var remoteId: Int32? = nil
-    var profileId: String? = nil
+    var profileId: Int32? = nil
     var channelFunction: Int32 = 0
     var downloadConfigured: Bool = false
     var initialLoadStarted: Bool = false

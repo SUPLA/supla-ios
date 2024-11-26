@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<SAMeasurementItem *> *)fetchRequest;
 
 @property (nonatomic) int32_t channel_id;
+@property (nonatomic) int32_t server_id;
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nonatomic) int16_t year;
 @property (nonatomic) int16_t month;
@@ -35,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t hour;
 @property (nonatomic) int16_t minute;
 @property (nonatomic) int16_t second;
-@property (nonatomic, retain) AuthProfileItem *profile;
 @end
 
 NS_ASSUME_NONNULL_END

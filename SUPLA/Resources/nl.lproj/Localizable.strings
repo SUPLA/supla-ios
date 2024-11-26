@@ -285,9 +285,6 @@
 "Scenes" = "Scènes";
 "Not supported function" = "Niet-ondersteunde functie";
 
-"AccountCreation.title" = "Rekening bewerken";
-"AccountCreation.modificationTitle" = "Rekening toevoegen";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nl";
 
 "Scenes.ActionButtons.execute" = "Ik wil  volgen";
@@ -353,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Een scène toevoegen op Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Rekening toevoegen";
+"create_profile_title_modify" = "Rekening bewerken";
+"create_profile_basic_warning_title" = "Modus niet beschikbaar";
+"create_profile_basic_warning_message" = "Voordat u de geavanceerde modus uitschakelt, selecteert u e-mailauthenticatie met automatische serverdetectie.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Meldingen";

@@ -21,46 +21,46 @@ protocol GeneralPurposeMeterItemRepository:
     BaseMeasurementRepository<SuplaCloudClient.GeneralPurposeMeter, SAGeneralPurposeMeterItem> where
     T == SAGeneralPurposeMeterItem
 {
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeterItem]>
+    func deleteAll(for serverId: Int32?) -> Observable<Void>
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeterItem]>
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
         latestItem: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32,
         channelConfig: SuplaChannelGeneralPurposeMeterConfig
     ) throws -> DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?
-    func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAGeneralPurposeMeterItem?>
+    func findOldestEntity(remoteId: Int32, serverId: Int32) -> Observable<SAGeneralPurposeMeterItem?>
 }
 
 final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMeterItem>, GeneralPurposeMeterItemRepository {
     
     @Singleton<SuplaCloudService> private var cloudService
     
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
         deleteAll(
             SAGeneralPurposeMeterItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "profile = %@ AND channel_id = %d", profile, remoteId))
+                .filtered(by: NSPredicate(format: "server_id = %d AND channel_id = %d", serverId ?? -1, remoteId))
         )
     }
 
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
         deleteAll(
             SAGeneralPurposeMeterItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "profile = %@", profile))
+                .filtered(by: NSPredicate(format: "server_id = %d", serverId ?? -1))
         )
     }
     
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeterItem]> {
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeterItem]> {
         query(
             SAGeneralPurposeMeterItem
                 .fetchRequest()
                 .filtered(by: NSPredicate(
-                    format: "channel_id = %d AND profile = %@ AND date >= %@ AND date <= %@",
+                    format: "channel_id = %d AND server_id = %d AND date >= %@ AND date <= %@",
                     remoteId,
-                    profile,
+                    serverId ?? -1,
                     startDate as NSDate,
                     endDate as NSDate
                 ))
@@ -68,9 +68,9 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         )
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SAGeneralPurposeMeterItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? -1))
             .ordered(by: "date", ascending: true)
         request.fetchLimit = 1
         
@@ -83,9 +83,9 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         }
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SAGeneralPurposeMeterItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? -1))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
         
@@ -98,13 +98,13 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         }
     }
     
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        count(NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? -1))
     }
     
-    func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAGeneralPurposeMeterItem?> {
+    func findOldestEntity(remoteId: Int32, serverId: Int32) -> Observable<SAGeneralPurposeMeterItem?> {
         let request = SAGeneralPurposeMeterItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
         
@@ -121,7 +121,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         cloudService.getGeneralPurposeMeter(remoteId: remoteId, afterTimestamp: afterTimestamp)
     }
     
-    func storeMeasurements(measurements: [SuplaCloudClient.GeneralPurposeMeter], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
+    func storeMeasurements(measurements: [SuplaCloudClient.GeneralPurposeMeter], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
         fatalError("Intentionally left not implemented")
     }
     
@@ -132,7 +132,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
         latestItem: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32,
         channelConfig: SuplaChannelGeneralPurposeMeterConfig
     ) throws -> DownloadGeneralPurposeMeterLogUseCaseImpl.Latest? {
@@ -142,7 +142,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         context.performAndWait {
             for measurement in measurements {
                 if let oldest = oldestEntity {
-                    let entity = createEntityAndComplementMissing(measurement, oldest, remoteId, profile, channelConfig)
+                    let entity = createEntityAndComplementMissing(measurement, oldest, remoteId, serverId, channelConfig)
                     if (oldest.date!.timeIntervalSince1970 < entity.date!.timeIntervalSince1970) {
                         oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(value: entity.value, date: entity.date)
                     }
@@ -171,7 +171,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         _ measurement: SuplaCloudClient.GeneralPurposeMeter,
         _ oldest: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ channelConfig: SuplaChannelGeneralPurposeMeterConfig
     ) -> SAGeneralPurposeMeterItem {
         let measurementValue = NSDecimalNumber(string: measurement.value)
@@ -192,7 +192,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         }
         
         let entity: SAGeneralPurposeMeterItem = context.create()
-        entity.profile = profile
+        entity.server_id = serverId
         entity.channel_id = remoteId
         entity.value = NSDecimalNumber(string: measurement.value)
         entity.setDateAndDateParts(measurement.date_timestamp)
@@ -201,7 +201,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
             let missingItemsCount = round(timeDiff / (ChartDataAggregation.minutes.timeInSec))
             let valueDivided = valueIncrement / missingItemsCount
             
-            generateMissingEntities(Int(missingItemsCount), valueIncrement, valueDivided, measurement.date_timestamp, remoteId, profile, reset)
+            generateMissingEntities(Int(missingItemsCount), valueIncrement, valueDivided, measurement.date_timestamp, remoteId, serverId, reset)
             
             entity.value_increment = NSDecimalNumber(value: valueDivided)
         } else {
@@ -217,13 +217,13 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         _ valueDivided: Double,
         _ entryDate: Date,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ reset: Bool
     ) {
         for itemNo in 1 ..< missingItemsCount {
             let itemTimestamp = entryDate.timeIntervalSince1970 - (ChartDataAggregation.minutes.timeInSec * Double(itemNo))
             let entity: SAGeneralPurposeMeterItem = context.create()
-            entity.profile = profile
+            entity.server_id = serverId
             entity.channel_id = remoteId
             entity.value = NSDecimalNumber(value: valueIncrement - (valueDivided * Double(itemNo)))
             entity.value_increment = NSDecimalNumber(value: valueDivided)

@@ -20,45 +20,47 @@
 
 final class UserStateHolderMock: UserStateHolder {
     
-    var getDefaultCharStateParameters: [(String, Int32)] = []
+    var getDefaultCharStateParameters: [(Int32, Int32)] = []
     var getDefaultChartStateReturns: DefaultChartState = .empty()
-    func getDefaultChartState(profileId: String, remoteId: Int32) -> DefaultChartState {
+    func getDefaultChartState(profileId: Int32, remoteId: Int32) -> DefaultChartState {
         getDefaultCharStateParameters.append((profileId, remoteId))
         return getDefaultChartStateReturns
     }
     
-    var getElectricityCharStateParameters: [(String, Int32)] = []
+    var getElectricityCharStateParameters: [(Int32, Int32)] = []
     var getElectricityChartStateReturns: ElectricityChartState = .empty()
-    func getElectricityChartState(profileId: String, remoteId: Int32) -> ElectricityChartState {
+    func getElectricityChartState(profileId: Int32, remoteId: Int32) -> ElectricityChartState {
         getElectricityCharStateParameters.append((profileId, remoteId))
         return getElectricityChartStateReturns
     }
     
-    var setChartStateParameters: [(ChartState, String, Int32)] = []
-    func setChartState(_ state: ChartState, profileId: String, remoteId: Int32) {
+    var setChartStateParameters: [(ChartState, Int32, Int32)] = []
+    func setChartState(_ state: ChartState, profileId: Int32, remoteId: Int32) {
         setChartStateParameters.append((state, profileId, remoteId))
     }
     
-    var getElectricityMeterSettingsParameters: [(String, Int32)] = []
+    var getElectricityMeterSettingsParameters: [(Int32, Int32)] = []
     var getElectricityMeterSettingsReturns: ElectricityMeterSettings = .defaultSettings()
-    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings {
+    func getElectricityMeterSettings(profileId: Int32, remoteId: Int32) -> ElectricityMeterSettings {
         getElectricityMeterSettingsParameters.append((profileId, remoteId))
         return getElectricityMeterSettingsReturns
     }
     
-    var setElectricityMeterSettingsParameters: [(ElectricityMeterSettings, String, Int32)] = []
-    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32) {
+    var setElectricityMeterSettingsParameters: [(ElectricityMeterSettings, Int32, Int32)] = []
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: Int32, remoteId: Int32) {
         setElectricityMeterSettingsParameters.append((settings, profileId, remoteId))
     }
     
-    var getPhotoCreationTimeMock: FunctionMock<(Int64, Int32), Date?> = .init()
-    func getPhotoCreationTime(profileId: Int64, remoteId: Int32) -> Date? {
+    var getPhotoCreationTimeMock: FunctionMock<(Int32, Int32), Date?> = .init()
+    func getPhotoCreationTime(profileId: Int32, remoteId: Int32) -> Date? {
         return getPhotoCreationTimeMock.handle((profileId, remoteId))
     }
     
-    var setPhotoCreationTimeMock: FunctionMock<(String, Int64, Int32), Void> = .init()
-    func setPhotoCreationTime(_ time: String, profileId: Int64, remoteId: Int32) {
+    var setPhotoCreationTimeMock: FunctionMock<(String, Int32, Int32), Void> = .init()
+    func setPhotoCreationTime(_ time: String, profileId: Int32, remoteId: Int32) {
         setPhotoCreationTimeMock.handle((time, profileId, remoteId))
     }
     
+    func migrateFrom17To19ModelMappingVersion(_ profileObjectId: NSManagedObjectID, _ profileId: Int32) {
+    }
 }

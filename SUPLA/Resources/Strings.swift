@@ -63,14 +63,12 @@ struct Strings {
         static let batteryLevelWarning = "settings_battery_level_warnign".toLocalized()
     }
     
-    struct AccountCreation {
-        static let creationTitle = "AccountCreation.title".toLocalized()
-        static let modificationTitle = "AccountCreation.modificationTitle".toLocalized()
+    struct CreateProfile {
+        static let creationTitle = "create_profile_title_create".toLocalized()
+        static let modificationTitle = "create_profile_title_modify".toLocalized()
         
         static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
         static let profileNameLabel = NSLocalizedString("NAME", comment: "label for profile name")
-        static let basicModeNotAvailableTitle = NSLocalizedString("Setting not available", comment: "alert box title when basic authentication mode is not available")
-        static let basicModeNotAvailableMessage = NSLocalizedString("Before turning advanced mode off you need to switch to email authentication and enable automatic server detection.", comment: "alert box message when basic authentication mode is not available")
         static let advancedSettings = NSLocalizedString("Advanced settings", comment: "Label for advanced settings toggle on authentication screen")
         static let accessIdSegment = NSLocalizedString("Access ID", comment: "")
         static let emailSegment = NSLocalizedString("Email", comment: "")
@@ -81,6 +79,9 @@ struct Strings {
         static let wizardWarningText = NSLocalizedString("In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure.", comment: "")
         static let createAccountPrompt = NSLocalizedString("Don't have an account in Supla Cloud yet?", comment: "")
         static let createAccountButton = NSLocalizedString("Create", comment: "")
+        
+        static let basicWarningTitle = "create_profile_basic_warning_title".toLocalized()
+        static let basicWarningMessage = "create_profile_basic_warning_message".toLocalized()
     }
     
     struct AccountRemoval {

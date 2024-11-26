@@ -35,20 +35,12 @@ final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider
         return temperatureMeasurementItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingTemperature(entities, spec.aggregation) }
             .map { [self.historyDataSet(channel, entryType, color, spec.aggregation, $0)] }
-            .map {
-                ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: $0
-                )
-            }
+            .map { self.channelChartSets(channel, spec, $0) }
     }
 }

@@ -31,13 +31,13 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
         _ databaseCount: Int,
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
-        _ profile: AuthProfileItem,
+        _ serverId: Int32,
         _ observer: AnyObserver<Float>,
         _ disposable: BooleanDisposable
     ) throws {
         let entriesToImport = totalCount - databaseCount
         let lastEntity = electricityMeasurementItemRepository
-            .findOldestEntity(remoteId: remoteId, profile: profile)
+            .findOldestEntity(remoteId: remoteId, serverId: serverId)
             .subscribeSynchronous(defaultValue: nil)
         
         var importedEntries = 0
@@ -60,7 +60,7 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
             lastEntry = try electricityMeasurementItemRepository.storeMeasurements(
                 measurements: measurements,
                 latestItem: lastEntry,
-                profile: profile,
+                serverId: serverId,
                 remoteId: remoteId
             )
             afterTimestamp = lastEntry?.date.timeIntervalSince1970 ?? 0

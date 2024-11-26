@@ -39,7 +39,7 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
         electricityMeasurementItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )

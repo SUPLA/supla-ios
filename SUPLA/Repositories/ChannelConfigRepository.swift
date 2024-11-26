@@ -40,10 +40,6 @@ final class ChannelConfigRepositoryImpl: Repository<SAChannelConfig>, ChannelCon
     }
     
     func deleteAllFor(profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(
-            SAChannelConfig.fetchRequest()
-                .filtered(by: NSPredicate(format: "profile = %@", profile))
-                .ordered(by: "channel.remote_id")
-        )
+        deleteAll(SAChannelConfig.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
 }

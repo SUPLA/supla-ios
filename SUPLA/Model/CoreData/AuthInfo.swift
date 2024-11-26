@@ -29,9 +29,6 @@ class AuthInfo: NSObject, NSCoding {
     @objc let accessID: Int
     @objc let accessIDpwd: String
     @objc let preferredProtocolVersion: Int
-    @objc var serverUrlString: String {
-        get { "https://\(serverForCurrentAuthMethod)" }
-    }
 
     
     private let kEmailAuth = "emailAuth"
@@ -148,18 +145,6 @@ class AuthInfoValueTransformer: ValueTransformer {
 }
 
 extension AuthInfo {
-    static func empty() -> AuthInfo {
-        AuthInfo(
-            emailAuth: true,
-            serverAutoDetect: true,
-            emailAddress: "",
-            serverForEmail: "",
-            serverForAccessID: "",
-            accessID: 0,
-            accessIDpwd: ""
-        )
-    }
-    
     static func from(userDefaults: UserDefaults) -> AuthInfo {
         let accessID = userDefaults.integer(forKey: "access_id")
         let accessIDpwd = userDefaults.string(forKey: "access_id_pwd") ?? ""
@@ -187,18 +172,6 @@ extension AuthInfo {
             accessID: accessID,
             accessIDpwd: accessIDpwd,
             preferredProtocolVersion: prefProtoVersion
-        )
-    }
-    
-    static func from(state: AccountCreationViewState) -> AuthInfo {
-        return AuthInfo(
-            emailAuth: state.authType == .email,
-            serverAutoDetect: state.serverAutoDetect,
-            emailAddress: state.emailAddress,
-            serverForEmail: state.serverAddressForEmail,
-            serverForAccessID: state.serverAddressForAccessId,
-            accessID: Int(state.accessId) ?? 0,
-            accessIDpwd: state.accessIdPassword
         )
     }
 }

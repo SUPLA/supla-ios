@@ -485,13 +485,12 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
         return "";
     }
     
-    AuthInfo *ai = profile.authInfo;
-    NSString *host = ai.serverForCurrentAuthMethod;
-    if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
-        host = [UseCaseLegacyWrapper loadServerHostName];
+    SAProfileServer *server = profile.server;
+    if (server == nil || ([server.address isEqualToString:@""] && profile.rawAuthorizationType == AuthorizationTypeEmail && ![profile.email isEqualToString:@""] )) {
+        return (char*) [[UseCaseLegacyWrapper loadServerHostName] UTF8String];
     }
     
-    return (char*)[host UTF8String];
+    return (char*)[server.address UTF8String];
     
 }
 
@@ -516,21 +515,20 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             [self onConnError:SUPLA_RESULT_HOST_NOT_FOUND];
         }
         
-        AuthInfo *ai = profile.authInfo;
-        if ( !ai.emailAuth ) {
-            scc.AccessID = ai.accessID;
-            [ai.accessIDpwd utf8StringToBuffer:scc.AccessIDpwd withSize:sizeof(scc.AccessIDpwd)];
+        if ( profile.rawAuthorizationType == AuthorizationTypeAccessId ) {
+            scc.AccessID = profile.accessId;
+            [profile.accessIdPassword utf8StringToBuffer:scc.AccessIDpwd withSize:sizeof(scc.AccessIDpwd)];
             if ( _regTryCounter >= 2 ) {
                 [UseCaseLegacyWrapper updatePreferredProtocolVersion: 4];
             }
             
         } else {
-            [ai.emailAddress utf8StringToBuffer:scc.Email withSize:sizeof(scc.Email)];
+            [profile.email utf8StringToBuffer:scc.Email withSize:sizeof(scc.Email)];
             if (_oneTimePassword && _oneTimePassword.length) {
                 [_oneTimePassword utf8StringToBuffer:scc.Password withSize:sizeof(scc.Password)];
             }
         }
-        scc.protocol_version = ai.preferredProtocolVersion;
+        scc.protocol_version = profile.preferredProtocolVersion;
     }
     
     _oneTimePassword = nil;
@@ -679,10 +677,10 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     id<ProfileManager> pm = SAApp.profileManager;
     AuthProfileItem *profile = [pm getCurrentProfile];
     
-    if ( profile != nil && (!profile.authInfo.emailAuth || ve.remoteVersion >= 7)
+    if ( profile != nil && (profile.rawAuthorizationType == AuthorizationTypeAccessId || ve.remoteVersion >= 7)
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
-        && profile.authInfo.preferredProtocolVersion != ve.remoteVersion ) {
+        && profile.preferredProtocolVersion != ve.remoteVersion ) {
         [UseCaseLegacyWrapper updatePreferredProtocolVersion: ve.remoteVersion];
         [self reconnect];
         return;
@@ -756,10 +754,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     _regTryCounter = 0;
     id<ProfileManager> pm = [SAApp profileManager];
     AuthProfileItem *profile = [pm getCurrentProfile];
-    AuthInfo *ai = profile.authInfo;
     
     long maxVersionSupportedByLibrary = SUPLA_PROTO_VERSION;
-    long storedVersion = ai.preferredProtocolVersion;
+    long storedVersion = profile.preferredProtocolVersion;
     long serverVersion = result.Version;
     if (storedVersion < maxVersionSupportedByLibrary && serverVersion > storedVersion) {
         long newVersion = serverVersion;
@@ -792,7 +789,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     _client_id = result.ClientID;
     NSData* pushToken = [DiContainer getPushToken];
     [self registerPushNotificationClientToken:pushToken forProfile: profile];
-    [DiContainer setOAuthUrlWithUrl: ai.serverUrlString];
+    [DiContainer setOAuthUrlWithUrl: profile.serverUrlString];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
     

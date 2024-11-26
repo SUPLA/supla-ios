@@ -23,51 +23,51 @@ import RxSwift
 final class TempHumidityMeasurementItemRepositoryMock: BaseRepositoryMock<SATempHumidityMeasurementItem>, TempHumidityMeasurementItemRepository {
     
     var deleteAllForRemoteIdAndProfileReturns: Observable<Void> = Observable.empty()
-    var deleteAllForRemoteIdAndProfileParameters: [(Int32, AuthProfileItem)] = []
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> RxSwift.Observable<Void> {
-        deleteAllForRemoteIdAndProfileParameters.append((remoteId, profile))
+    var deleteAllForRemoteIdAndProfileParameters: [(Int32, Int32?)] = []
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> RxSwift.Observable<Void> {
+        deleteAllForRemoteIdAndProfileParameters.append((remoteId, serverId))
         return deleteAllForRemoteIdAndProfileReturns
     }
     
     var deleteAllForProfileReturns: Observable<Void> = Observable.empty()
-    var deleteAllForProfileParameters: [AuthProfileItem] = []
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllForProfileParameters.append(profile)
+    var deleteAllForProfileParameters: [Int32?] = []
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAllForProfileParameters.append(serverId)
         return deleteAllForProfileReturns
     }
     
-    var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []
+    var findMeasurementsParameters: [(Int32, Int32?, Date, Date)] = []
     var findMeasurementsReturns: Observable<[SATempHumidityMeasurementItem]> = Observable.empty()
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]> {
-        findMeasurementsParameters.append((remoteId, profile, startDate, endDate))
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]> {
+        findMeasurementsParameters.append((remoteId, serverId, startDate, endDate))
         return findMeasurementsReturns
     }
     
-    var findMinTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMinTimestampParameters: [(Int32, Int32?)] = []
     var findMinTimestampReturns: Observable<TimeInterval?> = Observable.empty()
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        findMinTimestampParameters.append((remoteId, profile))
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        findMinTimestampParameters.append((remoteId, serverId))
         return findMinTimestampReturns
     }
     
-    var findMaxTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMaxTimestampParameters: [(Int32, Int32?)] = []
     var findMaxTimestampReturns: Observable<TimeInterval?> = Observable.empty()
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        findMaxTimestampParameters.append((remoteId, profile))
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        findMaxTimestampParameters.append((remoteId, serverId))
         return findMaxTimestampReturns
     }
     
-    var findCountParameters: [(Int32, AuthProfileItem)] = []
+    var findCountParameters: [(Int32, Int32?)] = []
     var findCountReturns: Observable<Int> = Observable.empty()
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        findCountParameters.append((remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        findCountParameters.append((remoteId, serverId))
         return findCountReturns
     }
     
-    var storeMeasurementsParameters: [([SuplaCloudClient.TemperatureAndHumidityMeasurement], TimeInterval, AuthProfileItem, Int32)] = []
+    var storeMeasurementsParameters: [([SuplaCloudClient.TemperatureAndHumidityMeasurement], TimeInterval, Int32, Int32)] = []
     var storeMeasurementsReturns: () throws -> TimeInterval = { 0 }
-    func storeMeasurements(measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
-        storeMeasurementsParameters.append((measurements, timestamp, profile, remoteId))
+    func storeMeasurements(measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
+        storeMeasurementsParameters.append((measurements, timestamp, serverId, remoteId))
         return try storeMeasurementsReturns()
     }
     

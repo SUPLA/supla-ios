@@ -287,9 +287,6 @@
 "Scenes" = "Scenos";
 "Not supported function" = "Nepalaikoma funkcija";
 
-"AccountCreation.title" = "Koreguoti paskyrą";
-"AccountCreation.modificationTitle" = "Pridėti paskyrą";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=lt";
 
 "Scenes.ActionButtons.execute" = "Atlikti";
@@ -355,6 +352,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Pridėti sceną Supla Cloud programėlėje";
+
+/* Create Profile */
+"create_profile_title_create" = "Pridėti paskyrą";
+"create_profile_title_modify" = "Koreguoti paskyrą";
+"create_profile_basic_warning_title" = "Režimas nepasiekiamas";
+"create_profile_basic_warning_message" = "Prieš išjungdami išplėstinį režimą, pasirinkite autentifikavimą el. paštu su automatiniu serverio aptikimu.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Pranešimai";

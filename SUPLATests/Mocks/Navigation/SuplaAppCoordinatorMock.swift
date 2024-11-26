@@ -22,7 +22,6 @@ import XCTest
 @testable import SUPLA
 
 final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
-    
     private let navigationControllerMock = NavigationControllerMock()
     
     var navigationController: UINavigationController {
@@ -63,13 +62,13 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToDeviceCatalog() {
     }
     
-    var navigateToProfileMock: FunctionMock<ProfileID?, Void> = .void()
-    func navigateToProfile(profileId: ProfileID?) {
+    var navigateToProfileMock: FunctionMock<Int32?, Void> = .void()
+    func navigateToProfile(profileId: Int32?) {
         navigateToProfileMock.handle(profileId)
     }
     
-    var navigateToProfileWithLockCheckMock: FunctionMock<(ProfileID?, Bool), Void> = .void()
-    func navigateToProfile(profileId: ProfileID?, withLockCheck: Bool) {
+    var navigateToProfileWithLockCheckMock: FunctionMock<(Int32?, Bool), Void> = .void()
+    func navigateToProfile(profileId: Int32?, withLockCheck: Bool) {
         navigateToProfileWithLockCheckMock.handle((profileId, withLockCheck))
     }
     
@@ -111,7 +110,7 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToImpulseCounterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
-    func navigateToCounterPhoto(profileId: Int64, channelId: Int32) {
+    func navigateToCounterPhoto(profileId: Int32, channelId: Int32) {
     }
     
     func popToStatus() {

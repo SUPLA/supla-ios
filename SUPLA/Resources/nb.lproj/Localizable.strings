@@ -286,9 +286,6 @@
 "Scenes" = "Scener";
 "Not supported function" = "Ikke-støttet funksjon";
 
-"AccountCreation.title" = "Rediger konto";
-"AccountCreation.modificationTitle" = "Legg til konto";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nb";
 
 "Scenes.ActionButtons.execute" = "Følg";
@@ -354,6 +351,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Legg til en scene på Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Legg til konto";
+"create_profile_title_modify" = "Rediger konto";
+"create_profile_basic_warning_title" = "Modus utilgjengelig";
+"create_profile_basic_warning_message" = "Før du slår av avansert modus, vennligst velg e-postautentisering med automatisk serveroppdagelse.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Varsler";

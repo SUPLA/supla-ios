@@ -59,7 +59,7 @@ extension ElectricityMeterSettingsFeature {
                     []
                 }
 
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.idString, remoteId: channel.remote_id)
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
             let phases = channel.phases
 
             let balancingItems: [ElectricityMeterBalanceType]? =
@@ -83,7 +83,7 @@ extension ElectricityMeterSettingsFeature {
                 }
 
             state.remoteId = channel.remote_id
-            state.profileId = channel.profile.idString
+            state.profileId = channel.profile.id
 
             state.channelName = getCaptionsUseCase.invoke(data: channel.shareable).string
             state.showOnChannelsList = SelectableList(

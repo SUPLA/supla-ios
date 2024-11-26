@@ -22,11 +22,11 @@ protocol BaseMeasurementRepository<M, E>: RepositoryProtocol {
     associatedtype M: SuplaCloudClient.Measurement
     associatedtype E: SAMeasurementItem
     
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void>
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int>
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[M]>
-    func storeMeasurements(measurements: [M], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval
+    func storeMeasurements(measurements: [M], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval
     func fromJson(data: Data) throws -> [M]
 }

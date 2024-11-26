@@ -30,8 +30,8 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToAbout()
     func navigateToNotificationsLog()
     func navigateToDeviceCatalog()
-    func navigateToProfile(profileId: ProfileID?)
-    func navigateToProfile(profileId: ProfileID?, withLockCheck: Bool)
+    func navigateToProfile(profileId: Int32?)
+    func navigateToProfile(profileId: Int32?, withLockCheck: Bool)
     func navigateToCreateAccountWeb()
     func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?)
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
@@ -44,7 +44,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToPinSetup(lockScreenScope: LockScreenScope)
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
-    func navigateToCounterPhoto(profileId: Int64, channelId: Int32)
+    func navigateToCounterPhoto(profileId: Int32, channelId: Int32)
     
     func popToStatus()
     
@@ -152,11 +152,11 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(DeviceCatalogVC())
     }
     
-    func navigateToProfile(profileId: ProfileID?) {
+    func navigateToProfile(profileId: Int32?) {
         navigateToProfile(profileId: profileId, withLockCheck: true)
     }
     
-    func navigateToProfile(profileId: ProfileID?, withLockCheck: Bool) {
+    func navigateToProfile(profileId: Int32?, withLockCheck: Bool) {
         if (withLockCheck && settings.lockScreenSettings.pinForAccountsRequired) {
             if let profileId = profileId {
                 navigateToLockScreen(unlockAction: .authorizeAccountsEdit(profileId: profileId))
@@ -164,7 +164,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
                 navigateToLockScreen(unlockAction: .authorizeAccountsCreate)
             }
         } else {
-            navigateTo(AccountCreationVC(profileId: profileId))
+            navigateTo(CreateProfileFeature.ViewController.create(profileId: profileId))
         }
     }
     
@@ -216,7 +216,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(LockScreenFeature.ViewController.create(unlockAction: unlockAction))
     }
     
-    func navigateToCounterPhoto(profileId: Int64, channelId: Int32) {
+    func navigateToCounterPhoto(profileId: Int32, channelId: Int32) {
         navigateTo(CounterPhotoFeature.ViewController.create(profileId: profileId, channelId: channelId))
     }
     

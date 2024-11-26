@@ -25,7 +25,7 @@ final class ImpulseCounterMeasurementItemRepositoryMock: BaseRepositoryMock<SAIm
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
     }

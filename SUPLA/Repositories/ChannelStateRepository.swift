@@ -20,10 +20,15 @@ import RxSwift
 
 protocol ChannelStateRepository: RepositoryProtocol where T == SAChannelState {
     func getState(for channelId: Int32, and profile: AuthProfileItem) -> Observable<SAChannelState?>
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class ChannelStateRepositoryImpl: Repository<SAChannelState>, ChannelStateRepository {
     func getState(for channelId: Int32, and profile: AuthProfileItem) -> Observable<SAChannelState?> {
         return queryItem(NSPredicate(format: "profile = %@ AND channel.remote_id = %d", profile, channelId))
+    }
+    
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+        return deleteAll(SAChannelState.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
 }

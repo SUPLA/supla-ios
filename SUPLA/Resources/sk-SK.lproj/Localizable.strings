@@ -285,9 +285,6 @@
 "Scenes" = "Scénu";
 "Not supported function" = "Nepodporovaná funkcia";
 
-"AccountCreation.title" = "Upraviť účet";
-"AccountCreation.modificationTitle" = "Pridať účet";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=sk";
 
 "Scenes.ActionButtons.execute" = "Vykonať";
@@ -353,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Pridanie scény na Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Pridať účet";
+"create_profile_title_modify" = "Upraviť účet";
+"create_profile_basic_warning_title" = "Režim je nedostupný";
+"create_profile_basic_warning_message" = "Pred vypnutím pokročilého režimu vyberte overenie e-mailu s automatickou detekciou servera.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Upozornenia";

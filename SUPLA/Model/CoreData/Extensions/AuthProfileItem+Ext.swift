@@ -23,13 +23,23 @@ typealias ProfileID = NSManagedObjectID
 
 extension AuthProfileItem {
     
+    var authorizationType: AuthorizationType {
+        get { AuthorizationType.from(rawAuthorizationType) }
+        set { rawAuthorizationType = newValue.rawValue }
+    }
+    
+    @objc
+    var serverUrlString: String {
+        get { "https://\(server?.address ?? "")" }
+    }
+    
     @objc
     var clientGUID: Data {
         get {
             return AuthProfileItemKeychainHelper.getSecureRandom(
                 size: Int(SUPLA_GUID_SIZE),
                 key: AuthProfileItemKeychainHelper.guidKey,
-                id: objectID
+                id: id
             )
         }
         
@@ -37,7 +47,7 @@ extension AuthProfileItem {
             AuthProfileItemKeychainHelper.setSecureRandom(
                 newValue,
                 key: AuthProfileItemKeychainHelper.guidKey,
-                id: objectID
+                id: id
             )
         }
     }
@@ -48,7 +58,7 @@ extension AuthProfileItem {
             return AuthProfileItemKeychainHelper.getSecureRandom(
                 size: Int(SUPLA_AUTHKEY_SIZE),
                 key: AuthProfileItemKeychainHelper.authKey,
-                id: objectID
+                id: id
             )
         }
         
@@ -56,7 +66,7 @@ extension AuthProfileItem {
             AuthProfileItemKeychainHelper.setSecureRandom(
                 newValue,
                 key: AuthProfileItemKeychainHelper.authKey,
-                id: objectID
+                id: id
             )
         }
     }
@@ -70,6 +80,14 @@ extension AuthProfileItem {
         }
     }
     
+    var isAuthDataComplete: Bool {
+        if(authorizationType == .email) {
+            return email?.isEmpty == false && (serverAutoDetect || server != nil)
+        } else {
+            return server != nil && accessId > 0 && accessIdPassword?.isEmpty == false
+        }
+    }
+    
     var idString: String {
         get {
             if (objectID == nil) {
@@ -79,7 +97,4 @@ extension AuthProfileItem {
         }
     }
     
-    var id: Int64 {
-        Int64(idString.hash)
-    }
 }

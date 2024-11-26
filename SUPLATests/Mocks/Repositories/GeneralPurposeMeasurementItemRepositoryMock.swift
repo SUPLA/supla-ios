@@ -20,57 +20,57 @@ import RxSwift
 @testable import SUPLA
 
 final class GeneralPurposeMeasurementItemRepositoryMock: BaseRepositoryMock<SAGeneralPurposeMeasurementItem>, GeneralPurposeMeasurementItemRepository {
-    var deleteAllForRemoteIdAndProfileParameters: [(Int32, AuthProfileItem)] = []
+    var deleteAllForRemoteIdAndProfileParameters: [(Int32, Int32?)] = []
     var deleteAllForRemoteIdAndProfileReturns: Observable<Void> = .empty()
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> RxSwift.Observable<Void> {
-        deleteAllForRemoteIdAndProfileParameters.append((remoteId, profile))
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> RxSwift.Observable<Void> {
+        deleteAllForRemoteIdAndProfileParameters.append((remoteId, serverId))
         return deleteAllForRemoteIdAndProfileReturns
     }
     
-    var deleteAllForProfileParameters: [AuthProfileItem] = []
+    var deleteAllForProfileParameters: [Int32?] = []
     var deleteAllForProfileReturns: Observable<Void> = .empty()
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllForProfileParameters.append(profile)
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAllForProfileParameters.append(serverId)
         return deleteAllForProfileReturns
     }
     
-    var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []
+    var findMeasurementsParameters: [(Int32, Int32?, Date, Date)] = []
     var findMeasurementsReturns: Observable<[SAGeneralPurposeMeasurementItem]> = .empty()
     func findMeasurements(
         remoteId: Int32,
-        profile: AuthProfileItem,
+        serverId: Int32?,
         startDate: Date,
         endDate: Date
     ) -> Observable<[SAGeneralPurposeMeasurementItem]> {
-        findMeasurementsParameters.append((remoteId, profile, startDate, endDate))
+        findMeasurementsParameters.append((remoteId, serverId, startDate, endDate))
         return findMeasurementsReturns
     }
     
-    var findMinTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMinTimestampParameters: [(Int32, Int32?)] = []
     var findMinTimestampReturns: Observable<TimeInterval?> = .empty()
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        findMinTimestampParameters.append((remoteId, profile))
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        findMinTimestampParameters.append((remoteId, serverId))
         return findMinTimestampReturns
     }
     
-    var findMaxTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMaxTimestampParameters: [(Int32, Int32?)] = []
     var findMaxTimestampReturns: Observable<TimeInterval?> = .empty()
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        findMaxTimestampParameters.append((remoteId, profile))
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        findMaxTimestampParameters.append((remoteId, serverId))
         return findMaxTimestampReturns
     }
     
-    var findCountParameters: [(Int32, AuthProfileItem)] = []
+    var findCountParameters: [(Int32, Int32?)] = []
     var findCountReturns: Observable<Int> = .empty()
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        findCountParameters.append((remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        findCountParameters.append((remoteId, serverId))
         return findCountReturns
     }
     
-    var storeMeasurementsParameters: [([SuplaCloudClient.GeneralPurposeMeasurement], TimeInterval, AuthProfileItem, Int32)] = []
+    var storeMeasurementsParameters: [([SuplaCloudClient.GeneralPurposeMeasurement], TimeInterval, Int32?, Int32)] = []
     var storeMeasurementsReturns: TimeInterval = 0
-    func storeMeasurements(measurements: [SuplaCloudClient.GeneralPurposeMeasurement], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
-        storeMeasurementsParameters.append((measurements, timestamp, profile, remoteId))
+    func storeMeasurements(measurements: [SuplaCloudClient.GeneralPurposeMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
+        storeMeasurementsParameters.append((measurements, timestamp, serverId, remoteId))
         return storeMeasurementsReturns
     }
     

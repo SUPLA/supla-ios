@@ -24,7 +24,7 @@ final class UpdatePreferredProtocolVersionUseCase {
     func invoke(version: Int) -> Observable<Void> {
         profileRepository.getActiveProfile()
             .map { profile in
-                profile.authInfo = profile.authInfo?.copy(preferredProtocolVersion: version)
+                profile.preferredProtocolVersion = Int32(version)
                 return profile
             }
             .flatMapFirst { self.profileRepository.save($0) }

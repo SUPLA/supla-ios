@@ -285,9 +285,6 @@
 "Scenes" = "Сцени";
 "Not supported function" = "Непідтримувана функція";
 
-"AccountCreation.title" = "Редагувати обліковий запис";
-"AccountCreation.modificationTitle" = "Додати обліковий запис";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=uk";
 
 "Scenes.ActionButtons.execute" = "Виконати";
@@ -353,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Додати сцену в Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Додати обліковий запис";
+"create_profile_title_modify" = "Редагувати обліковий запис";
+"create_profile_basic_warning_title" = "Режим недоступний";
+"create_profile_basic_warning_message" = "Перш ніж вимкнути розширений режим, виберіть автентифікацію електронної пошти з автоматичним визначенням сервера.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Сповіщення";

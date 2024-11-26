@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol SaveOrCreateProfileUseCase {
-    func invoke(profileId: ProfileID?, name: String, advancedMode: Bool, authInfo: AuthInfo) -> Observable<SaveOrCreateProfileResult>
+    func invoke(profileDto: ProfileDto) -> Observable<SaveOrCreateProfileResult>
 }
 
 final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
@@ -27,28 +27,28 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<GlobalSettings> private var globalSettings
     @Singleton<SuplaAppStateHolder> private var stateHolder
+    @Singleton<ReadOrCreateProfileServerUseCase> private var readOrCreateProfileServerUseCase
     
-    func invoke(profileId: ProfileID?, name: String, advancedMode: Bool, authInfo: AuthInfo) -> Observable<SaveOrCreateProfileResult> {
+    func invoke(profileDto: ProfileDto) -> Observable<SaveOrCreateProfileResult> {
         self.profileRepository.getAllProfiles()
-            .flatMap { profiles in
-                if (self.isNameDuplicated(name: name, profileId: profileId, profiles: profiles)) {
-                    return Observable<Void>.error(SaveOrCreateProfileError.duplicatedName)
-                }
-                if (!authInfo.isAuthDataComplete) {
-                    return Observable<Void>.error(SaveOrCreateProfileError.dataIncomplete)
-                }
+            .map { try self.validateAndFindProfile(profiles: $0, profile: profileDto) }
+            .flatMap { self.notNullOrCreate($0) }
+            .flatMap { self.setServerRelation($0, profileDto.serverAddress) }
+            .flatMap { profile in
+                let authDataChanged = self.authDataChanged(profileDto: profileDto, profileDb: profile)
                 
-                return .just(())
-            }.flatMap {
-                self.readOrCreateProfile(profileId: profileId)
-            }.flatMap { profile in
-                let authDataChanged = self.authDataChanged(authInfo: authInfo, profile: profile)
+                profile.name = profileDto.name
+                profile.authorizationType = profileDto.authorizationType
+                profile.advancedSetup = profileDto.advancedSetup
+                profile.serverAutoDetect = profileDto.serverAutoDetect
+                profile.email = profileDto.email
+                profile.accessId = profileDto.accessId ?? 0
+                profile.accessIdPassword = profileDto.accessIdPassword
+                // isActive is intentionally not changed - it shouldn't change during edition.
+                // There is another use case for profile activation
                 
-                profile.name = name
-                profile.advancedSetup = advancedMode
-                profile.authInfo = authInfo
                 if (authDataChanged) {
-                    profile.authInfo = authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION))
+                    profile.preferredProtocolVersion = SUPLA_PROTO_VERSION
                 }
                 
                 return self.profileRepository
@@ -69,46 +69,59 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
             }
     }
     
-    private func readOrCreateProfile(profileId: ProfileID?) -> Observable<AuthProfileItem> {
-        if let profileId = profileId {
-            return profileRepository.queryItem(profileId)
-                .flatMap {
-                    if let profile = $0 {
-                        return Observable.just(profile)
-                    } else {
-                        return self.createNewProfile()
-                    }
-                }
-        } else {
-            return createNewProfile()
+    private func validateAndFindProfile(profiles: [AuthProfileItem], profile: ProfileDto) throws -> AuthProfileItem? {
+        if (isNameDuplicated(name: profile.name, profileId: profile.id, profiles: profiles)) {
+            throw SaveOrCreateProfileError.duplicatedName
         }
+        if (!profile.isAuthDataComplete) {
+            throw SaveOrCreateProfileError.dataIncomplete
+        }
+        
+        return profiles.first { $0.id == profile.id }
     }
     
-    private func createNewProfile() -> Observable<AuthProfileItem> {
-        profileRepository.create().map {
-            $0.isActive = !self.globalSettings.anyAccountRegistered
-            return $0
+    private func notNullOrCreate(_ profile: AuthProfileItem?) -> Observable<AuthProfileItem> {
+        if let profile {
+            return Observable.just(profile)
+        } else {
+            return profileRepository
+                .create()
+                .map {
+                    $0.isActive = !self.globalSettings.anyAccountRegistered
+                    $0.id = self.globalSettings.nextProfileId
+                    return $0
+                }
+        }
+        
+    }
+    
+    private func setServerRelation(_ profile: AuthProfileItem, _ address: String?) -> Observable<AuthProfileItem> {
+        if let address, !address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            self.readOrCreateProfileServerUseCase.invoke(address)
+                .map {
+                    profile.server = $0
+                    return profile
+                }
+        } else {
+            Observable.just(profile)
         }
     }
     
     private func isNameDuplicated(
         name: String,
-        profileId: ProfileID?,
+        profileId: Int32?,
         profiles: [AuthProfileItem]
     ) -> Bool {
-        return profiles.first(where: { $0.displayName == name && $0.objectID != profileId}) != nil
+        return profiles.first(where: { $0.displayName == name && $0.id != profileId}) != nil
     }
     
-    private func authDataChanged(authInfo: AuthInfo, profile: AuthProfileItem) -> Bool {
-        guard let currentAuthInfo = profile.authInfo else { return true }
-        
-        return currentAuthInfo.emailAddress != authInfo.emailAddress
-        || currentAuthInfo.serverAutoDetect != authInfo.serverAutoDetect
-        || currentAuthInfo.emailAddress != authInfo.emailAddress
-        || currentAuthInfo.serverForEmail != authInfo.serverForEmail
-        || currentAuthInfo.serverForAccessID != authInfo.serverForAccessID
-        || currentAuthInfo.accessID != authInfo.accessID
-        || currentAuthInfo.accessIDpwd != authInfo.accessIDpwd
+    private func authDataChanged(profileDto: ProfileDto, profileDb: AuthProfileItem) -> Bool {
+        return profileDb.name != profileDto.name
+        || profileDb.email != profileDto.email
+        || profileDb.serverAutoDetect != profileDto.serverAutoDetect
+        || profileDb.server?.address != profileDto.serverAddress
+        || profileDb.accessId != profileDto.accessId
+        || profileDb.accessIdPassword != profileDto.accessIdPassword
     }
 }
 

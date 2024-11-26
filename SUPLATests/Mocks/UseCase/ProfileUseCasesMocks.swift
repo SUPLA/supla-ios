@@ -29,27 +29,27 @@ final class DeleteAllProfileDataUseCaseMock: DeleteAllProfileDataUseCase {
 }
 
 final class DeleteProfileUseCaseMock: DeleteProfileUseCase {
-    var parameters: [ProfileID] = []
+    var parameters: [Int32] = []
     var returns: Observable<DeleteProfileResult> = .empty()
-    func invoke(profileId: ProfileID) -> Observable<DeleteProfileResult> {
+    func invoke(profileId: Int32) -> Observable<DeleteProfileResult> {
         parameters.append(profileId)
         return returns
     }
 }
 
 final class SaveOrCreateProfileUseCaseMock: SaveOrCreateProfileUseCase {
-    var parameters: [(ProfileID?, String, Bool, AuthInfo)] = []
+    var parameters: [ProfileDto] = []
     var returns: Observable<SaveOrCreateProfileResult> = .empty()
-    func invoke(profileId: ProfileID?, name: String, advancedMode: Bool, authInfo: AuthInfo) -> Observable<SaveOrCreateProfileResult> {
-        parameters.append((profileId, name, advancedMode, authInfo))
+    func invoke(profileDto: ProfileDto) -> Observable<SaveOrCreateProfileResult> {
+        parameters.append(profileDto)
         return returns
     }
 }
 
 final class ActivateProfileUseCaseMock: ActivateProfileUseCase {
-    var parameters: [(ProfileID, Bool)] = []
+    var parameters: [(Int32, Bool)] = []
     var returns: Completable = .empty()
-    func invoke(profileId: ProfileID, force: Bool) -> Completable {
+    func invoke(profileId: Int32, force: Bool) -> Completable {
         parameters.append((profileId, force))
         return returns
     }

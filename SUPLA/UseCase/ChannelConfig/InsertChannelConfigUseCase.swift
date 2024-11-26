@@ -85,7 +85,7 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
                 {
                     SALog.info("Triggering history deletion for \(channelRemoteId)")
                     return self.profileRepository.getActiveProfile()
-                        .flatMap { self.generalPurposeMeterItemRepository.deleteAll(remoteId: channelRemoteId, profile: $0) }
+                        .flatMap { self.generalPurposeMeterItemRepository.deleteAll(remoteId: channelRemoteId, serverId: $0.server?.id) }
                         .map { _ in
                             self.downloadEventManager.emitProgressState(remoteId: channelRemoteId, state: .refresh)
                             return config

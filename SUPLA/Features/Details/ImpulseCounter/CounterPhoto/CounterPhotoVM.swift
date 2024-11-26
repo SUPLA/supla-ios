@@ -32,12 +32,12 @@ extension CounterPhotoFeature {
             super.init(state: ViewState())
         }
         
-        func onRefresh(_ remoteId: Int32, _ profileId: Int64) async {
+        func onRefresh(_ remoteId: Int32, _ profileId: Int32) async {
             triggerPhotoDownload(remoteId, profileId)
             await updateImagesState(remoteId, profileId)
         }
         
-        func loadData(_ remoteId: Int32, _ profileId: Int64) {
+        func loadData(_ remoteId: Int32, _ profileId: Int32) {
             loadActiveProfileUrlUseCase.invoke()
                 .asDriverWithoutError()
                 .drive(
@@ -51,7 +51,7 @@ extension CounterPhotoFeature {
                 .disposed(by: disposeBag)
         }
         
-        private func triggerPhotoDownload(_ remoteId: Int32, _ profileId: Int64) {
+        private func triggerPhotoDownload(_ remoteId: Int32, _ profileId: Int32) {
             do {
                 let _ = try downloadOcrPhotoUseCase.invoke(remoteId: remoteId).toBlocking().first()
             } catch {
@@ -60,11 +60,11 @@ extension CounterPhotoFeature {
         }
         
         @MainActor
-        private func updateImagesState(_ remoteId: Int32, _ profileId: Int64) {
+        private func updateImagesState(_ remoteId: Int32, _ profileId: Int32) {
             updateImages(remoteId, profileId)
         }
         
-        private func updateImages(_ remoteId: Int32, _ profileId: Int64) {
+        private func updateImages(_ remoteId: Int32, _ profileId: Int32) {
             guard let cacheDir = cacheFileAccessProxy.cacheDir else { return }
             
             let ocrImageName = ocrImageNamingProvider.imageName(profileId: Int64(profileId), remoteId: remoteId)

@@ -34,7 +34,7 @@ class SwitchWithElectricityMeterValueProviderImpl: SwitchWithElectricityMeterVal
 
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
         let settings = userStateHolder.getElectricityMeterSettings(
-            profileId: channel.profile.idString,
+            profileId: channel.profile.id,
             remoteId: channel.remote_id
         )
 

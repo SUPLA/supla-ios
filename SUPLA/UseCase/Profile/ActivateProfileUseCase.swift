@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol ActivateProfileUseCase {
-    func invoke(profileId: ProfileID, force: Bool) -> Completable
+    func invoke(profileId: Int32, force: Bool) -> Completable
 }
 
 final class ActivateProfileUseCaseImpl: ActivateProfileUseCase {
@@ -29,8 +29,8 @@ final class ActivateProfileUseCaseImpl: ActivateProfileUseCase {
     @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
     @Singleton<ReconnectUseCase> private var reconnectUseCase
     
-    func invoke(profileId: ProfileID, force: Bool) ->  Completable {
-        profileRepository.queryItem(profileId)
+    func invoke(profileId: Int32, force: Bool) ->  Completable {
+        profileRepository.getProfile(withId: profileId)
             .flatMapCompletable {
                 guard let profile = $0 else {
                     return Completable.complete()

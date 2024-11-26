@@ -36,7 +36,7 @@ final class DownloadOcrPhotoUseCaseImpl: DownloadOcrPhotoUseCase {
                 let profile = try self.profileRepository.getActiveProfile().subscribeSynchronous()
                 
                 if let profile, let photo {
-                    self.storeChannelOcrPhotoUseCase.invoke(remoteId: remoteId, profileId: profile.id, photo: photo)
+                    self.storeChannelOcrPhotoUseCase.invoke(remoteId: remoteId, profileId: Int64(profile.id), photo: photo)
                     self.userStateHolder.setPhotoCreationTime(photo.createdAt, profileId: profile.id, remoteId: remoteId)
                 }
                 subscriber(.completed)

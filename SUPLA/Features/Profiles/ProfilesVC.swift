@@ -34,7 +34,7 @@ class ProfilesVC: BaseViewController {
     private var _viewModel: ProfilesVM!
 
     private let _activateProfile = PublishSubject<NSManagedObjectID>()
-    private let _editProfile = PublishSubject<NSManagedObjectID>()
+    private let _editProfile = PublishSubject<Int32>()
     private let _addNewProfile = PublishSubject<Void>()
     private let _profilesModel = PublishSubject<[ProfilesListModel]>()
 

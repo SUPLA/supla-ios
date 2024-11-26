@@ -42,10 +42,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
             readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
             profileRepository.getActiveProfile().map {
                 @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getDefaultChartState(
-                    profileId: $0.idString,
-                    remoteId: remoteId
-                )
+                return userStateHolder.getDefaultChartState(profileId: $0.id, remoteId: remoteId)
             }
         ) { ($0, $1) }
             .asDriverWithoutError()
@@ -57,7 +54,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
     
     private func handleData(channel: ChannelWithChildren, chartState: DefaultChartState) {
         updateView {
-            $0.changing(path: \.profileId, to: channel.channel.profile.idString)
+            $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)
         }
         

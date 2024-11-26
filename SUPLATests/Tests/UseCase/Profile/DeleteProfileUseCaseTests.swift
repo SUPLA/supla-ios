@@ -84,9 +84,9 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     
     func test_shouldGetErrorWhenProfileDoesNotExist() {
         // given
-        let id = AuthProfileItem(testContext: nil).objectID
+        let id: Int32 = 12
         
-        profileRepository.queryItemByIdObservable = .just(nil)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(nil))
         
         // when
         useCase.invoke(profileId: id)
@@ -102,22 +102,25 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     func test_shouldRemoveInactiveProfile() {
         // given
         let profile = AuthProfileItem(testContext: nil)
+        profile.id = 123
         profile.isActive = false
-        profile.authInfo = AuthInfo.mock(email: "some@email.com")
+        profile.rawAuthorizationType = AuthorizationType.email.rawValue
+        profile.serverAutoDetect = true
+        profile.email = "some@email.com"
         
-        profileRepository.queryItemByIdObservable = .just(profile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
         profileRepository.deleteObservable = .just(())
         profileRepository.saveObservable = .just(())
         deleteAllProfileDataUseCase.returns = .just(())
         
         // when
-        useCase.invoke(profileId: profile.objectID)
+        useCase.invoke(profileId: profile.id)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
         // then
         assertEvents([
-            .next(DeleteProfileResult(restartNeeded: false, reauthNeeded: false, servertAddress: nil)),
+            .next(DeleteProfileResult(restartNeeded: false, reauthNeeded: false, serverAddress: nil)),
             .completed
         ])
         
@@ -129,10 +132,14 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     func test_shouldRemoveLastActiveProfileAndCleanupSettings() {
         // given
         let profile = AuthProfileItem(testContext: nil)
+        profile.id = 123
         profile.isActive = true
-        profile.authInfo = AuthInfo.mock(serverAutoDetect: false, email: "some@email.com", serverForEmail: "www")
+        profile.rawAuthorizationType = AuthorizationType.email.rawValue
+        profile.serverAutoDetect = false
+        profile.email = "some@email.com"
+        profile.server = SAProfileServer.mock(address: "www")
         
-        profileRepository.queryItemByIdObservable = .just(profile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
         profileRepository.allProfilesObservable = .just([profile])
         profileRepository.deleteObservable = .just(())
         profileRepository.saveObservable = .just(())
@@ -140,13 +147,13 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         disconnectUseCase.invokeReturns = .complete()
         
         // when
-        useCase.invoke(profileId: profile.objectID)
+        useCase.invoke(profileId: profile.id)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
         // then
         assertEvents([
-            .next(DeleteProfileResult(restartNeeded: true, reauthNeeded: true, servertAddress: "www")),
+            .next(DeleteProfileResult(restartNeeded: true, reauthNeeded: true, serverAddress: "www")),
             .completed
         ])
         
@@ -160,12 +167,16 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     func test_shouldRemoveActiveProfileAndActivateOtherOne() {
         // given
         let profile = AuthProfileItem(testContext: nil)
+        profile.id = 123
         profile.isActive = true
-        profile.authInfo = AuthInfo.mock(emailAuth: false, serverForAccessID: "xxx", accessID: 10, accessIDpwd: "pwd")
+        profile.rawAuthorizationType = AuthorizationType.accessId.rawValue
+        profile.accessId = 10
+        profile.accessIdPassword = "pwd"
+        profile.server = SAProfileServer.mock(address: "xxx")
         
         let otherProfile = AuthProfileItem(testContext: nil)
         
-        profileRepository.queryItemByIdObservable = .just(profile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
         profileRepository.allProfilesObservable = .just([profile, otherProfile])
         profileRepository.deleteObservable = .just(())
         profileRepository.saveObservable = .just(())
@@ -174,13 +185,13 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         disconnectUseCase.invokeReturns = .complete()
         
         // when
-        useCase.invoke(profileId: profile.objectID)
+        useCase.invoke(profileId: profile.id)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
         // then
         assertEvents([
-            .next(DeleteProfileResult(restartNeeded: false, reauthNeeded: true, servertAddress: "xxx")),
+            .next(DeleteProfileResult(restartNeeded: false, reauthNeeded: true, serverAddress: "xxx")),
             .completed
         ])
         
@@ -189,21 +200,23 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
-        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.objectID, true)])
+        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.id, true)])
     }
     
     func test_shouldNotRemoveActiveAccountWhenActivationOfAnotherOneFailes() {
         // given
         let profile = AuthProfileItem(testContext: nil)
+        profile.id = 123
         profile.isActive = true
-        profile.authInfo = AuthInfo.mock(email: "some@email.com")
+        profile.rawAuthorizationType = AuthorizationType.email.rawValue
+        profile.email = "some@email.com"
         
         var profileRemoved: Bool? = nil
         var profileDataRemoved: Bool? = nil
         
         let otherProfile = AuthProfileItem(testContext: nil)
         
-        profileRepository.queryItemByIdObservable = .just(profile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
         profileRepository.allProfilesObservable = .just([profile, otherProfile])
         profileRepository.deleteObservable = .mocked { profileRemoved = true }
         deleteAllProfileDataUseCase.returns = .mocked { profileDataRemoved = true }
@@ -211,7 +224,7 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         disconnectUseCase.invokeReturns = .complete()
         
         // when
-        useCase.invoke(profileId: profile.objectID)
+        useCase.invoke(profileId: profile.id)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -227,31 +240,31 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertNil(profileDataRemoved)
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
-        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.objectID, true)])
+        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.id, true)])
     }
     
     func test_shouldRemoveAccountWithoutTokenRemovalWhenAuthDataIsNotComplete() {
         // given
         let profile = AuthProfileItem(testContext: nil)
-        profile.authInfo = AuthInfo.mock()
+        profile.id = 123
         
         var profileRemoved: Bool? = nil
         var profileDataRemoved: Bool? = nil
         
-        profileRepository.queryItemByIdObservable = .just(profile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
         profileRepository.allProfilesObservable = .just([profile])
         profileRepository.saveObservable = .just((()))
         profileRepository.deleteObservable = .mocked { profileRemoved = true }
         deleteAllProfileDataUseCase.returns = .mocked { profileDataRemoved = true }
         
         // when
-        useCase.invoke(profileId: profile.objectID)
+        useCase.invoke(profileId: profile.id)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
         // then
         assertEvents([
-            .next(DeleteProfileResult(restartNeeded: false, reauthNeeded: false, servertAddress: nil)),
+            .next(DeleteProfileResult(restartNeeded: false, reauthNeeded: false, serverAddress: nil)),
             .completed
         ])
         

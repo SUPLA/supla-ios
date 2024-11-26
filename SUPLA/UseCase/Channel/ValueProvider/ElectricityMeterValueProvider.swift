@@ -26,8 +26,7 @@ final class ElectricityMeterValueProviderImpl: ElectricityMeterValueProvider, In
     }
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
-        let profileId = channel.profile.idString
-        switch (userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: channel.remote_id).showOnList) {
+        switch (userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id).showOnList) {
         case .reverseActiveEnergy:
             return channel.ev?.electricityMeter().totalReverseActiveEnergy() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
         case .powerActive:

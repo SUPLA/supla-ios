@@ -31,13 +31,18 @@
     [profile.clientGUID getBytes:authInfo.GUID length:SUPLA_GUID_SIZE];
     [profile.authKey getBytes:authInfo.AuthKey length:SUPLA_AUTHKEY_SIZE];
     
-    if (profile.authInfo.emailAuth) {
-        [profile.authInfo.emailAddress utf8StringToBuffer:authInfo.Email withSize:sizeof(authInfo.Email)];
-        [profile.authInfo.serverForEmail utf8StringToBuffer:authInfo.ServerName withSize:sizeof(authInfo.ServerName)];
+    NSString *address = @"";
+    if (profile.server != nil && profile.server.address != nil) {
+        address = profile.server.address;
+    }
+    
+    if (profile.rawAuthorizationType == AuthorizationTypeEmail) {
+        [profile.email utf8StringToBuffer:authInfo.Email withSize:sizeof(authInfo.Email)];
+        [address utf8StringToBuffer:authInfo.ServerName withSize:sizeof(authInfo.ServerName)];
     } else {
-        authInfo.AccessID = (int) profile.authInfo.accessID;
-        [profile.authInfo.accessIDpwd utf8StringToBuffer:authInfo.AccessIDpwd withSize:sizeof(authInfo.AccessIDpwd)];
-        [profile.authInfo.serverForAccessID utf8StringToBuffer:authInfo.ServerName withSize:sizeof(authInfo.ServerName)];
+        authInfo.AccessID = (int) profile.accessId;
+        [profile.accessIdPassword utf8StringToBuffer:authInfo.AccessIDpwd withSize:sizeof(authInfo.AccessIDpwd)];
+        [address utf8StringToBuffer:authInfo.ServerName withSize:sizeof(authInfo.ServerName)];
     }
     
     return authInfo;

@@ -82,7 +82,7 @@ class LockScreenVMTests: XCTestCase {
     func test_shouldVerifyPin_andNavigateToEditProfile() {
         // given
         let pin = "1234"
-        let profileId: ProfileID = NSManagedObjectID()
+        let profileId: Int32 = 2
         let action: LockScreenFeature.UnlockAction = .authorizeAccountsEdit(profileId: profileId)
         
         checkPinUseCase.returns = .just(.unlocked)

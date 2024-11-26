@@ -28,7 +28,7 @@ class SwitchWithElectricityMeterValueStringProvider: ChannelValueStringProvider 
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         let value = switchWithElectricityMeterValueProvider.value(channel, valueType: valueType)
-        let type = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.idString, remoteId: channel.remote_id).showOnList
+        let type = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id).showOnList
         return formatter.format(value, withUnit: withUnit, precision: .defaultPrecision(value: 2), custom: type)
     }
 }

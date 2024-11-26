@@ -285,9 +285,6 @@
 "Scenes" = "Prizori";
 "Not supported function" = "Nepodprta funkcija";
 
-"AccountCreation.title" = "Uredite račun";
-"AccountCreation.modificationTitle" = "Dodajte račun";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=sl";
 
 "Scenes.ActionButtons.execute" = "Izvedi";
@@ -353,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Dodaj prizor na Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Dodajte račun";
+"create_profile_title_modify" = "Uredite račun";
+"create_profile_basic_warning_title" = "Način ni na voljo";
+"create_profile_basic_warning_message" = "Preden izključite napredni način izberite email avtentifikacijo s samodejnim zaznavanjem strežnika.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Obvestila";

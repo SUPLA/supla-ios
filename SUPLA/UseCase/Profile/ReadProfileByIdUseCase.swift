@@ -19,14 +19,14 @@
 import RxSwift
 
 protocol ReadProfileByIdUseCase {
-    func invoke(profileId: ProfileID) -> Observable<AuthProfileItem>
+    func invoke(profileId: Int32) -> Observable<AuthProfileItem?>
 }
 
 final class ReadProfileByIdUseCaseImpl: ReadProfileByIdUseCase {
     
     @Singleton<ProfileRepository> private var profileRepository
     
-    func invoke(profileId: ProfileID) -> Observable<AuthProfileItem> {
-        profileRepository.queryItem(profileId).compactMap { $0 }
+    func invoke(profileId: Int32) -> Observable<AuthProfileItem?> {
+        profileRepository.getProfile(withId: profileId)
     }
 }
