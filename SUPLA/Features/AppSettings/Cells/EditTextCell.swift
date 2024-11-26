@@ -80,7 +80,7 @@ extension EditTextCell: UITextFieldDelegate {
         
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        if let level = Int32(updatedText) {
+        if let level = Int32(updatedText), updatedText.count <= 2 {
             callback(level)
         }
         

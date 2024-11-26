@@ -276,6 +276,7 @@
 		A503ABBC2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBB2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift */; };
 		A503ABBE2B6BBA1B008CDA1F /* HumidityValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBD2B6BBA1B008CDA1F /* HumidityValueFormatter.swift */; };
 		A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */; };
+		A505EC242CF5B8A000E69BDB /* Migration17to18ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A505EC232CF5B8A000E69BDB /* Migration17to18ModelMapping.xcmappingmodel */; };
 		A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */; };
 		A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */; };
 		A5074BA82BC923AE0081B6B1 /* BrandingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */; };
@@ -1771,6 +1772,7 @@
 		A503ABBB2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueFormatter.swift; sourceTree = "<group>"; };
 		A503ABBD2B6BBA1B008CDA1F /* HumidityValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityValueFormatter.swift; sourceTree = "<group>"; };
 		A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryDetails.swift; sourceTree = "<group>"; };
+		A505EC232CF5B8A000E69BDB /* Migration17to18ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration17to18ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A5074B9F2BBE853E0081B6B1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = "/Users/michalpolanski/Workspace/supla-ios/SUPLA/PrivacyInfo.xcprivacy"; sourceTree = "<absolute>"; };
 		A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCase.swift; sourceTree = "<group>"; };
 		A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCaseTests.swift; sourceTree = "<group>"; };
@@ -5250,6 +5252,7 @@
 				A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */,
 				A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */,
 				A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */,
+				A505EC232CF5B8A000E69BDB /* Migration17to18ModelMapping.xcmappingmodel */,
 			);
 			path = Mappings;
 			sourceTree = "<group>";
@@ -6964,6 +6967,7 @@
 				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
 				A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */,
+				A505EC242CF5B8A000E69BDB /* Migration17to18ModelMapping.xcmappingmodel in Sources */,
 				A55A8DA22BAC2A9800C540D4 /* SAAlertDialogVC.swift in Sources */,
 				A5EC524A2C10432D0022F055 /* BaseBlindsViewModel.swift in Sources */,
 				A52BFED22B07B8BC00A2F64C /* ItemBundle.swift in Sources */,

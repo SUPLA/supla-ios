@@ -33,6 +33,10 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         self.title = Strings.Cfg.appConfigTitle
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func loadView() {
         view = tableView
     }
@@ -41,6 +45,11 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         super.viewDidLoad()
         
         setupTableView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.view.addGestureRecognizer(endEditingRecognizer())
     }
     
     override func handle(event: AppSettingsViewEvent) {
@@ -139,6 +148,30 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     private func getCell<T>(for id: String, _ indexPath: IndexPath) -> T {
         tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! T
     }
+    
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        tableView.contentInset.bottom = keyboardFrame.height
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification: Notification) {
+        tableView.contentInset.bottom = 0
+    }
+    
+    private func endEditingRecognizer() -> UITapGestureRecognizer {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tap.cancelsTouchesInView = false
+        return tap
+    }
+    
+    @objc
+    private func endEditing() {
+        view.endEditing(true)
+        tableView.contentInset.bottom = 0
+    }
+    
 }
 
 extension AppSettingsVC: NavigationSubcontroller {
