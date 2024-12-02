@@ -53,6 +53,15 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
             case .rightButton: Action.turnOn
             }
         }
+        if (channelBase.isOpenClose() && buttonType == .rightButton) {
+            return Action.openClose
+        }
+        if (channelBase.isOpenOrClose()) {
+            return switch (buttonType) {
+            case .leftButton: Action.close
+            case .rightButton: Action.open
+            }
+        }
         return nil
     }
 
@@ -88,6 +97,25 @@ private extension SAChannelBase {
         case SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_LIGHTSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER: true
+        default: false
+        }
+    }
+
+    func isOpenClose() -> Bool {
+        switch (self.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR: true
+        default: false
+        }
+    }
+
+    func isOpenOrClose() -> Bool {
+        switch (self.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
+             SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
+             SUPLA_CHANNELFNC_VALVE_PERCENTAGE: true
         default: false
         }
     }

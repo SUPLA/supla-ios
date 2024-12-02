@@ -152,10 +152,13 @@ Classes:
       Type: "int32_t"
     - Position: 1
       Type: "int8_t"
-  - Selector: "toHex"
+  - Selector: "toHexSeparator:"
     MethodKind: "Instance"
-    SwiftName: "toHex()"
+    SwiftName: "toHex(separator:)"
     ResultType: "NSString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
   - Selector: "toShortFirst:second:"
     MethodKind: "Instance"
     SwiftName: "toShort(first:second:)"

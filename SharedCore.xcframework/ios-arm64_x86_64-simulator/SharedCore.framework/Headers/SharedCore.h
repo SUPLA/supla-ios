@@ -1168,7 +1168,7 @@ __attribute__((swift_name("KotlinByteArray")))
 @end
 
 @interface SharedCoreKotlinByteArray (Extensions)
-- (NSString *)toHex __attribute__((swift_name("toHex()")));
+- (NSString *)toHexSeparator:(NSString *)separator __attribute__((swift_name("toHex(separator:)")));
 - (int16_t)toShortFirst:(int32_t)first second:(int32_t)second __attribute__((swift_name("toShort(first:second:)")));
 - (float)toTemperatureFirst:(int32_t)first second:(int32_t)second __attribute__((swift_name("toTemperature(first:second:)")));
 @end
