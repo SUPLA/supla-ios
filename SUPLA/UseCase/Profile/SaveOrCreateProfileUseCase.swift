@@ -40,6 +40,10 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
                 profile.name = profileDto.name
                 profile.authorizationType = profileDto.authorizationType
                 profile.advancedSetup = profileDto.advancedSetup
+                if (!profile.serverAutoDetect && profileDto.serverAutoDetect) {
+                    // User changed back to server auto detect. Server must be cleaned up to get it again during connecting
+                    profile.server = nil
+                }
                 profile.serverAutoDetect = profileDto.serverAutoDetect
                 profile.email = profileDto.email
                 profile.accessId = profileDto.accessId ?? 0
@@ -116,8 +120,7 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
     }
     
     private func authDataChanged(profileDto: ProfileDto, profileDb: AuthProfileItem) -> Bool {
-        return profileDb.name != profileDto.name
-        || profileDb.email != profileDto.email
+        return profileDb.email != profileDto.email
         || profileDb.serverAutoDetect != profileDto.serverAutoDetect
         || profileDb.server?.address != profileDto.serverAddress
         || profileDb.accessId != profileDto.accessId
