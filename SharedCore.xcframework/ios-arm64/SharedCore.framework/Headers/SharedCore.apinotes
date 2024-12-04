@@ -565,6 +565,14 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "generalExpand"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "generalYes"
+    PropertyKind: "Class"
+    SwiftName: "generalYes"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "generalNo"
+    PropertyKind: "Class"
+    SwiftName: "generalNo"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "channelCaptionOpenSensorGateway"
     PropertyKind: "Class"
     SwiftName: "channelCaptionOpenSensorGateway"
@@ -2822,6 +2830,13 @@ Classes:
 - Name: "SharedCoreBooleanExtensionsKt"
   SwiftName: "BooleanExtensionsKt"
   Methods:
+  - Selector: "localizedString:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(_:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
   - Selector: "ifTrueValue:callback:"
     MethodKind: "Class"
     SwiftName: "ifTrue(value:callback:)"

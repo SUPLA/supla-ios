@@ -94,6 +94,8 @@ extension SharedCore.__ThermostatSubfunction {
   case generalReveal
   case generalCollapse
   case generalExpand
+  case generalYes
+  case generalNo
   case channelCaptionOpenSensorGateway
   case channelCaptionControllingTheGatewayLock
   case channelCaptionOpenSensorGate
@@ -493,12 +495,15 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
-public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
 extension Swift.Bool {
+  public var localizedString: any SharedCore.LocalizedString {
+    get
+  }
   public func ifFalse(value: Any?) -> Any?
   public func ifTrue(value: Any?) -> Any?
   public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
 }
+public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
 extension Swift.Int16 {
   public func fromSuplaTemperature() -> Swift.Float
 }
