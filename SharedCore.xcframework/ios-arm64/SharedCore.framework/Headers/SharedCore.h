@@ -951,6 +951,8 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *generalReveal __attribute__((swift_name("generalReveal")));
 @property (class, readonly) SharedCoreLocalizedStringId *generalCollapse __attribute__((swift_name("generalCollapse")));
 @property (class, readonly) SharedCoreLocalizedStringId *generalExpand __attribute__((swift_name("generalExpand")));
+@property (class, readonly) SharedCoreLocalizedStringId *generalYes __attribute__((swift_name("generalYes")));
+@property (class, readonly) SharedCoreLocalizedStringId *generalNo __attribute__((swift_name("generalNo")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionOpenSensorGateway __attribute__((swift_name("channelCaptionOpenSensorGateway")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionControllingTheGatewayLock __attribute__((swift_name("channelCaptionControllingTheGatewayLock")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionOpenSensorGate __attribute__((swift_name("channelCaptionOpenSensorGate")));
@@ -1189,6 +1191,7 @@ __attribute__((swift_name("KotlinByteArray")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BooleanExtensionsKt")))
 @interface SharedCoreBooleanExtensionsKt : SharedCoreBase
++ (id<SharedCoreLocalizedString>)localizedString:(BOOL)receiver __attribute__((swift_name("localizedString(_:)")));
 + (id _Nullable)ifFalse:(BOOL)receiver value:(id _Nullable)value __attribute__((swift_name("ifFalse(_:value:)")));
 + (id _Nullable)ifTrue:(BOOL)receiver value:(id _Nullable)value __attribute__((swift_name("ifTrue(_:value:)")));
 + (id _Nullable)ifTrue:(BOOL)receiver valueProvider:(id _Nullable (^)(void))valueProvider __attribute__((swift_name("ifTrue(_:valueProvider:)")));

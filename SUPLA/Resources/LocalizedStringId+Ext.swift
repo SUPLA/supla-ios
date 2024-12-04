@@ -30,6 +30,9 @@ extension LocalizedStringId {
         case .generalReveal: Strings.General.reveal
         case .generalCollapse: Strings.General.collapse
         case .generalExpand: Strings.General.expand
+            
+        case .generalYes: Strings.General.yes
+        case .generalNo: Strings.General.no
 
         case .channelCaptionOpenSensorGateway: NSLocalizedString("Gateway opening sensor", comment: "")
         case .channelCaptionControllingTheGatewayLock: NSLocalizedString("Gateway", comment: "")

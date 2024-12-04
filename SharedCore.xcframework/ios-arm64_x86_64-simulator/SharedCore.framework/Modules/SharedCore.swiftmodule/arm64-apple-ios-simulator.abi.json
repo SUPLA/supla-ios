@@ -2021,6 +2021,82 @@
           },
           {
             "kind": "Var",
+            "name": "generalYes",
+            "printedName": "generalYes",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO10generalYesyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO10generalYesyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 9
+          },
+          {
+            "kind": "Var",
+            "name": "generalNo",
+            "printedName": "generalNo",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO9generalNoyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO9generalNoyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 10
+          },
+          {
+            "kind": "Var",
             "name": "channelCaptionOpenSensorGateway",
             "printedName": "channelCaptionOpenSensorGateway",
             "children": [
@@ -2055,7 +2131,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO31channelCaptionOpenSensorGatewayyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO31channelCaptionOpenSensorGatewayyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 9
+            "fixedbinaryorder": 11
           },
           {
             "kind": "Var",
@@ -2093,7 +2169,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39channelCaptionControllingTheGatewayLockyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39channelCaptionControllingTheGatewayLockyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 10
+            "fixedbinaryorder": 12
           },
           {
             "kind": "Var",
@@ -2131,7 +2207,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28channelCaptionOpenSensorGateyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28channelCaptionOpenSensorGateyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 11
+            "fixedbinaryorder": 13
           },
           {
             "kind": "Var",
@@ -2169,7 +2245,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO32channelCaptionControllingTheGateyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO32channelCaptionControllingTheGateyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 12
+            "fixedbinaryorder": 14
           },
           {
             "kind": "Var",
@@ -2207,7 +2283,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO34channelCaptionOpenSensorGarageDooryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO34channelCaptionOpenSensorGarageDooryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 13
+            "fixedbinaryorder": 15
           },
           {
             "kind": "Var",
@@ -2245,7 +2321,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO38channelCaptionControllingTheGarageDooryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO38channelCaptionControllingTheGarageDooryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 14
+            "fixedbinaryorder": 16
           },
           {
             "kind": "Var",
@@ -2283,7 +2359,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28channelCaptionOpenSensorDooryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28channelCaptionOpenSensorDooryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 15
+            "fixedbinaryorder": 17
           },
           {
             "kind": "Var",
@@ -2321,7 +2397,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO36channelCaptionControllingTheDoorLockyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO36channelCaptionControllingTheDoorLockyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 16
+            "fixedbinaryorder": 18
           },
           {
             "kind": "Var",
@@ -2359,7 +2435,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO37channelCaptionOpenSensorRollerShutteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO37channelCaptionOpenSensorRollerShutteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 17
+            "fixedbinaryorder": 19
           },
           {
             "kind": "Var",
@@ -2397,7 +2473,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO34channelCaptionOpenSensorRoofWindowyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO34channelCaptionOpenSensorRoofWindowyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 18
+            "fixedbinaryorder": 20
           },
           {
             "kind": "Var",
@@ -2435,7 +2511,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO41channelCaptionControllingTheRollerShutteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO41channelCaptionControllingTheRollerShutteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 19
+            "fixedbinaryorder": 21
           },
           {
             "kind": "Var",
@@ -2473,7 +2549,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO38channelCaptionControllingTheRoofWindowyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO38channelCaptionControllingTheRoofWindowyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 20
+            "fixedbinaryorder": 22
           },
           {
             "kind": "Var",
@@ -2511,7 +2587,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39channelCaptionControllingTheFacadeBlindyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39channelCaptionControllingTheFacadeBlindyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 21
+            "fixedbinaryorder": 23
           },
           {
             "kind": "Var",
@@ -2549,7 +2625,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionPowerSwitchyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionPowerSwitchyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 22
+            "fixedbinaryorder": 24
           },
           {
             "kind": "Var",
@@ -2587,7 +2663,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionLightswitchyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionLightswitchyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 23
+            "fixedbinaryorder": 25
           },
           {
             "kind": "Var",
@@ -2625,7 +2701,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionThermometeryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionThermometeryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 24
+            "fixedbinaryorder": 26
           },
           {
             "kind": "Var",
@@ -2663,7 +2739,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO22channelCaptionHumidityyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO22channelCaptionHumidityyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 25
+            "fixedbinaryorder": 27
           },
           {
             "kind": "Var",
@@ -2701,7 +2777,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO36channelCaptionHumidityAndTemperatureyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO36channelCaptionHumidityAndTemperatureyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 26
+            "fixedbinaryorder": 28
           },
           {
             "kind": "Var",
@@ -2739,7 +2815,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionWindSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionWindSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 27
+            "fixedbinaryorder": 29
           },
           {
             "kind": "Var",
@@ -2777,7 +2853,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28channelCaptionPressureSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28channelCaptionPressureSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 28
+            "fixedbinaryorder": 30
           },
           {
             "kind": "Var",
@@ -2815,7 +2891,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionRainSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionRainSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 29
+            "fixedbinaryorder": 31
           },
           {
             "kind": "Var",
@@ -2853,7 +2929,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26channelCaptionWeightSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26channelCaptionWeightSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 30
+            "fixedbinaryorder": 32
           },
           {
             "kind": "Var",
@@ -2891,7 +2967,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28channelCaptionNoLiquidSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28channelCaptionNoLiquidSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 31
+            "fixedbinaryorder": 33
           },
           {
             "kind": "Var",
@@ -2929,7 +3005,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO20channelCaptionDimmeryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO20channelCaptionDimmeryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 32
+            "fixedbinaryorder": 34
           },
           {
             "kind": "Var",
@@ -2967,7 +3043,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionRgbLightingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionRgbLightingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 33
+            "fixedbinaryorder": 35
           },
           {
             "kind": "Var",
@@ -3005,7 +3081,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO34channelCaptionDimmerAndRgbLightingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO34channelCaptionDimmerAndRgbLightingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 34
+            "fixedbinaryorder": 36
           },
           {
             "kind": "Var",
@@ -3043,7 +3119,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionDepthSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionDepthSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 35
+            "fixedbinaryorder": 37
           },
           {
             "kind": "Var",
@@ -3081,7 +3157,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28channelCaptionDistanceSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28channelCaptionDistanceSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 36
+            "fixedbinaryorder": 38
           },
           {
             "kind": "Var",
@@ -3119,7 +3195,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO33channelCaptionOpeningSensorWindowyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO33channelCaptionOpeningSensorWindowyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 37
+            "fixedbinaryorder": 39
           },
           {
             "kind": "Var",
@@ -3157,7 +3233,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO29channelCaptionHotelCardSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO29channelCaptionHotelCardSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 38
+            "fixedbinaryorder": 40
           },
           {
             "kind": "Var",
@@ -3195,7 +3271,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO33channelCaptionAlarmArmamentSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO33channelCaptionAlarmArmamentSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 39
+            "fixedbinaryorder": 41
           },
           {
             "kind": "Var",
@@ -3233,7 +3309,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionMailSensoryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionMailSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 40
+            "fixedbinaryorder": 42
           },
           {
             "kind": "Var",
@@ -3271,7 +3347,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28channelCaptionStaircaseTimeryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28channelCaptionStaircaseTimeryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 41
+            "fixedbinaryorder": 43
           },
           {
             "kind": "Var",
@@ -3309,7 +3385,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionIcGasMeteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionIcGasMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 42
+            "fixedbinaryorder": 44
           },
           {
             "kind": "Var",
@@ -3347,7 +3423,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26channelCaptionIcWaterMeteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26channelCaptionIcWaterMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 43
+            "fixedbinaryorder": 45
           },
           {
             "kind": "Var",
@@ -3385,7 +3461,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionIcHeatMeteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionIcHeatMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 44
+            "fixedbinaryorder": 46
           },
           {
             "kind": "Var",
@@ -3423,7 +3499,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39channelCaptionThermostatHeatpolHomeplusyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39channelCaptionThermostatHeatpolHomeplusyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 45
+            "fixedbinaryorder": 47
           },
           {
             "kind": "Var",
@@ -3461,7 +3537,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19channelCaptionValveyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19channelCaptionValveyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 46
+            "fixedbinaryorder": 48
           },
           {
             "kind": "Var",
@@ -3499,7 +3575,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39channelCaptionGeneralPurposeMeasurementyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39channelCaptionGeneralPurposeMeasurementyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 47
+            "fixedbinaryorder": 49
           },
           {
             "kind": "Var",
@@ -3537,7 +3613,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO33channelCaptionGeneralPurposeMeteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO33channelCaptionGeneralPurposeMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 48
+            "fixedbinaryorder": 50
           },
           {
             "kind": "Var",
@@ -3575,7 +3651,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionThermostatyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionThermostatyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 49
+            "fixedbinaryorder": 51
           },
           {
             "kind": "Var",
@@ -3613,7 +3689,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO30channelCaptionElectricityMeteryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO30channelCaptionElectricityMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 50
+            "fixedbinaryorder": 52
           },
           {
             "kind": "Var",
@@ -3651,7 +3727,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO23channelCaptionDigiglassyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO23channelCaptionDigiglassyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 51
+            "fixedbinaryorder": 53
           },
           {
             "kind": "Var",
@@ -3689,7 +3765,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO27channelCaptionTerraceAwningyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO27channelCaptionTerraceAwningyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 52
+            "fixedbinaryorder": 54
           },
           {
             "kind": "Var",
@@ -3727,7 +3803,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO29channelCaptionProjectorScreenyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO29channelCaptionProjectorScreenyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 53
+            "fixedbinaryorder": 55
           },
           {
             "kind": "Var",
@@ -3765,7 +3841,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21channelCaptionCurtainyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21channelCaptionCurtainyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 54
+            "fixedbinaryorder": 56
           },
           {
             "kind": "Var",
@@ -3803,7 +3879,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO27channelCaptionVerticalBlindyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO27channelCaptionVerticalBlindyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 55
+            "fixedbinaryorder": 57
           },
           {
             "kind": "Var",
@@ -3841,7 +3917,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO30channelCaptionRollerGarageDooryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO30channelCaptionRollerGarageDooryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 56
+            "fixedbinaryorder": 58
           },
           {
             "kind": "Var",
@@ -3879,7 +3955,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionPumpSwitchyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionPumpSwitchyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 57
+            "fixedbinaryorder": 59
           },
           {
             "kind": "Var",
@@ -3917,7 +3993,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO36channelCaptionHeatOrColdSourceSwitchyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO36channelCaptionHeatOrColdSourceSwitchyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 58
+            "fixedbinaryorder": 60
           },
           {
             "kind": "Var",
@@ -3955,7 +4031,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21channelCaptionUnknownyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21channelCaptionUnknownyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 59
+            "fixedbinaryorder": 61
           },
           {
             "kind": "Var",
@@ -3993,7 +4069,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 60
+            "fixedbinaryorder": 62
           },
           {
             "kind": "Var",
@@ -4031,7 +4107,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 61
+            "fixedbinaryorder": 63
           },
           {
             "kind": "Var",
@@ -4069,7 +4145,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 62
+            "fixedbinaryorder": 64
           },
           {
             "kind": "Var",
@@ -4107,7 +4183,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 63
+            "fixedbinaryorder": 65
           },
           {
             "kind": "Var",
@@ -4145,7 +4221,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 64
+            "fixedbinaryorder": 66
           },
           {
             "kind": "Var",
@@ -4183,7 +4259,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 65
+            "fixedbinaryorder": 67
           },
           {
             "kind": "Var",
@@ -4221,7 +4297,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 66
+            "fixedbinaryorder": 68
           },
           {
             "kind": "Var",
@@ -13814,6 +13890,48 @@
         "name": "Bool",
         "printedName": "Bool",
         "children": [
+          {
+            "kind": "Var",
+            "name": "localizedString",
+            "printedName": "localizedString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LocalizedString",
+                "printedName": "any SharedCore.LocalizedString",
+                "usr": "c:objc(pl)SharedCoreLocalizedString"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:Sb10SharedCoreE15localizedStringSo0ab9LocalizedD0_pvp",
+            "mangledName": "$sSb10SharedCoreE15localizedStringSo0ab9LocalizedD0_pvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:Sb10SharedCoreE15localizedStringSo0ab9LocalizedD0_pvg",
+                "mangledName": "$sSb10SharedCoreE15localizedStringSo0ab9LocalizedD0_pvg",
+                "moduleName": "SharedCore",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
           {
             "kind": "Function",
             "name": "ifFalse",

@@ -64,7 +64,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter)
         state.phaseMeasurementTypes = []
         state.phaseMeasurementValues = []
-        state.vectorBalancedValues = [:]
+        state.vectorBalancedValues = nil
     }
     
     private func getPhaseData(

@@ -170,7 +170,7 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .frequency: { value, phase in value.freq(forPhase: phase.rawValue) }
         case .voltage: { value, phase in value.voltege(forPhase: phase.rawValue) }
         case .current: { value, phase in value.current(forPhase: phase.rawValue) }
-        case .currentOver65a: { value, phase in value.current(forPhase: phase.rawValue) * 10 }
+        case .currentOver65a: { value, phase in value.current(forPhase: phase.rawValue) }
         case .powerActive: { value, phase in value.powerActive(forPhase: phase.rawValue) }
         case .powerActiveKw: { value, phase in value.powerActive(forPhase: phase.rawValue) * 1000 }
         case .powerReactive: { value, phase in value.powerReactive(forPhase: phase.rawValue) }
@@ -210,8 +210,11 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .frequency: .single(value: values.first!)
         case .voltage: .double(first: values.min()!, second: values.max()!)
         case .powerActive,
+             .powerActiveKw,
              .powerReactive,
+             .powerReactiveKvar,
              .powerApparent,
+             .powerApparentKva,
              .forwardActiveEnergy,
              .reverseActiveEnergy,
              .forwardReactiveEnergy,
