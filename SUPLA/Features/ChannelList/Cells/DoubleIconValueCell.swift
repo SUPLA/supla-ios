@@ -96,19 +96,22 @@ final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
     override func derivedClassConstraints() -> [NSLayoutConstraint] {
         return [
             firstIconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
-            firstIconView.leftAnchor.constraint(equalTo: container.leftAnchor),
+            firstIconView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 4),
             firstIconView.topAnchor.constraint(equalTo: container.topAnchor),
             
             firstValueView.leftAnchor.constraint(equalTo: firstIconView.rightAnchor, constant: 4),
             firstValueView.centerYAnchor.constraint(equalTo: firstIconView.centerYAnchor),
+            firstValueView.widthAnchor.constraint(equalToConstant: firstValueView.intrinsicContentSize.width),
+            firstValueView.rightAnchor.constraint(equalTo: container.centerXAnchor, constant: -2),
             
             secondIconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
-            secondIconView.leftAnchor.constraint(equalTo: firstValueView.rightAnchor, constant: 4),
+            secondIconView.leftAnchor.constraint(equalTo: container.centerXAnchor, constant: 2),
             secondIconView.topAnchor.constraint(equalTo: container.topAnchor),
             
             secondValueView.leftAnchor.constraint(equalTo: secondIconView.rightAnchor, constant: 4),
             secondValueView.centerYAnchor.constraint(equalTo: secondIconView.centerYAnchor),
-            secondValueView.rightAnchor.constraint(equalTo: container.rightAnchor)
+            secondValueView.widthAnchor.constraint(equalToConstant: secondValueView.intrinsicContentSize.width),
+            secondValueView.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -4)
         ]
     }
     
@@ -128,6 +131,8 @@ final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
         secondValueView.text = getChannelValueStringUseCase.valueOrNil(channel, valueType: .second, withUnit: false)
         
         issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
+        
+        setNeedsUpdateConstraints()
     }
     
     override func leftButtonSettings() -> CellButtonSettings {
