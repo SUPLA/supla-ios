@@ -96,7 +96,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
     }
     
     func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
-        count(NSPredicate(format: "channel_id = %d AND server_id = %@", remoteId, serverId ?? 0))
+        count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
     }
     
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]> {

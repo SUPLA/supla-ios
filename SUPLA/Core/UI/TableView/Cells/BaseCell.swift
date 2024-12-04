@@ -305,6 +305,19 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         return getChannelActionStringUseCase.leftButton(function: function.suplaFuntion)?.value
     }
     
+    override func updateConstraints() {
+        super.updateConstraints()
+        
+        if (!currentConstraints.isEmpty) {
+            NSLayoutConstraint.deactivate(currentConstraints)
+            currentConstraints.removeAll()
+        }
+        
+        currentConstraints.append(contentsOf: setupConstraints())
+        currentConstraints.append(contentsOf: derivedClassConstraints())
+        NSLayoutConstraint.activate(currentConstraints)
+    }
+    
     // MARK: Private content
     
     private func setupConstraints() -> [NSLayoutConstraint] {
