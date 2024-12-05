@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 final class GarageDoorVM: BaseWindowVM<GarageDoorViewState> {
     override func defaultViewState() -> GarageDoorViewState { GarageDoorViewState() }
 
@@ -27,7 +29,7 @@ final class GarageDoorVM: BaseWindowVM<GarageDoorViewState> {
                 return $0
             }
 
-            let position = value.hasValidPosition ? value.position : 0
+            let position = value.hasValidPosition() ? value.position : 0
             let positionValue: WindowGroupedValue = .similar(value.online ? CGFloat(position) : 25)
             let windowState = $0.garageDoorState
                 .changing(path: \.position, to: positionValue)

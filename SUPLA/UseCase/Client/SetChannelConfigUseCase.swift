@@ -62,7 +62,7 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
             
             SuplaConfigIntegrator.setProgramWith(
                 programId - 1,
-                withMode: program.mode.rawValue,
+                withMode: UInt8(program.mode.value),
                 withHeatTemp: program.setpointTemperatureHeat ?? 0,
                 withCoolTemp: program.setpointTemperatureCool ?? 0,
                 in: suplaConfig

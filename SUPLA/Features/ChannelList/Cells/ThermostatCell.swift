@@ -79,10 +79,6 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func online() -> Bool { data?.channel.isOnline() ?? false }
     
-    override func issueMessage() -> String? {
-        data?.channel.value?.asThermostatValue().issueText
-    }
-    
     override func derivedClassControls() -> [UIView] {
         return [
             thermostatIconView,

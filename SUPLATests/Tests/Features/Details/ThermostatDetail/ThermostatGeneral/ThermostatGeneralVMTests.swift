@@ -19,6 +19,7 @@
 import XCTest
 import RxTest
 import RxSwift
+import SharedCore
 
 @testable import SUPLA
 
@@ -84,7 +85,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     
     func test_shouldLoadData_heatStandbyManual() {
         // given
-        var hvacValue = THVACValue(IsOn: 1, Mode: SuplaHvacMode.heat.rawValue, SetpointTemperatureHeat: 2120, SetpointTemperatureCool: 0, Flags: (1 | (1 << 9)))
+        var hvacValue = THVACValue(IsOn: 1, Mode: UInt8(SuplaHvacMode.heat.value), SetpointTemperatureHeat: 2120, SetpointTemperatureCool: 0, Flags: (1 | (1 << 9)))
         let remoteId: Int32 = 231
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -168,7 +169,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     func test_shouldLoadData_coolCoolingProgram() {
         // given
         let flags = (2 | (1 << 3) | (1 << 4) | (1 << 7) | (1 << 8) | (1 << 10))
-        var hvacValue = THVACValue(IsOn: 1, Mode: SuplaHvacMode.cool.rawValue, SetpointTemperatureHeat: 0, SetpointTemperatureCool: 2300, Flags: UInt16(flags))
+        var hvacValue = THVACValue(IsOn: 1, Mode: UInt8(SuplaHvacMode.cool.value), SetpointTemperatureHeat: 0, SetpointTemperatureCool: 2300, Flags: UInt16(flags))
         let remoteId: Int32 = 231
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -235,8 +236,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0])
                 .changing(path: \.issues, to: [
-                    ChannelIssueItem(issueIconType: .error, description: Strings.ThermostatDetail.thermometerError),
-                    ChannelIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
+                    ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatThermometerError)),
+                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.thermostatClockError))
                 ])
                 .changing(path: \.subfunction, to: .cool)
                 .changing(path: \.currentPower, to: 1)
@@ -255,7 +256,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     
     func test_shouldLoadData_off() {
         // given
-        var hvacValue = THVACValue(IsOn: 0, Mode: SuplaHvacMode.off.rawValue, SetpointTemperatureHeat: 0, SetpointTemperatureCool: 0, Flags: 0)
+        var hvacValue = THVACValue(IsOn: 0, Mode: UInt8(SuplaHvacMode.off.value), SetpointTemperatureHeat: 0, SetpointTemperatureCool: 0, Flags: 0)
         let remoteId: Int32 = 231
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -380,7 +381,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state,
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
-                .changing(path: \.mode, to: .notSet)
+                .changing(path: \.mode, to: .unknown)
                 .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: true)
                 .changing(path: \.configMin, to: 10)
@@ -902,7 +903,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     
     // MARK: - Mock functions
     
-    private func mockMainTemperatureChild() -> ChannelChild {
+    private func mockMainTemperatureChild() -> SUPLA.ChannelChild {
         var temperature: Double = 19.8
         
         let channelValue = SAChannelValue(testContext: nil)
@@ -916,7 +917,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         return ChannelChild(channel: channel, relation: SAChannelRelation.mock(type: .mainThermometer))
     }
     
-    private func mockSensorChild() -> ChannelChild {
+    private func mockSensorChild() -> SUPLA.ChannelChild {
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_HOTELCARDSENSOR
         

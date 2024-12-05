@@ -1236,6 +1236,48 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "companion",
+            "printedName": "companion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Companion",
+                "printedName": "SharedCore.__ThermostatSubfunction.Companion",
+                "usr": "c:objc(cs)SharedCoreThermostatSubfunctionCompanion"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore21ThermostatSubfunctionO9companionSo0abcD9CompanionCvpZ",
+            "mangledName": "$s10SharedCore21ThermostatSubfunctionO9companionSo0abcD9CompanionCvpZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Companion",
+                    "printedName": "SharedCore.__ThermostatSubfunction.Companion",
+                    "usr": "c:objc(cs)SharedCoreThermostatSubfunctionCompanion"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore21ThermostatSubfunctionO9companionSo0abcD9CompanionCvgZ",
+                "mangledName": "$s10SharedCore21ThermostatSubfunctionO9companionSo0abcD9CompanionCvgZ",
+                "moduleName": "SharedCore",
+                "static": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "_forceBridgeFromObjectiveC",
             "printedName": "_forceBridgeFromObjectiveC(_:result:)",
@@ -9264,21 +9306,21 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "(any SharedCore.ChannelIssueItem)?",
+                "printedName": "SharedCore.ChannelIssueItem?",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ChannelIssueItem",
-                    "printedName": "any SharedCore.ChannelIssueItem",
-                    "usr": "c:objc(pl)SharedCoreChannelIssueItem"
+                    "printedName": "SharedCore.ChannelIssueItem",
+                    "usr": "c:objc(cs)SharedCoreChannelIssueItem"
                   }
                 ],
                 "usr": "s:Sq"
               }
             ],
             "declKind": "Func",
-            "usr": "s:10SharedCore22SuplaShadingSystemFlagO15asChannelIssuesSo0abH9IssueItem_pSgyF",
-            "mangledName": "$s10SharedCore22SuplaShadingSystemFlagO15asChannelIssuesSo0abH9IssueItem_pSgyF",
+            "usr": "s:10SharedCore22SuplaShadingSystemFlagO15asChannelIssuesSo0abH9IssueItemCSgyF",
+            "mangledName": "$s10SharedCore22SuplaShadingSystemFlagO15asChannelIssuesSo0abH9IssueItemCSgyF",
             "moduleName": "SharedCore",
             "declAttributes": [
               "AccessControl"
@@ -12242,12 +12284,12 @@
                           {
                             "kind": "TypeFunc",
                             "name": "Function",
-                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed.Type) -> (SharedCore.ChannelIssueItemError) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed.Type) -> (SharedCore.ChannelIssueItem.Error) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
                             "children": [
                               {
                                 "kind": "TypeFunc",
                                 "name": "Function",
-                                "printedName": "(SharedCore.ChannelIssueItemError) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
+                                "printedName": "(SharedCore.ChannelIssueItem.Error) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
                                 "children": [
                                   {
                                     "kind": "TypeNominal",
@@ -12257,8 +12299,8 @@
                                   },
                                   {
                                     "kind": "TypeNominal",
-                                    "name": "ChannelIssueItemError",
-                                    "printedName": "SharedCore.ChannelIssueItemError",
+                                    "name": "Error",
+                                    "printedName": "SharedCore.ChannelIssueItem.Error",
                                     "usr": "c:objc(cs)SharedCoreChannelIssueItemError"
                                   }
                                 ]
@@ -12293,12 +12335,12 @@
                           {
                             "kind": "TypeFunc",
                             "name": "Function",
-                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed.Type) -> (SharedCore.ChannelIssueItemLowBattery) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed.Type) -> (SharedCore.ChannelIssueItem.LowBattery) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
                             "children": [
                               {
                                 "kind": "TypeFunc",
                                 "name": "Function",
-                                "printedName": "(SharedCore.ChannelIssueItemLowBattery) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
+                                "printedName": "(SharedCore.ChannelIssueItem.LowBattery) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
                                 "children": [
                                   {
                                     "kind": "TypeNominal",
@@ -12308,8 +12350,8 @@
                                   },
                                   {
                                     "kind": "TypeNominal",
-                                    "name": "ChannelIssueItemLowBattery",
-                                    "printedName": "SharedCore.ChannelIssueItemLowBattery",
+                                    "name": "LowBattery",
+                                    "printedName": "SharedCore.ChannelIssueItem.LowBattery",
                                     "usr": "c:objc(cs)SharedCoreChannelIssueItemLowBattery"
                                   }
                                 ]
@@ -12344,12 +12386,12 @@
                           {
                             "kind": "TypeFunc",
                             "name": "Function",
-                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed.Type) -> (SharedCore.ChannelIssueItemWarning) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed.Type) -> (SharedCore.ChannelIssueItem.Warning) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
                             "children": [
                               {
                                 "kind": "TypeFunc",
                                 "name": "Function",
-                                "printedName": "(SharedCore.ChannelIssueItemWarning) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
+                                "printedName": "(SharedCore.ChannelIssueItem.Warning) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed",
                                 "children": [
                                   {
                                     "kind": "TypeNominal",
@@ -12359,8 +12401,8 @@
                                   },
                                   {
                                     "kind": "TypeNominal",
-                                    "name": "ChannelIssueItemWarning",
-                                    "printedName": "SharedCore.ChannelIssueItemWarning",
+                                    "name": "Warning",
+                                    "printedName": "SharedCore.ChannelIssueItem.Warning",
                                     "usr": "c:objc(cs)SharedCoreChannelIssueItemWarning"
                                   }
                                 ]
@@ -12877,8 +12919,8 @@
           }
         ],
         "declKind": "Func",
-        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOx_tSo0abklM0RzlF",
-        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOx_tSo0abklM0RzlF",
+        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOx_tSo0abklM0CRbzlF",
+        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOx_tSo0abklM0CRbzlF",
         "moduleName": "SharedCore",
         "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelIssueItem>",
         "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelIssueItem>",
@@ -12921,8 +12963,8 @@
           }
         ],
         "declKind": "Func",
-        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOSgxSg_tSo0abklM0RzlF",
-        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOSgxSg_tSo0abklM0RzlF",
+        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOSgxSg_tSo0abklM0CRbzlF",
+        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO16ChannelIssueItemO8__SealedOSgxSg_tSo0abklM0CRbzlF",
         "moduleName": "SharedCore",
         "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelIssueItem>",
         "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelIssueItem>",

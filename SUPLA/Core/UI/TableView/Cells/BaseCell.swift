@@ -204,8 +204,6 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     
     func derivedClassConstraints() -> [NSLayoutConstraint] { fatalError("derivedClassConstraints() has not been implemented") }
 
-    func issueMessage() -> String? { nil }
-    
     func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: T) -> Observable<T> {
         fatalError("provideRefreshData(_:) has not been implemented")
     }

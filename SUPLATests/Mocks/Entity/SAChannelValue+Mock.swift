@@ -17,6 +17,7 @@
  */
 
 @testable import SUPLA
+import SharedCore
 
 extension SAChannelValue {
     
@@ -35,11 +36,11 @@ extension SAChannelValue {
         online: Bool = true
     ) -> SAChannelValue {
         var flagsInt = 0
-        flags.forEach { flagsInt ^= 1 << $0.rawValue }
+        flags.forEach { flagsInt ^= 1 << $0.value }
         
         var hvacValue = THVACValue(
             IsOn: 1,
-            Mode: mode.rawValue,
+            Mode: UInt8(mode.value),
             SetpointTemperatureHeat: setpointHeat,
             SetpointTemperatureCool: setpointCool,
             Flags: UInt16(flagsInt)
@@ -53,10 +54,10 @@ extension SAChannelValue {
         online: Bool = true,
         position: Int = 0,
         bottomPosition: Int = 100,
-        flags: [SuplaRollerShutterFlag] = []
+        flags: [SuplaShadingSystemFlag] = []
     ) -> SAChannelValue {
         var flagsInt = 0
-        flags.forEach { flagsInt ^= 1 << $0.rawValue }
+        flags.forEach { flagsInt ^= 1 << $0.value }
         
         var rollerShutterValue = TDSC_RollerShutterValue(
             position: Int8(position),
@@ -76,10 +77,10 @@ extension SAChannelValue {
         online: Bool = true,
         position: Int = 0,
         tilt: Int = 100,
-        flags: [SuplaRollerShutterFlag] = []
+        flags: [SuplaShadingSystemFlag] = []
     ) -> SAChannelValue {
         var flagsInt = 0
-        flags.forEach { flagsInt ^= 1 << $0.rawValue }
+        flags.forEach { flagsInt ^= 1 << $0.value }
         
         var facadeBlindValue = TDSC_FacadeBlindValue(
             position: Int8(position),

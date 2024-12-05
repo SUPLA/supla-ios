@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 enum DeviceState {
     static func endDateText(_ timerEndDate: Date?) -> String {
         guard let date = timerEndDate else { return "" }

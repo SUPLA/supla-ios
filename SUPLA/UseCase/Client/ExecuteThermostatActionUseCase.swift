@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 protocol ExecuteThermostatActionUseCase {
     func invoke(type: SubjectType, remoteId: Int32, mode: SuplaHvacMode?, setpointTemperatureHeat: Float?, setpointTemperatureCool: Float?, durationInSec: Int32?) -> Observable<RequestResult>

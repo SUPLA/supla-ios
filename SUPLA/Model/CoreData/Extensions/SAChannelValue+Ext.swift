@@ -17,18 +17,19 @@
  */
 
 import Foundation
+import SharedCore
 
 extension SAChannelValue {
     func asThermostatValue() -> ThermostatValue {
-        ThermostatValue.from(hvacValue(), online: online)
+        ThermostatValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asRollerShutterValue() -> RollerShutterValue {
-        RollerShutterValue.from(dataValue(), online: online)
+        RollerShutterValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asFacadeBlindValue() -> FacadeBlindValue {
-        FacadeBlindValue.from(dataValue(), online: online)
+        FacadeBlindValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asHeatpolThermostatValue() -> HeatpolThermostatValue {

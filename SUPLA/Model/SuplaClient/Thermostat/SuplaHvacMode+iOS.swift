@@ -16,20 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-let SHADING_SYSTEM_INVALID_VALUE = -1
+import SharedCore
 
-protocol ShadingSystemValue {
-    var online: Bool { get }
-    var position: Int { get }
-    var flags: [SuplaRollerShutterFlag] { get }
-}
-
-extension ShadingSystemValue {
-    var hasValidPosition: Bool {
-        position != SHADING_SYSTEM_INVALID_VALUE
+extension SuplaHvacMode {
+    var icon: String? {
+        switch self {
+        case .off: return .Icons.powerButton
+        case .heat: return .Icons.heat
+        case .cool: return .Icons.cool
+        default: return nil
+        }
     }
-    
-    var alwaysValidPosition: Int {
-        max(0, position)
+
+    var iconColor: UIColor? {
+        switch self {
+        case .off: return .gray
+        case .heat: return .red
+        case .cool: return .blue
+        default: return nil
+        }
     }
 }

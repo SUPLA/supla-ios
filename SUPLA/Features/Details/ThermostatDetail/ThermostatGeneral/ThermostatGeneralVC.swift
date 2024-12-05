@@ -169,12 +169,12 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         secondIssueRowView.isHidden = state.issues.count <= 1
         for (idx, issue) in state.issues.enumerated() {
             if (idx == 0) {
-                firstIssueRowView.icon = issue.issueIconType.icon()
-                firstIssueRowView.text = issue.description
+                firstIssueRowView.icon = issue.icon.resource
+                firstIssueRowView.text = issue.message.string
             }
             if (idx == 1) {
-                secondIssueRowView.icon = issue.issueIconType.icon()
-                secondIssueRowView.text = issue.description
+                secondIssueRowView.icon = issue.icon.resource
+                secondIssueRowView.text = issue.message.string
             }
         }
         

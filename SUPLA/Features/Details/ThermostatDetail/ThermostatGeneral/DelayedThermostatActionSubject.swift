@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 protocol DelayedThermostatActionSubject {
     func emit(data: ThermostatActionData)

@@ -91,7 +91,7 @@ extension SuplaClientProtocol {
                 parameters.DurationSec = UInt32(durationInSec)
             }
             if let mode = mode {
-                parameters.Mode = mode.rawValue
+                parameters.Mode = UInt8(mode.value)
             }
             if let heatTemperature = setpointTemperatureHeat {
                 parameters.SetpointTemperatureHeat = heatTemperature.toSuplaTemperature()

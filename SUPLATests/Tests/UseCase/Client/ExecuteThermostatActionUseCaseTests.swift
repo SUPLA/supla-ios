@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import SUPLA
+import SharedCore
 
 final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
     
@@ -71,7 +72,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
         
         let hvacParametersStruct = parameters.3!.assumingMemoryBound(to: TAction_HVAC_Parameters.self).pointee
         XCTAssertEqual(hvacParametersStruct.DurationSec, UInt32(duration))
-        XCTAssertEqual(hvacParametersStruct.Mode, mode.rawValue)
+        XCTAssertEqual(hvacParametersStruct.Mode, UInt8(mode.value))
         XCTAssertEqual(hvacParametersStruct.SetpointTemperatureHeat, setpointTemperatureHeat.toSuplaTemperature())
         XCTAssertEqual(hvacParametersStruct.SetpointTemperatureCool, setpointTemperatureCool.toSuplaTemperature())
         XCTAssertEqual(hvacParametersStruct.Flags, 3)
@@ -106,7 +107,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
         
         let hvacParametersStruct = parameters.3!.assumingMemoryBound(to: TAction_HVAC_Parameters.self).pointee
         XCTAssertEqual(hvacParametersStruct.DurationSec, 0)
-        XCTAssertEqual(hvacParametersStruct.Mode, mode.rawValue)
+        XCTAssertEqual(hvacParametersStruct.Mode, UInt8(mode.value))
         XCTAssertEqual(hvacParametersStruct.SetpointTemperatureHeat, 0)
         XCTAssertEqual(hvacParametersStruct.SetpointTemperatureCool, 0)
         XCTAssertEqual(hvacParametersStruct.Flags, 0)

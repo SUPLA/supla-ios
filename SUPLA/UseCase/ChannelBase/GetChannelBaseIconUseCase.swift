@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import SharedCore
 
 protocol GetChannelBaseIconUseCase {
     func invoke(iconData: IconData) -> IconResult

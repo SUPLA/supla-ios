@@ -17,6 +17,7 @@
  */
 
 import XCTest
+import SharedCore
 
 @testable import SUPLA
 

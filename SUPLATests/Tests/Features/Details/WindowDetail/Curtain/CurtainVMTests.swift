@@ -18,6 +18,7 @@
 
 @testable import SUPLA
 import XCTest
+import SharedCore
 
 final class CurtainVMTests: ViewModelTest<CurtainViewState, BaseWindowViewEvent> {
     
@@ -53,7 +54,7 @@ final class CurtainVMTests: ViewModelTest<CurtainViewState, BaseWindowViewEvent>
         channel.remote_id = 123
         channel.flags = Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.value = NSData(data: RollerShutterValue.mockData(position: 50, flags: SuplaRollerShutterFlag.motorProblem.rawValue))
+        channel.value?.value = NSData(data: RollerShutterValue.mockData(position: 50, flags: SuplaShadingSystemFlag.motorProblem.value))
         channel.value?.online = true
         
         settings.showOpeningPercentReturns = false
@@ -70,10 +71,7 @@ final class CurtainVMTests: ViewModelTest<CurtainViewState, BaseWindowViewEvent>
                 remoteId: 123,
                 curtainWindowState: CurtainWindowState(position: .similar(50)),
                 issues: [
-                    ChannelIssueItem(
-                        issueIconType: .warning,
-                        description: Strings.RollerShutterDetail.calibrationFailed
-                    )
+                    ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.motorProblem))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,

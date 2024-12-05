@@ -331,7 +331,7 @@ Classes:
     ResultType: "SharedCoreSuplaHvacMode * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "int8_t"
+      Type: "int32_t"
 - Name: "SharedCoreThermostatSubfunction"
   SwiftBridge: "ThermostatSubfunction"
   SwiftName: "__ThermostatSubfunction"
@@ -354,6 +354,16 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "init(name:ordinal:)"
     Availability: "nonswift"
+- Name: "SharedCoreThermostatSubfunctionCompanion"
+  SwiftName: "__ThermostatSubfunction.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreThermostatSubfunction * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreLocalizedStringEmpty"
   SwiftName: "LocalizedStringEmpty"
   Methods:
@@ -1909,17 +1919,34 @@ Classes:
   - Selector: "invokeChannelWithChildren:"
     MethodKind: "Instance"
     SwiftName: "invoke(channelWithChildren:)"
-    ResultType: "id<SharedCoreChannelIssueItem> _Nullable"
+    ResultType: "SharedCoreChannelIssueItem * _Nullable"
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
-- Name: "SharedCoreChannelIssueItemWarning"
-  SwiftName: "ChannelIssueItemWarning"
+- Name: "SharedCoreChannelIssueItem"
+  SwiftName: "ChannelIssueItem"
   Properties:
   - Name: "icon"
     PropertyKind: "Instance"
     SwiftName: "icon"
     Type: "SharedCoreIssueIcon * _Nonnull"
+  - Name: "message"
+    PropertyKind: "Instance"
+    SwiftName: "message"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
+  - Name: "messages"
+    PropertyKind: "Instance"
+    SwiftName: "messages"
+    Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
+  - Name: "priority"
+    PropertyKind: "Instance"
+    SwiftName: "priority"
+    Type: "int32_t"
+- Name: "SharedCoreChannelIssueItemCompanion"
+  SwiftName: "ChannelIssueItem.Companion"
+- Name: "SharedCoreChannelIssueItemWarning"
+  SwiftName: "ChannelIssueItem.Warning"
+  Properties:
   - Name: "messages"
     PropertyKind: "Instance"
     SwiftName: "messages"
@@ -1958,7 +1985,7 @@ Classes:
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreChannelIssueItemWarningCompanion"
-  SwiftName: "ChannelIssueItemWarning.Companion"
+  SwiftName: "ChannelIssueItem.WarningCompanion"
   Methods:
   - Selector: "invokeStringId:"
     MethodKind: "Instance"
@@ -1968,12 +1995,8 @@ Classes:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nonnull"
 - Name: "SharedCoreChannelIssueItemError"
-  SwiftName: "ChannelIssueItemError"
+  SwiftName: "ChannelIssueItem.Error"
   Properties:
-  - Name: "icon"
-    PropertyKind: "Instance"
-    SwiftName: "icon"
-    Type: "SharedCoreIssueIcon * _Nonnull"
   - Name: "messages"
     PropertyKind: "Instance"
     SwiftName: "messages"
@@ -2012,7 +2035,7 @@ Classes:
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreChannelIssueItemErrorCompanion"
-  SwiftName: "ChannelIssueItemError.Companion"
+  SwiftName: "ChannelIssueItem.ErrorCompanion"
   Methods:
   - Selector: "invokeStringId:"
     MethodKind: "Instance"
@@ -2022,12 +2045,8 @@ Classes:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nonnull"
 - Name: "SharedCoreChannelIssueItemLowBattery"
-  SwiftName: "ChannelIssueItemLowBattery"
+  SwiftName: "ChannelIssueItem.LowBattery"
   Properties:
-  - Name: "icon"
-    PropertyKind: "Instance"
-    SwiftName: "icon"
-    Type: "SharedCoreIssueIcon * _Nonnull"
   - Name: "messages"
     PropertyKind: "Instance"
     SwiftName: "messages"
@@ -2065,8 +2084,31 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreChannelIssueItemCompanion"
-  SwiftName: "ChannelIssueItemCompanion"
+- Name: "SharedCoreGetChannelIssuesForSlavesUseCase"
+  SwiftName: "GetChannelIssuesForSlavesUseCase"
+  Methods:
+  - Selector: "initWithGetChannelLowBatteryIssueUseCase:getChannelBatteryIconUseCase:"
+    MethodKind: "Instance"
+    SwiftName: "init(getChannelLowBatteryIssueUseCase:getChannelBatteryIconUseCase:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreGetChannelLowBatteryIssueUseCase * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreGetChannelBatteryIconUseCase * _Nonnull"
+  - Selector: "invokeChannel:"
+    MethodKind: "Instance"
+    SwiftName: "invoke(channel:)"
+    ResultType: "SharedCoreListItemIssues * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreChannel * _Nonnull"
+  - Selector: "invokeChannelWithChildren:"
+    MethodKind: "Instance"
+    SwiftName: "invoke(channelWithChildren:)"
+    ResultType: "SharedCoreListItemIssues * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreChannelWithChildren * _Nonnull"
 - Name: "SharedCoreStoreChannelOcrPhotoUseCase"
   SwiftName: "StoreChannelOcrPhotoUseCase"
   Methods:
@@ -2260,7 +2302,7 @@ Classes:
   - Selector: "provideChannelWithChildren:"
     MethodKind: "Instance"
     SwiftName: "provide(channelWithChildren:)"
-    ResultType: "NSArray<id<SharedCoreChannelIssueItem>> * _Nonnull"
+    ResultType: "NSArray<SharedCoreChannelIssueItem *> * _Nonnull"
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
@@ -2273,7 +2315,7 @@ Classes:
   - Selector: "provideChannelWithChildren:"
     MethodKind: "Instance"
     SwiftName: "provide(channelWithChildren:)"
-    ResultType: "NSArray<id<SharedCoreChannelIssueItem>> * _Nonnull"
+    ResultType: "NSArray<SharedCoreChannelIssueItem *> * _Nonnull"
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
@@ -2394,7 +2436,7 @@ Classes:
   - Selector: "asChannelIssues"
     MethodKind: "Instance"
     SwiftName: "asChannelIssues()"
-    ResultType: "id<SharedCoreChannelIssueItem> _Nullable"
+    ResultType: "SharedCoreChannelIssueItem * _Nullable"
   - Selector: "isIssueFlag"
     MethodKind: "Instance"
     SwiftName: "isIssueFlag()"
@@ -2439,7 +2481,7 @@ Classes:
   - Selector: "getChannelIssue"
     MethodKind: "Instance"
     SwiftName: "getChannelIssue()"
-    ResultType: "id<SharedCoreChannelIssueItem> _Nullable"
+    ResultType: "SharedCoreChannelIssueItem * _Nullable"
   - Selector: "hasValidPosition"
     MethodKind: "Instance"
     SwiftName: "hasValidPosition()"
@@ -3025,32 +3067,13 @@ Protocols:
     PropertyKind: "Instance"
     SwiftName: "remoteId"
     Type: "int32_t"
-- Name: "SharedCoreChannelIssueItem"
-  SwiftName: "ChannelIssueItem"
-  Properties:
-  - Name: "icon"
-    PropertyKind: "Instance"
-    SwiftName: "icon"
-    Type: "SharedCoreIssueIcon * _Nonnull"
-  - Name: "message"
-    PropertyKind: "Instance"
-    SwiftName: "message"
-    Type: "id<SharedCoreLocalizedString> _Nonnull"
-  - Name: "messages"
-    PropertyKind: "Instance"
-    SwiftName: "messages"
-    Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
-  - Name: "priority"
-    PropertyKind: "Instance"
-    SwiftName: "priority"
-    Type: "int32_t"
 - Name: "SharedCoreChannelIssuesProvider"
   SwiftName: "ChannelIssuesProvider"
   Methods:
   - Selector: "provideChannelWithChildren:"
     MethodKind: "Instance"
     SwiftName: "provide(channelWithChildren:)"
-    ResultType: "NSArray<id<SharedCoreChannelIssueItem>> * _Nonnull"
+    ResultType: "NSArray<SharedCoreChannelIssueItem *> * _Nonnull"
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"

@@ -17,6 +17,7 @@
  */
 
 import XCTest
+import SharedCore
 @testable import SUPLA
 
 final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
@@ -90,7 +91,7 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(parameters.ConfigSize, UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size))
         
         let config = extract(pointee: &(parameters.Config))
-        XCTAssertEqual(config.Program.0.Mode, SuplaHvacMode.cool.rawValue)
+        XCTAssertEqual(Int32(config.Program.0.Mode), SuplaHvacMode.cool.value)
         XCTAssertEqual(config.Program.0.SetpointTemperatureHeat, 0)
         XCTAssertEqual(config.Program.0.SetpointTemperatureCool, 1200)
         XCTAssertEqual(config.Quarters.0, 0x22)

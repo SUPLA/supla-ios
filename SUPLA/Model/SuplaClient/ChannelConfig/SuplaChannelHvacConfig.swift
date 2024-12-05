@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
 final class SuplaChannelHvacConfig: SuplaChannelConfig {
     
@@ -80,7 +80,7 @@ final class SuplaChannelHvacConfig: SuplaChannelConfig {
             minOnTimeSec: suplaConfig.MinOnTimeS,
             minOffTimeSec: suplaConfig.MinOffTimeS,
             outputValueOnError: suplaConfig.OutputValueOnError,
-            subfunction: ThermostatSubfunction.from(value: suplaConfig.Subfunction),
+            subfunction: ThermostatSubfunction.companion.from(value: Int32(suplaConfig.Subfunction)),
             temperatures: SuplaHvacTemperatures.from(temperatures: suplaConfig.Temperatures)
         )
     }
@@ -190,22 +190,5 @@ struct SuplaHvacTemperatures {
         }
         
         return nil
-    }
-}
-
-enum ThermostatSubfunction: UInt8, CaseIterable {
-    case notSet = 0
-    case heat = 1
-    case cool = 2
-    
-    static func from(value: UInt8) -> ThermostatSubfunction {
-        for result in ThermostatSubfunction.allCases {
-            if (result.rawValue == value) {
-                return result
-            }
-        }
-        
-        SALog.error("Invalid ThermostatSubfunction value `\(value)'")
-        return .notSet
     }
 }
