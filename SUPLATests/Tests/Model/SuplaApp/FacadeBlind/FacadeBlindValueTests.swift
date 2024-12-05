@@ -18,18 +18,19 @@
 
 @testable import SUPLA
 import XCTest
+import SharedCore
 
 final class FacadeBlindValueTests: XCTestCase {
     func test_parseWhenSizeWrong() {
         // when
-        let value = FacadeBlindValue.from(Data(), online: false)
+        let value = FacadeBlindValue.companion.from(online: false, bytes: KotlinByteArray.from(data: Data()))
         
         // then
         XCTAssertEqual(value.online, false)
-        XCTAssertEqual(value.position, SHADING_SYSTEM_INVALID_VALUE)
-        XCTAssertEqual(value.tilt, SHADING_SYSTEM_INVALID_VALUE)
+        XCTAssertEqual(value.position, ShadingSystemValue.companion.INVALID_VALUE)
+        XCTAssertEqual(value.tilt, ShadingSystemValue.companion.INVALID_VALUE)
         XCTAssertEqual(value.flags, [])
-        XCTAssertEqual(value.hasValidPosition, false)
+        XCTAssertEqual(value.hasValidPosition(), false)
     }
     
     func test_parseWhenSizeCorrect() {
@@ -37,14 +38,14 @@ final class FacadeBlindValueTests: XCTestCase {
         let data = FacadeBlindValue.mockData(position: 22, tilt: 88)
         
         // when
-        let value = FacadeBlindValue.from(data, online: true)
+        let value = FacadeBlindValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
         
         // then
         XCTAssertEqual(value.online, true)
         XCTAssertEqual(value.position, 22)
         XCTAssertEqual(value.tilt, 88)
         XCTAssertEqual(value.flags, [])
-        XCTAssertEqual(value.hasValidPosition, true)
+        XCTAssertEqual(value.hasValidPosition(), true)
     }
     
     func test_parseWhenSizeCorrect_invalidPositionAndTilt() {
@@ -52,13 +53,13 @@ final class FacadeBlindValueTests: XCTestCase {
         let data = FacadeBlindValue.mockData(position: 120, tilt: 110, flags: 4)
         
         // when
-        let value = FacadeBlindValue.from(data, online: true)
+        let value = FacadeBlindValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
         
         // then
         XCTAssertEqual(value.online, true)
         XCTAssertEqual(value.position, -1)
         XCTAssertEqual(value.tilt, -1)
         XCTAssertEqual(value.flags, [.calibrationLost])
-        XCTAssertEqual(value.hasValidPosition, false)
+        XCTAssertEqual(value.hasValidPosition(), false)
     }
 }

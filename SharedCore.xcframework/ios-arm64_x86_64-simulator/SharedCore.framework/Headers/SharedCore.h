@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhoto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreDouble, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhoto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreDouble, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
-@protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreChannelIssueItem, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
+@protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
 
 // Due to an Obj-C/Swift interop limitation, SKIE cannot generate Swift types with a lambda type argument.
 // Example of such type is: A<() -> Unit> where A<T> is a generic class.
@@ -214,12 +214,13 @@ __attribute__((swift_name("SuplaHvacMode.Companion")))
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-- (SharedCoreSuplaHvacMode *)fromByte:(int8_t)byte __attribute__((swift_name("from(byte:)")));
+- (SharedCoreSuplaHvacMode *)fromByte:(int32_t)byte __attribute__((swift_name("from(byte:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ThermostatSubfunction")))
 @interface SharedCoreThermostatSubfunction : SharedCoreKotlinEnum<SharedCoreThermostatSubfunction *>
+@property (class, readonly, getter=companion) SharedCoreThermostatSubfunctionCompanion *companion __attribute__((swift_name("companion")));
 @property (class, readonly) SharedCoreThermostatSubfunction *notSet __attribute__((swift_name("notSet")));
 @property (class, readonly) SharedCoreThermostatSubfunction *heat __attribute__((swift_name("heat")));
 @property (class, readonly) SharedCoreThermostatSubfunction *cool __attribute__((swift_name("cool")));
@@ -228,6 +229,16 @@ __attribute__((swift_name("ThermostatSubfunction")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (SharedCoreKotlinArray<SharedCoreThermostatSubfunction *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ThermostatSubfunction.Companion")))
+@interface SharedCoreThermostatSubfunctionCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreThermostatSubfunctionCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreThermostatSubfunction *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -328,7 +339,7 @@ __attribute__((swift_name("ShadingSystemValue")))
 @property (readonly) int32_t position __attribute__((swift_name("position")));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (id<SharedCoreChannelIssueItem> _Nullable)getChannelIssue __attribute__((swift_name("getChannelIssue()")));
+- (SharedCoreChannelIssueItem * _Nullable)getChannelIssue __attribute__((swift_name("getChannelIssue()")));
 - (BOOL)hasValidPosition __attribute__((swift_name("hasValidPosition()")));
 @end
 
@@ -493,8 +504,8 @@ __attribute__((swift_name("SuplaFunction.Companion")))
 @end
 
 __attribute__((swift_name("ChannelIssueItem")))
-@protocol SharedCoreChannelIssueItem
-@required
+@interface SharedCoreChannelIssueItem : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreChannelIssueItemCompanion *companion __attribute__((swift_name("companion")));
 @property (readonly) SharedCoreIssueIcon *icon __attribute__((swift_name("icon")));
 @property (readonly) id<SharedCoreLocalizedString> message __attribute__((swift_name("message")));
 @property (readonly) NSArray<id<SharedCoreLocalizedString>> *messages __attribute__((swift_name("messages")));
@@ -502,7 +513,7 @@ __attribute__((swift_name("ChannelIssueItem")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChannelIssueItemCompanion")))
+__attribute__((swift_name("ChannelIssueItem.Companion")))
 @interface SharedCoreChannelIssueItemCompanion : SharedCoreBase
 @property (class, readonly, getter=shared) SharedCoreChannelIssueItemCompanion *shared __attribute__((swift_name("shared")));
 + (instancetype)alloc __attribute__((unavailable));
@@ -511,10 +522,9 @@ __attribute__((swift_name("ChannelIssueItemCompanion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChannelIssueItemError")))
-@interface SharedCoreChannelIssueItemError : SharedCoreBase <SharedCoreChannelIssueItem>
+__attribute__((swift_name("ChannelIssueItem.Error")))
+@interface SharedCoreChannelIssueItemError : SharedCoreChannelIssueItem
 @property (class, readonly, getter=companion) SharedCoreChannelIssueItemErrorCompanion *companion __attribute__((swift_name("companion")));
-@property (readonly) SharedCoreIssueIcon *icon __attribute__((swift_name("icon")));
 @property (readonly) NSArray<id<SharedCoreLocalizedString>> *messages __attribute__((swift_name("messages")));
 @property (readonly) int32_t priority __attribute__((swift_name("priority")));
 - (instancetype)initWithString:(id<SharedCoreLocalizedString> _Nullable)string __attribute__((swift_name("init(string:)"))) __attribute__((objc_designated_initializer));
@@ -525,7 +535,7 @@ __attribute__((swift_name("ChannelIssueItemError")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChannelIssueItemError.Companion")))
+__attribute__((swift_name("ChannelIssueItem.ErrorCompanion")))
 @interface SharedCoreChannelIssueItemErrorCompanion : SharedCoreBase
 @property (class, readonly, getter=shared) SharedCoreChannelIssueItemErrorCompanion *shared __attribute__((swift_name("shared")));
 + (instancetype)alloc __attribute__((unavailable));
@@ -535,9 +545,8 @@ __attribute__((swift_name("ChannelIssueItemError.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChannelIssueItemLowBattery")))
-@interface SharedCoreChannelIssueItemLowBattery : SharedCoreBase <SharedCoreChannelIssueItem>
-@property (readonly) SharedCoreIssueIcon *icon __attribute__((swift_name("icon")));
+__attribute__((swift_name("ChannelIssueItem.LowBattery")))
+@interface SharedCoreChannelIssueItemLowBattery : SharedCoreChannelIssueItem
 @property (readonly) NSArray<id<SharedCoreLocalizedString>> *messages __attribute__((swift_name("messages")));
 @property (readonly) int32_t priority __attribute__((swift_name("priority")));
 - (instancetype)initWithMessages:(NSArray<id<SharedCoreLocalizedString>> *)messages __attribute__((swift_name("init(messages:)"))) __attribute__((objc_designated_initializer));
@@ -548,10 +557,9 @@ __attribute__((swift_name("ChannelIssueItemLowBattery")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChannelIssueItemWarning")))
-@interface SharedCoreChannelIssueItemWarning : SharedCoreBase <SharedCoreChannelIssueItem>
+__attribute__((swift_name("ChannelIssueItem.Warning")))
+@interface SharedCoreChannelIssueItemWarning : SharedCoreChannelIssueItem
 @property (class, readonly, getter=companion) SharedCoreChannelIssueItemWarningCompanion *companion __attribute__((swift_name("companion")));
-@property (readonly) SharedCoreIssueIcon *icon __attribute__((swift_name("icon")));
 @property (readonly) NSArray<id<SharedCoreLocalizedString>> *messages __attribute__((swift_name("messages")));
 @property (readonly) int32_t priority __attribute__((swift_name("priority")));
 - (instancetype)initWithString:(id<SharedCoreLocalizedString> _Nullable)string __attribute__((swift_name("init(string:)"))) __attribute__((objc_designated_initializer));
@@ -562,7 +570,7 @@ __attribute__((swift_name("ChannelIssueItemWarning")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ChannelIssueItemWarning.Companion")))
+__attribute__((swift_name("ChannelIssueItem.WarningCompanion")))
 @interface SharedCoreChannelIssueItemWarningCompanion : SharedCoreBase
 @property (class, readonly, getter=shared) SharedCoreChannelIssueItemWarningCompanion *shared __attribute__((swift_name("shared")));
 + (instancetype)alloc __attribute__((unavailable));
@@ -787,7 +795,7 @@ __attribute__((swift_name("SuplaShadingSystemFlag")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (SharedCoreKotlinArray<SharedCoreSuplaShadingSystemFlag *> *)values __attribute__((swift_name("values()")));
-- (id<SharedCoreChannelIssueItem> _Nullable)asChannelIssues __attribute__((swift_name("asChannelIssues()")));
+- (SharedCoreChannelIssueItem * _Nullable)asChannelIssues __attribute__((swift_name("asChannelIssues()")));
 - (BOOL)isIssueFlag __attribute__((swift_name("isIssueFlag()")));
 @end
 
@@ -1104,10 +1112,18 @@ __attribute__((swift_name("GetChannelIssuesForListUseCase")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GetChannelIssuesForSlavesUseCase")))
+@interface SharedCoreGetChannelIssuesForSlavesUseCase : SharedCoreBase
+- (instancetype)initWithGetChannelLowBatteryIssueUseCase:(SharedCoreGetChannelLowBatteryIssueUseCase *)getChannelLowBatteryIssueUseCase getChannelBatteryIconUseCase:(SharedCoreGetChannelBatteryIconUseCase *)getChannelBatteryIconUseCase __attribute__((swift_name("init(getChannelLowBatteryIssueUseCase:getChannelBatteryIconUseCase:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreListItemIssues *)invokeChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("invoke(channelWithChildren:)")));
+- (SharedCoreListItemIssues *)invokeChannel:(SharedCoreChannel *)channel __attribute__((swift_name("invoke(channel:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GetChannelLowBatteryIssueUseCase")))
 @interface SharedCoreGetChannelLowBatteryIssueUseCase : SharedCoreBase
 - (instancetype)initWithGetCaptionUseCase:(SharedCoreGetCaptionUseCase *)getCaptionUseCase applicationPreferences:(id<SharedCoreApplicationPreferences>)applicationPreferences __attribute__((swift_name("init(getCaptionUseCase:applicationPreferences:)"))) __attribute__((objc_designated_initializer));
-- (id<SharedCoreChannelIssueItem> _Nullable)invokeChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("invoke(channelWithChildren:)")));
+- (SharedCoreChannelIssueItem * _Nullable)invokeChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("invoke(channelWithChildren:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1120,7 +1136,7 @@ __attribute__((swift_name("StoreChannelOcrPhotoUseCase")))
 __attribute__((swift_name("ChannelIssuesProvider")))
 @protocol SharedCoreChannelIssuesProvider
 @required
-- (NSArray<id<SharedCoreChannelIssueItem>> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
+- (NSArray<SharedCoreChannelIssueItem *> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1128,7 +1144,7 @@ __attribute__((swift_name("ShadingSystemIssuesProvider")))
 @interface SharedCoreShadingSystemIssuesProvider : SharedCoreBase <SharedCoreChannelIssuesProvider>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (NSArray<id<SharedCoreChannelIssueItem>> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
+- (NSArray<SharedCoreChannelIssueItem *> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1136,7 +1152,7 @@ __attribute__((swift_name("ThermostatIssuesProvider")))
 @interface SharedCoreThermostatIssuesProvider : SharedCoreBase <SharedCoreChannelIssuesProvider>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
-- (NSArray<id<SharedCoreChannelIssueItem>> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
+- (NSArray<SharedCoreChannelIssueItem *> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))

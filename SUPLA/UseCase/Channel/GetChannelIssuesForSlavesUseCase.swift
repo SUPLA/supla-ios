@@ -15,19 +15,14 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
+import SharedCore
 
-import Foundation
-
-enum IssueIconType {
-    case warning
-    case error
-
-    func icon() -> UIImage? {
-        switch (self) {
-        case .warning:
-            return .iconWarning
-        case .error:
-            return .iconError
-        }
-    }
+protocol GetChannelIssuesForSlavesUseCase {
+    func invoke(channelWithChildren: SharedCore.ChannelWithChildren) -> SharedCore.ListItemIssues
+    func invoke(channel: SharedCore.Channel) -> SharedCore.ListItemIssues
 }
+
+extension SharedCore.GetChannelIssuesForSlavesUseCase: GetChannelIssuesForSlavesUseCase {
+}
+

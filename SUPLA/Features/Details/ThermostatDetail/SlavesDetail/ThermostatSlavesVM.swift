@@ -15,6 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
+import SharedCore
     
 extension ThermostatSlavesFeature {
     class ViewModel: SuplaCore.BaseViewModel<ViewState> {
@@ -82,9 +84,10 @@ private extension ChannelChild {
     }
     
     func toThermostatData() -> ThermostatSlavesFeature.ThermostatData {
-        @Singleton var getCaptionUseCase: GetCaptionUseCase
-        @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
+        @Singleton var getChannelIssuesForSlavesUseCase: GetChannelIssuesForSlavesUseCase
         @Singleton var getChannelValueStringUseCase: GetChannelValueStringUseCase
+        @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
+        @Singleton var getCaptionUseCase: GetCaptionUseCase
         @Singleton var valuesFormatter: ValuesFormatter
         
         let thermostatValue = channel.value?.asThermostatValue()
@@ -99,11 +102,10 @@ private extension ChannelChild {
             onlineState: ListOnlineState.from(channel.isOnline()),
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             icon: getChannelIcon(channel),
-            currentPower: thermostatValue?.state.power?.also { valuesFormatter.percentageToString($0/100) },
+            currentPower: thermostatValue?.state.power?.floatValue.also { valuesFormatter.percentageToString($0/100) },
             value: value,
             indicatorIcon: thermostatValue?.indicatorIcon ?? .off,
-            issueIconType: thermostatValue?.issueIcon,
-            issueMessage: thermostatValue?.issueText,
+            issues: getChannelIssuesForSlavesUseCase.invoke(channel: channel.shareable),
             showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
@@ -134,9 +136,10 @@ private extension ChannelWithChildren {
     }
     
     func toThermostatData() -> ThermostatSlavesFeature.ThermostatData {
-        @Singleton var getCaptionUseCase: GetCaptionUseCase
-        @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
+        @Singleton var getChannelIssuesForSlavesUseCase: GetChannelIssuesForSlavesUseCase
         @Singleton var getChannelValueStringUseCase: GetChannelValueStringUseCase
+        @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
+        @Singleton var getCaptionUseCase: GetCaptionUseCase
         @Singleton var valuesFormatter: ValuesFormatter
         
         let thermostatValue = channel.value?.asThermostatValue()
@@ -151,11 +154,10 @@ private extension ChannelWithChildren {
             onlineState: ListOnlineState.from(channel.isOnline()),
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             icon: getChannelIcon(channel),
-            currentPower: thermostatValue?.state.power?.also { valuesFormatter.percentageToString($0/100) },
+            currentPower: thermostatValue?.state.power?.floatValue.also { valuesFormatter.percentageToString($0/100) },
             value: value,
             indicatorIcon: thermostatValue?.indicatorIcon ?? .off,
-            issueIconType: thermostatValue?.issueIcon,
-            issueMessage: thermostatValue?.issueText,
+            issues: getChannelIssuesForSlavesUseCase.invoke(channelWithChildren: shareable),
             showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),

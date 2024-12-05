@@ -288,6 +288,12 @@ extension DiContainer {
                 getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
             )
         )
+        register(
+            GetChannelIssuesForSlavesUseCase.self,
+            SharedCore.GetChannelIssuesForSlavesUseCase(
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
+            )
+        )
         
         // MARK: Not singletons
 

@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent> {
     @Singleton<ReadChannelByRemoteIdUseCase> var readChannelByRemoteIdUseCase
@@ -118,7 +119,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
                 .changing(path: \.issues, to: createIssues(value.flags))
                 .changing(path: \.offline, to: !value.online)
                 .changing(path: \.positionPresentation, to: getPositionPresentation())
-                .changing(path: \.positionUnknown, to: !value.hasValidPosition)
+                .changing(path: \.positionUnknown, to: !value.hasValidPosition())
                 .changing(path: \.calibrating, to: value.flags.contains(.calibrationInProgress))
                 .changing(path: \.calibrationPossible, to: (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)) > 0)
         )
@@ -154,9 +155,10 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
         fatalError("handleGroup(group:,onlineSUmmary:) needs to be implemented!")
     }
     
-    func createIssues(_ flags: [SuplaRollerShutterFlag]) -> [ChannelIssueItem] {
-        flags.filter { $0.issueFlag }
-            .map { ChannelIssueItem(issueIconType: $0.issueIconType!, description: $0.issueDescription!) }
+    func createIssues(_ flags: [SuplaShadingSystemFlag]) -> [ChannelIssueItem] {
+        flags.filter { $0.isIssueFlag() }
+            .map { $0.asChannelIssues() }
+            .compactMap { $0 }
     }
     
     func canShowMoveTime(_ state: S) -> Bool {

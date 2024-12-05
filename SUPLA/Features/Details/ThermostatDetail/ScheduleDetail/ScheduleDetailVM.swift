@@ -18,6 +18,7 @@
 
 import RxSwift
 import RxRelay
+import SharedCore
 
 private let REFRESH_DELAY_S: Double = 3
 

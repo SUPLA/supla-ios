@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
 final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
     
@@ -42,7 +42,7 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
             programConfigurations.append(
                 SuplaWeeklyScheduleProgram(
                     program: SuplaScheduleProgram.from(value: UInt8(programId + 1)),
-                    mode: SuplaHvacMode.from(hvacMode: program.Mode),
+                    mode: SuplaHvacMode.companion.from(byte: Int32(program.Mode)),
                     setpointTemperatureHeat: program.SetpointTemperatureHeat,
                     setpointTemperatureCool: program.SetpointTemperatureCool
                 )
@@ -102,7 +102,7 @@ struct SuplaWeeklyScheduleProgram: Equatable {
                 return valuesFormatter.temperatureToString(heatTemperature, withUnit: false)
             } else if (mode == .cool) {
                 return valuesFormatter.temperatureToString(coolTemperature, withUnit: false)
-            } else if (mode == .auto) {
+            } else if (mode == .heatCool) {
                 let min = valuesFormatter.temperatureToString(heatTemperature, withUnit: false)
                 let max = valuesFormatter.temperatureToString(coolTemperature, withUnit: false)
                 return "\(min) - \(max)"

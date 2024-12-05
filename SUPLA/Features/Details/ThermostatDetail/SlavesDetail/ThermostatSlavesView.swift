@@ -17,6 +17,7 @@
  */
 
 import SwiftUI
+import SharedCore
 
 extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
@@ -90,12 +91,15 @@ extension ThermostatSlavesFeature {
                 }
                 HStack(spacing: Dimens.distanceSmall) {
                     Spacer()
-                    ListItemIssueIcon(icon: data.issueIconType)
-                        .onTapGesture {
-                            if let message = data.issueMessage {
-                                onInfoAction(message)
+                    if let issueIcon = data.issues.icons.first {
+                        ListItemIssueIcon(icon: issueIcon)
+                            .onTapGesture {
+                                if (data.issues.hasMessage()) {
+                                    onInfoAction(data.issues.message)
+                                }
                             }
-                        }
+                    }
+                        
                     if (data.showChannelStateIcon) {
                         ListItemInfoIcon()
                             .onTapGesture { onStatusAction(data.channel) }
@@ -139,10 +143,10 @@ extension ThermostatSlavesFeature {
     }
 
     struct ListItemIssueIcon: SwiftUI.View {
-        let icon: IssueIconType?
+        let icon: IssueIcon?
 
         var body: some SwiftUI.View {
-            if let icon = icon?.icon() {
+            if let icon = icon?.resource {
                 Image(uiImage: icon)
                     .resizable()
                     .scaledToFit()
@@ -206,8 +210,7 @@ extension ThermostatSlavesFeature {
         currentPower: nil,
         value: "22,7°C",
         indicatorIcon: .heating,
-        issueIconType: .warning,
-        issueMessage: nil,
+        issues: ListItemIssues(icons: [IssueIcon.Warning()], issuesStrings: []),
         showChannelStateIcon: true,
         subValue: "23,0°",
         pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-on"),
@@ -223,8 +226,7 @@ extension ThermostatSlavesFeature {
             currentPower: "25%",
             value: "22,7°C",
             indicatorIcon: .standby,
-            issueIconType: nil,
-            issueMessage: nil,
+            issues: ListItemIssues(icons: [], issuesStrings: []),
             showChannelStateIcon: true,
             subValue: "23,0°",
             pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-off"),
@@ -239,8 +241,7 @@ extension ThermostatSlavesFeature {
             currentPower: "100%",
             value: "22,4°C",
             indicatorIcon: .standby,
-            issueIconType: nil,
-            issueMessage: nil,
+            issues: ListItemIssues(icons: [], issuesStrings: []),
             showChannelStateIcon: true,
             subValue: "23,0°",
             pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-on"),

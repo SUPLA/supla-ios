@@ -18,6 +18,7 @@
 
 import RxRelay
 import RxSwift
+import SharedCore
 
 private let TOP_VIEW_HEIGHT: CGFloat = 80
 
@@ -522,8 +523,8 @@ private class IssuesView: UIStackView {
         
         for issueItem in issueItems {
             let view = IssueView()
-            view.icon = issueItem.issueIconType.icon()
-            view.text = issueItem.description
+            view.icon = issueItem.icon.resource
+            view.text = issueItem.message.string
             
             addArrangedSubview(view)
             issues.append(view)

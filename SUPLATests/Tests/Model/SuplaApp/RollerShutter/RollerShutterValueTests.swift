@@ -18,18 +18,19 @@
 
 @testable import SUPLA
 import XCTest
+import SharedCore
 
 final class RollerShutterValueTests: XCTestCase {
     func test_parseWhenSizeWrong() {
         // when
-        let value = RollerShutterValue.from(Data(), online: false)
+        let value = RollerShutterValue.companion.from(online: false, bytes: KotlinByteArray.from(data: Data()))
         
         // then
         XCTAssertEqual(value.online, false)
-        XCTAssertEqual(value.position, SHADING_SYSTEM_INVALID_VALUE)
+        XCTAssertEqual(value.position, ShadingSystemValue.companion.INVALID_VALUE)
         XCTAssertEqual(value.bottomPosition, 0)
         XCTAssertEqual(value.flags, [])
-        XCTAssertEqual(value.hasValidPosition, false)
+        XCTAssertEqual(value.hasValidPosition(), false)
     }
     
     func test_parseWhenSizeCorrect() {
@@ -37,14 +38,14 @@ final class RollerShutterValueTests: XCTestCase {
         let data = RollerShutterValue.mockData(position: 22, bottomPosition: 88)
         
         // when
-        let value = RollerShutterValue.from(data, online: true)
+        let value = RollerShutterValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
         
         // then
         XCTAssertEqual(value.online, true)
         XCTAssertEqual(value.position, 22)
         XCTAssertEqual(value.bottomPosition, 88)
         XCTAssertEqual(value.flags, [])
-        XCTAssertEqual(value.hasValidPosition, true)
+        XCTAssertEqual(value.hasValidPosition(), true)
     }
     
     func test_parseWhenSizeCorrect_invalidPosition() {
@@ -52,13 +53,13 @@ final class RollerShutterValueTests: XCTestCase {
         let data = RollerShutterValue.mockData(position: 120, bottomPosition: 88, flags: 4)
         
         // when
-        let value = RollerShutterValue.from(data, online: true)
+        let value = RollerShutterValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
         
         // then
         XCTAssertEqual(value.online, true)
         XCTAssertEqual(value.position, -1)
         XCTAssertEqual(value.bottomPosition, 88)
         XCTAssertEqual(value.flags, [.calibrationLost])
-        XCTAssertEqual(value.hasValidPosition, false)
+        XCTAssertEqual(value.hasValidPosition(), false)
     }
 }

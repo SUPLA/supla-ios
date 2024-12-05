@@ -18,6 +18,7 @@
 
 import RxSwift
 import RxRelay
+import SharedCore
 
 class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, ThermostatTimerDetailViewEvent> {
     

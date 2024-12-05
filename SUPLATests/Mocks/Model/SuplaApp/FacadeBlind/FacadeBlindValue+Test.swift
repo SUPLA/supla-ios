@@ -17,14 +17,15 @@
  */
 
 @testable import SUPLA
+import SharedCore
 
 extension FacadeBlindValue {
-    static func mockData(position: Int = 0, tilt: Int = 0, flags: Int16 = 0) -> Data {
+    static func mockData(position: Int = 0, tilt: Int = 0, flags: Int32 = 0) -> Data {
         var cValue = TDSC_FacadeBlindValue(
             position: Int8(position),
             tilt: Int8(tilt),
             reserved: 0,
-            flags: flags,
+            flags: Int16(flags),
             reserved2: (0, 0, 0)
         )
         return Data(bytes: &cValue, count: MemoryLayout<TDSC_FacadeBlindValue>.size)
