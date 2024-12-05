@@ -94,6 +94,12 @@
 /* Scenes */
 "scenes_empty_list_button" = "Add scene in Supla Cloud";
 
+/* Create Profile */
+"create_profile_title_create" = "Add an account";
+"create_profile_title_modify" = "Edit account";
+"create_profile_basic_warning_title" = "Setting not available";
+"create_profile_basic_warning_message" = "Before turning advanced mode off you need to switch to email authentication and enable automatic server detectio.";
+
 /* App Settings */
 "app_settings.permissions_header" = "Permissions";
 "app_settings.notifications_label" = "Notifications";
