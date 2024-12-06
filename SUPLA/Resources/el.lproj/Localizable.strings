@@ -334,6 +334,7 @@
 "channel_caption_garage_door" = "Γκαραζόπορτα";
 "channel_caption_pump_switch" = "Διακόπτης αντλίας";
 "channel_caption_heat_or_cold_source_switch" = "Διακόπτης πηγής θερμότητας ή κρύου";
+"channel_caption_humidity" = "Υγρασία";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
 

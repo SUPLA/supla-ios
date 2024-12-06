@@ -332,6 +332,7 @@ struct Strings {
             static let captionGarageDoor = "channel_caption_garage_door".toLocalized()
             static let captionPumpSwitch = "channel_caption_pump_switch".toLocalized()
             static let captionHeatOrCouldSourceSwitch = "channel_caption_heat_or_cold_source_switch".toLocalized()
+            static let captionHumidity = "channel_caption_humidity".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
         }

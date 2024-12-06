@@ -334,6 +334,7 @@
 "channel_caption_garage_door" = "Garažna vrata";
 "channel_caption_pump_switch" = "Stikalo črpalke";
 "channel_caption_heat_or_cold_source_switch" = "Stikalo za vir toplote ali hladu";
+"channel_caption_humidity" = "Vlažnost";
 "channel_offline" = "Kanal je brez povezave";
 "channel_battery_level" = "Raven baterije (%d - %@): %d%%";
 

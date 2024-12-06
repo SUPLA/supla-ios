@@ -341,6 +341,7 @@
 "channel_caption_garage_door" = "Brama garażowa";
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
+"channel_caption_humidity" = "Wilgotność";
 "channel_offline" = "Kanał jest offline";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
 

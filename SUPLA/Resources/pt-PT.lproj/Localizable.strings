@@ -334,6 +334,7 @@
 "channel_caption_garage_door" = "Portão de garagem";
 "channel_caption_pump_switch" = "Interruptor da bomba";
 "channel_caption_heat_or_cold_source_switch" = "Interruptor da fonte de calor ou frio";
+"channel_caption_humidity" = "Humidade";
 "channel_offline" = "O canal está offline";
 "channel_battery_level" = "Nível de bateria (%d - %@): %d%%";
 

@@ -370,6 +370,7 @@
 		A517DFED2CFD9C2300D6148C /* SAProfileServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */; };
 		A517DFEF2CFDA4AD00D6148C /* ChannelStateRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */; };
 		A517DFF12D009DC500D6148C /* GetChannelIssuesForSlavesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */; };
+		A517DFF32D03241D00D6148C /* KotlinBoolean+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFF22D03241500D6148C /* KotlinBoolean+iOS.swift */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */; };
 		A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */; };
@@ -1864,6 +1865,7 @@
 		A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAProfileServer+Mock.swift"; sourceTree = "<group>"; };
 		A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepositoryMock.swift; sourceTree = "<group>"; };
 		A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelIssuesForSlavesUseCase.swift; sourceTree = "<group>"; };
+		A517DFF22D03241500D6148C /* KotlinBoolean+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KotlinBoolean+iOS.swift"; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatDetailVC.swift; sourceTree = "<group>"; };
@@ -4827,6 +4829,7 @@
 		A58D1B7C2CDCB10700B5A019 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A517DFF22D03241500D6148C /* KotlinBoolean+iOS.swift */,
 				A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */,
 				A58D1B832CDCF28100B5A019 /* Supla+Shareable.swift */,
 				A58D1B812CDCE29000B5A019 /* KotlinInt+iOS.swift */,
@@ -6867,6 +6870,7 @@
 				A5B3CBDF2B62504D00F95AC3 /* GetChannelValueUseCase.swift in Sources */,
 				A5A15FED2C298A6A0049AA73 /* StatusVC.swift in Sources */,
 				A58A9C072AA1D64A00D28848 /* ChannelRelationRepository.swift in Sources */,
+				A517DFF32D03241D00D6148C /* KotlinBoolean+iOS.swift in Sources */,
 				A5AE7A8B2A3ADF330097FA8B /* TitleSwitchCell.swift in Sources */,
 				A598CAC32CC246DF00A784FA /* ImpulseCounterValueProvider.swift in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,

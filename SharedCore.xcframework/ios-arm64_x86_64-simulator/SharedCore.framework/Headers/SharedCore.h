@@ -244,11 +244,11 @@ __attribute__((swift_name("ThermostatSubfunction.Companion")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("BatteryInfo")))
 @interface SharedCoreBatteryInfo : SharedCoreBase
-@property (readonly) BOOL batteryPowered __attribute__((swift_name("batteryPowered")));
+@property (readonly) SharedCoreBoolean * _Nullable batteryPowered __attribute__((swift_name("batteryPowered")));
 @property (readonly) SharedCoreInt * _Nullable health __attribute__((swift_name("health")));
 @property (readonly) SharedCoreInt * _Nullable level __attribute__((swift_name("level")));
-- (instancetype)initWithBatteryPowered:(BOOL)batteryPowered level:(SharedCoreInt * _Nullable)level health:(SharedCoreInt * _Nullable)health __attribute__((swift_name("init(batteryPowered:level:health:)"))) __attribute__((objc_designated_initializer));
-- (SharedCoreBatteryInfo *)doCopyBatteryPowered:(BOOL)batteryPowered level:(SharedCoreInt * _Nullable)level health:(SharedCoreInt * _Nullable)health __attribute__((swift_name("doCopy(batteryPowered:level:health:)")));
+- (instancetype)initWithBatteryPowered:(SharedCoreBoolean * _Nullable)batteryPowered level:(SharedCoreInt * _Nullable)level health:(SharedCoreInt * _Nullable)health __attribute__((swift_name("init(batteryPowered:level:health:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreBatteryInfo *)doCopyBatteryPowered:(SharedCoreBoolean * _Nullable)batteryPowered level:(SharedCoreInt * _Nullable)level health:(SharedCoreInt * _Nullable)health __attribute__((swift_name("doCopy(batteryPowered:level:health:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));

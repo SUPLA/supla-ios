@@ -334,6 +334,7 @@
 "channel_caption_garage_door" = "Garagedeur";
 "channel_caption_pump_switch" = "Pompschakelaar";
 "channel_caption_heat_or_cold_source_switch" = "Schakelaar voor warmte- of koudebron";
+"channel_caption_humidity" = "Vochtigheid";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
 

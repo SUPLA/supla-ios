@@ -333,6 +333,7 @@
 "channel_caption_alarm_armament" = "Snímač nastavení alarmu";
 "channel_caption_general_purpose_measurment" = "Kanál měření";
 "channel_caption_general_purpose_meter" = "Počítací kanál";
+"channel_caption_humidity" = "Vlhkost";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie (%d - %@): %d%%";
 

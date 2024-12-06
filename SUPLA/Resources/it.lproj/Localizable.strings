@@ -352,6 +352,7 @@
 "channel_caption_garage_door" = "Portone di garage";
 "channel_caption_pump_switch" = "Commutatore della pompa";
 "channel_caption_heat_or_cold_source_switch" = "Commutatore della fonte di calore o di freddo";
+"channel_caption_humidity" = "Umidità";
 "channel_offline" = "Il canale è offline";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
