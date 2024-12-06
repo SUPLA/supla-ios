@@ -335,6 +335,7 @@
 "channel_caption_garage_door" = "Garasjeporten";
 "channel_caption_pump_switch" = "Pumpebryter";
 "channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
+"channel_caption_humidity" = "Fuktighet";
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå (%d - %@): %d%%";
 

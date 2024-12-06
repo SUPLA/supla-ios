@@ -312,6 +312,7 @@
 "channel_caption_garage_door" = "Garagentor";
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
+"channel_caption_humidity" = "Feuchtigkeitssensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 

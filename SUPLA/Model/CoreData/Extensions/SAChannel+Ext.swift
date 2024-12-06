@@ -61,7 +61,7 @@ extension SAChannel {
         
         if state.batteryPowered != nil || state.batteryLevel != nil {
             return BatteryInfo(
-                batteryPowered: state.batteryPowered?.boolValue ?? false,
+                batteryPowered: KotlinBoolean.from(state.batteryPowered?.boolValue),
                 level: KotlinInt.from(state.batteryLevel),
                 health: KotlinInt.from(state.batteryHealth)
             )

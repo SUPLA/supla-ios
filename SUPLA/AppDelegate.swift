@@ -100,7 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SALog.debug("Application did enter background")
         wasInBackground = true
         
-        var settings = settings
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
         
         disconnectUseCase.invokeSynchronous(reason: .appInBackground)
@@ -112,7 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SALog.debug("Push token: \(token)")
         #endif
         
-        var settings = settings
         settings.pushToken = deviceToken
         UpdateTokenTask().update(token: deviceToken) { SALog.info("Token update task finished") }
     }
@@ -133,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler(.alert)
+        completionHandler([.list, .banner])
     }
     
     private func registerForNotifications() {
@@ -144,8 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 DispatchQueue.main.async { UIApplication.shared.registerForRemoteNotifications() }
             } else {
                 SALog.error("Notifications not allowed \(String(describing: error))")
-                var settings = self?.settings
-                settings?.pushToken = nil
+                self?.settings.pushToken = nil
             }
         }
     }

@@ -334,6 +334,7 @@
 "channel_caption_garage_door" = "Гаражні двері";
 "channel_caption_pump_switch" = "Перемикач насоса";
 "channel_caption_heat_or_cold_source_switch" = "Перемикач джерела тепла або холоду";
+"channel_caption_humidity" = "Вологість";
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї (%d - %@): %d%%";
 

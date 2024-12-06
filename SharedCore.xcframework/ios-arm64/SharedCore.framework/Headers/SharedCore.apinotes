@@ -1601,7 +1601,7 @@ Classes:
   - Name: "batteryPowered"
     PropertyKind: "Instance"
     SwiftName: "batteryPowered"
-    Type: "BOOL"
+    Type: "SharedCoreBoolean * _Nullable"
   - Name: "health"
     PropertyKind: "Instance"
     SwiftName: "health"
@@ -1616,7 +1616,7 @@ Classes:
     SwiftName: "init(batteryPowered:level:health:)"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreBoolean * _Nullable"
     - Position: 1
       Type: "SharedCoreInt * _Nullable"
     - Position: 2
@@ -1627,7 +1627,7 @@ Classes:
     ResultType: "SharedCoreBatteryInfo * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreBoolean * _Nullable"
     - Position: 1
       Type: "SharedCoreInt * _Nullable"
     - Position: 2
