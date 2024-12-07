@@ -27,18 +27,14 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChidlrenUseCase
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
-    @Singleton<ProfileRepository> private var profileRepository
     
     func invoke(remoteId: Int32) -> Observable<DaysRange?> {
         readChannelWithChidlrenUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { channel in
-                self.profileRepository.getActiveProfile().map { (channel, $0) }
-            }
             .flatMapFirst {
-                if ($0.0.channel.isHvacThermostat()) {
+                if ($0.channel.isHvacThermostat()) {
                     return Observable.zip(
-                        self.findMinTime(channelWithChildren: $0.0, profile: $0.1),
-                        self.findMaxTime(channelWithChildren: $0.0, profile: $0.1)
+                        self.findMinTime(channelWithChildren: $0, serverId: $0.channel.profile.server?.id),
+                        self.findMaxTime(channelWithChildren: $0, serverId: $0.channel.profile.server?.id)
                     ) { min, max in
                         var result: DaysRange? = nil
                         if let start = min,
@@ -54,15 +50,15 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
                     }
                 } else {
                     return Observable.error(GeneralError.illegalArgument(
-                        message: "Channel function not supported (\($0.0.channel.func))"
+                        message: "Channel function not supported (\($0.channel.func))"
                     ))
                 }
             }
     }
     
-    private func findMinTime(channelWithChildren: ChannelWithChildren, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    private func findMinTime(channelWithChildren: ChannelWithChildren, serverId: Int32?) -> Observable<TimeInterval?> {
         var channelsWithMeasurements = channelWithChildren.children
-            .sorted(by: { $0.relationType.rawValue > $1.relationType.rawValue })
+            .sorted(by: { $0.relation.relationType.value > $1.relation.relationType.value })
             .filter { $0.channel.hasMeasurements() }
             .map { $0.channel }
         if (channelWithChildren.channel.hasMeasurements()) {
@@ -76,14 +72,14 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
                 observables.append(
                     temperatureMeasurementItemRepository.findMinTimestamp(
                         remoteId: $0.remote_id,
-                        profile: profile
+                        serverId: serverId
                     )
                 )
             } else if ($0.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
                 observables.append(
                     tempHumidityMeasurementItemRepository.findMinTimestamp(
                         remoteId: $0.remote_id,
-                        profile: profile
+                        serverId: serverId
                     )
                 )
             }
@@ -109,9 +105,9 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
         }
     }
     
-    private func findMaxTime(channelWithChildren: ChannelWithChildren, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    private func findMaxTime(channelWithChildren: ChannelWithChildren, serverId: Int32?) -> Observable<TimeInterval?> {
         var channelsWithMeasurements = channelWithChildren.children
-            .sorted(by: { $0.relationType.rawValue > $1.relationType.rawValue })
+            .sorted(by: { $0.relationType.value > $1.relationType.value })
             .filter { $0.channel.hasMeasurements() }
             .map { $0.channel }
         if (channelWithChildren.channel.hasMeasurements()) {
@@ -125,14 +121,14 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
                 observables.append(
                     temperatureMeasurementItemRepository.findMaxTimestamp(
                         remoteId: $0.remote_id,
-                        profile: profile
+                        serverId: serverId
                     )
                 )
             } else if ($0.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
                 observables.append(
                     tempHumidityMeasurementItemRepository.findMaxTimestamp(
                         remoteId: $0.remote_id,
-                        profile: profile
+                        serverId: serverId
                     )
                 )
             }

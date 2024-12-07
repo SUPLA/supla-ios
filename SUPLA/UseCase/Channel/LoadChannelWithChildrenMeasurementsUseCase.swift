@@ -50,7 +50,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
         _ spec: ChartDataSpec
     ) -> Observable<[ChannelChartSets]> {
         var channelsWithMeasurements = channelWithChildren.children
-            .sorted(by: { $0.relationType.rawValue < $1.relationType.rawValue })
+            .sorted(by: { $0.relationType.value < $1.relationType.value })
             .filter { $0.channel.hasMeasurements() }
             .map { $0.channel }
         if (channelWithChildren.channel.hasMeasurements()) {

@@ -19,7 +19,7 @@
 extension ElectricityMeterSettingsFeature {
     class ViewState: ObservableObject {
         var remoteId: Int32 = 0
-        var profileId: String = ""
+        var profileId: Int32 = 0
         
         @Published var channelName: String = ""
         @Published var showOnChannelsList: SelectableList<SuplaElectricityMeasurementType> = .init(selected: .frequency, items: [.frequency])

@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
-protocol GlobalSettings {
+protocol GlobalSettings: SharedCore.ApplicationPreferences {
     
     var anyAccountRegistered: Bool { get set }
     var newGestureInfoShown: Bool { get set }
@@ -37,6 +37,8 @@ protocol GlobalSettings {
     var darkMode: DarkModeSetting { get set }
     var lockScreenSettings: LockScreenSettings { get set }
     var backgroundEntryTime: Double? { get set }
+    var nextProfileId: Int32 { get }
+    var nextServerId: Int32 { get }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -184,6 +186,36 @@ class GlobalSettingsImpl: GlobalSettings {
         set {
             if let time = newValue {
                 defaults.set(time, forKey: backgroundEntryTimeKey)
+            }
+        }
+    }
+    
+    private let batteryWarningLevelKey = "supla_battery_warning_level_key"
+    var batteryWarningLevel: Int32 {
+        get { return exists(batteryWarningLevelKey) ? Int32(defaults.integer(forKey: batteryWarningLevelKey)) : 10 }
+        set {
+            defaults.set(newValue, forKey: batteryWarningLevelKey)
+        }
+    }
+    
+    private let nextProfileIdKey = "next_profile_id_key"
+    var nextProfileId: Int32 {
+        get {
+            synced(self) {
+                let profileId = exists(nextProfileIdKey) ? Int32(defaults.integer(forKey: nextProfileIdKey)) : 1
+                defaults.set(profileId + 1, forKey: nextProfileIdKey)
+                return profileId
+            }
+        }
+    }
+    
+    private let nextServerIdKey = "next_server_id_key"
+    var nextServerId: Int32 {
+        get {
+            synced(self) {
+                let profileId = exists(nextServerIdKey) ? Int32(defaults.integer(forKey: nextServerIdKey)) : 1
+                defaults.set(profileId + 1, forKey: nextServerIdKey)
+                return profileId
             }
         }
     }

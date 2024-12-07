@@ -21,7 +21,7 @@ extension LockScreenFeature {
     enum UnlockAction: Equatable {
         case authorizeApplication
         case authorizeAccountsCreate
-        case authorizeAccountsEdit(profileId: ProfileID)
+        case authorizeAccountsEdit(profileId: Int32?)
         case turnOffPin
         case confirmAuthorizeApplication
         case confirmAuthorizeAccounts

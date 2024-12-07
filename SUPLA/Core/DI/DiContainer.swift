@@ -61,7 +61,7 @@ extension DiContainer {
         // MARK: General
 
         register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
-        register(GlobalSettings.self, GlobalSettingsImpl())
+        let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())
         register(SuplaClientProvider.self, SuplaClientProviderImpl())
         register(SuplaAppProvider.self, SuplaAppProviderImpl())
@@ -116,6 +116,8 @@ extension DiContainer {
         let generalPurposeMeterItemRepository = GeneralPurposeMeterItemRepositoryImpl()
         register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
         register((any NotificationRepository).self, NotificationRepositoryImpl())
+        register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
+        register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
         
         // MARK: Usecases
 
@@ -146,6 +148,7 @@ extension DiContainer {
         register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
         register(LoadElectricityMeterMeasurementsUseCase.self, LoadElectricityMeterMeasurementsUseCaseImpl())
         register(GetChannelActionStringUseCase.self, SharedCore.GetChannelActionStringUseCase())
+        register(ChannelToRootRelationHolderUseCase.self, ChannelToRootRelationHolderUseCaseImpl())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())
@@ -172,8 +175,7 @@ extension DiContainer {
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())
         register(LoadChannelWithChildrenMeasurementsUseCase.self, LoadChannelWithChildrenMeasurementsUseCaseImpl())
         register(LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
-        register(GetChannelBaseDefaultCaptionUseCase.self, GetChannelBaseDefaultCaptionUseCaseImpl())
-        register(GetChannelBaseCaptionUseCase.self, GetChannelBaseCaptionUseCaseImpl())
+        register(GetChannelBaseDefaultCaptionUseCase.self, SharedCore.GetChannelDefaultCaptionUseCase())
         register(ChannelBaseActionUseCase.self, ChannelBaseActionUseCaseImpl())
         // Usecases - ChannelConfig
         register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())
@@ -223,11 +225,75 @@ extension DiContainer {
         register(NotificationCenterWrapper.self, NotificationCenterWrapperImpl())
         // Usecases - Lock
         register(CheckPinUseCase.self, CheckPinUseCaseImpl())
+        // UseCases - Ocr
+        register(DownloadOcrPhotoUseCase.self, DownloadOcrPhotoUseCaseImpl())
+        // UseCases - ChannelState
+        register(UpdateChannelStateUseCase.self, UpdateChannelStateUseCaseImpl())
+        // UseCases - ProfileServer
+        register(ReadOrCreateProfileServerUseCase.self, ReadOrCreateProfileServerUseCaseImpl())
         
         // MARK: Features
         
         // Electricity
         register(ElectricityMeterGeneralStateHandler.self, ElectricityMeterGeneralStateHandlerImpl())
+        
+        // MARK: Shared
+
+        // level 0
+        let ocrImageNamingProvider = registerAndGet(OcrImageNamingProvider.self, SharedCore.OcrImageNamingProvider())
+        let cacheFileAccess = registerAndGet(CacheFileAccessProxy.self, CacheFileAccessProxyImpl())
+        let storeFileInDirectoryUseCase = SharedCore.StoreFileInDirectoryUseCase(cacheFileAccess: cacheFileAccess)
+        let base64Helper = SharedCore.Base64Helper()
+        let getChannelDefaultCaptionUseCase = registerAndGet(
+            GetChannelDefaultCaptionUseCase.self,
+            SharedCore.GetChannelDefaultCaptionUseCase()
+        )
+        let getChannelBatteryIconUseCase = registerAndGet(
+            GetChannelBatteryIconUseCase.self,
+            SharedCore.GetChannelBatteryIconUseCase()
+        )
+        
+        // level 1
+        let getCaptionUseCase = registerAndGet(
+            GetCaptionUseCase.self,
+            SharedCore.GetCaptionUseCase(getChannelDefaultCaptionUseCase: getChannelDefaultCaptionUseCase)
+        )
+        let getChannelLowBatteryIssueUseCase = registerAndGet(
+            GetChannelLowBatteryIssueUseCase.self,
+            SharedCore.GetChannelLowBatteryIssueUseCase(
+                getCaptionUseCase: getCaptionUseCase,
+                applicationPreferences: globalSettings
+            )
+        )
+        register(
+            CheckOcrPhotoExistsUseCase.self,
+            SharedCore.CheckOcrPhotoExistsUseCase(
+                ocrImageNamingProvider: ocrImageNamingProvider,
+                cacheFileAccess: cacheFileAccess
+            )
+        )
+        register(
+            StoreChannelOcrPhotoUseCase.self,
+            SharedCore.StoreChannelOcrPhotoUseCase(
+                storeFileInDirectoryUseCase: storeFileInDirectoryUseCase,
+                ocrImageNamingProvider: ocrImageNamingProvider,
+                base64Helper: base64Helper
+            )
+        )
+        
+        // level 2
+        register(
+            GetChannelIssuesForListUseCase.self,
+            SharedCore.GetChannelIssuesForListUseCase(
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
+            )
+        )
+        register(
+            GetChannelIssuesForSlavesUseCase.self,
+            SharedCore.GetChannelIssuesForSlavesUseCase(
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
+            )
+        )
         
         // MARK: Not singletons
 
@@ -236,6 +302,11 @@ extension DiContainer {
     
     static func register<Component>(_ type: Component.Type, _ component: Any) {
         DiContainer.shared.register(type: type, component)
+    }
+    
+    static func registerAndGet<Component, Instance>(_ type: Component.Type, _ component: Instance) -> Instance {
+        DiContainer.shared.register(type: type, component)
+        return component
     }
     
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {

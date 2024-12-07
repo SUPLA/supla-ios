@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
@@ -46,6 +48,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             coordinator.navigateToWindowDetail(item: item, pages: pages)
         case .navigateToElectricityMeterDetail(let item, let pages):
             coordinator.navigateToElectricityMeterDetail(item: item, pages: pages)
+        case .navigateToImpulseCounterDetail(let item, let pages):
+            coordinator.navigateToImpulseCounterDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
         }
@@ -100,8 +104,8 @@ extension ChannelListVC: BaseCellDelegate {
         viewModel.onButtonClicked(buttonType: buttonType, data: data)
     }
     
-    func onIssueIconTapped(issueMessage: String) {
-        let alert = UIAlertController(title: "SUPLA", message: issueMessage, preferredStyle: .alert)
+    func onIssuesIconTapped(issues: ListItemIssues) {
+        let alert = UIAlertController(title: "SUPLA", message: issues.message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: Strings.General.ok, style: .default)
         
         alert.title = NSLocalizedString("Warning", comment: "")

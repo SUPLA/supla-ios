@@ -61,9 +61,13 @@ final class ReadChannelWithChildrenTreeUseCaseTests: UseCaseTest<ChannelWithChil
         
         profileRepository.activeProfileObservable = Observable.just(profile)
         channelRepository.allVisibleChannelsObservable = Observable.just(channels)
+        
+        let relation1 = SAChannelRelation.mock(1, channelId: 2, type: .meter)
+        let relation2 = SAChannelRelation.mock(1, channelId: 3, type: .masterThermostat)
+        let relation3 = SAChannelRelation.mock(3, channelId: 4, type: .mainThermometer)
         channelRelationRepository.getParentsMapReturns = Observable.just([
-            1: [SAChannelRelation.mock(1, channelId: 2, type: .meter), SAChannelRelation.mock(1, channelId: 3, type: .masterThermostat)],
-            3: [SAChannelRelation.mock(3, channelId: 4, type: .mainThermometer)]
+            1: [relation1, relation2],
+            3: [relation3]
         ])
         
         // when
@@ -76,9 +80,9 @@ final class ReadChannelWithChildrenTreeUseCaseTests: UseCaseTest<ChannelWithChil
         assertEvents([
             .next(
                 ChannelWithChildren(channel: channels[0], children: [
-                    ChannelChild(channel: channels[1], relationType: .meter),
-                    ChannelChild(channel: channels[2], relationType: .masterThermostat, children: [
-                        ChannelChild(channel: channels[3], relationType: .mainThermometer)
+                    ChannelChild(channel: channels[1], relation: relation1),
+                    ChannelChild(channel: channels[2], relation: relation2, children: [
+                        ChannelChild(channel: channels[3], relation: relation3)
                     ])
                 ])
             ),

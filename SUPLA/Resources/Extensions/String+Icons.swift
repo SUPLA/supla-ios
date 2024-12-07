@@ -80,6 +80,16 @@ extension String {
         
         static let fingerprint = "icon_fingerprint"
         
+        static let battery = "icon_battery"
+        static let battery_0 = "icon_battery_0"
+        static let battery_25 = "icon_battery_25"
+        static let battery_50 = "icon_battery_50"
+        static let battery_75 = "icon_battery_75"
+        static let battery_100 = "icon_battery_100"
+        static let battery_not_used = "icon_battery_not_used"
+        
+        static let ocrPhoto = "icon_ocr_photo"
+        
         // MARK: Functions
         static let fncUnknown = "unknown_channel"
         // Electricitymeter

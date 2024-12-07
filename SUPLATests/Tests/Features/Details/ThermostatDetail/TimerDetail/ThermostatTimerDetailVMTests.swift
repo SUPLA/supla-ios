@@ -17,6 +17,7 @@
  */
 @testable import SUPLA
 import XCTest
+import SharedCore
 
 final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailViewState, ThermostatTimerDetailViewEvent> {
     

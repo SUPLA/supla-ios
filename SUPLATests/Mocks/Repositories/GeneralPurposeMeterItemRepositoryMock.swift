@@ -20,70 +20,70 @@ import RxSwift
 @testable import SUPLA
 
 final class GeneralPurposeMeterItemRepositoryMock: BaseRepositoryMock<SAGeneralPurposeMeterItem>, GeneralPurposeMeterItemRepository {
-    var deleteAllForRemoteIdAndProfileParameters: [(Int32, AuthProfileItem)] = []
+    var deleteAllForRemoteIdAndProfileParameters: [(Int32, Int32?)] = []
     var deleteAllForRemoteIdAndProfileReturns: Observable<Void> = .empty()
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> RxSwift.Observable<Void> {
-        deleteAllForRemoteIdAndProfileParameters.append((remoteId, profile))
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> RxSwift.Observable<Void> {
+        deleteAllForRemoteIdAndProfileParameters.append((remoteId, serverId))
         return deleteAllForRemoteIdAndProfileReturns
     }
     
-    var deleteAllForProfileParameters: [AuthProfileItem] = []
+    var deleteAllForProfileParameters: [Int32?] = []
     var deleteAllForProfileReturns: Observable<Void> = .empty()
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllForProfileParameters.append(profile)
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAllForProfileParameters.append(serverId)
         return deleteAllForProfileReturns
     }
     
-    var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []
+    var findMeasurementsParameters: [(Int32, Int32?, Date, Date)] = []
     var findMeasurementsReturns: Observable<[SAGeneralPurposeMeterItem]> = .empty()
     func findMeasurements(
         remoteId: Int32,
-        profile: AuthProfileItem,
+        serverId: Int32?,
         startDate: Date,
         endDate: Date
     ) -> Observable<[SAGeneralPurposeMeterItem]> {
-        findMeasurementsParameters.append((remoteId, profile, startDate, endDate))
+        findMeasurementsParameters.append((remoteId, serverId, startDate, endDate))
         return findMeasurementsReturns
     }
     
-    var findMinTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMinTimestampParameters: [(Int32, Int32?)] = []
     var findMinTimestampReturns: Observable<TimeInterval?> = .empty()
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        findMinTimestampParameters.append((remoteId, profile))
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        findMinTimestampParameters.append((remoteId, serverId))
         return findMinTimestampReturns
     }
     
-    var findMaxTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMaxTimestampParameters: [(Int32, Int32?)] = []
     var findMaxTimestampReturns: Observable<TimeInterval?> = .empty()
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        findMaxTimestampParameters.append((remoteId, profile))
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        findMaxTimestampParameters.append((remoteId, serverId))
         return findMaxTimestampReturns
     }
     
-    var findCountParameters: [(Int32, AuthProfileItem)] = []
+    var findCountParameters: [(Int32, Int32?)] = []
     var findCountReturns: Observable<Int> = .empty()
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        findCountParameters.append((remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        findCountParameters.append((remoteId, serverId))
         return findCountReturns
     }
     
-    var storeMeasurementsParameters: [([SuplaCloudClient.GeneralPurposeMeter], DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?, AuthProfileItem, Int32, SuplaChannelGeneralPurposeMeterConfig)] = []
+    var storeMeasurementsParameters: [([SuplaCloudClient.GeneralPurposeMeter], DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?, Int32?, Int32, SuplaChannelGeneralPurposeMeterConfig)] = []
     var storeMeasurementsReturns: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest? = nil
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
         latestItem: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32,
         channelConfig: SuplaChannelGeneralPurposeMeterConfig
     ) throws -> DownloadGeneralPurposeMeterLogUseCaseImpl.Latest? {
-        storeMeasurementsParameters.append((measurements, latestItem, profile, remoteId, channelConfig))
+        storeMeasurementsParameters.append((measurements, latestItem, serverId, remoteId, channelConfig))
         return storeMeasurementsReturns
     }
     
-    var findOldestEntityParameters: [(Int32, AuthProfileItem)] = []
+    var findOldestEntityParameters: [(Int32, Int32)] = []
     var findOldestEntityReturns: Observable<SAGeneralPurposeMeterItem?> = .empty()
-    func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAGeneralPurposeMeterItem?> {
-        findOldestEntityParameters.append((remoteId, profile))
+    func findOldestEntity(remoteId: Int32, serverId: Int32) -> Observable<SAGeneralPurposeMeterItem?> {
+        findOldestEntityParameters.append((remoteId, serverId))
         return findOldestEntityReturns
     }
     
@@ -104,7 +104,7 @@ final class GeneralPurposeMeterItemRepositoryMock: BaseRepositoryMock<SAGeneralP
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
         timestamp: TimeInterval,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32
     ) throws -> TimeInterval {
         0

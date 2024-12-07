@@ -24,21 +24,12 @@ struct LazyList<Content: View, Item: Identifiable>: View {
 
     var body: some View {
         ScrollView(.vertical) {
-            if #available(iOS 14.0, *) {
-                LazyVStack(spacing: 1) {
-                    ForEach(items) { item in
-                        content(item)
-                            .listRowInsets(EdgeInsets())
-                            .listRowSeparatorInvisible()
-                    }
-                }
-            } else {
-                SwiftUI.List(items) { item in
+            LazyVStack(spacing: 1) {
+                ForEach(items) { item in
                     content(item)
-                        .padding([.bottom], 1)
                         .listRowInsets(EdgeInsets())
                         .listRowSeparatorInvisible()
-                }.listStyle(.plain)
+                }
             }
         }
     }

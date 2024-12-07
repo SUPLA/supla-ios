@@ -287,9 +287,6 @@
 "Scenes" = "Scenos";
 "Not supported function" = "Nepalaikoma funkcija";
 
-"AccountCreation.title" = "Koreguoti paskyrą";
-"AccountCreation.modificationTitle" = "Pridėti paskyrą";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=lt";
 
 "Scenes.ActionButtons.execute" = "Atlikti";
@@ -339,7 +336,9 @@
 "channel_caption_hotelcard" = "Viešbučio kortelės jutiklis";
 "channel_caption_pump_switch" = "Siurblio perjungiklis";
 "channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
+"channel_caption_humidity" = "Drėgmė";
 "channel_offline" = "Kanalas yra offline";
+"channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";
@@ -354,6 +353,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Pridėti sceną Supla Cloud programėlėje";
+
+/* Create Profile */
+"create_profile_title_create" = "Pridėti paskyrą";
+"create_profile_title_modify" = "Koreguoti paskyrą";
+"create_profile_basic_warning_title" = "Režimas nepasiekiamas";
+"create_profile_basic_warning_message" = "Prieš išjungdami išplėstinį režimą, pasirinkite autentifikavimą el. paštu su automatiniu serverio aptikimu.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Pranešimai";
@@ -498,6 +503,7 @@
 "status_access_id_not_assigned" = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį \"Supla Cloud\" ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
 "status_access_id_inactive" = "Prieigos identifikatorius neaktyvus.";
 "status_host_not_found" = "Serverio adresas nerastas";
+"status_cant_connect_to_host" = "Negalima prisijunti prie serverio";
 
 /* Pin setup */
 "pin_setup_header" = "Nustatykite savo PIN kodą";

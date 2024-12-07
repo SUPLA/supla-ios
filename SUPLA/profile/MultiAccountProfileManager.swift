@@ -27,6 +27,8 @@ class MultiAccountProfileManager: NSObject {
     @Singleton<SingleCall> private var singleCall
     @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
     @Singleton<SuplaClientProvider> private var suplaClientProvider
+    @Singleton<ReadOrCreateProfileServerUseCase> private var readOrCreateProfileServerUseCase
+    @Singleton<GlobalSettings> private var settings
     
     private let userDefaults = UserDefaults.standard
     
@@ -100,11 +102,17 @@ extension MultiAccountProfileManager: ProfileManager {
             let isAdvanced = userDefaults.bool(forKey: "advanced_config")
             
             do {
-                try profileRepository.create()
-                    .map { profile in
+                try readOrCreateProfileServerUseCase.invoke(authInfo.serverForCurrentAuthMethod)
+                    .flatMap { server in self.profileRepository.create().map { ($0, server) } }
+                    .map { (profile, server) in
+                        profile.id = self.settings.nextProfileId
                         profile.advancedSetup = isAdvanced
-                        profile.authInfo = authInfo
-                        profile.isActive = true
+                        profile.rawAuthorizationType = authInfo.emailAuth ? AuthorizationType.email.rawValue : AuthorizationType.accessId.rawValue
+                        profile.serverAutoDetect = authInfo.serverAutoDetect
+                        profile.server = server
+                        profile.accessId = Int32(authInfo.accessID)
+                        profile.accessIdPassword = authInfo.accessIDpwd
+                        profile.preferredProtocolVersion = Int32(authInfo.preferredProtocolVersion)
                         
                         return profile
                     }
@@ -115,7 +123,7 @@ extension MultiAccountProfileManager: ProfileManager {
                             AuthProfileItemKeychainHelper.setSecureRandom(
                                 Data(bytes.map { UInt8(bitPattern: $0)}),
                                 key: AuthProfileItemKeychainHelper.guidKey,
-                                id: profile.objectID
+                                id: profile.id
                             )
                         }
                         
@@ -124,7 +132,7 @@ extension MultiAccountProfileManager: ProfileManager {
                             AuthProfileItemKeychainHelper.setSecureRandom(
                                 Data(bytes.map { UInt8(bitPattern: $0) }),
                                 key: AuthProfileItemKeychainHelper.authKey,
-                                id: profile.objectID
+                                id: profile.id
                             )
                         }
                     }
@@ -143,15 +151,14 @@ extension MultiAccountProfileManager: ProfileManager {
         let app = SAApp.instance()
         app.cancelAllRestApiClientTasks()
         
-        let client = suplaClientProvider.provide()
-        client.reconnect()
+        suplaClientProvider.provide()?.reconnect()
     }
     
     private func deletePushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ profileName: String?) {
         DispatchQueue.global(qos: .default).async {
             do {
-                var authDetails = authDetails
-                var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profileName)
+                let authDetails = authDetails
+                let tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profileName)
                 try self.singleCall.registerPushToken(authDetails, protocolVersion, tokenDetails)
             } catch {
                 SALog.error("Push token removal failed with error: \(error)")

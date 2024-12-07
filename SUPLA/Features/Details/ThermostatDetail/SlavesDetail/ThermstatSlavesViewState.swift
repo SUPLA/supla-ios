@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 extension ThermostatSlavesFeature {
     class ViewState: ObservableObject {
         @Published var master: ThermostatData? = nil
@@ -33,8 +35,7 @@ extension ThermostatSlavesFeature {
         let currentPower: String?
         let value: String
         let indicatorIcon: ThermostatIndicatorIcon
-        let issueIconType: IssueIconType?
-        let issueMessage: String?
+        let issues: ListItemIssues
         let showChannelStateIcon: Bool
         let subValue: String?
         let pumpSwitchIcon: IconResult?

@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol DeleteProfileUseCase {
-    func invoke(profileId: ProfileID) -> Observable<DeleteProfileResult>
+    func invoke(profileId: Int32) -> Observable<DeleteProfileResult>
 }
 
 final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
@@ -28,14 +28,14 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
     @Singleton<ActivateProfileUseCase> private var activateProfileUseCase
     @Singleton<RuntimeConfig> private var runtimeConfig
-    @Singleton<GlobalSettings> var settings
+    @Singleton<GlobalSettings> private var settings
     @Singleton<DisconnectUseCase> private var disconnectUseCase
     @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
     
-    func invoke(profileId: ProfileID) -> Observable<DeleteProfileResult> {
-        profileRepository.queryItem(profileId)
-            .flatMap { profile in
-                guard let profile = profile else {
+    func invoke(profileId: Int32) -> Observable<DeleteProfileResult> {
+        profileRepository.getProfile(withId: profileId)
+            .flatMapFirst { profile in
+                guard let profile else {
                     return Observable<DeleteProfileResult>.error(DeleteProfileError.profileNotExist)
                 }
                 
@@ -49,7 +49,7 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                             DeleteProfileResult(
                                 restartNeeded: false,
                                 reauthNeeded: false,
-                                servertAddress: serverAddress
+                                serverAddress: serverAddress
                             )
                         }
                 }
@@ -65,15 +65,12 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
     
     private func removeToken(profile: AuthProfileItem) -> Completable {
         Completable.create { completable in
-            
-            if let authInfo = profile.authInfo,
-               authInfo.isAuthDataComplete
-            {
-                var authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
-                var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
+            if profile.isAuthDataComplete {
+                let authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
+                let tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
                 
                 do {
-                    try self.singleCall.registerPushToken(authDetails, Int32(authInfo.preferredProtocolVersion), tokenDetails)
+                    try self.singleCall.registerPushToken(authDetails, profile.preferredProtocolVersion, tokenDetails)
                 } catch {
                     SALog.error("Push token removal failed with error: \(error)")
                 }
@@ -93,7 +90,7 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
             .flatMap { profiles in
                 if let inactiveProfile = profiles.first(where: { !$0.isActive }) {
                     return self.activateProfileUseCase.invoke(
-                        profileId: inactiveProfile.objectID,
+                        profileId: inactiveProfile.id,
                         force: true
                     )
                     .andThen(
@@ -102,7 +99,7 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                                 DeleteProfileResult(
                                     restartNeeded: false,
                                     reauthNeeded: true,
-                                    servertAddress: serverAddress
+                                    serverAddress: serverAddress
                                 )
                             }
                     )
@@ -111,16 +108,15 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                     return self.removeLocally(profile: profile)
                         .map {
                             var config = self.runtimeConfig
-                            var settings = self.settings
                             
                             config.activeProfileId = nil
-                            settings.anyAccountRegistered = false
+                            self.settings.anyAccountRegistered = false
                             self.suplaAppStateHolder.handle(event: .noAccount)
                             
                             return DeleteProfileResult(
                                 restartNeeded: true,
                                 reauthNeeded: true,
-                                servertAddress: serverAddress
+                                serverAddress: serverAddress
                             )
                         }
                 }
@@ -128,14 +124,10 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
     }
     
     private func getServerAddress(_ profile: AuthProfileItem) -> String? {
-        guard let authInfo = profile.authInfo else { return nil }
-        
-        if (authInfo.emailAuth && authInfo.serverAutoDetect) {
+        if (profile.authorizationType == .email && profile.serverAutoDetect) {
             return nil
-        } else if (authInfo.emailAuth) {
-            return authInfo.serverForEmail
         } else {
-            return authInfo.serverForAccessID
+            return profile.server?.address
         }
     }
 }
@@ -148,5 +140,5 @@ enum DeleteProfileError: Error {
 struct DeleteProfileResult: Equatable {
     var restartNeeded: Bool
     var reauthNeeded: Bool
-    var servertAddress: String?
+    var serverAddress: String?
 }

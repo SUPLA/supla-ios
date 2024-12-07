@@ -65,7 +65,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         
         // then
         assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load active profile"))
+            .error(GeneralError.illegalState(message: "Could not load active profile\'s server ID"))
         ])
     }
     
@@ -73,6 +73,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 2)
         profileRepository.activeProfileObservable = Observable.just(profile)
         
         // when
@@ -88,6 +89,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 2)
         profileRepository.activeProfileObservable = Observable.just(profile)
         suplaCloudService.initialMeasurementsReturns = Observable.just((
             response: HTTPURLResponse(url: .init(string: "url")!, statusCode: 400, httpVersion: nil, headerFields: nil)!,
@@ -107,6 +109,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 2)
         profileRepository.activeProfileObservable = Observable.just(profile)
         suplaCloudService.initialMeasurementsReturns = Observable.just((
             response: HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
@@ -125,7 +128,9 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
     func test_shouldCleanDataWhenNoMeasurements() {
         // given
         let remoteId: Int32 = 213
+        let serverId: Int32 = 1
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         profileRepository.activeProfileObservable = Observable.just(profile)
         suplaCloudService.initialMeasurementsReturns = Observable.just((
             response: mockedHttpResponse(),
@@ -140,14 +145,14 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, profile)]
-        )
+        XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, serverId)])
     }
     
     func test_shouldImportDataWhenDbIsEmpty() {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 2)
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: Date(),
             temperature: "10.0"
@@ -176,6 +181,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 2)
         let measurementDate = Date()
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: measurementDate,
@@ -204,6 +210,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 2)
         let measurementDate = Date()
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: measurementDate,
@@ -230,7 +237,9 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
     func test_shouldCleanDbAndImportNewMeasurements() {
         // given
         let remoteId: Int32 = 213
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         let measurementDate = Date()
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: measurementDate,
@@ -254,7 +263,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             .completed
         ])
         XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
-        XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, profile)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, serverId)])
     }
     
     private func mockedHttpResponse(count: Int = 0, _ totalCountHeader: String = "X-Total-Count") -> HTTPURLResponse {

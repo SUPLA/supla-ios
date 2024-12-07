@@ -144,10 +144,15 @@ again:
         NSSet setWithObjects:
             @"SALocation", @"SAChannel", @"SAChannelValue",
             @"SAChannelExtendedValue", @"SAChannelGroup",
+            @"SAScene", @"SAChannelGroupRelation",
+            @"SAUserIcon", @"SAColorListItem", nil
+    ];
+    
+    NSSet *entitiesWithServerId = [
+        NSSet setWithObjects:
             @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
             @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
-            @"SAThermostatMeasurementItem", @"SAScene", @"SAChannelGroupRelation",
-            @"SAUserIcon", @"SAColorListItem", nil
+            @"SAThermostatMeasurementItem", nil
     ];
     
     NSMutableArray *predicateArray = [NSMutableArray array];
@@ -160,6 +165,18 @@ again:
         } else {
             [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
         }
+    }
+    
+    if ([entitiesWithServerId containsObject: en]) {
+        AuthProfileItem *profile = self.currentProfile;
+        if (profile == nil) {
+            return nil;
+        }
+        SAProfileServer * server = profile.server;
+        if (server == nil) {
+            return nil;
+        }
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"server_id = %d", server.id]];
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -205,11 +222,17 @@ again:
         NSSet setWithObjects:
             @"SALocation", @"SAChannel", @"SAChannelValue",
             @"SAChannelExtendedValue", @"SAChannelGroup",
-            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
-            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
-            @"SAThermostatMeasurementItem", @"SAScene", @"SAChannelGroupRelation",
+            @"SAScene", @"SAChannelGroupRelation",
             @"SAUserIcon", @"SAColorListItem", nil
     ];
+    
+    NSSet *entitiesWithServerId = [
+        NSSet setWithObjects:
+            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
+            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
+            @"SAThermostatMeasurementItem", nil
+    ];
+    
     
     NSMutableArray *predicateArray = [NSMutableArray array];
     [predicateArray addObject:predicate];
@@ -221,6 +244,18 @@ again:
         } else {
             [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
         }
+    }
+    
+    if ([entitiesWithServerId containsObject: en]) {
+        AuthProfileItem *profile = self.currentProfile;
+        if (profile == nil) {
+            return 0;
+        }
+        SAProfileServer * server = profile.server;
+        if (server == nil) {
+            return 0;
+        }
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"server_id = %d", server.id]];
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -339,6 +374,10 @@ again:
     if (profile == nil) {
         return nil;
     }
+    SAProfileServer *server = profile.server;
+    if (server == nil) {
+        return nil;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
@@ -346,7 +385,7 @@ again:
     [fetchRequest setEntity:entity];
     [fetchRequest setResultType:NSDictionaryResultType];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@) AND profile = %@", channel_id, dateFrom, dateFrom, dateTo, dateTo, profile];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@) AND server_id = %d", channel_id, dateFrom, dateFrom, dateTo, dateTo, server.id];
     
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -377,10 +416,15 @@ again:
         return;
     }
     
+    SAProfileServer *server = profile.server;
+    if (server == nil) {
+        return;
+    }
+    
     BOOL del = YES;
     do {
         del = NO;
-        NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND profile = %@", channel_id, profile] entityName:en limit:1000];
+        NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND server_id = %d", channel_id, server.id] entityName:en limit:1000];
         
         if (arr && arr.count) {
             del = YES;
@@ -440,6 +484,10 @@ again:
     if (profile == nil) {
         return nil;
     }
+    SAProfileServer *server = profile.server;
+    if (server == nil) {
+        return nil;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -491,7 +539,7 @@ again:
 
     fetchRequest.propertiesToGroupBy = propertiesToGroupBy.count ? propertiesToGroupBy : nil;
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@) AND profile = %@", channel_id, dateFrom, dateFrom, dateTo, dateTo, profile];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@) AND server_id = %d", channel_id, dateFrom, dateFrom, dateTo, dateTo, server.id];
     
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -506,74 +554,6 @@ again:
     
 }
 
-#pragma mark Electricity Measurements
-
--(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
-    SAElectricityMeasurementItem *item = [[SAElectricityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
-    if (moc) {
-        item.profile = self.currentProfile;
-        [self.managedObjectContext insertObject:item];
-    }
-    return item;
-}
-
--(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
-    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAElectricityMeasurementItem"];
-}
-
--(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id {
-    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
-}
-
--(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
-    return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
-}
-
-
--(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id {
-    long ts = [self getTimestampOfElectricityMeasurementItemWithChannelId:channel_id minimum:YES];
-    return [self timestampStartsWithTheCurrentMonth:ts];
-}
-
-- (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd {
-    
-    double result = 0;
-    int a;
-    
-    NSString *field = fwd ? @"fae" : @"rae";
-    NSMutableArray *props = [[NSMutableArray alloc] init];
-    for(a=1;a<=3;a++) {
-        NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
-        [ed setName:[NSString stringWithFormat:@"%@%i", field, a]];
-        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[NSString stringWithFormat:@"phase%i_%@", a, field]]]]];
-        [ed setExpressionResultType:NSDoubleAttributeType];
-        [props addObject:ed];
-    }
-    
-
-    NSDate *date = [self lastSecondInMonthWithOffset: offset];
-    
-    AuthProfileItem *profile = self.currentProfile;
-    NSPredicate *predicate;
-    if (profile == nil) {
-        predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ AND profile.isActive = true", channel_id, date];
-    } else {
-        predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ AND profile = %@", channel_id, date, profile];
-    }
-    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicate entityName:@"SAElectricityMeasurementItem"];
-    
-    if (sum && sum.count == 3) {
-        for(a=1;a<=3;a++) {
-            result += [[sum objectForKey:[NSString stringWithFormat:@"%@%i", field, a]] doubleValue];
-        }
-    }
-    
-    return result;
-}
-
--(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields {
-    return [self getIncrementalMeasurementsForChannelId:channel_id fields:fields entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
-}
 
 #pragma mark Impulse Counter Measurements
 
@@ -581,7 +561,7 @@ again:
     SAImpulseCounterMeasurementItem *item = [[SAImpulseCounterMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAImpulseCounterMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
     
     if (moc) {
-        item.profile = self.currentProfile;
+        item.server_id = self.currentProfile.server.id;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -611,6 +591,10 @@ again:
     if (profile == nil) {
         return result;
     }
+    SAProfileServer *server = profile.server;
+    if (server == nil) {
+        return result;
+    }
 
     NSMutableArray *props = [[NSMutableArray alloc] init];
     NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
@@ -620,7 +604,7 @@ again:
     [props addObject:ed];
 
     NSDate *date = [self lastSecondInMonthWithOffset: offset];
-    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ && profile = %@", channel_id, date, profile];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ && server_id = %d", channel_id, date, server.id];
     NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAImpulseCounterMeasurementItem"];
     
     if (sum && sum.count == 1) {
@@ -639,7 +623,7 @@ again:
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
     SAThermostatMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
-    item.profile = self.currentProfile;
+    item.server_id = self.currentProfile.server.id;
     [self.managedObjectContext insertObject:item];
     return item;
 }

@@ -63,11 +63,15 @@ extension SharedCore.__SuplaHvacMode {
   public var ordinal: Swift.Int32 {
     get
   }
+  public static var companion: SharedCore.__ThermostatSubfunction.Companion {
+    get
+  }
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction, result: inout SharedCore.ThermostatSubfunction?)
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction, result: inout SharedCore.ThermostatSubfunction?) -> Swift.Bool
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction?) -> SharedCore.ThermostatSubfunction
   public func _bridgeToObjectiveC() -> SharedCore.__ThermostatSubfunction
   public typealias _ObjectiveCType = SharedCore.__ThermostatSubfunction
+  public typealias Companion = SharedCore.__ThermostatSubfunction.Companion
   public static func == (a: SharedCore.ThermostatSubfunction, b: SharedCore.ThermostatSubfunction) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public typealias AllCases = [SharedCore.ThermostatSubfunction]
@@ -94,6 +98,8 @@ extension SharedCore.__ThermostatSubfunction {
   case generalReveal
   case generalCollapse
   case generalExpand
+  case generalYes
+  case generalNo
   case channelCaptionOpenSensorGateway
   case channelCaptionControllingTheGatewayLock
   case channelCaptionOpenSensorGate
@@ -344,7 +350,7 @@ extension SharedCore.__ChannelRelationType {
   public static var companion: SharedCore.__SuplaShadingSystemFlag.Companion {
     get
   }
-  public func asChannelIssues() -> (any SharedCore.ChannelIssueItem)?
+  public func asChannelIssues() -> SharedCore.ChannelIssueItem?
   public func isIssueFlag() -> Swift.Bool
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag, result: inout SharedCore.SuplaShadingSystemFlag?)
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag, result: inout SharedCore.SuplaShadingSystemFlag?) -> Swift.Bool
@@ -481,9 +487,9 @@ public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_andro
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed? where __Sealed : SharedCore.IssueIcon
 extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
   @frozen public enum __Sealed : Swift.Hashable {
-    case error(SharedCore.ChannelIssueItemError)
-    case lowBattery(SharedCore.ChannelIssueItemLowBattery)
-    case warning(SharedCore.ChannelIssueItemWarning)
+    case error(SharedCore.ChannelIssueItem.Error)
+    case lowBattery(SharedCore.ChannelIssueItem.LowBattery)
+    case warning(SharedCore.ChannelIssueItem.Warning)
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed) -> Swift.Bool
     public var hashValue: Swift.Int {
@@ -493,12 +499,15 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
-public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
 extension Swift.Bool {
+  public var localizedString: any SharedCore.LocalizedString {
+    get
+  }
   public func ifFalse(value: Any?) -> Any?
   public func ifTrue(value: Any?) -> Any?
   public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
 }
+public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
 extension Swift.Int16 {
   public func fromSuplaTemperature() -> Swift.Float
 }

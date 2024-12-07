@@ -22,7 +22,7 @@ protocol TemperatureMeasurementsProvider: ChannelMeasurementsProvider {}
 
 final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider {
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
     func handle(_ function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_THERMOMETER
@@ -35,20 +35,12 @@ final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider
         return temperatureMeasurementItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingTemperature(entities, spec.aggregation) }
             .map { [self.historyDataSet(channel, entryType, color, spec.aggregation, $0)] }
-            .map {
-                ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getChannelBaseCaptionUseCase.invoke(channelBase: channel),
-                    aggregation: spec.aggregation,
-                    dataSets: $0
-                )
-            }
+            .map { self.channelChartSets(channel, spec, $0) }
     }
 }

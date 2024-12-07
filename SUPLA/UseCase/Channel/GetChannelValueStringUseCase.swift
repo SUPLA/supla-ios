@@ -18,11 +18,20 @@
 
 protocol GetChannelValueStringUseCase {
     func invoke(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String
+    func valueOrNil(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String?
 }
 
 extension GetChannelValueStringUseCase {
     func invoke(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String {
         invoke(channel, valueType: valueType, withUnit: withUnit)
+    }
+    
+    func valueOrNil(_ channel: SAChannel) -> String? {
+        valueOrNil(channel, valueType: .first, withUnit: true)
+    }
+    
+    func valueOrNil(_ channel: SAChannel, valueType: ValueType = .first) -> String? {
+        valueOrNil(channel, valueType: valueType, withUnit: true)
     }
 }
 
@@ -46,6 +55,10 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
     ]
     
     func invoke(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String {
+        return valueOrNil(channel, valueType: valueType, withUnit: withUnit) ?? NO_VALUE_TEXT
+    }
+    
+    func valueOrNil(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String? {
         if (!channel.isOnline()) {
             return NO_VALUE_TEXT
         }
@@ -57,7 +70,7 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         }
         
         SALog.debug("No value provider for channel function `\(channel.func)`")
-        return NO_VALUE_TEXT
+        return nil
     }
 }
 

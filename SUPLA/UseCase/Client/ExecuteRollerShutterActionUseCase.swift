@@ -37,7 +37,7 @@ final class ExecuteRollerShutterActionUseCaseImpl: ExecuteRollerShutterActionUse
                 delta: false
             )
             
-            if (self.suplaClientProvider.provide().executeAction(parameters: parameters)) {
+            if (self.suplaClientProvider.provide()?.executeAction(parameters: parameters) == true) {
                 self.vibrationService.vibrate()
             }
             

@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 final class FacadeBlindsVM: BaseBlindsViewModel<FacadeBlindsViewState> {
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
@@ -33,8 +34,8 @@ final class FacadeBlindsVM: BaseBlindsViewModel<FacadeBlindsViewState> {
                 return $0
             }
             
-            let position = value.hasValidPosition ? value.position : 0
-            let tilt = value.hasValidTilt && value.flags.contains(.tiltIsSet) ? CGFloat(value.tilt) : nil
+            let position = value.hasValidPosition() ? value.position : 0
+            let tilt = value.hasValidTilt() && value.flags.contains(.tiltIsSet) ? CGFloat(value.tilt) : nil
             let windowState = $0.facadeBlindWindowState
                 .changing(path: \.position, to: .similar(value.online ? CGFloat(position) : 25))
                 .changing(path: \.slatTilt, to: tilt?.run { .similar(value.online ? $0 : 50) })

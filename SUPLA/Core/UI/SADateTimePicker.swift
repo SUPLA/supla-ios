@@ -16,23 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxCocoa
 import RxRelay
 import RxSwift
-import RxCocoa
 
 final class SADateTimePicker: UIView {
-    
     override var intrinsicContentSize: CGSize {
         CGSize(width: UIView.noIntrinsicMetric, height: datePicker.intrinsicContentSize.height)
     }
     
-    var saveTap: Observable<Date?> {
-        get { saveButton.rx.tap.map { _ in self.selectedDate } }
-    }
+    var saveTap: Observable<Date?> { saveButton.rx.tap.map { _ in self.selectedDate } }
     
-    var cancelTap: Observable<Void> {
-        get { cancelButton.rx.tap.asObservable() }
-    }
+    var cancelTap: Observable<Void> { cancelButton.rx.tap.asObservable() }
     
     var date: Date? {
         get { selectedDate }
@@ -59,9 +54,7 @@ final class SADateTimePicker: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.datePickerMode = .dateAndTime
         view.tintColor = .primary
-        if #available(iOS 14.0, *) {
-            view.preferredDatePickerStyle = .inline
-        }
+        view.preferredDatePickerStyle = .inline
         view.addTarget(self, action: #selector(onDateChanged), for: .valueChanged)
         return view
     }()
@@ -74,7 +67,7 @@ final class SADateTimePicker: UIView {
         return view
     }()
     
-    private lazy var separatorView = { SeparatorView() }()
+    private lazy var separatorView = SeparatorView()
     
     private lazy var saveButton: UIFilledButton = {
         let button = UIFilledButton()
@@ -95,6 +88,7 @@ final class SADateTimePicker: UIView {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

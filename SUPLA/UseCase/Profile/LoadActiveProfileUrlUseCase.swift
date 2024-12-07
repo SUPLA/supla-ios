@@ -20,7 +20,26 @@ import RxSwift
 
 enum CloudUrl {
     case suplaCloud
+    case betaCloud
     case privateCloud(url: URL)
+}
+
+extension CloudUrl {
+    var urlString: String {
+        switch (self) {
+        case .suplaCloud: return "https://cloud.supla.org"
+        case .betaCloud: return "https://beta-cloud.supla.org"
+        case .privateCloud(let url): return url.absoluteString
+        }
+    }
+
+    var url: URL {
+        switch (self) {
+        case .suplaCloud: return URL(string: "https://cloud.supla.org")!
+        case .betaCloud: return URL(string: "https://beta-cloud.supla.org")!
+        case .privateCloud(let url): return url
+        }
+    }
 }
 
 protocol LoadActiveProfileUrlUseCase {
@@ -34,20 +53,17 @@ final class LoadActiveProfileUrlUseCaseImpl: LoadActiveProfileUrlUseCase {
         profileRepository.getActiveProfile()
             .first()
             .map { profile in
-                guard let authInfo = profile?.authInfo else { return .suplaCloud }
+                guard let address = profile?.server?.address
+                else { return .suplaCloud }
 
-                if (authInfo.emailAuth == true) {
-                    if (authInfo.serverForEmail.hasSuffix("supla.org") == false), let url = URL(string: "https://\(authInfo.serverForEmail)") {
-                        return .privateCloud(url: url)
-                    } else {
-                        return .suplaCloud
-                    }
+                if (address.hasSuffix("supla.org") == false),
+                   let url = URL(string: "https://\(address)")
+                {
+                    return .privateCloud(url: url)
+                } else if (address.hasSuffix("beta-cloud.supla.org")) {
+                    return .betaCloud
                 } else {
-                    if (authInfo.serverForAccessID.hasSuffix("supla.org") == false), let url = URL(string: "https://\(authInfo.serverForAccessID)") {
-                        return .privateCloud(url: url)
-                    } else {
-                        return .suplaCloud
-                    }
+                    return .suplaCloud
                 }
             }
     }

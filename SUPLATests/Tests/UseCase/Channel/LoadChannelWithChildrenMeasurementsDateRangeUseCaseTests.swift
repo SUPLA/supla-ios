@@ -34,10 +34,6 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         TempHumidityMeasurementItemRepositoryMock()
     }()
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    
     private lazy var useCase: LoadChannelWithChildrenMeasurementsDateRangeUseCase! = {
         LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl()
     }()
@@ -48,7 +44,6 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
     
     override func tearDown() {
@@ -57,7 +52,6 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         readChannelWithChildrenUseCase = nil
         temperatureMeasurementItemRepository = nil
         tempHumidityMeasurementItemRepository = nil
-        profileRepository = nil
         
         super.tearDown()
     }
@@ -67,21 +61,24 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         let channelId: Int32 = 123
         let child1Id: Int32 = 234
         let child2Id: Int32 = 345
+        let serverId: Int32 = 3
+        
+        let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
         let channelWithChildren = mockChannelWithChildren(channelId, child1Id, child2Id)
+        channelWithChildren.channel.profile = profile
         
         let child1Min = Date.create(2023, 11, 1, 0, 0, 0)!
         let child1Max = Date.create(2023, 11, 5, 0, 0, 0)!
         let child2Min = Date.create(2023, 10, 17, 0, 0, 0)!
         let child2Max = Date.create(2023, 11, 4, 0, 0, 0)!
         
-        let profile = AuthProfileItem(testContext: nil)
-        
         readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(child2Min.timeIntervalSince1970)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(child2Max.timeIntervalSince1970)
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(child1Min.timeIntervalSince1970)
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(child1Max.timeIntervalSince1970)
-        profileRepository.activeProfileObservable = .just(profile)
         
         // when
         useCase.invoke(remoteId: channelId).subscribe(observer).disposed(by: disposeBag)
@@ -93,10 +90,10 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         ])
         
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [channelId])
-        XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(child2Id, profile)])
-        XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(child2Id, profile)])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(child1Id, profile)])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(child1Id, profile)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(child2Id, serverId)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(child2Id, serverId)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(child1Id, serverId)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(child1Id, serverId)])
     }
     
     func test_shouldFindMinAndMaxTemperature_whenOneChannelHasNoMeasurements() {
@@ -104,19 +101,22 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         let channelId: Int32 = 123
         let child1Id: Int32 = 234
         let child2Id: Int32 = 345
+        let serverId: Int32 = 3
+        
+        let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
+        
         let channelWithChildren = mockChannelWithChildren(channelId, child1Id, child2Id)
+        channelWithChildren.channel.profile = profile
         
         let child1Min = Date.create(2023, 11, 1, 0, 0, 0)!
         let child1Max = Date.create(2023, 11, 5, 0, 0, 0)!
-        
-        let profile = AuthProfileItem(testContext: nil)
         
         readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(nil)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(nil)
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(child1Min.timeIntervalSince1970)
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(child1Max.timeIntervalSince1970)
-        profileRepository.activeProfileObservable = .just(profile)
         
         // when
         useCase.invoke(remoteId: channelId).subscribe(observer).disposed(by: disposeBag)
@@ -128,10 +128,10 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         ])
         
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [channelId])
-        XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(child2Id, profile)])
-        XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(child2Id, profile)])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(child1Id, profile)])
-        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(child1Id, profile)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(child2Id, serverId)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(child2Id, serverId)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(child1Id, serverId)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(child1Id, serverId)])
     }
     
     private func mockChannelWithChildren(_ channelId: Int32, _ child1Id: Int32, _ child2Id: Int32) -> ChannelWithChildren {
@@ -150,8 +150,8 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
         return ChannelWithChildren(
             channel: channel,
             children: [
-                ChannelChild(channel: child1, relationType: .mainThermometer),
-                ChannelChild(channel: child2, relationType: .auxThermometerFloor)
+                ChannelChild(channel: child1, relation: SAChannelRelation.mock(type: .mainThermometer)),
+                ChannelChild(channel: child2, relation: SAChannelRelation.mock(type: .auxThermometerFloor))
             ]
         )
     }

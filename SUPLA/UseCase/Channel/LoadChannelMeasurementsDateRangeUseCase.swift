@@ -24,7 +24,6 @@ protocol LoadChannelMeasurementsDateRangeUseCase {
 
 final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurementsDateRangeUseCase {
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
-    @Singleton<ProfileRepository> private var profileRepository
 
     private let providers: [ChannelDataRangeProvider] = [
         ThermometerDataRangeProvider(),
@@ -37,14 +36,11 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
     func invoke(remoteId: Int32) -> Observable<DaysRange?> {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .flatMapFirst { channel in
-                self.profileRepository.getActiveProfile().map { (channel, $0) }
-            }
-            .flatMapFirst { channel, profile in
                 for provider in self.providers {
                     if (provider.handle(function: channel.func)) {
                         return Observable.zip(
-                            provider.minTime(remoteId: channel.remote_id, profile: profile),
-                            provider.maxTime(remoteId: channel.remote_id, profile: profile)
+                            provider.minTime(remoteId: channel.remote_id, serverId: channel.profile.server?.id),
+                            provider.maxTime(remoteId: channel.remote_id, serverId: channel.profile.server?.id)
                         ) { self.createDaysRange($0, $1) }
                     }
                 }
@@ -68,8 +64,8 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
 
 protocol ChannelDataRangeProvider {
     func handle(function: Int32) -> Bool
-    func minTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    func maxTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
 }
 
 final class ThermometerDataRangeProvider: ChannelDataRangeProvider {
@@ -79,12 +75,12 @@ final class ThermometerDataRangeProvider: ChannelDataRangeProvider {
         function == SUPLA_CHANNELFNC_THERMOMETER
     }
 
-    func minTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        temperatureMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        temperatureMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
     }
 
-    func maxTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        temperatureMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        temperatureMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }
 
@@ -95,12 +91,12 @@ final class HumidityAndTemperatureDataRangeProvide: ChannelDataRangeProvider {
         function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
 
-    func minTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        tempHumidityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        tempHumidityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
     }
 
-    func maxTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        tempHumidityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        tempHumidityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }
 
@@ -111,12 +107,12 @@ final class GeneralPurposeMeterDataRangeProvide: ChannelDataRangeProvider {
         function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
     }
 
-    func minTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        generalPurposeMeterItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        generalPurposeMeterItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
     }
 
-    func maxTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        generalPurposeMeterItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        generalPurposeMeterItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }
 
@@ -127,12 +123,12 @@ final class GeneralPurposeMeasurementDataRangeProvide: ChannelDataRangeProvider 
         function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
 
-    func minTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        generalPurposeMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        generalPurposeMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
     }
 
-    func maxTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        generalPurposeMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        generalPurposeMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }
 
@@ -149,11 +145,11 @@ final class ElectricityMeterDataRangeProvide: ChannelDataRangeProvider {
         }
     }
 
-    func minTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        electricityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        electricityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
     }
 
-    func maxTime(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
-        electricityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        electricityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }

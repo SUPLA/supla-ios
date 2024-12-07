@@ -19,12 +19,17 @@
 import Foundation
 
 protocol UserStateHolder {
-    func getDefaultChartState(profileId: String, remoteId: Int32) -> DefaultChartState
-    func getElectricityChartState(profileId: String, remoteId: Int32) -> ElectricityChartState
-    func setChartState(_ state: ChartState, profileId: String, remoteId: Int32)
+    func getDefaultChartState(profileId: Int32, remoteId: Int32) -> DefaultChartState
+    func getElectricityChartState(profileId: Int32, remoteId: Int32) -> ElectricityChartState
+    func setChartState(_ state: ChartState, profileId: Int32, remoteId: Int32)
     
-    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings
-    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32)
+    func getElectricityMeterSettings(profileId: Int32, remoteId: Int32) -> ElectricityMeterSettings
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: Int32, remoteId: Int32)
+    
+    func getPhotoCreationTime(profileId: Int32, remoteId: Int32) -> Date?
+    func setPhotoCreationTime(_ time: String, profileId: Int32, remoteId: Int32)
+    
+    func migrateFrom17To19ModelMappingVersion(_ profileObjectId: NSManagedObjectID, _ profileId: Int32)
 }
 
 final class UserStateHolderImpl: UserStateHolder {
@@ -32,8 +37,8 @@ final class UserStateHolderImpl: UserStateHolder {
     let userDefaults = UserDefaults.standard
     
     private let temperatureChartStateKey = "UserStateHolder.temperature_chart_state"
-    func getDefaultChartState(profileId: String, remoteId: Int32) -> DefaultChartState {
-        let key = parametrizedKey(key: temperatureChartStateKey, profileId, String(remoteId))
+    func getDefaultChartState(profileId: Int32, remoteId: Int32) -> DefaultChartState {
+        let key = parametrizedKey(key: temperatureChartStateKey, String(profileId), String(remoteId))
         if let data = userDefaults.data(forKey: key) {
             do {
                 let decoder = JSONDecoder()
@@ -47,8 +52,8 @@ final class UserStateHolderImpl: UserStateHolder {
         return DefaultChartState.empty()
     }
     
-    func getElectricityChartState(profileId: String, remoteId: Int32) -> ElectricityChartState {
-        let key = parametrizedKey(key: temperatureChartStateKey, profileId, String(remoteId))
+    func getElectricityChartState(profileId: Int32, remoteId: Int32) -> ElectricityChartState {
+        let key = parametrizedKey(key: temperatureChartStateKey, String(profileId), String(remoteId))
         if let data = userDefaults.data(forKey: key) {
             do {
                 let decoder = JSONDecoder()
@@ -62,8 +67,8 @@ final class UserStateHolderImpl: UserStateHolder {
         return ElectricityChartState.empty()
     }
     
-    func setChartState(_ state: ChartState, profileId: String, remoteId: Int32) {
-        let key = parametrizedKey(key: temperatureChartStateKey, profileId, String(remoteId))
+    func setChartState(_ state: ChartState, profileId: Int32, remoteId: Int32) {
+        let key = parametrizedKey(key: temperatureChartStateKey, String(profileId), String(remoteId))
         do {
             userDefaults.set(try state.toJson(), forKey: key)
         } catch {
@@ -73,8 +78,8 @@ final class UserStateHolderImpl: UserStateHolder {
     }
     
     private let electricityMeterSettingsKey = "UserStateHolder.electricity_meter_settings"
-    func getElectricityMeterSettings(profileId: String, remoteId: Int32) -> ElectricityMeterSettings {
-        let key = parametrizedKey(key: electricityMeterSettingsKey, profileId, String(remoteId))
+    func getElectricityMeterSettings(profileId: Int32, remoteId: Int32) -> ElectricityMeterSettings {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, String(profileId), String(remoteId))
         if let data = userDefaults.data(forKey: key) {
             do {
                 let decoder = JSONDecoder()
@@ -88,8 +93,8 @@ final class UserStateHolderImpl: UserStateHolder {
         return ElectricityMeterSettings.defaultSettings()
     }
     
-    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: String, remoteId: Int32) {
-        let key = parametrizedKey(key: electricityMeterSettingsKey, profileId, String(remoteId))
+    func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: Int32, remoteId: Int32) {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, String(profileId), String(remoteId))
         do {
             let encoder = JSONEncoder()
             userDefaults.set(try encoder.encode(settings), forKey: key)
@@ -99,11 +104,45 @@ final class UserStateHolderImpl: UserStateHolder {
         }
     }
     
+    private let photoCreationTimeKey = "UserStateHolder.photo_creation_time"
+    func getPhotoCreationTime(profileId: Int32, remoteId: Int32) -> Date? {
+        let key = parametrizedKey(key: photoCreationTimeKey, String(profileId), String(remoteId))
+        if let dateString = userDefaults.string(forKey: key) {
+            let dateFormatter = ISO8601DateFormatter()
+            return dateFormatter.date(from: dateString)
+        }
+        return nil
+    }
+    
+    func setPhotoCreationTime(_ time: String, profileId: Int32, remoteId: Int32) {
+        let key = parametrizedKey(key: photoCreationTimeKey, String(profileId), String(remoteId))
+        userDefaults.set(time, forKey: key)
+    }
+    
+    func migrateFrom17To19ModelMappingVersion(_ profileObjectId: NSManagedObjectID, _ profileId: Int32) {
+        userDefaults.dictionaryRepresentation().keys.forEach { key in
+            if (key.contains(temperatureChartStateKey) || key.contains(electricityMeterSettingsKey)) {
+                let newKey = key.replacingOccurrences(of: profileObjectId.idString, with: String(profileId))
+                let value = userDefaults.object(forKey: key)
+                userDefaults.set(value, forKey: newKey)
+                userDefaults.removeObject(forKey: key)
+            }
+        }
+    }
+    
     private func parametrizedKey(key: String, _ parameters: String...) -> String {
         var result = key
         for parameter in parameters {
             result = "\(result)_\(parameter)"
         }
         return result
+    }
+}
+
+fileprivate extension NSManagedObjectID {
+    var idString: String {
+        get {
+            return uriRepresentation().dataRepresentation.base64EncodedString()
+        }
     }
 }

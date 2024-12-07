@@ -68,7 +68,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     
     func test_shouldGetDescription_whenModeIsAuto() {
         // given
-        let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .auto, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
+        let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .heatCool, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
         
         // when
         let result = program.description

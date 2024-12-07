@@ -18,6 +18,7 @@
 
 @testable import SUPLA
 import XCTest
+import SharedCore
 
 final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWindowViewEvent> {
     
@@ -53,7 +54,7 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
         channel.remote_id = 123
         channel.flags = Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.value = NSData(data: RollerShutterValue.mockData(position: 50, flags: SuplaRollerShutterFlag.motorProblem.rawValue))
+        channel.value?.value = NSData(data: RollerShutterValue.mockData(position: 50, flags: SuplaShadingSystemFlag.calibrationFailed.value))
         channel.value?.online = true
         
         settings.showOpeningPercentReturns = false
@@ -70,10 +71,7 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
                 remoteId: 123,
                 terraceAwningWindowState: TerraceAwningWindowState(position: .similar(50)),
                 issues: [
-                    ChannelIssueItem(
-                        issueIconType: .warning,
-                        description: Strings.RollerShutterDetail.calibrationFailed
-                    )
+                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.calibrationFailed))
                 ],
                 offline: false,
                 calibrating: false,

@@ -317,7 +317,7 @@
     
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
-    if ( ![SAApp.profileManager getCurrentProfile].authInfo.emailAuth ) {
+    if ( ![SAApp.profileManager getCurrentProfile].email ) {
         // TODO: Replace text
         [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)", NULL)];
         return;
@@ -576,11 +576,7 @@
             }
             NSString *msg = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Connection with the device cannot be set!", NULL), errInfo];
             
-            if (@available(iOS 14.0, *)) {
-                [self showErrorWithAttributedString:[self messageExtendedWithNotificationOfPermissions:msg]];
-            } else {
-                [self showError:msg];
-            }
+            [self showErrorWithAttributedString:[self messageExtendedWithNotificationOfPermissions:msg]];
         }
             break;
         case EspConfigResultCodeFailed:
@@ -633,7 +629,7 @@
 }
 
 -(NSString*)cloudHostName {
-    NSString *server = [SAApp.profileManager getCurrentProfile].authInfo.serverForCurrentAuthMethod;
+    NSString *server = [SAApp.profileManager getCurrentProfile].server.address;
    return [[server lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : server;
 }
 
@@ -711,10 +707,15 @@
                         [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     setConfigOp.PWD = self.edPassword.text;
     
-    AuthInfo *ai = [SAApp.profileManager getCurrentProfile].authInfo;
-    
-    setConfigOp.Server = ai.serverForEmail;
-    setConfigOp.Email = ai.emailAddress;
+    AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
+    if (profile != nil) {
+        SAProfileServer * server = profile.server;
+        if (server != nil) {
+            setConfigOp.Server = server.address;
+        }
+        
+        setConfigOp.Email = profile.email;
+    }
     setConfigOp.delegate = self;
     [self.OpQueue addOperation:setConfigOp];
 }

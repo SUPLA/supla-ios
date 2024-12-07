@@ -68,10 +68,7 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
             .asDriverWithoutError()
             .drive(
                 onNext: { [weak self] url in
-                    switch (url) {
-                    case .suplaCloud: self?.send(event: .openCloud)
-                    case let .privateCloud(url): self?.send(event: .openPrivateCloud(url: url))
-                    }
+                    self?.send(event: .open(url: url.url))
                 }
             )
             .disposed(by: self)
@@ -91,8 +88,7 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
 }
 
 enum SceneListViewEvent: ViewEvent {
-    case openPrivateCloud(url: URL)
-    case openCloud
+    case open(url: URL)
 }
 
 struct SceneListViewState: ViewState {}

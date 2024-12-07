@@ -30,7 +30,7 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
     override func triggerDataLoad(remoteId: Int32) {
         Observable.zip(
             readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
-            profileRepository.getActiveProfile().map { [weak self] in self?.loadChartState($0.idString, remoteId) }
+            profileRepository.getActiveProfile().map { [weak self] in self?.loadChartState($0.id, remoteId) }
         ) { ($0, $1) }
             .asDriverWithoutError()
             .drive(
@@ -52,7 +52,7 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
     
     private func handleData(channel: SAChannel, chartState: ChartState?) {
         updateView {
-            $0.changing(path: \.profileId, to: channel.profile.idString)
+            $0.changing(path: \.profileId, to: channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.func)
         }
         

@@ -61,9 +61,9 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
     
     func test_shouldReturnFalseWhenProfileNotFound() {
         // given
-        let id = AuthProfileItem(testContext: nil).objectID
+        let id: Int32 = 1
         
-        profileRepository.queryItemByIdObservable = .just(nil)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(nil))
         
         // when
         useCase.invoke(profileId: id, force: false)
@@ -77,12 +77,13 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
     func test_shouldReturnFalseWhenProfileActiveAndForceFalse() {
         // given
         let profile = AuthProfileItem(testContext: nil)
+        profile.id = 2
         profile.isActive = true
         
-        profileRepository.queryItemByIdObservable = .just(profile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
         
         // when
-        useCase.invoke(profileId: profile.objectID, force: false)
+        useCase.invoke(profileId: profile.id, force: false)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -96,17 +97,19 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
     func test_shouldActivateOtherProfile() {
         // given
         let activeProfile = AuthProfileItem(testContext: nil)
+        activeProfile.id = 3
         activeProfile.isActive = true
         
         let notActiveProfile = AuthProfileItem(testContext: nil)
+        notActiveProfile.id = 2
         
-        profileRepository.queryItemByIdObservable = .just(notActiveProfile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(notActiveProfile))
         profileRepository.allProfilesObservable = .just([activeProfile, notActiveProfile])
         profileRepository.saveObservable = .just(())
         reconnectUseCase.returns = .complete()
         
         // when
-        useCase.invoke(profileId: notActiveProfile.objectID, force: false)
+        useCase.invoke(profileId: notActiveProfile.id, force: false)
             .subscribe(observer)
             .disposed(by: disposeBag)
         
@@ -119,15 +122,16 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
     func test_shouldActivateActiveProfileWhenForceTrue() {
         // given
         let activeProfile = AuthProfileItem(testContext: nil)
+        activeProfile.id = 32
         activeProfile.isActive = true
         
-        profileRepository.queryItemByIdObservable = .just(activeProfile)
+        profileRepository.getProfileWithIdMock.returns = .single(.just(activeProfile))
         profileRepository.allProfilesObservable = .just([activeProfile])
         profileRepository.saveObservable = .just(())
         reconnectUseCase.returns = .complete()
         
         // when
-        useCase.invoke(profileId: activeProfile.objectID, force: true)
+        useCase.invoke(profileId: activeProfile.id, force: true)
             .subscribe(observer)
             .disposed(by: disposeBag)
         

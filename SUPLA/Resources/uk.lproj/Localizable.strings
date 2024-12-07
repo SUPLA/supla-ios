@@ -285,9 +285,6 @@
 "Scenes" = "Сцени";
 "Not supported function" = "Непідтримувана функція";
 
-"AccountCreation.title" = "Редагувати обліковий запис";
-"AccountCreation.modificationTitle" = "Додати обліковий запис";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=uk";
 
 "Scenes.ActionButtons.execute" = "Виконати";
@@ -337,7 +334,9 @@
 "channel_caption_garage_door" = "Гаражні двері";
 "channel_caption_pump_switch" = "Перемикач насоса";
 "channel_caption_heat_or_cold_source_switch" = "Перемикач джерела тепла або холоду";
+"channel_caption_humidity" = "Вологість";
 "channel_offline" = "Канал не в мережі";
+"channel_battery_level" = "Рівень заряду батареї (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Ми прибрали жест прогортування, який відкриває деталі, торкніться вибраного каналу, щоб побачити їх.";
@@ -352,6 +351,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Додати сцену в Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Додати обліковий запис";
+"create_profile_title_modify" = "Редагувати обліковий запис";
+"create_profile_basic_warning_title" = "Режим недоступний";
+"create_profile_basic_warning_message" = "Перш ніж вимкнути розширений режим, виберіть автентифікацію електронної пошти з автоматичним визначенням сервера.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Сповіщення";
@@ -497,6 +502,7 @@
 "status_access_id_not_assigned" = "Цьому пристрою не присвоєно ідентифікатор доступу. Перейдіть на сторінку \"Supla Cloud\" і на вкладці \"Смартфони\" призначте відповідний ідентифікатор.";
 "status_access_id_inactive" = "Ідентифікатор доступу неактивний.";
 "status_host_not_found" = "Адреса сервера не знайдена. Переконайтеся, що у вас є підключення до Інтернету та що створено обліковий запис із введеною адресою електронної пошти.";
+"status_cant_connect_to_host" = "Не вдалося підключитися до сервера";
 
 /* Pin setup */
 "pin_setup_header" = "Встановіть свій PIN-код";

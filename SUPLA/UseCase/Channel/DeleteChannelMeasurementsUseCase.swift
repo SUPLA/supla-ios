@@ -50,17 +50,17 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
     }
 
     private func getDeleteCompletable(_ function: Int32, remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
-        switch (function) {
+        return switch (function) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            temperatureMeasurementItemRepository.deleteAll(remoteId: remoteId, profile: profile)
+            temperatureMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            tempHumidityMeasurementItemRepository.deleteAll(remoteId: remoteId, profile: profile)
+            tempHumidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         case SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
-            generalPurposeMeasurementItemRepository.deleteAll(remoteId: remoteId, profile: profile)
+            generalPurposeMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         case SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER:
-            generalPurposeMeterItemRepository.deleteAll(remoteId: remoteId, profile: profile)
+            generalPurposeMeterItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-            electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, profile: profile)
+            electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         default:
             Observable.error(GeneralError.illegalState(message: "Trying to delete history of unsupported function `\(function)`."))
         }

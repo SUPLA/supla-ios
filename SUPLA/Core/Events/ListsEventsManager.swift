@@ -56,6 +56,7 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
     @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+    @Singleton<ChannelToRootRelationHolderUseCase> private var channelToRootRelationHolderUseCase
     
     func emitSceneUpdate(sceneId: Int) {
         let subject = getSubjectForScene(sceneId: sceneId)
@@ -65,6 +66,11 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     func emitChannelUpdate(remoteId: Int) {
         let subject = getSubjectForChannel(channelId: remoteId)
         subject.accept(subject.value + 1)
+        
+        if let rootParent = channelToRootRelationHolderUseCase.getParent(for: Int32(remoteId)) {
+            let rootParentSubject = getSubjectForChannel(channelId: Int(rootParent))
+            rootParentSubject.accept(rootParentSubject.value + 1)
+        }
     }
     
     func emitGroupUpdate(remoteId: Int) {
@@ -109,17 +115,8 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     }
     
     func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
-        return readChannelWithChildrenUseCase.invoke(remoteId: Int32(remoteId))
-            .flatMapFirst { channelWithChildren in
-                var ids: [Int32] = [channelWithChildren.channel.remote_id]
-                if let child = channelWithChildren.children.first(where: { $0.relationType == .mainThermometer }) {
-                    ids.append(child.channel.remote_id)
-                }
-                
-                return Observable.merge(
-                    ids.map { self.getSubjectForChannel(channelId: Int($0)).asObservable() }
-                ).map { _ in channelWithChildren }
-            }
+        getSubjectForChannel(channelId: remoteId)
+            .flatMap { _ in self.readChannelWithChildrenUseCase.invoke(remoteId: Int32(remoteId)) }
     }
     
     func observeChannelsUpdate() -> Observable<Void> { channelUpdatesSubject.asObservable() }

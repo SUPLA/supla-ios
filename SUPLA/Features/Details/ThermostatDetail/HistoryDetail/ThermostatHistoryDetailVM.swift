@@ -42,10 +42,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
             readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
             profileRepository.getActiveProfile().map {
                 @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getDefaultChartState(
-                    profileId: $0.idString,
-                    remoteId: remoteId
-                )
+                return userStateHolder.getDefaultChartState(profileId: $0.id, remoteId: remoteId)
             }
         ) { ($0, $1) }
             .asDriverWithoutError()
@@ -57,11 +54,11 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
     
     private func handleData(channel: ChannelWithChildren, chartState: DefaultChartState) {
         updateView {
-            $0.changing(path: \.profileId, to: channel.channel.profile.idString)
+            $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)
         }
         
-        if (channel.children.filter({ $0.relationType.isThermometer()}).isEmpty) {
+        if (channel.children.filter({ $0.relation.relationType.isThermometer()}).isEmpty) {
             updateView { $0.changing(path: \.loading, to: false) }
         } else {
             restoreRange(chartState: chartState)
@@ -78,7 +75,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         updateView { $0.changing(path: \.downloadConfigured, to: true) }
         
         let mainThermometerId = channel.children.first { $0.relationType == .mainThermometer }?.channel.remote_id
-        let auxThermometerId = channel.children.first { $0.relationType.isAux() }?.channel.remote_id
+        let auxThermometerId = channel.children.first { $0.relationType.isAuxThermometer() }?.channel.remote_id
         
         var observables: [Observable<DownloadEventsManagerState>] = []
         if let id = mainThermometerId { observables.append(downloadEventsManager.observeProgress(remoteId: id)) }
@@ -105,7 +102,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         updateView { $0.changing(path: \.initialLoadStarted, to: true) }
         
         let mainThermometer = channel.children.first { $0.relationType == .mainThermometer }?.channel
-        let auxThermometer = channel.children.first { $0.relationType.isAux() }?.channel
+        let auxThermometer = channel.children.first { $0.relationType.isAuxThermometer() }?.channel
         
         if let main = mainThermometer {
             downloadChannelMeasurementsUseCase.invoke(remoteId: main.remote_id, function: main.func)

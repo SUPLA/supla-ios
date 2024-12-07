@@ -485,13 +485,12 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
         return "";
     }
     
-    AuthInfo *ai = profile.authInfo;
-    NSString *host = ai.serverForCurrentAuthMethod;
-    if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
-        host = [UseCaseLegacyWrapper loadServerHostName];
+    SAProfileServer *server = profile.server;
+    if (server == nil || ([server.address isEqualToString:@""] && profile.rawAuthorizationType == AuthorizationTypeEmail && ![profile.email isEqualToString:@""] )) {
+        return (char*) [[UseCaseLegacyWrapper loadServerHostName] UTF8String];
     }
     
-    return (char*)[host UTF8String];
+    return (char*)[server.address UTF8String];
     
 }
 
@@ -516,27 +515,25 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             [self onConnError:SUPLA_RESULT_HOST_NOT_FOUND];
         }
         
-        AuthInfo *ai = profile.authInfo;
-        if ( !ai.emailAuth ) {
-            scc.AccessID = ai.accessID;
-            snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
-            
+        if ( profile.rawAuthorizationType == AuthorizationTypeAccessId ) {
+            scc.AccessID = profile.accessId;
+            [profile.accessIdPassword utf8StringToBuffer:scc.AccessIDpwd withSize:sizeof(scc.AccessIDpwd)];
             if ( _regTryCounter >= 2 ) {
                 [UseCaseLegacyWrapper updatePreferredProtocolVersion: 4];
             }
             
         } else {
-            snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [ai.emailAddress UTF8String]);
+            [profile.email utf8StringToBuffer:scc.Email withSize:sizeof(scc.Email)];
             if (_oneTimePassword && _oneTimePassword.length) {
-                snprintf(scc.Password, SUPLA_PASSWORD_MAXSIZE, "%s", [_oneTimePassword UTF8String]);
+                [_oneTimePassword utf8StringToBuffer:scc.Password withSize:sizeof(scc.Password)];
             }
         }
-        scc.protocol_version = ai.preferredProtocolVersion;
+        scc.protocol_version = profile.preferredProtocolVersion;
     }
     
     _oneTimePassword = nil;
     
-    snprintf(scc.Name, SUPLA_CLIENT_NAME_MAXSIZE, "%s", [[[UIDevice currentDevice] name] UTF8String]);
+    [[[UIDevice currentDevice] name] utf8StringToBuffer:scc.Name withSize:sizeof(scc.Name)];
     snprintf(scc.SoftVer, SUPLA_SOFTVER_MAXSIZE, "iOS%s/%s", [[[UIDevice currentDevice] systemVersion] UTF8String], [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String]);
     
     scc.cb_on_versionerror = sasuplaclient_on_versionerror;
@@ -630,7 +627,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             } else {
                 @try {
                     // TODO: Add network check
-                    if ( supla_client_connect(_sclient, CONNECTION_TIMEOUT_MS) == 1 ) {
+                    if ( [self isCancelled] == NO && supla_client_connect(_sclient, CONNECTION_TIMEOUT_MS) == 1 ) {
                         while ( [self isCancelled] == NO
                                && supla_client_iterate(_sclient, 100000) == 1) {
                         }
@@ -680,10 +677,10 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     id<ProfileManager> pm = SAApp.profileManager;
     AuthProfileItem *profile = [pm getCurrentProfile];
     
-    if ( profile != nil && (!profile.authInfo.emailAuth || ve.remoteVersion >= 7)
+    if ( profile != nil && (profile.rawAuthorizationType == AuthorizationTypeAccessId || ve.remoteVersion >= 7)
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
-        && profile.authInfo.preferredProtocolVersion != ve.remoteVersion ) {
+        && profile.preferredProtocolVersion != ve.remoteVersion ) {
         [UseCaseLegacyWrapper updatePreferredProtocolVersion: ve.remoteVersion];
         [self reconnect];
         return;
@@ -757,10 +754,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     _regTryCounter = 0;
     id<ProfileManager> pm = [SAApp profileManager];
     AuthProfileItem *profile = [pm getCurrentProfile];
-    AuthInfo *ai = profile.authInfo;
     
     long maxVersionSupportedByLibrary = SUPLA_PROTO_VERSION;
-    long storedVersion = ai.preferredProtocolVersion;
+    long storedVersion = profile.preferredProtocolVersion;
     long serverVersion = result.Version;
     if (storedVersion < maxVersionSupportedByLibrary && serverVersion > storedVersion) {
         long newVersion = serverVersion;
@@ -793,7 +789,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     _client_id = result.ClientID;
     NSData* pushToken = [DiContainer getPushToken];
     [self registerPushNotificationClientToken:pushToken forProfile: profile];
-    [DiContainer setOAuthUrlWithUrl: ai.serverUrlString];
+    [DiContainer setOAuthUrlWithUrl: profile.serverUrlString];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
     
@@ -914,7 +910,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue {
-    
+    NSLog(@"Extended value update for : %d", channel_extendedvalue->Id);
     if ( [UseCaseLegacyWrapper updateChannelExtendedValueWithSuplaChannelExtendedValue: *channel_extendedvalue] ) {
         [self onChannelValueChanged: channel_extendedvalue->Id isGroup:NO];
         [self onDataChanged];
@@ -975,6 +971,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
     if ((relation->EOL & 0x1) > 0) {
         [UseCaseLegacyWrapper deleteRemovableRelations];
+        [UseCaseLegacyWrapper reloadChannelToRootRelation];
         [DiContainer.updateEventsManager emitChannelsUpdate];
     }
 }
@@ -1082,6 +1079,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) onChannelState:(SAChannelStateExtendedValue*)state {
+    NSLog(@"Channel state update for: %d", state.channelId.intValue);
+    [UseCaseLegacyWrapper updateChannelState:state.state channelId:state.state.ChannelID];
+    [self onChannelValueChanged: state.channelId.intValue isGroup:NO];
     [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
 }
 
@@ -1389,7 +1389,11 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_superuser_authorization_request(_sclient, [email UTF8String], [password UTF8String]);
+            char eml[SUPLA_EMAIL_MAXSIZE] = {};
+            char pwd[SUPLA_PASSWORD_MAXSIZE] = {};
+            [email utf8StringToBuffer:eml withSize:sizeof(eml)];
+            [password utf8StringToBuffer:pwd withSize:sizeof(pwd)];
+            supla_client_superuser_authorization_request(_sclient, eml, pwd);
         }
     }
 }
@@ -1484,7 +1488,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) setChannelCaption:(int)channelId caption:(NSString*)caption {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_set_channel_caption(_sclient, channelId, [caption UTF8String]);
+            char _caption[SUPLA_CHANNEL_CAPTION_MAXSIZE] = {};
+            [caption utf8StringToBuffer:_caption withSize:sizeof(_caption)];
+            supla_client_set_channel_caption(_sclient, channelId, _caption);
         }
     }
 }
@@ -1492,7 +1498,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) setSceneCaption:(int)sceneId caption:(NSString*)caption {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_set_scene_caption(_sclient, sceneId, [caption UTF8String]);
+            char _caption[SUPLA_SCENE_CAPTION_MAXSIZE] = {};
+            [caption utf8StringToBuffer:_caption withSize:sizeof(_caption)];
+            supla_client_set_scene_caption(_sclient, sceneId, _caption);
         }
     }
 }
@@ -1500,7 +1508,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_set_channel_group_caption(_sclient, channelGroupId, [caption UTF8String]);
+            char _caption[SUPLA_CHANNEL_GROUP_CAPTION_MAXSIZE] = {};
+            [caption utf8StringToBuffer:_caption withSize:sizeof(_caption)];
+            supla_client_set_channel_group_caption(_sclient, channelGroupId, _caption);
         }
     }
 }
@@ -1508,7 +1518,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_set_location_caption(_sclient, locationId, [caption UTF8String]);
+            char _caption[SUPLA_LOCATION_CAPTION_MAXSIZE] = {};
+            [caption utf8StringToBuffer:_caption withSize:sizeof(_caption)];
+            supla_client_set_location_caption(_sclient, locationId, _caption);
         }
     }
 }
@@ -1700,4 +1712,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     [SuplaAppStateHolderProxy cancel];
 }
 
+- (int) getServerTimeDiffInSec {
+    return serverTimeDiffInSec;
+}
 @end

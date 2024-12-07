@@ -285,9 +285,6 @@
 "Scenes" = "Prizori";
 "Not supported function" = "Nepodprta funkcija";
 
-"AccountCreation.title" = "Uredite račun";
-"AccountCreation.modificationTitle" = "Dodajte račun";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=sl";
 
 "Scenes.ActionButtons.execute" = "Izvedi";
@@ -337,7 +334,9 @@
 "channel_caption_garage_door" = "Garažna vrata";
 "channel_caption_pump_switch" = "Stikalo črpalke";
 "channel_caption_heat_or_cold_source_switch" = "Stikalo za vir toplote ali hladu";
+"channel_caption_humidity" = "Vlažnost";
 "channel_offline" = "Kanal je brez povezave";
+"channel_battery_level" = "Raven baterije (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili smo gesto za premikanje, s katero se odprejo podrobnosti, za ogled podrobnosti tapnite izbrani kanal.";
@@ -352,6 +351,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Dodaj prizor na Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Dodajte račun";
+"create_profile_title_modify" = "Uredite račun";
+"create_profile_basic_warning_title" = "Način ni na voljo";
+"create_profile_basic_warning_message" = "Preden izključite napredni način izberite email avtentifikacijo s samodejnim zaznavanjem strežnika.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Obvestila";
@@ -496,6 +501,7 @@
 "status_access_id_not_assigned" = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran \"Supla Cloud\" in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "status_access_id_inactive" = "Identifikator dostopa ni na voljo.";
 "status_host_not_found" = "Naslova strežnika ni mogoče najti";
+"status_cant_connect_to_host" = "Ni mogoče se povezati s strežnikom";
 
 /* Pin setup */
 "pin_setup_header" = "Opredelite svojo kodo PIN";

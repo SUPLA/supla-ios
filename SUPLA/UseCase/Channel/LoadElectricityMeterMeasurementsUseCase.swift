@@ -42,22 +42,30 @@ final class LoadElectricityMeterMeasurementsUseCaseImpl: LoadElectricityMeterMea
     func invoke(remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
         profileRepository.getActiveProfile()
             .flatMapFirst { profile in
-                self.electricityMeasurementItemRepository.findMeasurements(
-                    remoteId: remoteId,
-                    profile: profile,
-                    startDate: startDate ?? Date(timeIntervalSince1970: 0),
-                    endDate: endDate ?? self.dateProvider.currentDate()
-                )
+                self.findMeasurements(profile: profile, remoteId: remoteId, startDate: startDate, endDate: endDate)
             }
             .flatMapFirst { measurements in
                 self.readChannelByRemoteIdUseCase.invoke(remoteId: remoteId).map { ($0, measurements) }
             }.map { channel, measurements in
-                switch (self.userStateHolder.getElectricityMeterSettings(profileId: channel.profile.idString, remoteId: remoteId).balancing) {
+                switch (self.userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: remoteId).balancing) {
                 case .hourly: self.hourlyBalance(measurements)
                 case .arithmetic: self.arithmeticBalance(measurements)
                 default: self.defaultBalance(channel, measurements)
                 }
             }
+    }
+    
+    private func findMeasurements(profile: AuthProfileItem, remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<[SAElectricityMeasurementItem]> {
+        if let serverId = profile.server?.id {
+            return self.electricityMeasurementItemRepository.findMeasurements(
+                remoteId: remoteId,
+                serverId: serverId,
+                startDate: startDate ?? Date(timeIntervalSince1970: 0),
+                endDate: endDate ?? self.dateProvider.currentDate()
+            )
+        } else {
+            return Observable.just([])
+        }
     }
 
     private func hourlyBalance(_ measurements: [SAElectricityMeasurementItem]) -> ElectricityMeasurements {

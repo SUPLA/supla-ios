@@ -30,12 +30,11 @@ final class CreateChannelWithChildrenUseCaseImpl: CreateChannelWithChildrenUseCa
         
         var children: [ChannelChild] = []
         for child in childrenChannels {
-            let relationType = relations
+            let relation = relations
                 .first { $0.channel_id == child.remote_id }
-                .map {$0.relationType}
             
-            if let relationType = relationType {
-                children.append(ChannelChild(channel: child, relationType: relationType))
+            if let relation {
+                children.append(ChannelChild(channel: child, relation: relation))
             }
         }
         

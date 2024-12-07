@@ -22,19 +22,12 @@ protocol TempHumidityMeasurementItemRepository:
     BaseMeasurementRepository<SuplaCloudClient.TemperatureAndHumidityMeasurement, SATempHumidityMeasurementItem>
     where T == SATempHumidityMeasurementItem
 {
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
-    
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
-    
+    func deleteAll(for serverId: Int32?) -> Observable<Void>
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
     func storeMeasurements(
         measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement],
         timestamp: TimeInterval,
-        profile: AuthProfileItem,
+        serverId: Int32,
         remoteId: Int32
     ) throws -> TimeInterval
 }
@@ -42,25 +35,39 @@ protocol TempHumidityMeasurementItemRepository:
 final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidityMeasurementItem>, TempHumidityMeasurementItemRepository {
     @Singleton<SuplaCloudService> private var cloudService
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SATempHumidityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAll(
+            SATempHumidityMeasurementItem
+                .fetchRequest()
+                .filtered(by: NSPredicate(format: "server_id = %d", serverId ?? 0))
+        )
     }
     
-    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SATempHumidityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile)))
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
+        deleteAll(
+            SATempHumidityMeasurementItem
+                .fetchRequest()
+                .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
+        )
     }
     
-    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]> {
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]> {
         return query(
             SATempHumidityMeasurementItem.fetchRequest()
-                .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@ AND date >= %@ AND date <= %@", remoteId, profile, startDate as NSDate, endDate as NSDate))
+                .filtered(by: NSPredicate(
+                    format: "channel_id = %d AND server_id = %d AND date >= %@ AND date <= %@",
+                    remoteId,
+                    serverId ?? 0,
+                    startDate as NSDate,
+                    endDate as NSDate
+                ))
                 .ordered(by: "date")
         )
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SATempHumidityMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: true)
         request.fetchLimit = 1
         
@@ -73,9 +80,9 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         }
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         let request = SATempHumidityMeasurementItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
         
@@ -88,8 +95,8 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         }
     }
     
-    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
-        count(NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
     }
     
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]> {
@@ -99,7 +106,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         )
     }
     
-    func storeMeasurements(measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
+    func storeMeasurements(measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
         var timestampToReturn = timestamp
         
         var saveError: Error? = nil
@@ -110,7 +117,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
                 }
                 
                 let entity: SATempHumidityMeasurementItem = context.create()
-                entity.profile = profile
+                entity.server_id = serverId
                 entity.channel_id = remoteId
                 entity.temperature = NSDecimalNumber(string: measurement.temperature)
                 entity.humidity = NSDecimalNumber(string: measurement.humidity)

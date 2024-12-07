@@ -22,7 +22,7 @@ protocol TemperatureAndHumidityMeasurementsProvider: ChannelMeasurementsProvider
 
 final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidityMeasurementsProvider {
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
     func handle(_ function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
@@ -32,7 +32,7 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
         tempHumidityMeasurementItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
@@ -54,14 +54,6 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
                     )
                 ]
             }
-            .map {
-                ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getChannelBaseCaptionUseCase.invoke(channelBase: channel),
-                    aggregation: spec.aggregation,
-                    dataSets: $0
-                )
-            }
+            .map { self.channelChartSets(channel, spec, $0) }
     }
 }

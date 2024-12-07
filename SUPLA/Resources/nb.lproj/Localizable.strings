@@ -286,9 +286,6 @@
 "Scenes" = "Scener";
 "Not supported function" = "Ikke-støttet funksjon";
 
-"AccountCreation.title" = "Rediger konto";
-"AccountCreation.modificationTitle" = "Legg til konto";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nb";
 
 "Scenes.ActionButtons.execute" = "Følg";
@@ -338,7 +335,9 @@
 "channel_caption_garage_door" = "Garasjeporten";
 "channel_caption_pump_switch" = "Pumpebryter";
 "channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
+"channel_caption_humidity" = "Fuktighet";
 "channel_offline" = "Kanalen er offline";
+"channel_battery_level" = "Batterinivå (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";
@@ -353,6 +352,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Legg til en scene på Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Legg til konto";
+"create_profile_title_modify" = "Rediger konto";
+"create_profile_basic_warning_title" = "Modus utilgjengelig";
+"create_profile_basic_warning_message" = "Før du slår av avansert modus, vennligst velg e-postautentisering med automatisk serveroppdagelse.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Varsler";
@@ -497,6 +502,7 @@
 "status_access_id_not_assigned" = "Denne enheten har ikke tilknyttet tilgang identifikator. Gå til nettsiden \"Supla Cloud\" tilpass riktig identifikator i fanen \"Smarttelefoner\".";
 "status_access_id_inactive" = "Tilgangs-ID inaktiv.";
 "status_host_not_found" = "Serveradresse ikke funnet";
+"status_cant_connect_to_host" = "Kan ikke koble til serveren";
 
 /* Pin setup */
 "pin_setup_header" = "Definer PIN-koden din";

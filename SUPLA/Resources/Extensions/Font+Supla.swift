@@ -40,6 +40,8 @@ extension Font {
         static let labelLarge: Font = .custom("OpenSans-Medium", size: 17)
         static let labelMedium: Font = .custom("OpenSans-SemiBold", size: 14)
         static let labelSmall: Font = .custom("OpenSans-SemiBold", size: 10)
+        
+        static let captionSmall: Font = .custom("OpenSans", size: 9)
 
         static func cellValue(_ scale: CGFloat, limit: CellScalingLimit = .none) -> Font {
             .custom("Quicksand-Regular", size: scale.scale(Dimens.Fonts.value, limit: limit))

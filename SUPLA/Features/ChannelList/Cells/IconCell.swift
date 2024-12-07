@@ -20,8 +20,9 @@ import RxSwift
 
 final class IconCell: BaseCell<ChannelWithChildren> {
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
+    @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var iconView: UIImageView = {
         let view = UIImageView()
@@ -73,14 +74,14 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         
         let channel = data.channel
         
-        caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
+        caption = getCaptionUseCase.invoke(data: channel.shareable).string
         
         leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         
-        issueIcon = nil
+        issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
     }
     
     override func leftButtonSettings() -> CellButtonSettings {

@@ -214,13 +214,28 @@ final class UseCaseLegacyWrapper: NSObject {
     
     @objc
     static func getChannelBaseCaption(_ channelBase: SAChannelBase) -> String {
-        @Singleton<GetChannelBaseCaptionUseCase> var getChannelBaseCaptionUseCase
-        return getChannelBaseCaptionUseCase.invoke(channelBase: channelBase)
+        @Singleton<GetCaptionUseCase> var getCaptionUseCase
+        return getCaptionUseCase.invoke(data: channelBase.shareableBase).string
     }
     
     @objc
     static func getActivePercentage(_ channelGroup: SAChannelGroup) -> Int32 {
         @Singleton<GetGroupActivePercentageUseCase> var getGroupActivePercentageUseCase
         return Int32(getGroupActivePercentageUseCase.invoke(channelGroup))
+    }
+    
+    @objc
+    static func updateChannelState(_ state: TDSC_ChannelState, channelId: Int32) {
+        @Singleton<UpdateChannelStateUseCase> var updateChannelStateUseCase
+        do {
+            try updateChannelStateUseCase.invoke(state, channelId: channelId).subscribeSynchronous()
+        } catch {
+            SALog.error("Could not update channel state id `\(channelId)`")
+        }
+    }
+    
+    @objc static func reloadChannelToRootRelation() {
+        @Singleton<ChannelToRootRelationHolderUseCase> var useCase
+        useCase.reloadRelations()
     }
 }

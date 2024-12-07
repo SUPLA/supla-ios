@@ -54,9 +54,9 @@ final class DisconnectUseCaseImpl: DisconnectUseCase {
         
         if (suplaApp.isClientWorking()) {
             let suplaClient = suplaClientProvider.provide()
-            suplaClient.cancel(reason: reason)
+            suplaClient?.cancel(reason: reason)
             
-            while (!suplaClient.isFinished()) {
+            while (suplaClient?.isFinished() == false) {
                 usleep(1000)
             }
         }

@@ -23,7 +23,7 @@ protocol ElectricityMeasurementsProvider: ChannelMeasurementsProvider {}
 final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider {
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
     
     func handle(_ function: Int32) -> Bool {
         switch (function) {
@@ -39,7 +39,7 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
         electricityMeasurementItemRepository
             .findMeasurements(
                 remoteId: channel.remote_id,
-                profile: channel.profile,
+                serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
@@ -58,7 +58,7 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
                 return ChannelChartSets(
                     remoteId: channel.remote_id,
                     function: channel.func,
-                    name: self.getChannelBaseCaptionUseCase.invoke(channelBase: channel),
+                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
                     aggregation: spec.aggregation,
                     dataSets: $0,
                     customData: ElectricityMarkerCustomData(

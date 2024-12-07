@@ -285,9 +285,6 @@
 "Scenes" = "Σκηνές";
 "Not supported function" = "Μη υποστηριζόμενη λειτουργία";
 
-"AccountCreation.title" = "Επεξεργασία λογαριασμού";
-"AccountCreation.modificationTitle" = "Προσθήκη λογαριασμού";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=el";
 
 "Scenes.ActionButtons.execute" = "Εφαρμογή";
@@ -337,7 +334,9 @@
 "channel_caption_garage_door" = "Γκαραζόπορτα";
 "channel_caption_pump_switch" = "Διακόπτης αντλίας";
 "channel_caption_heat_or_cold_source_switch" = "Διακόπτης πηγής θερμότητας ή κρύου";
+"channel_caption_humidity" = "Υγρασία";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
+"channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Αφαιρέσαμε τη συρόμενη κίνηση που ανοίγει τις λεπτομέρειες, πατήστε στο επιλεγμένο κανάλι για να τις δείτε.";
@@ -352,6 +351,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "PΠροσθέστε σκηνή στο Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Προσθήκη λογαριασμού";
+"create_profile_title_modify" = "Επεξεργασία λογαριασμού";
+"create_profile_basic_warning_title" = "Η λειτουργία δεν είναι διαθέσιμη";
+"create_profile_basic_warning_message" = "Πριν απενεργοποιήσετε την λειτουργία για προχωρημένους, επιλέξτε έλεγχος ταυτότητας μέσω ηλεκτρονικού ταχυδρομείου με αυτόματο εντοπισμό διακομιστή.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Ειδοποιήσεις";
@@ -496,6 +501,7 @@
 "status_access_id_not_assigned" = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα \"Supla Cloud\" στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
 "status_access_id_inactive" = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
 "status_host_not_found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
+"status_cant_connect_to_host" = "Αδυναμία σύνδεσης με τον διακομιστή";
 
 /* Pin setup */
 "pin_setup_header" = "Ορίστε το PIN σας";

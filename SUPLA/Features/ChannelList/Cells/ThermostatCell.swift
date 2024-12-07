@@ -22,7 +22,8 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     @Singleton<ValuesFormatter> private var formatter
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
-    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
+    @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var thermostatIconView: UIImageView = {
         let view = UIImageView()
@@ -77,10 +78,6 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     override func getRemoteId() -> Int32? { data?.channel.remote_id ?? 0 }
     
     override func online() -> Bool { data?.channel.isOnline() ?? false }
-    
-    override func issueMessage() -> String? {
-        data?.channel.value?.asThermostatValue().issueText
-    }
     
     override func derivedClassControls() -> [UIView] {
         return [
@@ -156,7 +153,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         let channel = data.channel
         let thermostatValue = channel.value?.asThermostatValue()
         
-        caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
+        caption = getCaptionUseCase.invoke(data: channel.shareable).string
         
         let onlineState = ListOnlineState.from(channel.isOnline()).mergeWith(data.children.onlineState)
         leftStatusIndicatorView.configure(filled: true, onlineState: onlineState)
@@ -168,12 +165,11 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         ).uiImage
         
         indicatorView.image = .iconStandby
-        issueIcon = nil
+        issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
         
         if let thermostatValue = thermostatValue {
             setpointTemperatureView.text = thermostatValue.setpointText
             indicatorView.image = thermostatValue.indicatorIcon.mergeWith(data.children.indicatorIcon).resource
-            issueIcon = thermostatValue.issueIcon
         }
         
         if let mainThermometer = data.children.first(where: { $0.relationType == .mainThermometer })?.channel {

@@ -249,7 +249,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         // then
         assertEvents(expected: [
-            .openCloud
+            .open(url: url.url)
         ])
         assertStates(expected: [
             GroupListViewState()
@@ -268,7 +268,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         // then
         assertEvents(expected: [
-            .openPrivateCloud(url: url)
+            .open(url: url)
         ])
         assertStates(expected: [
             GroupListViewState()

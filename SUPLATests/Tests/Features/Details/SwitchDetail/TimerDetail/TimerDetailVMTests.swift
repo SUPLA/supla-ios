@@ -16,31 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent> {
+    private lazy var viewModel: SwitchTimerDetailVM! = SwitchTimerDetailVM()
     
-    private lazy var viewModel: SwitchTimerDetailVM! = { SwitchTimerDetailVM() }()
+    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
+
+    private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = GetChannelBaseStateUseCaseMock()
+
+    private lazy var startTimerUseCase: StartTimerUseCaseMock! = StartTimerUseCaseMock()
+
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
-    }()
-    private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = {
-        GetChannelBaseStateUseCaseMock()
-    }()
-    private lazy var startTimerUseCase: StartTimerUseCaseMock! = {
-        StartTimerUseCaseMock()
-    }()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
-        ExecuteSimpleActionUseCaseMock()
-    }()
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
+    private lazy var suplaClientProvider: SuplaClientProviderMock! = SuplaClientProviderMock()
     
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
@@ -48,6 +43,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         DiContainer.shared.register(type: StartTimerUseCase.self, startTimerUseCase!)
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
     }
     
     override func tearDown() {
@@ -58,6 +54,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         startTimerUseCase = nil
         executeSimpleActionUseCase = nil
         dateProvider = nil
+        suplaClientProvider = nil
         
         super.tearDown()
     }
@@ -94,6 +91,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(0)
+        suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
         observe(viewModel)
@@ -147,6 +145,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(0)
+        suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
         observe(viewModel)
@@ -345,7 +344,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
     
     private func createChannelWithHiValue(_ value: Int8, isOnline: Bool = false) -> SAChannel {
         var suplaValue = TSuplaChannelValue_B()
-        suplaValue.value = (value,value,value,value,value,value,value,value)
+        suplaValue.value = (value, value, value, value, value, value, value, value)
         
         let value = SAChannelValue(testContext: nil)
         value.setValueWith(&suplaValue)

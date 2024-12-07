@@ -86,7 +86,11 @@ extension StatusFeature {
         private func getErrorDescription(_ reason: SuplaAppState.Reason?) -> String? {
             switch (reason) {
             case .connectionError(let code):
-                code == SUPLA_RESULT_HOST_NOT_FOUND ? Strings.Status.errorHostNotFound : nil
+                switch(code) {
+                case SUPLA_RESULT_CANT_CONNECT_TO_HOST: Strings.Status.errorCantConnectToHost
+                case SUPLA_RESULT_HOST_NOT_FOUND: Strings.Status.errorHostNotFound
+                default: nil
+                }
             case .registerError(let code): SuplaResultCode.from(value: code).getTextMessage(authDialog: true)
             case .noNetwork, .versionError, .appInBackground, .addWizardStarted, .none: nil
             }

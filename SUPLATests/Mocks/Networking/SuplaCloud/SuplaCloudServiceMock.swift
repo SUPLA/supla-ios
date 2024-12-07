@@ -17,6 +17,7 @@
  */
 
 @testable import SUPLA
+import SharedCore
 import RxSwift
 
 final class SuplaCloudServiceMock: SuplaCloudService {
@@ -116,5 +117,11 @@ final class SuplaCloudServiceMock: SuplaCloudService {
         } else {
             return .empty()
         }
+    }
+    
+    var getImpulseCounterPhotoMock: FunctionMock<Int32, Observable<ImpulseCounterPhoto>> = .init()
+    func getImpulseCounterPhoto(remoteId: Int32) -> Observable<ImpulseCounterPhoto> {
+        getImpulseCounterPhotoMock.parameters.append(remoteId)
+        return getImpulseCounterPhotoMock.returns.next()
     }
 }

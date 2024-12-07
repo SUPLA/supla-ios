@@ -21,6 +21,7 @@
 #import "proto.h"
 
 @protocol SuplaClientProtocol <NSObject>
+- (int) getServerTimeDiffInSec;
 
 - (void) cancel;
 - (BOOL) isCancelled;

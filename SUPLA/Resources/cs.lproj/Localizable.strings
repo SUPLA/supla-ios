@@ -286,9 +286,6 @@
 "Scenes" = "Scény";
 "Not supported function" = "Nepodporovaná funkce";
 
-"AccountCreation.title" = "Upravit účet";
-"AccountCreation.modificationTitle" = "Přidat účet";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=cs";
 
 "Scenes.ActionButtons.execute" = "Provést";
@@ -336,7 +333,9 @@
 "channel_caption_alarm_armament" = "Snímač nastavení alarmu";
 "channel_caption_general_purpose_measurment" = "Kanál měření";
 "channel_caption_general_purpose_meter" = "Počítací kanál";
+"channel_caption_humidity" = "Vlhkost";
 "channel_offline" = "Kanál je v režimu offline";
+"channel_battery_level" = "Stav baterie (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";
@@ -351,6 +350,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Přidání scény na Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Přidat účet";
+"create_profile_title_modify" = "Upravit účet";
+"create_profile_basic_warning_title" = "Režim není k dispozici";
+"create_profile_basic_warning_message" = "Před vypnutím rozšířeného režimu vyberte možnost ověřování e-mailu s automatickou detekcí serveru.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Oznámení";
@@ -494,6 +499,7 @@
 "status_access_id_not_assigned" = "Toto zařízení nemá přiřazené ID přístupu. Přejděte na \"Smartphone\" na \"Supla Cloud\" a vyberte příslušné ID na kartě";
 "status_access_id_inactive" = "Identifikátor přístupu není aktivní.";
 "status_host_not_found" = "Adresa serveru nebyla nalezena";
+"status_cant_connect_to_host" = "Nelze se připojit k serveru";
 
 /* Pin setup */
 "pin_setup_header" = "Definujte svůj kód PIN";

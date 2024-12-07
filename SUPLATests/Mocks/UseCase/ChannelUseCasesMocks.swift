@@ -135,6 +135,12 @@ final class GetChannelValueStringUseCaseMock: GetChannelValueStringUseCase {
         parameters.append((channel, valueType, withUnit))
         return returns
     }
+    
+    var valueOrNilMock: FunctionMock<(SAChannel, SUPLA.ValueType, Bool), String?> = .init()
+    func valueOrNil(_ channel: SAChannel, valueType: SUPLA.ValueType, withUnit: Bool) -> String? {
+        valueOrNilMock.set((channel, valueType, withUnit))
+        return valueOrNilMock.get()
+    }
 }
 
 final class DownloadGeneralPurposeMeasurementLogUseCaseMock: DownloadGeneralPurposeMeasurementLogUseCase {

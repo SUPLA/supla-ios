@@ -142,7 +142,9 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
         || ![SADialog viewControllerIsPresented:self] ) return;
     
     SAChannelStateExtendedValue *state = (SAChannelStateExtendedValue *)[notification.userInfo objectForKey:@"state"];
-    [self updateWithState:state];
+    if (state.channelId.intValue == _channel.remote_id) {
+        [self updateWithState:state];
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated {

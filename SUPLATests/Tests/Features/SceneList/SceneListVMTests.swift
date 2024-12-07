@@ -178,7 +178,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         
         // then
         assertEvents(expected: [
-            .openCloud
+            .open(url: url.url)
         ])
         assertStates(expected: [
             SceneListViewState()
@@ -197,7 +197,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         
         // then
         assertEvents(expected: [
-            .openPrivateCloud(url: url)
+            .open(url: url)
         ])
         assertStates(expected: [
             SceneListViewState()

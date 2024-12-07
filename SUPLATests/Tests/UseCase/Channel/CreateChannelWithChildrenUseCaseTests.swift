@@ -19,6 +19,7 @@
 import XCTest
 import RxTest
 import RxSwift
+import SharedCore
 
 @testable import SUPLA
 
@@ -45,7 +46,7 @@ final class CreateChannelWithChildrenUseCaseTests: UseCaseTest<Void> {
             SAChannel(testContext: nil)
         ]
         let relations = [
-            SAChannelRelation.mock(1, channelId: 10, type: .defaultType),
+            SAChannelRelation.mock(1, channelId: 10, type: .default),
             SAChannelRelation.mock(channelId, channelId: 11, type: .mainThermometer),
             SAChannelRelation.mock(channelId, channelId: 12, type: .meter),
             SAChannelRelation.mock(2, channelId: 13, type: .auxThermometerFloor)
@@ -61,7 +62,7 @@ final class CreateChannelWithChildrenUseCaseTests: UseCaseTest<Void> {
         XCTAssertTrue(collectionContains(result.children, item: allChannels[4], relation: .meter))
     }
     
-    private func collectionContains(_ collection: [ChannelChild], item: SAChannel, relation: ChannelRelationType) -> Bool {
+    private func collectionContains(_ collection: [SUPLA.ChannelChild], item: SAChannel, relation: ChannelRelationType) -> Bool {
         var result = false
         
         collection.forEach {

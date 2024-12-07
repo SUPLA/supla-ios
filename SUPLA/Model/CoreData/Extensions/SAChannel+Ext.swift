@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 extension SAChannel {
     var onlineState: ListOnlineState { .from(isOnline()) }
     
@@ -28,8 +30,8 @@ extension SAChannel {
     }
 
     func getTimerEndDate() -> Date? {
-        if let state = ev?.channelState() {
-            return state.countdownEndsAt()
+        if let state = ev?.timerState {
+            return state.countdownEndsAt
         } else {
             return nil
         }
@@ -53,4 +55,30 @@ extension SAChannel {
             default: false
         }
     }
+    
+    var batteryInfo: BatteryInfo? {
+        guard let state else { return nil }
+        
+        if state.batteryPowered != nil || state.batteryLevel != nil {
+            return BatteryInfo(
+                batteryPowered: KotlinBoolean.from(state.batteryPowered?.boolValue),
+                level: KotlinInt.from(state.batteryLevel),
+                health: KotlinInt.from(state.batteryHealth)
+            )
+        }
+        
+        return nil
+    }
+    
+    var shareable: SharedCore.Channel {
+        SharedCore.Channel(
+            remoteId: remote_id,
+            caption: caption ?? "",
+            online: isOnline(),
+            function: self.func.suplaFuntion,
+            batteryInfo: batteryInfo,
+            value: KotlinByteArray.from(nullable: value?.dataValue())
+        )
+    }
 }
+

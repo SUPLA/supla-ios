@@ -77,7 +77,9 @@
 "channel_caption_garage_door" = "Garage door";
 "channel_caption_pump_switch" = "Pump sitch";
 "channel_caption_heat_or_cold_source_switch" = "Heat or cold source switch";
+"channel_caption_humidity" = "Humidity";
 "channel_offline" = "Channel is offline";
+"channel_battery_level" = "Battery level (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -93,6 +95,12 @@
 /* Scenes */
 "scenes_empty_list_button" = "Add scene in Supla Cloud";
 
+/* Create Profile */
+"create_profile_title_create" = "Add an account";
+"create_profile_title_modify" = "Edit account";
+"create_profile_basic_warning_title" = "Setting not available";
+"create_profile_basic_warning_message" = "Before turning advanced mode off you need to switch to email authentication and enable automatic server detectio.";
+
 /* App Settings */
 "app_settings.permissions_header" = "Permissions";
 "app_settings.notifications_label" = "Notifications";
@@ -104,6 +112,7 @@
 "settings_lock_screen_none" = "None";
 "settings_lock_screen_app" = "App";
 "settings_lock_screen_accounts" = "Accounts";
+"settings_battery_level_warnign" = "Low battery alert";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -259,6 +268,7 @@
 "status_access_id_not_assigned" = "Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.";
 "status_access_id_inactive" = "Access Identifier inactive.";
 "status_host_not_found" = "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.";
+"status_cant_connect_to_host" = "Can't connect to host";
 
 /* Pin setup */
 "pin_setup_title" = "Configure PIN";
@@ -331,3 +341,9 @@
 "details_em_hour_marker_title" = "%@ o'clock";
 "em_phase_to_phase_balance" = "Vector phase-to-phase balancing";
 "em_chart_all_phases" = "Phase 1+2+3";
+
+/* Counter photo */
+"counter_photo_toolbar" = "Counter photos";
+"counter_photo_counter_area" = "Counter area";
+"counter_photo_original_photo" = "Original photo";
+"counter_photo_settings" = "Cloud configuration";

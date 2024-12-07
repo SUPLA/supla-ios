@@ -66,6 +66,7 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 1)
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
             date_timestamp: Date(),
             value: "10.0"
@@ -95,6 +96,7 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 1)
         let measurementDate = Date()
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
             date_timestamp: measurementDate,
@@ -124,6 +126,7 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: 1)
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
             date_timestamp: Date(),
             value: "10.0"

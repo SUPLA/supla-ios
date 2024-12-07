@@ -166,7 +166,7 @@ extension ProfileChooserVC: UITableViewDataSource {
                                           for: ip) as! ProfileItemCell
         let profile = profiles[ip.row]
         
-        cell.setProfileItem(.profileItem(id: profile.objectID,
+        cell.setProfileItem(.profileItem(id: profile.id,
                                          name: profile.displayName,
                                          isActive: profile.isActive))
         return cell

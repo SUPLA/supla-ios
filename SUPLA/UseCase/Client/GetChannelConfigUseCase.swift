@@ -34,7 +34,7 @@ final class GetChannelConfigUseCaseImpl: GetChannelConfigUseCase {
             request.ChannelId = remoteId
             request.ConfigType = type.rawValue
             
-            if (suplaClient.getChannelConfig(&request)) {
+            if (suplaClient?.getChannelConfig(&request) == true) {
                 observer.onNext(.success)
             } else {
                 observer.onNext(.failure)

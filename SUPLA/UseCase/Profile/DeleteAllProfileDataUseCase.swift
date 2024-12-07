@@ -40,26 +40,29 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
     @Singleton<ChannelConfigRepository> private var channelConfigRepository
+    @Singleton<ChannelStateRepository> private var channelStateRepository
     
     func invoke(profile: AuthProfileItem) -> Observable<Void> {
-        return Observable.combineLatest([
+        return Observable.zip([
             self.channelExtendedValueRepository.deleteAll(for: profile),
             self.channelValueRepository.deleteAll(for: profile),
             self.channelRepository.deleteAll(for: profile),
             self.groupRepository.deleteAll(for: profile),
-            self.electricityMeasurementItemRepository.deleteAll(for: profile),
-            self.impulseCounterMeasurementItemRepository.deleteAll(for: profile),
+            self.electricityMeasurementItemRepository.deleteAll(for: profile.server?.id),
+            self.impulseCounterMeasurementItemRepository.deleteAll(for: profile.server?.id),
             self.locationRepository.deleteAll(for: profile),
             self.sceneRepository.deleteAll(for: profile),
-            self.temperatureMeasurementItemRepository.deleteAll(for: profile),
-            self.tempHumidityMeasurementItemRepository.deleteAll(for: profile),
+            self.temperatureMeasurementItemRepository.deleteAll(for: profile.server?.id),
+            self.tempHumidityMeasurementItemRepository.deleteAll(for: profile.server?.id),
             self.userIconRepository.deleteAll(for: profile),
-            self.thermostatMeasurementItemRepository.deleteAll(for: profile),
-            self.generalPurposeMeterItemRepository.deleteAll(for: profile),
-            self.generalPurposeMeasurementItemRepository.deleteAll(for: profile),
-            self.channelConfigRepository.deleteAllFor(profile: profile)
-        ]).map {
-            $0.first
+            self.thermostatMeasurementItemRepository.deleteAll(for: profile.server?.id),
+            self.generalPurposeMeterItemRepository.deleteAll(for: profile.server?.id),
+            self.generalPurposeMeasurementItemRepository.deleteAll(for: profile.server?.id),
+            self.channelConfigRepository.deleteAllFor(profile: profile),
+            self.channelStateRepository.deleteAll(for: profile)
+        ]).map { _ in
+            AuthProfileItemKeychainHelper.clear(id: profile.id)
+            return ()
         }
     }
 }

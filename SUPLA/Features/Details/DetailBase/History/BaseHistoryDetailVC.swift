@@ -25,7 +25,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     let remoteId: Int32
     
     private var dataSetsRowState = DataSetsViewState()
-    private lazy var dataSetsRow: DataSetsRow = DataSetsRow(viewState: dataSetsRowState)
+    private lazy var dataSetsRow: DataSetsRow = .init(viewState: dataSetsRowState)
     private lazy var dataSetsRowController: UIHostingController = {
         let view = UIHostingController(rootView: dataSetsRow)
         view.view.translatesAutoresizingMaskIntoConstraints = false
@@ -104,16 +104,15 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if #available(iOS 14.0, *) {
-            let barButton = UIBarButtonItem(image: .iconMore, style: .plain, target: nil, action: nil)
-            let deleteAction = UIAction(title: Strings.Charts.historyDeleteData, handler: { [weak self] (_) in
-                if let self = self {
-                    self.viewModel.deleteAndDownloadData(remoteId: self.remoteId)
-                }
-            })
-            barButton.menu = UIMenu(children: [deleteAction])
-            navigationItemProvider.navigationItem.rightBarButtonItem = barButton
-        }
+        
+        let barButton = UIBarButtonItem(image: .iconMore, style: .plain, target: nil, action: nil)
+        let deleteAction = UIAction(title: Strings.Charts.historyDeleteData, handler: { [weak self] (_) in
+            if let self = self {
+                self.viewModel.deleteAndDownloadData(remoteId: self.remoteId)
+            }
+        })
+        barButton.menu = UIMenu(children: [deleteAction])
+        navigationItemProvider.navigationItem.rightBarButtonItem = barButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {

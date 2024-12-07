@@ -75,8 +75,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
         
-        let relation = SAChannelRelation(testContext: nil)
-        relation.channel_id = 3
+        let relation = SAChannelRelation.mock(channelId: 3, type: .default)
         channelRelationRepository.getParentsMapReturns = Observable.just([1 : [relation]])
         
         // when
@@ -92,7 +91,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 4)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: channel1, children: [ChannelChild(channel: channel3, relationType: .defaultType)]),
+            .channelBase(channelBase: channel1, children: [ChannelChild(channel: channel3, relation: relation)]),
             .location(location: location2),
             .channelBase(channelBase: channel2, children: [])
         ])
@@ -201,12 +200,11 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel3.location_id = 2
         channel3.flags = Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT)
         
+        let relation1 = SAChannelRelation.mock(1, channelId: 2, type: .mainThermometer)
+        let relation2 = SAChannelRelation.mock(1, channelId: 3, type: .auxThermometerFloor)
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
         channelRelationRepository.getParentsMapReturns = Observable.just([
-            1: [
-                SAChannelRelation.mock(1, channelId: 2, type: .mainThermometer),
-                SAChannelRelation.mock(1, channelId: 3, type: .auxThermometerFloor)
-            ]
+            1: [relation1, relation2]
         ])
         
         // when
@@ -223,8 +221,8 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items, [
             .location(location: location1),
             .channelBase(channelBase: channel1, children: [
-                ChannelChild(channel: channel2, relationType: .mainThermometer),
-                ChannelChild(channel: channel3, relationType: .auxThermometerFloor)
+                ChannelChild(channel: channel2, relation: relation1),
+                ChannelChild(channel: channel3, relation: relation2)
             ]),
         ])
     }

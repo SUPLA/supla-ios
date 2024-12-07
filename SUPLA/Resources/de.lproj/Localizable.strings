@@ -279,9 +279,6 @@
 "Select active account" = "Aktives Konto wählen";
 "Phase %d" = "Phase %d";
 
-"AccountCreation.title" = "Konto bearbeiten";
-"AccountCreation.modificationTitle" = "Konto hinzufügen";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=de";
 
 "Scenes.ActionButtons.execute" = "Ausführen";
@@ -315,7 +312,9 @@
 "channel_caption_garage_door" = "Garagentor";
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
+"channel_caption_humidity" = "Feuchtigkeitssensor";
 "channel_offline" = "Das Kanal ist offline";
+"channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -331,6 +330,12 @@
 /* Scenes */
 "scenes_empty_list_button" = "Szene in Supla Cloud hinzufügen";
 
+/* Create Profile */
+"create_profile_title_create" = "Konto hinzufügen";
+"create_profile_title_modify" = "Konto bearbeiten";
+"create_profile_basic_warning_title" = "Modus nicht verfügbar";
+"create_profile_basic_warning_message" = "Vor Ausschaltung des fortgeschrittenen Modus wählen Sie die E-Mail-Authentifizierung mit automatischer Erkennung des Servers.";
+
 /* App Settings */
 "settings_dark_mode" = "Nacht-Modus";
 "settings_lock_screen" = "PIN Eingabe";
@@ -338,6 +343,7 @@
 "settings_lock_screen_none" = "Keine";
 "settings_lock_screen_app" = "Anwendung";
 "settings_lock_screen_accounts" = "Konten";
+"settings_battery_level_warnign" = "Batteriestandswarnung";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -480,6 +486,7 @@
 "status_access_id_not_assigned" = "Diesem Client wurde keine Zugriffskennung zugewiesen. Bitte gehen Sie zu \"Smartphones\" auf \"Supla Cloud\" und holen Sie sich eine gültige ID.";
 "status_access_id_inactive" = "Zugriffskennung nicht aktiv.";
 "status_host_not_found" = "Host nicht gefunden. Überprüfen Sie bitte ob die Internetverbindung korrekt funktioniert und das Konto korrekt erstellt wurde.";
+"status_cant_connect_to_host" = "Die Verbindung mit dem Server konnte nicht erstellt werden";
 
 /* Pin setup */
 "pin_setup_title" = "PIN konfigurieren";
@@ -550,3 +557,9 @@
 "details_em_hour_marker_title" = "%@ Uhr";
 "em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
 "em_chart_all_phases" = "Phase 1+2+3";
+
+/* Counter photo */
+"counter_photo_toolbar" = "Bilder von Zähler";
+"counter_photo_counter_area" = "Zählerbereich";
+"counter_photo_original_photo" = "Originalbild";
+"counter_photo_settings" = "Cloudkonfiguration";

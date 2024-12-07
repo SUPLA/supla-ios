@@ -18,6 +18,7 @@
 
 @testable import SUPLA
 import XCTest
+import SharedCore
 
 final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindowViewEvent> {
     private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
@@ -69,7 +70,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         channel.remote_id = 123
         channel.flags = Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.value = NSData(data: FacadeBlindValue.mockData(position: 50, tilt: 70, flags: SuplaRollerShutterFlag.motorProblem.rawValue))
+        channel.value?.value = NSData(data: FacadeBlindValue.mockData(position: 50, tilt: 70, flags: SuplaShadingSystemFlag.calibrationFailed.value | SuplaShadingSystemFlag.tiltIsSet.value))
         channel.value?.online = true
         
         settings.showOpeningPercentReturns = false
@@ -90,10 +91,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                     slatTilt: .similar(70)
                 ),
                 issues: [
-                    ChannelIssueItem(
-                        issueIconType: .warning,
-                        description: Strings.RollerShutterDetail.calibrationFailed
-                    )
+                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.calibrationFailed))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,

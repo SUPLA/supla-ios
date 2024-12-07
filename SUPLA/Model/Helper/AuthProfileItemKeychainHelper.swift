@@ -23,7 +23,7 @@ class AuthProfileItemKeychainHelper {
     static let guidKey = "guid"
     static let authKey = "key"
     
-    static func getSecureRandom(size: Int, key: String, id: NSManagedObjectID) -> Data {
+    static func getSecureRandom(size: Int, key: String, id: Int32) -> Data {
         let keychainKey = keychainKey(key: key, id: id)
         if let bytes = bytes(for: keychainKey, size: size) {
             return bytes
@@ -37,9 +37,14 @@ class AuthProfileItemKeychainHelper {
     }
 
 
-    static func setSecureRandom(_ bytes: Data, key: String, id: NSManagedObjectID) {
+    static func setSecureRandom(_ bytes: Data, key: String, id: Int32) {
         let keychainKey = keychainKey(key: key, id: id)
         setBytes(bytes, for: keychainKey)
+    }
+    
+    static func clear(id: Int32) {
+        SAKeychain.deleteObject(withKey: keychainKey(key: authKey, id: id))
+        SAKeychain.deleteObject(withKey: keychainKey(key: guidKey, id: id))
     }
 
     private static func bytes(for key: String, size: Int) -> Data? {
@@ -57,9 +62,7 @@ class AuthProfileItemKeychainHelper {
     }
 
 
-    private static func keychainKey(key: String, id: NSManagedObjectID) -> String {
-        let idhash = id.uriRepresentation().dataRepresentation
-          .base64EncodedString()
-         return "\(key)_\(idhash)"
+    private static func keychainKey(key: String, id: Int32) -> String {
+         return "\(key)_\(id)"
     }
 }

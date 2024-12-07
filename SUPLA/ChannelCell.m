@@ -206,11 +206,11 @@
     if (extendedValue == nil) {
         return;
     }
-    SAChannelStateExtendedValue* channelState = [extendedValue channelState];
-    if (channelState == nil) {
+    TimerState* timerState = [extendedValue timerState];
+    if (timerState == nil) {
         return;
     }
-    timerEndTime = [channelState countdownEndsAt];
+    timerEndTime = timerState.countdownEndsAt;
     if (timerEndTime == nil || [timerEndTime timeIntervalSinceDate: [[NSDate alloc] init]] < 1) {
         return;
     }

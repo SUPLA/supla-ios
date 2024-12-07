@@ -17,11 +17,13 @@
  */
 
 protocol SuplaClientProvider {
-    func provide() -> SuplaClientProtocol
+    func provide() -> SuplaClientProtocol?
+    func forcedProvide() -> SuplaClientProtocol
 }
 
 class SuplaClientProviderImpl: SuplaClientProvider {
-    func provide() -> SuplaClientProtocol { SAApp.suplaClient() }
+    func provide() -> SuplaClientProtocol? { SAApp.instance().optionalSuplaClient() }
+    func forcedProvide() -> any SuplaClientProtocol { SAApp.suplaClient() }
 }
 
 extension SuplaClientProtocol {
@@ -89,7 +91,7 @@ extension SuplaClientProtocol {
                 parameters.DurationSec = UInt32(durationInSec)
             }
             if let mode = mode {
-                parameters.Mode = mode.rawValue
+                parameters.Mode = UInt8(mode.value)
             }
             if let heatTemperature = setpointTemperatureHeat {
                 parameters.SetpointTemperatureHeat = heatTemperature.toSuplaTemperature()

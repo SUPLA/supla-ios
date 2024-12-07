@@ -60,16 +60,15 @@ struct Strings {
         static let lockScreenNone = "settings_lock_screen_none".toLocalized()
         static let lockScreenApp = "settings_lock_screen_app".toLocalized()
         static let lockScreenAccounts = "settings_lock_screen_accounts".toLocalized()
+        static let batteryLevelWarning = "settings_battery_level_warnign".toLocalized()
     }
     
-    struct AccountCreation {
-        static let creationTitle = "AccountCreation.title".toLocalized()
-        static let modificationTitle = "AccountCreation.modificationTitle".toLocalized()
+    struct CreateProfile {
+        static let creationTitle = "create_profile_title_create".toLocalized()
+        static let modificationTitle = "create_profile_title_modify".toLocalized()
         
         static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
         static let profileNameLabel = NSLocalizedString("NAME", comment: "label for profile name")
-        static let basicModeNotAvailableTitle = NSLocalizedString("Setting not available", comment: "alert box title when basic authentication mode is not available")
-        static let basicModeNotAvailableMessage = NSLocalizedString("Before turning advanced mode off you need to switch to email authentication and enable automatic server detection.", comment: "alert box message when basic authentication mode is not available")
         static let advancedSettings = NSLocalizedString("Advanced settings", comment: "Label for advanced settings toggle on authentication screen")
         static let accessIdSegment = NSLocalizedString("Access ID", comment: "")
         static let emailSegment = NSLocalizedString("Email", comment: "")
@@ -80,6 +79,9 @@ struct Strings {
         static let wizardWarningText = NSLocalizedString("In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure.", comment: "")
         static let createAccountPrompt = NSLocalizedString("Don't have an account in Supla Cloud yet?", comment: "")
         static let createAccountButton = NSLocalizedString("Create", comment: "")
+        
+        static let basicWarningTitle = "create_profile_basic_warning_title".toLocalized()
+        static let basicWarningMessage = "create_profile_basic_warning_message".toLocalized()
     }
     
     struct AccountRemoval {
@@ -330,6 +332,9 @@ struct Strings {
             static let captionGarageDoor = "channel_caption_garage_door".toLocalized()
             static let captionPumpSwitch = "channel_caption_pump_switch".toLocalized()
             static let captionHeatOrCouldSourceSwitch = "channel_caption_heat_or_cold_source_switch".toLocalized()
+            static let captionHumidity = "channel_caption_humidity".toLocalized()
+            
+            static let batteryLevel = "channel_battery_level".toLocalized()
         }
     }
     
@@ -385,6 +390,7 @@ struct Strings {
         static let errorAccessIdNotAssigned = "status_access_id_not_assigned".toLocalized()
         static let errorAccessIdInactive = "status_access_id_inactive".toLocalized()
         static let errorHostNotFound = "status_host_not_found".toLocalized()
+        static let errorCantConnectToHost = "status_cant_connect_to_host".toLocalized()
     }
     
     struct PinSetup {
@@ -458,6 +464,13 @@ struct Strings {
         static let allPhases = "em_chart_all_phases".toLocalized()
         static let energyLabel = "details_em_energy_label".toLocalized()
         static let hourMarkerTitle = "details_em_hour_marker_title".toLocalized()
+    }
+    
+    struct CounterPhoto {
+        static let toolbar = "counter_photo_toolbar".toLocalized()
+        static let counterArea = "counter_photo_counter_area".toLocalized()
+        static let originalPhoto = "counter_photo_original_photo".toLocalized()
+        static let settings = "counter_photo_settings".toLocalized()
     }
 }
 

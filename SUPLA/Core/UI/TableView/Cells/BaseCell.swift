@@ -18,6 +18,7 @@
 
 import Foundation
 import RxSwift
+import SharedCore
 
 protocol BaseCellData {
     var infoSupported: Bool { get }
@@ -71,15 +72,11 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         }
     }
     
-    var issueIcon: IssueIconType? {
-        get { nil }
+    var issues: ListItemIssues? {
+        get { issuesView.issues }
         set {
-            if (newValue == nil) {
-                issueView.isHidden = true
-            } else {
-                issueView.isHidden = false
-                issueView.image = newValue?.icon()
-            }
+            issuesView.isHidden = newValue == nil
+            issuesView.issues = newValue
         }
     }
     
@@ -147,14 +144,12 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         return view
     }()
     
-    private lazy var issueView: UIImageView = {
-        let view = UIImageView()
+    private lazy var issuesView: IssuesView = {
+        let view = IssuesView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        view.isHidden = true
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(onIssuePress(_:)))
+            UITapGestureRecognizer(target: self, action: #selector(onIssuesPress(_:)))
         )
         return view
     }()
@@ -209,8 +204,6 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     
     func derivedClassConstraints() -> [NSLayoutConstraint] { fatalError("derivedClassConstraints() has not been implemented") }
 
-    func issueMessage() -> String? { nil }
-    
     func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: T) -> Observable<T> {
         fatalError("provideRefreshData(_:) has not been implemented")
     }
@@ -293,7 +286,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         contentView.addSubview(rightStatusIndicatorView)
         contentView.addSubview(containerView)
         contentView.addSubview(infoView)
-        contentView.addSubview(issueView)
+        contentView.addSubview(issuesView)
         
         currentConstraints.append(contentsOf: setupConstraints())
         currentConstraints.append(contentsOf: derivedClassConstraints())
@@ -308,6 +301,19 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     func getLeftButtonText(_ function: Int32?) -> String? {
         guard let function else { return nil }
         return getChannelActionStringUseCase.leftButton(function: function.suplaFuntion)?.value
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+        
+        if (!currentConstraints.isEmpty) {
+            NSLayoutConstraint.deactivate(currentConstraints)
+            currentConstraints.removeAll()
+        }
+        
+        currentConstraints.append(contentsOf: setupConstraints())
+        currentConstraints.append(contentsOf: derivedClassConstraints())
+        NSLayoutConstraint.activate(currentConstraints)
     }
     
     // MARK: Private content
@@ -351,10 +357,8 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
             infoView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             infoView.leftAnchor.constraint(equalTo: leftStatusIndicatorView.rightAnchor, constant: 20),
             
-            issueView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
-            issueView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
-            issueView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            issueView.rightAnchor.constraint(equalTo: rightStatusIndicatorView.leftAnchor, constant: -30)
+            issuesView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            issuesView.rightAnchor.constraint(equalTo: rightStatusIndicatorView.leftAnchor, constant: -20)
         ]
         
         constraints.append(contentsOf: leftStatusIndicatorView.constraints())
@@ -387,7 +391,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
             leftStatusIndicatorView,
             rightStatusIndicatorView,
             infoView,
-            issueView
+            issuesView
         ]
         controls.append(contentsOf: derivedClassControls())
         return controls
@@ -410,15 +414,17 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         delegate.onCaptionLongPress(remoteId)
     }
     
-    @objc private func onIssuePress(_ gr: UITapGestureRecognizer) {
+    @objc private func onIssuesPress(_ gr: UITapGestureRecognizer) {
         guard
             let delegate = delegate as? BaseCellDelegate,
-            let message = issueMessage()
+            let issues = issues
         else {
             return
         }
         
-        delegate.onIssueIconTapped(issueMessage: message)
+        if (issues.hasMessage()) {
+            delegate.onIssuesIconTapped(issues: issues)
+        }
     }
     
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
@@ -494,7 +500,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
 
 protocol BaseCellDelegate: MGSwipeTableCellDelegate {
     func onCaptionLongPress(_ remoteId: Int32)
-    func onIssueIconTapped(issueMessage: String)
+    func onIssuesIconTapped(issues: ListItemIssues)
     func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?)
     func onInfoIconTapped(_ channel: SAChannel)
 }
@@ -598,5 +604,113 @@ class CellStatusIndicatorView: UIView {
         
         layer.addSublayer(topLayer)
         layer.addSublayer(bottomLayer)
+    }
+}
+
+private class IssuesView: UIView {
+    var issues: ListItemIssues? = nil {
+        didSet {
+            if let issues = issues {
+                topIcon.isHidden = issues.icons.count < 1
+                bottomIcon.isHidden = issues.icons.count < 2
+                
+                if (!issues.isEmpty()) {
+                    topIcon.image = issues.icons[0].resource
+                }
+                if (issues.icons.count > 1) {
+                    bottomIcon.image = issues.icons[1].resource
+                }
+            } else {
+                topIcon.isHidden = true
+                bottomIcon.isHidden = true
+            }
+            
+            setNeedsUpdateConstraints()
+        }
+    }
+    
+    private lazy var topIcon: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var bottomIcon: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        view.isHidden = true
+        return view
+    }()
+    
+    var dynamicConstraints: [NSLayoutConstraint] = []
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        isUserInteractionEnabled = true
+        
+        addSubview(topIcon)
+        addSubview(bottomIcon)
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+        
+        NSLayoutConstraint.deactivate(dynamicConstraints)
+        dynamicConstraints.removeAll()
+        
+        if (!topIcon.isHidden && !bottomIcon.isHidden) {
+            dynamicConstraints.append(contentsOf: [
+                topIcon.leftAnchor.constraint(equalTo: leftAnchor),
+                topIcon.topAnchor.constraint(equalTo: topAnchor),
+                topIcon.rightAnchor.constraint(equalTo: rightAnchor),
+                topIcon.widthAnchor.constraint(equalToConstant: Dimens.iconSize),
+                topIcon.heightAnchor.constraint(equalToConstant: Dimens.iconSize),
+                bottomIcon.leftAnchor.constraint(equalTo: leftAnchor),
+                bottomIcon.topAnchor.constraint(equalTo: topIcon.bottomAnchor),
+                bottomIcon.rightAnchor.constraint(equalTo: rightAnchor),
+                bottomIcon.bottomAnchor.constraint(equalTo: bottomAnchor),
+                bottomIcon.widthAnchor.constraint(equalToConstant: Dimens.iconSize),
+                bottomIcon.heightAnchor.constraint(equalToConstant: Dimens.iconSize)
+            ])
+        } else if (!topIcon.isHidden) {
+            dynamicConstraints.append(contentsOf: [
+                topIcon.leftAnchor.constraint(equalTo: leftAnchor),
+                topIcon.topAnchor.constraint(equalTo: topAnchor),
+                topIcon.rightAnchor.constraint(equalTo: rightAnchor),
+                topIcon.bottomAnchor.constraint(equalTo: bottomAnchor),
+                topIcon.widthAnchor.constraint(equalToConstant: Dimens.iconSize),
+                topIcon.heightAnchor.constraint(equalToConstant: Dimens.iconSize)
+            ])
+        } else if (!bottomIcon.isHidden) {
+            dynamicConstraints.append(contentsOf: [
+                bottomIcon.leftAnchor.constraint(equalTo: leftAnchor),
+                bottomIcon.topAnchor.constraint(equalTo: topAnchor),
+                bottomIcon.rightAnchor.constraint(equalTo: rightAnchor),
+                bottomIcon.bottomAnchor.constraint(equalTo: bottomAnchor),
+                bottomIcon.widthAnchor.constraint(equalToConstant: Dimens.iconSize),
+                bottomIcon.heightAnchor.constraint(equalToConstant: Dimens.iconSize)
+            ])
+        }
+        
+        if (!dynamicConstraints.isEmpty) {
+            NSLayoutConstraint.activate(dynamicConstraints)
+        }
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
     }
 }

@@ -44,7 +44,7 @@ final class LoadActiveProfileUrlUseCaseTests: UseCaseTest<CloudUrl> {
     func test_shouldGetSuplaCloud_whenEmailAuth() {
         // given
         let profile = AuthProfileItem.mock()
-        profile.authInfo = AuthInfo.mock(emailAuth: true, serverForEmail: "srv1.supla.org")
+//        profile.authInfo = AuthInfo.mock(emailAuth: true, serverForEmail: "srv1.supla.org")
         profileRepository.activeProfileObservable = .just(profile)
         
         // when
@@ -64,7 +64,7 @@ final class LoadActiveProfileUrlUseCaseTests: UseCaseTest<CloudUrl> {
         // given
         let url = "myprivate.cloud.org"
         let profile = AuthProfileItem.mock()
-        profile.authInfo = AuthInfo.mock(emailAuth: true, serverForEmail: url)
+//        profile.authInfo = AuthInfo.mock(emailAuth: true, serverForEmail: url)
         profileRepository.activeProfileObservable = .just(profile)
         
         // when
@@ -83,7 +83,7 @@ final class LoadActiveProfileUrlUseCaseTests: UseCaseTest<CloudUrl> {
     func test_shouldGetSuplaCloud_whenAccessId() {
         // given
         let profile = AuthProfileItem.mock()
-        profile.authInfo = AuthInfo.mock(emailAuth: false, serverForAccessID: "srv1.supla.org")
+//        profile.authInfo = AuthInfo.mock(emailAuth: false, serverForAccessID: "srv1.supla.org")
         profileRepository.activeProfileObservable = .just(profile)
         
         // when
@@ -103,7 +103,7 @@ final class LoadActiveProfileUrlUseCaseTests: UseCaseTest<CloudUrl> {
         // given
         let url = "myprivate.cloud.org"
         let profile = AuthProfileItem.mock()
-        profile.authInfo = AuthInfo.mock(emailAuth: false, serverForAccessID: url)
+//        profile.authInfo = AuthInfo.mock(emailAuth: false, serverForAccessID: url)
         profileRepository.activeProfileObservable = .just(profile)
         
         // when

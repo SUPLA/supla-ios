@@ -119,7 +119,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 // CS  - client -> server
 // SC  - server -> client
 
-#define SUPLA_PROTO_VERSION 25
+#define SUPLA_PROTO_VERSION 26
 #define SUPLA_PROTO_VERSION_MIN 1
 
 #if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO) || defined(SUPLA_DEVICE)
@@ -179,6 +179,8 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 
 #define SUPLA_CHANNEL_RELATION_PACK_MAXCOUNT 100  // ver. >= 21
 
+#define SUPLA_CHANNEL_STATE_PACK_MAXCOUNT 20  // ver. >= 26
+
 #define SUPLA_DCS_CALL_GETVERSION 10
 #define SUPLA_SDC_CALL_GETVERSION_RESULT 20
 #define SUPLA_SDC_CALL_VERSIONERROR 30
@@ -236,6 +238,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_SC_CALL_CHANNELVALUE_PACK_UPDATE 400            // ver. >= 9
 #define SUPLA_SC_CALL_CHANNELVALUE_PACK_UPDATE_B 401          // ver. >= 15
 #define SUPLA_SC_CALL_CHANNELEXTENDEDVALUE_PACK_UPDATE 405    // ver. >= 10
+#define SUPLA_SC_CALL_CHANNEL_STATE_PACK_UPDATE 408           // ver. >= 26
 #define SUPLA_CS_CALL_SET_VALUE 410                           // ver. >= 9
 #define SUPLA_CS_CALL_SUPERUSER_AUTHORIZATION_REQUEST 420     // ver. >= 10
 #define SUPLA_CS_CALL_GET_SUPERUSER_AUTHORIZATION_RESULT 425  // ver. >= 12
@@ -570,6 +573,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_MFR_ERGO_ENERGIA 16
 #define SUPLA_MFR_SOMEF 17
 #define SUPLA_MFR_AURATON 18
+#define SUPLA_MFR_HPD 19
 
 // BIT map definition for TDS_SuplaRegisterDevice_*::Flags (32 bit)
 #define SUPLA_DEVICE_FLAG_CALCFG_ENTER_CFG_MODE 0x0010          // ver. >= 17
@@ -645,6 +649,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE 0x10000000           // ver. >= 21
 #define SUPLA_CHANNEL_FLAG_HAS_PARENT 0x20000000                // ver. >= 21
 #define SUPLA_CHANNEL_FLAG_CALCFG_RESTART_SUBDEVICE 0x40000000  // ver. >= 25
+#define SUPLA_CHANNEL_FLAG_BATTERY_COVER_AVAILABLE 0x80000000   // ver. >= 25
 #pragma pack(push, 1)
 
 typedef struct {
@@ -818,6 +823,7 @@ typedef struct {
 // heating mode.
 #define SUPLA_HVAC_VALUE_FLAG_COOL (1ULL << 10)
 #define SUPLA_HVAC_VALUE_FLAG_WEEKLY_SCHEDULE_TEMPORAL_OVERRIDE (1ULL << 11)
+#define SUPLA_HVAC_VALUE_FLAG_BATTERY_COVER_OPEN (1ULL << 12)
 
 // HVAC modes are used in channel value (as a command from server or
 // as a status response from device to server) and in weekly schedules
@@ -890,7 +896,8 @@ typedef struct {
   _supla_int64_t Flags;
 
   unsigned char
-      Offline;  // If true, the ValidityTimeSec and value variables are ignored.
+      Offline;  // If 1, the ValidityTimeSec and value variables are ignored. 0
+                // - ONLINE, 1 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
   unsigned _supla_int_t ValueValidityTimeSec;
 
   union {
@@ -917,7 +924,8 @@ typedef struct {
   _supla_int64_t Flags;
 
   unsigned char
-      Offline;  // If true, the ValidityTimeSec and value variables are ignored.
+      Offline;  // If 1, the ValidityTimeSec and value variables are ignored. 0
+                // - ONLINE, 1 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
   unsigned _supla_int_t ValueValidityTimeSec;
 
   union {
@@ -1105,7 +1113,8 @@ typedef struct {
   // device -> server
 
   unsigned char ChannelNumber;
-  unsigned char Offline;  // If true, the value variable is ignored.
+  unsigned char Offline;  // If 1, the value variable is ignored. 0 - ONLINE, 1
+                          // - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
   char value[SUPLA_CHANNELVALUE_SIZE];
 } TDS_SuplaDeviceChannelValue_B;  // v. >= 12
 
@@ -1114,7 +1123,8 @@ typedef struct {
 
   unsigned char ChannelNumber;
   unsigned char
-      Offline;  // If true, the ValidityTimeSec and value variables are ignored.
+      Offline;  // If 1, the ValidityTimeSec and value variables are ignored. 0
+                // - ONLINE, 1 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
   unsigned _supla_int_t ValidityTimeSec;
   char value[SUPLA_CHANNELVALUE_SIZE];
 } TDS_SuplaDeviceChannelValue_C;  // v. >= 12
@@ -1163,7 +1173,7 @@ typedef struct {
 
   char EOL;  // End Of List
   _supla_int_t Id;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue value;
 } TSC_SuplaChannelValue;
@@ -1173,7 +1183,7 @@ typedef struct {
 
   char EOL;  // End Of List
   _supla_int_t Id;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue_B value;
 } TSC_SuplaChannelValue_B;  //  ver. >= 15
@@ -1223,7 +1233,7 @@ typedef struct {
   _supla_int_t Id;
   _supla_int_t LocationID;
   _supla_int_t Func;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue value;
 
@@ -1251,7 +1261,7 @@ typedef struct {
   _supla_int_t AltIcon;
   unsigned _supla_int_t Flags;
   unsigned char ProtocolVersion;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue value;
 
@@ -1285,7 +1295,7 @@ typedef struct {
 
   unsigned _supla_int_t Flags;
   unsigned char ProtocolVersion;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue value;
 
@@ -1310,7 +1320,7 @@ typedef struct {
 
   unsigned _supla_int_t Flags;
   unsigned char ProtocolVersion;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue_B value;
 
@@ -1336,7 +1346,7 @@ typedef struct {
 
   unsigned _supla_int64_t Flags;
   unsigned char ProtocolVersion;
-  char online;
+  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
 
   TSuplaChannelValue_B value;
 
@@ -2380,6 +2390,9 @@ typedef struct {
 // Histeresis value - i.e. heating will be enabled when current temperature
 // is histeresis/2 lower than current setpoint.
 #define TEMPERATURE_HISTERESIS (1ULL << 5)
+// AUX histeresis value - used to determine heating based on AUX temperature
+// If aux histeresis is missing, then TEMPERATURE_HISTERESIS is used
+#define TEMPERATURE_AUX_HISTERESIS (1ULL << 18)
 // Turns on "alarm" when temperature is below this value. Can be visual effect
 // or sound (if device is capable). It can also send AT to server (TBD)
 #define TEMPERATURE_BELOW_ALARM (1ULL << 6)
@@ -2410,7 +2423,7 @@ typedef struct {
 #define TEMPERATURE_HEAT_COOL_OFFSET_MIN (1ULL << 16)
 // Maximum temperature offset in HEAT_COOL mode
 #define TEMPERATURE_HEAT_COOL_OFFSET_MAX (1ULL << 17)
-// 6 values left for future use
+// 5 values left for future use (value << 18 is defined earlier)
 
 #define SUPLA_TEMPERATURE_INVALID_INT16 -32768
 
@@ -2551,7 +2564,8 @@ typedef struct {
     _supla_int_t LightSourceOperatingTime;   // -3932100sec. - 3932100sec.
     unsigned _supla_int_t OperatingTime;     // time in seconds
   };
-  char EmptySpace[2];  // Empty space for future use
+  char EOL;            // End Of List // v. >= 26
+  char EmptySpace[1];  // Empty space for future use
 } TDSC_ChannelState;   // v. >= 12 Device -> Server -> Client
 
 #define TChannelState_ExtendedValue TDSC_ChannelState
@@ -3071,7 +3085,7 @@ typedef struct {
 // TEMPERATURE_BOOST - has to be in Room Constrain
 // TEMPERATURE_HEAT_PROTECTION - has to be in Room Constrain when function
 //   is COOL or HEAT_COOL
-// TEMPERATURE_HISTERESIS - has to be
+// TEMPERATURE_HISTERESIS and TEMPERATURE_AUX_HISTERESIS - has to be
 //   TEMPERATURE_HISTERESIS_MIN <= t <= TEMPERATURE_HISTERESIS_MAX
 // TEMPERATURE_BELOW_ALARM - has to be in Room Constrain
 // TEMPERATURE_ABOVE_ALARM - has to be in Room Constrain
@@ -3092,6 +3106,10 @@ typedef struct {
 #define SUPLA_HVAC_SUBFUNCTION_NOT_SET 0
 #define SUPLA_HVAC_SUBFUNCTION_HEAT 1
 #define SUPLA_HVAC_SUBFUNCTION_COOL 2
+
+#define SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_NOT_SUPPORTED 0
+#define SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_ROOM_TEMPERATURE 1
+#define SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_AUX_HEATER_COOLER_TEMPERATURE 2
 
 typedef struct {
   unsigned _supla_int_t MainThermometerChannelNoReadonly : 1;
@@ -3147,7 +3165,9 @@ typedef struct {
   unsigned _supla_int_t HeatOrColdSourceSwitchHidden : 1;
   unsigned _supla_int_t PumpSwitchReadonly : 1;
   unsigned _supla_int_t PumpSwitchHidden : 1;
-  unsigned _supla_int_t Reserved : 12;
+  unsigned _supla_int_t TemperaturesAuxHisteresisReadonly : 1;
+  unsigned _supla_int_t TemperaturesAuxHisteresisHidden : 1;
+  unsigned _supla_int_t Reserved : 10;
 } HvacParameterFlags;
 
 typedef struct {
@@ -3223,9 +3243,15 @@ typedef struct {
     };  // v. >= 25
   };
 
+  // TemperatureControlType allows to switch between work based on main
+  // thermometer (room) and aux thermometer (heater/cooler).
+  // Option is available only for SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+  // If set to 0, then it is not supported.
+  unsigned char TemperatureControlType;  // SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_
+
   unsigned char Reserved[48 - sizeof(HvacParameterFlags) -
                          sizeof(_supla_int_t) - sizeof(_supla_int_t) -
-                         sizeof(_supla_int_t)];
+                         sizeof(_supla_int_t) - sizeof(unsigned char)];
   THVACTemperatureCfg Temperatures;
 } TChannelConfig_HVAC;  // v. >= 21
 
@@ -3557,6 +3583,13 @@ typedef struct {
 typedef struct {
   _supla_int_t ResultCode;
 } TSC_RegisterPnClientTokenResult;
+
+typedef struct {
+  _supla_int_t count;
+  _supla_int_t total_left;
+  TDSC_ChannelState
+      items[SUPLA_CHANNEL_STATE_PACK_MAXCOUNT];  // Last variable in struct!
+} TSC_SuplaChannelStatePack;
 
 #pragma pack(pop)
 

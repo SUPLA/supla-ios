@@ -17,14 +17,15 @@
  */
 
 @testable import SUPLA
+import SharedCore
 
 extension RollerShutterValue {
-    static func mockData(position: Int, bottomPosition: Int = 100, flags: Int16 = 0) -> Data {
+    static func mockData(position: Int, bottomPosition: Int = 100, flags: Int32 = 0) -> Data {
         var cValue = TDSC_RollerShutterValue(
             position: Int8(position),
             reserved1: 0,
             bottom_position: Int8(bottomPosition),
-            flags: flags,
+            flags: Int16(flags),
             reserved2: 0,
             reserved3: 0,
             reserved4: 0

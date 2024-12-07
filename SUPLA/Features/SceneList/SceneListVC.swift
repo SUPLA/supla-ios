@@ -20,6 +20,7 @@ import Foundation
 import RxCocoa
 import RxDataSources
 import RxSwift
+import SharedCore
 
 class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
     @Singleton<SuplaAppCoordinator> private var coordinator
@@ -38,8 +39,7 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     override func handle(event: SceneListViewEvent) {
         switch (event) {
-        case .openPrivateCloud(let url): coordinator.openUrl(url: url)
-        case .openCloud: coordinator.openCloud()
+        case .open(let url): coordinator.openUrl(url: url)
         }
     }
     
@@ -86,7 +86,7 @@ extension SceneListVC: SceneCellDelegate {
         viewModel.onButtonClicked(buttonType: buttonType, sceneId: remoteId)
     }
     
-    func onIssueIconTapped(issueMessage: String) {} // Not relevant for scene
+    func onIssuesIconTapped(issues: ListItemIssues) {} // Not relevant for scene
     
     func onInfoIconTapped(_ channel: SAChannel) {} // Not relevant for scene
     

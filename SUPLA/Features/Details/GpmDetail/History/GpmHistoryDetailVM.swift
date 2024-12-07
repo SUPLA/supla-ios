@@ -44,7 +44,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             profileRepository.getActiveProfile().map {
                 @Singleton<UserStateHolder> var userStateHolder
                 return userStateHolder.getDefaultChartState(
-                    profileId: $0.idString,
+                    profileId: $0.id,
                     remoteId: remoteId
                 )
             }
@@ -88,7 +88,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     
     private func handleData(channel: SAChannel, chartState: DefaultChartState) {
         updateView {
-            $0.changing(path: \.profileId, to: channel.profile.idString)
+            $0.changing(path: \.profileId, to: channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.func)
         }
         

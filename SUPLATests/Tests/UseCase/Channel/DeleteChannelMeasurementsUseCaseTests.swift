@@ -53,7 +53,9 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
     func test_shouldDeleteThermometerHistory() {
         // given
         let remoteId: Int32 = 111
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         let channel = ChannelWithChildren(channel: SAChannel(testContext: nil), children: [])
         channel.channel.remote_id = remoteId
         channel.channel.func = SUPLA_CHANNELFNC_THERMOMETER
@@ -71,7 +73,7 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             .completed
         ])
         XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (remoteId, profile)
+            (remoteId, serverId)
         ])
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
     }
@@ -79,7 +81,9 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
     func test_shouldDeleteHumidityAndThermometerHistory() {
         // given
         let remoteId: Int32 = 111
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         let channel = ChannelWithChildren(channel: SAChannel(testContext: nil), children: [])
         channel.channel.remote_id = remoteId
         channel.channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
@@ -97,7 +101,7 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             .completed
         ])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (remoteId, profile)
+            (remoteId, serverId)
         ])
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
     }
@@ -105,7 +109,9 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
     func test_shouldDeleteGeneralPurposeMeasurementHistory() {
         // given
         let remoteId: Int32 = 111
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         let channel = ChannelWithChildren(channel: SAChannel(testContext: nil), children: [])
         channel.channel.remote_id = remoteId
         channel.channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
@@ -123,7 +129,7 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             .completed
         ])
         XCTAssertTuples(generalPurposeMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (remoteId, profile)
+            (remoteId, serverId)
         ])
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
     }
@@ -131,7 +137,9 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
     func test_shouldDeleteGeneralPurposeMeterHistory() {
         // given
         let remoteId: Int32 = 111
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         let channel = ChannelWithChildren(channel: SAChannel(testContext: nil), children: [])
         channel.channel.remote_id = remoteId
         channel.channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
@@ -149,7 +157,7 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             .completed
         ])
         XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (remoteId, profile)
+            (remoteId, serverId)
         ])
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
     }
@@ -157,7 +165,9 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
     func test_shouldDeleteHistory_channelWithChildren() {
         // given
         let remoteId: Int32 = 111
+        let serverId: Int32 = 2
         let profile = AuthProfileItem(testContext: nil)
+        profile.server = SAProfileServer.mock(id: serverId)
         
         let thermometerChild = SAChannel(testContext: nil)
         thermometerChild.func = SUPLA_CHANNELFNC_THERMOMETER
@@ -170,8 +180,8 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         humidityAndThermomereterChild.profile = profile
         
         let channel = ChannelWithChildren(channel: SAChannel(testContext: nil), children: [
-            ChannelChild(channel: humidityAndThermomereterChild, relationType: .mainThermometer),
-            ChannelChild(channel: thermometerChild, relationType: .auxThermometerFloor)
+            ChannelChild(channel: humidityAndThermomereterChild, relation: SAChannelRelation.mock(type: .mainThermometer)),
+            ChannelChild(channel: thermometerChild, relation: SAChannelRelation.mock(type: .auxThermometerFloor))
         ])
         channel.channel.remote_id = remoteId
         channel.channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
@@ -191,10 +201,10 @@ final class DeleteChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             .completed
         ])
         XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (Int32(222), profile)
+            (Int32(222), serverId)
         ])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [
-            (Int32(333), profile)
+            (Int32(333), serverId)
         ])
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
     }

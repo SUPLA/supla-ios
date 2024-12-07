@@ -33,11 +33,15 @@ extension Float {
     }
     
     func toSuplaTemperature() -> Int16 {
-        return Int16(self * 100)
+        return Int16((self * 10).rounded()) * 10
     }
     
     func also<T>(_ transformation: (Float) -> T) -> T {
         return transformation(self)
+    }
+    
+    func roundToTenths() -> Float {
+        (self * 10).rounded() / 10
     }
 }
 
@@ -64,5 +68,9 @@ extension CGFloat: ScopeFunctions {
     
     func also(_ transformation: (CGFloat) -> CGFloat) -> CGFloat {
         return transformation(self)
+    }
+    
+    func roundToTenths() -> CGFloat {
+        (self * 10).rounded() / 10
     }
 }

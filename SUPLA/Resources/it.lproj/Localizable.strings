@@ -299,9 +299,6 @@
 "The function of the channel associated with the push notification cannot be changed." = "La funzione del canale associato alle notifiche PUSH non può essere modificata.";
 "The channel function associated with reactions cannot be changed." = "La funzione del canale associato alle reazioni non può essere modificata.";
 
-"AccountCreation.title" = "Modifica account";
-"AccountCreation.modificationTitle" = "Aggiungi un account";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=it";
 
 "Scenes.ActionButtons.execute" = "Esegui";
@@ -355,7 +352,9 @@
 "channel_caption_garage_door" = "Portone di garage";
 "channel_caption_pump_switch" = "Commutatore della pompa";
 "channel_caption_heat_or_cold_source_switch" = "Commutatore della fonte di calore o di freddo";
+"channel_caption_humidity" = "Umidità";
 "channel_offline" = "Il canale è offline";
+"channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Abbiamo eliminato il gesto di scorrimento che apre i dettagli, per vederli devi toccare il canale selezionato.";
@@ -370,6 +369,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Aggiungi una scenario su Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Aggiungi un account";
+"create_profile_title_modify" = "Modifica account";
+"create_profile_basic_warning_title" = "Impostazioni non disponibili";
+"create_profile_basic_warning_message" = "Prima di disattivare la modalità avanzata è necessario selezionare l'autenticazione tramite email ed abilitare il riconoscimento automatico del server.";
 
 /* App Settings */
 "app_settings.permissions_header" = "Autorizzazioni";
@@ -525,6 +530,7 @@
 "status_registration_disabled" = "La registrazione è attualmente disabilitata. Per abilitarlo, vai alla scheda \"Smartphone\" a pagina \"Supla Cloud\".";
 "status_access_id_not_assigned" = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina \"Supla Cloud\" e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
 "status_host_not_found" = "L’indirizzo del server non è stato trovato";
+"status_cant_connect_to_host" = "Connessione con il server non riuscita";
 
 /* Pin setup */
 "pin_setup_title" = "Configurazione PIN";

@@ -27,6 +27,15 @@ extension View {
             return foregroundColor(color)
         }
     }
+    
+    func fontCaptionSmall() -> some View {
+        font(.Supla.captionSmall)
+            .textCase(.uppercase)
+    }
+    
+    func fontBodyMedium() -> some View {
+        font(.Supla.bodyMedium)
+    }
 }
 
 struct Text {
@@ -61,6 +70,23 @@ struct Text {
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.headlineSmall)
+                    .multilineTextAlignment(alignment)
+            }
+        }
+    }
+    
+    struct TitleMedium: SuplaText {
+        var text: String
+        var alignment: SwiftUI.TextAlignment = .center
+
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(.Supla.titleMedium)
+                    .multilineTextAlignment(alignment)
+            } else {
+                SwiftUI.Text(text)
+                    .font(.Supla.titleMedium)
                     .multilineTextAlignment(alignment)
             }
         }

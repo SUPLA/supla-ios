@@ -286,9 +286,6 @@
 "Thermostat" = "Termostat";
 "Not supported function" = "Niewspierana funkcja";
 
-"AccountCreation.title" = "Edytuj konto";
-"AccountCreation.modificationTitle" = "Dodaj konto";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pl";
 
 "Scenes.ActionButtons.execute" = "Wykonaj";
@@ -344,7 +341,9 @@
 "channel_caption_garage_door" = "Brama garażowa";
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
+"channel_caption_humidity" = "Wilgotność";
 "channel_offline" = "Kanał jest offline";
+"channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -360,6 +359,12 @@
 /* Scenes */
 "scenes_empty_list_button" = "Dodaj scenę na Supla Cloud";
 
+/* Create Profile */
+"create_profile_title_create" = "Dodaj konto";
+"create_profile_title_modify" = "Edytuj konto";
+"create_profile_basic_warning_title" = "Tryb niedostępny";
+"create_profile_basic_warning_message" = "Przed wyłączeniem trybu zaawansowanego wybierz uwierzytelnianie email z automatycznym wykrywaniem serwera.";
+
 /* App Settings */
 "app_settings.permissions_header" = "Uprawnienia";
 "app_settings.notifications_label" = "Powiadomienia";
@@ -371,6 +376,7 @@
 "settings_lock_screen_none" = "Brak";
 "settings_lock_screen_app" = "Aplikacja";
 "settings_lock_screen_accounts" = "Konta";
+"settings_battery_level_warnign" = "Sygnalizacja słabej baterii";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
@@ -516,6 +522,7 @@
 "status_access_id_not_assigned" = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę \"Supla Cloud\" i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "status_access_id_inactive" = "Identyfikator dostępu nieaktywny.";
 "status_host_not_found" = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
+"status_cant_connect_to_host" = "Nie można połączyć się z serwerem";
 
 /* Pin setup */
 "pin_setup_title" = "Konfiguracja PIN";
@@ -587,3 +594,10 @@
 "details_em_hour_marker_title" = "Godzina %@";
 "em_phase_to_phase_balance" = "Bilans międzyfazowy wektorowy";
 "em_chart_all_phases" = "Fazy 1+2+3";
+
+/* Counter photo */
+"counter_photo_toolbar" = "Zdjęcia licznika";
+"counter_photo_counter_area" = "Obszar licznika";
+"counter_photo_original_photo" = "Zdjęcie oryginalne";
+"counter_photo_settings" = "Konfiguracja w Cloud";
+

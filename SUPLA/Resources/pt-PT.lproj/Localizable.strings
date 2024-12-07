@@ -285,9 +285,6 @@
 "Scenes" = "Cena";
 "Not supported function" = "Função não suportada";
 
-"AccountCreation.title" = "Editar Conta";
-"AccountCreation.modificationTitle" = "Adicionar conta";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pt";
 
 "Scenes.ActionButtons.execute" = "Realizar";
@@ -337,7 +334,9 @@
 "channel_caption_garage_door" = "Portão de garagem";
 "channel_caption_pump_switch" = "Interruptor da bomba";
 "channel_caption_heat_or_cold_source_switch" = "Interruptor da fonte de calor ou frio";
+"channel_caption_humidity" = "Humidade";
 "channel_offline" = "O canal está offline";
+"channel_battery_level" = "Nível de bateria (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Removemos o gesto de deslizar que abre os detalhes; para os ver, toque no canal selecionado.";
@@ -352,6 +351,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Adicionar cena no Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Adicionar conta";
+"create_profile_title_modify" = "Editar Conta";
+"create_profile_basic_warning_title" = "Modo não disponível";
+"create_profile_basic_warning_message" = "Antes de desativar o modo avançado, selecione a autenticação de e-mail com deteção automática do servidor.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Saltar";
@@ -500,6 +505,7 @@
 "status_access_id_not_assigned" = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página \"Supla Cloud\" e atribua o ID apropriado na guia \"Smartphones\".";
 "status_access_id_inactive" = "Acesso ao identificador  inativo.";
 "status_host_not_found" = "O endereço do servidor não foi encontrado";
+"status_cant_connect_to_host" = "Impossível ligar com o servidor";
 
 /* Pin setup */
 "pin_setup_header" = "Defina o seu código PIN";

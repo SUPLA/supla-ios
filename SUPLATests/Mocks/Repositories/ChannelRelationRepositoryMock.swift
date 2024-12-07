@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 @testable import SUPLA
 

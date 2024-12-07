@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 extension SAChannelGroup {
     
     @objc var positions: [Int] {
@@ -192,6 +194,14 @@ extension SAChannelGroup {
                 
                 return result
             }
+    }
+    
+    var shareable: SharedCore.Group {
+        SharedCore.Group(
+            remoteId: remote_id,
+            caption: caption ?? "",
+            function: self.func.suplaFuntion
+        )
     }
 }
 

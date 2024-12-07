@@ -285,9 +285,6 @@
 "Scenes" = "Scènes";
 "Not supported function" = "Niet-ondersteunde functie";
 
-"AccountCreation.title" = "Rekening bewerken";
-"AccountCreation.modificationTitle" = "Rekening toevoegen";
-
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nl";
 
 "Scenes.ActionButtons.execute" = "Ik wil  volgen";
@@ -337,7 +334,9 @@
 "channel_caption_garage_door" = "Garagedeur";
 "channel_caption_pump_switch" = "Pompschakelaar";
 "channel_caption_heat_or_cold_source_switch" = "Schakelaar voor warmte- of koudebron";
+"channel_caption_humidity" = "Vochtigheid";
 "channel_offline" = "Het kanaal is offline";
+"channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";
@@ -352,6 +351,12 @@
 
 /* Scenes */
 "scenes_empty_list_button" = "Een scène toevoegen op Supla Cloud";
+
+/* Create Profile */
+"create_profile_title_create" = "Rekening toevoegen";
+"create_profile_title_modify" = "Rekening bewerken";
+"create_profile_basic_warning_title" = "Modus niet beschikbaar";
+"create_profile_basic_warning_message" = "Voordat u de geavanceerde modus uitschakelt, selecteert u e-mailauthenticatie met automatische serverdetectie.";
 
 /* App Settings */
 "app_settings.notifications_label" = "Meldingen";
@@ -496,6 +501,7 @@
 "status_access_id_not_assigned" = "Aan dit apparaat is geen toegangs-ID toegewezen. Ga naar de pagina \"Supla Cloud\" en wijs de juiste ID toe op het tabblad \"Smartphones\".";
 "status_access_id_inactive" = "Toegangs ID inactief.";
 "status_host_not_found" = "Serveeradres werd niet gevonden";
+"status_cant_connect_to_host" = "Kon geen verbinding maken met de host";
 
 /* Pin setup */
 "pin_setup_header" = "Uw PIN-code instellen";

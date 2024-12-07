@@ -121,21 +121,21 @@ private extension SAChannelGroup {
             case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
                 return IntegerGroupValue(value: Int(value.percentValue()))
             case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
-                return IntegerGroupValue(value: value.asRollerShutterValue().alwaysValidPosition)
+                return IntegerGroupValue(value: Int(value.asRollerShutterValue().alwaysValidPosition))
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
                  SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
                  SUPLA_CHANNELFNC_CURTAIN,
                  SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
                 return ShadingSystemGroupValue(
-                    position: value.asRollerShutterValue().alwaysValidPosition,
+                    position: Int(value.asRollerShutterValue().alwaysValidPosition),
                     closedSensorActive: value.hiSubValue() == 1
                 )
             case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
                  SUPLA_CHANNELFNC_VERTICAL_BLIND:
                 let facadeBlindValue = value.asFacadeBlindValue()
                 return ShadowingBlindGroupValue(
-                    position: facadeBlindValue.alwaysValidPosition,
-                    tilt: facadeBlindValue.tilt
+                    position: Int(facadeBlindValue.alwaysValidPosition),
+                    tilt: Int(facadeBlindValue.tilt)
                 )
             case SUPLA_CHANNELFNC_DIMMER:
                 return IntegerGroupValue(value: Int(value.brightnessValue()))

@@ -71,6 +71,16 @@ extension UIImage {
     static let iconForwardEnergy = UIImage(named: .Icons.forwardEnergy)
     static let iconReversedEnergy = UIImage(named: .Icons.reversedEnergy)
     
+    static let iconBattery = UIImage(named: .Icons.battery)
+    static let iconBattery0 = UIImage(named: .Icons.battery_0)
+    static let iconBattery25 = UIImage(named: .Icons.battery_25)
+    static let iconBattery50 = UIImage(named: .Icons.battery_50)
+    static let iconBattery75 = UIImage(named: .Icons.battery_75)
+    static let iconBattery100 = UIImage(named: .Icons.battery_100)
+    static let iconBatteryNotUsed = UIImage(named: .Icons.battery_not_used)
+    
+    static let iconOcrPhoto = UIImage(named: .Icons.ocrPhoto)
+    
     // MARK: Functions
     static let fncUnknown = UIImage(named: .Icons.fncUnknown)
     // Thermostat

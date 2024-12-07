@@ -20,11 +20,9 @@ import Foundation
 
 class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseTableViewController<S, E, VM> {
     let cellIdForChannel = "ChannelCell"
-    let cellIdForThermometer = "ThermometerCell"
-    let cellIdForTempHumidity = "TempHumidityCell"
     let cellIdForIconValue = "IconValueCell"
+    let cellIdForDoubleIconValue = "DoubleIconValueCell"
     let cellIdForIcon = "IconCell"
-    let cellIdForDistance = "DistanceCell"
     let cellIdForIncremental = "IncrementalCell"
     let cellIdForHomePlus = "HomePlusCell"
     let cellIdForHvacThermostat = "HvacThermostatCell"
@@ -33,14 +31,12 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
     
     override func setupTableView() {
         register(nib: Nibs.channelCell, for: cellIdForChannel)
-        register(nib: Nibs.thermometerCell, for: cellIdForThermometer)
-        register(nib: Nibs.tempHumidityCell, for: cellIdForTempHumidity)
-        register(nib: Nibs.distanceCell, for: cellIdForDistance)
         register(nib: Nibs.incrementalMeterCell, for: cellIdForIncremental)
         register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
         tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
         tableView.register(IconValueCell.self, forCellReuseIdentifier: cellIdForIconValue)
         tableView.register(IconCell.self, forCellReuseIdentifier: cellIdForIcon)
+        tableView.register(DoubleIconValueCell.self, forCellReuseIdentifier: cellIdForDoubleIconValue)
         
         super.setupTableView()
     }
@@ -52,7 +48,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
         switch (cellId) {
         case cellIdForHvacThermostat,
              cellIdForIconValue,
-             cellIdForIcon:
+             cellIdForIcon,
+             cellIdForDoubleIconValue:
             return setupBaseCell(cell, channelBase: channelBase, children: children)
         default:
             return setupLegacyCell(cell, cellId: cellId, channelBase: channelBase, indexPath: indexPath)
@@ -176,9 +173,22 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_HUMIDITY,
              SUPLA_CHANNELFNC_DISTANCESENSOR,
              SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_THERMOMETER:
-            return cellIdForIconValue
-        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+             SUPLA_CHANNELFNC_THERMOMETER,
+            
+             SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
+             SUPLA_CHANNELFNC_PUMPSWITCH,
+             SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
+             SUPLA_CHANNELFNC_MAILSENSOR,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
+             SUPLA_CHANNELFNC_HOTELCARDSENSOR,
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
             return cellIdForIconValue
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
@@ -190,9 +200,13 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
              SUPLA_CHANNELFNC_CURTAIN,
              SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
             return cellIdForIcon
-            // Old
+        // Old
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return cellIdForHomePlus
         case SUPLA_CHANNELFNC_IC_GAS_METER,
@@ -200,7 +214,7 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_IC_HEAT_METER:
             return cellIdForIncremental
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return cellIdForTempHumidity
+            return cellIdForDoubleIconValue
         default:
             return cellIdForChannel
         }

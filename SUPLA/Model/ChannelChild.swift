@@ -16,30 +16,34 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-import Foundation
+import SharedCore
 
 struct ChannelChild: Equatable {
     let channel: SAChannel
-    let relationType: ChannelRelationType
+    let relation: SAChannelRelation
     let children: [ChannelChild]
     
-    init(channel: SAChannel, relationType: ChannelRelationType, children: [ChannelChild] = []) {
+    var relationType: ChannelRelationType {
+        relation.relationType
+    }
+    
+    init(channel: SAChannel, relation: SAChannelRelation, children: [ChannelChild] = []) {
         self.channel = channel
-        self.relationType = relationType
+        self.relation = relation
         self.children = children
     }
 }
 
 extension Array where Element == ChannelChild {
     var indicatorIcon: ThermostatIndicatorIcon {
-        filter { $0.relationType == .masterThermostat }
+        filter { $0.relation.relationType == .masterThermostat }
             .map { $0.channel.value?.asThermostatValue().indicatorIcon }
             .compactMap { $0 }
             .reduce(ThermostatIndicatorIcon.off) { result, value in value.moreImportantThan(result) ? value : result }
     }
     
     var onlineState: ListOnlineState {
-        filter { $0.relationType == .masterThermostat }
+        filter { $0.relation.relationType == .masterThermostat }
             .map { $0.channel.value?.online }
             .compactMap { $0 }
             .reduce(.unknown) { result, online in
@@ -55,5 +59,15 @@ extension Array where Element == ChannelChild {
                     result
                 }
             }
+    }
+}
+
+extension ChannelChild {
+    var shareable: SharedCore.ChannelChild {
+        SharedCore.ChannelChild(
+            channel: channel.shareable,
+            relation: relation.shareable,
+            children: children.map { $0.shareable }
+        )
     }
 }

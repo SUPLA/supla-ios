@@ -18,6 +18,7 @@
 
 import RxRelay
 import RxSwift
+import SharedCore
 
 private let REFRESH_DELAY_S: Double = 3
 
@@ -230,7 +231,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
                 .changing(path: \.changing, to: true)
             
-            let newTemperature = Float(Int((min + (max - min) * position) * 10)) / 10
+            let newTemperature = (min + (max - min) * position).roundToTenths()
             switch (type) {
             case .cool:
                 delayedThermostatActionSubject.emit(
@@ -302,7 +303,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.isOnline())
             changedState = handleButtons(changedState, channel: channel.channel)
             
-            if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }),
+            if let mainTermometer = channel.children.first(where: { $0.relation.relationType == .mainThermometer }),
                channel.channel.isOnline()
             {
                 let temperature = mainTermometer.channel.temperatureValue()
@@ -325,7 +326,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         guard let temperature = temperature
         else { return 0 + step.rawValue }
         
-        let newTemperature = temperature + step.rawValue
+        let newTemperature = (temperature + step.rawValue).roundToTenths()
         if (newTemperature < configMin) {
             return configMin
         } else if (newTemperature > configMax) {
@@ -351,7 +352,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let autoHeat = channel.isThermostatAuto() && setpointHeatSet
         let heat = channel.isThermostat() && setpointHeatSet && value.subfunction == .heat
         if (dhv || autoHeat || heat) {
-            changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat)
+            changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat.roundToTenths())
         } else {
             changedState = changedState.changing(path: \.setpointHeat, to: nil)
         }
@@ -360,14 +361,14 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let autoCool = channel.isThermostatAuto() && setpointCoolSet
         let cool = channel.isThermostat() && setpointCoolSet && value.subfunction == .cool
         if (autoCool || cool) {
-            changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool)
+            changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool.roundToTenths())
         } else {
             changedState = changedState.changing(path: \.setpointCool, to: nil)
         }
         
         if (changedState.activeSetpointType == nil || changedState.subfunction != value.subfunction) {
             switch (value.mode) {
-            case .heat, .auto:
+            case .heat, .heatCool:
                 changedState = changedState.changing(path: \.activeSetpointType, to: .heat)
             case .cool:
                 changedState = changedState.changing(path: \.activeSetpointType, to: .cool)
@@ -408,7 +409,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     private func isActive(_ channelWithChildren: ChannelWithChildren, _ flag: SuplaThermostatFlag) -> Bool {
-        let children = channelWithChildren.allDescendantFlat.filter { $0.relationType == .masterThermostat }
+        let children = channelWithChildren.allDescendantFlat.filter { $0.relation.relationType == .masterThermostat }
         let channelHasFlag = channelWithChildren.channel.isActive(flag)
         
         return if (children.isEmpty) {
@@ -465,22 +466,13 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ChannelIssueItem] {
         var result: [ChannelIssueItem] = []
         if (flags.contains(.thermometerError)) {
-            result.append(ChannelIssueItem(
-                issueIconType: .error,
-                description: Strings.ThermostatDetail.thermometerError
-            ))
+            result.append(ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatThermometerError)))
         }
-        if (flags.contains(.batterCoverOpen)) {
-            result.append(ChannelIssueItem(
-                issueIconType: .error,
-                description: Strings.ThermostatDetail.batteryCoverOpen
-            ))
+        if (flags.contains(.batteryCoverOpen)) {
+            result.append(ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatBatterCoverOpen)))
         }
         if (flags.contains(.clockError)) {
-            result.append(ChannelIssueItem(
-                issueIconType: .warning,
-                description: Strings.ThermostatDetail.clockError
-            ))
+            result.append(ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.thermostatClockError)))
         }
         return result
     }
@@ -490,7 +482,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             return nil
         }
         
-        if let sensor = children.first(where: { $0.relationType == .defaultType }) {
+        if let sensor = children.first(where: { $0.relationType == .default }) {
             let message = switch (sensor.channel.func) {
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
                 Strings.ThermostatDetail.offByWindow

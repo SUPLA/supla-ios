@@ -105,6 +105,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             send(event: .navigateToRollerShutterDetail(item: channel.item(), pages: pages))
         case let .electricityMeterDetail(pages):
             send(event: .navigateToElectricityMeterDetail(item: channel.item(), pages: pages))
+        case let .impulseCounterDetail(pages):
+            send(event: .navigateToImpulseCounterDetail(item: channel.item(), pages: pages))
         }
     }
 }
@@ -117,6 +119,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
 }
 

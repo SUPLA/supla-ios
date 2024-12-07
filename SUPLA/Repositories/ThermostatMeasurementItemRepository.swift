@@ -20,12 +20,12 @@ import Foundation
 import RxSwift
 
 protocol ThermostatMeasurementItemRepository: RepositoryProtocol where T == SAThermostatMeasurementItem {
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(for serverId: Int32?) -> Observable<Void>
 }
 
 final class ThermostatMeasurementItemRepositoryImpl: Repository<SAThermostatMeasurementItem>, ThermostatMeasurementItemRepository {
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SAThermostatMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    func deleteAll(for serverId: Int32?) -> Observable<Void> {
+        deleteAll(SAThermostatMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "server_id = %d", serverId ?? 0)))
     }
 }

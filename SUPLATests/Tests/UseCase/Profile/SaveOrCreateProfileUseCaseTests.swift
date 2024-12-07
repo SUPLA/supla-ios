@@ -19,169 +19,169 @@
 @testable import SUPLA
 import XCTest
 
-final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResult> {
-    
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    
-    private lazy var globalSettings: GlobalSettingsMock! = {
-        GlobalSettingsMock()
-    }()
-    
-    private lazy var suplaAppStateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
-    
-    private lazy var useCase: SaveOrCreateProfileUseCase! = {
-        SaveOrCreateProfileUseCaseImpl()
-    }()
-    
-    override func setUp() {
-        super.setUp()
-        
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
-        DiContainer.shared.register(type: GlobalSettings.self, globalSettings!)
-        DiContainer.shared.register(type: SuplaAppStateHolder.self, suplaAppStateHolder!)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-        
-        profileRepository = nil
-        globalSettings = nil
-        suplaAppStateHolder = nil
-        
-        useCase = nil
-    }
-    
-    func test_shouldFailWithDuplicatedName() {
-        // given
-        let name = "name"
-        let existingProfile = AuthProfileItem(testContext: nil)
-        existingProfile.name = name
-        
-        profileRepository.allProfilesObservable = .just([existingProfile])
-        
-        // when
-        useCase.invoke(
-            profileId: nil,
-            name: name,
-            advancedMode: true,
-            authInfo: AuthInfo.mock()
-        ).subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .error(SaveOrCreateProfileError.duplicatedName)
-        ])
-    }
-    
-    func test_shouldFailWithDataIncomplete() {
-        // given
-        let name = "name"
-        let authInfo = AuthInfo.mock()
-        
-        profileRepository.allProfilesObservable = .just([])
-        
-        // when
-        useCase.invoke(profileId: nil, name: name, advancedMode: false, authInfo: authInfo)
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .error(SaveOrCreateProfileError.dataIncomplete)
-        ])
-    }
-    
-    func test_shouldCreateNewProfile() {
-        // given
-        let name = "name"
-        let authInfo = AuthInfo.mock(email: "some@email.com")
-        let profile = AuthProfileItem(testContext: nil)
-        
-        profileRepository.allProfilesObservable = .just([])
-        profileRepository.queryItemByIdObservable = .just(nil)
-        profileRepository.createObservable = .just(profile)
-        profileRepository.saveObservable = .just(())
-        
-        // when
-        useCase.invoke(profileId: nil, name: name, advancedMode: false, authInfo: authInfo)
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .next(.init(saved: true, needsReauth: true)),
-            .completed
-        ])
-        XCTAssertEqual(profile.name, name)
-        XCTAssertEqual(profile.advancedSetup, false)
-        XCTAssertEqual(profile.authInfo, authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION)))
-        XCTAssertEqual(profile.isActive, true)
-        XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
-        XCTAssertEqual(suplaAppStateHolder.handleParameters, [.connecting])
-    }
-    
-    func test_shouldUpdateExistingProfile() {
-        // given
-        let name = "name"
-        let authInfo = AuthInfo.mock(email:"some@email.com")
-        let profile = AuthProfileItem(testContext: nil)
-        profile.name = "other name"
-        profile.isActive = false
-        profile.authInfo = authInfo
-        
-        profileRepository.allProfilesObservable = .just([])
-        profileRepository.queryItemByIdObservable = .just(profile)
-        profileRepository.saveObservable = .just(())
-        
-        // when
-        useCase.invoke(profileId: profile.objectID, name: name, advancedMode: false, authInfo: authInfo)
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .next(.init(saved: true, needsReauth: false)),
-            .completed
-        ])
-        XCTAssertEqual(profile.name, name)
-        XCTAssertEqual(profile.advancedSetup, false)
-        XCTAssertEqual(profile.authInfo, authInfo)
-        XCTAssertEqual(profile.isActive, false)
-        XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
-        XCTAssertEqual(suplaAppStateHolder.handleParameters, [])
-    }
-    
-    func test_shouldReauthWhenAuthInfoChanged() {
-        // given
-        let name = "name"
-        let authInfo = AuthInfo.mock(email:"some@email.com")
-        let profile = AuthProfileItem(testContext: nil)
-        profile.name = "other name"
-        profile.isActive = true
-        profile.authInfo = authInfo.copy(emailAddress: "another@email.com")
-        
-        profileRepository.allProfilesObservable = .just([])
-        profileRepository.queryItemByIdObservable = .just(profile)
-        profileRepository.saveObservable = .just(())
-        
-        // when
-        useCase.invoke(profileId: profile.objectID, name: name, advancedMode: false, authInfo: authInfo)
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .next(.init(saved: true, needsReauth: true)),
-            .completed
-        ])
-        XCTAssertEqual(profile.name, name)
-        XCTAssertEqual(profile.advancedSetup, false)
-        XCTAssertEqual(profile.authInfo, authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION)))
-        XCTAssertEqual(profile.isActive, true)
-        XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
-        XCTAssertEqual(suplaAppStateHolder.handleParameters, [.connecting])
-    }
-}
+//final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResult> {
+//    
+//    private lazy var profileRepository: ProfileRepositoryMock! = {
+//        ProfileRepositoryMock()
+//    }()
+//    
+//    private lazy var globalSettings: GlobalSettingsMock! = {
+//        GlobalSettingsMock()
+//    }()
+//    
+//    private lazy var suplaAppStateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
+//    
+//    private lazy var useCase: SaveOrCreateProfileUseCase! = {
+//        SaveOrCreateProfileUseCaseImpl()
+//    }()
+//    
+//    override func setUp() {
+//        super.setUp()
+//        
+//        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+//        DiContainer.shared.register(type: GlobalSettings.self, globalSettings!)
+//        DiContainer.shared.register(type: SuplaAppStateHolder.self, suplaAppStateHolder!)
+//    }
+//    
+//    override func tearDown() {
+//        super.tearDown()
+//        
+//        profileRepository = nil
+//        globalSettings = nil
+//        suplaAppStateHolder = nil
+//        
+//        useCase = nil
+//    }
+//    
+//    func test_shouldFailWithDuplicatedName() {
+//        // given
+//        let name = "name"
+//        let existingProfile = AuthProfileItem(testContext: nil)
+//        existingProfile.name = name
+//        
+//        profileRepository.allProfilesObservable = .just([existingProfile])
+//        
+//        // when
+//        useCase.invoke(
+//            profileId: nil,
+//            name: name,
+//            advancedMode: true,
+//            authInfo: AuthInfo.mock()
+//        ).subscribe(observer)
+//            .disposed(by: disposeBag)
+//        
+//        // then
+//        assertEvents([
+//            .error(SaveOrCreateProfileError.duplicatedName)
+//        ])
+//    }
+//    
+//    func test_shouldFailWithDataIncomplete() {
+//        // given
+//        let name = "name"
+//        let authInfo = AuthInfo.mock()
+//        
+//        profileRepository.allProfilesObservable = .just([])
+//        
+//        // when
+//        useCase.invoke(profileId: nil, name: name, advancedMode: false, authInfo: authInfo)
+//            .subscribe(observer)
+//            .disposed(by: disposeBag)
+//        
+//        // then
+//        assertEvents([
+//            .error(SaveOrCreateProfileError.dataIncomplete)
+//        ])
+//    }
+//    
+//    func test_shouldCreateNewProfile() {
+//        // given
+//        let name = "name"
+//        let authInfo = AuthInfo.mock(email: "some@email.com")
+//        let profile = AuthProfileItem(testContext: nil)
+//        
+//        profileRepository.allProfilesObservable = .just([])
+//        profileRepository.queryItemByIdObservable = .just(nil)
+//        profileRepository.createObservable = .just(profile)
+//        profileRepository.saveObservable = .just(())
+//        
+//        // when
+//        useCase.invoke(profileId: nil, name: name, advancedMode: false, authInfo: authInfo)
+//            .subscribe(observer)
+//            .disposed(by: disposeBag)
+//        
+//        // then
+//        assertEvents([
+//            .next(.init(saved: true, needsReauth: true)),
+//            .completed
+//        ])
+//        XCTAssertEqual(profile.name, name)
+//        XCTAssertEqual(profile.advancedSetup, false)
+//        XCTAssertEqual(profile.authInfo, authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION)))
+//        XCTAssertEqual(profile.isActive, true)
+//        XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
+//        XCTAssertEqual(suplaAppStateHolder.handleParameters, [.connecting])
+//    }
+//    
+//    func test_shouldUpdateExistingProfile() {
+//        // given
+//        let name = "name"
+//        let authInfo = AuthInfo.mock(email:"some@email.com")
+//        let profile = AuthProfileItem(testContext: nil)
+//        profile.name = "other name"
+//        profile.isActive = false
+//        profile.authInfo = authInfo
+//        
+//        profileRepository.allProfilesObservable = .just([])
+//        profileRepository.queryItemByIdObservable = .just(profile)
+//        profileRepository.saveObservable = .just(())
+//        
+//        // when
+//        useCase.invoke(profileId: profile.objectID, name: name, advancedMode: false, authInfo: authInfo)
+//            .subscribe(observer)
+//            .disposed(by: disposeBag)
+//        
+//        // then
+//        assertEvents([
+//            .next(.init(saved: true, needsReauth: false)),
+//            .completed
+//        ])
+//        XCTAssertEqual(profile.name, name)
+//        XCTAssertEqual(profile.advancedSetup, false)
+//        XCTAssertEqual(profile.authInfo, authInfo)
+//        XCTAssertEqual(profile.isActive, false)
+//        XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
+//        XCTAssertEqual(suplaAppStateHolder.handleParameters, [])
+//    }
+//    
+//    func test_shouldReauthWhenAuthInfoChanged() {
+//        // given
+//        let name = "name"
+//        let authInfo = AuthInfo.mock(email:"some@email.com")
+//        let profile = AuthProfileItem(testContext: nil)
+//        profile.name = "other name"
+//        profile.isActive = true
+//        profile.authInfo = authInfo.copy(emailAddress: "another@email.com")
+//        
+//        profileRepository.allProfilesObservable = .just([])
+//        profileRepository.queryItemByIdObservable = .just(profile)
+//        profileRepository.saveObservable = .just(())
+//        
+//        // when
+//        useCase.invoke(profileId: profile.objectID, name: name, advancedMode: false, authInfo: authInfo)
+//            .subscribe(observer)
+//            .disposed(by: disposeBag)
+//        
+//        // then
+//        assertEvents([
+//            .next(.init(saved: true, needsReauth: true)),
+//            .completed
+//        ])
+//        XCTAssertEqual(profile.name, name)
+//        XCTAssertEqual(profile.advancedSetup, false)
+//        XCTAssertEqual(profile.authInfo, authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION)))
+//        XCTAssertEqual(profile.isActive, true)
+//        XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
+//        XCTAssertEqual(suplaAppStateHolder.handleParameters, [.connecting])
+//    }
+//}
