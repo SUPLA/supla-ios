@@ -19,7 +19,7 @@
 struct Distance {
     static let tiny = CGFloat(8)
     static let small = CGFloat(16)
-    static let standard = CGFloat(24)
+    static let `default` = CGFloat(24)
     
     static let emList: CGFloat = 6
 }

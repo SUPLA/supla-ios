@@ -28,6 +28,8 @@ struct ViewHeightKey: PreferenceKey {
 extension ElectricityMeterGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        
+        var onIntroductionClose: () -> Void = { }
 
         var body: some SwiftUI.View {
             ElectricityMeterGeneralBaseView(
@@ -39,7 +41,9 @@ extension ElectricityMeterGeneralFeature {
                 currentMonthReverseActiveEnergy: $viewState.currentMonthReverseActiveEnergy,
                 phaseMeasurementTypes: $viewState.phaseMeasurementTypes,
                 phaseMeasurementValues: $viewState.phaseMeasurementValues,
-                vectorBalancedValues: $viewState.vectorBalancedValues
+                vectorBalancedValues: $viewState.vectorBalancedValues,
+                showIntroduction: $viewState.showIntroduction,
+                onIntroductionClose: onIntroductionClose
             )
         }
     }

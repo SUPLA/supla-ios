@@ -464,6 +464,11 @@ struct Strings {
         static let allPhases = "em_chart_all_phases".toLocalized()
         static let energyLabel = "details_em_energy_label".toLocalized()
         static let hourMarkerTitle = "details_em_hour_marker_title".toLocalized()
+        static let infoSwipe = "details_em_info_swipe".toLocalized()
+        static let infoDataType = "details_em_info_data_type".toLocalized()
+        static let infoRange = "details_em_info_range".toLocalized()
+        static let infoDataSetSinglePhase = "details_em_info_data_set_single_phase".toLocalized()
+        static let infoDataSetMultiplePhase = "details_em_info_data_set_multiple_phase".toLocalized()
     }
     
     struct CounterPhoto {

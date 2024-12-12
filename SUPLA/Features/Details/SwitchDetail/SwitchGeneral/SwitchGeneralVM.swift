@@ -25,6 +25,7 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     @Singleton<DownloadEventsManager> private var downloadEventsManager
     @Singleton<DateProvider> private var dateProvider
+    @Singleton<GlobalSettings> private var settings
 
     var electricityState: ElectricityMeterGeneralState = .init()
 
@@ -51,6 +52,10 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
 
     func turnOff(remoteId: Int32) {
         performAction(action: .turnOff, remoteId: remoteId)
+    }
+    
+    func onIntroductionClose() {
+        settings.showEmGeneralIntroduction = false
     }
     
     private func handleChannel(_ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?, _ downloadingFinished: Bool) {

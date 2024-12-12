@@ -26,6 +26,7 @@ class ElectricityMeterGeneralState: ObservableObject, Equatable {
     @Published var phaseMeasurementTypes: [SuplaElectricityMeasurementType] = []
     @Published var phaseMeasurementValues: [PhaseWithMeasurements] = []
     @Published var vectorBalancedValues: [SuplaElectricityMeasurementType: String]? = nil
+    @Published var showIntroduction: Bool = false
 
     static func == (lhs: ElectricityMeterGeneralState, rhs: ElectricityMeterGeneralState) -> Bool {
         lhs.online == rhs.online &&

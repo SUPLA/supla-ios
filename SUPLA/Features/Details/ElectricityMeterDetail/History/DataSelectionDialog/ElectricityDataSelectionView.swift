@@ -31,38 +31,40 @@ extension ElectricityDataSelectionFeature {
                 VStack(alignment: .leading, spacing: 0) {
                     SuplaCore.Dialog.Header(title: viewState.title)
 
-                    Text.PickerLabel(text: Strings.ElectricityMeter.chartDataType)
-                        .padding([.leading], Distance.standard)
+                    Text(Strings.ElectricityMeter.chartDataType)
+                        .fontPickerLabel()
+                        .padding([.leading], Distance.default)
                     SuplaCore.Picker(
                         selected: $viewState.selectedType.onChange(onTypeChange),
                         items: viewState.availableTypes
                     )
 
                     if (viewState.selectedType.needsPhases) {
-                        Text.PickerLabel(text: Strings.ElectricityMeter.phases)
-                            .padding(.leading, Distance.standard)
+                        Text(Strings.ElectricityMeter.phases)
+                            .fontPickerLabel()
+                            .padding(.leading, Distance.default)
                             .padding(.top, Distance.small)
                         FlowHStack(data: viewState.selectablePhases) { index, item in
                             HStack {
                                 Toggle(isOn: $viewState.selectablePhases[index].selected) {
-                                    Text.BodyMedium(text: item.item.label)
+                                    Text(item.item.label).fontBodyMedium()
                                 }
                                 .disabled(!item.enabled)
                                 .toggleStyle(iOSCheckboxToggleStyle(color: item.item.color))
                             }
                         }
-                        .padding([.leading, .trailing], Distance.standard)
+                        .padding([.leading, .trailing], Distance.default)
                         .padding(.top, 4)
                     }
 
                     SuplaCore.Dialog.Divider()
-                        .padding(.top, Distance.standard)
+                        .padding(.top, Distance.default)
 
-                    HStack(spacing: Distance.standard) {
+                    HStack(spacing: Distance.default) {
                         BorderedButton(title: Strings.General.cancel, fullWidth: true, action: onCancel)
                         FilledButton(title: Strings.General.ok, fullWidth: true, action: onOk)
                     }
-                    .padding(Distance.standard)
+                    .padding(Distance.default)
                 }
             }
             .cornerRadius(Dimens.radiusDefault)

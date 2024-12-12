@@ -28,11 +28,11 @@ extension CounterPhotoFeature {
         var body: some SwiftUI.View {
             BackgroundStack(alignment: .topLeading) {
                 ScrollView {
-                    VStack(alignment: .leading, spacing: Distance.standard) {
+                    VStack(alignment: .leading, spacing: Distance.default) {
                         if let imageCropped = viewState.imageCropped,
                            let uiImageCropped = UIImage(data: imageCropped)
                         {
-                            Text.TitleMedium(text: Strings.CounterPhoto.counterArea)
+                            Text(Strings.CounterPhoto.counterArea).fontTitleMedium()
                             Image(uiImage: uiImageCropped)
                                 .resizable()
                                 .scaledToFit()
@@ -40,7 +40,7 @@ extension CounterPhotoFeature {
                         if let image = viewState.image,
                            let uiImage = UIImage(data: image)
                         {
-                            Text.TitleMedium(text: Strings.CounterPhoto.originalPhoto)
+                            Text(Strings.CounterPhoto.originalPhoto).fontTitleMedium()
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
@@ -48,7 +48,7 @@ extension CounterPhotoFeature {
                         if let date = viewState.date {
                             HStack {
                                 Spacer()
-                                Text.BodyMedium(text: date)
+                                Text(date).fontBodyMedium()
                                 Spacer()
                             }
                         }
@@ -60,7 +60,7 @@ extension CounterPhotoFeature {
                             }
                         }
                     }
-                    .padding(Distance.standard)
+                    .padding(Distance.default)
                 }
                 .onRefresh {
                     await onRefresh()
