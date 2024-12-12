@@ -97,8 +97,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
+            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))
@@ -136,7 +136,6 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .heat)
-                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: false)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -153,6 +152,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.subfunction, to: .heat)
                 .changing(path: \.currentPower, to: 1)
         ])
+        
+        XCTAssertEqual(viewModel.thermometerValuesState.measurements, measurements)
 
         assertState(1) {
             XCTAssertEqual($0.off, false)
@@ -181,8 +182,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
+            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
@@ -222,7 +223,6 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .cool)
-                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: false)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -242,6 +242,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.subfunction, to: .cool)
                 .changing(path: \.currentPower, to: 1)
         ])
+        
+        XCTAssertEqual(viewModel.thermometerValuesState.measurements, measurements)
         
         assertState(1) {
             XCTAssertEqual($0.off, false)
@@ -268,8 +270,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
+            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
@@ -306,7 +308,6 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .off)
-                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: false)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -319,6 +320,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.activeSetpointType, to: .heat)
                 .changing(path: \.subfunction, to: .heat)
         ])
+        
+        XCTAssertEqual(viewModel.thermometerValuesState.measurements, measurements)
         
         assertState(1) {
             XCTAssertEqual($0.off, true)
@@ -344,8 +347,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
+            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
@@ -382,7 +385,6 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .unknown)
-                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: true)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -392,6 +394,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.coolingIndicatorActive, to: false)
                 .changing(path: \.childrenIds, to: [0])
         ])
+        
+        XCTAssertEqual(viewModel.thermometerValuesState.measurements, measurements)
         
         assertState(1) {
             XCTAssertEqual($0.off, true)

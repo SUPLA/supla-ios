@@ -23,6 +23,7 @@ protocol CreateTemperaturesListUseCase {
 final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
     
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
     @Singleton<ValuesFormatter> private var formatter
     
     func invoke(channelWithChildren: ChannelWithChildren) -> [MeasurementValue] {
@@ -32,13 +33,13 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
         
         var result: [MeasurementValue] = []
         if (children.filter({ $0.relationType == .mainThermometer }).isEmpty) {
-            result.append(MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: NO_VALUE_TEXT))
+            result.append(MeasurementValue(id: result.count, icon: .suplaIcon(name: .Icons.fncUnknown), value: NO_VALUE_TEXT))
         }
         
         for child in children {
-            result.append(child.channel.toTemperatureValue(getChannelBaseIconUseCase, formatter))
+            result.append(child.channel.toTemperatureValue(result.count, getChannelBaseIconUseCase, getChannelBatteryIconUseCase, formatter))
             if (child.channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
-                result.append(child.channel.toHumidityValue(getChannelBaseIconUseCase, formatter))
+                result.append(child.channel.toHumidityValue(result.count, getChannelBaseIconUseCase, getChannelBatteryIconUseCase, formatter))
             }
         }
         return result
@@ -47,22 +48,30 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
 
 fileprivate extension SAChannel {
     func toTemperatureValue(
+        _ id: Int,
         _ getChannelBaseIconUseCase: GetChannelBaseIconUseCase,
+        _ getChannelBatteryIconUseCase: GetChannelBatteryIconUseCase,
         _ valuesFormatter: ValuesFormatter
     ) -> MeasurementValue {
         MeasurementValue(
+            id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self),
-            value: isOnline() ? valuesFormatter.temperatureToString(temperatureValue(), withUnit: false) : NO_VALUE_TEXT
+            value: isOnline() ? valuesFormatter.temperatureToString(temperatureValue(), withUnit: false) : NO_VALUE_TEXT,
+            batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }
     
     func toHumidityValue(
+        _ id: Int,
         _ getChannelBaseIconUseCase: GetChannelBaseIconUseCase,
+        _ getChannelBatteryIconUseCase: GetChannelBatteryIconUseCase,
         _ valuesFormatter: ValuesFormatter
     ) -> MeasurementValue {
         MeasurementValue(
+            id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self, type: .second),
-            value: isOnline() ? valuesFormatter.humidityToString(humidityValue()) : NO_VALUE_TEXT
+            value: isOnline() ? valuesFormatter.humidityToString(humidityValue()) : NO_VALUE_TEXT,
+            batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }
 }
