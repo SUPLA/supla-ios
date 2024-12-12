@@ -395,6 +395,8 @@
 		A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9172AAB027400718F2F /* QuarterOfHour.swift */; };
 		A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */; };
 		A522DB3A2D0B09E600163BA2 /* GetChannelBatteryIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522DB392D0B09E500163BA2 /* GetChannelBatteryIconUseCase.swift */; };
+		A522DB3E2D0B1EF700163BA2 /* SAElectricityMeterExtendedValue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522DB3D2D0B1EF400163BA2 /* SAElectricityMeterExtendedValue+Ext.swift */; };
+		A522DB432D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522DB422D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
 		A52BFEAD2B050D2500A2F64C /* SATextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEAC2B050D2500A2F64C /* SATextField.swift */; };
 		A52BFEAF2B060EAA00A2F64C /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEAE2B060EAA00A2F64C /* Hour.swift */; };
@@ -1893,6 +1895,8 @@
 		A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuplaConfigIntegrator.m; sourceTree = "<group>"; };
 		A51BE91C2AAB0E0900718F2F /* SuplaConfigIntegrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuplaConfigIntegrator.h; sourceTree = "<group>"; };
 		A522DB392D0B09E500163BA2 /* GetChannelBatteryIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBatteryIconUseCase.swift; sourceTree = "<group>"; };
+		A522DB3D2D0B1EF400163BA2 /* SAElectricityMeterExtendedValue+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAElectricityMeterExtendedValue+Ext.swift"; sourceTree = "<group>"; };
+		A522DB422D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterPhaseSequence.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
 		A52BFEAC2B050D2500A2F64C /* SATextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATextField.swift; sourceTree = "<group>"; };
 		A52BFEAE2B060EAA00A2F64C /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
@@ -5858,6 +5862,8 @@
 		A5EDE2222CA56C3300BEDAE4 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A522DB422D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift */,
+				A522DB3D2D0B1EF400163BA2 /* SAElectricityMeterExtendedValue+Ext.swift */,
 				A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */,
 			);
 			path = Channel;
@@ -6809,6 +6815,7 @@
 				A5F5C3EC2C3581BD0058E255 /* LockScreenSettings.swift in Sources */,
 				A50B5D0A2BEA4EC700918D18 /* ShadingBlindMarker.swift in Sources */,
 				A5D712902C4107C400A8EF52 /* AboutViewState.swift in Sources */,
+				A522DB432D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift in Sources */,
 				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
 				A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */,
@@ -7113,6 +7120,7 @@
 				A5477DBD2AA52F5700220B4A /* ThermostatValue+iOS.swift in Sources */,
 				A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */,
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
+				A522DB3E2D0B1EF700163BA2 /* SAElectricityMeterExtendedValue+Ext.swift in Sources */,
 				A598CACB2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift in Sources */,
 				A5E05BC52CB666D500202583 /* SAGeneralPurposeMeterItem+Ext.swift in Sources */,
 				A584E2032CAAD48200232A98 /* Phase.swift in Sources */,

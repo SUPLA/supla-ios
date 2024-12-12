@@ -556,12 +556,17 @@
 "details_em_energy_label" = "Energie";
 "details_em_hour_marker_title" = "%@ Uhr";
 "em_phase_to_phase_balance" = "Vektor-Interphasengleichgewicht";
+"em_electric_grid_parameters" = "Stromnetzparameter";
 "em_chart_all_phases" = "Phase 1+2+3";
 "details_em_info_swipe" = "Wischen Sie nach links um mehr zu sehen";
 "details_em_info_data_type" = "Hier können Sie auswählen, wie die Daten gruppiert werden (Stunden, Tagen) oder Rangfolgen anzeigen.";
 "details_em_info_range" = "Hier können Sie den Bereich für die im Diagramm angezeigten Daten auswählen (z. B. aktueller Monat oder letztes Jahr).";
 "details_em_info_data_set_single_phase" = "Tippen Sie hier, um den Typ der angezeigten Daten zu ändern, z. B. Vorwärts- oder Rückwärtsenergie (falls verfügbar).";
 "details_em_info_data_set_multiple_phase" = "Tippen Sie hier, um auszuwählen, was Sie sehen möchten, beispielsweise die stündliche Energiebilanz oder die Phasen wählen.";
+"details_em_voltage_phase_angle_12" = "Spannungs-Phasewinkel U12";
+"details_em_voltage_phase_angle_13" = "Spannungs-Phasewinkel U13";
+"details_em_voltage_phase_sequence" = "Spannungs-Phasenfolge";
+"details_em_current_phase_sequence" = "Stromphasenfolge";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Bilder von Zähler";

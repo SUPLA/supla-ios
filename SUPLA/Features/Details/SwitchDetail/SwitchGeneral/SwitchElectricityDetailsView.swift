@@ -34,6 +34,7 @@ struct SwitchElectricityDetailsView: View {
             phaseMeasurementTypes: $viewState.phaseMeasurementTypes,
             phaseMeasurementValues: $viewState.phaseMeasurementValues,
             vectorBalancedValues: $viewState.vectorBalancedValues,
+            electricGridParameters: $viewState.electricGridParameters,
             showIntroduction: $viewState.showIntroduction,
             onIntroductionClose: onIntroductionClose
         )
