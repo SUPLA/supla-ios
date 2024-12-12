@@ -31,21 +31,24 @@ extension SuplaCore {
             Menu {
                 SwiftUI.Picker(selection: selected) {
                     ForEach(items) { item in
-                        Text.BodyMedium(text: item.label).tag(item)
+                        Text(item.label)
+                            .fontBodyMedium()
+                            .tag(item)
                             .padding([.top, .bottom], 4)
-                            .padding([.leading, .trailing], Distance.standard)
+                            .padding([.leading, .trailing], Distance.default)
                     }
                 } label: {}
             } label: {
                 HStack {
-                    Text.BodyMedium(text: selected.wrappedValue.label)
+                    Text(selected.wrappedValue.label)
+                        .fontBodyMedium()
                     Image(.Icons.arrowDown)
                         .resizable()
                         .frame(width: 16, height: 16)
                         .foregroundColor(Color.Supla.onBackground)
                 }
                 .padding([.top, .bottom], 4)
-                .padding([.leading, .trailing], Distance.standard)
+                .padding([.leading, .trailing], Distance.default)
             }
             .accentColor(Color.Supla.onBackground)
         }

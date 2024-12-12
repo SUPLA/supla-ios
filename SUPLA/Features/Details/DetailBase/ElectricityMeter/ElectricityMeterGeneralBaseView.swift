@@ -28,51 +28,138 @@ struct ElectricityMeterGeneralBaseView: View {
     @Binding var phaseMeasurementTypes: [SuplaElectricityMeasurementType]
     @Binding var phaseMeasurementValues: [PhaseWithMeasurements]
     @Binding var vectorBalancedValues: [SuplaElectricityMeasurementType: String]?
+    @Binding var showIntroduction: Bool
+    
+    var onIntroductionClose: () -> Void = { }
+
     @State private var space: CGFloat? = nil
+    @State private var offset: Double = 0
 
     var body: some View {
         BackgroundStack {
             let label = Strings.ElectricityMeter.forwardActiveEnergy
             GeometryReader { gp in
-                ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        EnergySummaryBox(
-                            label: "\(label) \(Strings.ElectricityMeter.totalSufix)",
-                            forwardEnergy: totalForwardActiveEnergy,
-                            reverseEnergy: totalReverseActiveEnergy,
-                            loading: .constant(false)
-                        )
-                        EnergySummaryBox(
-                            label: "\(label) \(Strings.ElectricityMeter.currentMonthSuffix)",
-                            forwardEnergy: currentMonthForwardActiveEnergy,
-                            reverseEnergy: currentMonthReverseActiveEnergy,
-                            loading: $currentMonthDownloading
-                        )
-
-                        if (online) {
-                            PhasesView(
-                                types: phaseMeasurementTypes,
-                                values: phaseMeasurementValues,
-                                parentWidth: gp.size.width
+                ZStack {
+                    ScrollView(.vertical) {
+                        VStack(alignment: .leading, spacing: 0) {
+                            EnergySummaryBox(
+                                label: "\(label) \(Strings.ElectricityMeter.totalSufix)",
+                                forwardEnergy: totalForwardActiveEnergy,
+                                reverseEnergy: totalReverseActiveEnergy,
+                                loading: .constant(false)
+                            )
+                            EnergySummaryBox(
+                                label: "\(label) \(Strings.ElectricityMeter.currentMonthSuffix)",
+                                forwardEnergy: currentMonthForwardActiveEnergy,
+                                reverseEnergy: currentMonthReverseActiveEnergy,
+                                loading: $currentMonthDownloading
                             )
 
-                            VectorBalancedValuesView(
-                                vectorValues: vectorBalancedValues,
-                                parentWidth: gp.size.width
-                            )
-                        } else {
-                            HStack {
-                                Spacer()
-                                Image(.Icons.powerOff)
-                                    .foregroundColor(Color.Supla.onSurfaceVariant)
-                                Text.BodyMedium(text: Strings.General.channelOffline)
-                                    .textColor(Color.Supla.onSurfaceVariant)
-                                Spacer()
+                            if (online) {
+                                PhasesView(
+                                    types: phaseMeasurementTypes,
+                                    values: phaseMeasurementValues,
+                                    parentWidth: gp.size.width,
+                                    offset: offset
+                                )
+                                .id(showIntroduction)
+                                .onAppear {
+                                    if (showIntroduction) {
+                                        withAnimation(.easeInOut(duration: 1).repeatForever()) {
+                                            offset = 100
+                                        }
+                                    }
+                                }
+                                VectorBalancedValuesView(
+                                    vectorValues: vectorBalancedValues,
+                                    parentWidth: gp.size.width
+                                )
+                            } else {
+                                HStack {
+                                    Spacer()
+                                    Image(.Icons.powerOff)
+                                        .foregroundColor(Color.Supla.onSurfaceVariant)
+                                    Text(Strings.General.channelOffline)
+                                        .fontBodyMedium()
+                                        .textColor(Color.Supla.onSurfaceVariant)
+                                    Spacer()
+                                }
+                                .padding(Distance.default)
                             }
-                            .padding(Distance.standard)
+                        }
+                    }
+
+                    if (showIntroduction) {
+                        InfoView(
+                            offset: offset,
+                            onClose: {
+                                showIntroduction = false
+                                offset = 0
+                                onIntroductionClose()
+                            }
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+private struct InfoView: View {
+    var offset: Double
+    var onClose: () -> Void
+
+    var body: some View {
+        ZStack {
+            VStack(spacing: 0) {
+                Spacer()
+                Rectangle()
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.clear, Color.Supla.infoScrim],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: 40)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.clear, Color.Supla.onPrimary],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: 100, height: 8)
+                        .padding([.bottom], 14)
+                    Image(.Icons.touchHandFilled)
+                        .offset(x: 50 - offset)
+                        .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
+                        .foregroundColor(Color.Supla.onPrimary)
+
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Image(.Icons.close)
+                                .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+                                .foregroundColor(Color.Supla.onPrimary)
+                                .padding([.trailing], 10)
+                                .onTapGesture { onClose() }
+                            Spacer()
                         }
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: 30)
+                .padding([.top, .bottom], Distance.tiny)
+                .background(Color.Supla.infoScrim)
+
+                SwiftUI.Text(Strings.ElectricityMeter.infoSwipe)
+                    .fontBodyMedium()
+                    .textColor(Color.Supla.onPrimary)
+                    .frame(maxWidth: .infinity)
+                    .padding([.bottom], Distance.small)
+                    .background(Color.Supla.infoScrim)
             }
         }
     }
@@ -82,6 +169,7 @@ private struct PhasesView: View {
     var types: [SuplaElectricityMeasurementType]
     var values: [PhaseWithMeasurements]
     var parentWidth: CGFloat
+    var offset: Double
 
     @State private var horizontalSpace: CGFloat? = nil
     @State private var highlightedType: SuplaElectricityMeasurementType? = nil
@@ -111,6 +199,7 @@ private struct PhasesView: View {
                     selectedType: $highlightedType
                 )
             }
+            .offset(x: -offset)
             .frame(maxWidth: .infinity)
             .background(GeometryReader {
                 Color.clear.preference(
@@ -140,9 +229,10 @@ private struct VectorBalancedValuesView: SwiftUI.View {
 
     var body: some SwiftUI.View {
         if let vectorValues = vectorValues {
-            Text.LabelMedium(text: Strings.ElectricityMeter.phaseToPhaseBalance)
+            Text(Strings.ElectricityMeter.phaseToPhaseBalance)
+                .fontLabelMedium()
                 .padding([.top], Distance.small)
-                .padding([.leading, .trailing], Distance.standard)
+                .padding([.leading, .trailing], Distance.default)
 
             ScrollView(.horizontal) {
                 HStack(alignment: .top, spacing: 0) {
@@ -212,7 +302,8 @@ private struct PhaseDataLabelsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if (showHeader) {
-                Text.BodyMedium(text: " ")
+                Text(" ")
+                    .fontBodyMedium()
                     .padding([.top, .bottom], Distance.emList)
             }
 
@@ -222,9 +313,10 @@ private struct PhaseDataLabelsView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text.BodyMedium(text: type.shortString)
+                    Text(type.shortString)
+                        .fontBodyMedium()
                         .padding([.top, .bottom], Distance.emList)
-                        .padding([.leading], Distance.standard)
+                        .padding([.leading], Distance.default)
 
                     SuplaCore.Divider().color(type != types.last ? Color.Supla.outline : Color.clear)
                 }
@@ -243,10 +335,11 @@ private struct EnergyLabelView: View {
     }
 
     var body: some View {
-        Text.LabelMedium(text: text)
+        Text(text)
+            .fontLabelMedium()
             .padding([.top], Distance.small)
             .padding([.bottom], Distance.emList)
-            .padding([.leading], Distance.standard)
+            .padding([.leading], Distance.default)
     }
 }
 
@@ -281,7 +374,8 @@ private struct PhaseDataSpaceView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if (showHeader) {
-                Text.BodyMedium(text: " ")
+                Text(" ")
+                    .fontBodyMedium()
                     .padding([.top, .bottom], Distance.emList)
             }
             ForEach(0 ..< types.count, id: \.self) { idx in
@@ -290,7 +384,8 @@ private struct PhaseDataSpaceView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text.BodyMedium(text: " ")
+                    Text(" ")
+                        .fontBodyMedium()
                         .padding([.top, .bottom], Distance.emList)
 
                     SuplaCore.Divider().color(idx < types.count - 1 ? Color.Supla.outline : Color.clear)
@@ -375,7 +470,8 @@ private struct SinglePhaseDataValuesView: View {
     var body: some View {
         return VStack(spacing: 0) {
             if let header {
-                Text.BodyMedium(text: header)
+                Text(header)
+                    .fontBodyMedium()
                     .textColor(Color.Supla.onSurfaceVariant)
                     .padding([.top, .bottom], Distance.emList)
             }
@@ -387,7 +483,8 @@ private struct SinglePhaseDataValuesView: View {
                         }
 
                         VStack(alignment: .trailing, spacing: 0) {
-                            Text.BodyMedium(text: values[type] ?? NO_VALUE_TEXT)
+                            Text(values[type] ?? NO_VALUE_TEXT)
+                                .fontBodyMedium()
                                 .lineLimit(1)
                                 .frame(width: valueMaxWidth, alignment: .trailing)
                                 .padding([.top, .bottom], Distance.emList)
@@ -406,13 +503,14 @@ private struct SinglePhaseDataValuesView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 0) {
-                            Text.BodyMedium(text: values[type] == nil ? " " : type.unit)
+                            Text(values[type] == nil ? " " : type.unit)
+                                .fontBodyMedium()
                                 .textColor(Color.Supla.onSurfaceVariant)
                                 .lineLimit(1)
                                 .fixedSize(horizontal: true, vertical: true)
                                 .padding([.top, .bottom], Distance.emList)
                                 .padding([.leading], 4)
-                                .padding([.trailing], isLast ? Distance.standard : Distance.tiny)
+                                .padding([.trailing], isLast ? Distance.default : Distance.tiny)
 
                             SuplaCore.Divider().color(type != types.last ? Color.Supla.outline : Color.clear)
                         }
@@ -445,7 +543,8 @@ private struct SinglePhaseDataValuesView: View {
                 ])
             ]
         ),
-        vectorBalancedValues: .constant(nil)
+        vectorBalancedValues: .constant(nil),
+        showIntroduction: .constant(true)
     )
 }
 
@@ -484,7 +583,8 @@ private struct SinglePhaseDataValuesView: View {
         vectorBalancedValues: .constant([
             .forwardActiveEnergy: "4273",
             .reverseActiveEnergy: "5715"
-        ])
+        ]),
+        showIntroduction: .constant(true)
     )
 }
 
@@ -508,6 +608,7 @@ private struct SinglePhaseDataValuesView: View {
                 ])
             ]
         ),
-        vectorBalancedValues: .constant(nil)
+        vectorBalancedValues: .constant(nil),
+        showIntroduction: .constant(true)
     )
 }

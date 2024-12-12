@@ -21,7 +21,7 @@ import Foundation
 struct Dimens {
     static let distanceTiny = Distance.tiny
     static let distanceSmall = Distance.small
-    static let distanceDefault = Distance.standard
+    static let distanceDefault = Distance.default
     
     static let radiusDefault = CGFloat(9)
     static let radiusSmall = CGFloat(4)

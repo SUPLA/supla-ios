@@ -31,7 +31,7 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     }()
     
     private lazy var electricityMeterDetails: UIHostingController = {
-        let view = UIHostingController(rootView: SwitchElectricityDetailsView(viewState: viewModel.electricityState))
+        let view = UIHostingController(rootView: SwitchElectricityDetailsView(viewState: viewModel.electricityState, onIntroductionClose: viewModel.onIntroductionClose))
         view.view.translatesAutoresizingMaskIntoConstraints = false
         view.view.isHidden = true
         return view
@@ -130,15 +130,15 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     private func setupLayout() {
         NSLayoutConstraint.activate([
             deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Distance.standard),
+            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Distance.default),
             
-            powerOffButtonView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Distance.standard),
-            powerOffButtonView.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -Distance.standard/2),
-            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Distance.standard),
+            powerOffButtonView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Distance.default),
+            powerOffButtonView.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -Distance.default/2),
+            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Distance.default),
             
-            powerOnButtonView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: Distance.standard/2),
-            powerOnButtonView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Distance.standard),
-            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Distance.standard),
+            powerOnButtonView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: Distance.default/2),
+            powerOnButtonView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Distance.default),
+            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Distance.default),
             
             electricityMeterDetails.view.topAnchor.constraint(equalTo: view.topAnchor),
             electricityMeterDetails.view.leftAnchor.constraint(equalTo: view.leftAnchor),

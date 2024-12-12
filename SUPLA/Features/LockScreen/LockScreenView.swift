@@ -45,12 +45,12 @@ extension LockScreenFeature {
                             .frame(maxWidth: 144)
                     }
                     if let message = viewState.unlockAction?.message {
-                        Text.HeadlineSmall(text: message)
+                        Text(message).fontHeadlineSmall()
                     }
-                    Text.BodyMedium(text: Strings.LockScreen.enterPin)
+                    Text(Strings.LockScreen.enterPin).fontBodyMedium()
                     
                     if let timeString = lockTimeString {
-                        Text.BodyLarge(text: Strings.LockScreen.pinLocked.arguments(timeString))
+                        Text(Strings.LockScreen.pinLocked.arguments(timeString)).fontBodyLarge()
                     } else {
                         PinEntry(
                             pin: $viewState.pin,
@@ -112,7 +112,8 @@ extension LockScreenFeature {
                             .onChange(onPinChange)
                     )
                 if (wrongPin) {
-                    Text.BodySmall(text: Strings.LockScreen.wrongPin)
+                    Text(Strings.LockScreen.wrongPin)
+                        .fontBodySmall()
                         .textColor(.Supla.error)
                         .frame(height: 16)
                 } else {

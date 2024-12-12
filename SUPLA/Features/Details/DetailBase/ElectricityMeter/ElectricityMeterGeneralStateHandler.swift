@@ -28,6 +28,7 @@ extension ElectricityMeterGeneralStateHandler {
 
 final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStateHandler {
     @Singleton private var getChannelValueUseCase: GetChannelValueUseCase
+    @Singleton private var settings: GlobalSettings
     
     private let formatter = ListElectricityMeterValueFormatter(useNoValue: false)
     
@@ -43,6 +44,9 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         
         let allTypes = extendedValue.suplaElectricityMeterMeasuredTypes.sorted(by: { $0.ordering < $1.ordering })
         let phaseTypes = allTypes.filter { $0.phaseType }
+        let moreThanOnePhase = Phase.allCases
+            .filter { channel.channel.flags & $0.disabledFlag == 0 }
+            .count > 1
         
         state.online = channel.channel.isOnline()
         state.totalForwardActiveEnergy = extendedValue.getForwardEnergy(formatter: formatter)
@@ -51,7 +55,8 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter, value: extendedValue)
         state.phaseMeasurementTypes = phaseTypes
         state.phaseMeasurementValues = getPhaseData(phaseTypes, channel.channel.flags, extendedValue, formatter)
-        state.vectorBalancedValues = vectorBalancedValues(channel.channel, extendedValue, allTypes)
+        state.vectorBalancedValues = vectorBalancedValues(moreThanOnePhase, extendedValue, allTypes)
+        state.showIntroduction = settings.showEmGeneralIntroduction && moreThanOnePhase
     }
     
     private func handleNoExtendedValue(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
@@ -147,13 +152,10 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
     }
     
     private func vectorBalancedValues(
-        _ channel: SAChannel,
+        _ moreThanOnePhase: Bool,
         _ value: SAElectricityMeterExtendedValue,
         _ types: [SuplaElectricityMeasurementType]
     ) -> [SuplaElectricityMeasurementType: String]? {
-        let moreThanOnePhase = Phase.allCases
-            .filter { channel.flags & $0.disabledFlag == 0 }
-            .count > 1
         
         if (moreThanOnePhase && types.hasForwardAndReverseEnergy) {
             return [

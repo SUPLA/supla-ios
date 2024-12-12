@@ -35,10 +35,12 @@ extension AboutFeature {
                         .aspectRatio(contentMode: .fit)
                         .frame(maxHeight: 100)
                         .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
-                    Text.HeadlineLarge(text: Strings.appName)
-                    Text.BodyMedium(text: Strings.About.version.arguments(viewState.version))
+                    Text(Strings.appName).fontHeadlineLarge()
+                    Text(Strings.About.version.arguments(viewState.version)).fontBodyMedium()
                     if (BrandingConfiguration.SHOW_LICENCE) {
-                        Text.LabelSmall(text: Strings.About.license)
+                        Text(Strings.About.license)
+                            .fontLabelSmall()
+                            .multilineTextAlignment(.center)
                     }
                     Spacer()
                     TextButton(
@@ -47,7 +49,7 @@ extension AboutFeature {
                         action: onHomePageClicked
                     )
                     if let buildTime = viewState.buildTime {
-                        Text.BodySmall(text: Strings.About.buildTime.arguments(buildTime))
+                        Text(Strings.About.buildTime.arguments(buildTime)).fontBodySmall()
                     }
                 }
                 .padding(.all, Dimens.distanceDefault)

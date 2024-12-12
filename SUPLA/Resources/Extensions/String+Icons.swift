@@ -51,6 +51,7 @@ extension String {
         static let offline = "icon_offline"
         static let stop = "icon_stop"
         static let touchHand = "icon_touch_hand"
+        static let touchHandFilled = "icon_touch_hand_filled"
         static let visible = "icon_visible"
         static let invisible = "icon_invisible"
         static let empty = "icon_empty"

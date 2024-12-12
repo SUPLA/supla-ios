@@ -28,10 +28,12 @@ struct FilledButton: View {
     var body: some View {
         return Button(action: action) {
             if (fullWidth) {
-                Text.LabelLarge(text: title)
+                Text(title)
+                    .fontLabelLarge()
                     .frame(maxWidth: .infinity)
             } else {
-                Text.LabelLarge(text: title)
+                Text(title)
+                    .fontLabelLarge()
             }
         }
         .buttonStyle(FilledButtonStyle(isEnabled: isEnabled))

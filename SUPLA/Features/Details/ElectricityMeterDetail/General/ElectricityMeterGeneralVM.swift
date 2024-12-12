@@ -20,6 +20,7 @@ import RxSwift
 
 extension ElectricityMeterGeneralFeature {
     class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+        @Singleton private var settings: GlobalSettings
         @Singleton private var dateProvider: DateProvider
         @Singleton private var downloadEventsManager: DownloadEventsManager
         @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
@@ -48,6 +49,10 @@ extension ElectricityMeterGeneralFeature {
                     self?.handleChannel(channel, measurements, downloadingFinished)
                 })
                 .disposed(by: disposeBag)
+        }
+        
+        func onIntroductionClose() {
+            settings.showEmGeneralIntroduction = false
         }
         
         private func handleChannel(

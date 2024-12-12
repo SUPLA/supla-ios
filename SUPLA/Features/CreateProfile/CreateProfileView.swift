@@ -36,7 +36,8 @@ extension CreateProfileFeature {
                     HStack {
                         Spacer()
                         Toggle(isOn: $viewState.advancedAuthorization) {
-                            Text.BodyMedium(text: Strings.CreateProfile.advancedSettings)
+                            Text(Strings.CreateProfile.advancedSettings)
+                                .fontBodyMedium()
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                         .onChange(of: viewState.advancedAuthorization) {
@@ -45,7 +46,9 @@ extension CreateProfileFeature {
                     }
                     
                     if (!viewState.advancedAuthorization) {
-                        Text.HeadlineLarge(text: Strings.CreateProfile.yourAccountLabel)
+                        Text(Strings.CreateProfile.yourAccountLabel)
+                            .fontHeadlineLarge()
+                            .multilineTextAlignment(.center)
                             .padding([.top], 50)
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
@@ -54,7 +57,7 @@ extension CreateProfileFeature {
                         SwiftUI.Text(Strings.CreateProfile.profileNameLabel)
                             .fontCaptionSmall()
                             .textColor(.Supla.onBackground)
-                            .padding([.top], Distance.standard)
+                            .padding([.top], Distance.default)
                         
                         TextField("", text: $viewState.profileName)
                             .textFieldStyle(StandardTextFieldStyle())
@@ -65,19 +68,23 @@ extension CreateProfileFeature {
                     
                     if (viewState.advancedAuthorization) {
                         Picker("", selection: $viewState.authorisationType) {
-                            Text.BodySmall(text: Strings.CreateProfile.emailSegment).tag(AuthorizationType.email)
-                            Text.BodySmall(text: Strings.CreateProfile.accessIdSegment).tag(AuthorizationType.accessId)
+                            Text(Strings.CreateProfile.emailSegment)
+                                .fontBodySmall()
+                                .tag(AuthorizationType.email)
+                            Text(Strings.CreateProfile.accessIdSegment)
+                                .fontBodySmall()
+                                .tag(AuthorizationType.accessId)
                         }
-                        .padding([.top], Distance.standard)
+                        .padding([.top], Distance.default)
                         .pickerStyle(.segmented)
                     }
                     
                     switch (viewState.authorisationType) {
                     case .email:
-                        SwiftUI.Text(Strings.CreateProfile.emailLabel)
+                        Text(Strings.CreateProfile.emailLabel)
                             .fontCaptionSmall()
                             .textColor(.Supla.onBackground)
-                            .padding([.top], Distance.standard)
+                            .padding([.top], Distance.default)
                         TextField("", text: $viewState.email)
                             .textFieldStyle(StandardTextFieldStyle())
                             .autocapitalization(.none)
@@ -87,14 +94,14 @@ extension CreateProfileFeature {
                             SwiftUI.Text(Strings.CreateProfile.serverLabel)
                                 .fontCaptionSmall()
                                 .textColor(.Supla.onBackground)
-                                .padding([.top], Distance.standard)
+                                .padding([.top], Distance.default)
                             HStack {
                                 TextField("", text: $viewState.serwerAddress)
                                     .textFieldStyle(StandardTextFieldStyle(disabled: viewState.serverAutoDetect))
                                     .autocapitalization(.none)
                                 
                                 Toggle(isOn: $viewState.serverAutoDetect) {
-                                    Text.BodyMedium(text: "Auto")
+                                    Text("Auto").fontBodyMedium()
                                 }
                                 .toggleStyle(iOSCheckboxToggleStyle(color: .primary, textFirst: true))
                                 .onChange(of: viewState.serverAutoDetect) { onServerAutoDetectChange($0) }
@@ -104,7 +111,7 @@ extension CreateProfileFeature {
                         SwiftUI.Text(Strings.CreateProfile.accessIdLabel)
                             .fontCaptionSmall()
                             .textColor(.Supla.onBackground)
-                            .padding([.top], Distance.standard)
+                            .padding([.top], Distance.default)
                         TextField("", text: $viewState.accessId)
                             .textFieldStyle(StandardTextFieldStyle())
                             .keyboardType(.numberPad)
@@ -112,9 +119,17 @@ extension CreateProfileFeature {
                         SwiftUI.Text(Strings.CreateProfile.passwordLabel)
                             .fontCaptionSmall()
                             .textColor(.Supla.onBackground)
-                            .padding([.top], Distance.standard)
+                            .padding([.top], Distance.default)
                         SecureField("", text: $viewState.accessIdPassword)
                             .textFieldStyle(StandardTextFieldStyle())
+                        
+                        SwiftUI.Text(Strings.CreateProfile.serverLabel)
+                            .fontCaptionSmall()
+                            .textColor(.Supla.onBackground)
+                            .padding([.top], Distance.default)
+                        TextField("", text: $viewState.serwerAddress)
+                            .textFieldStyle(StandardTextFieldStyle())
+                            .autocapitalization(.none)
                         
                         SwiftUI.Text(Strings.CreateProfile.wizardWarningText)
                             .fontBodyMedium()
@@ -155,13 +170,13 @@ extension CreateProfileFeature {
                         SwiftUI.Text(Strings.CreateProfile.createAccountPrompt)
                             .fontBodyMedium()
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .padding([.top], Distance.standard)
+                            .padding([.top], Distance.default)
                         
                         TextButton(title: Strings.CreateProfile.createAccountButton) { onCreateAccount() }
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
                 }
-                .padding(Distance.standard)
+                .padding(Distance.default)
                 
                 if (viewState.presentBasicModeNotAvaiable) {
                     BasicModeUnavailableDialog { viewState.presentBasicModeNotAvaiable = false }

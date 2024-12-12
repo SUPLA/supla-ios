@@ -39,6 +39,8 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var backgroundEntryTime: Double? { get set }
     var nextProfileId: Int32 { get }
     var nextServerId: Int32 { get }
+    var showEmGeneralIntroduction: Bool { get set }
+    var showEmHistoryIntroduction: Bool { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -217,6 +219,26 @@ class GlobalSettingsImpl: GlobalSettings {
                 defaults.set(profileId + 1, forKey: nextServerIdKey)
                 return profileId
             }
+        }
+    }
+    
+    private let emGeneralIntroductionKey = "em_general_introduction_key"
+    var showEmGeneralIntroduction: Bool {
+        get {
+            exists(emGeneralIntroductionKey).ifTrue { defaults.bool(forKey: emGeneralIntroductionKey) } ?? true
+        }
+        set {
+            defaults.set(newValue, forKey: emGeneralIntroductionKey)
+        }
+    }
+    
+    private let emHistoryIntroductionKey = "em_history_introduction_key"
+    var showEmHistoryIntroduction: Bool {
+        get {
+            exists(emHistoryIntroductionKey).ifTrue { defaults.bool(forKey: emHistoryIntroductionKey) } ?? true
+        }
+        set {
+            defaults.set(newValue, forKey: emHistoryIntroductionKey)
         }
     }
     

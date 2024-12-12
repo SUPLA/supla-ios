@@ -341,6 +341,11 @@
 "details_em_hour_marker_title" = "%@ o'clock";
 "em_phase_to_phase_balance" = "Vector phase-to-phase balancing";
 "em_chart_all_phases" = "Phase 1+2+3";
+"details_em_info_swipe" = "Use swipe gesture to see more values";
+"details_em_info_data_type" = "Here you can select how the data are grouped (hours, days) or display ranks.";
+"details_em_info_range" = "Here you can select range for the data displayed on chart (like current month or last year).";
+"details_em_info_data_set_single_phase" = "Tap here to change the type of displayed data, like forward or reverse energy (if available).";
+"details_em_info_data_set_multiple_phase" = "Tap here to select what you want to see, like hourly energy balance or which phases.";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Counter photos";
