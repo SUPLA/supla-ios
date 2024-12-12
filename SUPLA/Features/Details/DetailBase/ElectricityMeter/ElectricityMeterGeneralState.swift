@@ -25,7 +25,8 @@ class ElectricityMeterGeneralState: ObservableObject, Equatable {
     @Published var currentMonthReverseActiveEnergy: EnergyData? = nil
     @Published var phaseMeasurementTypes: [SuplaElectricityMeasurementType] = []
     @Published var phaseMeasurementValues: [PhaseWithMeasurements] = []
-    @Published var vectorBalancedValues: [SuplaElectricityMeasurementType: String]? = nil
+    @Published var vectorBalancedValues: [MeaurementTypeValue]? = nil
+    @Published var electricGridParameters: [MeaurementTypeValue]? = nil
     @Published var showIntroduction: Bool = false
 
     static func == (lhs: ElectricityMeterGeneralState, rhs: ElectricityMeterGeneralState) -> Bool {
@@ -38,10 +39,17 @@ class ElectricityMeterGeneralState: ObservableObject, Equatable {
             lhs.phaseMeasurementValues == rhs.phaseMeasurementValues &&
             lhs.vectorBalancedValues == rhs.vectorBalancedValues
     }
+    
+    struct MeaurementTypeValue: Equatable, Identifiable {
+        let type: SuplaElectricityMeasurementType
+        let value: String?
+        
+        var id: Int32 { type.value }
+    }
 }
 
 struct PhaseWithMeasurements: Identifiable, Equatable {
     let id: Int
     let phase: String
-    let values: [SuplaElectricityMeasurementType: String]
+    let values: [ElectricityMeterGeneralState.MeaurementTypeValue]
 }

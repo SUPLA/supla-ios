@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAElectricityMeterExtendedValue.h"
 #import "supla-client.h"
+#import "SUPLA-Swift.h"
 
 
 @implementation SAElectricityMeterExtendedValue {
@@ -163,6 +164,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL) currentIsOver65A {
     return (_emev.measured_values & EM_VAR_CURRENT) == 0
     && (_emev.measured_values & EM_VAR_CURRENT_OVER_65A) != 0;
+}
+
+- (int) voltagePhaseAngle12 {
+    return _emev.voltage_phase_angle_12;
+}
+
+- (int) voltagePhaseAngle13 {
+    return _emev.voltage_phase_angle_13;
+}
+
+- (TElectricityMeter_ExtendedValue_V3) getStruct {
+    return _emev;
 }
 
 @end

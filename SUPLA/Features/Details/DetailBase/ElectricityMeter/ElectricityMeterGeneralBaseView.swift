@@ -27,7 +27,8 @@ struct ElectricityMeterGeneralBaseView: View {
     @Binding var currentMonthReverseActiveEnergy: EnergyData?
     @Binding var phaseMeasurementTypes: [SuplaElectricityMeasurementType]
     @Binding var phaseMeasurementValues: [PhaseWithMeasurements]
-    @Binding var vectorBalancedValues: [SuplaElectricityMeasurementType: String]?
+    @Binding var vectorBalancedValues: [ElectricityMeterGeneralState.MeaurementTypeValue]?
+    @Binding var electricGridParameters: [ElectricityMeterGeneralState.MeaurementTypeValue]?
     @Binding var showIntroduction: Bool
     
     var onIntroductionClose: () -> Void = { }
@@ -70,8 +71,14 @@ struct ElectricityMeterGeneralBaseView: View {
                                         }
                                     }
                                 }
-                                VectorBalancedValuesView(
-                                    vectorValues: vectorBalancedValues,
+                                SingleValueTable(
+                                    header: Strings.ElectricityMeter.phaseToPhaseBalance,
+                                    values: vectorBalancedValues,
+                                    parentWidth: gp.size.width
+                                )
+                                SingleValueTable(
+                                    header: Strings.ElectricityMeter.electricGridParameters,
+                                    values: electricGridParameters,
                                     parentWidth: gp.size.width
                                 )
                             } else {
@@ -221,15 +228,16 @@ private struct PhasesView: View {
     }
 }
 
-private struct VectorBalancedValuesView: SwiftUI.View {
-    var vectorValues: [SuplaElectricityMeasurementType: String]?
+private struct SingleValueTable: SwiftUI.View {
+    var header: String
+    var values: [ElectricityMeterGeneralState.MeaurementTypeValue]?
     var parentWidth: CGFloat
 
     @State private var horizontalSpace: CGFloat? = nil
 
     var body: some SwiftUI.View {
-        if let vectorValues = vectorValues {
-            Text(Strings.ElectricityMeter.phaseToPhaseBalance)
+        if let values = values {
+            Text(header)
                 .fontLabelMedium()
                 .padding([.top], Distance.small)
                 .padding([.leading, .trailing], Distance.default)
@@ -237,21 +245,20 @@ private struct VectorBalancedValuesView: SwiftUI.View {
             ScrollView(.horizontal) {
                 HStack(alignment: .top, spacing: 0) {
                     PhaseDataLabelsView(
-                        types: vectorValues.map { $0.key },
+                        types: values.map { $0.type },
                         showHeader: false
                     )
                     if let horizontalSpace = horizontalSpace {
                         PhaseDataSpaceView(
                             width: horizontalSpace,
-                            types: vectorValues.map { $0.key },
+                            types: values.map { $0.type },
                             showHeader: false,
                             showLabel: false
                         )
                     }
                     SinglePhaseDataValuesView(
                         header: nil,
-                        types: vectorValues.map(\.key),
-                        values: vectorValues,
+                        measurements: values,
                         showLabel: false
                     )
                 }
@@ -419,8 +426,7 @@ private struct PhaseDataValuesView: View {
         ForEach(0 ..< values.count, id: \.self) { idx in
             SinglePhaseDataValuesView(
                 header: (values.count > 1).ifTrue { values[idx].phase },
-                types: types,
-                values: values[idx].values,
+                measurements: values[idx].values,
                 isLast: idx == values.count - 1,
                 onItemSelected: onItemSelected,
                 selectedType: selectedType
@@ -431,8 +437,7 @@ private struct PhaseDataValuesView: View {
 
 private struct SinglePhaseDataValuesView: View {
     let header: String?
-    let types: [SuplaElectricityMeasurementType]
-    let values: [SuplaElectricityMeasurementType: String]
+    let measurements: [ElectricityMeterGeneralState.MeaurementTypeValue]
     let showLabel: Bool
     let isLast: Bool
     let onItemSelected: ((SuplaElectricityMeasurementType) -> Void)?
@@ -443,28 +448,26 @@ private struct SinglePhaseDataValuesView: View {
 
     init(
         header: String?,
-        types: [SuplaElectricityMeasurementType],
-        values: [SuplaElectricityMeasurementType: String],
+        measurements: [ElectricityMeterGeneralState.MeaurementTypeValue],
         showLabel: Bool = true,
         isLast: Bool = true,
         onItemSelected: ((SuplaElectricityMeasurementType) -> Void)? = nil,
         selectedType: Binding<SuplaElectricityMeasurementType?> = .constant(nil)
     ) {
         self.header = header
-        self.types = types
-        self.values = values
+        self.measurements = measurements
         self.showLabel = showLabel
         self.isLast = isLast
         self.onItemSelected = onItemSelected
         self.selectedType = selectedType
-
+        
         let attributes = [NSAttributedString.Key.font: UIFont.body2]
-        self.valueMaxWidth = values.values.reduce(0.0) { result, item in
+        self.valueMaxWidth = measurements.map { $0.value ?? "" }.reduce(0.0) { result, item in
             let size = item.size(withAttributes: attributes).width
             return size > result ? size : result
         } + Distance.tiny
 
-        self.showEnergyLabelForType = showLabel.ifTrue { types.first(where: \.showEnergyLabel) }
+        self.showEnergyLabelForType = showLabel.ifTrue { measurements.first(where: {$0.type.showEnergyLabel})?.type }
     }
 
     var body: some View {
@@ -477,33 +480,33 @@ private struct SinglePhaseDataValuesView: View {
             }
             HStack(spacing: 0) {
                 VStack(alignment: .trailing, spacing: 0) {
-                    ForEach(types) { type in
-                        if (type == showEnergyLabelForType) {
+                    ForEach(measurements) { measurement in
+                        if (measurement.type == showEnergyLabelForType) {
                             EnergyLabelView()
                         }
 
                         VStack(alignment: .trailing, spacing: 0) {
-                            Text(values[type] ?? NO_VALUE_TEXT)
+                            Text(measurement.value ?? NO_VALUE_TEXT)
                                 .fontBodyMedium()
                                 .lineLimit(1)
                                 .frame(width: valueMaxWidth, alignment: .trailing)
                                 .padding([.top, .bottom], Distance.emList)
                             SuplaCore.Divider()
-                                .color(type != types.last ? Color.Supla.outline : Color.clear)
+                                .color(measurement.type != measurements.last?.type ? Color.Supla.outline : Color.clear)
                                 .frame(width: valueMaxWidth, height: 1)
                         }
-                        .background(selectedType.wrappedValue == type ? Color.Supla.outline : Color.clear)
-                        .onTapGesture { onItemSelected?(type) }
+                        .background(selectedType.wrappedValue == measurement.type ? Color.Supla.outline : Color.clear)
+                        .onTapGesture { onItemSelected?(measurement.type) }
                     }
                 }
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(types) { type in
-                        if (type == showEnergyLabelForType) {
+                    ForEach(measurements) { measurement in
+                        if (measurement.type == showEnergyLabelForType) {
                             EnergyLabelView()
                         }
 
                         VStack(alignment: .leading, spacing: 0) {
-                            Text(values[type] == nil ? " " : type.unit)
+                            Text(measurement.value == nil ? " " : measurement.type.unit)
                                 .fontBodyMedium()
                                 .textColor(Color.Supla.onSurfaceVariant)
                                 .lineLimit(1)
@@ -512,10 +515,10 @@ private struct SinglePhaseDataValuesView: View {
                                 .padding([.leading], 4)
                                 .padding([.trailing], isLast ? Distance.default : Distance.tiny)
 
-                            SuplaCore.Divider().color(type != types.last ? Color.Supla.outline : Color.clear)
+                            SuplaCore.Divider().color(measurement.type != measurements.last?.type ? Color.Supla.outline : Color.clear)
                         }
-                        .background(selectedType.wrappedValue == type ? Color.Supla.outline : Color.clear)
-                        .onTapGesture { onItemSelected?(type) }
+                        .background(selectedType.wrappedValue == measurement.type ? Color.Supla.outline : Color.clear)
+                        .onTapGesture { onItemSelected?(measurement.type) }
                     }
                 }
             }
@@ -535,15 +538,16 @@ private struct SinglePhaseDataValuesView: View {
         phaseMeasurementValues: .constant(
             [
                 .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
-                    .frequency: "50.00",
-                    .voltage: "220.00",
-                    .current: "10.00",
-                    .powerApparent: "100.00",
-                    .reverseReactiveEnergy: "100.00"
+                    .init(type: .frequency, value: "50.00"),
+                    .init(type: .voltage, value: "220.00"),
+                    .init(type: .current, value: "10.00"),
+                    .init(type: .powerApparent, value: "100.00"),
+                    .init(type: .reverseReactiveEnergy, value: "100.00")
                 ])
             ]
         ),
         vectorBalancedValues: .constant(nil),
+        electricGridParameters: .constant(nil),
         showIntroduction: .constant(true)
     )
 }
@@ -559,31 +563,32 @@ private struct SinglePhaseDataValuesView: View {
         phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
         phaseMeasurementValues: .constant([
             .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
-                .frequency: "50.00",
-                .voltage: "220.00",
-                .current: "10.00",
-                .powerApparent: "100.00",
-                .reverseReactiveEnergy: "2066.96312"
+                .init(type: .frequency, value: "50.00"),
+                .init(type: .voltage, value: "220.00"),
+                .init(type: .current, value: "10.00"),
+                .init(type: .powerApparent, value: "100.00"),
+                .init(type: .reverseReactiveEnergy, value: "2066.96312")
             ]),
             .init(id: 2, phase: Strings.ElectricityMeter.phase2, values: [
-                .frequency: "50.00",
-                .voltage: "220.00",
-                .current: "10.00",
-                .powerApparent: "100.00",
-                .reverseReactiveEnergy: "100.00"
+                .init(type: .frequency, value: "50.00"),
+                .init(type: .voltage, value: "220.00"),
+                .init(type: .current, value: "10.00"),
+                .init(type: .powerApparent, value: "100.00"),
+                .init(type: .reverseReactiveEnergy, value: "100.00")
             ]),
             .init(id: 3, phase: Strings.ElectricityMeter.phase3, values: [
-                .frequency: "50.00",
-                .voltage: "220.00",
-                .current: "10.00",
-                .powerApparent: "100.00",
-                .reverseReactiveEnergy: "2066.96312"
+                .init(type: .frequency, value: "50.00"),
+                .init(type: .voltage, value: "220.00"),
+                .init(type: .current, value: "10.00"),
+                .init(type: .powerApparent, value: "100.00"),
+                .init(type: .reverseReactiveEnergy, value: "2066.96312")
             ])
         ]),
         vectorBalancedValues: .constant([
-            .forwardActiveEnergy: "4273",
-            .reverseActiveEnergy: "5715"
+            .init(type: .forwardActiveEnergy, value: "4273"),
+            .init(type: .reverseActiveEnergy, value: "5715")
         ]),
+        electricGridParameters: .constant(nil),
         showIntroduction: .constant(true)
     )
 }
@@ -600,15 +605,16 @@ private struct SinglePhaseDataValuesView: View {
         phaseMeasurementValues: .constant(
             [
                 .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
-                    .frequency: "50.00",
-                    .voltage: "220.00",
-                    .current: "10.00",
-                    .powerApparent: "100.00",
-                    .reverseReactiveEnergy: "100.00"
+                    .init(type: .frequency, value: "50.00"),
+                    .init(type: .voltage, value: "220.00"),
+                    .init(type: .current, value: "10.00"),
+                    .init(type: .powerApparent, value: "100.00"),
+                    .init(type: .reverseReactiveEnergy, value: "100.00")
                 ])
             ]
         ),
         vectorBalancedValues: .constant(nil),
+        electricGridParameters: .constant(nil),
         showIntroduction: .constant(true)
     )
 }

@@ -593,12 +593,17 @@
 "details_em_energy_label" = "Energia";
 "details_em_hour_marker_title" = "Godzina %@";
 "em_phase_to_phase_balance" = "Bilans międzyfazowy wektorowy";
+"em_electric_grid_parameters" = "Parametry sieci elektrycznej";
 "em_chart_all_phases" = "Fazy 1+2+3";
 "details_em_info_swipe" = "Przesuń w lewo po więcej";
 "details_em_info_data_type" = "Dotknij tutaj, aby wybrać jak mają być grupowane dane (godziny, dni) lub wyświetlić rankingi.";
 "details_em_info_range" = "Tu ustawisz jaki zakres ma obejmować wyres, np. bieżący miesiąc lub ostatni rok.";
 "details_em_info_data_set_single_phase" = "Dotknij tutaj, aby zmienić rodzaj wyświetlanych danych, np. energię pobraną lub oddaną (o ile jest dostępna).";
 "details_em_info_data_set_multiple_phase" = "Dotknij tutaj, aby wybrać co chcesz wyświetlić, np. energię zbilansowaną godzinowo lub wybrać fazy.";
+"details_em_voltage_phase_angle_12" = "Kąt między napięciami faz 1–2";
+"details_em_voltage_phase_angle_13" = "Kąt między napięciami faz 1–3";
+"details_em_voltage_phase_sequence" = "Kolejność faz napięcia";
+"details_em_current_phase_sequence" = "Kolejność faz prądu";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Zdjęcia licznika";
