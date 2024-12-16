@@ -46,7 +46,7 @@ extension CreateProfileFeature {
                         self?.state.isActive = profile.isActive
                         self?.state.authorisationType = profile.authorizationType
                         self?.state.serverAutoDetect = profile.serverAutoDetect
-                        self?.state.serwerAddress = profile.server?.address ?? ""
+                        self?.state.serverAddress = profile.server?.address ?? ""
                         self?.state.accessId = "\(profile.accessId)"
                         self?.state.accessIdPassword = profile.accessIdPassword ?? ""
                         self?.state.deleteButtonVisible = self?.settings.anyAccountRegistered == true
@@ -57,9 +57,9 @@ extension CreateProfileFeature {
         
         func onServerAutoDetectChange(_ autoDetect: Bool) {
             if (autoDetect) {
-                state.serwerAddress = ""
+                state.serverAddress = ""
             } else {
-                state.serwerAddress = getEmailDomain()
+                state.serverAddress = getEmailDomain()
             }
         }
         
@@ -190,7 +190,7 @@ fileprivate extension CreateProfileFeature.ViewState {
             email: email,
             accessId: Int32(accessId),
             accessIdPassword: accessIdPassword,
-            serverAddress: serwerAddress
+            serverAddress: serverAddress
         )
     }
 }
