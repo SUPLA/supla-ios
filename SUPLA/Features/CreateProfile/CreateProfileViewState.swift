@@ -25,7 +25,7 @@ extension CreateProfileFeature {
         @Published var email: String = ""
         @Published var isActive: Bool = false
         @Published var authorisationType: AuthorizationType = .email
-        @Published var serwerAddress: String = ""
+        @Published var serverAddress: String = ""
         @Published var serverAutoDetect: Bool = true
         @Published var accessId: String = ""
         @Published var accessIdPassword: String = ""
