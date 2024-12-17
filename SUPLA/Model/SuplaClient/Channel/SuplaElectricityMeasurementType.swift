@@ -32,6 +32,10 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
     case currentOver65a
     case forwardActiveEnergyBanalced
     case reverseActiveEnergyBalanced
+    case voltagePhaseAngle12
+    case voltagePhaseAngle13
+    case voltagePhaseSequence
+    case currentPhaseSequence
     case powerActiveKw
     case powerReactiveKvar
     case powerApparentKva
@@ -56,6 +60,10 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .currentOver65a: EM_VAR_CURRENT_OVER_65A
         case .forwardActiveEnergyBanalced: EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED
         case .reverseActiveEnergyBalanced: EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED
+        case .voltagePhaseAngle12: EM_VAR_VOLTAGE_PHASE_ANGLE_12
+        case .voltagePhaseAngle13: EM_VAR_VOLTAGE_PHASE_ANGLE_13
+        case .voltagePhaseSequence: EM_VAR_VOLTAGE_PHASE_SEQUENCE
+        case .currentPhaseSequence: EM_VAR_CURRENT_PHASE_SEQUENCE
         case .powerActiveKw: EM_VAR_POWER_ACTIVE_KW
         case .powerReactiveKvar: EM_VAR_POWER_REACTIVE_KVAR
         case .powerApparentKva: EM_VAR_POWER_APPARENT_KVA
@@ -79,6 +87,10 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .currentOver65a: Strings.ElectricityMeter.current
         case .forwardActiveEnergyBanalced: Strings.ElectricityMeter.forwardActiveEnergy
         case .reverseActiveEnergyBalanced: Strings.ElectricityMeter.reverseActiveEnergy
+        case .voltagePhaseAngle12: Strings.ElectricityMeter.voltagePhaseAngle12
+        case .voltagePhaseAngle13: Strings.ElectricityMeter.voltagePhaseAngle13
+        case .voltagePhaseSequence: Strings.ElectricityMeter.voltagePhaseSequence
+        case .currentPhaseSequence: Strings.ElectricityMeter.currentPhaseSequence
         case .powerActiveKw: Strings.ElectricityMeter.powerActive
         case .powerReactiveKvar: Strings.ElectricityMeter.powerReactive
         case .powerApparentKva: Strings.ElectricityMeter.powerApparent
@@ -102,6 +114,10 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .currentOver65a: Strings.ElectricityMeter.current
         case .forwardActiveEnergyBanalced: Strings.ElectricityMeter.forwardActiveEnergyShort
         case .reverseActiveEnergyBalanced: Strings.ElectricityMeter.reverseActiveEnergyShort
+        case .voltagePhaseAngle12: Strings.ElectricityMeter.voltagePhaseAngle12
+        case .voltagePhaseAngle13: Strings.ElectricityMeter.voltagePhaseAngle13
+        case .voltagePhaseSequence: Strings.ElectricityMeter.voltagePhaseSequence
+        case .currentPhaseSequence: Strings.ElectricityMeter.currentPhaseSequence
         case .powerActiveKw: Strings.ElectricityMeter.powerActive
         case .powerReactiveKvar: Strings.ElectricityMeter.powerReactive
         case .powerApparentKva: Strings.ElectricityMeter.powerApparent
@@ -116,8 +132,8 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .powerActive, .powerActiveKw: "W"
         case .powerReactive, .powerReactiveKvar: "var"
         case .powerApparent, .powerApparentKva: "VA"
-        case .powerFactor: " "
-        case .phaseAngle: "°"
+        case .powerFactor, .voltagePhaseSequence, .currentPhaseSequence: " "
+        case .phaseAngle, .voltagePhaseAngle12, .voltagePhaseAngle13: "°"
         case .forwardActiveEnergy, .reverseActiveEnergy, .forwardActiveEnergyBanalced, .reverseActiveEnergyBalanced: "kWh"
         case .forwardReactiveEnergy, .reverseReactiveEnergy: "kvarh"
         }
@@ -139,13 +155,16 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
         case .reverseReactiveEnergy: 12
         case .forwardActiveEnergyBanalced: 13
         case .reverseActiveEnergyBalanced: 14
+        case .voltagePhaseAngle12: 2
+        case .voltagePhaseAngle13: 3
+        case .voltagePhaseSequence: 4
+        case .currentPhaseSequence: 5
         }
     }
     
     var phaseType: Bool {
         switch self {
-        case .frequency,
-             .voltage,
+        case .voltage,
              .current,
              .powerActive,
              .powerReactive,
@@ -160,8 +179,13 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
              .powerActiveKw,
              .powerReactiveKvar,
              .powerApparentKva: true
-        case .forwardActiveEnergyBanalced,
-             .reverseActiveEnergyBalanced: false
+        case .frequency,
+             .forwardActiveEnergyBanalced,
+             .reverseActiveEnergyBalanced,
+             .voltagePhaseAngle12,
+             .voltagePhaseAngle13,
+             .voltagePhaseSequence,
+             .currentPhaseSequence: false
         }
     }
     
@@ -190,6 +214,10 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
     var precision: Int {
         switch (self) {
         case .frequency,
+             .voltagePhaseAngle12,
+             .voltagePhaseAngle13,
+             .voltagePhaseSequence,
+             .currentPhaseSequence,
              .voltage,
              .current,
              .powerActive,

@@ -35,7 +35,7 @@ extension ThermostatSlavesFeature {
                         ThermostatRow(data: master, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
                     }
                     HeaderText(title: Strings.ThermostatDetail.otherThermostats)
-                        .padding([.top], Distance.standard)
+                        .padding([.top], Distance.default)
                         .padding([.bottom], Distance.tiny)
                     LazyList(items: viewState.slaves) {
                         ThermostatRow(data: $0, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
@@ -49,7 +49,7 @@ extension ThermostatSlavesFeature {
         let title: String
         var body: some SwiftUI.View {
             HStack {
-                Text.BodyMedium(text: title.uppercased(), alignment: .leading)
+                Text(title.uppercased()).fontBodyMedium()
                 Spacer()
             }.padding([.leading, .trailing], Dimens.distanceSmall)
         }
@@ -68,23 +68,23 @@ extension ThermostatSlavesFeature {
                 HStack {
                     VStack(alignment: .center) {
                         ListItemIcon(iconResult: data.icon)
-                        Text.BodySmall(text: data.currentPower ?? "")
+                        Text(data.currentPower ?? "").fontBodySmall()
                     }.padding([.leading], Dimens.distanceSmall)
                     VStack(alignment: .leading, spacing: scaleFactor.scale(Dimens.distanceSmall)) {
                         HStack {
-                            Text.CellValue(text: data.value)
+                            CellValue(text: data.value)
                             if (data.indicatorIcon == .off) {
-                                Text.BodyMedium(text: "Off")
+                                Text("Off").fontBodyMedium()
                             } else {
                                 SetpointIndicator(icon: data.indicatorIcon)
                                 if let subValue = data.subValue {
-                                    Text.BodyMedium(text: subValue)
+                                    Text(subValue).fontBodyMedium()
                                 }
                             }
                             ChildChannelIcon(icon: data.pumpSwitchIcon)
                             ChildChannelIcon(icon: data.sourceSwitchIcon)
                         }
-                        Text.CellCaption(text: data.caption)
+                        CellCaption(text: data.caption)
                             .padding([.trailing], Dimens.distanceSmall)
                     }
                     Spacer()

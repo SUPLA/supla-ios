@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SwiftUI
 import RxSwift
 
 class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, ThermostatGeneralViewEvent, ThermostatGeneralVM> {
@@ -24,9 +24,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     
     private let item: ItemBundle
     
-    private lazy var temperaturesView: ThermometerValues = {
-        let view = ThermometerValues()
-        view.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var temperaturesViewController: UIHostingController = {
+        let view = UIHostingController(rootView: ThermometerValues(state: viewModel.thermometerValuesState))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        ShadowValues.apply(toLayer: view.view.layer)
         return view
     }()
     
@@ -135,8 +136,6 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }
     
     override func handle(state: ThermostatGeneralViewState) {
-        temperaturesView.measurements = state.measurements
-    
         if (state.activeSetpointType != nil && thermostatControlView.setpointToDrag == nil) {
             // Set it only once at the begining.
             thermostatControlView.setpointToDrag = state.activeSetpointType
@@ -220,7 +219,9 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             self?.viewModel.onWeeklyScheduleButtonTap()
         }
         
-        view.addSubview(temperaturesView)
+        addChild(temperaturesViewController)
+        
+        view.addSubview(temperaturesViewController.view)
         view.addSubview(buttonsView)
         view.addSubview(thermostatControlView)
         view.addSubview(plusButton)
@@ -235,16 +236,18 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         view.addSubview(pumpSwitchImage)
         view.addSubview(heatOrColdSourceSwitchImage)
         
+        temperaturesViewController.didMove(toParent: self)
+        
         setupLayout()
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            temperaturesView.topAnchor.constraint(equalTo: view.topAnchor),
-            temperaturesView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            temperaturesView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            temperaturesViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            temperaturesViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            temperaturesViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
             
-            firstProgramInfoView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
+            firstProgramInfoView.topAnchor.constraint(equalTo: temperaturesViewController.view.bottomAnchor, constant: Dimens.distanceDefault),
             firstProgramInfoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             firstProgramInfoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
@@ -252,12 +255,12 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             secondProgramInfoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             secondProgramInfoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
-            sensorIssueView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
+            sensorIssueView.topAnchor.constraint(equalTo: temperaturesViewController.view.bottomAnchor, constant: Dimens.distanceDefault),
             sensorIssueView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             sensorIssueView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
             deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deviceStateView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
+            deviceStateView.topAnchor.constraint(equalTo: temperaturesViewController.view.bottomAnchor, constant: Dimens.distanceDefault),
             
             buttonsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             buttonsView.leftAnchor.constraint(equalTo: view.leftAnchor),

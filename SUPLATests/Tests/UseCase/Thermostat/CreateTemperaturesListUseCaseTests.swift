@@ -56,9 +56,9 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            MeasurementValue(icon: .suplaIcon(name: ""), value: "---"),
-            MeasurementValue(icon: .suplaIcon(name: ""), value: "---"),
-            MeasurementValue(icon: .suplaIcon(name: ""), value: "---")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: ""), value: "---"),
+            MeasurementValue(id: 1, icon: .suplaIcon(name: ""), value: "---"),
+            MeasurementValue(id: 2, icon: .suplaIcon(name: ""), value: "---")
         ])
     }
     
@@ -74,7 +74,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            MeasurementValue(icon: .suplaIcon(name: ""), value: "---"),
+            MeasurementValue(id: 0, icon: .suplaIcon(name: ""), value: "---"),
         ])
     }
     
@@ -96,8 +96,8 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            MeasurementValue(icon: .suplaIcon(name: ""), value: "23.4°"),
-            MeasurementValue(icon: .suplaIcon(name: ""), value: "0.0")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: ""), value: "23.4°"),
+            MeasurementValue(id: 1, icon: .suplaIcon(name: ""), value: "0.0")
         ])
     }
     
@@ -110,7 +110,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            MeasurementValue(icon: .suplaIcon(name: .Icons.fncUnknown), value: "---")
+            MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "---")
         ])
     }
 }

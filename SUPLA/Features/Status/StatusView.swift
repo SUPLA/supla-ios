@@ -57,7 +57,7 @@ private struct ConnectionStatusView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 140, height: 140)
                 .foregroundColor(BrandingConfiguration.Status.COLOR_FILLER)
-            Text.BodyMedium(text: text)
+            Text(text).fontBodyMedium()
             Spacer()
         }
         .padding(Dimens.distanceDefault)
@@ -85,7 +85,7 @@ private struct ErrorStatusView: View {
                 .frame(width: 140, height: 140)
                 .foregroundColor(.Supla.primary)
             if let text = errorDescription {
-                Text.BodyMedium(text: text)
+                Text(text).fontBodyMedium()
             }
             TextButton(
                 title: Strings.Status.tryAgain,

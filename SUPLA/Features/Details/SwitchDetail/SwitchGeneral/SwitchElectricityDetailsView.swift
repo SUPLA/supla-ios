@@ -20,6 +20,8 @@ import SwiftUI
     
 struct SwitchElectricityDetailsView: View {
     @ObservedObject var viewState: ElectricityMeterGeneralState
+    
+    var onIntroductionClose: () -> Void = { }
 
     var body: some View {
         ElectricityMeterGeneralBaseView(
@@ -31,7 +33,10 @@ struct SwitchElectricityDetailsView: View {
             currentMonthReverseActiveEnergy: $viewState.currentMonthReverseActiveEnergy,
             phaseMeasurementTypes: $viewState.phaseMeasurementTypes,
             phaseMeasurementValues: $viewState.phaseMeasurementValues,
-            vectorBalancedValues: $viewState.vectorBalancedValues
+            vectorBalancedValues: $viewState.vectorBalancedValues,
+            electricGridParameters: $viewState.electricGridParameters,
+            showIntroduction: $viewState.showIntroduction,
+            onIntroductionClose: onIntroductionClose
         )
     }
 }

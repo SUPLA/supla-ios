@@ -33,236 +33,81 @@ extension View {
             .textCase(.uppercase)
     }
     
+    func fontLabelSmall() -> some View {
+        font(.Supla.labelSmall)
+    }
+    
+    func fontLabelMedium() -> some View {
+        font(.Supla.labelMedium)
+    }
+    
+    func fontLabelLarge() -> some View {
+        font(.Supla.labelLarge)
+    }
+    
+    func fontBodySmall() -> some View {
+        font(.Supla.bodySmall)
+    }
+    
     func fontBodyMedium() -> some View {
         font(.Supla.bodyMedium)
     }
+    
+    func fontBodyLarge() -> some View {
+        font(.Supla.bodyLarge)
+    }
+    
+    func fontTitleMedium() -> some View {
+        font(.Supla.titleMedium)
+    }
+    
+    func fontHeadlineSmall() -> some View {
+        font(.Supla.headlineSmall)
+    }
+    
+    func fontHeadlineLarge() -> some View {
+        font(.Supla.headlineLarge)
+    }
+    
+    func fontPickerLabel() -> some View {
+        font(.Supla.bodySmall)
+            .foregroundColor(Color.Supla.onSurfaceVariant)
+    }
 }
 
-struct Text {
-    protocol SuplaText: View {}
+struct CellValue: View {
+    @Environment(\.scaleFactor) var scaleFactor: CGFloat
     
-    struct HeadlineLarge: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.headlineLarge)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.headlineLarge)
-                    .multilineTextAlignment(alignment)
-            }
-        }
+    var text: String
+    
+    var body: some View {
+        SwiftUI.Text(text)
+            .font(Font.Supla.cellValue(scaleFactor, limit: .lower(1)))
+            .foregroundColor(Color.Supla.onBackground)
     }
-    
-    struct HeadlineSmall: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.headlineSmall)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.headlineSmall)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
-    
-    struct TitleMedium: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
+}
 
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.titleMedium)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.titleMedium)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
+struct CellCaption: View {
+    @Environment(\.scaleFactor) var scaleFactor: CGFloat
     
-    struct BodyLarge: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
+    var text: String
+    
+    var body: some View {
+        SwiftUI.Text(text)
+            .lineLimit(1)
+            .font(Font.Supla.cellCaption(scaleFactor, limit: .lower(1)))
+            .foregroundColor(Color.Supla.onBackground)
+    }
+}
 
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.bodyLarge)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.bodyLarge)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
+struct CellSubValue: View {
+    @Environment(\.scaleFactor) var scaleFactor: CGFloat
     
-    struct BodyMedium: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.bodyMedium)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.bodyMedium)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
+    var text: String
     
-    struct BodySmall: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.bodySmall)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.bodySmall)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
-    
-    struct LabelLarge: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.labelLarge)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.labelLarge)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
-    
-    struct LabelMedium: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.labelMedium)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.labelMedium)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
-    
-    struct LabelSmall: SuplaText {
-        var text: String
-        var alignment: SwiftUI.TextAlignment = .center
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(.Supla.labelSmall)
-                    .multilineTextAlignment(alignment)
-            } else {
-                SwiftUI.Text(text)
-                    .font(.Supla.labelSmall)
-                    .multilineTextAlignment(alignment)
-            }
-        }
-    }
-    
-    struct CellValue: SuplaText {
-        @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
-        var text: String
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(Font.Supla.cellValue(scaleFactor, limit: .lower(1)))
-                    .foregroundStyle(Color.Supla.onBackground)
-            } else {
-                SwiftUI.Text(text)
-                    .font(Font.Supla.cellValue(scaleFactor, limit: .lower(1)))
-                    .foregroundColor(Color.Supla.onBackground)
-            }
-        }
-    }
-    
-    struct CellCaption: SuplaText {
-        @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
-        var text: String
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .lineLimit(1)
-                    .font(Font.Supla.cellCaption(scaleFactor, limit: .lower(1)))
-                    .foregroundStyle(Color.Supla.onBackground)
-            } else {
-                SwiftUI.Text(text)
-                    .lineLimit(1)
-                    .font(Font.Supla.cellCaption(scaleFactor, limit: .lower(1)))
-                    .foregroundColor(Color.Supla.onBackground)
-            }
-        }
-    }
-    
-    struct CellSubValue: SuplaText {
-        @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
-        var text: String
-        
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text)
-                    .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
-                    .foregroundStyle(Color.Supla.onBackground)
-            } else {
-                SwiftUI.Text(text)
-                    .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
-                    .foregroundColor(Color.Supla.onBackground)
-            }
-        }
-    }
-    
-    struct PickerLabel: SuplaText {
-        var text: String
-
-        var body: some View {
-            if #available(iOS 15.0, *) {
-                SwiftUI.Text(text.uppercased())
-                    .font(.Supla.bodySmall)
-                    .textColor(Color.Supla.onSurfaceVariant)
-            } else {
-                SwiftUI.Text(text.uppercased())
-                    .font(.Supla.bodySmall)
-                    .textColor(Color.Supla.onSurfaceVariant)
-            }
-        }
+    var body: some View {
+        SwiftUI.Text(text)
+            .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
+            .foregroundColor(Color.Supla.onBackground)
     }
 }

@@ -468,6 +468,8 @@ struct BaseHistoryDetailViewState: ViewState {
     
     var editDate: RangeValueType? = nil
     
+    var showIntroduction: Bool = false
+    
     var shiftRightEnabled: Bool {
         guard let endDate = range?.end,
               let maxDate = maxDate else { return false }

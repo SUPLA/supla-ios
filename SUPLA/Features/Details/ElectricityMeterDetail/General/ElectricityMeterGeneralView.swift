@@ -28,6 +28,8 @@ struct ViewHeightKey: PreferenceKey {
 extension ElectricityMeterGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        
+        var onIntroductionClose: () -> Void = { }
 
         var body: some SwiftUI.View {
             ElectricityMeterGeneralBaseView(
@@ -39,7 +41,10 @@ extension ElectricityMeterGeneralFeature {
                 currentMonthReverseActiveEnergy: $viewState.currentMonthReverseActiveEnergy,
                 phaseMeasurementTypes: $viewState.phaseMeasurementTypes,
                 phaseMeasurementValues: $viewState.phaseMeasurementValues,
-                vectorBalancedValues: $viewState.vectorBalancedValues
+                vectorBalancedValues: $viewState.vectorBalancedValues,
+                electricGridParameters: $viewState.electricGridParameters,
+                showIntroduction: $viewState.showIntroduction,
+                onIntroductionClose: onIntroductionClose
             )
         }
     }
@@ -54,11 +59,11 @@ extension ElectricityMeterGeneralFeature {
     viewState.phaseMeasurementTypes = [.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]
     viewState.phaseMeasurementValues = [
         .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
-            .frequency: "50.00",
-            .voltage: "220.00",
-            .current: "10.00",
-            .powerApparent: "100.00",
-            .reverseReactiveEnergy: "100.00"
+            .init(type: .frequency, value: "50.00"),
+            .init(type: .voltage, value: "220.00"),
+            .init(type: .current, value: "10.00"),
+            .init(type: .powerApparent, value: "100.00"),
+            .init(type: .reverseReactiveEnergy, value: "100.00")
         ])
     ]
     return ElectricityMeterGeneralFeature.View(
@@ -75,30 +80,30 @@ extension ElectricityMeterGeneralFeature {
     viewState.phaseMeasurementTypes = [.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]
     viewState.phaseMeasurementValues = [
         .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
-            .frequency: "50.00",
-            .voltage: "220.00",
-            .current: "10.00",
-            .powerApparent: "100.00",
-            .reverseReactiveEnergy: "2066.96312"
+            .init(type: .frequency, value: "50.00"),
+            .init(type: .voltage, value: "220.00"),
+            .init(type: .current, value: "10.00"),
+            .init(type: .powerApparent, value: "100.00"),
+            .init(type: .reverseReactiveEnergy, value: "2066.96312")
         ]),
         .init(id: 2, phase: Strings.ElectricityMeter.phase2, values: [
-            .frequency: "50.00",
-            .voltage: "220.00",
-            .current: "10.00",
-            .powerApparent: "100.00",
-            .reverseReactiveEnergy: "100.00"
+            .init(type: .frequency, value: "50.00"),
+            .init(type: .voltage, value: "220.00"),
+            .init(type: .current, value: "10.00"),
+            .init(type: .powerApparent, value: "100.00"),
+            .init(type: .reverseReactiveEnergy, value: "100.00")
         ]),
         .init(id: 3, phase: Strings.ElectricityMeter.phase3, values: [
-            .frequency: "50.00",
-            .voltage: "220.00",
-            .current: "10.00",
-            .powerApparent: "100.00",
-            .reverseReactiveEnergy: "2066.96312"
+            .init(type: .frequency, value: "50.00"),
+            .init(type: .voltage, value: "220.00"),
+            .init(type: .current, value: "10.00"),
+            .init(type: .powerApparent, value: "100.00"),
+            .init(type: .reverseReactiveEnergy, value: "2066.96312")
         ])
     ]
     viewState.vectorBalancedValues = [
-        .forwardActiveEnergy: "4273",
-        .reverseActiveEnergy: "5715"
+        .init(type: .forwardActiveEnergy, value: "4273"),
+        .init(type: .reverseActiveEnergy, value: "5715")
     ]
     return ElectricityMeterGeneralFeature.View(
         viewState: viewState

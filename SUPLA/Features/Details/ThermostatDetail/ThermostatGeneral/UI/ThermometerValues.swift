@@ -16,143 +16,103 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
+import SwiftUI
 
-final class ThermometerValues: UIStackView {
+final class ThermometerValuesState: ObservableObject {
+    @Published var measurements: [MeasurementValue] = []
+}
+
+struct ThermometerValues: View {
+    @ObservedObject var state: ThermometerValuesState
     
-    var measurements: [MeasurementValue] = [] {
-        didSet {
-            if (measurements != oldValue) {
-                createSubviews()
-                setNeedsLayout()
-                layoutIfNeeded()
+    private var useSmallSize: Bool {
+        state.measurements.count > 3 ||
+            (state.measurements.count > 2 && state.measurements.map { $0.batteryIcon != nil ? 1 : 0 }.sum() > 1)
+    }
+
+    private var iconSize: CGFloat { useSmallSize ? Dimens.iconSize : 36 }
+    private var font: Font { useSmallSize ? .Supla.bodyMedium : .Supla.headlineMedium }
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(state.measurements) { measurement in
+                HStack(spacing: 0) {
+                    measurement.icon.image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: iconSize, height: iconSize)
+                    Spacer().frame(width: Distance.tiny)
+                    Text(measurement.value)
+                        .font(font)
+                        .textColor(Color.Supla.onBackground)
+                    if let batteryIcon = measurement.batteryIcon?.resource {
+                        Image(uiImage: batteryIcon)
+                            .resizable()
+                            .scaledToFit()
+                            .rotationEffect(Angle(degrees: 90))
+                            .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+            
+            if (state.measurements.count == 1) {
+                HStack {}.frame(maxWidth: .infinity)
             }
         }
-    }
-    
-    private var measurementViews: [ThermometerValueView] = []
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: 80)
-    }
-    
-    private func setupView() {
-        ShadowValues.apply(toLayer: layer)
-        backgroundColor = .surface
-        
-        axis = .horizontal
-        distribution = .fillProportionally
-        alignment = .center
-        layoutMargins = UIEdgeInsets(top: 0, left: Dimens.distanceSmall, bottom: 0, right: Dimens.distanceDefault)
-        isLayoutMarginsRelativeArrangement = true
-    }
-    
-    private func createSubviews() {
-        if (!measurementViews.isEmpty) {
-            measurementViews.forEach { $0.removeFromSuperview() }
-            measurementViews.removeAll()
-        }
-        
-        for value in measurements {
-            let view = measurementView(value: value, makeSmall: measurements.count > 3)
-            measurementViews.append(view)
-            addArrangedSubview(view)
-        }
-    }
-    
-    private func measurementView(value: MeasurementValue, makeSmall: Bool) -> ThermometerValueView {
-        let view = ThermometerValueView(small: makeSmall)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.icon = value.icon.uiImage
-        view.label = value.value
-        return view
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
+        .frame(maxWidth: .infinity, minHeight: 80, maxHeight: 80)
+        .padding([.leading, .trailing], Distance.small)
+        .background(Color.Supla.surface)
     }
 }
 
-fileprivate final class ThermometerValueView: UIView {
-    
-    var icon: UIImage? = nil {
-        didSet {
-            iconView.image = icon
-            iconView.isHidden = icon == nil
-        }
+#Preview {
+    let twoState = ThermometerValuesState()
+    twoState.measurements = [
+        temperatureValue("20.0"),
+        humidityValue("55")
+    ]
+    let threeState = ThermometerValuesState()
+    threeState.measurements = [
+        temperatureValue("20.0"),
+        humidityValue("55"),
+        temperatureValue("22.5")
+    ]
+    let fourState = ThermometerValuesState()
+    fourState.measurements = [
+        temperatureValue("20.0"),
+        humidityValue("55"),
+        temperatureValue("22.5"),
+        humidityValue("85")
+    ]
+    return VStack {
+        ThermometerValues(state: twoState)
+        ThermometerValues(state: threeState)
+        ThermometerValues(state: fourState)
     }
-    
-    var label: String? = nil {
-        didSet {
-            labelView.text = label
-            labelView.isHidden = label == nil
-        }
-    }
-    
-    private lazy var iconView: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        view.isHidden = true
-        return view
-    }()
-    
-    private lazy var labelView: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = small ? .body1 : .h5
-        view.isHidden = true
-        view.textColor = .onBackground
-        return view
-    }()
-    
-    private let small: Bool
-    
-    init(small: Bool) {
-        self.small = small
-        super.init(frame: .zero)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        let width = (small ? 24 : 36) + Dimens.distanceTiny + labelView.intrinsicContentSize.width
-        return CGSize(width: width, height: 80)
-    }
-    
-    private func setupView() {
-        addSubview(iconView)
-        addSubview(labelView)
-        
-        setupLayout()
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            iconView.widthAnchor.constraint(equalToConstant: small ? 24 : 36),
-            iconView.heightAnchor.constraint(equalToConstant: small ? 24 : 36),
-            iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconView.leftAnchor.constraint(equalTo: leftAnchor),
-            
-            labelView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            labelView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceTiny),
-            labelView.rightAnchor.constraint(equalTo: rightAnchor)
-        ])
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
+}
+
+private var id = 0
+private func nextId() -> Int {
+    id += 1
+    return id
+}
+
+private func temperatureValue(_ temperature: String, battery: Bool = true) -> MeasurementValue {
+    MeasurementValue(
+        id: nextId(),
+        icon: .suplaIcon(name: .Icons.fncThermometerHome),
+        value: temperature,
+        batteryIcon: battery ? IssueIcon.Battery75() : nil
+    )
+}
+
+private func humidityValue(_ temperature: String, battery: Bool = true) -> MeasurementValue {
+    MeasurementValue(
+        id: nextId(),
+        icon: .suplaIcon(name: "humidity"),
+        value: temperature,
+        batteryIcon: battery ? IssueIcon.Battery75() : nil
+    )
 }

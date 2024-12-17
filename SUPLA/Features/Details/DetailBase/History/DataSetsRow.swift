@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import SwiftUI
 import RxRelay
 import RxSwift
+import SwiftUI
 
 final class DataSetsViewState: ObservableObject {
     @Published var channelsSets: [ChannelChartSets] = []
@@ -30,44 +30,21 @@ struct DataSetsRow: View {
         let remoteId: Int32
         let type: ChartEntryType
     }
-    
+
     var tap: Observable<DataSetsRow.Event> { tapRelay.asObservable() }
     @ObservedObject var viewState: DataSetsViewState
-    
+
     fileprivate let tapRelay = PublishRelay<Event>()
 
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
                 ForEach(viewState.channelsSets) { channelSet in
-                    VStack(spacing: 2) {
-                        if let name = channelSet.typeName {
-                            Text.LabelSmall(text: name)
-                        }
-                        HStack {
-                            ForEach(channelSet.dataSets) { dataSet in
-                                switch (dataSet.label) {
-                                case .single(let labelData):
-                                    DataSetItem(
-                                        labelData: labelData,
-                                        active: viewState.historyEnabled && dataSet.active
-                                    )
-                                    .onTapGesture {
-                                        tapRelay.accept(Event(remoteId: channelSet.remoteId, type: dataSet.type))
-                                    }
-                                case .multiple(let labelDatas):
-                                    ForEach(0 ..< labelDatas.count, id: \.self) { index in
-                                        DataSetItem(
-                                            labelData: labelDatas[index],
-                                            active: viewState.historyEnabled && dataSet.active
-                                        )
-                                        .onTapGesture {
-                                            tapRelay.accept(Event(remoteId: channelSet.remoteId, type: dataSet.type))
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    DataSetContainer(
+                        channelSet: channelSet,
+                        historyEnabled: viewState.historyEnabled
+                    ) { remoteId, type in
+                        tapRelay.accept(Event(remoteId: remoteId, type: type))
                     }
                     Divider()
                         .frame(width: 1)
@@ -76,7 +53,46 @@ struct DataSetsRow: View {
                 }
             }
             .frame(height: 80)
-            .padding([.leading], Distance.standard)
+            .padding([.leading], Distance.default)
+        }
+    }
+}
+
+struct DataSetContainer: View {
+    var channelSet: ChannelChartSets
+    var historyEnabled: Bool
+
+    var onTap: (Int32, ChartEntryType) -> Void = { _, _ in }
+
+    var body: some View {
+        VStack(spacing: 2) {
+            if let name = channelSet.typeName {
+                Text(name).fontLabelSmall()
+            }
+            HStack {
+                ForEach(channelSet.dataSets) { dataSet in
+                    switch (dataSet.label) {
+                    case .single(let labelData):
+                        DataSetItem(
+                            labelData: labelData,
+                            active: historyEnabled && dataSet.active
+                        )
+                        .onTapGesture {
+                            onTap(channelSet.remoteId, dataSet.type)
+                        }
+                    case .multiple(let labelDatas):
+                        ForEach(0 ..< labelDatas.count, id: \.self) { index in
+                            DataSetItem(
+                                labelData: labelDatas[index],
+                                active: historyEnabled && dataSet.active
+                            )
+                            .onTapGesture {
+                                onTap(channelSet.remoteId, dataSet.type)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -95,7 +111,7 @@ private struct DataSetItem: View {
             }
 
             VStack(spacing: 0) {
-                Text.BodyLarge(text: labelData.value)
+                Text(labelData.value).fontBodyLarge()
                     .lineLimit(1)
                     .fixedSize(horizontal: true, vertical: false)
 
@@ -166,7 +182,7 @@ private struct DataSetItem: View {
                 )
             ],
             typeName: "Reverse active energy"
-        ),
+        )
     ]
 
     return DataSetsRow(

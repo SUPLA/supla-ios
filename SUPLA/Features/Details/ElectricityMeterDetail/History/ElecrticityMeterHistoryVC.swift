@@ -15,12 +15,29 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
+import SwiftUI
     
 extension ElectricityMeterHistoryFeature {
     class ViewController: BaseHistoryDetailVC {
+        
+        private lazy var introductionViewController: UIHostingController = {
+            let viewModel = (viewModel as! ViewModel)
+            let view = UIHostingController(rootView: IntroductionView(
+                viewState: viewModel.introductionState,
+                onClose: viewModel.closeIntroductionView
+            ))
+            view.view.translatesAutoresizingMaskIntoConstraints = false
+            view.view.backgroundColor = .clear
+            view.view.isHidden = true
+            return view
+        }()
+        
         init(viewModel: ViewModel, item: ItemBundle, navigationItemProvider: NavigationItemProvider) {
             super.init(remoteId: item.remoteId, navigationItemProvider: navigationItemProvider)
             self.viewModel = viewModel
+            
+            setupView()
         }
         
         override func showDataSelectionDialog(_ channelSets: ChannelChartSets, _ filters: CustomChartFiltersContainer?) {
@@ -36,6 +53,24 @@ extension ElectricityMeterHistoryFeature {
                 }
             }
             present(dialog, animated: true)
+        }
+        
+        override func handle(state: BaseHistoryDetailViewState) {
+            super.handle(state: state)
+            introductionViewController.view.isHidden = !state.showIntroduction
+        }
+        
+        private func setupView() {
+            addChild(introductionViewController)
+            view.addSubview(introductionViewController.view)
+            introductionViewController.didMove(toParent: self)
+            
+            NSLayoutConstraint.activate([
+                introductionViewController.view!.topAnchor.constraint(equalTo: view.topAnchor),
+                introductionViewController.view!.leftAnchor.constraint(equalTo: view.leftAnchor),
+                introductionViewController.view!.rightAnchor.constraint(equalTo: view.rightAnchor),
+                introductionViewController.view!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
         }
         
         static func create(item: ItemBundle, navigationItemProvider: NavigationItemProvider) -> UIViewController {

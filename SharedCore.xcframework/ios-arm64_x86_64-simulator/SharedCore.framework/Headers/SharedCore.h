@@ -1094,6 +1094,7 @@ __attribute__((swift_name("GetChannelBatteryIconUseCase")))
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (SharedCoreIssueIcon * _Nullable)invokeChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("invoke(channelWithChildren:)")));
+- (SharedCoreIssueIcon * _Nullable)invokeChannel:(SharedCoreChannel *)channel __attribute__((swift_name("invoke(channel:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))

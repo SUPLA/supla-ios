@@ -432,6 +432,10 @@ struct Strings {
         static let reverseActiveEnergyShort = "details_em_reverse_active_energy_short".toLocalized()
         static let forwardReactiveEnergyShort = "details_em_forward_reactive_energy_short".toLocalized()
         static let reverseReactiveEnergyShort = "details_em_reverse_reactive_energy_short".toLocalized()
+        static let voltagePhaseAngle12 = "details_em_voltage_phase_angle_12".toLocalized()
+        static let voltagePhaseAngle13 = "details_em_voltage_phase_angle_13".toLocalized()
+        static let voltagePhaseSequence = "details_em_voltage_phase_sequence".toLocalized()
+        static let currentPhaseSequence = "details_em_current_phase_sequence".toLocalized()
         static let frequency = "details_em_frequency".toLocalized()
         static let voltage = "details_em_voltage".toLocalized()
         static let current = "details_em_current".toLocalized()
@@ -461,9 +465,15 @@ struct Strings {
         static let currentMonthSuffix = "details_em_current_month_suffix".toLocalized()
         static let lastMonthBalancing = "details_em_last_month_balancing".toLocalized()
         static let phaseToPhaseBalance = "em_phase_to_phase_balance".toLocalized()
+        static let electricGridParameters = "em_electric_grid_parameters".toLocalized()
         static let allPhases = "em_chart_all_phases".toLocalized()
         static let energyLabel = "details_em_energy_label".toLocalized()
         static let hourMarkerTitle = "details_em_hour_marker_title".toLocalized()
+        static let infoSwipe = "details_em_info_swipe".toLocalized()
+        static let infoDataType = "details_em_info_data_type".toLocalized()
+        static let infoRange = "details_em_info_range".toLocalized()
+        static let infoDataSetSinglePhase = "details_em_info_data_set_single_phase".toLocalized()
+        static let infoDataSetMultiplePhase = "details_em_info_data_set_multiple_phase".toLocalized()
     }
     
     struct CounterPhoto {

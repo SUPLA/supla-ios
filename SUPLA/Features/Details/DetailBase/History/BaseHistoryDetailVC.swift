@@ -351,7 +351,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .caption
-        label.textColor = .gray
+        label.textColor = .onSurfaceVariant
         label.text = Strings.Charts.rangeLabel.uppercased()
         return label
     }()
@@ -379,7 +379,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .caption
-        label.textColor = .gray
+        label.textColor = .onSurfaceVariant
         label.text = Strings.Charts.dataTypeLabel.uppercased()
         return label
     }()

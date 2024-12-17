@@ -31,7 +31,8 @@ struct EnergySummaryBox: View {
                     let showLabel = forwardEnergy != nil && reverseEnergy != nil && label != nil
                     if (showLabel) {
                         if let label = label {
-                            Text.BodyMedium(text: label)
+                            Text(label)
+                                .fontBodyMedium()
                                 .textColor(Color.Supla.onSurfaceVariant)
                                 .padding(Dimens.distanceTiny)
                         }
@@ -104,16 +105,18 @@ private struct EnergySummaryItemBox: View {
         VStack(alignment: .leading) {
             HStack {
                 Image(iconName)
-                Text.BodyMedium(text: label)
+                Text(label)
+                    .fontBodyMedium()
                     .textColor(Color.Supla.onSurfaceVariant)
             }
-            Text.LabelLarge(text: value)
+            Text(value).fontLabelLarge()
             if let price = price {
                 SuplaCore.Divider()
                 HStack {
-                    Text.BodyMedium(text: Strings.ElectricityMeter.cost)
+                    Text(Strings.ElectricityMeter.cost)
+                        .fontBodyMedium()
                         .textColor(Color.Supla.onSurfaceVariant)
-                    Text.LabelMedium(text: price)
+                    Text(price).fontLabelMedium()
                 }
             } else {
                 Spacer()
@@ -136,19 +139,21 @@ private struct EnergySummarySingleItemBox: View {
             VStack(alignment: .leading) {
                 HStack {
                     Image(iconName)
-                    Text.BodyMedium(text: label)
+                    Text(label)
+                        .fontBodyMedium()
                         .textColor(Color.Supla.onSurfaceVariant)
                 }
-                Text.LabelLarge(text: value)
+                Text(value).fontLabelLarge()
             }
             if let price = price {
                 Spacer()
                 SuplaCore.Divider(.vertical)
                 Spacer()
                 VStack(alignment: .trailing, spacing: Dimens.distanceTiny) {
-                    Text.BodyMedium(text: Strings.ElectricityMeter.cost)
+                    Text(Strings.ElectricityMeter.cost)
+                        .fontBodyMedium()
                         .textColor(Color.Supla.onSurfaceVariant)
-                    Text.LabelMedium(text: price)
+                    Text(price).fontLabelMedium()
                 }
             }
         }

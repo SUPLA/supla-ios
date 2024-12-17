@@ -173,14 +173,14 @@ extension SuplaCore.Dialog {
                     SwiftUI.Text(message)
                         .fontBodyMedium()
                         .multilineTextAlignment(.center)
-                        .padding([.leading, .trailing], Distance.standard)
+                        .padding([.leading, .trailing], Distance.default)
                     
                     SuplaCore.Dialog.Divider()
-                        .padding([.top], Distance.standard)
+                        .padding([.top], Distance.default)
                     
                     FilledButton(title: button, fullWidth: true) { onDismiss() }
                     .padding([.top, .bottom], Distance.small)
-                    .padding([.leading, .trailing], Distance.standard)
+                    .padding([.leading, .trailing], Distance.default)
                 }
             }
         }
@@ -191,11 +191,13 @@ extension SuplaCore.Dialog {
         
         var body: some SwiftUI.View {
             VStack(spacing: 0) {
-                Text.HeadlineSmall(text: title)
-                    .padding([.leading, .top, .trailing, .bottom], Distance.standard)
+                Text(title)
+                    .fontHeadlineSmall()
+                    .multilineTextAlignment(.center)
+                    .padding([.leading, .top, .trailing, .bottom], Distance.default)
                 Divider()
             }
-            .padding([.bottom], Distance.standard)
+            .padding([.bottom], Distance.default)
         }
     }
     

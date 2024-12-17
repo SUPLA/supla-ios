@@ -38,6 +38,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     private let updateRelay = PublishRelay<Void>()
     private let channelRelay = PublishRelay<ChannelWithChildren>()
     
+    var thermometerValuesState = ThermometerValuesState()
+    
     override func defaultViewState() -> ThermostatGeneralViewState { ThermostatGeneralViewState() }
     
     override func onViewDidLoad() {
@@ -266,6 +268,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
               let thermostatValue = channel.channel.value?.asThermostatValue()
         else { return }
         
+        thermometerValuesState.measurements = temperatures
+        
         updateView { state in
             if (state.changing) {
                 SALog.info("Update skipped because of changing")
@@ -286,7 +290,6 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.remoteId, to: channel.channel.remote_id)
                 .changing(path: \.channelFunc, to: channel.channel.func)
                 .changing(path: \.mode, to: thermostatValue.mode)
-                .changing(path: \.measurements, to: temperatures)
                 .changing(path: \.childrenIds, to: channel.allDescendantFlat.map { $0.channel.remote_id })
                 .changing(path: \.offline, to: !channel.channel.isOnline())
                 .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
@@ -557,7 +560,6 @@ struct ThermostatGeneralViewState: ViewState {
     /* View properties */
     
     var currentPower: Int = 0
-    var measurements: [MeasurementValue] = []
     var setpointHeat: Float? = nil
     var setpointCool: Float? = nil
     var activeSetpointType: SetpointType? = nil

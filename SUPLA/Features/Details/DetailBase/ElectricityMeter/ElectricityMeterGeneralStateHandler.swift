@@ -28,6 +28,7 @@ extension ElectricityMeterGeneralStateHandler {
 
 final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStateHandler {
     @Singleton private var getChannelValueUseCase: GetChannelValueUseCase
+    @Singleton private var settings: GlobalSettings
     
     private let formatter = ListElectricityMeterValueFormatter(useNoValue: false)
     
@@ -43,6 +44,9 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         
         let allTypes = extendedValue.suplaElectricityMeterMeasuredTypes.sorted(by: { $0.ordering < $1.ordering })
         let phaseTypes = allTypes.filter { $0.phaseType }
+        let moreThanOnePhase = Phase.allCases
+            .filter { channel.channel.flags & $0.disabledFlag == 0 }
+            .count > 1
         
         state.online = channel.channel.isOnline()
         state.totalForwardActiveEnergy = extendedValue.getForwardEnergy(formatter: formatter)
@@ -51,7 +55,9 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter, value: extendedValue)
         state.phaseMeasurementTypes = phaseTypes
         state.phaseMeasurementValues = getPhaseData(phaseTypes, channel.channel.flags, extendedValue, formatter)
-        state.vectorBalancedValues = vectorBalancedValues(channel.channel, extendedValue, allTypes)
+        state.vectorBalancedValues = vectorBalancedValues(moreThanOnePhase, extendedValue, allTypes)
+        state.electricGridParameters = getGridParameters(channel.channel.flags, extendedValue)
+        state.showIntroduction = settings.showEmGeneralIntroduction && channel.channel.isOnline() && moreThanOnePhase
     }
     
     private func handleNoExtendedValue(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
@@ -73,44 +79,35 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         _ extendedValue: SAElectricityMeterExtendedValue,
         _ formatter: ListElectricityMeterValueFormatter
     ) -> [PhaseWithMeasurements] {
-        var phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value])] = Phase.allCases
+        // Collect data for each phase
+        let phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value])] = Phase.allCases
             .filter { channelFlags & $0.disabledFlag == 0 }
             .map { (Int($0.rawValue), $0.label, extendedValue.measuredValues(types, $0)) }
         
+        // Extract summary for all three phases if available
+        var result: [PhaseWithMeasurements] = []
         if phasesWithData.count == 3 {
-            phasesWithData.append(extractAllPhasesData(phasesWithData))
+            let allPhasesData = extractAllPhasesData(phasesWithData)
+            let allPhasesMeasurements = allPhasesData.2.toMeasurementTypeValue(formatter).sorted(by: { $0.type.ordering < $1.type.ordering })
+            
+            result.append(PhaseWithMeasurements(id: allPhasesData.0, phase: allPhasesData.1, values: allPhasesMeasurements))
         }
         
-        return phasesWithData
-            .map {
-                let measurements = $2.map {
-                    ($0.key, format(formatter, $0.value, $0.key.precision))
-                }
-                return PhaseWithMeasurements(id: $0, phase: $1, values: Dictionary(uniqueKeysWithValues: measurements))
-            }
-            .sorted(by: { $0.id < $1.id })
-    }
-    
-    private func format(
-        _ formatter: ListElectricityMeterValueFormatter,
-        _ value: SuplaElectricityMeasurementType.Value,
-        _ precision: Int
-    ) -> String {
-        let precision: ChannelValuePrecision = .customPrecision(value: precision)
-        
-        switch (value) {
-        case .single(let value):
-            return formatter.format(value, withUnit: false, precision: precision)
-        case .double(let first, let second):
-            let firstFormatted = formatter.format(first, withUnit: false, precision: .customPrecision(value: 0))
-            let secondFormatted = formatter.format(second, withUnit: false, precision: .customPrecision(value: 0))
-            return "\(firstFormatted) - \(secondFormatted)"
+        // Extract each single phase
+        phasesWithData.forEach {
+            let measurements = $2
+                .map { ElectricityMeterGeneralState.MeaurementTypeValue(type: $0.key, value: format(formatter, $0.value, $0.key.precision)) }
+                .sorted(by: { $0.type.ordering < $1.type.ordering })
+            
+            result.append(PhaseWithMeasurements(id: $0, phase: $1, values: measurements))
         }
+        
+        return result.sorted(by: { $0.id < $1.id })
     }
     
     private func extractAllPhasesData(
         _ phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value])]
-    ) -> (Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value]) {
+    ) -> (Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value?]) {
         var allValues: [SuplaElectricityMeasurementType: [Double]] = [:]
         
         phasesWithData.map { $2 }
@@ -138,30 +135,104 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
     private func mergeForAllPhases(
         _ type: SuplaElectricityMeasurementType,
         _ values: [Double]
-    ) -> (SuplaElectricityMeasurementType, SuplaElectricityMeasurementType.Value)? {
+    ) -> (SuplaElectricityMeasurementType, SuplaElectricityMeasurementType.Value?) {
         if let mergedValue = type.merge(values) {
             (type, mergedValue)
         } else {
-            nil
+            (type, nil)
         }
     }
     
     private func vectorBalancedValues(
-        _ channel: SAChannel,
+        _ moreThanOnePhase: Bool,
         _ value: SAElectricityMeterExtendedValue,
         _ types: [SuplaElectricityMeasurementType]
-    ) -> [SuplaElectricityMeasurementType: String]? {
-        let moreThanOnePhase = Phase.allCases
-            .filter { channel.flags & $0.disabledFlag == 0 }
-            .count > 1
-        
+    ) -> [ElectricityMeterGeneralState.MeaurementTypeValue]? {
         if (moreThanOnePhase && types.hasForwardAndReverseEnergy) {
             return [
-                .forwardActiveEnergyBanalced: formatter.format(value.totalForwardActiveEnergyBalanced(), withUnit: false),
-                .reverseActiveEnergyBalanced: formatter.format(value.totalReverseActiveEnergyBalanced(), withUnit: false)
+                .init(
+                    type: .forwardActiveEnergyBanalced,
+                    value: formatter.format(value.totalForwardActiveEnergyBalanced(), withUnit: false)
+                ),
+                .init(
+                    type: .reverseActiveEnergyBalanced,
+                    value: formatter.format(value.totalReverseActiveEnergyBalanced(), withUnit: false)
+                )
             ]
         }
         
         return nil
+    }
+    
+    private func getGridParameters(
+        _ channelFlags: Int64,
+        _ value: SAElectricityMeterExtendedValue
+    ) -> [ElectricityMeterGeneralState.MeaurementTypeValue]? {
+        let measuredValues = value.suplaElectricityMeterMeasuredTypes
+        var result: [ElectricityMeterGeneralState.MeaurementTypeValue] = []
+        
+        if (measuredValues.contains(.frequency)) {
+            if let phase = Phase.allCases.first(where: { channelFlags & $0.disabledFlag == 0 }) {
+                result.append(.init(
+                    type: .frequency,
+                    value: formatter.format(value.freq(forPhase: phase.rawValue), withUnit: false, precision: SuplaElectricityMeasurementType.frequency.precision)
+                ))
+            }
+        }
+        if (measuredValues.contains(.voltagePhaseAngle12)) {
+            result.append(.init(
+                type: .voltagePhaseAngle12,
+                value: formatter.format(value.voltagePhaseAngle12(), withUnit: false, precision: SuplaElectricityMeasurementType.voltagePhaseAngle12.precision)
+            ))
+        }
+        if (measuredValues.contains(.voltagePhaseAngle13)) {
+            result.append(.init(
+                type: .voltagePhaseAngle13,
+                value: formatter.format(value.voltagePhaseAngle13(), withUnit: false, precision: SuplaElectricityMeasurementType.voltagePhaseAngle13.precision)
+            ))
+        }
+        if (measuredValues.contains(.voltagePhaseSequence)) {
+            result.append(.init(
+                type: .voltagePhaseSequence,
+                value: value.voltagePhaseSequence.text
+            ))
+        }
+        if (measuredValues.contains(.currentPhaseSequence)) {
+            result.append(.init(
+                type: .currentPhaseSequence,
+                value: value.currentPhaseSequence.text
+            ))
+        }
+        
+        return result.count > 0 ? result : nil
+    }
+}
+
+private extension Dictionary where Key == SuplaElectricityMeasurementType, Value == SuplaElectricityMeasurementType.Value? {
+    func toMeasurementTypeValue(_ formatter: ListElectricityMeterValueFormatter) -> [ElectricityMeterGeneralState.MeaurementTypeValue] {
+        map {
+            if let value = $0.value {
+                ElectricityMeterGeneralState.MeaurementTypeValue(type: $0.key, value: format(formatter, value, $0.key.precision))
+            } else {
+                ElectricityMeterGeneralState.MeaurementTypeValue(type: $0.key, value: nil)
+            }
+        }
+    }
+}
+
+private func format(
+    _ formatter: ListElectricityMeterValueFormatter,
+    _ value: SuplaElectricityMeasurementType.Value,
+    _ precision: Int
+) -> String {
+    let precision: ChannelValuePrecision = .customPrecision(value: precision)
+    
+    switch (value) {
+    case .single(let value):
+        return formatter.format(value, withUnit: false, precision: precision)
+    case .double(let first, let second):
+        let firstFormatted = formatter.format(first, withUnit: false, precision: .customPrecision(value: 0))
+        let secondFormatted = formatter.format(second, withUnit: false, precision: .customPrecision(value: 0))
+        return "\(firstFormatted) - \(secondFormatted)"
     }
 }

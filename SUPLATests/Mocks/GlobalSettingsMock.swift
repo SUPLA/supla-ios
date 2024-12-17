@@ -145,4 +145,16 @@ class GlobalSettingsMock: GlobalSettings {
         get { batteryWarningLevelMock.get() }
         set { batteryWarningLevelMock.set(newValue) }
     }
+    
+    var showEmGeneralIntroductionMock: FunctionMock<Bool, Bool> = .init()
+    var showEmGeneralIntroduction: Bool {
+        get { showEmGeneralIntroductionMock.get() }
+        set { showEmGeneralIntroductionMock.set(newValue) }
+    }
+    
+    var showEmHistoryIntroductionMock: FunctionMock<Bool, Bool> = .init()
+    var showEmHistoryIntroduction: Bool {
+        get { showEmHistoryIntroductionMock.get() }
+        set { showEmHistoryIntroductionMock.set(newValue) }
+    }
 }

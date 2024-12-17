@@ -20,11 +20,14 @@ import RxSwift
     
 extension ElectricityMeterHistoryFeature {
     class ViewModel: BaseHistoryDetailVM {
+        @Singleton<GlobalSettings> private var settings
         @Singleton<DownloadEventsManager> private var downloadEventsManager
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
+        
+        var introductionState = IntroductionState()
         
         override var chartStyle: any ChartStyle {
             ElectricityChartStyle()
@@ -116,6 +119,11 @@ extension ElectricityMeterHistoryFeature {
             }
         }
         
+        func closeIntroductionView() {
+            settings.showEmHistoryIntroduction = false
+            updateView { $0.changing(path: \.showIntroduction, to: false) }
+        }
+        
         private func handleData(channel: SAChannel, chartState: ChartState?) {
             updateView {
                 $0.changing(path: \.profileId, to: channel.profile.id)
@@ -126,6 +134,14 @@ extension ElectricityMeterHistoryFeature {
             restoreRange(chartState: chartState)
             configureDownloadObserver(channel: channel)
             startInitialDataLoad(channel: channel)
+            
+            if (settings.showEmHistoryIntroduction) {
+                let moreThanOnePhase = Phase.allCases
+                    .filter { channel.flags & $0.disabledFlag == 0 }
+                    .count > 1
+                introductionState.pages = moreThanOnePhase ? [.firstForMultiplePhases, .second] : [.firstForSinglePhase, .second]
+            }
+            updateView { $0.changing(path: \.showIntroduction, to: settings.showEmHistoryIntroduction) }
         }
         
         private func configureDownloadObserver(channel: SAChannel) {

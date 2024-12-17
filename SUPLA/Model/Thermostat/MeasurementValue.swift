@@ -16,9 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
-struct MeasurementValue: Equatable {
+struct MeasurementValue: Equatable, Identifiable {
+    let id: Int
     let icon: IconResult
     let value: String
+    let batteryIcon: IssueIcon?
+    
+    init(id: Int, icon: IconResult, value: String, batteryIcon: IssueIcon? = nil) {
+        self.id = id
+        self.icon = icon
+        self.value = value
+        self.batteryIcon = batteryIcon
+    }
 }

@@ -37,25 +37,28 @@ extension ElectricityMeterSettingsFeature {
             
             return BackgroundStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text.BodyMedium(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName).uppercased())
-                        .padding([.leading, .trailing], Distance.standard)
+                    Text(Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName).uppercased())
+                        .fontBodyMedium()
+                        .padding([.leading, .trailing], Distance.default)
                         .padding([.bottom], Distance.small)
                     VStack(alignment: .leading, spacing: 0) {
                         SuplaCore.Divider().color(Color.Supla.separator)
                             .padding([.bottom], Distance.small)
                         
-                        Text.BodySmall(text: Strings.ElectricityMeter.settingsListItem.uppercased())
+                        Text(Strings.ElectricityMeter.settingsListItem.uppercased())
+                            .fontBodySmall()
                             .textColor(Color.Supla.onSurfaceVariant)
-                            .padding([.leading, .trailing], Distance.standard)
+                            .padding([.leading, .trailing], Distance.default)
                         SuplaCore.Picker(selected: selectedTypeBinding, items: viewState.showOnChannelsList.items)
                         
                         if let balancingUnwrapped = Binding(selectedBalancingBinding) {
                             SuplaCore.Divider().color(Color.Supla.separator)
                                 .padding([.top, .bottom], Distance.small)
                             
-                            Text.BodySmall(text: Strings.ElectricityMeter.lastMonthBalancing.uppercased())
+                            Text(Strings.ElectricityMeter.lastMonthBalancing.uppercased())
+                                .fontBodySmall()
                                 .textColor(Color.Supla.onSurfaceVariant)
-                                .padding([.leading, .trailing], Distance.standard)
+                                .padding([.leading, .trailing], Distance.default)
                             SuplaCore.Picker(selected: balancingUnwrapped, items: viewState.balancing!.items)
                         }
                         
@@ -63,7 +66,7 @@ extension ElectricityMeterSettingsFeature {
                             .padding([.top], Distance.small)
                     }.background(Color.Supla.surface)
                 }
-                .padding([.top, .bottom], Distance.standard)
+                .padding([.top, .bottom], Distance.default)
             }
         }
     }

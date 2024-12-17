@@ -35,14 +35,14 @@ extension PinSetupFeature {
         var body: some SwiftUI.View {
             BackgroundStack {
                 VStack {
-                    Text.BodyMedium(text: Strings.PinSetup.header)
+                    Text(Strings.PinSetup.header).fontBodyMedium()
                     TextField("", text: $viewState.pin)
                         .modifier(
                             PinTextFieldModifier<FocusedField>($viewState.pin)
                                 .focused($viewState.focused, equals: .pin)
                                 .onChange(onPinChange)
                         )
-                    Text.BodyMedium(text: Strings.PinSetup.repeatPin)
+                    Text(Strings.PinSetup.repeatPin).fontBodyMedium()
                     TextField("", text: $viewState.secondPin)
                         .modifier(
                             PinTextFieldModifier<FocusedField>($viewState.secondPin)
@@ -51,7 +51,8 @@ extension PinSetupFeature {
                                 .error(viewState.errorString != nil)
                         )
                     if let errorString = viewState.errorString {
-                        Text.BodyMedium(text: errorString)
+                        Text(errorString)
+                            .fontBodyMedium()
                             .textColor(Color.Supla.error)
                     }
                     Spacer()
@@ -59,11 +60,13 @@ extension PinSetupFeature {
                     if (viewState.biometricPossible) {
                         HStack {
                             Toggle(isOn: $viewState.biometricAllowed, label: {
-                                Text.BodyMedium(text: Strings.PinSetup.useBiometric)
+                                Text(Strings.PinSetup.useBiometric)
+                                    .fontBodyMedium()
                             })
                         }
                     } else {
-                        Text.BodySmall(text: Strings.PinSetup.biometricNotEnrolled)
+                        Text(Strings.PinSetup.biometricNotEnrolled)
+                            .fontBodySmall()
                             .textColor(.Supla.error)
                     }
                     Spacer()

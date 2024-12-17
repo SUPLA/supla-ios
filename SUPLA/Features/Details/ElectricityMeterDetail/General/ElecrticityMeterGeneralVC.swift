@@ -25,7 +25,7 @@ extension ElectricityMeterGeneralFeature {
             self.item = item
             super.init(viewModel: viewModel)
             
-            contentView = View(viewState: state)
+            contentView = View(viewState: state, onIntroductionClose: viewModel.onIntroductionClose)
         }
         
         override func viewDidLoad() {
