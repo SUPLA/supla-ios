@@ -182,13 +182,13 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         if (measuredValues.contains(.voltagePhaseAngle12)) {
             result.append(.init(
                 type: .voltagePhaseAngle12,
-                value: formatter.format(value.voltagePhaseAngle12(), withUnit: false, precision: SuplaElectricityMeasurementType.voltagePhaseAngle12.precision)
+                value: formatter.format(value.voltagePhaseAngle12(), withUnit: false, precision: .customPrecision(value: SuplaElectricityMeasurementType.voltagePhaseAngle12.precision))
             ))
         }
         if (measuredValues.contains(.voltagePhaseAngle13)) {
             result.append(.init(
                 type: .voltagePhaseAngle13,
-                value: formatter.format(value.voltagePhaseAngle13(), withUnit: false, precision: SuplaElectricityMeasurementType.voltagePhaseAngle13.precision)
+                value: formatter.format(value.voltagePhaseAngle13(), withUnit: false, precision: .customPrecision(value: SuplaElectricityMeasurementType.voltagePhaseAngle13.precision))
             ))
         }
         if (measuredValues.contains(.voltagePhaseSequence)) {

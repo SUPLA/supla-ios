@@ -212,7 +212,7 @@ private func mockSetsForMultiplePhases() -> ChannelChartSets {
     return ChannelChartSets(
         remoteId: 124,
         function: 123,
-        name: "Reverse active energy",
+        name: Strings.ElectricityMeter.forwardActiveEnergy,
         aggregation: .minutes,
         dataSets: [
             HistoryDataSet(
@@ -241,7 +241,7 @@ private func mockSetsForMultiplePhases() -> ChannelChartSets {
                 active: true
             )
         ],
-        typeName: "Reverse active energy"
+        typeName: Strings.ElectricityMeter.forwardActiveEnergy
     )
 }
 
@@ -251,7 +251,7 @@ private func mockSetsForSinglePhase() -> ChannelChartSets {
     return ChannelChartSets(
         remoteId: 124,
         function: 123,
-        name: "Reverse active energy",
+        name: Strings.ElectricityMeter.forwardActiveEnergy,
         aggregation: .minutes,
         dataSets: [
             HistoryDataSet(
@@ -270,7 +270,7 @@ private func mockSetsForSinglePhase() -> ChannelChartSets {
                 active: true
             )
         ],
-        typeName: "Reverse active energy"
+        typeName: Strings.ElectricityMeter.forwardActiveEnergy
     )
 }
 
