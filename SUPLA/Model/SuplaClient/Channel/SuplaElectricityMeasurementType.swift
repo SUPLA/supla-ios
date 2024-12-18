@@ -214,8 +214,6 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
     var precision: Int {
         switch (self) {
         case .frequency,
-             .voltagePhaseAngle12,
-             .voltagePhaseAngle13,
              .voltagePhaseSequence,
              .currentPhaseSequence,
              .voltage,
@@ -229,6 +227,8 @@ enum SuplaElectricityMeasurementType: Identifiable, Codable, CaseIterable, Picke
              .reverseActiveEnergy,
              .forwardReactiveEnergy,
              .reverseReactiveEnergy: 5
+        case .voltagePhaseAngle12,
+             .voltagePhaseAngle13: 1
         default: 0
         }
     }

@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) totalReverseActiveEnergyBalanced;
 - (unsigned int) measuredValues;
 - (BOOL) currentIsOver65A;
-- (int) voltagePhaseAngle12;
-- (int) voltagePhaseAngle13;
+- (double) voltagePhaseAngle12;
+- (double) voltagePhaseAngle13;
 - (TElectricityMeter_ExtendedValue_V3) getStruct;
 @end
 

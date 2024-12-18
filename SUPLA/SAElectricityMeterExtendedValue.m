@@ -166,12 +166,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     && (_emev.measured_values & EM_VAR_CURRENT_OVER_65A) != 0;
 }
 
-- (int) voltagePhaseAngle12 {
-    return _emev.voltage_phase_angle_12;
+- (double) voltagePhaseAngle12 {
+    return _emev.voltage_phase_angle_12 / 10.0;
 }
 
-- (int) voltagePhaseAngle13 {
-    return _emev.voltage_phase_angle_13;
+- (double) voltagePhaseAngle13 {
+    return _emev.voltage_phase_angle_13 / 10.0;
 }
 
 - (TElectricityMeter_ExtendedValue_V3) getStruct {
