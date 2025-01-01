@@ -39,23 +39,26 @@ extension ElectricityMeterHistoryFeature {
         var body: some SwiftUI.View {
             ZStack(alignment: .topLeading) {
                 Color.Supla.infoScrim.ignoresSafeArea()
-                TabView(selection: $selectedPage) {
-                    ForEach(viewState.pages) { page in
-                        switch (page) {
-                        case .firstForSinglePhase:
-                            FirstPageSinglePhase {
-                                withAnimation { selectedPage = 1 }
-                            }.tag(0)
-                        case .firstForMultiplePhases:
-                            FirstPageMutliplePhases {
-                                withAnimation { selectedPage = 1 }
-                            }.tag(0)
-                        case .second: SecondPage { onClose() }.tag(1)
+                if (!viewState.pages.isEmpty) {
+                    TabView(selection: $selectedPage) {
+                        ForEach(viewState.pages) { page in
+                            switch (page) {
+                            case .firstForSinglePhase:
+                                FirstPageSinglePhase {
+                                    withAnimation { selectedPage = 1 }
+                                }.tag(0)
+                            case .firstForMultiplePhases:
+                                FirstPageMutliplePhases {
+                                    withAnimation { selectedPage = 1 }
+                                }.tag(0)
+                            case .second: SecondPage { onClose() }.tag(1)
+                            }
                         }
                     }
+                    .tabViewStyle(.page)
+                    .indexViewStyle(.page(backgroundDisplayMode: .always))
                 }
-                .tabViewStyle(.page)
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                
             }
         }
     }
