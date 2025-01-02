@@ -85,6 +85,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func changeRange(range: ChartRange) {
+        send(event: .clearHighlight)
         if (range == .custom) {
             updateView {
                 // For custom range no reload is needed
@@ -123,18 +124,21 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func moveRangeLeft() {
+        send(event: .clearHighlight)
         shiftByRange(forward: false)
         if let state = currentState() { triggerMeasurementsLoad(state: state) }
         updateUserState()
     }
     
     func moveRangeRight() {
+        send(event: .clearHighlight)
         shiftByRange(forward: true)
         if let state = currentState() { triggerMeasurementsLoad(state: state) }
         updateUserState()
     }
     
     func moveToDataBegin() {
+        send(event: .clearHighlight)
         updateView {
             moveToDate(state: $0, date: $0.minDate)
         }
@@ -143,6 +147,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func moveToDataEnd() {
+        send(event: .clearHighlight)
         updateView {
             moveToDate(state: $0, date: $0.maxDate)
         }
@@ -151,6 +156,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func changeAggregation(aggregation: ChartDataAggregation) {
+        send(event: .clearHighlight)
         updateView {
             let aggregations = $0.aggregations?.changing(path: \.selected, to: aggregation)
             return $0.changing(path: \.aggregations, to: aggregations)
