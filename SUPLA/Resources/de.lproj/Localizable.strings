@@ -313,6 +313,7 @@
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
 "channel_caption_humidity" = "Feuchtigkeitssensor";
+"channel_caption_container" = "Behälter";
 "channel_offline" = "Das Kanal ist offline";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 

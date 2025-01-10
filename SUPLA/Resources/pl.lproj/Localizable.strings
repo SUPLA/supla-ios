@@ -342,6 +342,7 @@
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
 "channel_caption_humidity" = "Wilgotność";
+"channel_caption_container" = "Zbiornik";
 "channel_offline" = "Kanał jest offline";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
 

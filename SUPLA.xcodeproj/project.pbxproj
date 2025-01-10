@@ -1002,6 +1002,9 @@
 		A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */; };
 		A5E0DF8E2CECAD3000362451 /* CounterPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */; };
 		A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */; };
+		A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */; };
+		A5E160A52D307EAB003A7C71 /* ContainerValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */; };
+		A5E160A72D3108F3003A7C71 /* ContainerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */; };
 		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
 		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */; };
@@ -2497,6 +2500,9 @@
 		A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoViewState.swift; sourceTree = "<group>"; };
 		A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVC.swift; sourceTree = "<group>"; };
 		A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrImageNamingProvider.swift; sourceTree = "<group>"; };
+		A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerIconNameProducer.swift; sourceTree = "<group>"; };
+		A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueProvider.swift; sourceTree = "<group>"; };
+		A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueStringProvider.swift; sourceTree = "<group>"; };
 		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeterLogUseCaseTests.swift; sourceTree = "<group>"; };
@@ -3918,6 +3924,7 @@
 		A530EE122A56F55400F8DAEE /* IconNameProducers */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */,
 				A530EE132A56F5CE00F8DAEE /* StaticIconNameProducer.swift */,
 				A530EE152A56F82A00F8DAEE /* GateIconNameProducer.swift */,
 				A530EE172A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift */,
@@ -5374,6 +5381,7 @@
 		A5B3CBE02B62524200F95AC3 /* ValueProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */,
 				A598CAC22CC246DE00A784FA /* ImpulseCounterValueProvider.swift */,
 				A598CABE2CC1340B00A784FA /* SwitchWithElectricityMeterValueProvider.swift */,
 				A598CAC82CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift */,
@@ -5407,6 +5415,7 @@
 		A5B3CBF92B62692400F95AC3 /* ValueStringProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */,
 				A598CAC62CC24EC300A784FA /* ImpulseCounterValueStringProvider.swift */,
 				A598CACA2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift */,
 				A598CAC02CC13AF200A784FA /* SwitchWithElectricityMeterValueStringProvider.swift */,
@@ -7115,6 +7124,7 @@
 				A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */,
 				A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */,
 				A5EC524C2C1043B30022F055 /* ShadingBlindWindowState.swift in Sources */,
+				A5E160A72D3108F3003A7C71 /* ContainerValueStringProvider.swift in Sources */,
 				A5E0DF6C2CEB652600362451 /* ImpulseCounterDetailVM.swift in Sources */,
 				A57668D32AE941630025509D /* DownloadChannelMeasurementsUseCase.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
@@ -7415,6 +7425,7 @@
 				A5EDE2172CA55FA800BEDAE4 /* ElectricityMeterDetailVM.swift in Sources */,
 				A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */,
 				A55A8DB72BAC766A00C540D4 /* SALabeledTextField.swift in Sources */,
+				A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */,
 				A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */,
 				A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */,
 				A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */,
@@ -7449,6 +7460,7 @@
 				A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
 				A50B5D4A2BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift in Sources */,
+				A5E160A52D307EAB003A7C71 /* ContainerValueProvider.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				A56233DD2AB065AD001CB948 /* EditQuartersDialogVC.swift in Sources */,

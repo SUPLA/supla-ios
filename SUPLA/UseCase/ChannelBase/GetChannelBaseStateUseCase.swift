@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 protocol GetChannelBaseStateUseCase {
     func invoke(channelBase: SAChannelBase) -> ChannelState
 }
@@ -86,6 +88,15 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
             return valueWrapper.transparent ? .transparent : .opaque
+        case SuplaFunction.container.value:
+            let value = valueWrapper.containerValue
+            if (value.level > 80) {
+                return .full
+            } else if (value.level > 20) {
+                return .half
+            } else {
+                return .empty
+            }
         default: return .notUsed
         }
     }
@@ -128,6 +139,7 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .complex([.off, .off])
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .opaque
+        case SuplaFunction.container.value: .empty
         default: .notUsed
         }
     }
@@ -152,6 +164,7 @@ protocol ValueStateWrapper {
     var transparent: Bool { get }
     var rollerShutterClosed: Bool { get }
     var shadingSystemReversedClosed: Bool { get }
+    var containerValue: ContainerValue { get }
 }
 
 private class ChannelValueStateWrapper: ValueStateWrapper {
@@ -190,6 +203,10 @@ private class ChannelValueStateWrapper: ValueStateWrapper {
         return percentage < 100
     }
     
+    var containerValue: ContainerValue {
+        channelValue.asContainerValue()
+    }
+    
     private let channelValue: SAChannelValue
     
     init(channelValue: SAChannelValue) {
@@ -226,6 +243,10 @@ private class ChannelGroupStateWrapper: ValueStateWrapper {
     
     var shadingSystemReversedClosed: Bool {
         getActivePercentage() < 100
+    }
+    
+    var containerValue: ContainerValue {
+        ContainerValue(online: channelGroup.isOnline(), flags: [], rawLevel: 0)
     }
     
     private let channelGroup: SAChannelGroup

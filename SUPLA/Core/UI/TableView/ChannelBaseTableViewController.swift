@@ -188,7 +188,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
              SUPLA_CHANNELFNC_HOTELCARDSENSOR,
-             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
+             980: // replace it later
             return cellIdForIconValue
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:

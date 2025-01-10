@@ -164,6 +164,7 @@ extension DiContainer {
         register(SwitchWithElectricityMeterValueProvider.self, SwitchWithElectricityMeterValueProviderImpl())
         register(ImpulseCounterValueProvider.self, ImpulseCounterValueProviderImpl())
         register(SwitchWithImpulseCounterValueProvider.self, SwitchWithImpulseCounterValueProviderImpl())
+        register(ContainerValueProvider.self, ContainerValueProviderImpl())
         // Usecases - Channel - MeasurementProvider
         register(TemperatureMeasurementsProvider.self, TemperatureMeasurementsProviderImpl())
         register(TemperatureAndHumidityMeasurementsProvider.self, TemperatureAndHumidityMeasurementsProviderImpl())

@@ -113,6 +113,7 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         GeneralPurposeMeasurementIconNameProducer(),
         GeneralPurposeMeterIconNameProducer(),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_PUMPSWITCH, name: .Icons.fncPumpSwitch),
-        HeatOrColdSourceSwitchIconNameProducer()
+        HeatOrColdSourceSwitchIconNameProducer(),
+        ContainerIconNameProducer()
     ]
 }

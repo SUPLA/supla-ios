@@ -36,6 +36,10 @@ extension SAChannelValue {
         HeatpolThermostatValue.from(dataValue(), online: online)
     }
     
+    func asContainerValue() -> ContainerValue {
+        ContainerValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
+    }
+    
     @objc func isThermostatSubfunctionHeat() -> Bool {
         asThermostatValue().subfunction == .heat
     }
