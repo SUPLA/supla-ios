@@ -151,6 +151,7 @@ extension SharedCore.__ThermostatSubfunction {
   case channelCaptionPumpSwitch
   case channelCaptionHeatOrColdSourceSwitch
   case channelCaptionUnknown
+  case channelCaptionContainer
   case channelBatteryLevel
   case motorProblem
   case calibrationLost
@@ -247,6 +248,7 @@ extension SharedCore.__LocalizedStringId {
   case rollerGarageDoor
   case pumpSwitch
   case heatOrColdSourceSwitch
+  case container
   public var name: Swift.String {
     get
   }
@@ -331,6 +333,45 @@ extension SharedCore.ChannelRelationType {
 }
 extension SharedCore.__ChannelRelationType {
   public func toSwiftEnum() -> SharedCore.ChannelRelationType
+}
+@frozen public enum ContainerFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case warningLevel
+  case alarmLevel
+  case invalidSensorState
+  case soundAlarmOn
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__ContainerFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ContainerFlag, result: inout SharedCore.ContainerFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ContainerFlag, result: inout SharedCore.ContainerFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ContainerFlag?) -> SharedCore.ContainerFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__ContainerFlag
+  public typealias _ObjectiveCType = SharedCore.__ContainerFlag
+  public typealias Companion = SharedCore.__ContainerFlag.Companion
+  public static func == (a: SharedCore.ContainerFlag, b: SharedCore.ContainerFlag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.ContainerFlag]
+  nonisolated public static var allCases: [SharedCore.ContainerFlag] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.ContainerFlag {
+  public func toKotlinEnum() -> SharedCore.__ContainerFlag
+}
+extension SharedCore.__ContainerFlag {
+  public func toSwiftEnum() -> SharedCore.ContainerFlag
 }
 @frozen public enum SuplaShadingSystemFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case tiltIsSet
@@ -529,6 +570,8 @@ extension SharedCore.SuplaFunction : Swift.Sendable {}
 extension SharedCore.SuplaFunction : Swift.BitwiseCopyable {}
 extension SharedCore.ChannelRelationType : Swift.Sendable {}
 extension SharedCore.ChannelRelationType : Swift.BitwiseCopyable {}
+extension SharedCore.ContainerFlag : Swift.Sendable {}
+extension SharedCore.ContainerFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.Sendable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaThermostatFlag : Swift.Sendable {}

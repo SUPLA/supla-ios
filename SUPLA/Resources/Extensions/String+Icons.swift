@@ -167,6 +167,10 @@ extension String {
         static let fncHeatOrColdSourceSwitch4 = "fnc_heat_or_cold_source_switch_4"
         static let fncHeatOrColdSourceSwitch5 = "fnc_heat_or_cold_source_switch_5"
         static let fncHeatOrColdSourceSwitch6 = "fnc_heat_or_cold_source_switch_6"
+        // Container
+        static let fncContainerEmpty = "fnc_container_empty"
+        static let fncContainerFull = "fnc_container_full"
+        static let fncContainerHalf = "fnc_container_half"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

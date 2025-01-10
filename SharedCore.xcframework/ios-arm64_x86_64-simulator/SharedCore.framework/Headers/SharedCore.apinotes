@@ -787,6 +787,10 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "channelCaptionUnknown"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelCaptionContainer"
+    PropertyKind: "Class"
+    SwiftName: "channelCaptionContainer"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "channelBatteryLevel"
     PropertyKind: "Class"
     SwiftName: "channelBatteryLevel"
@@ -1146,6 +1150,10 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "heatOrColdSourceSwitch"
     Type: "SharedCoreSuplaFunction * _Nonnull"
+  - Name: "container"
+    PropertyKind: "Class"
+    SwiftName: "container"
+    Type: "SharedCoreSuplaFunction * _Nonnull"
   Methods:
   - Selector: "initWithName:ordinal:"
     MethodKind: "Instance"
@@ -1305,6 +1313,10 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "isVerticalBlind"
     Type: "BOOL"
+  - Name: "containerValue"
+    PropertyKind: "Instance"
+    SwiftName: "containerValue"
+    Type: "SharedCoreContainerValue * _Nullable"
   - Name: "facadeBlindValue"
     PropertyKind: "Instance"
     SwiftName: "facadeBlindValue"
@@ -2300,6 +2312,19 @@ Classes:
       Type: "NSString * _Nonnull"
     - Position: 2
       Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreContainerIssuesProvider"
+  SwiftName: "ContainerIssuesProvider"
+  Methods:
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "provideChannelWithChildren:"
+    MethodKind: "Instance"
+    SwiftName: "provide(channelWithChildren:)"
+    ResultType: "NSArray<SharedCoreChannelIssueItem *> * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreChannelWithChildren * _Nonnull"
 - Name: "SharedCoreShadingSystemIssuesProvider"
   SwiftName: "ShadingSystemIssuesProvider"
   Methods:
@@ -2326,6 +2351,114 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
+- Name: "SharedCoreContainerValue"
+  SwiftName: "ContainerValue"
+  Properties:
+  - Name: "flags"
+    PropertyKind: "Instance"
+    SwiftName: "flags"
+    Type: "NSArray<SharedCoreContainerFlag *> * _Nonnull"
+  - Name: "level"
+    PropertyKind: "Instance"
+    SwiftName: "level"
+    Type: "int32_t"
+  - Name: "levelKnown"
+    PropertyKind: "Instance"
+    SwiftName: "levelKnown"
+    Type: "BOOL"
+  - Name: "online"
+    PropertyKind: "Instance"
+    SwiftName: "online"
+    Type: "BOOL"
+  Methods:
+  - Selector: "initWithOnline:flags:rawLevel:"
+    MethodKind: "Instance"
+    SwiftName: "init(online:flags:rawLevel:)"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "NSArray<SharedCoreContainerFlag *> * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "doCopyOnline:flags:rawLevel:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(online:flags:rawLevel:)"
+    ResultType: "SharedCoreContainerValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "NSArray<SharedCoreContainerFlag *> * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreContainerValueCompanion"
+  SwiftName: "ContainerValue.Companion"
+  Methods:
+  - Selector: "fromOnline:bytes:"
+    MethodKind: "Instance"
+    SwiftName: "from(online:bytes:)"
+    ResultType: "SharedCoreContainerValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreContainerFlag"
+  SwiftBridge: "ContainerFlag"
+  SwiftName: "__ContainerFlag"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "warningLevel"
+    PropertyKind: "Class"
+    SwiftName: "warningLevel"
+    Type: "SharedCoreContainerFlag * _Nonnull"
+  - Name: "alarmLevel"
+    PropertyKind: "Class"
+    SwiftName: "alarmLevel"
+    Type: "SharedCoreContainerFlag * _Nonnull"
+  - Name: "invalidSensorState"
+    PropertyKind: "Class"
+    SwiftName: "invalidSensorState"
+    Type: "SharedCoreContainerFlag * _Nonnull"
+  - Name: "soundAlarmOn"
+    PropertyKind: "Class"
+    SwiftName: "soundAlarmOn"
+    Type: "SharedCoreContainerFlag * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreContainerFlagCompanion"
+  SwiftName: "__ContainerFlag.Companion"
+  Methods:
+  - Selector: "fromShort:"
+    MethodKind: "Instance"
+    SwiftName: "from(short:)"
+    ResultType: "NSArray<SharedCoreContainerFlag *> * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int16_t"
 - Name: "SharedCoreFacadeBlindValue"
   SwiftName: "FacadeBlindValue"
   Properties:
