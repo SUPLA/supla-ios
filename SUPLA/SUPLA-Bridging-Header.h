@@ -45,5 +45,6 @@
 #import "SASuperuserAuthorizationResult.h"
 #import "SAElectricityMeterExtendedValue.h"
 #import "SAIncrementalMeterExtendedValue.h"
+#import "SAHumidityMeasurementItem+CoreDataClass.h"
 
 #import "supla-client.h"

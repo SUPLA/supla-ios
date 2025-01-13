@@ -15,36 +15,15 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-enum ChartEntryType: Int, Codable {
-    case temperature
-    case humidity
-    case humidityOnly
-    case generalPurposeMeasurement
-    case generalPurposeMeter
-    case electricity
-
-    func leftAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: true
-        case .humidity: false
-        }
-    }
     
-    func rightAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: false
-        case .humidity: true
-        }
-    }
+import RxSwift
+
+protocol DownloadHumidityLogUseCase {
+    func invoke(remoteId: Int32) -> Observable<Float>
 }
+
+final class DownloadHumidityLogUseCaseImpl:
+    BaseDownloadLogUseCase<SuplaCloudClient.HumidityMeasurement, SAHumidityMeasurementItem>,
+    DownloadHumidityLogUseCase
+{}
+

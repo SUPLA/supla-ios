@@ -67,7 +67,7 @@ extension ChannelMeasurementsProvider {
     
     func getValueFormatter(_ type: ChartEntryType, config: SAChannelConfig? = nil) -> ChannelValueFormatter {
         switch (type) {
-        case .humidity: HumidityValueFormatter()
+        case .humidity, .humidityOnly: HumidityValueFormatter()
         case .temperature: ThermometerValueFormatter()
         case .generalPurposeMeasurement, .generalPurposeMeter:
             GpmValueFormatter(config: config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)

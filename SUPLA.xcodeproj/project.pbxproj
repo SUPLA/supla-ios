@@ -1005,6 +1005,15 @@
 		A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */; };
 		A5E160A52D307EAB003A7C71 /* ContainerValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */; };
 		A5E160A72D3108F3003A7C71 /* ContainerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */; };
+		A5E160AA2D31395F003A7C71 /* HumidityDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A92D31395A003A7C71 /* HumidityDetailVM.swift */; };
+		A5E160AC2D31396E003A7C71 /* HumidityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160AB2D313969003A7C71 /* HumidityDetailVC.swift */; };
+		A5E160AF2D313C16003A7C71 /* HumidityHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160AE2D313C00003A7C71 /* HumidityHistoryDetailVM.swift */; };
+		A5E160B12D31415D003A7C71 /* HumidityHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B02D314153003A7C71 /* HumidityHistoryDetailVC.swift */; };
+		A5E160B32D31532A003A7C71 /* HumidityMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */; };
+		A5E160B62D31555B003A7C71 /* HumidityMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */; };
+		A5E160B82D3159AD003A7C71 /* DownloadHumidityLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */; };
+		A5E160BA2D315CA2003A7C71 /* HumidityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */; };
+		A5E160BC2D315D40003A7C71 /* SAHumidityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */; };
 		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
 		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */; };
@@ -2503,6 +2512,16 @@
 		A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueProvider.swift; sourceTree = "<group>"; };
 		A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueStringProvider.swift; sourceTree = "<group>"; };
+		A5E160A92D31395A003A7C71 /* HumidityDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityDetailVM.swift; sourceTree = "<group>"; };
+		A5E160AB2D313969003A7C71 /* HumidityDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityDetailVC.swift; sourceTree = "<group>"; };
+		A5E160AE2D313C00003A7C71 /* HumidityHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailVM.swift; sourceTree = "<group>"; };
+		A5E160B02D314153003A7C71 /* HumidityHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailVC.swift; sourceTree = "<group>"; };
+		A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityMeasurement.swift; sourceTree = "<group>"; };
+		A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 20.xcdatamodel"; sourceTree = "<group>"; };
+		A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityMeasurementItemRepository.swift; sourceTree = "<group>"; };
+		A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHumidityLogUseCase.swift; sourceTree = "<group>"; };
+		A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAHumidityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeterLogUseCaseTests.swift; sourceTree = "<group>"; };
@@ -4041,6 +4060,7 @@
 		A54149242B6302B100B44BD6 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160A82D313943003A7C71 /* HumidityDetail */,
 				A5E0DF6A2CEB4DE900362451 /* ImpulseCounter */,
 				A5EDE2152CA55F7C00BEDAE4 /* ElectricityMeterDetail */,
 				A55A8D6C2BA831AD00C540D4 /* WindowDetail */,
@@ -4078,6 +4098,7 @@
 			children = (
 				A5E05BA32CB3DB9800202583 /* Electricity */,
 				A5E05B9C2CB00EC900202583 /* DownloadElectricityMeterLogUseCase.swift */,
+				A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */,
 				A57668EE2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift */,
 				A57668F02AEA9F5B0025509D /* BaseDownloadLogUseCase.swift */,
 				A57668F22AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift */,
@@ -5438,6 +5459,7 @@
 		A5B3CC0F2B62935800F95AC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */,
 				6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */,
 				A56EC9302CEF1DAB00A6E2CB /* SAChannelState+Ext.swift */,
 				A5E05BC72CB6677800202583 /* SAGeneralPurposeMeasurementItem+Ext.swift */,
@@ -5625,6 +5647,7 @@
 		A5E05BA72CB40EF900202583 /* MeasurementsProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */,
 				A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */,
 				A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */,
 				A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */,
@@ -5673,6 +5696,25 @@
 				A5E0DF852CECA1CE00362451 /* CounterPhotoFeature.swift */,
 			);
 			path = CounterPhoto;
+			sourceTree = "<group>";
+		};
+		A5E160A82D313943003A7C71 /* HumidityDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A5E160AD2D313BC5003A7C71 /* History */,
+				A5E160AB2D313969003A7C71 /* HumidityDetailVC.swift */,
+				A5E160A92D31395A003A7C71 /* HumidityDetailVM.swift */,
+			);
+			path = HumidityDetail;
+			sourceTree = "<group>";
+		};
+		A5E160AD2D313BC5003A7C71 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A5E160B02D314153003A7C71 /* HumidityHistoryDetailVC.swift */,
+				A5E160AE2D313C00003A7C71 /* HumidityHistoryDetailVM.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		A5E40B4D2B85EB0500DB6ABE /* LogDownload */ = {
@@ -5975,6 +6017,7 @@
 		A5F29B7C2A1E36B300ED700A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */,
 				A505EC492CF88C1E00E69BDB /* ProfileServerRepository.swift */,
 				A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */,
 				A5F29B7D2A1E36C200ED700A /* SceneRepository.swift */,
@@ -6261,6 +6304,7 @@
 		A5FE675D2A65CC2A00147D1F /* ClientApi */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */,
 				A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */,
 				A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */,
 				A5FE675E2A65CC4300147D1F /* Autodiscover.swift */,
@@ -6727,6 +6771,7 @@
 				A5E05BD02CB7F7ED00202583 /* BaseChartMarkerView.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A5E160BA2D315CA2003A7C71 /* HumidityMeasurementsProvider.swift in Sources */,
 				A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */,
 				A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */,
 				A5B3CC082B62817B00F95AC3 /* WeigthValueStringProvider.swift in Sources */,
@@ -7002,6 +7047,7 @@
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				A5F29B832A1F8D9B00ED700A /* SALocation+Ext.swift in Sources */,
 				A5A15FEA2C2987450049AA73 /* UINavigationController+Ext.swift in Sources */,
+				A5E160AF2D313C16003A7C71 /* HumidityHistoryDetailVM.swift in Sources */,
 				A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */,
 				A5E0DF7E2CEC8E7A00362451 /* StoreChannelOcrPhotoUseCase.swift in Sources */,
 				A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */,
@@ -7028,6 +7074,7 @@
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
 				A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */,
 				A50B5D522BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift in Sources */,
+				A5E160B62D31555B003A7C71 /* HumidityMeasurementItemRepository.swift in Sources */,
 				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
@@ -7035,6 +7082,7 @@
 				A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */,
 				A5E05BB92CB5127C00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift in Sources */,
 				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
+				A5E160AC2D31396E003A7C71 /* HumidityDetailVC.swift in Sources */,
 				A5A1600F2C2AC18F0049AA73 /* SuplaAppEvent.swift in Sources */,
 				A5E05BAB2CB469CE00202583 /* ChannelMeasurementsProvider.swift in Sources */,
 				A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */,
@@ -7205,6 +7253,7 @@
 				A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */,
 				A5477DC32AA5BE7A00220B4A /* Int+Ext.swift in Sources */,
 				01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */,
+				A5E160BC2D315D40003A7C71 /* SAHumidityMeasurementItem+Ext.swift in Sources */,
 				A58316FC2B64510A006113F8 /* ThermometerValueStringProvider.swift in Sources */,
 				A55A8D8A2BAB06D600C540D4 /* WindowState.swift in Sources */,
 				A57668E72AEA68A60025509D /* DaysRange.swift in Sources */,
@@ -7214,9 +7263,11 @@
 				A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */,
 				A5D712702C3E68D400A8EF52 /* OptionalValue.swift in Sources */,
 				A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */,
+				A5E160B12D31415D003A7C71 /* HumidityHistoryDetailVC.swift in Sources */,
 				A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */,
 				A503ABB32B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift in Sources */,
 				A57668ED2AEA85150025509D /* Array+Ext.swift in Sources */,
+				A5E160AA2D31395F003A7C71 /* HumidityDetailVM.swift in Sources */,
 				A505EC4A2CF88C2600E69BDB /* ProfileServerRepository.swift in Sources */,
 				A5D7128E2C4107AF00A8EF52 /* AboutFeature.swift in Sources */,
 				A50B5D3F2BFC8BEA00918D18 /* ProjectorScreenColors.swift in Sources */,
@@ -7228,6 +7279,7 @@
 				A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */,
 				A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */,
 				A57B03C62B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift in Sources */,
+				A5E160B32D31532A003A7C71 /* HumidityMeasurement.swift in Sources */,
 				A50B5D432BFC921B00918D18 /* RoofWindowColors.swift in Sources */,
 				A5F29B742A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
@@ -7279,6 +7331,7 @@
 				A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */,
 				A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */,
 				A530EE082A557EE400F8DAEE /* CircleControlButtonView.swift in Sources */,
+				A5E160B82D3159AD003A7C71 /* DownloadHumidityLogUseCase.swift in Sources */,
 				A57C88302ACAA445000B0F10 /* ValuesFormatter.swift in Sources */,
 				A52BFEB92B065BF800A2F64C /* SuplaConfigResult.swift in Sources */,
 				A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */,
@@ -8319,6 +8372,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */,
 				A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */,
 				A56EC92C2CEE86C700A6E2CB /* SUPLA 18.xcdatamodel */,
 				A5812CBD2BBC8B6200FC5998 /* SUPLA 17.xcdatamodel */,
@@ -8339,7 +8393,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */;
+			currentVersion = A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

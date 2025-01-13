@@ -30,7 +30,8 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
         HumidityAndTemperatureDataRangeProvide(),
         GeneralPurposeMeterDataRangeProvide(),
         GeneralPurposeMeasurementDataRangeProvide(),
-        ElectricityMeterDataRangeProvide()
+        ElectricityMeterDataRangeProvide(),
+        HumidityMeasurementsDataRangeProvide()
     ]
 
     func invoke(remoteId: Int32) -> Observable<DaysRange?> {
@@ -151,5 +152,21 @@ final class ElectricityMeterDataRangeProvide: ChannelDataRangeProvider {
 
     func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         electricityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class HumidityMeasurementsDataRangeProvide: ChannelDataRangeProvider {
+    @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
+
+    func handle(function: Int32) -> Bool {
+        function == SUPLA_CHANNELFNC_HUMIDITY
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        humidityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        humidityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }

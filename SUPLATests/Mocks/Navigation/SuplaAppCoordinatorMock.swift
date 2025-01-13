@@ -22,6 +22,7 @@ import XCTest
 @testable import SUPLA
 
 final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
+    
     private let navigationControllerMock = NavigationControllerMock()
     
     var navigationController: UINavigationController {
@@ -108,6 +109,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     }
     
     func navigateToImpulseCounterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    }
+    
+    func navigateToHumidityDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
     func navigateToCounterPhoto(profileId: Int32, channelId: Int32) {
