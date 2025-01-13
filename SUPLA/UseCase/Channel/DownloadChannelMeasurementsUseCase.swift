@@ -29,6 +29,7 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     @Singleton<DownloadGeneralPurposeMeasurementLogUseCase> private var downloadGeneralPurposeMeasurementLogUseCase
     @Singleton<DownloadGeneralPurposeMeterLogUseCase> private var downloadGeneralPurposeMeterLogUseCase
     @Singleton<DownloadElectricityMeterLogUseCase> private var downloadElectricityMeterLogUseCase
+    @Singleton<DownloadHumidityLogUseCase> private var downloadHumidityLogUseCase
     @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
@@ -67,6 +68,8 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
              SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER:
             startElectricityMeasurementsDownload(remoteId)
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            startHumidityMeasurementsDownload(remoteId)
         default:
             throw GeneralError.illegalArgument(message: "Trying to start download for unsupported function \(function)")
         }
@@ -104,6 +107,13 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
         setupObservable(
             remoteId: remoteId,
             observable: downloadElectricityMeterLogUseCase.invoke(remoteId: remoteId)
+        )
+    }
+    
+    private func startHumidityMeasurementsDownload(_ remoteId: Int32) {
+        setupObservable(
+            remoteId: remoteId,
+            observable: downloadHumidityLogUseCase.invoke(remoteId: remoteId)
         )
     }
     

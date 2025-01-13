@@ -15,36 +15,15 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-enum ChartEntryType: Int, Codable {
-    case temperature
-    case humidity
-    case humidityOnly
-    case generalPurposeMeasurement
-    case generalPurposeMeter
-    case electricity
-
-    func leftAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: true
-        case .humidity: false
-        }
+    
+final class HumidityHistoryDetailVC: BaseHistoryDetailVC {
+    
+    override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
+        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
+        viewModel = HumidityHistoryDetailVM()
     }
     
-    func rightAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: false
-        case .humidity: true
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -15,36 +15,14 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-enum ChartEntryType: Int, Codable {
-    case temperature
-    case humidity
-    case humidityOnly
-    case generalPurposeMeasurement
-    case generalPurposeMeter
-    case electricity
-
-    func leftAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: true
-        case .humidity: false
-        }
-    }
     
-    func rightAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: false
-        case .humidity: true
+extension SuplaCloudClient {
+    struct HumidityMeasurement: Measurement {
+        let date_timestamp: Date
+        let humidity: String
+        
+        static func fromJson(data: Data) throws -> [HumidityMeasurement] {
+            return try decoder.decode([HumidityMeasurement].self, from: data)
         }
     }
 }

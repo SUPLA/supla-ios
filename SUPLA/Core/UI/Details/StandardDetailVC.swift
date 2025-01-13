@@ -108,6 +108,8 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
             case .electricityMeterSettings,
                  .switchEmSettings:
                 viewControllers.append(electricityMeterSettingsDetail())
+            case .humidityHistory:
+                viewControllers.append(humidityHistoryDetail())
             }
         }
         
@@ -341,6 +343,16 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
     
     private func electricityMeterSettingsDetail() -> UIViewController {
         let vc = ElectricityMeterSettingsFeature.ViewController.create(item: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
+            image: .iconSettings,
+            tag: DetailTabTag.History.rawValue
+        )
+        return vc
+    }
+    
+    private func humidityHistoryDetail() -> UIViewController {
+        let vc = HumidityHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
             image: .iconSettings,

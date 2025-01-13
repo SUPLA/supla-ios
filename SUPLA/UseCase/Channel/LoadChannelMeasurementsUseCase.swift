@@ -29,13 +29,15 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
     @Singleton<GeneralPurposeMeterMeasurementsProvider> private var generalPurposeMeterMeasurementsProvider
     @Singleton<GeneralPurposeMeasurementMeasurementsProvider> private var generalPurposeMeasurementMeasurementsProvider
     @Singleton<ElectricityMeasurementsProvider> private var electricityMeasurementsProvider
+    @Singleton<HumidityMeasurementsProvider> private var humidityMeasurementsProvider
     
     private lazy var providers: [ChannelMeasurementsProvider] = [
         temperatureMeasurementsProvider,
         temperatureAndHumidityMeasurementsProvider,
         generalPurposeMeterMeasurementsProvider,
         generalPurposeMeasurementMeasurementsProvider,
-        electricityMeasurementsProvider
+        electricityMeasurementsProvider,
+        humidityMeasurementsProvider
     ]
 
     func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<ChannelChartSets> {

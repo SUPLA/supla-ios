@@ -15,36 +15,21 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-enum ChartEntryType: Int, Codable {
-    case temperature
-    case humidity
-    case humidityOnly
-    case generalPurposeMeasurement
-    case generalPurposeMeter
-    case electricity
-
-    func leftAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: true
-        case .humidity: false
-        }
+    
+class HumidityDetailVM: StandardDetailVM<HumidityDetailViewState, HumidityDetailViewEvent> {
+    
+    override func defaultViewState() -> HumidityDetailViewState {
+        HumidityDetailViewState()
     }
     
-    func rightAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: false
-        case .humidity: true
-        }
+    override func setTitle(_ title: String) {
+        updateView { $0.changing(path: \.title, to: title)}
     }
+}
+
+enum HumidityDetailViewEvent: ViewEvent {
+}
+
+struct HumidityDetailViewState: ViewState {
+    var title: String? = nil
 }

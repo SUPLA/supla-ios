@@ -159,7 +159,7 @@ import Charts
         switch (details.type) {
         case .temperature:
             details.valueFormatter.format(value, withUnit: false, precision: precision)
-        case .humidity:
+        case .humidity, .humidityOnly:
             details.valueFormatter.format(value, withUnit: true, precision: precision)
         case .generalPurposeMeasurement:
             details.valueFormatter.format(value, withUnit: false)

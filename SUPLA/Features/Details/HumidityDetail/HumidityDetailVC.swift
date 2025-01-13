@@ -15,36 +15,21 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-enum ChartEntryType: Int, Codable {
-    case temperature
-    case humidity
-    case humidityOnly
-    case generalPurposeMeasurement
-    case generalPurposeMeter
-    case electricity
-
-    func leftAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: true
-        case .humidity: false
-        }
+    
+class HumidityDetailVC: StandardDetailVC<HumidityDetailViewState, HumidityDetailViewEvent, HumidityDetailVM> {
+    
+    init(item: ItemBundle, pages: [DetailPage]) {
+        super.init(viewModel: HumidityDetailVM(), item: item, pages: pages)
     }
     
-    func rightAxis() -> Bool {
-        switch (self) {
-        case .temperature,
-             .generalPurposeMeter,
-             .generalPurposeMeasurement,
-             .electricity,
-             .humidityOnly: false
-        case .humidity: true
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func handle(state: HumidityDetailViewState) {
+        if let title = state.title { self.title = title }
+    }
+    
+    override func handle(event: HumidityDetailViewEvent) {
     }
 }

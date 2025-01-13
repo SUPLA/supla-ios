@@ -115,6 +115,8 @@ extension DiContainer {
         register((any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository)
         let generalPurposeMeterItemRepository = GeneralPurposeMeterItemRepositoryImpl()
         register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
+        let humidityMeasurementItemRepository = HumidityMeasurementItemRepositoryImpl()
+        register((any HumidityMeasurementItemRepository).self, humidityMeasurementItemRepository)
         register((any NotificationRepository).self, NotificationRepositoryImpl())
         register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
         register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
@@ -140,6 +142,7 @@ extension DiContainer {
                  DownloadGeneralPurposeMeterLogUseCaseImpl(generalPurposeMeterItemRepository))
         register(DownloadElectricityMeterLogUseCase.self,
                  DownloadElectricityMeterLogUseCaseImpl(electricityMeasurementItemRepository))
+        register(DownloadHumidityLogUseCase.self, DownloadHumidityLogUseCaseImpl(humidityMeasurementItemRepository))
         register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
         register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
@@ -171,6 +174,7 @@ extension DiContainer {
         register(GeneralPurposeMeterMeasurementsProvider.self, GeneralPurposeMeterMeasurementsProviderImpl())
         register(GeneralPurposeMeasurementMeasurementsProvider.self, GeneralPurposeMeasurementMeasurementsProviderImpl())
         register(ElectricityMeasurementsProvider.self, ElectricityMeasurementsProviderImpl())
+        register(HumidityMeasurementsProvider.self, HumidityMeasurementsProviderImpl())
         // Usecases - ChannelBase
         register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())

@@ -29,6 +29,7 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
+    @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
 
     func invoke(remoteId: Int32) -> Observable<Void> {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
@@ -61,6 +62,8 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
             generalPurposeMeterItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         case SUPLA_CHANNELFNC_ELECTRICITY_METER:
             electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            humidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
         default:
             Observable.error(GeneralError.illegalState(message: "Trying to delete history of unsupported function `\(function)`."))
         }
