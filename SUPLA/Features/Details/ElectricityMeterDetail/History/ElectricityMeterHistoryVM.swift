@@ -22,7 +22,6 @@ extension ElectricityMeterHistoryFeature {
     class ViewModel: BaseHistoryDetailVM {
         @Singleton<GlobalSettings> private var settings
         @Singleton<DownloadEventsManager> private var downloadEventsManager
-        @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
@@ -56,18 +55,6 @@ extension ElectricityMeterHistoryFeature {
                 visibleSets: state.chartData.visibleSets,
                 customFilters: state.chartCustomFilters?.filters as? ElectricityChartFilters
             )
-        }
-        
-        override func triggerDataLoad(remoteId: Int32) {
-            Observable.zip(
-                readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
-                profileRepository.getActiveProfile().map { [weak self] in self?.loadChartState($0.id, remoteId) }
-            ) { ($0, $1) }
-                .asDriverWithoutError()
-                .drive(
-                    onNext: { [weak self] in self?.handleData(channel: $0.0, chartState: $0.1) }
-                )
-                .disposed(by: self)
         }
         
         override func measurementsObservable(remoteId: Int32, spec: ChartDataSpec, chartRange: ChartRange) -> Observable<(ChartData, DaysRange?)> {
@@ -124,20 +111,20 @@ extension ElectricityMeterHistoryFeature {
             updateView { $0.changing(path: \.showIntroduction, to: false) }
         }
         
-        private func handleData(channel: SAChannel, chartState: ChartState?) {
+        override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
             updateView {
-                $0.changing(path: \.profileId, to: channel.profile.id)
-                    .changing(path: \.channelFunction, to: channel.func)
+                $0.changing(path: \.profileId, to: channel.channel.profile.id)
+                    .changing(path: \.channelFunction, to: channel.channel.func)
             }
             
-            restoreCustomFilters(flags: channel.flags, value: channel.ev?.electricityMeter(), state: chartState)
+            restoreCustomFilters(flags: channel.channel.flags, value: channel.channel.ev?.electricityMeter(), state: chartState)
             restoreRange(chartState: chartState)
-            configureDownloadObserver(channel: channel)
-            startInitialDataLoad(channel: channel)
+            configureDownloadObserver(channel: channel.channel)
+            startInitialDataLoad(channel)
             
             if (settings.showEmHistoryIntroduction) {
                 let moreThanOnePhase = Phase.allCases
-                    .filter { channel.flags & $0.disabledFlag == 0 }
+                    .filter { channel.channel.flags & $0.disabledFlag == 0 }
                     .count > 1
                 introductionState.pages = moreThanOnePhase ? [.firstForMultiplePhases, .second] : [.firstForSinglePhase, .second]
             }
@@ -158,12 +145,12 @@ extension ElectricityMeterHistoryFeature {
                 .disposed(by: self)
         }
         
-        private func startInitialDataLoad(channel: SAChannel) {
+        private func startInitialDataLoad(_ channelWithChildren: ChannelWithChildren) {
             if (currentState()?.initialLoadStarted == true) {
                 return
             }
             updateView { $0.changing(path: \.initialLoadStarted, to: true) }
-            downloadChannelMeasurementsUseCase.invoke(remoteId: channel.remote_id, function: channel.func)
+            downloadChannelMeasurementsUseCase.invoke(channelWithChildren)
         }
         
         private func restoreCustomFilters(flags: Int64, value: SAElectricityMeterExtendedValue?, state: ChartState?) {

@@ -27,7 +27,6 @@
 		01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */; };
 		01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01199C8224C34AC50062454B /* SAChannelStatePopup.m */; };
 		011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */; };
-		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
@@ -39,10 +38,7 @@
 		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
 		01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B39235CA8B1003A2BAD /* ChartDetailView.m */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
-		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */; };
-		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
-		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
 		013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */; };
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
@@ -73,7 +69,6 @@
 		016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE17236DA795001BF5FB /* KeychainTests.m */; };
 		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
 		016EE77523074DDC00FD301C /* consumption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77323074DDC00FD301C /* consumption@3x.png */; };
-		0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */; };
 		017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017554F522F1A62500EB58B7 /* HomePlusDetailView.m */; };
 		017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */; };
 		017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F922F1D2BE00EB58B7 /* clock@3x.png */; };
@@ -97,7 +92,6 @@
 		019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E2A25F271CF00881C99 /* SACaptionEditor.m */; };
 		019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4AAE2614B75800065420 /* SAAbstractPickerField.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
-		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
 		01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */; };
 		01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */; };
@@ -129,7 +123,6 @@
 		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
 		01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D32F3125C999CF00793A72 /* btnbackl@2x.png */; };
 		01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3FF6624A20E26000EBE77 /* backbtn@3x.png */; };
-		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
 		01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */; };
 		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
 		01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */; };
@@ -140,7 +133,6 @@
 		01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */; };
 		01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2B0812649E158003694EC /* SystemConfiguration.framework */; };
 		01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */; };
-		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
 		01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */; };
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */; };
@@ -360,6 +352,12 @@
 		A517DFF12D009DC500D6148C /* GetChannelIssuesForSlavesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */; };
 		A517DFF32D03241D00D6148C /* KotlinBoolean+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFF22D03241500D6148C /* KotlinBoolean+iOS.swift */; };
 		A517DFF52D09BD8900D6148C /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFF42D09BD7E00D6148C /* IntroductionView.swift */; };
+		A519CCB02D38515A00F858A4 /* ImpulseCounterGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCAF2D38514B00F858A4 /* ImpulseCounterGeneralView.swift */; };
+		A519CCB22D38559100F858A4 /* ImpulseCounterGeneralStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */; };
+		A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */; };
+		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
+		A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */; };
+		A519CCBD2D38FBEF00F858A4 /* SwitchImpulseCounterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */; };
 		A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */; };
@@ -480,6 +478,19 @@
 		A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */; };
 		A54260272CE769C300BE74FE /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */; };
 		A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */; };
+		A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637A42D37A39100D746F5 /* AggregationResult.swift */; };
+		A54637A72D37A94A00D746F5 /* ImpulseCounterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637A62D37A94300D746F5 /* ImpulseCounterChartMarkerView.swift */; };
+		A54637AA2D37B0DE00D746F5 /* MarkerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637A92D37B0DA00D746F5 /* MarkerRowView.swift */; };
+		A54637AC2D37BE2800D746F5 /* BaseRowsChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637AB2D37BE1900D746F5 /* BaseRowsChartMarkerView.swift */; };
+		A54637AE2D37C04C00D746F5 /* ImpulseCounterMarkerCustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637AD2D37C04500D746F5 /* ImpulseCounterMarkerCustomData.swift */; };
+		A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637B02D37E47600D746F5 /* ImpulseCounterGeneralVM.swift */; };
+		A54637B32D37E8B400D746F5 /* ImpulseCounterGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637B22D37E8AA00D746F5 /* ImpulseCounterGeneralFeature.swift */; };
+		A54637B62D37E9A600D746F5 /* ImpulseCounterGeneralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637B52D37E98800D746F5 /* ImpulseCounterGeneralState.swift */; };
+		A54637B92D37EC9000D746F5 /* EnergySummaryBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637B82D37EC8900D746F5 /* EnergySummaryBox.swift */; };
+		A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BA2D37F25A00D746F5 /* ActivityIndicator.swift */; };
+		A54637BD2D37FF6300D746F5 /* ImpulseCounterGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */; };
+		A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */; };
+		A54637C12D38041A00D746F5 /* ChannelOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637C02D38041000D746F5 /* ChannelOfflineView.swift */; };
 		A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */; };
 		A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */; };
 		A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB82AA1F56400220B4A /* ChannelChild.swift */; };
@@ -693,7 +704,7 @@
 		A58472042C2EACA600713D36 /* SuplaResultCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58472032C2EACA600713D36 /* SuplaResultCode.swift */; };
 		A58472062C2EC7E500713D36 /* DisconnectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58472052C2EC7E500713D36 /* DisconnectUseCase.swift */; };
 		A58472082C2ED60E00713D36 /* SuplaAppProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58472072C2ED60E00713D36 /* SuplaAppProvider.swift */; };
-		A584E1F62CA6897400232A98 /* EnergySummaryBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */; };
+		A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F52CA6896600232A98 /* SummaryCard.swift */; };
 		A584E1F82CA6CA8A00232A98 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F72CA6CA8800232A98 /* Distance.swift */; };
 		A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */; };
 		A584E1FC2CAA770800232A98 /* ElectricityMeterGeneralStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */; };
@@ -1014,6 +1025,13 @@
 		A5E160B82D3159AD003A7C71 /* DownloadHumidityLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */; };
 		A5E160BA2D315CA2003A7C71 /* HumidityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */; };
 		A5E160BC2D315D40003A7C71 /* SAHumidityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */; };
+		A5E160BF2D354698003A7C71 /* ImpulseCounterHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */; };
+		A5E160C12D354974003A7C71 /* ImpulseCounterHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */; };
+		A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */; };
+		A5E160C52D35B1B3003A7C71 /* ImpulseCounterMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */; };
+		A5E160C72D365793003A7C71 /* ImpulseCounterMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */; };
+		A5E160C92D3659E1003A7C71 /* SAImpulseCounterMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C82D3659DD003A7C71 /* SAImpulseCounterMeasurementItem+Ext.swift */; };
+		A5E160CB2D3697ED003A7C71 /* ImpulseCounterChartValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160CA2D3697EB003A7C71 /* ImpulseCounterChartValueFormatter.swift */; };
 		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
 		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */; };
@@ -1063,7 +1081,7 @@
 		A5EDE2192CA55FB400BEDAE4 /* ElectricityMeterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2182CA55FAD00BEDAE4 /* ElectricityMeterDetailVC.swift */; };
 		A5EDE21C2CA5693500BEDAE4 /* ElectricityMeterGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE21B2CA5692A00BEDAE4 /* ElectricityMeterGeneralFeature.swift */; };
 		A5EDE21E2CA56A5900BEDAE4 /* ElectricityMeterGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE21D2CA56A4A00BEDAE4 /* ElectricityMeterGeneralViewState.swift */; };
-		A5EDE2212CA56B4B00BEDAE4 /* EnergyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2202CA56B4600BEDAE4 /* EnergyData.swift */; };
+		A5EDE2212CA56B4B00BEDAE4 /* SummaryCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2202CA56B4600BEDAE4 /* SummaryCardData.swift */; };
 		A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */; };
 		A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */; };
 		A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */; };
@@ -1292,8 +1310,6 @@
 		01199C8124C34AC50062454B /* SAChannelStatePopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStatePopup.h; sourceTree = "<group>"; };
 		01199C8224C34AC50062454B /* SAChannelStatePopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStatePopup.m; sourceTree = "<group>"; };
 		011E736924A1367B004D99EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/SAVLCalibrationTool.xib; sourceTree = "<group>"; };
-		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
-		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
 		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collapsed@3x.png"; sourceTree = "<group>"; };
 		01215A7024C8AECC00429947 /* SALightsourceLifespanSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SALightsourceLifespanSettingsDialog.h; sourceTree = "<group>"; };
@@ -1314,12 +1330,8 @@
 		013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 7.xcdatamodel"; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
-		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
-		013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterChartHelper.m; sourceTree = "<group>"; };
 		013D350223350C48006E3B75 /* SAThermostatScheduleCfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatScheduleCfg.h; sourceTree = "<group>"; };
 		013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatScheduleCfg.m; sourceTree = "<group>"; };
-		013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIncrementalMeterChartMarkerView.swift; sourceTree = "<group>"; };
-		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
 		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
 		013F7EBF23EB33E30061A497 /* SAChannelStateExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStateExtendedValue.h; sourceTree = "<group>"; };
@@ -1373,8 +1385,6 @@
 		016D0021266EB30E00E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Resources/it.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "consumption@3x.png"; sourceTree = "<group>"; };
-		0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadImpulseCounterMeasurements.h; sourceTree = "<group>"; };
-		0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadImpulseCounterMeasurements.m; sourceTree = "<group>"; };
 		017554F422F1A62500EB58B7 /* HomePlusDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailView.h; sourceTree = "<group>"; };
 		017554F522F1A62500EB58B7 /* HomePlusDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailView.m; sourceTree = "<group>"; };
 		017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heatpollogo@3x.png"; sourceTree = "<group>"; };
@@ -1453,8 +1463,6 @@
 		019F4CC62354DC4700286139 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/ImpulseCounterDetailView.strings"; sourceTree = "<group>"; };
 		019F4CC82354DC4800286139 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
-		019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterChartHelper.h; sourceTree = "<group>"; };
-		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
 		019F848225F7C0F800A18C3B /* SACaptionEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
 		01A0BD0826CEFBC200C4A5F2 /* SAWarningIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAWarningIcon.h; sourceTree = "<group>"; };
 		01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAWarningIcon.m; sourceTree = "<group>"; };
@@ -1548,7 +1556,6 @@
 		01D2C38C22C3B0A700BF1A10 /* graphoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graphoff.png; sourceTree = "<group>"; };
 		01D32F3125C999CF00793A72 /* btnbackl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnbackl@2x.png"; sourceTree = "<group>"; };
 		01D3FF6624A20E26000EBE77 /* backbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backbtn@3x.png"; sourceTree = "<group>"; };
-		01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncrementalMeterCell.xib; sourceTree = "<group>"; };
 		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
 		01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAChartMarkerView.swift; sourceTree = "<group>"; };
 		01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChartMarkerView.xib; sourceTree = "<group>"; };
@@ -1564,8 +1571,6 @@
 		01E2B0812649E158003694EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		01E3966C25A78B8B00A0DB18 /* SADimmerCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADimmerCalibrationTool.h; sourceTree = "<group>"; };
 		01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADimmerCalibrationTool.m; sourceTree = "<group>"; };
-		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
-		01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadIncrementalMeasurements.m; sourceTree = "<group>"; };
 		01E517C422C6AD7D000FE77A /* SADownloadMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurements.h; sourceTree = "<group>"; };
 		01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadMeasurements.m; sourceTree = "<group>"; };
 		01EE21EB263301E4006EC2B8 /* SUPLA 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 9.xcdatamodel"; sourceTree = "<group>"; };
@@ -1860,6 +1865,12 @@
 		A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelIssuesForSlavesUseCase.swift; sourceTree = "<group>"; };
 		A517DFF22D03241500D6148C /* KotlinBoolean+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KotlinBoolean+iOS.swift"; sourceTree = "<group>"; };
 		A517DFF42D09BD7E00D6148C /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
+		A519CCAF2D38514B00F858A4 /* ImpulseCounterGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralView.swift; sourceTree = "<group>"; };
+		A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralStateHandler.swift; sourceTree = "<group>"; };
+		A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedMeasurements.swift; sourceTree = "<group>"; };
+		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
+		A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVC.swift; sourceTree = "<group>"; };
+		A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchImpulseCounterDetailsView.swift; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatDetailVC.swift; sourceTree = "<group>"; };
@@ -1981,6 +1992,19 @@
 		A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemIssues+iOS.swift"; sourceTree = "<group>"; };
 		A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
 		A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleIconValueCell.swift; sourceTree = "<group>"; };
+		A54637A42D37A39100D746F5 /* AggregationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationResult.swift; sourceTree = "<group>"; };
+		A54637A62D37A94300D746F5 /* ImpulseCounterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterChartMarkerView.swift; sourceTree = "<group>"; };
+		A54637A92D37B0DA00D746F5 /* MarkerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerRowView.swift; sourceTree = "<group>"; };
+		A54637AB2D37BE1900D746F5 /* BaseRowsChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRowsChartMarkerView.swift; sourceTree = "<group>"; };
+		A54637AD2D37C04500D746F5 /* ImpulseCounterMarkerCustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMarkerCustomData.swift; sourceTree = "<group>"; };
+		A54637B02D37E47600D746F5 /* ImpulseCounterGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVM.swift; sourceTree = "<group>"; };
+		A54637B22D37E8AA00D746F5 /* ImpulseCounterGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralFeature.swift; sourceTree = "<group>"; };
+		A54637B52D37E98800D746F5 /* ImpulseCounterGeneralState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralState.swift; sourceTree = "<group>"; };
+		A54637B82D37EC8900D746F5 /* EnergySummaryBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySummaryBox.swift; sourceTree = "<group>"; };
+		A54637BA2D37F25A00D746F5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralViewState.swift; sourceTree = "<group>"; };
+		A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralBaseView.swift; sourceTree = "<group>"; };
+		A54637C02D38041000D746F5 /* ChannelOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelOfflineView.swift; sourceTree = "<group>"; };
 		A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationsAsRemovableUseCase.swift; sourceTree = "<group>"; };
 		A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5477DB82AA1F56400220B4A /* ChannelChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChild.swift; sourceTree = "<group>"; };
@@ -2199,7 +2223,7 @@
 		A58472032C2EACA600713D36 /* SuplaResultCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaResultCode.swift; sourceTree = "<group>"; };
 		A58472052C2EC7E500713D36 /* DisconnectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisconnectUseCase.swift; sourceTree = "<group>"; };
 		A58472072C2ED60E00713D36 /* SuplaAppProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppProvider.swift; sourceTree = "<group>"; };
-		A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySummaryBox.swift; sourceTree = "<group>"; };
+		A584E1F52CA6896600232A98 /* SummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCard.swift; sourceTree = "<group>"; };
 		A584E1F72CA6CA8800232A98 /* Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
 		A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralState.swift; sourceTree = "<group>"; };
 		A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralStateHandler.swift; sourceTree = "<group>"; };
@@ -2522,6 +2546,13 @@
 		A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHumidityLogUseCase.swift; sourceTree = "<group>"; };
 		A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAHumidityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailVM.swift; sourceTree = "<group>"; };
+		A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailVC.swift; sourceTree = "<group>"; };
+		A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImpulseCounterLogUseCase.swift; sourceTree = "<group>"; };
+		A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurement.swift; sourceTree = "<group>"; };
+		A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E160C82D3659DD003A7C71 /* SAImpulseCounterMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAImpulseCounterMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5E160CA2D3697EB003A7C71 /* ImpulseCounterChartValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterChartValueFormatter.swift; sourceTree = "<group>"; };
 		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeterLogUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2571,7 +2602,7 @@
 		A5EDE2182CA55FAD00BEDAE4 /* ElectricityMeterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterDetailVC.swift; sourceTree = "<group>"; };
 		A5EDE21B2CA5692A00BEDAE4 /* ElectricityMeterGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralFeature.swift; sourceTree = "<group>"; };
 		A5EDE21D2CA56A4A00BEDAE4 /* ElectricityMeterGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralViewState.swift; sourceTree = "<group>"; };
-		A5EDE2202CA56B4600BEDAE4 /* EnergyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyData.swift; sourceTree = "<group>"; };
+		A5EDE2202CA56B4600BEDAE4 /* SummaryCardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCardData.swift; sourceTree = "<group>"; };
 		A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaElectricityMeasurementType.swift; sourceTree = "<group>"; };
 		A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralView.swift; sourceTree = "<group>"; };
 		A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralVM.swift; sourceTree = "<group>"; };
@@ -2810,7 +2841,6 @@
 			children = (
 				A57777D029E6A319004513E6 /* CreateAccountVC.xib */,
 				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
-				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
 				019F848225F7C0F800A18C3B /* SACaptionEditor.xib */,
@@ -2839,16 +2869,10 @@
 				6EC0BF2B2875F9780000CAA8 /* ChartSettings.swift */,
 				013D73AE22DD105400E3515A /* SAChartFilterField.h */,
 				013D73AF22DD105400E3515A /* SAChartFilterField.m */,
-				013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */,
 				01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */,
 				013D1C5B22CE47D5000C0784 /* SAChartHelper.h */,
 				013D1C5C22CE47D5000C0784 /* SAChartHelper.m */,
-				013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */,
-				013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */,
-				019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */,
-				019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */,
 				01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */,
-				013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */,
 				012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */,
 				019170A2233D67E900820BDB /* SAThermostatChartHelper.h */,
 				019170A3233D67E900820BDB /* SAThermostatChartHelper.m */,
@@ -2890,12 +2914,8 @@
 			children = (
 				01BDAC7322C518DE00915646 /* SARestApiClientTask.h */,
 				01BDAC7422C518DE00915646 /* SARestApiClientTask.m */,
-				01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */,
-				01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */,
 				01E517C422C6AD7D000FE77A /* SADownloadMeasurements.h */,
 				01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */,
-				0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */,
-				0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */,
 				01F8857322E6167100D18373 /* SADownloadUserIcons.h */,
 				01F8857422E6167100D18373 /* SADownloadUserIcons.m */,
 				0191709F233D4D5A00820BDB /* SADownloadThermostatMeasurements.h */,
@@ -3289,8 +3309,6 @@
 				017554F522F1A62500EB58B7 /* HomePlusDetailView.m */,
 				01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */,
 				01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */,
-				012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */,
-				012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */,
 				40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */,
 				4031ACFA1BBC0FFB00CF9D8B /* MGSwipe */,
 				403150F91DC769430075D2D2 /* RGBWDetailView.h */,
@@ -3381,6 +3399,7 @@
 		A503ABB62B6BB060008CDA1F /* ValueFormatter */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160CA2D3697EB003A7C71 /* ImpulseCounterChartValueFormatter.swift */,
 				A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */,
 				A503ABB72B6BB082008CDA1F /* ChannelValueFormatter.swift */,
 				A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter.swift */,
@@ -3714,6 +3733,16 @@
 			path = Curtain;
 			sourceTree = "<group>";
 		};
+		A519CCB32D38576300F858A4 /* Measurements */ = {
+			isa = PBXGroup;
+			children = (
+				A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */,
+				A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */,
+				A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */,
+			);
+			path = Measurements;
+			sourceTree = "<group>";
+		};
 		A51BE8E42AA7054F00718F2F /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -3910,6 +3939,7 @@
 		A530EDF12A54001F00F8DAEE /* SwitchGeneral */ = {
 			isa = PBXGroup;
 			children = (
+				A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */,
 				A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */,
 				A530EDF22A54018A00F8DAEE /* SwitchGeneralVM.swift */,
 				A530EDF42A5401BE00F8DAEE /* SwitchGeneralVC.swift */,
@@ -4104,6 +4134,7 @@
 				A57668F22AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift */,
 				A54149362B63BC0500B44BD6 /* DownloadGeneralPurposeMeasurementLogUseCase.swift */,
 				A503ABAE2B6A9944008CDA1F /* DownloadGeneralPurposeMeterLogUseCase.swift */,
+				A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */,
 			);
 			path = LogDownload;
 			sourceTree = "<group>";
@@ -4119,6 +4150,50 @@
 				A503ABAA2B67A094008CDA1F /* CandleChartData.swift */,
 			);
 			path = DataType;
+			sourceTree = "<group>";
+		};
+		A54637A82D37B08500D746F5 /* Marker */ = {
+			isa = PBXGroup;
+			children = (
+				A54637AB2D37BE1900D746F5 /* BaseRowsChartMarkerView.swift */,
+				A54637A92D37B0DA00D746F5 /* MarkerRowView.swift */,
+				A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */,
+				A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */,
+				A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */,
+				A54637A62D37A94300D746F5 /* ImpulseCounterChartMarkerView.swift */,
+			);
+			path = Marker;
+			sourceTree = "<group>";
+		};
+		A54637AF2D37D5FB00D746F5 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */,
+				A519CCAF2D38514B00F858A4 /* ImpulseCounterGeneralView.swift */,
+				A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */,
+				A54637B22D37E8AA00D746F5 /* ImpulseCounterGeneralFeature.swift */,
+				A54637B02D37E47600D746F5 /* ImpulseCounterGeneralVM.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		A54637B42D37E97200D746F5 /* ImpulseCounter */ = {
+			isa = PBXGroup;
+			children = (
+				A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */,
+				A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */,
+				A54637B52D37E98800D746F5 /* ImpulseCounterGeneralState.swift */,
+			);
+			path = ImpulseCounter;
+			sourceTree = "<group>";
+		};
+		A54637B72D37EB4C00D746F5 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				A584E1F52CA6896600232A98 /* SummaryCard.swift */,
+				A5EDE2202CA56B4600BEDAE4 /* SummaryCardData.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		A5477DB02AA1DB4600220B4A /* SuplaClient */ = {
@@ -4642,6 +4717,7 @@
 		A57668BF2AE799590025509D /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				A54637AD2D37C04500D746F5 /* ImpulseCounterMarkerCustomData.swift */,
 				A5B8A4792CB86AF4002FA7B2 /* ChartStyle.swift */,
 				A5E05BC92CB67A1100202583 /* ChartColors.swift */,
 				A5E05BC22CB552D900202583 /* ElectricityMarkerCustomData.swift */,
@@ -4664,11 +4740,9 @@
 		A57668C62AE7CE480025509D /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				A54637A82D37B08500D746F5 /* Marker */,
 				A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */,
-				A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */,
-				A5E05BCF2CB7F7E900202583 /* BaseChartMarkerView.swift */,
 				A57668C72AE7CE890025509D /* SuplaCombinedChartView.swift */,
-				A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -5170,6 +5244,9 @@
 		A5A15FF52C299C390049AA73 /* SwiftUiComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A54637C02D38041000D746F5 /* ChannelOfflineView.swift */,
+				A54637BA2D37F25A00D746F5 /* ActivityIndicator.swift */,
+				A54637B72D37EB4C00D746F5 /* Card */,
 				A5A15FF62C299C8A0049AA73 /* BackgroundStack.swift */,
 				A598CAB22CBE90AE00A784FA /* Divider.swift */,
 				A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */,
@@ -5459,6 +5536,7 @@
 		A5B3CC0F2B62935800F95AC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160C82D3659DD003A7C71 /* SAImpulseCounterMeasurementItem+Ext.swift */,
 				A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */,
 				6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */,
 				A56EC9302CEF1DAB00A6E2CB /* SAChannelState+Ext.swift */,
@@ -5620,6 +5698,7 @@
 		A5D837D52AF1067A002A420D /* DetailBase */ = {
 			isa = PBXGroup;
 			children = (
+				A54637B42D37E97200D746F5 /* ImpulseCounter */,
 				A5EDE21F2CA56B3700BEDAE4 /* ElectricityMeter */,
 				A5D837D62AF10684002A420D /* History */,
 			);
@@ -5647,6 +5726,8 @@
 		A5E05BA72CB40EF900202583 /* MeasurementsProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A54637A42D37A39100D746F5 /* AggregationResult.swift */,
+				A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */,
 				A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */,
 				A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */,
 				A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */,
@@ -5661,6 +5742,8 @@
 		A5E0DF6A2CEB4DE900362451 /* ImpulseCounter */ = {
 			isa = PBXGroup;
 			children = (
+				A54637AF2D37D5FB00D746F5 /* General */,
+				A5E160BD2D354389003A7C71 /* History */,
 				A5E0DF842CECA1A800362451 /* CounterPhoto */,
 				A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */,
 				A5E0DF6B2CEB651D00362451 /* ImpulseCounterDetailVM.swift */,
@@ -5713,6 +5796,15 @@
 			children = (
 				A5E160B02D314153003A7C71 /* HumidityHistoryDetailVC.swift */,
 				A5E160AE2D313C00003A7C71 /* HumidityHistoryDetailVM.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		A5E160BD2D354389003A7C71 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */,
+				A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -5868,11 +5960,10 @@
 		A5EDE21F2CA56B3700BEDAE4 /* ElectricityMeter */ = {
 			isa = PBXGroup;
 			children = (
+				A54637B82D37EC8900D746F5 /* EnergySummaryBox.swift */,
 				A598CAB82CC0EDF300A784FA /* ElectricityMeterGeneralBaseView.swift */,
 				A584E1FB2CAA76FB00232A98 /* ElectricityMeterGeneralStateHandler.swift */,
 				A584E1F92CAA76A300232A98 /* ElectricityMeterGeneralState.swift */,
-				A584E1F52CA6896600232A98 /* EnergySummaryBox.swift */,
-				A5EDE2202CA56B4600BEDAE4 /* EnergyData.swift */,
 			);
 			path = ElectricityMeter;
 			sourceTree = "<group>";
@@ -6147,6 +6238,7 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A519CCB32D38576300F858A4 /* Measurements */,
 				A522DB392D0B09E500163BA2 /* GetChannelBatteryIconUseCase.swift */,
 				A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */,
 				A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */,
@@ -6154,7 +6246,6 @@
 				A58D1B872CDCFBDA00B5A019 /* GetChannelLowBatteryIssueUseCase.swift */,
 				A58D1B852CDCFAA800B5A019 /* GetChannelIssuesForListUseCase.swift */,
 				A598CAD02CC6D6A400A784FA /* GetChannelActionStringUseCase.swift */,
-				A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */,
 				A5E05BA72CB40EF900202583 /* MeasurementsProvider */,
 				A503ABB62B6BB060008CDA1F /* ValueFormatter */,
 				A54149312B63B02100B44BD6 /* LogDownload */,
@@ -6304,6 +6395,7 @@
 		A5FE675D2A65CC2A00147D1F /* ClientApi */ = {
 			isa = PBXGroup;
 			children = (
+				A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */,
 				A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */,
 				A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */,
 				A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */,
@@ -6501,7 +6593,6 @@
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
 				019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */,
-				01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */,
 				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */,
@@ -6549,7 +6640,6 @@
 				01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */,
 				405AC4311BC158E8004F7311 /* Quicksand-Light.ttf in Resources */,
 				01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */,
-				013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
 				01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */,
 			);
@@ -6690,6 +6780,7 @@
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
+				A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */,
 				A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */,
 				A5F29BC02A24DDB100ED700A /* UpdateChannelGroupRelationUseCase.swift in Sources */,
 				A5F29B802A1E489300ED700A /* ProfileRepository.swift in Sources */,
@@ -6721,6 +6812,7 @@
 				A530EE0F2A56E52000F8DAEE /* GetDefaultIconNameUseCase.swift in Sources */,
 				A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */,
 				A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */,
+				A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */,
 				A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
@@ -6738,6 +6830,7 @@
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				A54149292B63034500B44BD6 /* GpmDetailVC.swift in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
+				A5E160C72D365793003A7C71 /* ImpulseCounterMeasurementsProvider.swift in Sources */,
 				A530EE362A57F65F00F8DAEE /* GetChannelBaseStateUseCase.swift in Sources */,
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
@@ -6754,6 +6847,7 @@
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A55A8D722BA8406900C540D4 /* WindowDetailVC.swift in Sources */,
 				A5E9CE272C32CE3500509702 /* SALoginDialogVC.swift in Sources */,
+				A5E160BF2D354698003A7C71 /* ImpulseCounterHistoryDetailVM.swift in Sources */,
 				A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */,
 				A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
@@ -6788,6 +6882,7 @@
 				A503ABAF2B6A9944008CDA1F /* DownloadGeneralPurposeMeterLogUseCase.swift in Sources */,
 				A5FE67612A65CC9900147D1F /* SuplaCloudClient.swift in Sources */,
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
+				A54637C12D38041A00D746F5 /* ChannelOfflineView.swift in Sources */,
 				A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */,
 				A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */,
 				A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */,
@@ -6812,6 +6907,7 @@
 				A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */,
 				A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */,
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
+				A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */,
 				A5A160182C2AE9F30049AA73 /* InitializationUseCase.swift in Sources */,
 				A5D712672C37EBE700A8EF52 /* LockScreenVC.swift in Sources */,
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
@@ -6857,7 +6953,7 @@
 				A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */,
 				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
 				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
-				A5EDE2212CA56B4B00BEDAE4 /* EnergyData.swift in Sources */,
+				A5EDE2212CA56B4B00BEDAE4 /* SummaryCardData.swift in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
 				A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */,
 				A5F29BEB2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift in Sources */,
@@ -6880,7 +6976,6 @@
 				A55A8DAF2BAC64A700C540D4 /* SADialogTitleLabel.swift in Sources */,
 				A517DFF52D09BD8900D6148C /* IntroductionView.swift in Sources */,
 				A5B8A48F2CBD3F4F002FA7B2 /* SelectableItem.swift in Sources */,
-				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */,
 				A58472082C2ED60E00713D36 /* SuplaAppProvider.swift in Sources */,
 				A5F29BF52A2A1E1200ED700A /* ChannelCaptionEditor.swift in Sources */,
@@ -6909,6 +7004,8 @@
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
 				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
+				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
+				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
 				A55A8DA82BAC50B100C540D4 /* NotificationCenterWrapper.swift in Sources */,
 				A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */,
@@ -6944,9 +7041,9 @@
 				01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */,
 				01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */,
 				A5F29B9F2A20D32B00ED700A /* GroupRepository.swift in Sources */,
-				012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */,
 				01F8856D22E5E79100D18373 /* SAUserIcon+CoreDataProperties.m in Sources */,
 				A530EE282A57E02C00F8DAEE /* MailSensorIconNameProducer.swift in Sources */,
+				A54637BD2D37FF6300D746F5 /* ImpulseCounterGeneralViewState.swift in Sources */,
 				A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */,
 				A598CAB52CBEFD0E00A784FA /* LoadElectricityMeterMeasurementsUseCase.swift in Sources */,
 				A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */,
@@ -6966,7 +7063,7 @@
 				A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */,
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
-				A584E1F62CA6897400232A98 /* EnergySummaryBox.swift in Sources */,
+				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				A55A8D982BAB28CC00C540D4 /* ScopeFunctions.swift in Sources */,
 				A5E9CE292C32CE4700509702 /* SALoginDialogVM.swift in Sources */,
@@ -6994,6 +7091,7 @@
 				A5A15FEF2C298AAD0049AA73 /* StatusVM.swift in Sources */,
 				A5B3CC062B62802600F95AC3 /* RainValueStringProvider.swift in Sources */,
 				A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */,
+				A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */,
 				A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */,
 				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
 				A58D1B822CDCE29900B5A019 /* KotlinInt+iOS.swift in Sources */,
@@ -7012,6 +7110,7 @@
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
 				A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */,
+				A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */,
 				A5F5C3F22C3682390058E255 /* PinSetupFeature.swift in Sources */,
 				A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */,
 				A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */,
@@ -7024,6 +7123,7 @@
 				A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */,
 				A5D837CB2AF1034E002A420D /* ThermometerDetailVC.swift in Sources */,
 				A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */,
+				A54637B32D37E8B400D746F5 /* ImpulseCounterGeneralFeature.swift in Sources */,
 				A5E9CE2F2C33D92900509702 /* SAAddWizardVC+NavigationSubcontroller.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
@@ -7053,9 +7153,9 @@
 				A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */,
 				A505EC332CF70D8D00E69BDB /* AuthorizationType.swift in Sources */,
 				A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */,
+				A519CCB22D38559100F858A4 /* ImpulseCounterGeneralStateHandler.swift in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */,
-				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
 				A5F29B762A1E33D500ED700A /* FetchedResultsControllerEntityObserver.swift in Sources */,
 				A530EE452A58AAD800F8DAEE /* DeviceStateHelperVMI.swift in Sources */,
 				A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */,
@@ -7070,9 +7170,11 @@
 				A5F29BC92A26168E00ED700A /* UpdateChannelGroupTotalValueUseCase.swift in Sources */,
 				A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */,
 				A55A8D7D2BA9A15200C540D4 /* UIImageView+Ext.swift in Sources */,
+				A5E160C92D3659E1003A7C71 /* SAImpulseCounterMeasurementItem+Ext.swift in Sources */,
 				A57668D52AE94A060025509D /* DownloadEventsManager.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
 				A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */,
+				A519CCB02D38515A00F858A4 /* ImpulseCounterGeneralView.swift in Sources */,
 				A50B5D522BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift in Sources */,
 				A5E160B62D31555B003A7C71 /* HumidityMeasurementItemRepository.swift in Sources */,
 				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
@@ -7097,6 +7199,7 @@
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				A5074BCC2BCE6F690081B6B1 /* FacadeBlindsView.swift in Sources */,
 				A5F29B7E2A1E36C200ED700A /* SceneRepository.swift in Sources */,
+				A5E160C12D354974003A7C71 /* ImpulseCounterHistoryDetailVC.swift in Sources */,
 				A5074BC22BCE61E60081B6B1 /* RoofWindowVC.swift in Sources */,
 				A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */,
 				A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */,
@@ -7158,6 +7261,7 @@
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
+				A5E160CB2D3697ED003A7C71 /* ImpulseCounterChartValueFormatter.swift in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				A51BE9052AA754F200718F2F /* BaseControlButtonView.swift in Sources */,
 				A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */,
@@ -7305,8 +7409,10 @@
 				A5F5C3F62C36827B0058E255 /* PinSetupViewState.swift in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
 				A5B3CC002B62770F00F95AC3 /* DistanceValueStringProvider.swift in Sources */,
+				A54637B92D37EC9000D746F5 /* EnergySummaryBox.swift in Sources */,
 				A503ABAB2B67A094008CDA1F /* CandleChartData.swift in Sources */,
 				A5F29B8B2A209EC900ED700A /* NSFetchRequest+Ext.swift in Sources */,
+				A54637B62D37E9A600D746F5 /* ImpulseCounterGeneralState.swift in Sources */,
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
@@ -7405,6 +7511,7 @@
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
 				A5E05BA12CB3D12400202583 /* ChartDataSpec.swift in Sources */,
+				A5E160C52D35B1B3003A7C71 /* ImpulseCounterMeasurement.swift in Sources */,
 				A5F5C3F42C3682500058E255 /* PinSetupVM.swift in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
@@ -7419,11 +7526,8 @@
 				A5F29B982A20B9D200ED700A /* ChannelRepository.swift in Sources */,
 				A57668EF2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
-				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
-				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
-				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
 				A5B8A4872CBD0B4F002FA7B2 /* ElectricityDataSelectionVM.swift in Sources */,
 				A5EC52402C0F22F40022F055 /* RequestChannelConfigUseCase.swift in Sources */,
 				A58A9C052AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift in Sources */,
@@ -7444,6 +7548,7 @@
 				A50B5D2B2BF49F3000918D18 /* TerraceAwningVC.swift in Sources */,
 				A5B8A4932CBDA0A4002FA7B2 /* Binding+onChange.swift in Sources */,
 				A5EC52462C0F3DC10022F055 /* ReadGroupTiltingDetailsUseCase.swift in Sources */,
+				A54637AE2D37C04C00D746F5 /* ImpulseCounterMarkerCustomData.swift in Sources */,
 				A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */,
 				A594ADC72C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift in Sources */,
 				A530EE2C2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift in Sources */,
@@ -7484,6 +7589,7 @@
 				A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */,
 				A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */,
 				A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */,
+				A54637AC2D37BE2800D746F5 /* BaseRowsChartMarkerView.swift in Sources */,
 				A5EDE2402CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift in Sources */,
 				A5E9CE332C342ADC00509702 /* ReconnectUseCase.swift in Sources */,
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
@@ -7504,11 +7610,13 @@
 				A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */,
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
 				A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */,
+				A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */,
 				A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */,
 				A5E05BB32CB46F0200202583 /* SATempHumidityMeasurementItem+Ext.swift in Sources */,
 				A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
+				A54637AA2D37B0DE00D746F5 /* MarkerRowView.swift in Sources */,
 				A5AD70292C04691100A36318 /* MoveTimeView.swift in Sources */,
 				A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
@@ -7516,6 +7624,7 @@
 				A5E160A52D307EAB003A7C71 /* ContainerValueProvider.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
+				A519CCBD2D38FBEF00F858A4 /* SwitchImpulseCounterDetailsView.swift in Sources */,
 				A56233DD2AB065AD001CB948 /* EditQuartersDialogVC.swift in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				A5F29BAA2A24B23000ED700A /* UpdateSceneUseCase.swift in Sources */,
@@ -7537,6 +7646,7 @@
 				A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */,
 				A5B3CBE52B62546800F95AC3 /* DoubleValueParser.swift in Sources */,
 				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
+				A54637A72D37A94A00D746F5 /* ImpulseCounterChartMarkerView.swift in Sources */,
 				A57668F72AEAA8870025509D /* ChartParameters.swift in Sources */,
 				A5A15FF92C299D230049AA73 /* Color+Supla.swift in Sources */,
 				A50B5D222BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift in Sources */,

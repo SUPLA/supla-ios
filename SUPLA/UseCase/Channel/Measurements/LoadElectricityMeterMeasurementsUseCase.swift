@@ -95,36 +95,3 @@ final class LoadElectricityMeterMeasurementsUseCaseImpl: LoadElectricityMeterMea
     }
 }
 
-struct ElectricityMeasurements {
-    let forwardActiveEnergy: Double
-    let reverseActiveEnergy: Double
-
-    func toForwardEnergy(
-        formatter: ListElectricityMeterValueFormatter,
-        value: SAElectricityMeterExtendedValue? = nil
-    ) -> EnergyData? {
-        if let value {
-            value.hasForwardEnergy.ifTrue {
-                EnergyData(
-                    formatter: formatter,
-                    energy: forwardActiveEnergy,
-                    pricePerUnit: value.pricePerUnit(),
-                    currency: value.currency()
-                )
-            }
-        } else {
-            EnergyData(energy: formatter.format(forwardActiveEnergy))
-        }
-    }
-
-    func toReverseEnergy(
-        formatter: ListElectricityMeterValueFormatter,
-        value: SAElectricityMeterExtendedValue? = nil
-    ) -> EnergyData? {
-        if let value {
-            value.hasReverseEnergy.ifTrue { EnergyData(energy: formatter.format(reverseActiveEnergy)) }
-        } else {
-            EnergyData(energy: formatter.format(reverseActiveEnergy))
-        }
-    }
-}

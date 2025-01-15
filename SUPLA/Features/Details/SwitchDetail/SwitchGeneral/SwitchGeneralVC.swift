@@ -37,6 +37,13 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
         return view
     }()
     
+    private lazy var impulseCounterDetails: UIHostingController = {
+        let view = UIHostingController(rootView: SwitchImpulseCounterDetailsView(viewState: viewModel.impulseCounterState))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        view.view.isHidden = true
+        return view
+    }()
+    
     private lazy var powerOnButtonView: RoundedControlButtonView = {
         let view = RoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -105,15 +112,19 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
         
         deviceStateView.isHidden = state.showElectricityState
         electricityMeterDetails.view.isHidden = !state.showElectricityState
+        impulseCounterDetails.view.isHidden = !state.showImpulseCounterState
     }
     
     private func setupView() {
         addChild(electricityMeterDetails)
+        addChild(impulseCounterDetails)
         view.addSubview(deviceStateView)
         view.addSubview(powerOnButtonView)
         view.addSubview(powerOffButtonView)
         view.addSubview(electricityMeterDetails.view)
+        view.addSubview(impulseCounterDetails.view)
         electricityMeterDetails.didMove(toParent: self)
+        impulseCounterDetails.didMove(toParent: self)
         
         viewModel.bind(powerOnButtonView.tapObservable) { [weak self] in
             guard let self = self else { return }
@@ -143,7 +154,12 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
             electricityMeterDetails.view.topAnchor.constraint(equalTo: view.topAnchor),
             electricityMeterDetails.view.leftAnchor.constraint(equalTo: view.leftAnchor),
             electricityMeterDetails.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            electricityMeterDetails.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -88)
+            electricityMeterDetails.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -88),
+            
+            impulseCounterDetails.view.topAnchor.constraint(equalTo: view.topAnchor),
+            impulseCounterDetails.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            impulseCounterDetails.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            impulseCounterDetails.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -88)
         ])
     }
     

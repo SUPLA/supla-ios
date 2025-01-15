@@ -563,3 +563,7 @@
 "details_em_total_suffix" = "(κατάσταση μετρητή)";
 "details_em_current_month_suffix" = "(τρέχων μήνας)";
 "details_em_last_month_balancing" = "Εξισορρόπηση του τρέχοντος μήνα";
+
+/* Impulse counter */
+"details_em_meter_value" = "Κατάσταση του μετρητή";
+"details_em_current_month_consumption" = "Κατανάλωση τον τρέχοντα μήνα";

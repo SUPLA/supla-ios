@@ -18,13 +18,6 @@
 
 import SwiftUI
 
-struct ViewHeightKey: PreferenceKey {
-    static var defaultValue: CGFloat { 0 }
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value = value + nextValue()
-    }
-}
-
 extension ElectricityMeterGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
@@ -52,10 +45,10 @@ extension ElectricityMeterGeneralFeature {
 
 #Preview("One phases") {
     let viewState = ElectricityMeterGeneralFeature.ViewState()
-    viewState.totalForwardActiveEnergy = EnergyData(energy: "4273 kWh", price: "3418.33 PLN")
-    viewState.totalReverseActiveEnergy = EnergyData(energy: "5715 kWh")
-    viewState.currentMonthForwardActiveEnergy = EnergyData(energy: "4273 kWh", price: "3418.33 PLN")
-    viewState.currentMonthReverseActiveEnergy = EnergyData(energy: "5715 kWh")
+    viewState.totalForwardActiveEnergy = SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")
+    viewState.totalReverseActiveEnergy = SummaryCardData(energy: "5715 kWh")
+    viewState.currentMonthForwardActiveEnergy = SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")
+    viewState.currentMonthReverseActiveEnergy = SummaryCardData(energy: "5715 kWh")
     viewState.phaseMeasurementTypes = [.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]
     viewState.phaseMeasurementValues = [
         .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
@@ -73,10 +66,10 @@ extension ElectricityMeterGeneralFeature {
 
 #Preview("Three phases") {
     let viewState = ElectricityMeterGeneralFeature.ViewState()
-    viewState.totalForwardActiveEnergy = EnergyData(energy: "4273 kWh", price: "3418.33 PLN")
-    viewState.totalReverseActiveEnergy = EnergyData(energy: "5715 kWh")
-    viewState.currentMonthForwardActiveEnergy = EnergyData(energy: "4273 kWh", price: "3418.33 PLN")
-    viewState.currentMonthReverseActiveEnergy = EnergyData(energy: "5715 kWh")
+    viewState.totalForwardActiveEnergy = SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")
+    viewState.totalReverseActiveEnergy = SummaryCardData(energy: "5715 kWh")
+    viewState.currentMonthForwardActiveEnergy = SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")
+    viewState.currentMonthReverseActiveEnergy = SummaryCardData(energy: "5715 kWh")
     viewState.phaseMeasurementTypes = [.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]
     viewState.phaseMeasurementValues = [
         .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [

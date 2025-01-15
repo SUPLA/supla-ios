@@ -20,7 +20,6 @@ import RxSwift
 
 final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     @Singleton<DownloadEventsManager> private var downloadEventsManager
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
@@ -34,24 +33,6 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             .asDriverWithoutError()
             .drive(
                 onNext: { [weak self] _ in self?.reloadMeasurements() }
-            )
-            .disposed(by: self)
-    }
-    
-    override func triggerDataLoad(remoteId: Int32) {
-        Observable.zip(
-            readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
-            profileRepository.getActiveProfile().map {
-                @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getDefaultChartState(
-                    profileId: $0.id,
-                    remoteId: remoteId
-                )
-            }
-        ) { ($0, $1) }
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] in self?.handleData(channel: $0.0, chartState: $0.1) }
             )
             .disposed(by: self)
     }
@@ -86,16 +67,16 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             .disposed(by: self)
     }
     
-    private func handleData(channel: SAChannel, chartState: DefaultChartState) {
+    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
         updateView {
-            $0.changing(path: \.profileId, to: channel.profile.id)
-                .changing(path: \.channelFunction, to: channel.func)
+            $0.changing(path: \.profileId, to: channel.channel.profile.id)
+                .changing(path: \.channelFunction, to: channel.channel.func)
         }
         
         restoreRange(chartState: chartState)
-        if ((channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)?.keepHistory == true) {
-            configureDownloadObserver(channel: channel)
-            startInitialDataLoad(channel: channel)
+        if ((channel.channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)?.keepHistory == true) {
+            configureDownloadObserver(channel: channel.channel)
+            startInitialDataLoad(channel)
         } else {
             updateView {
                 $0.changing(path: \.showHistory, to: false)
@@ -121,12 +102,12 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             .disposed(by: self)
     }
     
-    private func startInitialDataLoad(channel: SAChannel) {
+    private func startInitialDataLoad(_ channelWithChildren: ChannelWithChildren) {
         if (currentState()?.initialLoadStarted == true) {
             return
         }
         updateView { $0.changing(path: \.initialLoadStarted, to: true) }
-        downloadChannelMeasurementsUseCase.invoke(remoteId: channel.remote_id, function: channel.func)
+        downloadChannelMeasurementsUseCase.invoke(channelWithChildren)
     }
     
     private func createChartData(

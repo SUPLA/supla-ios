@@ -259,6 +259,6 @@ private class AxisYFormatter: NSObject, AxisValueFormatter {
     }
     
     func stringForValue(_ value: Double, axis: DGCharts.AxisBase?) -> String {
-        formatter.format(value, withUnit: false, precision: 1)
+        formatter.format(value, withUnit: false, precision: .customPrecision(value: axis?.decimals ?? 1))
     }
 }

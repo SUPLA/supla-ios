@@ -29,7 +29,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
     
     private lazy var downloadEventsManager: DownloadEventsManagerMock! = DownloadEventsManagerMock()
     
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
     
     private lazy var downloadChannelMeasurementsUseCase: DownloadChannelMeasurementsUseCaseMock! = DownloadChannelMeasurementsUseCaseMock()
     
@@ -46,7 +46,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         DiContainer.shared.register(type: UserStateHolder.self, userStateHolder!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: DownloadEventsManager.self, downloadEventsManager!)
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, downloadChannelMeasurementsUseCase!)
         DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, loadChannelMeasurementsUseCase!)
         DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, loadChannelMeasurementsDateRangeUseCase!)
@@ -58,7 +58,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         userStateHolder = nil
         profileRepository = nil
         downloadEventsManager = nil
-        readChannelByRemoteIdUseCase = nil
+        readChannelWithChildrenUseCase = nil
         downloadChannelMeasurementsUseCase = nil
         loadChannelMeasurementsUseCase = nil
         loadChannelMeasurementsDateRangeUseCase = nil
@@ -82,9 +82,10 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         channel.profile = profile
         let chartState = DefaultChartState.empty()
         let currentDate = Date()
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
         dateProvider.currentDateReturns = currentDate
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+        readChannelWithChildrenUseCase.returns = Observable.just(channelWithChildren)
         profileRepository.activeProfileObservable = Observable.just(profile)
         userStateHolder.getDefaultChartStateReturns = chartState
         
@@ -122,10 +123,10 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
             state6
         ])
         
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertEqual(userStateHolder.getDefaultCharStateParameters.count, 1)
         XCTAssertEqual(downloadEventsManager.observeProgressParameters, [remoteId])
-        XCTAssertTuples(downloadChannelMeasurementsUseCase.parameters, [(remoteId, SUPLA_CHANNELFNC_THERMOMETER)])
+        XCTAssertEqual(downloadChannelMeasurementsUseCase.parameters, [channelWithChildren])
     }
     
     func test_shouldLoadGpMetersFromDbAsLineChartData() {
@@ -185,9 +186,10 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         channel.profile = profile
         let chartState = DefaultChartState.empty()
         let currentDate = Date()
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
         dateProvider.currentDateReturns = currentDate
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+        readChannelWithChildrenUseCase.returns = Observable.just(channelWithChildren)
         profileRepository.activeProfileObservable = Observable.just(profile)
         userStateHolder.getDefaultChartStateReturns = chartState
         loadChannelConfigUseCase.returns = .just(config)
@@ -234,7 +236,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
             state6
         ])
         
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertEqual(userStateHolder.getDefaultCharStateParameters.count, 2)
         XCTAssertEqual(downloadEventsManager.observeProgressParameters, [])
         XCTAssertEqual(downloadChannelMeasurementsUseCase.parameters.count, 0)

@@ -54,7 +54,7 @@ class BaseDetailTypeProviderUseCase {
             SUPLA_CHANNELFNC_IC_GAS_METER,
             SUPLA_CHANNELFNC_IC_WATER_METER,
             SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return .impulseCounterDetail(pages: [.historyIc])
+            return .impulseCounterDetail(pages: [.impulseCounterGeneral, .impulseCounterHistory])
         case
             SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
@@ -102,9 +102,6 @@ enum DetailPage {
     // Switches
     case switchGeneral
     case switchTimer
-    case switchEmHistory
-    case switchEmSettings
-    case historyIc
     
     // Thermostat
     case thermostatGeneral
@@ -136,4 +133,8 @@ enum DetailPage {
     case electricityMeterGeneral
     case electricityMeterHistory
     case electricityMeterSettings
+    
+    // IC
+    case impulseCounterGeneral
+    case impulseCounterHistory
 }

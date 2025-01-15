@@ -30,43 +30,57 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
     @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
+    @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
 
     func invoke(remoteId: Int32) -> Observable<Void> {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
-            .map { self.channelWithChildrenToChannels($0) }
-            .flatMap { channels in
-                Observable.merge(channels.map { self.getDeleteCompletable($0.func, remoteId: $0.remote_id, profile: $0.profile) })
+            .flatMap { channelWithChildren in
+                let function = channelWithChildren.function
+                let remoteId = channelWithChildren.remoteId
+                let serverId = channelWithChildren.channel.profile.server?.id
+
+                return if (function == SUPLA_CHANNELFNC_THERMOMETER) {
+                    self.temperatureMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
+                    self.tempHumidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
+                    self.generalPurposeMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
+                    self.generalPurposeMeterItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
+                    self.humidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (channelWithChildren.isOrHasElectricityMeter) {
+                    self.electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (channelWithChildren.isOrHasImpulseCounter) {
+                    self.impulseCounterMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (channelWithChildren.channel.isHvacThermostat()) {
+                    Observable.merge(
+                        channelWithChildren.children.filter { $0.relationType.isThermometer() }
+                            .map {
+                                switch ($0.channel.func) {
+                                    case SUPLA_CHANNELFNC_THERMOMETER:
+                                    self.temperatureMeasurementItemRepository.deleteAll(
+                                        remoteId: $0.channel.remote_id,
+                                        serverId: $0.channel.profile.server?.id
+                                    )
+                                    case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                                        self.tempHumidityMeasurementItemRepository.deleteAll(
+                                            remoteId: $0.channel.remote_id,
+                                            serverId: $0.channel.profile.server?.id
+                                        )
+                                    default: self.invalidFunctionCompletable(function: $0.channel.func)
+                                }
+                            }
+                    )
+                } else {
+                    self.invalidFunctionCompletable(function: channelWithChildren.function)
+                }
             }
     }
 
-    private func channelWithChildrenToChannels(_ channelWithChildren: ChannelWithChildren) -> [SAChannel] {
-        var channels: [SAChannel] = []
-
-        if (channelWithChildren.channel.hasHistory()) {
-            channels.append(channelWithChildren.channel)
-        }
-        channels.append(contentsOf: channelWithChildren.children.map { $0.channel }.filter { $0.hasHistory() })
-
-        return channels
-    }
-
-    private func getDeleteCompletable(_ function: Int32, remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
-        return switch (function) {
-        case SUPLA_CHANNELFNC_THERMOMETER:
-            temperatureMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            tempHumidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
-        case SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
-            generalPurposeMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
-        case SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER:
-            generalPurposeMeterItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-            electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
-        case SUPLA_CHANNELFNC_HUMIDITY:
-            humidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: profile.server?.id)
-        default:
-            Observable.error(GeneralError.illegalState(message: "Trying to delete history of unsupported function `\(function)`."))
-        }
-        
+    private func invalidFunctionCompletable(function: Int32) -> Observable<Void> {
+        Observable.error(GeneralError.illegalState(
+            message: "Trying to delete history of unsupported function `\(function)`."
+        ))
     }
 }

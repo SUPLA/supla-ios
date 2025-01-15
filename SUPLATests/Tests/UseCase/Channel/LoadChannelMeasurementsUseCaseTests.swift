@@ -20,7 +20,7 @@
 import XCTest
 
 final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
     
     private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = TemperatureMeasurementItemRepositoryMock()
     
@@ -39,7 +39,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: GetChannelValueStringUseCase.self, getChannelValueStringUseCase!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
@@ -53,7 +53,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
     
     override func tearDown() {
         useCase = nil
-        readChannelByRemoteIdUseCase = nil
+        readChannelWithChildrenUseCase = nil
         temperatureMeasurementItemRepository = nil
         tempHumidityMeasurementItemRepository = nil
         generalPurposeMeasurementItemRepository = nil
@@ -73,8 +73,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         channel.value = value
         let profile = AuthProfileItem(testContext: nil)
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         profileRepository.activeProfileObservable = .just(profile)
         
         let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!
@@ -117,8 +118,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         channel.remote_id = remotId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         let profile = AuthProfileItem(testContext: nil)
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         profileRepository.activeProfileObservable = .just(profile)
         
         let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!
@@ -159,8 +161,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         channel.remote_id = remotId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         let profile = AuthProfileItem(testContext: nil)
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         profileRepository.activeProfileObservable = .just(profile)
         
         let startDate: Date = .create(2017, 8, 10, 19, 23, 00)!
@@ -202,8 +205,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         channel.value = value
         let profile = AuthProfileItem(testContext: nil)
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         profileRepository.activeProfileObservable = .just(profile)
         
         let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!
@@ -263,8 +267,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         let value = SAChannelValue.mock(online: true)
         let channel = SAChannel.mock(remotId, function: function, value: value)
         let profile = AuthProfileItem.mock()
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         profileRepository.activeProfileObservable = .just(profile)
         
         let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!
@@ -309,8 +314,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         let value = SAChannelValue.mock(online: true)
         let channel = SAChannel.mock(remotId, function: function, value: value)
         let profile = AuthProfileItem.mock()
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         profileRepository.activeProfileObservable = .just(profile)
         
         let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!

@@ -598,3 +598,7 @@
 "details_em_hour_marker_title" = "%@";
 "em_phase_to_phase_balance" = "Equilibrio interfase vettoriale";
 "em_chart_all_phases" = "Fase 1+2+3";
+
+/* Impulse counter */
+"details_em_meter_value" = "Lettura del contatore";
+"details_em_current_month_consumption" = "Consumo del mese corrente";

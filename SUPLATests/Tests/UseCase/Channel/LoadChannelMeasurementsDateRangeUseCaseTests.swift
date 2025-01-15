@@ -21,8 +21,8 @@ import XCTest
 
 final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?> {
     
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = {
+        ReadChannelWithChildrenUseCaseMock()
     }()
     
     private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = {
@@ -48,7 +48,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
@@ -57,7 +57,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
     
     override func tearDown() {
         useCase = nil
-        readChannelByRemoteIdUseCase = nil
+        readChannelWithChildrenUseCase = nil
         temperatureMeasurementItemRepository = nil
         tempHumidityMeasurementItemRepository = nil
         generalPurposeMeasurementItemRepository = nil
@@ -79,11 +79,12 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         
+        let channelWithChildren = ChannelWithChildren(channel: channel)
         
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -94,7 +95,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         assertEventsCount(2)
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertTuples(temperatureMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
         XCTAssertTuples(temperatureMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
@@ -112,10 +113,12 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         
+        let channelWithChildren = ChannelWithChildren(channel: channel)
+        
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -126,7 +129,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         assertEventsCount(2)
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
@@ -144,10 +147,12 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
         
+        let channelWithChildren = ChannelWithChildren(channel: channel)
+        
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         generalPurposeMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         generalPurposeMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -158,7 +163,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         assertEventsCount(2)
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertTuples(generalPurposeMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
         XCTAssertTuples(generalPurposeMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
@@ -176,10 +181,12 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
         
+        let channelWithChildren = ChannelWithChildren(channel: channel)
+        
         let minDate = Date.create(year: 2018)!
         let maxDate = Date.create(year: 2020)!
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         generalPurposeMeterItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
         generalPurposeMeterItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
         
@@ -190,7 +197,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         assertEventsCount(2)
         XCTAssertEqual(observer.events[0].value.element??.start, minDate)
         XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertTuples(generalPurposeMeterItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
         XCTAssertTuples(generalPurposeMeterItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }
@@ -208,7 +215,9 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         
-        readChannelByRemoteIdUseCase.returns = .just(channel)
+        let channelWithChildren = ChannelWithChildren(channel: channel)
+        
+        readChannelWithChildrenUseCase.returns = .just(channelWithChildren)
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(nil)
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(nil)
         
@@ -220,7 +229,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
             .next(nil),
             .completed
         ])
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, serverId)])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, serverId)])
     }

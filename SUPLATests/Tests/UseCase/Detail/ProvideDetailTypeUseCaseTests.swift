@@ -128,7 +128,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideElectricityIc_forElectricityMetterFunction() {
-        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.impulseCounterGeneral, .impulseCounterHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
             
@@ -137,7 +137,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideGasIc_forGasMetterFunction() {
-        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.impulseCounterGeneral, .impulseCounterHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_GAS_METER
             
@@ -146,7 +146,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideWaterIc_forWaterMetterFunction() {
-        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.impulseCounterGeneral, .impulseCounterHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_WATER_METER
             
@@ -155,7 +155,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideHeatIc_forHeatMetterFunction() {
-        doTest(expectedResult: .impulseCounterDetail(pages: [.historyIc])) {
+        doTest(expectedResult: .impulseCounterDetail(pages: [.impulseCounterGeneral, .impulseCounterHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_IC_HEAT_METER
             
@@ -256,7 +256,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer, .historyIc])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer, .impulseCounterHistory])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
             
@@ -270,7 +270,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchEmHistory, .switchEmSettings])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .electricityMeterHistory, .electricityMeterSettings])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
             

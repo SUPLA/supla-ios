@@ -58,3 +58,10 @@ struct ElectricityChartStyle: ChartStyle {
     }
 }
 
+struct ImpulseCounterChartStyle: ChartStyle {
+    var leftAxisColor: UIColor = .onBackground
+    var rightAxisColor: UIColor = .onBackground
+    var drawBarShadow: Bool = true
+    
+    func provideMarkerView() -> BaseChartMarkerView { ImpulseCounterChartMarkerView() }
+}

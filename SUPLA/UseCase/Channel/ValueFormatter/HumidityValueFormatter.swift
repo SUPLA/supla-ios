@@ -17,7 +17,7 @@
  */
 
 final class HumidityValueFormatter: ChannelValueFormatter {
-    func handle(function: Int) -> Bool {
+    func handle(function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_HUMIDITY
     }
 

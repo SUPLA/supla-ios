@@ -563,3 +563,7 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(lopende maand)";
 "details_em_last_month_balancing" = "Balanceren van de huidige maand";
+
+/* Impulse counter */
+"details_em_meter_value" = "Meterstand";
+"details_em_current_month_consumption" = "Verbruik in de lopende maand";

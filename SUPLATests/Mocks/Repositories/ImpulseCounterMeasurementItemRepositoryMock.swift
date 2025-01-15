@@ -29,4 +29,44 @@ final class ImpulseCounterMeasurementItemRepositoryMock: BaseRepositoryMock<SAIm
         deleteAllCounter += 1
         return deleteAllObservable
     }
+    
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAImpulseCounterMeasurementItem]> {
+        .empty()
+    }
+    
+    func storeMeasurements(measurements: [SUPLA.SuplaCloudClient.ImpulseCounterMeasurement], latestItem: SUPLA.SuplaCloudClient.ImpulseCounterMeasurement?, serverId: Int32, remoteId: Int32) throws -> SUPLA.SuplaCloudClient.ImpulseCounterMeasurement? {
+        nil
+    }
+    
+    func findOldestEntity(remoteId: Int32, serverId: Int32) -> Observable<SAImpulseCounterMeasurementItem?> {
+        .empty()
+    }
+    
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
+        .empty()
+    }
+    
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        .empty()
+    }
+    
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        .empty()
+    }
+    
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        .empty()
+    }
+    
+    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ImpulseCounterMeasurement]> {
+        .empty()
+    }
+    
+    func storeMeasurements(measurements: [SUPLA.SuplaCloudClient.ImpulseCounterMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
+        0
+    }
+    
+    func fromJson(data: Data) throws -> [SUPLA.SuplaCloudClient.ImpulseCounterMeasurement] {
+        []
+    }
 }

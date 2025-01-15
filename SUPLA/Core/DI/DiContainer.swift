@@ -101,7 +101,8 @@ extension DiContainer {
         register((any ChannelExtendedValueRepository).self, ChannelExtendedValueRepositoryImpl())
         let electricityMeasurementItemRepository = ElectricityMeasurementItemRepositoryImpl()
         register((any ElectricityMeasurementItemRepository).self, electricityMeasurementItemRepository)
-        register((any ImpulseCounterMeasurementItemRepository).self, ImpulseCounterMeasurementItemRepositoryImpl())
+        let impulseCounterMeasurementItemRepository = ImpulseCounterMeasurementItemRepositoryImpl()
+        register((any ImpulseCounterMeasurementItemRepository).self, impulseCounterMeasurementItemRepository)
         register((any UserIconRepository).self, UserIconRepositoryImpl())
         register((any ThermostatMeasurementItemRepository).self, ThermostatMeasurementItemRepositoryImpl())
         register((any SuplaCloudClientRepository).self, SuplaCloudClientRepositoryImpl())
@@ -143,6 +144,7 @@ extension DiContainer {
         register(DownloadElectricityMeterLogUseCase.self,
                  DownloadElectricityMeterLogUseCaseImpl(electricityMeasurementItemRepository))
         register(DownloadHumidityLogUseCase.self, DownloadHumidityLogUseCaseImpl(humidityMeasurementItemRepository))
+        register(DownloadImpulseCounterLogUseCase.self, DownloadImpulseCounterLogUseCaseImpl(impulseCounterMeasurementItemRepository))
         register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
         register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
@@ -150,6 +152,7 @@ extension DiContainer {
         register(LoadChannelConfigUseCase.self, LoadChannelConfigUseCaseImpl())
         register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
         register(LoadElectricityMeterMeasurementsUseCase.self, LoadElectricityMeterMeasurementsUseCaseImpl())
+        register(LoadImpulseCounterMeasurementsUseCase.self, LoadImpulseCounterMeasurementsUseCaseImpl())
         register(GetChannelActionStringUseCase.self, SharedCore.GetChannelActionStringUseCase())
         register(ChannelToRootRelationHolderUseCase.self, ChannelToRootRelationHolderUseCaseImpl())
         // Usecases - Channel - ValueProvider
@@ -175,6 +178,7 @@ extension DiContainer {
         register(GeneralPurposeMeasurementMeasurementsProvider.self, GeneralPurposeMeasurementMeasurementsProviderImpl())
         register(ElectricityMeasurementsProvider.self, ElectricityMeasurementsProviderImpl())
         register(HumidityMeasurementsProvider.self, HumidityMeasurementsProviderImpl())
+        register(ImpulseCounterMeasurementsProvider.self, ImpulseCounterMeasurementsProviderImpl())
         // Usecases - ChannelBase
         register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())
@@ -241,6 +245,8 @@ extension DiContainer {
         
         // Electricity
         register(ElectricityMeterGeneralStateHandler.self, ElectricityMeterGeneralStateHandlerImpl())
+        // Impulse Counter
+        register(ImpulseCounterGeneralStateHandler.self, ImpulseCounterGeneralStateHandlerImpl())
         
         // MARK: Shared
 

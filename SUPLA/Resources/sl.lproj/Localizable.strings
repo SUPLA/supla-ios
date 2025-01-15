@@ -563,3 +563,7 @@
 "details_em_total_suffix" = "(stanje števca)";
 "details_em_current_month_suffix" = "(tekoči mesec)";
 "details_em_last_month_balancing" = "Poravnava tekočega meseca";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stanje števca";
+"details_em_current_month_consumption" = "Poraba v tekočem mesecu";

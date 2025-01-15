@@ -163,9 +163,7 @@ import Charts
             details.valueFormatter.format(value, withUnit: true, precision: precision)
         case .generalPurposeMeasurement:
             details.valueFormatter.format(value, withUnit: false)
-        case .generalPurposeMeter:
-            details.valueFormatter.format(value, withUnit: true)
-        case .electricity:
+        case .generalPurposeMeter, .electricity, .impulseCounter:
             details.valueFormatter.format(value, withUnit: true)
         }
     }
