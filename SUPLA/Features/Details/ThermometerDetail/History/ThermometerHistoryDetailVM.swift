@@ -22,22 +22,9 @@ import RxSwift
 final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
     
     @Singleton<DownloadEventsManager> private var downloadEventsManager
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
-    
-    override func triggerDataLoad(remoteId: Int32) {
-        Observable.zip(
-            readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
-            profileRepository.getActiveProfile().map { [weak self] in self?.loadChartState($0.id, remoteId) }
-        ) { ($0, $1) }
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] in self?.handleData(channel: $0.0, chartState: $0.1) }
-            )
-            .disposed(by: self)
-    }
     
     override func measurementsObservable(
         remoteId: Int32,
@@ -50,15 +37,15 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
         ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [$0]), $1) }
     }
     
-    private func handleData(channel: SAChannel, chartState: ChartState?) {
+    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
         updateView {
-            $0.changing(path: \.profileId, to: channel.profile.id)
-                .changing(path: \.channelFunction, to: channel.func)
+            $0.changing(path: \.profileId, to: channel.channel.profile.id)
+                .changing(path: \.channelFunction, to: channel.channel.func)
         }
         
         restoreRange(chartState: chartState)
-        configureDownloadObserver(channel: channel)
-        startInitialDataLoad(channel: channel)
+        configureDownloadObserver(channel: channel.channel)
+        startInitialDataLoad(channel)
     }
     
     private func configureDownloadObserver(channel: SAChannel) {
@@ -75,11 +62,11 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
             .disposed(by: self)
     }
     
-    private func startInitialDataLoad(channel: SAChannel) {
+    private func startInitialDataLoad(_ channelWithChildren: ChannelWithChildren) {
         if (currentState()?.initialLoadStarted == true) {
             return
         }
         updateView { $0.changing(path: \.initialLoadStarted, to: true) }
-        downloadChannelMeasurementsUseCase.invoke(remoteId: channel.remote_id, function: channel.func)
+        downloadChannelMeasurementsUseCase.invoke(channelWithChildren)
     }
 }

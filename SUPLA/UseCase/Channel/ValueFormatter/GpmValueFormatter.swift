@@ -29,7 +29,7 @@ final class GpmValueFormatter: ChannelValueFormatter {
         self.precision = Int(config?.valuePrecision ?? 2)
     }
 
-    func handle(function: Int) -> Bool {
+    func handle(function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT ||
             function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
     }

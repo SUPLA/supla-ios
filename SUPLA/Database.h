@@ -70,13 +70,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
--(long) getTimestampOfImpulseCounterMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
--(SAImpulseCounterMeasurementItem*) newImpulseCounterMeasurementItemWithManagedObjectContext:(BOOL)moc;
--(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id;
--(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
--(BOOL) impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
--(double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset;
--(NSArray *) getImpulseCounterMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
 
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
 -(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;

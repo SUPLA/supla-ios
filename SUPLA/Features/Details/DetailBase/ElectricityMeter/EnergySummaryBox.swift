@@ -15,151 +15,39 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
 struct EnergySummaryBox: View {
-    var label: String?
-    var forwardEnergy: EnergyData?
-    var reverseEnergy: EnergyData?
+    var forwardEnergy: SummaryCardData?
+    var reverseEnergy: SummaryCardData?
+    var labelSuffix: String?
     @Binding var loading: Bool
     
-    var body: some View {
-        if (forwardEnergy != nil || reverseEnergy != nil) {
-            ZStack {
-                VStack {
-                    let showLabel = forwardEnergy != nil && reverseEnergy != nil && label != nil
-                    if (showLabel) {
-                        if let label = label {
-                            Text(label)
-                                .fontBodyMedium()
-                                .textColor(Color.Supla.onSurfaceVariant)
-                                .padding(Dimens.distanceTiny)
-                        }
-                    }
-                    HStack(alignment: .top, spacing: showLabel ? 1 : 0) {
-                        if let forwardEnergy = forwardEnergy,
-                           let reverseEnergy = reverseEnergy {
-                            EnergySummaryItemBox(
-                                iconName: .Icons.forwardEnergy,
-                                label: Strings.ElectricityMeter.forwardedEnergy,
-                                value: forwardEnergy.energy,
-                                price: forwardEnergy.price)
-                            
-                            EnergySummaryItemBox(
-                                iconName: .Icons.reversedEnergy,
-                                label: Strings.ElectricityMeter.reversedEnergy,
-                                value: reverseEnergy.energy,
-                                price: reverseEnergy.price)
-                        } else if let forwardEnergy = forwardEnergy {
-                            EnergySummarySingleItemBox(
-                                iconName: .Icons.forwardEnergy,
-                                label: label!,
-                                value: forwardEnergy.energy,
-                                price: forwardEnergy.price)
-                        } else if let reverseEnergy = reverseEnergy {
-                            EnergySummarySingleItemBox(
-                                iconName: .Icons.reversedEnergy,
-                                label: label!,
-                                value: reverseEnergy.energy,
-                                price: reverseEnergy.price)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding([.top], 1)
-                    .background(Color.Supla.outline)
-                    .fixedSize(horizontal: false, vertical: true)
-                }
-                
-                if (loading) {
-                    Color(UIColor.loadingScrim)
-                    ActivityIndicator(isAnimating: $loading, style: .medium)
-                }
-                
-            }.suplaCard()
-        }
+    init(forwardEnergy: SummaryCardData? = nil, reverseEnergy: SummaryCardData? = nil, labelSuffix: String? = nil, loading: Binding<Bool>) {
+        self.forwardEnergy = forwardEnergy
+        self.reverseEnergy = reverseEnergy
+        self.labelSuffix = labelSuffix
+        self._loading = loading
     }
-}
-
-struct ActivityIndicator: UIViewRepresentable {
-
-    @Binding var isAnimating: Bool
-    let style: UIActivityIndicatorView.Style
-
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: style)
-    }
-
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
-        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
-    }
-}
-
-private struct EnergySummaryItemBox: View {
-    var iconName: String
-    var label: String
-    var value: String
-    var price: String?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(iconName)
-                Text(label)
-                    .fontBodyMedium()
-                    .textColor(Color.Supla.onSurfaceVariant)
-            }
-            Text(value).fontLabelLarge()
-            if let price = price {
-                SuplaCore.Divider()
-                HStack {
-                    Text(Strings.ElectricityMeter.cost)
-                        .fontBodyMedium()
-                        .textColor(Color.Supla.onSurfaceVariant)
-                    Text(price).fontLabelMedium()
-                }
-            } else {
-                Spacer()
-            }
+        if let forwardEnergy = forwardEnergy,
+           let reverseEnergy = reverseEnergy {
+            let label = if let labelSuffix { "\(Strings.ElectricityMeter.activeEnergy) \(labelSuffix)" } else { Strings.ElectricityMeter.activeEnergy }
+            DoubleSummaryCard(
+                label: label,
+                firstData: forwardEnergy,
+                secondData: reverseEnergy,
+                loading: $loading
+            )
+        } else if let forwardEnergy = forwardEnergy {
+            let label = if let labelSuffix { "\(Strings.ElectricityMeter.forwardActiveEnergy) \(labelSuffix)" } else { Strings.ElectricityMeter.forwardedEnergy }
+            SingleSummaryCard(label: label, icon: .Icons.forwardEnergy, data: forwardEnergy, loading: $loading)
+        } else if let reverseEnergy = reverseEnergy {
+            let label = if let labelSuffix { "\(Strings.ElectricityMeter.reverseActiveEnergy) \(labelSuffix)" } else { Strings.ElectricityMeter.reverseActiveEnergy }
+            SingleSummaryCard(label: label, icon: .Icons.forwardEnergy, data: reverseEnergy, loading: $loading)
         }
-        .padding(Dimens.distanceSmall)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(Color.Supla.surface)
-    }
-}
-
-private struct EnergySummarySingleItemBox: View {
-    var iconName: String
-    var label: String
-    var value: String
-    var price: String?
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(iconName)
-                    Text(label)
-                        .fontBodyMedium()
-                        .textColor(Color.Supla.onSurfaceVariant)
-                }
-                Text(value).fontLabelLarge()
-            }
-            if let price = price {
-                Spacer()
-                SuplaCore.Divider(.vertical)
-                Spacer()
-                VStack(alignment: .trailing, spacing: Dimens.distanceTiny) {
-                    Text(Strings.ElectricityMeter.cost)
-                        .fontBodyMedium()
-                        .textColor(Color.Supla.onSurfaceVariant)
-                    Text(price).fontLabelMedium()
-                }
-            }
-        }
-        .padding(Dimens.distanceSmall)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(Color.Supla.surface)
     }
 }
 
@@ -167,41 +55,41 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             EnergySummaryBox(
-                label: "Active energy \(Strings.ElectricityMeter.totalSufix)",
-                forwardEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
-                reverseEnergy: EnergyData(energy: "23,45 kWh", price: "15,00 PLN"),
+                forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                reverseEnergy: SummaryCardData(energy: "23,45 kWh", price: "15,00 PLN"),
+                labelSuffix: Strings.ElectricityMeter.totalSufix,
                 loading: .constant(true)
             )
             EnergySummaryBox(
-                label: "Active energy",
-                forwardEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
-                reverseEnergy: EnergyData(energy: "23,45 kWh"),
+                forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                reverseEnergy: SummaryCardData(energy: "23,45 kWh"),
+                labelSuffix: Strings.ElectricityMeter.totalSufix,
                 loading: .constant(false)
             )
             EnergySummaryBox(
-                label: "Active energy",
-                forwardEnergy: EnergyData(energy: "12,34 kWh"),
-                reverseEnergy: EnergyData(energy: "23,45 kWh"),
+                forwardEnergy: SummaryCardData(energy: "12,34 kWh"),
+                reverseEnergy: SummaryCardData(energy: "23,45 kWh"),
+                labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
                 loading: .constant(false)
             )
             EnergySummaryBox(
-                label: "Forward active energy",
-                forwardEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
+                forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                labelSuffix: Strings.ElectricityMeter.totalSufix,
                 loading: .constant(false)
             )
             EnergySummaryBox(
-                label: "Forward active energy",
-                forwardEnergy: EnergyData(energy: "12,34 kWh"),
+                forwardEnergy: SummaryCardData(energy: "12,34 kWh"),
+                labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
                 loading: .constant(false)
             )
             EnergySummaryBox(
-                label: "Reverse active energy",
-                reverseEnergy: EnergyData(energy: "12,34 kWh", price: "15,00 PLN"),
+                reverseEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                labelSuffix: Strings.ElectricityMeter.totalSufix,
                 loading: .constant(false)
             )
             EnergySummaryBox(
-                label: "Reverse active energy",
-                reverseEnergy: EnergyData(energy: "12,34 kWh"),
+                reverseEnergy: SummaryCardData(energy: "12,34 kWh"),
+                labelSuffix: Strings.ElectricityMeter.totalSufix,
                 loading: .constant(false)
             )
         }.previewLayout(.sizeThatFits)

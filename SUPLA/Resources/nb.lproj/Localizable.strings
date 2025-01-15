@@ -563,3 +563,7 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(inneværende måned)";
 "details_em_last_month_balancing" = "Balansering av inneværende måned";
+
+/* Impulse counter */
+"details_em_meter_value" = "Meterlesing";
+"details_em_current_month_consumption" = "Forbruk i gjeldende måned";

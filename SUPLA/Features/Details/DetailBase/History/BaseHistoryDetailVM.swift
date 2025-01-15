@@ -23,6 +23,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     @Singleton<UserStateHolder> var userStateHolder
     @Singleton<ProfileRepository> var profileRepository
     @Singleton<DeleteChannelMeasurementsUseCase> var deleteChannelMeasurementsUseCase
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     
     var chartStyle: any ChartStyle {
         ThermometerChartStyle()
@@ -34,8 +35,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     
     override func defaultViewState() -> BaseHistoryDetailViewState { BaseHistoryDetailViewState() }
     
-    func triggerDataLoad(remoteId: Int32) {
-        fatalError("triggedDataLoad(remoteId:) needs to be implemented")
+    func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+        fatalError("handleData(channel: chartState:) needs to be implemented")
     }
     
     func measurementsObservable(remoteId: Int32, spec: ChartDataSpec, chartRange: ChartRange) -> Observable<(ChartData, DaysRange?)> {
@@ -317,6 +318,20 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             selected: aggregation,
             items: aggregations.filter { $0.between(min: minAggregation, max: maxAggregation) }
         )
+    }
+    
+    private func triggerDataLoad(remoteId: Int32) {
+        Observable.zip(
+            readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
+            profileRepository.getActiveProfile().map { [weak self] profile in
+                self?.loadChartState(profile.id, remoteId)
+            }
+        ) { ($0, $1) }
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] in self?.handleData(channel: $0.0, chartState: $0.1) }
+            )
+            .disposed(by: self)
     }
     
     private func getDateRangeForChartRange(_ chartRange: ChartRange, _ dateRange: DaysRange?) -> DaysRange {

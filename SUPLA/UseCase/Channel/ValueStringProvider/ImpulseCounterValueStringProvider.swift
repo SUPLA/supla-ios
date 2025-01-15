@@ -28,15 +28,7 @@ class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
             return NO_VALUE_TEXT
         }
         
-        if (value == ImpulseCounterValueProviderImpl.UNKNOWN_VALUE) {
-            return NO_VALUE_TEXT
-        }
-        
-        if (withUnit) {
-            let unit = channel.unit()
-            return "\(value.toString(precision: 2)) \(unit)"
-        } else {
-            return value.toString(precision: 2)
-        }
+        let formatter = ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
+        return formatter.format(value, withUnit: withUnit)
     }
 }

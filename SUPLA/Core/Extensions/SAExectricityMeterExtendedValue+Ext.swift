@@ -33,16 +33,16 @@ extension SAElectricityMeterExtendedValue {
         Int32(measuredValues()) & SuplaElectricityMeasurementType.reverseActiveEnergy.value > 0
     }
     
-    func getForwardEnergy(formatter: ListElectricityMeterValueFormatter) -> EnergyData? {
+    func getForwardEnergy(formatter: ListElectricityMeterValueFormatter) -> SummaryCardData? {
         hasForwardEnergy.ifTrue {
-            EnergyData(formatter: formatter, energy: totalForwardActiveEnergy(), pricePerUnit: pricePerUnit(), currency: currency())
+            SummaryCardData(formatter: formatter, energy: totalForwardActiveEnergy(), pricePerUnit: pricePerUnit(), currency: currency())
         }
     }
     
-    func getReverseEnergy(formatter: ListElectricityMeterValueFormatter) -> EnergyData? {
+    func getReverseEnergy(formatter: ListElectricityMeterValueFormatter) -> SummaryCardData? {
         hasReverseEnergy.ifTrue {
             let energy = totalReverseActiveEnergy()
-            return EnergyData(energy: formatter.format(energy))
+            return SummaryCardData(energy: formatter.format(energy))
         }
     }
     

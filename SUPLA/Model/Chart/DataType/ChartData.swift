@@ -242,7 +242,7 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
 }
 
 private class DefaultValueFormatter: ChannelValueFormatter {
-    func handle(function: Int) -> Bool { true }
+    func handle(function: Int32) -> Bool { true }
     
     func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double {

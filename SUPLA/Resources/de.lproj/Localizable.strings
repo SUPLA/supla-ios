@@ -569,6 +569,10 @@
 "details_em_voltage_phase_sequence" = "Spannungs-Phasenfolge";
 "details_em_current_phase_sequence" = "Stromphasenfolge";
 
+/* Impulse counter */
+"details_em_meter_value" = "Zählerstand";
+"details_em_current_month_consumption" = "Verbrauch im laufenden Monat";
+
 /* Counter photo */
 "counter_photo_toolbar" = "Bilder von Zähler";
 "counter_photo_counter_area" = "Zählerbereich";

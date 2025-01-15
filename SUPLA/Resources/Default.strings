@@ -353,6 +353,10 @@
 "details_em_voltage_phase_sequence" = "Voltage phase sequence";
 "details_em_current_phase_sequence" = "Current phase sequence";
 
+/* Impulse counter */
+"details_em_meter_value" = "Meter value";
+"details_em_current_month_consumption" = "Consumption in the current month";
+
 /* Counter photo */
 "counter_photo_toolbar" = "Counter photos";
 "counter_photo_counter_area" = "Counter area";

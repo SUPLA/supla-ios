@@ -86,9 +86,9 @@ final class ReadChannelWithChildrenTreeUseCaseMock: ReadChannelWithChildrenTreeU
 }
 
 final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
-    var parameters: [(Int32, Int32)] = []
-    func invoke(remoteId: Int32, function: Int32) {
-        parameters.append((remoteId, function))
+    var parameters: [ChannelWithChildren] = []
+    func invoke(_ channelWithChildren: ChannelWithChildren) {
+        parameters.append(channelWithChildren)
     }
 }
 
@@ -173,9 +173,9 @@ final class LoadChannelConfigUseCaseMock: LoadChannelConfigUseCase {
 // MARK: - Channel Values Formatter Mocks -
 
 final class ChannelValueFormatterMock: ChannelValueFormatter {
-    var handleParameters: [Int] = []
+    var handleParameters: [Int32] = []
     var handleReturns: Bool = false
-    func handle(function: Int) -> Bool {
+    func handle(function: Int32) -> Bool {
         handleParameters.append(function)
         return handleReturns
     }

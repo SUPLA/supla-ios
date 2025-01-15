@@ -561,3 +561,7 @@
 "details_em_total_suffix" = "(stav počítadla)";
 "details_em_current_month_suffix" = "(aktuálny mesiac)";
 "details_em_last_month_balancing" = "Bilancovanie aktuálneho mesiaca";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stav počítadla";
+"details_em_current_month_consumption" = "Spotreba v aktuálnom mesiaci";

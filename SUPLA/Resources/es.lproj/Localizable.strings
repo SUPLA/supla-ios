@@ -563,3 +563,7 @@
 "details_em_total_suffix" = "(estado del contador)";
 "details_em_current_month_suffix" = "(mes en curso)";
 "details_em_last_month_balancing" = "Balance del mes en curso";
+
+/* Impulse counter */
+"details_em_meter_value" = "Lectura del contador";
+"details_em_current_month_consumption" = "Consumo en el mes actual";

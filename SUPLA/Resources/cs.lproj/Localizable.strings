@@ -563,3 +563,7 @@
 "details_em_last_month_balancing" = "Bilancování aktuálního měsíce";
 "channel_caption_pump_switch" = "Přepínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Přepínač pro zdroj tepla nebo chladu";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stav měřiče";
+"details_em_current_month_consumption" = "Spotřeba v tomto měsíci";

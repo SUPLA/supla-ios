@@ -20,11 +20,11 @@ import SwiftUI
 
 struct ElectricityMeterGeneralBaseView: View {
     @Binding var online: Bool
-    @Binding var totalForwardActiveEnergy: EnergyData?
-    @Binding var totalReverseActiveEnergy: EnergyData?
+    @Binding var totalForwardActiveEnergy: SummaryCardData?
+    @Binding var totalReverseActiveEnergy: SummaryCardData?
     @Binding var currentMonthDownloading: Bool
-    @Binding var currentMonthForwardActiveEnergy: EnergyData?
-    @Binding var currentMonthReverseActiveEnergy: EnergyData?
+    @Binding var currentMonthForwardActiveEnergy: SummaryCardData?
+    @Binding var currentMonthReverseActiveEnergy: SummaryCardData?
     @Binding var phaseMeasurementTypes: [SuplaElectricityMeasurementType]
     @Binding var phaseMeasurementValues: [PhaseWithMeasurements]
     @Binding var vectorBalancedValues: [ElectricityMeterGeneralState.MeaurementTypeValue]?
@@ -38,21 +38,20 @@ struct ElectricityMeterGeneralBaseView: View {
 
     var body: some View {
         BackgroundStack {
-            let label = Strings.ElectricityMeter.forwardActiveEnergy
             GeometryReader { gp in
                 ZStack {
                     ScrollView(.vertical) {
                         VStack(alignment: .leading, spacing: 0) {
                             EnergySummaryBox(
-                                label: "\(label) \(Strings.ElectricityMeter.totalSufix)",
                                 forwardEnergy: totalForwardActiveEnergy,
                                 reverseEnergy: totalReverseActiveEnergy,
+                                labelSuffix: Strings.ElectricityMeter.totalSufix,
                                 loading: .constant(false)
                             )
                             EnergySummaryBox(
-                                label: "\(label) \(Strings.ElectricityMeter.currentMonthSuffix)",
                                 forwardEnergy: currentMonthForwardActiveEnergy,
                                 reverseEnergy: currentMonthReverseActiveEnergy,
+                                labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
                                 loading: $currentMonthDownloading
                             )
 
@@ -82,16 +81,7 @@ struct ElectricityMeterGeneralBaseView: View {
                                     parentWidth: gp.size.width
                                 )
                             } else {
-                                HStack {
-                                    Spacer()
-                                    Image(.Icons.powerOff)
-                                        .foregroundColor(Color.Supla.onSurfaceVariant)
-                                    Text(Strings.General.channelOffline)
-                                        .fontBodyMedium()
-                                        .textColor(Color.Supla.onSurfaceVariant)
-                                    Spacer()
-                                }
-                                .padding(Distance.default)
+                                ChannelOfflineView()
                             }
                         }
                     }
@@ -526,14 +516,21 @@ private struct SinglePhaseDataValuesView: View {
     }
 }
 
+private struct ViewHeightKey: PreferenceKey {
+    static var defaultValue: CGFloat { 0 }
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = value + nextValue()
+    }
+}
+
 #Preview("One phases") {
     ElectricityMeterGeneralBaseView(
         online: .constant(true),
-        totalForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
-        totalReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        totalForwardActiveEnergy: .constant(SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")),
+        totalReverseActiveEnergy: .constant(SummaryCardData(energy: "5715 kWh")),
         currentMonthDownloading: .constant(false),
-        currentMonthForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
-        currentMonthReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        currentMonthForwardActiveEnergy: .constant(SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")),
+        currentMonthReverseActiveEnergy: .constant(SummaryCardData(energy: "5715 kWh")),
         phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
         phaseMeasurementValues: .constant(
             [
@@ -555,11 +552,11 @@ private struct SinglePhaseDataValuesView: View {
 #Preview("Three phases") {
     ElectricityMeterGeneralBaseView(
         online: .constant(true),
-        totalForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
-        totalReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        totalForwardActiveEnergy: .constant(SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")),
+        totalReverseActiveEnergy: .constant(SummaryCardData(energy: "5715 kWh")),
         currentMonthDownloading: .constant(false),
-        currentMonthForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
-        currentMonthReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        currentMonthForwardActiveEnergy: .constant(SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")),
+        currentMonthReverseActiveEnergy: .constant(SummaryCardData(energy: "5715 kWh")),
         phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
         phaseMeasurementValues: .constant([
             .init(id: 1, phase: Strings.ElectricityMeter.phase1, values: [
@@ -596,11 +593,11 @@ private struct SinglePhaseDataValuesView: View {
 #Preview("Offline") {
     ElectricityMeterGeneralBaseView(
         online: .constant(false),
-        totalForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
-        totalReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        totalForwardActiveEnergy: .constant(SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")),
+        totalReverseActiveEnergy: .constant(SummaryCardData(energy: "5715 kWh")),
         currentMonthDownloading: .constant(false),
-        currentMonthForwardActiveEnergy: .constant(EnergyData(energy: "4273 kWh", price: "3418.33 PLN")),
-        currentMonthReverseActiveEnergy: .constant(EnergyData(energy: "5715 kWh")),
+        currentMonthForwardActiveEnergy: .constant(SummaryCardData(energy: "4273 kWh", price: "3418.33 PLN")),
+        currentMonthReverseActiveEnergy: .constant(SummaryCardData(energy: "5715 kWh")),
         phaseMeasurementTypes: .constant([.frequency, .voltage, .current, .powerApparent, .reverseReactiveEnergy]),
         phaseMeasurementValues: .constant(
             [

@@ -72,9 +72,10 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         // given
         let remoteId: Int32 = 123
         let function = SUPLA_CHANNELFNC_THERMOMETER
+        let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(remoteId, function: function), children: [])
         
         // when
-        useCase.invoke(remoteId: remoteId, function: function)
+        useCase.invoke(channelWithChildren)
         
         // then
         XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters, [remoteId])
@@ -90,9 +91,10 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         // given
         let remoteId: Int32 = 123
         let function = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+        let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(remoteId, function: function), children: [])
         
         // when
-        useCase.invoke(remoteId: remoteId, function: function)
+        useCase.invoke(channelWithChildren)
         
         // then
         XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters, [remoteId])
@@ -108,9 +110,10 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         // given
         let remoteId: Int32 = 123
         let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(remoteId, function: function), children: [])
         
         // when
-        useCase.invoke(remoteId: remoteId, function: function)
+        useCase.invoke(channelWithChildren)
         
         // then
         XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters, [remoteId])
@@ -126,9 +129,10 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         // given
         let remoteId: Int32 = 123
         let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(remoteId, function: function), children: [])
         
         // when
-        useCase.invoke(remoteId: remoteId, function: function)
+        useCase.invoke(channelWithChildren)
         
         // then
         XCTAssertEqual(downloadGeneralPurposeMeterLogUseCase.parameters, [remoteId])

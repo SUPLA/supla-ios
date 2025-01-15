@@ -61,7 +61,7 @@ extension ElectricityMeterGeneralFeature {
             _ downloadingFinished: Bool
         ) {
             if (!state.initialDataLoadStarted) {
-                downloadChannelMeasurementsUseCase.invoke(remoteId: channel.remoteId, function: channel.function)
+                downloadChannelMeasurementsUseCase.invoke(channel)
             }
             state.remoteId = channel.remoteId
             state.initialDataLoadStarted = true

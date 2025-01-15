@@ -42,17 +42,11 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
             list.append(.switchTimer)
         }
 
-        let meterChild = channelWithChildren.children.first(where: { $0.relationType == .meter })
-        if (meterChild?.channel.isElectricityMeter() == true) {
-            list.append(.switchEmHistory)
-            list.append(.switchEmSettings)
-        } else if (meterChild?.channel.isImpulseCounter() == true) {
-            list.append(.historyIc)
-        } else if (channelWithChildren.channel.value?.sub_value_type ?? 0 == SUBV_TYPE_IC_MEASUREMENTS) {
-            list.append(.historyIc)
-        } else if (channelWithChildren.channel.value?.sub_value_type ?? 0 == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
-            list.append(.switchEmHistory)
-            list.append(.switchEmSettings)
+        if (channelWithChildren.isOrHasElectricityMeter) {
+            list.append(.electricityMeterHistory)
+            list.append(.electricityMeterSettings)
+        } else if (channelWithChildren.isOrHasImpulseCounter) {
+            list.append(.impulseCounterHistory)
         }
 
         return list

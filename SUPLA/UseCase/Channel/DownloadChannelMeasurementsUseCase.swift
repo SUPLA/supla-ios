@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol DownloadChannelMeasurementsUseCase {
-    func invoke(remoteId: Int32, function: Int32)
+    func invoke(_ channelWithChildren: ChannelWithChildren)
 }
 
 final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsUseCase {
@@ -30,47 +30,49 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     @Singleton<DownloadGeneralPurposeMeterLogUseCase> private var downloadGeneralPurposeMeterLogUseCase
     @Singleton<DownloadElectricityMeterLogUseCase> private var downloadElectricityMeterLogUseCase
     @Singleton<DownloadHumidityLogUseCase> private var downloadHumidityLogUseCase
+    @Singleton<DownloadImpulseCounterLogUseCase> private var downloadImpulseCounterLogUseCase
     @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
     private var workingList: [Int32] = []
     private let disposeBag = DisposeBag()
     
-    func invoke(remoteId: Int32, function: Int32) {
+    func invoke(_ channelWithChildren: ChannelWithChildren) {
         syncedQueue.sync {
-            if (workingList.contains(remoteId)) {
-                SALog.debug("Download skipped as the \(remoteId) is on working list")
+            if (workingList.contains(channelWithChildren.remoteId)) {
+                SALog.debug("Download skipped as the \(channelWithChildren.remoteId) is on working list")
                 return
             }
-            
+
             do {
-                try startDownload(remoteId, function)
+                try startDownload(channelWithChildren)
             } catch {
                 SALog.error(error.localizedDescription)
                 return
             }
-            workingList.append(remoteId)
+            workingList.append(channelWithChildren.remoteId)
         }
     }
     
-    private func startDownload(_ remoteId: Int32, _ function: Int32) throws {
-        switch (function) {
-        case SUPLA_CHANNELFNC_THERMOMETER:
+    private func startDownload(_ channelWithChildren: ChannelWithChildren) throws {
+        let function = channelWithChildren.function
+        let remoteId = channelWithChildren.remoteId
+        
+        if (function == SUPLA_CHANNELFNC_THERMOMETER) {
             startTemperatureDownload(remoteId)
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+        } else if (function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             startTemperatureAndHumidityDownload(remoteId)
-        case SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
+        } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
             startGeneralPurposeMeasurementDownload(remoteId)
-        case SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER:
+        } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
             startGeneralPurposeMeterDownload(remoteId)
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER:
+        } else if (channelWithChildren.isOrHasElectricityMeter) {
             startElectricityMeasurementsDownload(remoteId)
-        case SUPLA_CHANNELFNC_HUMIDITY:
+        } else if (channelWithChildren.isOrHasImpulseCounter) {
+            startImpulseCounterMeasurementsDownload(remoteId)
+        } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
             startHumidityMeasurementsDownload(remoteId)
-        default:
+        } else {
             throw GeneralError.illegalArgument(message: "Trying to start download for unsupported function \(function)")
         }
     }
@@ -114,6 +116,13 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
         setupObservable(
             remoteId: remoteId,
             observable: downloadHumidityLogUseCase.invoke(remoteId: remoteId)
+        )
+    }
+    
+    private func startImpulseCounterMeasurementsDownload(_ remoteId: Int32) {
+        setupObservable(
+            remoteId: remoteId,
+            observable: downloadImpulseCounterLogUseCase.invoke(remoteId: remoteId)
         )
     }
     

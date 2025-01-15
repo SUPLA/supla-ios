@@ -477,6 +477,11 @@ struct Strings {
         static let infoDataSetMultiplePhase = "details_em_info_data_set_multiple_phase".toLocalized()
     }
     
+    struct ImpulseCounter {
+        static let meterValue = "details_em_meter_value".toLocalized()
+        static let currentMonthConsumption = "details_em_current_month_consumption".toLocalized()
+    }
+    
     struct CounterPhoto {
         static let toolbar = "counter_photo_toolbar".toLocalized()
         static let counterArea = "counter_photo_counter_area".toLocalized()

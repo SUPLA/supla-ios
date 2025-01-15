@@ -52,9 +52,9 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
         var channelsWithMeasurements = channelWithChildren.children
             .sorted(by: { $0.relationType.value < $1.relationType.value })
             .filter { $0.channel.hasMeasurements() }
-            .map { $0.channel }
+            .map { $0.withChildren }
         if (channelWithChildren.channel.hasMeasurements()) {
-            channelsWithMeasurements.append(channelWithChildren.channel)
+            channelsWithMeasurements.append(channelWithChildren)
         }
 
         let temperatureColors = TemperatureColors()
@@ -62,10 +62,10 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
         var observables: [Observable<ChannelChartSets>] = []
 
         for channel in channelsWithMeasurements {
-            if (channel.func == SUPLA_CHANNELFNC_THERMOMETER) {
+            if (channel.function == SUPLA_CHANNELFNC_THERMOMETER) {
                 let color = temperatureColors.nextColor()
                 observables.append(temperatureMeasurementsProvider.provide(channel, spec) { _ in color })
-            } else if (channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
+            } else if (channel.function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
                 let firstColor = temperatureColors.nextColor()
                 let secondColor = humidityColors.nextColor()
                 observables.append(temperatureAndHumidityMeasurementsProvider.provide(channel, spec) { type in type == .humidity ? secondColor : firstColor })

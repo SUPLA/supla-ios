@@ -17,13 +17,13 @@
  */
 
 import Foundation
+import SharedCore
 
 class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseTableViewController<S, E, VM> {
     let cellIdForChannel = "ChannelCell"
     let cellIdForIconValue = "IconValueCell"
     let cellIdForDoubleIconValue = "DoubleIconValueCell"
     let cellIdForIcon = "IconCell"
-    let cellIdForIncremental = "IncrementalCell"
     let cellIdForHomePlus = "HomePlusCell"
     let cellIdForHvacThermostat = "HvacThermostatCell"
     
@@ -31,7 +31,6 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
     
     override func setupTableView() {
         register(nib: Nibs.channelCell, for: cellIdForChannel)
-        register(nib: Nibs.incrementalMeterCell, for: cellIdForIncremental)
         register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
         tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
         tableView.register(IconValueCell.self, forCellReuseIdentifier: cellIdForIconValue)
@@ -189,7 +188,10 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
              SUPLA_CHANNELFNC_HOTELCARDSENSOR,
              SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
-             980: // replace it later
+             SUPLA_CHANNELFNC_IC_GAS_METER,
+             SUPLA_CHANNELFNC_IC_WATER_METER,
+             SUPLA_CHANNELFNC_IC_HEAT_METER,
+             SuplaFunction.container.value:
             return cellIdForIconValue
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
@@ -210,10 +212,6 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
         // Old
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return cellIdForHomePlus
-        case SUPLA_CHANNELFNC_IC_GAS_METER,
-             SUPLA_CHANNELFNC_IC_WATER_METER,
-             SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return cellIdForIncremental
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return cellIdForDoubleIconValue
         default:

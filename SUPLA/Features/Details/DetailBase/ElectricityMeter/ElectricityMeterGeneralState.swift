@@ -18,11 +18,11 @@
 
 class ElectricityMeterGeneralState: ObservableObject, Equatable {
     @Published var online: Bool = false
-    @Published var totalForwardActiveEnergy: EnergyData? = nil
-    @Published var totalReverseActiveEnergy: EnergyData? = nil
+    @Published var totalForwardActiveEnergy: SummaryCardData? = nil
+    @Published var totalReverseActiveEnergy: SummaryCardData? = nil
     @Published var currentMonthDownloading: Bool = false
-    @Published var currentMonthForwardActiveEnergy: EnergyData? = nil
-    @Published var currentMonthReverseActiveEnergy: EnergyData? = nil
+    @Published var currentMonthForwardActiveEnergy: SummaryCardData? = nil
+    @Published var currentMonthReverseActiveEnergy: SummaryCardData? = nil
     @Published var phaseMeasurementTypes: [SuplaElectricityMeasurementType] = []
     @Published var phaseMeasurementValues: [PhaseWithMeasurements] = []
     @Published var vectorBalancedValues: [MeaurementTypeValue]? = nil

@@ -21,6 +21,7 @@ import RxSwift
 class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEvent>, DeviceStateHelperVMI {
     @Singleton<ElectricityMeterGeneralStateHandler> private var electricityMeterGeneralStateHandler
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
+    @Singleton<ImpulseCounterGeneralStateHandler> private var impulseCounterGeneralStateHandler
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     @Singleton<DownloadEventsManager> private var downloadEventsManager
@@ -28,6 +29,7 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
     @Singleton<GlobalSettings> private var settings
 
     var electricityState: ElectricityMeterGeneralState = .init()
+    var impulseCounterState: ImpulseCounterGeneralState = .init()
 
     override func defaultViewState() -> SwitchGeneralViewState { SwitchGeneralViewState() }
     
@@ -58,19 +60,24 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
         settings.showEmGeneralIntroduction = false
     }
     
-    private func handleChannel(_ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?, _ downloadingFinished: Bool) {
-        let showElectricityState = channel.channel.isElectricityMeter() || channel.hasElectricityMeter
+    private func handleChannel(_ channel: ChannelWithChildren, _ measurements: SummarizedMeasurements?, _ downloadingFinished: Bool) {
+        let showElectricityState = channel.isOrHasElectricityMeter
+        let showImpulseCounterState = channel.isOrHasImpulseCounter
 
         if (showElectricityState) {
-            electricityMeterGeneralStateHandler.updateState(self.electricityState, channel, measurements)
+            electricityMeterGeneralStateHandler.updateState(self.electricityState, channel, measurements as? ElectricityMeasurements)
+        }
+        if (showImpulseCounterState) {
+            impulseCounterGeneralStateHandler.updateState(self.impulseCounterState, channel, measurements as? ImpulseCounterMeasurements)
         }
         if (downloadingFinished) {
             electricityState.currentMonthDownloading = false
+            impulseCounterState.currentMonthDownloading = false
         }
         
         updateView() {
             if (!$0.initialDataLoadStarted) {
-                downloadChannelMeasurementsUseCase.invoke(remoteId: channel.remoteId, function: channel.function)
+                downloadChannelMeasurementsUseCase.invoke(channel)
             }
             
             return $0
@@ -78,6 +85,7 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
                 .changing(path: \.deviceState, to: self.createDeviceState(from: channel.channel))
                 .changing(path: \.showButtons, to: channel.channel.switchWithButtons())
                 .changing(path: \.showElectricityState, to: showElectricityState)
+                .changing(path: \.showImpulseCounterState, to: showImpulseCounterState)
                 .changing(path: \.initialDataLoadStarted, to: true)
         }
     }
@@ -101,16 +109,22 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
     }
 }
 
-private func toChannelWithMeasurements(_ channelWithChildren: ChannelWithChildren) -> Observable<(ChannelWithChildren, ElectricityMeasurements?)> {
+private func toChannelWithMeasurements(_ channelWithChildren: ChannelWithChildren) -> Observable<(ChannelWithChildren, SummarizedMeasurements?)> {
     @Singleton<LoadElectricityMeterMeasurementsUseCase> var loadElectricityMeterMeasurementsUseCase
+    @Singleton<LoadImpulseCounterMeasurementsUseCase> var loadImpulseCounterMeasurementsUseCase
     @Singleton<DateProvider> var dateProvider
     
-    return if (channelWithChildren.hasElectricityMeter) {
+    return if (channelWithChildren.isOrHasElectricityMeter) {
         loadElectricityMeterMeasurementsUseCase.invoke(
             remoteId: channelWithChildren.channel.remote_id,
             startDate: dateProvider.currentDate().monthStart()
         )
         .map { (channelWithChildren, $0) }
+    } else if(channelWithChildren.isOrHasImpulseCounter) {
+        loadImpulseCounterMeasurementsUseCase.invoke(
+            remoteId: channelWithChildren.channel.remote_id,
+            startDate: dateProvider.currentDate().monthStart()
+        ).map { (channelWithChildren, $0) }
     } else {
         Observable.just((channelWithChildren, nil))
     }
@@ -125,4 +139,5 @@ struct SwitchGeneralViewState: ViewState {
     var deviceState: DeviceStateViewState? = nil
     var showButtons: Bool = false
     var showElectricityState: Bool = false
+    var showImpulseCounterState: Bool = false
 }

@@ -24,21 +24,25 @@ class GeneralPurposeMeterMeasurementsProviderImpl: GeneralPurposeMeterMeasuremen
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
-    func handle(_ function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
     }
 
-    func provide(_ channel: SAChannel, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
+    func provide(
+        _ channelWithChildren: ChannelWithChildren,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<ChannelChartSets> {
         generalPurposeMeterItemRepository
             .findMeasurements(
-                remoteId: channel.remote_id,
-                serverId: channel.profile.server?.id,
+                remoteId: channelWithChildren.remoteId,
+                serverId: channelWithChildren.channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingGeneralPurposeMeter(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channel, .generalPurposeMeter, .chartGpm, spec.aggregation, $0)] }
-            .map { self.channelChartSets(channel, spec, $0) }
+            .map { [self.historyDataSet(channelWithChildren.channel, .generalPurposeMeter, .chartGpm, spec.aggregation, $0)] }
+            .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
     }
 
     func aggregatingGeneralPurposeMeter(

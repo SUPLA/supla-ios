@@ -24,28 +24,32 @@ final class GeneralPurposeMeasurementMeasurementsProviderImpl: GeneralPurposeMea
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
-    func handle(_ function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
 
-    func provide(_ channel: SAChannel, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
+    func provide(
+        _ channelWithChildren: ChannelWithChildren,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<ChannelChartSets> {
         let entryType: ChartEntryType = .generalPurposeMeasurement
         let color = colorProvider?(entryType) ?? TemperatureColors.standard
 
         return generalPurposeMeasurementItemRepository
             .findMeasurements(
-                remoteId: channel.remote_id,
-                serverId: channel.profile.server?.id,
+                remoteId: channelWithChildren.remoteId,
+                serverId: channelWithChildren.channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingGeneralPurposeMeasurement(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channel, .generalPurposeMeasurement, color, spec.aggregation, $0)] }
+            .map { [self.historyDataSet(channelWithChildren.channel, .generalPurposeMeasurement, color, spec.aggregation, $0)] }
             .map {
                 ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
+                    remoteId: channelWithChildren.channel.remote_id,
+                    function: channelWithChildren.channel.func,
+                    name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
                     aggregation: spec.aggregation,
                     dataSets: $0
                 )
