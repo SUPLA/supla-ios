@@ -358,6 +358,7 @@
 		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
 		A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */; };
 		A519CCBD2D38FBEF00F858A4 /* SwitchImpulseCounterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */; };
+		A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* 7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */; };
 		A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */; };
@@ -1871,6 +1872,7 @@
 		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVC.swift; sourceTree = "<group>"; };
 		A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchImpulseCounterDetailsView.swift; sourceTree = "<group>"; };
+		A519CCC02D393EE300F858A4 /* 7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatDetailVC.swift; sourceTree = "<group>"; };
@@ -5583,6 +5585,7 @@
 			isa = PBXGroup;
 			children = (
 				A5CE732B2B469C02003F882C /* arduino.html */,
+				A519CCC02D393EE300F858A4 /* 7.8.17.html */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -6650,6 +6653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CE732C2B469C02003F882C /* arduino.html in Resources */,
+				A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

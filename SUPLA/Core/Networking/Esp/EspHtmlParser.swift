@@ -18,7 +18,7 @@
 
 import Foundation
 
-fileprivate let STATE_PATTERN = "\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ ([A-Za-z0-9\\:]*)\\<\\/span\\>"
+fileprivate let STATE_PATTERN = "\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ ([A-Za-z0-9\\:]*)"
 
 @objc
 class EspHtmlParser: NSObject {
@@ -34,7 +34,6 @@ class EspHtmlParser: NSObject {
                 else { continue }
                 
                 let value = attributes["value"] as? String
-                let type = attributes["type"] as? String
                 
                 if let type = attributes["type"] as? String,
                    type.caseInsensitiveCompare("checkbox") == .orderedSame {

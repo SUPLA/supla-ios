@@ -21,14 +21,20 @@ import XCTest
 
 class EspHtmlParserTests: XCTestCase {
     
-    private lazy var fileData: Data! = {
+    private lazy var fileDataThermostat: Data! = {
         let testBundle = Bundle(for: type(of: self))
         let file = testBundle.url(forResource: "arduino", withExtension: "html")!
         return try! Data(contentsOf: file)
     }()
     
-    private lazy var document: TFHpple! = {
-        return TFHpple(htmlData: fileData)
+    private lazy var documentThermostat: TFHpple! = {
+        return TFHpple(htmlData: fileDataThermostat)
+    }()
+    
+    private lazy var fileDataDiy: Data! = {
+        let testBundle = Bundle(for: type(of: self))
+        let file = testBundle.url(forResource: "7.8.17", withExtension: "html")!
+        return try! Data(contentsOf: file)
     }()
     
     private lazy var parser: EspHtmlParser! = {
@@ -36,13 +42,13 @@ class EspHtmlParserTests: XCTestCase {
     }()
     
     override func tearDown() {
-        document = nil
+        documentThermostat = nil
         parser = nil
     }
     
     func test_shouldLoadInputs() {
         // when
-        let inputs = parser.findInputs(document: document)
+        let inputs = parser.findInputs(document: documentThermostat)
         
         // then
         XCTAssertEqual(inputs.keys.count, 37)
@@ -56,8 +62,8 @@ class EspHtmlParserTests: XCTestCase {
     
     func test_shouldLoadDeviceConfig() {
         // given
-        let html = String(decoding: fileData, as: UTF8.self)
-        let inputs = parser.findInputs(document: document)
+        let html = String(decoding: fileDataThermostat, as: UTF8.self)
+        let inputs = parser.findInputs(document: documentThermostat)
         
         // when
         let result = parser.prepareResult(document: html)
@@ -75,8 +81,7 @@ class EspHtmlParserTests: XCTestCase {
     
     func test_shouldLoadDeviceConfig_withNeedsCloudConfig() {
         // given
-        let html = String(decoding: fileData, as: UTF8.self)
-        var inputs = parser.findInputs(document: document)
+        var inputs = parser.findInputs(document: documentThermostat)
         inputs["no_visible_channels"] = "1"
         
         // when
@@ -84,5 +89,21 @@ class EspHtmlParserTests: XCTestCase {
         
         // then
         XCTAssertTrue(needsCloudConfig)
+    }
+    
+    func test_shouldLoadDiyDeviceParameters() {
+        // given
+        let html = String(decoding: fileDataDiy, as: UTF8.self)
+        
+        // when
+        let result = parser.prepareResult(document: html)
+        
+        // then
+        XCTAssertEqual(result.resultCode, .failed)
+        XCTAssertEqual(result.name, "YoDeCo - Sonoff MINIR4")
+        XCTAssertEqual(result.state, "Zainicjowany")
+        XCTAssertEqual(result.version, "SuplaDevice GG v7.8.17")
+        XCTAssertEqual(result.guid, "C85A6230A251518F61CFDE8704B6A7D8")
+        XCTAssertEqual(result.mac, "30:C9:22:D2:BE:E8")
     }
 }
