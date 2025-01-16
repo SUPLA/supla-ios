@@ -337,6 +337,7 @@
 "channel_caption_pump_switch" = "Siurblio perjungiklis";
 "channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
 "channel_caption_humidity" = "Drėgmė";
+"channel_caption_humidityandtemperature" = "Temperatūra ir drėgmė";
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
 
