@@ -51,7 +51,7 @@ extension LocalizedStringId {
         case .channelCaptionLightswitch: NSLocalizedString("Lighting switch", comment: "")
         case .channelCaptionThermometer: NSLocalizedString("Thermometer", comment: "")
         case .channelCaptionHumidity: Strings.General.Channel.captionHumidity
-        case .channelCaptionHumidityAndTemperature: NSLocalizedString("Humidity and temperature", comment: "")
+        case .channelCaptionHumidityAndTemperature: Strings.General.Channel.captionHumidityAndTemperature
         case .channelCaptionWindSensor: NSLocalizedString("Wind sensor", comment: "")
         case .channelCaptionPressureSensor: NSLocalizedString("Pressure sensor", comment: "")
         case .channelCaptionRainSensor: NSLocalizedString("Rain sensor", comment: "")

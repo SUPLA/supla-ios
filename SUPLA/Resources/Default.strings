@@ -79,6 +79,7 @@
 "channel_caption_heat_or_cold_source_switch" = "Heat or cold source switch";
 "channel_caption_humidity" = "Humidity";
 "channel_caption_container" = "Container";
+"channel_caption_humidityandtemperature" = "Temperature and Humidity";
 "channel_offline" = "Channel is offline";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
 

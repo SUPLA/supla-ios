@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Spínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Prepínač pre zdroj tepla alebo chladu";
 "channel_caption_humidity" = "Vlhkosť";
+"channel_caption_humidityandtemperature" = "Teplota a vlhkosť";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
 

@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Interrupteur de pompe";
 "channel_caption_heat_or_cold_source_switch" = "Interrupteur pour la source de chaleur ou de froid";
 "channel_caption_humidity" = "Humidité";
+"channel_caption_humidityandtemperature" = "Température et humidité";
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
