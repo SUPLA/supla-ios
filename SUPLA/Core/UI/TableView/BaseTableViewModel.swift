@@ -49,6 +49,7 @@ class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
         switch (channel.func) {
         case SUPLA_CHANNELFNC_THERMOMETER,
              SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+             SUPLA_CHANNELFNC_HUMIDITY,
              SUPLA_CHANNELFNC_ELECTRICITY_METER,
              SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
              SUPLA_CHANNELFNC_IC_GAS_METER,
