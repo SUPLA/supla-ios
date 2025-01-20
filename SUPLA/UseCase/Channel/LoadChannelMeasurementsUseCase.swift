@@ -23,31 +23,37 @@ protocol LoadChannelMeasurementsUseCase {
 }
 
 final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<TemperatureMeasurementsProvider> private var temperatureMeasurementsProvider
     @Singleton<TemperatureAndHumidityMeasurementsProvider> private var temperatureAndHumidityMeasurementsProvider
     @Singleton<GeneralPurposeMeterMeasurementsProvider> private var generalPurposeMeterMeasurementsProvider
     @Singleton<GeneralPurposeMeasurementMeasurementsProvider> private var generalPurposeMeasurementMeasurementsProvider
     @Singleton<ElectricityMeasurementsProvider> private var electricityMeasurementsProvider
+    @Singleton<HumidityMeasurementsProvider> private var humidityMeasurementsProvider
+    @Singleton<ImpulseCounterMeasurementsProvider> private var impulseCounterMeasurementsProvider
     
     private lazy var providers: [ChannelMeasurementsProvider] = [
         temperatureMeasurementsProvider,
         temperatureAndHumidityMeasurementsProvider,
         generalPurposeMeterMeasurementsProvider,
         generalPurposeMeasurementMeasurementsProvider,
-        electricityMeasurementsProvider
+        electricityMeasurementsProvider,
+        humidityMeasurementsProvider,
+        impulseCounterMeasurementsProvider
     ]
 
     func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<ChannelChartSets> {
-        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { channel in
+        readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+            .flatMapFirst { channelWithChildren in
                 for provider in self.providers {
-                    if provider.handle(channel.func) {
-                        return provider.provide(channel, spec)
+                    if provider.handle(channelWithChildren) {
+                        return provider.provide(channelWithChildren, spec)
                     }
                 }
                 
-                return Observable.error(GeneralError.illegalArgument(message: "Channel function not supported (\(channel.func)"))
+                return Observable.error(GeneralError.illegalArgument(
+                    message: "Channel function not supported (\(channelWithChildren.function)"
+                ))
             }
     }
 }

@@ -334,6 +334,7 @@
 "channel_caption_general_purpose_measurment" = "Kanál měření";
 "channel_caption_general_purpose_meter" = "Počítací kanál";
 "channel_caption_humidity" = "Vlhkost";
+"channel_caption_humidityandtemperature" = "Teplota a vlhkost";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie (%d - %@): %d%%";
 
@@ -563,3 +564,7 @@
 "details_em_last_month_balancing" = "Bilancování aktuálního měsíce";
 "channel_caption_pump_switch" = "Přepínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Přepínač pro zdroj tepla nebo chladu";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stav měřiče";
+"details_em_current_month_consumption" = "Spotřeba v tomto měsíci";

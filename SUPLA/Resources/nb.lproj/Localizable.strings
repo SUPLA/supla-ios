@@ -336,6 +336,7 @@
 "channel_caption_pump_switch" = "Pumpebryter";
 "channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
 "channel_caption_humidity" = "Fuktighet";
+"channel_caption_humidityandtemperature" = "Temperatur og fuktighet";
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå (%d - %@): %d%%";
 
@@ -563,3 +564,7 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(inneværende måned)";
 "details_em_last_month_balancing" = "Balansering av inneværende måned";
+
+/* Impulse counter */
+"details_em_meter_value" = "Meterlesing";
+"details_em_current_month_consumption" = "Forbruk i gjeldende måned";

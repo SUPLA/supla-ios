@@ -51,7 +51,7 @@ extension LocalizedStringId {
         case .channelCaptionLightswitch: NSLocalizedString("Lighting switch", comment: "")
         case .channelCaptionThermometer: NSLocalizedString("Thermometer", comment: "")
         case .channelCaptionHumidity: Strings.General.Channel.captionHumidity
-        case .channelCaptionHumidityAndTemperature: NSLocalizedString("Humidity and temperature", comment: "")
+        case .channelCaptionHumidityAndTemperature: Strings.General.Channel.captionHumidityAndTemperature
         case .channelCaptionWindSensor: NSLocalizedString("Wind sensor", comment: "")
         case .channelCaptionPressureSensor: NSLocalizedString("Pressure sensor", comment: "")
         case .channelCaptionRainSensor: NSLocalizedString("Rain sensor", comment: "")
@@ -84,6 +84,7 @@ extension LocalizedStringId {
         case .channelCaptionRollerGarageDoor: Strings.General.Channel.captionGarageDoor
         case .channelCaptionPumpSwitch: Strings.General.Channel.captionPumpSwitch
         case .channelCaptionHeatOrColdSourceSwitch: Strings.General.Channel.captionHeatOrCouldSourceSwitch
+        case .channelCaptionContainer: Strings.General.Channel.captionContainer
         case .channelCaptionUnknown: NSLocalizedString("Not supported function", comment: "")
 
         case .channelBatteryLevel: Strings.General.Channel.batteryLevel

@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Διακόπτης αντλίας";
 "channel_caption_heat_or_cold_source_switch" = "Διακόπτης πηγής θερμότητας ή κρύου";
 "channel_caption_humidity" = "Υγρασία";
+"channel_caption_humidityandtemperature" = "Θερμοκρασία και υγρασία";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
 
@@ -563,3 +564,7 @@
 "details_em_total_suffix" = "(κατάσταση μετρητή)";
 "details_em_current_month_suffix" = "(τρέχων μήνας)";
 "details_em_last_month_balancing" = "Εξισορρόπηση του τρέχοντος μήνα";
+
+/* Impulse counter */
+"details_em_meter_value" = "Κατάσταση του μετρητή";
+"details_em_current_month_consumption" = "Κατανάλωση τον τρέχοντα μήνα";

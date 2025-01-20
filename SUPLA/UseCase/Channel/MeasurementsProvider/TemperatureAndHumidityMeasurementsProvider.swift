@@ -24,29 +24,33 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
-    func handle(_ function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
 
-    func provide(_ channel: SAChannel, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
+    func provide(
+        _ channelWithChildren: ChannelWithChildren,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<ChannelChartSets> {
         tempHumidityMeasurementItemRepository
             .findMeasurements(
-                remoteId: channel.remote_id,
-                serverId: channel.profile.server?.id,
+                remoteId: channelWithChildren.remoteId,
+                serverId: channelWithChildren.channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { measurements in
                 [
                     self.historyDataSet(
-                        channel,
+                        channelWithChildren.channel,
                         .temperature,
                         colorProvider?(.temperature) ?? TemperatureColors.standard,
                         spec.aggregation,
                         self.aggregatingTemperature(measurements, spec.aggregation)
                     ),
                     self.historyDataSet(
-                        channel,
+                        channelWithChildren.channel,
                         .humidity,
                         colorProvider?(.humidity) ?? HumidityColors.standard,
                         spec.aggregation,
@@ -54,6 +58,6 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
                     )
                 ]
             }
-            .map { self.channelChartSets(channel, spec, $0) }
+            .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
     }
 }

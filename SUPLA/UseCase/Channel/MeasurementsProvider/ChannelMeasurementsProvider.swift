@@ -23,17 +23,17 @@ private let MAX_ALLOWED_DISTANCE_MUTLIPLIER = 1.5
 private let AGGREGATING_MINUTES_DISTANCE_SEC = 600 * MAX_ALLOWED_DISTANCE_MUTLIPLIER
     
 protocol ChannelMeasurementsProvider {
-    func handle(_ function: Int32) -> Bool
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool
     func provide(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
     ) -> Observable<ChannelChartSets>
 }
 
 extension ChannelMeasurementsProvider {
-    func provide(_ channel: SAChannel, _ spec: ChartDataSpec) -> Observable<ChannelChartSets> {
-        provide(channel, spec, nil)
+    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+        provide(channelWithChildren, spec, nil)
     }
     
     func historyDataSet(
@@ -59,19 +59,20 @@ extension ChannelMeasurementsProvider {
         return HistoryDataSet(
             type: type,
             label: singleLabel(icon, value, color),
-            valueFormatter: getValueFormatter(type, config: channel.config),
+            valueFormatter: getValueFormatter(type, channel),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )
     }
     
-    func getValueFormatter(_ type: ChartEntryType, config: SAChannelConfig? = nil) -> ChannelValueFormatter {
+    func getValueFormatter(_ type: ChartEntryType, _ channel: SAChannel) -> ChannelValueFormatter {
         switch (type) {
-        case .humidity: HumidityValueFormatter()
+        case .humidity, .humidityOnly: HumidityValueFormatter()
         case .temperature: ThermometerValueFormatter()
         case .generalPurposeMeasurement, .generalPurposeMeter:
-            GpmValueFormatter(config: config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
+            GpmValueFormatter(config: channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
         case .electricity: ChartAxisElectricityMeterValueFormatter()
+        case .impulseCounter: ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
         }
     }
     

@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Перемикач насоса";
 "channel_caption_heat_or_cold_source_switch" = "Перемикач джерела тепла або холоду";
 "channel_caption_humidity" = "Вологість";
+"channel_caption_humidityandtemperature" = "Температура і вологість";
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї (%d - %@): %d%%";
 
@@ -564,3 +565,7 @@
 "details_em_total_suffix" = "(стан лічильника)";
 "details_em_current_month_suffix" = "(поточний місяць)";
 "details_em_last_month_balancing" = "Балансування поточного місяця";
+
+/* Impulse counter */
+"details_em_meter_value" = "Стан лічильника";
+"details_em_current_month_consumption" = "Споживання за поточний місяць";

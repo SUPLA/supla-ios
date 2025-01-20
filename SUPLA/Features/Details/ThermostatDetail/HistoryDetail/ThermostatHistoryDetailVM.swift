@@ -21,7 +21,6 @@ import RxSwift
 final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
     
     @Singleton<DownloadEventsManager> private var downloadEventsManager
-    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
     @Singleton<LoadChannelWithChildrenMeasurementsUseCase> private var loadChannelWithChildrenMeasurementsUseCase
     @Singleton<LoadChannelWithChildrenMeasurementsDateRangeUseCase> private var loadChannelWithChildrenMeasurementsDateRangeUseCase
@@ -37,22 +36,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, $0), $1) }
     }
     
-    override func triggerDataLoad(remoteId: Int32) {
-        Observable.zip(
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
-            profileRepository.getActiveProfile().map {
-                @Singleton<UserStateHolder> var userStateHolder
-                return userStateHolder.getDefaultChartState(profileId: $0.id, remoteId: remoteId)
-            }
-        ) { ($0, $1) }
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] in self?.handleData(channel: $0.0, chartState: $0.1) }
-            )
-            .disposed(by: self)
-    }
-    
-    private func handleData(channel: ChannelWithChildren, chartState: DefaultChartState) {
+    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)
@@ -101,14 +85,14 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         }
         updateView { $0.changing(path: \.initialLoadStarted, to: true) }
         
-        let mainThermometer = channel.children.first { $0.relationType == .mainThermometer }?.channel
-        let auxThermometer = channel.children.first { $0.relationType.isAuxThermometer() }?.channel
+        let mainThermometer = channel.children.first { $0.relationType == .mainThermometer }
+        let auxThermometer = channel.children.first { $0.relationType.isAuxThermometer() }
         
         if let main = mainThermometer {
-            downloadChannelMeasurementsUseCase.invoke(remoteId: main.remote_id, function: main.func)
+            downloadChannelMeasurementsUseCase.invoke(main.withChildren)
         }
         if let aux = auxThermometer {
-            downloadChannelMeasurementsUseCase.invoke(remoteId: aux.remote_id, function: aux.func)
+            downloadChannelMeasurementsUseCase.invoke(aux.withChildren)
         }
     }
     

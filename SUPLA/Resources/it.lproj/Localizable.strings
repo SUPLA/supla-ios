@@ -353,6 +353,7 @@
 "channel_caption_pump_switch" = "Commutatore della pompa";
 "channel_caption_heat_or_cold_source_switch" = "Commutatore della fonte di calore o di freddo";
 "channel_caption_humidity" = "Umidità";
+"channel_caption_humidityandtemperature" = "Temperatura e umidità";
 "channel_offline" = "Il canale è offline";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
@@ -598,3 +599,7 @@
 "details_em_hour_marker_title" = "%@";
 "em_phase_to_phase_balance" = "Equilibrio interfase vettoriale";
 "em_chart_all_phases" = "Fase 1+2+3";
+
+/* Impulse counter */
+"details_em_meter_value" = "Lettura del contatore";
+"details_em_current_month_consumption" = "Consumo del mese corrente";

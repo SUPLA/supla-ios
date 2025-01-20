@@ -41,6 +41,7 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
     @Singleton<SwitchWithElectricityMeterValueProvider> private var switchWithElectricityMeterValueProvider
     @Singleton<ImpulseCounterValueProvider> private var impulseCounterValueProvider
     @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
+    @Singleton<ContainerValueProvider> private var containerValueProvider
 
     private lazy var providers: [ChannelValueProvider] = [
         depthValueProvider,
@@ -56,7 +57,8 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
         electricityMeterValueProvider,
         switchWithElectricityMeterValueProvider,
         impulseCounterValueProvider,
-        switchWithImpulseCounterValueProvider
+        switchWithImpulseCounterValueProvider,
+        containerValueProvider
     ]
 
     func invoke<T>(_ channel: SAChannel, valueType: ValueType = .first) -> T {

@@ -4077,6 +4077,44 @@
           },
           {
             "kind": "Var",
+            "name": "channelCaptionContainer",
+            "printedName": "channelCaptionContainer",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO23channelCaptionContaineryA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO23channelCaptionContaineryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 62
+          },
+          {
+            "kind": "Var",
             "name": "channelBatteryLevel",
             "printedName": "channelBatteryLevel",
             "children": [
@@ -4111,7 +4149,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 62
+            "fixedbinaryorder": 63
           },
           {
             "kind": "Var",
@@ -4149,7 +4187,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 63
+            "fixedbinaryorder": 64
           },
           {
             "kind": "Var",
@@ -4187,7 +4225,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 64
+            "fixedbinaryorder": 65
           },
           {
             "kind": "Var",
@@ -4225,7 +4263,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 65
+            "fixedbinaryorder": 66
           },
           {
             "kind": "Var",
@@ -4263,7 +4301,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 66
+            "fixedbinaryorder": 67
           },
           {
             "kind": "Var",
@@ -4301,7 +4339,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 67
+            "fixedbinaryorder": 68
           },
           {
             "kind": "Var",
@@ -4339,7 +4377,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 68
+            "fixedbinaryorder": 69
           },
           {
             "kind": "Var",
@@ -7183,6 +7221,44 @@
           },
           {
             "kind": "Var",
+            "name": "container",
+            "printedName": "container",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO9containeryA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO9containeryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 61
+          },
+          {
+            "kind": "Var",
             "name": "name",
             "printedName": "name",
             "children": [
@@ -8908,6 +8984,762 @@
                     "name": "__ChannelRelationType",
                     "printedName": "SharedCore.__ChannelRelationType",
                     "usr": "c:objc(cs)SharedCoreChannelRelationType"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s21_ObjectiveCBridgeableP",
+            "mangledName": "$ss21_ObjectiveCBridgeableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ContainerFlag",
+        "printedName": "ContainerFlag",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "warningLevel",
+            "printedName": "warningLevel",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.ContainerFlag.Type) -> SharedCore.ContainerFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.ContainerFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ContainerFlag",
+                        "printedName": "SharedCore.ContainerFlag",
+                        "usr": "s:10SharedCore13ContainerFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13ContainerFlagO12warningLevelyA2CmF",
+            "mangledName": "$s10SharedCore13ContainerFlagO12warningLevelyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "alarmLevel",
+            "printedName": "alarmLevel",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.ContainerFlag.Type) -> SharedCore.ContainerFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.ContainerFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ContainerFlag",
+                        "printedName": "SharedCore.ContainerFlag",
+                        "usr": "s:10SharedCore13ContainerFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13ContainerFlagO10alarmLevelyA2CmF",
+            "mangledName": "$s10SharedCore13ContainerFlagO10alarmLevelyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "invalidSensorState",
+            "printedName": "invalidSensorState",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.ContainerFlag.Type) -> SharedCore.ContainerFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.ContainerFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ContainerFlag",
+                        "printedName": "SharedCore.ContainerFlag",
+                        "usr": "s:10SharedCore13ContainerFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13ContainerFlagO18invalidSensorStateyA2CmF",
+            "mangledName": "$s10SharedCore13ContainerFlagO18invalidSensorStateyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Var",
+            "name": "soundAlarmOn",
+            "printedName": "soundAlarmOn",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.ContainerFlag.Type) -> SharedCore.ContainerFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.ContainerFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ContainerFlag",
+                        "printedName": "SharedCore.ContainerFlag",
+                        "usr": "s:10SharedCore13ContainerFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13ContainerFlagO12soundAlarmOnyA2CmF",
+            "mangledName": "$s10SharedCore13ContainerFlagO12soundAlarmOnyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 3
+          },
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore13ContainerFlagO4nameSSvp",
+            "mangledName": "$s10SharedCore13ContainerFlagO4nameSSvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore13ContainerFlagO4nameSSvg",
+                "mangledName": "$s10SharedCore13ContainerFlagO4nameSSvg",
+                "moduleName": "SharedCore",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "ordinal",
+            "printedName": "ordinal",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore13ContainerFlagO7ordinals5Int32Vvp",
+            "mangledName": "$s10SharedCore13ContainerFlagO7ordinals5Int32Vvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore13ContainerFlagO7ordinals5Int32Vvg",
+                "mangledName": "$s10SharedCore13ContainerFlagO7ordinals5Int32Vvg",
+                "moduleName": "SharedCore",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "value",
+            "printedName": "value",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore13ContainerFlagO5values5Int32Vvp",
+            "mangledName": "$s10SharedCore13ContainerFlagO5values5Int32Vvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore13ContainerFlagO5values5Int32Vvg",
+                "mangledName": "$s10SharedCore13ContainerFlagO5values5Int32Vvg",
+                "moduleName": "SharedCore",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "companion",
+            "printedName": "companion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Companion",
+                "printedName": "SharedCore.__ContainerFlag.Companion",
+                "usr": "c:objc(cs)SharedCoreContainerFlagCompanion"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore13ContainerFlagO9companionSo0abcD9CompanionCvpZ",
+            "mangledName": "$s10SharedCore13ContainerFlagO9companionSo0abcD9CompanionCvpZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Companion",
+                    "printedName": "SharedCore.__ContainerFlag.Companion",
+                    "usr": "c:objc(cs)SharedCoreContainerFlagCompanion"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore13ContainerFlagO9companionSo0abcD9CompanionCvgZ",
+                "mangledName": "$s10SharedCore13ContainerFlagO9companionSo0abcD9CompanionCvgZ",
+                "moduleName": "SharedCore",
+                "static": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "_forceBridgeFromObjectiveC",
+            "printedName": "_forceBridgeFromObjectiveC(_:result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "__ContainerFlag",
+                "printedName": "SharedCore.__ContainerFlag",
+                "usr": "c:objc(cs)SharedCoreContainerFlag"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.ContainerFlag?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO26_forceBridgeFromObjectiveC_6resultySo0abcD0C_ACSgztFZ",
+            "mangledName": "$s10SharedCore13ContainerFlagO26_forceBridgeFromObjectiveC_6resultySo0abcD0C_ACSgztFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_conditionallyBridgeFromObjectiveC",
+            "printedName": "_conditionallyBridgeFromObjectiveC(_:result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "__ContainerFlag",
+                "printedName": "SharedCore.__ContainerFlag",
+                "usr": "c:objc(cs)SharedCoreContainerFlag"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.ContainerFlag?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO34_conditionallyBridgeFromObjectiveC_6resultSbSo0abcD0C_ACSgztFZ",
+            "mangledName": "$s10SharedCore13ContainerFlagO34_conditionallyBridgeFromObjectiveC_6resultSbSo0abcD0C_ACSgztFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_unconditionallyBridgeFromObjectiveC",
+            "printedName": "_unconditionallyBridgeFromObjectiveC(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ContainerFlag",
+                "printedName": "SharedCore.ContainerFlag",
+                "usr": "s:10SharedCore13ContainerFlagO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.__ContainerFlag?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "__ContainerFlag",
+                    "printedName": "SharedCore.__ContainerFlag",
+                    "usr": "c:objc(cs)SharedCoreContainerFlag"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO36_unconditionallyBridgeFromObjectiveCyACSo0abcD0CSgFZ",
+            "mangledName": "$s10SharedCore13ContainerFlagO36_unconditionallyBridgeFromObjectiveCyACSo0abcD0CSgFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_bridgeToObjectiveC",
+            "printedName": "_bridgeToObjectiveC()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__ContainerFlag",
+                "printedName": "SharedCore.__ContainerFlag",
+                "usr": "c:objc(cs)SharedCoreContainerFlag"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO19_bridgeToObjectiveCSo0abcD0CyF",
+            "mangledName": "$s10SharedCore13ContainerFlagO19_bridgeToObjectiveCSo0abcD0CyF",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ContainerFlag",
+                "printedName": "SharedCore.ContainerFlag",
+                "usr": "s:10SharedCore13ContainerFlagO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ContainerFlag",
+                "printedName": "SharedCore.ContainerFlag",
+                "usr": "s:10SharedCore13ContainerFlagO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s10SharedCore13ContainerFlagO2eeoiySbAC_ACtFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore13ContainerFlagO9hashValueSivp",
+            "mangledName": "$s10SharedCore13ContainerFlagO9hashValueSivp",
+            "moduleName": "SharedCore",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore13ContainerFlagO9hashValueSivg",
+                "mangledName": "$s10SharedCore13ContainerFlagO9hashValueSivg",
+                "moduleName": "SharedCore",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s10SharedCore13ContainerFlagO4hash4intoys6HasherVz_tF",
+            "moduleName": "SharedCore",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "allCases",
+            "printedName": "allCases",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[SharedCore.ContainerFlag]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ContainerFlag",
+                    "printedName": "SharedCore.ContainerFlag",
+                    "usr": "s:10SharedCore13ContainerFlagO"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore13ContainerFlagO8allCasesSayACGvpZ",
+            "mangledName": "$s10SharedCore13ContainerFlagO8allCasesSayACGvpZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[SharedCore.ContainerFlag]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ContainerFlag",
+                        "printedName": "SharedCore.ContainerFlag",
+                        "usr": "s:10SharedCore13ContainerFlagO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore13ContainerFlagO8allCasesSayACGvgZ",
+                "mangledName": "$s10SharedCore13ContainerFlagO8allCasesSayACGvgZ",
+                "moduleName": "SharedCore",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "toKotlinEnum",
+            "printedName": "toKotlinEnum()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__ContainerFlag",
+                "printedName": "SharedCore.__ContainerFlag",
+                "usr": "c:objc(cs)SharedCoreContainerFlag"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore13ContainerFlagO12toKotlinEnumSo0abcD0CyF",
+            "mangledName": "$s10SharedCore13ContainerFlagO12toKotlinEnumSo0abcD0CyF",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:10SharedCore13ContainerFlagO",
+        "mangledName": "$s10SharedCore13ContainerFlagO",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl",
+          "Frozen"
+        ],
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CaseIterable",
+            "printedName": "CaseIterable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AllCases",
+                "printedName": "AllCases",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[SharedCore.ContainerFlag]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ContainerFlag",
+                        "printedName": "SharedCore.ContainerFlag",
+                        "usr": "s:10SharedCore13ContainerFlagO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12CaseIterableP",
+            "mangledName": "$ss12CaseIterableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObjectiveCBridgeable",
+            "printedName": "_ObjectiveCBridgeable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "_ObjectiveCType",
+                "printedName": "_ObjectiveCType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "__ContainerFlag",
+                    "printedName": "SharedCore.__ContainerFlag",
+                    "usr": "c:objc(cs)SharedCoreContainerFlag"
                   }
                 ]
               }
@@ -13638,6 +14470,116 @@
         "inheritsConvenienceInitializers": true,
         "superclassNames": [
           "SharedCore.KotlinEnum<SharedCore.__ChannelRelationType>",
+          "SharedCore.KotlinBase",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "__ContainerFlag",
+        "printedName": "__ContainerFlag",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "toSwiftEnum",
+            "printedName": "toSwiftEnum()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ContainerFlag",
+                "printedName": "SharedCore.ContainerFlag",
+                "usr": "s:10SharedCore13ContainerFlagO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:So23SharedCoreContainerFlagC0aB0E11toSwiftEnumAC0cD0OyF",
+            "mangledName": "$sSo23SharedCoreContainerFlagC0aB0E11toSwiftEnumAC0cD0OyF",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)SharedCoreContainerFlag",
+        "moduleName": "SharedCore",
+        "objc_name": "SharedCoreContainerFlag",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)SharedCoreKotlinEnum",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "SharedCore.KotlinEnum<SharedCore.__ContainerFlag>",
           "SharedCore.KotlinBase",
           "ObjectiveC.NSObject"
         ],

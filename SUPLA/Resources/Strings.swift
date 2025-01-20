@@ -333,6 +333,8 @@ struct Strings {
             static let captionPumpSwitch = "channel_caption_pump_switch".toLocalized()
             static let captionHeatOrCouldSourceSwitch = "channel_caption_heat_or_cold_source_switch".toLocalized()
             static let captionHumidity = "channel_caption_humidity".toLocalized()
+            static let captionContainer = "channel_caption_container".toLocalized()
+            static let captionHumidityAndTemperature = "channel_caption_humidityandtemperature".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
         }
@@ -474,6 +476,11 @@ struct Strings {
         static let infoRange = "details_em_info_range".toLocalized()
         static let infoDataSetSinglePhase = "details_em_info_data_set_single_phase".toLocalized()
         static let infoDataSetMultiplePhase = "details_em_info_data_set_multiple_phase".toLocalized()
+    }
+    
+    struct ImpulseCounter {
+        static let meterValue = "details_em_meter_value".toLocalized()
+        static let currentMonthConsumption = "details_em_current_month_consumption".toLocalized()
     }
     
     struct CounterPhoto {

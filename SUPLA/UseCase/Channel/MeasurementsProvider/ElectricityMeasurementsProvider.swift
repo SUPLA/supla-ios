@@ -25,20 +25,20 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
     
-    func handle(_ function: Int32) -> Bool {
-        switch (function) {
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER: true
-        default: false
-        }
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.isOrHasElectricityMeter
     }
     
-    func provide(_ channel: SAChannel, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
-        electricityMeasurementItemRepository
+    func provide(
+        _ channelWithChildren: ChannelWithChildren,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<ChannelChartSets> {
+        let channel = channelWithChildren.channel
+        
+        return electricityMeasurementItemRepository
             .findMeasurements(
-                remoteId: channel.remote_id,
+                remoteId: channelWithChildren.remoteId,
                 serverId: channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
@@ -126,7 +126,7 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
         HistoryDataSet(
             type: .electricity,
             label: label,
-            valueFormatter: getValueFormatter(.electricity),
+            valueFormatter: getValueFormatter(.electricity, channel),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )
@@ -305,29 +305,6 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
             date: date,
             value: value
         )
-    }
-    
-    private struct AggregationResult {
-        let list: [AggregatedEntity]
-        let sum: [Double]
-        
-        init(list: [AggregatedEntity], sum: [Double]) {
-            self.list = list
-            self.sum = sum
-        }
-        
-        private var index = 0
-        
-        mutating func nextSum() -> Double {
-            let result = if (index < sum.count) {
-                sum[index]
-            } else {
-                0.0
-            }
-            index += 1
-            
-            return result
-        }
     }
 }
 

@@ -313,6 +313,8 @@
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
 "channel_caption_humidity" = "Feuchtigkeitssensor";
+"channel_caption_container" = "Behälter";
+"channel_caption_humidityandtemperature" = "Temperatur- und Feuchtigkeitssensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 
@@ -567,6 +569,10 @@
 "details_em_voltage_phase_angle_13" = "Spannungs-Phasewinkel U13";
 "details_em_voltage_phase_sequence" = "Spannungs-Phasenfolge";
 "details_em_current_phase_sequence" = "Stromphasenfolge";
+
+/* Impulse counter */
+"details_em_meter_value" = "Zählerstand";
+"details_em_current_month_consumption" = "Verbrauch im laufenden Monat";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Bilder von Zähler";

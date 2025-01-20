@@ -51,7 +51,8 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         ElectricityMeterValueStringProvider(),
         SwitchWithElectricityMeterValueStringProvider(),
         ImpulseCounterValueStringProvider(),
-        SwitchWithImpulseCounterValueStringProvider()
+        SwitchWithImpulseCounterValueStringProvider(),
+        ContainerValueStringProvider()
     ]
     
     func invoke(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String {

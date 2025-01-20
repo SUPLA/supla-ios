@@ -33,7 +33,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
     private let formatter = ListElectricityMeterValueFormatter(useNoValue: false)
     
     func updateState(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
-        if (!channel.channel.isElectricityMeter() && !channel.hasElectricityMeter) {
+        if (!channel.channel.isElectricityMeter() && !channel.isOrHasElectricityMeter) {
             return
         }
         
@@ -64,7 +64,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         let value: Double = getChannelValueUseCase.invoke(channel.channel)
         
         state.online = channel.channel.isOnline()
-        state.totalForwardActiveEnergy = EnergyData(energy: formatter.format(value))
+        state.totalForwardActiveEnergy = SummaryCardData(energy: formatter.format(value))
         state.totalReverseActiveEnergy = nil
         state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter)
         state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter)

@@ -23,21 +23,24 @@ protocol LoadChannelMeasurementsDateRangeUseCase {
 }
 
 final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurementsDateRangeUseCase {
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
 
     private let providers: [ChannelDataRangeProvider] = [
         ThermometerDataRangeProvider(),
-        HumidityAndTemperatureDataRangeProvide(),
-        GeneralPurposeMeterDataRangeProvide(),
-        GeneralPurposeMeasurementDataRangeProvide(),
-        ElectricityMeterDataRangeProvide()
+        HumidityAndTemperatureDataRangeProvider(),
+        GeneralPurposeMeterDataRangeProvider(),
+        GeneralPurposeMeasurementDataRangeProvider(),
+        ElectricityMeterDataRangeProvider(),
+        HumidityMeasurementsDataRangeProvider(),
+        ImpulseCounterDataRangeProvider()
     ]
 
     func invoke(remoteId: Int32) -> Observable<DaysRange?> {
-        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { channel in
+        readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+            .flatMapFirst { channelWithChildren in
+                let channel = channelWithChildren.channel
                 for provider in self.providers {
-                    if (provider.handle(function: channel.func)) {
+                    if (provider.handle(channelWithChildren)) {
                         return Observable.zip(
                             provider.minTime(remoteId: channel.remote_id, serverId: channel.profile.server?.id),
                             provider.maxTime(remoteId: channel.remote_id, serverId: channel.profile.server?.id)
@@ -63,7 +66,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
 }
 
 protocol ChannelDataRangeProvider {
-    func handle(function: Int32) -> Bool
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
     func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
 }
@@ -71,8 +74,8 @@ protocol ChannelDataRangeProvider {
 final class ThermometerDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
 
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_THERMOMETER
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_THERMOMETER
     }
 
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
@@ -84,11 +87,11 @@ final class ThermometerDataRangeProvider: ChannelDataRangeProvider {
     }
 }
 
-final class HumidityAndTemperatureDataRangeProvide: ChannelDataRangeProvider {
+final class HumidityAndTemperatureDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
 
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
 
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
@@ -100,11 +103,11 @@ final class HumidityAndTemperatureDataRangeProvide: ChannelDataRangeProvider {
     }
 }
 
-final class GeneralPurposeMeterDataRangeProvide: ChannelDataRangeProvider {
+final class GeneralPurposeMeterDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
 
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
     }
 
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
@@ -116,11 +119,11 @@ final class GeneralPurposeMeterDataRangeProvide: ChannelDataRangeProvider {
     }
 }
 
-final class GeneralPurposeMeasurementDataRangeProvide: ChannelDataRangeProvider {
+final class GeneralPurposeMeasurementDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
 
-    func handle(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
 
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
@@ -132,17 +135,11 @@ final class GeneralPurposeMeasurementDataRangeProvide: ChannelDataRangeProvider 
     }
 }
 
-final class ElectricityMeterDataRangeProvide: ChannelDataRangeProvider {
+final class ElectricityMeterDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
 
-    func handle(function: Int32) -> Bool {
-        switch (function) {
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER: true
-        default: false
-        }
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.isOrHasElectricityMeter
     }
 
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
@@ -151,5 +148,37 @@ final class ElectricityMeterDataRangeProvide: ChannelDataRangeProvider {
 
     func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         electricityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class HumidityMeasurementsDataRangeProvider: ChannelDataRangeProvider {
+    @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
+
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_HUMIDITY
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        humidityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        humidityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class ImpulseCounterDataRangeProvider: ChannelDataRangeProvider {
+    @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
+
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.isOrHasImpulseCounter
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        impulseCounterMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        impulseCounterMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }

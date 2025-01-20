@@ -26,6 +26,10 @@ enum ChannelState: Equatable {
     case closed
     case off
     case opaque
+    // container
+    case empty
+    case full
+    case half
     // others
     case notUsed
     indirect case complex([ChannelState])

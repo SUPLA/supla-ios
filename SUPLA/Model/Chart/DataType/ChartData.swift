@@ -52,7 +52,6 @@ class CombinedChartData: ChartData {
 }
 
 class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
-    
     var divider: Double { 1.0 }
     
     let dateRange: DaysRange?
@@ -170,11 +169,19 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
             if (maxValue == minValue) {
                 if (maxValue == 0.0) {
                     return 2.0
+                } else if (maxValue > 0) {
+                    return maxValue + (maxValue * CHART_TOP_MARGIN)
                 } else {
-                    return maxValue - (maxValue * CHART_TOP_MARGIN)
+                    let result = maxValue - (maxValue * CHART_TOP_MARGIN)
+                    return result < 0 ? 0 : result
                 }
+            } else if (maxValue == 0) {
+                return maxValue + (maxValue - minValue) * CHART_TOP_MARGIN
+            } else if (maxValue > 0) {
+                return maxValue + (maxValue + (minValue > 0 ? 0 : abs(minValue))) * CHART_TOP_MARGIN
             } else {
-                return (maxValue * (CHART_TOP_MARGIN + 1)) - (minValue * CHART_TOP_MARGIN)
+                let result = maxValue + abs(minValue) * CHART_TOP_MARGIN
+                return result < 0 ? 0 : result
             }
         }
         
@@ -235,7 +242,7 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
 }
 
 private class DefaultValueFormatter: ChannelValueFormatter {
-    func handle(function: Int) -> Bool { true }
+    func handle(function: Int32) -> Bool { true }
     
     func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double {

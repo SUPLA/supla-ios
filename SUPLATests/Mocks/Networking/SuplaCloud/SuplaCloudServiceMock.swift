@@ -124,4 +124,17 @@ final class SuplaCloudServiceMock: SuplaCloudService {
         getImpulseCounterPhotoMock.parameters.append(remoteId)
         return getImpulseCounterPhotoMock.returns.next()
     }
+    
+    var getHumidityMeasurementsMock: FunctionMock<(Int32, TimeInterval), Observable<[SUPLA.SuplaCloudClient.HumidityMeasurement]>> = .init()
+    func getHumidityMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.HumidityMeasurement]> {
+        getHumidityMeasurementsMock.handle((remoteId, afterTimestamp))
+    }
+    
+    func getImpulseCounterMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ImpulseCounterMeasurement]> {
+        .empty()
+    }
+    
+    func getLastImpulseCounterMeasurements(remoteId: Int32, beforeTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ImpulseCounterMeasurement]> {
+        .empty()
+    }
 }

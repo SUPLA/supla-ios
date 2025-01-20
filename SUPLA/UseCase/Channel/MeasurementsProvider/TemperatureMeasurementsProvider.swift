@@ -24,23 +24,23 @@ final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
 
-    func handle(_ function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_THERMOMETER
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_THERMOMETER
     }
 
-    func provide(_ channel: SAChannel, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
+    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
         let entryType: ChartEntryType = .temperature
         let color = colorProvider?(entryType) ?? TemperatureColors.standard
 
         return temperatureMeasurementItemRepository
             .findMeasurements(
-                remoteId: channel.remote_id,
-                serverId: channel.profile.server?.id,
+                remoteId: channelWithChildren.remoteId,
+                serverId: channelWithChildren.channel.profile.server?.id,
                 startDate: spec.startDate,
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingTemperature(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channel, entryType, color, spec.aggregation, $0)] }
-            .map { self.channelChartSets(channel, spec, $0) }
+            .map { [self.historyDataSet(channelWithChildren.channel, entryType, color, spec.aggregation, $0)] }
+            .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
     }
 }

@@ -22,7 +22,7 @@ import SharedCore
 struct ChannelWithChildren: Equatable {
     let channel: SAChannel
     let children: [ChannelChild]
-
+    
     var allDescendantFlat: [ChannelChild] { getChildren(children) }
 
     var pumpSwitchChild: ChannelChild? { children.first(where: { $0.relationType == .pumpSwitch }) }
@@ -30,14 +30,30 @@ struct ChannelWithChildren: Equatable {
     var heatOrColdSourceSwitchChild: ChannelChild? {
         children.first(where: { $0.relationType == .heatOrColdSourceSwitch })
     }
-    
+
+    var isOrHasImpulseCounter: Bool {
+        channel.isImpulseCounter() || channel.value?.sub_value_type == Int16(SUBV_TYPE_IC_MEASUREMENTS) ||
+            children.first { $0.relationType == .meter }?.channel.isImpulseCounter() == true
+    }
+
+    var isOrHasElectricityMeter: Bool {
+        channel.isElectricityMeter() || channel.value?.sub_value_type == Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS) ||
+            children.first { $0.relationType == .meter }?.channel.isElectricityMeter() == true
+    }
+
     var hasElectricityMeter: Bool {
         if let child = children.first(where: { $0.relationType == .meter }),
-           child.channel.isElectricityMeter() {
+           child.channel.isElectricityMeter()
+        {
             return true
         }
-        
+
         return (channel.value?.sub_value_type ?? 0) == SUBV_TYPE_ELECTRICITY_MEASUREMENTS
+    }
+    
+    init(channel: SAChannel, children: [ChannelChild] = []) {
+        self.channel = channel
+        self.children = children
     }
 
     private func getChildren(_ tree: [ChannelChild]) -> [ChannelChild] {

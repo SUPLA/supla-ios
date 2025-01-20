@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Spínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Prepínač pre zdroj tepla alebo chladu";
 "channel_caption_humidity" = "Vlhkosť";
+"channel_caption_humidityandtemperature" = "Teplota a vlhkosť";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
 
@@ -561,3 +562,7 @@
 "details_em_total_suffix" = "(stav počítadla)";
 "details_em_current_month_suffix" = "(aktuálny mesiac)";
 "details_em_last_month_balancing" = "Bilancovanie aktuálneho mesiaca";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stav počítadla";
+"details_em_current_month_consumption" = "Spotreba v aktuálnom mesiaci";

@@ -336,6 +336,7 @@
 "channel_caption_pump_switch" = "Interruptor de la bomba";
 "channel_caption_heat_or_cold_source_switch" = "Interruptor para fuente de calor o frío";
 "channel_caption_humidity" = "Humedad";
+"channel_caption_humidityandtemperature" = "Temperatura y humedad";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería (%d - %@): %d%%";
 
@@ -563,3 +564,7 @@
 "details_em_total_suffix" = "(estado del contador)";
 "details_em_current_month_suffix" = "(mes en curso)";
 "details_em_last_month_balancing" = "Balance del mes en curso";
+
+/* Impulse counter */
+"details_em_meter_value" = "Lectura del contador";
+"details_em_current_month_consumption" = "Consumo en el mes actual";

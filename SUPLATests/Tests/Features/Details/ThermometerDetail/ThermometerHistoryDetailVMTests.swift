@@ -39,8 +39,8 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         DownloadEventsManagerMock()
     }()
     
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = {
+        ReadChannelWithChildrenUseCaseMock()
     }()
     
     private lazy var downloadChannelMeasurementsUseCase: DownloadChannelMeasurementsUseCaseMock! = {
@@ -64,7 +64,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         DiContainer.shared.register(type: UserStateHolder.self, userStateHolder!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: DownloadEventsManager.self, downloadEventsManager!)
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, downloadChannelMeasurementsUseCase!)
         DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, loadChannelMeasurementsUseCase!)
         DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, loadChannelMeasurementsDateRangeUseCase!)
@@ -75,7 +75,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         userStateHolder = nil
         profileRepository = nil
         downloadEventsManager = nil
-        readChannelByRemoteIdUseCase = nil
+        readChannelWithChildrenUseCase = nil
         downloadChannelMeasurementsUseCase = nil
         loadChannelMeasurementsUseCase = nil
         loadChannelMeasurementsDateRangeUseCase = nil
@@ -96,9 +96,10 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         channel.profile = profile
         let chartState = DefaultChartState.empty()
         let currentDate = Date()
+        let channelWithChildren = ChannelWithChildren(channel: channel, children: [])
         
         dateProvider.currentDateReturns = currentDate
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+        readChannelWithChildrenUseCase.returns = Observable.just(channelWithChildren)
         profileRepository.activeProfileObservable = Observable.just(profile)
         userStateHolder.getDefaultChartStateReturns = chartState
         
@@ -136,10 +137,10 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
             state6
         ])
         
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertEqual(userStateHolder.getDefaultCharStateParameters.count, 1)
         XCTAssertEqual(downloadEventsManager.observeProgressParameters, [remoteId])
-        XCTAssertTuples(downloadChannelMeasurementsUseCase.parameters, [(remoteId, SUPLA_CHANNELFNC_THERMOMETER)])
+        XCTAssertEqual(downloadChannelMeasurementsUseCase.parameters, [channelWithChildren])
     }
     
     func test_shouldRefreshData() {
@@ -159,7 +160,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
                 .changing(path: \.initialLoadStarted, to: false)
         ])
         
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [remoteId])
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
     }
     

@@ -32,6 +32,14 @@ struct ThermometerChartStyle: ChartStyle {
     func provideMarkerView() -> BaseChartMarkerView { SuplaChartMarkerView() }
 }
 
+struct HumidityChartStyle: ChartStyle {
+    var leftAxisColor: UIColor = .darkBlue
+    var rightAxisColor: UIColor = .darkBlue
+    var drawBarShadow: Bool = false
+    
+    func provideMarkerView() -> BaseChartMarkerView { SuplaChartMarkerView() }
+}
+
 struct GpmChartStyle: ChartStyle {
     var leftAxisColor: UIColor = .onBackground
     var rightAxisColor: UIColor = .onBackground
@@ -50,3 +58,10 @@ struct ElectricityChartStyle: ChartStyle {
     }
 }
 
+struct ImpulseCounterChartStyle: ChartStyle {
+    var leftAxisColor: UIColor = .onBackground
+    var rightAxisColor: UIColor = .onBackground
+    var drawBarShadow: Bool = true
+    
+    func provideMarkerView() -> BaseChartMarkerView { ImpulseCounterChartMarkerView() }
+}

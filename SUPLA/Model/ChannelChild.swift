@@ -27,6 +27,8 @@ struct ChannelChild: Equatable {
         relation.relationType
     }
     
+    var withChildren: ChannelWithChildren { ChannelWithChildren(channel: channel, children: children) }
+    
     init(channel: SAChannel, relation: SAChannelRelation, children: [ChannelChild] = []) {
         self.channel = channel
         self.relation = relation

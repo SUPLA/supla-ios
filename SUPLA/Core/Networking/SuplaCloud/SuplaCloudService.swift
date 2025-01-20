@@ -54,6 +54,21 @@ protocol SuplaCloudService {
         beforeTimestamp: TimeInterval
     ) -> Observable<[SuplaCloudClient.ElectricityMeasurement]>
     
+    func getHumidityMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.HumidityMeasurement]>
+    
+    func getImpulseCounterMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ImpulseCounterMeasurement]>
+    
+    func getLastImpulseCounterMeasurements(
+        remoteId: Int32,
+        beforeTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ImpulseCounterMeasurement]>
+    
     func getImpulseCounterPhoto(
         remoteId: Int32
     ) -> Observable<SharedCore.ImpulseCounterPhoto>
@@ -208,6 +223,78 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
                     
                     do {
                         let measurements = try SuplaCloudClient.ElectricityMeasurement.fromJson(data: data)
+                        return Observable.just(measurements)
+                    } catch {
+                        return Observable.error(error)
+                    }
+                }
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
+    func getHumidityMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.HumidityMeasurement]> {
+        do {
+            return requestHelper.getOAuthRequest(urlString: try buildMeasurementsUrl(remoteId, afterTimestamp))
+                .flatMap { (response, data) in
+                    if (response.statusCode != 200) {
+                        return Observable<[SuplaCloudClient.HumidityMeasurement]>
+                            .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                    }
+                    
+                    do {
+                        let measurements = try SuplaCloudClient.HumidityMeasurement.fromJson(data: data)
+                        return Observable.just(measurements)
+                    } catch {
+                        return Observable.error(error)
+                    }
+                }
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
+    func getImpulseCounterMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ImpulseCounterMeasurement]> {
+        do {
+            return requestHelper.getOAuthRequest(urlString: try buildMeasurementsUrl(remoteId, afterTimestamp))
+                .flatMap { (response, data) in
+                    if (response.statusCode != 200) {
+                        return Observable<[SuplaCloudClient.ImpulseCounterMeasurement]>
+                            .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                    }
+                    
+                    do {
+                        let measurements = try SuplaCloudClient.ImpulseCounterMeasurement.fromJson(data: data)
+                        return Observable.just(measurements)
+                    } catch {
+                        return Observable.error(error)
+                    }
+                }
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
+    func getLastImpulseCounterMeasurements(
+        remoteId: Int32,
+        beforeTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ImpulseCounterMeasurement]> {
+        do {
+            return requestHelper.getOAuthRequest(urlString: try buildFirstMeasurementBeforeUrl(remoteId, beforeTimestamp))
+                .flatMap { (response, data) in
+                    if (response.statusCode != 200) {
+                        return Observable<[SuplaCloudClient.ImpulseCounterMeasurement]>
+                            .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                    }
+                    
+                    do {
+                        let measurements = try SuplaCloudClient.ImpulseCounterMeasurement.fromJson(data: data)
                         return Observable.just(measurements)
                     } catch {
                         return Observable.error(error)

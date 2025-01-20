@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Stikalo črpalke";
 "channel_caption_heat_or_cold_source_switch" = "Stikalo za vir toplote ali hladu";
 "channel_caption_humidity" = "Vlažnost";
+"channel_caption_humidityandtemperature" = "Temperatura in vlažnost";
 "channel_offline" = "Kanal je brez povezave";
 "channel_battery_level" = "Raven baterije (%d - %@): %d%%";
 
@@ -563,3 +564,7 @@
 "details_em_total_suffix" = "(stanje števca)";
 "details_em_current_month_suffix" = "(tekoči mesec)";
 "details_em_last_month_balancing" = "Poravnava tekočega meseca";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stanje števca";
+"details_em_current_month_consumption" = "Poraba v tekočem mesecu";

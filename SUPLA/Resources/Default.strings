@@ -78,6 +78,8 @@
 "channel_caption_pump_switch" = "Pump sitch";
 "channel_caption_heat_or_cold_source_switch" = "Heat or cold source switch";
 "channel_caption_humidity" = "Humidity";
+"channel_caption_container" = "Container";
+"channel_caption_humidityandtemperature" = "Temperature and Humidity";
 "channel_offline" = "Channel is offline";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
 
@@ -351,6 +353,10 @@
 "details_em_voltage_phase_angle_13" = "Voltage phase angle 1-3";
 "details_em_voltage_phase_sequence" = "Voltage phase sequence";
 "details_em_current_phase_sequence" = "Current phase sequence";
+
+/* Impulse counter */
+"details_em_meter_value" = "Meter value";
+"details_em_current_month_consumption" = "Consumption in the current month";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Counter photos";

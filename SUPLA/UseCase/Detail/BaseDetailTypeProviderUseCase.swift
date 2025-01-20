@@ -54,11 +54,13 @@ class BaseDetailTypeProviderUseCase {
             SUPLA_CHANNELFNC_IC_GAS_METER,
             SUPLA_CHANNELFNC_IC_WATER_METER,
             SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return .impulseCounterDetail(pages: [.historyIc])
+            return .impulseCounterDetail(pages: [.impulseCounterGeneral, .impulseCounterHistory])
         case
             SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return .thermometerDetail(pages: [.thermometerHistory])
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            return .humidityDetail(pages: [.humidityHistory])
         case
             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return .legacy(type: .thermostat_hp)
@@ -89,6 +91,7 @@ enum DetailType: Equatable {
     case windowDetail(pages: [DetailPage])
     case electricityMeterDetail(pages: [DetailPage])
     case impulseCounterDetail(pages: [DetailPage])
+    case humidityDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
@@ -99,9 +102,6 @@ enum DetailPage {
     // Switches
     case switchGeneral
     case switchTimer
-    case switchEmHistory
-    case switchEmSettings
-    case historyIc
     
     // Thermostat
     case thermostatGeneral
@@ -112,6 +112,9 @@ enum DetailPage {
     
     // Thermometers
     case thermometerHistory
+    
+    // Humidity
+    case humidityHistory
     
     // GPM
     case gpmHistory
@@ -130,4 +133,8 @@ enum DetailPage {
     case electricityMeterGeneral
     case electricityMeterHistory
     case electricityMeterSettings
+    
+    // IC
+    case impulseCounterGeneral
+    case impulseCounterHistory
 }

@@ -335,6 +335,7 @@
 "channel_caption_pump_switch" = "Interrupteur de pompe";
 "channel_caption_heat_or_cold_source_switch" = "Interrupteur pour la source de chaleur ou de froid";
 "channel_caption_humidity" = "Humidité";
+"channel_caption_humidityandtemperature" = "Température et humidité";
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 
@@ -563,3 +564,7 @@
 "details_em_last_month_balancing" = "Solde du mois en cours";
 "em_phase_to_phase_balance" = "Bilan interphase vectorielle";
 "em_chart_all_phases" = "Phase 1+2+3";
+
+/* Impulse counter */
+"details_em_meter_value" = "Valeur du compteur";
+"details_em_current_month_consumption" = "Consommation dans le mois courant";

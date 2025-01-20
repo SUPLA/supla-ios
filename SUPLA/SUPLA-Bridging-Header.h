@@ -6,7 +6,6 @@
 #import "SAChartHelper.h"
 #import "CreateAccountVC.h"
 #import "AddWizardVC.h"
-#import "SAIncrementalMeterChartHelper.h"
 #import "UIButton+SUPLA.h"
 #import "SuplaApp.h"
 #import "AuthProfileItem+CoreDataClass.h"
@@ -43,7 +42,9 @@
 #import "SAChannelConfig+CoreDataClass.h"
 #import "SANotification+CoreDataClass.h"
 #import "SASuperuserAuthorizationResult.h"
+#import "SAImpulseCounterExtendedValue.h"
 #import "SAElectricityMeterExtendedValue.h"
 #import "SAIncrementalMeterExtendedValue.h"
+#import "SAHumidityMeasurementItem+CoreDataClass.h"
 
 #import "supla-client.h"

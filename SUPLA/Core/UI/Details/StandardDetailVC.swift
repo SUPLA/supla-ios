@@ -68,8 +68,10 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(switchGeneral())
             case .switchTimer:
                 viewControllers.append(switchTimerDetail())
-            case .historyIc:
-                viewControllers.append(legacyDetail(type: .ic))
+            case .impulseCounterGeneral:
+                viewControllers.append(impulseCounterGeneralDetail())
+            case .impulseCounterHistory:
+                viewControllers.append(impulseCounterHistoryDetail())
             case .thermostatGeneral:
                 viewControllers.append(thermostatGeneral())
             case .thermostatList:
@@ -102,12 +104,12 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(garageDoorDetail())
             case .electricityMeterGeneral:
                 viewControllers.append(electricityMeterGeneralDetail())
-            case .electricityMeterHistory,
-                 .switchEmHistory:
+            case .electricityMeterHistory:
                 viewControllers.append(electricityMeterHistoryDetail())
-            case .electricityMeterSettings,
-                 .switchEmSettings:
+            case .electricityMeterSettings:
                 viewControllers.append(electricityMeterSettingsDetail())
+            case .humidityHistory:
+                viewControllers.append(humidityHistoryDetail())
             }
         }
         
@@ -345,6 +347,36 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
             title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
             image: .iconSettings,
             tag: DetailTabTag.History.rawValue
+        )
+        return vc
+    }
+    
+    private func humidityHistoryDetail() -> UIViewController {
+        let vc = HumidityHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
+            image: .iconSettings,
+            tag: DetailTabTag.History.rawValue
+        )
+        return vc
+    }
+    
+    private func impulseCounterHistoryDetail() -> UIViewController {
+        let vc = ImpulseCounterHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
+            image: .iconHistory,
+            tag: DetailTabTag.History.rawValue
+        )
+        return vc
+    }
+    
+    private func impulseCounterGeneralDetail() -> UIViewController {
+        let vc = ImpulseCounterGeneralFeature.ViewController.create(item: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.General.rawValue
         )
         return vc
     }

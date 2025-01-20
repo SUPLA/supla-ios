@@ -342,6 +342,8 @@
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
 "channel_caption_humidity" = "Wilgotność";
+"channel_caption_container" = "Zbiornik";
+"channel_caption_humidityandtemperature" = "Temperatura i wilgotność";
 "channel_offline" = "Kanał jest offline";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
 
@@ -604,6 +606,10 @@
 "details_em_voltage_phase_angle_13" = "Kąt między napięciami faz 1–3";
 "details_em_voltage_phase_sequence" = "Kolejność faz napięcia";
 "details_em_current_phase_sequence" = "Kolejność faz prądu";
+
+/* Impulse counter */
+"details_em_meter_value" = "Stan licznika";
+"details_em_current_month_consumption" = "Zużycie w bieżącym miesiącu";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Zdjęcia licznika";
