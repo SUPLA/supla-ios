@@ -60,14 +60,14 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
     }
     
     func valueOrNil(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String? {
-        if (!channel.isOnline()) {
+        let provider = providers.first { $0.handle(channel) }
+        
+        if (provider != nil && !channel.isOnline()) {
             return NO_VALUE_TEXT
         }
         
-        for provider in providers {
-            if (provider.handle(channel)) {
-                return provider.value(channel, valueType: valueType, withUnit: withUnit)
-            }
+        if let provider {
+            return provider.value(channel, valueType: valueType, withUnit: withUnit)
         }
         
         SALog.debug("No value provider for channel function `\(channel.func)`")
