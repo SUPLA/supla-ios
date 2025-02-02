@@ -77,7 +77,7 @@
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=cs";
-"https://en-forum.supla.org" = "https://cs-forum.supla.org";
+"https://en-forum.supla.org" = "https://cz-forum.supla.org";
 "Retrieving data from the server..." = "Stahování dat ze serveru...";
 "No chart data available." = "Žádné údaje o graf.";
 "Electricity Meter" = "Elektroměr";
