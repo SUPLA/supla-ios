@@ -38,4 +38,14 @@ enum Phase: UInt8, CaseIterable, Codable, Identifiable {
         case .phase3: return Strings.ElectricityMeter.phase3
         }
     }
+
+    static func from(value: Int32) -> Phase {
+        for phase in allCases {
+            if (phase.rawValue == value) {
+                return phase
+            }
+        }
+
+        return .phase1
+    }
 }

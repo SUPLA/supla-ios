@@ -92,6 +92,12 @@ private extension HistoryDataSet {
                 label: aggregation.label(entry.date, formatter),
                 data: toChartDetails(aggregation: aggregation, entity: entry, customData: customData)
             )
+        case .withPhase(let value, _, _, _):
+            PieChartDataEntry(
+                value: value,
+                label: aggregation.label(entry.date, formatter),
+                data: toChartDetails(aggregation: aggregation, entity: entry, customData: customData)
+            )
         }
     }
 }

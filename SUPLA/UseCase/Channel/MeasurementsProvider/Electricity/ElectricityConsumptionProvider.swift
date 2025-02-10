@@ -18,16 +18,12 @@
 
 import RxSwift
 
-protocol ElectricityMeasurementsProvider: ChannelMeasurementsProvider {}
+protocol ElectricityConsumptionProvider: MeasurementsProvider {}
 
-final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider {
+final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
-    
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
-        channelWithChildren.isOrHasElectricityMeter
-    }
     
     func provide(
         _ channelWithChildren: ChannelWithChildren,
@@ -49,11 +45,7 @@ final class ElectricityMeasurementsProviderImpl: ElectricityMeasurementsProvider
                 return [self.historyDataSet(channel, labels, spec.aggregation, $0.list)]
             }
             .map {
-                let typeName: String? = if let label = (spec.customFilters as? ElectricityChartFilters)?.type.label {
-                    "\(label) [kWh]"
-                } else {
-                    nil
-                }
+                let typeName: String? = (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
                 
                 return ChannelChartSets(
                     remoteId: channel.remote_id,

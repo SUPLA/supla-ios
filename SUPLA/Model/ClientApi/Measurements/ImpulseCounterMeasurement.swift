@@ -17,25 +17,14 @@
  */
     
 extension SuplaCloudClient {
-    struct ElectricityMeasurement: Measurement {
+    struct ImpulseCounterMeasurement: Measurement {
         let date_timestamp: Date
-        let phase1_fae: String?
-        let phase1_rae: String?
-        let phase1_fre: String?
-        let phase1_rre: String?
-        let phase2_fae: String?
-        let phase2_rae: String?
-        let phase2_fre: String?
-        let phase2_rre: String?
-        let phase3_fae: String?
-        let phase3_rae: String?
-        let phase3_fre: String?
-        let phase3_rre: String?
-        let fae_balanced: String?
-        let rae_balanced: String?
+        let counter: Int64
+        let calculated_value: Double
         
-        static func fromJson(data: Data) throws -> [ElectricityMeasurement] {
-            return try decoder.decode([ElectricityMeasurement].self, from: data)
+        static func fromJson(data: Data) throws -> [ImpulseCounterMeasurement] {
+            return try decoder.decode([ImpulseCounterMeasurement].self, from: data)
         }
     }
 }
+

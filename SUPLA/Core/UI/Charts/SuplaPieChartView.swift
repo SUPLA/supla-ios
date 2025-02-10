@@ -37,12 +37,12 @@ class SuplaPieChartView: UIView {
         }
     }
     
-    var chartStyle: (any ChartStyle)? = nil {
+    var chartStyle: ChartStyle? = nil {
         didSet {
             guard let chartStyle = chartStyle else { return }
             if (chartStyle.isEqualTo(oldValue) == true) { return }
             
-            let marker = chartStyle.provideMarkerView()
+            let marker = chartStyle.markerView
             marker.chartView = pieChart
             pieChart.marker = marker
         }

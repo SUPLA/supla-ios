@@ -23,10 +23,6 @@ import RxSwift
 
 final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
     
-    private lazy var suplaCloudService: SuplaCloudServiceMock! = {
-        SuplaCloudServiceMock()
-    }()
-    
     private lazy var profileRepository: ProfileRepositoryMock! = {
         ProfileRepositoryMock()
     }()
@@ -42,14 +38,12 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: SuplaCloudService.self, suplaCloudService!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
     }
     
     override func tearDown() {
         useCase = nil
-        suplaCloudService = nil
         profileRepository = nil
         temperatureMeasurementItemRepository = nil
         
@@ -75,6 +69,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 2)
         profileRepository.activeProfileObservable = Observable.just(profile)
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(.empty())
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -91,10 +86,10 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 2)
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: HTTPURLResponse(url: .init(string: "url")!, statusCode: 400, httpVersion: nil, headerFields: nil)!,
             data: Data()
-        ))
+        )))
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -111,10 +106,10 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 2)
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
             data: Data()
-        ))
+        )))
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -132,10 +127,10 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: serverId)
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(),
             data: mockedData()
-        ))
+        )))
         temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
@@ -155,13 +150,13 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         profile.server = SAProfileServer.mock(id: 2)
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: Date(),
-            temperature: "10.0"
+            temperature: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         temperatureMeasurementItemRepository.getMeasurementsReturns = [
             Observable.just([measurement]),
             Observable.just([])
@@ -185,13 +180,13 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let measurementDate = Date()
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: measurementDate,
-            temperature: "10.0"
+            temperature: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(measurementDate.timeIntervalSince1970)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(measurementDate.timeIntervalSince1970)
         temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
@@ -214,13 +209,13 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let measurementDate = Date()
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: measurementDate,
-            temperature: "10.0"
+            temperature: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(measurementDate.timeIntervalSince1970)
         temperatureMeasurementItemRepository.findCountReturns = .just(1)
         
@@ -231,7 +226,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertTuples(suplaCloudService.temperatureAndHumidityMeasurementsParameters, [])
+        XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [])
     }
     
     func test_shouldCleanDbAndImportNewMeasurements() {
@@ -243,13 +238,13 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         let measurementDate = Date()
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: measurementDate,
-            temperature: "10.0"
+            temperature: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1, "x-total-count"),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         let oldDate = Date.create(year: 2018)!.timeIntervalSince1970
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(oldDate)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(oldDate)

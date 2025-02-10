@@ -23,10 +23,6 @@ import RxSwift
 
 final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
     
-    private lazy var suplaCloudService: SuplaCloudServiceMock! = {
-        SuplaCloudServiceMock()
-    }()
-    
     private lazy var profileRepository: ProfileRepositoryMock! = {
         ProfileRepositoryMock()
     }()
@@ -46,7 +42,6 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: SuplaCloudService.self, suplaCloudService!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
         DiContainer.shared.register(type: LoadChannelConfigUseCase.self, loadChannelConfigUseCase!)
@@ -54,7 +49,6 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
     
     override func tearDown() {
         useCase = nil
-        suplaCloudService = nil
         profileRepository = nil
         generalPurposeMeterItemRepository = nil
         loadChannelConfigUseCase = nil
@@ -69,13 +63,13 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         profile.server = SAProfileServer.mock(id: 1)
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
             date_timestamp: Date(),
-            value: "10.0"
+            value: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        generalPurposeMeterItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         generalPurposeMeterItemRepository.getMeasurementsReturns = [
             Observable.just([measurement]),
             Observable.just([])
@@ -100,13 +94,13 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         let measurementDate = Date()
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
             date_timestamp: measurementDate,
-            value: "10.0"
+            value: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        generalPurposeMeterItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         generalPurposeMeterItemRepository.findMinTimestampReturns = .just(measurementDate.timeIntervalSince1970)
         generalPurposeMeterItemRepository.getMeasurementsReturns = [Observable.just([])]
         loadChannelConfigUseCase.returns = .just(SuplaChannelGeneralPurposeMeterConfig.mock())
@@ -129,13 +123,13 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         profile.server = SAProfileServer.mock(id: 1)
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
             date_timestamp: Date(),
-            value: "10.0"
+            value: 10.0
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
-        suplaCloudService.initialMeasurementsReturns = Observable.just((
+        generalPurposeMeterItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
-        ))
+        )))
         generalPurposeMeterItemRepository.getMeasurementsReturns = [
             Observable.just([measurement]),
             Observable.just([])

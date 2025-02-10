@@ -16,25 +16,92 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct ChartEntryDetails: Equatable {
-    let aggregation: ChartDataAggregation
-    let type: ChartEntryType
-    let date: Date
-    let min: Double?
-    let max: Double?
-    let open: Double?
-    let close: Double?
-    let valueFormatter: ChannelValueFormatter
-    let customData: (any Equatable)?
+enum ChartEntryDetails: Equatable {
+    case `default`(aggregation: ChartDataAggregation, type: ChartEntryType, date: Date, min: Double?, max: Double?, open: Double?, close: Double?, valueFormatter: ChannelValueFormatter, customData: (any Equatable)?)
+    case withPhase(aggregation: ChartDataAggregation, type: ChartEntryType, date: Date, min: Double?, max: Double?, valueFormatter: ChannelValueFormatter, phase: Phase)
+
+    var aggregation: ChartDataAggregation {
+        switch self {
+        case let .default(aggregation, _, _, _, _, _, _, _, _): aggregation
+        case let .withPhase(aggregation, _, _, _, _, _, _): aggregation
+        }
+    }
+    
+    var type: ChartEntryType {
+        switch self {
+        case let .default(_, type, _, _, _, _, _, _, _): type
+        case let .withPhase(_, type, _, _, _, _, _): type
+        }
+    }
+    
+    var date: Date {
+        switch self {
+        case let .default(_, _, date, _, _, _, _, _, _): date
+        case let .withPhase(_, _, date, _, _, _, _): date
+        }
+    }
+
+    var min: Double? {
+        switch self {
+        case let .default(_, _, _, min, _, _, _, _, _): min
+        case let .withPhase(_, _, _, min, _, _, _): min
+        }
+    }
+
+    var max: Double? {
+        switch self {
+        case let .default(_, _, _, _, max, _, _, _, _): max
+        case let .withPhase(_, _, _, _, max, _, _): max
+        }
+    }
+
+    var open: Double? {
+        switch self {
+        case let .default(_, _, _, _, _, open, _, _, _): open
+        case .withPhase: nil
+        }
+    }
+
+    var close: Double? {
+        switch self {
+        case let .default(_, _, _, _, _, _, close, _, _): close
+        case .withPhase: nil
+        }
+    }
+    
+    var customData: (any Equatable)? {
+        switch self {
+        case let .default(_, _, _, _, _, _, _, _, customData): customData
+        case .withPhase: nil
+        }
+    }
+
+    var valueFormatter: ChannelValueFormatter {
+        switch self {
+        case let .default(_, _, _, _, _, _, _, valueFormatter, _): valueFormatter
+        case let .withPhase(_, _, _, _, _, valueFormatter, _): valueFormatter
+        }
+    }
 
     static func == (lhs: ChartEntryDetails, rhs: ChartEntryDetails) -> Bool {
-        lhs.aggregation == rhs.aggregation
-            && lhs.type == rhs.type
-            && lhs.date == rhs.date
-            && lhs.min == rhs.min
-            && lhs.max == rhs.max
-            && lhs.open == rhs.open
-            && lhs.close == rhs.close
-            && lhs.customData?.isEqualTo(rhs.customData) == true
+        switch (lhs, rhs) {
+        case let (.default(lAggregation, lType, lDate, lMin, lMax, lOpen, lClose, lValueFormatter, lCustomData), .default(rAggregation, rType, rDate, rMin, rMax, rOpen, rClose, rValueFormatter, rCustomData)):
+            lAggregation == rAggregation
+                && lType == rType
+                && lDate == rDate
+                && lMin == rMin
+                && lMax == rMax
+                && lOpen == rOpen
+                && lClose == rClose
+                && lCustomData?.isEqualTo(rCustomData) == true
+        case let (.withPhase(lAggregation, lType, lDate, lMin, lMax, lValueFormatter, lPhase), .withPhase(rAggregation, rType, rDate, rMin, rMax, rValueFormatter, rPhase)):
+            lAggregation == rAggregation
+                && lType == rType
+                && lDate == rDate
+                && lMin == rMin
+                && lMax == rMax
+                && lPhase == rPhase
+        default: false
+        }
     }
 }

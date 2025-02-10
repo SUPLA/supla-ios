@@ -19,7 +19,13 @@
 import RxSwift
 
 protocol DownloadChannelMeasurementsUseCase {
-    func invoke(_ channelWithChildren: ChannelWithChildren)
+    func invoke(_ channelWithChildren: ChannelWithChildren, type: DownloadEventsManagerDataType)
+}
+
+extension DownloadChannelMeasurementsUseCase {
+    func invoke(_ channelWithChildren: ChannelWithChildren) {
+        invoke(channelWithChildren, type: .default)
+    }
 }
 
 final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsUseCase {
@@ -31,136 +37,181 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     @Singleton<DownloadElectricityMeterLogUseCase> private var downloadElectricityMeterLogUseCase
     @Singleton<DownloadHumidityLogUseCase> private var downloadHumidityLogUseCase
     @Singleton<DownloadImpulseCounterLogUseCase> private var downloadImpulseCounterLogUseCase
+    @Singleton<DownloadVoltageLogUseCase> private var downloadVoltageLogUseCase
+    @Singleton<DownloadCurrentLogUseCase> private var downloadCurrentLogUseCase
+    @Singleton<DownloadPowerActiveLogUseCase> private var downloadPowerActiveLogUseCase
     @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
-    private var workingList: [Int32] = []
+    private var workingList: [Id] = []
     private let disposeBag = DisposeBag()
     
-    func invoke(_ channelWithChildren: ChannelWithChildren) {
+    func invoke(_ channelWithChildren: ChannelWithChildren, type: DownloadEventsManagerDataType) {
         syncedQueue.sync {
-            if (workingList.contains(channelWithChildren.remoteId)) {
+            let id = Id(channelWithChildren.remoteId, type)
+            if (workingList.contains(id)) {
                 SALog.debug("Download skipped as the \(channelWithChildren.remoteId) is on working list")
                 return
             }
 
             do {
-                try startDownload(channelWithChildren)
+                try startDownload(channelWithChildren, id)
             } catch {
                 SALog.error(error.localizedDescription)
                 return
             }
-            workingList.append(channelWithChildren.remoteId)
+            workingList.append(id)
         }
     }
     
-    private func startDownload(_ channelWithChildren: ChannelWithChildren) throws {
+    private func startDownload(_ channelWithChildren: ChannelWithChildren, _ id: Id) throws {
         let function = channelWithChildren.function
-        let remoteId = channelWithChildren.remoteId
         
         if (function == SUPLA_CHANNELFNC_THERMOMETER) {
-            startTemperatureDownload(remoteId)
+            startTemperatureDownload(id)
         } else if (function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
-            startTemperatureAndHumidityDownload(remoteId)
+            startTemperatureAndHumidityDownload(id)
         } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
-            startGeneralPurposeMeasurementDownload(remoteId)
+            startGeneralPurposeMeasurementDownload(id)
         } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
-            startGeneralPurposeMeterDownload(remoteId)
+            startGeneralPurposeMeterDownload(id)
         } else if (channelWithChildren.isOrHasElectricityMeter) {
-            startElectricityMeasurementsDownload(remoteId)
+            switch (id.type) {
+            case .default: startElectricityMeasurementsDownload(id)
+            case .electricityCurrent: startCurrentMeasurementsDownload(id)
+            case .electricityVoltage: startVoltageMeasurementsDownload(id)
+            case .electricityPowerActive: startPowerActiveMeasurementsDownload(id)
+            }
         } else if (channelWithChildren.isOrHasImpulseCounter) {
-            startImpulseCounterMeasurementsDownload(remoteId)
+            startImpulseCounterMeasurementsDownload(id)
         } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
-            startHumidityMeasurementsDownload(remoteId)
+            startHumidityMeasurementsDownload(id)
         } else {
             throw GeneralError.illegalArgument(message: "Trying to start download for unsupported function \(function)")
         }
     }
     
-    private func startTemperatureDownload(_ remoteId: Int32) {
+    private func startTemperatureDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadTemperatureLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadTemperatureLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func startTemperatureAndHumidityDownload(_ remoteId: Int32) {
+    private func startTemperatureAndHumidityDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadTempHumidityLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadTempHumidityLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func startGeneralPurposeMeasurementDownload(_ remoteId: Int32) {
+    private func startGeneralPurposeMeasurementDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadGeneralPurposeMeasurementLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadGeneralPurposeMeasurementLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func startGeneralPurposeMeterDownload(_ remoteId: Int32) {
+    private func startGeneralPurposeMeterDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadGeneralPurposeMeterLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadGeneralPurposeMeterLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func startElectricityMeasurementsDownload(_ remoteId: Int32) {
+    private func startElectricityMeasurementsDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadElectricityMeterLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadElectricityMeterLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func startHumidityMeasurementsDownload(_ remoteId: Int32) {
+    private func startHumidityMeasurementsDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadHumidityLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadHumidityLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func startImpulseCounterMeasurementsDownload(_ remoteId: Int32) {
+    private func startImpulseCounterMeasurementsDownload(_ id: Id) {
         setupObservable(
-            remoteId: remoteId,
-            observable: downloadImpulseCounterLogUseCase.invoke(remoteId: remoteId)
+            id: id,
+            observable: downloadImpulseCounterLogUseCase.invoke(remoteId: id.id)
         )
     }
     
-    private func setupObservable(remoteId: Int32, observable: Observable<Float>) {
+    private func startCurrentMeasurementsDownload(_ id: Id) {
+        setupObservable(
+            id: id,
+            observable: downloadCurrentLogUseCase.invoke(remoteId: id.id)
+        )
+    }
+    
+    private func startVoltageMeasurementsDownload(_ id: Id) {
+        setupObservable(
+            id: id,
+            observable: downloadVoltageLogUseCase.invoke(remoteId: id.id)
+        )
+    }
+    
+    private func startPowerActiveMeasurementsDownload(_ id: Id) {
+        setupObservable(
+            id: id,
+            observable: downloadPowerActiveLogUseCase.invoke(remoteId: id.id)
+        )
+    }
+    
+    private func setupObservable(id: Id, observable: Observable<Float>) {
         observable
             .subscribe(on: schedulers.background)
             .observe(on: schedulers.main)
             .do(onSubscribe: {
-                self.downloadEventsManager.emitProgressState(remoteId: remoteId, state: .started)
+                self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .started)
             })
             .subscribe(
                 onNext: {
                     self.downloadEventsManager.emitProgressState(
-                        remoteId: remoteId,
+                        remoteId: id.id,
+                        dataType: id.type,
                         state: .inProgress(progress: $0)
                     )
                 },
                 onError: { error in
-                    self.downloadEventsManager.emitProgressState(remoteId: remoteId, state: .failed)
-                    self.removeFromWorkingList(remoteId)
+                    self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .failed)
+                    self.removeFromWorkingList(id)
                     
                     let errorMessage = String(describing: error)
-                    SALog.error("Measurements download for \(remoteId) failed with \(error.localizedDescription)")
+                    SALog.error("Measurements download for \(id.id) (type: \(id.type)) failed with \(error.localizedDescription)")
                     NSLog(errorMessage)
                 },
                 onCompleted: {
-                    self.downloadEventsManager.emitProgressState(remoteId: remoteId, state: .finished)
-                    self.removeFromWorkingList(remoteId)
+                    self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .finished)
+                    self.removeFromWorkingList(id)
                     
-                    SALog.info("Measurements download for \(remoteId) finished successfully")
+                    SALog.info("Measurements download for \(id.id) (type: \(id.type)) finished successfully")
                 }
             )
             .disposed(by: disposeBag)
     }
     
-    private func removeFromWorkingList(_ remoteId: Int32) {
+    private func removeFromWorkingList(_ id: Id) {
         syncedQueue.sync {
-            workingList = workingList.filter { $0 != remoteId }
+            workingList = workingList.filter { $0 != id }
+        }
+    }
+    
+    private struct Id: Hashable, Equatable {
+        let id: Int32
+        let type: DownloadEventsManagerDataType
+        
+        init(_ id: Int32, _ type: DownloadEventsManagerDataType) {
+            self.id = id
+            self.type = type
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+            hasher.combine(type)
         }
     }
 }

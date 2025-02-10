@@ -17,28 +17,6 @@
  */
 
 import SharedCore
-    
-extension SharedCore.ImpulseCounterPhoto {
-    static func fromJson(data: Data) throws -> ImpulseCounterPhoto {
-        let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
-        return ImpulseCounterPhoto(
-            id: json.getString("id")!,
-            deviceGuid: json.getString("deviceGuid")!,
-            channelNo: json.getInt32("channelNo")!,
-            createdAt: json.getString("createdAt")!,
-            replacedAt: json.getString("replacedAt"),
-            processedAt: json.getString("processedAt"),
-            resultMeasurement: json.getKotlinInt("resultMeasurement"),
-            processingTimeMs: json.getKotlinInt("processingTimeMs"),
-            resultMeasurement2: json.getKotlinInt("resultMeasurement2"),
-            processingTimeMs2: json.getKotlinInt("processingTimeMs2"),
-            resultCode: json.getInt32("resultCode") ?? 0,
-            resultMessage: json.getString("resultMessage"),
-            image: json.getString("image"),
-            imageCropped: json.getString("imageCropped")
-        )
-    }
-}
 
 extension Dictionary where Key == String, Value == Any {
     func getString(_ key: String) -> String? {
@@ -49,7 +27,24 @@ extension Dictionary where Key == String, Value == Any {
         self[key] as? Int32
     }
     
+    func getBool(_ key: String) -> Bool? {
+        self[key] as? Bool
+    }
+    
+    func getFloat(_ key: String) -> Float? {
+        self[key] as? Float
+    }
+    
+    func getDouble(_ key: String) -> Double? {
+        self[key] as? Double
+    }
+    
     func getKotlinInt(_ key: String) -> KotlinInt? {
         KotlinInt.from(self[key] as? Int32)
     }
+    
+    func getObject(_ key: String) -> [String: Any]? {
+        self[key] as? [String: Any]
+    }
 }
+

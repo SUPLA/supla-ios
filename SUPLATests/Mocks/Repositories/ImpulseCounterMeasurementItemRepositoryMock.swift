@@ -58,6 +58,10 @@ final class ImpulseCounterMeasurementItemRepositoryMock: BaseRepositoryMock<SAIm
         .empty()
     }
     
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        Observable.empty()
+    }
+    
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ImpulseCounterMeasurement]> {
         .empty()
     }

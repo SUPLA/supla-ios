@@ -13423,6 +13423,281 @@
                     "mangledName": "$ss9EscapableP"
                   }
                 ]
+              },
+              {
+                "kind": "TypeDecl",
+                "name": "ChannelDto",
+                "printedName": "ChannelDto",
+                "children": [
+                  {
+                    "kind": "TypeDecl",
+                    "name": "__Sealed",
+                    "printedName": "__Sealed",
+                    "children": [
+                      {
+                        "kind": "Var",
+                        "name": "defaultChannelDto",
+                        "printedName": "defaultChannelDto",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type) -> (SharedCore.DefaultChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.DefaultChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "DefaultChannelDto",
+                                    "printedName": "SharedCore.DefaultChannelDto",
+                                    "usr": "c:objc(cs)SharedCoreDefaultChannelDto"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO07defaulthI0yAISo0ab7DefaulthI0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO07defaulthI0yAISo0ab7DefaulthI0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 0
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "electricityChannelDto",
+                        "printedName": "electricityChannelDto",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type) -> (SharedCore.ElectricityChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.ElectricityChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ElectricityChannelDto",
+                                    "printedName": "SharedCore.ElectricityChannelDto",
+                                    "usr": "c:objc(cs)SharedCoreElectricityChannelDto"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO011electricityhI0yAISo0ab11ElectricityhI0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO011electricityhI0yAISo0ab11ElectricityhI0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 1
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "hashValue",
+                        "printedName": "hashValue",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "declKind": "Var",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivp",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivp",
+                        "moduleName": "SharedCore",
+                        "implicit": true,
+                        "accessors": [
+                          {
+                            "kind": "Accessor",
+                            "name": "Get",
+                            "printedName": "Get()",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int",
+                                "printedName": "Swift.Int",
+                                "usr": "s:Si"
+                              }
+                            ],
+                            "declKind": "Accessor",
+                            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivg",
+                            "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivg",
+                            "moduleName": "SharedCore",
+                            "implicit": true,
+                            "accessorKind": "get"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "Function",
+                        "name": "hash",
+                        "printedName": "hash(into:)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Hasher",
+                            "printedName": "Swift.Hasher",
+                            "paramValueOwnership": "InOut",
+                            "usr": "s:s6HasherV"
+                          }
+                        ],
+                        "declKind": "Func",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO4hash4intoys6HasherVz_tF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO4hash4intoys6HasherVz_tF",
+                        "moduleName": "SharedCore",
+                        "implicit": true,
+                        "funcSelfKind": "NonMutating"
+                      },
+                      {
+                        "kind": "Function",
+                        "name": "==",
+                        "printedName": "==(_:_:)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "__Sealed",
+                            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "__Sealed",
+                            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                          }
+                        ],
+                        "declKind": "Func",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO2eeoiySbAI_AItFZ",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO2eeoiySbAI_AItFZ",
+                        "moduleName": "SharedCore",
+                        "static": true,
+                        "implicit": true,
+                        "funcSelfKind": "NonMutating"
+                      }
+                    ],
+                    "declKind": "Enum",
+                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO",
+                    "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO",
+                    "moduleName": "SharedCore",
+                    "declAttributes": [
+                      "AccessControl",
+                      "Frozen"
+                    ],
+                    "isFromExtension": true,
+                    "isEnumExhaustive": true,
+                    "conformances": [
+                      {
+                        "kind": "Conformance",
+                        "name": "Copyable",
+                        "printedName": "Copyable",
+                        "usr": "s:s8CopyableP",
+                        "mangledName": "$ss8CopyableP"
+                      },
+                      {
+                        "kind": "Conformance",
+                        "name": "Escapable",
+                        "printedName": "Escapable",
+                        "usr": "s:s9EscapableP",
+                        "mangledName": "$ss9EscapableP"
+                      },
+                      {
+                        "kind": "Conformance",
+                        "name": "Hashable",
+                        "printedName": "Hashable",
+                        "usr": "s:SH",
+                        "mangledName": "$sSH"
+                      },
+                      {
+                        "kind": "Conformance",
+                        "name": "Equatable",
+                        "printedName": "Equatable",
+                        "usr": "s:SQ",
+                        "mangledName": "$sSQ"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Enum",
+                "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO",
+                "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO",
+                "moduleName": "SharedCore",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "conformances": [
+                  {
+                    "kind": "Conformance",
+                    "name": "Copyable",
+                    "printedName": "Copyable",
+                    "usr": "s:s8CopyableP",
+                    "mangledName": "$ss8CopyableP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "Escapable",
+                    "printedName": "Escapable",
+                    "usr": "s:s9EscapableP",
+                    "mangledName": "$ss9EscapableP"
+                  }
+                ]
               }
             ],
             "declKind": "Enum",
@@ -13800,6 +14075,89 @@
         "moduleName": "SharedCore",
         "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelIssueItem>",
         "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelIssueItem>",
+        "declAttributes": [
+          "AccessControl",
+          "DisfavoredOverload"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Function",
+        "name": "onEnum",
+        "printedName": "onEnum(of:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "__Sealed",
+            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "GenericTypeParam",
+            "printedName": "τ_0_0"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOx_tSo0abkL0RzlF",
+        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOx_tSo0abkL0RzlF",
+        "moduleName": "SharedCore",
+        "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelDto>",
+        "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelDto>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "onEnum",
+        "printedName": "onEnum(of:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__Sealed",
+                "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "τ_0_0?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOSgxSg_tSo0abkL0RzlF",
+        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOSgxSg_tSo0abkL0RzlF",
+        "moduleName": "SharedCore",
+        "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelDto>",
+        "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelDto>",
         "declAttributes": [
           "AccessControl",
           "DisfavoredOverload"

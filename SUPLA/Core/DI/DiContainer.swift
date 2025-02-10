@@ -118,6 +118,12 @@ extension DiContainer {
         register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
         let humidityMeasurementItemRepository = HumidityMeasurementItemRepositoryImpl()
         register((any HumidityMeasurementItemRepository).self, humidityMeasurementItemRepository)
+        let voltageMeasurementItemRepository = VoltageMeasurementItemRepositoryImpl()
+        register((any VoltageMeasurementItemRepository).self, voltageMeasurementItemRepository)
+        let currentMeasurementItemRepository = CurrentMeasurementItemRepositoryImpl()
+        register((any CurrentMeasurementItemRepository).self, currentMeasurementItemRepository)
+        let powerActiveMeasurementItemRepository = PowerActiveMeasurementItemRepositoryImpl()
+        register((any PowerActiveMeasurementItemRepository).self, powerActiveMeasurementItemRepository)
         register((any NotificationRepository).self, NotificationRepositoryImpl())
         register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
         register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
@@ -143,8 +149,16 @@ extension DiContainer {
                  DownloadGeneralPurposeMeterLogUseCaseImpl(generalPurposeMeterItemRepository))
         register(DownloadElectricityMeterLogUseCase.self,
                  DownloadElectricityMeterLogUseCaseImpl(electricityMeasurementItemRepository))
-        register(DownloadHumidityLogUseCase.self, DownloadHumidityLogUseCaseImpl(humidityMeasurementItemRepository))
-        register(DownloadImpulseCounterLogUseCase.self, DownloadImpulseCounterLogUseCaseImpl(impulseCounterMeasurementItemRepository))
+        register(DownloadHumidityLogUseCase.self,
+                 DownloadHumidityLogUseCaseImpl(humidityMeasurementItemRepository))
+        register(DownloadImpulseCounterLogUseCase.self,
+                 DownloadImpulseCounterLogUseCaseImpl(impulseCounterMeasurementItemRepository))
+        register(DownloadCurrentLogUseCase.self,
+                 DownloadCurrentLogUseCaseImpl(currentMeasurementItemRepository))
+        register(DownloadVoltageLogUseCase.self,
+                 DownloadVoltageLogUseCaseImpl(voltageMeasurementItemRepository))
+        register(DownloadPowerActiveLogUseCase.self,
+                 DownloadPowerActiveLogUseCaseImpl(powerActiveMeasurementItemRepository))
         register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
         register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
@@ -176,7 +190,11 @@ extension DiContainer {
         register(TemperatureAndHumidityMeasurementsProvider.self, TemperatureAndHumidityMeasurementsProviderImpl())
         register(GeneralPurposeMeterMeasurementsProvider.self, GeneralPurposeMeterMeasurementsProviderImpl())
         register(GeneralPurposeMeasurementMeasurementsProvider.self, GeneralPurposeMeasurementMeasurementsProviderImpl())
-        register(ElectricityMeasurementsProvider.self, ElectricityMeasurementsProviderImpl())
+        register(ElectricityMeterMeasurementsProvider.self, ElectricityMeterMeasurementsProviderImpl())
+        register(ElectricityConsumptionProvider.self, ElectricityConsumptionProviderImpl())
+        register(VoltageMeasurementsProvider.self, VoltageMeasurementsProviderImpl())
+        register(CurrentMeasurementsProvider.self, CurrentMeasurementsProviderImpl())
+        register(PowerActiveMeasurementsProvider.self, PowerActiveMeasurementsProviderImpl())
         register(HumidityMeasurementsProvider.self, HumidityMeasurementsProviderImpl())
         register(ImpulseCounterMeasurementsProvider.self, ImpulseCounterMeasurementsProviderImpl())
         // Usecases - ChannelBase

@@ -110,6 +110,10 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
         }
     }
     
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        cloudService.getInitialMeasurements(remoteId: remoteId)
+    }
+    
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.ElectricityMeasurement]> {
         cloudService.getElectricityMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp)
     }

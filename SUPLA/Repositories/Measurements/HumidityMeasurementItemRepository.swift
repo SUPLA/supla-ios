@@ -71,7 +71,7 @@ final class HumidityMeasurementItemRepositoryImpl: Repository<SAHumidityMeasurem
                 let entity: SAHumidityMeasurementItem = context.create()
                 entity.server_id = serverId
                 entity.channel_id = remoteId
-                entity.humidity = NSDecimalNumber(string: measurement.humidity)
+                entity.humidity = NSDecimalNumber(value: measurement.humidity)
                 entity.setDateAndDateParts(measurement.date_timestamp)
             }
             
@@ -128,6 +128,10 @@ final class HumidityMeasurementItemRepositoryImpl: Repository<SAHumidityMeasurem
     
     func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
         count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
+    }
+    
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        cloudService.getInitialMeasurements(remoteId: remoteId)
     }
     
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.HumidityMeasurement]> {

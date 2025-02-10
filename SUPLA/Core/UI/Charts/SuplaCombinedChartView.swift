@@ -42,7 +42,7 @@ class SuplaCombinedChartView: UIView {
         }
     }
     
-    var chartStyle: (any ChartStyle)? = nil {
+    var chartStyle: ChartStyle? = nil {
         didSet {
             guard let chartStyle = chartStyle else { return }
             if (chartStyle.isEqualTo(oldValue) == true) { return }
@@ -52,8 +52,16 @@ class SuplaCombinedChartView: UIView {
             combinedChart.rightAxis.labelTextColor = chartStyle.rightAxisColor
             combinedChart.rightAxis.gridColor = chartStyle.rightAxisColor
             combinedChart.drawBarShadowEnabled = chartStyle.drawBarShadow
+            if (!chartStyle.setMaxValue) {
+                combinedChart.leftAxis.resetCustomAxisMax()
+                combinedChart.rightAxis.resetCustomAxisMax()
+            }
+            if (!chartStyle.setMinValue) {
+                combinedChart.leftAxis.resetCustomAxisMin()
+                combinedChart.rightAxis.resetCustomAxisMin()
+            }
             
-            let marker = chartStyle.provideMarkerView()
+            let marker = chartStyle.markerView
             marker.chartView = combinedChart
             combinedChart.marker = marker
         }
@@ -86,16 +94,17 @@ class SuplaCombinedChartView: UIView {
     
     var maxLeftAxis: Double? {
         get { combinedChart.leftAxis.axisMaximum }
-        set { if let max = newValue { combinedChart.leftAxis.axisMaximum = max < 0 ? 0 : max } }
+        set {
+            if let max = newValue, chartStyle?.setMaxValue == true {
+                combinedChart.leftAxis.axisMaximum = max < 0 ? 0 : max
+            }
+        }
     }
     
     var minLeftAxis: Double? {
         get { combinedChart.leftAxis.axisMinimum }
         set {
-            if let min = newValue,
-               let function = channelFunction,
-               isNotGmp(function: function)
-            {
+            if let min = newValue, chartStyle?.setMinValue == true {
                 combinedChart.leftAxis.axisMinimum = min > 0 ? 0 : min
             }
         }
@@ -103,7 +112,11 @@ class SuplaCombinedChartView: UIView {
     
     var maxRightAxis: Double? {
         get { combinedChart.rightAxis.axisMaximum }
-        set { if let max = newValue { combinedChart.rightAxis.axisMaximum = max > 100 ? max : 100 } }
+        set {
+            if let max = newValue, chartStyle?.setMaxValue == true {
+                combinedChart.rightAxis.axisMaximum = max > 100 ? max : 100
+            }
+        }
     }
     
     var channelFunction: Int32? = nil
@@ -197,11 +210,6 @@ class SuplaCombinedChartView: UIView {
             combinedChart.leftAnchor.constraint(equalTo: leftAnchor),
             combinedChart.rightAnchor.constraint(equalTo: rightAnchor)
         ])
-    }
-    
-    private func isNotGmp(function: Int32) -> Bool {
-        function != SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-            && function != SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
     
     override class var requiresConstraintBasedLayout: Bool {

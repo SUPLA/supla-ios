@@ -71,6 +71,11 @@ final class TemperatureMeasurementItemRepositoryMock: BaseRepositoryMock<SATempe
         return try storeMeasurementsReturns()
     }
     
+    var getInitialMeasurementsMock: FunctionMock<Int32, Observable<(response: HTTPURLResponse, data: Data)>> = .init()
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        getInitialMeasurementsMock.handle(remoteId)
+    }
+    
     var getMeasurementsParameters: [(Int32, TimeInterval)] = []
     var getMeasurementsReturns: [Observable<[SuplaCloudClient.TemperatureMeasurement]>] = []
     private var getMeasurementsCurrent = 0

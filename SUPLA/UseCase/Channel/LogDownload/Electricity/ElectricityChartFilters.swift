@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 struct ElectricityChartFilters: ChartDataSpec.Filters, Codable, Equatable {
     let type: ElectricityMeterChartType
     let availableTypes: [ElectricityMeterChartType]
@@ -53,7 +55,12 @@ struct ElectricityChartFilters: ChartDataSpec.Filters, Codable, Equatable {
         )
     }
     
-    static func restore(flags: Int64, value: SAElectricityMeterExtendedValue?, state: ChartState?) -> ElectricityChartFilters {
+    static func restore(
+        flags: Int64,
+        value: SAElectricityMeterExtendedValue?,
+        configDto: ElectricityMeterConfigDto?,
+        state: ChartState?
+    ) -> ElectricityChartFilters {
         let filters = (state as? ElectricityChartState)?.customFilters ?? standard()
         let availablePhases = filterPhases(flags: flags, phases: Phase.allCases)
         var selectedPhases = filterPhases(flags: flags, phases: filters.selectedPhases)
@@ -63,7 +70,7 @@ struct ElectricityChartFilters: ChartDataSpec.Filters, Codable, Equatable {
         
         return ElectricityChartFilters(
             type: filters.type,
-            availableTypes: buildTypes(value: value),
+            availableTypes: buildTypes(value: value, configDto: configDto),
             selectedPhases: selectedPhases,
             availablePhases: availablePhases
         )
@@ -81,7 +88,10 @@ struct ElectricityChartFilters: ChartDataSpec.Filters, Codable, Equatable {
         return result
     }
     
-    private static func buildTypes(value: SAElectricityMeterExtendedValue?) -> [ElectricityMeterChartType] {
+    private static func buildTypes(
+        value: SAElectricityMeterExtendedValue?,
+        configDto: ElectricityMeterConfigDto?
+    ) -> [ElectricityMeterChartType] {
         guard let value = value else { return [] }
         
         let measuredTypes = value.suplaElectricityMeterMeasuredTypes
@@ -109,6 +119,9 @@ struct ElectricityChartFilters: ChartDataSpec.Filters, Codable, Equatable {
         if (measuredTypes.hasBalance) {
             result.append(.balanceVector)
         }
+        configDto?.voltageLoggerEnabled.ifTrue { result.append(.voltage) }
+        configDto?.currentLoggerEnabled.ifTrue { result.append(.current) }
+        configDto?.powerActiveLoggerEnabled.ifTrue { result.append(.powerActive) }
         
         return result
     }

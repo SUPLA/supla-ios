@@ -50,15 +50,7 @@ extension ElectricityDataSelectionFeature {
         }
         
         private func getPhases(selectedType: ElectricityMeterChartType, availablePhases: [Phase], selectedPhases: [Phase]) -> [SelectableItem<Phase>] {
-            
-            let disabledPhases = switch (selectedType) {
-            case .forwardActiveEnergy,
-                 .reverseActiveEnergy,
-                 .forwardReactiveEnergy,
-                 .reverseReactiveEnergy: Phase.allCases.filter { !availablePhases.contains($0) }
-            default: Phase.allCases
-            }
-            
+            let disabledPhases = selectedType.needsPhases ? Phase.allCases.filter { !availablePhases.contains($0) } : Phase.allCases
             return Phase.allCases
                 .map {
                     SelectableItem(

@@ -16,13 +16,4 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-extension SuplaCloudClient {
-    struct HumidityMeasurement: Measurement {
-        let date_timestamp: Date
-        let humidity: String
-        
-        static func fromJson(data: Data) throws -> [HumidityMeasurement] {
-            return try decoder.decode([HumidityMeasurement].self, from: data)
-        }
-    }
-}
+extension SAPowerActiveMeasurementItem: BaseHistoryEntity {}

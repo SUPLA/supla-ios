@@ -20,7 +20,7 @@ import Foundation
 
 struct HistoryDataSet: Equatable, Changeable, Identifiable {
     var id: Int { type.rawValue }
-    
+
     let type: ChartEntryType
     let label: Label
     let valueFormatter: ChannelValueFormatter
@@ -36,7 +36,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
     func toChartDetails(aggregation: ChartDataAggregation, entity: AggregatedEntity, customData: (any Equatable)? = nil) -> ChartEntryDetails {
         switch (entity.value) {
         case .single(_, let min, let max, let open, let close):
-            ChartEntryDetails(
+            .default(
                 aggregation: aggregation,
                 type: type,
                 date: Date(timeIntervalSince1970: entity.date),
@@ -47,8 +47,8 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
                 valueFormatter: valueFormatter,
                 customData: customData
             )
-        case .multiple(_):
-            ChartEntryDetails(
+        case .multiple:
+            .default(
                 aggregation: aggregation,
                 type: type,
                 date: Date(timeIntervalSince1970: entity.date),
@@ -58,6 +58,16 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
                 close: nil,
                 valueFormatter: valueFormatter,
                 customData: customData
+            )
+        case .withPhase(_, let min, let max, let phase):
+            .withPhase(
+                aggregation: aggregation,
+                type: type,
+                date: Date(timeIntervalSince1970: entity.date),
+                min: min,
+                max: max,
+                valueFormatter: valueFormatter,
+                phase: phase
             )
         }
     }
@@ -72,7 +82,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
     enum Label: Equatable {
         case single(LabelData)
         case multiple([LabelData])
-        
+
         var colors: [UIColor] {
             switch (self) {
             case .single(let data): [data.color]
@@ -117,7 +127,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
             self.justColor = true
             self.iconSize = nil
         }
-        
+
         func getIconSize() -> CGFloat { iconSize ?? Dimens.iconSizeBig }
     }
 }

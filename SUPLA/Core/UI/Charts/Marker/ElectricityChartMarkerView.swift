@@ -58,7 +58,10 @@ import SwiftUI
             case .reverseActiveEnergy,
                  .forwardActiveEnergy,
                  .reverseReactiveEnergy,
-                 .forwardReactiveEnergy: showPhases(filters.selectedPhases, highlight, barEntry, customData)
+                 .forwardReactiveEnergy,
+                 .current,
+                 .voltage,
+                 .powerActive: showPhases(filters.selectedPhases, highlight, barEntry, customData)
             case .balanceHourly,
                  .balanceVector,
                  .balanceArithmetic: showBalanceTwoValues(highlight, barEntry, customData)

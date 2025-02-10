@@ -76,7 +76,8 @@ private extension AggregatedEntity {
                 close: close ?? value,
                 data: data
             )
-        case .multiple(_):
+        case .multiple(_),
+             .withPhase:
             fatalError("Candle chart is not supported for multiple values!")
         }
     }

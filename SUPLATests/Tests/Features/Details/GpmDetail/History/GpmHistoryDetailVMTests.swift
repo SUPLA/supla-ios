@@ -224,6 +224,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         let state5 = state4
             .changing(path: \.showHistory, to: false)
             .changing(path: \.downloadState, to: .finished)
+            .changing(path: \.chartStyle, to: .gpm)
         let state6 = state5
             .changing(path: \.chartData, to: expectedChartDataProvider(daysRange))
             .changing(path: \.loading, to: false)

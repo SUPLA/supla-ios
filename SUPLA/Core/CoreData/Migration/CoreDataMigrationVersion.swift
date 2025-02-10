@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import CoreData
+import Foundation
 
 enum CoreDataMigrationVersion: String, CaseIterable {
     case version1 = "SUPLA"
@@ -40,50 +40,41 @@ enum CoreDataMigrationVersion: String, CaseIterable {
     case version18 = "SUPLA 18"
     case version19 = "SUPLA 19"
     case version20 = "SUPLA 20"
-    
+    case version21 = "SUPLA 21"
+
     static var current: CoreDataMigrationVersion {
         guard let latest = allCases.last else {
             fatalError("no model versions found")
         }
-        
+
         return latest
     }
-    
+
     // MARK: Migration
-    
+
     func nextVersion() -> CoreDataMigrationVersion? {
         switch self {
         case .version1,
-                .version2,
-                .version3,
-                .version4,
-                .version5,
-                .version6,
-                .version7,
-                .version8,
-                .version9,
-                .version10:
-            return .version11
-        case .version11:
-            return .version12
-        case .version12:
-            return .version13
-        case .version13:
-            return .version14
-        case .version14:
-            return .version15
-        case .version15:
-            return .version16
-        case .version16:
-            return .version17
-        case .version17:
-            return .version19
-        case .version18:
-            return .version19
-        case .version19:
-            return .version20
-        case .version20:
-            return nil
+             .version2,
+             .version3,
+             .version4,
+             .version5,
+             .version6,
+             .version7,
+             .version8,
+             .version9,
+             .version10: .version11
+        case .version11: .version12
+        case .version12: .version13
+        case .version13: .version14
+        case .version14: .version15
+        case .version15: .version16
+        case .version16: .version17
+        case .version17: .version19
+        case .version18: .version19
+        case .version19: .version20
+        case .version20: .version21
+        case .version21: nil
         }
     }
 }

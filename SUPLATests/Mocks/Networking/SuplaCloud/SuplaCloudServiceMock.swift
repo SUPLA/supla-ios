@@ -21,12 +21,9 @@ import SharedCore
 import RxSwift
 
 final class SuplaCloudServiceMock: SuplaCloudService {
-    
-    var initialMeasurementsParameters: [Int32] = []
-    var initialMeasurementsReturns: Observable<(response: HTTPURLResponse, data: Data)> = .empty()
-    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
-        initialMeasurementsParameters.append(remoteId)
-        return initialMeasurementsReturns
+    var getInitialMeasurementsMock: FunctionMock<(Int32, SUPLA.SuplaCloudClient.HistoryMeasurementType?), Observable<(response: HTTPURLResponse, data: Data)>> = .init()
+    func getInitialMeasurements(remoteId: Int32, type: SUPLA.SuplaCloudClient.HistoryMeasurementType?) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        getInitialMeasurementsMock.handle((remoteId, type))
     }
     
     var temperatureMeasurementsParameters: [(Int32, TimeInterval)] = []
@@ -119,10 +116,20 @@ final class SuplaCloudServiceMock: SuplaCloudService {
         }
     }
     
-    var getImpulseCounterPhotoMock: FunctionMock<Int32, Observable<ImpulseCounterPhoto>> = .init()
-    func getImpulseCounterPhoto(remoteId: Int32) -> Observable<ImpulseCounterPhoto> {
+    var getImpulseCounterPhotoMock: FunctionMock<Int32, Observable<ImpulseCounterPhotoDto>> = .init()
+    func getImpulseCounterPhoto(remoteId: Int32) -> Observable<ImpulseCounterPhotoDto> {
         getImpulseCounterPhotoMock.parameters.append(remoteId)
         return getImpulseCounterPhotoMock.returns.next()
+    }
+    
+    var getHistoryMeasurementsMock: FunctionMock<(Int32, TimeInterval, SUPLA.SuplaCloudClient.HistoryMeasurementType), Observable<[SUPLA.SuplaCloudClient.HistoryMeasurement]>> = .init()
+    func getHistoryMeasurements(remoteId: Int32, afterTimestamp: TimeInterval, type: SUPLA.SuplaCloudClient.HistoryMeasurementType) -> Observable<[SUPLA.SuplaCloudClient.HistoryMeasurement]> {
+        getHistoryMeasurementsMock.handle((remoteId, afterTimestamp, type))
+    }
+    
+    var getElectricityMeterChannelMock: FunctionMock<Int32, Observable<ElectricityChannelDto>> = .init()
+    func getElectricityMeterChannel(remoteId: Int32) -> Observable<ElectricityChannelDto> {
+        getElectricityMeterChannelMock.handle(remoteId)
     }
     
     var getHumidityMeasurementsMock: FunctionMock<(Int32, TimeInterval), Observable<[SUPLA.SuplaCloudClient.HumidityMeasurement]>> = .init()

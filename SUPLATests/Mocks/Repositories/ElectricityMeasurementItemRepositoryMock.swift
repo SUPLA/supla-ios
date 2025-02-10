@@ -58,6 +58,10 @@ final class ElectricityMeasurementItemRepositoryMock: BaseRepositoryMock<SAElect
         return Observable.empty()
     }
     
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        Observable.empty()
+    }
+    
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.ElectricityMeasurement]> {
         return Observable.empty()
     }

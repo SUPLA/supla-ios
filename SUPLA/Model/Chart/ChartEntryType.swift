@@ -26,6 +26,9 @@ enum ChartEntryType: Int, Codable {
     case generalPurposeMeter
     case electricity
     case impulseCounter
+    case voltage
+    case current
+    case powerActive
 
     func leftAxis() -> Bool {
         switch (self) {
@@ -34,7 +37,10 @@ enum ChartEntryType: Int, Codable {
              .generalPurposeMeasurement,
              .electricity,
              .humidityOnly,
-             .impulseCounter: true
+             .impulseCounter,
+             .voltage,
+             .current,
+             .powerActive: true
         case .humidity: false
         }
     }
@@ -46,7 +52,10 @@ enum ChartEntryType: Int, Codable {
              .generalPurposeMeasurement,
              .electricity,
              .humidityOnly,
-             .impulseCounter: false
+             .impulseCounter,
+             .voltage,
+             .current,
+             .powerActive: false
         case .humidity: true
         }
     }
