@@ -28,16 +28,7 @@ struct SuplaCloudClient {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
                 let container = try decoder.singleValueContainer()
-                let dateStr = try container.decode(String.self)
-                
-                if let timeinterval = TimeInterval(dateStr) {
-                    return Date(timeIntervalSince1970: timeinterval)
-                } else {
-                    throw DecodingError.dataCorruptedError(
-                        in: container,
-                        debugDescription: "Cannot decoade date string \(dateStr)"
-                    )
-                }
+                return Date(timeIntervalSince1970: try container.decode(Double.self))
             })
             return decoder
         }
@@ -47,9 +38,9 @@ struct SuplaCloudClient {
         get {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .custom({ (date, encoder) in
-                let value = Int(date.timeIntervalSince1970)
+                let value = date.timeIntervalSince1970
                 var container = encoder.singleValueContainer()
-                try container.encode("\(value)")
+                try container.encode(value)
             })
             return encoder
         }

@@ -535,6 +535,15 @@
 		A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */; };
 		A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */; };
 		A54A068E2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */; };
+		A550F2822D520F760011463B /* HistoryMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2812D520F6C0011463B /* HistoryMeasurement.swift */; };
+		A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */; };
+		A550F2872D521ADF0011463B /* VoltageMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2862D521AD60011463B /* VoltageMeasurementItemRepository.swift */; };
+		A550F2892D522BE80011463B /* PowerActiveMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2882D522BDD0011463B /* PowerActiveMeasurementItemRepository.swift */; };
+		A550F28B2D5231E70011463B /* DownloadCurrentLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F28A2D5231D80011463B /* DownloadCurrentLogUseCase.swift */; };
+		A550F28D2D5236930011463B /* DownloadVoltageLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F28C2D5236880011463B /* DownloadVoltageLogUseCase.swift */; };
+		A550F28F2D5236E50011463B /* DownloadPowerActiveLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F28E2D5236D50011463B /* DownloadPowerActiveLogUseCase.swift */; };
+		A550F2922D52539C0011463B /* ElectricityMeterMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2912D5253940011463B /* ElectricityMeterMeasurementsProvider.swift */; };
+		A550F2962D535B900011463B /* BaseHistoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2952D535B800011463B /* BaseHistoryEntity.swift */; };
 		A5519B2E2B6D1D9000811747 /* WindValueProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5519B2D2B6D1D9000811747 /* WindValueProviderTest.swift */; };
 		A5519B302B6D30D000811747 /* WeightValueProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5519B2F2B6D30D000811747 /* WeightValueProviderTest.swift */; };
 		A5519B322B6D313C00811747 /* ThermometerValueProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5519B312B6D313C00811747 /* ThermometerValueProviderTest.swift */; };
@@ -556,6 +565,19 @@
 		A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F42B83842000FD3296 /* NotificationsLogVC.swift */; };
 		A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F82B838E7300FD3296 /* NotificationRepository.swift */; };
 		A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */; };
+		A5552ECE2D53697900A3F6A2 /* VoltageMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ECD2D53697400A3F6A2 /* VoltageMeasurementsProvider.swift */; };
+		A5552ED02D5369C400A3F6A2 /* ElectricityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ECF2D5369BE00A3F6A2 /* ElectricityMeasurementsProvider.swift */; };
+		A5552ED22D536ADC00A3F6A2 /* VoltageValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ED12D536AD600A3F6A2 /* VoltageValueFormatter.swift */; };
+		A5552ED42D53755800A3F6A2 /* SAVoltageMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ED32D53755400A3F6A2 /* SAVoltageMeasurementItem+Ext.swift */; };
+		A5552ED62D5377FC00A3F6A2 /* CurrentValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ED52D5377F600A3F6A2 /* CurrentValueFormatter.swift */; };
+		A5552ED82D53781600A3F6A2 /* PowerActiveValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ED72D53781100A3F6A2 /* PowerActiveValueFormatter.swift */; };
+		A5552EDA2D537A6800A3F6A2 /* Dictonary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ED92D537A6000A3F6A2 /* Dictonary+Ext.swift */; };
+		A5552EDC2D537D5100A3F6A2 /* ElectricityChannelDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EDB2D537D3E00A3F6A2 /* ElectricityChannelDto.swift */; };
+		A5552EDE2D537DF500A3F6A2 /* ElectricityMeterConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EDD2D537DED00A3F6A2 /* ElectricityMeterConfigDto.swift */; };
+		A5552EE22D54FEDC00A3F6A2 /* CurrentMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE12D54FED300A3F6A2 /* CurrentMeasurementsProvider.swift */; };
+		A5552EE42D54FF8A00A3F6A2 /* SACurrentMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */; };
+		A5552EE62D55020600A3F6A2 /* PowerActiveMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */; };
+		A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */; };
 		A55A8D702BA831D900C540D4 /* WindowDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D6F2BA831D900C540D4 /* WindowDetailVM.swift */; };
 		A55A8D722BA8406900C540D4 /* WindowDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D712BA8406900C540D4 /* WindowDetailVC.swift */; };
 		A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */; };
@@ -989,7 +1011,7 @@
 		A5E05BB72CB50C2D00202583 /* TemperatureAndHumidityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB62CB50C2A00202583 /* TemperatureAndHumidityMeasurementsProvider.swift */; };
 		A5E05BB92CB5127C00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */; };
 		A5E05BBB2CB5184700202583 /* GeneralPurposeMeterMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */; };
-		A5E05BBD2CB5274000202583 /* ElectricityMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */; };
+		A5E05BBD2CB5274000202583 /* ElectricityConsumptionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBC2CB5273900202583 /* ElectricityConsumptionProvider.swift */; };
 		A5E05BBF2CB52D3700202583 /* AggregatedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BBE2CB52D2E00202583 /* AggregatedEntity.swift */; };
 		A5E05BC12CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC02CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift */; };
 		A5E05BC32CB552DE00202583 /* ElectricityMarkerCustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E05BC22CB552D900202583 /* ElectricityMarkerCustomData.swift */; };
@@ -1005,7 +1027,7 @@
 		A5E0DF6E2CEB66C900362451 /* ImpulseCounterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */; };
 		A5E0DF702CEB79C300362451 /* CacheFileAccessProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF6F2CEB79BB00362451 /* CacheFileAccessProxy.swift */; };
 		A5E0DF732CEBDBD000362451 /* CheckOcrPhotoExistsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF722CEBDBCF00362451 /* CheckOcrPhotoExistsUseCase.swift */; };
-		A5E0DF7A2CEC802600362451 /* ImpulseCounterPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */; };
+		A5E0DF7A2CEC802600362451 /* ImpulseCounterPhotoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF792CEC802400362451 /* ImpulseCounterPhotoDto.swift */; };
 		A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF7B2CEC82A700362451 /* DownloadOcrPhotoUseCase.swift */; };
 		A5E0DF7E2CEC8E7A00362451 /* StoreChannelOcrPhotoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF7D2CEC8E6F00362451 /* StoreChannelOcrPhotoUseCase.swift */; };
 		A5E0DF862CECA1D500362451 /* CounterPhotoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF852CECA1CE00362451 /* CounterPhotoFeature.swift */; };
@@ -2051,6 +2073,16 @@
 		A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCasesMocks.swift; sourceTree = "<group>"; };
 		A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift; sourceTree = "<group>"; };
 		A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 21.xcdatamodel"; sourceTree = "<group>"; };
+		A550F2812D520F6C0011463B /* HistoryMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMeasurement.swift; sourceTree = "<group>"; };
+		A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMeasurementItemRepository.swift; sourceTree = "<group>"; };
+		A550F2862D521AD60011463B /* VoltageMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltageMeasurementItemRepository.swift; sourceTree = "<group>"; };
+		A550F2882D522BDD0011463B /* PowerActiveMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActiveMeasurementItemRepository.swift; sourceTree = "<group>"; };
+		A550F28A2D5231D80011463B /* DownloadCurrentLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCurrentLogUseCase.swift; sourceTree = "<group>"; };
+		A550F28C2D5236880011463B /* DownloadVoltageLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVoltageLogUseCase.swift; sourceTree = "<group>"; };
+		A550F28E2D5236D50011463B /* DownloadPowerActiveLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPowerActiveLogUseCase.swift; sourceTree = "<group>"; };
+		A550F2912D5253940011463B /* ElectricityMeterMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A550F2952D535B800011463B /* BaseHistoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryEntity.swift; sourceTree = "<group>"; };
 		A5519B2D2B6D1D9000811747 /* WindValueProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindValueProviderTest.swift; sourceTree = "<group>"; };
 		A5519B2F2B6D30D000811747 /* WeightValueProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightValueProviderTest.swift; sourceTree = "<group>"; };
 		A5519B312B6D313C00811747 /* ThermometerValueProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueProviderTest.swift; sourceTree = "<group>"; };
@@ -2072,6 +2104,19 @@
 		A55501F42B83842000FD3296 /* NotificationsLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVC.swift; sourceTree = "<group>"; };
 		A55501F82B838E7300FD3296 /* NotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
 		A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertNotificationUseCase.swift; sourceTree = "<group>"; };
+		A5552ECD2D53697400A3F6A2 /* VoltageMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltageMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5552ECF2D5369BE00A3F6A2 /* ElectricityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5552ED12D536AD600A3F6A2 /* VoltageValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltageValueFormatter.swift; sourceTree = "<group>"; };
+		A5552ED32D53755400A3F6A2 /* SAVoltageMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAVoltageMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5552ED52D5377F600A3F6A2 /* CurrentValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentValueFormatter.swift; sourceTree = "<group>"; };
+		A5552ED72D53781100A3F6A2 /* PowerActiveValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActiveValueFormatter.swift; sourceTree = "<group>"; };
+		A5552ED92D537A6000A3F6A2 /* Dictonary+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictonary+Ext.swift"; sourceTree = "<group>"; };
+		A5552EDB2D537D3E00A3F6A2 /* ElectricityChannelDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityChannelDto.swift; sourceTree = "<group>"; };
+		A5552EDD2D537DED00A3F6A2 /* ElectricityMeterConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterConfigDto.swift; sourceTree = "<group>"; };
+		A5552EE12D54FED300A3F6A2 /* CurrentMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SACurrentMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActiveMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAPowerActiveMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A55A8D6F2BA831D900C540D4 /* WindowDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDetailVM.swift; sourceTree = "<group>"; };
 		A55A8D712BA8406900C540D4 /* WindowDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDetailVC.swift; sourceTree = "<group>"; };
 		A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVM.swift; sourceTree = "<group>"; };
@@ -2510,7 +2555,7 @@
 		A5E05BB62CB50C2A00202583 /* TemperatureAndHumidityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureAndHumidityMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterMeasurementsProvider.swift; sourceTree = "<group>"; };
-		A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeasurementsProvider.swift; sourceTree = "<group>"; };
+		A5E05BBC2CB5273900202583 /* ElectricityConsumptionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityConsumptionProvider.swift; sourceTree = "<group>"; };
 		A5E05BBE2CB52D2E00202583 /* AggregatedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedEntity.swift; sourceTree = "<group>"; };
 		A5E05BC02CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAElectricityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5E05BC22CB552D900202583 /* ElectricityMarkerCustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMarkerCustomData.swift; sourceTree = "<group>"; };
@@ -2526,7 +2571,7 @@
 		A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterDetailVC.swift; sourceTree = "<group>"; };
 		A5E0DF6F2CEB79BB00362451 /* CacheFileAccessProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFileAccessProxy.swift; sourceTree = "<group>"; };
 		A5E0DF722CEBDBCF00362451 /* CheckOcrPhotoExistsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOcrPhotoExistsUseCase.swift; sourceTree = "<group>"; };
-		A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterPhoto.swift; sourceTree = "<group>"; };
+		A5E0DF792CEC802400362451 /* ImpulseCounterPhotoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterPhotoDto.swift; sourceTree = "<group>"; };
 		A5E0DF7B2CEC82A700362451 /* DownloadOcrPhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOcrPhotoUseCase.swift; sourceTree = "<group>"; };
 		A5E0DF7D2CEC8E6F00362451 /* StoreChannelOcrPhotoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreChannelOcrPhotoUseCase.swift; sourceTree = "<group>"; };
 		A5E0DF852CECA1CE00362451 /* CounterPhotoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoFeature.swift; sourceTree = "<group>"; };
@@ -3401,6 +3446,9 @@
 		A503ABB62B6BB060008CDA1F /* ValueFormatter */ = {
 			isa = PBXGroup;
 			children = (
+				A5552ED72D53781100A3F6A2 /* PowerActiveValueFormatter.swift */,
+				A5552ED52D5377F600A3F6A2 /* CurrentValueFormatter.swift */,
+				A5552ED12D536AD600A3F6A2 /* VoltageValueFormatter.swift */,
 				A5E160CA2D3697EB003A7C71 /* ImpulseCounterChartValueFormatter.swift */,
 				A584E2042CAB38FE00232A98 /* ElectricityMeterValueFormatter.swift */,
 				A503ABB72B6BB082008CDA1F /* ChannelValueFormatter.swift */,
@@ -4129,14 +4177,17 @@
 			isa = PBXGroup;
 			children = (
 				A5E05BA32CB3DB9800202583 /* Electricity */,
-				A5E05B9C2CB00EC900202583 /* DownloadElectricityMeterLogUseCase.swift */,
-				A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */,
-				A57668EE2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift */,
 				A57668F02AEA9F5B0025509D /* BaseDownloadLogUseCase.swift */,
-				A57668F22AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift */,
+				A550F28A2D5231D80011463B /* DownloadCurrentLogUseCase.swift */,
+				A5E05B9C2CB00EC900202583 /* DownloadElectricityMeterLogUseCase.swift */,
 				A54149362B63BC0500B44BD6 /* DownloadGeneralPurposeMeasurementLogUseCase.swift */,
 				A503ABAE2B6A9944008CDA1F /* DownloadGeneralPurposeMeterLogUseCase.swift */,
+				A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */,
 				A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */,
+				A550F28E2D5236D50011463B /* DownloadPowerActiveLogUseCase.swift */,
+				A57668EE2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift */,
+				A57668F22AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift */,
+				A550F28C2D5236880011463B /* DownloadVoltageLogUseCase.swift */,
 			);
 			path = LogDownload;
 			sourceTree = "<group>";
@@ -4342,6 +4393,46 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		A550F2832D5211450011463B /* Measurements */ = {
+			isa = PBXGroup;
+			children = (
+				A550F2882D522BDD0011463B /* PowerActiveMeasurementItemRepository.swift */,
+				A550F2862D521AD60011463B /* VoltageMeasurementItemRepository.swift */,
+				A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */,
+				A5F29BCD2A26232900ED700A /* ElectricityMeasurementItemRepository.swift */,
+				A54149322B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift */,
+				A503ABB22B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift */,
+				A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */,
+				A5F29BCF2A26237200ED700A /* ImpulseCounterMeasurementItemRepository.swift */,
+				A5F29BD12A26239C00ED700A /* TemperatureMeasurementItemRepository.swift */,
+				A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift */,
+				A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */,
+			);
+			path = Measurements;
+			sourceTree = "<group>";
+		};
+		A550F2902D5252A90011463B /* Electricity */ = {
+			isa = PBXGroup;
+			children = (
+				A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */,
+				A5552EE12D54FED300A3F6A2 /* CurrentMeasurementsProvider.swift */,
+				A5552ECF2D5369BE00A3F6A2 /* ElectricityMeasurementsProvider.swift */,
+				A5552ECD2D53697400A3F6A2 /* VoltageMeasurementsProvider.swift */,
+				A5E05BBC2CB5273900202583 /* ElectricityConsumptionProvider.swift */,
+			);
+			path = Electricity;
+			sourceTree = "<group>";
+		};
+		A550F2942D535B6C0011463B /* Measurements */ = {
+			isa = PBXGroup;
+			children = (
+				A550F2952D535B800011463B /* BaseHistoryEntity.swift */,
+				A5E05BAE2CB46E3800202583 /* BaseHumidityEntity.swift */,
+				A5E05BAC2CB46DEF00202583 /* BaseTemperatureEntity.swift */,
+			);
+			path = Measurements;
+			sourceTree = "<group>";
+		};
 		A5519B2C2B6D1D0300811747 /* ValueProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -4386,6 +4477,31 @@
 				A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		A5552EDF2D54C64000A3F6A2 /* Measurements */ = {
+			isa = PBXGroup;
+			children = (
+				A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */,
+				A54149342B63B91B00B44BD6 /* GeneralPurposeMeasurement.swift */,
+				A503ABB02B6A9B43008CDA1F /* GeneralPurposeMeter.swift */,
+				A550F2812D520F6C0011463B /* HistoryMeasurement.swift */,
+				A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */,
+				A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */,
+				A57668DA2AE992310025509D /* Measurement.swift */,
+				A57668D62AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift */,
+				A57668CE2AE914140025509D /* TemperatureMeasurement.swift */,
+			);
+			path = Measurements;
+			sourceTree = "<group>";
+		};
+		A5552EE02D54C8D600A3F6A2 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				A5552EDB2D537D3E00A3F6A2 /* ElectricityChannelDto.swift */,
+				A5552EDD2D537DED00A3F6A2 /* ElectricityMeterConfigDto.swift */,
+			);
+			path = Channel;
 			sourceTree = "<group>";
 		};
 		A55A8D6C2BA831AD00C540D4 /* WindowDetail */ = {
@@ -4987,10 +5103,9 @@
 		A59AB8972A2F6D4000D91F1F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				A550F2942D535B6C0011463B /* Measurements */,
 				A505EC322CF70D8800E69BDB /* AuthorizationType.swift */,
 				A598CAD42CC6E90400A784FA /* SharedCoreExtensions */,
-				A5E05BAE2CB46E3800202583 /* BaseHumidityEntity.swift */,
-				A5E05BAC2CB46DEF00202583 /* BaseTemperatureEntity.swift */,
 				A5B3CC0F2B62935800F95AC3 /* Extensions */,
 				AECB1BEA2711CB67001A9714 /* AuthInfo.swift */,
 			);
@@ -5538,6 +5653,9 @@
 		A5B3CC0F2B62935800F95AC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */,
+				A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */,
+				A5552ED32D53755400A3F6A2 /* SAVoltageMeasurementItem+Ext.swift */,
 				A5E160C82D3659DD003A7C71 /* SAImpulseCounterMeasurementItem+Ext.swift */,
 				A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */,
 				6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */,
@@ -5729,10 +5847,11 @@
 		A5E05BA72CB40EF900202583 /* MeasurementsProvider */ = {
 			isa = PBXGroup;
 			children = (
+				A550F2902D5252A90011463B /* Electricity */,
 				A54637A42D37A39100D746F5 /* AggregationResult.swift */,
+				A550F2912D5253940011463B /* ElectricityMeterMeasurementsProvider.swift */,
 				A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */,
 				A5E160B92D315C95003A7C71 /* HumidityMeasurementsProvider.swift */,
-				A5E05BBC2CB5273900202583 /* ElectricityMeasurementsProvider.swift */,
 				A5E05BBA2CB5184500202583 /* GeneralPurposeMeterMeasurementsProvider.swift */,
 				A5E05BB82CB5127B00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift */,
 				A5E05BB62CB50C2A00202583 /* TemperatureAndHumidityMeasurementsProvider.swift */,
@@ -6111,7 +6230,7 @@
 		A5F29B7C2A1E36B300ED700A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */,
+				A550F2832D5211450011463B /* Measurements */,
 				A505EC492CF88C1E00E69BDB /* ProfileServerRepository.swift */,
 				A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */,
 				A5F29B7D2A1E36C200ED700A /* SceneRepository.swift */,
@@ -6122,17 +6241,10 @@
 				A5F29BB32A24C96600ED700A /* ChannelValueRepository.swift */,
 				A5F29BB72A24D16000ED700A /* ChannelGroupRelationRepository.swift */,
 				A5F29BB92A24D5DB00ED700A /* ChannelExtendedValueRepository.swift */,
-				A5F29BCD2A26232900ED700A /* ElectricityMeasurementItemRepository.swift */,
-				A5F29BCF2A26237200ED700A /* ImpulseCounterMeasurementItemRepository.swift */,
-				A5F29BD12A26239C00ED700A /* TemperatureMeasurementItemRepository.swift */,
-				A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift */,
 				A5F29BD52A2623E500ED700A /* UserIconRepository.swift */,
-				A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */,
 				A5FE675B2A65CA1700147D1F /* SuplaCloudClientRepository.swift */,
 				A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */,
 				A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */,
-				A54149322B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift */,
-				A503ABB22B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift */,
 				A503ABB42B6B7713008CDA1F /* BaseMeasurementRepository.swift */,
 				A55501F82B838E7300FD3296 /* NotificationRepository.swift */,
 			);
@@ -6142,6 +6254,7 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5552ED92D537A6000A3F6A2 /* Dictonary+Ext.swift */,
 				A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */,
 				A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */,
 				A5E05BCD2CB7154100202583 /* NSDecimalNumber+Ext.swift */,
@@ -6398,17 +6511,11 @@
 		A5FE675D2A65CC2A00147D1F /* ClientApi */ = {
 			isa = PBXGroup;
 			children = (
-				A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */,
-				A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */,
-				A5E0DF792CEC802400362451 /* ImpulseCounterPhoto.swift */,
-				A5E05B9A2CAFF82500202583 /* ElectricityMeasurement.swift */,
+				A5552EE02D54C8D600A3F6A2 /* Channel */,
+				A5552EDF2D54C64000A3F6A2 /* Measurements */,
+				A5E0DF792CEC802400362451 /* ImpulseCounterPhotoDto.swift */,
 				A5FE675E2A65CC4300147D1F /* Autodiscover.swift */,
 				A5FE67602A65CC9900147D1F /* SuplaCloudClient.swift */,
-				A57668CE2AE914140025509D /* TemperatureMeasurement.swift */,
-				A57668D62AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift */,
-				A57668DA2AE992310025509D /* Measurement.swift */,
-				A54149342B63B91B00B44BD6 /* GeneralPurposeMeasurement.swift */,
-				A503ABB02B6A9B43008CDA1F /* GeneralPurposeMeter.swift */,
 			);
 			path = ClientApi;
 			sourceTree = "<group>";
@@ -6888,6 +6995,7 @@
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
 				A54637C12D38041A00D746F5 /* ChannelOfflineView.swift in Sources */,
 				A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */,
+				A5552EE62D55020600A3F6A2 /* PowerActiveMeasurementsProvider.swift in Sources */,
 				A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */,
 				A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */,
 				A5B3CBEB2B625D2F00F95AC3 /* DistanceValueProvider.swift in Sources */,
@@ -6911,6 +7019,7 @@
 				A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */,
 				A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */,
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
+				A5552ED82D53781600A3F6A2 /* PowerActiveValueFormatter.swift in Sources */,
 				A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */,
 				A5A160182C2AE9F30049AA73 /* InitializationUseCase.swift in Sources */,
 				A5D712672C37EBE700A8EF52 /* LockScreenVC.swift in Sources */,
@@ -7065,6 +7174,7 @@
 				A57668C12AE7996D0025509D /* HistoryDataSet.swift in Sources */,
 				A5F29BA82A24B0FC00ED700A /* UpdateSceneStateUseCase.swift in Sources */,
 				A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */,
+				A550F2872D521ADF0011463B /* VoltageMeasurementItemRepository.swift in Sources */,
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
 				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
@@ -7072,6 +7182,7 @@
 				A55A8D982BAB28CC00C540D4 /* ScopeFunctions.swift in Sources */,
 				A5E9CE292C32CE4700509702 /* SALoginDialogVM.swift in Sources */,
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
+				A5552EDE2D537DF500A3F6A2 /* ElectricityMeterConfigDto.swift in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
@@ -7187,8 +7298,10 @@
 				A5B8A4782CB869E8002FA7B2 /* ElectricityChartMarkerView.swift in Sources */,
 				A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */,
 				A5E05BB92CB5127C00202583 /* GeneralPurposeMeasurementMeasurementsProvider.swift in Sources */,
+				A5552ED02D5369C400A3F6A2 /* ElectricityMeasurementsProvider.swift in Sources */,
 				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
 				A5E160AC2D31396E003A7C71 /* HumidityDetailVC.swift in Sources */,
+				A5552ED42D53755800A3F6A2 /* SAVoltageMeasurementItem+Ext.swift in Sources */,
 				A5A1600F2C2AC18F0049AA73 /* SuplaAppEvent.swift in Sources */,
 				A5E05BAB2CB469CE00202583 /* ChannelMeasurementsProvider.swift in Sources */,
 				A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */,
@@ -7242,6 +7355,7 @@
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
 				A522DB3E2D0B1EF700163BA2 /* SAElectricityMeterExtendedValue+Ext.swift in Sources */,
 				A598CACB2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift in Sources */,
+				A5552EDC2D537D5100A3F6A2 /* ElectricityChannelDto.swift in Sources */,
 				A5E05BC52CB666D500202583 /* SAGeneralPurposeMeterItem+Ext.swift in Sources */,
 				A584E2032CAAD48200232A98 /* Phase.swift in Sources */,
 				A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */,
@@ -7290,6 +7404,7 @@
 				A5AD70182C00766400A36318 /* CGRect+Ext.swift in Sources */,
 				A5F29BCC2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
+				A550F2892D522BE80011463B /* PowerActiveMeasurementItemRepository.swift in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
 				A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */,
 				AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */,
@@ -7299,6 +7414,7 @@
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
 				A51BE90B2AAAF29D00718F2F /* SetpointType.swift in Sources */,
+				A550F2922D52539C0011463B /* ElectricityMeterMeasurementsProvider.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
 				A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */,
 				A594ADD22C9C439F00780EF3 /* ThermstatSlavesViewState.swift in Sources */,
@@ -7317,10 +7433,12 @@
 				A55A8D862BAAF52500C540D4 /* IssueView.swift in Sources */,
 				A56EC92F2CEF1CF800A6E2CB /* UpdateChannelStateUseCase.swift in Sources */,
 				A5074BDD2BCFE4D80081B6B1 /* SuplaChannelRollerShutterConfig.swift in Sources */,
-				A5E0DF7A2CEC802600362451 /* ImpulseCounterPhoto.swift in Sources */,
+				A5552ECE2D53697900A3F6A2 /* VoltageMeasurementsProvider.swift in Sources */,
+				A5E0DF7A2CEC802600362451 /* ImpulseCounterPhotoDto.swift in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
 				A530EE202A56FE4F00F8DAEE /* IconType.swift in Sources */,
 				A5B8A4912CBD4756002FA7B2 /* WithFunction.swift in Sources */,
+				A550F28B2D5231E70011463B /* DownloadCurrentLogUseCase.swift in Sources */,
 				A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */,
 				A517DFF12D009DC500D6148C /* GetChannelIssuesForSlavesUseCase.swift in Sources */,
 				A5F29B6F2A1E305500ED700A /* Repository.swift in Sources */,
@@ -7346,6 +7464,7 @@
 				A56233EB2AB31A45001CB948 /* CALayer+Ext.swift in Sources */,
 				A56233F02AB3949D001CB948 /* ReadChannelWithChildrenUseCase.swift in Sources */,
 				A54A064C2AF3E55700C03DBC /* SuplaSchedulers.swift in Sources */,
+				A5552EE22D54FEDC00A3F6A2 /* CurrentMeasurementsProvider.swift in Sources */,
 				A57668E52AEA67E00025509D /* LoadChannelWithChildrenMeasurementsDateRangeUseCase.swift in Sources */,
 				A5B8A48B2CBD2843002FA7B2 /* FlowHStack.swift in Sources */,
 				A50B5D082BEA4E2A00918D18 /* FacadeBlindWindowState.swift in Sources */,
@@ -7353,12 +7472,14 @@
 				A5A14A422B614242004B1598 /* SuplaChannelGeneralPurposeMeasurementConfig.swift in Sources */,
 				A50B5D302BF4A10200918D18 /* TerraceAwningView.swift in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
+				A5552EE42D54FF8A00A3F6A2 /* SACurrentMeasurementItem+Ext.swift in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */,
 				A5E05BCC2CB6A90F00202583 /* Equatable+Ext.swift in Sources */,
 				A57C4AAC2AAB20B100D9C695 /* RequestResult.swift in Sources */,
 				A57668CF2AE914140025509D /* TemperatureMeasurement.swift in Sources */,
 				A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */,
+				A550F28D2D5236930011463B /* DownloadVoltageLogUseCase.swift in Sources */,
 				A5477DC32AA5BE7A00220B4A /* Int+Ext.swift in Sources */,
 				01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */,
 				A5E160BC2D315D40003A7C71 /* SAHumidityMeasurementItem+Ext.swift in Sources */,
@@ -7418,6 +7539,7 @@
 				A5F29B8B2A209EC900ED700A /* NSFetchRequest+Ext.swift in Sources */,
 				A54637B62D37E9A600D746F5 /* ImpulseCounterGeneralState.swift in Sources */,
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
+				A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
 				A58D1B862CDCFABB00B5A019 /* GetChannelIssuesForListUseCase.swift in Sources */,
@@ -7436,6 +7558,7 @@
 				A5074BF62BDC42F30081B6B1 /* GroupTotalValueTransformer.swift in Sources */,
 				A505EC3B2CF71E6100E69BDB /* CreateProfileViewState.swift in Sources */,
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
+				A550F28F2D5236E50011463B /* DownloadPowerActiveLogUseCase.swift in Sources */,
 				A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */,
 				A5A15FFF2C2AA44B0049AA73 /* StatusFeature.swift in Sources */,
 				A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */,
@@ -7464,7 +7587,7 @@
 				A530EDF52A5401BE00F8DAEE /* SwitchGeneralVC.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
 				A5812CBC2BBC305200FC5998 /* NightModeCell.swift in Sources */,
-				A5E05BBD2CB5274000202583 /* ElectricityMeasurementsProvider.swift in Sources */,
+				A5E05BBD2CB5274000202583 /* ElectricityConsumptionProvider.swift in Sources */,
 				A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */,
 				A5F29BD22A26239C00ED700A /* TemperatureMeasurementItemRepository.swift in Sources */,
 				A5E05BA52CB3DBA800202583 /* ElectricityChartFilters.swift in Sources */,
@@ -7570,6 +7693,7 @@
 				A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */,
+				A550F2822D520F760011463B /* HistoryMeasurement.swift in Sources */,
 				A5F29BD02A26237200ED700A /* ImpulseCounterMeasurementItemRepository.swift in Sources */,
 				A52BFECC2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift in Sources */,
 				A5074BD62BCE9DD40081B6B1 /* ShadowValues.swift in Sources */,
@@ -7615,6 +7739,8 @@
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
 				A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */,
 				A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */,
+				A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */,
+				A550F2962D535B900011463B /* BaseHistoryEntity.swift in Sources */,
 				A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */,
 				A5E05BB32CB46F0200202583 /* SATempHumidityMeasurementItem+Ext.swift in Sources */,
 				A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */,
@@ -7631,6 +7757,7 @@
 				A519CCBD2D38FBEF00F858A4 /* SwitchImpulseCounterDetailsView.swift in Sources */,
 				A56233DD2AB065AD001CB948 /* EditQuartersDialogVC.swift in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
+				A5552ED22D536ADC00A3F6A2 /* VoltageValueFormatter.swift in Sources */,
 				A5F29BAA2A24B23000ED700A /* UpdateSceneUseCase.swift in Sources */,
 				A503ABA92B679C66008CDA1F /* BarChartData.swift in Sources */,
 				A5A160092C2AB42F0049AA73 /* SuplaCore+BaseViewController.swift in Sources */,
@@ -7638,6 +7765,7 @@
 				A56233F32AB3A386001CB948 /* CreateTemperaturesListUseCase.swift in Sources */,
 				A5E039E72CA18E350018CEB7 /* Bool+Ext.swift in Sources */,
 				A50B5CFB2BEA144A00918D18 /* HeatpolThermostatValue.swift in Sources */,
+				A5552ED62D5377FC00A3F6A2 /* CurrentValueFormatter.swift in Sources */,
 				A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
 				A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */,
@@ -7646,6 +7774,7 @@
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				A5AD70212C00B6AF00A36318 /* WindowVerticalControls.swift in Sources */,
 				A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */,
+				A5552EDA2D537A6800A3F6A2 /* Dictonary+Ext.swift in Sources */,
 				A503ABBC2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift in Sources */,
 				A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */,
 				A5B3CBE52B62546800F95AC3 /* DoubleValueParser.swift in Sources */,
@@ -8486,6 +8615,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */,
 				A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */,
 				A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */,
 				A56EC92C2CEE86C700A6E2CB /* SUPLA 18.xcdatamodel */,
@@ -8507,7 +8637,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */;
+			currentVersion = A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

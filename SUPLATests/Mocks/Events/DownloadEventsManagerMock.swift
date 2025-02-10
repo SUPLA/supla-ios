@@ -32,4 +32,14 @@ final class DownloadEventsManagerMock: DownloadEventsManager {
         observeProgressParameters.append(remoteId)
         return observeProgressReturns
     }
+    
+    var emitProgressStateMock: FunctionMock<(Int32, SUPLA.DownloadEventsManagerDataType, SUPLA.DownloadEventsManagerState), Void> = .init()
+    func emitProgressState(remoteId: Int32, dataType: SUPLA.DownloadEventsManagerDataType, state: SUPLA.DownloadEventsManagerState) {
+        emitProgressStateMock.set((remoteId, dataType, state))
+    }
+    
+    var observeProgressMock: FunctionMock<(Int32, SUPLA.DownloadEventsManagerDataType), Observable<SUPLA.DownloadEventsManagerState>> = .init()
+    func observeProgress(remoteId: Int32, dataType: SUPLA.DownloadEventsManagerDataType) -> Observable<SUPLA.DownloadEventsManagerState> {
+        observeProgressMock.handle((remoteId, dataType))
+    }
 }

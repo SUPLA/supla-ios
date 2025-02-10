@@ -19,7 +19,13 @@
 import RxSwift
 
 protocol LoadChannelMeasurementsDateRangeUseCase {
-    func invoke(remoteId: Int32) -> Observable<DaysRange?>
+    func invoke(remoteId: Int32, type: DownloadEventsManagerDataType) -> Observable<DaysRange?>
+}
+
+extension LoadChannelMeasurementsDateRangeUseCase {
+    func invoke(remoteId: Int32) -> Observable<DaysRange?> {
+        invoke(remoteId: remoteId, type: .default)
+    }
 }
 
 final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurementsDateRangeUseCase {
@@ -32,15 +38,18 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
         GeneralPurposeMeasurementDataRangeProvider(),
         ElectricityMeterDataRangeProvider(),
         HumidityMeasurementsDataRangeProvider(),
-        ImpulseCounterDataRangeProvider()
+        ImpulseCounterDataRangeProvider(),
+        VoltageDataRangeProvider(),
+        CurrentDataRangeProvider(),
+        PowerActiveDataRangeProvider()
     ]
-
-    func invoke(remoteId: Int32) -> Observable<DaysRange?> {
+    
+    func invoke(remoteId: Int32, type: DownloadEventsManagerDataType) -> Observable<DaysRange?> {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
             .flatMapFirst { channelWithChildren in
                 let channel = channelWithChildren.channel
                 for provider in self.providers {
-                    if (provider.handle(channelWithChildren)) {
+                    if (provider.handle(channelWithChildren, type)) {
                         return Observable.zip(
                             provider.minTime(remoteId: channel.remote_id, serverId: channel.profile.server?.id),
                             provider.maxTime(remoteId: channel.remote_id, serverId: channel.profile.server?.id)
@@ -66,7 +75,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
 }
 
 protocol ChannelDataRangeProvider {
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
     func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
 }
@@ -74,7 +83,7 @@ protocol ChannelDataRangeProvider {
 final class ThermometerDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
         channelWithChildren.function == SUPLA_CHANNELFNC_THERMOMETER
     }
 
@@ -90,7 +99,7 @@ final class ThermometerDataRangeProvider: ChannelDataRangeProvider {
 final class HumidityAndTemperatureDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
         channelWithChildren.function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
 
@@ -106,7 +115,7 @@ final class HumidityAndTemperatureDataRangeProvider: ChannelDataRangeProvider {
 final class GeneralPurposeMeterDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
         channelWithChildren.function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
     }
 
@@ -122,7 +131,7 @@ final class GeneralPurposeMeterDataRangeProvider: ChannelDataRangeProvider {
 final class GeneralPurposeMeasurementDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
         channelWithChildren.function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
 
@@ -138,8 +147,8 @@ final class GeneralPurposeMeasurementDataRangeProvider: ChannelDataRangeProvider
 final class ElectricityMeterDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
-        channelWithChildren.isOrHasElectricityMeter
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
+        channelWithChildren.isOrHasElectricityMeter && type == .default
     }
 
     func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
@@ -154,7 +163,7 @@ final class ElectricityMeterDataRangeProvider: ChannelDataRangeProvider {
 final class HumidityMeasurementsDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
         channelWithChildren.function == SUPLA_CHANNELFNC_HUMIDITY
     }
 
@@ -170,7 +179,7 @@ final class HumidityMeasurementsDataRangeProvider: ChannelDataRangeProvider {
 final class ImpulseCounterDataRangeProvider: ChannelDataRangeProvider {
     @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
 
-    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
         channelWithChildren.isOrHasImpulseCounter
     }
 
@@ -180,5 +189,53 @@ final class ImpulseCounterDataRangeProvider: ChannelDataRangeProvider {
 
     func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         impulseCounterMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class VoltageDataRangeProvider: ChannelDataRangeProvider {
+    @Singleton<VoltageMeasurementItemRepository> private var voltageMeasurementItemRepository
+
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
+        channelWithChildren.isOrHasElectricityMeter && type == .electricityVoltage
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        voltageMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        voltageMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class CurrentDataRangeProvider: ChannelDataRangeProvider {
+    @Singleton<CurrentMeasurementItemRepository> private var currentMeasurementItemRepository
+
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
+        channelWithChildren.isOrHasElectricityMeter && type == .electricityCurrent
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        currentMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        currentMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class PowerActiveDataRangeProvider: ChannelDataRangeProvider {
+    @Singleton<PowerActiveMeasurementItemRepository> private var powerActiveMeasurementItemRepository
+
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
+        channelWithChildren.isOrHasElectricityMeter && type == .electricityPowerActive
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        powerActiveMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        powerActiveMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }

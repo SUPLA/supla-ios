@@ -79,8 +79,8 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         
         // then
         XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters, [remoteId])
-        XCTAssertTuples(downloadEventsManager.emitProgressStateParameters, [
-            (remoteId, .started)
+        XCTAssertTuples(downloadEventsManager.emitProgressStateMock.parameters, [
+            (remoteId, .default, .started)
         ])
         XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters.count, 0)
         XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters.count, 0)
@@ -98,8 +98,8 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         
         // then
         XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters, [remoteId])
-        XCTAssertTuples(downloadEventsManager.emitProgressStateParameters, [
-            (remoteId, .started)
+        XCTAssertTuples(downloadEventsManager.emitProgressStateMock.parameters, [
+            (remoteId, .default, .started)
         ])
         XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters.count, 0)
         XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters.count, 0)
@@ -117,8 +117,8 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         
         // then
         XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters, [remoteId])
-        XCTAssertTuples(downloadEventsManager.emitProgressStateParameters, [
-            (remoteId, .started)
+        XCTAssertTuples(downloadEventsManager.emitProgressStateMock.parameters, [
+            (remoteId, .default, .started)
         ])
         XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters.count, 0)
         XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters.count, 0)
@@ -136,8 +136,8 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         
         // then
         XCTAssertEqual(downloadGeneralPurposeMeterLogUseCase.parameters, [remoteId])
-        XCTAssertTuples(downloadEventsManager.emitProgressStateParameters, [
-            (remoteId, .started)
+        XCTAssertTuples(downloadEventsManager.emitProgressStateMock.parameters, [
+            (remoteId, .default, .started)
         ])
         XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters.count, 0)
         XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters.count, 0)

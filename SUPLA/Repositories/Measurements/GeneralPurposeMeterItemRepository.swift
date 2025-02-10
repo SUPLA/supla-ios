@@ -117,6 +117,10 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         }
     }
     
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        cloudService.getInitialMeasurements(remoteId: remoteId)
+    }
+    
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.GeneralPurposeMeter]> {
         cloudService.getGeneralPurposeMeter(remoteId: remoteId, afterTimestamp: afterTimestamp)
     }
@@ -148,7 +152,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
                     }
                 } else {
                     oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(
-                        value: NSDecimalNumber(string: measurement.value),
+                        value: NSDecimalNumber(value: measurement.value),
                         date: measurement.date_timestamp
                     )
                 }
@@ -174,7 +178,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         _ serverId: Int32,
         _ channelConfig: SuplaChannelGeneralPurposeMeterConfig
     ) -> SAGeneralPurposeMeterItem {
-        let measurementValue = NSDecimalNumber(string: measurement.value)
+        let measurementValue = NSDecimalNumber(value: measurement.value)
         let valueDiff = measurementValue.doubleValue - oldest.value!.doubleValue
         let reset = switch (channelConfig.counterType) {
         case .alwaysIncrement:
@@ -194,7 +198,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
         let entity: SAGeneralPurposeMeterItem = context.create()
         entity.server_id = serverId
         entity.channel_id = remoteId
-        entity.value = NSDecimalNumber(string: measurement.value)
+        entity.value = NSDecimalNumber(value: measurement.value)
         entity.setDateAndDateParts(measurement.date_timestamp)
         
         if (channelConfig.fillMissingData && timeDiff > ChartDataAggregation.minutes.timeInSec * 1.5) {

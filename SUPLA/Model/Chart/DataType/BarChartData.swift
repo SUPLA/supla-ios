@@ -88,6 +88,8 @@ private extension AggregatedEntity {
             BarChartDataEntry(x: toCoordinate(date), y: value, data: data)
         case .multiple(let values):
             BarChartDataEntry(x: toCoordinate(date), yValues: values, data: data)
+        case .withPhase(let value, _, _, _):
+            BarChartDataEntry(x: toCoordinate(date), y: value, data: data)
         }
     }
 }

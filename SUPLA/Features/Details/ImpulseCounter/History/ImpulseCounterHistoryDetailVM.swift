@@ -17,6 +17,7 @@
  */
     
 import RxSwift
+import SharedCore
 
 final class ImpulseCounterHistoryDetailVM: BaseHistoryDetailVM {
     
@@ -24,8 +25,6 @@ final class ImpulseCounterHistoryDetailVM: BaseHistoryDetailVM {
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
-    
-    override var chartStyle: any ChartStyle { ImpulseCounterChartStyle() }
     
     override var aggregations: [ChartDataAggregation] {
         ChartDataAggregation.allCases
@@ -42,10 +41,11 @@ final class ImpulseCounterHistoryDetailVM: BaseHistoryDetailVM {
         ) { (getChartData(spec, chartRange, $0), $1) }
     }
     
-    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+    override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)
+                .changing(path: \.chartStyle, to: .impulseCounter)
         }
         
         restoreRange(chartState: chartState)

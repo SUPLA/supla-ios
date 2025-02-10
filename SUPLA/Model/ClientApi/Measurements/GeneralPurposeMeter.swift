@@ -17,13 +17,12 @@
  */
 
 extension SuplaCloudClient {
-    struct TemperatureAndHumidityMeasurement: Measurement {
+    struct GeneralPurposeMeter: Measurement {
         let date_timestamp: Date
-        let temperature: String
-        let humidity: String
+        let value: Double
         
-        static func fromJson(data: Data) throws -> [TemperatureAndHumidityMeasurement] {
-            return try decoder.decode([TemperatureAndHumidityMeasurement].self, from: data)
+        static func fromJson(data: Data) throws -> [GeneralPurposeMeter] {
+            return try decoder.decode([GeneralPurposeMeter].self, from: data)
         }
     }
 }

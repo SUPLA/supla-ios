@@ -65,7 +65,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         assertEvents(observer, items: [.completed])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=2&offset=0"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=2&offset=0"]
         )
     }
     
@@ -93,7 +93,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureMeasurement].self)
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: Date(),
-            temperature: "12.5"
+            temperature: 12.5
         )
         let data = try! SuplaCloudClient.encoder.encode([measurement])
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)
@@ -112,7 +112,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         ])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
         )
     }
     
@@ -146,7 +146,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         ])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
         )
     }
     
@@ -170,7 +170,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         ])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
         )
     }
     
@@ -181,8 +181,8 @@ class SuplaCloudServiceTests: ObservableTestCase {
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureAndHumidityMeasurement].self)
         let measurement = SuplaCloudClient.TemperatureAndHumidityMeasurement(
             date_timestamp: Date(),
-            temperature: "12.5",
-            humidity: "55"
+            temperature: 12.5,
+            humidity: 55
         )
         let data = try! SuplaCloudClient.encoder.encode([measurement])
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)
@@ -201,7 +201,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         ])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
         )
     }
     
@@ -225,7 +225,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         ])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
         )
     }
     
@@ -259,7 +259,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
         ])
         XCTAssertEqual(
             requestHelper.oauthRequestParameters,
-            ["supla.org/api/2.2.0/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
+            ["supla.org/api/3/channels/123/measurement-logs?order=ASC&limit=5000&afterTimestamp=222"]
         )
     }
 }

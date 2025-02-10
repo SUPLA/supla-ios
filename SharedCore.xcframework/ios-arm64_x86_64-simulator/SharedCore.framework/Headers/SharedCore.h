@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhoto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreDouble, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
-@protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
+@protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
 
 // Due to an Obj-C/Swift interop limitation, SKIE cannot generate Swift types with a lambda type argument.
 // Example of such type is: A<() -> Unit> where A<T> is a generic class.
@@ -874,14 +874,15 @@ __attribute__((swift_name("ListItemIssues.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ImpulseCounterPhoto")))
-@interface SharedCoreImpulseCounterPhoto : SharedCoreBase
+__attribute__((swift_name("ImpulseCounterPhotoDto")))
+@interface SharedCoreImpulseCounterPhotoDto : SharedCoreBase
 @property (readonly) int32_t channelNo __attribute__((swift_name("channelNo")));
 @property (readonly) NSString *createdAt __attribute__((swift_name("createdAt")));
 @property (readonly) NSString *deviceGuid __attribute__((swift_name("deviceGuid")));
 @property (readonly) NSString *id __attribute__((swift_name("id")));
 @property (readonly) NSString * _Nullable image __attribute__((swift_name("image")));
 @property (readonly) NSString * _Nullable imageCropped __attribute__((swift_name("imageCropped")));
+@property (readonly) BOOL measurementValid __attribute__((swift_name("measurementValid")));
 @property (readonly) NSString * _Nullable processedAt __attribute__((swift_name("processedAt")));
 @property (readonly) SharedCoreInt * _Nullable processingTimeMs __attribute__((swift_name("processingTimeMs")));
 @property (readonly) SharedCoreInt * _Nullable processingTimeMs2 __attribute__((swift_name("processingTimeMs2")));
@@ -890,8 +891,52 @@ __attribute__((swift_name("ImpulseCounterPhoto")))
 @property (readonly) SharedCoreInt * _Nullable resultMeasurement __attribute__((swift_name("resultMeasurement")));
 @property (readonly) SharedCoreInt * _Nullable resultMeasurement2 __attribute__((swift_name("resultMeasurement2")));
 @property (readonly) NSString * _Nullable resultMessage __attribute__((swift_name("resultMessage")));
-- (instancetype)initWithId:(NSString *)id deviceGuid:(NSString *)deviceGuid channelNo:(int32_t)channelNo createdAt:(NSString *)createdAt replacedAt:(NSString * _Nullable)replacedAt processedAt:(NSString * _Nullable)processedAt resultMeasurement:(SharedCoreInt * _Nullable)resultMeasurement processingTimeMs:(SharedCoreInt * _Nullable)processingTimeMs resultMeasurement2:(SharedCoreInt * _Nullable)resultMeasurement2 processingTimeMs2:(SharedCoreInt * _Nullable)processingTimeMs2 resultCode:(int32_t)resultCode resultMessage:(NSString * _Nullable)resultMessage image:(NSString * _Nullable)image imageCropped:(NSString * _Nullable)imageCropped __attribute__((swift_name("init(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:image:imageCropped:)"))) __attribute__((objc_designated_initializer));
-- (SharedCoreImpulseCounterPhoto *)doCopyId:(NSString *)id deviceGuid:(NSString *)deviceGuid channelNo:(int32_t)channelNo createdAt:(NSString *)createdAt replacedAt:(NSString * _Nullable)replacedAt processedAt:(NSString * _Nullable)processedAt resultMeasurement:(SharedCoreInt * _Nullable)resultMeasurement processingTimeMs:(SharedCoreInt * _Nullable)processingTimeMs resultMeasurement2:(SharedCoreInt * _Nullable)resultMeasurement2 processingTimeMs2:(SharedCoreInt * _Nullable)processingTimeMs2 resultCode:(int32_t)resultCode resultMessage:(NSString * _Nullable)resultMessage image:(NSString * _Nullable)image imageCropped:(NSString * _Nullable)imageCropped __attribute__((swift_name("doCopy(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:image:imageCropped:)")));
+- (instancetype)initWithId:(NSString *)id deviceGuid:(NSString *)deviceGuid channelNo:(int32_t)channelNo createdAt:(NSString *)createdAt replacedAt:(NSString * _Nullable)replacedAt processedAt:(NSString * _Nullable)processedAt resultMeasurement:(SharedCoreInt * _Nullable)resultMeasurement processingTimeMs:(SharedCoreInt * _Nullable)processingTimeMs resultMeasurement2:(SharedCoreInt * _Nullable)resultMeasurement2 processingTimeMs2:(SharedCoreInt * _Nullable)processingTimeMs2 resultCode:(int32_t)resultCode resultMessage:(NSString * _Nullable)resultMessage measurementValid:(BOOL)measurementValid image:(NSString * _Nullable)image imageCropped:(NSString * _Nullable)imageCropped __attribute__((swift_name("init(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:measurementValid:image:imageCropped:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreImpulseCounterPhotoDto *)doCopyId:(NSString *)id deviceGuid:(NSString *)deviceGuid channelNo:(int32_t)channelNo createdAt:(NSString *)createdAt replacedAt:(NSString * _Nullable)replacedAt processedAt:(NSString * _Nullable)processedAt resultMeasurement:(SharedCoreInt * _Nullable)resultMeasurement processingTimeMs:(SharedCoreInt * _Nullable)processingTimeMs resultMeasurement2:(SharedCoreInt * _Nullable)resultMeasurement2 processingTimeMs2:(SharedCoreInt * _Nullable)processingTimeMs2 resultCode:(int32_t)resultCode resultMessage:(NSString * _Nullable)resultMessage measurementValid:(BOOL)measurementValid image:(NSString * _Nullable)image imageCropped:(NSString * _Nullable)imageCropped __attribute__((swift_name("doCopy(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:measurementValid:image:imageCropped:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("ChannelDto")))
+@protocol SharedCoreChannelDto
+@required
+@property (readonly) int32_t remoteId __attribute__((swift_name("remoteId")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DefaultChannelDto")))
+@interface SharedCoreDefaultChannelDto : SharedCoreBase <SharedCoreChannelDto>
+@property (readonly) int32_t remoteId __attribute__((swift_name("remoteId")));
+- (instancetype)initWithRemoteId:(int32_t)remoteId __attribute__((swift_name("init(remoteId:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreDefaultChannelDto *)doCopyRemoteId:(int32_t)remoteId __attribute__((swift_name("doCopy(remoteId:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ElectricityChannelDto")))
+@interface SharedCoreElectricityChannelDto : SharedCoreBase <SharedCoreChannelDto>
+@property (readonly) SharedCoreElectricityMeterConfigDto *config __attribute__((swift_name("config")));
+@property (readonly) int32_t remoteId __attribute__((swift_name("remoteId")));
+- (instancetype)initWithRemoteId:(int32_t)remoteId config:(SharedCoreElectricityMeterConfigDto *)config __attribute__((swift_name("init(remoteId:config:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreElectricityChannelDto *)doCopyRemoteId:(int32_t)remoteId config:(SharedCoreElectricityMeterConfigDto *)config __attribute__((swift_name("doCopy(remoteId:config:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ElectricityMeterConfigDto")))
+@interface SharedCoreElectricityMeterConfigDto : SharedCoreBase
+@property (readonly) NSString *currency __attribute__((swift_name("currency")));
+@property (readonly) BOOL currentLoggerEnabled __attribute__((swift_name("currentLoggerEnabled")));
+@property (readonly) BOOL powerActiveLoggerEnabled __attribute__((swift_name("powerActiveLoggerEnabled")));
+@property (readonly) float pricePerUnit __attribute__((swift_name("pricePerUnit")));
+@property (readonly) BOOL voltageLoggerEnabled __attribute__((swift_name("voltageLoggerEnabled")));
+- (instancetype)initWithPricePerUnit:(float)pricePerUnit currency:(NSString *)currency voltageLoggerEnabled:(BOOL)voltageLoggerEnabled currentLoggerEnabled:(BOOL)currentLoggerEnabled powerActiveLoggerEnabled:(BOOL)powerActiveLoggerEnabled __attribute__((swift_name("init(pricePerUnit:currency:voltageLoggerEnabled:currentLoggerEnabled:powerActiveLoggerEnabled:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreElectricityMeterConfigDto *)doCopyPricePerUnit:(float)pricePerUnit currency:(NSString *)currency voltageLoggerEnabled:(BOOL)voltageLoggerEnabled currentLoggerEnabled:(BOOL)currentLoggerEnabled powerActiveLoggerEnabled:(BOOL)powerActiveLoggerEnabled __attribute__((swift_name("doCopy(pricePerUnit:currency:voltageLoggerEnabled:currentLoggerEnabled:powerActiveLoggerEnabled:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1184,7 +1229,7 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StoreChannelOcrPhotoUseCase")))
 @interface SharedCoreStoreChannelOcrPhotoUseCase : SharedCoreBase
 - (instancetype)initWithStoreFileInDirectoryUseCase:(SharedCoreStoreFileInDirectoryUseCase *)storeFileInDirectoryUseCase ocrImageNamingProvider:(SharedCoreOcrImageNamingProvider *)ocrImageNamingProvider base64Helper:(SharedCoreBase64Helper *)base64Helper __attribute__((swift_name("init(storeFileInDirectoryUseCase:ocrImageNamingProvider:base64Helper:)"))) __attribute__((objc_designated_initializer));
-- (void)invokeRemoteId:(int32_t)remoteId profileId:(int64_t)profileId photo:(SharedCoreImpulseCounterPhoto *)photo __attribute__((swift_name("invoke(remoteId:profileId:photo:)")));
+- (void)invokeRemoteId:(int32_t)remoteId profileId:(int64_t)profileId photo:(SharedCoreImpulseCounterPhotoDto *)photo __attribute__((swift_name("invoke(remoteId:profileId:photo:)")));
 @end
 
 __attribute__((swift_name("ChannelIssuesProvider")))

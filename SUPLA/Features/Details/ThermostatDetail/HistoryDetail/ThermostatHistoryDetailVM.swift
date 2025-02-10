@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
     
@@ -36,7 +37,7 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, $0), $1) }
     }
     
-    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+    override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)

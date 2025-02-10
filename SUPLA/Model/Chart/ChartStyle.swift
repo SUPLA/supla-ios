@@ -15,53 +15,64 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-protocol ChartStyle: Equatable {
-    var leftAxisColor: UIColor { get }
-    var rightAxisColor: UIColor { get }
-    var drawBarShadow: Bool { get }
-    
-    func provideMarkerView() -> BaseChartMarkerView
-}
 
-struct ThermometerChartStyle: ChartStyle {
-    var leftAxisColor: UIColor = .darkRed
-    var rightAxisColor: UIColor = .darkBlue
-    var drawBarShadow: Bool = false
-    
-    func provideMarkerView() -> BaseChartMarkerView { SuplaChartMarkerView() }
-}
+enum ChartStyle {
+    case `default`
+    case humidity
+    case gpm
+    case electricity
+    case electricityHistory
+    case impulseCounter
 
-struct HumidityChartStyle: ChartStyle {
-    var leftAxisColor: UIColor = .darkBlue
-    var rightAxisColor: UIColor = .darkBlue
-    var drawBarShadow: Bool = false
-    
-    func provideMarkerView() -> BaseChartMarkerView { SuplaChartMarkerView() }
-}
-
-struct GpmChartStyle: ChartStyle {
-    var leftAxisColor: UIColor = .onBackground
-    var rightAxisColor: UIColor = .onBackground
-    var drawBarShadow: Bool = true
-    
-    func provideMarkerView() -> BaseChartMarkerView { SuplaChartMarkerView() }
-}
-
-struct ElectricityChartStyle: ChartStyle {
-    var leftAxisColor: UIColor = .onBackground
-    var rightAxisColor: UIColor = .onBackground
-    var drawBarShadow: Bool = true
-    
-    func provideMarkerView() -> BaseChartMarkerView {
-        ElectricityChartMarkerView()
+    var leftAxisColor: UIColor {
+        switch self {
+        case .default: .darkRed
+        case .humidity: .darkBlue
+        case .gpm,
+             .electricity,
+             .electricityHistory,
+             .impulseCounter: .onBackground
+        }
     }
-}
 
-struct ImpulseCounterChartStyle: ChartStyle {
-    var leftAxisColor: UIColor = .onBackground
-    var rightAxisColor: UIColor = .onBackground
-    var drawBarShadow: Bool = true
+    var rightAxisColor: UIColor {
+        switch self {
+        case .default: .darkBlue
+        case .humidity: .darkBlue
+        case .gpm,
+             .electricity,
+             .electricityHistory,
+             .impulseCounter: .onBackground
+        }
+    }
+
+    var drawBarShadow: Bool {
+        switch self {
+        case .default, .humidity: false
+        case .gpm, .electricity, .electricityHistory, .impulseCounter: true
+        }
+    }
+
+    var markerView: BaseChartMarkerView {
+        switch self {
+        case .default, .humidity, .gpm, .electricityHistory:
+            SuplaChartMarkerView()
+        case .electricity: ElectricityChartMarkerView()
+        case .impulseCounter: ImpulseCounterChartMarkerView()
+        }
+    }
     
-    func provideMarkerView() -> BaseChartMarkerView { ImpulseCounterChartMarkerView() }
+    var setMinValue: Bool {
+        switch self {
+        case .gpm, .electricityHistory: false
+        default: true
+        }
+    }
+    
+    var setMaxValue: Bool {
+        switch self {
+        case .electricityHistory: false
+        default: true
+        }
+    }
 }

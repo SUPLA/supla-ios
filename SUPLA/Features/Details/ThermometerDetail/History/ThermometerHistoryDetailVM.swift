@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 import RxSwift
 
 final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
@@ -37,7 +37,7 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
         ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [$0]), $1) }
     }
     
-    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+    override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)

@@ -15,18 +15,16 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
+import RxSwift
 
-extension SuplaCloudClient {
-    struct GeneralPurposeMeasurement: Measurement {
-        let date_timestamp: Date
-        let avg_value: String
-        let min_value: String
-        let max_value: String
-        let open_value: String
-        let close_value: String
-        
-        static func fromJson(data: Data) throws -> [GeneralPurposeMeasurement] {
-            return try decoder.decode([GeneralPurposeMeasurement].self, from: data)
-        }
-    }
+protocol DownloadVoltageLogUseCase {
+    func invoke(remoteId: Int32) -> Observable<Float>
+}
+
+final class DownloadVoltageLogUseCaseImpl:
+    BaseDownloadLogUseCase<SuplaCloudClient.HistoryMeasurement, SAVoltageMeasurementItem>,
+    DownloadVoltageLogUseCase
+{
+    override var cleanupHistoryWHenOldestDiffers: Bool { false }
 }

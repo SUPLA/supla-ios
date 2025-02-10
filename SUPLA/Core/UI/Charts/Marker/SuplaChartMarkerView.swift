@@ -21,6 +21,13 @@ import Charts
 @objc class SuplaChartMarkerView: BaseChartMarkerView {
     @Singleton<ValuesFormatter> private var formatter
     
+    lazy var icon: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = MarkerRowView.DOT_SIZE / 2
+        return view
+    }()
+    
     private lazy var text: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +78,8 @@ import Charts
         return label
     }()
     
+    private var dynamicConstraints: [NSLayoutConstraint] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -87,6 +96,7 @@ import Charts
         addSubview(title)
         addSubview(text)
         addSubview(subtext)
+        addSubview(icon)
         addSubview(firstRowTitle)
         addSubview(firstRowValue)
         addSubview(secondRowTitle)
@@ -97,8 +107,13 @@ import Charts
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
+            icon.centerYAnchor.constraint(equalTo: text.centerYAnchor),
+            icon.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny),
+            icon.widthAnchor.constraint(equalToConstant: MarkerRowView.DOT_SIZE),
+            icon.heightAnchor.constraint(equalToConstant: MarkerRowView.DOT_SIZE),
+            
             text.topAnchor.constraint(equalTo: title.bottomAnchor),
-            text.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny),
+            // Left anchor is dynamic
             
             subtext.centerYAnchor.constraint(equalTo: text.centerYAnchor),
             subtext.leftAnchor.constraint(equalTo: text.rightAnchor, constant: 8),
@@ -121,6 +136,13 @@ import Charts
         if let details = entry.data as? ChartEntryDetails {
             updateTitle(details: details)
             text.text = getValueString(details, entry.y, precision: 2)
+            
+            if let color = getIconColor(details) {
+                icon.isHidden = false
+                icon.backgroundColor = color
+            } else {
+                icon.isHidden = true
+            }
             
             if let min = details.min,
                let max = details.max
@@ -152,7 +174,22 @@ import Charts
         updateContainerSize(entry.data as? ChartEntryDetails)
         
         setNeedsLayout()
+        setNeedsUpdateConstraints()
         layoutIfNeeded()
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+        
+        NSLayoutConstraint.deactivate(dynamicConstraints)
+        dynamicConstraints.removeAll()
+        
+        if (icon.isHidden) {
+            dynamicConstraints.append(text.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny))
+        } else {
+            dynamicConstraints.append(text.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: Dimens.distanceTiny))
+        }
+        NSLayoutConstraint.activate(dynamicConstraints)
     }
     
     private func getValueString(_ details: ChartEntryDetails, _ value: Double, precision: Int = 1) -> String {
@@ -163,14 +200,14 @@ import Charts
             details.valueFormatter.format(value, withUnit: true, precision: precision)
         case .generalPurposeMeasurement:
             details.valueFormatter.format(value, withUnit: false)
-        case .generalPurposeMeter, .electricity, .impulseCounter:
+        case .generalPurposeMeter, .electricity, .impulseCounter, .voltage, .current, .powerActive:
             details.valueFormatter.format(value, withUnit: true)
         }
     }
     
     private func updateContainerSize(_ data: ChartEntryDetails?) {
         let firstLineWidth = title.intrinsicContentSize.width
-        let secondLineWidth = text.intrinsicContentSize.width + subtext.intrinsicContentSize.width + Dimens.distanceTiny
+        let secondLineWidth = text.intrinsicContentSize.width + subtext.intrinsicContentSize.width + Dimens.distanceTiny + (icon.isHidden ? 0 : MarkerRowView.DOT_SIZE + Dimens.distanceTiny)
         let width = firstLineWidth > secondLineWidth ? firstLineWidth : secondLineWidth
         let height = title.intrinsicContentSize.height + text.intrinsicContentSize.height
         let tableHeight = getTableHeight(data)
@@ -184,6 +221,13 @@ import Charts
             return firstRowTitle.intrinsicContentSize.height + secondRowTitle.intrinsicContentSize.height
         } else {
             return 0.0
+        }
+    }
+    
+    private func getIconColor(_ details: ChartEntryDetails) -> UIColor? {
+        switch (details) {
+        case .default: nil
+        case .withPhase(_, _, _, _, _, _, let phase): phase.color
         }
     }
 }

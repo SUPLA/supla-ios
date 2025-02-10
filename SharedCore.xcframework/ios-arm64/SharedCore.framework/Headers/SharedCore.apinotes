@@ -2151,9 +2151,9 @@ Classes:
     - Position: 1
       Type: "int64_t"
     - Position: 2
-      Type: "SharedCoreImpulseCounterPhoto * _Nonnull"
-- Name: "SharedCoreImpulseCounterPhoto"
-  SwiftName: "ImpulseCounterPhoto"
+      Type: "SharedCoreImpulseCounterPhotoDto * _Nonnull"
+- Name: "SharedCoreImpulseCounterPhotoDto"
+  SwiftName: "ImpulseCounterPhotoDto"
   Properties:
   - Name: "channelNo"
     PropertyKind: "Instance"
@@ -2179,6 +2179,10 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "imageCropped"
     Type: "NSString * _Nullable"
+  - Name: "measurementValid"
+    PropertyKind: "Instance"
+    SwiftName: "measurementValid"
+    Type: "BOOL"
   - Name: "processedAt"
     PropertyKind: "Instance"
     SwiftName: "processedAt"
@@ -2212,9 +2216,9 @@ Classes:
     SwiftName: "resultMessage"
     Type: "NSString * _Nullable"
   Methods:
-  - Selector: "initWithId:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:image:imageCropped:"
+  - Selector: "initWithId:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:measurementValid:image:imageCropped:"
     MethodKind: "Instance"
-    SwiftName: "init(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:image:imageCropped:)"
+    SwiftName: "init(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:measurementValid:image:imageCropped:)"
     Parameters:
     - Position: 0
       Type: "NSString * _Nonnull"
@@ -2241,13 +2245,15 @@ Classes:
     - Position: 11
       Type: "NSString * _Nullable"
     - Position: 12
-      Type: "NSString * _Nullable"
+      Type: "BOOL"
     - Position: 13
       Type: "NSString * _Nullable"
-  - Selector: "doCopyId:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:image:imageCropped:"
+    - Position: 14
+      Type: "NSString * _Nullable"
+  - Selector: "doCopyId:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:measurementValid:image:imageCropped:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:image:imageCropped:)"
-    ResultType: "SharedCoreImpulseCounterPhoto * _Nonnull"
+    SwiftName: "doCopy(id:deviceGuid:channelNo:createdAt:replacedAt:processedAt:resultMeasurement:processingTimeMs:resultMeasurement2:processingTimeMs2:resultCode:resultMessage:measurementValid:image:imageCropped:)"
+    ResultType: "SharedCoreImpulseCounterPhotoDto * _Nonnull"
     Parameters:
     - Position: 0
       Type: "NSString * _Nonnull"
@@ -2274,8 +2280,10 @@ Classes:
     - Position: 11
       Type: "NSString * _Nullable"
     - Position: 12
-      Type: "NSString * _Nullable"
+      Type: "BOOL"
     - Position: 13
+      Type: "NSString * _Nullable"
+    - Position: 14
       Type: "NSString * _Nullable"
   - Selector: "isEqual:"
     MethodKind: "Instance"
@@ -3009,6 +3017,154 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreElectricityChannelDto"
+  SwiftName: "ElectricityChannelDto"
+  Properties:
+  - Name: "config"
+    PropertyKind: "Instance"
+    SwiftName: "config"
+    Type: "SharedCoreElectricityMeterConfigDto * _Nonnull"
+  - Name: "remoteId"
+    PropertyKind: "Instance"
+    SwiftName: "remoteId"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithRemoteId:config:"
+    MethodKind: "Instance"
+    SwiftName: "init(remoteId:config:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreElectricityMeterConfigDto * _Nonnull"
+  - Selector: "doCopyRemoteId:config:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(remoteId:config:)"
+    ResultType: "SharedCoreElectricityChannelDto * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreElectricityMeterConfigDto * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreElectricityMeterConfigDto"
+  SwiftName: "ElectricityMeterConfigDto"
+  Properties:
+  - Name: "currency"
+    PropertyKind: "Instance"
+    SwiftName: "currency"
+    Type: "NSString * _Nonnull"
+  - Name: "currentLoggerEnabled"
+    PropertyKind: "Instance"
+    SwiftName: "currentLoggerEnabled"
+    Type: "BOOL"
+  - Name: "powerActiveLoggerEnabled"
+    PropertyKind: "Instance"
+    SwiftName: "powerActiveLoggerEnabled"
+    Type: "BOOL"
+  - Name: "pricePerUnit"
+    PropertyKind: "Instance"
+    SwiftName: "pricePerUnit"
+    Type: "float"
+  - Name: "voltageLoggerEnabled"
+    PropertyKind: "Instance"
+    SwiftName: "voltageLoggerEnabled"
+    Type: "BOOL"
+  Methods:
+  - Selector: "initWithPricePerUnit:currency:voltageLoggerEnabled:currentLoggerEnabled:powerActiveLoggerEnabled:"
+    MethodKind: "Instance"
+    SwiftName: "init(pricePerUnit:currency:voltageLoggerEnabled:currentLoggerEnabled:powerActiveLoggerEnabled:)"
+    Parameters:
+    - Position: 0
+      Type: "float"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+    - Position: 2
+      Type: "BOOL"
+    - Position: 3
+      Type: "BOOL"
+    - Position: 4
+      Type: "BOOL"
+  - Selector: "doCopyPricePerUnit:currency:voltageLoggerEnabled:currentLoggerEnabled:powerActiveLoggerEnabled:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(pricePerUnit:currency:voltageLoggerEnabled:currentLoggerEnabled:powerActiveLoggerEnabled:)"
+    ResultType: "SharedCoreElectricityMeterConfigDto * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "float"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+    - Position: 2
+      Type: "BOOL"
+    - Position: 3
+      Type: "BOOL"
+    - Position: 4
+      Type: "BOOL"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreDefaultChannelDto"
+  SwiftName: "DefaultChannelDto"
+  Properties:
+  - Name: "remoteId"
+    PropertyKind: "Instance"
+    SwiftName: "remoteId"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithRemoteId:"
+    MethodKind: "Instance"
+    SwiftName: "init(remoteId:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "doCopyRemoteId:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(remoteId:)"
+    ResultType: "SharedCoreDefaultChannelDto * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreBooleanExtensionsKt"
   SwiftName: "BooleanExtensionsKt"
   Methods:
@@ -3217,3 +3373,10 @@ Protocols:
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
+- Name: "SharedCoreChannelDto"
+  SwiftName: "ChannelDto"
+  Properties:
+  - Name: "remoteId"
+    PropertyKind: "Instance"
+    SwiftName: "remoteId"
+    Type: "int32_t"

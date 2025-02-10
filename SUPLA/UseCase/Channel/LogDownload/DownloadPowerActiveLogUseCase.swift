@@ -16,15 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-extension SuplaCloudClient {
-    struct ImpulseCounterMeasurement: Measurement {
-        let date_timestamp: Date
-        let counter: String
-        let calculated_value: String
-        
-        static func fromJson(data: Data) throws -> [ImpulseCounterMeasurement] {
-            return try decoder.decode([ImpulseCounterMeasurement].self, from: data)
-        }
-    }
+import RxSwift
+
+protocol DownloadPowerActiveLogUseCase {
+    func invoke(remoteId: Int32) -> Observable<Float>
 }
 
+final class DownloadPowerActiveLogUseCaseImpl:
+    BaseDownloadLogUseCase<SuplaCloudClient.HistoryMeasurement, SAPowerActiveMeasurementItem>,
+    DownloadPowerActiveLogUseCase
+{
+    override var cleanupHistoryWHenOldestDiffers: Bool { false }
+}

@@ -26,6 +26,7 @@ protocol BaseMeasurementRepository<M, E>: RepositoryProtocol {
     func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
     func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?>
     func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int>
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)>
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[M]>
     func storeMeasurements(measurements: [M], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval
     func fromJson(data: Data) throws -> [M]

@@ -17,19 +17,27 @@
  */
 
 import RxSwift
+import SharedCore
     
 extension ElectricityMeterHistoryFeature {
     class ViewModel: BaseHistoryDetailVM {
         @Singleton<GlobalSettings> private var settings
+        @Singleton<SuplaCloudService> private var cloudService
         @Singleton<DownloadEventsManager> private var downloadEventsManager
-        @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
         
         var introductionState = IntroductionState()
         
-        override var chartStyle: any ChartStyle {
-            ElectricityChartStyle()
+        private var downloadEventsDisposable: Disposable? = nil
+        
+        private var dataType: DownloadEventsManagerDataType {
+            switch ((currentState()?.chartCustomFilters?.filters as? ElectricityChartFilters)?.type) {
+            case .voltage: .electricityVoltage
+            case .current: .electricityCurrent
+            case .powerActive: .electricityPowerActive
+            default: .default
+            }
         }
         
         override var aggregations: [ChartDataAggregation] {
@@ -58,10 +66,14 @@ extension ElectricityMeterHistoryFeature {
         }
         
         override func measurementsObservable(remoteId: Int32, spec: ChartDataSpec, chartRange: ChartRange) -> Observable<(ChartData, DaysRange?)> {
-            Observable.zip(
-                loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, spec: spec),
-                loadChannelMeasurementsDateRangeUseCase.invoke(remoteId: remoteId)
-            ) { (getChartData(spec, chartRange, $0), $1) }
+            loadChannelMeasurementsDateRangeUseCase.invoke(remoteId: remoteId, type: dataType)
+                .flatMapFirst { range in
+                    // while the data range is changing (voltage, current, power active has different range) it has to be corrected
+                    let correctedSpec = chartRange == .allHistory ? spec.correctBy(range: range) : spec
+                    @Singleton<LoadChannelMeasurementsUseCase> var loadChannelMeasurementsUseCase
+                    return loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, spec: correctedSpec)
+                        .map { (getChartData(correctedSpec, chartRange, $0), range) }
+                }
         }
         
         override func aggregations(
@@ -76,22 +88,35 @@ extension ElectricityMeterHistoryFeature {
             
             let aggregations = filterRank(filters, rawAggregations)
             
-            return if (filters.type == .balanceHourly && aggregations.items.contains(.minutes)) {
+            return if filters.type == .balanceHourly && aggregations.items.contains(.minutes) {
                 SelectableList(
                     selected: aggregations.selected == .minutes ? .hours : aggregations.selected,
                     items: aggregations.items.filter { $0 != .minutes }
                 )
+            } else if (filters.type == .voltage || filters.type == .current || filters.type == .powerActive ) {
+                // There are to many items to display and charts are not able to handel it, so for range longer than 1 day we skip minutes
+                if (currentRange.daysCount > 1) {
+                    SelectableList(
+                        selected: aggregations.selected == .minutes ? .hours : aggregations.selected,
+                        items: aggregations.items.filter { $0 != .minutes }
+                    )
+                } else {
+                    aggregations
+                }
             } else {
                 aggregations
             }
         }
         
         func onDataSelectionChange(type: ElectricityMeterChartType, phases: [Phase]) {
+            var previousType: ElectricityMeterChartType? = nil
+            
             updateView { state in
                 guard let dateRange = state.range,
                       let filters = state.chartCustomFilters?.filters as? ElectricityChartFilters
                 else { return state }
                 
+                previousType = filters.type
                 let customFilters = filters.copy(type: type, selectedPhases: phases)
                 return state
                     .changing(path: \.chartCustomFilters, to: CustomChartFiltersContainer(filters: customFilters))
@@ -101,8 +126,13 @@ extension ElectricityMeterHistoryFeature {
                     .changing(path: \.chartData, to: state.chartData.empty())
             }
             updateUserState()
-            if let state = currentState() {
-                triggerMeasurementsLoad(state: state)
+            
+            if previousType?.needsRefresh(type) != false {
+                refresh()
+            } else {
+                if let state = currentState() {
+                    triggerMeasurementsLoad(state: state)
+                }
             }
         }
         
@@ -111,18 +141,26 @@ extension ElectricityMeterHistoryFeature {
             updateView { $0.changing(path: \.showIntroduction, to: false) }
         }
         
-        override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+        override func cloudChannelProvider(_ channelWithChildren: ChannelWithChildren) -> Observable<ChannelDto> {
+            let remoteId = channelWithChildren.children
+                .first { $0.relationType == .meter }?.channel.remote_id ?? channelWithChildren.remoteId
+            
+            return cloudService.getElectricityMeterChannel(remoteId: remoteId).map { $0 }
+        }
+        
+        override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
             updateView {
                 $0.changing(path: \.profileId, to: channel.channel.profile.id)
                     .changing(path: \.channelFunction, to: channel.channel.func)
             }
+            let electricityMeterConfigDto = (channelDto as? ElectricityChannelDto)?.config
             
-            restoreCustomFilters(flags: channel.channel.flags, value: channel.channel.ev?.electricityMeter(), state: chartState)
+            restoreCustomFilters(channel.channel.flags, channel.channel.ev?.electricityMeter(), electricityMeterConfigDto, chartState)
             restoreRange(chartState: chartState)
             configureDownloadObserver(channel: channel.channel)
             startInitialDataLoad(channel)
             
-            if (settings.showEmHistoryIntroduction) {
+            if settings.showEmHistoryIntroduction {
                 let moreThanOnePhase = Phase.allCases
                     .filter { channel.channel.flags & $0.disabledFlag == 0 }
                     .count > 1
@@ -132,35 +170,44 @@ extension ElectricityMeterHistoryFeature {
         }
         
         private func configureDownloadObserver(channel: SAChannel) {
-            if (currentState()?.downloadConfigured == true) {
+            if currentState()?.downloadConfigured == true {
                 // Needs to be performed only once
                 return
             }
+            
+            downloadEventsDisposable?.dispose()
             updateView { $0.changing(path: \.downloadConfigured, to: true) }
             
-            downloadEventsManager.observeProgress(remoteId: channel.remote_id)
+            downloadEventsDisposable = downloadEventsManager.observeProgress(remoteId: channel.remote_id, dataType: dataType)
                 .distinctUntilChanged()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in self?.handleDownloadEvents(downloadState: $0) })
-                .disposed(by: self)
         }
         
         private func startInitialDataLoad(_ channelWithChildren: ChannelWithChildren) {
-            if (currentState()?.initialLoadStarted == true) {
+            if currentState()?.initialLoadStarted == true {
                 return
             }
             updateView { $0.changing(path: \.initialLoadStarted, to: true) }
-            downloadChannelMeasurementsUseCase.invoke(channelWithChildren)
+            downloadChannelMeasurementsUseCase.invoke(channelWithChildren, type: dataType)
         }
         
-        private func restoreCustomFilters(flags: Int64, value: SAElectricityMeterExtendedValue?, state: ChartState?) {
+        private func restoreCustomFilters(
+            _ flags: Int64,
+            _ value: SAElectricityMeterExtendedValue?,
+            _ configDto: ElectricityMeterConfigDto?,
+            _ state: ChartState?
+        ) {
             updateView {
-                $0.changing(
-                    path: \.chartCustomFilters,
-                    to: CustomChartFiltersContainer(
-                        filters: ElectricityChartFilters.restore(flags: flags, value: value, state: state)
-                    )
-                )
+                let customFilters = ElectricityChartFilters.restore(flags: flags, value: value, configDto: configDto, state: state)
+                let chartStyle: ChartStyle =
+                    switch customFilters.type {
+                    case .voltage, .current, .powerActive: .electricityHistory
+                    default: .electricity
+                    }
+                
+                return $0.changing(path: \.chartCustomFilters, to: CustomChartFiltersContainer(filters: customFilters))
+                    .changing(path: \.chartStyle, to: chartStyle)
             }
         }
         
@@ -168,7 +215,7 @@ extension ElectricityMeterHistoryFeature {
             _ filters: ElectricityChartFilters,
             _ aggregations: SelectableList<ChartDataAggregation>
         ) -> SelectableList<ChartDataAggregation> {
-            if (filters.type.isBalance) {
+            if filters.type.hideRankings {
                 let items = aggregations.items.filter { !$0.isRank }
                 let selected = aggregations.selected.isRank ? items.first! : aggregations.selected
                 
@@ -177,13 +224,33 @@ extension ElectricityMeterHistoryFeature {
                 return aggregations
             }
         }
+        
+        deinit {
+            downloadEventsDisposable?.dispose()
+        }
     }
 }
 
 private func getChartData(_ spec: ChartDataSpec, _ chartRange: ChartRange, _ sets: ChannelChartSets) -> ChartData {
-    if (spec.aggregation.isRank) {
+    if (spec.isVoltageType || spec.isCurrentType || spec.isPowerActiveType) {
+        LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
+    } else if spec.aggregation.isRank {
         PieChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
     } else {
         BarChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
+    }
+}
+
+private extension ChartDataSpec {
+    var isVoltageType: Bool {
+        (customFilters as? ElectricityChartFilters)?.type == .voltage
+    }
+    
+    var isCurrentType: Bool {
+        (customFilters as? ElectricityChartFilters)?.type == .current
+    }
+    
+    var isPowerActiveType: Bool {
+        (customFilters as? ElectricityChartFilters)?.type == .powerActive
     }
 }

@@ -24,13 +24,16 @@ protocol DeleteChannelMeasurementsUseCase {
 
 final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCase {
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+    @Singleton<VoltageMeasurementItemRepository> private var voltageMeasurementItemRepository
+    @Singleton<CurrentMeasurementItemRepository> private var currentMeasurementItemRepository
+    @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
+    @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
+    @Singleton<PowerActiveMeasurementItemRepository> private var powerActiveMeasurementItemRepository
+    @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
-    @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
-    @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
-    @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
-    @Singleton<HumidityMeasurementItemRepository> private var humidityMeasurementItemRepository
     @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
+    @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
 
     func invoke(remoteId: Int32) -> Observable<Void> {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
@@ -50,7 +53,12 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
                 } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
                     self.humidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
                 } else if (channelWithChildren.isOrHasElectricityMeter) {
-                    self.electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                    Observable.merge([
+                        self.currentMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId),
+                        self.voltageMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId),
+                        self.powerActiveMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId),
+                        self.electricityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                    ])
                 } else if (channelWithChildren.isOrHasImpulseCounter) {
                     self.impulseCounterMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
                 } else if (channelWithChildren.channel.isHvacThermostat()) {

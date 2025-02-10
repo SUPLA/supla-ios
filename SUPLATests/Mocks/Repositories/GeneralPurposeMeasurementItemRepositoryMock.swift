@@ -74,6 +74,10 @@ final class GeneralPurposeMeasurementItemRepositoryMock: BaseRepositoryMock<SAGe
         return storeMeasurementsReturns
     }
     
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        Observable.empty()
+    }
+    
     var getMeasurementsParameters: [(Int32, TimeInterval)] = []
     var getMeasurementsReturns: [Observable<[SuplaCloudClient.GeneralPurposeMeasurement]>] = []
     private var getMeasurementsCurrent = 0

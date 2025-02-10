@@ -26,6 +26,7 @@ final class DownloadImpulseCounterLogUseCaseImpl:
     BaseDownloadLogUseCase<SuplaCloudClient.ImpulseCounterMeasurement, SAImpulseCounterMeasurementItem>,
     DownloadImpulseCounterLogUseCase {
     
+    @Singleton<SuplaCloudService> var cloudService
     @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
     
     override func iterateAndImport(

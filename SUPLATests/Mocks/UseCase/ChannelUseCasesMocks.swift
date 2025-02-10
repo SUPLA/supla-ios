@@ -87,7 +87,7 @@ final class ReadChannelWithChildrenTreeUseCaseMock: ReadChannelWithChildrenTreeU
 
 final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
     var parameters: [ChannelWithChildren] = []
-    func invoke(_ channelWithChildren: ChannelWithChildren) {
+    func invoke(_ channelWithChildren: ChannelWithChildren, type: SUPLA.DownloadEventsManagerDataType) {
         parameters.append(channelWithChildren)
     }
 }
@@ -104,7 +104,7 @@ final class LoadChannelMeasurementsUseCaseMock: LoadChannelMeasurementsUseCase {
 final class LoadChannelMeasurementsDateRangeUseCaseMock: LoadChannelMeasurementsDateRangeUseCase {
     var parameters: [Int32] = []
     var returns: Observable<DaysRange?> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<DaysRange?> {
+    func invoke(remoteId: Int32, type: SUPLA.DownloadEventsManagerDataType) -> Observable<DaysRange?> {
         parameters.append(remoteId)
         return returns
     }

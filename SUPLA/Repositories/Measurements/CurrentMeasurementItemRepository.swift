@@ -1,16 +1,16 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
- 
+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -18,46 +18,34 @@
 
 import RxSwift
 
-protocol TempHumidityMeasurementItemRepository:
-    BaseMeasurementRepository<SuplaCloudClient.TemperatureAndHumidityMeasurement, SATempHumidityMeasurementItem>
-    where T == SATempHumidityMeasurementItem
+protocol CurrentMeasurementItemRepository:
+    BaseMeasurementRepository<SuplaCloudClient.HistoryMeasurement, SACurrentMeasurementItem> where
+    T == SACurrentMeasurementItem
 {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
-    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
-    func storeMeasurements(
-        measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement],
-        timestamp: TimeInterval,
-        serverId: Int32,
-        remoteId: Int32
-    ) throws -> TimeInterval
+    func findMeasurements(remoteId: Int32, serverId: Int32?, phase: Phase, startDate: Date, endDate: Date) -> Observable<[SACurrentMeasurementItem]>
 }
 
-final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidityMeasurementItem>, TempHumidityMeasurementItemRepository {
+final class CurrentMeasurementItemRepositoryImpl: Repository<SACurrentMeasurementItem>, CurrentMeasurementItemRepository {
+    
     @Singleton<SuplaCloudService> private var cloudService
     
     func deleteAll(for serverId: Int32?) -> Observable<Void> {
         deleteAll(
-            SATempHumidityMeasurementItem
+            SACurrentMeasurementItem
                 .fetchRequest()
                 .filtered(by: NSPredicate(format: "server_id = %d", serverId ?? 0))
         )
     }
     
-    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
-        deleteAll(
-            SATempHumidityMeasurementItem
-                .fetchRequest()
-                .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
-        )
-    }
-    
-    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]> {
+    func findMeasurements(remoteId: Int32, serverId: Int32?, phase: Phase, startDate: Date, endDate: Date) -> Observable<[SACurrentMeasurementItem]> {
         return query(
-            SATempHumidityMeasurementItem.fetchRequest()
+            SACurrentMeasurementItem.fetchRequest()
                 .filtered(by: NSPredicate(
-                    format: "channel_id = %d AND server_id = %d AND date >= %@ AND date <= %@",
+                    format: "channel_id = %d AND server_id = %d AND phase = %d AND date >= %@ AND date <= %@",
                     remoteId,
                     serverId ?? 0,
+                    phase.rawValue,
                     startDate as NSDate,
                     endDate as NSDate
                 ))
@@ -65,8 +53,16 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         )
     }
     
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
+        deleteAll(
+            SACurrentMeasurementItem
+                .fetchRequest()
+                .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
+        )
+    }
+    
     func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
-        let request = SATempHumidityMeasurementItem.fetchRequest()
+        let request = SACurrentMeasurementItem.fetchRequest()
             .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: true)
         request.fetchLimit = 1
@@ -81,7 +77,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
     }
     
     func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
-        let request = SATempHumidityMeasurementItem.fetchRequest()
+        let request = SACurrentMeasurementItem.fetchRequest()
             .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
             .ordered(by: "date", ascending: false)
         request.fetchLimit = 1
@@ -99,14 +95,15 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         count(NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId ?? 0))
     }
     
-    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]> {
-        return cloudService.getTemperatureAndHumidityMeasurements(
-            remoteId: remoteId,
-            afterTimestamp: afterTimestamp
-        )
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        cloudService.getInitialMeasurements(remoteId: remoteId, type: .current)
     }
     
-    func storeMeasurements(measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
+    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.HistoryMeasurement]> {
+        cloudService.getHistoryMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp, type: .current)
+    }
+    
+    func storeMeasurements(measurements: [SuplaCloudClient.HistoryMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
         var timestampToReturn = timestamp
         
         var saveError: Error? = nil
@@ -116,11 +113,13 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
                     timestampToReturn = measurement.date_timestamp.timeIntervalSince1970
                 }
                 
-                let entity: SATempHumidityMeasurementItem = context.create()
+                let entity: SACurrentMeasurementItem = context.create()
                 entity.server_id = serverId
                 entity.channel_id = remoteId
-                entity.temperature = NSDecimalNumber(string: measurement.temperature)
-                entity.humidity = NSDecimalNumber(string: measurement.humidity)
+                entity.phase = Int32(measurement.phaseNo)
+                entity.avg = measurement.avg
+                entity.min = measurement.min
+                entity.max = measurement.max
                 entity.setDateAndDateParts(measurement.date_timestamp)
             }
             
@@ -137,7 +136,8 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         return timestampToReturn
     }
     
-    func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureAndHumidityMeasurement] {
-        try SuplaCloudClient.TemperatureAndHumidityMeasurement.fromJson(data: data)
+    func fromJson(data: Data) throws -> [SuplaCloudClient.HistoryMeasurement] {
+        try SuplaCloudClient.HistoryMeasurement.fromJson(data: data)
     }
+    
 }

@@ -98,6 +98,10 @@ final class ImpulseCounterMeasurementItemRepositoryImpl: Repository<SAImpulseCou
         cloudService.getImpulseCounterMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp)
     }
     
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        cloudService.getInitialMeasurements(remoteId: remoteId)
+    }
+    
     func storeMeasurements(measurements: [SuplaCloudClient.ImpulseCounterMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
         fatalError("Intentionally left not implemented")
     }
@@ -178,10 +182,10 @@ final class ImpulseCounterMeasurementItemRepositoryImpl: Repository<SAImpulseCou
         _ remoteId: Int32,
         _ serverId: Int32
     ) -> SAImpulseCounterMeasurementItem {
-        let measurementCounter = NSDecimalNumber(string: measurement.counter).int64Value
-        let oldestCounter = NSDecimalNumber(string: oldest.counter).int64Value
-        let measurementCalculatedValue = NSDecimalNumber(string: measurement.calculated_value).doubleValue
-        let oldestCalculatedValue = NSDecimalNumber(string: oldest.calculated_value).doubleValue
+        let measurementCounter = measurement.counter
+        let oldestCounter = oldest.counter
+        let measurementCalculatedValue = measurement.calculated_value
+        let oldestCalculatedValue = oldest.calculated_value
         
         let counterDiff = measurementCounter - oldestCounter
         let calculatedValueDiff = measurementCalculatedValue - oldestCalculatedValue

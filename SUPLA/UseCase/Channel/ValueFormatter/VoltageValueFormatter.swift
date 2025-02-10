@@ -15,14 +15,21 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-extension SuplaCloudClient {
-    struct GeneralPurposeMeter: Measurement {
-        let date_timestamp: Date
-        let value: String
+    
+final class VoltageValueFormatter: ChannelValueFormatter {
+    func handle(function: Int32) -> Bool {
+        fatalError("Not expected to be called")
+    }
+    
+    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+        guard let doubleValue = value as? Double else {
+            return NO_VALUE_TEXT
+        }
         
-        static func fromJson(data: Data) throws -> [GeneralPurposeMeter] {
-            return try decoder.decode([GeneralPurposeMeter].self, from: data)
+        return if (withUnit) {
+            doubleValue.toString(precision: precision.value) + " V"
+        } else {
+            doubleValue.toString(precision: precision.value)
         }
     }
 }
