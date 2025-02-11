@@ -136,6 +136,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         filtersRow.selectedRange = state.ranges?.selected
         filtersRow.selectedAggregation = state.aggregations?.selected
         filtersRow.isHidden = !state.showHistory
+        filtersRow.isEnabled = state.loading == false
         
         dataSetsRowState.channelsSets = state.chartData.sets
         dataSetsRowState.historyEnabled = state.showHistory
@@ -199,7 +200,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     }
     
     func showDataSelectionDialog(_ channelSets: ChannelChartSets, _ filters: CustomChartFiltersContainer?) {
-        fatalError("showDataSelectionDialog(_:_:) needs to be implemented!")
+        SALog.error("Nothing to show, please override function to show dialog")
     }
     
     private func setupView() {
@@ -339,6 +340,14 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
                     aggregationPicker.selectRow(index, inComponent: 0, animated: false)
                 }
             }
+        }
+    }
+    
+    var isEnabled: Bool {
+        get { rangeField.isEnabled && aggregationField.isEnabled }
+        set {
+            rangeField.isEnabled = newValue
+            aggregationField.isEnabled = newValue
         }
     }
     
