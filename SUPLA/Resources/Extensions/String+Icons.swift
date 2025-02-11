@@ -90,6 +90,7 @@ extension String {
         static let battery_not_used = "icon_battery_not_used"
         
         static let ocrPhoto = "icon_ocr_photo"
+        static let noPhoto = "icon_no_photo"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"

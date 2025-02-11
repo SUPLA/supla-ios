@@ -144,4 +144,8 @@ final class SuplaCloudServiceMock: SuplaCloudService {
     func getLastImpulseCounterMeasurements(remoteId: Int32, beforeTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ImpulseCounterMeasurement]> {
         .empty()
     }
+    
+    func getImpulseCounterPhotoHistory(remoteId: Int32) -> Observable<[ImpulseCounterPhotoDto]> {
+        .empty()
+    }
 }

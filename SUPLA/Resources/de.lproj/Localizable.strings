@@ -579,3 +579,6 @@
 "counter_photo_counter_area" = "Zählerbereich";
 "counter_photo_original_photo" = "Originalbild";
 "counter_photo_settings" = "Cloudkonfiguration";
+"counter_photo_history" = "Fotohistorie";
+"counter_photo_error" = "Fehler";
+"counter_photo_loading_error" = "Das Laden ist fehlgeschlagen.";

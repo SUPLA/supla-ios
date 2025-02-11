@@ -363,3 +363,6 @@
 "counter_photo_counter_area" = "Counter area";
 "counter_photo_original_photo" = "Original photo";
 "counter_photo_settings" = "Cloud configuration";
+"counter_photo_history" = "Photo history";
+"counter_photo_error" = "Error";
+"counter_photo_loading_error" = "Loading failed.";

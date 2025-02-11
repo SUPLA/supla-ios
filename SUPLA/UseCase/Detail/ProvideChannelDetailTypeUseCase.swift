@@ -31,6 +31,11 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 
             case SUPLA_CHANNELFNC_HVAC_THERMOSTAT: .thermostatDetail(pages: getThermostatDetailPages(channelWithChildren))
 
+            case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
+                 SUPLA_CHANNELFNC_IC_GAS_METER,
+                 SUPLA_CHANNELFNC_IC_WATER_METER,
+                 SUPLA_CHANNELFNC_IC_HEAT_METER: .impulseCounterDetail(pages: getImpulseCounterDetailPages(channelWithChildren))
+
             default: provide(channelWithChildren.channel)
         }
     }
@@ -51,19 +56,27 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 
         return list
     }
-    
+
     private func getThermostatDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
         var list: [DetailPage] = [.thermostatGeneral]
-        
-        if (channelWithChildren.children.first(where: { $0.relationType == .masterThermostat}) != nil) {
+
+        if (channelWithChildren.children.first(where: { $0.relationType == .masterThermostat }) != nil) {
             list.append(.thermostatList)
         }
-        
+
         list.append(.schedule)
         list.append(.thermostatTimer)
         list.append(.thermostatHistory)
-        
+
         return list
+    }
+
+    private func getImpulseCounterDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
+        if (channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) > 0) {
+            [.impulseCounterGeneral, .impulseCounterHistory, .impulseCounterOcr]
+        } else {
+            [.impulseCounterGeneral, .impulseCounterHistory]
+        }
     }
 }
 

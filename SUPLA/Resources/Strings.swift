@@ -180,6 +180,7 @@ struct Strings {
         static let tabHistory = "standard_detail_history_tab".toLocalized()
         static let tabList = "standard_detail_list_tab".toLocalized()
         static let tabSettings = "standard_detail_settings_tab".toLocalized()
+        static let tabOcr = "OCR"
     }
     
     struct SwitchDetail {
@@ -488,6 +489,9 @@ struct Strings {
         static let counterArea = "counter_photo_counter_area".toLocalized()
         static let originalPhoto = "counter_photo_original_photo".toLocalized()
         static let settings = "counter_photo_settings".toLocalized()
+        static let history = "counter_photo_history".toLocalized()
+        static let error = "counter_photo_error".toLocalized()
+        static let loadingError = "counter_photo_loading_error".toLocalized()
     }
 }
 

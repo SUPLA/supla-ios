@@ -16,69 +16,136 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import RxSwift
 import SharedCore
 
 extension CounterPhotoFeature {
     class ViewModel: SuplaCore.BaseViewModel<ViewState> {
-        @Singleton<OcrImageNamingProvider> var ocrImageNamingProvider: OcrImageNamingProvider
-        @Singleton<LoadActiveProfileUrlUseCase> var loadActiveProfileUrlUseCase: LoadActiveProfileUrlUseCase
-        @Singleton<CacheFileAccessProxy> var cacheFileAccessProxy: CacheFileAccessProxy
-        @Singleton<UserStateHolder> var userStateHolder: UserStateHolder
-        @Singleton<ValuesFormatter> var valuesFormatter: ValuesFormatter
-        @Singleton<DownloadOcrPhotoUseCase> var downloadOcrPhotoUseCase
         @Singleton<SuplaSchedulers> var schedulers
+        @Singleton<UserStateHolder> var userStateHolder
+        @Singleton<ValuesFormatter> var valuesFormatter
+        @Singleton<SuplaCloudService> var suplaCloudService
+        @Singleton<CacheFileAccessProxy> var cacheFileAccessProxy
+        @Singleton<OcrImageNamingProvider> var ocrImageNamingProvider
+        @Singleton<DownloadOcrPhotoUseCase> var downloadOcrPhotoUseCase
+        @Singleton<LoadActiveProfileUrlUseCase> var loadActiveProfileUrlUseCase
+        
+        private let dateFormatter = ISO8601DateFormatter()
         
         init() {
             super.init(state: ViewState())
         }
         
-        func onRefresh(_ remoteId: Int32, _ profileId: Int32) async {
-            triggerPhotoDownload(remoteId, profileId)
-            await updateImagesState(remoteId, profileId)
+        func onRefresh(_ remoteId: Int32) async {
+            Task {
+                do {
+                    if let data = try getLoadingObservable(remoteId).subscribeSynchronous() {
+                        await updateView(data: data, remoteId: remoteId)
+                    }
+                } catch {
+                    await setError()
+                }
+            }
         }
         
-        func loadData(_ remoteId: Int32, _ profileId: Int32) {
-            loadActiveProfileUrlUseCase.invoke()
-                .asDriverWithoutError()
-                .drive(
-                    onNext: { [weak self] url in
-                        guard let self else { return }
-                        
-                        state.configurationAddress = "\(url.urlString)/channels/\(remoteId)/ocr-settings"
-                        updateImages(remoteId, profileId)
+        func loadData(_ remoteId: Int32) {
+            state.loading = true
+            getLoadingObservable(remoteId)
+                .asDriver()
+                .drive(onNext: { [weak self] result in
+                    self?.state.loading = false
+                    switch result {
+                    case .success(let data):
+                        self?.state.loadingError = false
+                        self?.handlePhoto(latest: data.0)
+                        self?.handlePhotos(photos: data.1)
+                        self?.state.configurationAddress = "\(data.2.urlString)/channels/\(remoteId)/ocr-settings"
+                    case .error:
+                        self?.state.loadingError = true
                     }
-                )
+                })
                 .disposed(by: disposeBag)
         }
         
-        private func triggerPhotoDownload(_ remoteId: Int32, _ profileId: Int32) {
-            do {
-                let _ = try downloadOcrPhotoUseCase.invoke(remoteId: remoteId).toBlocking().first()
-            } catch {
-                SALog.error("Photo update failed: \(String(describing: error))")
+        private func getLoadingObservable(_ remoteId: Int32) -> Observable<(ImpulseCounterPhotoDto, [ImpulseCounterPhotoDto], CloudUrl)> {
+            Observable.zip(
+                suplaCloudService.getImpulseCounterPhoto(remoteId: remoteId),
+                suplaCloudService.getImpulseCounterPhotoHistory(remoteId: remoteId),
+                loadActiveProfileUrlUseCase.invoke().asObservable()
+            ) { photo, photos, url in (photo, photos, url) }
+        }
+        
+        private func handlePhoto(latest: SharedCore.ImpulseCounterPhotoDto) {
+            state.latestPhoto = OcrPhoto(
+                id: latest.id,
+                date: formatDate(isoDate: latest.createdAt),
+                original: latest.imageData,
+                cropped: latest.imageCroppedData,
+                value: .waiting
+            )
+        }
+        
+        private func handlePhotos(photos: [SharedCore.ImpulseCounterPhotoDto]) {
+            state.photos = photos.map { photo in
+                OcrPhoto(
+                    id: photo.id,
+                    date: formatDate(isoDate: photo.createdAt),
+                    original: photo.imageData,
+                    cropped: photo.imageCroppedData,
+                    value: getOcrValue(photo: photo)
+                )
             }
+        }
+        
+        private func getOcrValue(photo: SharedCore.ImpulseCounterPhotoDto) -> OcrValue {
+            if (photo.processedAt == nil) {
+                .waiting
+            } else if photo.measurementValid, let value = photo.resultMeasurement {
+                .success(value: value.stringValue)
+            } else if let value = photo.resultMeasurement {
+                .warning(value: value.stringValue)
+            } else {
+                .error
+            }
+        }
+        
+        private func formatDate(isoDate: String) -> String {
+            valuesFormatter.getFullDateString(date: dateFormatter.date(from: isoDate)) ?? NO_VALUE_TEXT
         }
         
         @MainActor
-        private func updateImagesState(_ remoteId: Int32, _ profileId: Int32) {
-            updateImages(remoteId, profileId)
+        private func updateView(data: (ImpulseCounterPhotoDto, [ImpulseCounterPhotoDto], CloudUrl), remoteId: Int32) {
+            state.loadingError = false
+            handlePhoto(latest: data.0)
+            handlePhotos(photos: data.1)
+            state.configurationAddress = "\(data.2.urlString)/channels/\(remoteId)/ocr-settings"
         }
         
-        private func updateImages(_ remoteId: Int32, _ profileId: Int32) {
-            guard let cacheDir = cacheFileAccessProxy.cacheDir else { return }
-            
-            let ocrImageName = ocrImageNamingProvider.imageName(profileId: Int64(profileId), remoteId: remoteId)
-            let ocrCroppedImageName = ocrImageNamingProvider.imageCroppedName(profileId: Int64(profileId), remoteId: remoteId)
-            let ocrImageFile = CacheFileAccessFile(name: ocrImageName, directory: ocrImageNamingProvider.directory)
-            let ocrCroppedImageFile = CacheFileAccessFile(name: ocrCroppedImageName, directory: ocrImageNamingProvider.directory)
-            
-            do {
-                state.image = try Data(contentsOf: ocrImageFile.file(cacheDir))
-                state.imageCropped = try Data(contentsOf: ocrCroppedImageFile.file(cacheDir))
-                state.date = valuesFormatter.getFullDateString(date: userStateHolder.getPhotoCreationTime(profileId: profileId, remoteId: remoteId))
-            } catch {
-                SALog.error("Failed to load images from files: \(String(describing: error))")
-            }
+        @MainActor
+        private func setError() {
+            state.loadingError = true
+        }
+    }
+}
+
+extension SharedCore.ImpulseCounterPhotoDto {
+    var imageCroppedData: Data? {
+        if let imageCropped,
+           let data = Data(base64Encoded: imageCropped, options: .ignoreUnknownCharacters)
+        {
+            data
+        } else {
+            nil
+        }
+    }
+    
+    var imageData: Data? {
+        if let image,
+           let data = Data(base64Encoded: image, options: .ignoreUnknownCharacters)
+        {
+            data
+        } else {
+            nil
         }
     }
 }
