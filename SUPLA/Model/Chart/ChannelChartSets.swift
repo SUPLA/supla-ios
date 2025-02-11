@@ -79,6 +79,18 @@ struct ChannelChartSets: Equatable, Identifiable {
         )
     }
     
+    func activate() -> ChannelChartSets {
+        ChannelChartSets(
+            remoteId: remoteId,
+            function: function,
+            name: name,
+            aggregation: aggregation,
+            dataSets: dataSets.map { $0.changing(path: \.active, to: true) },
+            customData: customData,
+            typeName: typeName
+        )
+    }
+    
     func deactivate() -> ChannelChartSets {
         ChannelChartSets(
             remoteId: remoteId,

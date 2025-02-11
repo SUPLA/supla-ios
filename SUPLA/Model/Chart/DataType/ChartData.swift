@@ -114,8 +114,16 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
         return empty
     }
     
+    var noActiveSet: Bool {
+        sets.flatMap { $0.dataSets }.first { $0.active } == nil
+    }
+    
     var onlyOneSetAndActive: Bool {
         sets.count == 1 && sets.first!.dataSets.count == 1 && sets.first!.active
+    }
+    
+    var onlyOneSet: Bool {
+        sets.count == 1 && sets.first!.dataSets.count == 1
     }
     
     var visibleSets: [ChartStateVisibleSet] {
@@ -135,19 +143,23 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
     func empty() -> ChartData { newInstance(sets: emptySets()) }
     
     func activateSets(visibleSets: [ChartStateVisibleSet]?) -> ChartData {
-        newInstance(
-            sets: sets.map { set in
-                if let visibleSets = visibleSets {
-                    if (visibleSets.map { $0.id }.contains(set.remoteId)) {
-                        set.setActive(types: visibleSets.map(\.type))
+        if (onlyOneSet) {
+            noActiveSet ? newInstance(sets: sets.map { $0.activate() }) : self
+        } else {
+            newInstance(
+                sets: sets.map { set in
+                    if let visibleSets = visibleSets {
+                        if (visibleSets.map { $0.id }.contains(set.remoteId)) {
+                            set.setActive(types: visibleSets.map(\.type))
+                        } else {
+                            set.deactivate()
+                        }
                     } else {
-                        set.deactivate()
+                        set
                     }
-                } else {
-                    set
                 }
-            }
-        )
+            )
+        }
     }
     
     func toggleActive(remoteId: Int32, type: ChartEntryType) -> ChartData {
