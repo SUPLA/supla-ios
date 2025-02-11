@@ -48,5 +48,8 @@ extension Color {
         static let dialogScrim = Color(UIColor.dialogScrim)
         static let loadingScrim = Color(UIColor.loadingScrim)
         static let infoScrim = Color(UIColor.infoScrim)
+        
+        static let ocrWarning = Color("Colors/Ocr/warning")
+        static let ocrProcessing = Color("Colors/Ocr/processing")
     }
 }

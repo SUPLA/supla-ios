@@ -21,23 +21,31 @@ import SharedCore
 extension SharedCore.ImpulseCounterPhotoDto {
     static func fromJson(data: Data) throws -> ImpulseCounterPhotoDto {
         let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
-        return ImpulseCounterPhotoDto(
-            id: json.getString("id")!,
-            deviceGuid: json.getString("deviceGuid")!,
-            channelNo: json.getInt32("channelNo")!,
-            createdAt: json.getString("createdAt")!,
-            replacedAt: json.getString("replacedAt"),
-            processedAt: json.getString("processedAt"),
-            resultMeasurement: json.getKotlinInt("resultMeasurement"),
-            processingTimeMs: json.getKotlinInt("processingTimeMs"),
-            resultMeasurement2: json.getKotlinInt("resultMeasurement2"),
-            processingTimeMs2: json.getKotlinInt("processingTimeMs2"),
-            resultCode: json.getInt32("resultCode") ?? 0,
-            resultMessage: json.getString("resultMessage"),
-            measurementValid: json.getBool("measurementValid") ?? false,
-            image: json.getString("image"),
-            imageCropped: json.getString("imageCropped")
+        return fromArray(json)
+    }
+    
+    static func fromJsonToArray(data: Data) throws -> [ImpulseCounterPhotoDto] {
+        let jsonArray = try JSONSerialization.jsonObject(with: data) as! [[String: Any]]
+        return jsonArray.map { fromArray($0) }
+    }
+    
+    private static func fromArray(_ array: [String: Any]) -> ImpulseCounterPhotoDto {
+        ImpulseCounterPhotoDto(
+            id: array.getString("id")!,
+            deviceGuid: array.getString("deviceGuid")!,
+            channelNo: array.getInt32("channelNo")!,
+            createdAt: array.getString("createdAt")!,
+            replacedAt: array.getString("replacedAt"),
+            processedAt: array.getString("processedAt"),
+            resultMeasurement: array.getKotlinInt("resultMeasurement"),
+            processingTimeMs: array.getKotlinInt("processingTimeMs"),
+            resultMeasurement2: array.getKotlinInt("resultMeasurement2"),
+            processingTimeMs2: array.getKotlinInt("processingTimeMs2"),
+            resultCode: array.getInt32("resultCode") ?? 0,
+            resultMessage: array.getString("resultMessage"),
+            measurementValid: array.getBool("measurementValid") ?? false,
+            image: array.getString("image"),
+            imageCropped: array.getString("imageCropped")
         )
     }
 }
-

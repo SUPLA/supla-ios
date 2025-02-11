@@ -80,6 +80,10 @@ protocol SuplaCloudService {
         remoteId: Int32
     ) -> Observable<SharedCore.ImpulseCounterPhotoDto>
     
+    func getImpulseCounterPhotoHistory(
+        remoteId: Int32
+    ) -> Observable<[SharedCore.ImpulseCounterPhotoDto]>
+    
     func getElectricityMeterChannel(
         remoteId: Int32
     ) -> Observable<SharedCore.ElectricityChannelDto>
@@ -336,6 +340,26 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
             }
     }
     
+    func getImpulseCounterPhotoHistory(
+        remoteId: Int32
+    ) -> Observable<[SharedCore.ImpulseCounterPhotoDto]> {
+        return urlLoader { try self.buildPhotosUrl(remoteId) }
+            .flatMap { self.requestHelper.getOAuthRequest(urlString: $0) }
+            .flatMap { (response, data) in
+                if (response.statusCode != 200) {
+                    return Observable<[SharedCore.ImpulseCounterPhotoDto]>
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                }
+                    
+                do {
+                    let measurements = try SharedCore.ImpulseCounterPhotoDto.fromJsonToArray(data: data)
+                    return Observable.just(measurements)
+                } catch {
+                    return Observable.error(error)
+                }
+            }
+    }
+    
     func getElectricityMeterChannel(
         remoteId: Int32
     ) -> Observable<SharedCore.ElectricityChannelDto> {
@@ -409,6 +433,12 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
     private func buildOcrPhotoUrl(_ remoteId: Int32) throws -> String {
         let host = try configHolder.requireUrl()
         let urlPath = Constants.urlOcrPhoto.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
+        return "\(host)\(urlPath)/latest"
+    }
+    
+    private func buildPhotosUrl(_ remoteId: Int32) throws -> String {
+        let host = try configHolder.requireUrl()
+        let urlPath = Constants.urlOcrPhoto.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
         return "\(host)\(urlPath)"
     }
     
@@ -423,7 +453,7 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         
         static let urlFirstMeasurementBefore = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=DESC&limit=1&beforeTimestamp="
         
-        static let urlOcrPhoto = "/api/\(apiVersion)/integrations/ocr/{remoteId}/latest"
+        static let urlOcrPhoto = "/api/\(apiVersion)/integrations/ocr/{remoteId}/images"
     }
 }
 

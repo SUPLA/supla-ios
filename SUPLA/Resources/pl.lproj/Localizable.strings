@@ -616,4 +616,7 @@
 "counter_photo_counter_area" = "Obszar licznika";
 "counter_photo_original_photo" = "Zdjęcie oryginalne";
 "counter_photo_settings" = "Konfiguracja w Cloud";
+"counter_photo_history" = "Historia zdjęć";
+"counter_photo_error" = "Błąd";
+"counter_photo_loading_error" = "Nie udało się załadować zawartości.";
 
