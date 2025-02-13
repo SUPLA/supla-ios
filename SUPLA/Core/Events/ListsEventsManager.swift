@@ -153,16 +153,6 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
         return subject
     }
     
-    private func toChannelWithChildren(remoteId: Int, _ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> ChannelWithChildren? {
-        
-        guard
-            let channel = channels.first(where: { $0.remote_id == remoteId}),
-            let relations = parentsMap.first(where: { $0.key == remoteId})?.value
-        else { return nil }
-        
-        return createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, relations: relations)
-    }
-    
     enum IdType {
         case scene
         case channel

@@ -121,7 +121,7 @@ private class PieChartSetFormatter: ValueFormatter {
     }
 
     func stringForValue(_ value: Double, entry: DGCharts.ChartDataEntry, dataSetIndex: Int, viewPortHandler: DGCharts.ViewPortHandler?) -> String {
-        formatter.format(value)
+        formatter.format(value, precision: .customPrecision(value: 1))
     }
 }
 

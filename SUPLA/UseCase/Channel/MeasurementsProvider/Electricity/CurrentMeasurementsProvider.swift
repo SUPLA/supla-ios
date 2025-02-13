@@ -25,7 +25,7 @@ final class CurrentMeasurementsProviderImpl: CurrentMeasurementsProvider {
     @Singleton<CurrentMeasurementItemRepository> private var repository
     @Singleton<GetCaptionUseCase> var getCaptionUseCase
     
-    private let formatter = VoltageValueFormatter()
+    private let formatter = CurrentValueFormatter()
     
     func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String {
         formatter.format(electricityValue.current(forPhase: phase.rawValue), withUnit: false)
@@ -45,7 +45,7 @@ final class CurrentMeasurementsProviderImpl: CurrentMeasurementsProvider {
             endDate: spec.endDate
         )
         .map { self.aggregating($0, spec.aggregation) }
-        .map { (phase, self.historyDataSet(channel, phase, isFirst, .voltage, spec.aggregation, $0)) }
+        .map { (phase, self.historyDataSet(channel, phase, isFirst, .current, spec.aggregation, $0)) }
     }
 }
 

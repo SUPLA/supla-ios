@@ -94,7 +94,7 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
                     )
                 )
             }
-            .sorted { isRank ? $0.value.max < $1.value.max : $0.date < $1.date }
+            .sorted { isRank ? $0.value.max > $1.value.max : $0.date < $1.date }
     }
 
     private func historyDataSet(_ result: AggregationResult, _ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> HistoryDataSet {

@@ -124,7 +124,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         let state3 = state2.changing(path: \.profileId, to: profileId)
             .changing(path: \.channelFunction, to: 40)
         let state4 = state3.changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))
-            .changing(path: \.range, to: DaysRange(start: currentDate.shift(days: -7), end: currentDate))
+            .changing(path: \.range, to: DaysRange(start: currentDate.dayEnd().shift(days: -7), end: currentDate.dayEnd()))
             .changing(path: \.aggregations, to: SelectableList(selected: .minutes, items: [.minutes, .hours, .days]))
         let state5 = state4.changing(path: \.downloadConfigured, to: true)
         let state6 = state5.changing(path: \.initialLoadStarted, to: true)
