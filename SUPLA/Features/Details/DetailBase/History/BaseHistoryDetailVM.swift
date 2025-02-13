@@ -342,8 +342,10 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func getDateRangeForChartRange(_ chartRange: ChartRange, _ dateRange: DaysRange?) -> DaysRange {
         let date = dateProvider.currentDate()
         return switch (chartRange) {
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter:
+        case .lastDay:
             DaysRange(start: date.shift(days: -chartRange.roundedDaysCount), end: date)
+        case .lastWeek, .lastMonth, .lastQuarter:
+            DaysRange(start: date.dayEnd().shift(days: -chartRange.roundedDaysCount), end: date.dayEnd())
         default:
             dateRange ?? DaysRange(start: date.shift(days: -chartRange.roundedDaysCount), end: date)
         }
@@ -430,6 +432,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
                 .changing(path: \.loading, to: false)
+                .changing(path: \.range, to: data.chartRange == .allHistory ? range : $0.range)
         }
     }
     

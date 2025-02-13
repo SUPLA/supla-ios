@@ -160,7 +160,7 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
         }
         
         return if (spec.aggregation.isRank) {
-            aggregatedEntities.sorted { $0.value.max < $1.value.max }
+            aggregatedEntities.sorted { $0.value.max > $1.value.max }
         } else {
             aggregatedEntities.sorted { $0.date < $1.date }
         }

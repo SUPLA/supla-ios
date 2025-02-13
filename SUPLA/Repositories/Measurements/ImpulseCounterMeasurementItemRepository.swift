@@ -50,7 +50,7 @@ final class ImpulseCounterMeasurementItemRepositoryImpl: Repository<SAImpulseCou
         return deleteAll(
             SAImpulseCounterMeasurementItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "server_id = %d AND channel_id = %d", serverId))
+                .filtered(by: NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, serverId))
         )
     }
     
