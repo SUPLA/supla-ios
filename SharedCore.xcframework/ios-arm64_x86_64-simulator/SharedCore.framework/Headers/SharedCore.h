@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreGroup, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
 @protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
 
@@ -640,6 +640,10 @@ __attribute__((swift_name("SuplaFunction")))
 @property (class, readonly) SharedCoreSuplaFunction *pumpSwitch __attribute__((swift_name("pumpSwitch")));
 @property (class, readonly) SharedCoreSuplaFunction *heatOrColdSourceSwitch __attribute__((swift_name("heatOrColdSourceSwitch")));
 @property (class, readonly) SharedCoreSuplaFunction *container __attribute__((swift_name("container")));
+@property (class, readonly) SharedCoreSuplaFunction *septicTank __attribute__((swift_name("septicTank")));
+@property (class, readonly) SharedCoreSuplaFunction *waterTank __attribute__((swift_name("waterTank")));
+@property (class, readonly) SharedCoreSuplaFunction *containerLevelSensor __attribute__((swift_name("containerLevelSensor")));
+@property (class, readonly) SharedCoreSuplaFunction *floodSensor __attribute__((swift_name("floodSensor")));
 @property (class, readonly) NSArray<SharedCoreSuplaFunction *> *entries __attribute__((swift_name("entries")));
 @property (readonly) int32_t value __attribute__((swift_name("value")));
 + (instancetype)alloc __attribute__((unavailable));
@@ -983,6 +987,55 @@ __attribute__((swift_name("SuplaShadingSystemFlag.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaValveFlag")))
+@interface SharedCoreSuplaValveFlag : SharedCoreKotlinEnum<SharedCoreSuplaValveFlag *>
+@property (class, readonly, getter=companion) SharedCoreSuplaValveFlagCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SharedCoreSuplaValveFlag *flooding __attribute__((swift_name("flooding")));
+@property (class, readonly) SharedCoreSuplaValveFlag *manuallyClosed __attribute__((swift_name("manuallyClosed")));
+@property (class, readonly) NSArray<SharedCoreSuplaValveFlag *> *entries __attribute__((swift_name("entries")));
+@property (readonly) int32_t value __attribute__((swift_name("value")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreSuplaValveFlag *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaValveFlag.Companion")))
+@interface SharedCoreSuplaValveFlagCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaValveFlagCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (NSArray<SharedCoreSuplaValveFlag *> *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValveValue")))
+@interface SharedCoreValveValue : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreValveValueCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) int32_t closed __attribute__((swift_name("closed")));
+@property (readonly) NSArray<SharedCoreSuplaValveFlag *> *flags __attribute__((swift_name("flags")));
+@property (readonly) BOOL online __attribute__((swift_name("online")));
+- (instancetype)initWithOnline:(BOOL)online closed:(int32_t)closed flags:(NSArray<SharedCoreSuplaValveFlag *> *)flags __attribute__((swift_name("init(online:closed:flags:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreValveValue *)doCopyOnline:(BOOL)online closed:(int32_t)closed flags:(NSArray<SharedCoreSuplaValveFlag *> *)flags __attribute__((swift_name("doCopy(online:closed:flags:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (BOOL)isClosed __attribute__((swift_name("isClosed()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValveValue.Companion")))
+@interface SharedCoreValveValueCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreValveValueCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreValveValue *)fromOnline:(BOOL)online bytes:(SharedCoreKotlinByteArray *)bytes __attribute__((swift_name("from(online:bytes:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Base64Helper")))
 @interface SharedCoreBase64Helper : SharedCoreBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -1110,6 +1163,10 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionHeatOrColdSourceSwitch __attribute__((swift_name("channelCaptionHeatOrColdSourceSwitch")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionUnknown __attribute__((swift_name("channelCaptionUnknown")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionContainer __attribute__((swift_name("channelCaptionContainer")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelCaptionSepticTank __attribute__((swift_name("channelCaptionSepticTank")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelCaptionWaterTank __attribute__((swift_name("channelCaptionWaterTank")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelCaptionContainerLevelSensor __attribute__((swift_name("channelCaptionContainerLevelSensor")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelCaptionFloodSensor __attribute__((swift_name("channelCaptionFloodSensor")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelBatteryLevel __attribute__((swift_name("channelBatteryLevel")));
 @property (class, readonly) SharedCoreLocalizedStringId *motorProblem __attribute__((swift_name("motorProblem")));
 @property (class, readonly) SharedCoreLocalizedStringId *calibrationLost __attribute__((swift_name("calibrationLost")));
@@ -1117,6 +1174,9 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *thermostatThermometerError __attribute__((swift_name("thermostatThermometerError")));
 @property (class, readonly) SharedCoreLocalizedStringId *thermostatBatterCoverOpen __attribute__((swift_name("thermostatBatterCoverOpen")));
 @property (class, readonly) SharedCoreLocalizedStringId *thermostatClockError __attribute__((swift_name("thermostatClockError")));
+@property (class, readonly) SharedCoreLocalizedStringId *floodSensorActive __attribute__((swift_name("floodSensorActive")));
+@property (class, readonly) SharedCoreLocalizedStringId *valveManuallyClosed __attribute__((swift_name("valveManuallyClosed")));
+@property (class, readonly) SharedCoreLocalizedStringId *valveFlooding __attribute__((swift_name("valveFlooding")));
 @property (class, readonly) NSArray<SharedCoreLocalizedStringId *> *entries __attribute__((swift_name("entries")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
@@ -1263,6 +1323,14 @@ __attribute__((swift_name("ThermostatIssuesProvider")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValveIssuesProvider")))
+@interface SharedCoreValveIssuesProvider : SharedCoreBase <SharedCoreChannelIssuesProvider>
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (NSArray<SharedCoreChannelIssueItem *> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("OcrImageNamingProvider")))
 @interface SharedCoreOcrImageNamingProvider : SharedCoreBase
 @property (readonly) NSString *directory __attribute__((swift_name("directory")));
@@ -1310,6 +1378,7 @@ __attribute__((swift_name("KotlinByteArray")))
 @property (readonly) BOOL isVerticalBlind __attribute__((swift_name("isVerticalBlind")));
 @property (readonly) SharedCoreRollerShutterValue * _Nullable rollerShutterValue __attribute__((swift_name("rollerShutterValue")));
 @property (readonly) SharedCoreThermostatValue * _Nullable thermostatValue __attribute__((swift_name("thermostatValue")));
+@property (readonly) SharedCoreValveValue * _Nullable valveValue __attribute__((swift_name("valveValue")));
 @end
 
 __attribute__((objc_subclassing_restricted))

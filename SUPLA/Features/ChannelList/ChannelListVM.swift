@@ -25,6 +25,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
 
     override init() {
         super.init()
@@ -69,13 +70,30 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         if let channelWithChildren = data as? ChannelWithChildren {
             channelBaseActionUseCase.invoke(channelWithChildren.channel, buttonType)
                 .asDriverWithoutError()
-                .drive()
+                .drive(
+                    onNext: { [weak self] result in
+                        switch result {
+                        case .valveFlooding:
+                            self?.send(event: .showValveWarningDialog(remoteId: channelWithChildren.remoteId, message: Strings.Valve.warningFlooding))
+                        case .valveManuallyClosed:
+                            self?.send(event: .showValveWarningDialog(remoteId: channelWithChildren.remoteId, message: Strings.Valve.warningManuallyClosed))
+                        case .success: break // Nothing to do
+                        }
+                    }
+                )
                 .disposed(by: self)
         }
     }
     
     func onNoContentButtonClicked() {
         send(event: .showAddWizard)
+    }
+    
+    func forceValveOpen(remoteId: Int32) {
+        executeSimpleActionUseCase.invoke(action: .open, type: .channel, remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive()
+            .disposed(by: self)
     }
     
     private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
@@ -124,6 +142,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
+    case showValveWarningDialog(remoteId: Int32, message: String)
 }
 
 struct ChannelListViewState: ViewState {}

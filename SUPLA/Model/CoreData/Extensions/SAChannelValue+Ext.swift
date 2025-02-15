@@ -40,6 +40,10 @@ extension SAChannelValue {
         ContainerValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
+    func asValveValue() -> ValveValue {
+        ValveValue.companion.from(online: online, bytes: KotlinByteArray.from(data: unsafeDataValue()))
+    }
+    
     @objc func isThermostatSubfunctionHeat() -> Bool {
         asThermostatValue().subfunction == .heat
     }

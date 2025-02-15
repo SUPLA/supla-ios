@@ -19,18 +19,37 @@
 import RxSwift
 
 protocol ChannelBaseActionUseCase {
-    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<Void>
+    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult>
+}
+
+enum ChannelBaseActionResult {
+    case success
+    case valveManuallyClosed
+    case valveFlooding
 }
 
 final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
 
-    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<Void> {
+    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
+        if (channelBase.isValve()),
+           let channel = channelBase as? SAChannel,
+           let value = channel.value?.asValveValue()
+        {
+            if (value.flags.contains(.flooding)) {
+                return Observable.just(.valveFlooding)
+            }
+            if (value.flags.contains(.manuallyClosed)) {
+                return Observable.just(.valveManuallyClosed)
+            }
+        }
+        
         if let action = getAction(channelBase, buttonType) {
             return executeSimpleActionUseCase.invoke(action: action, type: getSubjectType(channelBase), remoteId: channelBase.remote_id)
+                .map { _ in .success }
         }
 
-        return Observable.just(())
+        return Observable.just(.success)
     }
 
     private func getAction(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Action? {
