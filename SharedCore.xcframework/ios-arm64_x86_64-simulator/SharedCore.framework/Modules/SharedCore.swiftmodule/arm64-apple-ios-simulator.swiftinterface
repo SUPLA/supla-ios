@@ -152,6 +152,10 @@ extension SharedCore.__ThermostatSubfunction {
   case channelCaptionHeatOrColdSourceSwitch
   case channelCaptionUnknown
   case channelCaptionContainer
+  case channelCaptionSepticTank
+  case channelCaptionWaterTank
+  case channelCaptionContainerLevelSensor
+  case channelCaptionFloodSensor
   case channelBatteryLevel
   case motorProblem
   case calibrationLost
@@ -159,6 +163,9 @@ extension SharedCore.__ThermostatSubfunction {
   case thermostatThermometerError
   case thermostatBatterCoverOpen
   case thermostatClockError
+  case floodSensorActive
+  case valveManuallyClosed
+  case valveFlooding
   public var name: Swift.String {
     get
   }
@@ -249,6 +256,10 @@ extension SharedCore.__LocalizedStringId {
   case pumpSwitch
   case heatOrColdSourceSwitch
   case container
+  case septicTank
+  case waterTank
+  case containerLevelSensor
+  case floodSensor
   public var name: Swift.String {
     get
   }
@@ -463,6 +474,43 @@ extension SharedCore.SuplaThermostatFlag {
 extension SharedCore.__SuplaThermostatFlag {
   public func toSwiftEnum() -> SharedCore.SuplaThermostatFlag
 }
+@frozen public enum SuplaValveFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case flooding
+  case manuallyClosed
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaValveFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag, result: inout SharedCore.SuplaValveFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag, result: inout SharedCore.SuplaValveFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag?) -> SharedCore.SuplaValveFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaValveFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaValveFlag
+  public typealias Companion = SharedCore.__SuplaValveFlag.Companion
+  public static func == (a: SharedCore.SuplaValveFlag, b: SharedCore.SuplaValveFlag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaValveFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaValveFlag] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaValveFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaValveFlag
+}
+extension SharedCore.__SuplaValveFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaValveFlag
+}
 public enum Skie {
   public enum supla_android__shared_core {
     public enum LocalizedString {
@@ -591,3 +639,5 @@ extension SharedCore.SuplaShadingSystemFlag : Swift.Sendable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaThermostatFlag : Swift.Sendable {}
 extension SharedCore.SuplaThermostatFlag : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaValveFlag : Swift.Sendable {}
+extension SharedCore.SuplaValveFlag : Swift.BitwiseCopyable {}

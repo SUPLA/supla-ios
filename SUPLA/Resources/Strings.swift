@@ -292,6 +292,7 @@ struct Strings {
         
         static let error = "general_error".toLocalized()
         static let ok = "general_ok".toLocalized()
+        static let warning = "general_warning".toLocalized()
         static let on = "On".toLocalized()
         static let off = "Off".toLocalized()
         static let yes = NSLocalizedString("Yes", comment: "")
@@ -334,8 +335,12 @@ struct Strings {
             static let captionPumpSwitch = "channel_caption_pump_switch".toLocalized()
             static let captionHeatOrCouldSourceSwitch = "channel_caption_heat_or_cold_source_switch".toLocalized()
             static let captionHumidity = "channel_caption_humidity".toLocalized()
-            static let captionContainer = "channel_caption_container".toLocalized()
             static let captionHumidityAndTemperature = "channel_caption_humidityandtemperature".toLocalized()
+            static let captionContainer = "channel_caption_container".toLocalized()
+            static let captionWaterTank = "channel_caption_water_tank".toLocalized()
+            static let captionSepticTank = "channel_caption_septic_tank".toLocalized()
+            static let captionContainerLevelSensor = "channel_caption_container_level_sensor".toLocalized()
+            static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
         }
@@ -492,6 +497,14 @@ struct Strings {
         static let history = "counter_photo_history".toLocalized()
         static let error = "counter_photo_error".toLocalized()
         static let loadingError = "counter_photo_loading_error".toLocalized()
+    }
+    
+    struct Valve {
+        static let warningManuallyClosed = "valve_warning_manually_closed".toLocalized()
+        static let warningFlooding = "valve_warning_flooding".toLocalized()
+        static let floodingAlarmMessage = "flooding_alarm_message".toLocalized()
+        static let warningManuallyClosedShort = "valve_warning_manually_closed_short".toLocalized()
+        static let warningFloodingShort = "valve_warning_flooding_short".toLocalized()
     }
 }
 

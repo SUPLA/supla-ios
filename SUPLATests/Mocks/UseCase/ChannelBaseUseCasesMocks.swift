@@ -38,9 +38,9 @@ final class GetChannelBaseIconUseCaseMock: GetChannelBaseIconUseCase {
 }
 
 final class ChannelBaseActionUseCaseMock: ChannelBaseActionUseCase {
-    var returns: Observable<Void> = .empty()
+    var returns: Observable<ChannelBaseActionResult> = .empty()
     var parameters: [(SAChannelBase, CellButtonType)] = []
-    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<Void> {
+    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
         parameters.append((channelBase, buttonType))
         return returns
     }

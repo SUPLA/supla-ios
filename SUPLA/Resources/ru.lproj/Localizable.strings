@@ -135,8 +135,6 @@
 
 "Close" = "Закрыть";
 "Valve" = "Клапан";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Клапан закрыт в ручном режиме. Прежде чем открыть его, убедитесь, что он не был закрыт по причине залития. Чтобы отключить предупреждение, откройте клапан вручную. Вы уверены, что хотите открыть клапан из приложения?!";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Клапан закрыт в ручном режиме. Прежде чем открыть его, убедитесь, что он не был закрыт по причине залития. Чтобы отключить предупреждение, откройте клапан вручную.";
 "Warning" = "Предупреждение";
 "Yes" = "Да";
 "No" = "Нет";
@@ -322,3 +320,6 @@
 "about_license" = "Эта программа с открытым кодом; вы можете использовать ее и/или изменять ее по условиям GNU General Public License которая публикуется Free Software Foundation; по версии 2 Лицензии, или (по вашему усмотрению) любой поздней версии.\n\n Эта пррграмма распространяется в надежде ее полезности, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте\n GNU General Public License.\n\n Если к программе не приложена копия GNU General Public License отправте запрос по адресу: Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA";
 
 /* Electricity meter detail */
+
+/* Valve */
+"valve_warning_manually_closed" = "Клапан закрыт в ручном режиме. Прежде чем открыть его, убедитесь, что он не был закрыт по причине залития. Чтобы отключить предупреждение, откройте клапан вручную. Вы уверены, что хотите открыть клапан из приложения?!";

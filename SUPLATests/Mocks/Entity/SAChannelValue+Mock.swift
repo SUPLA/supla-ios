@@ -93,4 +93,17 @@ extension SAChannelValue {
         let value = NSData(bytes: &facadeBlindValue, length: MemoryLayout<TDSC_FacadeBlindValue>.size)
         return SAChannelValue.mock(online: online, value: value)
     }
+    
+    static func mockValve(
+        online: Bool = true,
+        open: Bool = true,
+        flags: [SuplaValveFlag] = []
+    ) -> SAChannelValue {
+        var flagsInt: Int32 = 0
+        flags.forEach { flagsInt ^= $0.value }
+        
+        var valveValue = TValve_Value(TValve_Value.__Unnamed_union___Anonymous_field0(closed: open ? 1 : 0), flags: UInt8(flagsInt))
+        let value = NSData(bytes: &valveValue, length: MemoryLayout<TValve_Value>.size)
+        return SAChannelValue.mock(online: online, value: value)
+    }
 }
