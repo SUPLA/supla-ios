@@ -6,9 +6,9 @@
 	.st0{fill:#EB3A28;}
 	.st1{fill:#00C94C;}
 	.st2{fill:#FFE804;}
-	.st3{fill:none;stroke:#B4B7BA;stroke-width:25;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#B4B7BA;stroke-width:25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st5{fill:#B4B7BA;stroke:none;}
+	.st3{fill:none;stroke:#FCFCFC;stroke-width:25;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#FCFCFC;stroke-width:25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st5{fill:#FCFCFC;stroke:none;}
 </style>
 <title>Artboard 1</title>
 <path class="st0" d="M922.4,558.5c-7.1,0-12.8-5.6-13-12.7c-1.2-65.3-17.9-129.4-48.8-187c-29.9-55.8-71.9-104.1-123-141.4
