@@ -994,6 +994,7 @@
 		A5D837E32AF3A728002A420D /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837E22AF3A728002A420D /* LinkedList.swift */; };
 		A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */; };
 		A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */; };
+		A5DF8A212D632C4C00C210DA /* FormatterUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A202D632C4900C210DA /* FormatterUnit.swift */; };
 		A5E039E52CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */; };
 		A5E039E72CA18E350018CEB7 /* Bool+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */; };
 		A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E82CA1F85C0018CEB7 /* LazyList.swift */; };
@@ -2539,6 +2540,7 @@
 		A5D837E22AF3A728002A420D /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodSensorIconProducer.swift; sourceTree = "<group>"; };
+		A5DF8A202D632C4900C210DA /* FormatterUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterUnit.swift; sourceTree = "<group>"; };
 		A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatOrColdSourceSwitchIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Ext.swift"; sourceTree = "<group>"; };
 		A5E039E82CA1F85C0018CEB7 /* LazyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
@@ -3448,6 +3450,7 @@
 		A503ABB62B6BB060008CDA1F /* ValueFormatter */ = {
 			isa = PBXGroup;
 			children = (
+				A5DF8A202D632C4900C210DA /* FormatterUnit.swift */,
 				A5552ED72D53781100A3F6A2 /* PowerActiveValueFormatter.swift */,
 				A5552ED52D5377F600A3F6A2 /* CurrentValueFormatter.swift */,
 				A5552ED12D536AD600A3F6A2 /* VoltageValueFormatter.swift */,
@@ -6925,6 +6928,7 @@
 				A5074BCF2BCE72250081B6B1 /* FacadeBlindsVM.swift in Sources */,
 				A530EE0F2A56E52000F8DAEE /* GetDefaultIconNameUseCase.swift in Sources */,
 				A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */,
+				A5DF8A212D632C4C00C210DA /* FormatterUnit.swift in Sources */,
 				A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */,
 				A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */,
 				A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */,

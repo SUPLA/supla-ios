@@ -28,7 +28,13 @@ class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
             return NO_VALUE_TEXT
         }
         
-        let formatter = ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
-        return formatter.format(value, withUnit: withUnit)
+        let unit = channel.ev?.impulseCounter().unit()
+        if (channel.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
+            let formatter = ListElectricityMeterValueFormatter(useNoValue: true)
+            return formatter.format(value, withUnit: withUnit, precision: .defaultPrecision(value: 1), custom: FormatterUnit.custom(unit: unit))
+        } else {
+            let formatter = ImpulseCounterChartValueFormatter(unit: unit)
+            return formatter.format(value, withUnit: withUnit)
+        }
     }
 }

@@ -25,11 +25,7 @@ final class ListElectricityMeterValueFormatter: BaseElectricityMeterValueFormatt
     }
     
     override func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
-        let unit: String? = if (withUnit) {
-            (custom as? SuplaElectricityMeasurementType)?.unit ?? "kWh"
-        } else {
-            nil
-        }
+        let unit: String? = withUnit ? getUnit(custom: custom) : nil
         let checkNoValue = checkNoValue(custom)
         
         if let value = value as? Double {
@@ -48,6 +44,18 @@ final class ListElectricityMeterValueFormatter: BaseElectricityMeterValueFormatt
             return type == .forwardActiveEnergy
         }
         return false
+    }
+    
+    private func getUnit(custom: Any?) -> String {
+        if let electricityMeasurementType = custom as? SuplaElectricityMeasurementType {
+            return electricityMeasurementType.unit
+        } else if let unit = custom as? FormatterUnit {
+            switch (unit) {
+            case .custom(let stringValue): return stringValue ?? "kWh"
+            }
+        } else {
+            return "kWh"
+        }
     }
 }
 
@@ -91,9 +99,9 @@ class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
     fileprivate func getPrecision(_ value: Double, precision: ChannelValuePrecision) -> Int {
         switch precision {
         case .defaultPrecision:
-            return if (value < 100) {
+            return if (abs(value) < 100) {
                 2
-            } else if (value < 1000) {
+            } else if (abs(value) < 1000) {
                 1
             } else {
                 0
