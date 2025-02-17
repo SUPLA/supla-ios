@@ -996,6 +996,8 @@
 		A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */; };
 		A5DF8A212D632C4C00C210DA /* FormatterUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A202D632C4900C210DA /* FormatterUnit.swift */; };
 		A5DF8A232D6332D700C210DA /* ContainerLevelSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */; };
+		A5DF8A252D633D0800C210DA /* SepticTankIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A242D633D0000C210DA /* SepticTankIconNameProducer.swift */; };
+		A5DF8A272D63442B00C210DA /* WaterTankIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A262D63442500C210DA /* WaterTankIconNameProducer.swift */; };
 		A5E039E52CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */; };
 		A5E039E72CA18E350018CEB7 /* Bool+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */; };
 		A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E82CA1F85C0018CEB7 /* LazyList.swift */; };
@@ -2543,6 +2545,8 @@
 		A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodSensorIconProducer.swift; sourceTree = "<group>"; };
 		A5DF8A202D632C4900C210DA /* FormatterUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterUnit.swift; sourceTree = "<group>"; };
 		A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerLevelSensorIconNameProducer.swift; sourceTree = "<group>"; };
+		A5DF8A242D633D0000C210DA /* SepticTankIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepticTankIconNameProducer.swift; sourceTree = "<group>"; };
+		A5DF8A262D63442500C210DA /* WaterTankIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTankIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatOrColdSourceSwitchIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Ext.swift"; sourceTree = "<group>"; };
 		A5E039E82CA1F85C0018CEB7 /* LazyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
@@ -4030,6 +4034,8 @@
 		A530EE122A56F55400F8DAEE /* IconNameProducers */ = {
 			isa = PBXGroup;
 			children = (
+				A5DF8A262D63442500C210DA /* WaterTankIconNameProducer.swift */,
+				A5DF8A242D633D0000C210DA /* SepticTankIconNameProducer.swift */,
 				A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */,
 				A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */,
 				A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */,
@@ -7636,12 +7642,14 @@
 				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
+				A5DF8A272D63442B00C210DA /* WaterTankIconNameProducer.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
 				A598CAD32CC6E5DA00A784FA /* LocalizedStringId+Ext.swift in Sources */,
 				A5E05BAF2CB46E3D00202583 /* BaseHumidityEntity.swift in Sources */,
 				A5AD70252C012F5300A36318 /* WindowControls.swift in Sources */,
 				A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */,
 				A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */,
+				A5DF8A252D633D0800C210DA /* SepticTankIconNameProducer.swift in Sources */,
 				A5A14A442B6143AC004B1598 /* SuplaChannelGeneralPurposeMeterConfig.swift in Sources */,
 				A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */,
 				A5FE675F2A65CC4300147D1F /* Autodiscover.swift in Sources */,

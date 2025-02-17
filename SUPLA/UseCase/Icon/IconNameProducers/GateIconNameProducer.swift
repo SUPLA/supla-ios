@@ -26,7 +26,7 @@ final class GateIconNameProducer: IconNameProducer {
             return iconData.altIcon == 1 ? "gatealt1-closed-50percent" : "gate-closed-50percent"
         }
         
-        return addStateSufix(name: gateName(iconData.altIcon), state: iconData.state)
+        return addStateSuffix(name: gateName(iconData.altIcon), state: iconData.state)
     }
     
     private func gateName(_ altIcon: Int32) -> String {

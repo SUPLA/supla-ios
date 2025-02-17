@@ -23,11 +23,11 @@ final class ContainerIconNameProducer: IconNameProducer {
     }
 
     func produce(iconData: IconData) -> String {
-        switch (iconData.state) {
-        case .empty: .Icons.fncContainerEmpty
-        case .full: .Icons.fncContainerFull
-        case .half: .Icons.fncContainerHalf
-        default: .Icons.fncUnknown
+        switch (iconData.altIcon) {
+        case 1: addStateSuffix(name: .Icons.fncContainer1, state: iconData.state)
+        case 2: addStateSuffix(name: .Icons.fncContainer2, state: iconData.state)
+        case 3: addStateSuffix(name: .Icons.fncContainer3, state: iconData.state)
+        default: addStateSuffix(name: .Icons.fncContainer, state: iconData.state)
         }
     }
 }

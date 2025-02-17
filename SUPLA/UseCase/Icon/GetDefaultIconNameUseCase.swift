@@ -37,13 +37,16 @@ struct IconData: Changeable, Equatable {
 }
 
 extension IconNameProducer {
-    func addStateSufix(name: String, state: ChannelState) -> String {
+    func addStateSuffix(name: String, state: ChannelState) -> String {
         switch (state) {
         case .opened: return String(format: "%@-%@", name, "open")
         case .partialyOpened, .closed: return String(format: "%@-%@", name, "closed")
         case .on: return String(format: "%@-%@", name, "on")
         case .off: return String(format: "%@-%@", name, "off")
         case .transparent: return String(format: "%@-%@", name, "transparent")
+        case .empty: return String(format: "%@-%@", name, "empty")
+        case .full: return String(format: "%@-%@", name, "full")
+        case .half: return String(format: "%@-%@", name, "half")
         default: return name
         }
     }
@@ -116,6 +119,8 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         HeatOrColdSourceSwitchIconNameProducer(),
         ContainerIconNameProducer(),
         FloodSensorIconNameProducer(),
-        ContainerLevelSensorIconNameProducer()
+        ContainerLevelSensorIconNameProducer(),
+        SepticTankIconNameProducer(),
+        WaterTankIconNameProducer()
     ]
 }

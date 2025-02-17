@@ -22,6 +22,6 @@ final class FloodSensorIconNameProducer: IconNameProducer {
     }
 
     func produce(iconData: IconData) -> String {
-        addStateSufix(name: .Icons.fncFloodSensor, state: iconData.state)
+        addStateSuffix(name: .Icons.fncFloodSensor, state: iconData.state)
     }
 }

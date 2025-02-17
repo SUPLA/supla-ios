@@ -90,7 +90,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
             return valueWrapper.transparent ? .transparent : .opaque
-        case SuplaFunction.container.value:
+        case SUPLA_CHANNELFNC_CONTAINER,
+             SUPLA_CHANNELFNC_SEPTIC_TANK,
+             SUPLA_CHANNELFNC_WATER_TANK:
             let value = valueWrapper.containerValue
             if (value.level > 80) {
                 return .full

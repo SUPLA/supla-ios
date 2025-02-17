@@ -22,7 +22,7 @@ final class DigiglassVerticalIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: IconData) -> String {
-        return addStateSufix(name: getName(iconData.altIcon, iconData.state), state: iconData.state)
+        return addStateSuffix(name: getName(iconData.altIcon, iconData.state), state: iconData.state)
     }
     
     private func getName(_ altIcon: Int32, _ state: ChannelState) -> String {

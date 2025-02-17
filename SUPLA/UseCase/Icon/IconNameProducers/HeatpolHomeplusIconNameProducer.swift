@@ -27,6 +27,6 @@ final class HeatpolHomeplusIconNameProducer: IconNameProducer {
             name = String.init(format: "%@%i", name, iconData.altIcon)
         }
         
-        return addStateSufix(name: name, state: iconData.state)
+        return addStateSuffix(name: name, state: iconData.state)
     }
 }

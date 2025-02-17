@@ -169,9 +169,18 @@ extension String {
         static let fncHeatOrColdSourceSwitch5 = "fnc_heat_or_cold_source_switch_5"
         static let fncHeatOrColdSourceSwitch6 = "fnc_heat_or_cold_source_switch_6"
         // Container
-        static let fncContainerEmpty = "fnc_container_empty"
-        static let fncContainerFull = "fnc_container_full"
-        static let fncContainerHalf = "fnc_container_half"
+        static let fncContainer = "fnc_container"
+        static let fncContainer1 = "fnc_container_1"
+        static let fncContainer2 = "fnc_container_2"
+        static let fncContainer3 = "fnc_container_3"
+        // Septic tank
+        static let fncSepticTank = "fnc_septic_tank"
+        static let fncSepticTank1 = "fnc_septic_tank_1"
+        // Water tank
+        static let fncWaterTank = "fnc_water_tank"
+        static let fncWaterTank1 = "fnc_water_tank_1"
+        static let fncWaterTank2 = "fnc_water_tank_2"
+        static let fncWaterTank3 = "fnc_water_tank_3"
         // Flood sensor
         static let fncFloodSensor = "fnc_flood_sensor"
         // Container level sensor
