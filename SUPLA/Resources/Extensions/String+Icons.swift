@@ -172,6 +172,8 @@ extension String {
         static let fncContainerEmpty = "fnc_container_empty"
         static let fncContainerFull = "fnc_container_full"
         static let fncContainerHalf = "fnc_container_half"
+        // Flood sensor
+        static let fncFloodSensor = "fnc_flood_sensor"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"
