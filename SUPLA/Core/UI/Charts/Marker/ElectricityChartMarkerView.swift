@@ -92,7 +92,7 @@ import SwiftUI
                 rows[yIdx].setData(
                     value: formatter.format(value),
                     color: phase.color,
-                    label: phase.label,
+                    label: selectedPhases.count == 1 ? "" : phase.label,
                     price: customData.priceString(value)
                 )
                 if (highlight.stackIndex == yIdx || selectedPhases.count == 1) {
