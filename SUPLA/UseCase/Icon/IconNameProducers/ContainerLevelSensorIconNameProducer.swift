@@ -22,6 +22,6 @@ final class ContainerLevelSensorIconNameProducer: IconNameProducer {
     }
 
     func produce(iconData: IconData) -> String {
-        addStateSufix(name: .Icons.fncContainerLevelSensor, state: iconData.state)
+        addStateSuffix(name: .Icons.fncContainerLevelSensor, state: iconData.state)
     }
 }
