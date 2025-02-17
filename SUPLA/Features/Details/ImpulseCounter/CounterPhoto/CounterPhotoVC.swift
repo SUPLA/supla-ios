@@ -38,8 +38,6 @@ extension CounterPhotoFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(channelId)
-            
-            title = Strings.CounterPhoto.toolbar
         }
         
         static func create(channelId: Int32) -> UIViewController {
