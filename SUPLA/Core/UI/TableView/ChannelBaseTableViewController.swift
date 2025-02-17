@@ -192,7 +192,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_IC_WATER_METER,
              SUPLA_CHANNELFNC_IC_HEAT_METER,
              SUPLA_CHANNELFNC_CONTAINER,
-             SUPLA_CHANNELFNC_FLOOD_SENSOR:
+             SUPLA_CHANNELFNC_FLOOD_SENSOR,
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR:
             return cellIdForIconValue
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
