@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -17,17 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-final class ContainerIconNameProducer: IconNameProducer {
+final class FloodSensorIconNameProducer: IconNameProducer {
     func accepts(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_CONTAINER
+        function == SUPLA_CHANNELFNC_FLOOD_SENSOR
     }
 
     func produce(iconData: IconData) -> String {
-        switch (iconData.state) {
-        case .empty: .Icons.fncContainerEmpty
-        case .full: .Icons.fncContainerFull
-        case .half: .Icons.fncContainerHalf
-        default: .Icons.fncUnknown
-        }
+        addStateSufix(name: .Icons.fncFloodSensor, state: iconData.state)
     }
 }
