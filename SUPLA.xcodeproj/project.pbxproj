@@ -995,6 +995,7 @@
 		A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */; };
 		A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */; };
 		A5DF8A212D632C4C00C210DA /* FormatterUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A202D632C4900C210DA /* FormatterUnit.swift */; };
+		A5DF8A232D6332D700C210DA /* ContainerLevelSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */; };
 		A5E039E52CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */; };
 		A5E039E72CA18E350018CEB7 /* Bool+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */; };
 		A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E039E82CA1F85C0018CEB7 /* LazyList.swift */; };
@@ -2541,6 +2542,7 @@
 		A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodSensorIconProducer.swift; sourceTree = "<group>"; };
 		A5DF8A202D632C4900C210DA /* FormatterUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterUnit.swift; sourceTree = "<group>"; };
+		A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerLevelSensorIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E039E42CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatOrColdSourceSwitchIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Ext.swift"; sourceTree = "<group>"; };
 		A5E039E82CA1F85C0018CEB7 /* LazyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyList.swift; sourceTree = "<group>"; };
@@ -4028,6 +4030,7 @@
 		A530EE122A56F55400F8DAEE /* IconNameProducers */ = {
 			isa = PBXGroup;
 			children = (
+				A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */,
 				A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */,
 				A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */,
 				A530EE132A56F5CE00F8DAEE /* StaticIconNameProducer.swift */,
@@ -7752,6 +7755,7 @@
 				A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */,
 				A5E05BB32CB46F0200202583 /* SATempHumidityMeasurementItem+Ext.swift in Sources */,
 				A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */,
+				A5DF8A232D6332D700C210DA /* ContainerLevelSensorIconNameProducer.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				A54637AA2D37B0DE00D746F5 /* MarkerRowView.swift in Sources */,

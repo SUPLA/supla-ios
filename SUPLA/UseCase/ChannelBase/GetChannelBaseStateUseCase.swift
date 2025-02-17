@@ -76,7 +76,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_LIGHTSWITCH,
              SUPLA_CHANNELFNC_PUMPSWITCH,
              SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
-             SUPLA_CHANNELFNC_FLOOD_SENSOR:
+             SUPLA_CHANNELFNC_FLOOD_SENSOR,
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR:
             return valueWrapper.isClosed ? .on : .off
         case SUPLA_CHANNELFNC_DIMMER:
             return valueWrapper.brightness > 0 ? .on : .off
