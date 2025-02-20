@@ -465,6 +465,8 @@
 		A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */; };
 		A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */; };
 		A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */; };
+		A539C2672D67662F00D9DD47 /* GetAllChannelIssuesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2662D67662C00D9DD47 /* GetAllChannelIssuesUseCase.swift */; };
+		A539C2692D676E7700D9DD47 /* GetChannelSpecificIssuesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2682D676E7300D9DD47 /* GetChannelSpecificIssuesUseCase.swift */; };
 		A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54058192CE34B4500EC98C8 /* EditTextCell.swift */; };
 		A54149272B63031800B44BD6 /* GpmDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149262B63031800B44BD6 /* GpmDetailVM.swift */; };
 		A54149292B63034500B44BD6 /* GpmDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149282B63034500B44BD6 /* GpmDetailVC.swift */; };
@@ -2007,6 +2009,8 @@
 		A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCase.swift; sourceTree = "<group>"; };
 		A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlainButton.swift; sourceTree = "<group>"; };
 		A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgressView.swift; sourceTree = "<group>"; };
+		A539C2662D67662C00D9DD47 /* GetAllChannelIssuesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllChannelIssuesUseCase.swift; sourceTree = "<group>"; };
+		A539C2682D676E7300D9DD47 /* GetChannelSpecificIssuesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelSpecificIssuesUseCase.swift; sourceTree = "<group>"; };
 		A54058192CE34B4500EC98C8 /* EditTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
 		A54149262B63031800B44BD6 /* GpmDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmDetailVM.swift; sourceTree = "<group>"; };
 		A54149282B63034500B44BD6 /* GpmDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmDetailVC.swift; sourceTree = "<group>"; };
@@ -6369,6 +6373,8 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A539C2682D676E7300D9DD47 /* GetChannelSpecificIssuesUseCase.swift */,
+				A539C2662D67662C00D9DD47 /* GetAllChannelIssuesUseCase.swift */,
 				A519CCB32D38576300F858A4 /* Measurements */,
 				A522DB392D0B09E500163BA2 /* GetChannelBatteryIconUseCase.swift */,
 				A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */,
@@ -7137,6 +7143,7 @@
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
 				A55A8DA82BAC50B100C540D4 /* NotificationCenterWrapper.swift in Sources */,
+				A539C2692D676E7700D9DD47 /* GetChannelSpecificIssuesUseCase.swift in Sources */,
 				A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */,
 				A530EDF72A5404A200F8DAEE /* UIFont+Supla.swift in Sources */,
 				A50B5D022BEA41D700918D18 /* WindowGroupedValue.swift in Sources */,
@@ -7465,6 +7472,7 @@
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
 				A530EE112A56E5F300F8DAEE /* ChannelState.swift in Sources */,
+				A539C2672D67662F00D9DD47 /* GetAllChannelIssuesUseCase.swift in Sources */,
 				A5A15FF42C2994BF0049AA73 /* BorderedButton.swift in Sources */,
 				A55A8D9D2BAC191800C540D4 /* CallSuplaClientOperationUseCase.swift in Sources */,
 				A5B3A4B52BB558B70001D006 /* RoofWindowView.swift in Sources */,

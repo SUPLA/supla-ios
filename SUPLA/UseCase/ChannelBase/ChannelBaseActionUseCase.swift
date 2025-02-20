@@ -26,21 +26,31 @@ enum ChannelBaseActionResult {
     case success
     case valveManuallyClosed
     case valveFlooding
+    case valveMotorProblemOpening
+    case valveMotorProblemClosing
 }
 
 final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
 
     func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
-        if (channelBase.isValve() && buttonType == .rightButton),
+        if (channelBase.isValve()),
            let channel = channelBase as? SAChannel,
            let value = channel.value?.asValveValue()
         {
-            if (value.flags.contains(.flooding)) {
-                return Observable.just(.valveFlooding)
-            }
-            if (value.flags.contains(.manuallyClosed)) {
-                return Observable.just(.valveManuallyClosed)
+            switch (buttonType) {
+            case .rightButton:
+                if (value.flags.contains(.flooding)) {
+                    return Observable.just(.valveFlooding)
+                } else if (value.flags.contains(.manuallyClosed)) {
+                    return Observable.just(.valveManuallyClosed)
+                } else if (value.flags.contains(.motorProblem)) {
+                    return Observable.just(.valveMotorProblemOpening)
+                }
+            case .leftButton:
+                if (value.flags.contains(.motorProblem)) {
+                    return Observable.just(.valveMotorProblemClosing)
+                }
             }
         }
         

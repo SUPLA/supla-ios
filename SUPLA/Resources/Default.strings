@@ -378,3 +378,6 @@
 "flooding_alarm_message" = "The sensor reports flooding!";
 "valve_warning_manually_closed_short" = "The valve has been closed manually or via radio (possible flooding).";
 "valve_warning_flooding_short" = "The valve has been closed due to detected flooding.";
+"valve_warning_motor_problem" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open.";
+"valve_warning_motor_problem_opening" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open. Are you sure you want to open it?";
+"valve_warning_motor_problem_closing" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open. Are you sure you want to close it?";

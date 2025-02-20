@@ -281,6 +281,10 @@ extension DiContainer {
             GetChannelBatteryIconUseCase.self,
             SharedCore.GetChannelBatteryIconUseCase()
         )
+        let getChannelSpecificIssuesUseCase = registerAndGet(
+            GetChannelSpecificIssuesUseCase.self,
+            SharedCore.GetChannelSpecificIssuesUseCase()
+        )
         
         // level 1
         let getCaptionUseCase = registerAndGet(
@@ -292,6 +296,13 @@ extension DiContainer {
             SharedCore.GetChannelLowBatteryIssueUseCase(
                 getCaptionUseCase: getCaptionUseCase,
                 applicationPreferences: globalSettings
+            )
+        )
+        register(
+            GetAllChannelIssuesUseCase.self,
+            SharedCore.GetAllChannelIssuesUseCase(
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase,
+                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase
             )
         )
         register(
@@ -314,13 +325,17 @@ extension DiContainer {
         register(
             GetChannelIssuesForListUseCase.self,
             SharedCore.GetChannelIssuesForListUseCase(
-                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase,
+                getChannelBatteryIconUseCase: getChannelBatteryIconUseCase,
+                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase
             )
         )
         register(
             GetChannelIssuesForSlavesUseCase.self,
             SharedCore.GetChannelIssuesForSlavesUseCase(
-                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase, getChannelBatteryIconUseCase: getChannelBatteryIconUseCase
+                getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase,
+                getChannelBatteryIconUseCase: getChannelBatteryIconUseCase,
+                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase
             )
         )
         
