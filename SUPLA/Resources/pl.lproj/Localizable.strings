@@ -341,8 +341,11 @@
 "channel_caption_pump_switch" = "Przełącznik pompy";
 "channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
 "channel_caption_humidity" = "Wilgotność";
-"channel_caption_container" = "Zbiornik";
 "channel_caption_humidityandtemperature" = "Temperatura i wilgotność";
+"channel_caption_container" = "Zbiornik";
+"channel_caption_water_tank" = "Zbiornik na wodę";
+"channel_caption_septic_tank" = "Szambo";
+"channel_caption_container_level_sensor" = "Czujnik poziomu zbiornika";
 "channel_caption_flood_sensor" = "Czujnik zalania";
 "channel_offline" = "Kanał jest offline";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
