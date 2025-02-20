@@ -74,9 +74,29 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
                     onNext: { [weak self] result in
                         switch result {
                         case .valveFlooding:
-                            self?.send(event: .showValveWarningDialog(remoteId: channelWithChildren.remoteId, message: Strings.Valve.warningFlooding))
+                            self?.send(event: .showValveWarningDialog(
+                                remoteId: channelWithChildren.remoteId,
+                                message: Strings.Valve.warningFlooding,
+                                action: .open
+                            ))
                         case .valveManuallyClosed:
-                            self?.send(event: .showValveWarningDialog(remoteId: channelWithChildren.remoteId, message: Strings.Valve.warningManuallyClosed))
+                            self?.send(event: .showValveWarningDialog(
+                                remoteId: channelWithChildren.remoteId,
+                                message: Strings.Valve.warningManuallyClosed,
+                                action: .open
+                            ))
+                        case .valveMotorProblemOpening:
+                            self?.send(event: .showValveWarningDialog(
+                                remoteId: channelWithChildren.remoteId,
+                                message: Strings.Valve.warningMotorProblemOpening,
+                                action: .open
+                            ))
+                        case .valveMotorProblemClosing:
+                            self?.send(event: .showValveWarningDialog(
+                                remoteId: channelWithChildren.remoteId,
+                                message: Strings.Valve.warningMotorProblemClosing,
+                                action: .close
+                            ))
                         case .success: break // Nothing to do
                         }
                     }
@@ -89,8 +109,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         send(event: .showAddWizard)
     }
     
-    func forceValveOpen(remoteId: Int32) {
-        executeSimpleActionUseCase.invoke(action: .open, type: .channel, remoteId: remoteId)
+    func forceAction(_ action: Action, remoteId: Int32) {
+        executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
             .asDriverWithoutError()
             .drive()
             .disposed(by: self)
@@ -142,7 +162,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
-    case showValveWarningDialog(remoteId: Int32, message: String)
+    case showValveWarningDialog(remoteId: Int32, message: String, action: Action)
 }
 
 struct ChannelListViewState: ViewState {}

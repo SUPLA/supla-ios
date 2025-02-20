@@ -102,6 +102,7 @@ extension LocalizedStringId {
         case .floodSensorActive: Strings.Valve.floodingAlarmMessage
         case .valveManuallyClosed: Strings.Valve.warningManuallyClosedShort
         case .valveFlooding: Strings.Valve.warningFloodingShort
+        case .valveMotorProblem: Strings.Valve.warningMotorProblem
         }
     }
 }
