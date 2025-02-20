@@ -312,8 +312,11 @@
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
 "channel_caption_humidity" = "Feuchtigkeitssensor";
-"channel_caption_container" = "Behälter";
 "channel_caption_humidityandtemperature" = "Temperatur- und Feuchtigkeitssensor";
+"channel_caption_container" = "Behälter";
+"channel_caption_water_tank" = "Wassertank";
+"channel_caption_septic_tank" = "Septischer Tank";
+"channel_caption_container_level_sensor" = "Behälterfüllstandssensor";
 "channel_caption_flood_sensor" = "Flutsensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";

@@ -32,7 +32,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
 
     func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
-        if (channelBase.isValve()),
+        if (channelBase.isValve() && buttonType == .rightButton),
            let channel = channelBase as? SAChannel,
            let value = channel.value?.asValveValue()
         {
