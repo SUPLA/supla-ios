@@ -505,6 +505,9 @@ struct Strings {
         static let floodingAlarmMessage = "flooding_alarm_message".toLocalized()
         static let warningManuallyClosedShort = "valve_warning_manually_closed_short".toLocalized()
         static let warningFloodingShort = "valve_warning_flooding_short".toLocalized()
+        static let warningMotorProblem = "valve_warning_motor_problem".toLocalized()
+        static let warningMotorProblemOpening = "valve_warning_motor_problem_opening".toLocalized()
+        static let warningMotorProblemClosing = "valve_warning_motor_problem_closing".toLocalized()
     }
 }
 

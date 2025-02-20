@@ -592,3 +592,6 @@
 "flooding_alarm_message" = "Der Sensor meldet eine Überschwemmung!";
 "valve_warning_manually_closed_short" = "Das Ventil wurde manuell oder per Funk geschlossen (mögliche Überschwemmung).";
 "valve_warning_flooding_short" = "Das Ventil wurde wegen einer erkannten Überschwemmung geschlossen.";
+"valve_warning_motor_problem" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet.";
+"valve_warning_motor_problem_opening" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet. Möchten Sie es wirklich öffnen?";
+"valve_warning_motor_problem_closing" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet. Möchten Sie es wirklich schließen?";

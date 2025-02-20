@@ -54,8 +54,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             coordinator.navigateToHumidityDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
-        case .showValveWarningDialog(let remoteId, let message):
-            showValveWarningDialog(remoteId, message)
+        case .showValveWarningDialog(let remoteId, let message, let action):
+            showValveWarningDialog(remoteId, message, action)
         }
     }
     
@@ -90,10 +90,10 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
     }
     
-    private func showValveWarningDialog(_ remoteId: Int32, _ message: String) {
+    private func showValveWarningDialog(_ remoteId: Int32, _ message: String, _ action: Action) {
         let alert = UIAlertController(title: Strings.General.warning, message: message, preferredStyle: .alert)
         let yesButton = UIAlertAction(title: Strings.General.yes, style: .default) { [weak self] _ in
-            self?.viewModel.forceValveOpen(remoteId: remoteId)
+            self?.viewModel.forceAction(action, remoteId: remoteId)
         }
         let noButton = UIAlertAction(title: Strings.General.no, style: .cancel)
         
