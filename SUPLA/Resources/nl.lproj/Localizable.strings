@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Weet u zeker dat u de standaardinstellingen wilt herstellen?";
 "Default settings" = "Standaard instellingen";
 
-"Battery level" = "Batterijniveau";
-"Battery powered" = "Batterijstroomvoorziening";
-"Wifi signal strength" = "WiFi-signaalsterkte";
-"Bridge node - online" = "Brugknooppunt - online";
-"Bridge node - signal strength" = "Brug knooppunt - signaalsterkte";
-"Uptime" = "Werktijd";
-"Connection uptime" = "Verbindingstijd";
-"Battery health" = "Levensduur van de batterij";
-"Connection reset cause" = "Reden voor het herstarten van de verbinding";
-"Light source lifespan" = "Levensduur van de lichtbron";
-"Light source operating time" = "Lichtbron werktijd";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "DE INSTELLING VOOR DE LEVENSDUUR VAN DE LICHTBRON WIJZIGEN";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "De levensduur van de uv-straal is %.02f%%. Plan zijn vervanging.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "De levensduur van het uv-belichtingstoestel bedraagt %,02f%%. Vervang de stralingsbuis.";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
 "Planned regeneration is in progress." = "Geplande regeneratie is aan de gang.";
 "Regeneration initiated after 20 hours of operation is in progress." = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
-"Channel Id" = "Kanaal id";
 "Back" = "Terug";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave brug reageert niet. Controleer of de brug met de server is verbonden.";
 "Exit" = "Uitgang";
@@ -570,3 +558,17 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig. Weet je zeker dat je de klep wilt openen vanuit de toepassing!";
+
+/* State */
+"state_channel_id" = "Kanaal id";
+"state_battery_level" = "Batterijniveau";
+"state_battery_powered" = "Batterijstroomvoorziening";
+"state_wifi_signal_strength" = "WiFi-signaalsterkte";
+"state_bridge_node_online" = "Brugknooppunt - online";
+"state_bridge_node_signal" = "Brug knooppunt - signaalsterkte";
+"state_uptime" = "Werktijd";
+"state_connection_time" = "Verbindingstijd";
+"state_battery_health" = "Levensduur van de batterij";
+"state_connection_reset_cause" = "Reden voor het herstarten van de verbinding";
+"state_light_source_lifespan" = "Levensduur van de lichtbron";
+"state_source_operating_time" = "Lichtbron werktijd";

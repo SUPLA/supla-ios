@@ -23,6 +23,7 @@ protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
+    func getChannel(_ remoteId: Int32) -> Observable<SAChannel> 
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -78,6 +79,11 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
             .ordered(by: "remote_id")
         
         return query(request)
+    }
+    
+    func getChannel(_ remoteId: Int32) -> Observable<SAChannel> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile.isActive = 1", remoteId))
+            .compactMap { $0 }
     }
     
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel> {

@@ -111,68 +111,6 @@ extension ThermostatSlavesFeature {
         }
     }
 
-    struct ListItemIcon: SwiftUI.View {
-        @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
-        let iconResult: IconResult?
-
-        var body: some SwiftUI.View {
-            Image()
-                .resizable()
-                .scaledToFit()
-                .frame(width: scale(scaleFactor, 60), height: scale(scaleFactor, 50))
-        }
-        
-        private func Image() -> SwiftUI.Image {
-            if let iconResult = iconResult {
-                iconResult.image
-            } else {
-                SwiftUI.Image(.Icons.fncUnknown)
-            }
-        }
-    }
-
-    struct ListItemInfoIcon: SwiftUI.View {
-        var body: some SwiftUI.View {
-            Image(.Icons.info)
-                .resizable()
-                .scaledToFit()
-                .frame(width: Dimens.iconInfoSize, height: Dimens.iconInfoSize)
-                .foregroundColor(.Supla.onBackground)
-        }
-    }
-
-    struct ListItemIssueIcon: SwiftUI.View {
-        let icon: IssueIcon?
-
-        var body: some SwiftUI.View {
-            if let icon = icon?.resource {
-                Image(uiImage: icon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: Dimens.iconSizeList, height: Dimens.iconSizeList)
-                    .foregroundColor(.Supla.onBackground)
-            }
-        }
-    }
-
-    struct ListItemDot: SwiftUI.View {
-        let onlineState: ListOnlineState
-
-        var body: some SwiftUI.View {
-            let color = onlineState.online ? Color.Supla.primary : Color.Supla.error
-            ZStack {
-                Circle()
-                    .stroke()
-                    .fill(color)
-                    .frame(
-                        width: Dimens.ListItem.statusIndicatorSize,
-                        height: Dimens.ListItem.statusIndicatorSize
-                    )
-            }
-        }
-    }
-
     struct SetpointIndicator: SwiftUI.View {
         let icon: ThermostatIndicatorIcon?
 

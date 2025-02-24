@@ -159,11 +159,13 @@ extension SuplaCore.Dialog {
     }
     
     struct Alert: SwiftUI.View {
-        
         var header: String
         var message: String
-        var button: String
         var onDismiss: () -> Void
+        var positiveButtonText: String?
+        var negativeButtonText: String?
+        var onPositiveButtonClick: (() -> Void)?
+        var onNegativeButtonClick: (() -> Void)?
         
         var body: some SwiftUI.View {
             SuplaCore.Dialog.Base(onDismiss: onDismiss) {
@@ -178,9 +180,38 @@ extension SuplaCore.Dialog {
                     SuplaCore.Dialog.Divider()
                         .padding([.top], Distance.default)
                     
-                    FilledButton(title: button, fullWidth: true) { onDismiss() }
-                    .padding([.top, .bottom], Distance.small)
-                    .padding([.leading, .trailing], Distance.default)
+                    if let positiveButtonText, let negativeButtonText {
+                        HStack(spacing: Distance.default) {
+                            BorderedButton(title: negativeButtonText, fullWidth: true) {
+                                if let onNegativeButtonClick {
+                                    onNegativeButtonClick()
+                                }
+                            }
+                            FilledButton(title: positiveButtonText, fullWidth: true) {
+                                if let onPositiveButtonClick {
+                                    onPositiveButtonClick()
+                                }
+                            }
+                        }
+                        .padding([.top, .bottom], Distance.small)
+                        .padding([.leading, .trailing], Distance.default)
+                    } else if let positiveButtonText {
+                        FilledButton(title: positiveButtonText, fullWidth: true) {
+                            if let onPositiveButtonClick {
+                                onPositiveButtonClick()
+                            }
+                        }
+                        .padding([.top, .bottom], Distance.small)
+                        .padding([.leading, .trailing], Distance.default)
+                    } else if let negativeButtonText {
+                        BorderedButton(title: negativeButtonText, fullWidth: true) {
+                            if let onNegativeButtonClick {
+                                onNegativeButtonClick()
+                            }
+                        }
+                        .padding([.top, .bottom], Distance.small)
+                        .padding([.leading, .trailing], Distance.default)
+                    }
                 }
             }
         }
