@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Είστε βέβαιοι ότι θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;";
 "Default settings" = "Προεπιλογές";
 
-"Battery level" = "Επίπεδο μπαταρίας";
-"Battery powered" = "Τροφοδοσία μπαταρίας";
-"Wifi signal strength" = "Ισχύς σήματος WiFi";
-"Bridge node - online" = "Κόμβος γέφυρας - online";
-"Bridge node - signal strength" = "Κόμβος γέφυρας - ισχύς σήματος";
-"Uptime" = "Χρόνος εργασίας";
-"Connection uptime" = "Χρόνος σύνδεσης";
-"Battery health" = "Διάρκεια ζωής μπαταρίας";
-"Connection reset cause" = "Λόγος επανεκκίνησης της σύνδεσης";
-"Light source lifespan" = "Διάρκεια ζωής της πηγής φωτός";
-"Light source operating time" = "Χρόνος εργασίας πηγής φωτός";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Προγραμματίστε την αντικατάστασή του.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Αντικαταστήστε το θερμαντικό σώμα.";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
 "Planned regeneration is in progress." = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
-"Channel Id" = "Αναγνωριστικό καναλιού";
 "Back" = "Επιστροφή";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
 "Exit" = "Εξοδος";
@@ -570,3 +558,17 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα. Είστε σίγουροι ότι θέλετε να ανοίξετε τη βαλβίδα μέσω της εφαρμογής;!";
+
+/* State */
+"state_channel_id" = "Αναγνωριστικό καναλιού";
+"state_battery_level" = "Επίπεδο μπαταρίας";
+"state_battery_powered" = "Τροφοδοσία μπαταρίας";
+"state_wifi_signal_strength" = "Ισχύς σήματος WiFi";
+"state_bridge_node_online" = "Κόμβος γέφυρας - online";
+"state_bridge_node_signal" = "Κόμβος γέφυρας - ισχύς σήματος";
+"state_uptime" = "Χρόνος εργασίας";
+"state_connection_time" = "Χρόνος σύνδεσης";
+"state_battery_health" = "Διάρκεια ζωής μπαταρίας";
+"state_connection_reset_cause" = "Λόγος επανεκκίνησης της σύνδεσης";
+"state_light_source_lifespan" = "Διάρκεια ζωής της πηγής φωτός";
+"state_source_operating_time" = "Χρόνος εργασίας πηγής φωτός";

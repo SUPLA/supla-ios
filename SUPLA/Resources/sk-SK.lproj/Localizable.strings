@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Naozaj chcete obnoviť predvolené nastavenia?";
 "Default settings" = "Predvolené nastavenia";
 
-"Battery level" = "Úroveň batérie";
-"Battery powered" = "Napájanie z batérie";
-"Wifi signal strength" = "Sila signálu WiFi";
-"Bridge node - online" = "Uzol mosta – online";
-"Bridge node - signal strength" = "Uzol mosta - sila signálu";
-"Uptime" = "Pracovný čas";
-"Connection uptime" = "Čas pripojenia";
-"Battery health" = "Životnosť batérie";
-"Connection reset cause" = "Dôvod reštartovania pripojenia";
-"Light source lifespan" = "Životnosť svetelného zdroja";
-"Light source operating time" = "Pracovný čas svetelného zdroja";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMENIŤ NASTAVENIA ŽIVOTNOSTI ZDROJA SVETLA";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Životnosť UV žiariča je %.02f%%. Naplánujte jeho výmenu.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Životnosť UV žiariča je %.02f%%. Vymeň žiarič.";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Zasklenie je odhalené viac ako 20 hodín, čo môže mať negatívny vplyv na jeho životnosť. Odporúča sa všetky úseky pokryť minimálne 4 hodiny, aby sa zregenerovali.";
 "Planned regeneration is in progress." = "Prebieha plánovaná regenerácia.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Prebieha regenerácia, ktorá bola spustená po 20 h prevádzky.";
-"Channel Id" = "ID kanála";
 "Back" = "Späť";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
 "Exit" = "Výstup";
@@ -568,3 +556,17 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne. Naozaj chcete otvoriť ventil pomocou aplikácie?!";
+
+/* State */
+"state_channel_id" = "ID kanála";
+"state_battery_level" = "Úroveň batérie";
+"state_battery_powered" = "Napájanie z batérie";
+"state_wifi_signal_strength" = "Sila signálu WiFi";
+"state_bridge_node_online" = "Uzol mosta – online";
+"state_bridge_node_signal" = "Uzol mosta - sila signálu";
+"state_uptime" = "Pracovný čas";
+"state_connection_time" = "Čas pripojenia";
+"state_battery_health" = "Životnosť batérie";
+"state_connection_reset_cause" = "Dôvod reštartovania pripojenia";
+"state_light_source_lifespan" = "Životnosť svetelného zdroja";
+"state_source_operating_time" = "Pracovný čas svetelného zdroja";

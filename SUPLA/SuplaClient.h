@@ -32,6 +32,7 @@
 - (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest;
 - (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
 - (BOOL) getDeviceConfig: (TCS_GetDeviceConfigRequest*) configRequest;
+- (void) channelStateRequestWithChannelId:(int)channelId;
 - (BOOL) OAuthTokenRequest;
 
 - (BOOL) cg:(int)ID Open:(char)open group:(BOOL)group;

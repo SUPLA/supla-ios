@@ -217,8 +217,9 @@ private struct BasicModeUnavailableDialog: SwiftUI.View {
         SuplaCore.Dialog.Alert(
             header: Strings.CreateProfile.basicWarningTitle,
             message: Strings.CreateProfile.basicWarningMessage,
-            button: Strings.General.ok,
-            onDismiss: onDismiss
+            onDismiss: onDismiss,
+            negativeButtonText: Strings.General.ok,
+            onNegativeButtonClick: onDismiss
         )
     }
 }
@@ -230,8 +231,9 @@ private struct RemovalFailureDialog: SwiftUI.View {
         SuplaCore.Dialog.Alert(
             header: Strings.Cfg.Dialogs.Failed.title,
             message: Strings.Cfg.Dialogs.Failed.message,
-            button: Strings.General.ok,
-            onDismiss: onDismiss
+            onDismiss: onDismiss,
+            negativeButtonText: Strings.General.ok,
+            onNegativeButtonClick: onDismiss
         )
     }
 }
@@ -243,8 +245,9 @@ private struct EmptyNameDialog: SwiftUI.View {
         SuplaCore.Dialog.Alert(
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.missing_name,
-            button: Strings.General.ok,
-            onDismiss: onDismiss
+            onDismiss: onDismiss,
+            negativeButtonText: Strings.General.ok,
+            onNegativeButtonClick: onDismiss
         )
     }
 }
@@ -256,8 +259,9 @@ private struct DuplicatedNameDialog: SwiftUI.View {
         SuplaCore.Dialog.Alert(
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.duplicated_name,
-            button: Strings.General.ok,
-            onDismiss: onDismiss
+            onDismiss: onDismiss,
+            negativeButtonText: Strings.General.ok,
+            onNegativeButtonClick: onDismiss
         )
     }
 }
@@ -269,8 +273,9 @@ private struct RequiredDataMissingDialog: SwiftUI.View {
         SuplaCore.Dialog.Alert(
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.incomplete,
-            button: Strings.General.ok,
-            onDismiss: onDismiss
+            onDismiss: onDismiss,
+            negativeButtonText: Strings.General.ok,
+            onNegativeButtonClick: onDismiss
         )
     }
 }

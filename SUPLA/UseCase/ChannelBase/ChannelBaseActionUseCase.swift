@@ -19,6 +19,7 @@
 import RxSwift
 
 protocol ChannelBaseActionUseCase {
+    func invoke(_ remoteId: Int32, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult>
     func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult>
 }
 
@@ -32,6 +33,11 @@ enum ChannelBaseActionResult {
 
 final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<ChannelRepository> private var channelRepository
+    
+    func invoke(_ remoteId: Int32, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
+        channelRepository.getChannel(remoteId).flatMap { self.invoke($0, buttonType) }
+    }
 
     func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
         if (channelBase.isValve()),

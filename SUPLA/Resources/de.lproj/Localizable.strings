@@ -151,18 +151,6 @@
 "Time exceeded. Try again." = "Die Zeit wurde überschritten. Versuchen Sie es noch einmal.";
 "Are you sure you want to restore the default settings?" = "Sind Sie sicher, dass Sie die Voreinstellungen wiederherstellen möchten?";
 "Default settings" = "Standardeinstellungen";
-
-"Battery level" = "Batteriefüllstand";
-"Battery powered" = "Batteriebetrieb";
-"Wifi signal strength" = "WLAN-Signalstärke";
-"Bridge node - online" = "Brückenknoten - Online";
-"Bridge node - signal strength" = "Brückenknoten – Signalstärke";
-"Uptime" = "Betriebszeit";
-"Connection uptime" = "Verbindungszeit";
-"Battery health" = "Batterielaufzeit";
-"Connection reset cause" = "Grund für den Neustart der Verbindung";
-"Light source lifespan" = "Lebensdauer der Lichtquelle";
-"Light source operating time" = "Betriebszeit der Lichtquelle";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "EINSTELLUNGEN FÜR DIE LEBENSDAUER DER LICHTQUELLE ÄNDERN";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Planen Sie den Austausch.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Den Strahler austauschen.";
@@ -186,7 +174,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
 "Planned regeneration is in progress." = "Geplante Regeneration läuft.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Es läuft die nach 20 Betriebsstunden begonnene Regeneration.";
-"Channel Id" = "Kanal-ID";
 "Back" = "Zurück";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
 "Exit" = "Beenden";
@@ -298,6 +285,8 @@
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
 "time_hours_and_minutes" = "%d Std. %d Min.";
+"general_state_opened" = "geöffnet";
+"general_state_closed" = "geschloßen";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -595,3 +584,19 @@
 "valve_warning_motor_problem" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet.";
 "valve_warning_motor_problem_opening" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet. Möchten Sie es wirklich öffnen?";
 "valve_warning_motor_problem_closing" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet. Möchten Sie es wirklich schließen?";
+"valve_detail_sensors" = "Verbundene Sensoren";
+"valve_action_error" = "Ein Kommunikationfehler ist aufgetreten. Bitte versuchen Sie später noch mal.";
+
+/* State */
+"state_channel_id" = "Kanal-ID";
+"state_battery_level" = "Batteriefüllstand";
+"state_battery_powered" = "Batteriebetrieb";
+"state_wifi_signal_strength" = "WLAN-Signalstärke";
+"state_bridge_node_online" = "Brückenknoten - Online";
+"state_bridge_node_signal" = "Brückenknoten – Signalstärke";
+"state_uptime" = "Betriebszeit";
+"state_connection_time" = "Verbindungszeit";
+"state_battery_health" = "Batterielaufzeit";
+"state_connection_reset_cause" = "Ursache des Verbindungsreset";
+"state_light_source_lifespan" = "Lebensdauer der Lichtquelle";
+"state_source_operating_time" = "Betriebszeit der Lichtquelle";

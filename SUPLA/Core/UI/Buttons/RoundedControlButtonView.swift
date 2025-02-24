@@ -18,6 +18,7 @@
 
 import RxSwift
 import RxRelay
+import SwiftUI
 
 final class RoundedControlButtonView: BaseControlButtonView {
     
@@ -80,3 +81,37 @@ final class RoundedControlButtonView: BaseControlButtonView {
     }
 }
 
+struct RoundedControlButtonWrapperView: UIViewRepresentable {
+    let type: BaseControlButtonView.ButtonType
+    let text: String?
+    let icon: IconResult?
+    let active: Bool
+    let isEnabled: Bool
+    let onTap: () -> Void
+    
+    private let disposeBag = DisposeBag()
+    
+    func makeUIView(context: Context) -> RoundedControlButtonView {
+        let view = RoundedControlButtonView()
+        view.type = type
+        view.text = text
+        view.icon = icon
+        view.active = active
+        view.isEnabled = isEnabled
+        
+        disposeBag.insert(view.tapObservable.subscribe(onNext: { onTap() }))
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: RoundedControlButtonView, context: Context) {
+        uiView.type = type
+        uiView.text = text
+        uiView.icon = icon
+        uiView.active = active
+        uiView.isEnabled = isEnabled
+    }
+    
+    func dismantleUIView(_ uiView: RoundedControlButtonView, coordinator: Coordinator) {
+    }
+}

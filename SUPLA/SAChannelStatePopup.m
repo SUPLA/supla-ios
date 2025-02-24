@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SuplaApp.h"
 #import "SASuperuserAuthorizationDialog.h"
 #import "SALightsourceLifespanSettingsDialog.h"
+#import "SUPLA-Swift.h"
 
 #define REFRESH_INTERVAL_SEC 4
 
@@ -159,7 +160,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     _lastState = state;
     
     if (state && state.channelId != nil) {
-        [self.lChannelIdTitle setText:NSLocalizedString(@"Channel Id", nil)];
+        [self.lChannelIdTitle setText: LegacyStrings.stateChannelId];
         [self.lChannelId setText:state.channelIdString];
         self.lChannelIdTitle.hidden = NO;
         self.lChannelId.hidden = NO;
@@ -172,7 +173,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
     
     if (state && state.ipv4 != nil) {
-        [self.lIPTitle setText:NSLocalizedString(@"IP", nil)];
+        [self.lIPTitle setText: LegacyStrings.stateIpAddress];
         [self.lIP setText:state.ipv4String];
         self.lIPTitle.hidden = NO;
         self.lIP.hidden = NO;
@@ -189,7 +190,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.macAddress != nil) {
-        [self.lMACTitle setText:NSLocalizedString(@"MAC", nil)];
+        [self.lMACTitle setText: LegacyStrings.stateMacAddress];
         [self.lMAC setText:state.macAddressString];
         self.lMACTitle.hidden = NO;
         self.lMAC.hidden = NO;
@@ -206,7 +207,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
     
     if (state && state.batteryLevel != nil) {
-        [self.lBatteryLevelTitle setText:NSLocalizedString(@"Battery level", nil)];
+        [self.lBatteryLevelTitle setText: LegacyStrings.stateBatteryLevel];
         [self.lBatteryLevel setText:state.batteryLevelString];
         self.lBatteryLevelTitle.hidden = NO;
         self.lBatteryLevel.hidden = NO;
@@ -223,7 +224,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.isBatteryPowered != nil) {
-        [self.lBatteryPoweredTitle setText:NSLocalizedString(@"Battery powered", nil)];
+        [self.lBatteryPoweredTitle setText: LegacyStrings.stateBatteryPowered];
         [self.lBatteryPowered setText:state.isBatteryPoweredString];
         self.lBatteryPoweredTitle.hidden = NO;
         self.lBatteryPowered.hidden = NO;
@@ -240,7 +241,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.wiFiRSSI != nil) {
-        [self.lWifiRSSITitle setText:NSLocalizedString(@"Wifi RSSI", nil)];
+        [self.lWifiRSSITitle setText: LegacyStrings.stateWifiRssi];
         [self.lWifiRSSI setText:state.wiFiRSSIString];
         self.lWifiRSSITitle.hidden = NO;
         self.lWifiRSSI.hidden = NO;
@@ -257,7 +258,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.wiFiSignalStrength != nil) {
-        [self.lWifiSignalStrengthTitle setText:NSLocalizedString(@"Wifi signal strength", nil)];
+        [self.lWifiSignalStrengthTitle setText: LegacyStrings.stateWifiSignalStrength];
         [self.lWifiSignalStrength setText:state.wiFiSignalStrengthString];
         self.lWifiSignalStrengthTitle.hidden = NO;
         self.lWifiSignalStrength.hidden = NO;
@@ -274,7 +275,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
     
     if (state && state.isBridgeNodeOnline != nil) {
-        [self.lBridgeNodeOnlineTitle setText:NSLocalizedString(@"Bridge node - online", nil)];
+        [self.lBridgeNodeOnlineTitle setText: LegacyStrings.stateBridgeNodeOnline];
         [self.lBridgeNodeOnline setText:state.isBridgeNodeOnlineString];
         self.lBridgeNodeOnlineTitle.hidden = NO;
         self.lBridgeNodeOnline.hidden = NO;
@@ -291,7 +292,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
     
     if (state && state.bridgeNodeSignalStrength != nil) {
-        [self.lBridgeNodeSignalStrengthTitle setText:NSLocalizedString(@"Bridge node - signal strength", nil)];
+        [self.lBridgeNodeSignalStrengthTitle setText: LegacyStrings.stateBridgeNodeSignal];
         [self.lBridgeNodeSignalStrength setText:state.bridgeNodeSignalStrengthString];
         self.lBridgeNodeSignalStrengthTitle.hidden = NO;
         self.lBridgeNodeSignalStrength.hidden = NO;
@@ -308,7 +309,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.uptime != nil) {
-        [self.lUptimeTitle setText:NSLocalizedString(@"Uptime", nil)];
+        [self.lUptimeTitle setText: LegacyStrings.stateUptime];
         [self.lUptime setText:state.uptimeString];
         self.lUptimeTitle.hidden = NO;
         self.lUptime.hidden = NO;
@@ -325,7 +326,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
     
     if (state && state.connectionUptime != nil) {
-        [self.lConnectionUptimeTitle setText:NSLocalizedString(@"Connection uptime", nil)];
+        [self.lConnectionUptimeTitle setText: LegacyStrings.stateConnectionUptime];
         [self.lConnectionUptime setText:state.connectionUptimeString];
         self.lConnectionUptimeTitle.hidden = NO;
         self.lConnectionUptime.hidden = NO;
@@ -342,7 +343,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.batteryHealth != nil) {
-        [self.lBatteryHealthTitle setText:NSLocalizedString(@"Battery health", nil)];
+        [self.lBatteryHealthTitle setText: LegacyStrings.stateBatteryHealth];
         [self.lBatteryHealth setText:state.batteryHealthString];
         self.lBatteryHealthTitle.hidden = NO;
         self.lBatteryHealth.hidden = NO;
@@ -359,7 +360,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
 
     if (state && state.lastConnectionResetCause != nil) {
-        [self.lConnectionResetCauseTitle setText:NSLocalizedString(@"Connection reset cause", nil)];
+        [self.lConnectionResetCauseTitle setText: LegacyStrings.stateConnectionResetCause];
         [self.lConnectionResetCause setText:state.lastConnectionResetCauseString];
         self.lConnectionResetCauseTitle.hidden = NO;
         self.lConnectionResetCause.hidden = NO;
@@ -378,7 +379,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     BOOL lightSwitchFunc = _channel && _channel.func & SUPLA_CHANNELFNC_LIGHTSWITCH;
  
     if (lightSwitchFunc && state && state.lightSourceLifespan != nil) {
-        [self.lLightsourceLifespanTitle setText:NSLocalizedString(@"Light source lifespan", nil)];
+        [self.lLightsourceLifespanTitle setText: LegacyStrings.stateLightSourceLifespan];
         [self.lLightsourceLifespan setText:state.lightSourceLifespanString];
         self.lLightsourceLifespanTitle.hidden = NO;
         self.lLightsourceLifespan.hidden = NO;
@@ -395,7 +396,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     }
       
     if (lightSwitchFunc && state && state.lightSourceOperatingTime != nil) {
-        [self.lLightsourceOperatingTimeTitle setText:NSLocalizedString(@"Light source operating time", nil)];
+        [self.lLightsourceOperatingTimeTitle setText: LegacyStrings.stateSourceOperatingTime];
         [self.lLightsourceOperatingTime setText:state.lightSourceOperatingTimeString];
         self.lLightsourceOperatingTimeTitle.hidden = NO;
         self.lLightsourceOperatingTime.hidden = NO;

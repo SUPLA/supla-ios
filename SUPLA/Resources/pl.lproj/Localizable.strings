@@ -151,18 +151,6 @@
 "Time exceeded. Try again." = "Przekroczono czas. Spróbuj ponownie.";
 "Are you sure you want to restore the default settings?" = "Czy na pewno chcesz przywrócić ustawienia domyślne ?";
 "Default settings" = "Ustawienia domyślne";
-
-"Battery level" = "Poziom baterii";
-"Battery powered" = "Zasilanie bateryjne";
-"Wifi signal strength" = "Siła sygnału WiFi";
-"Bridge node - online" = "Węzeł mostu - online";
-"Bridge node - signal strength" = "Węzeł mostu - siła sygnału";
-"Uptime" = "Czas pracy";
-"Connection uptime" = "Czas połączenia";
-"Battery health" = "Żywotność baterii";
-"Connection reset cause" = "Powód restartu połaczenia";
-"Light source lifespan" = "Żywotność źródła światła";
-"Light source operating time" = "Czas pracy źródła światła";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMIEŃ USTAWIENIA ŻYWOTNOŚCI ŹRÓDŁA ŚWIATŁA";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Żywotność promiennika uv wynosi %.02f%%. Zaplanuj jego wymianę.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Żywotność promiennika uv wynosi %.02f%%. Wymień promiennik.";
@@ -186,7 +174,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Sekcje szyby są odsłonięte dłużej niż 20 godzin co może negatywnie wpłynąć na ich żywotność. Zalecane jest zasłonięcie wszystkich sekcji na minimum 4 godziny w celu ich regeneracji.";
 "Planned regeneration is in progress." = "Trwa zaplanowana regeneracja.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
-"Channel Id" = "Id kanału";
 "Back" = "Wstecz";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";
 "Exit" = "Wyjście";
@@ -310,6 +297,8 @@
 "general_reveal" = "Odsłoń";
 "general_collapse" = "Zwiń";
 "general_expand" = "Rozwiń";
+"general_state_opened" = "otwarty";
+"general_state_closed" = "zamknięty";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -632,3 +621,19 @@
 "valve_warning_motor_problem" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty.";
 "valve_warning_motor_problem_opening" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty. Czy na pewno chcesz go otworzyć?";
 "valve_warning_motor_problem_closing" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty. Czy na pewno chcesz go zamknąć?";
+"valve_detail_sensors" = "Powiązane czujniki";
+"valve_action_error" = "Wystąpił błąd podczas komunikacji. Spróbuj ponownie później.";
+
+/* State */
+"state_channel_id" = "Id kanału";
+"state_battery_level" = "Poziom baterii";
+"state_battery_powered" = "Zasilanie bateryjne";
+"state_wifi_signal_strength" = "Siła sygnału WiFi";
+"state_bridge_node_online" = "Węzeł mostu - online";
+"state_bridge_node_signal" = "Węzeł mostu - siła sygnału";
+"state_uptime" = "Czas pracy";
+"state_connection_time" = "Czas połączenia";
+"state_battery_health" = "Żywotność baterii";
+"state_connection_reset_cause" = "Powód restartu połaczenia";
+"state_light_source_lifespan" = "Żywotność źródła światła";
+"state_source_operating_time" = "Czas pracy źródła światła";

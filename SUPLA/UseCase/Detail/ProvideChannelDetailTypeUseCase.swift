@@ -36,6 +36,8 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_IC_WATER_METER,
                  SUPLA_CHANNELFNC_IC_HEAT_METER: .impulseCounterDetail(pages: getImpulseCounterDetailPages(channelWithChildren))
 
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: .valveDetail(pages: [.valveGeneral])
+
             default: provide(channelWithChildren.channel)
         }
     }

@@ -67,9 +67,11 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
         let subject = getSubjectForChannel(channelId: remoteId)
         subject.accept(subject.value + 1)
         
-        if let rootParent = channelToRootRelationHolderUseCase.getParent(for: Int32(remoteId)) {
-            let rootParentSubject = getSubjectForChannel(channelId: Int(rootParent))
-            rootParentSubject.accept(rootParentSubject.value + 1)
+        if let rootParents = channelToRootRelationHolderUseCase.getParent(for: Int32(remoteId)) {
+            rootParents.forEach { rootParent in
+                let rootParentSubject = getSubjectForChannel(channelId: Int(rootParent))
+                rootParentSubject.accept(rootParentSubject.value + 1)
+            }
         }
     }
     
