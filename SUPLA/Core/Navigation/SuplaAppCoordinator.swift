@@ -46,6 +46,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
     func navigateToCounterPhoto(channelId: Int32)
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     
     func popToStatus()
     
@@ -211,6 +212,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage]) {
         navigateTo(HumidityDetailVC(item: item, pages: pages))
+    }
+    
+    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(ValveDetailVC(item: item, pages: pages))
     }
     
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {

@@ -155,17 +155,6 @@
 "Are you sure you want to restore the default settings?" = "Вы уверены, что хотите восстановить настройки по умолчанию?";
 "Default settings" = "Настройки по умолчанию";
 
-"Battery level" = "Уровень заряда батареи";
-"Battery powered" = "Питание через батарею";
-"Wifi signal strength" = "Сила сигнала WiFi";
-"Bridge node - online" = "Узел моста - онлайн";
-"Bridge node - signal strength" = "Узел моста - мощность сигнала";
-"Uptime" = "Время работы";
-"Connection uptime" = "Время соединения";
-"Battery health" = "Срок службы батареи";
-"Connection reset cause" = "Причина перезапуска соединения";
-"Light source lifespan" = "Срок службы источника света";
-"Light source operating time" = "Время работы источника света";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ИЗМЕНИТЬ НАСТРОЙКИ СРОКА ДЕЙСТВИЯ ИСТОЧНИКА СВЕТА";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Срок действия УФ-лампы составляет %.02f %%. Запланируйте её замену.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Срок действия УФ-лампы составляет %.02f %%. Замените лампу.";

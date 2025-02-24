@@ -92,6 +92,7 @@ enum DetailType: Equatable {
     case electricityMeterDetail(pages: [DetailPage])
     case impulseCounterDetail(pages: [DetailPage])
     case humidityDetail(pages: [DetailPage])
+    case valveDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
@@ -138,4 +139,7 @@ enum DetailPage {
     case impulseCounterGeneral
     case impulseCounterHistory
     case impulseCounterOcr
+    
+    // Valve
+    case valveGeneral
 }

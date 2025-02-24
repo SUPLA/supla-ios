@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Ali ste prepričani, da želite obnoviti na privzete nastavitve?";
 "Default settings" = "Privzete nastavitve";
 
-"Battery level" = "Raven baterije";
-"Battery powered" = "Baterija";
-"Wifi signal strength" = "Moč WiFi signala";
-"Bridge node - online" = "Vozlišče mosta - online";
-"Bridge node - signal strength" = "Vozlišče mosta - moč signala";
-"Uptime" = "Čas delovanja";
-"Connection uptime" = "Čas povezave";
-"Battery health" = "Življenjska doba baterije";
-"Connection reset cause" = "Razlog za ponovni zagon povezave";
-"Light source lifespan" = "Življenjska doba svetlobnega vira";
-"Light source operating time" = "Delovni čas svetlobnega vira";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%. Načrtujte njeno menjavo.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%. Menjajte grelno žarnico.";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stekleni deli so izpostavljeni več kot 20 ur, kar lahko negativno vpliva na njihovo življenjsko dobo. Priporočljivo je, da vse dele prekrijete za najmanj 4 ure, da se obnovijo.";
 "Planned regeneration is in progress." = "Načrtovana obnova je v teku.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Obnova je v teku po 20 urah dela.";
-"Channel Id" = "Identifikator kanala";
 "Back" = "Nazaj";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
 "Exit" = "Izhod";
@@ -570,3 +558,17 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";
+
+/* State */
+"state_channel_id" = "Identifikator kanala";
+"state_battery_level" = "Raven baterije";
+"state_battery_powered" = "Baterija";
+"state_wifi_signal_strength" = "Moč WiFi signala";
+"state_bridge_node_online" = "Vozlišče mosta - online";
+"state_bridge_node_signal" = "Vozlišče mosta - moč signala";
+"state_uptime" = "Čas delovanja";
+"state_connection_time" = "Čas povezave";
+"state_battery_health" = "Življenjska doba baterije";
+"state_connection_reset_cause" = "Razlog za ponovni zagon povezave";
+"state_light_source_lifespan" = "Življenjska doba svetlobnega vira";
+"state_source_operating_time" = "Delovni čas svetlobnega vira";
