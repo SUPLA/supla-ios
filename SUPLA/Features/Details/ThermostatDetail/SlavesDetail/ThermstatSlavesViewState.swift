@@ -24,6 +24,8 @@ extension ThermostatSlavesFeature {
         @Published var slaves: [ThermostatData] = []
         @Published var scale: CGFloat = 1
         
+        @Published var stateDialogState: StateDialogFeature.ViewState? = nil
+        
         var relatedIds: [Int32] = []
     }
 
@@ -40,8 +42,5 @@ extension ThermostatSlavesFeature {
         let subValue: String?
         let pumpSwitchIcon: IconResult?
         let sourceSwitchIcon: IconResult?
-        
-        // For legacy status popup
-        let channel: SAChannel?
     }
 }

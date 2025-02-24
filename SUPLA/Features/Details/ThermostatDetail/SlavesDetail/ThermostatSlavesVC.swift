@@ -31,17 +31,16 @@ extension ThermostatSlavesFeature {
             contentView = ThermostatSlavesFeature.View(
                 viewState: state,
                 onInfoAction: { [weak self] in self?.onIssueIconTapped(issueMessage: $0) },
-                onStatusAction: {
-                    if let channel = $0 {
-                        SAChannelStatePopup.globalInstance().show(channel)
-                    }
-                }
+                onStatusAction: { viewModel.showStateDialog(remoteId: $0, caption: $1) },
+                onStateDialogDismiss: { viewModel.closeStateDialog() }
             )
         }
         
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(item.remoteId)
+            
+            observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
         }
         
         override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +69,15 @@ extension ThermostatSlavesFeature {
                 !isGroup.boolValue
             {
                 viewModel.reloadData(item.remoteId, remoteId.int32Value)
+            }
+        }
+        
+        @objc
+        func onStateEvent(notification: NSNotification) {
+            if let userInfo = notification.userInfo,
+               let channelState = userInfo["state"] as? SAChannelStateExtendedValue
+            {
+                viewModel.updateStateDialog(channelState)
             }
         }
         

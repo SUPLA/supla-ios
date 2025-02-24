@@ -19,12 +19,18 @@
 import SharedCore
     
 extension ThermostatSlavesFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, StateDialogFeature.Handler {
         @Singleton private var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCase
         @Singleton private var globalSettings: GlobalSettings
         
+        var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
+        
         init() {
             super.init(state: ViewState())
+        }
+        
+        func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
+            state.stateDialogState = updater(state.stateDialogState)
         }
         
         override func onViewDidLoad() {
@@ -109,8 +115,7 @@ private extension ChannelChild {
             showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
-            sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel),
-            channel: channel
+            sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel)
         )
     }
 }
@@ -161,8 +166,7 @@ private extension ChannelWithChildren {
             showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
-            sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel),
-            channel: channel
+            sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel)
         )
     }
 }

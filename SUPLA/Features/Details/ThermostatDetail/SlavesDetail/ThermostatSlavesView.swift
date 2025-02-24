@@ -24,7 +24,8 @@ extension ThermostatSlavesFeature {
         @ObservedObject var viewState: ViewState
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (SAChannel?) -> Void
+        let onStatusAction: (Int32, String) -> Void
+        let onStateDialogDismiss: () -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -41,6 +42,10 @@ extension ThermostatSlavesFeature {
                         ThermostatRow(data: $0, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
                     }
                 }.padding([.top], Dimens.distanceDefault)
+                
+                if let stateDialogState = viewState.stateDialogState {
+                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                }
             }.environment(\.scaleFactor, viewState.scale)
         }
     }
@@ -61,7 +66,7 @@ extension ThermostatSlavesFeature {
         let data: ThermostatData
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (SAChannel?) -> Void
+        let onStatusAction: (Int32, String) -> Void
 
         var body: some SwiftUI.View {
             ZStack {
@@ -102,7 +107,7 @@ extension ThermostatSlavesFeature {
                         
                     if (data.showChannelStateIcon) {
                         ListItemInfoIcon()
-                            .onTapGesture { onStatusAction(data.channel) }
+                            .onTapGesture { onStatusAction(data.id, data.caption) }
                     }
                     ListItemDot(onlineState: data.onlineState)
                 }.padding([.trailing], Dimens.distanceSmall)
@@ -152,8 +157,7 @@ extension ThermostatSlavesFeature {
         showChannelStateIcon: true,
         subValue: "23,0°",
         pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-on"),
-        sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on"),
-        channel: nil
+        sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on")
     )
     viewState.slaves = [
         ThermostatSlavesFeature.ThermostatData(
@@ -168,8 +172,7 @@ extension ThermostatSlavesFeature {
             showChannelStateIcon: true,
             subValue: "23,0°",
             pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-off"),
-            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on"),
-            channel: nil
+            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on")
         ),
         ThermostatSlavesFeature.ThermostatData(
             id: 2,
@@ -183,13 +186,13 @@ extension ThermostatSlavesFeature {
             showChannelStateIcon: true,
             subValue: "23,0°",
             pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-on"),
-            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-off"),
-            channel: nil
+            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-off")
         )
     ]
     return ThermostatSlavesFeature.View(
         viewState: viewState,
         onInfoAction: { _ in },
-        onStatusAction: { _ in }
+        onStatusAction: { _, _ in },
+        onStateDialogDismiss: {}
     )
 }
