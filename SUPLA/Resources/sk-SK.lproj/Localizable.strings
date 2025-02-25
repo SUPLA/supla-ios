@@ -570,3 +570,7 @@
 "state_connection_reset_cause" = "Dôvod reštartovania pripojenia";
 "state_light_source_lifespan" = "Životnosť svetelného zdroja";
 "state_source_operating_time" = "Pracovný čas svetelného zdroja";
+
+/* Change caption */
+"change_caption_channel_name" = "Názov kanála";
+"change_caption_scene_name" = "Názov scény";

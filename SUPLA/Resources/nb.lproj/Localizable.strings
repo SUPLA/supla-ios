@@ -572,3 +572,7 @@
 "state_connection_reset_cause" = "Årsak til fornyelse av tilkoblingen";
 "state_light_source_lifespan" = "Lyskildens levetid";
 "state_source_operating_time" = "Lyskildens arbeidstid";
+
+/* Change caption */
+"change_caption_channel_name" = "Kanalnavn";
+"change_caption_scene_name" = "Navn på scenen";

@@ -572,3 +572,7 @@
 "state_connection_reset_cause" = "Razlog za ponovni zagon povezave";
 "state_light_source_lifespan" = "Življenjska doba svetlobnega vira";
 "state_source_operating_time" = "Delovni čas svetlobnega vira";
+
+/* Change caption */
+"change_caption_channel_name" = "Ime kanala";
+"change_caption_scene_name" = "Ime prizora";

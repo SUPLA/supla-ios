@@ -169,6 +169,7 @@ extension DiContainer {
         register(LoadImpulseCounterMeasurementsUseCase.self, LoadImpulseCounterMeasurementsUseCaseImpl())
         register(GetChannelActionStringUseCase.self, SharedCore.GetChannelActionStringUseCase())
         register(ChannelToRootRelationHolderUseCase.self, ChannelToRootRelationHolderUseCaseImpl())
+        register(CaptionChangeUseCase.self, CaptionChangeUseCaseImpl())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())

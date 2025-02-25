@@ -402,3 +402,9 @@
 "state_connection_reset_cause" = "Connection reset cause";
 "state_light_source_lifespan" = "Light source lifespan";
 "state_source_operating_time" = "Light source operating time";
+
+/* Change caption */
+"change_caption_header" = "Caption Change";
+"change_caption_channel_name" = "Channel name";
+"change_caption_group_name" = "Group name";
+"change_caption_scene_name" = "Scene name";

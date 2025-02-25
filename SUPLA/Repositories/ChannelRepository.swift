@@ -19,7 +19,7 @@
 import Foundation
 import RxSwift
 
-protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
+protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
@@ -110,5 +110,14 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 channels.forEach { resultSet.insert($0.usericon_id) }
                 return Array(resultSet)
             }
+    }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        getChannel(remoteId)
+            .map {
+                $0.caption = caption
+                return $0
+            }
+            .flatMapFirst { self.save($0) }
     }
 }

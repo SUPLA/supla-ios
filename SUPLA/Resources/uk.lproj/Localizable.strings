@@ -573,3 +573,6 @@
 "state_connection_reset_cause" = "Причина перезапуску з'єднання";
 "state_light_source_lifespan" = "Термін служби джерела світла";
 "state_source_operating_time" = "Час роботи джерела світла";
+
+/* Change caption */
+"change_caption_channel_name" = "Назва каналу";

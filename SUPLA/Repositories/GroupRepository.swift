@@ -19,7 +19,7 @@
 import Foundation
 import RxSwift
 
-protocol GroupRepository: RepositoryProtocol where T == SAChannelGroup {
+protocol GroupRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAChannelGroup {
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]>
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
@@ -90,5 +90,15 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
                 groups.forEach { resultSet.insert($0.usericon_id) }
                 return Array(resultSet)
             }
+    }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile.isActive = 1", remoteId))
+            .compactMap { $0 }
+            .map {
+                $0.caption = caption
+                return $0
+            }
+            .flatMapFirst { self.save($0) }
     }
 }

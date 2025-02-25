@@ -572,3 +572,7 @@
 "state_connection_reset_cause" = "Λόγος επανεκκίνησης της σύνδεσης";
 "state_light_source_lifespan" = "Διάρκεια ζωής της πηγής φωτός";
 "state_source_operating_time" = "Χρόνος εργασίας πηγής φωτός";
+
+/* Change caption */
+"change_caption_channel_name" = "Όνομα καναλιού";
+"change_caption_scene_name" = "Όνομα σκηνής";

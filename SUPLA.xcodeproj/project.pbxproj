@@ -660,6 +660,11 @@
 		A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */; };
 		A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */; };
 		A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */; };
+		A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */; };
+		A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */; };
+		A56851BA2D6CA27F00942F8B /* CaptionChangeDialogViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B92D6CA27600942F8B /* CaptionChangeDialogViewState.swift */; };
+		A56851BC2D6D0B5C00942F8B /* CaptionChangeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851BB2D6D0B5200942F8B /* CaptionChangeHandler.swift */; };
+		A56851BE2D6DA65F00942F8B /* CaptionChangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */; };
 		A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
 		A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */; };
 		A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */; };
@@ -2223,6 +2228,11 @@
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
 		A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUpdatesObserver.swift; sourceTree = "<group>"; };
+		A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogFeature.swift; sourceTree = "<group>"; };
+		A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogView.swift; sourceTree = "<group>"; };
+		A56851B92D6CA27600942F8B /* CaptionChangeDialogViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogViewState.swift; sourceTree = "<group>"; };
+		A56851BB2D6D0B5200942F8B /* CaptionChangeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeHandler.swift; sourceTree = "<group>"; };
+		A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeUseCase.swift; sourceTree = "<group>"; };
 		A56D5ACC2A4C304C004F45DA /* SingleCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCall.swift; sourceTree = "<group>"; };
 		A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCallWrapper.m; sourceTree = "<group>"; };
 		A56D5AD02A4C37DA004F45DA /* SingleCallWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleCallWrapper.h; sourceTree = "<group>"; };
@@ -4757,6 +4767,17 @@
 			path = Thermostat;
 			sourceTree = "<group>";
 		};
+		A56851B42D6CA15C00942F8B /* CaptionChangeDialog */ = {
+			isa = PBXGroup;
+			children = (
+				A56851BB2D6D0B5200942F8B /* CaptionChangeHandler.swift */,
+				A56851B92D6CA27600942F8B /* CaptionChangeDialogViewState.swift */,
+				A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */,
+				A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */,
+			);
+			path = CaptionChangeDialog;
+			sourceTree = "<group>";
+		};
 		A56D5AD12A4C68F4004F45DA /* UpdateToken */ = {
 			isa = PBXGroup;
 			children = (
@@ -4855,6 +4876,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A56851B42D6CA15C00942F8B /* CaptionChangeDialog */,
 				A50716D12D68922F0060FA0D /* StateDialog */,
 				A505EC372CF71E3300E69BDB /* CreateProfile */,
 				A5D7128C2C41079500A8EF52 /* About */,
@@ -6455,6 +6477,7 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */,
 				A539C2682D676E7300D9DD47 /* GetChannelSpecificIssuesUseCase.swift */,
 				A539C2662D67662C00D9DD47 /* GetAllChannelIssuesUseCase.swift */,
 				A519CCB32D38576300F858A4 /* Measurements */,
@@ -7136,6 +7159,7 @@
 				A5D712672C37EBE700A8EF52 /* LockScreenVC.swift in Sources */,
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */,
+				A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */,
 				A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */,
 				A5F5C3E82C357DF00058E255 /* LockScreenCell.swift in Sources */,
 				A505EC3F2CF71F4A00E69BDB /* CreateProfileView.swift in Sources */,
@@ -7358,6 +7382,7 @@
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
 				A52BFED02B07AF5500A2F64C /* GetDeviceConfigUseCase.swift in Sources */,
+				A56851BA2D6CA27F00942F8B /* CaptionChangeDialogViewState.swift in Sources */,
 				A5B8A48D2CBD35BB002FA7B2 /* Picker.swift in Sources */,
 				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
 				A5074BE42BD251590081B6B1 /* ExecuteFacadeBlindActionUseCase.swift in Sources */,
@@ -7490,12 +7515,14 @@
 				AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */,
 				A5E05BC82CB6677C00202583 /* SAGeneralPurposeMeasurementItem+Ext.swift in Sources */,
 				A55A8D9F2BAC263000C540D4 /* ExecuteRollerShutterActionUseCase.swift in Sources */,
+				A56851BC2D6D0B5C00942F8B /* CaptionChangeHandler.swift in Sources */,
 				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
 				A52D13B12C8F0F3000134961 /* SuplaClient+Ext.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				A5074BDB2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift in Sources */,
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
+				A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				A5E160CB2D3697ED003A7C71 /* ImpulseCounterChartValueFormatter.swift in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
@@ -7878,6 +7905,7 @@
 				A5AD70292C04691100A36318 /* MoveTimeView.swift in Sources */,
 				A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
+				A56851BE2D6DA65F00942F8B /* CaptionChangeUseCase.swift in Sources */,
 				A50B5D4A2BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift in Sources */,
 				A5E160A52D307EAB003A7C71 /* ContainerValueProvider.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
