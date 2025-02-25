@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "300.svg",
+      "filename" : "300-on-2.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "823.svg",
+      "filename" : "300-on-3.svg",
       "idiom" : "universal"
     }
   ],
