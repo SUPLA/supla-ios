@@ -800,7 +800,7 @@
 		A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */; };
 		A594ADCE2C9C401700780EF3 /* ThermostatSlavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCD2C9C401700780EF3 /* ThermostatSlavesVC.swift */; };
 		A594ADD02C9C402B00780EF3 /* ThermostatSlavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */; };
-		A594ADD22C9C439F00780EF3 /* ThermstatSlavesViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD12C9C439F00780EF3 /* ThermstatSlavesViewState.swift */; };
+		A594ADD22C9C439F00780EF3 /* ThermostatSlavesViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */; };
 		A594ADD42C9C451400780EF3 /* ThermostatSlavesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */; };
 		A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD52C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift */; };
 		A594ADD82C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD72C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift */; };
@@ -2373,7 +2373,7 @@
 		A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesVM.swift; sourceTree = "<group>"; };
 		A594ADCD2C9C401700780EF3 /* ThermostatSlavesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesVC.swift; sourceTree = "<group>"; };
 		A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesView.swift; sourceTree = "<group>"; };
-		A594ADD12C9C439F00780EF3 /* ThermstatSlavesViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermstatSlavesViewState.swift; sourceTree = "<group>"; };
+		A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesViewState.swift; sourceTree = "<group>"; };
 		A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesFeature.swift; sourceTree = "<group>"; };
 		A594ADD52C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelWithChildrenTreeUseCase.swift; sourceTree = "<group>"; };
 		A594ADD72C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelWithChildrenTreeUseCaseTests.swift; sourceTree = "<group>"; };
@@ -5170,7 +5170,7 @@
 				A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */,
 				A594ADCD2C9C401700780EF3 /* ThermostatSlavesVC.swift */,
 				A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */,
-				A594ADD12C9C439F00780EF3 /* ThermstatSlavesViewState.swift */,
+				A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */,
 				A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */,
 			);
 			path = SlavesDetail;
@@ -7563,7 +7563,7 @@
 				A550F2922D52539C0011463B /* ElectricityMeterMeasurementsProvider.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
 				A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */,
-				A594ADD22C9C439F00780EF3 /* ThermstatSlavesViewState.swift in Sources */,
+				A594ADD22C9C439F00780EF3 /* ThermostatSlavesViewState.swift in Sources */,
 				A5AD701F2C00B45E00A36318 /* WindowControlButton.swift in Sources */,
 				A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */,
 				A5862C0C2CEF816B00DFFD55 /* TimerState.swift in Sources */,

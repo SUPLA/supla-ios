@@ -40,6 +40,7 @@ extension ValveGeneralFeature {
         let onlineState: ListOnlineState
         let icon: IconResult?
         let caption: String
+        let userCaption: String
         let batteryIcon: IssueIcon?
         let showChannelStateIcon: Bool
     }

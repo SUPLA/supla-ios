@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import SwiftUI
 import SharedCore
+import SwiftUI
 
 extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
@@ -26,6 +26,10 @@ extension ThermostatSlavesFeature {
         let onInfoAction: (String) -> Void
         let onStatusAction: (Int32, String) -> Void
         let onStateDialogDismiss: () -> Void
+        
+        let onCaptionLongPress: (ThermostatData) -> Void
+        let onCaptionChangeDismiss: () -> Void
+        let onCaptionChangeApply: (String) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -33,18 +37,36 @@ extension ThermostatSlavesFeature {
                     if let master = viewState.master {
                         HeaderText(title: Strings.ThermostatDetail.mainThermostat)
                             .padding([.bottom], Distance.tiny)
-                        ThermostatRow(data: master, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
+                        ThermostatRow(
+                            data: master,
+                            onInfoAction: onInfoAction,
+                            onStatusAction: onStatusAction,
+                            onCaptionLongPress: onCaptionLongPress
+                        )
                     }
                     HeaderText(title: Strings.ThermostatDetail.otherThermostats)
                         .padding([.top], Distance.default)
                         .padding([.bottom], Distance.tiny)
                     LazyList(items: viewState.slaves) {
-                        ThermostatRow(data: $0, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
+                        ThermostatRow(
+                            data: $0,
+                            onInfoAction: onInfoAction,
+                            onStatusAction: onStatusAction,
+                            onCaptionLongPress: onCaptionLongPress
+                        )
                     }
                 }.padding([.top], Dimens.distanceDefault)
-                
+
                 if let stateDialogState = viewState.stateDialogState {
                     StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                }
+
+                if let captionChangeDialogState = viewState.captionChangeDialogState {
+                    CaptionChangeDialogFeature.Dialog(
+                        state: captionChangeDialogState,
+                        onDismiss: onCaptionChangeDismiss,
+                        onOK: { onCaptionChangeApply($0) }
+                    )
                 }
             }.environment(\.scaleFactor, viewState.scale)
         }
@@ -62,11 +84,12 @@ extension ThermostatSlavesFeature {
 
     struct ThermostatRow: SwiftUI.View {
         @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
+
         let data: ThermostatData
 
         let onInfoAction: (String) -> Void
         let onStatusAction: (Int32, String) -> Void
+        let onCaptionLongPress: (ThermostatData) -> Void
 
         var body: some SwiftUI.View {
             ZStack {
@@ -91,6 +114,7 @@ extension ThermostatSlavesFeature {
                         }
                         CellCaption(text: data.caption)
                             .padding([.trailing], Dimens.distanceSmall)
+                            .onLongPressGesture { onCaptionLongPress(data) }
                     }
                     Spacer()
                 }
@@ -104,7 +128,7 @@ extension ThermostatSlavesFeature {
                                 }
                             }
                     }
-                        
+
                     if (data.showChannelStateIcon) {
                         ListItemInfoIcon()
                             .onTapGesture { onStatusAction(data.id, data.caption) }
@@ -149,6 +173,7 @@ extension ThermostatSlavesFeature {
         id: 1,
         onlineState: .online,
         caption: "FHC #0",
+        userCaption: "FHC #0",
         icon: .suplaIcon(name: "fnc_thermostat_heat"),
         currentPower: nil,
         value: "22,7°C",
@@ -164,6 +189,7 @@ extension ThermostatSlavesFeature {
             id: 1,
             onlineState: .online,
             caption: "FHC #1",
+            userCaption: "FHC #1",
             icon: .suplaIcon(name: "fnc_thermostat_heat"),
             currentPower: "25%",
             value: "22,7°C",
@@ -178,6 +204,7 @@ extension ThermostatSlavesFeature {
             id: 2,
             onlineState: .online,
             caption: "FHC #2",
+            userCaption: "FHC #2",
             icon: .suplaIcon(name: "fnc_thermostat_heat"),
             currentPower: "100%",
             value: "22,4°C",
@@ -193,6 +220,9 @@ extension ThermostatSlavesFeature {
         viewState: viewState,
         onInfoAction: { _ in },
         onStatusAction: { _, _ in },
-        onStateDialogDismiss: {}
+        onStateDialogDismiss: {},
+        onCaptionLongPress: { _ in },
+        onCaptionChangeDismiss: {},
+        onCaptionChangeApply: { _ in }
     )
 }

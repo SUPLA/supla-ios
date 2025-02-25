@@ -217,6 +217,7 @@ extension ValveGeneralFeature {
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-on"),
             caption: "Flood sensor",
+            userCaption: "",
             batteryIcon: IssueIcon.Battery25(),
             showChannelStateIcon: true
         ),
@@ -225,6 +226,7 @@ extension ValveGeneralFeature {
             onlineState: .offline,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
+            userCaption: "",
             batteryIcon: IssueIcon.Battery50(),
             showChannelStateIcon: false
         ),
@@ -233,6 +235,7 @@ extension ValveGeneralFeature {
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
+            userCaption: "",
             batteryIcon: IssueIcon.Battery50(),
             showChannelStateIcon: true
         )

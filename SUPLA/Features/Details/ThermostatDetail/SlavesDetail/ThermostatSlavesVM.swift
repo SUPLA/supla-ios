@@ -19,11 +19,13 @@
 import SharedCore
     
 extension ThermostatSlavesFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, StateDialogFeature.Handler {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, StateDialogFeature.Handler, CaptionChangeDialogFeature.Handler, ChannelUpdatesObserver {
         @Singleton private var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCase
         @Singleton private var globalSettings: GlobalSettings
         
         var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
+        
+        var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
         
         init() {
             super.init(state: ViewState())
@@ -31,6 +33,10 @@ extension ThermostatSlavesFeature {
         
         func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
             state.stateDialogState = updater(state.stateDialogState)
+        }
+        
+        func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {
+            state.captionChangeDialogState = updater(state.captionChangeDialogState)
         }
         
         override func onViewDidLoad() {
@@ -51,6 +57,10 @@ extension ThermostatSlavesFeature {
             if (state.relatedIds.contains(relatedId)) {
                 loadData(remoteId)
             }
+        }
+        
+        func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
+            handle(channel: channelWithChildren)
         }
         
         private func handle(channel: ChannelWithChildren) {
@@ -107,6 +117,7 @@ private extension ChannelChild {
             id: channel.remote_id,
             onlineState: ListOnlineState.from(channel.isOnline()),
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
+            userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),
             currentPower: thermostatValue?.state.power?.floatValue.also { valuesFormatter.percentageToString($0/100) },
             value: value,
@@ -158,6 +169,7 @@ private extension ChannelWithChildren {
             id: channel.remote_id,
             onlineState: ListOnlineState.from(channel.isOnline()),
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
+            userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),
             currentPower: thermostatValue?.state.power?.floatValue.also { valuesFormatter.percentageToString($0/100) },
             value: value,
