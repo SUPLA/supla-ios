@@ -51,7 +51,6 @@ protocol SuplaAppCoordinator: Coordinator {
     func popToStatus()
     
     func showMenu()
-    func showAuthorization(_ onAuthorizedCallback: @escaping () -> Void)
     func showLogin()
     
     func openForum()
@@ -236,10 +235,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func showMenu() {
         present(SuplaMenuController())
-    }
-    
-    func showAuthorization(_ onAuthorizedCallback: @escaping () -> Void) {
-        present(SAAuthorizationDialogVC(onAuthorizedCallback))
     }
     
     func showLogin() {

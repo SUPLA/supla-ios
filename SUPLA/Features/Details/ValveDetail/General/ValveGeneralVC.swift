@@ -30,9 +30,7 @@ extension ValveGeneralFeature {
                 viewState: viewModel.state,
                 onInfoClick: { viewModel.showStateDialog(remoteId: $0.channelId, caption: $0.caption) },
                 onCaptionLongPress: { [weak self] sensorData in
-                    self?.coordinator.showAuthorization {
-                        viewModel.changeChannelCaption(caption: sensorData.caption, remoteId: sensorData.channelId)
-                    }
+                    self?.showAuthorizationForCaptionChange(sensorData.userCaption, sensorData.id)
                 },
                 onOpenClick: { viewModel.onActionClick(channelId, action: .open) },
                 onCloseClick: { viewModel.onActionClick(channelId, action: .close) },
@@ -60,6 +58,12 @@ extension ValveGeneralFeature {
             {
                 viewModel.updateStateDialog(channelState)
             }
+        }
+        
+        private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {
+            SAAuthorizationDialogVC { [weak self] in
+                self?.viewModel.changeChannelCaption(caption: caption, remoteId: remoteId)
+            }.showAuthorization(self)
         }
         
         static func create(channelId: Int32) -> UIViewController {
