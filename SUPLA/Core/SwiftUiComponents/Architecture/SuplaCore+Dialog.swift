@@ -237,11 +237,48 @@ extension SuplaCore.Dialog {
             SuplaCore.Divider().color(UIColor.grayLight)
         }
     }
+    
+    struct TextField: SwiftUI.View {
+        let label: String?
+        var value: Binding<String>
+        let disabled: Bool
+        
+        init(value: Binding<String>, label: String? = nil, disabled: Bool = false) {
+            self.value = value
+            self.label = label
+            self.disabled = disabled
+        }
+        
+        var body: some SwiftUI.View {
+            VStack(alignment: .leading, spacing: 0) {
+                if let label {
+                    SwiftUI.Text(value.wrappedValue.isEmpty ? "" : label.uppercased())
+                        .fontBodySmall()
+                        .textColor(.gray)
+                }
+                SwiftUI.TextField(label ?? "", text: value)
+                    .disabled(disabled)
+                    .fontBodyLarge()
+            }
+            .padding([.top, .bottom], Distance.tiny)
+            .padding([.leading, .trailing], Distance.small)
+            .background(disabled ? Color.clear : Color.Supla.surface)
+            .clipShape(RoundedRectangle(cornerRadius: Dimens.buttonRadius))
+            .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
+        }
+    }
 }
 
 extension SuplaCore.Dialog.Base {
     init(onDismiss: @escaping () -> Void = {}, @ViewBuilder _ content: () -> Content) {
         self.onDismiss = onDismiss
         self.content = content()
+    }
+}
+
+#Preview {
+    VStack {
+        SuplaCore.Dialog.TextField(value: .constant("Value"), label: "Label")
+        SuplaCore.Dialog.TextField(value: .constant(""), label: "Label")
     }
 }

@@ -41,6 +41,11 @@
 - (BOOL) isSuperuserAuthorized;
 - (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
 
+- (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
+- (void) setSceneCaption:(int)sceneId caption:(NSString*)caption;
+- (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption;
+- (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
+
 @end
 
 @class SASuplaClient;

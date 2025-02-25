@@ -574,3 +574,7 @@
 "state_connection_reset_cause" = "Ryšio atstatymo priežastis";
 "state_light_source_lifespan" = "Šviesos šaltinio eksploatavimo laikas";
 "state_source_operating_time" = "Šviesos šaltinio veikimo laikas";
+
+/* Change caption */
+"change_caption_channel_name" = "Kanalo pavadinimas";
+"change_caption_scene_name" = "Scenos pavadinimas";

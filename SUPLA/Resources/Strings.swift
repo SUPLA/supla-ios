@@ -531,6 +531,13 @@ struct Strings {
         static let lightSourceLifespan = "state_light_source_lifespan".toLocalized()
         static let sourceOperatingTime = "state_source_operating_time".toLocalized()
     }
+    
+    struct ChangeCaption {
+        static let header = "change_caption_header".toLocalized()
+        static let channelName = "change_caption_channel_name".toLocalized()
+        static let groupName = "change_caption_group_name".toLocalized()
+        static let sceneName = "change_caption_scene_name".toLocalized()
+    }
 }
 
 extension String {

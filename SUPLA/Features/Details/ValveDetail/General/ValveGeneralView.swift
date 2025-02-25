@@ -33,6 +33,9 @@ extension ValveGeneralFeature {
         let onWarningDialogDismiss: () -> Void
         let onForceAction: (Action) -> Void
         
+        let onCaptionChangeDismiss: () -> Void
+        let onCaptionChangeApply: (String) -> Void
+        
         var body: some SwiftUI.View {
             BackgroundStack {
                 VStack(spacing: 0) {
@@ -83,6 +86,14 @@ extension ValveGeneralFeature {
                         negativeButtonText: alertDialog.negativeButtonText,
                         onPositiveButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
                         onNegativeButtonClick: onWarningDialogDismiss
+                    )
+                }
+                
+                if let captionChangeDialogState = viewState.captionChangeDialogState {
+                    CaptionChangeDialogFeature.Dialog(
+                        state: captionChangeDialogState,
+                        onDismiss: onCaptionChangeDismiss,
+                        onOK: onCaptionChangeApply
                     )
                 }
             }
@@ -235,6 +246,8 @@ extension ValveGeneralFeature {
         onCloseClick: {},
         onStateDialogDismiss: {},
         onWarningDialogDismiss: {},
-        onForceAction: { _ in }
+        onForceAction: { _ in },
+        onCaptionChangeDismiss: {},
+        onCaptionChangeApply: { _ in }
     )
 }

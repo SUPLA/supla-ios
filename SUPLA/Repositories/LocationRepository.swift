@@ -19,14 +19,13 @@
 import Foundation
 import RxSwift
 
-protocol LocationRepository: RepositoryProtocol where T == _SALocation {
+protocol LocationRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == _SALocation {
     func getLocation(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<_SALocation>
     func getAllLocations(forProfile profile: AuthProfileItem) -> Observable<[_SALocation]>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 class LocationRepositoryImpl: Repository<_SALocation>, LocationRepository {
-    
     func getLocation(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<_SALocation> {
         queryItem(NSPredicate(format: "location_id = %d AND profile = %@", remoteId, profile))
             .compactMap { $0 }
@@ -42,5 +41,15 @@ class LocationRepositoryImpl: Repository<_SALocation>, LocationRepository {
 
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(_SALocation.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        queryItem(NSPredicate(format: "location_id = %d AND profile.isActive = 1", remoteId))
+            .compactMap { $0 }
+            .map {
+                $0.caption = caption
+                return $0
+            }
+            .flatMapFirst { self.save($0) }
     }
 }

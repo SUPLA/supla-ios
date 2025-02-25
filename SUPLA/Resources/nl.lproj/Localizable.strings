@@ -572,3 +572,7 @@
 "state_connection_reset_cause" = "Reden voor het herstarten van de verbinding";
 "state_light_source_lifespan" = "Levensduur van de lichtbron";
 "state_source_operating_time" = "Lichtbron werktijd";
+
+/* Change caption */
+"change_caption_channel_name" = "Naam kanaal";
+"change_caption_scene_name" = "Scènenaam";

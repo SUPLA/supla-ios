@@ -572,3 +572,7 @@
 "state_connection_reset_cause" = "Raison du redémarrage de la connexion";
 "state_light_source_lifespan" = "Durée de vie de la source lumineuse";
 "state_source_operating_time" = "Temps de travail de la source lumineuse";
+
+/* Change caption */
+"change_caption_channel_name" = "Nom du canal";
+"change_caption_scene_name" = "Nom de la scène";
