@@ -266,6 +266,19 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         return value * scale
     }
     
+    func inverseScale(_ value: CGFloat, limit: CellScalingLimit = .none) -> CGFloat {
+        var scale = scaleFactor
+        switch (limit) {
+        case .lower(let val):
+            if (scaleFactor < val) { scale = val }
+        case .upper(let val):
+            if (scaleFactor > val) { scale = val }
+        default: break
+        }
+        
+        return value / scale
+    }
+    
     func isCaptionTouched() -> Bool { captionTouched }
     
     func setupView() {

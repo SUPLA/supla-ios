@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "fnc_heatmeter.svg",
+      "filename" : "fnc_heatmeter 2.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "fnc_heatmeter_nm.svg",
+      "filename" : "fnc_heatmeter 3.svg",
       "idiom" : "universal"
     }
   ],
