@@ -76,4 +76,8 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
         Observable.empty()
     }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        .empty()
+    }
 }
