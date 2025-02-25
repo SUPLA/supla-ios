@@ -58,4 +58,8 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
         Observable.empty()
     }
+    
+    func update(caption: String, remoteId: Int32) -> RxSwift.Observable<Void> {
+        .empty()
+    }
 }
