@@ -40,4 +40,8 @@ final class LocationRepositoryMock: BaseRepositoryMock<_SALocation>, LocationRep
         getAllLocationProfiles.append(profile)
         return getAllLocationsObservable
     }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        .empty()
+    }
 }
