@@ -32,8 +32,15 @@ extension ThermostatSlavesFeature {
                 viewState: state,
                 onInfoAction: { [weak self] in self?.onIssueIconTapped(issueMessage: $0) },
                 onStatusAction: { viewModel.showStateDialog(remoteId: $0, caption: $1) },
-                onStateDialogDismiss: { viewModel.closeStateDialog() }
+                onStateDialogDismiss: { viewModel.closeStateDialog() },
+                onCaptionLongPress: { [weak self] thermostatData in
+                    self?.showAuthorizationForCaptionChange(thermostatData.caption, thermostatData.id)
+                },
+                onCaptionChangeDismiss: { viewModel.closeCaptionChangeDialog() },
+                onCaptionChangeApply: { viewModel.onCaptionChange($0) }
             )
+            
+            viewModel.observe(remoteId: Int(item.remoteId))
         }
         
         override func viewDidLoad() {
@@ -45,11 +52,6 @@ extension ThermostatSlavesFeature {
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            
-            observeNotification(
-                name: NSNotification.Name.saChannelValueChanged,
-                selector: #selector(handleValueChange)
-            )
         }
         
         func onIssueIconTapped(issueMessage: String) {
@@ -62,23 +64,18 @@ extension ThermostatSlavesFeature {
         }
         
         @objc
-        private func handleValueChange(notification: Notification) {
-            if
-                let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
-                let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
-                !isGroup.boolValue
-            {
-                viewModel.reloadData(item.remoteId, remoteId.int32Value)
-            }
-        }
-        
-        @objc
         func onStateEvent(notification: NSNotification) {
             if let userInfo = notification.userInfo,
                let channelState = userInfo["state"] as? SAChannelStateExtendedValue
             {
                 viewModel.updateStateDialog(channelState)
             }
+        }
+        
+        private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {
+            SAAuthorizationDialogVC { [weak self] in
+                self?.viewModel.changeChannelCaption(caption: caption, remoteId: remoteId)
+            }.showAuthorization(self)
         }
         
         static func create(item: ItemBundle) -> UIViewController {

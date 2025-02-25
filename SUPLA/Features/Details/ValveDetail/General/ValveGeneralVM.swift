@@ -111,6 +111,7 @@ extension ValveGeneralFeature {
                 onlineState: child.channel.onlineState,
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),
                 caption: getCaptionUseCase.invoke(data: child.channel.shareable).string,
+                userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
                 showChannelStateIcon: child.channel.value?.online ?? false
             )
