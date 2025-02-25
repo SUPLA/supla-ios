@@ -29,12 +29,18 @@ extension ValveGeneralFeature {
             contentView = View(
                 viewState: viewModel.state,
                 onInfoClick: { viewModel.showStateDialog(remoteId: $0.channelId, caption: $0.caption) },
-                onCaptionLongPress: { _ in },
+                onCaptionLongPress: { [weak self] sensorData in
+                    self?.coordinator.showAuthorization {
+                        viewModel.changeChannelCaption(caption: sensorData.caption, remoteId: sensorData.channelId)
+                    }
+                },
                 onOpenClick: { viewModel.onActionClick(channelId, action: .open) },
                 onCloseClick: { viewModel.onActionClick(channelId, action: .close) },
                 onStateDialogDismiss: { viewModel.closeStateDialog() },
                 onWarningDialogDismiss: { viewModel.closeValveAlertDialog() },
-                onForceAction: { viewModel.forceAction(channelId, action: $0) }
+                onForceAction: { viewModel.forceAction(channelId, action: $0) },
+                onCaptionChangeDismiss: { viewModel.closeCaptionChangeDialog() },
+                onCaptionChangeApply: { viewModel.onCaptionChange($0) }
             )
             
             viewModel.observe(remoteId: Int(channelId))

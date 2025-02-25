@@ -21,7 +21,7 @@ import CoreData
 import RxSwift
 import RxBlocking
 
-protocol SceneRepository: RepositoryProtocol where T == SAScene {
+protocol SceneRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAScene {
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
     func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]>
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
@@ -86,5 +86,15 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
                 scenes.forEach { resultSet.insert($0.usericon_id) }
                 return Array(resultSet)
             }
+    }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        queryItem(NSPredicate(format: "sceneId = %d AND profile.isActive = 1", remoteId))
+            .compactMap { $0 }
+            .map {
+                $0.caption = caption
+                return $0
+            }
+            .flatMapFirst { self.save($0) }
     }
 }

@@ -29,6 +29,7 @@ extension ValveGeneralFeature {
         
         @Published var stateDialogState: StateDialogFeature.ViewState? = nil
         @Published var alertDialog: ValveAlertDialog? = nil
+        @Published var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? = nil
         
     }
     
