@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "fnc_hotel_card_on.svg",
+      "filename" : "Karta hotelowa - on.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "fnc_hotel_card_on_nm.svg",
+      "filename" : "Karta hotelowa - on 1.svg",
       "idiom" : "universal"
     }
   ],
