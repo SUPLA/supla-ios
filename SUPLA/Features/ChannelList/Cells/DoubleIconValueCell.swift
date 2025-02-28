@@ -96,22 +96,22 @@ final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
     override func derivedClassConstraints() -> [NSLayoutConstraint] {
         return [
             firstIconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
-            firstIconView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 4),
+            firstIconView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: inverseScale(6)),
             firstIconView.topAnchor.constraint(equalTo: container.topAnchor),
             
             firstValueView.leftAnchor.constraint(equalTo: firstIconView.rightAnchor, constant: 4),
             firstValueView.centerYAnchor.constraint(equalTo: firstIconView.centerYAnchor),
             firstValueView.widthAnchor.constraint(equalToConstant: firstValueView.intrinsicContentSize.width),
-            firstValueView.rightAnchor.constraint(equalTo: container.centerXAnchor, constant: -2),
+            firstValueView.rightAnchor.constraint(equalTo: container.centerXAnchor, constant: -6),
             
             secondIconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
-            secondIconView.leftAnchor.constraint(equalTo: container.centerXAnchor, constant: 2),
+            secondIconView.leftAnchor.constraint(equalTo: container.centerXAnchor, constant: 6),
             secondIconView.topAnchor.constraint(equalTo: container.topAnchor),
             
             secondValueView.leftAnchor.constraint(equalTo: secondIconView.rightAnchor, constant: 4),
             secondValueView.centerYAnchor.constraint(equalTo: secondIconView.centerYAnchor),
             secondValueView.widthAnchor.constraint(equalToConstant: secondValueView.intrinsicContentSize.width),
-            secondValueView.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -4)
+            secondValueView.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -inverseScale(6))
         ]
     }
     

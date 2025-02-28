@@ -195,7 +195,6 @@
 "Go to CLOUD" = "Accedi al CLOUD";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assicurati che l'applicazione abbia i permessi per cercare e connettersi ai dispositivi nella rete locale. Controlla che in \"Impostazioni -> SUPLA -> Rete locale\" il permesso sia abilitato per funzionare correttamente";
 "Close" = "Chiudi";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente. Sei sicuro di voler aprire la valvola dall'applicazione?";
 "Yes" = "Si";
 "No" = "No";
 "Warning" = "Attenzione";
@@ -220,7 +219,6 @@
 "Opening" = "Apertura";
 "Closing" = "Chiusura";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "L'uscita è stata spenta a causa del superamento della soglia di corrente impostata.";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La durata di vita della lampada UV è %.02f%%. Sostituire la lampada.";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La durata di vita della lampada UV è %.02f%%. Programmare la sua sostituzione.";
 "The lifespan of the light source is %.02f%%." = "La durata di vita della sorgente luminosta è %.02f%%.";
@@ -315,6 +313,7 @@
 
 /* General */
 "general_error" = "Errore";
+"general_warning" = "Attenzione";
 "save" = "Salva";
 "turn_on" = "Abilita";
 "turn_off" = "Disabilita";
@@ -603,3 +602,6 @@
 /* Impulse counter */
 "details_em_meter_value" = "Lettura del contatore";
 "details_em_current_month_consumption" = "Consumo del mese corrente";
+
+/* Valve */
+"valve_warning_manually_closed" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente. Sei sicuro di voler aprire la valvola dall'applicazione?";

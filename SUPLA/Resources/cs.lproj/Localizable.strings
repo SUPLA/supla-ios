@@ -77,7 +77,7 @@
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=cs";
-"https://en-forum.supla.org" = "https://cs-forum.supla.org";
+"https://en-forum.supla.org" = "https://cz-forum.supla.org";
 "Retrieving data from the server..." = "Stahování dat ze serveru...";
 "No chart data available." = "Žádné údaje o graf.";
 "Electricity Meter" = "Elektroměr";
@@ -132,8 +132,6 @@
 
 "Close" = "Zavřít";
 "Valve" = "Ventil";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu  opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.Opravdu chcete ventil otevřít pomocí aplikace?!";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu  opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.";
 "Warning" = "Upozornění";
 "Yes" = "Ano";
 "No" = "Ne";
@@ -302,6 +300,7 @@
 
 /* General */
 "general_error" = "Chyba";
+"general_warning" = "Upozornění";
 "turn_on" = "Zapnout";
 "turn_off" = "Vypnout";
 "save" = "Uložit";
@@ -568,3 +567,6 @@
 /* Impulse counter */
 "details_em_meter_value" = "Stav měřiče";
 "details_em_current_month_consumption" = "Spotřeba v tomto měsíci";
+
+/* Valve */
+"valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";

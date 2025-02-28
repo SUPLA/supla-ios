@@ -75,7 +75,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
              SUPLA_CHANNELFNC_LIGHTSWITCH,
              SUPLA_CHANNELFNC_PUMPSWITCH,
-             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH:
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
+             SUPLA_CHANNELFNC_FLOOD_SENSOR,
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR:
             return valueWrapper.isClosed ? .on : .off
         case SUPLA_CHANNELFNC_DIMMER:
             return valueWrapper.brightness > 0 ? .on : .off
@@ -88,7 +90,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
             return valueWrapper.transparent ? .transparent : .opaque
-        case SuplaFunction.container.value:
+        case SUPLA_CHANNELFNC_CONTAINER,
+             SUPLA_CHANNELFNC_SEPTIC_TANK,
+             SUPLA_CHANNELFNC_WATER_TANK:
             let value = valueWrapper.containerValue
             if (value.level > 80) {
                 return .full
@@ -135,11 +139,15 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_DIMMER,
              SUPLA_CHANNELFNC_RGBLIGHTING,
              SUPLA_CHANNELFNC_PUMPSWITCH,
-             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH: .off
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
+             SUPLA_CHANNELFNC_FLOOD_SENSOR,
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR: .off
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .complex([.off, .off])
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .opaque
-        case SuplaFunction.container.value: .empty
+        case SUPLA_CHANNELFNC_CONTAINER,
+             SUPLA_CHANNELFNC_SEPTIC_TANK,
+             SUPLA_CHANNELFNC_WATER_TANK: .empty
         default: .notUsed
         }
     }

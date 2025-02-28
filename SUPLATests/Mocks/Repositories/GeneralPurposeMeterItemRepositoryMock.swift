@@ -87,6 +87,11 @@ final class GeneralPurposeMeterItemRepositoryMock: BaseRepositoryMock<SAGeneralP
         return findOldestEntityReturns
     }
     
+    var getInitialMeasurementsMock: FunctionMock<Int32, Observable<(response: HTTPURLResponse, data: Data)>> = .init()
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        getInitialMeasurementsMock.handle(remoteId)
+    }
+    
     var getMeasurementsParameters: [(Int32, TimeInterval)] = []
     var getMeasurementsReturns: [Observable<[SuplaCloudClient.GeneralPurposeMeter]>] = []
     private var getMeasurementsCurrent = 0

@@ -51,13 +51,11 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     
     private lazy var combinedChartView: SuplaCombinedChartView = {
         let view = SuplaCombinedChartView()
-        view.chartStyle = viewModel.chartStyle
         return view
     }()
     
     private lazy var pieChartView: SuplaPieChartView = {
         let view = SuplaPieChartView()
-        view.chartStyle = viewModel.chartStyle
         return view
     }()
     
@@ -138,6 +136,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         filtersRow.selectedRange = state.ranges?.selected
         filtersRow.selectedAggregation = state.aggregations?.selected
         filtersRow.isHidden = !state.showHistory
+        filtersRow.isEnabled = state.loading == false
         
         dataSetsRowState.channelsSets = state.chartData.sets
         dataSetsRowState.historyEnabled = state.showHistory
@@ -147,13 +146,12 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             combinedChartView.isHidden = !state.showHistory
             pieChartView.isHidden = true
             
+            combinedChartView.chartStyle = state.chartStyle
             combinedChartView.channelFunction = state.channelFunction
             combinedChartView.data = combinedData
             combinedChartView.maxLeftAxis = state.maxLeftAxis
             combinedChartView.minLeftAxis = state.minLeftAxis
             combinedChartView.maxRightAxis = state.maxRightAxis
-            combinedChartView.rangeStart = state.range?.start.timeIntervalSince1970
-            combinedChartView.rangeEnd = state.range?.end.timeIntervalSince1970
             combinedChartView.emptyChartMessage = state.emptyChartMessage
             combinedChartView.rangeStart = state.chartData.xMin
             combinedChartView.rangeEnd = state.chartData.xMax
@@ -173,6 +171,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             pieChartView.isHidden = !state.showHistory
             combinedChartView.isHidden = true
             
+            pieChartView.chartStyle = state.chartStyle
             pieChartView.data = pieData
             pieChartView.emptyChartMessage = state.emptyChartMessage
         }
@@ -201,7 +200,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     }
     
     func showDataSelectionDialog(_ channelSets: ChannelChartSets, _ filters: CustomChartFiltersContainer?) {
-        fatalError("showDataSelectionDialog(_:_:) needs to be implemented!")
+        SALog.error("Nothing to show, please override function to show dialog")
     }
     
     private func setupView() {
@@ -341,6 +340,14 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
                     aggregationPicker.selectRow(index, inComponent: 0, animated: false)
                 }
             }
+        }
+    }
+    
+    var isEnabled: Bool {
+        get { rangeField.isEnabled && aggregationField.isEnabled }
+        set {
+            rangeField.isEnabled = newValue
+            aggregationField.isEnabled = newValue
         }
     }
     

@@ -134,8 +134,6 @@
 
 "Close" = "Uždaryti";
 "Valve" = "Vožtuvas";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu. Ar tikrai norite atidaryti vožtuvą programoje?!";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu.";
 "Warning" = "Įspėjimas";
 "Yes" = "Taip";
 "No" = "Ne";
@@ -303,6 +301,7 @@
 
 /* General */
 "general_error" = "Klaida";
+"general_warning" = "Įspėjimas";
 "turn_on" = "Įjungti";
 "turn_off" = "Išjungti";
 "save" = "Išsaugoti";
@@ -570,3 +569,6 @@
 /* Impulse counter */
 "details_em_meter_value" = "Skaitiklio būsena";
 "details_em_current_month_consumption" = "Suvartojimas einamąjį mėnesį";
+
+/* Valve */
+"valve_warning_manually_closed" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu. Ar tikrai norite atidaryti vožtuvą programoje?!";

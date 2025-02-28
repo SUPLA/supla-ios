@@ -94,12 +94,14 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
                     )
                 )
             }
-            .sorted { isRank ? $0.value.max < $1.value.max : $0.date < $1.date }
+            .sorted { isRank ? $0.value.max > $1.value.max : $0.date < $1.date }
     }
 
     private func historyDataSet(_ result: AggregationResult, _ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> HistoryDataSet {
         var result = result
-        let formatter = ImpulseCounterChartValueFormatter(unit: channelWithChildren.channel.ev?.impulseCounter().unit())
+        let unit = channelWithChildren.channel.isImpulseCounter() ? channelWithChildren.channel.ev?.impulseCounter().unit() :
+            channelWithChildren.children.first { $0.relationType == .meter }?.channel.ev?.impulseCounter().unit()
+        let formatter = ImpulseCounterChartValueFormatter(unit: unit)
 
         let label = HistoryDataSet.Label.single(
             HistoryDataSet.LabelData(

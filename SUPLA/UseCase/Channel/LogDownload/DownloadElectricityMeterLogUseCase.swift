@@ -24,6 +24,7 @@ protocol DownloadElectricityMeterLogUseCase {
 
 final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem>, DownloadElectricityMeterLogUseCase {
     
+    @Singleton<SuplaCloudService> var cloudService
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
     
     override func iterateAndImport(

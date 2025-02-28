@@ -27,6 +27,6 @@ final class GarageDoorIconNameProducer: IconNameProducer {
             return "garagedoor-closed-50percent"
         }
         
-        return addStateSufix(name: "garagedoor", state: iconData.state)
+        return addStateSuffix(name: "garagedoor", state: iconData.state)
     }
 }

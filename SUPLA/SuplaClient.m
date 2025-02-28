@@ -457,7 +457,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
         case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
             str = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
             break;
-        case SUPLA_RESULTCODE_ACCESSID_INACTIVE:
+        case SUPLA_RESULTCODE_INACTIVE:
             str = NSLocalizedString(@"Access Identifier inactive.", nil);
             break;
             

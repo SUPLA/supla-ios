@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     @Singleton<DownloadEventsManager> private var downloadEventsManager
@@ -67,7 +68,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             .disposed(by: self)
     }
     
-    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+    override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)
@@ -81,6 +82,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             updateView {
                 $0.changing(path: \.showHistory, to: false)
                     .changing(path: \.downloadState, to: .finished)
+                    .changing(path: \.chartStyle, to: .gpm)
             }
             if let state = currentState() {
                 triggerMeasurementsLoad(state: state)

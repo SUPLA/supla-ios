@@ -23,6 +23,7 @@ extension AggregatedValue {
         switch (self) {
         case .single(let value, _, _, _, _): value
         case .multiple(let values): values.reduce(0, +)
+        case .withPhase(let value, _, _, _): value
         }
     }
     
@@ -30,6 +31,7 @@ extension AggregatedValue {
         switch (self) {
         case .single(_, let min, _, _, _): min
         case .multiple(_): nil
+        case .withPhase(_, let min, _, _): min
         }
     }
     
@@ -37,6 +39,7 @@ extension AggregatedValue {
         switch (self) {
         case .single(_, _, let max, _, _): max
         case .multiple(_): nil
+        case .withPhase(_, _, let max, _): max
         }
     }
     
@@ -44,6 +47,7 @@ extension AggregatedValue {
         switch (self) {
         case .single(_, _, _, let open, _): open
         case .multiple(_): nil
+        case .withPhase: nil
         }
     }
     
@@ -51,6 +55,7 @@ extension AggregatedValue {
         switch (self) {
         case .single(_, _, _, _, let close): close
         case .multiple(_): nil
+        case .withPhase: nil
         }
     }
 }

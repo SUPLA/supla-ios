@@ -32,7 +32,7 @@ class ImpulseCounterDetailVC: StandardDetailVC<ImpulseCounterDetailViewState, Im
     override func handle(event: ImpulseCounterDetailViewEvent) {
         switch (event) {
         case let .openOcrPhoto(profileId, remoteId):
-            coordinator.navigateToCounterPhoto(profileId: profileId, channelId: remoteId)
+            coordinator.navigateToCounterPhoto(channelId: remoteId)
         }
     }
     

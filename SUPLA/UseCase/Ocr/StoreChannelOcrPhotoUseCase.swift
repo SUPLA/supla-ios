@@ -19,7 +19,7 @@
 import SharedCore
 
 protocol StoreChannelOcrPhotoUseCase {
-    func invoke(remoteId: Int32, profileId: Int64, photo: ImpulseCounterPhoto)
+    func invoke(remoteId: Int32, profileId: Int64, photo: ImpulseCounterPhotoDto)
 }
 
 extension SharedCore.StoreChannelOcrPhotoUseCase: StoreChannelOcrPhotoUseCase {}

@@ -132,8 +132,6 @@
 
 "Close" = "Зачинити";
 "Valve" = "Клапан";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну.";
 "Warning" = "Попередження";
 "Yes" = "Так";
 "No" = "Ні";
@@ -301,6 +299,7 @@
 
 /* General */
 "general_error" = "Помилка";
+"general_warning" = "Попередження";
 "turn_on" = "Ввімкнути";
 "turn_off" = "Вимкнути";
 "save" = "Зберегти";
@@ -569,3 +568,6 @@
 /* Impulse counter */
 "details_em_meter_value" = "Стан лічильника";
 "details_em_current_month_consumption" = "Споживання за поточний місяць";
+
+/* Valve */
+"valve_warning_manually_closed" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";

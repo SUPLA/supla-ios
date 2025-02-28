@@ -22,13 +22,8 @@ private let MAX_ALLOWED_DISTANCE_MUTLIPLIER = 1.5
 // Server provides data for each 10 minutes
 private let AGGREGATING_MINUTES_DISTANCE_SEC = 600 * MAX_ALLOWED_DISTANCE_MUTLIPLIER
     
-protocol ChannelMeasurementsProvider {
+protocol ChannelMeasurementsProvider: MeasurementsProvider {
     func handle(_ channelWithChildren: ChannelWithChildren) -> Bool
-    func provide(
-        _ channelWithChildren: ChannelWithChildren,
-        _ spec: ChartDataSpec,
-        _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets>
 }
 
 extension ChannelMeasurementsProvider {
@@ -46,12 +41,12 @@ extension ChannelMeasurementsProvider {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         @Singleton<GetChannelValueStringUseCase> var getChannelValueStringUseCase
         
-        let icon = switch(type) {
+        let icon = switch (type) {
         case .humidity: getChannelBaseIconUseCase.invoke(channel: channel, type: .second)
         default: getChannelBaseIconUseCase.invoke(channel: channel)
         }
         
-        let value = switch(type) {
+        let value = switch (type) {
         case .humidity: getChannelValueStringUseCase.invoke(channel, valueType: .second)
         default: getChannelValueStringUseCase.invoke(channel)
         }
@@ -63,41 +58,6 @@ extension ChannelMeasurementsProvider {
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )
-    }
-    
-    func getValueFormatter(_ type: ChartEntryType, _ channel: SAChannel) -> ChannelValueFormatter {
-        switch (type) {
-        case .humidity, .humidityOnly: HumidityValueFormatter()
-        case .temperature: ThermometerValueFormatter()
-        case .generalPurposeMeasurement, .generalPurposeMeter:
-            GpmValueFormatter(config: channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
-        case .electricity: ChartAxisElectricityMeterValueFormatter()
-        case .impulseCounter: ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
-        }
-    }
-    
-    func divideSetToSubsets(_ entities: [AggregatedEntity], _ aggregation: ChartDataAggregation) -> [[AggregatedEntity]] {
-        var result: [[AggregatedEntity]] = []
-        var currentSet: [AggregatedEntity] = []
-        
-        for entity in entities {
-            if let lastInCurrentSet = currentSet.last {
-                let distance = aggregation == .minutes ? AGGREGATING_MINUTES_DISTANCE_SEC : aggregation.timeInSec * MAX_ALLOWED_DISTANCE_MUTLIPLIER
-                
-                if (entity.date - lastInCurrentSet.date > distance) {
-                    result.append(currentSet)
-                    currentSet = []
-                }
-            }
-            
-            currentSet.append(entity)
-        }
-        
-        if (!currentSet.isEmpty) {
-            result.append(currentSet)
-        }
-        
-        return result
     }
     
     func aggregatingTemperature<T: BaseTemperatureEntity>(
@@ -166,6 +126,55 @@ extension ChannelMeasurementsProvider {
             aggregation: spec.aggregation,
             dataSets: dataSets
         )
+    }
+}
+
+protocol MeasurementsProvider {
+    func provide(
+        _ channelWithChildren: ChannelWithChildren,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<ChannelChartSets>
+}
+
+extension MeasurementsProvider {
+    func getValueFormatter(_ type: ChartEntryType, _ channel: SAChannel) -> ChannelValueFormatter {
+        switch (type) {
+        case .humidity, .humidityOnly: HumidityValueFormatter()
+        case .temperature: ThermometerValueFormatter()
+        case .generalPurposeMeasurement,
+             .generalPurposeMeter:
+            GpmValueFormatter(config: channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
+        case .electricity: ChartAxisElectricityMeterValueFormatter()
+        case .impulseCounter: ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
+        case .voltage: VoltageValueFormatter()
+        case .current: CurrentValueFormatter()
+        case .powerActive: PowerActiveValueFormatter()
+        }
+    }
+    
+    func divideSetToSubsets(_ entities: [AggregatedEntity], _ aggregation: ChartDataAggregation) -> [[AggregatedEntity]] {
+        var result: [[AggregatedEntity]] = []
+        var currentSet: [AggregatedEntity] = []
+        
+        for entity in entities {
+            if let lastInCurrentSet = currentSet.last {
+                let distance = aggregation == .minutes ? AGGREGATING_MINUTES_DISTANCE_SEC : aggregation.timeInSec * MAX_ALLOWED_DISTANCE_MUTLIPLIER
+                
+                if (entity.date - lastInCurrentSet.date > distance) {
+                    result.append(currentSet)
+                    currentSet = []
+                }
+            }
+            
+            currentSet.append(entity)
+        }
+        
+        if (!currentSet.isEmpty) {
+            result.append(currentSet)
+        }
+        
+        return result
     }
 }
 

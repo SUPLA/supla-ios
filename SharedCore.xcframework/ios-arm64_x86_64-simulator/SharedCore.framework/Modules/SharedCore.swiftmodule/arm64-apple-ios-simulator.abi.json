@@ -4115,6 +4115,158 @@
           },
           {
             "kind": "Var",
+            "name": "channelCaptionSepticTank",
+            "printedName": "channelCaptionSepticTank",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO24channelCaptionSepticTankyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO24channelCaptionSepticTankyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 63
+          },
+          {
+            "kind": "Var",
+            "name": "channelCaptionWaterTank",
+            "printedName": "channelCaptionWaterTank",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO23channelCaptionWaterTankyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO23channelCaptionWaterTankyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 64
+          },
+          {
+            "kind": "Var",
+            "name": "channelCaptionContainerLevelSensor",
+            "printedName": "channelCaptionContainerLevelSensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO34channelCaptionContainerLevelSensoryA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO34channelCaptionContainerLevelSensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 65
+          },
+          {
+            "kind": "Var",
+            "name": "channelCaptionFloodSensor",
+            "printedName": "channelCaptionFloodSensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO25channelCaptionFloodSensoryA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO25channelCaptionFloodSensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 66
+          },
+          {
+            "kind": "Var",
             "name": "channelBatteryLevel",
             "printedName": "channelBatteryLevel",
             "children": [
@@ -4149,7 +4301,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 63
+            "fixedbinaryorder": 67
           },
           {
             "kind": "Var",
@@ -4187,7 +4339,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 64
+            "fixedbinaryorder": 68
           },
           {
             "kind": "Var",
@@ -4225,7 +4377,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 65
+            "fixedbinaryorder": 69
           },
           {
             "kind": "Var",
@@ -4263,7 +4415,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 66
+            "fixedbinaryorder": 70
           },
           {
             "kind": "Var",
@@ -4301,7 +4453,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 67
+            "fixedbinaryorder": 71
           },
           {
             "kind": "Var",
@@ -4339,7 +4491,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 68
+            "fixedbinaryorder": 72
           },
           {
             "kind": "Var",
@@ -4377,7 +4529,121 @@
             "usr": "s:10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 69
+            "fixedbinaryorder": 73
+          },
+          {
+            "kind": "Var",
+            "name": "floodSensorActive",
+            "printedName": "floodSensorActive",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO17floodSensorActiveyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO17floodSensorActiveyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 74
+          },
+          {
+            "kind": "Var",
+            "name": "valveManuallyClosed",
+            "printedName": "valveManuallyClosed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO19valveManuallyClosedyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO19valveManuallyClosedyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 75
+          },
+          {
+            "kind": "Var",
+            "name": "valveFlooding",
+            "printedName": "valveFlooding",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO13valveFloodingyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO13valveFloodingyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 76
           },
           {
             "kind": "Var",
@@ -7256,6 +7522,158 @@
             "mangledName": "$s10SharedCore13SuplaFunctionO9containeryA2CmF",
             "moduleName": "SharedCore",
             "fixedbinaryorder": 61
+          },
+          {
+            "kind": "Var",
+            "name": "septicTank",
+            "printedName": "septicTank",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO10septicTankyA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO10septicTankyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 62
+          },
+          {
+            "kind": "Var",
+            "name": "waterTank",
+            "printedName": "waterTank",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO9waterTankyA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO9waterTankyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 63
+          },
+          {
+            "kind": "Var",
+            "name": "containerLevelSensor",
+            "printedName": "containerLevelSensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO20containerLevelSensoryA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO20containerLevelSensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 64
+          },
+          {
+            "kind": "Var",
+            "name": "floodSensor",
+            "printedName": "floodSensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO11floodSensoryA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO11floodSensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 65
           },
           {
             "kind": "Var",
@@ -11717,6 +12135,686 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "SuplaValveFlag",
+        "printedName": "SuplaValveFlag",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "flooding",
+            "printedName": "flooding",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaValveFlag.Type) -> SharedCore.SuplaValveFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaValveFlag",
+                    "printedName": "SharedCore.SuplaValveFlag",
+                    "usr": "s:10SharedCore14SuplaValveFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaValveFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaValveFlag",
+                        "printedName": "SharedCore.SuplaValveFlag",
+                        "usr": "s:10SharedCore14SuplaValveFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore14SuplaValveFlagO8floodingyA2CmF",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO8floodingyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "manuallyClosed",
+            "printedName": "manuallyClosed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaValveFlag.Type) -> SharedCore.SuplaValveFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaValveFlag",
+                    "printedName": "SharedCore.SuplaValveFlag",
+                    "usr": "s:10SharedCore14SuplaValveFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaValveFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaValveFlag",
+                        "printedName": "SharedCore.SuplaValveFlag",
+                        "usr": "s:10SharedCore14SuplaValveFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore14SuplaValveFlagO14manuallyClosedyA2CmF",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO14manuallyClosedyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore14SuplaValveFlagO4nameSSvp",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO4nameSSvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore14SuplaValveFlagO4nameSSvg",
+                "mangledName": "$s10SharedCore14SuplaValveFlagO4nameSSvg",
+                "moduleName": "SharedCore",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "ordinal",
+            "printedName": "ordinal",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore14SuplaValveFlagO7ordinals5Int32Vvp",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO7ordinals5Int32Vvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore14SuplaValveFlagO7ordinals5Int32Vvg",
+                "mangledName": "$s10SharedCore14SuplaValveFlagO7ordinals5Int32Vvg",
+                "moduleName": "SharedCore",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "value",
+            "printedName": "value",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore14SuplaValveFlagO5values5Int32Vvp",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO5values5Int32Vvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore14SuplaValveFlagO5values5Int32Vvg",
+                "mangledName": "$s10SharedCore14SuplaValveFlagO5values5Int32Vvg",
+                "moduleName": "SharedCore",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "companion",
+            "printedName": "companion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Companion",
+                "printedName": "SharedCore.__SuplaValveFlag.Companion",
+                "usr": "c:objc(cs)SharedCoreSuplaValveFlagCompanion"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore14SuplaValveFlagO9companionSo0abcdE9CompanionCvpZ",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO9companionSo0abcdE9CompanionCvpZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Companion",
+                    "printedName": "SharedCore.__SuplaValveFlag.Companion",
+                    "usr": "c:objc(cs)SharedCoreSuplaValveFlagCompanion"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore14SuplaValveFlagO9companionSo0abcdE9CompanionCvgZ",
+                "mangledName": "$s10SharedCore14SuplaValveFlagO9companionSo0abcdE9CompanionCvgZ",
+                "moduleName": "SharedCore",
+                "static": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "_forceBridgeFromObjectiveC",
+            "printedName": "_forceBridgeFromObjectiveC(_:result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "__SuplaValveFlag",
+                "printedName": "SharedCore.__SuplaValveFlag",
+                "usr": "c:objc(cs)SharedCoreSuplaValveFlag"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.SuplaValveFlag?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaValveFlag",
+                    "printedName": "SharedCore.SuplaValveFlag",
+                    "usr": "s:10SharedCore14SuplaValveFlagO"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO26_forceBridgeFromObjectiveC_6resultySo0abcdE0C_ACSgztFZ",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO26_forceBridgeFromObjectiveC_6resultySo0abcdE0C_ACSgztFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_conditionallyBridgeFromObjectiveC",
+            "printedName": "_conditionallyBridgeFromObjectiveC(_:result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "__SuplaValveFlag",
+                "printedName": "SharedCore.__SuplaValveFlag",
+                "usr": "c:objc(cs)SharedCoreSuplaValveFlag"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.SuplaValveFlag?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaValveFlag",
+                    "printedName": "SharedCore.SuplaValveFlag",
+                    "usr": "s:10SharedCore14SuplaValveFlagO"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO34_conditionallyBridgeFromObjectiveC_6resultSbSo0abcdE0C_ACSgztFZ",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO34_conditionallyBridgeFromObjectiveC_6resultSbSo0abcdE0C_ACSgztFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_unconditionallyBridgeFromObjectiveC",
+            "printedName": "_unconditionallyBridgeFromObjectiveC(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SuplaValveFlag",
+                "printedName": "SharedCore.SuplaValveFlag",
+                "usr": "s:10SharedCore14SuplaValveFlagO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.__SuplaValveFlag?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "__SuplaValveFlag",
+                    "printedName": "SharedCore.__SuplaValveFlag",
+                    "usr": "c:objc(cs)SharedCoreSuplaValveFlag"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO36_unconditionallyBridgeFromObjectiveCyACSo0abcdE0CSgFZ",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO36_unconditionallyBridgeFromObjectiveCyACSo0abcdE0CSgFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_bridgeToObjectiveC",
+            "printedName": "_bridgeToObjectiveC()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__SuplaValveFlag",
+                "printedName": "SharedCore.__SuplaValveFlag",
+                "usr": "c:objc(cs)SharedCoreSuplaValveFlag"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO19_bridgeToObjectiveCSo0abcdE0CyF",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO19_bridgeToObjectiveCSo0abcdE0CyF",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SuplaValveFlag",
+                "printedName": "SharedCore.SuplaValveFlag",
+                "usr": "s:10SharedCore14SuplaValveFlagO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SuplaValveFlag",
+                "printedName": "SharedCore.SuplaValveFlag",
+                "usr": "s:10SharedCore14SuplaValveFlagO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO2eeoiySbAC_ACtFZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore14SuplaValveFlagO9hashValueSivp",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO9hashValueSivp",
+            "moduleName": "SharedCore",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore14SuplaValveFlagO9hashValueSivg",
+                "mangledName": "$s10SharedCore14SuplaValveFlagO9hashValueSivg",
+                "moduleName": "SharedCore",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO4hash4intoys6HasherVz_tF",
+            "moduleName": "SharedCore",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "allCases",
+            "printedName": "allCases",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[SharedCore.SuplaValveFlag]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaValveFlag",
+                    "printedName": "SharedCore.SuplaValveFlag",
+                    "usr": "s:10SharedCore14SuplaValveFlagO"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10SharedCore14SuplaValveFlagO8allCasesSayACGvpZ",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO8allCasesSayACGvpZ",
+            "moduleName": "SharedCore",
+            "static": true,
+            "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[SharedCore.SuplaValveFlag]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaValveFlag",
+                        "printedName": "SharedCore.SuplaValveFlag",
+                        "usr": "s:10SharedCore14SuplaValveFlagO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10SharedCore14SuplaValveFlagO8allCasesSayACGvgZ",
+                "mangledName": "$s10SharedCore14SuplaValveFlagO8allCasesSayACGvgZ",
+                "moduleName": "SharedCore",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "toKotlinEnum",
+            "printedName": "toKotlinEnum()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__SuplaValveFlag",
+                "printedName": "SharedCore.__SuplaValveFlag",
+                "usr": "c:objc(cs)SharedCoreSuplaValveFlag"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10SharedCore14SuplaValveFlagO12toKotlinEnumSo0abcdE0CyF",
+            "mangledName": "$s10SharedCore14SuplaValveFlagO12toKotlinEnumSo0abcdE0CyF",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:10SharedCore14SuplaValveFlagO",
+        "mangledName": "$s10SharedCore14SuplaValveFlagO",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl",
+          "Frozen"
+        ],
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CaseIterable",
+            "printedName": "CaseIterable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AllCases",
+                "printedName": "AllCases",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[SharedCore.SuplaValveFlag]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaValveFlag",
+                        "printedName": "SharedCore.SuplaValveFlag",
+                        "usr": "s:10SharedCore14SuplaValveFlagO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12CaseIterableP",
+            "mangledName": "$ss12CaseIterableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObjectiveCBridgeable",
+            "printedName": "_ObjectiveCBridgeable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "_ObjectiveCType",
+                "printedName": "_ObjectiveCType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "__SuplaValveFlag",
+                    "printedName": "SharedCore.__SuplaValveFlag",
+                    "usr": "c:objc(cs)SharedCoreSuplaValveFlag"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s21_ObjectiveCBridgeableP",
+            "mangledName": "$ss21_ObjectiveCBridgeableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "Skie",
         "printedName": "Skie",
         "children": [
@@ -13423,6 +14521,281 @@
                     "mangledName": "$ss9EscapableP"
                   }
                 ]
+              },
+              {
+                "kind": "TypeDecl",
+                "name": "ChannelDto",
+                "printedName": "ChannelDto",
+                "children": [
+                  {
+                    "kind": "TypeDecl",
+                    "name": "__Sealed",
+                    "printedName": "__Sealed",
+                    "children": [
+                      {
+                        "kind": "Var",
+                        "name": "defaultChannelDto",
+                        "printedName": "defaultChannelDto",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type) -> (SharedCore.DefaultChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.DefaultChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "DefaultChannelDto",
+                                    "printedName": "SharedCore.DefaultChannelDto",
+                                    "usr": "c:objc(cs)SharedCoreDefaultChannelDto"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO07defaulthI0yAISo0ab7DefaulthI0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO07defaulthI0yAISo0ab7DefaulthI0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 0
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "electricityChannelDto",
+                        "printedName": "electricityChannelDto",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type) -> (SharedCore.ElectricityChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.ElectricityChannelDto) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ElectricityChannelDto",
+                                    "printedName": "SharedCore.ElectricityChannelDto",
+                                    "usr": "c:objc(cs)SharedCoreElectricityChannelDto"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO011electricityhI0yAISo0ab11ElectricityhI0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO011electricityhI0yAISo0ab11ElectricityhI0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 1
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "hashValue",
+                        "printedName": "hashValue",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "declKind": "Var",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivp",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivp",
+                        "moduleName": "SharedCore",
+                        "implicit": true,
+                        "accessors": [
+                          {
+                            "kind": "Accessor",
+                            "name": "Get",
+                            "printedName": "Get()",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int",
+                                "printedName": "Swift.Int",
+                                "usr": "s:Si"
+                              }
+                            ],
+                            "declKind": "Accessor",
+                            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivg",
+                            "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO9hashValueSivg",
+                            "moduleName": "SharedCore",
+                            "implicit": true,
+                            "accessorKind": "get"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "Function",
+                        "name": "hash",
+                        "printedName": "hash(into:)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Hasher",
+                            "printedName": "Swift.Hasher",
+                            "paramValueOwnership": "InOut",
+                            "usr": "s:s6HasherV"
+                          }
+                        ],
+                        "declKind": "Func",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO4hash4intoys6HasherVz_tF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO4hash4intoys6HasherVz_tF",
+                        "moduleName": "SharedCore",
+                        "implicit": true,
+                        "funcSelfKind": "NonMutating"
+                      },
+                      {
+                        "kind": "Function",
+                        "name": "==",
+                        "printedName": "==(_:_:)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "__Sealed",
+                            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "__Sealed",
+                            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+                          }
+                        ],
+                        "declKind": "Func",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO2eeoiySbAI_AItFZ",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO2eeoiySbAI_AItFZ",
+                        "moduleName": "SharedCore",
+                        "static": true,
+                        "implicit": true,
+                        "funcSelfKind": "NonMutating"
+                      }
+                    ],
+                    "declKind": "Enum",
+                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO",
+                    "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO",
+                    "moduleName": "SharedCore",
+                    "declAttributes": [
+                      "AccessControl",
+                      "Frozen"
+                    ],
+                    "isFromExtension": true,
+                    "isEnumExhaustive": true,
+                    "conformances": [
+                      {
+                        "kind": "Conformance",
+                        "name": "Copyable",
+                        "printedName": "Copyable",
+                        "usr": "s:s8CopyableP",
+                        "mangledName": "$ss8CopyableP"
+                      },
+                      {
+                        "kind": "Conformance",
+                        "name": "Escapable",
+                        "printedName": "Escapable",
+                        "usr": "s:s9EscapableP",
+                        "mangledName": "$ss9EscapableP"
+                      },
+                      {
+                        "kind": "Conformance",
+                        "name": "Hashable",
+                        "printedName": "Hashable",
+                        "usr": "s:SH",
+                        "mangledName": "$sSH"
+                      },
+                      {
+                        "kind": "Conformance",
+                        "name": "Equatable",
+                        "printedName": "Equatable",
+                        "usr": "s:SQ",
+                        "mangledName": "$sSQ"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Enum",
+                "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO",
+                "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO",
+                "moduleName": "SharedCore",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "conformances": [
+                  {
+                    "kind": "Conformance",
+                    "name": "Copyable",
+                    "printedName": "Copyable",
+                    "usr": "s:s8CopyableP",
+                    "mangledName": "$ss8CopyableP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "Escapable",
+                    "printedName": "Escapable",
+                    "usr": "s:s9EscapableP",
+                    "mangledName": "$ss9EscapableP"
+                  }
+                ]
               }
             ],
             "declKind": "Enum",
@@ -13800,6 +15173,89 @@
         "moduleName": "SharedCore",
         "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelIssueItem>",
         "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelIssueItem>",
+        "declAttributes": [
+          "AccessControl",
+          "DisfavoredOverload"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Function",
+        "name": "onEnum",
+        "printedName": "onEnum(of:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "__Sealed",
+            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+            "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "GenericTypeParam",
+            "printedName": "τ_0_0"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOx_tSo0abkL0RzlF",
+        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOx_tSo0abkL0RzlF",
+        "moduleName": "SharedCore",
+        "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelDto>",
+        "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelDto>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "onEnum",
+        "printedName": "onEnum(of:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__Sealed",
+                "printedName": "SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed",
+                "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedO"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "τ_0_0?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOSgxSg_tSo0abkL0RzlF",
+        "mangledName": "$s10SharedCore6onEnum2ofAA4SkieO26supla_android__shared_coreO10ChannelDtoO8__SealedOSgxSg_tSo0abkL0RzlF",
+        "moduleName": "SharedCore",
+        "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.ChannelDto>",
+        "sugared_genericSig": "<__Sealed where __Sealed : SharedCore.ChannelDto>",
         "declAttributes": [
           "AccessControl",
           "DisfavoredOverload"
@@ -14800,6 +16256,116 @@
         "inheritsConvenienceInitializers": true,
         "superclassNames": [
           "SharedCore.KotlinEnum<SharedCore.__SuplaThermostatFlag>",
+          "SharedCore.KotlinBase",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "__SuplaValveFlag",
+        "printedName": "__SuplaValveFlag",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "toSwiftEnum",
+            "printedName": "toSwiftEnum()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SuplaValveFlag",
+                "printedName": "SharedCore.SuplaValveFlag",
+                "usr": "s:10SharedCore14SuplaValveFlagO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:So24SharedCoreSuplaValveFlagC0aB0E11toSwiftEnumAC0cdE0OyF",
+            "mangledName": "$sSo24SharedCoreSuplaValveFlagC0aB0E11toSwiftEnumAC0cdE0OyF",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)SharedCoreSuplaValveFlag",
+        "moduleName": "SharedCore",
+        "objc_name": "SharedCoreSuplaValveFlag",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)SharedCoreKotlinEnum",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "SharedCore.KotlinEnum<SharedCore.__SuplaValveFlag>",
           "SharedCore.KotlinBase",
           "ObjectiveC.NSObject"
         ],

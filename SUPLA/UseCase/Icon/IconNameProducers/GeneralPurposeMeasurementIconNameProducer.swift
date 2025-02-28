@@ -22,7 +22,7 @@ final class GeneralPurposeMeasurementIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: IconData) -> String {
-        return addStateSufix(name: altIcon(iconData.altIcon), state: iconData.state)
+        return addStateSuffix(name: altIcon(iconData.altIcon), state: iconData.state)
     }
     
     private func altIcon(_ altIcon: Int32) -> String {

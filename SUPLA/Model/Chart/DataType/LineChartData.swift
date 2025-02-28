@@ -64,6 +64,7 @@ private extension AggregatedValue {
         switch (self) {
         case .single(let value, _, _, _, _): return value
         case .multiple(let values): return values.reduce(0, +)
+        case .withPhase(let value, _, _, _): return value
         }
     }
 }

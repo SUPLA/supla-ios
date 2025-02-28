@@ -72,6 +72,8 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(impulseCounterGeneralDetail())
             case .impulseCounterHistory:
                 viewControllers.append(impulseCounterHistoryDetail())
+            case .impulseCounterOcr:
+                viewControllers.append(impulseCounterOcrDetail())
             case .thermostatGeneral:
                 viewControllers.append(thermostatGeneral())
             case .thermostatList:
@@ -380,6 +382,16 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
         )
         return vc
     }
+    
+    private func impulseCounterOcrDetail() -> UIViewController {
+        let vc = CounterPhotoFeature.ViewController.create(channelId: item.remoteId)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabOcr : nil,
+            image: .iconOcrPhoto,
+            tag: DetailTabTag.Ocr.rawValue
+        )
+        return vc
+    }
 }
 
 protocol NavigationItemProvider: AnyObject {
@@ -396,4 +408,5 @@ private enum DetailTabTag: Int {
     case ThermostatHistory = 6
     case Window = 7
     case List = 8
+    case Ocr = 9
 }

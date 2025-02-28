@@ -21,33 +21,28 @@ extension CounterPhotoFeature {
         
         @Singleton<SuplaAppCoordinator> var coordinator
         
-        private var profileId: Int32
         private var channelId: Int32
         
-        init(profileId: Int32, channelId: Int32, viewModel: ViewModel) {
-            self.profileId = profileId
+        init(channelId: Int32, viewModel: ViewModel) {
             self.channelId = channelId
             super.init(viewModel: viewModel)
             
             contentView = View(
                 viewState: state,
                 onUrlClick: coordinator.openUrl(url:),
-                onRefresh: {
-                    await viewModel.onRefresh(channelId, profileId)
-                }
+                onRefresh: { await viewModel.onRefresh(channelId) },
+                onRetry: { viewModel.loadData(channelId) }
             )
         }
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            viewModel.loadData(channelId, profileId)
-            
-            title = Strings.CounterPhoto.toolbar
+            viewModel.loadData(channelId)
         }
         
-        static func create(profileId: Int32, channelId: Int32) -> UIViewController {
+        static func create(channelId: Int32) -> UIViewController {
             let viewModel = ViewModel()
-            return ViewController(profileId: profileId, channelId: channelId, viewModel: viewModel)
+            return ViewController(channelId: channelId, viewModel: viewModel)
         }
     }
 }

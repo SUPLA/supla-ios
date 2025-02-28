@@ -22,10 +22,10 @@ fileprivate let ALLOWED_TIME_DIFFERENCE: Double = 1800
 
 class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementItem> {
     
-    @Singleton<SuplaCloudService> var cloudService
     @Singleton<ProfileRepository> var profileRepository
     
     let baseMeasurementRepository: any BaseMeasurementRepository<M, E>
+    var cleanupHistoryWHenOldestDiffers: Bool { true }
     
     init(_ repository: any BaseMeasurementRepository<M, E>) {
         self.baseMeasurementRepository = repository
@@ -72,7 +72,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         _ remoteId: Int32
     ) -> (measurements: [M], totalCount: Int)? {
         do {
-            let firstMeasurements = try cloudService
+            let firstMeasurements = try baseMeasurementRepository
                 .getInitialMeasurements(remoteId: remoteId)
                 .subscribeSynchronous()
             guard let code = firstMeasurements?.response.statusCode else { return nil }
@@ -119,12 +119,17 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
             }
             
             SALog.debug("Found local minimal timestamp \(minTimestamp)")
-            for measurement in measurements {
-                let difference = abs(minTimestamp - measurement.date_timestamp.timeIntervalSince1970)
-                if (difference.isLess(than: ALLOWED_TIME_DIFFERENCE)) {
-                    NSLog("Entries similar - no cleaning needed")
-                    return false
+            if (cleanupHistoryWHenOldestDiffers) {
+                for measurement in measurements {
+                    let difference = abs(minTimestamp - measurement.date_timestamp.timeIntervalSince1970)
+                    if (difference.isLess(than: ALLOWED_TIME_DIFFERENCE)) {
+                        SALog.debug("Entries similar - no cleaning needed")
+                        return false
+                    }
                 }
+            } else {
+                SALog.debug("Oldest check skipped - no cleanup needed")
+                return false
             }
             
             return true

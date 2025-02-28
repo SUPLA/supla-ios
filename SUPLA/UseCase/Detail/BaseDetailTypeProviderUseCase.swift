@@ -137,4 +137,5 @@ enum DetailPage {
     // IC
     case impulseCounterGeneral
     case impulseCounterHistory
+    case impulseCounterOcr
 }

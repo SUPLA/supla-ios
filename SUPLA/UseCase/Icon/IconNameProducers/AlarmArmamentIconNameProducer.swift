@@ -22,7 +22,7 @@ final class AlarmArmamentIconNameProducer: IconNameProducer {
     }
 
     func produce(iconData: IconData) -> String {
-        addStateSufix(name: icon(iconData.altIcon), state: iconData.state)
+        addStateSuffix(name: icon(iconData.altIcon), state: iconData.state)
     }
 
     private func icon(_ altIcon: Int32) -> String {

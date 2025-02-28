@@ -28,6 +28,14 @@ struct ChartDataSpec: Equatable {
         self.aggregation = aggregation
         self.customFilters = customFilters
     }
+    
+    func correctBy(range: DaysRange?) -> ChartDataSpec {
+        if let range {
+            ChartDataSpec(startDate: range.start, endDate: range.end, aggregation: aggregation, customFilters: customFilters)
+        } else {
+            self
+        }
+    }
 
     static func == (lhs: ChartDataSpec, rhs: ChartDataSpec) -> Bool {
         lhs.startDate == rhs.startDate &&

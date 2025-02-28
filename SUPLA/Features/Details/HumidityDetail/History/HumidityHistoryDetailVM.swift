@@ -17,6 +17,7 @@
  */
     
 import RxSwift
+import SharedCore
 
 final class HumidityHistoryDetailVM: BaseHistoryDetailVM {
     
@@ -24,8 +25,6 @@ final class HumidityHistoryDetailVM: BaseHistoryDetailVM {
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
-    
-    override var chartStyle: any ChartStyle { HumidityChartStyle() }
     
     override func measurementsObservable(
         remoteId: Int32,
@@ -38,10 +37,11 @@ final class HumidityHistoryDetailVM: BaseHistoryDetailVM {
         ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [$0]), $1) }
     }
     
-    override func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+    override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
         updateView {
             $0.changing(path: \.profileId, to: channel.channel.profile.id)
                 .changing(path: \.channelFunction, to: channel.channel.func)
+                .changing(path: \.chartStyle, to: .humidity)
         }
         
         restoreRange(chartState: chartState)

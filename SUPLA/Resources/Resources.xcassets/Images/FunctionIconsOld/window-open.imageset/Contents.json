@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "window-open@3x.png",
+      "filename" : "230.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "window-open-nightmode@3x.png",
+      "filename" : "849.svg",
       "idiom" : "universal"
     }
   ],

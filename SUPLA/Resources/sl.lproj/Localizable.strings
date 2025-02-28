@@ -132,8 +132,6 @@
 
 "Close" = "Zapri";
 "Valve" = "Ventil";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil.";
 "Warning" = "Opozorilo";
 "Yes" = "Da";
 "No" = "Ne";
@@ -301,6 +299,7 @@
 
 /* General */
 "general_error" = "Napaka";
+"general_warning" = "Opozorilo";
 "turn_on" = "Vklopi";
 "turn_off" = "Izklopi";
 "save" = "Shrani";
@@ -568,3 +567,6 @@
 /* Impulse counter */
 "details_em_meter_value" = "Stanje števca";
 "details_em_current_month_consumption" = "Poraba v tekočem mesecu";
+
+/* Valve */
+"valve_warning_manually_closed" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";

@@ -46,5 +46,8 @@
 #import "SAElectricityMeterExtendedValue.h"
 #import "SAIncrementalMeterExtendedValue.h"
 #import "SAHumidityMeasurementItem+CoreDataClass.h"
+#import "SACurrentMeasurementItem+CoreDataClass.h"
+#import "SAVoltageMeasurementItem+CoreDataClass.h"
+#import "SAPowerActiveMeasurementItem+CoreDataClass.h"
 
 #import "supla-client.h"

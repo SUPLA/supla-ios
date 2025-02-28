@@ -119,7 +119,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 // CS  - client -> server
 // SC  - server -> client
 
-#define SUPLA_PROTO_VERSION 26
+#define SUPLA_PROTO_VERSION 27
 #define SUPLA_PROTO_VERSION_MIN 1
 
 #if defined(ARDUINO_ARCH_AVR) || defined(ARDUINO) || defined(SUPLA_DEVICE)
@@ -346,7 +346,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_SCENE 29  // ver. >= 12
 #define SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_ACTION_TRIGGER \
   30                                              // ver. >= 16
-#define SUPLA_RESULTCODE_ACCESSID_INACTIVE 31     // ver. >= 17
+#define SUPLA_RESULTCODE_INACTIVE 31              // ver. >= 17
 #define SUPLA_RESULTCODE_CFG_MODE_REQUESTED 32    // ver. >= 18
 #define SUPLA_RESULTCODE_ACTION_UNSUPPORTED 33    // ver. >= 19
 #define SUPLA_RESULTCODE_SUBJECT_NOT_FOUND 34     // ver. >= 19
@@ -406,6 +406,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNELTYPE_RAINSENSOR 3048             // ver. >= 8
 #define SUPLA_CHANNELTYPE_WEIGHTSENSOR 3050           // ver. >= 8
 #define SUPLA_CHANNELTYPE_WEATHER_STATION 3100        // ver. >= 8
+#define SUPLA_CHANNELTYPE_CONTAINER 3200              // ver. >= 26
 
 #define SUPLA_CHANNELTYPE_DIMMER 4000            // ver. >= 4
 #define SUPLA_CHANNELTYPE_RGBLEDCONTROLLER 4010  // ver. >= 4
@@ -496,6 +497,11 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR 950            // ver. >= 24
 #define SUPLA_CHANNELFNC_PUMPSWITCH 960                    // ver. >= 25
 #define SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH 970        // ver. >= 25
+#define SUPLA_CHANNELFNC_CONTAINER 980                     // ver. >= 26
+#define SUPLA_CHANNELFNC_SEPTIC_TANK 981                   // ver. >= 26
+#define SUPLA_CHANNELFNC_WATER_TANK 982                    // ver. >= 26
+#define SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR 990        // ver. >= 26
+#define SUPLA_CHANNELFNC_FLOOD_SENSOR 1000                 // ver. >= 26
 
 #define SUPLA_BIT_FUNC_CONTROLLINGTHEGATEWAYLOCK 0x00000001
 #define SUPLA_BIT_FUNC_CONTROLLINGTHEGATE 0x00000002
@@ -574,6 +580,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_MFR_SOMEF 17
 #define SUPLA_MFR_AURATON 18
 #define SUPLA_MFR_HPD 19
+#define SUPLA_MFR_LUKFUD 20
 
 // BIT map definition for TDS_SuplaRegisterDevice_*::Flags (32 bit)
 #define SUPLA_DEVICE_FLAG_CALCFG_ENTER_CFG_MODE 0x0010          // ver. >= 17
@@ -612,18 +619,11 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 
 // BIT map definition for TDS_SuplaDeviceChannel_C::Flags (32 bit)
 #define SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE 0x0001  // ver. >= 12
-#define SUPLA_CHANNEL_FLAG_IR_BRIDGE 0x0002     // ver. >= 12
-#define SUPLA_CHANNEL_FLAG_RF_BRIDGE 0x0004     // ver. >= 12
-// Free bit for future use: 0x0008
-#define SUPLA_CHANNEL_FLAG_CHART_TYPE_BAR \
-  0x0010  // ver. >= 12
-          // DEPRECATED
-#define SUPLA_CHANNEL_FLAG_CHART_DS_TYPE_DIFFERENTAL \
-  0x0020  // ver. >= 12
-          // DEPRECATED
-#define SUPLA_CHANNEL_FLAG_CHART_INTERPOLATE_MEASUREMENTS \
-  0x0040                                                   // ver. >= 12
-                                                           // DEPRECATED
+#define SUPLA_CHANNEL_FLAG_IR_BRIDGE 0x0002     // ver. >= 12 DEPRECATED
+#define SUPLA_CHANNEL_FLAG_RF_BRIDGE 0x0004     // ver. >= 12 DEPRECATED
+#define SUPLA_CHANNEL_FLAG_OCR 0x0008           // ver. >= 26
+#define SUPLA_CHANNEL_FLAG_FLOOD_SENSORS_SUPPORTED 0x0010  // ver. >= 27
+// Free bits for future use: 0x0020, 0x0040
 #define SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS 0x0080  // ver. >= 17
 #define SUPLA_CHANNEL_FLAG_RGBW_COMMANDS_SUPPORTED 0x0100  // ver. >= 21
 // Free bits for future use:  0x0200, 0x0400, 0x0800
@@ -851,7 +851,7 @@ typedef struct {
 #define SUPLA_HVAC_MODE_CMD_SWITCH_TO_MANUAL 10
 
 typedef struct {
-  unsigned char IsOn;  // DS: 0/1 (for on/off) or 2..102 (for 0-100%)
+  unsigned char IsOn;  // DS: 0/1 (for off/on) or 2..102 (for 0-100%)
   unsigned char Mode;  // SUPLA_HVAC_MODE_
   _supla_int16_t
       SetpointTemperatureHeat;  // * 0.01 Celcius degree - used for heating
@@ -881,6 +881,25 @@ typedef struct {
   };
 } TDS_SuplaDeviceChannel_C;  // ver. >= 10
 
+// Channel offline flag values:
+#define SUPLA_CHANNEL_OFFLINE_FLAG_ONLINE 0
+#define SUPLA_CHANNEL_OFFLINE_FLAG_OFFLINE 1
+#define SUPLA_CHANNEL_OFFLINE_FLAG_ONLINE_BUT_NOT_AVAILABLE 2
+#define SUPLA_CHANNEL_OFFLINE_FLAG_OFFLINE_REMOTE_WAKEUP_NOT_SUPPORTED 3
+
+// Only in ONLINE state, ValidityTimeSec and value variables are used.
+// OFFLINE_REMOTE_WAKEUP_NOT_SUPPORTED - device doesn't support remote wakeup,
+//   so we wait for it to initiate the communication.
+
+// Channel online flag values (only online/offline 0/1 values are exchanged,
+// compared to offline flag values):
+#define SUPLA_CHANNEL_ONLINE_FLAG_ONLINE 1
+#define SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE 0
+#define SUPLA_CHANNEL_ONLINE_FLAG_ONLINE_BUT_NOT_AVAILABLE \
+  SUPLA_CHANNEL_OFFLINE_FLAG_ONLINE_BUT_NOT_AVAILABLE
+#define SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE_REMOTE_WAKEUP_NOT_SUPPORTED \
+  SUPLA_CHANNEL_OFFLINE_FLAG_OFFLINE_REMOTE_WAKEUP_NOT_SUPPORTED
+
 typedef struct {
   // device -> server
 
@@ -895,9 +914,7 @@ typedef struct {
   _supla_int_t Default;
   _supla_int64_t Flags;
 
-  unsigned char
-      Offline;  // If 1, the ValidityTimeSec and value variables are ignored. 0
-                // - ONLINE, 1 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  unsigned char Offline;  // see SUPLA_CHANNEL_OFFLINE_FLAG_
   unsigned _supla_int_t ValueValidityTimeSec;
 
   union {
@@ -923,9 +940,7 @@ typedef struct {
   _supla_int_t Default;
   _supla_int64_t Flags;
 
-  unsigned char
-      Offline;  // If 1, the ValidityTimeSec and value variables are ignored. 0
-                // - ONLINE, 1 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  unsigned char Offline;  // see SUPLA_CHANNEL_OFFLINE_FLAG_
   unsigned _supla_int_t ValueValidityTimeSec;
 
   union {
@@ -1113,8 +1128,7 @@ typedef struct {
   // device -> server
 
   unsigned char ChannelNumber;
-  unsigned char Offline;  // If 1, the value variable is ignored. 0 - ONLINE, 1
-                          // - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  unsigned char Offline;  // see SUPLA_CHANNEL_OFFLINE_FLAG_
   char value[SUPLA_CHANNELVALUE_SIZE];
 } TDS_SuplaDeviceChannelValue_B;  // v. >= 12
 
@@ -1122,9 +1136,7 @@ typedef struct {
   // device -> server
 
   unsigned char ChannelNumber;
-  unsigned char
-      Offline;  // If 1, the ValidityTimeSec and value variables are ignored. 0
-                // - ONLINE, 1 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  unsigned char Offline;  // see SUPLA_CHANNEL_OFFLINE_FLAG_
   unsigned _supla_int_t ValidityTimeSec;
   char value[SUPLA_CHANNELVALUE_SIZE];
 } TDS_SuplaDeviceChannelValue_C;  // v. >= 12
@@ -1173,7 +1185,7 @@ typedef struct {
 
   char EOL;  // End Of List
   _supla_int_t Id;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue value;
 } TSC_SuplaChannelValue;
@@ -1183,7 +1195,7 @@ typedef struct {
 
   char EOL;  // End Of List
   _supla_int_t Id;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue_B value;
 } TSC_SuplaChannelValue_B;  //  ver. >= 15
@@ -1233,7 +1245,7 @@ typedef struct {
   _supla_int_t Id;
   _supla_int_t LocationID;
   _supla_int_t Func;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue value;
 
@@ -1261,7 +1273,7 @@ typedef struct {
   _supla_int_t AltIcon;
   unsigned _supla_int_t Flags;
   unsigned char ProtocolVersion;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue value;
 
@@ -1295,7 +1307,7 @@ typedef struct {
 
   unsigned _supla_int_t Flags;
   unsigned char ProtocolVersion;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue value;
 
@@ -1320,7 +1332,7 @@ typedef struct {
 
   unsigned _supla_int_t Flags;
   unsigned char ProtocolVersion;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue_B value;
 
@@ -1346,7 +1358,7 @@ typedef struct {
 
   unsigned _supla_int64_t Flags;
   unsigned char ProtocolVersion;
-  char online;  // 1 - ONLINE, 0 - OFFLINE - 2 ONLINE BUT NOT AVAILABLE
+  char online;  // see SUPLA_CHANNEL_ONLINE_FLAG_
 
   TSuplaChannelValue_B value;
 
@@ -2109,6 +2121,7 @@ typedef struct {
 #define SUPLA_CALCFG_CMD_RESTART_DEVICE 9400              // v. >= 25
 #define SUPLA_CALCFG_CMD_RESTART_SUBDEVICE 9410           // v. >= 25
 #define SUPLA_CALCFG_CMD_TAKE_OCR_PHOTO 9420              // v. >= 25
+#define SUPLA_CALCFG_CMD_MUTE_ALARM_SOUND 9430            // v. >= 26
 
 #define SUPLA_CALCFG_DATATYPE_RS_SETTINGS 1000
 #define SUPLA_CALCFG_DATATYPE_FB_SETTINGS 1100  // v. >= 17
@@ -2318,6 +2331,16 @@ typedef struct {
   unsigned _supla_int16_t
       active_bits;          // Specifies which bits of the mask are not skipped
 } TCSD_Digiglass_NewValue;  // v. >= 14
+
+#define CONTAINER_FLAG_WARNING_LEVEL (1 << 0)
+#define CONTAINER_FLAG_ALARM_LEVEL (1 << 1)
+#define CONTAINER_FLAG_INVALID_SENSOR_STATE (1 << 2)
+#define CONTAINER_FLAG_SOUND_ALARM_ON (1 << 3)
+
+typedef struct {
+  unsigned char level;  // 0 - unknown; 1-101 - container fill level 0-100%
+  unsigned _supla_int16_t flags;  // CONTAINER_FLAG_*
+} TContainerChannel_Value;        // v. >= 26
 
 typedef struct {
   unsigned char sec;        // 0-59
@@ -3111,6 +3134,9 @@ typedef struct {
 #define SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_ROOM_TEMPERATURE 1
 #define SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_AUX_HEATER_COOLER_TEMPERATURE 2
 
+#define LOCAL_UI_LOCK_FULL 0x1
+#define LOCAL_UI_LOCK_TEMPERATURE 0x2
+
 typedef struct {
   unsigned _supla_int_t MainThermometerChannelNoReadonly : 1;
   unsigned _supla_int_t MainThermometerChannelNoHidden : 1;
@@ -3249,9 +3275,18 @@ typedef struct {
   // If set to 0, then it is not supported.
   unsigned char TemperatureControlType;  // SUPLA_HVAC_TEMPERATURE_CONTROL_TYPE_
 
+  unsigned char LocalUILockingCapabilities;  // LOCAL_UI_LOCK_*
+  unsigned char LocalUILock;                 // LOCAL_UI_LOCK_*
+
+  // min/max allowed parameters are used only with LocalUILock &
+  // LOCAL_UI_LOCK_TEMPERATURE
+  _supla_int16_t MinAllowedTemperatureSetpointFromLocalUI;
+  _supla_int16_t MaxAllowedTemperatureSetpointFromLocalUI;
   unsigned char Reserved[48 - sizeof(HvacParameterFlags) -
                          sizeof(_supla_int_t) - sizeof(_supla_int_t) -
-                         sizeof(_supla_int_t) - sizeof(unsigned char)];
+                         sizeof(_supla_int_t) - sizeof(unsigned char) -
+                         sizeof(unsigned char) - sizeof(unsigned char) -
+                         sizeof(_supla_int16_t) - sizeof(_supla_int16_t)];
   THVACTemperatureCfg Temperatures;
 } TChannelConfig_HVAC;  // v. >= 21
 
@@ -3417,6 +3452,48 @@ typedef struct {
   unsigned char Reserved[32];
 } TChannelConfig_ImpulseCounter;  // v. >= 25
 
+typedef struct {
+  unsigned char FillLevel;  // Fill level in 0-100 %
+  union {
+    _supla_int_t ChannelId;
+    struct {
+      unsigned char IsSet;  // 0 - no; 1 - yes
+      unsigned char ChannelNo;
+    };
+  };
+} TContainer_SensorInfo;
+
+typedef struct {
+  unsigned char WarningAboveLevel;  // 0 - not set, 1-101 for 0-100%
+  unsigned char AlarmAboveLevel;    // 0 - not set, 1-101 for 0-100%
+  unsigned char WarningBelowLevel;  // 0 - not set, 1-101 for 0-100%
+  unsigned char AlarmBelowLevel;    // 0 - not set, 1-101 for 0-100%
+
+  unsigned char MuteAlarmSoundWithoutAdditionalAuth;  // 0 - admin login is
+                                                      // required, 1 - regular
+                                                      // user is allowed
+
+  TContainer_SensorInfo SensorInfo[10];
+  unsigned char Reserved[32];
+} TChannelConfig_Container;  // v. >= 26
+
+typedef struct {
+  union {
+    _supla_int_t ChannelId;
+    struct {
+      unsigned char IsSet;  // 0 - no; 1 - yes
+      unsigned char ChannelNo;
+    };
+  };
+} TValve_SensorInfo;  // v. >= 27
+
+typedef struct {
+  TValve_SensorInfo
+      SensorInfo[20];  // Flood sensors can be attached only if
+                       // SUPLA_CHANNEL_FLAG_FLOOD_SENSORS_SUPPORTED is set
+  unsigned char Reserved[32];
+} TChannelConfig_Valve;  // v. >= 27
+
 #define SUPLA_OCR_AUTHKEY_SIZE 33
 
 #define OCR_LIGHTING_MODE_OFF (1ULL << 0)
@@ -3487,14 +3564,24 @@ typedef struct {
 #define SUPLA_VALVE_FLAG_FLOODING 0x1
 #define SUPLA_VALVE_FLAG_MANUALLY_CLOSED 0x2
 
+// Valve channel value
+// Device -> Server -> Client
 typedef struct {
   union {
-    unsigned char closed;
+    unsigned char closed;  // 0 - open, 1 - closed
     unsigned char closed_percent;
   };
 
-  unsigned char flags;
+  unsigned char flags;  // see SUPLA_VALVE_FLAG_
 } TValve_Value;
+
+// Valve channel value payload
+// Client -> Server -> Device
+typedef struct {
+  unsigned char command;  // 0 - close
+                          // 1 - open
+  char reserved[7];
+} TCSD_Valve;
 
 typedef struct {
   unsigned char ChannelNumber;

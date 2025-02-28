@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent> {
     @Singleton<DateProvider> var dateProvider
@@ -25,17 +26,13 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     @Singleton<DeleteChannelMeasurementsUseCase> var deleteChannelMeasurementsUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     
-    var chartStyle: any ChartStyle {
-        ThermometerChartStyle()
-    }
-    
     var aggregations: [ChartDataAggregation] {
         ChartDataAggregation.defaultEntries
     }
     
     override func defaultViewState() -> BaseHistoryDetailViewState { BaseHistoryDetailViewState() }
     
-    func handleData(channel: ChannelWithChildren, chartState: ChartState?) {
+    func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {
         fatalError("handleData(channel: chartState:) needs to be implemented")
     }
     
@@ -52,6 +49,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         updateView {
             $0.changing(path: \.loading, to: true)
                 .changing(path: \.initialLoadStarted, to: false)
+                .changing(path: \.downloadConfigured, to: false)
                 .changing(path: \.chartData, to: $0.chartData.empty())
         }
         if let remoteId = currentState()?.remoteId {
@@ -305,6 +303,10 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             .disposed(by: self)
     }
     
+    func cloudChannelProvider(_ channelWithChildren: ChannelWithChildren) -> Observable<SharedCore.ChannelDto> {
+        Observable.just(DefaultChannelDto(remoteId: channelWithChildren.remoteId))
+    }
+    
     func aggregations(
         _ currentRange: DaysRange,
         _ selectedAggregation: ChartDataAggregation? = .minutes,
@@ -327,9 +329,12 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                 self?.loadChartState(profile.id, remoteId)
             }
         ) { ($0, $1) }
+            .flatMap { [weak self] channel, state in
+                self.combineWithCloudChannelDto(channel, state)
+            }
             .asDriverWithoutError()
             .drive(
-                onNext: { [weak self] in self?.handleData(channel: $0.0, chartState: $0.1) }
+                onNext: { [weak self] in self?.handleData(channel: $0.0, channelDto: $0.2, chartState: $0.1) }
             )
             .disposed(by: self)
     }
@@ -337,8 +342,10 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func getDateRangeForChartRange(_ chartRange: ChartRange, _ dateRange: DaysRange?) -> DaysRange {
         let date = dateProvider.currentDate()
         return switch (chartRange) {
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter:
+        case .lastDay:
             DaysRange(start: date.shift(days: -chartRange.roundedDaysCount), end: date)
+        case .lastWeek, .lastMonth, .lastQuarter:
+            DaysRange(start: date.dayEnd().shift(days: -chartRange.roundedDaysCount), end: date.dayEnd())
         default:
             dateRange ?? DaysRange(start: date.shift(days: -chartRange.roundedDaysCount), end: date)
         }
@@ -347,7 +354,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func getStartDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ minDate: Date) -> Date {
         switch (range) {
         case .day: date.dayStart()
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .lastYear: currentDate.shift(days: -range.roundedDaysCount)
+        case .lastDay: currentDate.shift(days: -range.roundedDaysCount)
+        case .lastWeek, .lastMonth, .lastQuarter, .lastYear: currentDate.dayEnd().shift(days: -range.roundedDaysCount)
             
         case .week: date.weekStart()
         case .month: date.monthStart()
@@ -361,7 +369,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func getEndDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ maxDate: Date) -> Date {
         switch (range) {
         case .day: date.dayEnd()
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .lastYear: currentDate
+        case .lastDay: currentDate
+        case .lastWeek, .lastMonth, .lastQuarter, .lastYear: currentDate.dayEnd()
             
         case .week: date.weekEnd()
         case .month: date.monthEnd()
@@ -423,6 +432,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
                 .changing(path: \.loading, to: false)
+                .changing(path: \.range, to: data.chartRange == .allHistory ? range : $0.range)
         }
     }
     
@@ -457,6 +467,19 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
 }
 
+extension BaseHistoryDetailVM? {
+    func combineWithCloudChannelDto(
+        _ channel: ChannelWithChildren,
+        _ state: ChartState?
+    ) -> Observable<(ChannelWithChildren, ChartState?, ChannelDto)> {
+        if let self {
+            self.cloudChannelProvider(channel).map { (channel, state, $0) }
+        } else {
+            Observable.just((channel, state, DefaultChannelDto(remoteId: channel.remoteId)))
+        }
+    }
+}
+
 enum BaseHistoryDetailViewEvent: ViewEvent {
     case clearHighlight
     case showDownloadInProgress
@@ -477,6 +500,7 @@ struct BaseHistoryDetailViewState: ViewState {
     var downloadState: DownloadEventsManagerState? = nil
     var chartCustomFilters: CustomChartFiltersContainer? = nil
     
+    var chartStyle: ChartStyle = .default
     var minDate: Date? = nil
     var maxDate: Date? = nil
     var withLeftAxis: Bool = false

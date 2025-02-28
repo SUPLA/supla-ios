@@ -23,6 +23,7 @@ struct ElectricityMarkerCustomData: Equatable {
     
     func priceString(_ count: Double) -> String {
         if let price = price,
+           price != 0,
            let currency = currency {
             String(format: "%.2f %@", count * price, currency)
         } else {

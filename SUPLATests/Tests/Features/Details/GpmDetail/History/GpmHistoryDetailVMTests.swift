@@ -110,7 +110,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         let state3 = state2.changing(path: \.profileId, to: profileId)
             .changing(path: \.channelFunction, to: 40)
         let state4 = state3.changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))
-            .changing(path: \.range, to: DaysRange(start: currentDate.shift(days: -7), end: currentDate))
+            .changing(path: \.range, to: DaysRange(start: currentDate.dayEnd().shift(days: -7), end: currentDate.dayEnd()))
             .changing(path: \.aggregations, to: SelectableList(selected: .minutes, items: [.minutes, .hours, .days]))
         let state5 = state4.changing(path: \.downloadConfigured, to: true)
         let state6 = state5.changing(path: \.initialLoadStarted, to: true)
@@ -212,7 +212,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         
         // then
         waitForExpectations(timeout: 2)
-        let daysRange = DaysRange(start: currentDate.shift(days: -7), end: currentDate)
+        let daysRange = DaysRange(start: currentDate.dayEnd().shift(days: -7), end: currentDate.dayEnd())
         let state1 = BaseHistoryDetailViewState()
         let state2 = state1.changing(path: \.remoteId, to: remoteId)
         let state3 = state2.changing(path: \.profileId, to: profileId)
@@ -224,6 +224,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         let state5 = state4
             .changing(path: \.showHistory, to: false)
             .changing(path: \.downloadState, to: .finished)
+            .changing(path: \.chartStyle, to: .gpm)
         let state6 = state5
             .changing(path: \.chartData, to: expectedChartDataProvider(daysRange))
             .changing(path: \.loading, to: false)

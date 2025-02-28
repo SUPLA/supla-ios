@@ -19,7 +19,7 @@
 @testable import SUPLA
 import XCTest
 
-final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
+final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> {
     private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
     
     private lazy var useCase: ChannelBaseActionUseCase! = ChannelBaseActionUseCaseImpl()
@@ -49,7 +49,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
@@ -64,7 +64,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.reveal, SubjectType.channel, remoteId)])
     }
     
@@ -80,7 +80,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
     }
     
@@ -95,7 +95,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.shut, SubjectType.channel, remoteId)])
     }
     
@@ -111,7 +111,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
@@ -127,7 +127,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
@@ -143,7 +143,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
@@ -159,7 +159,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
     }
     
@@ -174,7 +174,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.turnOn, SubjectType.channel, remoteId)])
     }
     
@@ -189,7 +189,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.turnOff, SubjectType.channel, remoteId)])
     }
     
@@ -205,7 +205,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.group, remoteId)])
     }
     
@@ -220,7 +220,39 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents([.next(()), .completed])
+        assertEvents([.next(.success), .completed])
+        XCTAssertEqual(executeSimpleActionUseCase.parameters.count, 0)
+    }
+    
+    func test_shouldWarnWhenValveHasActiveFlooding() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_VALVE_OPENCLOSE
+        channel.value = SAChannelValue.mockValve(online: true, open: false, flags: [.flooding])
+        
+        // when
+        useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(.valveFlooding), .completed])
+        XCTAssertEqual(executeSimpleActionUseCase.parameters.count, 0)
+    }
+    
+    func test_shouldWarnWhenValveWasClosedManually() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_VALVE_PERCENTAGE
+        channel.value = SAChannelValue.mockValve(online: true, open: false, flags: [.manuallyClosed])
+        
+        // when
+        useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(.valveManuallyClosed), .completed])
         XCTAssertEqual(executeSimpleActionUseCase.parameters.count, 0)
     }
 }

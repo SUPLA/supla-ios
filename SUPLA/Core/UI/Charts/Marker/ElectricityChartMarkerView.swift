@@ -58,7 +58,10 @@ import SwiftUI
             case .reverseActiveEnergy,
                  .forwardActiveEnergy,
                  .reverseReactiveEnergy,
-                 .forwardReactiveEnergy: showPhases(filters.selectedPhases, highlight, barEntry, customData)
+                 .forwardReactiveEnergy,
+                 .current,
+                 .voltage,
+                 .powerActive: showPhases(filters.selectedPhases, highlight, barEntry, customData)
             case .balanceHourly,
                  .balanceVector,
                  .balanceArithmetic: showBalanceTwoValues(highlight, barEntry, customData)
@@ -89,7 +92,7 @@ import SwiftUI
                 rows[yIdx].setData(
                     value: formatter.format(value),
                     color: phase.color,
-                    label: phase.label,
+                    label: selectedPhases.count == 1 ? "" : phase.label,
                     price: customData.priceString(value)
                 )
                 if (highlight.stackIndex == yIdx || selectedPhases.count == 1) {

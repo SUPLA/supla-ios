@@ -17,8 +17,13 @@
  */
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
+
+enum DriverResult<T> {
+    case success(value: T)
+    case error(error: Error)
+}
 
 extension ObservableType {
     func asDriverWithoutError() -> Driver<Element> {
@@ -28,6 +33,11 @@ extension ObservableType {
             
             return Driver.empty()
         }
+    }
+    
+    func asDriver() -> Driver<DriverResult<Element>> {
+        map { DriverResult.success(value: $0) }
+            .asDriver { Driver.just(DriverResult.error(error: $0))}
     }
 }
 
@@ -74,13 +84,12 @@ extension Observable {
 }
 
 final class SynchronousSubscriber<T> {
-    
     let semaphore = DispatchSemaphore(value: 0)
     weak var observable: Observable<T>?
     let disposeBag = DisposeBag()
     
-    var value: T? = nil
-    var error: Swift.Error? = nil
+    var value: T?
+    var error: Swift.Error?
     
     init(observable: Observable<T>) {
         self.observable = observable

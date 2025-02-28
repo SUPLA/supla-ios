@@ -27,6 +27,10 @@ extension Double {
         return self + value
     }
     
+    func div(_ value: Double) -> Double {
+        return self / value
+    }
+    
     func times(_ value: Double) -> Double {
         return self * value
     }
@@ -50,5 +54,12 @@ extension Double? {
             return transformation(value)
         }
         return nil
+    }
+    
+    func toKWh() -> Double {
+        if let self {
+            return self / 100_000.0
+        }
+        return 0.0
     }
 }

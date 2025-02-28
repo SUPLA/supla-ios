@@ -191,7 +191,11 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_IC_GAS_METER,
              SUPLA_CHANNELFNC_IC_WATER_METER,
              SUPLA_CHANNELFNC_IC_HEAT_METER,
-             SuplaFunction.container.value:
+             SUPLA_CHANNELFNC_CONTAINER,
+             SUPLA_CHANNELFNC_SEPTIC_TANK,
+             SUPLA_CHANNELFNC_WATER_TANK,
+             SUPLA_CHANNELFNC_FLOOD_SENSOR,
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR:
             return cellIdForIconValue
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
@@ -207,7 +211,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
              SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
              SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+             SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
             return cellIdForIcon
         // Old
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:

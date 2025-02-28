@@ -25,6 +25,9 @@ enum ElectricityMeterChartType: Int, Codable, CaseIterable, Identifiable, Picker
     case balanceVector
     case balanceHourly
     case balanceChartAggregated
+    case voltage
+    case current
+    case powerActive
     
     var id: Int { rawValue }
 
@@ -33,7 +36,10 @@ enum ElectricityMeterChartType: Int, Codable, CaseIterable, Identifiable, Picker
         case .forwardActiveEnergy,
              .reverseActiveEnergy,
              .forwardReactiveEnergy,
-             .reverseReactiveEnergy: true
+             .reverseReactiveEnergy,
+             .voltage,
+             .current,
+             .powerActive: true
         case .balanceArithmetic,
              .balanceVector,
              .balanceHourly,
@@ -41,12 +47,15 @@ enum ElectricityMeterChartType: Int, Codable, CaseIterable, Identifiable, Picker
         }
     }
 
-    var isBalance: Bool {
+    var hideRankings: Bool {
         switch (self) {
         case .balanceArithmetic,
              .balanceVector,
              .balanceHourly,
-             .balanceChartAggregated: true
+             .balanceChartAggregated,
+             .voltage,
+             .current,
+             .powerActive: true
         case .forwardActiveEnergy,
              .reverseActiveEnergy,
              .forwardReactiveEnergy,
@@ -64,6 +73,35 @@ enum ElectricityMeterChartType: Int, Codable, CaseIterable, Identifiable, Picker
         case .balanceVector: Strings.ElectricityMeter.balanceVector
         case .balanceHourly: Strings.ElectricityMeter.balanceHourly
         case .balanceChartAggregated: Strings.ElectricityMeter.balanceChartAggregated
+        case .voltage: Strings.ElectricityMeter.voltage
+        case .current: Strings.ElectricityMeter.current
+        case .powerActive: Strings.ElectricityMeter.powerActive
         }
+    }
+    
+    var dataTypeLabel: String {
+        switch self {
+        case .voltage: "\(label) [V]"
+        case .current: "\(label) [A]"
+        case .powerActive: "\(label) [W]"
+        default: "\(label) [kWh]"
+        }
+    }
+    
+    func needsRefresh(_ other: ElectricityMeterChartType) -> Bool {
+        if (self == other) {
+            return false
+        }
+        if (self == .voltage || other == .voltage) {
+            return true
+        }
+        if (self == .current || other == .current) {
+            return true
+        }
+        if (self == .powerActive || other == .powerActive) {
+            return true
+        }
+        
+        return false
     }
 }

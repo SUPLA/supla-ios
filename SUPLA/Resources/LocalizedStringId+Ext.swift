@@ -95,6 +95,13 @@ extension LocalizedStringId {
         case .thermostatThermometerError: Strings.ThermostatDetail.thermometerError
         case .thermostatBatterCoverOpen: Strings.ThermostatDetail.batteryCoverOpen
         case .thermostatClockError: Strings.ThermostatDetail.clockError
+        case .channelCaptionSepticTank: Strings.General.Channel.captionSepticTank
+        case .channelCaptionWaterTank: Strings.General.Channel.captionWaterTank
+        case .channelCaptionContainerLevelSensor: Strings.General.Channel.captionContainerLevelSensor
+        case .channelCaptionFloodSensor: Strings.General.Channel.captionFloodSensor
+        case .floodSensorActive: Strings.Valve.floodingAlarmMessage
+        case .valveManuallyClosed: Strings.Valve.warningManuallyClosedShort
+        case .valveFlooding: Strings.Valve.warningFloodingShort
         }
     }
 }

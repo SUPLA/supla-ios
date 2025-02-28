@@ -22,31 +22,42 @@ import RxSwift
 protocol DownloadEventsManager {
     func emitProgressState(remoteId: Int32, state: DownloadEventsManagerState)
     func observeProgress(remoteId: Int32) -> Observable<DownloadEventsManagerState>
+    
+    func emitProgressState(remoteId: Int32, dataType: DownloadEventsManagerDataType, state: DownloadEventsManagerState)
+    func observeProgress(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> Observable<DownloadEventsManagerState>
 }
 
 final class DownloadEventsManagerImpl: DownloadEventsManager {
-    
-    private var subjects: [Int32: BehaviorRelay<DownloadEventsManagerState>] = [:]
+    private var subjects: [Id: BehaviorRelay<DownloadEventsManagerState>] = [:]
     private let syncedQueue = DispatchQueue(label: "DownloadEventsPrivateQueue", attributes: .concurrent)
     
     func emitProgressState(remoteId: Int32, state: DownloadEventsManagerState) {
-        getSubject(id: remoteId).accept(state)
+        getSubject(remoteId: remoteId, dataType: .default).accept(state)
     }
-    
+
     func observeProgress(remoteId: Int32) -> Observable<DownloadEventsManagerState> {
-        return getSubject(id: remoteId).asObservable()
+        return getSubject(remoteId: remoteId, dataType: .default).asObservable()
     }
-    
-    private func getSubject(id: Int32) -> BehaviorRelay<DownloadEventsManagerState> {
-        return syncedQueue.sync(execute: {
+
+    func emitProgressState(remoteId: Int32, dataType: DownloadEventsManagerDataType, state: DownloadEventsManagerState) {
+        getSubject(remoteId: remoteId, dataType: dataType).accept(state)
+    }
+
+    func observeProgress(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> Observable<DownloadEventsManagerState> {
+        return getSubject(remoteId: remoteId, dataType: dataType).asObservable()
+    }
+
+    private func getSubject(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> BehaviorRelay<DownloadEventsManagerState> {
+        let id = Id(id: remoteId, dataType: dataType)
+        return syncedQueue.sync {
             if let subject = subjects[id] {
                 return subject
             }
-            
+
             let subject = BehaviorRelay(value: DownloadEventsManagerState.idle)
             subjects[id] = subject
             return subject
-        })
+        }
     }
 }
 
@@ -59,29 +70,44 @@ enum DownloadEventsManagerState: Equatable {
     case refresh
 
     var order: Int {
-        get {
-            switch(self) {
-            case .idle: 1
-            case .started: 2
-            case .inProgress(_): 3
-            case .failed: 4
-            case .finished: 5
-            case .refresh: 6
-            }
+        switch (self) {
+        case .idle: 1
+        case .started: 2
+        case .inProgress: 3
+        case .failed: 4
+        case .finished: 5
+        case .refresh: 6
         }
     }
-    
+
     func isInProgress() -> Bool {
         switch (self) {
-        case .inProgress(_): true
+        case .inProgress: true
         default: false
         }
     }
-    
+
     func getProgress() -> Float {
         switch (self) {
         case .inProgress(let progress): progress
         default: -1
         }
+    }
+}
+
+enum DownloadEventsManagerDataType {
+    case `default`
+    case electricityCurrent
+    case electricityVoltage
+    case electricityPowerActive
+}
+
+private struct Id: Hashable {
+    let id: Int32
+    let dataType: DownloadEventsManagerDataType
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(dataType)
     }
 }

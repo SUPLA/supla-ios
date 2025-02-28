@@ -31,18 +31,21 @@ class ImpulseCounterDetailVM: StandardDetailVM<ImpulseCounterDetailViewState, Im
     
     override func handleChannel(_ channel: SAChannel) {
         super.handleChannel(channel)
-        updateView {
-            let hasPhoto = checkOcrPhotoExistsUseCase.invoke(profileId: Int64(channel.profile.id), remoteId: channel.remote_id)
-            
-            if ($0.photoDownloaded) {
-                return $0.changing(path: \.hasPhoto, to: hasPhoto)
-            } else {
-                triggerPhotoDownload(channel: channel)
+        
+        if (channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) == 0) {
+            updateView {
+                let hasPhoto = checkOcrPhotoExistsUseCase.invoke(profileId: Int64(channel.profile.id), remoteId: channel.remote_id)
                 
-                return $0.changing(path: \.photoDownloaded, to: true)
-                    .changing(path: \.hasPhoto, to: hasPhoto)
-                    .changing(path: \.channelId, to: channel.remote_id)
-                    .changing(path: \.profileId, to: channel.profile.id)
+                if ($0.photoDownloaded) {
+                    return $0.changing(path: \.hasPhoto, to: hasPhoto)
+                } else {
+                    triggerPhotoDownload(channel: channel)
+                    
+                    return $0.changing(path: \.photoDownloaded, to: true)
+                        .changing(path: \.hasPhoto, to: hasPhoto)
+                        .changing(path: \.channelId, to: channel.remote_id)
+                        .changing(path: \.profileId, to: channel.profile.id)
+                }
             }
         }
     }

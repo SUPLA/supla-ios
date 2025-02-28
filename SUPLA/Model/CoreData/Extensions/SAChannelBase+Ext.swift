@@ -57,6 +57,10 @@ extension SAChannelBase {
     func isHvacThermostat() -> Bool {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
     }
+    
+    func isValve() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_VALVE_OPENCLOSE || self.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE
+    }
 
     func switchWithButtons() -> Bool {
         return switch (self.func) {

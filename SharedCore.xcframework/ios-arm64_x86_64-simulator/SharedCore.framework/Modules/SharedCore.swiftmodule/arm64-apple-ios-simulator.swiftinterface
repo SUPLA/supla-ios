@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
 // swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -module-name SharedCore
 import Foundation
 @_exported import SharedCore
@@ -152,6 +152,10 @@ extension SharedCore.__ThermostatSubfunction {
   case channelCaptionHeatOrColdSourceSwitch
   case channelCaptionUnknown
   case channelCaptionContainer
+  case channelCaptionSepticTank
+  case channelCaptionWaterTank
+  case channelCaptionContainerLevelSensor
+  case channelCaptionFloodSensor
   case channelBatteryLevel
   case motorProblem
   case calibrationLost
@@ -159,6 +163,9 @@ extension SharedCore.__ThermostatSubfunction {
   case thermostatThermometerError
   case thermostatBatterCoverOpen
   case thermostatClockError
+  case floodSensorActive
+  case valveManuallyClosed
+  case valveFlooding
   public var name: Swift.String {
     get
   }
@@ -249,6 +256,10 @@ extension SharedCore.__LocalizedStringId {
   case pumpSwitch
   case heatOrColdSourceSwitch
   case container
+  case septicTank
+  case waterTank
+  case containerLevelSensor
+  case floodSensor
   public var name: Swift.String {
     get
   }
@@ -463,6 +474,43 @@ extension SharedCore.SuplaThermostatFlag {
 extension SharedCore.__SuplaThermostatFlag {
   public func toSwiftEnum() -> SharedCore.SuplaThermostatFlag
 }
+@frozen public enum SuplaValveFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case flooding
+  case manuallyClosed
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaValveFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag, result: inout SharedCore.SuplaValveFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag, result: inout SharedCore.SuplaValveFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag?) -> SharedCore.SuplaValveFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaValveFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaValveFlag
+  public typealias Companion = SharedCore.__SuplaValveFlag.Companion
+  public static func == (a: SharedCore.SuplaValveFlag, b: SharedCore.SuplaValveFlag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaValveFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaValveFlag] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaValveFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaValveFlag
+}
+extension SharedCore.__SuplaValveFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaValveFlag
+}
 public enum Skie {
   public enum supla_android__shared_core {
     public enum LocalizedString {
@@ -472,6 +520,8 @@ public enum Skie {
     public enum IssueIcon {
     }
     public enum ChannelIssueItem {
+    }
+    public enum ChannelDto {
     }
   }
   public typealias supla_android__shared_core_ = SharedCore.Skie.supla_android__shared_core
@@ -540,6 +590,19 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
+extension SharedCore.Skie.supla_android__shared_core.ChannelDto {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case defaultChannelDto(SharedCore.DefaultChannelDto)
+    case electricityChannelDto(SharedCore.ElectricityChannelDto)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed where __Sealed : SharedCore.ChannelDto
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed? where __Sealed : SharedCore.ChannelDto
 extension Swift.Bool {
   public var localizedString: any SharedCore.LocalizedString {
     get
@@ -576,3 +639,5 @@ extension SharedCore.SuplaShadingSystemFlag : Swift.Sendable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaThermostatFlag : Swift.Sendable {}
 extension SharedCore.SuplaThermostatFlag : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaValveFlag : Swift.Sendable {}
+extension SharedCore.SuplaValveFlag : Swift.BitwiseCopyable {}

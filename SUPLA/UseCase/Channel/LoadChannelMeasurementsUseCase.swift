@@ -28,7 +28,7 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
     @Singleton<TemperatureAndHumidityMeasurementsProvider> private var temperatureAndHumidityMeasurementsProvider
     @Singleton<GeneralPurposeMeterMeasurementsProvider> private var generalPurposeMeterMeasurementsProvider
     @Singleton<GeneralPurposeMeasurementMeasurementsProvider> private var generalPurposeMeasurementMeasurementsProvider
-    @Singleton<ElectricityMeasurementsProvider> private var electricityMeasurementsProvider
+    @Singleton<ElectricityMeterMeasurementsProvider> private var electricityMeterMeasurementsProvider
     @Singleton<HumidityMeasurementsProvider> private var humidityMeasurementsProvider
     @Singleton<ImpulseCounterMeasurementsProvider> private var impulseCounterMeasurementsProvider
     
@@ -37,7 +37,7 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
         temperatureAndHumidityMeasurementsProvider,
         generalPurposeMeterMeasurementsProvider,
         generalPurposeMeasurementMeasurementsProvider,
-        electricityMeasurementsProvider,
+        electricityMeterMeasurementsProvider,
         humidityMeasurementsProvider,
         impulseCounterMeasurementsProvider
     ]

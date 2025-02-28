@@ -70,24 +70,24 @@ struct DataSetContainer: View {
                 Text(name).fontLabelSmall()
             }
             HStack {
-                ForEach(channelSet.dataSets) { dataSet in
-                    switch (dataSet.label) {
-                    case .single(let labelData):
+                ForEach(0 ..< channelSet.dataSets.count, id: \.self) { dataSetIdx in
+                    switch (channelSet.dataSets[dataSetIdx].label) {
+                    case let .single(labelData):
                         DataSetItem(
                             labelData: labelData,
-                            active: historyEnabled && dataSet.active
+                            active: historyEnabled && channelSet.dataSets[dataSetIdx].active
                         )
                         .onTapGesture {
-                            onTap(channelSet.remoteId, dataSet.type)
+                            onTap(channelSet.remoteId, channelSet.dataSets[dataSetIdx].type)
                         }
                     case .multiple(let labelDatas):
                         ForEach(0 ..< labelDatas.count, id: \.self) { index in
                             DataSetItem(
                                 labelData: labelDatas[index],
-                                active: historyEnabled && dataSet.active
+                                active: historyEnabled && channelSet.dataSets[dataSetIdx].active
                             )
                             .onTapGesture {
-                                onTap(channelSet.remoteId, dataSet.type)
+                                onTap(channelSet.remoteId, channelSet.dataSets[dataSetIdx].type)
                             }
                         }
                     }
@@ -132,8 +132,8 @@ private struct DataSetItem: View {
 }
 
 #Preview {
-    let state = DataSetsViewState()
-    state.channelsSets = [
+    let firstRowState = DataSetsViewState()
+    firstRowState.channelsSets = [
         ChannelChartSets(
             remoteId: 123,
             function: 123,
@@ -184,8 +184,45 @@ private struct DataSetItem: View {
             typeName: "Reverse active energy"
         )
     ]
+    
+    let secondRowState = DataSetsViewState()
+    secondRowState.historyEnabled = true
+    secondRowState.channelsSets = [
+        ChannelChartSets(
+            remoteId: 123,
+            function: 123,
+            name: "Reverse active energy",
+            aggregation: .minutes,
+            dataSets: [
+                HistoryDataSet(
+                    type: .electricity,
+                    label: .single(HistoryDataSet.LabelData(
+                        icon: .suplaIcon(name: "fnc_electricitymeter"),
+                        value: "301,7",
+                        color: .chartPhase1
+                    )),
+                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    entries: [],
+                    active: true
+                ),
+                HistoryDataSet(
+                    type: .electricity,
+                    label: .single(HistoryDataSet.LabelData(
+                        icon: nil,
+                        value: "298,7",
+                        color: .chartPhase2
+                    )),
+                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    entries: [],
+                    active: true
+                )
+            ],
+            typeName: "Voltage"
+        )
+    ]
 
-    return DataSetsRow(
-        viewState: state
-    )
+    return VStack {
+        DataSetsRow(viewState: firstRowState)
+        DataSetsRow(viewState: secondRowState)
+    }
 }

@@ -132,8 +132,6 @@
 
 "Close" = "Schlieβen";
 "Valve" = "Ventil";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Das Ventil wurde im manuellen Modus geschlossen. Ehe Sie ihn öffnen, versichern Sie sich, dass er nicht wegen Überflutung geschlossen wurde. Um die Warnung abzuschalten, öffnen Sie das Ventil manuell. Wollen Sie wirklich das Ventil aus der App öffnen?";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Das Ventil wurde im manuellen Modus geschlossen. Ehe Sie ihn öffnen, versichern Sie sich, dass er nicht wegen Überflutung geschlossen wurde. Um die Warnung abzuschalten öffnen Sie das Ventil manuell.";
 "Warning" = "Warnung";
 "Yes" = "Ja";
 "No" = "Nein";
@@ -295,6 +293,7 @@
 
 /* General */
 "general_error" = "Fehler";
+"general_warning" = "Warnung";
 "turn_on" = "Einschalten";
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
@@ -313,8 +312,12 @@
 "channel_caption_pump_switch" = "Pumpenschalter";
 "channel_caption_heat_or_cold_source_switch" = "Wärme- oder Kältequellenschalter";
 "channel_caption_humidity" = "Feuchtigkeitssensor";
-"channel_caption_container" = "Behälter";
 "channel_caption_humidityandtemperature" = "Temperatur- und Feuchtigkeitssensor";
+"channel_caption_container" = "Behälter";
+"channel_caption_water_tank" = "Wassertank";
+"channel_caption_septic_tank" = "Septischer Tank";
+"channel_caption_container_level_sensor" = "Behälterfüllstandssensor";
+"channel_caption_flood_sensor" = "Flutsensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 
@@ -579,3 +582,13 @@
 "counter_photo_counter_area" = "Zählerbereich";
 "counter_photo_original_photo" = "Originalbild";
 "counter_photo_settings" = "Cloudkonfiguration";
+"counter_photo_history" = "Fotohistorie";
+"counter_photo_error" = "Fehler";
+"counter_photo_loading_error" = "Das Laden ist fehlgeschlagen.";
+
+/* Valve */
+"valve_warning_manually_closed" = "Das Ventil wurde manuell oder ferngesteuert geschlossen. Stellen Sie vor dem Öffnen sicher, dass es nicht wegen Ü Überfluten geschlossen wurde. Öffnen Sie das Ventil manuell, um die Warnung zu deaktivieren. Sind Sie sicher, dass Sie das Ventil über die App öffnen möchten?!";
+"valve_warning_flooding" = "Das Ventil wurde aufgrund einer Überflutung geschlossen. Stellen Sie vor dem Öffnen des Ventils sicher, dass die Ursache behoben wurde. Durch Öffnen des Ventils wird der Alarm gelöscht.";
+"flooding_alarm_message" = "Der Sensor meldet eine Überschwemmung!";
+"valve_warning_manually_closed_short" = "Das Ventil wurde manuell oder per Funk geschlossen (mögliche Überschwemmung).";
+"valve_warning_flooding_short" = "Das Ventil wurde wegen einer erkannten Überschwemmung geschlossen.";

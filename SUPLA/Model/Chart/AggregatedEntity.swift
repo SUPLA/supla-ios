@@ -24,6 +24,7 @@ struct AggregatedEntity: Equatable {
 enum AggregatedValue: Equatable {
     case single(value: Double, min: Double?, max: Double?, open: Double?, close: Double?)
     case multiple(values: [Double])
+    case withPhase(value: Double, min: Double?, max: Double?, phase: Phase)
 
     var min: Double {
         switch (self) {
@@ -31,6 +32,8 @@ enum AggregatedValue: Equatable {
             return value
         case .multiple(let values):
             return values.filter { $0 < 0 }.sum()
+        case .withPhase(let value, _, _, _):
+            return value
         }
     }
     
@@ -40,6 +43,8 @@ enum AggregatedValue: Equatable {
             return value
         case .multiple(let values):
             return values.filter { $0 > 0 }.sum()
+        case .withPhase(let value, _, _, _):
+            return value
         }
     }
 }
