@@ -34,6 +34,7 @@ protocol ValuesFormatter {
     func getDateShortString(date: Date?) -> String?
     func getHourString(date: Date?) -> String?
     func getDayHourDateString(date: Date?) -> String?
+    func getDayAndHourShortDateString(date: Date?) -> String?
     func getDayAndHourDateString(date: Date?) -> String?
     func getMonthString(date: Date?) -> String?
     func getFullDateString(date: Date?) -> String?
@@ -176,6 +177,10 @@ final class ValuesFormatterImpl: ValuesFormatter {
     
     func getDayHourDateString(date: Date?) -> String? {
         formattedDate(date: date, format: "EEEE HH:mm")
+    }
+    
+    func getDayAndHourShortDateString(date: Date?) -> String? {
+        formattedDate(date: date, format: "dd.MM HH:mm")
     }
     
     func getDayAndHourDateString(date: Date?) -> String? {

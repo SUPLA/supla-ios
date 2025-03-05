@@ -33,7 +33,7 @@ class SuplaCombinedChartView: UIView {
             }
             combinedChart.data = combinedData
             if let data = data {
-                combinedChart.xAxis.valueFormatter = AxisXFormatter(converter: data)
+                combinedChart.xAxis.valueFormatter = AxisXFormatter(converter: data, chart: combinedChart, handler: combinedChart.viewPortHandler)
                 combinedChart.leftAxis.valueFormatter = AxisYFormatter(formatter: data.leftAxisFormatter)
                 combinedChart.rightAxis.valueFormatter = AxisYFormatter(formatter: data.rightAxisFormatter)
             }
@@ -244,17 +244,29 @@ private class AxisXFormatter: NSObject, AxisValueFormatter {
     @Singleton<ValuesFormatter> private var formatter
     
     private let converter: ChartData
+    private let chart: CombinedChartView
+    private let handler: ViewPortHandler
     
-    init(converter: ChartData) {
+    init(converter: ChartData, chart: CombinedChartView, handler: ViewPortHandler) {
         self.converter = converter
+        self.chart = chart
+        self.handler = handler
     }
     
     func stringForValue(_ value: Double, axis: DGCharts.AxisBase?) -> String {
+        let left = chart.getEntryByTouchPoint(point: CGPoint(x: handler.contentLeft, y: handler.contentTop))
+        let right = chart.getEntryByTouchPoint(point: CGPoint(x: handler.contentRight, y: handler.contentTop))
+        let distanceInDaysFromChart = converter.distanceInDays(start: CGFloat(left?.x ?? 0.0), end: CGFloat(right?.x ?? 0.0))
         let distanceInDays = converter.distanceInDays ?? 1
-        return if (distanceInDays <= 1) {
-            formatter.getHourString(date: Date(timeIntervalSince1970: value)) ?? ""
+        let date = Date(timeIntervalSince1970: value)
+        return if (converter.aggregation == .years) {
+            formatter.getYearString(date: date) ?? ""
+        } else if (distanceInDays > 1 && distanceInDaysFromChart <= 2) {
+            formatter.getDayAndHourShortDateString(date: date) ?? ""
+        } else if (distanceInDaysFromChart <= 1.1) {
+            formatter.getHourString(date: date) ?? ""
         } else {
-            formatter.getMonthString(date: Date(timeIntervalSince1970: value)) ?? ""
+            formatter.getMonthString(date: date) ?? ""
         }
     }
 }
