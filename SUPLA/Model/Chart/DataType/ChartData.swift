@@ -162,6 +162,10 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
         }
     }
     
+    func distanceInDays(start: CGFloat, end: CGFloat) -> Double {
+        (fromCoordinate(x: end) - fromCoordinate(x: start)) / 3600 / 24
+    }
+    
     func toggleActive(remoteId: Int32, type: ChartEntryType) -> ChartData {
         newInstance(sets: sets.map { $0.remoteId == remoteId ? $0.toggleActive(type: type) : $0 })
     }
