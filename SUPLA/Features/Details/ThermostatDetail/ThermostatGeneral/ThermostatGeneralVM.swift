@@ -300,7 +300,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.isOnline(), data.3))
                 .changing(path: \.timerEndDate, to: channel.channel.getTimerEndDate())
-                .changing(path: \.currentPower, to: Int(thermostatValue.state.value))
+                .changing(path: \.currentPower, to: thermostatValue.state.power?.intValue)
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
             changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.isOnline())
@@ -559,7 +559,7 @@ struct ThermostatGeneralViewState: ViewState {
     
     /* View properties */
     
-    var currentPower: Int = 0
+    var currentPower: Int? = nil
     var setpointHeat: Float? = nil
     var setpointCool: Float? = nil
     var activeSetpointType: SetpointType? = nil
