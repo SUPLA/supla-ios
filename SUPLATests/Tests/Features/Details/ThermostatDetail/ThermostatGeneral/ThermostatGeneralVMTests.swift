@@ -150,7 +150,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.childrenIds, to: [0, 0])
                 .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: .suplaIcon(name: ""), message: Strings.ThermostatDetail.offByCard))
                 .changing(path: \.subfunction, to: .heat)
-                .changing(path: \.currentPower, to: 1)
+                .changing(path: \.currentPower, to: nil)
         ])
         
         XCTAssertEqual(viewModel.thermometerValuesState.measurements, measurements)
@@ -240,7 +240,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                     ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.thermostatClockError))
                 ])
                 .changing(path: \.subfunction, to: .cool)
-                .changing(path: \.currentPower, to: 1)
+                .changing(path: \.currentPower, to: nil)
         ])
         
         XCTAssertEqual(viewModel.thermometerValuesState.measurements, measurements)
