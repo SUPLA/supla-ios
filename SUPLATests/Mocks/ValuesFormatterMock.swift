@@ -105,4 +105,8 @@ final class ValuesFormatterMock: ValuesFormatter {
     func getYearString(date: Date?) -> String? {
         ""
     }
+    
+    func getDayAndHourShortDateString(date: Date?) -> String? {
+        ""
+    }
 }
