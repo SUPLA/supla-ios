@@ -41,6 +41,8 @@
 "general_hour_format" = "HH:mm:ss";
 "general_ok" = "OK";
 "general_warning" = "Warning";
+"general_state_opened" = "opened";
+"general_state_closed" = "closed";
 "turn_on" = "Turn on";
 "turn_off" = "Turn off";
 "save" = "Save";
@@ -378,3 +380,31 @@
 "flooding_alarm_message" = "The sensor reports flooding!";
 "valve_warning_manually_closed_short" = "The valve has been closed manually or via radio (possible flooding).";
 "valve_warning_flooding_short" = "The valve has been closed due to detected flooding.";
+"valve_warning_motor_problem" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open.";
+"valve_warning_motor_problem_opening" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open. Are you sure you want to open it?";
+"valve_warning_motor_problem_closing" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open. Are you sure you want to close it?";
+"valve_detail_sensors" = "Connected sensors";
+"valve_action_error" = "Communication error occurred. Please try again later";
+
+/* State */
+"state_channel_id" = "Channel id";
+"state_ip_address" = "IP";
+"state_mac_address" = "MAC";
+"state_battery_level" = "Battery level";
+"state_battery_powered" = "Battery powered";
+"state_wifi_rssi" = "WiFi RSSI";
+"state_wifi_signal_strength" = "WiFi signal strength";
+"state_bridge_node_online" = "Bridge node - online";
+"state_bridge_node_signal" = "Bridge node - signal strength";
+"state_uptime" = "Uptime";
+"state_connection_time" = "Connection uptime";
+"state_battery_health" = "Battery health";
+"state_connection_reset_cause" = "Connection reset cause";
+"state_light_source_lifespan" = "Light source lifespan";
+"state_source_operating_time" = "Light source operating time";
+
+/* Change caption */
+"change_caption_header" = "Caption Change";
+"change_caption_channel_name" = "Channel name";
+"change_caption_group_name" = "Group name";
+"change_caption_scene_name" = "Scene name";

@@ -20,7 +20,7 @@ import RxSwift
 
 protocol ChannelToRootRelationHolderUseCase {
     func reloadRelations()
-    func getParent(for channelId: Int32) -> Int32?
+    func getParent(for channelId: Int32) -> [Int32]?
 }
 
 class ChannelToRootRelationHolderUseCaseImpl: ChannelToRootRelationHolderUseCase {
@@ -29,9 +29,9 @@ class ChannelToRootRelationHolderUseCaseImpl: ChannelToRootRelationHolderUseCase
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
     
-    private var channelToRootMap: [Int32: Int32] = [:]
+    private var channelToRootMap: [Int32: [Int32]] = [:]
     
-    func getParent(for channelId: Int32) -> Int32? {
+    func getParent(for channelId: Int32) -> [Int32]? {
         return channelToRootMap[channelId]
     }
     
@@ -60,7 +60,10 @@ class ChannelToRootRelationHolderUseCaseImpl: ChannelToRootRelationHolderUseCase
         channels.forEach { channel in
             let childrenIds = getChildrenIds(for: channel.remote_id, parentsMap, channelsMap, [])
             childrenIds.forEach { childId in
-                channelToRootMap[childId] = channel.remote_id
+                if (channelToRootMap[childId] == nil) {
+                    channelToRootMap[childId] = []
+                }
+                channelToRootMap[childId]?.append(channel.remote_id)
             }
         }
     }

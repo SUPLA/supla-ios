@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Chcete opravdu obnovit výchozí nastavení?";
 "Default settings" = "Výchozí nastavení";
 
-"Battery level" = "Stav baterie";
-"Battery powered" = "Napájení baterie";
-"Wifi signal strength" = "Síla signálu WiFi";
-"Bridge node - online" = "Uzel můstku - online";
-"Bridge node - signal strength" = "Uzel můstku - síla signálu";
-"Uptime" = "Provozní doba";
-"Connection uptime" = "Dobra připojení";
-"Battery health" = "Životnost baterie";
-"Connection reset cause" = "Důvod restartování připojení";
-"Light source lifespan" = "Životnost světelného zdroje";
-"Light source operating time" = "Provozní doba světelného zdroje";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMĚNIT NASTAVENÍ ŽIVOTNOSTI SVĚTELNÉHO ZDROJE";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Životnost UV zářiče je %,02f%%. Naplánovat jeho výměnu.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Životnost UV zářiče je %,02f%%. Vyměnit zářič";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
 "Planned regeneration is in progress." = "Probíhá plánovaná obnova.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Obnova byla zahájena po 20h provozní činnosti.";
-"Channel Id" = "Id kanálu";
 "Back" = "Zpět";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave můstek neodpovídá. Zkontrolujte zda je můstek připojen k serveru.";
 "Exit" = "Výstup";
@@ -570,3 +558,21 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";
+
+/* State */
+"state_channel_id" = "Id kanálu";
+"state_battery_level" = "Stav baterie";
+"state_battery_powered" = "Napájení baterie";
+"state_wifi_signal_strength" = "Síla signálu WiFi";
+"state_bridge_node_online" = "Uzel můstku - online";
+"state_bridge_node_signal" = "Uzel můstku - síla signálu";
+"state_uptime" = "Provozní doba";
+"state_connection_time" = "Dobra připojení";
+"state_battery_health" = "Životnost baterie";
+"state_connection_reset_cause" = "Důvod restartování připojení";
+"state_light_source_lifespan" = "Životnost světelného zdroje";
+"state_source_operating_time" = "Provozní doba světelného zdroje";
+
+/* Change caption */
+"change_caption_channel_name" = "Název kanálu";
+"change_caption_scene_name" = "Název scény";

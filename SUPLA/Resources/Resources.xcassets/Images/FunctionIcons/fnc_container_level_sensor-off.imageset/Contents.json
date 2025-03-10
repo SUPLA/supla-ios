@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "water level-2.svg",
+      "filename" : "water level-1.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "water level-3.svg",
+      "filename" : "water level-1.png",
       "idiom" : "universal"
     }
   ],

@@ -166,6 +166,7 @@ extension SharedCore.__ThermostatSubfunction {
   case floodSensorActive
   case valveManuallyClosed
   case valveFlooding
+  case valveMotorProblem
   public var name: Swift.String {
     get
   }
@@ -477,6 +478,7 @@ extension SharedCore.__SuplaThermostatFlag {
 @frozen public enum SuplaValveFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case flooding
   case manuallyClosed
+  case motorProblem
   public var name: Swift.String {
     get
   }
@@ -517,9 +519,9 @@ public enum Skie {
     }
     public enum BaseData {
     }
-    public enum IssueIcon {
-    }
     public enum ChannelIssueItem {
+    }
+    public enum IssueIcon {
     }
     public enum ChannelDto {
     }
@@ -556,6 +558,20 @@ extension SharedCore.Skie.supla_android__shared_core.BaseData {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed where __Sealed : SharedCore.BaseData
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed? where __Sealed : SharedCore.BaseData
+extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case error(SharedCore.ChannelIssueItem.Error)
+    case lowBattery(SharedCore.ChannelIssueItem.LowBattery)
+    case warning(SharedCore.ChannelIssueItem.Warning)
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
 extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
   @frozen public enum __Sealed : Swift.Hashable {
     case battery(SharedCore.IssueIcon.Battery)
@@ -576,20 +592,6 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed where __Sealed : SharedCore.IssueIcon
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed? where __Sealed : SharedCore.IssueIcon
-extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
-  @frozen public enum __Sealed : Swift.Hashable {
-    case error(SharedCore.ChannelIssueItem.Error)
-    case lowBattery(SharedCore.ChannelIssueItem.LowBattery)
-    case warning(SharedCore.ChannelIssueItem.Warning)
-    public func hash(into hasher: inout Swift.Hasher)
-    public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed) -> Swift.Bool
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-}
-public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
-@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
 extension SharedCore.Skie.supla_android__shared_core.ChannelDto {
   @frozen public enum __Sealed : Swift.Hashable {
     case defaultChannelDto(SharedCore.DefaultChannelDto)

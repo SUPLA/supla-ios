@@ -287,6 +287,8 @@ struct Strings {
         static let collapse = "general_collapse".toLocalized()
         static let expand = "general_expand".toLocalized()
         static let save = "save".toLocalized()
+        static let stateOpened = "general_state_opened".toLocalized()
+        static let stateClosed = "general_state_closed".toLocalized()
         
         static let hourFormat = "general_hour_format".toLocalized()
         
@@ -505,6 +507,36 @@ struct Strings {
         static let floodingAlarmMessage = "flooding_alarm_message".toLocalized()
         static let warningManuallyClosedShort = "valve_warning_manually_closed_short".toLocalized()
         static let warningFloodingShort = "valve_warning_flooding_short".toLocalized()
+        static let warningMotorProblem = "valve_warning_motor_problem".toLocalized()
+        static let warningMotorProblemOpening = "valve_warning_motor_problem_opening".toLocalized()
+        static let warningMotorProblemClosing = "valve_warning_motor_problem_closing".toLocalized()
+        static let detailSensors = "valve_detail_sensors".toLocalized()
+        static let actionError = "valve_action_error".toLocalized()
+    }
+    
+    struct State {
+        static let channelId = "state_channel_id".toLocalized()
+        static let ipAddress = "state_ip_address".toLocalized()
+        static let macAddress = "state_mac_address".toLocalized()
+        static let batteryLevel = "state_battery_level".toLocalized()
+        static let batteryPowered = "state_battery_powered".toLocalized()
+        static let wifiRssi = "state_wifi_rssi".toLocalized()
+        static let wifiSignalStrength = "state_wifi_signal_strength".toLocalized()
+        static let bridgeNodeOnline = "state_bridge_node_online".toLocalized()
+        static let bridgeNodeSignal = "state_bridge_node_signal".toLocalized()
+        static let uptime = "state_uptime".toLocalized()
+        static let connectionTime = "state_connection_time".toLocalized()
+        static let batteryHealth = "state_battery_health".toLocalized()
+        static let connectionResetCause = "state_connection_reset_cause".toLocalized()
+        static let lightSourceLifespan = "state_light_source_lifespan".toLocalized()
+        static let sourceOperatingTime = "state_source_operating_time".toLocalized()
+    }
+    
+    struct ChangeCaption {
+        static let header = "change_caption_header".toLocalized()
+        static let channelName = "change_caption_channel_name".toLocalized()
+        static let groupName = "change_caption_group_name".toLocalized()
+        static let sceneName = "change_caption_scene_name".toLocalized()
     }
 }
 
@@ -518,9 +550,26 @@ extension String {
     }
 }
 
+@objc
 class LegacyStrings: NSObject {
     @objc
     static func localized(_ key: String) -> String {
         NSLocalizedString(key, tableName: "Localizable", value: "\(NSLocalizedString(key, tableName: "Default", bundle: .main, comment: ""))", comment: "")
     }
+    
+    @objc static let stateChannelId = Strings.State.channelId
+    @objc static let stateIpAddress = Strings.State.ipAddress
+    @objc static let stateMacAddress = Strings.State.macAddress
+    @objc static let stateBatteryLevel = Strings.State.batteryLevel
+    @objc static let stateBatteryPowered = Strings.State.batteryPowered
+    @objc static let stateWifiRssi = Strings.State.wifiRssi
+    @objc static let stateWifiSignalStrength = Strings.State.wifiSignalStrength
+    @objc static let stateBridgeNodeOnline = Strings.State.bridgeNodeOnline
+    @objc static let stateBridgeNodeSignal = Strings.State.bridgeNodeSignal
+    @objc static let stateUptime = Strings.State.uptime
+    @objc static let stateConnectionUptime = Strings.State.connectionTime
+    @objc static let stateBatteryHealth = Strings.State.batteryHealth
+    @objc static let stateConnectionResetCause = Strings.State.connectionResetCause
+    @objc static let stateLightSourceLifespan = Strings.State.lightSourceLifespan
+    @objc static let stateSourceOperatingTime = Strings.State.sourceOperatingTime
 }

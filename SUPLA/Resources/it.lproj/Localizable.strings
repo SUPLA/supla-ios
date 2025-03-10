@@ -223,19 +223,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La durata di vita della lampada UV è %.02f%%. Programmare la sua sostituzione.";
 "The lifespan of the light source is %.02f%%." = "La durata di vita della sorgente luminosta è %.02f%%.";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIA LE IMPOSTAZIONI DELLA DURATA DI VITA DELLA SORGENTE LUMINOSA";
-"Channel Id" = "Id canale";
-"Battery level" = "Livello batteria";
-"Battery powered" = "Alimentazione a batteria";
-"Wifi RSSI" = "Wi-fi RSSI";
-"Wifi signal strength" = "Potenza del segnale WiFi";
-"Bridge node - online" = "Nodo ponte – online";
-"Bridge node - signal strength" = "Nodo ponte – potenza del segnale";
-"Uptime" = "Tempo di attività";
-"Connection uptime" = "Tempo di collegamento";
-"Battery health" = "Vita utile della batteria";
-"Connection reset cause" = "Causa di riavvio della connessione";
-"Light source lifespan" = "Vita utile di sorgente luminosa";
-"Light source operating time" = "Tempo di funzionamento di sorgente luminosa";
 "Arithmetic balance - Minutes" = "Bilanciamento aritmetico - Minuti";
 "Arithmetic balance - Hours" = "Bilanciamento aritmetico - Ore";
 "Arithmetic balance - Days" = "Bilanciamento aritmetico - Giorni";
@@ -605,3 +592,22 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente. Sei sicuro di voler aprire la valvola dall'applicazione?";
+
+/* State */
+"state_channel_id" = "Id canale";
+"state_battery_level" = "Livello batteria";
+"state_battery_powered" = "Alimentazione a batteria";
+"state_wifi_rssi" = "Wi-fi RSSI";
+"state_wifi_signal_strength" = "Potenza del segnale WiFi";
+"state_bridge_node_online" = "Nodo ponte – online";
+"state_bridge_node_signal" = "Nodo ponte – potenza del segnale";
+"state_uptime" = "Tempo di attività";
+"state_connection_time" = "Tempo di collegamento";
+"state_battery_health" = "Vita utile della batteria";
+"state_connection_reset_cause" = "Causa di riavvio della connessione";
+"state_light_source_lifespan" = "Vita utile di sorgente luminosa";
+"state_source_operating_time" = "Tempo di funzionamento di sorgente luminosa";
+
+/* Change caption */
+"change_caption_channel_name" = "Nome Canale";
+"change_caption_scene_name" = "Nome della scena";

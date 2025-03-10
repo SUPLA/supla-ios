@@ -109,7 +109,7 @@ final class ThermostatControlView: UIView {
             }
             indicatorHeatingShape.isHidden = !operationalMode.isHeating
             indicatorCoolingShape.isHidden = !operationalMode.isCooling
-            currentPowerLabel.isHidden = !operationalMode.isHeating && !operationalMode.isCooling || currentPower <= 1
+            currentPowerLabel.isHidden = !operationalMode.isHeating && !operationalMode.isCooling || currentPower == nil
             
             if (oldValue.isHeating && !operationalMode.isHeating) {
                 indicatorHeatingShape.removeAllAnimations()
@@ -126,11 +126,15 @@ final class ThermostatControlView: UIView {
         }
     }
     
-    var currentPower: Int = 0 {
+    var currentPower: Int? = nil {
         didSet {
-            temperatureCircleShape.currentPower = currentPower
-            currentPowerLabel.isHidden = !operationalMode.isHeating && !operationalMode.isCooling || currentPower <= 1
-            currentPowerLabel.text = "\(currentPower - 1)%"
+            if let currentPower {
+                temperatureCircleShape.currentPower = currentPower
+                currentPowerLabel.isHidden = !operationalMode.isHeating && !operationalMode.isCooling
+                currentPowerLabel.text = "\(currentPower)%"
+            } else {
+                currentPowerLabel.isHidden = true
+            }
             
             setNeedsLayout()
         }
@@ -251,7 +255,7 @@ final class ThermostatControlView: UIView {
             height: maxTemperatureView.intrinsicContentSize.height
         )
         
-        let correction: CGFloat = (operationalMode.isCooling || operationalMode.isHeating) && currentPower > 1 ? 75 : 55
+        let correction: CGFloat = (operationalMode.isCooling || operationalMode.isHeating) && currentPower != nil ? 75 : 55
         indicatorHeatingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 - correction)
         indicatorCoolingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 + correction)
         

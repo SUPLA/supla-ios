@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Tem a certeza de que pretende restaurar as definições predefinições?";
 "Default settings" = "Configurações predefinidas";
 
-"Battery level" = "Nível de bateria";
-"Battery powered" = "Bateria";
-"Wifi signal strength" = "Força do sinal WiFi";
-"Bridge node - online" = "Junção de pontes - online";
-"Bridge node - signal strength" = "Junção da ponte - força do sinal";
-"Uptime" = "Tempo de trabalho";
-"Connection uptime" = "Tempo de ligação";
-"Battery health" = "Duração da bateria";
-"Connection reset cause" = "Motivo para reiniciar a ligação";
-"Light source lifespan" = "Vida útil da fonte de luz";
-"Light source operating time" = "Tempo de funcionamento da fonte luminosa";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ALTERAR AS DEFINIÇÕES DE VIDA ÚTIL DA FONTE DE LUZ";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "A vida útil do radiador UV é de %02f%%. Planeia substituí-lo.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "A vida útil do radiador UV é de %02f%%. Substitua o radiador.";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "As secções do vidro são expostas por mais de 20 horas, o que pode afetar negativamente a sua vida útil. Recomenda-se cobrir todas as secções durante um mínimo de 4 horas para as regenerar.";
 "Planned regeneration is in progress." = "A regeneração planeada está em curso.";
 "Regeneration initiated after 20 hours of operation is in progress." = "A regeneração iniciará  após 20 horas de trabalho.";
-"Channel Id" = "ID do Canal";
 "Back" = "Voltar";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "A ponte z-wave não responde. Verifique se a ponte está conectada ao servidor.";
 "Exit" = "Sair";
@@ -572,3 +560,21 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula. Tem a certeza que quer abrir a válvula a partir da aplicação!";
+
+/* State */
+"state_channel_id" = "ID do Canal";
+"state_battery_level" = "Nível de bateria";
+"state_battery_powered" = "Bateria";
+"state_wifi_signal_strength" = "Força do sinal WiFi";
+"state_bridge_node_online" = "Junção de pontes - online";
+"state_bridge_node_signal" = "Junção da ponte - força do sinal";
+"state_uptime" = "Tempo de trabalho";
+"state_connection_time" = "Tempo de ligação";
+"state_battery_health" = "Duração da bateria";
+"state_connection_reset_cause" = "Motivo para reiniciar a ligação";
+"state_light_source_lifespan" = "Vida útil da fonte de luz";
+"state_source_operating_time" = "Tempo de funcionamento da fonte luminosa";
+
+/* Change caption */
+"change_caption_channel_name" = "Nome do canal";
+"change_caption_scene_name" = "Nome da cena";

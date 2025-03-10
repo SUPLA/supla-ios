@@ -42,6 +42,10 @@ extension SuplaCore {
         func onViewAppeared() {}
         
         func onViewDisappeared() {}
+        
+        func handle(_ disposable: Disposable) {
+            disposeBag.insert(disposable)
+        }
     }
 }
 

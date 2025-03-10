@@ -16,15 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import SwiftUI
 import SharedCore
+import SwiftUI
 
 extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (SAChannel?) -> Void
+        let onStatusAction: (Int32, String) -> Void
+        let onStateDialogDismiss: () -> Void
+        
+        let onCaptionLongPress: (ThermostatData) -> Void
+        let onCaptionChangeDismiss: () -> Void
+        let onCaptionChangeApply: (String) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -32,15 +37,37 @@ extension ThermostatSlavesFeature {
                     if let master = viewState.master {
                         HeaderText(title: Strings.ThermostatDetail.mainThermostat)
                             .padding([.bottom], Distance.tiny)
-                        ThermostatRow(data: master, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
+                        ThermostatRow(
+                            data: master,
+                            onInfoAction: onInfoAction,
+                            onStatusAction: onStatusAction,
+                            onCaptionLongPress: onCaptionLongPress
+                        )
                     }
                     HeaderText(title: Strings.ThermostatDetail.otherThermostats)
                         .padding([.top], Distance.default)
                         .padding([.bottom], Distance.tiny)
                     LazyList(items: viewState.slaves) {
-                        ThermostatRow(data: $0, onInfoAction: onInfoAction, onStatusAction: onStatusAction)
+                        ThermostatRow(
+                            data: $0,
+                            onInfoAction: onInfoAction,
+                            onStatusAction: onStatusAction,
+                            onCaptionLongPress: onCaptionLongPress
+                        )
                     }
                 }.padding([.top], Dimens.distanceDefault)
+
+                if let stateDialogState = viewState.stateDialogState {
+                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                }
+
+                if let captionChangeDialogState = viewState.captionChangeDialogState {
+                    CaptionChangeDialogFeature.Dialog(
+                        state: captionChangeDialogState,
+                        onDismiss: onCaptionChangeDismiss,
+                        onOK: { onCaptionChangeApply($0) }
+                    )
+                }
             }.environment(\.scaleFactor, viewState.scale)
         }
     }
@@ -57,11 +84,12 @@ extension ThermostatSlavesFeature {
 
     struct ThermostatRow: SwiftUI.View {
         @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
+
         let data: ThermostatData
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (SAChannel?) -> Void
+        let onStatusAction: (Int32, String) -> Void
+        let onCaptionLongPress: (ThermostatData) -> Void
 
         var body: some SwiftUI.View {
             ZStack {
@@ -86,6 +114,7 @@ extension ThermostatSlavesFeature {
                         }
                         CellCaption(text: data.caption)
                             .padding([.trailing], Dimens.distanceSmall)
+                            .onLongPressGesture { onCaptionLongPress(data) }
                     }
                     Spacer()
                 }
@@ -99,77 +128,15 @@ extension ThermostatSlavesFeature {
                                 }
                             }
                     }
-                        
+
                     if (data.showChannelStateIcon) {
                         ListItemInfoIcon()
-                            .onTapGesture { onStatusAction(data.channel) }
+                            .onTapGesture { onStatusAction(data.id, data.caption) }
                     }
                     ListItemDot(onlineState: data.onlineState)
                 }.padding([.trailing], Dimens.distanceSmall)
             }.padding([.top, .bottom], Dimens.distanceTiny)
                 .background(Color.Supla.surface)
-        }
-    }
-
-    struct ListItemIcon: SwiftUI.View {
-        @Environment(\.scaleFactor) var scaleFactor: CGFloat
-        
-        let iconResult: IconResult?
-
-        var body: some SwiftUI.View {
-            Image()
-                .resizable()
-                .scaledToFit()
-                .frame(width: scale(scaleFactor, 60), height: scale(scaleFactor, 50))
-        }
-        
-        private func Image() -> SwiftUI.Image {
-            if let iconResult = iconResult {
-                iconResult.image
-            } else {
-                SwiftUI.Image(.Icons.fncUnknown)
-            }
-        }
-    }
-
-    struct ListItemInfoIcon: SwiftUI.View {
-        var body: some SwiftUI.View {
-            Image(.Icons.info)
-                .resizable()
-                .scaledToFit()
-                .frame(width: Dimens.iconInfoSize, height: Dimens.iconInfoSize)
-                .foregroundColor(.Supla.onBackground)
-        }
-    }
-
-    struct ListItemIssueIcon: SwiftUI.View {
-        let icon: IssueIcon?
-
-        var body: some SwiftUI.View {
-            if let icon = icon?.resource {
-                Image(uiImage: icon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: Dimens.iconSizeList, height: Dimens.iconSizeList)
-                    .foregroundColor(.Supla.onBackground)
-            }
-        }
-    }
-
-    struct ListItemDot: SwiftUI.View {
-        let onlineState: ListOnlineState
-
-        var body: some SwiftUI.View {
-            let color = onlineState.online ? Color.Supla.primary : Color.Supla.error
-            ZStack {
-                Circle()
-                    .stroke()
-                    .fill(color)
-                    .frame(
-                        width: Dimens.ListItem.statusIndicatorSize,
-                        height: Dimens.ListItem.statusIndicatorSize
-                    )
-            }
         }
     }
 
@@ -206,6 +173,7 @@ extension ThermostatSlavesFeature {
         id: 1,
         onlineState: .online,
         caption: "FHC #0",
+        userCaption: "FHC #0",
         icon: .suplaIcon(name: "fnc_thermostat_heat"),
         currentPower: nil,
         value: "22,7°C",
@@ -214,14 +182,14 @@ extension ThermostatSlavesFeature {
         showChannelStateIcon: true,
         subValue: "23,0°",
         pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-on"),
-        sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on"),
-        channel: nil
+        sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on")
     )
     viewState.slaves = [
         ThermostatSlavesFeature.ThermostatData(
             id: 1,
             onlineState: .online,
             caption: "FHC #1",
+            userCaption: "FHC #1",
             icon: .suplaIcon(name: "fnc_thermostat_heat"),
             currentPower: "25%",
             value: "22,7°C",
@@ -230,13 +198,13 @@ extension ThermostatSlavesFeature {
             showChannelStateIcon: true,
             subValue: "23,0°",
             pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-off"),
-            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on"),
-            channel: nil
+            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-on")
         ),
         ThermostatSlavesFeature.ThermostatData(
             id: 2,
             onlineState: .online,
             caption: "FHC #2",
+            userCaption: "FHC #2",
             icon: .suplaIcon(name: "fnc_thermostat_heat"),
             currentPower: "100%",
             value: "22,4°C",
@@ -245,13 +213,16 @@ extension ThermostatSlavesFeature {
             showChannelStateIcon: true,
             subValue: "23,0°",
             pumpSwitchIcon: .suplaIcon(name: "fnc_pump_switch-on"),
-            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-off"),
-            channel: nil
+            sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-off")
         )
     ]
     return ThermostatSlavesFeature.View(
         viewState: viewState,
         onInfoAction: { _ in },
-        onStatusAction: { _ in }
+        onStatusAction: { _, _ in },
+        onStateDialogDismiss: {},
+        onCaptionLongPress: { _ in },
+        onCaptionChangeDismiss: {},
+        onCaptionChangeApply: { _ in }
     )
 }

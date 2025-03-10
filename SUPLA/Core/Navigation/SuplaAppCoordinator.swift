@@ -46,11 +46,11 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
     func navigateToCounterPhoto(channelId: Int32)
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     
     func popToStatus()
     
     func showMenu()
-    func showAuthorization()
     func showLogin()
     
     func openForum()
@@ -213,6 +213,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(HumidityDetailVC(item: item, pages: pages))
     }
     
+    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(ValveDetailVC(item: item, pages: pages))
+    }
+    
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
         navigateTo(PinSetupFeature.ViewController.create(scope: lockScreenScope))
     }
@@ -231,10 +235,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func showMenu() {
         present(SuplaMenuController())
-    }
-    
-    func showAuthorization() {
-        present(SAAuthorizationDialogVC {})
     }
     
     func showLogin() {

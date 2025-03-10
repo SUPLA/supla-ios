@@ -44,4 +44,8 @@ final class ChannelBaseActionUseCaseMock: ChannelBaseActionUseCase {
         parameters.append((channelBase, buttonType))
         return returns
     }
+    
+    func invoke(_ remoteId: Int32, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
+        return .empty()
+    }
 }

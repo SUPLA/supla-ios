@@ -154,17 +154,6 @@
 "Are you sure you want to restore the default settings?" = "Ar tikrai norite atkurti numatytuosius nustatymus?";
 "Default settings" = "Numatytieji nustatymai";
 
-"Battery level" = "Baterijos lygis";
-"Battery powered" = "Maitinimas baterija";
-"Wifi signal strength" = "WiFi signalo stiprumas";
-"Bridge node - online" = "Tilto mazgas – online";
-"Bridge node - signal strength" = "Tilto mazgas – signalo stiprumas";
-"Uptime" = "Darbo laikas";
-"Connection uptime" = "Prisijungimo laikas";
-"Battery health" = "Baterijos eksploatavimo laikas";
-"Connection reset cause" = "Ryšio atstatymo priežastis";
-"Light source lifespan" = "Šviesos šaltinio eksploatavimo laikas";
-"Light source operating time" = "Šviesos šaltinio veikimo laikas";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "PAKEISTI ŠVIESOS ŠALTINIO GYVAVIMO TRUKMĖS NUSTATYMUS";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "UV spinduolio tarnavimo laikas tai %.02f%%. Suplanuoti jo pakeitimą.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "UV spinduolio tarnavimo laikas tai %.02f%%. Pakeisti spinduolį.";
@@ -188,7 +177,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
 "Planned regeneration is in progress." = "Vyksta suplanuotas regeneravimas.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
-"Channel Id" = "Kanalo ID";
 "Back" = "Atgal";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
 "Exit" = "Išėjimas";
@@ -572,3 +560,21 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu. Ar tikrai norite atidaryti vožtuvą programoje?!";
+
+/* State */
+"state_channel_id" = "Kanalo ID";
+"state_battery_level" = "Baterijos lygis";
+"state_battery_powered" = "Maitinimas baterija";
+"state_wifi_signal_strength" = "WiFi signalo stiprumas";
+"state_bridge_node_online" = "Tilto mazgas – online";
+"state_bridge_node_signal" = "Tilto mazgas – signalo stiprumas";
+"state_uptime" = "Darbo laikas";
+"state_connection_time" = "Prisijungimo laikas";
+"state_battery_health" = "Baterijos eksploatavimo laikas";
+"state_connection_reset_cause" = "Ryšio atstatymo priežastis";
+"state_light_source_lifespan" = "Šviesos šaltinio eksploatavimo laikas";
+"state_source_operating_time" = "Šviesos šaltinio veikimo laikas";
+
+/* Change caption */
+"change_caption_channel_name" = "Kanalo pavadinimas";
+"change_caption_scene_name" = "Scenos pavadinimas";

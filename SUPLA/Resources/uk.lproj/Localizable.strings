@@ -152,17 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Ви впевнені, що хочете відновити налаштування за замовчуванням ?";
 "Default settings" = "Налаштування за замовчуванням";
 
-"Battery level" = "Рівень заряду батареї";
-"Battery powered" = "Працює від батареї";
-"Wifi signal strength" = "Потужність сигналу WiFi";
-"Bridge node - online" = "Мостовий вузол - онлайн";
-"Bridge node - signal strength" = "Мостовий вузол  - потужність сигналу";
-"Uptime" = "Час роботи";
-"Connection uptime" = "Час підключення";
-"Battery health" = "Термін служби батареї";
-"Connection reset cause" = "Причина перезапуску з'єднання";
-"Light source lifespan" = "Термін служби джерела світла";
-"Light source operating time" = "Час роботи джерела світла";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ЗМІНИТИ НАЛАШТУВАННЯ РЕСУРСУ ДЖЕРЕЛА СВІТЛА";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Термін служби УФ-випромінювача становить %,02f%%. Заплануйте його заміну.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Термін служби УФ-випромінювача становить %,02f%%. Замінити випромінювач.";
@@ -186,7 +175,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Скляні секції експонуються більше 20 годин, що може негативно вплинути на термін їх служби. Рекомендується накрити всі секції мінімум на 4 години для їх регенерації.";
 "Planned regeneration is in progress." = "Виконується планова регенерація.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Триває регенерація, розпочата після 20 годин роботи.";
-"Channel Id" = "Ідентифікатор каналу";
 "Back" = "Назад";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
 "Exit" = "Вихід";
@@ -571,3 +559,20 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";
+
+/* State */
+"state_channel_id" = "Ідентифікатор каналу";
+"state_battery_level" = "Рівень заряду батареї";
+"state_battery_powered" = "Працює від батареї";
+"state_wifi_signal_strength" = "Потужність сигналу WiFi";
+"state_bridge_node_online" = "Мостовий вузол - онлайн";
+"state_bridge_node_signal" = "Мостовий вузол  - потужність сигналу";
+"state_uptime" = "Час роботи";
+"state_connection_time" = "Час підключення";
+"state_battery_health" = "Термін служби батареї";
+"state_connection_reset_cause" = "Причина перезапуску з'єднання";
+"state_light_source_lifespan" = "Термін служби джерела світла";
+"state_source_operating_time" = "Час роботи джерела світла";
+
+/* Change caption */
+"change_caption_channel_name" = "Назва каналу";

@@ -149,4 +149,19 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     func getServerTimeDiffInSec() -> Int32 {
         getServerTimeDiffInSecMock.handle(())
     }
+    
+    func channelStateRequest(withChannelId channelId: Int32) {
+    }
+    
+    func setChannelCaption(_ channelId: Int32, caption: String!) {
+    }
+    
+    func setSceneCaption(_ sceneId: Int32, caption: String!) {
+    }
+    
+    func setChannelGroupCaption(_ channelGroupId: Int32, caption: String!) {
+    }
+    
+    func setLocationCaption(_ locationId: Int32, caption: String!) {
+    }
 }

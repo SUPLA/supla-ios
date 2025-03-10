@@ -84,6 +84,7 @@ enum ElectricityMeterChartType: Int, Codable, CaseIterable, Identifiable, Picker
         case .voltage: "\(label) [V]"
         case .current: "\(label) [A]"
         case .powerActive: "\(label) [W]"
+        case .forwardReactiveEnergy, .reverseReactiveEnergy: "\(label) [kvarh]"
         default: "\(label) [kWh]"
         }
     }

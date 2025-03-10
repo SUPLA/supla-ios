@@ -41,6 +41,10 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
         return channelObservable
     }
     
+    func getChannel(_ remoteId: Int32) -> Observable<SAChannel> {
+        Observable.empty()
+    }
+    
     var getChannelNullableMock: FunctionMock<(AuthProfileItem, Int32), Observable<SAChannel?>> = .init()
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?> {
         getChannelNullableMock.handle((profile, remoteId))
@@ -71,5 +75,9 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
         Observable.empty()
+    }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        .empty()
     }
 }

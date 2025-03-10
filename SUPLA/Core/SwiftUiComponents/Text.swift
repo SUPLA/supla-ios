@@ -57,6 +57,10 @@ extension View {
         font(.Supla.bodyLarge)
     }
     
+    func fontTitleSmall() -> some View {
+        font(.Supla.titleSmall)
+    }
+    
     func fontTitleMedium() -> some View {
         font(.Supla.titleMedium)
     }

@@ -19,10 +19,11 @@
 import Foundation
 import RxSwift
 
-protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
+protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
+    func getChannel(_ remoteId: Int32) -> Observable<SAChannel> 
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -80,6 +81,11 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         return query(request)
     }
     
+    func getChannel(_ remoteId: Int32) -> Observable<SAChannel> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile.isActive = 1", remoteId))
+            .compactMap { $0 }
+    }
+    
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel> {
         queryItem(NSPredicate(format: "remote_id = %d AND profile = %@", remoteId, profile))
             .compactMap { $0 }
@@ -104,5 +110,14 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 channels.forEach { resultSet.insert($0.usericon_id) }
                 return Array(resultSet)
             }
+    }
+    
+    func update(caption: String, remoteId: Int32) -> Observable<Void> {
+        getChannel(remoteId)
+            .map {
+                $0.caption = caption
+                return $0
+            }
+            .flatMapFirst { self.save($0) }
     }
 }

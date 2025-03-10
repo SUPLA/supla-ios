@@ -159,11 +159,13 @@ extension SuplaCore.Dialog {
     }
     
     struct Alert: SwiftUI.View {
-        
         var header: String
         var message: String
-        var button: String
         var onDismiss: () -> Void
+        var positiveButtonText: String?
+        var negativeButtonText: String?
+        var onPositiveButtonClick: (() -> Void)?
+        var onNegativeButtonClick: (() -> Void)?
         
         var body: some SwiftUI.View {
             SuplaCore.Dialog.Base(onDismiss: onDismiss) {
@@ -178,9 +180,38 @@ extension SuplaCore.Dialog {
                     SuplaCore.Dialog.Divider()
                         .padding([.top], Distance.default)
                     
-                    FilledButton(title: button, fullWidth: true) { onDismiss() }
-                    .padding([.top, .bottom], Distance.small)
-                    .padding([.leading, .trailing], Distance.default)
+                    if let positiveButtonText, let negativeButtonText {
+                        HStack(spacing: Distance.default) {
+                            BorderedButton(title: negativeButtonText, fullWidth: true) {
+                                if let onNegativeButtonClick {
+                                    onNegativeButtonClick()
+                                }
+                            }
+                            FilledButton(title: positiveButtonText, fullWidth: true) {
+                                if let onPositiveButtonClick {
+                                    onPositiveButtonClick()
+                                }
+                            }
+                        }
+                        .padding([.top, .bottom], Distance.small)
+                        .padding([.leading, .trailing], Distance.default)
+                    } else if let positiveButtonText {
+                        FilledButton(title: positiveButtonText, fullWidth: true) {
+                            if let onPositiveButtonClick {
+                                onPositiveButtonClick()
+                            }
+                        }
+                        .padding([.top, .bottom], Distance.small)
+                        .padding([.leading, .trailing], Distance.default)
+                    } else if let negativeButtonText {
+                        BorderedButton(title: negativeButtonText, fullWidth: true) {
+                            if let onNegativeButtonClick {
+                                onNegativeButtonClick()
+                            }
+                        }
+                        .padding([.top, .bottom], Distance.small)
+                        .padding([.leading, .trailing], Distance.default)
+                    }
                 }
             }
         }
@@ -206,11 +237,48 @@ extension SuplaCore.Dialog {
             SuplaCore.Divider().color(UIColor.grayLight)
         }
     }
+    
+    struct TextField: SwiftUI.View {
+        let label: String?
+        var value: Binding<String>
+        let disabled: Bool
+        
+        init(value: Binding<String>, label: String? = nil, disabled: Bool = false) {
+            self.value = value
+            self.label = label
+            self.disabled = disabled
+        }
+        
+        var body: some SwiftUI.View {
+            VStack(alignment: .leading, spacing: 0) {
+                if let label {
+                    SwiftUI.Text(value.wrappedValue.isEmpty ? "" : label.uppercased())
+                        .fontBodySmall()
+                        .textColor(.gray)
+                }
+                SwiftUI.TextField(label ?? "", text: value)
+                    .disabled(disabled)
+                    .fontBodyLarge()
+            }
+            .padding([.top, .bottom], Distance.tiny)
+            .padding([.leading, .trailing], Distance.small)
+            .background(disabled ? Color.clear : Color.Supla.surface)
+            .clipShape(RoundedRectangle(cornerRadius: Dimens.buttonRadius))
+            .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
+        }
+    }
 }
 
 extension SuplaCore.Dialog.Base {
     init(onDismiss: @escaping () -> Void = {}, @ViewBuilder _ content: () -> Content) {
         self.onDismiss = onDismiss
         self.content = content()
+    }
+}
+
+#Preview {
+    VStack {
+        SuplaCore.Dialog.TextField(value: .constant("Value"), label: "Label")
+        SuplaCore.Dialog.TextField(value: .constant(""), label: "Label")
     }
 }
