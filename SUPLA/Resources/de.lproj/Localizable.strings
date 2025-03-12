@@ -606,3 +606,10 @@
 "change_caption_channel_name" = "Name des Kanals";
 "change_caption_group_name" = "Gruppenname";
 "change_caption_scene_name" = "Szenenname";
+
+/* Container */
+"container_fill_level" = "Füllstand";
+"container_warning_level" = "Behälterfüllstandswarnung";
+"container_alarm_level" = "Behälterfüllstandsalarm!";
+"container_invalid_sensor_state" = "Ungültiger Sensorzustand";
+"container_sound_alarm" = "Akustischer Alarm aktiv";

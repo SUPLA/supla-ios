@@ -23,9 +23,13 @@ import SwiftUI
 extension Color {
     struct Supla {
         static let primary = Color(UIColor.primary)
+        static let secondary = Color(UIColor.secondary)
+        static let tertiary = Color(UIColor.tertiary)
         
         static let background = Color(UIColor.background)
         static let surface = Color(UIColor.surface)
+        
+        static let primaryContainer = Color(UIColor.primaryContainer)
         
         static let onBackground = Color(UIColor.onBackground)
         static let onPrimary = Color(UIColor.onPrimary)

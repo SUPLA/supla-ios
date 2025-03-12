@@ -167,6 +167,10 @@ extension SharedCore.__ThermostatSubfunction {
   case valveManuallyClosed
   case valveFlooding
   case valveMotorProblem
+  case containerAlarmLevel
+  case containerWarningLevel
+  case containerInvalidSensorState
+  case containerSoundAlarm
   public var name: Swift.String {
     get
   }
@@ -513,6 +517,40 @@ extension SharedCore.SuplaValveFlag {
 extension SharedCore.__SuplaValveFlag {
   public func toSwiftEnum() -> SharedCore.SuplaValveFlag
 }
+@frozen public enum SuplaCallConfigCommand : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case zwaveGetNodeList
+  case recalibrate
+  case muteAlarmSound
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaCallConfigCommand, result: inout SharedCore.SuplaCallConfigCommand?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaCallConfigCommand, result: inout SharedCore.SuplaCallConfigCommand?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaCallConfigCommand?) -> SharedCore.SuplaCallConfigCommand
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaCallConfigCommand
+  public typealias _ObjectiveCType = SharedCore.__SuplaCallConfigCommand
+  public static func == (a: SharedCore.SuplaCallConfigCommand, b: SharedCore.SuplaCallConfigCommand) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaCallConfigCommand]
+  nonisolated public static var allCases: [SharedCore.SuplaCallConfigCommand] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaCallConfigCommand {
+  public func toKotlinEnum() -> SharedCore.__SuplaCallConfigCommand
+}
+extension SharedCore.__SuplaCallConfigCommand {
+  public func toSwiftEnum() -> SharedCore.SuplaCallConfigCommand
+}
 public enum Skie {
   public enum supla_android__shared_core {
     public enum LocalizedString {
@@ -562,6 +600,7 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
   @frozen public enum __Sealed : Swift.Hashable {
     case error(SharedCore.ChannelIssueItem.Error)
     case lowBattery(SharedCore.ChannelIssueItem.LowBattery)
+    case soundAlarm(SharedCore.ChannelIssueItem.SoundAlarm)
     case warning(SharedCore.ChannelIssueItem.Warning)
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed) -> Swift.Bool
@@ -582,6 +621,7 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
     case battery75(SharedCore.IssueIcon.Battery75)
     case batteryNotUsed(SharedCore.IssueIcon.BatteryNotUsed)
     case error(SharedCore.IssueIcon.Error)
+    case sound(SharedCore.IssueIcon.Sound)
     case warning(SharedCore.IssueIcon.Warning)
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed, b: SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed) -> Swift.Bool
@@ -643,3 +683,5 @@ extension SharedCore.SuplaThermostatFlag : Swift.Sendable {}
 extension SharedCore.SuplaThermostatFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaValveFlag : Swift.Sendable {}
 extension SharedCore.SuplaValveFlag : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaCallConfigCommand : Swift.Sendable {}
+extension SharedCore.SuplaCallConfigCommand : Swift.BitwiseCopyable {}

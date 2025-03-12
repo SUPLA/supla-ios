@@ -72,4 +72,20 @@ extension ChannelChild {
             children: children.map { $0.shareable }
         )
     }
+    
+    func toSensorItem() -> SensorItemData {
+        @Singleton<GetChannelBatteryIconUseCase> var getChannelBatteryIconUseCase
+        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
+        @Singleton<GetCaptionUseCase> var getCaptionUseCase
+        
+        return SensorItemData(
+            channelId: channel.remote_id,
+            onlineState: channel.onlineState,
+            icon: getChannelBaseIconUseCase.invoke(channel: channel),
+            caption: getCaptionUseCase.invoke(data: channel.shareable).string,
+            userCaption: channel.caption ?? "",
+            batteryIcon: getChannelBatteryIconUseCase.invoke(channel: channel.shareable),
+            showChannelStateIcon: channel.value?.online ?? false
+        )
+    }
 }

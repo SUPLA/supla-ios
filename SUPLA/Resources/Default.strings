@@ -408,3 +408,10 @@
 "change_caption_channel_name" = "Channel name";
 "change_caption_group_name" = "Group name";
 "change_caption_scene_name" = "Scene name";
+
+/* Container */
+"container_fill_level" = "Fill level";
+"container_warning_level" = "Container level warning";
+"container_alarm_level" = "Container level alarm!";
+"container_invalid_sensor_state" = "Invalid sensor state";
+"container_sound_alarm" = "Sound alarm active";

@@ -114,6 +114,8 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(humidityHistoryDetail())
             case .valveGeneral:
                 viewControllers.append(valveGeneralDetail())
+            case .containerGeneral:
+                viewControllers.append(containerGeneralDetail())
             }
         }
         
@@ -397,6 +399,16 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
     
     private func valveGeneralDetail() -> UIViewController {
         let vc = ValveGeneralFeature.ViewController.create(channelId: item.remoteId)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.General.rawValue
+        )
+        return vc
+    }
+    
+    private func containerGeneralDetail() -> UIViewController {
+        let vc = ContainerGeneralFeature.ViewController.create(channelId: item.remoteId)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,

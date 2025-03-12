@@ -60,6 +60,8 @@ extension String {
         static let forwardEnergy = "icon_forward_energy"
         static let reversedEnergy = "icon_reversed_energy"
         static let powerOff = "icon_power_off"
+        static let soundOn = "icon_sound_on"
+        static let soundOff = "icon_sound_off"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
