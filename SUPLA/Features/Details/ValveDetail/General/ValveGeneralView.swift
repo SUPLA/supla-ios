@@ -119,10 +119,14 @@ extension ValveGeneralFeature {
                 .frame(maxWidth: .infinity)
                 
                 if let icon {
-                    icon.image
-                        .renderingMode(.template)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(offline ? Color.Supla.outline : Color.Supla.onBackground)
+                    if (offline) {
+                        icon.image.frame(maxWidth: .infinity)
+                    } else {
+                        icon.image
+                            .renderingMode(.template)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color.Supla.outline)
+                    }
                 }
             }
             .frame(minHeight: 120)
