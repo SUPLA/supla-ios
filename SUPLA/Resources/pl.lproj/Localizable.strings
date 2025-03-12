@@ -643,3 +643,10 @@
 "change_caption_channel_name" = "Nazwa kanału";
 "change_caption_group_name" = "Nazwa grupy";
 "change_caption_scene_name" = "Nazwa sceny";
+
+/* Container */
+"container_fill_level" = "Poziom napełnienia";
+"container_warning_level" = "Poziom ostrzegawczy";
+"container_alarm_level" = "Poziom alarmowy!";
+"container_invalid_sensor_state" = "Nieprawidłowy stan czujników";
+"container_sound_alarm" = "Alarm dźwiękowy aktywny";

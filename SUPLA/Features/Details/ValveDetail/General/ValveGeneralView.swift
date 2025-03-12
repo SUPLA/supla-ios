@@ -23,8 +23,8 @@ extension ValveGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         
-        let onInfoClick: (SensorData) -> Void
-        let onCaptionLongPress: (SensorData) -> Void
+        let onInfoClick: (SensorItemData) -> Void
+        let onCaptionLongPress: (SensorItemData) -> Void
         
         let onOpenClick: () -> Void
         let onCloseClick: () -> Void
@@ -42,8 +42,8 @@ extension ValveGeneralFeature {
                     ScrollView {
                         VStack(alignment: .leading, spacing: Distance.small) {
                             DeviceState(state: viewState.stateString, icon: viewState.icon, offline: viewState.offline)
-                            Issues(issues: viewState.issues)
-                            Sensors(
+                            ChannelIssuesView(issues: viewState.issues)
+                            SensorItemsView(
                                 sensors: viewState.sensors,
                                 onInfoClick: onInfoClick,
                                 onCaptionLongPress: onCaptionLongPress
@@ -133,67 +133,6 @@ extension ValveGeneralFeature {
             .padding([.leading, .trailing], Distance.default)
         }
     }
-    
-    private struct Issues: SwiftUI.View {
-        var issues: [ChannelIssueItem]
-        
-        var body: some SwiftUI.View {
-            ForEach(0 ..< issues.count, id: \.self) { issueIdx in
-                ForEach(0 ..< issues[issueIdx].messages.count, id: \.self) { messageIdx in
-                    HStack(alignment: .top, spacing: Distance.tiny) {
-                        if let icon = issues[issueIdx].icon.resource {
-                            Image(uiImage: icon)
-                                .resizable()
-                                .frame(width: Dimens.iconSize, height: Dimens.iconSize)
-                        }
-                        Text(issues[issueIdx].messages[messageIdx].string)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .padding([.leading, .trailing], Distance.default)
-                }
-            }
-        }
-    }
-    
-    private struct Sensors: SwiftUI.View {
-        let sensors: [SensorData]
-        let onInfoClick: (SensorData) -> Void
-        let onCaptionLongPress: (SensorData) -> Void
-        
-        var body: some SwiftUI.View {
-            if (!sensors.isEmpty) {
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(Strings.Valve.detailSensors.uppercased())
-                        .fontBodyMedium()
-                        .padding([.leading, .trailing], Distance.default)
-                        .padding(.bottom, Distance.tiny)
-                    ForEach(sensors) { sensor in
-                        HStack(spacing: 0) {
-                            ListItemIcon(iconResult: sensor.icon)
-                            CellCaption(text: sensor.caption)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, Distance.tiny)
-                                .padding(.trailing, Distance.small)
-                                .onLongPressGesture { onCaptionLongPress(sensor) }
-                            ListItemIssueIcon(icon: sensor.batteryIcon)
-                                .padding(.trailing, Distance.small)
-                            if (sensor.showChannelStateIcon) {
-                                ListItemInfoIcon()
-                                    .padding(.trailing, Distance.small)
-                                    .onTapGesture { onInfoClick(sensor) }
-                            }
-                            ListItemDot(onlineState: sensor.onlineState)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding([.leading], Distance.small)
-                        .padding([.trailing], Distance.default)
-                        .padding([.top, .bottom], Distance.tiny)
-                        .background(Color.Supla.surface)
-                    }
-                }
-            }
-        }
-    }
 }
 
 #Preview {
@@ -216,7 +155,7 @@ extension ValveGeneralFeature {
         ])
     ]
     state.sensors = [
-        ValveGeneralFeature.SensorData(
+        SensorItemData(
             channelId: 1,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-on"),
@@ -225,7 +164,7 @@ extension ValveGeneralFeature {
             batteryIcon: IssueIcon.Battery25(),
             showChannelStateIcon: true
         ),
-        ValveGeneralFeature.SensorData(
+        SensorItemData(
             channelId: 2,
             onlineState: .offline,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),
@@ -234,7 +173,7 @@ extension ValveGeneralFeature {
             batteryIcon: IssueIcon.Battery50(),
             showChannelStateIcon: false
         ),
-        ValveGeneralFeature.SensorData(
+        SensorItemData(
             channelId: 4,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),

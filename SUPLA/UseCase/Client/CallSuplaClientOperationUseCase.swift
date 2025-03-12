@@ -49,6 +49,8 @@ final class CallSuplaClientOperationUseCaseImpl: CallSuplaClientOperationUseCase
             return client?.cg(remoteId, open: 1, group: type.isGroup) == true
         case .recalibrate:
             return client?.deviceCalCfgCommand(SUPLA_CALCFG_CMD_RECALIBRATE, cg: remoteId, group: type.isGroup) == true
+        case .muteAlarmSound:
+            return client?.deviceCalCfgCommand(SUPLA_CALCFG_CMD_MUTE_ALARM_SOUND, cg: remoteId, group: type.isGroup) == true
         }
     }
     
@@ -58,4 +60,5 @@ enum SuplaClientOperation {
     case moveUp
     case moveDown
     case recalibrate
+    case muteAlarmSound
 }

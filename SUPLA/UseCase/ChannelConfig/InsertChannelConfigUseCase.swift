@@ -55,6 +55,13 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
                 .flatMap { self.channelConfigRepository.save($0) }
         }
         
+        if let suplaConfig = config as? SuplaChannelContainerConfig {
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
+            return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
+                .map { self.updateConfig($0, suplaConfig) }
+                .flatMap { self.channelConfigRepository.save($0) }
+        }
+        
         SALog.info("Got config which cannot be stored (remoteId: `\(config?.remoteId ?? -1)`, function: `\(config?.channelFunc ?? -1)`)")
         
         if let config = config,
@@ -147,11 +154,25 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
         return config
     }
     
+    private func updateConfig(
+        _ config: SAChannelConfig,
+        _ suplaConfig: SuplaChannelContainerConfig
+    ) -> SAChannelConfig {
+        config.config = suplaConfig.toJson()
+        config.config_type = Int32(ChannelConfigType.container.rawValue)
+        config.config_crc32 = suplaConfig.crc32
+        
+        return config
+    }
+    
     private func shouldHandle(_ config: SuplaChannelConfig) -> Bool {
         config.channelFunc == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
             || config.channelFunc == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
             || config.channelFunc == SUPLA_CHANNELFNC_VERTICAL_BLIND
             || config.channelFunc == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+            || config.channelFunc == SUPLA_CHANNELFNC_CONTAINER
+            || config.channelFunc == SUPLA_CHANNELFNC_WATER_TANK
+            || config.channelFunc == SUPLA_CHANNELFNC_SEPTIC_TANK
     }
     
     private func shouldCleanupHistory(_ oldConfig: SuplaChannelConfig, _ newConfig: SuplaChannelGeneralPurposeMeterConfig) -> Bool {

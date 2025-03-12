@@ -851,6 +851,22 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "valveMotorProblem"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "containerAlarmLevel"
+    PropertyKind: "Class"
+    SwiftName: "containerAlarmLevel"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "containerWarningLevel"
+    PropertyKind: "Class"
+    SwiftName: "containerWarningLevel"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "containerInvalidSensorState"
+    PropertyKind: "Class"
+    SwiftName: "containerInvalidSensorState"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "containerSoundAlarm"
+    PropertyKind: "Class"
+    SwiftName: "containerSoundAlarm"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   Methods:
   - Selector: "initWithName:ordinal:"
     MethodKind: "Instance"
@@ -1737,6 +1753,56 @@ Classes:
     Type: "int32_t"
 - Name: "SharedCoreChannelIssueItemCompanion"
   SwiftName: "ChannelIssueItem.Companion"
+- Name: "SharedCoreChannelIssueItemError"
+  SwiftName: "ChannelIssueItem.Error"
+  Properties:
+  - Name: "messages"
+    PropertyKind: "Instance"
+    SwiftName: "messages"
+    Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
+  - Name: "priority"
+    PropertyKind: "Instance"
+    SwiftName: "priority"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithString:"
+    MethodKind: "Instance"
+    SwiftName: "init(string:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreLocalizedString> _Nullable"
+  - Selector: "doCopyString:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(string:)"
+    ResultType: "SharedCoreChannelIssueItemError * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreLocalizedString> _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreChannelIssueItemErrorCompanion"
+  SwiftName: "ChannelIssueItem.ErrorCompanion"
+  Methods:
+  - Selector: "invokeStringId:"
+    MethodKind: "Instance"
+    SwiftName: "invoke(stringId:)"
+    ResultType: "SharedCoreChannelIssueItemError * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
 - Name: "SharedCoreChannelIssueItemWarning"
   SwiftName: "ChannelIssueItem.Warning"
   Properties:
@@ -1787,8 +1853,8 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nonnull"
-- Name: "SharedCoreChannelIssueItemError"
-  SwiftName: "ChannelIssueItem.Error"
+- Name: "SharedCoreChannelIssueItemSoundAlarm"
+  SwiftName: "ChannelIssueItem.SoundAlarm"
   Properties:
   - Name: "messages"
     PropertyKind: "Instance"
@@ -1808,7 +1874,7 @@ Classes:
   - Selector: "doCopyString:"
     MethodKind: "Instance"
     SwiftName: "doCopy(string:)"
-    ResultType: "SharedCoreChannelIssueItemError * _Nonnull"
+    ResultType: "SharedCoreChannelIssueItemSoundAlarm * _Nonnull"
     Parameters:
     - Position: 0
       Type: "id<SharedCoreLocalizedString> _Nullable"
@@ -1827,13 +1893,13 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreChannelIssueItemErrorCompanion"
-  SwiftName: "ChannelIssueItem.ErrorCompanion"
+- Name: "SharedCoreChannelIssueItemSoundAlarmCompanion"
+  SwiftName: "ChannelIssueItem.SoundAlarmCompanion"
   Methods:
   - Selector: "invokeStringId:"
     MethodKind: "Instance"
     SwiftName: "invoke(stringId:)"
-    ResultType: "SharedCoreChannelIssueItemError * _Nonnull"
+    ResultType: "SharedCoreChannelIssueItemSoundAlarm * _Nonnull"
     Parameters:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nonnull"
@@ -2025,6 +2091,24 @@ Classes:
     ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreIssueIconBatteryNotUsed"
   SwiftName: "IssueIcon.BatteryNotUsed"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreIssueIconSound"
+  SwiftName: "IssueIcon.Sound"
   Methods:
   - Selector: "isEqual:"
     MethodKind: "Instance"
@@ -3221,6 +3305,32 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaCallConfigCommand"
+  SwiftBridge: "SuplaCallConfigCommand"
+  SwiftName: "__SuplaCallConfigCommand"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "zwaveGetNodeList"
+    PropertyKind: "Class"
+    SwiftName: "zwaveGetNodeList"
+    Type: "SharedCoreSuplaCallConfigCommand * _Nonnull"
+  - Name: "recalibrate"
+    PropertyKind: "Class"
+    SwiftName: "recalibrate"
+    Type: "SharedCoreSuplaCallConfigCommand * _Nonnull"
+  - Name: "muteAlarmSound"
+    PropertyKind: "Class"
+    SwiftName: "muteAlarmSound"
+    Type: "SharedCoreSuplaCallConfigCommand * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
 - Name: "SharedCoreElectricityChannelDto"
   SwiftName: "ElectricityChannelDto"
   Properties:

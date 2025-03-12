@@ -149,6 +149,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             send(event: .navigateToHumidityDetail(item: channel.item(), pages: pages))
         case let .valveDetail(pages):
             send(event: .navigateToValveDetail(item: channel.item(), pages: pages))
+        case let .containerDetail(pages):
+            send(event: .navigateToContainerDetail(item: channel.item(), pages: pages))
         }
     }
 }
@@ -164,6 +166,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
     case showValveWarningDialog(remoteId: Int32, message: String, action: Action)
 }

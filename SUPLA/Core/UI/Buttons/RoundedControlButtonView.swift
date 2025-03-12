@@ -85,9 +85,28 @@ struct RoundedControlButtonWrapperView: UIViewRepresentable {
     let type: BaseControlButtonView.ButtonType
     let text: String?
     let icon: IconResult?
+    let iconColor: UIColor
     let active: Bool
     let isEnabled: Bool
     let onTap: () -> Void
+    
+    init(
+        type: BaseControlButtonView.ButtonType,
+        text: String? = nil,
+        icon: IconResult? = nil,
+        iconColor: UIColor = .onBackground,
+        active: Bool = false,
+        isEnabled: Bool = true,
+        onTap: @escaping () -> Void = {}
+    ) {
+        self.type = type
+        self.text = text
+        self.icon = icon
+        self.iconColor = iconColor
+        self.active = active
+        self.isEnabled = isEnabled
+        self.onTap = onTap
+    }
     
     private let disposeBag = DisposeBag()
     
@@ -96,6 +115,7 @@ struct RoundedControlButtonWrapperView: UIViewRepresentable {
         view.type = type
         view.text = text
         view.icon = icon
+        view.iconColor = iconColor
         view.active = active
         view.isEnabled = isEnabled
         
