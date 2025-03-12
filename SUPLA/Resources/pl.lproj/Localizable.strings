@@ -614,7 +614,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Zawór został zamknięty w trybie manualnym lub radiowo. Zanim go otworzysz upewnij się, że nie został zamknięty z powodu zalania. Aby wyłączyć ostrzeżenie otwórz zawór manualnie. Czy na pewno chcesz otworzyć zawór z aplikacji?!";
-"valve_warning_flooding" = "Zawór został zamknięty z powodu wykrycia zalania. Przed otwarciem zaworu upewnij się, że przyczyna została usunięta. Otwarcie zaworu czyści alarm.";
+"valve_warning_flooding" = "Zawór został zamknięty z powodu wykrycia zalania. Przed otwarciem zaworu upewnij się, że przyczyna została usunięta. Otwarcie zaworu czyści alarm. Czy na pewno chcesz go otworzyć?";
 "flooding_alarm_message" = "Czujnik zgłasza zalanie!";
 "valve_warning_manually_closed_short" = "Zawór został zamknięty w trybie manualnym lub radiowo (możliwe zalanie).";
 "valve_warning_flooding_short" = "Zawór został zamknięty z powodu wykrycia zalania.";

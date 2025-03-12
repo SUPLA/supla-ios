@@ -151,7 +151,7 @@ class SuplaCombinedChartView: UIView {
         view.xAxis.drawGridLinesEnabled = false
         view.xAxis.drawAxisLineEnabled = false
         view.xAxis.labelPosition = .bottom
-        view.xAxis.labelCount = 6
+        view.xAxis.labelCount = 4
         // Others
         view.legend.enabled = false
         view.chartDescription.enabled = false
