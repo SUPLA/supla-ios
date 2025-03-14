@@ -22,7 +22,7 @@ import RxSwift
 
 @testable import SUPLA
 
-final class ReadChannelWithChildrenTreeUseCaseTests: UseCaseTest<ChannelWithChildren> {
+final class ReadChannelWithChildrenTreeUseCaseTests: UseCaseTest<SUPLA.ChannelWithChildren> {
     
     private lazy var useCase: ReadChannelWithChildrenTreeUseCase! = { ReadChannelWithChildrenTreeUseCaseImpl() }()
     

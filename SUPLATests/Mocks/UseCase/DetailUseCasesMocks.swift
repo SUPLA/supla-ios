@@ -23,9 +23,9 @@ import RxSwift
 
 final class ProvideChannelDetailTypeUseCaseMock: ProvideChannelDetailTypeUseCase {
     var detailType: DetailType? = nil
-    var channelBaseArray: [ChannelWithChildren] = []
+    var channelBaseArray: [SUPLA.ChannelWithChildren] = []
 
-    func invoke(channelWithChildren: ChannelWithChildren) -> DetailType? {
+    func invoke(channelWithChildren: SUPLA.ChannelWithChildren) -> DetailType? {
         channelBaseArray.append(channelWithChildren)
         return detailType
     }
