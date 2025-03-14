@@ -120,12 +120,12 @@ extension ValveGeneralFeature {
                 
                 if let icon {
                     if (offline) {
-                        icon.image.frame(maxWidth: .infinity)
-                    } else {
                         icon.image
                             .renderingMode(.template)
                             .frame(maxWidth: .infinity)
                             .foregroundColor(Color.Supla.outline)
+                    } else {
+                        icon.image.frame(maxWidth: .infinity)
                     }
                 }
             }
