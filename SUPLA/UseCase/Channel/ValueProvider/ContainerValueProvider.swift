@@ -34,6 +34,10 @@ final class ContainerValueProviderImpl: ContainerValueProvider {
     }
 
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
-        channel.value?.asContainerValue() ?? ContainerValue(online: channel.isOnline(), flags: [], rawLevel: 0)
+        channel.value?.asContainerValue() ?? ContainerValue(
+            status: channel.status(),
+            flags: [],
+            rawLevel: 0
+        )
     }
 }

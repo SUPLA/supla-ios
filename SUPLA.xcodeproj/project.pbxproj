@@ -2359,6 +2359,7 @@
 		A58542282D80D02400D314A2 /* SuplaChannelContainerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelContainerConfig.swift; sourceTree = "<group>"; };
 		A585422B2D81686800D314A2 /* SuplaChannelContainerConfigTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelContainerConfigTest.swift; sourceTree = "<group>"; };
 		A585422D2D81743B00D314A2 /* SuplaChannelContainerConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaChannelContainerConfig+Mock.swift"; sourceTree = "<group>"; };
+		A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 22.xcdatamodel"; sourceTree = "<group>"; };
 		A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepository.swift; sourceTree = "<group>"; };
 		A5862C0B2CEF813B00DFFD55 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToRootRelationHolderUseCase.swift; sourceTree = "<group>"; };
@@ -8887,6 +8888,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */,
 				A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */,
 				A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */,
 				A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */,
@@ -8909,7 +8911,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */;
+			currentVersion = A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

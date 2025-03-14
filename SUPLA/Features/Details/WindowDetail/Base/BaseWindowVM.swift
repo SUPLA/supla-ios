@@ -117,7 +117,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
             state
                 .changing(path: \.remoteId, to: channel.remote_id)
                 .changing(path: \.issues, to: createIssues(value.flags))
-                .changing(path: \.offline, to: !value.online)
+                .changing(path: \.offline, to: !value.status.online)
                 .changing(path: \.positionPresentation, to: getPositionPresentation())
                 .changing(path: \.positionUnknown, to: !value.hasValidPosition())
                 .changing(path: \.calibrating, to: value.flags.contains(.calibrationInProgress))
@@ -142,7 +142,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
     func updateGroup(_ state: S, _ group: SAChannelGroup, _ onlineSummary: GroupOnlineSummary, _ customHandler: (S) -> S) -> S {
         customHandler(
             state.changing(path: \.remoteId, to: group.remote_id)
-                .changing(path: \.offline, to: !group.isOnline())
+                .changing(path: \.offline, to: group.status().offline)
                 .changing(path: \.positionPresentation, to: getPositionPresentation())
                 .changing(path: \.calibrating, to: false)
                 .changing(path: \.calibrationPossible, to: false)

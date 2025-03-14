@@ -62,7 +62,7 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
     func valueOrNil(_ channel: SAChannel, valueType: ValueType = .first, withUnit: Bool = true) -> String? {
         let provider = providers.first { $0.handle(channel) }
         
-        if (provider != nil && !channel.isOnline()) {
+        if (provider != nil && channel.status().offline) {
             return NO_VALUE_TEXT
         }
         

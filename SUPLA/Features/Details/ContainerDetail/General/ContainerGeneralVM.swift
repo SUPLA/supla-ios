@@ -78,7 +78,7 @@ extension ContainerGeneralFeature {
                 result[sensor.channelId] = sensor.fillLevel
             }
             let level = value?.levelKnown.ifTrue { CGFloat(value!.level) / 100 }
-            let levelString = if (value?.online == false) {
+            let levelString = if (value?.status.online == false) {
                 "offline"
             } else if let level {
                 valuesFormatter.percentageToString(Float(level))
@@ -94,7 +94,7 @@ extension ContainerGeneralFeature {
             state.sensors = channelWithChildren.children
                 .filter { $0.relationType == .default }
                 .map { toSensorItem($0, channelToLevelMap) }
-            state.soundOn = value?.online == true && value?.flags.contains(.soundAlarmOn) == true
+            state.soundOn = value?.status.online == true && value?.flags.contains(.soundAlarmOn) == true
             
             state.channelId = channelWithChildren.channel.remote_id
             state.muteAuthorizationNeeded = config?.muteAlarmSoundWithoutAdditionalAuth == false
@@ -116,7 +116,7 @@ extension ContainerGeneralFeature {
                 caption: captionWithPercentage,
                 userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: child.channel.value?.online ?? false
+                showChannelStateIcon: child.channel.value?.status.online ?? false
             )
         }
         

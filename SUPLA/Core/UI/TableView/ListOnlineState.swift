@@ -16,8 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 enum ListOnlineState {
-    case online, partiallyOnline, offline, unknown
+    case online, partiallyOnline, updating, offline, unknown
 
     var online: Bool {
         self == .online || self == .partiallyOnline
@@ -39,9 +41,15 @@ enum ListOnlineState {
         }
     }
 
-    static func from(_ online: Bool) -> ListOnlineState { online ? .online : .offline }
+    fileprivate static func from(_ status: SuplaChannelAvailabilityStatus) -> ListOnlineState {
+        switch (status) {
+        case .online: .online
+        case .firmwareUpdateOngoing: .updating
+        default: .offline
+        }
+    }
 }
 
-extension Bool {
+extension SuplaChannelAvailabilityStatus {
     var onlineState: ListOnlineState { ListOnlineState.from(self) }
 }

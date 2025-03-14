@@ -46,7 +46,7 @@ extension Array where Element == ChannelChild {
     
     var onlineState: ListOnlineState {
         filter { $0.relation.relationType == .masterThermostat }
-            .map { $0.channel.value?.online }
+            .map { $0.channel.value?.status.online }
             .compactMap { $0 }
             .reduce(.unknown) { result, online in
                 if (result == .unknown && online) {
@@ -85,7 +85,7 @@ extension ChannelChild {
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: channel.shareable),
-            showChannelStateIcon: channel.value?.online ?? false
+            showChannelStateIcon: channel.value?.status.online ?? false
         )
     }
 }

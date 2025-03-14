@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "system_update_alt_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "system_update_alt_24dp_5F6368_FILL0_wght400_GRAD0_opsz24 1.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

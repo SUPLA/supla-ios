@@ -56,7 +56,7 @@ fileprivate extension SAChannel {
         MeasurementValue(
             id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self),
-            value: isOnline() ? valuesFormatter.temperatureToString(temperatureValue(), withUnit: false) : NO_VALUE_TEXT,
+            value: status().online ? valuesFormatter.temperatureToString(temperatureValue(), withUnit: false) : NO_VALUE_TEXT,
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }
@@ -70,7 +70,7 @@ fileprivate extension SAChannel {
         MeasurementValue(
             id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self, type: .second),
-            value: isOnline() ? valuesFormatter.humidityToString(humidityValue()) : NO_VALUE_TEXT,
+            value: status().online ? valuesFormatter.humidityToString(humidityValue()) : NO_VALUE_TEXT,
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }

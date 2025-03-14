@@ -209,7 +209,7 @@ class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, The
                 .changing(path: \.currentDate, to: currentDate)
                 .changing(path: \.calendarValue, to: currentDate.shift(days: 7))
                 .changing(path: \.isTimerOn, to: isTimerOn)
-                .changing(path: \.isChannelOnline, to: channel.isOnline())
+                .changing(path: \.isChannelOnline, to: channel.status().online)
                 .changing(path: \.timerEndDate, to: isTimerOn ? timerEndDate : nil)
             
                 .changing(path: \.subfunction, to: thermostatValue.subfunction)

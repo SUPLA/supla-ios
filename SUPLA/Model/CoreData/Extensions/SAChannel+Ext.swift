@@ -19,7 +19,7 @@
 import SharedCore
 
 extension SAChannel {
-    var onlineState: ListOnlineState { .from(isOnline()) }
+    var onlineState: ListOnlineState { status().onlineState }
     
     var phases: [Phase] {
         Phase.allCases.filter { $0.disabledFlag & flags == 0 }
@@ -74,7 +74,7 @@ extension SAChannel {
         SharedCore.Channel(
             remoteId: remote_id,
             caption: caption ?? "",
-            online: isOnline(),
+            status: status(),
             function: self.func.suplaFuntion,
             batteryInfo: batteryInfo,
             value: KotlinByteArray.from(nullable: value?.dataValue())

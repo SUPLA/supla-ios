@@ -388,7 +388,7 @@
     }
     
     if ( channelBase != nil
-        && channelBase.isOnline == NO
+        && channelBase.status.offline
         && (_dimmerCalibrationTool == nil || !_dimmerCalibrationTool.isExitLocked)) {
         [self.viewController.navigationController popViewControllerAnimated:NO];
         return;

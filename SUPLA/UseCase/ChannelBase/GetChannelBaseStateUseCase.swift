@@ -177,7 +177,7 @@ protocol ValueStateWrapper {
 
 private class ChannelValueStateWrapper: ValueStateWrapper {
     var online: Bool {
-        channelValue.online
+        channelValue.status.online
     }
     
     var subValueHi: Int32 {
@@ -224,7 +224,7 @@ private class ChannelValueStateWrapper: ValueStateWrapper {
 
 private class ChannelGroupStateWrapper: ValueStateWrapper {
     var online: Bool {
-        channelGroup.isOnline()
+        channelGroup.status().online
     }
     
     var subValueHi: Int32 {
@@ -254,7 +254,7 @@ private class ChannelGroupStateWrapper: ValueStateWrapper {
     }
     
     var containerValue: ContainerValue {
-        ContainerValue(online: channelGroup.isOnline(), flags: [], rawLevel: 0)
+        return ContainerValue(status: channelGroup.status(), flags: [], rawLevel: 0)
     }
     
     private let channelGroup: SAChannelGroup

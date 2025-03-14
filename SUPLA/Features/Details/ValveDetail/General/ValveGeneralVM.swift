@@ -101,7 +101,7 @@ extension ValveGeneralFeature {
             state.sensors = channelWithChildren.children
                 .filter { $0.relationType == .default }
                 .map { $0.toSensorItem() }
-            state.offline = value?.online != true
+            state.offline = value?.status.online != true
             state.isClosed = value?.isClosed() ?? true
         }
         
@@ -113,7 +113,7 @@ extension ValveGeneralFeature {
                 caption: getCaptionUseCase.invoke(data: child.channel.shareable).string,
                 userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: child.channel.value?.online ?? false
+                showChannelStateIcon: child.channel.value?.status.online ?? false
             )
         }
     }
@@ -137,7 +137,7 @@ private extension ValveValue? {
             return "offline"
         }
         
-        return if (!self.online) {
+        return if (self.status.offline) {
             "offline"
         } else if (self.isClosed()) {
             Strings.General.stateClosed

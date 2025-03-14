@@ -89,6 +89,10 @@
 "channel_caption_flood_sensor" = "Flood sensor";
 "channel_offline" = "Channel is offline";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
+/* General - Channel status */
+"channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
+"channel_status_awaiting" = "This device cannot be remotely awakened. We are awaiting communication from the device…";
+"channel_status_updating" = "Software update in progress…";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";

@@ -53,7 +53,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     override func onClicked(onItem item: Any) {
         guard let item = item as? SAChannelGroup else { return }
         
-        if (!isAvailableInOffline(item) && !item.isOnline()) {
+        if (!isAvailableInOffline(item) && item.status().offline) {
             return // do not open details for offline channels
         }
         
