@@ -18,7 +18,7 @@
 
 #import "SAChannelValue+CoreDataClass.h"
 
-@implementation SAChannelValue 
+@implementation SAChannelValue
 
 - (void) initWithChannelId:(int)channelId {
     [super initWithChannelId:channelId];
@@ -29,10 +29,8 @@
 }
 
 - (BOOL) setOnlineState:(char)online {
-    
-    BOOL newOnline = online == 1;
-    if ( self.online != newOnline ) {
-        self.online = newOnline;
+    if ( self.online != online ) {
+        self.online = online;
         return YES;
     }
     
@@ -100,10 +98,6 @@
     }
     
     return result;
-}
-
-- (BOOL) isOnline {
-    return self.online;
 }
 
 - (int) hiValue {

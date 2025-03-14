@@ -45,7 +45,7 @@ final class ImpulseCounterGeneralStateHandlerImpl: ImpulseCounterGeneralStateHan
         }
         let formatter = ImpulseCounterChartValueFormatter(unit: extendedValue.unit())
         
-        state.online = channel.channel.isOnline()
+        state.online = channel.channel.status().online
         state.totalData = SummaryCardData(
             formatter: formatter,
             energy: extendedValue.calculatedValue(),
@@ -63,7 +63,7 @@ final class ImpulseCounterGeneralStateHandlerImpl: ImpulseCounterGeneralStateHan
         let value: Double = getChannelValueUseCase.invoke(channel.channel)
         let formatter = ImpulseCounterChartValueFormatter()
             
-        state.online = channel.channel.isOnline()
+        state.online = channel.channel.status().online
         state.totalData = SummaryCardData(energy: formatter.format(value))
         state.currentMonthData = measurements?.toSummaryCardData(formatter: formatter)
     }

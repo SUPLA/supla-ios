@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAChannelValue *> *)fetchRequest;
 
-@property (nonatomic) BOOL online;
+@property (nonatomic) int32_t online;
 @property (nullable, nonatomic, retain) NSObject *sub_value;
 @property (nonatomic) int16_t sub_value_type;
 

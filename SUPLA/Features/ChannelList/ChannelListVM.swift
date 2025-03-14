@@ -118,7 +118,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     
     private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
         let channel = channelWithChildren.channel
-        if (!isAvailableInOffline(channel, children: channelWithChildren.children) && !channel.isOnline()) {
+        if (!isAvailableInOffline(channel, children: channelWithChildren.children) && channel.status().offline) {
             return // do not open details for offline channels
         }
         

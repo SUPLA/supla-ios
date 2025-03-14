@@ -572,10 +572,14 @@ class CellStatusIndicatorView: UIView {
     }
     
     func configure(filled: Bool, onlineState: ListOnlineState) {
-        let color = onlineState.online ? UIColor.primary : UIColor.error
+        let color = switch (onlineState) {
+        case .online: UIColor.primary
+        case .updating: UIColor.secondary
+        default: UIColor.error
+        }
         
         switch (onlineState) {
-        case .online, .offline, .unknown:
+        case .online, .offline, .unknown, .updating:
             topLayer.isHidden = true
             bottomLayer.isHidden = true
             

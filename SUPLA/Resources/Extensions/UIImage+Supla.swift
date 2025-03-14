@@ -52,7 +52,8 @@ extension UIImage {
     static let iconMore = UIImage(named: .Icons.more)
     static let iconList = UIImage(named: .Icons.list)
     static let iconSoundOn = UIImage(named: .Icons.soundOn)
-    static let iconsoundOff = UIImage(named: .Icons.soundOff)
+    static let iconSoundOff = UIImage(named: .Icons.soundOff)
+    static let iconUpdate = UIImage(named: .Icons.update)
     
     static let iconWarning = UIImage(named: .Icons.warning)
     static let iconError = UIImage(named: .Icons.error)

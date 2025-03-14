@@ -31,6 +31,7 @@ extension IssueIcon {
         case .battery75: .iconBattery75
         case .batteryNotUsed: .iconBatteryNotUsed
         case .sound: .iconSoundOn
+        case .update: .iconUpdate
         }
     }
 }

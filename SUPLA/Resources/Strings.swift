@@ -345,6 +345,10 @@ struct Strings {
             static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
+            
+            static let statusAwaiting = "channel_status_awaiting".toLocalized()
+            static let statusUpdating = "channel_status_updating".toLocalized()
+            static let statusNotAvailable = "channel_status_not_available".toLocalized()
         }
     }
     

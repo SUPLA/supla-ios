@@ -47,7 +47,7 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     
     override func getRemoteId() -> Int32? { data?.channel.remote_id ?? 0 }
     
-    override func online() -> Bool { data?.channel.isOnline() ?? false }
+    override func online() -> Bool { data?.channel.status().online ?? false }
     
     override func derivedClassControls() -> [UIView] {
         return [

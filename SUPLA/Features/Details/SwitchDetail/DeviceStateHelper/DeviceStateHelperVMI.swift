@@ -24,7 +24,7 @@ extension DeviceStateHelperVMI {
     
     func createDeviceState(from channel: SAChannel) -> DeviceStateViewState {
         return DeviceStateViewState(
-            isOnline: channel.isOnline(),
+            isOnline: channel.status().online,
             isOn: channel.value?.hiValue() ?? 0 > 0,
             timerEndDate: createTimerEndDateFor(channel),
             timerStartDate: channel.ev?.timerStartTime,

@@ -48,7 +48,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
             .filter { channel.channel.flags & $0.disabledFlag == 0 }
             .count > 1
         
-        state.online = channel.channel.isOnline()
+        state.online = channel.channel.status().online
         state.totalForwardActiveEnergy = extendedValue.getForwardEnergy(formatter: formatter)
         state.totalReverseActiveEnergy = extendedValue.getReverseEnergy(formatter: formatter)
         state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter, value: extendedValue)
@@ -57,13 +57,13 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         state.phaseMeasurementValues = getPhaseData(phaseTypes, channel.channel.flags, extendedValue, formatter)
         state.vectorBalancedValues = vectorBalancedValues(moreThanOnePhase, extendedValue, allTypes)
         state.electricGridParameters = getGridParameters(channel.channel.flags, extendedValue)
-        state.showIntroduction = settings.showEmGeneralIntroduction && channel.channel.isOnline() && moreThanOnePhase
+        state.showIntroduction = settings.showEmGeneralIntroduction && channel.channel.status().online && moreThanOnePhase
     }
     
     private func handleNoExtendedValue(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
         let value: Double = getChannelValueUseCase.invoke(channel.channel)
         
-        state.online = channel.channel.isOnline()
+        state.online = channel.channel.status().online
         state.totalForwardActiveEnergy = SummaryCardData(energy: formatter.format(value))
         state.totalReverseActiveEnergy = nil
         state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter)
