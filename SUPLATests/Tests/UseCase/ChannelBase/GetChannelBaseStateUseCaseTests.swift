@@ -28,7 +28,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
     }
     
     private func mockChannelValue(
-        online: Bool = true,
+        status: SuplaChannelAvailabilityStatus = .online,
         byte0: UInt8 = 0,
         byte1: UInt8 = 0,
         byte2: UInt8 = 0,
@@ -42,14 +42,14 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
             (byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7)
         
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = online
+        channelValue.online = status.rawValue
         channelValue.value = NSData(data: Data(bytes: &value, count: 8))
         
         return channelValue
     }
     
     private func mockChannelSubValue(
-        online: Bool = true,
+        status: SuplaChannelAvailabilityStatus = .online,
         byte0: UInt8 = 0,
         byte1: UInt8 = 0,
         byte2: UInt8 = 0,
@@ -63,7 +63,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
             (byte0, byte1, byte2, byte3, byte4, byte5, byte6, byte7)
         
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = online
+        channelValue.online = status.rawValue
         channelValue.sub_value = NSData(data: Data(bytes: &value, count: 8))
         
         return channelValue
@@ -311,7 +311,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_OPENINGSENSOR_GATE
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -325,7 +325,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_POWERSWITCH
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -339,7 +339,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -353,7 +353,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -395,7 +395,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_TERRACE_AWNING
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -437,7 +437,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -479,7 +479,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_CURTAIN
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -521,7 +521,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -563,7 +563,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
-        channel.value = mockChannelValue(online: false)
+        channel.value = mockChannelValue(status: .offline)
 
         // when
         let state = useCase.invoke(channelBase: channel)

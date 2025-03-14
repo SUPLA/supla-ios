@@ -63,7 +63,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
         channel.flags = Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.value = NSData(data: FacadeBlindValue.mockData(position: 50, tilt: 70, flags: SuplaShadingSystemFlag.motorProblem.value | SuplaShadingSystemFlag.tiltIsSet.value))
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         
         settings.showOpeningPercentReturns = false
         readChannelByRemoteIdUseCase.returns = .just(channel)

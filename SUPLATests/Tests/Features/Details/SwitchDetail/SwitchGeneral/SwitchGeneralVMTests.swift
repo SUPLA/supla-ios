@@ -72,14 +72,13 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
             }
         }
         
-        let isOnline = true
         let function: Int32 = 123
         let altIcon: Int32 = 2
         let startTime = Date()
         let userIcon = SAUserIcon(testContext: nil)
         let value = SAChannelValue(testContext: nil)
         value.setValueWith(&suplaValue)
-        value.online = isOnline
+        value.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         let extendedValue = SAChannelExtendedValue(testContext: nil)
         extendedValue.timerStartTime = startTime
         extendedValue.setValueWith(&suplaExtendedValue)
@@ -103,7 +102,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOnline, isOnline)
+        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOnline, true)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOn, true)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.timerStartDate, startTime)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.timerEndDate?.timeIntervalSince1970, 122)

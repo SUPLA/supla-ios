@@ -21,9 +21,9 @@ import RxSwift
 @testable import SUPLA
 
 final class CreateTemperaturesListUseCaseMock: CreateTemperaturesListUseCase {
-    var parameters: [ChannelWithChildren] = []
+    var parameters: [SUPLA.ChannelWithChildren] = []
     var returns: [MeasurementValue] = []
-    func invoke(channelWithChildren: ChannelWithChildren) -> [MeasurementValue] {
+    func invoke(channelWithChildren: SUPLA.ChannelWithChildren) -> [MeasurementValue] {
         parameters.append(channelWithChildren)
         return returns
     }
