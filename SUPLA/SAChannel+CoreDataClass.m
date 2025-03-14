@@ -82,12 +82,12 @@
     return NO;
 }
 
-- (BOOL) isOnline {
-    return self.value == nil ? [super isOnline] : [self.value isOnline];
+- (SharedCoreSuplaChannelAvailabilityStatus *) status {
+    return self.value == nil ? SharedCoreSuplaChannelAvailabilityStatus.offline : self.value.status;
 }
 
 - (int) onlinePercent {
-    return [self isOnline] ? 100 : 0;
+    return [self status].online ? 100 : 0;
 }
 
 - (int) hiValue {
@@ -408,7 +408,7 @@
 }
 
 - (UIImage *) stateIcon {
-    if (self.isOnline
+    if (self.status.online
         || (self.type == SUPLA_CHANNELTYPE_BRIDGE
             && self.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE
             && self.flags & SUPLA_CHANNEL_FLAG_OFFLINE_DURING_REGISTRATION)) {

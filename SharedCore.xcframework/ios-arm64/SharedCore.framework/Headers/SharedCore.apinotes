@@ -264,6 +264,65 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaChannelAvailabilityStatus"
+  SwiftBridge: "SuplaChannelAvailabilityStatus"
+  SwiftName: "__SuplaChannelAvailabilityStatus"
+  SwiftPrivate: true
+  Properties:
+  - Name: "offline"
+    PropertyKind: "Instance"
+    SwiftName: "offline"
+    Type: "BOOL"
+  - Name: "online"
+    PropertyKind: "Instance"
+    SwiftName: "online"
+    Type: "BOOL"
+  - Name: "rawValue"
+    PropertyKind: "Instance"
+    SwiftName: "rawValue"
+    Type: "int32_t"
+  - Name: "online"
+    PropertyKind: "Class"
+    SwiftName: "online"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  - Name: "offline"
+    PropertyKind: "Class"
+    SwiftName: "offline"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  - Name: "onlineButNotAvailable"
+    PropertyKind: "Class"
+    SwiftName: "onlineButNotAvailable"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  - Name: "offlineRemoteWakeupNotSupported"
+    PropertyKind: "Class"
+    SwiftName: "offlineRemoteWakeupNotSupported"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  - Name: "firmwareUpdateOngoing"
+    PropertyKind: "Class"
+    SwiftName: "firmwareUpdateOngoing"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreSuplaChannelAvailabilityStatusCompanion"
+  SwiftName: "__SuplaChannelAvailabilityStatus.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "fromOnline:"
+    MethodKind: "Instance"
+    SwiftName: "from(online:)"
+    ResultType: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
 - Name: "SharedCoreSuplaHvacMode"
   SwiftBridge: "SuplaHvacMode"
   SwiftName: "__SuplaHvacMode"
@@ -806,6 +865,18 @@ Classes:
   - Name: "channelCaptionFloodSensor"
     PropertyKind: "Class"
     SwiftName: "channelCaptionFloodSensor"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelStatusAwaiting"
+    PropertyKind: "Class"
+    SwiftName: "channelStatusAwaiting"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelStatusUpdating"
+    PropertyKind: "Class"
+    SwiftName: "channelStatusUpdating"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelStatusNotAvailable"
+    PropertyKind: "Class"
+    SwiftName: "channelStatusNotAvailable"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "channelBatteryLevel"
     PropertyKind: "Class"
@@ -1571,14 +1642,14 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "function"
     Type: "SharedCoreSuplaFunction * _Nonnull"
-  - Name: "online"
-    PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
   - Name: "remoteId"
     PropertyKind: "Instance"
     SwiftName: "remoteId"
     Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   - Name: "value"
     PropertyKind: "Instance"
     SwiftName: "value"
@@ -1632,25 +1703,25 @@ Classes:
     SwiftName: "valveValue"
     Type: "SharedCoreValveValue * _Nullable"
   Methods:
-  - Selector: "initWithRemoteId:caption:online:function:batteryInfo:value:"
+  - Selector: "initWithRemoteId:caption:status:function:batteryInfo:value:"
     MethodKind: "Instance"
-    SwiftName: "init(remoteId:caption:online:function:batteryInfo:value:)"
+    SwiftName: "init(remoteId:caption:status:function:batteryInfo:value:)"
     Parameters:
     - Position: 0
       Type: "int32_t"
     - Position: 1
       Type: "NSString * _Nonnull"
     - Position: 2
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 3
       Type: "SharedCoreSuplaFunction * _Nonnull"
     - Position: 4
       Type: "SharedCoreBatteryInfo * _Nullable"
     - Position: 5
       Type: "SharedCoreKotlinByteArray * _Nullable"
-  - Selector: "doCopyRemoteId:caption:online:function:batteryInfo:value:"
+  - Selector: "doCopyRemoteId:caption:status:function:batteryInfo:value:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(remoteId:caption:online:function:batteryInfo:value:)"
+    SwiftName: "doCopy(remoteId:caption:status:function:batteryInfo:value:)"
     ResultType: "SharedCoreChannel * _Nonnull"
     Parameters:
     - Position: 0
@@ -1658,7 +1729,7 @@ Classes:
     - Position: 1
       Type: "NSString * _Nonnull"
     - Position: 2
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 3
       Type: "SharedCoreSuplaFunction * _Nonnull"
     - Position: 4
@@ -2125,6 +2196,24 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreIssueIconUpdate"
+  SwiftName: "IssueIcon.Update"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreGetChannelSpecificIssuesUseCase"
   SwiftName: "GetChannelSpecificIssuesUseCase"
   Methods:
@@ -2558,28 +2647,28 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "levelKnown"
     Type: "BOOL"
-  - Name: "online"
+  - Name: "status"
     PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   Methods:
-  - Selector: "initWithOnline:flags:rawLevel:"
+  - Selector: "initWithStatus:flags:rawLevel:"
     MethodKind: "Instance"
-    SwiftName: "init(online:flags:rawLevel:)"
+    SwiftName: "init(status:flags:rawLevel:)"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "NSArray<SharedCoreContainerFlag *> * _Nonnull"
     - Position: 2
       Type: "int32_t"
-  - Selector: "doCopyOnline:flags:rawLevel:"
+  - Selector: "doCopyStatus:flags:rawLevel:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(online:flags:rawLevel:)"
+    SwiftName: "doCopy(status:flags:rawLevel:)"
     ResultType: "SharedCoreContainerValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "NSArray<SharedCoreContainerFlag *> * _Nonnull"
     - Position: 2
@@ -2602,13 +2691,13 @@ Classes:
 - Name: "SharedCoreContainerValueCompanion"
   SwiftName: "ContainerValue.Companion"
   Methods:
-  - Selector: "fromOnline:bytes:"
+  - Selector: "fromStatus:bytes:"
     MethodKind: "Instance"
-    SwiftName: "from(online:bytes:)"
+    SwiftName: "from(status:bytes:)"
     ResultType: "SharedCoreContainerValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "SharedCoreKotlinByteArray * _Nonnull"
 - Name: "SharedCoreContainerFlag"
@@ -2662,38 +2751,38 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "flags"
     Type: "NSArray<SharedCoreSuplaShadingSystemFlag *> * _Nonnull"
-  - Name: "online"
-    PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
   - Name: "position"
     PropertyKind: "Instance"
     SwiftName: "position"
     Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   - Name: "tilt"
     PropertyKind: "Instance"
     SwiftName: "tilt"
     Type: "int32_t"
   Methods:
-  - Selector: "initWithOnline:position:tilt:flags:"
+  - Selector: "initWithStatus:position:tilt:flags:"
     MethodKind: "Instance"
-    SwiftName: "init(online:position:tilt:flags:)"
+    SwiftName: "init(status:position:tilt:flags:)"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
       Type: "int32_t"
     - Position: 3
       Type: "NSArray<SharedCoreSuplaShadingSystemFlag *> * _Nonnull"
-  - Selector: "doCopyOnline:position:tilt:flags:"
+  - Selector: "doCopyStatus:position:tilt:flags:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(online:position:tilt:flags:)"
+    SwiftName: "doCopy(status:position:tilt:flags:)"
     ResultType: "SharedCoreFacadeBlindValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
@@ -2726,13 +2815,13 @@ Classes:
 - Name: "SharedCoreFacadeBlindValueCompanion"
   SwiftName: "FacadeBlindValue.Companion"
   Methods:
-  - Selector: "fromOnline:bytes:"
+  - Selector: "fromStatus:bytes:"
     MethodKind: "Instance"
-    SwiftName: "from(online:bytes:)"
+    SwiftName: "from(status:bytes:)"
     ResultType: "SharedCoreFacadeBlindValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "SharedCoreKotlinByteArray * _Nonnull"
 - Name: "SharedCoreSuplaShadingSystemFlag"
@@ -2798,14 +2887,14 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "flags"
     Type: "NSArray<SharedCoreSuplaShadingSystemFlag *> * _Nonnull"
-  - Name: "online"
-    PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
   - Name: "position"
     PropertyKind: "Instance"
     SwiftName: "position"
     Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   Methods:
   - Selector: "init"
     MethodKind: "Instance"
@@ -2840,34 +2929,34 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "flags"
     Type: "NSArray<SharedCoreSuplaShadingSystemFlag *> * _Nonnull"
-  - Name: "online"
-    PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
   - Name: "position"
     PropertyKind: "Instance"
     SwiftName: "position"
     Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   Methods:
-  - Selector: "initWithOnline:position:bottomPosition:flags:"
+  - Selector: "initWithStatus:position:bottomPosition:flags:"
     MethodKind: "Instance"
-    SwiftName: "init(online:position:bottomPosition:flags:)"
+    SwiftName: "init(status:position:bottomPosition:flags:)"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
       Type: "int32_t"
     - Position: 3
       Type: "NSArray<SharedCoreSuplaShadingSystemFlag *> * _Nonnull"
-  - Selector: "doCopyOnline:position:bottomPosition:flags:"
+  - Selector: "doCopyStatus:position:bottomPosition:flags:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(online:position:bottomPosition:flags:)"
+    SwiftName: "doCopy(status:position:bottomPosition:flags:)"
     ResultType: "SharedCoreRollerShutterValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
@@ -2896,13 +2985,13 @@ Classes:
 - Name: "SharedCoreRollerShutterValueCompanion"
   SwiftName: "RollerShutterValue.Companion"
   Methods:
-  - Selector: "fromOnline:bytes:"
+  - Selector: "fromStatus:bytes:"
     MethodKind: "Instance"
-    SwiftName: "from(online:bytes:)"
+    SwiftName: "from(status:bytes:)"
     ResultType: "SharedCoreRollerShutterValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "SharedCoreKotlinByteArray * _Nonnull"
 - Name: "SharedCoreThermostatValue"
@@ -2916,10 +3005,6 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "mode"
     Type: "SharedCoreSuplaHvacMode * _Nonnull"
-  - Name: "online"
-    PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
   - Name: "setpointTemperatureCool"
     PropertyKind: "Instance"
     SwiftName: "setpointTemperatureCool"
@@ -2932,18 +3017,22 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "state"
     Type: "SharedCoreThermostatState * _Nonnull"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   - Name: "subfunction"
     PropertyKind: "Instance"
     SwiftName: "subfunction"
     Type: "SharedCoreThermostatSubfunction * _Nonnull"
   Methods:
-  - Selector: "doCopyOnline:state:mode:setpointTemperatureHeat:setpointTemperatureCool:flags:"
+  - Selector: "doCopyStatus:state:mode:setpointTemperatureHeat:setpointTemperatureCool:flags:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(online:state:mode:setpointTemperatureHeat:setpointTemperatureCool:flags:)"
+    SwiftName: "doCopy(status:state:mode:setpointTemperatureHeat:setpointTemperatureCool:flags:)"
     ResultType: "SharedCoreThermostatValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "SharedCoreThermostatState * _Nonnull"
     - Position: 2
@@ -2972,13 +3061,13 @@ Classes:
 - Name: "SharedCoreThermostatValueCompanion"
   SwiftName: "ThermostatValue.Companion"
   Methods:
-  - Selector: "fromOnline:bytes:"
+  - Selector: "fromStatus:bytes:"
     MethodKind: "Instance"
-    SwiftName: "from(online:bytes:)"
+    SwiftName: "from(status:bytes:)"
     ResultType: "SharedCoreThermostatValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "SharedCoreKotlinByteArray * _Nonnull"
 - Name: "SharedCoreSuplaThermostatFlag"
@@ -3116,28 +3205,28 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "flags"
     Type: "NSArray<SharedCoreSuplaValveFlag *> * _Nonnull"
-  - Name: "online"
+  - Name: "status"
     PropertyKind: "Instance"
-    SwiftName: "online"
-    Type: "BOOL"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   Methods:
-  - Selector: "initWithOnline:closed:flags:"
+  - Selector: "initWithStatus:closed:flags:"
     MethodKind: "Instance"
-    SwiftName: "init(online:closed:flags:)"
+    SwiftName: "init(status:closed:flags:)"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
       Type: "NSArray<SharedCoreSuplaValveFlag *> * _Nonnull"
-  - Selector: "doCopyOnline:closed:flags:"
+  - Selector: "doCopyStatus:closed:flags:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(online:closed:flags:)"
+    SwiftName: "doCopy(status:closed:flags:)"
     ResultType: "SharedCoreValveValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
@@ -3164,13 +3253,13 @@ Classes:
 - Name: "SharedCoreValveValueCompanion"
   SwiftName: "ValveValue.Companion"
   Methods:
-  - Selector: "fromOnline:bytes:"
+  - Selector: "fromStatus:bytes:"
     MethodKind: "Instance"
-    SwiftName: "from(online:bytes:)"
+    SwiftName: "from(status:bytes:)"
     ResultType: "SharedCoreValveValue * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "BOOL"
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
     - Position: 1
       Type: "SharedCoreKotlinByteArray * _Nonnull"
 - Name: "SharedCoreSuplaValveFlag"

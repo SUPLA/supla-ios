@@ -20,28 +20,32 @@ import Foundation
 import SharedCore
 
 extension SAChannelValue {
+    @objc var status: SuplaChannelAvailabilityStatus {
+        SuplaChannelAvailabilityStatus.companion.from(value: online)
+    }
+    
     func asThermostatValue() -> ThermostatValue {
-        ThermostatValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
+        ThermostatValue.companion.from(status: status, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asRollerShutterValue() -> RollerShutterValue {
-        RollerShutterValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
+        RollerShutterValue.companion.from(status: status, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asFacadeBlindValue() -> FacadeBlindValue {
-        FacadeBlindValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
+        FacadeBlindValue.companion.from(status: status, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asHeatpolThermostatValue() -> HeatpolThermostatValue {
-        HeatpolThermostatValue.from(dataValue(), online: online)
+        HeatpolThermostatValue.from(dataValue(), online: online == SUPLA_CHANNEL_ONLINE_FLAG_ONLINE)
     }
     
     func asContainerValue() -> ContainerValue {
-        ContainerValue.companion.from(online: online, bytes: KotlinByteArray.from(data: dataValue()))
+        ContainerValue.companion.from(status: status, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asValveValue() -> ValveValue {
-        ValveValue.companion.from(online: online, bytes: KotlinByteArray.from(data: unsafeDataValue()))
+        ValveValue.companion.from(status: status, bytes: KotlinByteArray.from(data: unsafeDataValue()))
     }
     
     @objc func isThermostatSubfunctionHeat() -> Bool {

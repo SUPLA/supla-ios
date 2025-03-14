@@ -22,6 +22,7 @@
 #import "SAUserIcon+CoreDataClass.h"
 #import "SADigiglassValue.h"
 #import "proto.h"
+#import "SharedCore/SharedCore.h"
 
 @class _SALocation;
 
@@ -43,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getNonEmptyCaptionOfChannel:(SAChannelBase*)channel customFunc:(NSNumber*)func;
 - (NSString *)getNonEmptyCaption;
 
-- (BOOL) isOnline;
+- (SharedCoreSuplaChannelAvailabilityStatus *) status;
 - (int) onlinePercent;
 - (int) hiValue;
 - (BOOL) isClosed;

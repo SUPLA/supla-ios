@@ -107,6 +107,10 @@ extension LocalizedStringId {
         case .containerWarningLevel: Strings.Container.warningLevel
         case .containerInvalidSensorState: Strings.Container.invalidSensorState
         case .containerSoundAlarm: Strings.Container.soundAlarm
+            
+        case .channelStatusAwaiting: Strings.General.Channel.statusAwaiting
+        case .channelStatusUpdating: Strings.General.Channel.statusUpdating
+        case .channelStatusNotAvailable: Strings.General.Channel.statusNotAvailable
         }
     }
 }

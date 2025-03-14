@@ -22,8 +22,8 @@
 
 @implementation SAChannelGroup
 
-- (BOOL) isOnline {
-    return self.online > 0;
+- (SharedCoreSuplaChannelAvailabilityStatus *) status {
+    return self.online > 0 ? SharedCoreSuplaChannelAvailabilityStatus.online : SharedCoreSuplaChannelAvailabilityStatus.offline;
 }
 
 - (int) onlinePercent {

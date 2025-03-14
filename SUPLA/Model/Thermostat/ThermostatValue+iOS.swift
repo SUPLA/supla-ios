@@ -20,7 +20,7 @@ import SharedCore
 
 extension ThermostatValue {
     var indicatorIcon: ThermostatIndicatorIcon {
-        if (!online) {
+        if (status.offline) {
             .offline
         } else if (mode == .off) {
             .off
@@ -36,7 +36,7 @@ extension ThermostatValue {
     }
     
     var setpointText: String? {
-        if (!online) {
+        if (status.offline) {
             return ""
         }
 

@@ -64,7 +64,7 @@ final class UpdateChannelGroupTotalValueUseCaseImpl: UpdateChannelGroupTotalValu
             groupOnlineSummary.count += 1
             if let value = relation.value,
                let groupValue = group?.getGroupValue(value),
-               value.online
+               value.status.online
             {
                 groupTotalValue.values.append(groupValue)
                 groupOnlineSummary.onlineCount += 1

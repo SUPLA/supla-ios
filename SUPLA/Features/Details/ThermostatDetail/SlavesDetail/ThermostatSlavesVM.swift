@@ -115,7 +115,7 @@ private extension ChannelChild {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
-            onlineState: ListOnlineState.from(channel.isOnline()),
+            onlineState: channel.onlineState,
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),
@@ -167,7 +167,7 @@ private extension ChannelWithChildren {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
-            onlineState: ListOnlineState.from(channel.isOnline()),
+            onlineState: channel.onlineState,
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),

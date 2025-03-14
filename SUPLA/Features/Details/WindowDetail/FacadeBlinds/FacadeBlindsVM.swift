@@ -37,8 +37,8 @@ final class FacadeBlindsVM: BaseBlindsViewModel<FacadeBlindsViewState> {
             let position = value.hasValidPosition() ? value.position : 0
             let tilt = value.hasValidTilt() && value.flags.contains(.tiltIsSet) ? CGFloat(value.tilt) : nil
             let windowState = $0.facadeBlindWindowState
-                .changing(path: \.position, to: .similar(value.online ? CGFloat(position) : 25))
-                .changing(path: \.slatTilt, to: tilt?.run { .similar(value.online ? $0 : 50) })
+                .changing(path: \.position, to: .similar(value.status.online ? CGFloat(position) : 25))
+                .changing(path: \.slatTilt, to: tilt?.run { .similar(value.status.online ? $0 : 50) })
             
             return updateChannel($0, channel, value) {
                 $0.changing(path: \.facadeBlindWindowState, to: windowState)
@@ -59,9 +59,9 @@ final class FacadeBlindsVM: BaseBlindsViewModel<FacadeBlindsViewState> {
             let markers = (overallPosition.isDifferent() ? positions : [])
                 .map { ShadingBlindMarker(position: CGFloat($0.position), tilt: CGFloat($0.tilt)) }
             let windowState = $0.facadeBlindWindowState
-                .changing(path: \.position, to: group.isOnline() ? overallPosition : .similar(25))
-                .changing(path: \.slatTilt, to: group.isOnline() ? .similar(overallTilt) : .similar(50))
-                .changing(path: \.markers, to: group.isOnline() ? markers : [])
+                .changing(path: \.position, to: group.status().online ? overallPosition : .similar(25))
+                .changing(path: \.slatTilt, to: group.status().online ? .similar(overallTilt) : .similar(50))
+                .changing(path: \.markers, to: group.status().online ? markers : [])
                 .changing(path: \.positionTextFormat, to: positionTextFormat)
             
             return updateGroup($0, group, onlineSummary) {

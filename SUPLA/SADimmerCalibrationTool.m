@@ -264,7 +264,7 @@
 - (void) deviceCalCfgCommand:(int)command charValue:(char*)charValue shortValue:(short*)shortValue {
     if (_detailView
         && _detailView.channelBase
-        && _detailView.channelBase.isOnline) {
+        && _detailView.channelBase.status.online) {
         _lastCalCfgTime = [NSDate date];
         [self setSettingsChanged:YES];
         if (charValue) {

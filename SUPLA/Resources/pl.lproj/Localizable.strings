@@ -338,6 +338,10 @@
 "channel_caption_flood_sensor" = "Czujnik zalania";
 "channel_offline" = "Kanał jest offline";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
+/* General - Channel status */
+"channel_status_not_available" = "Kanał nie jest dostępny ze względu na konfigurację. Zalecamy ukrycie kanału, aby nie był widoczny w aplikacji.";
+"channel_status_awaiting" = "Tego urządzenia nie można zdalnie wybudzić. Oczekujemy na komunikację ze strony urządzenia…";
+"channel_status_updating" = "Trwa aktualizacja oprogramowania…";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
