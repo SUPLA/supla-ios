@@ -82,7 +82,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         // given
         var temperature: Int = 23400
         let value = SAChannelValue(testContext: nil)
-        value.online = true
+        value.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         value.value = NSData(bytes: &temperature, length: MemoryLayout<Int>.size)
         let channel = SAChannel.mock(234, function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE)
         channel.value = value

@@ -23,10 +23,10 @@ import SharedCore
 final class RollerShutterValueTests: XCTestCase {
     func test_parseWhenSizeWrong() {
         // when
-        let value = RollerShutterValue.companion.from(online: false, bytes: KotlinByteArray.from(data: Data()))
+        let value = RollerShutterValue.companion.from(status: .offline, bytes: KotlinByteArray.from(data: Data()))
         
         // then
-        XCTAssertEqual(value.online, false)
+        XCTAssertEqual(value.status, .offline)
         XCTAssertEqual(value.position, ShadingSystemValue.companion.INVALID_VALUE)
         XCTAssertEqual(value.bottomPosition, 0)
         XCTAssertEqual(value.flags, [])
@@ -38,10 +38,10 @@ final class RollerShutterValueTests: XCTestCase {
         let data = RollerShutterValue.mockData(position: 22, bottomPosition: 88)
         
         // when
-        let value = RollerShutterValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
+        let value = RollerShutterValue.companion.from(status: .online, bytes: KotlinByteArray.from(data: data))
         
         // then
-        XCTAssertEqual(value.online, true)
+        XCTAssertEqual(value.status, .online)
         XCTAssertEqual(value.position, 22)
         XCTAssertEqual(value.bottomPosition, 88)
         XCTAssertEqual(value.flags, [])
@@ -53,10 +53,10 @@ final class RollerShutterValueTests: XCTestCase {
         let data = RollerShutterValue.mockData(position: 120, bottomPosition: 88, flags: 4)
         
         // when
-        let value = RollerShutterValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
+        let value = RollerShutterValue.companion.from(status: .online, bytes: KotlinByteArray.from(data: data))
         
         // then
-        XCTAssertEqual(value.online, true)
+        XCTAssertEqual(value.status, .online)
         XCTAssertEqual(value.position, -1)
         XCTAssertEqual(value.bottomPosition, 88)
         XCTAssertEqual(value.flags, [.calibrationLost])

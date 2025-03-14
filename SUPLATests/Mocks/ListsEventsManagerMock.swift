@@ -44,8 +44,8 @@ final class UpdateEventsManagerMock: UpdateEventsManager {
     }
     
     var observeChannelWithChildrenParameters: [Int] = []
-    var observeChannelWithChildrenReturns: Observable<ChannelWithChildren> = Observable.empty()
-    func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
+    var observeChannelWithChildrenReturns: Observable<SUPLA.ChannelWithChildren> = Observable.empty()
+    func observeChannelWithChildren(remoteId: Int) -> Observable<SUPLA.ChannelWithChildren> {
         observeChannelWithChildrenParameters.append(remoteId)
         return observeChannelWithChildrenReturns
     }

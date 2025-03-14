@@ -93,7 +93,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         let channelValue = SAChannelValue(testContext: nil)
         channelValue.value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
-        channelValue.online = true
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
@@ -178,7 +178,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         let channelValue = SAChannelValue(testContext: nil)
         channelValue.value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
-        channelValue.online = true
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
@@ -266,7 +266,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         let channelValue = SAChannelValue(testContext: nil)
         channelValue.value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
-        channelValue.online = true
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
@@ -343,7 +343,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = false
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         channel.value = channelValue
         
         let measurements: [MeasurementValue] = [
@@ -417,7 +417,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = false
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         channel.value = channelValue
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
@@ -464,7 +464,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = false
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         channel.value = channelValue
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
@@ -912,7 +912,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         let channelValue = SAChannelValue(testContext: nil)
         channelValue.value = NSData(bytes: &temperature, length: MemoryLayout<Double>.size)
-        channelValue.online = true
+        channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_THERMOMETER

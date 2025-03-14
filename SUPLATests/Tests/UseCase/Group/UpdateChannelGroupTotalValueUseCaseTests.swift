@@ -67,7 +67,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         
         let firstGroupRelationOffline = SAChannelGroupRelation(testContext: nil)
         firstGroupRelationOffline.group = firstGroup
-        firstGroupRelationOffline.value = SAChannelValue.mockRollerShutter(online: false, position: 25)
+        firstGroupRelationOffline.value = SAChannelValue.mockRollerShutter(status: .offline, position: 25)
         
         let secondGroupRelation = SAChannelGroupRelation(testContext: nil)
         secondGroupRelation.group = secondGroup
@@ -129,7 +129,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.sub_value = NSData(data: Data([1,0,0,0,0,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])
@@ -165,7 +165,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.value = NSData(data: Data([1,0,0,0,0,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])
@@ -201,7 +201,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.value = NSData(data: Data([12,0,0,0,0,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])
@@ -237,7 +237,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.value = NSData(data: Data([15,0,0,0,0,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])
@@ -273,7 +273,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.value = NSData(data: Data([0,15,81,209,0,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])
@@ -310,7 +310,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.value = NSData(data: Data([22,15,81,209,0,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])
@@ -348,7 +348,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         let firstGroupRelation = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation.group = firstGroup
         firstGroupRelation.value = SAChannelValue(testContext: nil)
-        firstGroupRelation.value?.online = true
+        firstGroupRelation.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         firstGroupRelation.value?.value = NSData(data: Data([1,0,100,0,120,0,0,0]))
         
         channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([firstGroupRelation])

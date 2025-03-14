@@ -67,7 +67,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         // given
         let remotId: Int32 = 12
         let value = SAChannelValue(testContext: nil)
-        value.online = true
+        value.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remotId
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
@@ -199,7 +199,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         // given
         let remotId: Int32 = 12
         let value = SAChannelValue(testContext: nil)
-        value.online = true
+        value.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remotId
         channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
@@ -264,7 +264,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         // given
         let remotId: Int32 = 12
         let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
-        let value = SAChannelValue.mock(online: true)
+        let value = SAChannelValue.mock(status: .online)
         let channel = SAChannel.mock(remotId, function: function, value: value)
         let profile = AuthProfileItem.mock()
         let channelWithChildren = ChannelWithChildren(channel: channel)
@@ -311,7 +311,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         // given
         let remotId: Int32 = 12
         let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-        let value = SAChannelValue.mock(online: true)
+        let value = SAChannelValue.mock(status: .online)
         let channel = SAChannel.mock(remotId, function: function, value: value)
         let profile = AuthProfileItem.mock()
         let channelWithChildren = ChannelWithChildren(channel: channel)

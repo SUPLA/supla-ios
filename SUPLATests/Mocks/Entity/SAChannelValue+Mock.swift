@@ -21,9 +21,9 @@ import SharedCore
 
 extension SAChannelValue {
     
-    static func mock(online: Bool = false, value: NSObject? = nil) -> SAChannelValue {
+    static func mock(status: SuplaChannelAvailabilityStatus = .offline, value: NSObject? = nil) -> SAChannelValue {
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = online
+        channelValue.online = status.rawValue
         channelValue.value = value
         return channelValue
     }
@@ -47,11 +47,11 @@ extension SAChannelValue {
         )
         
         let value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
-        return SAChannelValue.mock(online: true, value: value)
+        return SAChannelValue.mock(status: .online, value: value)
     }
     
     static func mockRollerShutter(
-        online: Bool = true,
+        status: SuplaChannelAvailabilityStatus = .online,
         position: Int = 0,
         bottomPosition: Int = 100,
         flags: [SuplaShadingSystemFlag] = []
@@ -70,11 +70,11 @@ extension SAChannelValue {
         )
         
         let value = NSData(bytes: &rollerShutterValue, length: MemoryLayout<TDSC_RollerShutterValue>.size)
-        return SAChannelValue.mock(online: online, value: value)
+        return SAChannelValue.mock(status: status, value: value)
     }
     
     static func mockFacadeBlind(
-        online: Bool = true,
+        status: SuplaChannelAvailabilityStatus = .online,
         position: Int = 0,
         tilt: Int = 100,
         flags: [SuplaShadingSystemFlag] = []
@@ -91,11 +91,11 @@ extension SAChannelValue {
         )
         
         let value = NSData(bytes: &facadeBlindValue, length: MemoryLayout<TDSC_FacadeBlindValue>.size)
-        return SAChannelValue.mock(online: online, value: value)
+        return SAChannelValue.mock(status: status, value: value)
     }
     
     static func mockValve(
-        online: Bool = true,
+        status: SuplaChannelAvailabilityStatus = .online,
         open: Bool = true,
         flags: [SuplaValveFlag] = []
     ) -> SAChannelValue {
@@ -104,6 +104,6 @@ extension SAChannelValue {
         
         var valveValue = TValve_Value(TValve_Value.__Unnamed_union___Anonymous_field0(closed: open ? 1 : 0), flags: UInt8(flagsInt))
         let value = NSData(bytes: &valveValue, length: MemoryLayout<TValve_Value>.size)
-        return SAChannelValue.mock(online: online, value: value)
+        return SAChannelValue.mock(status: status, value: value)
     }
 }

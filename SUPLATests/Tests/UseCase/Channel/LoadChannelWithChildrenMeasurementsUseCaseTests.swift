@@ -147,7 +147,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Channe
         XCTAssertEqual(historyDataSets[0].dataSets[0].label.value, "---")
     }
     
-    private func mockChannelWithChildren(_ channelId: Int32, _ child1Id: Int32, _ child2Id: Int32) -> ChannelWithChildren {
+    private func mockChannelWithChildren(_ channelId: Int32, _ child1Id: Int32, _ child2Id: Int32) -> SUPLA.ChannelWithChildren {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = channelId
         channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
