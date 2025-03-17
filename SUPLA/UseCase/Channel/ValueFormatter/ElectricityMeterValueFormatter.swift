@@ -80,6 +80,10 @@ class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
         fatalError("format(_:withUnit:precision:) has not been implemented!")
     }
     
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
+    }
+    
     fileprivate func format(_ value: Double, unit: String?, precision: Int, checkNoValue: Bool = true) -> String {
         if (value.isNaN) {
             // Nan is possible when user selected other type than default (ex voltage) and currently there is no data

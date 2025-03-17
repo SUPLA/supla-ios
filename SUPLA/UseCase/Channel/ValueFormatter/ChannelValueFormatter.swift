@@ -19,6 +19,7 @@
 protocol ChannelValueFormatter {
     func handle(function: Int32) -> Bool
     func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String
 }
 
 extension ChannelValueFormatter {

@@ -273,4 +273,8 @@ private class DefaultValueFormatter: ChannelValueFormatter {
         
         return String(describing: value)
     }
+    
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
+    }
 }

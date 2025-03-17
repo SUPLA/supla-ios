@@ -186,4 +186,8 @@ final class ChannelValueFormatterMock: ChannelValueFormatter {
         formatParameters.append((value, withUnit, precision, custom))
         return formatReturns
     }
+    
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        ""
+    }
 }

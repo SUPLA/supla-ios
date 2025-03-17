@@ -34,7 +34,11 @@ final class ThermometerValueFormatter: ChannelValueFormatter {
         }
     }
     
-    func convert(_ value: Double) -> Double {
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
+    }
+    
+    private func convert(_ value: Double) -> Double {
         switch (settings.temperatureUnit) {
         case .celsius: return value
         case .fahrenheit: return (value * 9.0 / 5.0) + 32.0

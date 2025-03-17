@@ -32,4 +32,8 @@ final class PowerActiveValueFormatter: ChannelValueFormatter {
             doubleValue.toString(precision: precision.value)
         }
     }
+    
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
+    }
 }
