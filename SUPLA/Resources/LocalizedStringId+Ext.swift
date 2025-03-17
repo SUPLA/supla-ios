@@ -92,9 +92,12 @@ extension LocalizedStringId {
         case .motorProblem: Strings.RollerShutterDetail.motorProblem
         case .calibrationLost: Strings.RollerShutterDetail.calibrationLost
         case .calibrationFailed: Strings.RollerShutterDetail.calibrationFailed
+            
         case .thermostatThermometerError: Strings.ThermostatDetail.thermometerError
         case .thermostatBatterCoverOpen: Strings.ThermostatDetail.batteryCoverOpen
         case .thermostatClockError: Strings.ThermostatDetail.clockError
+        case .thermostatCalibrationError: Strings.ThermostatDetail.calibrationError
+            
         case .channelCaptionSepticTank: Strings.General.Channel.captionSepticTank
         case .channelCaptionWaterTank: Strings.General.Channel.captionWaterTank
         case .channelCaptionContainerLevelSensor: Strings.General.Channel.captionContainerLevelSensor

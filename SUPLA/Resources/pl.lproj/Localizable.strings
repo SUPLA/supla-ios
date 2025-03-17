@@ -434,6 +434,7 @@
 "thermostat_thermometer_error" = "Błąd odczytu temperatury";
 "thermostat_clock_error" = "Błąd zegara";
 "thermostat_battery_cover_open" = "Otwarta pokrywa baterii";
+"thermostat_calibration_error" = "Błąd kalibracji";
 "thermostat_detail_mode_manual" = "Ręczny";
 "thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Ustawienia program %d";

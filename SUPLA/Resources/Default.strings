@@ -190,6 +190,7 @@
 "thermostat_thermometer_error" = "Temperature reading error";
 "thermostat_clock_error" = "Clock error";
 "thermostat_battery_cover_open" = "Battery cover open";
+"thermostat_calibration_error" = "Calibration error";
 "thermostat_detail_mode_manual" = "Manual";
 "thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Program %d Settings";

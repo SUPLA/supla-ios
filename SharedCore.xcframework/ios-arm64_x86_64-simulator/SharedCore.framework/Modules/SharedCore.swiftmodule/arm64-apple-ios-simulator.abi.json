@@ -5521,6 +5521,44 @@
           },
           {
             "kind": "Var",
+            "name": "thermostatCalibrationError",
+            "printedName": "thermostatCalibrationError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO26thermostatCalibrationErroryA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO26thermostatCalibrationErroryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 77
+          },
+          {
+            "kind": "Var",
             "name": "floodSensorActive",
             "printedName": "floodSensorActive",
             "children": [
@@ -5555,7 +5593,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17floodSensorActiveyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17floodSensorActiveyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 77
+            "fixedbinaryorder": 78
           },
           {
             "kind": "Var",
@@ -5593,7 +5631,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19valveManuallyClosedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19valveManuallyClosedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 78
+            "fixedbinaryorder": 79
           },
           {
             "kind": "Var",
@@ -5631,7 +5669,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO13valveFloodingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO13valveFloodingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 79
+            "fixedbinaryorder": 80
           },
           {
             "kind": "Var",
@@ -5669,7 +5707,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17valveMotorProblemyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17valveMotorProblemyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 80
+            "fixedbinaryorder": 81
           },
           {
             "kind": "Var",
@@ -5707,7 +5745,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19containerAlarmLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19containerAlarmLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 81
+            "fixedbinaryorder": 82
           },
           {
             "kind": "Var",
@@ -5745,7 +5783,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21containerWarningLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21containerWarningLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 82
+            "fixedbinaryorder": 83
           },
           {
             "kind": "Var",
@@ -5783,7 +5821,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO27containerInvalidSensorStateyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO27containerInvalidSensorStateyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 83
+            "fixedbinaryorder": 84
           },
           {
             "kind": "Var",
@@ -5821,7 +5859,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19containerSoundAlarmyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19containerSoundAlarmyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 84
+            "fixedbinaryorder": 85
           },
           {
             "kind": "Var",
@@ -12711,6 +12749,44 @@
             "mangledName": "$s10SharedCore19SuplaThermostatFlagO16batteryCoverOpenyA2CmF",
             "moduleName": "SharedCore",
             "fixedbinaryorder": 12
+          },
+          {
+            "kind": "Var",
+            "name": "calibrationError",
+            "printedName": "calibrationError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaThermostatFlag.Type) -> SharedCore.SuplaThermostatFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaThermostatFlag",
+                    "printedName": "SharedCore.SuplaThermostatFlag",
+                    "usr": "s:10SharedCore19SuplaThermostatFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaThermostatFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaThermostatFlag",
+                        "printedName": "SharedCore.SuplaThermostatFlag",
+                        "usr": "s:10SharedCore19SuplaThermostatFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore19SuplaThermostatFlagO16calibrationErroryA2CmF",
+            "mangledName": "$s10SharedCore19SuplaThermostatFlagO16calibrationErroryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 13
           },
           {
             "kind": "Var",
