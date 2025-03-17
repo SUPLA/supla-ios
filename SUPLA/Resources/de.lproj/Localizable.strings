@@ -400,6 +400,7 @@
 "thermostat_thermometer_error" = "Fehler beim Temperaturelesen";
 "thermostat_clock_error" = "Uhrfehler";
 "thermostat_battery_cover_open" = "Batteriefachdeckel offen";
+"thermostat_calibration_error" = "Kalibrierungsfehler";
 "thermostat_detail_mode_manual" = "Handbetrieb";
 "thermostat_detail_mode_weekly_schedule" = "Wöchentlich";
 "schedule_detail_program_dialog_header" = "Program %d Einstellungen";

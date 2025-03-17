@@ -35,6 +35,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
+    private let thermostatIssuesProvider = ThermostatIssuesProvider()
     private let updateRelay = PublishRelay<Void>()
     private let channelRelay = PublishRelay<ChannelWithChildren>()
     
@@ -295,7 +296,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
                 .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
-                .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
+                .changing(path: \.issues, to: createThermostatIssues(channelWithChildren: channel))
                 .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.status().online && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.status().online, data.3))
@@ -466,18 +467,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             )
     }
     
-    private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ChannelIssueItem] {
-        var result: [ChannelIssueItem] = []
-        if (flags.contains(.thermometerError)) {
-            result.append(ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatThermometerError)))
-        }
-        if (flags.contains(.batteryCoverOpen)) {
-            result.append(ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatBatterCoverOpen)))
-        }
-        if (flags.contains(.clockError)) {
-            result.append(ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.thermostatClockError)))
-        }
-        return result
+    private func createThermostatIssues(channelWithChildren: ChannelWithChildren) -> [ChannelIssueItem] {
+        thermostatIssuesProvider.provide(channelWithChildren: channelWithChildren.shareable)
     }
     
     private func createSensorIssue(value: ThermostatValue, children: [ChannelChild]) -> SensorIssue? {

@@ -497,6 +497,7 @@ __attribute__((swift_name("SuplaThermostatFlag")))
 @property (class, readonly) SharedCoreSuplaThermostatFlag *heatOrCool __attribute__((swift_name("heatOrCool")));
 @property (class, readonly) SharedCoreSuplaThermostatFlag *weeklyScheduleTemporalOverride __attribute__((swift_name("weeklyScheduleTemporalOverride")));
 @property (class, readonly) SharedCoreSuplaThermostatFlag *batteryCoverOpen __attribute__((swift_name("batteryCoverOpen")));
+@property (class, readonly) SharedCoreSuplaThermostatFlag *calibrationError __attribute__((swift_name("calibrationError")));
 @property (class, readonly) NSArray<SharedCoreSuplaThermostatFlag *> *entries __attribute__((swift_name("entries")));
 @property (readonly) int32_t value __attribute__((swift_name("value")));
 + (instancetype)alloc __attribute__((unavailable));
@@ -1269,6 +1270,7 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *thermostatThermometerError __attribute__((swift_name("thermostatThermometerError")));
 @property (class, readonly) SharedCoreLocalizedStringId *thermostatBatterCoverOpen __attribute__((swift_name("thermostatBatterCoverOpen")));
 @property (class, readonly) SharedCoreLocalizedStringId *thermostatClockError __attribute__((swift_name("thermostatClockError")));
+@property (class, readonly) SharedCoreLocalizedStringId *thermostatCalibrationError __attribute__((swift_name("thermostatCalibrationError")));
 @property (class, readonly) SharedCoreLocalizedStringId *floodSensorActive __attribute__((swift_name("floodSensorActive")));
 @property (class, readonly) SharedCoreLocalizedStringId *valveManuallyClosed __attribute__((swift_name("valveManuallyClosed")));
 @property (class, readonly) SharedCoreLocalizedStringId *valveFlooding __attribute__((swift_name("valveFlooding")));

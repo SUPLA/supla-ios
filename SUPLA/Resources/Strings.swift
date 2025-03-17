@@ -239,6 +239,7 @@ struct Strings {
         static let thermometerError = "thermostat_thermometer_error".toLocalized()
         static let clockError = "thermostat_clock_error".toLocalized()
         static let batteryCoverOpen = "thermostat_battery_cover_open".toLocalized()
+        static let calibrationError = "thermostat_calibration_error".toLocalized()
         
         static let modeManual = "thermostat_detail_mode_manual".toLocalized()
         static let modeWeeklySchedule = "thermostat_detail_mode_weekly_schedule".toLocalized()

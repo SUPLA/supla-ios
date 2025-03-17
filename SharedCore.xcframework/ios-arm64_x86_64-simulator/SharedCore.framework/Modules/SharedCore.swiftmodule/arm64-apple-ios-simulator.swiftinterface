@@ -212,6 +212,7 @@ extension SharedCore.__ThermostatSubfunction {
   case thermostatThermometerError
   case thermostatBatterCoverOpen
   case thermostatClockError
+  case thermostatCalibrationError
   case floodSensorActive
   case valveManuallyClosed
   case valveFlooding
@@ -494,6 +495,7 @@ extension SharedCore.__SuplaShadingSystemFlag {
   case heatOrCool
   case weeklyScheduleTemporalOverride
   case batteryCoverOpen
+  case calibrationError
   public var name: Swift.String {
     get
   }
