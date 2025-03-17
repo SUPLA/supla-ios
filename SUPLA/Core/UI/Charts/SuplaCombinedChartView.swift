@@ -279,6 +279,6 @@ private class AxisYFormatter: NSObject, AxisValueFormatter {
     }
     
     func stringForValue(_ value: Double, axis: DGCharts.AxisBase?) -> String {
-        formatter.format(value, withUnit: false, precision: .customPrecision(value: axis?.decimals ?? 1))
+        formatter.formatChartLabel(value, precision: axis?.decimals ?? 1, withUnit: formatter is HumidityValueFormatter)
     }
 }
