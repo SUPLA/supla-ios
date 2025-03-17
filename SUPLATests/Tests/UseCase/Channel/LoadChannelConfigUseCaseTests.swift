@@ -67,6 +67,21 @@ final class LoadChannelConfigUseCaseTests: UseCaseTest<SuplaChannelConfig?> {
         assertEvents([.next(config), .completed])
     }
     
+    func test_shouldLoadContainerConfig() {
+        // given
+        let remoteId: Int32 = 123
+        let config = SuplaChannelContainerConfig.mock()
+        let channelConfig = SAChannelConfig.mock(type: .container, config: config.toJson())
+        
+        channelConfigRepository.getConfigReturns = .just(channelConfig)
+        
+        // when
+        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(config), .completed])
+    }
+    
     func test_loadNilWhenCouldNotParseConfig() {
         // given
         let remoteId: Int32 = 123

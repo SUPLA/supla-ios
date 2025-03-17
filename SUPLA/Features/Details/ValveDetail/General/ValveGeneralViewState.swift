@@ -23,7 +23,7 @@ extension ValveGeneralFeature {
         @Published var icon: IconResult? = nil
         @Published var stateString: String? = nil
         @Published var issues: [ChannelIssueItem] = []
-        @Published var sensors: [SensorData] = []
+        @Published var sensors: [SensorItemData] = []
         @Published var offline: Bool = false
         @Published var isClosed: Bool = false
         
@@ -31,18 +31,6 @@ extension ValveGeneralFeature {
         @Published var alertDialog: ValveAlertDialog? = nil
         @Published var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? = nil
         
-    }
-    
-    struct SensorData: Identifiable {
-        var id: Int32 { channelId }
-        
-        let channelId: Int32
-        let onlineState: ListOnlineState
-        let icon: IconResult?
-        let caption: String
-        let userCaption: String
-        let batteryIcon: IssueIcon?
-        let showChannelStateIcon: Bool
     }
     
     enum ValveAlertDialog {

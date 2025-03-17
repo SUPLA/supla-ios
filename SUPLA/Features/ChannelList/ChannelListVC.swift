@@ -54,6 +54,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             coordinator.navigateToHumidityDetail(item: item, pages: pages)
         case .navigateToValveDetail(let item, let pages):
             coordinator.navigateToValveDetail(item: item, pages: pages)
+        case .navigateToContainerDetail(let item, let pages):
+            coordinator.navigateToContainerDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
         case .showValveWarningDialog(let remoteId, let message, let action):

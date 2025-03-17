@@ -103,6 +103,10 @@ extension LocalizedStringId {
         case .valveManuallyClosed: Strings.Valve.warningManuallyClosedShort
         case .valveFlooding: Strings.Valve.warningFloodingShort
         case .valveMotorProblem: Strings.Valve.warningMotorProblem
+        case .containerAlarmLevel: Strings.Container.alarmLevel
+        case .containerWarningLevel: Strings.Container.warningLevel
+        case .containerInvalidSensorState: Strings.Container.invalidSensorState
+        case .containerSoundAlarm: Strings.Container.soundAlarm
         }
     }
 }

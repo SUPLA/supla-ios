@@ -32,6 +32,8 @@ extension UIColor {
     static let secondary = UIColor(named: "Colors/secondary")!
     static let secondaryContainer = UIColor(named: "Colors/secondary_container")!
     
+    static let tertiary = UIColor(named: "Colors/tertiary")!
+    
     @objc static let surface = UIColor(named: "Colors/surface")!
     static let onSurface = UIColor(named: "Colors/on_surface")!
     
@@ -127,6 +129,10 @@ extension UIColor {
     
     static let newGestureBackgroundDarker = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.87)
     static let newGestureBackgroundLighter = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.27)
+    
+    static let containerFluidDefault = UIColor(argb: 0xFF0E8618)
+    static let containerFluidWater = UIColor(argb: 0xFF0067D4)
+    static let containerFluidSeptic = UIColor(argb: 0xFF8A4F07)
     
     @objc static let colorPickerDefault = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
     @objc static let rgbwSelectedTabColor = UIColor(red: 0.07, green: 0.65, blue: 0.12, alpha: 1.00)

@@ -538,6 +538,14 @@ struct Strings {
         static let groupName = "change_caption_group_name".toLocalized()
         static let sceneName = "change_caption_scene_name".toLocalized()
     }
+    
+    struct Container {
+        static let fillLevel = "container_fill_level".toLocalized()
+        static let warningLevel = "container_warning_level".toLocalized()
+        static let alarmLevel = "container_alarm_level".toLocalized()
+        static let invalidSensorState = "container_invalid_sensor_state".toLocalized()
+        static let soundAlarm = "container_sound_alarm".toLocalized()
+    }
 }
 
 extension String {

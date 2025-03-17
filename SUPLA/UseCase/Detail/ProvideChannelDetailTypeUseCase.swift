@@ -38,6 +38,10 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 
             case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: .valveDetail(pages: [.valveGeneral])
 
+            case SUPLA_CHANNELFNC_CONTAINER,
+                 SUPLA_CHANNELFNC_WATER_TANK,
+                 SUPLA_CHANNELFNC_SEPTIC_TANK: .containerDetail(pages: [.containerGeneral])
+
             default: provide(channelWithChildren.channel)
         }
     }

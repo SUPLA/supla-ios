@@ -100,13 +100,13 @@ extension ValveGeneralFeature {
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channelWithChildren.shareable)
             state.sensors = channelWithChildren.children
                 .filter { $0.relationType == .default }
-                .map { toSensor($0) }
+                .map { $0.toSensorItem() }
             state.offline = value?.online != true
             state.isClosed = value?.isClosed() ?? true
         }
         
-        private func toSensor(_ child: ChannelChild) -> ValveGeneralFeature.SensorData {
-            ValveGeneralFeature.SensorData(
+        private func toSensor(_ child: ChannelChild) -> SensorItemData {
+            SensorItemData(
                 channelId: child.channel.remote_id,
                 onlineState: child.channel.onlineState,
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),

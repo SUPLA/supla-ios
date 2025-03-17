@@ -73,6 +73,10 @@ extension View {
         font(.Supla.headlineLarge)
     }
     
+    func fontDisplaySmall() -> some View {
+        font(.Supla.displaySmall)
+    }
+    
     func fontPickerLabel() -> some View {
         font(.Supla.bodySmall)
             .foregroundColor(Color.Supla.onSurfaceVariant)

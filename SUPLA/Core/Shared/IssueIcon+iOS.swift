@@ -30,20 +30,7 @@ extension IssueIcon {
         case .battery50: .iconBattery50
         case .battery75: .iconBattery75
         case .batteryNotUsed: .iconBatteryNotUsed
-        }
-    }
-
-    var name: String {
-        switch onEnum(of: self) {
-        case .warning: "warning"
-        case .error: "error"
-        case .battery: "battery"
-        case .battery0: "battery0"
-        case .battery100: "battery100"
-        case .battery25: "battery25"
-        case .battery50: "battery50"
-        case .battery75: "battery75"
-        case .batteryNotUsed: "batteryNotUsed"
+        case .sound: .iconSoundOn
         }
     }
 }

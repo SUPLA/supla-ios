@@ -28,6 +28,15 @@ class SuplaChannelConfig: Codable {
     }
     
     static func from(suplaConfig: TSCS_ChannelConfig, crc32: Int64) -> SuplaChannelConfig {
+        if (suplaConfig.isContainerConfig()) {
+            var config: TChannelConfig_Container = suplaConfig.cast()
+            return SuplaChannelContainerConfig.from(
+                remoteId: suplaConfig.ChannelId,
+                channelFunc: suplaConfig.Func,
+                crc32: crc32,
+                suplaConfig: &config
+            )
+        }
         if (suplaConfig.isHvacConfig()) {
             return SuplaChannelHvacConfig.from(
                 remoteId: suplaConfig.ChannelId,
@@ -81,69 +90,47 @@ class SuplaChannelConfig: Codable {
     }
 }
 
-fileprivate extension TSCS_ChannelConfig {
+private extension TSCS_ChannelConfig {
     func isHvacConfig() -> Bool {
         isHvac()
-        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
-        && ConfigSize == MemoryLayout<TChannelConfig_HVAC>.size
-    }
-    
-    func asHvacConfig() -> TChannelConfig_HVAC {
-        var config = Config
-        return withUnsafePointer(to: &config) { pointee in
-            UnsafeRawPointer(pointee).assumingMemoryBound(to: TChannelConfig_HVAC.self).pointee
-        }
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && ConfigSize == MemoryLayout<TChannelConfig_HVAC>.size
     }
     
     func isWeeklyConfig() -> Bool {
         isHvac()
-        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
-        && ConfigSize == MemoryLayout<TChannelConfig_WeeklySchedule>.size
-    }
-    
-    func asWeeklyConfig() -> TChannelConfig_WeeklySchedule {
-        var config = Config
-        return withUnsafePointer(to: &config) { pointee in
-            UnsafeRawPointer(pointee).assumingMemoryBound(to: TChannelConfig_WeeklySchedule.self).pointee
-        }
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
+            && ConfigSize == MemoryLayout<TChannelConfig_WeeklySchedule>.size
     }
     
     func isGpMeterConfig() -> Bool {
         Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
-        && ConfigSize == MemoryLayout<TChannelConfig_GeneralPurposeMeter>.size
-    }
-    
-    func asGpMeterConfig() -> TChannelConfig_GeneralPurposeMeter {
-        var config = Config
-        return withUnsafePointer(to: &config) { pointee in
-            UnsafeRawPointer(pointee).assumingMemoryBound(to: TChannelConfig_GeneralPurposeMeter.self).pointee
-        }
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && ConfigSize == MemoryLayout<TChannelConfig_GeneralPurposeMeter>.size
     }
     
     func isGpMeasurementConfig() -> Bool {
         Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
-        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
-        && ConfigSize == MemoryLayout<TChannelConfig_GeneralPurposeMeasurement>.size
-    }
-    
-    func asGpMeasurementConfig() -> TChannelConfig_GeneralPurposeMeasurement {
-        var config = Config
-        return withUnsafePointer(to: &config) { pointee in
-            UnsafeRawPointer(pointee).assumingMemoryBound(to: TChannelConfig_GeneralPurposeMeasurement.self).pointee
-        }
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && ConfigSize == MemoryLayout<TChannelConfig_GeneralPurposeMeasurement>.size
     }
     
     func isRollerShutterConfig() -> Bool {
         Func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
-        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
-        && ConfigSize == MemoryLayout<TChannelConfig_RollerShutter>.size
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && ConfigSize == MemoryLayout<TChannelConfig_RollerShutter>.size
     }
     
     func isFacadeBlindConfig() -> Bool {
         Func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
-        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
-        && ConfigSize == MemoryLayout<TChannelConfig_FacadeBlind>.size
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && ConfigSize == MemoryLayout<TChannelConfig_FacadeBlind>.size
+    }
+    
+    func isContainerConfig() -> Bool {
+        isContainer()
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && ConfigSize == MemoryLayout<TChannelConfig_Container>.size
     }
     
     func cast<T>() -> T {
@@ -154,12 +141,21 @@ fileprivate extension TSCS_ChannelConfig {
     }
     
     private func isHvac() -> Bool {
-        switch(Func) {
+        switch (Func) {
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-            SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL,
-        SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER: return true
+             SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL,
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER: return true
             
         default: return false
+        }
+    }
+    
+    private func isContainer() -> Bool {
+        switch (Func) {
+        case SUPLA_CHANNELFNC_CONTAINER,
+             SUPLA_CHANNELFNC_WATER_TANK,
+             SUPLA_CHANNELFNC_SEPTIC_TANK: true
+        default: false
         }
     }
 }
