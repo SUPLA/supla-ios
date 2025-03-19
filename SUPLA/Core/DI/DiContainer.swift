@@ -88,6 +88,7 @@ extension DiContainer {
         register(DeviceConfigEventsManager.self, DeviceConfigEventsManagerImpl())
         register(DownloadEventsManager.self, DownloadEventsManagerImpl())
         register(ApplicationEventsManager.self, ApplicationEventsManagerImpl())
+        register(RemoveHiddenChannelsManager.self, RemoveHiddenChannelsManagerImpl())
         
         // MARK: Repositories
 
@@ -186,6 +187,7 @@ extension DiContainer {
         register(ImpulseCounterValueProvider.self, ImpulseCounterValueProviderImpl())
         register(SwitchWithImpulseCounterValueProvider.self, SwitchWithImpulseCounterValueProviderImpl())
         register(ContainerValueProvider.self, ContainerValueProviderImpl())
+        register(RemoveHiddenChannelsUseCase.self, RemoveHiddenChannelsUseCaseImpl())
         // Usecases - Channel - MeasurementProvider
         register(TemperatureMeasurementsProvider.self, TemperatureMeasurementsProviderImpl())
         register(TemperatureAndHumidityMeasurementsProvider.self, TemperatureAndHumidityMeasurementsProviderImpl())

@@ -16,19 +16,21 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import CoreData
 import Foundation
 import RxSwift
 
-protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAChannel {
+protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
-    func getChannel(_ remoteId: Int32) -> Observable<SAChannel> 
+    func getChannel(_ remoteId: Int32) -> Observable<SAChannel>
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
+    func getHiddenChannelsSync() -> [SAChannel]
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
@@ -119,5 +121,33 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 return $0
             }
             .flatMapFirst { self.save($0) }
+    }
+    
+    func getHiddenChannelsSync() -> [SAChannel] {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        var result: [SAChannel] = []
+            
+        context.performAndWait {
+            let fetchRequest = SAChannel.fetchRequest()
+                .filtered(by: NSPredicate(format: "visible = 0 AND profile.isActive = 1"))
+            
+            if let channels = try? context.fetch(fetchRequest) {
+                result.append(contentsOf: channels)
+            }
+        }
+        
+        return result
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAChannel")
+            fetch.predicate = NSPredicate(format: "remote_id = %d AND profile.id = %d", remoteId, profile.id)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

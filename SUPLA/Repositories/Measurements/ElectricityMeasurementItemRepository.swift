@@ -19,7 +19,7 @@
 import Foundation
 import RxSwift
 
-protocol ElectricityMeasurementItemRepository: BaseMeasurementRepository<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem> where T == SAElectricityMeasurementItem {
+protocol ElectricityMeasurementItemRepository: BaseMeasurementRepository<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem>, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAElectricityMeasurementItem {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
     func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]>
     func storeMeasurements(
@@ -234,6 +234,18 @@ final class ElectricityMeasurementItemRepositoryImpl: Repository<SAElectricityMe
             entity.rae_balanced = valueDivided.raeBalanced ?? measurement.rae_balanced.toKWh()
             entity.calculated = true
             entity.counter_reset = itemNo == missingItemsCount - 1 ? valueDiff.resetRecognized() : false
+        }
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAElectricityMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
         }
     }
 }

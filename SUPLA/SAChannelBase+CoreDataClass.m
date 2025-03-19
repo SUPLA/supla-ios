@@ -269,10 +269,6 @@
     return [SAChannelBase getNonEmptyCaptionOfChannel:self customFunc:nil];
 }
 
-- (BOOL) isOnline {
-    return NO;
-}
-
 - (int) onlinePercent {
     return 0;
 }
@@ -406,7 +402,7 @@
     NSString *measured = [@"---" stringByAppendingString: unit];
     NSString *preset = [@"/---" stringByAppendingString: unit];
         
-    if (self.isOnline) {
+    if (self.status.online) {
         if (mmin > -273) {
             measured = [pres stringRepresentation: mmin];
             if (mmax > -273) {
@@ -451,23 +447,23 @@
     n2fmt.minimumFractionDigits = 1;
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"---";
+            result = self.status.online && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"---";
             break;
         case SUPLA_CHANNELFNC_HUMIDITY:
-            result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
+            result = self.status.online && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
             break;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             if (idx == 1) {
-                result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
+                result = self.status.online && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
             } else {
-                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : @"---";
+                result = self.status.online && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : @"---";
             }
             break;
         case SUPLA_CHANNELFNC_DEPTHSENSOR:
         case SUPLA_CHANNELFNC_DISTANCESENSOR:
             result = @"--- m";
             
-            if ( [self isOnline] && self.doubleValue >= 0 ) {
+            if (self.status.online && self.doubleValue >= 0 ) {
                 
                 double value = [self doubleValue];
                 
@@ -492,7 +488,7 @@
             }
             break;
         case SUPLA_CHANNELFNC_WINDSENSOR:
-            if ([self isOnline] && [self doubleValue] >= 0) {
+            if (self.status.online && [self doubleValue] >= 0) {
                result = [NSString stringWithFormat:@"%@ m/s",
                          [nfmt stringFromNumber: @([self doubleValue])]];
             } else {
@@ -500,21 +496,21 @@
             }
             break;
         case SUPLA_CHANNELFNC_PRESSURESENSOR:
-            if ([self isOnline] && [self doubleValue] >= 0) {
+            if (self.status.online && [self doubleValue] >= 0) {
                result = [NSString stringWithFormat:@"%i hPa", (int)[self doubleValue]];
             } else {
                result = @"--- hPa";
             }
             break;
         case SUPLA_CHANNELFNC_RAINSENSOR:
-            if ([self isOnline] && [self doubleValue] >= 0) {
+            if (self.status.online && [self doubleValue] >= 0) {
                 result = [NSString stringWithFormat:@"%@ l/m²", [n2fmt stringFromNumber: @([self doubleValue]/1000.00)]];
             } else {
                 result = @"--- l/m²";
             }
             break;
         case SUPLA_CHANNELFNC_WEIGHTSENSOR:
-            if ([self isOnline] && [self doubleValue] >= 0) {
+            if (self.status.online && [self doubleValue] >= 0) {
                 double weight = [self doubleValue];
                 if (fabs(weight) >= 2000) {
                     result = [NSString stringWithFormat:@"%@ kg", [n2fmt stringFromNumber:@(weight/1000.00)]];

@@ -124,4 +124,7 @@ final class GeneralPurposeMeterItemRepositoryMock: BaseRepositoryMock<SAGeneralP
         }
         return try SuplaCloudClient.GeneralPurposeMeter.fromJson(data: data)
     }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

@@ -18,7 +18,7 @@
 
 import RxSwift
 
-protocol GeneralPurposeMeasurementItemRepository: BaseMeasurementRepository where
+protocol GeneralPurposeMeasurementItemRepository: BaseMeasurementRepository, RemoveHiddenChannelsUseCaseImpl.Deletable where
     M == SuplaCloudClient.GeneralPurposeMeasurement,
     E == SAGeneralPurposeMeasurementItem,
     T == SAGeneralPurposeMeasurementItem
@@ -146,5 +146,17 @@ final class GeneralPurposeMeasurementItemRepositoryImpl: Repository<SAGeneralPur
     
     func fromJson(data: Data) throws -> [SuplaCloudClient.GeneralPurposeMeasurement] {
         try SuplaCloudClient.GeneralPurposeMeasurement.fromJson(data: data)
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAGeneralPurposeMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

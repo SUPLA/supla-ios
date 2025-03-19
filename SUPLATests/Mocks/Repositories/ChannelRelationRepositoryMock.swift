@@ -58,5 +58,6 @@ final class ChannelRelationRepositoryMock: BaseRepositoryMock<SAChannelRelation>
         return getParentsMapReturns
     }
     
-    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }
