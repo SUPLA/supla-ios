@@ -73,4 +73,7 @@ final class ElectricityMeasurementItemRepositoryMock: BaseRepositoryMock<SAElect
     func fromJson(data: Data) throws -> [SuplaCloudClient.ElectricityMeasurement] {
         return []
     }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

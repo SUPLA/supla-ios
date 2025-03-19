@@ -99,4 +99,7 @@ final class TempHumidityMeasurementItemRepositoryMock: BaseRepositoryMock<SATemp
         }
         return try SuplaCloudClient.TemperatureAndHumidityMeasurement.fromJson(data: data)
     }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

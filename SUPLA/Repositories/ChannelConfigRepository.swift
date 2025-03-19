@@ -19,7 +19,7 @@
 
 import RxSwift
 
-protocol ChannelConfigRepository: RepositoryProtocol where T == SAChannelConfig {
+protocol ChannelConfigRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannelConfig {
     func deleteAllFor(channel: SAChannel, profile: AuthProfileItem) -> Observable<Void>
     func getConfig(channelRemoteId: Int32) -> Observable<SAChannelConfig?>
     func deleteAllFor(profile: AuthProfileItem) -> Observable<Void>
@@ -41,5 +41,17 @@ final class ChannelConfigRepositoryImpl: Repository<SAChannelConfig>, ChannelCon
     
     func deleteAllFor(profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SAChannelConfig.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAChannelConfig")
+            fetch.predicate = NSPredicate(format: "channel.remote_id = %d AND profile.id = %d", remoteId, profile.id)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

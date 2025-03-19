@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol VoltageMeasurementItemRepository:
-    BaseMeasurementRepository<SuplaCloudClient.HistoryMeasurement, SAVoltageMeasurementItem> where
+    BaseMeasurementRepository<SuplaCloudClient.HistoryMeasurement, SAVoltageMeasurementItem>, RemoveHiddenChannelsUseCaseImpl.Deletable where
     T == SAVoltageMeasurementItem
 {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
@@ -140,4 +140,15 @@ final class VoltageMeasurementItemRepositoryImpl: Repository<SAVoltageMeasuremen
         try SuplaCloudClient.HistoryMeasurement.fromJson(data: data)
     }
 
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAVoltageMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol TemperatureMeasurementItemRepository:
-    BaseMeasurementRepository<SuplaCloudClient.TemperatureMeasurement, SATemperatureMeasurementItem> where
+    BaseMeasurementRepository<SuplaCloudClient.TemperatureMeasurement, SATemperatureMeasurementItem>, RemoveHiddenChannelsUseCaseImpl.Deletable where
     T == SATemperatureMeasurementItem
 {
     
@@ -140,5 +140,17 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
     
     func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureMeasurement] {
         try SuplaCloudClient.TemperatureMeasurement.fromJson(data: data)
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SATemperatureMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

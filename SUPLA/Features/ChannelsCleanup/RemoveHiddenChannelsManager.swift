@@ -16,24 +16,27 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
-@testable import SUPLA
-
-final class ChannelExtendedValueRepositorMock: BaseRepositoryMock<SAChannelExtendedValue>, ChannelExtendedValueRepository {
+protocol RemoveHiddenChannelsManager {
+    func start()
+    func kill()
+}
     
-    var channelValueObservable: Observable<SAChannelExtendedValue> = Observable.empty()
-    func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelExtendedValue> {
-        channelValueObservable
+class RemoveHiddenChannelsManagerImpl: RemoveHiddenChannelsManager {
+    
+    @Singleton<RemoveHiddenChannelsUseCase> private var removeHiddenChannelsUseCase
+    
+    private var task: Task<Void, Never>?
+    
+    func start() {
+        task = Task(priority: .low) {
+            SALog.info("Starting hidden channels removal manager")
+            removeHiddenChannelsUseCase.invoke()
+            SALog.info("Finishing hidden channels removal manager")
+        }
     }
     
-    var deleteAllObservable: Observable<Void> = Observable.empty()
-    var deleteAllCounter = 0
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllCounter += 1
-        return deleteAllObservable
-    }
-    
-    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    func kill() {
+        SALog.info("Killing hidden channels removal manager")
+        task?.cancel()
     }
 }

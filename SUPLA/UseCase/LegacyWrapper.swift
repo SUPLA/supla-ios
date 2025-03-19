@@ -238,4 +238,14 @@ final class UseCaseLegacyWrapper: NSObject {
         @Singleton<ChannelToRootRelationHolderUseCase> var useCase
         useCase.reloadRelations()
     }
+    
+    @objc static func startHiddenChannelsCleanup() {
+        @Singleton<RemoveHiddenChannelsManager> var manager
+        manager.start()
+    }
+    
+    @objc static func killHiddenChannelsCleanup() {
+        @Singleton<RemoveHiddenChannelsManager> var manager
+        manager.kill()
+    }
 }
