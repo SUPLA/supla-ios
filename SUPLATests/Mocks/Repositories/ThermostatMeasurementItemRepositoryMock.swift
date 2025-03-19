@@ -29,5 +29,8 @@ final class ThermostatMeasurementItemRepositoryMock: BaseRepositoryMock<SAThermo
         deleteAllCounter += 1
         return deleteAllObservable
     }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }
 

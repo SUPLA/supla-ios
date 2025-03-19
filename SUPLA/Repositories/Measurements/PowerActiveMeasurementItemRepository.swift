@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol PowerActiveMeasurementItemRepository:
-    BaseMeasurementRepository<SuplaCloudClient.HistoryMeasurement, SAPowerActiveMeasurementItem> where
+    BaseMeasurementRepository<SuplaCloudClient.HistoryMeasurement, SAPowerActiveMeasurementItem>, RemoveHiddenChannelsUseCaseImpl.Deletable where
     T == SAPowerActiveMeasurementItem
 {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
@@ -140,5 +140,15 @@ final class PowerActiveMeasurementItemRepositoryImpl: Repository<SAPowerActiveMe
         try SuplaCloudClient.HistoryMeasurement.fromJson(data: data)
     }
     
-    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAPowerActiveMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
+    }
 }

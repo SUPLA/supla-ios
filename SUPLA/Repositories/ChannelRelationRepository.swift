@@ -19,7 +19,7 @@
 import RxSwift
 import SharedCore
 
-protocol ChannelRelationRepository: RepositoryProtocol where T == SAChannelRelation {
+protocol ChannelRelationRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannelRelation {
     func getRelation(for profile: AuthProfileItem, with channelId: Int32, with parentId: Int32, and relationType: ChannelRelationType) -> Observable<SAChannelRelation>
     func getAllRelations(for profile: AuthProfileItem) -> Observable<[SAChannelRelation]>
     func getAllRelations(for profile: AuthProfileItem, with parentId: Int32) -> Observable<[SAChannelRelation]>
@@ -79,5 +79,17 @@ final class ChannelRelationRepositoryImpl: Repository<SAChannelRelation>, Channe
                 }
                 return map
             }
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAChannelRelation")
+            fetch.predicate = NSPredicate(format: "(channel_id = %d OR parent_id = %d) AND profile.id = %d", remoteId, remoteId, profile.id)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol TempHumidityMeasurementItemRepository:
-    BaseMeasurementRepository<SuplaCloudClient.TemperatureAndHumidityMeasurement, SATempHumidityMeasurementItem>
+    BaseMeasurementRepository<SuplaCloudClient.TemperatureAndHumidityMeasurement, SATempHumidityMeasurementItem>, RemoveHiddenChannelsUseCaseImpl.Deletable
     where T == SATempHumidityMeasurementItem
 {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
@@ -143,5 +143,17 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
     
     func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureAndHumidityMeasurement] {
         try SuplaCloudClient.TemperatureAndHumidityMeasurement.fromJson(data: data)
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SATempHumidityMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

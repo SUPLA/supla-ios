@@ -636,7 +636,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
                     if ( [self isCancelled] == NO ) {
                         double timeDiff = [_connectingStatusLastTime timeIntervalSinceNow] * -1;
                         if ( timeDiff < MINIMUM_WAITING_TIME_SEC) {
-                            usleep((MINIMUM_WAITING_TIME_SEC - timeDiff)   * 1000000);
+                            usleep((MINIMUM_WAITING_TIME_SEC - timeDiff) * 1000000);
                         }
                     }
                 }
@@ -644,6 +644,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
                     NSLog(@"%@", exception);
                 }
                 @finally {
+                    [UseCaseLegacyWrapper killHiddenChannelsCleanup];
                     @synchronized(self) {
                         supla_client_free(_sclient);
                         _sclient = NULL;
@@ -884,6 +885,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     if ( channel->EOL == 1 ) {
         [DiContainer.updateEventsManager emitChannelsUpdate];
         DataChanged = [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0];
+        [UseCaseLegacyWrapper startHiddenChannelsCleanup];
     }
     
     if ( DataChanged ) {

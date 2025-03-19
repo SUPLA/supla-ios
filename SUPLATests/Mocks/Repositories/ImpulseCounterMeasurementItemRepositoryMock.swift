@@ -73,4 +73,7 @@ final class ImpulseCounterMeasurementItemRepositoryMock: BaseRepositoryMock<SAIm
     func fromJson(data: Data) throws -> [SUPLA.SuplaCloudClient.ImpulseCounterMeasurement] {
         []
     }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

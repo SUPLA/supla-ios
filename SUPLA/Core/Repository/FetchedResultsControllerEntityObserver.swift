@@ -27,7 +27,13 @@ final class FetchedResultsControllerEntityObserver<T: NSFetchRequestResult> : NS
     private let disposeBag = DisposeBag()
     private let frc: NSFetchedResultsController<T>
     
-    init(observer: Observer, fetchRequest: NSFetchRequest<T>, managedObjectContext context: NSManagedObjectContext, sectionNameKeyPath: String?, cacheName: String?) {
+    init(
+        observer: Observer,
+        fetchRequest: NSFetchRequest<T>,
+        managedObjectContext context: NSManagedObjectContext,
+        sectionNameKeyPath: String?,
+        cacheName: String?
+    ) {
         
         self.observer = observer
         self.frc = NSFetchedResultsController(
