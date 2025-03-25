@@ -46,8 +46,7 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
     
     init(itemBundle: ItemBundle, viewModel: VM) {
         self.itemBundle = itemBundle
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel = viewModel
+        super.init(viewModel: viewModel)
     }
     
     @available(*, unavailable)

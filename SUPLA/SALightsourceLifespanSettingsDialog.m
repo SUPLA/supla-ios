@@ -30,13 +30,17 @@ static SALightsourceLifespanSettingsDialog *_lifespanSettingsDialogGlobalRef = n
     int _lifespan;
 }
 
--(void)show:(int)remoteId title:(NSString *)title lifesourceLifespan:(int)lifespan {
+-(void)show:(int)remoteId title:(NSString *)title lifesourceLifespan:(int)lifespan vc:(UIViewController *)vc {
     _remoteId = remoteId;
     _lifespan = lifespan;
     self.resetCheckBox.on = NO;
     [self.lTitle setText:title];
     [self.tfLifespan setText:[NSString stringWithFormat:@"%i", _lifespan]];
-    [SADialog showModal:self];
+    
+    self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.modalInPresentation = YES;
+    
+    [vc presentViewController: self animated:true completion: nil];
 }
 
 +(SALightsourceLifespanSettingsDialog*)globalInstance {

@@ -20,6 +20,12 @@ extension ContainerGeneralFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         
         private var channelId: Int32
+        private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+            let viewModel = StateDialogFeature.ViewModel { [weak self] in
+                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+            }
+            return viewModel
+        }()
         
         init(channelId: Int32, viewModel: ViewModel) {
             self.channelId = channelId
@@ -27,12 +33,12 @@ extension ContainerGeneralFeature {
             
             contentView = View(
                 viewState: viewModel.state,
+                stateDialogViewModel: stateDialogViewModel,
                 onMuteClick: { viewModel.onMuteClick(self) },
-                onInfoClick: { viewModel.showStateDialog(remoteId: $0.channelId, caption: $0.caption) },
+                onInfoClick: { [weak self] in self?.stateDialogViewModel.show(remoteId: $0.channelId) },
                 onCaptionLongPress: { [weak self] sensorData in
                     self?.showAuthorizationForCaptionChange(sensorData.userCaption, sensorData.id)
                 },
-                onStateDialogDismiss: { viewModel.closeStateDialog() },
                 onCaptionChangeDismiss: { viewModel.closeCaptionChangeDialog() },
                 onCaptionChangeApply: { viewModel.onCaptionChange($0) }
             )
@@ -43,16 +49,6 @@ extension ContainerGeneralFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(channelId)
-            observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
-        }
-        
-        @objc
-        func onStateEvent(notification: NSNotification) {
-            if let userInfo = notification.userInfo,
-               let channelState = userInfo["state"] as? SAChannelStateExtendedValue
-            {
-                viewModel.updateStateDialog(channelState)
-            }
         }
         
         private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {

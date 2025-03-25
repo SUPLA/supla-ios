@@ -23,11 +23,13 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
     
     private var captionEditor: GroupCaptionEditor? = nil
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = GroupListViewModel()
-        
+    init() {
+        super.init(viewModel: GroupListViewModel())
         setupView()
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .group }

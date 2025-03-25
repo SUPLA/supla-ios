@@ -291,6 +291,7 @@
 "turn_on" = "Vklopi";
 "turn_off" = "Izklopi";
 "save" = "Shrani";
+"general_function" = "Funkcija";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -572,6 +573,7 @@
 "state_connection_reset_cause" = "Razlog za ponovni zagon povezave";
 "state_light_source_lifespan" = "Življenjska doba svetlobnega vira";
 "state_source_operating_time" = "Delovni čas svetlobnega vira";
+"state_dialog_lightsource_settings" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
 
 /* Change caption */
 "change_caption_channel_name" = "Ime kanala";

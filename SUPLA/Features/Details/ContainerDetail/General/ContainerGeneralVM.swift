@@ -19,7 +19,7 @@
 import RxSwift
     
 extension ContainerGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, StateDialogFeature.Handler, CaptionChangeDialogFeature.Handler {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, CaptionChangeDialogFeature.Handler {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<CallSuplaClientOperationUseCase> private var callSuplaClientOperationUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
@@ -29,8 +29,6 @@ extension ContainerGeneralFeature {
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
         @Singleton<ValuesFormatter> private var valuesFormatter
-        
-        var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
         
         var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
         
@@ -48,10 +46,6 @@ extension ContainerGeneralFeature {
                     self?.handle(channel, config)
                 })
                 .disposed(by: disposeBag)
-        }
-        
-        func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
-            state.stateDialogState = updater(state.stateDialogState)
         }
         
         func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {

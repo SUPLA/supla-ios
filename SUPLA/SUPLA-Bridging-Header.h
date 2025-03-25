@@ -34,7 +34,6 @@
 #import "SARateApp.h"
 #import "SADownloadUserIcons.h"
 #import "SingleCallWrapper.h"
-#import "SAChannelStatePopup.h"
 #import "SuplaConfigIntegrator.h"
 #import "TFHpple.h"
 #import "SAGeneralPurposeMeasurementItem+CoreDataClass.h"
@@ -49,5 +48,6 @@
 #import "SACurrentMeasurementItem+CoreDataClass.h"
 #import "SAVoltageMeasurementItem+CoreDataClass.h"
 #import "SAPowerActiveMeasurementItem+CoreDataClass.h"
+#import "SALightsourceLifespanSettingsDialog.h"
 
 #import "supla-client.h"

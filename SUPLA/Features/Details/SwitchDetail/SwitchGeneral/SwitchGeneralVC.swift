@@ -62,8 +62,7 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     
     init(remoteId: Int32) {
         self.remoteId = remoteId
-        super.init(nibName: nil, bundle: nil)
-        viewModel = SwitchGeneralVM()
+        super.init(viewModel: SwitchGeneralVM())
     }
     
     required init?(coder: NSCoder) {

@@ -291,6 +291,7 @@
 "turn_on" = "Zet in";
 "turn_off" = "Schakel uit";
 "save" = "Opslaan";
+"general_function" = "Functie";
 /* General - DayOfWeek */
 "monday" = "Maandag";
 "tuesday" = "Diensdag";
@@ -572,6 +573,7 @@
 "state_connection_reset_cause" = "Reden voor het herstarten van de verbinding";
 "state_light_source_lifespan" = "Levensduur van de lichtbron";
 "state_source_operating_time" = "Lichtbron werktijd";
+"state_dialog_lightsource_settings" = "DE INSTELLING VOOR DE LEVENSDUUR VAN DE LICHTBRON WIJZIGEN";
 
 /* Change caption */
 "change_caption_channel_name" = "Naam kanaal";

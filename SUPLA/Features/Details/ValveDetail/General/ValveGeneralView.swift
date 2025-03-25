@@ -22,6 +22,7 @@ import SwiftUI
 extension ValveGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
         
         let onInfoClick: (SensorItemData) -> Void
         let onCaptionLongPress: (SensorItemData) -> Void
@@ -29,7 +30,6 @@ extension ValveGeneralFeature {
         let onOpenClick: () -> Void
         let onCloseClick: () -> Void
         
-        let onStateDialogDismiss: () -> Void
         let onWarningDialogDismiss: () -> Void
         let onForceAction: (Action) -> Void
         
@@ -73,12 +73,12 @@ extension ValveGeneralFeature {
                     .padding(Distance.default)
                 }
                 
-                if let stateDialogState = viewState.stateDialogState {
-                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                if (stateDialogViewModel.present) {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
                 
                 if let alertDialog = viewState.alertDialog {
-                    SuplaCore.Dialog.Alert(
+                    SuplaCore.AlertDialog(
                         header: Strings.General.warning,
                         message: alertDialog.message,
                         onDismiss: onWarningDialogDismiss,
@@ -183,14 +183,15 @@ extension ValveGeneralFeature {
             showChannelStateIcon: true
         )
     ]
+    let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
     
     return ValveGeneralFeature.View(
         viewState: state,
+        stateDialogViewModel: stateDialogViewModel,
         onInfoClick: { _ in },
         onCaptionLongPress: { _ in },
         onOpenClick: {},
         onCloseClick: {},
-        onStateDialogDismiss: {},
         onWarningDialogDismiss: {},
         onForceAction: { _ in },
         onCaptionChangeDismiss: {},

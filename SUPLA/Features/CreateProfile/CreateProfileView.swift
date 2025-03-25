@@ -214,7 +214,7 @@ private struct BasicModeUnavailableDialog: SwiftUI.View {
     var onDismiss: () -> Void
     
     var body: some SwiftUI.View {
-        SuplaCore.Dialog.Alert(
+        SuplaCore.AlertDialog(
             header: Strings.CreateProfile.basicWarningTitle,
             message: Strings.CreateProfile.basicWarningMessage,
             onDismiss: onDismiss,
@@ -228,7 +228,7 @@ private struct RemovalFailureDialog: SwiftUI.View {
     var onDismiss: () -> Void
     
     var body: some SwiftUI.View {
-        SuplaCore.Dialog.Alert(
+        SuplaCore.AlertDialog(
             header: Strings.Cfg.Dialogs.Failed.title,
             message: Strings.Cfg.Dialogs.Failed.message,
             onDismiss: onDismiss,
@@ -242,7 +242,7 @@ private struct EmptyNameDialog: SwiftUI.View {
     var onDismiss: () -> Void
     
     var body: some SwiftUI.View {
-        SuplaCore.Dialog.Alert(
+        SuplaCore.AlertDialog(
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.missing_name,
             onDismiss: onDismiss,
@@ -256,7 +256,7 @@ private struct DuplicatedNameDialog: SwiftUI.View {
     var onDismiss: () -> Void
     
     var body: some SwiftUI.View {
-        SuplaCore.Dialog.Alert(
+        SuplaCore.AlertDialog(
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.duplicated_name,
             onDismiss: onDismiss,
@@ -270,7 +270,7 @@ private struct RequiredDataMissingDialog: SwiftUI.View {
     var onDismiss: () -> Void
     
     var body: some SwiftUI.View {
-        SuplaCore.Dialog.Alert(
+        SuplaCore.AlertDialog(
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.incomplete,
             onDismiss: onDismiss,
