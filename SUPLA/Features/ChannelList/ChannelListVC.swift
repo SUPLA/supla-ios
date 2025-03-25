@@ -17,17 +17,38 @@
  */
 
 import SharedCore
+import SwiftUI
 
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
     private var captionEditor: ChannelCaptionEditor? = nil
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = ChannelListViewModel()
-        
+    private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+        let viewModel = StateDialogFeature.ViewModel { [weak self] in
+            self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+        }
+        viewModel.presentationCallback = { [weak self] shown in
+            self?.overlay.view.isHidden = !shown
+        }
+        return viewModel
+    }()
+    
+    private lazy var overlay: UIHostingController = {
+        let view = UIHostingController(rootView: ChannelListView(stateDialogViewModel: stateDialogViewModel))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        view.view.backgroundColor = .clear
+        view.view.isHidden = true
+        return view
+    }()
+    
+    init() {
+        super.init(viewModel: ChannelListViewModel())
         setupView()
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
@@ -63,6 +84,10 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         }
     }
     
+    override func handle(state: ChannelListViewState) {
+        overlay.view.isHidden = state.overlayHidden
+    }
+    
     override func configureCell(channelBase: SAChannelBase, children: [ChannelChild], indexPath: IndexPath) -> UITableViewCell {
         let cell = super.configureCell(channelBase: channelBase, children: children, indexPath: indexPath)
         
@@ -92,6 +117,17 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     private func setupView() {
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
+        
+        addChild(overlay)
+        view.addSubview(overlay.view)
+        overlay.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            overlay.view.topAnchor.constraint(equalTo: view.topAnchor),
+            overlay.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            overlay.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            overlay.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     private func showValveWarningDialog(_ remoteId: Int32, _ message: String, _ action: Action) {
@@ -105,7 +141,6 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         alert.addAction(noButton)
         coordinator.present(alert, animated: true)
     }
-    
 }
 
 extension ChannelListVC: SAChannelCellDelegate {
@@ -143,6 +178,6 @@ extension ChannelListVC: BaseCellDelegate {
     }
     
     func onInfoIconTapped(_ channel: SAChannel) {
-        SAChannelStatePopup.globalInstance().show(channel)
+        stateDialogViewModel.show(remoteId: channel.remote_id)
     }
 }

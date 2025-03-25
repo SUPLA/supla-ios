@@ -290,6 +290,7 @@ struct Strings {
         static let save = "save".toLocalized()
         static let stateOpened = "general_state_opened".toLocalized()
         static let stateClosed = "general_state_closed".toLocalized()
+        static let function = "general_function".toLocalized()
         
         static let hourFormat = "general_hour_format".toLocalized()
         
@@ -535,6 +536,8 @@ struct Strings {
         static let connectionResetCause = "state_connection_reset_cause".toLocalized()
         static let lightSourceLifespan = "state_light_source_lifespan".toLocalized()
         static let sourceOperatingTime = "state_source_operating_time".toLocalized()
+        static let dialogIndex = "state_dialog_index".toLocalized()
+        static let lightsourceSettings = "state_dialog_lightsource_settings".toLocalized()
     }
     
     struct ChangeCaption {

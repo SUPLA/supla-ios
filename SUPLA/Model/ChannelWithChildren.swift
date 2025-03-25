@@ -51,6 +51,10 @@ struct ChannelWithChildren: Equatable {
         return (channel.value?.sub_value_type ?? 0) == SUBV_TYPE_ELECTRICITY_MEASUREMENTS
     }
     
+    var onlineState: ListOnlineState {
+        channel.onlineState.mergeWith(children.onlineState)
+    }
+    
     init(channel: SAChannel, children: [ChannelChild] = []) {
         self.channel = channel
         self.children = children

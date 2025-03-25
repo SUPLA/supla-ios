@@ -39,8 +39,8 @@ class SACustomDialogVC<S: ViewState, E: ViewEvent, VM: BaseViewModel<S, E>>: Bas
         return recognizer
     }()
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override init(viewModel: VM) {
+        super.init(viewModel: viewModel)
         modalPresentationStyle = .overFullScreen
     }
     

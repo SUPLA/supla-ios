@@ -73,7 +73,8 @@ extension StateDialogFeature {
             case .connectionTime: value.connectionUptimeString()
             case .batteryHealth: value.batteryHealthString()
             case .connectionReset: value.lastConnectionResetCauseString()
-            default: nil
+            case .lightSourceLifespan: value.lightSourceLifespanString()
+            case .lightSourceOperatingTime: value.lightSourceOperatingTimeString()
             }
         }
     }

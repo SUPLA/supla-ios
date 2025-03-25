@@ -23,9 +23,8 @@ class AccountRemovalVC: WebContentVC<AccountRemovalViewState, AccountRemovalView
     
     @Singleton<SuplaAppCoordinator> private var coordinator
     
-    convenience init(needsRestart: Bool, serverAddress: String?) {
-        self.init()
-        viewModel = AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress)
+    init(needsRestart: Bool, serverAddress: String?) {
+        super.init(viewModel: AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress))
     }
     
     override func handle(event: AccountRemovalViewEvent) {

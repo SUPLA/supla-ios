@@ -292,6 +292,7 @@
 "turn_on" = "Slå på";
 "turn_off" = "Slå av";
 "save" = "Lagre";
+"general_function" = "Funksjon";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -572,6 +573,7 @@
 "state_connection_reset_cause" = "Årsak til fornyelse av tilkoblingen";
 "state_light_source_lifespan" = "Lyskildens levetid";
 "state_source_operating_time" = "Lyskildens arbeidstid";
+"state_dialog_lightsource_settings" = "ENDRE LIVSKILDEINNSTILLING";
 
 /* Change caption */
 "change_caption_channel_name" = "Kanalnavn";

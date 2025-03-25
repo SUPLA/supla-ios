@@ -22,12 +22,12 @@ import SwiftUI
 extension ContainerGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
 
         let onMuteClick: () -> Void
         let onInfoClick: (SensorItemData) -> Void
         let onCaptionLongPress: (SensorItemData) -> Void
 
-        let onStateDialogDismiss: () -> Void
         let onCaptionChangeDismiss: () -> Void
         let onCaptionChangeApply: (String) -> Void
 
@@ -63,8 +63,10 @@ extension ContainerGeneralFeature {
                     }
                 }
 
-                if let stateDialogState = viewState.stateDialogState {
-                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                if stateDialogViewModel.present {
+                    StateDialogFeature.Dialog(
+                        viewModel: stateDialogViewModel
+                    )
                 }
 
                 if let captionChangeDialogState = viewState.captionChangeDialogState {
@@ -133,13 +135,14 @@ extension ContainerGeneralFeature {
         )
     ]
     state.soundOn = true
+    let stateDialogViewModel = StateDialogFeature.ViewModel(title: "Thermostat", function: "Thermostat")
 
     return ContainerGeneralFeature.View(
         viewState: state,
+        stateDialogViewModel: stateDialogViewModel,
         onMuteClick: {},
         onInfoClick: { _ in },
         onCaptionLongPress: { _ in },
-        onStateDialogDismiss: {},
         onCaptionChangeDismiss: {},
         onCaptionChangeApply: { _ in }
     )

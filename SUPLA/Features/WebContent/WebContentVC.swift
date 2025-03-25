@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import WebKit
+@preconcurrency import WebKit
 
 class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>: BaseViewControllerVM<S, E, VM>, WKNavigationDelegate {
     lazy var webView: WKWebView! = {
@@ -28,8 +28,8 @@ class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>
     
     private lazy var loadingView: LoadingScrimView! = LoadingScrimView()
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override init(viewModel: VM) {
+        super.init(viewModel: viewModel)
     }
     
     @available(*, unavailable)

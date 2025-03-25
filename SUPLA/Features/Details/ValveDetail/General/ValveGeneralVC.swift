@@ -21,6 +21,12 @@ extension ValveGeneralFeature {
         @Singleton<SuplaAppCoordinator> var coordinator
         
         private var channelId: Int32
+        private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+            let viewModel = StateDialogFeature.ViewModel { [weak self] in
+                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+            }
+            return viewModel
+        }()
         
         init(channelId: Int32, viewModel: ViewModel) {
             self.channelId = channelId
@@ -28,16 +34,16 @@ extension ValveGeneralFeature {
             
             contentView = View(
                 viewState: viewModel.state,
-                onInfoClick: { viewModel.showStateDialog(remoteId: $0.channelId, caption: $0.caption) },
+                stateDialogViewModel: stateDialogViewModel,
+                onInfoClick: { [weak self] in self?.stateDialogViewModel.show(remoteId: $0.channelId) },
                 onCaptionLongPress: { [weak self] sensorData in
                     self?.showAuthorizationForCaptionChange(sensorData.userCaption, sensorData.id)
                 },
                 onOpenClick: { viewModel.onActionClick(channelId, action: .open) },
                 onCloseClick: { viewModel.onActionClick(channelId, action: .close) },
-                onStateDialogDismiss: { viewModel.closeStateDialog() },
-                onWarningDialogDismiss: { viewModel.closeValveAlertDialog() },
+                onWarningDialogDismiss: viewModel.closeValveAlertDialog,
                 onForceAction: { viewModel.forceAction(channelId, action: $0) },
-                onCaptionChangeDismiss: { viewModel.closeCaptionChangeDialog() },
+                onCaptionChangeDismiss: viewModel.closeCaptionChangeDialog,
                 onCaptionChangeApply: { viewModel.onCaptionChange($0) }
             )
             
@@ -47,16 +53,6 @@ extension ValveGeneralFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(channelId)
-            observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
-        }
-        
-        @objc
-        func onStateEvent(notification: NSNotification) {
-            if let userInfo = notification.userInfo,
-               let channelState = userInfo["state"] as? SAChannelStateExtendedValue
-            {
-                viewModel.updateStateDialog(channelState)
-            }
         }
         
         private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {

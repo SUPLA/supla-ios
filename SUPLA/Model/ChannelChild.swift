@@ -45,8 +45,7 @@ extension Array where Element == ChannelChild {
     }
     
     var onlineState: ListOnlineState {
-        filter { $0.relation.relationType == .masterThermostat }
-            .map { $0.channel.value?.status.online }
+        map { $0.channel.value?.status.online }
             .compactMap { $0 }
             .reduce(.unknown) { result, online in
                 if (result == .unknown && online) {

@@ -16,21 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import SharedCore
+import SwiftUI
 
-extension ContainerGeneralFeature {
-    class ViewState: ObservableObject {
-        @Published var fluidLevel: CGFloat? = nil
-        @Published var fluidLevelString: String = ""
-        @Published var containerType: ContainerType = .default
-        @Published var controlLevels: [ControlLevel] = []
-        @Published var sensors: [SensorItemData] = []
-        @Published var issues: [ChannelIssueItem] = []
-        @Published var soundOn: Bool = false
-        
-        @Published var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? = nil
-        
-        var channelId: Int32 = 0
-        var muteAuthorizationNeeded: Bool = false
+public extension View {
+    @ViewBuilder
+    func `if`<Content: View>(_ condition: Bool, content: (Self) -> Content) -> some View {
+        if condition {
+            content(self)
+        } else {
+            self
+        }
     }
 }

@@ -19,7 +19,7 @@
 import SharedCore
 
 extension ValveGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, StateDialogFeature.Handler, ChannelUpdatesObserver, CaptionChangeDialogFeature.Handler {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, CaptionChangeDialogFeature.Handler {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
@@ -28,8 +28,6 @@ extension ValveGeneralFeature {
         @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
-        
-        var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
         
         var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
         
@@ -44,10 +42,6 @@ extension ValveGeneralFeature {
                     onNext: { [weak self] in self?.handle($0) }
                 )
                 .disposed(by: disposeBag)
-        }
-        
-        func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
-            state.stateDialogState = updater(state.stateDialogState)
         }
         
         func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {

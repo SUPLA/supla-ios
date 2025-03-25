@@ -287,6 +287,7 @@
 "time_hours_and_minutes" = "%d Std. %d Min.";
 "general_state_opened" = "geöffnet";
 "general_state_closed" = "geschloßen";
+"general_function" = "Funktion";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -605,6 +606,8 @@
 "state_connection_reset_cause" = "Ursache des Verbindungsreset";
 "state_light_source_lifespan" = "Lebensdauer der Lichtquelle";
 "state_source_operating_time" = "Betriebszeit der Lichtquelle";
+"state_dialog_index" = "(%d von %d)";
+"state_dialog_lightsource_settings" = "Einstellungen für die Lebensdauer der Lichtquelle ändern";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";
