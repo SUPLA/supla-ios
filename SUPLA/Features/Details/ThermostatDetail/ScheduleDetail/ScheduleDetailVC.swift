@@ -45,8 +45,7 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
     
     init(item: ItemBundle) {
         self.item = item
-        super.init(nibName: nil, bundle: nil)
-        viewModel = ScheduleDetailVM()
+        super.init(viewModel: ScheduleDetailVM())
     }
     
     required init?(coder: NSCoder) {

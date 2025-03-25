@@ -23,9 +23,8 @@ import RxCocoa
 
 final class ThermostatHistoryDetailVC: BaseHistoryDetailVC {
     
-    override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
-        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
-        viewModel = ThermostatHistoryDetailVM()
+    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
+        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider, viewModel: ThermostatHistoryDetailVM())
     }
     
     required init?(coder: NSCoder) {

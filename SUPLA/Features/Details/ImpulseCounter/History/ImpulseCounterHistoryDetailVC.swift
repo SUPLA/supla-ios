@@ -18,9 +18,8 @@
     
 final class ImpulseCounterHistoryDetailVC: BaseHistoryDetailVC {
     
-    override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
-        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
-        viewModel = ImpulseCounterHistoryDetailVM()
+    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
+        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider, viewModel: ImpulseCounterHistoryDetailVM())
     }
     
     required init?(coder: NSCoder) {

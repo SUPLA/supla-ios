@@ -291,6 +291,7 @@
 "turn_on" = "Ativar";
 "turn_off" = "Desativar";
 "save" = "Guardar";
+"general_function" = "Função";
 /* General - DayOfWeek */
 "monday" = "Segunda-feira";
 "tuesday" = "Terça-feira";
@@ -574,6 +575,7 @@
 "state_connection_reset_cause" = "Motivo para reiniciar a ligação";
 "state_light_source_lifespan" = "Vida útil da fonte de luz";
 "state_source_operating_time" = "Tempo de funcionamento da fonte luminosa";
+"state_dialog_lightsource_settings" = "ALTERAR AS DEFINIÇÕES DE VIDA ÚTIL DA FONTE DE LUZ";
 
 /* Change caption */
 "change_caption_channel_name" = "Nome do canal";

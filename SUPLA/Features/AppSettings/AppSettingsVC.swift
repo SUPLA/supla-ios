@@ -27,10 +27,13 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     
     let tableView = UITableView(frame: .zero, style: .grouped)
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = AppSettingsVM()
+    init() {
+        super.init(viewModel: AppSettingsVM())
         self.title = Strings.Cfg.appConfigTitle
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {

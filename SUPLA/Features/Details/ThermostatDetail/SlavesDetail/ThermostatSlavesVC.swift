@@ -23,6 +23,12 @@ extension ThermostatSlavesFeature {
         @Singleton<SuplaAppCoordinator> private var coordinator
         
         private let item: ItemBundle
+        private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+            let viewModel = StateDialogFeature.ViewModel { [weak self] in
+                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+            }
+            return viewModel
+        }()
         
         init(viewModel: ViewModel, item: ItemBundle) {
             self.item = item
@@ -30,9 +36,9 @@ extension ThermostatSlavesFeature {
             
             contentView = ThermostatSlavesFeature.View(
                 viewState: state,
+                stateDialogViewModel: stateDialogViewModel,
                 onInfoAction: { [weak self] in self?.onIssueIconTapped(issueMessage: $0) },
-                onStatusAction: { viewModel.showStateDialog(remoteId: $0, caption: $1) },
-                onStateDialogDismiss: { viewModel.closeStateDialog() },
+                onStatusAction: { [weak self] in self?.stateDialogViewModel.show(remoteId: $0) },
                 onCaptionLongPress: { [weak self] thermostatData in
                     self?.showAuthorizationForCaptionChange(thermostatData.caption, thermostatData.id)
                 },
@@ -46,8 +52,6 @@ extension ThermostatSlavesFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(item.remoteId)
-            
-            observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
         }
         
         override func viewWillAppear(_ animated: Bool) {
@@ -61,15 +65,6 @@ extension ThermostatSlavesFeature {
             alert.title = NSLocalizedString("Warning", comment: "")
             alert.addAction(okButton)
             coordinator.present(alert, animated: true)
-        }
-        
-        @objc
-        func onStateEvent(notification: NSNotification) {
-            if let userInfo = notification.userInfo,
-               let channelState = userInfo["state"] as? SAChannelStateExtendedValue
-            {
-                viewModel.updateStateDialog(channelState)
-            }
         }
         
         private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {

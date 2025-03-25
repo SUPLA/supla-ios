@@ -83,8 +83,7 @@ class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, Swit
     
     init(remoteId: Int32) {
         self.remoteId = remoteId
-        super.init(nibName: nil, bundle: nil)
-        viewModel = SwitchTimerDetailVM()
+        super.init(viewModel: SwitchTimerDetailVM())
     }
     
     required init?(coder: NSCoder) {

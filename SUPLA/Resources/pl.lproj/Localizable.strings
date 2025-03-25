@@ -299,6 +299,7 @@
 "general_expand" = "Rozwiń";
 "general_state_opened" = "otwarty";
 "general_state_closed" = "zamknięty";
+"general_function" = "Funkcja";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -642,6 +643,8 @@
 "state_connection_reset_cause" = "Powód restartu połaczenia";
 "state_light_source_lifespan" = "Żywotność źródła światła";
 "state_source_operating_time" = "Czas pracy źródła światła";
+"state_dialog_index" = "(%d z %d)";
+"state_dialog_lightsource_settings" = "Zmień ustawienia żywotności źródła światła";
 
 /* Change caption */
 "change_caption_header" = "Zmiana nazwy";

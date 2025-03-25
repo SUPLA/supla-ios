@@ -291,6 +291,7 @@
 "turn_on" = "Ενεργοποίηση";
 "turn_off" = "Απενεργοποίηση";
 "save" = "Αποθήκευση";
+"general_function" = "Λειτουργία";
 /* General - DayOfWeek */
 "monday" = "Δευτέρα";
 "tuesday" = "Τρίτη";
@@ -572,6 +573,7 @@
 "state_connection_reset_cause" = "Λόγος επανεκκίνησης της σύνδεσης";
 "state_light_source_lifespan" = "Διάρκεια ζωής της πηγής φωτός";
 "state_source_operating_time" = "Χρόνος εργασίας πηγής φωτός";
+"state_dialog_lightsource_settings" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
 
 /* Change caption */
 "change_caption_channel_name" = "Όνομα καναλιού";

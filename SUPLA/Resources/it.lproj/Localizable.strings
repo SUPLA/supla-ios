@@ -308,6 +308,7 @@
 "general_reveal" = "Apri";
 "general_collapse" = "Chiudi";
 "general_expand" = "Apri";
+"general_function" = "Funzione";
 /* General - DayOfWeek */
 "monday" = "Lunedì";
 "tuesday" = "Martedì";
@@ -607,6 +608,7 @@
 "state_connection_reset_cause" = "Causa di riavvio della connessione";
 "state_light_source_lifespan" = "Vita utile di sorgente luminosa";
 "state_source_operating_time" = "Tempo di funzionamento di sorgente luminosa";
+"state_dialog_lightsource_settings" = "Cambia le impostazioni della durata di vita della sorgent luminosa";
 
 /* Change caption */
 "change_caption_channel_name" = "Nome Canale";

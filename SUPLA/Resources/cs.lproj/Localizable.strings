@@ -292,6 +292,7 @@
 "turn_on" = "Zapnout";
 "turn_off" = "Vypnout";
 "save" = "Uložit";
+"general_function" = "Funkce";
 /* General - DayOfWeek */
 "monday" = "Pondělí";
 "tuesday" = "Útery";
@@ -572,6 +573,7 @@
 "state_connection_reset_cause" = "Důvod restartování připojení";
 "state_light_source_lifespan" = "Životnost světelného zdroje";
 "state_source_operating_time" = "Provozní doba světelného zdroje";
+"state_dialog_lightsource_settings" = "ZMĚNIT NASTAVENÍ ŽIVOTNOSTI SVĚTELNÉHO ZDROJE";
 
 /* Change caption */
 "change_caption_channel_name" = "Název kanálu";

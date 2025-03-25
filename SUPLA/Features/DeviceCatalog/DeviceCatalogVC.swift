@@ -22,9 +22,8 @@ class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEve
     
     private var userInterfaceStyle: UIUserInterfaceStyle? = nil
 
-    override init() {
-        super.init()
-        viewModel = DeviceCatalogVM()
+    init() {
+        super.init(viewModel: DeviceCatalogVM())
     }
     
     override func viewDidLoad() {

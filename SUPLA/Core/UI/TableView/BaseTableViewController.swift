@@ -28,7 +28,6 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
     @Singleton<RuntimeConfig> private var runtimeConfig
     
     let cellIdForLocation = "LocationCell"
-    let tableView = UITableView()
     var dataSource: RxTableViewSectionedReloadDataSource<List>!
     
     var scaleFactor: CGFloat = 1.0 {
@@ -46,6 +45,12 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             }
         }
     }
+    
+    lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     private lazy var noContentIcon: UIImageView = {
         let view = UIImageView()
@@ -71,8 +76,21 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         return button
     }()
     
-    override func loadView() {
-        view = tableView
+    override init(viewModel: VM) {
+        super.init(viewModel: viewModel)
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {

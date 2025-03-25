@@ -497,11 +497,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
 }
 
 -(void) superuserAuthorizationSuccess {
-    [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:YES completion:^(){
-        if (self->_channel && self->_lastState) {
-            [SALightsourceLifespanSettingsDialog.globalInstance show:self->_channel.remote_id title:self->_lTitle.text lifesourceLifespan:[self->_lastState.lightSourceLifespan intValue]];
-        }
-    }];
+    [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:YES completion:^() {}];
 }
 
 @end

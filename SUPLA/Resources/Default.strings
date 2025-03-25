@@ -50,6 +50,7 @@
 "general_reveal" = "Reveal";
 "general_collapse" = "Collapse";
 "general_expand" = "Expand";
+"general_function" = "Function";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -407,6 +408,8 @@
 "state_connection_reset_cause" = "Connection reset cause";
 "state_light_source_lifespan" = "Light source lifespan";
 "state_source_operating_time" = "Light source operating time";
+"state_dialog_index" = "(%d of %d)";
+"state_dialog_lightsource_settings" = "Change the light source lifespan settings";
 
 /* Change caption */
 "change_caption_header" = "Caption Change";

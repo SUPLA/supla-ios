@@ -84,8 +84,7 @@ final class EditQuartersDialogVC: SACustomDialogVC<EditQuartersDialogViewState, 
     }()
     
     init(initialState: EditQuartersDialogViewState) {
-        super.init()
-        viewModel = EditQuartersDialogVM(initialState: initialState)
+        super.init(viewModel: EditQuartersDialogVM(initialState: initialState))
     }
     
     required init?(coder: NSCoder) {

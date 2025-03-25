@@ -68,9 +68,8 @@ class SACredentialsDialogVC<VM: SACredentialsDialogVM>: SACustomDialogVC<SACrede
     
     init(_ viewModel: VM, _ onAuthorizedCallback: @escaping () -> Void) {
         self.onAuthorizedCallback = onAuthorizedCallback
-        super.init()
+        super.init(viewModel: viewModel)
         
-        self.viewModel = viewModel
         setupView()
     }
     

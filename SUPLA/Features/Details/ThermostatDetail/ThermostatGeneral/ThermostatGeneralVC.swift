@@ -107,8 +107,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     
     init(item: ItemBundle) {
         self.item = item
-        super.init(nibName: nil, bundle: nil)
-        viewModel = ThermostatGeneralVM()
+        super.init(viewModel: ThermostatGeneralVM())
     }
     
     @available(*, unavailable)

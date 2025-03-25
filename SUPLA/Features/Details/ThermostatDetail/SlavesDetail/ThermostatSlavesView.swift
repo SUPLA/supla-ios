@@ -22,10 +22,10 @@ import SwiftUI
 extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (Int32, String) -> Void
-        let onStateDialogDismiss: () -> Void
+        let onStatusAction: (Int32) -> Void
         
         let onCaptionLongPress: (ThermostatData) -> Void
         let onCaptionChangeDismiss: () -> Void
@@ -57,8 +57,8 @@ extension ThermostatSlavesFeature {
                     }
                 }.padding([.top], Dimens.distanceDefault)
 
-                if let stateDialogState = viewState.stateDialogState {
-                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                if stateDialogViewModel.present {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
 
                 if let captionChangeDialogState = viewState.captionChangeDialogState {
@@ -88,7 +88,7 @@ extension ThermostatSlavesFeature {
         let data: ThermostatData
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (Int32, String) -> Void
+        let onStatusAction: (Int32) -> Void
         let onCaptionLongPress: (ThermostatData) -> Void
 
         var body: some SwiftUI.View {
@@ -131,7 +131,7 @@ extension ThermostatSlavesFeature {
 
                     if (data.showChannelStateIcon) {
                         ListItemInfoIcon()
-                            .onTapGesture { onStatusAction(data.id, data.caption) }
+                            .onTapGesture { onStatusAction(data.id) }
                     }
                     ListItemDot(onlineState: data.onlineState)
                 }.padding([.trailing], Dimens.distanceSmall)
@@ -216,11 +216,13 @@ extension ThermostatSlavesFeature {
             sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-off")
         )
     ]
+    let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
+    
     return ThermostatSlavesFeature.View(
         viewState: viewState,
+        stateDialogViewModel: stateDialogViewModel,
         onInfoAction: { _ in },
-        onStatusAction: { _, _ in },
-        onStateDialogDismiss: {},
+        onStatusAction: { _ in },
         onCaptionLongPress: { _ in },
         onCaptionChangeDismiss: {},
         onCaptionChangeApply: { _ in }
