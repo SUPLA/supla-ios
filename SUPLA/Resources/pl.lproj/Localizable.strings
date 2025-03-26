@@ -635,8 +635,8 @@
 "state_battery_level" = "Poziom baterii";
 "state_battery_powered" = "Zasilanie bateryjne";
 "state_wifi_signal_strength" = "Siła sygnału WiFi";
-"state_bridge_node_online" = "Węzeł mostu - online";
-"state_bridge_node_signal" = "Węzeł mostu - siła sygnału";
+"state_bridge_node_online" = "Węzeł mostu online";
+"state_bridge_node_signal" = "Siła sygnału radia";
 "state_uptime" = "Czas pracy";
 "state_connection_time" = "Czas połączenia";
 "state_battery_health" = "Żywotność baterii";

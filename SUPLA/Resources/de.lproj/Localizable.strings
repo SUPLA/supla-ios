@@ -598,8 +598,8 @@
 "state_battery_level" = "Batteriefüllstand";
 "state_battery_powered" = "Batteriebetrieb";
 "state_wifi_signal_strength" = "WLAN-Signalstärke";
-"state_bridge_node_online" = "Brückenknoten - Online";
-"state_bridge_node_signal" = "Brückenknoten – Signalstärke";
+"state_bridge_node_online" = "Brückenknoten - online";
+"state_bridge_node_signal" = "Brückenknoten - Signalstärke";
 "state_uptime" = "Betriebszeit";
 "state_connection_time" = "Verbindungszeit";
 "state_battery_health" = "Batterielaufzeit";
