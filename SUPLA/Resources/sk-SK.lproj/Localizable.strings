@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
 "Exit" = "Výstup";
 "The waiting time for basic channel configuration data has expired." = "Bola prekročená lehota čakania na základné konfiguračné údaje kanála";
-"Channel name" = "Názov kanála";
-"Location name" = "Názov miesta";
 "Default" = "Predvolené";
 "No function" = "Žiadna funkcia";
 "Gateway lock operation" = "Otváranie bráničky";
@@ -576,3 +574,4 @@
 /* Change caption */
 "change_caption_channel_name" = "Názov kanála";
 "change_caption_scene_name" = "Názov scény";
+"change_caption_location_name" = "Názov miesta";

@@ -22,8 +22,7 @@ import RxDataSources
 import RxSwift
 import SwiftUI
 
-class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate, SACaptionEditorDelegate {
-    private var captionEditor: LocationCaptionEditor? = nil
+class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate {
     
     @Singleton<VibrationService> var vibrationService
     @Singleton<RuntimeConfig> private var runtimeConfig
@@ -46,6 +45,18 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             }
         }
     }
+    
+    lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
+        let viewModel = CaptionChangeDialogFeature.ViewModel { [weak self] in
+            if ($0 == .location) {
+                self?.tableView.reloadData()
+            }
+        }
+        viewModel.presentationCallback = { [weak self] shown in
+            self?.setOverlayHidden(!shown)
+        }
+        return viewModel
+    }()
     
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -197,6 +208,10 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         fatalError("getCollapsedFlag() has not been implemented")
     }
     
+    func setOverlayHidden(_ hidden: Bool) {
+        fatalError("setOverlayHidden(_:) has not been implemented")
+    }
+    
     func showEmptyMessage(_ tableView: UITableView?) {}
     
     func showLoading(_ tableView: UITableView?) {
@@ -257,13 +272,6 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         ])
     }
     
-    // MARK: SACaptionEditorDelegate
-    
-    func captionEditorDidFinish(_ editor: SACaptionEditor) {
-        captionEditor = nil
-        tableView.reloadData()
-    }
-    
     // MARK: SASectionCellDelegate
     
     func sectionCellTouch(_ section: SASectionCell) {
@@ -271,11 +279,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
     }
     
     func sectionCaptionLongPressed(_ remoteId: Int32) {
-        vibrationService.vibrate()
-        
-        captionEditor = LocationCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, locationRemoteId: remoteId)
     }
     
     // MARK: UITableViewDelegate

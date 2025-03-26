@@ -416,6 +416,7 @@
 "change_caption_channel_name" = "Channel name";
 "change_caption_group_name" = "Group name";
 "change_caption_scene_name" = "Scene name";
+"change_caption_location_name" = "Location name";
 
 /* Container */
 "container_fill_level" = "Fill level";

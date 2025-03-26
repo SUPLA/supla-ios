@@ -181,8 +181,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
 "Exit" = "Išėjimas";
 "The waiting time for basic channel configuration data has expired." = "Baigėsi pagrindinių kanalo konfigūravimo duomenų laukimo laikas";
-"Channel name" = "Kanalo pavadinimas";
-"Location name" = "Vietos pavadinimas";
 "Default" = "Numatyta";
 "No function" = "Funkcijų nėra";
 "Gateway lock operation" = "Durelių atidarymas";
@@ -580,3 +578,4 @@
 /* Change caption */
 "change_caption_channel_name" = "Kanalo pavadinimas";
 "change_caption_scene_name" = "Scenos pavadinimas";
+"change_caption_location_name" = "Vietos pavadinimas";

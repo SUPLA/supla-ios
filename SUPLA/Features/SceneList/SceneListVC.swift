@@ -28,14 +28,6 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     static let cellIdForScene = "SceneCell"
 
-    private lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
-        let viewModel = CaptionChangeDialogFeature.ViewModel()
-        viewModel.presentationCallback = { [weak self] shown in
-            self?.overlay.view.isHidden = !shown
-        }
-        return viewModel
-    }()
-    
     private lazy var overlay: UIHostingController = {
         let view = UIHostingController(rootView: SceneListView(captionChangeDialogViewModel: captionChangeViewModel))
         view.view.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +75,10 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
         tableView.backgroundView = createNoContentView(Strings.Scenes.emptyListButton)
+    }
+    
+    override func setOverlayHidden(_ hidden: Bool) {
+        overlay.view.isHidden = hidden
     }
     
     private func setupView() {

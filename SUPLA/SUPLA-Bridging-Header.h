@@ -23,7 +23,6 @@
 #import "SectionCell.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
-#import "SACaptionEditor.h"
 #import "ChannelCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"

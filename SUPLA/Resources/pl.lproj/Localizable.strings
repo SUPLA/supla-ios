@@ -178,8 +178,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";
 "Exit" = "Wyjście";
 "The waiting time for basic channel configuration data has expired." = "Upłynął czas oczekiwania na dane podstawowej konfiguracji kanału";
-"Channel name" = "Nazwa kanału";
-"Location name" = "Nazwa lokalizacji";
 "Default" = "Domyślne";
 "No function" = "Brak funkcji";
 "Gateway lock operation" = "Otwieranie furtki";
@@ -651,6 +649,7 @@
 "change_caption_channel_name" = "Nazwa kanału";
 "change_caption_group_name" = "Nazwa grupy";
 "change_caption_scene_name" = "Nazwa sceny";
+"change_caption_location_name" = "Nazwa lokalizacji";
 
 /* Container */
 "container_fill_level" = "Poziom napełnienia";

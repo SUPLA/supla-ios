@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "A ponte z-wave não responde. Verifique se a ponte está conectada ao servidor.";
 "Exit" = "Sair";
 "The waiting time for basic channel configuration data has expired." = "Tempo decorrido para dados básicos de configuração de canais";
-"Channel name" = "Nome do canal";
-"Location name" = "Nome da localização";
 "Default" = "Predefinição";
 "No function" = "Falta de funções";
 "Gateway lock operation" = "Abrir um portão";
@@ -580,3 +578,4 @@
 /* Change caption */
 "change_caption_channel_name" = "Nome do canal";
 "change_caption_scene_name" = "Nome da cena";
+"change_caption_location_name" = "Nome da localização";

@@ -239,6 +239,7 @@ extension DiContainer {
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location
         register(ToggleLocationUseCase.self, ToggleLocationUseCaseImpl())
+        register(ReadLocationByRemoteIdUseCase.self, ReadLocationByRemoteIdUseCaseImpl())
         // Usecases - Profile
         register(DeleteAllProfileDataUseCase.self, DeleteAllProfileDataUseCaseImpl())
         register(ReadProfileByIdUseCase.self, ReadProfileByIdUseCaseImpl())

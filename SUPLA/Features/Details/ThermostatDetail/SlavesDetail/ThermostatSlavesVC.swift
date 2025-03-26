@@ -73,6 +73,6 @@ extension ThermostatSlavesFeature {
 
 private extension CaptionChangeDialogFeature.ViewModel {
     func show(_ viewController: UIViewController?, thermostatData: ThermostatSlavesFeature.ThermostatData) {
-        show(viewController, remoteId: thermostatData.id, caption: thermostatData.userCaption, subjectType: .channel)
+        show(viewController, remoteId: thermostatData.id, caption: thermostatData.userCaption, captionType: .channel)
     }
 }

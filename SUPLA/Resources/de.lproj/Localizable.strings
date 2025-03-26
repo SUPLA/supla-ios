@@ -178,8 +178,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
 "Exit" = "Beenden";
 "The waiting time for basic channel configuration data has expired." = "Die Wartezeit auf Daten der grundlegenden Kanalkonfiguration wurde überschritten";
-"Channel name" = "Name des Kanals";
-"Location name" = "Name der Lokalisierung";
 "Default" = "Standardmäßig";
 "No function" = "Keine Funktion";
 "Gateway lock operation" = "Pforte aufmachen";
@@ -614,6 +612,7 @@
 "change_caption_channel_name" = "Name des Kanals";
 "change_caption_group_name" = "Gruppenname";
 "change_caption_scene_name" = "Szenenname";
+"change_caption_location_name" = "Name der Lokalisierung";
 
 /* Container */
 "container_fill_level" = "Füllstand";
