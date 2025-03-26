@@ -21,10 +21,14 @@ import SwiftUI
 struct ChannelListView: View {
     
     @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+    @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
     
     var body: some View {
         if (stateDialogViewModel.present) {
             StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
+        }
+        if (captionChangeDialogViewModel.present) {
+            CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
         }
     }
 }

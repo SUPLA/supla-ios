@@ -20,6 +20,7 @@ import Foundation
 import RxCocoa
 import RxDataSources
 import RxSwift
+import SwiftUI
 
 class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate, SACaptionEditorDelegate {
     private var captionEditor: LocationCaptionEditor? = nil
@@ -241,6 +242,19 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         loadingIndicatorView.startAnimating()
         
         return content
+    }
+    
+    func setupOverlay<T>(_ overlay: UIHostingController<T>) {
+        addChild(overlay)
+        view.addSubview(overlay.view)
+        overlay.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            overlay.view.topAnchor.constraint(equalTo: view.topAnchor),
+            overlay.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            overlay.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            overlay.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     // MARK: SACaptionEditorDelegate

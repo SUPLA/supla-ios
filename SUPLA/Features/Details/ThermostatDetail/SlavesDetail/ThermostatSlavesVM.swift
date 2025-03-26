@@ -19,18 +19,12 @@
 import SharedCore
     
 extension ThermostatSlavesFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, CaptionChangeDialogFeature.Handler, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
         @Singleton private var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCase
         @Singleton private var globalSettings: GlobalSettings
         
-        var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
-        
         init() {
             super.init(state: ViewState())
-        }
-        
-        func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {
-            state.captionChangeDialogState = updater(state.captionChangeDialogState)
         }
         
         override func onViewDidLoad() {

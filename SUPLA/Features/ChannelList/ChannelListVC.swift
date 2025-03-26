@@ -22,9 +22,7 @@ import SwiftUI
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
-    private var captionEditor: ChannelCaptionEditor? = nil
-    
-    private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+    private lazy var stateViewModel: StateDialogFeature.ViewModel = {
         let viewModel = StateDialogFeature.ViewModel { [weak self] in
             self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
         }
@@ -33,9 +31,19 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         }
         return viewModel
     }()
+    private lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
+        let viewModel = CaptionChangeDialogFeature.ViewModel()
+        viewModel.presentationCallback = { [weak self] shown in
+            self?.overlay.view.isHidden = !shown
+        }
+        return viewModel
+    }()
     
     private lazy var overlay: UIHostingController = {
-        let view = UIHostingController(rootView: ChannelListView(stateDialogViewModel: stateDialogViewModel))
+        let view = UIHostingController(rootView: ChannelListView(
+            stateDialogViewModel: stateViewModel,
+            captionChangeDialogViewModel: captionChangeViewModel
+        ))
         view.view.translatesAutoresizingMaskIntoConstraints = false
         view.view.backgroundColor = .clear
         view.view.isHidden = true
@@ -101,15 +109,6 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         return cell
     }
     
-    override func captionEditorDidFinish(_ editor: SACaptionEditor) {
-        if (editor == captionEditor) {
-            captionEditor = nil
-            tableView.reloadData()
-        } else {
-            super.captionEditorDidFinish(editor)
-        }
-    }
-    
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
         tableView.backgroundView = createNoContentView(Strings.Menu.addDevice)
@@ -117,17 +116,7 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     private func setupView() {
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
-        
-        addChild(overlay)
-        view.addSubview(overlay.view)
-        overlay.didMove(toParent: self)
-        
-        NSLayoutConstraint.activate([
-            overlay.view.topAnchor.constraint(equalTo: view.topAnchor),
-            overlay.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            overlay.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            overlay.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        setupOverlay(overlay)
     }
     
     private func showValveWarningDialog(_ remoteId: Int32, _ message: String, _ action: Action) {
@@ -148,10 +137,7 @@ extension ChannelListVC: SAChannelCellDelegate {
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
         vibrationService.vibrate()
-        
-        captionEditor = ChannelCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, channelRemoteId: remoteId)
     }
 }
 
@@ -171,13 +157,10 @@ extension ChannelListVC: BaseCellDelegate {
     
     func onCaptionLongPress(_ remoteId: Int32) {
         vibrationService.vibrate()
-        
-        captionEditor = ChannelCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, channelRemoteId: remoteId)
     }
     
     func onInfoIconTapped(_ channel: SAChannel) {
-        stateDialogViewModel.show(remoteId: channel.remote_id)
+        stateViewModel.show(remoteId: channel.remote_id)
     }
 }

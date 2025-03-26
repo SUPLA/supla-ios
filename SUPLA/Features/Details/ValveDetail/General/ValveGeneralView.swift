@@ -23,6 +23,7 @@ extension ValveGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
         
         let onInfoClick: (SensorItemData) -> Void
         let onCaptionLongPress: (SensorItemData) -> Void
@@ -32,9 +33,6 @@ extension ValveGeneralFeature {
         
         let onWarningDialogDismiss: () -> Void
         let onForceAction: (Action) -> Void
-        
-        let onCaptionChangeDismiss: () -> Void
-        let onCaptionChangeApply: (String) -> Void
         
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -77,6 +75,10 @@ extension ValveGeneralFeature {
                     StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
                 
+                if (captionChangeDialogViewModel.present) {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+                }
+                
                 if let alertDialog = viewState.alertDialog {
                     SuplaCore.AlertDialog(
                         header: Strings.General.warning,
@@ -86,14 +88,6 @@ extension ValveGeneralFeature {
                         negativeButtonText: alertDialog.negativeButtonText,
                         onPositiveButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
                         onNegativeButtonClick: onWarningDialogDismiss
-                    )
-                }
-                
-                if let captionChangeDialogState = viewState.captionChangeDialogState {
-                    CaptionChangeDialogFeature.Dialog(
-                        state: captionChangeDialogState,
-                        onDismiss: onCaptionChangeDismiss,
-                        onOK: onCaptionChangeApply
                     )
                 }
             }
@@ -184,17 +178,17 @@ extension ValveGeneralFeature {
         )
     ]
     let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
+    let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
     
     return ValveGeneralFeature.View(
         viewState: state,
         stateDialogViewModel: stateDialogViewModel,
+        captionChangeDialogViewModel: captionChangeDialogViewModel,
         onInfoClick: { _ in },
         onCaptionLongPress: { _ in },
         onOpenClick: {},
         onCloseClick: {},
         onWarningDialogDismiss: {},
-        onForceAction: { _ in },
-        onCaptionChangeDismiss: {},
-        onCaptionChangeApply: { _ in }
+        onForceAction: { _ in }
     )
 }
