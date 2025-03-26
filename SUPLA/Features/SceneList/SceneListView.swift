@@ -16,13 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-extension CaptionChangeDialogFeature {
-    struct ViewState: Changeable {
-        let remoteId: Int32
-        let subjectType: SubjectType
-        var caption: String
-        
-        var loading: Bool = false
-        var error: String? = nil
+import SwiftUI
+
+struct SceneListView: View {
+    
+    @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
+    
+    var body: some View {
+        if (captionChangeDialogViewModel.present) {
+            CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+        }
     }
 }
+
+

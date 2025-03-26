@@ -46,6 +46,13 @@ extension SuplaCore {
         func handle(_ disposable: Disposable) {
             disposeBag.insert(disposable)
         }
+        
+        #if DEBUG
+            deinit {
+                let className = NSStringFromClass(type(of: self))
+                SALog.debug("[DEINIT] VM:\(className)")
+            }
+        #endif
     }
 }
 

@@ -19,7 +19,7 @@
 import RxSwift
     
 extension ContainerGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, CaptionChangeDialogFeature.Handler {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<CallSuplaClientOperationUseCase> private var callSuplaClientOperationUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
@@ -29,8 +29,6 @@ extension ContainerGeneralFeature {
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
         @Singleton<ValuesFormatter> private var valuesFormatter
-        
-        var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
         
         init() {
             super.init(state: ViewState())
@@ -48,18 +46,16 @@ extension ContainerGeneralFeature {
                 .disposed(by: disposeBag)
         }
         
-        func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {
-            state.captionChangeDialogState = updater(state.captionChangeDialogState)
-        }
-        
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             loadData(channelWithChildren.channel.remote_id)
         }
         
-        func onMuteClick(_ viewController: UIViewController) {
+        func onMuteClick(_ viewController: UIViewController?) {
             vibrationService.vibrate()
             if (state.muteAuthorizationNeeded) {
-                SAAuthorizationDialogVC { [weak self] in self?.muteAlarmSound() }.showAuthorization(viewController)
+                if let viewController {
+                    SAAuthorizationDialogVC { [weak self] in self?.muteAlarmSound() }.showAuthorization(viewController)
+                }
             } else {
                 muteAlarmSound()
             }

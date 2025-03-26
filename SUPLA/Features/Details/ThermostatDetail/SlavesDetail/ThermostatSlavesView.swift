@@ -23,13 +23,12 @@ extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
 
         let onInfoAction: (String) -> Void
         let onStatusAction: (Int32) -> Void
         
         let onCaptionLongPress: (ThermostatData) -> Void
-        let onCaptionChangeDismiss: () -> Void
-        let onCaptionChangeApply: (String) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -61,12 +60,8 @@ extension ThermostatSlavesFeature {
                     StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
 
-                if let captionChangeDialogState = viewState.captionChangeDialogState {
-                    CaptionChangeDialogFeature.Dialog(
-                        state: captionChangeDialogState,
-                        onDismiss: onCaptionChangeDismiss,
-                        onOK: { onCaptionChangeApply($0) }
-                    )
+                if captionChangeDialogViewModel.present {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
                 }
             }.environment(\.scaleFactor, viewState.scale)
         }
@@ -217,14 +212,14 @@ extension ThermostatSlavesFeature {
         )
     ]
     let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
+    let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
     
     return ThermostatSlavesFeature.View(
         viewState: viewState,
         stateDialogViewModel: stateDialogViewModel,
+        captionChangeDialogViewModel: captionChangeDialogViewModel,
         onInfoAction: { _ in },
         onStatusAction: { _ in },
-        onCaptionLongPress: { _ in },
-        onCaptionChangeDismiss: {},
-        onCaptionChangeApply: { _ in }
+        onCaptionLongPress: { _ in }
     )
 }

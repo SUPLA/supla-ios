@@ -248,7 +248,6 @@ extension DiContainer {
         register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
-        register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
         // Usecases - Notification
         register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
@@ -261,6 +260,10 @@ extension DiContainer {
         register(UpdateChannelStateUseCase.self, UpdateChannelStateUseCaseImpl())
         // UseCases - ProfileServer
         register(ReadOrCreateProfileServerUseCase.self, ReadOrCreateProfileServerUseCaseImpl())
+        // UseCases - Scene
+        register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
+        register(ReadSceneByRemoteIdUseCase.self, ReadSceneByRemoteIdUseCaseImpl())
+        
         
         // MARK: Features
         

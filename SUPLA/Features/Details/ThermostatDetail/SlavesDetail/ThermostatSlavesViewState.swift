@@ -24,8 +24,6 @@ extension ThermostatSlavesFeature {
         @Published var slaves: [ThermostatData] = []
         @Published var scale: CGFloat = 1
         
-        @Published var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? = nil
-        
         var relatedIds: [Int32] = []
     }
 

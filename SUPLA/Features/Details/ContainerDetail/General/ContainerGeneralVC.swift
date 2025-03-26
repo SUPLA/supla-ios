@@ -20,12 +20,14 @@ extension ContainerGeneralFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         
         private var channelId: Int32
-        private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+        private lazy var stateViewModel: StateDialogFeature.ViewModel = {
             let viewModel = StateDialogFeature.ViewModel { [weak self] in
                 self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
             }
             return viewModel
         }()
+        
+        private lazy var captionChangeViewModel = CaptionChangeDialogFeature.ViewModel()
         
         init(channelId: Int32, viewModel: ViewModel) {
             self.channelId = channelId
@@ -33,14 +35,11 @@ extension ContainerGeneralFeature {
             
             contentView = View(
                 viewState: viewModel.state,
-                stateDialogViewModel: stateDialogViewModel,
-                onMuteClick: { viewModel.onMuteClick(self) },
-                onInfoClick: { [weak self] in self?.stateDialogViewModel.show(remoteId: $0.channelId) },
-                onCaptionLongPress: { [weak self] sensorData in
-                    self?.showAuthorizationForCaptionChange(sensorData.userCaption, sensorData.id)
-                },
-                onCaptionChangeDismiss: { viewModel.closeCaptionChangeDialog() },
-                onCaptionChangeApply: { viewModel.onCaptionChange($0) }
+                stateDialogViewModel: stateViewModel,
+                captionChangeDialogViewModel: captionChangeViewModel,
+                onMuteClick: { [weak self] in viewModel.onMuteClick(self) },
+                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.channelId) },
+                onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, sensorData: $0) }
             )
             
             viewModel.observe(remoteId: Int(channelId))
@@ -49,12 +48,6 @@ extension ContainerGeneralFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(channelId)
-        }
-        
-        private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {
-            SAAuthorizationDialogVC { [weak self] in
-                self?.viewModel.changeChannelCaption(caption: caption, remoteId: remoteId)
-            }.showAuthorization(self)
         }
         
         static func create(channelId: Int32) -> UIViewController {
