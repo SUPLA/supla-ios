@@ -63,11 +63,11 @@ extension ElectricityMeterSettingsFeature {
             let phases = channel.phases
 
             let balancingItems: [ElectricityMeterBalanceType]? =
-                if (phases.count > 0 || measuredValues.hasBalance) {
+                if ((measuredValues.contains(.forwardActiveEnergy) && measuredValues.contains(.reverseActiveEnergy)) || measuredValues.hasBalance) {
                     ElectricityMeterSettings.balancingAllItems.filter {
                         switch ($0) {
                         case .vector: measuredValues.hasBalance
-                        default: phases.count > 1
+                        default: true
                         }
                     }
                 } else {
