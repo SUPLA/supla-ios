@@ -49,6 +49,9 @@ final class RequestChannelConfigUseCaseImpl: RequestChannelConfigUseCase {
         suplaChannel.Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER ||
             suplaChannel.Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT ||
             suplaChannel.Func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND ||
-            suplaChannel.Func == SUPLA_CHANNELFNC_VERTICAL_BLIND
+            suplaChannel.Func == SUPLA_CHANNELFNC_VERTICAL_BLIND ||
+            suplaChannel.Func == SUPLA_CHANNELFNC_CONTAINER ||
+            suplaChannel.Func == SUPLA_CHANNELFNC_WATER_TANK ||
+            suplaChannel.Func == SUPLA_CHANNELFNC_SEPTIC_TANK
     }
 }

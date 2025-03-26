@@ -376,7 +376,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application?!";
-"valve_warning_flooding" = "The valve has been closed due to detected flooding. Before opening the valve, ensure that the cause has been resolved. Opening the valve clears the alarm.";
+"valve_warning_flooding" = "The valve has been closed due to detected flooding. Before opening the valve, ensure that the cause has been resolved. Opening the valve clears the alarm. Are you sure you want to open it?";
 "flooding_alarm_message" = "The sensor reports flooding!";
 "valve_warning_manually_closed_short" = "The valve has been closed manually or via radio (possible flooding).";
 "valve_warning_flooding_short" = "The valve has been closed due to detected flooding.";
@@ -408,3 +408,10 @@
 "change_caption_channel_name" = "Channel name";
 "change_caption_group_name" = "Group name";
 "change_caption_scene_name" = "Scene name";
+
+/* Container */
+"container_fill_level" = "Fill level";
+"container_warning_level" = "Container level warning";
+"container_alarm_level" = "Container level alarm!";
+"container_invalid_sensor_state" = "Invalid sensor state";
+"container_sound_alarm" = "Sound alarm active";

@@ -47,7 +47,6 @@ extension ValveGeneralFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(channelId)
-            
             observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
         }
         

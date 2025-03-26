@@ -117,6 +117,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToValveDetail(item: ItemBundle, pages: [DetailPage]) {
     }
     
+    func navigateToContainerDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    }
+    
     func navigateToCounterPhoto(channelId: Int32) {
     }
     

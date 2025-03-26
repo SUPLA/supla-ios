@@ -41,6 +41,11 @@ extension SAChannelConfig {
             return try? jsonDecoder.decode(SuplaChannelFacadeBlindConfig.self, from: configData)
         }
         
+        if (channelConfigType == .container) {
+            let jsonDecoder = JSONDecoder()
+            return try? jsonDecoder.decode(SuplaChannelContainerConfig.self, from: configData)
+        }
+        
         if let channel = channel {
             return SuplaChannelConfig(remoteId: channel.remote_id, channelFunc: channel.func, crc32: 0)
         } else {

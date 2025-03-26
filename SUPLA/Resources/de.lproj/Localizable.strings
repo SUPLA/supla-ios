@@ -577,7 +577,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Das Ventil wurde manuell oder ferngesteuert geschlossen. Stellen Sie vor dem Öffnen sicher, dass es nicht wegen Ü Überfluten geschlossen wurde. Öffnen Sie das Ventil manuell, um die Warnung zu deaktivieren. Sind Sie sicher, dass Sie das Ventil über die App öffnen möchten?!";
-"valve_warning_flooding" = "Das Ventil wurde aufgrund einer Überflutung geschlossen. Stellen Sie vor dem Öffnen des Ventils sicher, dass die Ursache behoben wurde. Durch Öffnen des Ventils wird der Alarm gelöscht.";
+"valve_warning_flooding" = "Das Ventil wurde aufgrund einer Überflutung geschlossen. Stellen Sie vor dem Öffnen des Ventils sicher, dass die Ursache behoben wurde. Durch Öffnen des Ventils wird der Alarm gelöscht. Möchten Sie es wirklich öffnen?";
 "flooding_alarm_message" = "Der Sensor meldet eine Überschwemmung!";
 "valve_warning_manually_closed_short" = "Das Ventil wurde manuell oder per Funk geschlossen (mögliche Überschwemmung).";
 "valve_warning_flooding_short" = "Das Ventil wurde wegen einer erkannten Überschwemmung geschlossen.";
@@ -606,3 +606,10 @@
 "change_caption_channel_name" = "Name des Kanals";
 "change_caption_group_name" = "Gruppenname";
 "change_caption_scene_name" = "Szenenname";
+
+/* Container */
+"container_fill_level" = "Füllstand";
+"container_warning_level" = "Behälterfüllstandswarnung";
+"container_alarm_level" = "Behälterfüllstandsalarm!";
+"container_invalid_sensor_state" = "Ungültiger Sensorzustand";
+"container_sound_alarm" = "Akustischer Alarm aktiv";
