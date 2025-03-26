@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
 "Exit" = "Izhod";
 "The waiting time for basic channel configuration data has expired." = "Potekel je čas čakanja na podatke osnovne konfiguracije kanala.";
-"Channel name" = "Ime kanala";
-"Location name" = "Ime lokacije";
 "Default" = "Privzeti";
 "No function" = "Brez funkcije";
 "Gateway lock operation" = "Odpiranje vratc";
@@ -578,3 +576,4 @@
 /* Change caption */
 "change_caption_channel_name" = "Ime kanala";
 "change_caption_scene_name" = "Ime prizora";
+"change_caption_location_name" = "Ime lokacije";

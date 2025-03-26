@@ -22,14 +22,6 @@ import SwiftUI
 class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
-    private lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
-        let viewModel = CaptionChangeDialogFeature.ViewModel()
-        viewModel.presentationCallback = { [weak self] shown in
-            self?.overlay.view.isHidden = !shown
-        }
-        return viewModel
-    }()
-    
     private lazy var overlay: UIHostingController = {
         let view = UIHostingController(rootView: GroupListView(captionChangeDialogViewModel: captionChangeViewModel))
         view.view.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +63,10 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
         tableView.backgroundView = createNoContentView(Strings.Groups.emptyListButton)
+    }
+    
+    override func setOverlayHidden(_ hidden: Bool) {
+        overlay.view.isHidden = hidden
     }
     
     private func setupView() {

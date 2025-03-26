@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
 "Exit" = "Εξοδος";
 "The waiting time for basic channel configuration data has expired." = "Υπέρβαση χρόνου αναμονής για βασικά δεδομένα διαμόρφωσης καναλιού";
-"Channel name" = "Όνομα καναλιού";
-"Location name" = "Όνομα τοποθεσίας";
 "Default" = "Προεπιλογή";
 "No function" = "Δεν υπάρχει λειτουργία";
 "Gateway lock operation" = "Άνοιγμα της αυλόπορτας";
@@ -578,3 +576,4 @@
 /* Change caption */
 "change_caption_channel_name" = "Όνομα καναλιού";
 "change_caption_scene_name" = "Όνομα σκηνής";
+"change_caption_location_name" = "Όνομα τοποθεσίας";

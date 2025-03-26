@@ -31,13 +31,6 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         }
         return viewModel
     }()
-    private lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
-        let viewModel = CaptionChangeDialogFeature.ViewModel()
-        viewModel.presentationCallback = { [weak self] shown in
-            self?.overlay.view.isHidden = !shown
-        }
-        return viewModel
-    }()
     
     private lazy var overlay: UIHostingController = {
         let view = UIHostingController(rootView: ChannelListView(
@@ -60,6 +53,10 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
+    
+    override func setOverlayHidden(_ hidden: Bool) {
+        overlay.view.isHidden = hidden
+    }
     
     override func handle(event: ChannelListViewEvent) {
         switch (event) {

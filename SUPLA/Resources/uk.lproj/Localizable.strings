@@ -178,8 +178,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
 "Exit" = "Вихід";
 "The waiting time for basic channel configuration data has expired." = "Минув час очікування базових даних конфігурації каналу";
-"Channel name" = "Назва каналу";
-"Location name" = "Назва місця";
 "Default" = "За замовчуванням";
 "No function" = "Немає функції";
 "Gateway lock operation" = "Відкриття воріт";
@@ -577,3 +575,4 @@
 
 /* Change caption */
 "change_caption_channel_name" = "Назва каналу";
+"change_caption_location_name" = "Назва місця";

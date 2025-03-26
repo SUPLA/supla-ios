@@ -154,9 +154,6 @@ struct Strings {
             static let execute = "Scenes.ActionButtons.execute".toLocalized()
             static let abort = "Scenes.ActionButtons.abort".toLocalized()
         }
-        struct RenameDialog {
-            static let sceneName = NSLocalizedString("scene name", comment: "")
-        }
         static let emptyListButton = "scenes_empty_list_button".toLocalized()
     }
     
@@ -545,6 +542,7 @@ struct Strings {
         static let channelName = "change_caption_channel_name".toLocalized()
         static let groupName = "change_caption_group_name".toLocalized()
         static let sceneName = "change_caption_scene_name".toLocalized()
+        static let locationName = "change_caption_location_name".toLocalized()
     }
     
     struct Container {

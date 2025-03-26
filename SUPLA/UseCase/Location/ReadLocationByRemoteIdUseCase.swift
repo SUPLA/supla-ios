@@ -18,16 +18,16 @@
     
 import RxSwift
 
-protocol ReadSceneByRemoteIdUseCase {
-    func invoke(remoteId: Int32) -> Observable<SAScene>
+protocol ReadLocationByRemoteIdUseCase {
+    func invoke(remoteId: Int32) -> Observable<_SALocation>
 }
 
-final class ReadSceneByRemoteIdUseCaseImpl: ReadSceneByRemoteIdUseCase {
+final class ReadLocationByRemoteIdUseCaseImpl: ReadLocationByRemoteIdUseCase {
     @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<SceneRepository> private var sceneRepository
+    @Singleton<LocationRepository> private var locationRepository
 
-    func invoke(remoteId: Int32) -> Observable<SAScene> {
+    func invoke(remoteId: Int32) -> Observable<_SALocation> {
         return profileRepository.getActiveProfile()
-            .flatMapFirst { self.sceneRepository.getScene(for: $0, with: remoteId) }
+            .flatMapFirst { self.locationRepository.getLocation(for: $0, with: remoteId) }
     }
 }

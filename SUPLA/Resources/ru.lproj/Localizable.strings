@@ -183,7 +183,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Мост z-wave не отвечает. Проверьте подключение моста к серверу.";
 "Exit" = "Выход";
 "The waiting time for basic channel configuration data has expired." = "Время ожидания данных базовой конфигурации канала истекло";
-"Location name" = "Название локализации";
 "Default" = "По умолчанию";
 "No function" = "Не назначено";
 "Gateway lock operation" = "Открытие калитки";

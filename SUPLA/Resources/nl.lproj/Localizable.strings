@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave brug reageert niet. Controleer of de brug met de server is verbonden.";
 "Exit" = "Uitgang";
 "The waiting time for basic channel configuration data has expired." = "De wachttijd voor de basisgegevens van de kanaalconfiguratie is verstreken.";
-"Channel name" = "Naam kanaal";
-"Location name" = "Naam van de plaats";
 "Default" = "Standaard";
 "No function" = "Geen functie beschikbaar";
 "Gateway lock operation" = "Het openen van het poortje";
@@ -578,3 +576,4 @@
 /* Change caption */
 "change_caption_channel_name" = "Naam kanaal";
 "change_caption_scene_name" = "Scènenaam";
+"change_caption_location_name" = "Naam van de plaats";
