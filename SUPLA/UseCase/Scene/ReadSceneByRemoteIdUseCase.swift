@@ -16,19 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import SharedCore
+import RxSwift
 
-extension ContainerGeneralFeature {
-    class ViewState: ObservableObject {
-        @Published var fluidLevel: CGFloat? = nil
-        @Published var fluidLevelString: String = ""
-        @Published var containerType: ContainerType = .default
-        @Published var controlLevels: [ControlLevel] = []
-        @Published var sensors: [SensorItemData] = []
-        @Published var issues: [ChannelIssueItem] = []
-        @Published var soundOn: Bool = false
-        
-        var channelId: Int32 = 0
-        var muteAuthorizationNeeded: Bool = false
+protocol ReadSceneByRemoteIdUseCase {
+    func invoke(remoteId: Int32) -> Observable<SAScene>
+}
+
+final class ReadSceneByRemoteIdUseCaseImpl: ReadSceneByRemoteIdUseCase {
+    @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<SceneRepository> private var sceneRepository
+
+    func invoke(remoteId: Int32) -> Observable<SAScene> {
+        return profileRepository.getActiveProfile()
+            .flatMapFirst { self.sceneRepository.getScene(for: $0, with: remoteId) }
     }
 }
+

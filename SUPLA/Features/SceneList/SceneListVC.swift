@@ -21,12 +21,28 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 import SharedCore
+import SwiftUI
 
 class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
     static let cellIdForScene = "SceneCell"
-    private var captionEditor: SceneCaptionEditor? = nil
+
+    private lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
+        let viewModel = CaptionChangeDialogFeature.ViewModel()
+        viewModel.presentationCallback = { [weak self] shown in
+            self?.overlay.view.isHidden = !shown
+        }
+        return viewModel
+    }()
+    
+    private lazy var overlay: UIHostingController = {
+        let view = UIHostingController(rootView: SceneListView(captionChangeDialogViewModel: captionChangeViewModel))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        view.view.backgroundColor = .clear
+        view.view.isHidden = true
+        return view
+    }()
     
     init() {
         super.init(viewModel: SceneListVM())
@@ -64,15 +80,6 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
         return cell
     }
     
-    override func captionEditorDidFinish(_ editor: SACaptionEditor) {
-        if (editor == captionEditor) {
-            captionEditor = nil
-            tableView.reloadData()
-        } else {
-            super.captionEditorDidFinish(editor)
-        }
-    }
-    
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
         tableView.backgroundView = createNoContentView(Strings.Scenes.emptyListButton)
@@ -80,6 +87,7 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     private func setupView() {
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
+        setupOverlay(overlay)
     }
 }
 
@@ -93,10 +101,6 @@ extension SceneListVC: SceneCellDelegate {
     func onInfoIconTapped(_ channel: SAChannel) {} // Not relevant for scene
     
     func onCaptionLongPress(_ remoteId: Int32) {
-        vibrationService.vibrate()
-        
-        captionEditor = SceneCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, sceneRemoteId: remoteId)
     }
 }

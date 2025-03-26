@@ -20,33 +20,15 @@ import SwiftUI
 
 extension CaptionChangeDialogFeature {
     struct Dialog: View {
-        let label: String?
-        let error: String?
-        let onDismiss: () -> Void
-        let onOK: (String) -> Void
-        
-        @State private var caption: String
-        
-        init(
-            state: ViewState?,
-            onDismiss: @escaping () -> Void,
-            onOK: @escaping (String) -> Void
-        ) {
-            self.label = state?.captionLabel
-            self.error = state?.error
-            self.onDismiss = onDismiss
-            self.onOK = onOK
-            
-            self._caption = State(initialValue: state?.caption ?? "")
-        }
+        @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            SuplaCore.Dialog.Base(onDismiss: onDismiss) {
+            SuplaCore.Dialog.Base(onDismiss: viewModel.hide) {
                 VStack(alignment: .leading, spacing: 0) {
                     SuplaCore.Dialog.Header(title: Strings.ChangeCaption.header)
-                    SuplaCore.Dialog.TextField(value: $caption, label: label)
+                    SuplaCore.Dialog.TextField(value: $viewModel.caption, label: viewModel.label)
                         .padding([.leading, .trailing], Distance.default)
-                    if let error {
+                    if let error = viewModel.error {
                         Text(error)
                             .fontTitleSmall()
                             .textColor(Color.Supla.error)
@@ -57,10 +39,10 @@ extension CaptionChangeDialogFeature {
                         .padding([.top], Distance.default)
                     HStack(spacing: Distance.default) {
                         BorderedButton(title: Strings.General.cancel, fullWidth: true) {
-                            onDismiss()
+                            viewModel.hide()
                         }
                         FilledButton(title: Strings.General.ok, fullWidth: true) {
-                            onOK(caption)
+                            viewModel.onApply()
                         }
                     }
                     .padding([.top, .bottom], Distance.small)
@@ -71,26 +53,12 @@ extension CaptionChangeDialogFeature {
     }
 }
 
-fileprivate extension CaptionChangeDialogFeature.ViewState {
-    var captionLabel: String {
-        switch (subjectType) {
-        case .channel: Strings.ChangeCaption.channelName
-        case .group: Strings.ChangeCaption.groupName
-        case .scene: Strings.ChangeCaption.sceneName
-        }
-    }
-}
-
 #Preview {
     CaptionChangeDialogFeature.Dialog(
-        state: CaptionChangeDialogFeature.ViewState(
-            remoteId: 1,
-            subjectType: .channel,
+        viewModel: CaptionChangeDialogFeature.ViewModel(
             caption: "Thermostat",
+            label: Strings.ChangeCaption.channelName,
             error: "Change failed!"
-        ),
-        onDismiss: {},
-        onOK: { _ in }
+        )
     )
-    
 }
