@@ -400,8 +400,8 @@
 "state_battery_powered" = "Battery powered";
 "state_wifi_rssi" = "WiFi RSSI";
 "state_wifi_signal_strength" = "WiFi signal strength";
-"state_bridge_node_online" = "Bridge node - online";
-"state_bridge_node_signal" = "Bridge node - signal strength";
+"state_bridge_node_online" = "Bridge node online";
+"state_bridge_node_signal" = "Bridge signal strength";
 "state_uptime" = "Uptime";
 "state_connection_time" = "Connection uptime";
 "state_battery_health" = "Battery health";
