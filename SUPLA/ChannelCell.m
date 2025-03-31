@@ -23,7 +23,6 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
-#import "SAChannelStatePopup.h"
 #import "SuplaApp.h"
 #import "proto.h"
 #import "SUPLA-Swift.h"
@@ -550,7 +549,7 @@
         return;
     }
 
-   [SAChannelStatePopup.globalInstance show:(SAChannel*)self.channelBase];
+    [((id<SAChannelCellDelegate>)self.delegate) infoIconPressed: self.channelBase.remote_id];
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {

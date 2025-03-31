@@ -76,6 +76,8 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
 }
 
 extension GroupListVC: SAChannelCellDelegate {
+    func infoIconPressed(_ remoteId: Int32) {}
+    
     func channelButtonClicked(_ cell: SAChannelCell!) {}
     
     func channelCaptionLongPressed(_ remoteId: Int32) {

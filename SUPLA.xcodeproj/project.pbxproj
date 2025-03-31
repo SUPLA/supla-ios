@@ -25,7 +25,6 @@
 		011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021CD25CC3A6F00621D41 /* SACalCfgResult.m */; };
 		011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021D225CC4DE700621D41 /* SAChannelBasicCfg.m */; };
 		01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */; };
-		01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01199C8224C34AC50062454B /* SAChannelStatePopup.m */; };
 		011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
@@ -75,7 +74,6 @@
 		017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FA22F1D2BE00EB58B7 /* settings2@3x.png */; };
 		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
-		0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */; };
 		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
 		0186054B25BF673800C1332A /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054A25BF673700C1332A /* time@3x.png */; };
 		0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055625BF80AC00C1332A /* wakeup@3x.png */; };
@@ -1381,8 +1379,6 @@
 		01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelFunctionSetResult.h; sourceTree = "<group>"; };
 		01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelFunctionSetResult.m; sourceTree = "<group>"; };
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
-		01199C8124C34AC50062454B /* SAChannelStatePopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStatePopup.h; sourceTree = "<group>"; };
-		01199C8224C34AC50062454B /* SAChannelStatePopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStatePopup.m; sourceTree = "<group>"; };
 		011E736924A1367B004D99EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/SAVLCalibrationTool.xib; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
 		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collapsed@3x.png"; sourceTree = "<group>"; };
@@ -1494,7 +1490,6 @@
 		017D393229244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		017D393329244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		017D393429244AF5005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = uk; path = Resources/uk.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
-		0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChannelStatePopup.xib; sourceTree = "<group>"; };
 		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "z_wave@3x.png"; sourceTree = "<group>"; };
 		0186054A25BF673700C1332A /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@3x.png"; sourceTree = "<group>"; };
 		0186055625BF80AC00C1332A /* wakeup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wakeup@3x.png"; sourceTree = "<group>"; };
@@ -2995,7 +2990,6 @@
 				010714C62656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
-				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
 				406778541BCBF9F4008DD37F /* SectionCell.xib */,
@@ -3463,8 +3457,6 @@
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
 				019F4AAD2614B75800065420 /* SAAbstractPickerField.h */,
 				019F4AAE2614B75800065420 /* SAAbstractPickerField.m */,
-				01199C8124C34AC50062454B /* SAChannelStatePopup.h */,
-				01199C8224C34AC50062454B /* SAChannelStatePopup.m */,
 				4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */,
 				4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */,
 				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
@@ -6946,7 +6938,6 @@
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
-				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
 				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
@@ -7346,7 +7337,6 @@
 				A503ABAD2B67AC44008CDA1F /* LoadChannelConfigUseCase.swift in Sources */,
 				A56233E52AB1AB69001CB948 /* UIIconButton.swift in Sources */,
 				A56233DA2AB061EB001CB948 /* SACustomDialogVC.swift in Sources */,
-				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				A584E1F82CA6CA8A00232A98 /* Distance.swift in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
 				A5A160112C2AD0F70049AA73 /* SuplaAppStateHolder.swift in Sources */,

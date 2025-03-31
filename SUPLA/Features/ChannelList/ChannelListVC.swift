@@ -136,6 +136,10 @@ extension ChannelListVC: SAChannelCellDelegate {
         vibrationService.vibrate()
         captionChangeViewModel.show(self, channelRemoteId: remoteId)
     }
+    
+    func infoIconPressed(_ remoteId: Int32) {
+        stateViewModel.show(remoteId: remoteId)
+    }
 }
 
 extension ChannelListVC: BaseCellDelegate {
