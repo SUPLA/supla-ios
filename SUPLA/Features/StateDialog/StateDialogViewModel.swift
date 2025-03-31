@@ -133,7 +133,11 @@ extension StateDialogFeature {
             showArrows = channels.count > 1
             showLifespanSettingsButton = channels[currentIdx].showLifespanSettingsButton
             
-            if (!online) {
+            if (!channels[currentIdx].infoSupported) {
+                values = [StateDialogItem.channelId: String(channels[currentIdx].remoteId)]
+            }
+            
+            if (!online || !channels[currentIdx].infoSupported) {
                 loading = false
             }
         }
@@ -236,6 +240,7 @@ private extension SAChannel {
             function: getChannelBaseDefaultCaptionUseCase.invoke(function: self.func),
             caption: getCaptionUseCase.invoke(data: shareable).string,
             showLifespanSettingsButton: (flags & Int64(SUPLA_CHANNEL_FLAG_LIGHTSOURCELIFESPAN_SETTABLE)) > 0,
+            infoSupported: (flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) > 0,
             online: status().online
         )
     }
@@ -246,5 +251,6 @@ private struct ChannelData {
     let function: String
     let caption: String
     let showLifespanSettingsButton: Bool
+    let infoSupported: Bool
     var online: Bool
 }

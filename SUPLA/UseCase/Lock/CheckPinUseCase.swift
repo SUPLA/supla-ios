@@ -36,11 +36,10 @@ final class CheckPinUseCaseImpl: CheckPinUseCase {
     
     func invoke(unlockAction: LockScreenFeature.UnlockAction, pinAction: CheckPinAction) -> Single<CheckPinResult> {
         Single.create { single in
-            var settings = self.settings
-            let lockScreenSettings = settings.lockScreenSettings
+            let lockScreenSettings = self.settings.lockScreenSettings
             
             if (pinAction.inAuthorized(pinSum: lockScreenSettings.pinSum)) {
-                settings.lockScreenSettings = lockScreenSettings.copy(failsCount: .value(0), lockTime: .value(nil))
+                self.settings.lockScreenSettings = lockScreenSettings.copy(failsCount: .value(0), lockTime: .value(nil))
                 single(.success(.unlocked))
             } else {
                 single(.success(self.onWrongPin(lockScreenSettings)))
@@ -64,7 +63,6 @@ final class CheckPinUseCaseImpl: CheckPinUseCase {
     }
     
     private func onWrongPin(_ lockScreenSettings: LockScreenSettings) -> CheckPinResult {
-        var settings = settings
         
         let lockTime = getLockTime(lockScreenSettings)
         settings.lockScreenSettings = lockScreenSettings.copy(
@@ -90,8 +88,6 @@ final class CheckPinUseCaseImpl: CheckPinUseCase {
     }
     
     private func performActionSpecificWork(_ unlockAction: LockScreenFeature.UnlockAction, result: CheckPinResult) -> CheckPinResult {
-        var settings = settings
-        
         switch (unlockAction) {
         case .authorizeApplication:
             if (result == .unlocked) {
