@@ -88,6 +88,13 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         return button
     }()
     
+    lazy var noContentDevicesButton: UIBorderedButton = {
+        let button = UIBorderedButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setAttributedTitle(Strings.DeviceCatalog.menu)
+        return button
+    }()
+    
     override init(viewModel: VM) {
         super.init(viewModel: viewModel)
         
@@ -218,7 +225,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         tableView?.backgroundView = createLoadingView()
     }
     
-    func createNoContentView(_ buttonLabel: String) -> UIView {
+    func createNoContentView(_ buttonLabel: String, withDeviceCatalog: Bool = false) -> UIView {
         noContentButton.setAttributedTitle(buttonLabel)
         
         let content = UIView()
@@ -226,7 +233,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         content.addSubview(noContentLabel)
         content.addSubview(noContentButton)
         
-        NSLayoutConstraint.activate([
+        var constraints = [
             noContentIcon.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             noContentIcon.bottomAnchor.constraint(equalTo: noContentLabel.topAnchor),
             noContentIcon.widthAnchor.constraint(equalToConstant: 64),
@@ -235,9 +242,21 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             noContentLabel.bottomAnchor.constraint(equalTo: content.centerYAnchor, constant: -Dimens.distanceSmall),
             noContentLabel.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             
-            noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall),
             noContentButton.centerXAnchor.constraint(equalTo: content.centerXAnchor)
-        ])
+        ]
+        
+        if (withDeviceCatalog) {
+            content.addSubview(noContentDevicesButton)
+            constraints.append(contentsOf: [
+                noContentDevicesButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall),
+                noContentDevicesButton.centerXAnchor.constraint(equalTo: content.centerXAnchor),
+                noContentButton.topAnchor.constraint(equalTo: noContentDevicesButton.bottomAnchor, constant: Dimens.distanceSmall),
+            ])
+        } else {
+            constraints.append(noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall))
+        }
+        
+        NSLayoutConstraint.activate(constraints)
         
         return content
     }

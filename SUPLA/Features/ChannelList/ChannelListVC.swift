@@ -108,11 +108,15 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice)
+        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice, withDeviceCatalog: true)
     }
     
     private func setupView() {
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
+        noContentDevicesButton.rx.tap
+            .asDriverWithoutError()
+            .drive(onNext: { [weak self] in self?.coordinator.navigateToDeviceCatalog() })
+            .disposed(by: self)
         setupOverlay(overlay)
     }
     
