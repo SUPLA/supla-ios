@@ -145,6 +145,9 @@ extension Date {
     }
     
     func shift(days: Int) -> Date {
+        if let shifted = calendar.date(byAdding: .day, value: days, to: self) {
+            return shifted
+        }
         let toShift: Double = Double(days * DAY_IN_SEC)
         return Date(timeIntervalSince1970: self.timeIntervalSince1970 + toShift)
     }
