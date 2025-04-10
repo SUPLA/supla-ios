@@ -17,20 +17,46 @@
  */
 
 import SharedCore
+import SwiftUI
 
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
-    private var captionEditor: ChannelCaptionEditor? = nil
+    private lazy var stateViewModel: StateDialogFeature.ViewModel = {
+        let viewModel = StateDialogFeature.ViewModel { [weak self] in
+            self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+        }
+        viewModel.presentationCallback = { [weak self] shown in
+            self?.overlay.view.isHidden = !shown
+        }
+        return viewModel
+    }()
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = ChannelListViewModel()
-        
+    private lazy var overlay: UIHostingController = {
+        let view = UIHostingController(rootView: ChannelListView(
+            stateDialogViewModel: stateViewModel,
+            captionChangeDialogViewModel: captionChangeViewModel
+        ))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        view.view.backgroundColor = .clear
+        view.view.isHidden = true
+        return view
+    }()
+    
+    init() {
+        super.init(viewModel: ChannelListViewModel())
         setupView()
     }
     
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
+    
+    override func setOverlayHidden(_ hidden: Bool) {
+        overlay.view.isHidden = hidden
+    }
     
     override func handle(event: ChannelListViewEvent) {
         switch (event) {
@@ -63,6 +89,10 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         }
     }
     
+    override func handle(state: ChannelListViewState) {
+        overlay.view.isHidden = state.overlayHidden
+    }
+    
     override func configureCell(channelBase: SAChannelBase, children: [ChannelChild], indexPath: IndexPath) -> UITableViewCell {
         let cell = super.configureCell(channelBase: channelBase, children: children, indexPath: indexPath)
         
@@ -76,22 +106,18 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         return cell
     }
     
-    override func captionEditorDidFinish(_ editor: SACaptionEditor) {
-        if (editor == captionEditor) {
-            captionEditor = nil
-            tableView.reloadData()
-        } else {
-            super.captionEditorDidFinish(editor)
-        }
-    }
-    
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice)
+        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice, withDeviceCatalog: true)
     }
     
     private func setupView() {
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
+        noContentDevicesButton.rx.tap
+            .asDriverWithoutError()
+            .drive(onNext: { [weak self] in self?.coordinator.navigateToDeviceCatalog() })
+            .disposed(by: self)
+        setupOverlay(overlay)
     }
     
     private func showValveWarningDialog(_ remoteId: Int32, _ message: String, _ action: Action) {
@@ -105,7 +131,6 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         alert.addAction(noButton)
         coordinator.present(alert, animated: true)
     }
-    
 }
 
 extension ChannelListVC: SAChannelCellDelegate {
@@ -113,10 +138,11 @@ extension ChannelListVC: SAChannelCellDelegate {
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
         vibrationService.vibrate()
-        
-        captionEditor = ChannelCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, channelRemoteId: remoteId)
+    }
+    
+    func infoIconPressed(_ remoteId: Int32) {
+        stateViewModel.show(remoteId: remoteId)
     }
 }
 
@@ -136,13 +162,10 @@ extension ChannelListVC: BaseCellDelegate {
     
     func onCaptionLongPress(_ remoteId: Int32) {
         vibrationService.vibrate()
-        
-        captionEditor = ChannelCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, channelRemoteId: remoteId)
     }
     
     func onInfoIconTapped(_ channel: SAChannel) {
-        SAChannelStatePopup.globalInstance().show(channel)
+        stateViewModel.show(remoteId: channel.remote_id)
     }
 }

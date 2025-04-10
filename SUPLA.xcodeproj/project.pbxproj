@@ -25,7 +25,6 @@
 		011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021CD25CC3A6F00621D41 /* SACalCfgResult.m */; };
 		011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021D225CC4DE700621D41 /* SAChannelBasicCfg.m */; };
 		01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */; };
-		01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01199C8224C34AC50062454B /* SAChannelStatePopup.m */; };
 		011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
@@ -75,7 +74,6 @@
 		017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FA22F1D2BE00EB58B7 /* settings2@3x.png */; };
 		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
-		0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */; };
 		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
 		0186054B25BF673800C1332A /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054A25BF673700C1332A /* time@3x.png */; };
 		0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055625BF80AC00C1332A /* wakeup@3x.png */; };
@@ -89,10 +87,8 @@
 		0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0194D809264DC8580094A857 /* SAZWaveNodeIdResult.m */; };
 		0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0196E82C258CEEEC0016E8DC /* InfoPlist.strings */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
-		019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E2A25F271CF00881C99 /* SACaptionEditor.m */; };
 		019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4AAE2614B75800065420 /* SAAbstractPickerField.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
-		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
 		01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */; };
 		01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */; };
 		01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D4F3269210E300F3DCD1 /* SAFormatter.m */; };
@@ -267,9 +263,7 @@
 		A505EC502CFA621300E69BDB /* Migration18to19ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A505EC4F2CFA621300E69BDB /* Migration18to19ModelMapping.xcmappingmodel */; };
 		A50716D32D6892400060FA0D /* StateDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50716D22D68923B0060FA0D /* StateDialogView.swift */; };
 		A50716D52D6892520060FA0D /* StateDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50716D42D68924E0060FA0D /* StateDialogFeature.swift */; };
-		A50716D72D6892710060FA0D /* StateDialogViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50716D62D68926C0060FA0D /* StateDialogViewState.swift */; };
 		A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50716D82D6893B00060FA0D /* StateDialogItem.swift */; };
-		A50716DB2D68C6AB0060FA0D /* StateDialogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50716DA2D68C6940060FA0D /* StateDialogHandler.swift */; };
 		A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */; };
 		A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */; };
 		A5074BA82BC923AE0081B6B1 /* BrandingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */; };
@@ -510,6 +504,8 @@
 		A54637BD2D37FF6300D746F5 /* ImpulseCounterGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */; };
 		A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */; };
 		A54637C12D38041A00D746F5 /* ChannelOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637C02D38041000D746F5 /* ChannelOfflineView.swift */; };
+		A54737572D89A87300B2E227 /* RemoveHiddenChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54737562D89A87100B2E227 /* RemoveHiddenChannelsManager.swift */; };
+		A54737592D89B89A00B2E227 /* RemoveHiddenChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54737582D89B89700B2E227 /* RemoveHiddenChannelsUseCase.swift */; };
 		A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */; };
 		A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */; };
 		A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB82AA1F56400220B4A /* ChannelChild.swift */; };
@@ -662,8 +658,6 @@
 		A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */; };
 		A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */; };
 		A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */; };
-		A56851BA2D6CA27F00942F8B /* CaptionChangeDialogViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B92D6CA27600942F8B /* CaptionChangeDialogViewState.swift */; };
-		A56851BC2D6D0B5C00942F8B /* CaptionChangeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851BB2D6D0B5200942F8B /* CaptionChangeHandler.swift */; };
 		A56851BE2D6DA65F00942F8B /* CaptionChangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */; };
 		A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
 		A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */; };
@@ -986,6 +980,19 @@
 		A5B8A48F2CBD3F4F002FA7B2 /* SelectableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A48E2CBD3F4A002FA7B2 /* SelectableItem.swift */; };
 		A5B8A4912CBD4756002FA7B2 /* WithFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */; };
 		A5B8A4932CBDA0A4002FA7B2 /* Binding+onChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */; };
+		A5C5F6E22D91760700E303B8 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E12D91760400E303B8 /* IconButton.swift */; };
+		A5C5F6E42D91F1B200E303B8 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E32D91F1AD00E303B8 /* View+If.swift */; };
+		A5C5F6E82D92B0B700E303B8 /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */; };
+		A5C5F6EA2D93480B00E303B8 /* StateDialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E92D93480200E303B8 /* StateDialogViewModel.swift */; };
+		A5C5F6ED2D93EBB000E303B8 /* SuplaCoreDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6EC2D93EBAB00E303B8 /* SuplaCoreDialog.swift */; };
+		A5C5F6EF2D93EBDA00E303B8 /* SuplaCoreDialogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6EE2D93EBD700E303B8 /* SuplaCoreDialogViewModel.swift */; };
+		A5C5F6F12D93EC3300E303B8 /* SuplaCoreDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F02D93EC2F00E303B8 /* SuplaCoreDialogView.swift */; };
+		A5C5F6F32D93ED2900E303B8 /* SuplaCoreAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F22D93ED2500E303B8 /* SuplaCoreAlertDialog.swift */; };
+		A5C5F6F52D940B4B00E303B8 /* CaptionChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F42D940B4400E303B8 /* CaptionChangeViewModel.swift */; };
+		A5C5F6F72D9426DF00E303B8 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F62D9426DC00E303B8 /* GroupListView.swift */; };
+		A5C5F6F92D9428C600E303B8 /* SceneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F82D9428C100E303B8 /* SceneListView.swift */; };
+		A5C5F6FB2D94294600E303B8 /* ReadSceneByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */; };
+		A5C5F6FD2D94486200E303B8 /* ReadLocationByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6FC2D94485700E303B8 /* ReadLocationByRemoteIdUseCase.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
 		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
@@ -1231,9 +1238,6 @@
 		A5F29BEB2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEA2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift */; };
 		A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */; };
 		A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF02A28AE0B00ED700A /* NotificationView.swift */; };
-		A5F29BF32A2A197F00ED700A /* GroupCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF22A2A197F00ED700A /* GroupCaptionEditor.swift */; };
-		A5F29BF52A2A1E1200ED700A /* ChannelCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF42A2A1E1200ED700A /* ChannelCaptionEditor.swift */; };
-		A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF62A2A29BE00ED700A /* LocationCaptionEditor.swift */; };
 		A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */; };
 		A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BFD2A2DC19500ED700A /* CoreDataMigrationVersion.swift */; };
 		A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BFF2A2DC50000ED700A /* CoreDataMigrationStep.swift */; };
@@ -1260,7 +1264,6 @@
 		A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */; };
 		A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67662A666F2200147D1F /* String+Ext.swift */; };
 		A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67682A666FF800147D1F /* RequestHelper.swift */; };
-		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
@@ -1376,8 +1379,6 @@
 		01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelFunctionSetResult.h; sourceTree = "<group>"; };
 		01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelFunctionSetResult.m; sourceTree = "<group>"; };
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
-		01199C8124C34AC50062454B /* SAChannelStatePopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStatePopup.h; sourceTree = "<group>"; };
-		01199C8224C34AC50062454B /* SAChannelStatePopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStatePopup.m; sourceTree = "<group>"; };
 		011E736924A1367B004D99EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/SAVLCalibrationTool.xib; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
 		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collapsed@3x.png"; sourceTree = "<group>"; };
@@ -1489,7 +1490,6 @@
 		017D393229244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		017D393329244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		017D393429244AF5005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = uk; path = Resources/uk.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
-		0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChannelStatePopup.xib; sourceTree = "<group>"; };
 		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "z_wave@3x.png"; sourceTree = "<group>"; };
 		0186054A25BF673700C1332A /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@3x.png"; sourceTree = "<group>"; };
 		0186055625BF80AC00C1332A /* wakeup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wakeup@3x.png"; sourceTree = "<group>"; };
@@ -1513,8 +1513,6 @@
 		0196E82B258CEEEC0016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
-		019D9E2925F271CF00881C99 /* SACaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SACaptionEditor.h; sourceTree = "<group>"; };
-		019D9E2A25F271CF00881C99 /* SACaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SACaptionEditor.m; sourceTree = "<group>"; };
 		019F4AAD2614B75800065420 /* SAAbstractPickerField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAbstractPickerField.h; sourceTree = "<group>"; };
 		019F4AAE2614B75800065420 /* SAAbstractPickerField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAAbstractPickerField.m; sourceTree = "<group>"; };
 		019F4CAD2354DC3300286139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/ImpulseCounterDetailView.xib; sourceTree = "<group>"; };
@@ -1532,7 +1530,6 @@
 		019F4CC62354DC4700286139 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/ImpulseCounterDetailView.strings"; sourceTree = "<group>"; };
 		019F4CC82354DC4800286139 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
-		019F848225F7C0F800A18C3B /* SACaptionEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
 		01A0BD0826CEFBC200C4A5F2 /* SAWarningIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAWarningIcon.h; sourceTree = "<group>"; };
 		01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAWarningIcon.m; sourceTree = "<group>"; };
 		01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionSetResult.h; sourceTree = "<group>"; };
@@ -1849,9 +1846,7 @@
 		A505EC4F2CFA621300E69BDB /* Migration18to19ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration18to19ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A50716D22D68923B0060FA0D /* StateDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDialogView.swift; sourceTree = "<group>"; };
 		A50716D42D68924E0060FA0D /* StateDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDialogFeature.swift; sourceTree = "<group>"; };
-		A50716D62D68926C0060FA0D /* StateDialogViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDialogViewState.swift; sourceTree = "<group>"; };
 		A50716D82D6893B00060FA0D /* StateDialogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDialogItem.swift; sourceTree = "<group>"; };
-		A50716DA2D68C6940060FA0D /* StateDialogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDialogHandler.swift; sourceTree = "<group>"; };
 		A5074B9F2BBE853E0081B6B1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = "/Users/michalpolanski/Workspace/supla-ios/SUPLA/PrivacyInfo.xcprivacy"; sourceTree = "<absolute>"; };
 		A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCase.swift; sourceTree = "<group>"; };
 		A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2093,6 +2088,8 @@
 		A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralViewState.swift; sourceTree = "<group>"; };
 		A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralBaseView.swift; sourceTree = "<group>"; };
 		A54637C02D38041000D746F5 /* ChannelOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelOfflineView.swift; sourceTree = "<group>"; };
+		A54737562D89A87100B2E227 /* RemoveHiddenChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHiddenChannelsManager.swift; sourceTree = "<group>"; };
+		A54737582D89B89700B2E227 /* RemoveHiddenChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHiddenChannelsUseCase.swift; sourceTree = "<group>"; };
 		A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationsAsRemovableUseCase.swift; sourceTree = "<group>"; };
 		A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5477DB82AA1F56400220B4A /* ChannelChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChild.swift; sourceTree = "<group>"; };
@@ -2247,8 +2244,6 @@
 		A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUpdatesObserver.swift; sourceTree = "<group>"; };
 		A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogFeature.swift; sourceTree = "<group>"; };
 		A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogView.swift; sourceTree = "<group>"; };
-		A56851B92D6CA27600942F8B /* CaptionChangeDialogViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogViewState.swift; sourceTree = "<group>"; };
-		A56851BB2D6D0B5200942F8B /* CaptionChangeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeHandler.swift; sourceTree = "<group>"; };
 		A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeUseCase.swift; sourceTree = "<group>"; };
 		A56D5ACC2A4C304C004F45DA /* SingleCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCall.swift; sourceTree = "<group>"; };
 		A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCallWrapper.m; sourceTree = "<group>"; };
@@ -2359,6 +2354,7 @@
 		A58542282D80D02400D314A2 /* SuplaChannelContainerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelContainerConfig.swift; sourceTree = "<group>"; };
 		A585422B2D81686800D314A2 /* SuplaChannelContainerConfigTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelContainerConfigTest.swift; sourceTree = "<group>"; };
 		A585422D2D81743B00D314A2 /* SuplaChannelContainerConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaChannelContainerConfig+Mock.swift"; sourceTree = "<group>"; };
+		A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 22.xcdatamodel"; sourceTree = "<group>"; };
 		A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepository.swift; sourceTree = "<group>"; };
 		A5862C0B2CEF813B00DFFD55 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToRootRelationHolderUseCase.swift; sourceTree = "<group>"; };
@@ -2576,6 +2572,19 @@
 		A5B8A48E2CBD3F4A002FA7B2 /* SelectableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableItem.swift; sourceTree = "<group>"; };
 		A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithFunction.swift; sourceTree = "<group>"; };
 		A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+onChange.swift"; sourceTree = "<group>"; };
+		A5C5F6E12D91760400E303B8 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		A5C5F6E32D91F1AD00E303B8 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
+		A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
+		A5C5F6E92D93480200E303B8 /* StateDialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDialogViewModel.swift; sourceTree = "<group>"; };
+		A5C5F6EC2D93EBAB00E303B8 /* SuplaCoreDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreDialog.swift; sourceTree = "<group>"; };
+		A5C5F6EE2D93EBD700E303B8 /* SuplaCoreDialogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreDialogViewModel.swift; sourceTree = "<group>"; };
+		A5C5F6F02D93EC2F00E303B8 /* SuplaCoreDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreDialogView.swift; sourceTree = "<group>"; };
+		A5C5F6F22D93ED2500E303B8 /* SuplaCoreAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreAlertDialog.swift; sourceTree = "<group>"; };
+		A5C5F6F42D940B4400E303B8 /* CaptionChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeViewModel.swift; sourceTree = "<group>"; };
+		A5C5F6F62D9426DC00E303B8 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
+		A5C5F6F82D9428C100E303B8 /* SceneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListView.swift; sourceTree = "<group>"; };
+		A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSceneByRemoteIdUseCase.swift; sourceTree = "<group>"; };
+		A5C5F6FC2D94485700E303B8 /* ReadLocationByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadLocationByRemoteIdUseCase.swift; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
 		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
@@ -2822,9 +2831,6 @@
 		A5F29BEA2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailTypeProviderUseCase.swift; sourceTree = "<group>"; };
 		A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelBase+Ext.swift"; sourceTree = "<group>"; };
 		A5F29BF02A28AE0B00ED700A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		A5F29BF22A2A197F00ED700A /* GroupCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCaptionEditor.swift; sourceTree = "<group>"; };
-		A5F29BF42A2A1E1200ED700A /* ChannelCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCaptionEditor.swift; sourceTree = "<group>"; };
-		A5F29BF62A2A29BE00ED700A /* LocationCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCaptionEditor.swift; sourceTree = "<group>"; };
 		A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigration.swift; sourceTree = "<group>"; };
 		A5F29BFD2A2DC19500ED700A /* CoreDataMigrationVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrationVersion.swift; sourceTree = "<group>"; };
 		A5F29BFF2A2DC50000ED700A /* CoreDataMigrationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrationStep.swift; sourceTree = "<group>"; };
@@ -2851,7 +2857,6 @@
 		A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferredProtocolVersionUseCase.swift; sourceTree = "<group>"; };
 		A5FE67662A666F2200147D1F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A5FE67682A666FF800147D1F /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
-		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
@@ -2982,11 +2987,9 @@
 				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
-				019F848225F7C0F800A18C3B /* SACaptionEditor.xib */,
 				010714C62656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
-				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
 				406778541BCBF9F4008DD37F /* SectionCell.xib */,
@@ -3454,10 +3457,6 @@
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
 				019F4AAD2614B75800065420 /* SAAbstractPickerField.h */,
 				019F4AAE2614B75800065420 /* SAAbstractPickerField.m */,
-				019D9E2925F271CF00881C99 /* SACaptionEditor.h */,
-				019D9E2A25F271CF00881C99 /* SACaptionEditor.m */,
-				01199C8124C34AC50062454B /* SAChannelStatePopup.h */,
-				01199C8224C34AC50062454B /* SAChannelStatePopup.m */,
 				4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */,
 				4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */,
 				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
@@ -3592,9 +3591,8 @@
 		A50716D12D68922F0060FA0D /* StateDialog */ = {
 			isa = PBXGroup;
 			children = (
-				A50716DA2D68C6940060FA0D /* StateDialogHandler.swift */,
+				A5C5F6E92D93480200E303B8 /* StateDialogViewModel.swift */,
 				A50716D82D6893B00060FA0D /* StateDialogItem.swift */,
-				A50716D62D68926C0060FA0D /* StateDialogViewState.swift */,
 				A50716D42D68924E0060FA0D /* StateDialogFeature.swift */,
 				A50716D22D68923B0060FA0D /* StateDialogView.swift */,
 			);
@@ -4394,6 +4392,14 @@
 			path = Card;
 			sourceTree = "<group>";
 		};
+		A54737552D89A84D00B2E227 /* ChannelsCleanup */ = {
+			isa = PBXGroup;
+			children = (
+				A54737562D89A87100B2E227 /* RemoveHiddenChannelsManager.swift */,
+			);
+			path = ChannelsCleanup;
+			sourceTree = "<group>";
+		};
 		A5477DB02AA1DB4600220B4A /* SuplaClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -4806,8 +4812,7 @@
 		A56851B42D6CA15C00942F8B /* CaptionChangeDialog */ = {
 			isa = PBXGroup;
 			children = (
-				A56851BB2D6D0B5200942F8B /* CaptionChangeHandler.swift */,
-				A56851B92D6CA27600942F8B /* CaptionChangeDialogViewState.swift */,
+				A5C5F6F42D940B4400E303B8 /* CaptionChangeViewModel.swift */,
 				A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */,
 				A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */,
 			);
@@ -4912,6 +4917,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A54737552D89A84D00B2E227 /* ChannelsCleanup */,
 				A56851B42D6CA15C00942F8B /* CaptionChangeDialog */,
 				A50716D12D68922F0060FA0D /* StateDialog */,
 				A505EC372CF71E3300E69BDB /* CreateProfile */,
@@ -5555,6 +5561,7 @@
 		A5A15FF52C299C390049AA73 /* SwiftUiComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6E32D91F1AD00E303B8 /* View+If.swift */,
 				A5A1600A2C2AB4520049AA73 /* Architecture */,
 				A5A1601B2C2BEE7F0049AA73 /* Button */,
 				A54637B72D37EB4C00D746F5 /* Card */,
@@ -5581,6 +5588,7 @@
 		A5A1600A2C2AB4520049AA73 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6EB2D93EB8600E303B8 /* Dialog */,
 				A505EC462CF879D800E69BDB /* SuplaCore+LoadingScrim.swift */,
 				A5B8A47D2CBD07FE002FA7B2 /* SuplaCore+Dialog.swift */,
 				A5A160062C2AB3ED0049AA73 /* SuplaCore+BaseViewModel.swift */,
@@ -5610,6 +5618,7 @@
 		A5A1601B2C2BEE7F0049AA73 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6E12D91760400E303B8 /* IconButton.swift */,
 				A5A160192C2BEC6B0049AA73 /* FilledButton.swift */,
 				A5A15FF32C2994BF0049AA73 /* BorderedButton.swift */,
 				A5A1601C2C2BEE8D0049AA73 /* TextButton.swift */,
@@ -5886,6 +5895,17 @@
 				A5B8A4802CBD09FF002FA7B2 /* ElectricityDataSelectionFeature.swift */,
 			);
 			path = DataSelectionDialog;
+			sourceTree = "<group>";
+		};
+		A5C5F6EB2D93EB8600E303B8 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				A5C5F6F22D93ED2500E303B8 /* SuplaCoreAlertDialog.swift */,
+				A5C5F6F02D93EC2F00E303B8 /* SuplaCoreDialogView.swift */,
+				A5C5F6EE2D93EBD700E303B8 /* SuplaCoreDialogViewModel.swift */,
+				A5C5F6EC2D93EBAB00E303B8 /* SuplaCoreDialog.swift */,
+			);
+			path = Dialog;
 			sourceTree = "<group>";
 		};
 		A5CE73252B45A6C8003F882C /* Esp */ = {
@@ -6410,10 +6430,10 @@
 		A5F29B5E2A1E18BC00ED700A /* ChannelList */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */,
 				A58A9BFF2AA0ACFC00D28848 /* Cells */,
 				A5F29B5F2A1E18E600ED700A /* ChannelListVC.swift */,
 				A5F29B622A1E18FA00ED700A /* ChannelListVM.swift */,
-				A5F29BF42A2A1E1200ED700A /* ChannelCaptionEditor.swift */,
 			);
 			path = ChannelList;
 			sourceTree = "<group>";
@@ -6421,9 +6441,9 @@
 		A5F29B642A1E236000ED700A /* GroupList */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6F62D9426DC00E303B8 /* GroupListView.swift */,
 				A5F29B662A1E268E00ED700A /* GroupListVC.swift */,
 				A5F29B682A1E269800ED700A /* GroupListVM.swift */,
-				A5F29BF22A2A197F00ED700A /* GroupCaptionEditor.swift */,
 			);
 			path = GroupList;
 			sourceTree = "<group>";
@@ -6431,7 +6451,7 @@
 		A5F29B652A1E237700ED700A /* SceneList */ = {
 			isa = PBXGroup;
 			children = (
-				AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */,
+				A5C5F6F82D9428C100E303B8 /* SceneListView.swift */,
 				AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */,
 				A5F29B6A2A1E26AA00ED700A /* SceneListVC.swift */,
 				A5F29B6C2A1E26B400ED700A /* SceneListVM.swift */,
@@ -6541,6 +6561,7 @@
 		A5F29B852A1F95BA00ED700A /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6FC2D94485700E303B8 /* ReadLocationByRemoteIdUseCase.swift */,
 				A5F29B862A1F960000ED700A /* ToggleLocationUseCase.swift */,
 				A5F29BAF2A24C12500ED700A /* UpdateLocationUseCase.swift */,
 			);
@@ -6563,6 +6584,7 @@
 		A5F29B912A20B53F00ED700A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */,
 				A5F29B922A20B56500ED700A /* CreateProfileScenesListUseCase.swift */,
 				A5F29BA72A24B0FC00ED700A /* UpdateSceneStateUseCase.swift */,
 				A5F29BA92A24B23000ED700A /* UpdateSceneUseCase.swift */,
@@ -6576,6 +6598,7 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A54737582D89B89700B2E227 /* RemoveHiddenChannelsUseCase.swift */,
 				A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */,
 				A539C2682D676E7300D9DD47 /* GetChannelSpecificIssuesUseCase.swift */,
 				A539C2662D67662C00D9DD47 /* GetAllChannelIssuesUseCase.swift */,
@@ -6656,7 +6679,6 @@
 			children = (
 				A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */,
 				A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */,
-				A5F29BF62A2A29BE00ED700A /* LocationCaptionEditor.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -6916,7 +6938,6 @@
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
-				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
 				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
@@ -6928,7 +6949,6 @@
 				0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */,
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
-				019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */,
 				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */,
@@ -7110,7 +7130,6 @@
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				A530EE142A56F5CE00F8DAEE /* StaticIconNameProducer.swift in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
-				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
 				A50B5D562BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift in Sources */,
 				A530EE162A56F82A00F8DAEE /* GateIconNameProducer.swift in Sources */,
 				A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */,
@@ -7119,6 +7138,7 @@
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
 				A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */,
+				A54737592D89B89A00B2E227 /* RemoveHiddenChannelsUseCase.swift in Sources */,
 				A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */,
 				A5F29BC02A24DDB100ED700A /* UpdateChannelGroupRelationUseCase.swift in Sources */,
 				A5F29B802A1E489300ED700A /* ProfileRepository.swift in Sources */,
@@ -7128,6 +7148,7 @@
 				A5F29BB62A24CAAB00ED700A /* UpdateChannelValueUseCase.swift in Sources */,
 				A505EC4E2CFA618100E69BDB /* Migration17to19ModelMapping.xcmappingmodel in Sources */,
 				A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */,
+				A5C5F6F92D9428C600E303B8 /* SceneListView.swift in Sources */,
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */,
@@ -7169,10 +7190,8 @@
 				A5F29BE22A27628300ED700A /* SwapScenePositionsUseCase.swift in Sources */,
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
-				A50716D72D6892710060FA0D /* StateDialogViewState.swift in Sources */,
 				A54149292B63034500B44BD6 /* GpmDetailVC.swift in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
-				A50716DB2D68C6AB0060FA0D /* StateDialogHandler.swift in Sources */,
 				A5E160C72D365793003A7C71 /* ImpulseCounterMeasurementsProvider.swift in Sources */,
 				A530EE362A57F65F00F8DAEE /* GetChannelBaseStateUseCase.swift in Sources */,
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
@@ -7202,6 +7221,7 @@
 				A530EE1A2A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A50716D32D6892400060FA0D /* StateDialogView.swift in Sources */,
+				A5C5F6ED2D93EBB000E303B8 /* SuplaCoreDialog.swift in Sources */,
 				A5EC524E2C10799B0022F055 /* BaseWindowViewDimens.swift in Sources */,
 				A5EDE21C2CA5693500BEDAE4 /* ElectricityMeterGeneralFeature.swift in Sources */,
 				A585421F2D80664300D314A2 /* LogWrapper.swift in Sources */,
@@ -7241,6 +7261,7 @@
 				A5F29BB22A24C52600ED700A /* UpdateChannelUseCase.swift in Sources */,
 				A5074BE22BCFE6230081B6B1 /* SuplaTiltControlType.swift in Sources */,
 				A57C4AB52AAF458F00D9C695 /* SuplaScheduleProgram.swift in Sources */,
+				A5C5F6F32D93ED2900E303B8 /* SuplaCoreAlertDialog.swift in Sources */,
 				A50B5D292BF49F2700918D18 /* TerraceAwningVM.swift in Sources */,
 				A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */,
 				A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */,
@@ -7287,6 +7308,7 @@
 				A539C2732D6778BA00D9DD47 /* ValveGeneralViewState.swift in Sources */,
 				A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */,
 				A55501E82B7F96E600FD3296 /* String+Icons.swift in Sources */,
+				A5C5F6E22D91760700E303B8 /* IconButton.swift in Sources */,
 				A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */,
 				A598CAB92CC0EDFD00A784FA /* ElectricityMeterGeneralBaseView.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
@@ -7315,7 +7337,6 @@
 				A503ABAD2B67AC44008CDA1F /* LoadChannelConfigUseCase.swift in Sources */,
 				A56233E52AB1AB69001CB948 /* UIIconButton.swift in Sources */,
 				A56233DA2AB061EB001CB948 /* SACustomDialogVC.swift in Sources */,
-				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				A584E1F82CA6CA8A00232A98 /* Distance.swift in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
 				A5A160112C2AD0F70049AA73 /* SuplaAppStateHolder.swift in Sources */,
@@ -7329,7 +7350,6 @@
 				A5B8A48F2CBD3F4F002FA7B2 /* SelectableItem.swift in Sources */,
 				A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */,
 				A58472082C2ED60E00713D36 /* SuplaAppProvider.swift in Sources */,
-				A5F29BF52A2A1E1200ED700A /* ChannelCaptionEditor.swift in Sources */,
 				A5E9CE242C32BB8700509702 /* LoginUseCase.swift in Sources */,
 				A55A8D822BA9B6B400C540D4 /* WindowColors.swift in Sources */,
 				A5A15FE62C256F850049AA73 /* AppDelegate.swift in Sources */,
@@ -7383,6 +7403,7 @@
 				A503ABB12B6A9B43008CDA1F /* GeneralPurposeMeter.swift in Sources */,
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
+				A5C5F6E82D92B0B700E303B8 /* ChannelListView.swift in Sources */,
 				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
@@ -7484,10 +7505,8 @@
 				A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */,
 				A54637B32D37E8B400D746F5 /* ImpulseCounterGeneralFeature.swift in Sources */,
 				A5E9CE2F2C33D92900509702 /* SAAddWizardVC+NavigationSubcontroller.swift in Sources */,
-				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
 				A52BFED02B07AF5500A2F64C /* GetDeviceConfigUseCase.swift in Sources */,
-				A56851BA2D6CA27F00942F8B /* CaptionChangeDialogViewState.swift in Sources */,
 				A5B8A48D2CBD35BB002FA7B2 /* Picker.swift in Sources */,
 				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
 				A5074BE42BD251590081B6B1 /* ExecuteFacadeBlindActionUseCase.swift in Sources */,
@@ -7570,6 +7589,7 @@
 				A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				A5B3CC0A2B6282B800F95AC3 /* WindValueStringProvider.swift in Sources */,
+				A5C5F6EA2D93480B00E303B8 /* StateDialogViewModel.swift in Sources */,
 				A503ABB52B6B7713008CDA1F /* BaseMeasurementRepository.swift in Sources */,
 				A5A1601D2C2BEE8D0049AA73 /* TextButton.swift in Sources */,
 				015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */,
@@ -7577,6 +7597,7 @@
 				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
 				A5F5C3FA2C36963B0058E255 /* PinTextField.swift in Sources */,
 				A5A160052C2AAFBD0049AA73 /* Font+Supla.swift in Sources */,
+				A5C5F6FB2D94294600E303B8 /* ReadSceneByRemoteIdUseCase.swift in Sources */,
 				A52BFEB32B063EAC00A2F64C /* RangeValueType.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				A5A15FE32C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift in Sources */,
@@ -7596,6 +7617,7 @@
 				A58D1B882CDCFBDF00B5A019 /* GetChannelLowBatteryIssueUseCase.swift in Sources */,
 				A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */,
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
+				A5C5F6EF2D93EBDA00E303B8 /* SuplaCoreDialogViewModel.swift in Sources */,
 				A57668C82AE7CE890025509D /* SuplaCombinedChartView.swift in Sources */,
 				A505EC4C2CF88CAE00E69BDB /* ReadOrCreateProfileServerUseCase.swift in Sources */,
 				A5477DBD2AA52F5700220B4A /* ThermostatValue+iOS.swift in Sources */,
@@ -7620,7 +7642,6 @@
 				AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */,
 				A5E05BC82CB6677C00202583 /* SAGeneralPurposeMeasurementItem+Ext.swift in Sources */,
 				A55A8D9F2BAC263000C540D4 /* ExecuteRollerShutterActionUseCase.swift in Sources */,
-				A56851BC2D6D0B5C00942F8B /* CaptionChangeHandler.swift in Sources */,
 				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
 				A52D13B12C8F0F3000134961 /* SuplaClient+Ext.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
@@ -7660,6 +7681,7 @@
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
 				A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */,
 				AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */,
+				A5C5F6E42D91F1B200E303B8 /* View+If.swift in Sources */,
 				A50B5D242BEE4CE600918D18 /* UIViewController+Toast.swift in Sources */,
 				A539C27C2D686A7C00D9DD47 /* ListItemIcon.swift in Sources */,
 				A55A8D8E2BAB101600C540D4 /* ReadGroupByRemoteIdUseCase.swift in Sources */,
@@ -7701,6 +7723,7 @@
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
+				A54737572D89A87300B2E227 /* RemoveHiddenChannelsManager.swift in Sources */,
 				A530EE112A56E5F300F8DAEE /* ChannelState.swift in Sources */,
 				A539C2672D67662F00D9DD47 /* GetAllChannelIssuesUseCase.swift in Sources */,
 				A5A15FF42C2994BF0049AA73 /* BorderedButton.swift in Sources */,
@@ -7746,7 +7769,6 @@
 				A54149332B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift in Sources */,
 				A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */,
 				A5D712702C3E68D400A8EF52 /* OptionalValue.swift in Sources */,
-				A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */,
 				A5E160B12D31415D003A7C71 /* HumidityHistoryDetailVC.swift in Sources */,
 				A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */,
 				A539C2792D6779D200D9DD47 /* ValveGeneralVC.swift in Sources */,
@@ -7760,6 +7782,7 @@
 				A594ADD42C9C451400780EF3 /* ThermostatSlavesFeature.swift in Sources */,
 				A51BE90D2AAAF82000718F2F /* GetChannelConfigUseCase.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
+				A5C5F6F52D940B4B00E303B8 /* CaptionChangeViewModel.swift in Sources */,
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,
 				A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */,
 				A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */,
@@ -7773,7 +7796,6 @@
 				A57C88352ACB4903000B0F10 /* ThermostatProgramInfo.swift in Sources */,
 				A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */,
 				A5A14A402B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift in Sources */,
-				A5F29BF32A2A197F00ED700A /* GroupCaptionEditor.swift in Sources */,
 				A51BE8F92AA71EB900718F2F /* ScheduleDetailVC.swift in Sources */,
 				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
 				A539C26C2D67778A00D9DD47 /* ValveDetailVM.swift in Sources */,
@@ -7799,6 +7821,7 @@
 				A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
+				A5C5F6FD2D94486200E303B8 /* ReadLocationByRemoteIdUseCase.swift in Sources */,
 				A58D1B862CDCFABB00B5A019 /* GetChannelIssuesForListUseCase.swift in Sources */,
 				A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */,
 				A58542222D806E4700D314A2 /* SensorItemsView.swift in Sources */,
@@ -7924,6 +7947,7 @@
 				A52BFEAD2B050D2500A2F64C /* SATextField.swift in Sources */,
 				A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */,
 				A57C4AAE2AAB21F700D9C695 /* ChannelConfigEventsManager.swift in Sources */,
+				A5C5F6F72D9426DF00E303B8 /* GroupListView.swift in Sources */,
 				A55A8D8C2BAB0CAC00C540D4 /* SubjectType.swift in Sources */,
 				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
@@ -8003,6 +8027,7 @@
 				A5D7126C2C380D7700A8EF52 /* CheckPinUseCase.swift in Sources */,
 				A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */,
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
+				A5C5F6F12D93EC3300E303B8 /* SuplaCoreDialogView.swift in Sources */,
 				A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */,
 				A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */,
 				A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */,
@@ -8725,7 +8750,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 228;
+				CURRENT_PROJECT_VERSION = 233;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -8744,7 +8769,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 25.03;
+				MARKETING_VERSION = 25.04;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8764,7 +8789,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 228;
+				CURRENT_PROJECT_VERSION = 233;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -8783,7 +8808,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 25.03;
+				MARKETING_VERSION = 25.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -8887,6 +8912,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */,
 				A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */,
 				A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */,
 				A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */,
@@ -8909,7 +8935,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */;
+			currentVersion = A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -47,4 +47,18 @@ final class GpmValueFormatter: ChannelValueFormatter {
             return formatterValue
         }
     }
+    
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool = true) -> String {
+        guard let doubleValue = value as? Double else { return NO_VALUE_TEXT }
+        if (doubleValue.isNaN) {
+            return NO_VALUE_TEXT
+        }
+
+        let formatterValue = doubleValue.toString(precision: precision)
+        if (withUnit) {
+            return "\(beforeValue)\(formatterValue)\(afterValue)"
+        } else {
+            return formatterValue
+        }
+    }
 }

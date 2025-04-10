@@ -61,14 +61,14 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func leftButtonSettings() -> CellButtonSettings {
         CellButtonSettings(
-            visible: data?.channel.isOnline() ?? false,
+            visible: data?.channel.status().online ?? false,
             title: Strings.General.off
         )
     }
     
     override func rightButtonSettings() -> CellButtonSettings {
         CellButtonSettings(
-            visible: data?.channel.isOnline() ?? false,
+            visible: data?.channel.status().online ?? false,
             title: Strings.General.on
         )
     }
@@ -77,7 +77,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func getRemoteId() -> Int32? { data?.channel.remote_id ?? 0 }
     
-    override func online() -> Bool { data?.channel.isOnline() ?? false }
+    override func online() -> Bool { data?.onlineState.online ?? false }
     
     override func derivedClassControls() -> [UIView] {
         return [
@@ -155,7 +155,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         
         caption = getCaptionUseCase.invoke(data: channel.shareable).string
         
-        let onlineState = ListOnlineState.from(channel.isOnline()).mergeWith(data.children.onlineState)
+        let onlineState = data.onlineState
         leftStatusIndicatorView.configure(filled: true, onlineState: onlineState)
         rightStatusIndicatorView.configure(filled: true, onlineState: onlineState)
         

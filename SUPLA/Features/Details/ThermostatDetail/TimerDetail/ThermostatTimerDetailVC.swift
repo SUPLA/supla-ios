@@ -87,8 +87,7 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
     
     init(remoteId: Int32) {
         self.remoteId = remoteId
-        super.init(nibName: nil, bundle: nil)
-        viewModel = ThermostatTimerDetailVM()
+        super.init(viewModel: ThermostatTimerDetailVM())
     }
     
     required init?(coder: NSCoder) {

@@ -20,6 +20,7 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelStateRepositoryMock: BaseRepositoryMock<SAChannelState>, ChannelStateRepository {
+    
     let getStateMock: FunctionMock<(Int32, AuthProfileItem), Observable<SAChannelState?>> = .init()
     func getState(for channelId: Int32, and profile: AuthProfileItem) -> Observable<SAChannelState?> {
         getStateMock.handle((channelId, profile))
@@ -30,4 +31,6 @@ final class ChannelStateRepositoryMock: BaseRepositoryMock<SAChannelState>, Chan
         deleteAllMock.handle(profile)
     }
     
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

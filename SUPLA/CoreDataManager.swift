@@ -36,6 +36,7 @@ class CoreDataManager: NSObject {
         description?.url = dbUrl
         description?.shouldInferMappingModelAutomatically = false
         description?.shouldMigrateStoreAutomatically = false
+        description?.shouldAddStoreAsynchronously = false
         description?.type = storeType
         
 #if DEBUG
@@ -92,8 +93,7 @@ class CoreDataManager: NSObject {
                 if (self.tryRecreateAccount) {
                     DispatchQueue.global(qos: .userInitiated).async {
                         if (SAApp.profileManager().restoreProfileFromDefaults()) {
-                            var settings = self.settings
-                            settings.anyAccountRegistered = true
+                            self.settings.anyAccountRegistered = true
                         }
                         DispatchQueue.main.async {
                             completion()
@@ -135,7 +135,6 @@ class CoreDataManager: NSObject {
     }
     
     private func removeCurrentDatabase() {
-        var settings = settings
         do {
             _ = try removeDatabase(with: "SUPLA_DB14.sqlite")
             settings.anyAccountRegistered = false

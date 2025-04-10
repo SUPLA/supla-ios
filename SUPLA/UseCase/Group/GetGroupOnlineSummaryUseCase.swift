@@ -42,7 +42,7 @@ final class GetGroupOnlineSummaryUseCaseImpl: GetGroupOnlineSummaryUseCase {
                     if (!allIds.contains(relation.channel_id)) {
                         allIds.append(relation.channel_id)
                     }
-                    if (relation.value?.online == true && !onlineIds.contains(relation.channel_id)) {
+                    if (relation.value?.status.online == true && !onlineIds.contains(relation.channel_id)) {
                         onlineIds.append(relation.channel_id)
                     }
                 }

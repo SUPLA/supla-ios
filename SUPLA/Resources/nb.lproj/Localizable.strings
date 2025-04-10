@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave bro svarer ikke. Kontroller om broen er tilkoblet serveren.";
 "Exit" = "Avslutt";
 "The waiting time for basic channel configuration data has expired." = "Ventetiden for grunnleggende kanalkonfigurasjonsdata er utløpt";
-"Channel name" = "Kanalnavn";
-"Location name" = "Stedsnavn";\
 "Default" = "Standard";
 "No function" = "Manglende funksjoner";
 "Gateway lock operation" = "Åpne/steng hageporten";
@@ -292,6 +290,7 @@
 "turn_on" = "Slå på";
 "turn_off" = "Slå av";
 "save" = "Lagre";
+"general_function" = "Funksjon";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -572,7 +571,9 @@
 "state_connection_reset_cause" = "Årsak til fornyelse av tilkoblingen";
 "state_light_source_lifespan" = "Lyskildens levetid";
 "state_source_operating_time" = "Lyskildens arbeidstid";
+"state_dialog_lightsource_settings" = "ENDRE LIVSKILDEINNSTILLING";
 
 /* Change caption */
 "change_caption_channel_name" = "Kanalnavn";
 "change_caption_scene_name" = "Navn på scenen";
+"change_caption_location_name" = "Stedsnavn";

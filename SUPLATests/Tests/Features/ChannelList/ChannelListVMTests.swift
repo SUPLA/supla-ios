@@ -122,7 +122,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         // given
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .legacy(type: .ic)
@@ -182,7 +182,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         // given
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
@@ -247,7 +247,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let function: Int32 = 110
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
         channel.device_id = deviceId
         channel.func = function
@@ -275,7 +275,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let function: Int32 = 110
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
         channel.device_id = deviceId
         channel.func = function
@@ -303,7 +303,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let function: Int32 = 110
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
         channel.device_id = deviceId
         channel.func = function
@@ -331,7 +331,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let function: Int32 = 110
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
         channel.device_id = deviceId
         channel.func = function

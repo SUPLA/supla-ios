@@ -22,6 +22,8 @@ import SwiftUI
 extension ValveGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
         
         let onInfoClick: (SensorItemData) -> Void
         let onCaptionLongPress: (SensorItemData) -> Void
@@ -29,12 +31,8 @@ extension ValveGeneralFeature {
         let onOpenClick: () -> Void
         let onCloseClick: () -> Void
         
-        let onStateDialogDismiss: () -> Void
         let onWarningDialogDismiss: () -> Void
         let onForceAction: (Action) -> Void
-        
-        let onCaptionChangeDismiss: () -> Void
-        let onCaptionChangeApply: (String) -> Void
         
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -73,12 +71,16 @@ extension ValveGeneralFeature {
                     .padding(Distance.default)
                 }
                 
-                if let stateDialogState = viewState.stateDialogState {
-                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                if (stateDialogViewModel.present) {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
+                }
+                
+                if (captionChangeDialogViewModel.present) {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
                 }
                 
                 if let alertDialog = viewState.alertDialog {
-                    SuplaCore.Dialog.Alert(
+                    SuplaCore.AlertDialog(
                         header: Strings.General.warning,
                         message: alertDialog.message,
                         onDismiss: onWarningDialogDismiss,
@@ -86,14 +88,6 @@ extension ValveGeneralFeature {
                         negativeButtonText: alertDialog.negativeButtonText,
                         onPositiveButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
                         onNegativeButtonClick: onWarningDialogDismiss
-                    )
-                }
-                
-                if let captionChangeDialogState = viewState.captionChangeDialogState {
-                    CaptionChangeDialogFeature.Dialog(
-                        state: captionChangeDialogState,
-                        onDismiss: onCaptionChangeDismiss,
-                        onOK: onCaptionChangeApply
                     )
                 }
             }
@@ -120,12 +114,12 @@ extension ValveGeneralFeature {
                 
                 if let icon {
                     if (offline) {
-                        icon.image.frame(maxWidth: .infinity)
-                    } else {
                         icon.image
                             .renderingMode(.template)
                             .frame(maxWidth: .infinity)
                             .foregroundColor(Color.Supla.outline)
+                    } else {
+                        icon.image.frame(maxWidth: .infinity)
                     }
                 }
             }
@@ -183,17 +177,18 @@ extension ValveGeneralFeature {
             showChannelStateIcon: true
         )
     ]
+    let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
+    let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
     
     return ValveGeneralFeature.View(
         viewState: state,
+        stateDialogViewModel: stateDialogViewModel,
+        captionChangeDialogViewModel: captionChangeDialogViewModel,
         onInfoClick: { _ in },
         onCaptionLongPress: { _ in },
         onOpenClick: {},
         onCloseClick: {},
-        onStateDialogDismiss: {},
         onWarningDialogDismiss: {},
-        onForceAction: { _ in },
-        onCaptionChangeDismiss: {},
-        onCaptionChangeApply: { _ in }
+        onForceAction: { _ in }
     )
 }

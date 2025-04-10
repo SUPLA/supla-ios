@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
 "Exit" = "Izhod";
 "The waiting time for basic channel configuration data has expired." = "Potekel je čas čakanja na podatke osnovne konfiguracije kanala.";
-"Channel name" = "Ime kanala";
-"Location name" = "Ime lokacije";
 "Default" = "Privzeti";
 "No function" = "Brez funkcije";
 "Gateway lock operation" = "Odpiranje vratc";
@@ -291,6 +289,7 @@
 "turn_on" = "Vklopi";
 "turn_off" = "Izklopi";
 "save" = "Shrani";
+"general_function" = "Funkcija";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -572,7 +571,9 @@
 "state_connection_reset_cause" = "Razlog za ponovni zagon povezave";
 "state_light_source_lifespan" = "Življenjska doba svetlobnega vira";
 "state_source_operating_time" = "Delovni čas svetlobnega vira";
+"state_dialog_lightsource_settings" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
 
 /* Change caption */
 "change_caption_channel_name" = "Ime kanala";
 "change_caption_scene_name" = "Ime prizora";
+"change_caption_location_name" = "Ime lokacije";

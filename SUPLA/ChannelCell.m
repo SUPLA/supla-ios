@@ -23,7 +23,6 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
-#import "SAChannelStatePopup.h"
 #import "SuplaApp.h"
 #import "proto.h"
 #import "SUPLA-Swift.h"
@@ -251,7 +250,7 @@
         self.left_OnlineStatus.shapeType = stDot;
         
         if (channel != nil) {
-            if (_showChannelInfo && [channel isOnline]) {
+            if (_showChannelInfo && [channel status].online) {
                 UIImage *stateIcon = channel.stateIcon;
                 if (stateIcon) {
                     self.channelStateIcon.tintColor = UIColor.onBackground;
@@ -372,7 +371,7 @@
         
         [self resetButtonState];
                 
-        if ( [_channelBase isOnline] ) {
+        if ( [_channelBase status].online ) {
             MGSwipeButton *bl = nil;
             MGSwipeButton *br = nil;
             
@@ -550,7 +549,7 @@
         return;
     }
 
-   [SAChannelStatePopup.globalInstance show:(SAChannel*)self.channelBase];
+    [((id<SAChannelCellDelegate>)self.delegate) infoIconPressed: self.channelBase.remote_id];
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {

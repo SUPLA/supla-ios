@@ -26,7 +26,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
-
+    
     override init() {
         super.init()
         
@@ -38,6 +38,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     }
     
     override func defaultViewState() -> ChannelListViewState { ChannelListViewState() }
+    
     
     override func reloadTable() {
         createProfileChannelsListUseCase.invoke()
@@ -118,7 +119,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     
     private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
         let channel = channelWithChildren.channel
-        if (!isAvailableInOffline(channel, children: channelWithChildren.children) && !channel.isOnline()) {
+        if (!isAvailableInOffline(channel, children: channelWithChildren.children) && channel.status().offline) {
             return // do not open details for offline channels
         }
         
@@ -171,4 +172,6 @@ enum ChannelListViewEvent: ViewEvent {
     case showValveWarningDialog(remoteId: Int32, message: String, action: Action)
 }
 
-struct ChannelListViewState: ViewState {}
+struct ChannelListViewState: ViewState {
+    var overlayHidden: Bool = true
+}

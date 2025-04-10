@@ -81,10 +81,10 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     
     private unowned var navigationItemProvider: NavigationItemProvider
     
-    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
+    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider, viewModel: BaseHistoryDetailVM) {
         self.remoteId = remoteId
         self.navigationItemProvider = navigationItemProvider
-        super.init(nibName: nil, bundle: nil)
+        super.init(viewModel: viewModel)
     }
     
     @available(*, unavailable)

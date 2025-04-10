@@ -17,17 +17,27 @@
  */
 
 import Foundation
+import SwiftUI
 
 class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
-    private var captionEditor: GroupCaptionEditor? = nil
+    private lazy var overlay: UIHostingController = {
+        let view = UIHostingController(rootView: GroupListView(captionChangeDialogViewModel: captionChangeViewModel))
+        view.view.translatesAutoresizingMaskIntoConstraints = false
+        view.view.backgroundColor = .clear
+        view.view.isHidden = true
+        return view
+    }()
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = GroupListViewModel()
-        
+    init() {
+        super.init(viewModel: GroupListViewModel())
         setupView()
+    }
+    
+    @available(*, unavailable)
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .group }
@@ -38,7 +48,7 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
             coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
         case let .naviagetToRollerShutterDetail(item, pages):
             coordinator.navigateToWindowDetail(item: item, pages: pages)
-        case .open(let url):
+        case let .open(url):
             coordinator.openUrl(url: url)
         }
     }
@@ -50,33 +60,27 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
         return cell
     }
     
-    override func captionEditorDidFinish(_ editor: SACaptionEditor) {
-        if (editor == captionEditor) {
-            captionEditor = nil
-            tableView.reloadData()
-        } else {
-            super.captionEditorDidFinish(editor)
-        }
-    }
-    
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
         tableView.backgroundView = createNoContentView(Strings.Groups.emptyListButton)
     }
     
+    override func setOverlayHidden(_ hidden: Bool) {
+        overlay.view.isHidden = hidden
+    }
+    
     private func setupView() {
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
+        setupOverlay(overlay)
     }
 }
 
 extension GroupListVC: SAChannelCellDelegate {
+    func infoIconPressed(_ remoteId: Int32) {}
+    
     func channelButtonClicked(_ cell: SAChannelCell!) {}
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
-        vibrationService.vibrate()
-        
-        captionEditor = GroupCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, groupRemoteId: remoteId)
     }
 }

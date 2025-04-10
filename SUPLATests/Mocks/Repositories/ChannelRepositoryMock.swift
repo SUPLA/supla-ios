@@ -80,4 +80,11 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     func update(caption: String, remoteId: Int32) -> Observable<Void> {
         .empty()
     }
+    
+    func getHiddenChannelsSync() -> [SAChannel] {
+        []
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

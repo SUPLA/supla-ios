@@ -178,8 +178,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";
 "Exit" = "Wyjście";
 "The waiting time for basic channel configuration data has expired." = "Upłynął czas oczekiwania na dane podstawowej konfiguracji kanału";
-"Channel name" = "Nazwa kanału";
-"Location name" = "Nazwa lokalizacji";
 "Default" = "Domyślne";
 "No function" = "Brak funkcji";
 "Gateway lock operation" = "Otwieranie furtki";
@@ -299,6 +297,7 @@
 "general_expand" = "Rozwiń";
 "general_state_opened" = "otwarty";
 "general_state_closed" = "zamknięty";
+"general_function" = "Funkcja";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -338,6 +337,10 @@
 "channel_caption_flood_sensor" = "Czujnik zalania";
 "channel_offline" = "Kanał jest offline";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
+/* General - Channel status */
+"channel_status_not_available" = "Kanał nie jest dostępny ze względu na konfigurację. Zalecamy ukrycie kanału, aby nie był widoczny w aplikacji.";
+"channel_status_awaiting" = "Tego urządzenia nie można zdalnie wybudzić. Oczekujemy na komunikację ze strony urządzenia…";
+"channel_status_updating" = "Trwa aktualizacja oprogramowania…";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -430,6 +433,7 @@
 "thermostat_thermometer_error" = "Błąd odczytu temperatury";
 "thermostat_clock_error" = "Błąd zegara";
 "thermostat_battery_cover_open" = "Otwarta pokrywa baterii";
+"thermostat_calibration_error" = "Błąd kalibracji";
 "thermostat_detail_mode_manual" = "Ręczny";
 "thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Ustawienia program %d";
@@ -629,20 +633,23 @@
 "state_battery_level" = "Poziom baterii";
 "state_battery_powered" = "Zasilanie bateryjne";
 "state_wifi_signal_strength" = "Siła sygnału WiFi";
-"state_bridge_node_online" = "Węzeł mostu - online";
-"state_bridge_node_signal" = "Węzeł mostu - siła sygnału";
+"state_bridge_node_online" = "Węzeł mostu online";
+"state_bridge_node_signal" = "Siła sygnału radia";
 "state_uptime" = "Czas pracy";
 "state_connection_time" = "Czas połączenia";
 "state_battery_health" = "Żywotność baterii";
 "state_connection_reset_cause" = "Powód restartu połaczenia";
 "state_light_source_lifespan" = "Żywotność źródła światła";
 "state_source_operating_time" = "Czas pracy źródła światła";
+"state_dialog_index" = "(%d z %d)";
+"state_dialog_lightsource_settings" = "Zmień ustawienia żywotności źródła światła";
 
 /* Change caption */
 "change_caption_header" = "Zmiana nazwy";
 "change_caption_channel_name" = "Nazwa kanału";
 "change_caption_group_name" = "Nazwa grupy";
 "change_caption_scene_name" = "Nazwa sceny";
+"change_caption_location_name" = "Nazwa lokalizacji";
 
 /* Container */
 "container_fill_level" = "Poziom napełnienia";

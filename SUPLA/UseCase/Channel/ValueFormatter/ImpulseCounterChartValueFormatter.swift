@@ -47,6 +47,10 @@ final class ImpulseCounterChartValueFormatter: ChannelValueFormatter {
             return NO_VALUE_TEXT
         }
     }
+    
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
+    }
 
     private func getPrecision(_ precision: ChannelValuePrecision) -> Int {
         switch (precision) {

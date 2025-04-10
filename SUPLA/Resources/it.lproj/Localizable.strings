@@ -178,8 +178,6 @@
 "Timeout waiting for z-wave bridge response." = "Il tempo di attesa per la risposta del ponte z-wave è scaduto.";
 "Unexpected bridge response. Code: %i" = "Risposta del ponte inaspettata. Codice: %i";
 "Z-Wave bridge" = "Ponte z-wave";
-"Channel name" = "Nome Canale";
-"Location name" = "Nome Ambiente";
 "Default" = "Default";
 "Roof window opening sensor" = "Sensore apertura Lucernario";
 "Roof window" = "Lucernario";
@@ -308,6 +306,7 @@
 "general_reveal" = "Apri";
 "general_collapse" = "Chiudi";
 "general_expand" = "Apri";
+"general_function" = "Funzione";
 /* General - DayOfWeek */
 "monday" = "Lunedì";
 "tuesday" = "Martedì";
@@ -607,7 +606,9 @@
 "state_connection_reset_cause" = "Causa di riavvio della connessione";
 "state_light_source_lifespan" = "Vita utile di sorgente luminosa";
 "state_source_operating_time" = "Tempo di funzionamento di sorgente luminosa";
+"state_dialog_lightsource_settings" = "Cambia le impostazioni della durata di vita della sorgent luminosa";
 
 /* Change caption */
 "change_caption_channel_name" = "Nome Canale";
 "change_caption_scene_name" = "Nome della scena";
+"change_caption_location_name" = "Nome Ambiente";

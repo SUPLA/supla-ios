@@ -18,7 +18,7 @@
 
 import RxSwift
 
-protocol ImpulseCounterMeasurementItemRepository: BaseMeasurementRepository<SuplaCloudClient.ImpulseCounterMeasurement, SAImpulseCounterMeasurementItem> where T == SAImpulseCounterMeasurementItem {
+protocol ImpulseCounterMeasurementItemRepository: BaseMeasurementRepository<SuplaCloudClient.ImpulseCounterMeasurement, SAImpulseCounterMeasurementItem>, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAImpulseCounterMeasurementItem {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
     func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAImpulseCounterMeasurementItem]>
     func storeMeasurements(
@@ -172,6 +172,18 @@ final class ImpulseCounterMeasurementItemRepositoryImpl: Repository<SAImpulseCou
                 return nil
             } else {
                 return measurements[0]
+            }
+        }
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAImpulseCounterMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
             }
         }
     }

@@ -152,7 +152,6 @@
 "Are you sure you want to restore the default settings?" = "Ви впевнені, що хочете відновити налаштування за замовчуванням ?";
 "Default settings" = "Налаштування за замовчуванням";
 
-"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ЗМІНИТИ НАЛАШТУВАННЯ РЕСУРСУ ДЖЕРЕЛА СВІТЛА";
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Термін служби УФ-випромінювача становить %,02f%%. Заплануйте його заміну.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Термін служби УФ-випромінювача становить %,02f%%. Замінити випромінювач.";
 "The lifespan of the light source is %.02f%%." = "Термін служби джерела світла становить %,02f%%.";
@@ -179,8 +178,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
 "Exit" = "Вихід";
 "The waiting time for basic channel configuration data has expired." = "Минув час очікування базових даних конфігурації каналу";
-"Channel name" = "Назва каналу";
-"Location name" = "Назва місця";
 "Default" = "За замовчуванням";
 "No function" = "Немає функції";
 "Gateway lock operation" = "Відкриття воріт";
@@ -291,6 +288,7 @@
 "turn_on" = "Ввімкнути";
 "turn_off" = "Вимкнути";
 "save" = "Зберегти";
+"general_function" = "Функція";
 /* General - DayOfWeek */
 "monday" = "Понеділок";
 "tuesday" = "Вівторок";
@@ -573,6 +571,8 @@
 "state_connection_reset_cause" = "Причина перезапуску з'єднання";
 "state_light_source_lifespan" = "Термін служби джерела світла";
 "state_source_operating_time" = "Час роботи джерела світла";
+"state_dialog_lightsource_settings" = "ЗМІНИТИ НАЛАШТУВАННЯ РЕСУРСУ ДЖЕРЕЛА СВІТЛА";
 
 /* Change caption */
 "change_caption_channel_name" = "Назва каналу";
+"change_caption_location_name" = "Назва місця";

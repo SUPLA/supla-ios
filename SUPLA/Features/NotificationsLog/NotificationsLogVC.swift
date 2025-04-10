@@ -39,8 +39,7 @@ class NotificationsLogVC: BaseViewControllerVM<NotificationsLogViewState, Notifi
     )
     
     init() {
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel = NotificationsLogVM()
+        super.init(viewModel: NotificationsLogVM())
     }
     
     @available(*, unavailable)

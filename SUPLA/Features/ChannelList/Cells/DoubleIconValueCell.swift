@@ -62,7 +62,7 @@ final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
     
     override func getRemoteId() -> Int32? { data?.channel.remote_id ?? 0 }
     
-    override func online() -> Bool { data?.channel.isOnline() ?? false }
+    override func online() -> Bool { data?.onlineState.online ?? false }
     
     override func derivedClassControls() -> [UIView] {
         return [
@@ -122,8 +122,9 @@ final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
         
         caption = getCaptionUseCase.invoke(data: channel.shareable).string
         
-        leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
-        rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: channel.onlineState)
+        let onlineState = data.onlineState
+        leftStatusIndicatorView.configure(filled: getLeftButtonText(data.channel.func) != nil, onlineState: onlineState)
+        rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: onlineState)
         
         firstIconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
         firstValueView.text = getChannelValueStringUseCase.valueOrNil(channel)

@@ -22,14 +22,12 @@ import SwiftUI
 extension ContainerGeneralFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
 
         let onMuteClick: () -> Void
         let onInfoClick: (SensorItemData) -> Void
         let onCaptionLongPress: (SensorItemData) -> Void
-
-        let onStateDialogDismiss: () -> Void
-        let onCaptionChangeDismiss: () -> Void
-        let onCaptionChangeApply: (String) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack(alignment: .top) {
@@ -63,16 +61,12 @@ extension ContainerGeneralFeature {
                     }
                 }
 
-                if let stateDialogState = viewState.stateDialogState {
-                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                if stateDialogViewModel.present {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
 
-                if let captionChangeDialogState = viewState.captionChangeDialogState {
-                    CaptionChangeDialogFeature.Dialog(
-                        state: captionChangeDialogState,
-                        onDismiss: onCaptionChangeDismiss,
-                        onOK: onCaptionChangeApply
-                    )
+                if captionChangeDialogViewModel.present {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
                 }
             }
         }
@@ -133,14 +127,15 @@ extension ContainerGeneralFeature {
         )
     ]
     state.soundOn = true
+    let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
+    let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
 
     return ContainerGeneralFeature.View(
         viewState: state,
+        stateDialogViewModel: stateDialogViewModel,
+        captionChangeDialogViewModel: captionChangeDialogViewModel,
         onMuteClick: {},
         onInfoClick: { _ in },
-        onCaptionLongPress: { _ in },
-        onStateDialogDismiss: {},
-        onCaptionChangeDismiss: {},
-        onCaptionChangeApply: { _ in }
+        onCaptionLongPress: { _ in }
     )
 }

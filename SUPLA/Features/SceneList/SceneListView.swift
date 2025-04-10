@@ -16,16 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import RxSwift
+import SwiftUI
 
-extension StateDialogFeature {
-    struct ViewState: Changeable {
-        let remoteId: Int32
-        let title: String
-        var loading: Bool
-        var values: [StateDialogItem: String]
-        
-        var timer: Timer?
-        var lastRefreshTimestamp: TimeInterval?
+struct SceneListView: View {
+    
+    @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
+    
+    var body: some View {
+        if (captionChangeDialogViewModel.present) {
+            CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+        }
     }
 }
+
+

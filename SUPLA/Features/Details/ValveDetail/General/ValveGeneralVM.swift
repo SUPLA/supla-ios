@@ -19,7 +19,7 @@
 import SharedCore
 
 extension ValveGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, StateDialogFeature.Handler, ChannelUpdatesObserver, CaptionChangeDialogFeature.Handler {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
@@ -28,10 +28,6 @@ extension ValveGeneralFeature {
         @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
-        
-        var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
-        
-        var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
         
         init() {
             super.init(state: ViewState())
@@ -44,14 +40,6 @@ extension ValveGeneralFeature {
                     onNext: { [weak self] in self?.handle($0) }
                 )
                 .disposed(by: disposeBag)
-        }
-        
-        func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
-            state.stateDialogState = updater(state.stateDialogState)
-        }
-        
-        func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {
-            state.captionChangeDialogState = updater(state.captionChangeDialogState)
         }
         
         func onActionClick(_ remoteId: Int32, action: ValveAction) {
@@ -101,7 +89,7 @@ extension ValveGeneralFeature {
             state.sensors = channelWithChildren.children
                 .filter { $0.relationType == .default }
                 .map { $0.toSensorItem() }
-            state.offline = value?.online != true
+            state.offline = value?.status.online != true
             state.isClosed = value?.isClosed() ?? true
         }
         
@@ -113,7 +101,7 @@ extension ValveGeneralFeature {
                 caption: getCaptionUseCase.invoke(data: child.channel.shareable).string,
                 userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: child.channel.value?.online ?? false
+                showChannelStateIcon: child.channel.value?.status.online ?? false
             )
         }
     }
@@ -137,7 +125,7 @@ private extension ValveValue? {
             return "offline"
         }
         
-        return if (!self.online) {
+        return if (self.status.offline) {
             "offline"
         } else if (self.isClosed()) {
             Strings.General.stateClosed

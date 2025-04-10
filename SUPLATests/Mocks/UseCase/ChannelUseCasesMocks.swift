@@ -68,26 +68,26 @@ final class ReadChannelByRemoteIdUseCaseMock: ReadChannelByRemoteIdUseCase {
 }
 
 final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
-    var returns: Observable<ChannelWithChildren> = Observable.empty()
+    var returns: Observable<SUPLA.ChannelWithChildren> = Observable.empty()
     var parameters: [Int32] = []
-    func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
+    func invoke(remoteId: Int32) -> Observable<SUPLA.ChannelWithChildren> {
         parameters.append(remoteId)
         return returns
     }
 }
 
 final class ReadChannelWithChildrenTreeUseCaseMock: ReadChannelWithChildrenTreeUseCase {
-    var returns: Observable<ChannelWithChildren> = Observable.empty()
+    var returns: Observable<SUPLA.ChannelWithChildren> = Observable.empty()
     var parameters: [Int32] = []
-    func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
+    func invoke(remoteId: Int32) -> Observable<SUPLA.ChannelWithChildren> {
         parameters.append(remoteId)
         return returns
     }
 }
 
 final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
-    var parameters: [ChannelWithChildren] = []
-    func invoke(_ channelWithChildren: ChannelWithChildren, type: SUPLA.DownloadEventsManagerDataType) {
+    var parameters: [SUPLA.ChannelWithChildren] = []
+    func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren, type: SUPLA.DownloadEventsManagerDataType) {
         parameters.append(channelWithChildren)
     }
 }
@@ -185,5 +185,9 @@ final class ChannelValueFormatterMock: ChannelValueFormatter {
     func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         formatParameters.append((value, withUnit, precision, custom))
         return formatReturns
+    }
+    
+    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+        ""
     }
 }

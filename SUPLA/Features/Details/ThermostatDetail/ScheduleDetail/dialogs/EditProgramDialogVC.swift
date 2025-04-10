@@ -81,8 +81,7 @@ final class EditProgramDialogVC : SACustomDialogVC<EditProgramDialogViewState, E
     }()
     
     init(initialState: EditProgramDialogViewState) {
-        super.init()
-        viewModel = EditProgramDialogVM(initialState: initialState)
+        super.init(viewModel: EditProgramDialogVM(initialState: initialState))
     }
     
     required init?(coder: NSCoder) {

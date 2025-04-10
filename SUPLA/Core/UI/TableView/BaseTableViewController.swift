@@ -20,15 +20,14 @@ import Foundation
 import RxCocoa
 import RxDataSources
 import RxSwift
+import SwiftUI
 
-class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate, SACaptionEditorDelegate {
-    private var captionEditor: LocationCaptionEditor? = nil
+class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate {
     
     @Singleton<VibrationService> var vibrationService
     @Singleton<RuntimeConfig> private var runtimeConfig
     
     let cellIdForLocation = "LocationCell"
-    let tableView = UITableView()
     var dataSource: RxTableViewSectionedReloadDataSource<List>!
     
     var scaleFactor: CGFloat = 1.0 {
@@ -46,6 +45,24 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             }
         }
     }
+    
+    lazy var captionChangeViewModel: CaptionChangeDialogFeature.ViewModel = {
+        let viewModel = CaptionChangeDialogFeature.ViewModel { [weak self] in
+            if ($0 == .location) {
+                self?.tableView.reloadData()
+            }
+        }
+        viewModel.presentationCallback = { [weak self] shown in
+            self?.setOverlayHidden(!shown)
+        }
+        return viewModel
+    }()
+    
+    lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     private lazy var noContentIcon: UIImageView = {
         let view = UIImageView()
@@ -71,8 +88,28 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         return button
     }()
     
-    override func loadView() {
-        view = tableView
+    lazy var noContentDevicesButton: UIBorderedButton = {
+        let button = UIBorderedButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setAttributedTitle(Strings.DeviceCatalog.menu)
+        return button
+    }()
+    
+    override init(viewModel: VM) {
+        super.init(viewModel: viewModel)
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -178,13 +215,17 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         fatalError("getCollapsedFlag() has not been implemented")
     }
     
+    func setOverlayHidden(_ hidden: Bool) {
+        fatalError("setOverlayHidden(_:) has not been implemented")
+    }
+    
     func showEmptyMessage(_ tableView: UITableView?) {}
     
     func showLoading(_ tableView: UITableView?) {
         tableView?.backgroundView = createLoadingView()
     }
     
-    func createNoContentView(_ buttonLabel: String) -> UIView {
+    func createNoContentView(_ buttonLabel: String, withDeviceCatalog: Bool = false) -> UIView {
         noContentButton.setAttributedTitle(buttonLabel)
         
         let content = UIView()
@@ -192,7 +233,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         content.addSubview(noContentLabel)
         content.addSubview(noContentButton)
         
-        NSLayoutConstraint.activate([
+        var constraints = [
             noContentIcon.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             noContentIcon.bottomAnchor.constraint(equalTo: noContentLabel.topAnchor),
             noContentIcon.widthAnchor.constraint(equalToConstant: 64),
@@ -201,9 +242,21 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             noContentLabel.bottomAnchor.constraint(equalTo: content.centerYAnchor, constant: -Dimens.distanceSmall),
             noContentLabel.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             
-            noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall),
             noContentButton.centerXAnchor.constraint(equalTo: content.centerXAnchor)
-        ])
+        ]
+        
+        if (withDeviceCatalog) {
+            content.addSubview(noContentDevicesButton)
+            constraints.append(contentsOf: [
+                noContentDevicesButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall),
+                noContentDevicesButton.centerXAnchor.constraint(equalTo: content.centerXAnchor),
+                noContentButton.topAnchor.constraint(equalTo: noContentDevicesButton.bottomAnchor, constant: Dimens.distanceSmall),
+            ])
+        } else {
+            constraints.append(noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall))
+        }
+        
+        NSLayoutConstraint.activate(constraints)
         
         return content
     }
@@ -225,11 +278,17 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         return content
     }
     
-    // MARK: SACaptionEditorDelegate
-    
-    func captionEditorDidFinish(_ editor: SACaptionEditor) {
-        captionEditor = nil
-        tableView.reloadData()
+    func setupOverlay<T>(_ overlay: UIHostingController<T>) {
+        addChild(overlay)
+        view.addSubview(overlay.view)
+        overlay.didMove(toParent: self)
+        
+        NSLayoutConstraint.activate([
+            overlay.view.topAnchor.constraint(equalTo: view.topAnchor),
+            overlay.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            overlay.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            overlay.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     // MARK: SASectionCellDelegate
@@ -239,11 +298,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
     }
     
     func sectionCaptionLongPressed(_ remoteId: Int32) {
-        vibrationService.vibrate()
-        
-        captionEditor = LocationCaptionEditor()
-        captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionChangeViewModel.show(self, locationRemoteId: remoteId)
     }
     
     // MARK: UITableViewDelegate

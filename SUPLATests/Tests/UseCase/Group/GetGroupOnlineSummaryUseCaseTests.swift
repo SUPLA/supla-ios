@@ -70,7 +70,7 @@ final class GetGroupOnlineSummaryUseCaseTests: UseCaseTest<GroupOnlineSummary> {
     
     private func mockGroupRelation(online: Bool) -> SAChannelGroupRelation {
         let channelValue = SAChannelValue(testContext: nil)
-        channelValue.online = online
+        channelValue.online = online ? SUPLA_CHANNEL_ONLINE_FLAG_ONLINE : SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         
         let groupRelationOnline = SAChannelGroupRelation(testContext: nil)
         groupRelationOnline.value = channelValue

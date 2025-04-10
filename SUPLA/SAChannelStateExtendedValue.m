@@ -292,6 +292,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(NSString *)lightSourceLifespanString {
+    if (!(_csev.Fields & SUPLA_CHANNELSTATE_FIELD_LIGHTSOURCELIFESPAN)) {
+        return nil;
+    }
+    
     NSNumber *percent = nil;
     if (self.lightSourceLifespanLeft != nil) {
         percent = self.lightSourceLifespanLeft;
@@ -323,7 +327,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(NSNumber *)lightSourceOperatingTimePercent {
-    if (self.lightSourceOperatingTime != nil
+    if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_LIGHTSOURCEOPERATINGTIME
+        && self.lightSourceOperatingTime != nil
         && self.lightSourceLifespan != nil
         && self.lightSourceLifespan.intValue > 0) {
         return [NSNumber numberWithFloat:self.lightSourceOperatingTime.intValue / 36.00 / self.lightSourceLifespan.intValue];
@@ -340,11 +345,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(NSString *)lightSourceOperatingTimeString {
-    int timeSec = self.lightSourceOperatingTime.intValue;
-    return [NSString stringWithFormat:@"%02uh %02u:%02u",
-            timeSec / 3600,
-            timeSec % 3600 / 60,
-            timeSec % 3600 % 60];
+    NSNumber* timeSec = self.lightSourceOperatingTime;
+    if (timeSec != nil) {
+        int timeSecInt = timeSec.intValue;
+        return [NSString stringWithFormat:@"%02uh %02u:%02u",
+                timeSecInt / 3600,
+                timeSecInt % 3600 / 60,
+                timeSecInt % 3600 % 60];
+    } else {
+        return nil;
+    }
 }
 
 @end

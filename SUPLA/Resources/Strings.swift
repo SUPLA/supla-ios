@@ -154,9 +154,6 @@ struct Strings {
             static let execute = "Scenes.ActionButtons.execute".toLocalized()
             static let abort = "Scenes.ActionButtons.abort".toLocalized()
         }
-        struct RenameDialog {
-            static let sceneName = NSLocalizedString("scene name", comment: "")
-        }
         static let emptyListButton = "scenes_empty_list_button".toLocalized()
     }
     
@@ -239,6 +236,7 @@ struct Strings {
         static let thermometerError = "thermostat_thermometer_error".toLocalized()
         static let clockError = "thermostat_clock_error".toLocalized()
         static let batteryCoverOpen = "thermostat_battery_cover_open".toLocalized()
+        static let calibrationError = "thermostat_calibration_error".toLocalized()
         
         static let modeManual = "thermostat_detail_mode_manual".toLocalized()
         static let modeWeeklySchedule = "thermostat_detail_mode_weekly_schedule".toLocalized()
@@ -289,6 +287,7 @@ struct Strings {
         static let save = "save".toLocalized()
         static let stateOpened = "general_state_opened".toLocalized()
         static let stateClosed = "general_state_closed".toLocalized()
+        static let function = "general_function".toLocalized()
         
         static let hourFormat = "general_hour_format".toLocalized()
         
@@ -345,6 +344,10 @@ struct Strings {
             static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
+            
+            static let statusAwaiting = "channel_status_awaiting".toLocalized()
+            static let statusUpdating = "channel_status_updating".toLocalized()
+            static let statusNotAvailable = "channel_status_not_available".toLocalized()
         }
     }
     
@@ -530,6 +533,8 @@ struct Strings {
         static let connectionResetCause = "state_connection_reset_cause".toLocalized()
         static let lightSourceLifespan = "state_light_source_lifespan".toLocalized()
         static let sourceOperatingTime = "state_source_operating_time".toLocalized()
+        static let dialogIndex = "state_dialog_index".toLocalized()
+        static let lightsourceSettings = "state_dialog_lightsource_settings".toLocalized()
     }
     
     struct ChangeCaption {
@@ -537,6 +542,7 @@ struct Strings {
         static let channelName = "change_caption_channel_name".toLocalized()
         static let groupName = "change_caption_group_name".toLocalized()
         static let sceneName = "change_caption_scene_name".toLocalized()
+        static let locationName = "change_caption_location_name".toLocalized()
     }
     
     struct Container {

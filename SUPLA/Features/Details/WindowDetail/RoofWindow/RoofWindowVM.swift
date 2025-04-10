@@ -30,7 +30,7 @@ final class RoofWindowVM: BaseWindowVM<RoofWindowViewState> {
             }
 
             let position = value.hasValidPosition() ? value.position : 0
-            let positionValue: WindowGroupedValue = .similar(value.online ? CGFloat(position) : 25)
+            let positionValue: WindowGroupedValue = .similar(value.status.online ? CGFloat(position) : 25)
             let windowState = $0.roofWindowState
                 .changing(path: \.position, to: positionValue)
                 .changing(path: \.positionTextFormat, to: positionTextFormat)
@@ -50,7 +50,7 @@ final class RoofWindowVM: BaseWindowVM<RoofWindowViewState> {
             let positions = group.getRollerShutterPositions()
             let overallPosition = getGroupPercentage(positions, !$0.roofWindowState.markers.isEmpty)
             let windowState = $0.roofWindowState
-                .changing(path: \.position, to: group.isOnline() ? overallPosition : .similar(25))
+                .changing(path: \.position, to: group.status().online ? overallPosition : .similar(25))
                 .changing(path: \.positionTextFormat, to: positionTextFormat)
                 .changing(path: \.markers, to: overallPosition.isDifferent() ? positions : [])
 

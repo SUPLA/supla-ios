@@ -230,7 +230,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_VALVE_OPENCLOSE
-        channel.value = SAChannelValue.mockValve(online: true, open: false, flags: [.flooding])
+        channel.value = SAChannelValue.mockValve(status: .online, open: false, flags: [.flooding])
         
         // when
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
@@ -246,7 +246,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_VALVE_PERCENTAGE
-        channel.value = SAChannelValue.mockValve(online: true, open: false, flags: [.manuallyClosed])
+        channel.value = SAChannelValue.mockValve(status: .online, open: false, flags: [.manuallyClosed])
         
         // when
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)

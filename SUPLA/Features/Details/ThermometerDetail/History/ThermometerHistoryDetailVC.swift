@@ -20,9 +20,8 @@ import Foundation
 
 final class ThermometerHistoryDetailVC: BaseHistoryDetailVC {
     
-    override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
-        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
-        viewModel = ThermometerHistoryDetailVM()
+    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
+        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider, viewModel: ThermometerHistoryDetailVM())
     }
     
     required init?(coder: NSCoder) {

@@ -34,8 +34,7 @@ extension ElectricityMeterHistoryFeature {
         }()
         
         init(viewModel: ViewModel, item: ItemBundle, navigationItemProvider: NavigationItemProvider) {
-            super.init(remoteId: item.remoteId, navigationItemProvider: navigationItemProvider)
-            self.viewModel = viewModel
+            super.init(remoteId: item.remoteId, navigationItemProvider: navigationItemProvider, viewModel: viewModel)
             
             setupView()
         }

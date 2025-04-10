@@ -50,6 +50,7 @@
 "general_reveal" = "Reveal";
 "general_collapse" = "Collapse";
 "general_expand" = "Expand";
+"general_function" = "Function";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -89,6 +90,10 @@
 "channel_caption_flood_sensor" = "Flood sensor";
 "channel_offline" = "Channel is offline";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
+/* General - Channel status */
+"channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
+"channel_status_awaiting" = "This device cannot be remotely awakened. We are awaiting communication from the device…";
+"channel_status_updating" = "Software update in progress…";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -186,6 +191,7 @@
 "thermostat_thermometer_error" = "Temperature reading error";
 "thermostat_clock_error" = "Clock error";
 "thermostat_battery_cover_open" = "Battery cover open";
+"thermostat_calibration_error" = "Calibration error";
 "thermostat_detail_mode_manual" = "Manual";
 "thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Program %d Settings";
@@ -394,20 +400,23 @@
 "state_battery_powered" = "Battery powered";
 "state_wifi_rssi" = "WiFi RSSI";
 "state_wifi_signal_strength" = "WiFi signal strength";
-"state_bridge_node_online" = "Bridge node - online";
-"state_bridge_node_signal" = "Bridge node - signal strength";
+"state_bridge_node_online" = "Bridge node online";
+"state_bridge_node_signal" = "Bridge signal strength";
 "state_uptime" = "Uptime";
 "state_connection_time" = "Connection uptime";
 "state_battery_health" = "Battery health";
 "state_connection_reset_cause" = "Connection reset cause";
 "state_light_source_lifespan" = "Light source lifespan";
 "state_source_operating_time" = "Light source operating time";
+"state_dialog_index" = "(%d of %d)";
+"state_dialog_lightsource_settings" = "Change the light source lifespan settings";
 
 /* Change caption */
 "change_caption_header" = "Caption Change";
 "change_caption_channel_name" = "Channel name";
 "change_caption_group_name" = "Group name";
 "change_caption_scene_name" = "Scene name";
+"change_caption_location_name" = "Location name";
 
 /* Container */
 "container_fill_level" = "Fill level";

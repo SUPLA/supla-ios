@@ -22,14 +22,13 @@ import SwiftUI
 extension ThermostatSlavesFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (Int32, String) -> Void
-        let onStateDialogDismiss: () -> Void
+        let onStatusAction: (Int32) -> Void
         
         let onCaptionLongPress: (ThermostatData) -> Void
-        let onCaptionChangeDismiss: () -> Void
-        let onCaptionChangeApply: (String) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -57,16 +56,12 @@ extension ThermostatSlavesFeature {
                     }
                 }.padding([.top], Dimens.distanceDefault)
 
-                if let stateDialogState = viewState.stateDialogState {
-                    StateDialogFeature.Dialog(state: stateDialogState, onDismiss: onStateDialogDismiss)
+                if stateDialogViewModel.present {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
 
-                if let captionChangeDialogState = viewState.captionChangeDialogState {
-                    CaptionChangeDialogFeature.Dialog(
-                        state: captionChangeDialogState,
-                        onDismiss: onCaptionChangeDismiss,
-                        onOK: { onCaptionChangeApply($0) }
-                    )
+                if captionChangeDialogViewModel.present {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
                 }
             }.environment(\.scaleFactor, viewState.scale)
         }
@@ -88,7 +83,7 @@ extension ThermostatSlavesFeature {
         let data: ThermostatData
 
         let onInfoAction: (String) -> Void
-        let onStatusAction: (Int32, String) -> Void
+        let onStatusAction: (Int32) -> Void
         let onCaptionLongPress: (ThermostatData) -> Void
 
         var body: some SwiftUI.View {
@@ -131,7 +126,7 @@ extension ThermostatSlavesFeature {
 
                     if (data.showChannelStateIcon) {
                         ListItemInfoIcon()
-                            .onTapGesture { onStatusAction(data.id, data.caption) }
+                            .onTapGesture { onStatusAction(data.id) }
                     }
                     ListItemDot(onlineState: data.onlineState)
                 }.padding([.trailing], Dimens.distanceSmall)
@@ -216,13 +211,15 @@ extension ThermostatSlavesFeature {
             sourceSwitchIcon: .suplaIcon(name: "fnc_heat_or_cold_source_switch-off")
         )
     ]
+    let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
+    let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
+    
     return ThermostatSlavesFeature.View(
         viewState: viewState,
+        stateDialogViewModel: stateDialogViewModel,
+        captionChangeDialogViewModel: captionChangeDialogViewModel,
         onInfoAction: { _ in },
-        onStatusAction: { _, _ in },
-        onStateDialogDismiss: {},
-        onCaptionLongPress: { _ in },
-        onCaptionChangeDismiss: {},
-        onCaptionChangeApply: { _ in }
+        onStatusAction: { _ in },
+        onCaptionLongPress: { _ in }
     )
 }

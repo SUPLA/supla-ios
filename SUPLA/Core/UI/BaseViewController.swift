@@ -29,8 +29,18 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     @Singleton<GlobalSettings> private var settings
     
     fileprivate let disposeBag = DisposeBag()
-    var viewModel: VM!
     var stateDisposable: Disposable? = nil
+    
+    let viewModel: VM
+    
+    init(viewModel: VM) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

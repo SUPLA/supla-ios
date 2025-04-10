@@ -18,7 +18,7 @@
 import RxSwift
 
 protocol GeneralPurposeMeterItemRepository:
-    BaseMeasurementRepository<SuplaCloudClient.GeneralPurposeMeter, SAGeneralPurposeMeterItem> where
+    BaseMeasurementRepository<SuplaCloudClient.GeneralPurposeMeter, SAGeneralPurposeMeterItem>, RemoveHiddenChannelsUseCaseImpl.Deletable where
     T == SAGeneralPurposeMeterItem
 {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
@@ -232,6 +232,18 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
             entity.value = NSDecimalNumber(value: valueIncrement - (valueDivided * Double(itemNo)))
             entity.value_increment = NSDecimalNumber(value: valueDivided)
             entity.setDateAndDateParts(Date(timeIntervalSince1970: itemTimestamp))
+        }
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAGeneralPurposeMeterItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
         }
     }
 }

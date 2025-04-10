@@ -112,6 +112,10 @@ class BaseViewModel<S: ViewState, E: ViewEvent>: BaseViewModelBinder {
             .disposed(by: disposeBag)
     }
     
+    func handle(_ disposable: Disposable) {
+        disposeBag.insert(disposable)
+    }
+    
     #if DEBUG
         deinit {
             let className = NSStringFromClass(type(of: self))

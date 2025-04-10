@@ -62,12 +62,14 @@ extension String {
         static let powerOff = "icon_power_off"
         static let soundOn = "icon_sound_on"
         static let soundOff = "icon_sound_off"
+        static let update = "icon_update"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
         static let statusError = "icon_status_error"
         
         static let arrowRight = "icon_arrow_right"
+        static let arrowLeft = "icon_arrow_left"
         static let arrowDoubleRight = "icon_arrow_double_right"
         static let arrowOpen = "icon_arrow_open"
         static let arrowClose = "icon_arrow_close"

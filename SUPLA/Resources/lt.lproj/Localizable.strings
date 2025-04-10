@@ -181,8 +181,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
 "Exit" = "Išėjimas";
 "The waiting time for basic channel configuration data has expired." = "Baigėsi pagrindinių kanalo konfigūravimo duomenų laukimo laikas";
-"Channel name" = "Kanalo pavadinimas";
-"Location name" = "Vietos pavadinimas";
 "Default" = "Numatyta";
 "No function" = "Funkcijų nėra";
 "Gateway lock operation" = "Durelių atidarymas";
@@ -293,6 +291,7 @@
 "turn_on" = "Įjungti";
 "turn_off" = "Išjungti";
 "save" = "Išsaugoti";
+"general_function" = "Funkcija";
 /* General - DayOfWeek */
 "monday" = "Pirmadienis";
 "tuesday" = "Antradienis";
@@ -574,7 +573,9 @@
 "state_connection_reset_cause" = "Ryšio atstatymo priežastis";
 "state_light_source_lifespan" = "Šviesos šaltinio eksploatavimo laikas";
 "state_source_operating_time" = "Šviesos šaltinio veikimo laikas";
+"state_dialog_lightsource_settings" = "PAKEISTI ŠVIESOS ŠALTINIO GYVAVIMO TRUKMĖS NUSTATYMUS";
 
 /* Change caption */
 "change_caption_channel_name" = "Kanalo pavadinimas";
 "change_caption_scene_name" = "Scenos pavadinimas";
+"change_caption_location_name" = "Vietos pavadinimas";

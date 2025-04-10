@@ -179,8 +179,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Le pont z-wave ne répond pas. Vérifiez si le pont est connecté au serveur.";
 "Exit" = "Sortie";
 "The waiting time for basic channel configuration data has expired." = "Le temps d\'attente des données de configuration de base de la chaîne a expiré";
-"Channel name" = "Nom du canal";
-"Location name" = "Nom de la localisation";
 "Default" = "Défaut";
 "No function" = "Aucune fonction";
 "Gateway lock operation" = "Ouverture de portillon";
@@ -291,6 +289,7 @@
 "turn_on" = "Activez";
 "turn_off" = "Désactivez";
 "save" = "Sauvegarder";
+"general_function" = "Fonction";
 /* General - DayOfWeek */
 "monday" = "Lundi";
 "tuesday" = "Mardi";
@@ -572,7 +571,9 @@
 "state_connection_reset_cause" = "Raison du redémarrage de la connexion";
 "state_light_source_lifespan" = "Durée de vie de la source lumineuse";
 "state_source_operating_time" = "Temps de travail de la source lumineuse";
+"state_dialog_lightsource_settings" = "MODIFIER LE RÉGLAGE DE LA DURÉE DE VIE DE LA SOURCE LUMINEUSE";
 
 /* Change caption */
 "change_caption_channel_name" = "Nom du canal";
 "change_caption_scene_name" = "Nom de la scène";
+"change_caption_location_name" = "Nom de la localisation";

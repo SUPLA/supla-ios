@@ -23,6 +23,13 @@ extension ThermostatSlavesFeature {
         @Singleton<SuplaAppCoordinator> private var coordinator
         
         private let item: ItemBundle
+        private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
+            let viewModel = StateDialogFeature.ViewModel { [weak self] in
+                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+            }
+            return viewModel
+        }()
+        private lazy var captionChangeViewModel = CaptionChangeDialogFeature.ViewModel()
         
         init(viewModel: ViewModel, item: ItemBundle) {
             self.item = item
@@ -30,14 +37,11 @@ extension ThermostatSlavesFeature {
             
             contentView = ThermostatSlavesFeature.View(
                 viewState: state,
+                stateDialogViewModel: stateDialogViewModel,
+                captionChangeDialogViewModel: captionChangeViewModel,
                 onInfoAction: { [weak self] in self?.onIssueIconTapped(issueMessage: $0) },
-                onStatusAction: { viewModel.showStateDialog(remoteId: $0, caption: $1) },
-                onStateDialogDismiss: { viewModel.closeStateDialog() },
-                onCaptionLongPress: { [weak self] thermostatData in
-                    self?.showAuthorizationForCaptionChange(thermostatData.caption, thermostatData.id)
-                },
-                onCaptionChangeDismiss: { viewModel.closeCaptionChangeDialog() },
-                onCaptionChangeApply: { viewModel.onCaptionChange($0) }
+                onStatusAction: { [weak self] in self?.stateDialogViewModel.show(remoteId: $0) },
+                onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, thermostatData: $0) }
             )
             
             viewModel.observe(remoteId: Int(item.remoteId))
@@ -46,8 +50,6 @@ extension ThermostatSlavesFeature {
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.loadData(item.remoteId)
-            
-            observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
         }
         
         override func viewWillAppear(_ animated: Bool) {
@@ -63,23 +65,14 @@ extension ThermostatSlavesFeature {
             coordinator.present(alert, animated: true)
         }
         
-        @objc
-        func onStateEvent(notification: NSNotification) {
-            if let userInfo = notification.userInfo,
-               let channelState = userInfo["state"] as? SAChannelStateExtendedValue
-            {
-                viewModel.updateStateDialog(channelState)
-            }
-        }
-        
-        private func showAuthorizationForCaptionChange(_ caption: String, _ remoteId: Int32) {
-            SAAuthorizationDialogVC { [weak self] in
-                self?.viewModel.changeChannelCaption(caption: caption, remoteId: remoteId)
-            }.showAuthorization(self)
-        }
-        
         static func create(item: ItemBundle) -> UIViewController {
             ViewController(viewModel: ViewModel(), item: item)
         }
+    }
+}
+
+private extension CaptionChangeDialogFeature.ViewModel {
+    func show(_ viewController: UIViewController?, thermostatData: ThermostatSlavesFeature.ThermostatData) {
+        show(viewController, remoteId: thermostatData.id, caption: thermostatData.userCaption, captionType: .channel)
     }
 }

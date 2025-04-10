@@ -37,7 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData *) dataSubValue;
 - (NSData *) unsafeDataValue;
 
-- (BOOL) isOnline;
 - (int) hiValue;
 - (int) hiSubValue;
 - (int) intValue;

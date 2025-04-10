@@ -178,8 +178,6 @@
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
 "Exit" = "Beenden";
 "The waiting time for basic channel configuration data has expired." = "Die Wartezeit auf Daten der grundlegenden Kanalkonfiguration wurde überschritten";
-"Channel name" = "Name des Kanals";
-"Location name" = "Name der Lokalisierung";
 "Default" = "Standardmäßig";
 "No function" = "Keine Funktion";
 "Gateway lock operation" = "Pforte aufmachen";
@@ -287,6 +285,7 @@
 "time_hours_and_minutes" = "%d Std. %d Min.";
 "general_state_opened" = "geöffnet";
 "general_state_closed" = "geschloßen";
+"general_function" = "Funktion";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -309,6 +308,10 @@
 "channel_caption_flood_sensor" = "Flutsensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
+/* General - Channel status */
+"channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
+"channel_status_awaiting" = "Dieses Gerät kann nicht per Fernzugriff aktiviert werden. Wir warten auf eine Kommunikation mit dem Gerät…";
+"channel_status_updating" = "Software-Update läuft…";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -396,6 +399,7 @@
 "thermostat_thermometer_error" = "Fehler beim Temperaturelesen";
 "thermostat_clock_error" = "Uhrfehler";
 "thermostat_battery_cover_open" = "Batteriefachdeckel offen";
+"thermostat_calibration_error" = "Kalibrierungsfehler";
 "thermostat_detail_mode_manual" = "Handbetrieb";
 "thermostat_detail_mode_weekly_schedule" = "Wöchentlich";
 "schedule_detail_program_dialog_header" = "Program %d Einstellungen";
@@ -592,20 +596,23 @@
 "state_battery_level" = "Batteriefüllstand";
 "state_battery_powered" = "Batteriebetrieb";
 "state_wifi_signal_strength" = "WLAN-Signalstärke";
-"state_bridge_node_online" = "Brückenknoten - Online";
-"state_bridge_node_signal" = "Brückenknoten – Signalstärke";
+"state_bridge_node_online" = "Brückenknoten - online";
+"state_bridge_node_signal" = "Brückenknoten - Signalstärke";
 "state_uptime" = "Betriebszeit";
 "state_connection_time" = "Verbindungszeit";
 "state_battery_health" = "Batterielaufzeit";
 "state_connection_reset_cause" = "Ursache des Verbindungsreset";
 "state_light_source_lifespan" = "Lebensdauer der Lichtquelle";
 "state_source_operating_time" = "Betriebszeit der Lichtquelle";
+"state_dialog_index" = "(%d von %d)";
+"state_dialog_lightsource_settings" = "Einstellungen für die Lebensdauer der Lichtquelle ändern";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";
 "change_caption_channel_name" = "Name des Kanals";
 "change_caption_group_name" = "Gruppenname";
 "change_caption_scene_name" = "Szenenname";
+"change_caption_location_name" = "Name der Lokalisierung";
 
 /* Container */
 "container_fill_level" = "Füllstand";

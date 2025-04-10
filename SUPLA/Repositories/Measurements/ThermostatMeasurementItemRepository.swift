@@ -19,7 +19,7 @@
 import Foundation
 import RxSwift
 
-protocol ThermostatMeasurementItemRepository: RepositoryProtocol where T == SAThermostatMeasurementItem {
+protocol ThermostatMeasurementItemRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAThermostatMeasurementItem {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
 }
 
@@ -27,5 +27,17 @@ final class ThermostatMeasurementItemRepositoryImpl: Repository<SAThermostatMeas
     
     func deleteAll(for serverId: Int32?) -> Observable<Void> {
         deleteAll(SAThermostatMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "server_id = %d", serverId ?? 0)))
+    }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        context.performAndWait {
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAThermostatMeasurementItem")
+            fetch.predicate = NSPredicate(format: "channel_id = %d AND server_id = %d", remoteId, profile.server?.id ?? 0)
+            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
     }
 }

@@ -48,4 +48,6 @@ final class ChannelConfigRepositoryMock: BaseRepositoryMock<SAChannelConfig>, Ch
         return getConfigReturnsMap[channelRemoteId]!
     }
     
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

@@ -18,7 +18,7 @@
 
 import RxSwift
 
-protocol ChannelUpdatesObserver {
+protocol ChannelUpdatesObserver: AnyObject {
     func handle(_ disposable: Disposable)
     func onChannelUpdate(_ channelWithChildren: ChannelWithChildren)
 }
@@ -30,7 +30,7 @@ extension ChannelUpdatesObserver {
         handle(
             updateEventsManager.observeChannelWithChildren(remoteId: remoteId)
                 .asDriverWithoutError()
-                .drive(onNext: { onChannelUpdate($0) })
+                .drive(onNext: { [weak self] in self?.onChannelUpdate($0) })
         )
     }
 }

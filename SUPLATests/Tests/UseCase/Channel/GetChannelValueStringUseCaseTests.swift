@@ -97,7 +97,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
     
     func test_shouldGetNoValueText_whenChannelIsOffline() {
         // given
-        let channel = SAChannel.mock(value: SAChannelValue.mock(online: false))
+        let channel = SAChannel.mock(value: SAChannelValue.mock(status: .offline))
         
         // when
         let valueText = useCase.invoke(channel)
@@ -108,7 +108,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
     
     func test_shouldGetNoValueTest_whenNoProviderFound() {
         // given
-        let channel = SAChannel.mock(function: -1, value: SAChannelValue.mock(online: true))
+        let channel = SAChannel.mock(function: -1, value: SAChannelValue.mock(status: .online))
         
         // when
         let valueText = useCase.invoke(channel)
@@ -121,7 +121,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         depthValueProvider.valueReturns = 25.0
         
@@ -136,7 +136,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         depthValueProvider.valueReturns = 25000.0
         
@@ -151,7 +151,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         depthValueProvider.valueReturns = 0.025
         
@@ -166,7 +166,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         depthValueProvider.valueReturns = 0.0025
         
@@ -181,7 +181,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         depthValueProvider.valueReturns = 0.0025
         
@@ -196,7 +196,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_DISTANCESENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         distanceValueProvider.valueReturns = 25.0
         
@@ -217,7 +217,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         )
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-            value: SAChannelValue.mock(online: true),
+            value: SAChannelValue.mock(status: .online),
             config: SAChannelConfig.mock(type: .generalPurposeMeter, config: config.toJson())
         )
         gpmValueProvider.valueReturns = 12.50
@@ -233,7 +233,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         gpmValueProvider.valueReturns = Double.nan
         
@@ -248,7 +248,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         gpmValueProvider.valueReturns = 12.443
         
@@ -263,7 +263,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_HUMIDITY,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         humidityValueProvider.valueReturns = 25.0
         
@@ -278,7 +278,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_PRESSURESENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         pressureValueProvider.valueReturns = 25.0
         
@@ -293,7 +293,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_RAINSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         rainValueProvider.valueReturns = 250.0
         
@@ -308,7 +308,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
@@ -323,7 +323,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
@@ -338,7 +338,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_WEIGHTSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         weightValueProvider.valueReturns = 25.0
         
@@ -353,7 +353,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_WINDSENSOR,
-            value: SAChannelValue.mock(online: true)
+            value: SAChannelValue.mock(status: .online)
         )
         windValueProvider.valueReturns = 25.0
         

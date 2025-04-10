@@ -28,9 +28,6 @@ extension ContainerGeneralFeature {
         @Published var issues: [ChannelIssueItem] = []
         @Published var soundOn: Bool = false
         
-        @Published var stateDialogState: StateDialogFeature.ViewState? = nil
-        @Published var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? = nil
-        
         var channelId: Int32 = 0
         var muteAuthorizationNeeded: Bool = false
     }

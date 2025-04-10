@@ -101,4 +101,7 @@ final class GeneralPurposeMeasurementItemRepositoryMock: BaseRepositoryMock<SAGe
         }
         return try SuplaCloudClient.GeneralPurposeMeasurement.fromJson(data: data)
     }
+    
+    func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
 }

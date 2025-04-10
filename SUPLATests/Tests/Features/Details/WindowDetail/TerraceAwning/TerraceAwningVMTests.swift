@@ -55,7 +55,7 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
         channel.flags = Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.value = NSData(data: RollerShutterValue.mockData(position: 50, flags: SuplaShadingSystemFlag.calibrationFailed.value))
-        channel.value?.online = true
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         
         settings.showOpeningPercentReturns = false
         readChannelByRemoteIdUseCase.returns = .just(channel)

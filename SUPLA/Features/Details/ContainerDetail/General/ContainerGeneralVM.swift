@@ -19,7 +19,7 @@
 import RxSwift
     
 extension ContainerGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, StateDialogFeature.Handler, CaptionChangeDialogFeature.Handler {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<CallSuplaClientOperationUseCase> private var callSuplaClientOperationUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
@@ -29,10 +29,6 @@ extension ContainerGeneralFeature {
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
         @Singleton<ValuesFormatter> private var valuesFormatter
-        
-        var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
-        
-        var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
         
         init() {
             super.init(state: ViewState())
@@ -50,22 +46,16 @@ extension ContainerGeneralFeature {
                 .disposed(by: disposeBag)
         }
         
-        func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
-            state.stateDialogState = updater(state.stateDialogState)
-        }
-        
-        func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {
-            state.captionChangeDialogState = updater(state.captionChangeDialogState)
-        }
-        
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             loadData(channelWithChildren.channel.remote_id)
         }
         
-        func onMuteClick(_ viewController: UIViewController) {
+        func onMuteClick(_ viewController: UIViewController?) {
             vibrationService.vibrate()
             if (state.muteAuthorizationNeeded) {
-                SAAuthorizationDialogVC { [weak self] in self?.muteAlarmSound() }.showAuthorization(viewController)
+                if let viewController {
+                    SAAuthorizationDialogVC { [weak self] in self?.muteAlarmSound() }.showAuthorization(viewController)
+                }
             } else {
                 muteAlarmSound()
             }
@@ -78,7 +68,7 @@ extension ContainerGeneralFeature {
                 result[sensor.channelId] = sensor.fillLevel
             }
             let level = value?.levelKnown.ifTrue { CGFloat(value!.level) / 100 }
-            let levelString = if (value?.online == false) {
+            let levelString = if (value?.status.online == false) {
                 "offline"
             } else if let level {
                 valuesFormatter.percentageToString(Float(level))
@@ -94,7 +84,7 @@ extension ContainerGeneralFeature {
             state.sensors = channelWithChildren.children
                 .filter { $0.relationType == .default }
                 .map { toSensorItem($0, channelToLevelMap) }
-            state.soundOn = value?.online == true && value?.flags.contains(.soundAlarmOn) == true
+            state.soundOn = value?.status.online == true && value?.flags.contains(.soundAlarmOn) == true
             
             state.channelId = channelWithChildren.channel.remote_id
             state.muteAuthorizationNeeded = config?.muteAlarmSoundWithoutAdditionalAuth == false
@@ -116,7 +106,7 @@ extension ContainerGeneralFeature {
                 caption: captionWithPercentage,
                 userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: child.channel.value?.online ?? false
+                showChannelStateIcon: child.channel.value?.status.online ?? false
             )
         }
         

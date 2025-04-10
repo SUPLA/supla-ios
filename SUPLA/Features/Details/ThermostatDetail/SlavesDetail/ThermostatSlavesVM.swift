@@ -19,24 +19,12 @@
 import SharedCore
     
 extension ThermostatSlavesFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, StateDialogFeature.Handler, CaptionChangeDialogFeature.Handler, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
         @Singleton private var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCase
         @Singleton private var globalSettings: GlobalSettings
         
-        var stateDialogState: StateDialogFeature.ViewState? { state.stateDialogState }
-        
-        var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? { state.captionChangeDialogState }
-        
         init() {
             super.init(state: ViewState())
-        }
-        
-        func updateStateDialogState(_ updater: (StateDialogFeature.ViewState?) -> StateDialogFeature.ViewState?) {
-            state.stateDialogState = updater(state.stateDialogState)
-        }
-        
-        func updateCaptionChangeDialogState(_ updater: (CaptionChangeDialogFeature.ViewState?) -> CaptionChangeDialogFeature.ViewState?) {
-            state.captionChangeDialogState = updater(state.captionChangeDialogState)
         }
         
         override func onViewDidLoad() {
@@ -115,7 +103,7 @@ private extension ChannelChild {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
-            onlineState: ListOnlineState.from(channel.isOnline()),
+            onlineState: channel.onlineState,
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),
@@ -167,7 +155,7 @@ private extension ChannelWithChildren {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
-            onlineState: ListOnlineState.from(channel.isOnline()),
+            onlineState: channel.onlineState,
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),

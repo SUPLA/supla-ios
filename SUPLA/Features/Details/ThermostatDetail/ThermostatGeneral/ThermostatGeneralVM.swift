@@ -35,6 +35,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
+    private let thermostatIssuesProvider = ThermostatIssuesProvider()
     private let updateRelay = PublishRelay<Void>()
     private let channelRelay = PublishRelay<ChannelWithChildren>()
     
@@ -291,23 +292,23 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.channelFunc, to: channel.channel.func)
                 .changing(path: \.mode, to: thermostatValue.mode)
                 .changing(path: \.childrenIds, to: channel.allDescendantFlat.map { $0.channel.remote_id })
-                .changing(path: \.offline, to: !channel.channel.isOnline())
+                .changing(path: \.offline, to: channel.channel.status().offline)
                 .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
                 .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
-                .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
+                .changing(path: \.issues, to: createThermostatIssues(channelWithChildren: channel))
                 .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
-                .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
-                .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.isOnline(), data.3))
+                .changing(path: \.temporaryChangeActive, to: channel.channel.status().online && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
+                .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.status().online, data.3))
                 .changing(path: \.timerEndDate, to: channel.channel.getTimerEndDate())
                 .changing(path: \.currentPower, to: thermostatValue.state.power?.intValue)
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
-            changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.isOnline())
+            changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.status().online)
             changedState = handleButtons(changedState, channel: channel.channel)
             
             if let mainTermometer = channel.children.first(where: { $0.relation.relationType == .mainThermometer }),
-               channel.channel.isOnline()
+               channel.channel.status().online
             {
                 let temperature = mainTermometer.channel.temperatureValue()
                 changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
@@ -342,7 +343,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     private func handleSetpoints(_ state: ThermostatGeneralViewState, channel: SAChannel) -> ThermostatGeneralViewState {
         guard let value = channel.value?.asThermostatValue() else { return state }
         
-        if (!channel.isOnline()) {
+        if (channel.status().offline) {
             return state
                 .changing(path: \.setpointHeat, to: nil)
                 .changing(path: \.setpointCool, to: nil)
@@ -458,26 +459,16 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             )
             .changing(
                 path: \.weeklyScheduleActive,
-                to: channel.isOnline() && value.flags.contains(.weeklySchedule)
+                to: channel.status().online && value.flags.contains(.weeklySchedule)
             )
             .changing(
                 path: \.plusMinusHidden,
-                to: !channel.isOnline() || ((channel.isThermostatOff() && !value.flags.contains(.weeklySchedule)))
+                to: channel.status().offline || ((channel.isThermostatOff() && !value.flags.contains(.weeklySchedule)))
             )
     }
     
-    private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ChannelIssueItem] {
-        var result: [ChannelIssueItem] = []
-        if (flags.contains(.thermometerError)) {
-            result.append(ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatThermometerError)))
-        }
-        if (flags.contains(.batteryCoverOpen)) {
-            result.append(ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.thermostatBatterCoverOpen)))
-        }
-        if (flags.contains(.clockError)) {
-            result.append(ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.thermostatClockError)))
-        }
-        return result
+    private func createThermostatIssues(channelWithChildren: ChannelWithChildren) -> [ChannelIssueItem] {
+        thermostatIssuesProvider.provide(channelWithChildren: channelWithChildren.shareable)
     }
     
     private func createSensorIssue(value: ThermostatValue, children: [ChannelChild]) -> SensorIssue? {
@@ -742,7 +733,7 @@ enum ThermostatOperationalMode: Equatable {
 private extension SAChannel {
     func isThermostatOff() -> Bool {
         guard let value = value?.asThermostatValue() else { return false }
-        return !isOnline() || value.mode == .off || value.mode == .notSet
+        return status().offline || value.mode == .off || value.mode == .notSet
     }
     
     func isDhw() -> Bool {
@@ -766,6 +757,6 @@ struct SensorIssue: Equatable {
 private extension SAChannel {
     func isActive(_ flag: SuplaThermostatFlag) -> Bool {
         guard let value = value?.asThermostatValue() else { return false }
-        return isOnline() && value.state.isOn() && value.flags.contains(flag)
+        return status().online && value.state.isOn() && value.flags.contains(flag)
     }
 }

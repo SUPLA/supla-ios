@@ -92,9 +92,12 @@ extension LocalizedStringId {
         case .motorProblem: Strings.RollerShutterDetail.motorProblem
         case .calibrationLost: Strings.RollerShutterDetail.calibrationLost
         case .calibrationFailed: Strings.RollerShutterDetail.calibrationFailed
+            
         case .thermostatThermometerError: Strings.ThermostatDetail.thermometerError
         case .thermostatBatterCoverOpen: Strings.ThermostatDetail.batteryCoverOpen
         case .thermostatClockError: Strings.ThermostatDetail.clockError
+        case .thermostatCalibrationError: Strings.ThermostatDetail.calibrationError
+            
         case .channelCaptionSepticTank: Strings.General.Channel.captionSepticTank
         case .channelCaptionWaterTank: Strings.General.Channel.captionWaterTank
         case .channelCaptionContainerLevelSensor: Strings.General.Channel.captionContainerLevelSensor
@@ -107,6 +110,10 @@ extension LocalizedStringId {
         case .containerWarningLevel: Strings.Container.warningLevel
         case .containerInvalidSensorState: Strings.Container.invalidSensorState
         case .containerSoundAlarm: Strings.Container.soundAlarm
+            
+        case .channelStatusAwaiting: Strings.General.Channel.statusAwaiting
+        case .channelStatusUpdating: Strings.General.Channel.statusUpdating
+        case .channelStatusNotAvailable: Strings.General.Channel.statusNotAvailable
         }
     }
 }

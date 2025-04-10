@@ -88,6 +88,7 @@ extension DiContainer {
         register(DeviceConfigEventsManager.self, DeviceConfigEventsManagerImpl())
         register(DownloadEventsManager.self, DownloadEventsManagerImpl())
         register(ApplicationEventsManager.self, ApplicationEventsManagerImpl())
+        register(RemoveHiddenChannelsManager.self, RemoveHiddenChannelsManagerImpl())
         
         // MARK: Repositories
 
@@ -186,6 +187,7 @@ extension DiContainer {
         register(ImpulseCounterValueProvider.self, ImpulseCounterValueProviderImpl())
         register(SwitchWithImpulseCounterValueProvider.self, SwitchWithImpulseCounterValueProviderImpl())
         register(ContainerValueProvider.self, ContainerValueProviderImpl())
+        register(RemoveHiddenChannelsUseCase.self, RemoveHiddenChannelsUseCaseImpl())
         // Usecases - Channel - MeasurementProvider
         register(TemperatureMeasurementsProvider.self, TemperatureMeasurementsProviderImpl())
         register(TemperatureAndHumidityMeasurementsProvider.self, TemperatureAndHumidityMeasurementsProviderImpl())
@@ -237,6 +239,7 @@ extension DiContainer {
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location
         register(ToggleLocationUseCase.self, ToggleLocationUseCaseImpl())
+        register(ReadLocationByRemoteIdUseCase.self, ReadLocationByRemoteIdUseCaseImpl())
         // Usecases - Profile
         register(DeleteAllProfileDataUseCase.self, DeleteAllProfileDataUseCaseImpl())
         register(ReadProfileByIdUseCase.self, ReadProfileByIdUseCaseImpl())
@@ -246,7 +249,6 @@ extension DiContainer {
         register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
-        register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
         // Usecases - Notification
         register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
@@ -259,6 +261,10 @@ extension DiContainer {
         register(UpdateChannelStateUseCase.self, UpdateChannelStateUseCaseImpl())
         // UseCases - ProfileServer
         register(ReadOrCreateProfileServerUseCase.self, ReadOrCreateProfileServerUseCaseImpl())
+        // UseCases - Scene
+        register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
+        register(ReadSceneByRemoteIdUseCase.self, ReadSceneByRemoteIdUseCaseImpl())
+        
         
         // MARK: Features
         

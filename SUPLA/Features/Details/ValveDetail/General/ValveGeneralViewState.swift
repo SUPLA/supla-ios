@@ -27,10 +27,7 @@ extension ValveGeneralFeature {
         @Published var offline: Bool = false
         @Published var isClosed: Bool = false
         
-        @Published var stateDialogState: StateDialogFeature.ViewState? = nil
         @Published var alertDialog: ValveAlertDialog? = nil
-        @Published var captionChangeDialogState: CaptionChangeDialogFeature.ViewState? = nil
-        
     }
     
     enum ValveAlertDialog {

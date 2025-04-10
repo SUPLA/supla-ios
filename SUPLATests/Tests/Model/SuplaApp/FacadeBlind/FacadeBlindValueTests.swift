@@ -23,10 +23,10 @@ import SharedCore
 final class FacadeBlindValueTests: XCTestCase {
     func test_parseWhenSizeWrong() {
         // when
-        let value = FacadeBlindValue.companion.from(online: false, bytes: KotlinByteArray.from(data: Data()))
+        let value = FacadeBlindValue.companion.from(status: .offline, bytes: KotlinByteArray.from(data: Data()))
         
         // then
-        XCTAssertEqual(value.online, false)
+        XCTAssertEqual(value.status, .offline)
         XCTAssertEqual(value.position, ShadingSystemValue.companion.INVALID_VALUE)
         XCTAssertEqual(value.tilt, ShadingSystemValue.companion.INVALID_VALUE)
         XCTAssertEqual(value.flags, [])
@@ -38,10 +38,10 @@ final class FacadeBlindValueTests: XCTestCase {
         let data = FacadeBlindValue.mockData(position: 22, tilt: 88)
         
         // when
-        let value = FacadeBlindValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
+        let value = FacadeBlindValue.companion.from(status: .online, bytes: KotlinByteArray.from(data: data))
         
         // then
-        XCTAssertEqual(value.online, true)
+        XCTAssertEqual(value.status, .online)
         XCTAssertEqual(value.position, 22)
         XCTAssertEqual(value.tilt, 88)
         XCTAssertEqual(value.flags, [])
@@ -53,10 +53,10 @@ final class FacadeBlindValueTests: XCTestCase {
         let data = FacadeBlindValue.mockData(position: 120, tilt: 110, flags: 4)
         
         // when
-        let value = FacadeBlindValue.companion.from(online: true, bytes: KotlinByteArray.from(data: data))
+        let value = FacadeBlindValue.companion.from(status: .online, bytes: KotlinByteArray.from(data: data))
         
         // then
-        XCTAssertEqual(value.online, true)
+        XCTAssertEqual(value.status, .online)
         XCTAssertEqual(value.position, -1)
         XCTAssertEqual(value.tilt, -1)
         XCTAssertEqual(value.flags, [.calibrationLost])

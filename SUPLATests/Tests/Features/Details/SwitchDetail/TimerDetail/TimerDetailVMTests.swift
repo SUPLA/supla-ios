@@ -348,7 +348,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         
         let value = SAChannelValue(testContext: nil)
         value.setValueWith(&suplaValue)
-        value.online = isOnline
+        value.online = isOnline ? SUPLA_CHANNEL_ONLINE_FLAG_ONLINE : SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         
         let channel = SAChannel(testContext: nil)
         channel.value = value

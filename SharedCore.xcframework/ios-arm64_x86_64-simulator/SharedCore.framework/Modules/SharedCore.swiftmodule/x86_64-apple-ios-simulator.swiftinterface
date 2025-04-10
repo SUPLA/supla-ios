@@ -7,6 +7,52 @@ import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+@frozen public enum SuplaChannelAvailabilityStatus : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case online
+  case offline
+  case onlineButNotAvailable
+  case offlineRemoteWakeupNotSupported
+  case firmwareUpdateOngoing
+  public var name: Swift.String {
+    get
+  }
+  public var offline: Swift.Bool {
+    get
+  }
+  public var online: Swift.Bool {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var rawValue: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaChannelAvailabilityStatus.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelAvailabilityStatus, result: inout SharedCore.SuplaChannelAvailabilityStatus?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelAvailabilityStatus, result: inout SharedCore.SuplaChannelAvailabilityStatus?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelAvailabilityStatus?) -> SharedCore.SuplaChannelAvailabilityStatus
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaChannelAvailabilityStatus
+  public typealias _ObjectiveCType = SharedCore.__SuplaChannelAvailabilityStatus
+  public typealias Companion = SharedCore.__SuplaChannelAvailabilityStatus.Companion
+  public static func == (a: SharedCore.SuplaChannelAvailabilityStatus, b: SharedCore.SuplaChannelAvailabilityStatus) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaChannelAvailabilityStatus]
+  nonisolated public static var allCases: [SharedCore.SuplaChannelAvailabilityStatus] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaChannelAvailabilityStatus {
+  public func toKotlinEnum() -> SharedCore.__SuplaChannelAvailabilityStatus
+}
+extension SharedCore.__SuplaChannelAvailabilityStatus {
+  public func toSwiftEnum() -> SharedCore.SuplaChannelAvailabilityStatus
+}
 @frozen public enum SuplaHvacMode : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case unknown
   case notSet
@@ -156,6 +202,9 @@ extension SharedCore.__ThermostatSubfunction {
   case channelCaptionWaterTank
   case channelCaptionContainerLevelSensor
   case channelCaptionFloodSensor
+  case channelStatusAwaiting
+  case channelStatusUpdating
+  case channelStatusNotAvailable
   case channelBatteryLevel
   case motorProblem
   case calibrationLost
@@ -163,6 +212,7 @@ extension SharedCore.__ThermostatSubfunction {
   case thermostatThermometerError
   case thermostatBatterCoverOpen
   case thermostatClockError
+  case thermostatCalibrationError
   case floodSensorActive
   case valveManuallyClosed
   case valveFlooding
@@ -445,6 +495,7 @@ extension SharedCore.__SuplaShadingSystemFlag {
   case heatOrCool
   case weeklyScheduleTemporalOverride
   case batteryCoverOpen
+  case calibrationError
   public var name: Swift.String {
     get
   }
@@ -622,6 +673,7 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
     case batteryNotUsed(SharedCore.IssueIcon.BatteryNotUsed)
     case error(SharedCore.IssueIcon.Error)
     case sound(SharedCore.IssueIcon.Sound)
+    case update(SharedCore.IssueIcon.Update)
     case warning(SharedCore.IssueIcon.Warning)
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed, b: SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed) -> Swift.Bool
@@ -665,6 +717,8 @@ public func localizedString(id: SharedCore.LocalizedStringId, arg1: Swift.Int32,
 extension Swift.Int32 {
   public func suplaFunction() -> SharedCore.SuplaFunction
 }
+extension SharedCore.SuplaChannelAvailabilityStatus : Swift.Sendable {}
+extension SharedCore.SuplaChannelAvailabilityStatus : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaHvacMode : Swift.Sendable {}
 extension SharedCore.SuplaHvacMode : Swift.BitwiseCopyable {}
 extension SharedCore.ThermostatSubfunction : Swift.Sendable {}

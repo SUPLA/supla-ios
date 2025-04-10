@@ -50,9 +50,7 @@ final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDia
         showPositiveButton = positiveText != nil
         showNegativeButton = negativeText != nil
         
-        super.init()
-        
-        viewModel = SAAlertDialogVM()
+        super.init(viewModel: SAAlertDialogVM())
         
         titleLabel.text = title
         messageLabel.text = message
