@@ -370,6 +370,8 @@
 "switch_detail_state_label_for_timer" = "Stanje do ure %@:";
 "switch_detail_state_on" = "vklopljeno";
 "switch_detail_state_off" = "izklopljeno";
+"overcurrent_warning" = "Napeljava je bila onemogočena po prekoračitvi nastavljenega praga dovoljenega električnega toka.";
+"overcurrent_question" = "Napajanje je bilo izključeno po prekoračitvi nastavljenega praga dovoljenega električnega toka. Ste prepričani, da želite vključiti napajanje?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas mora biti večji od 0";
@@ -557,6 +559,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";
+"valve_warning_manually_closed_short" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil.";
 
 /* State */
 "state_channel_id" = "Identifikator kanala";

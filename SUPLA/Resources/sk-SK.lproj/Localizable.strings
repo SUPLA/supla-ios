@@ -368,6 +368,8 @@
 "switch_detail_state_label_for_timer" = "Stav do %@ hod.:";
 "switch_detail_state_on" = "zapnutý";
 "switch_detail_state_off" = "vypnutý";
+"overcurrent_warning" = "Napájanie bolo vypnuté po prekročení nastavenej prahovej hodnoty povoleného prúdu.";
+"overcurrent_question" = "Napájanie bolo vypnuté po prekročení nastavenej prahovej hodnoty povoleného prúdu. Naozaj chcete zapnúť napájanie?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas musí byť väčší ako 0";
@@ -555,6 +557,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne. Naozaj chcete otvoriť ventil pomocou aplikácie?!";
+"valve_warning_manually_closed_short" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne.";
 
 /* State */
 "state_channel_id" = "ID kanála";

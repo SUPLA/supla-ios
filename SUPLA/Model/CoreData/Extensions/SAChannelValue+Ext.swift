@@ -45,7 +45,11 @@ extension SAChannelValue {
     }
     
     func asValveValue() -> ValveValue {
-        ValveValue.companion.from(status: status, bytes: KotlinByteArray.from(data: unsafeDataValue()))
+        ValveValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
+    }
+    
+    func asRelayValue() -> RelayValue {
+        RelayValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
     }
     
     @objc func isThermostatSubfunctionHeat() -> Bool {

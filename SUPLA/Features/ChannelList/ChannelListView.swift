@@ -22,6 +22,10 @@ struct ChannelListView: View {
     
     @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
     @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
+    @ObservedObject var channelListViewState: ChannelListViewState
+    
+    let onAlertConfirmed: (Int32?, Action?) -> Void
+    let onAlertDismissed: () -> Void
     
     var body: some View {
         if (stateDialogViewModel.present) {
@@ -29,6 +33,17 @@ struct ChannelListView: View {
         }
         if (captionChangeDialogViewModel.present) {
             CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+        }
+        if let alertDialogState = channelListViewState.alertDialogState {
+            SuplaCore.AlertDialog(
+                header: Strings.General.warning,
+                message: alertDialogState.message,
+                onDismiss: {},
+                positiveButtonText: alertDialogState.positiveButtonText,
+                negativeButtonText: alertDialogState.negativeButtonText,
+                onPositiveButtonClick: { onAlertConfirmed(alertDialogState.remoteId, alertDialogState.action) },
+                onNegativeButtonClick: onAlertDismissed
+            )
         }
     }
 }

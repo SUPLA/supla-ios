@@ -22,18 +22,15 @@ import XCTest
 
 @testable import SUPLA
 
-final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGeneralViewEvent> {
-    private lazy var viewModel: SwitchGeneralVM! = SwitchGeneralVM()
+final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.ViewState> {
+    private lazy var viewModel: SwitchGeneralFeature.ViewModel! = SwitchGeneralFeature.ViewModel()
     
     private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
-
     private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = GetChannelBaseStateUseCaseMock()
-
     private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
-
     private lazy var dateProvider: DateProviderMock! = DateProviderMock()
-    
     private lazy var suplaClientProvider: SuplaClientProviderMock! = SuplaClientProviderMock()
+    private lazy var getChannelBaseIconUseCase: GetChannelBaseIconUseCaseMock! = GetChannelBaseIconUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
@@ -41,6 +38,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
         DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCase!)
     }
     
     override func tearDown() {
@@ -51,6 +49,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         executeSimpleActionUseCase = nil
         dateProvider = nil
         suplaClientProvider = nil
+        getChannelBaseIconUseCase = nil
         
         super.tearDown()
     }
@@ -58,7 +57,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
     func test_loadChannel() {
         // given
         var suplaValue = TSuplaChannelValue_B()
-        suplaValue.value = (1, 1, 1, 1, 1, 1, 1, 1)
+        suplaValue.value = (1, 0, 1, 1, 1, 1, 1, 1)
         
         var suplaTimer = TTimerState_ExtendedValue()
         suplaTimer.CountdownEndsAt = 122
@@ -72,44 +71,42 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
             }
         }
         
-        let function: Int32 = 123
-        let altIcon: Int32 = 2
         let startTime = Date()
-        let userIcon = SAUserIcon(testContext: nil)
         let value = SAChannelValue(testContext: nil)
         value.setValueWith(&suplaValue)
         value.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         let extendedValue = SAChannelExtendedValue(testContext: nil)
         extendedValue.timerStartTime = startTime
         extendedValue.setValueWith(&suplaExtendedValue)
+        let iconResult = IconResult.suplaIcon(name: .Icons.fncGpm1)
         
         let channel = SAChannel(testContext: nil)
-        channel.func = function
-        channel.alticon = altIcon
+        channel.func = SUPLA_CHANNELFNC_POWERSWITCH
         channel.value = value
-        channel.usericon = userIcon
         channel.ev = extendedValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         getChannelBaseStateUseCase.returns = ChannelState.opened
         dateProvider.currentTimestampReturns = .single(0)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
+        getChannelBaseIconUseCase.returns = iconResult
         
         // when
-        observe(viewModel)
         viewModel.loadChannel(remoteId: 123)
         
         // then
-        XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOnline, true)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOn, true)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.timerStartDate, startTime)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.timerEndDate?.timeIntervalSince1970, 122)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.altIcon, altIcon)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.function, function)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.userIcon, userIcon)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
+        XCTAssertEqual(viewModel.state.issues, [])
+        XCTAssertEqual(viewModel.state.online, true)
+        XCTAssertEqual(viewModel.state.on, true)
+        XCTAssertEqual(viewModel.state.showButtons, true)
+        XCTAssertEqual(viewModel.state.stateLabel, "State until 12:02:02 AM:")
+        XCTAssertEqual(viewModel.state.stateValue, "on")
+        XCTAssertEqual(viewModel.state.stateIcon, iconResult)
+        XCTAssertEqual(viewModel.state.iconTurnOn, iconResult)
+        XCTAssertEqual(viewModel.state.iconTurnOff, iconResult)
+        XCTAssertEqual(viewModel.state.showElectricityState, false)
+        XCTAssertEqual(viewModel.state.showImpulseCounterState, false)
+        XCTAssertNil(viewModel.state.alertDialogState)
         
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
@@ -129,18 +126,13 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
             }
         }
         
-        let function: Int32 = 123
-        let altIcon: Int32 = 2
         let startTime = Date()
-        let userIcon = SAUserIcon(testContext: nil)
         let extendedValue = SAChannelExtendedValue(testContext: nil)
         extendedValue.timerStartTime = startTime
         extendedValue.setValueWith(&suplaExtendedValue)
         
         let channel = SAChannel(testContext: nil)
-        channel.func = function
-        channel.alticon = altIcon
-        channel.usericon = userIcon
+        channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
         channel.ev = extendedValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
@@ -149,20 +141,21 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
-        observe(viewModel)
         viewModel.loadChannel(remoteId: 123)
         
         // then
-        XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOnline, false)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.isOn, false)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.timerStartDate, startTime)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.timerEndDate, nil)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.altIcon, altIcon)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.function, function)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.userIcon, userIcon)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
+        XCTAssertEqual(viewModel.state.issues, [])
+        XCTAssertEqual(viewModel.state.online, false)
+        XCTAssertEqual(viewModel.state.on, false)
+        XCTAssertEqual(viewModel.state.showButtons, true)
+        XCTAssertEqual(viewModel.state.stateLabel, Strings.SwitchDetail.stateLabel)
+        XCTAssertEqual(viewModel.state.stateValue, "offline")
+        XCTAssertEqual(viewModel.state.stateIcon, .suplaIcon(name: ""))
+        XCTAssertEqual(viewModel.state.iconTurnOn, .suplaIcon(name: ""))
+        XCTAssertEqual(viewModel.state.iconTurnOff, .suplaIcon(name: ""))
+        XCTAssertEqual(viewModel.state.showElectricityState, false)
+        XCTAssertEqual(viewModel.state.showImpulseCounterState, false)
+        XCTAssertNil(viewModel.state.alertDialogState)
         
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
@@ -176,10 +169,6 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         viewModel.turnOn(remoteId: remoteId)
         
         // then
-        observe(viewModel)
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
             (Action.turnOn, SUPLA.SubjectType.channel, remoteId)
         ])
@@ -190,13 +179,9 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         let remoteId: Int32 = 123
         
         // when
-        observe(viewModel)
         viewModel.turnOff(remoteId: remoteId)
         
         // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
             (Action.turnOff, SUPLA.SubjectType.channel, remoteId)
         ])

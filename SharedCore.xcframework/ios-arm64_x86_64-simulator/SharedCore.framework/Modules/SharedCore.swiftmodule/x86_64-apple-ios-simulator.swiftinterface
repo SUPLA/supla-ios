@@ -209,6 +209,7 @@ extension SharedCore.__ThermostatSubfunction {
   case motorProblem
   case calibrationLost
   case calibrationFailed
+  case overcurrentWarning
   case thermostatThermometerError
   case thermostatBatterCoverOpen
   case thermostatClockError
@@ -315,6 +316,9 @@ extension SharedCore.__LocalizedStringId {
   case waterTank
   case containerLevelSensor
   case floodSensor
+  public var hasThermostatSubfunction: Swift.Bool {
+    get
+  }
   public var name: Swift.String {
     get
   }
@@ -480,6 +484,42 @@ extension SharedCore.SuplaShadingSystemFlag {
 }
 extension SharedCore.__SuplaShadingSystemFlag {
   public func toSwiftEnum() -> SharedCore.SuplaShadingSystemFlag
+}
+@frozen public enum SuplaRelayFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case overcurrentRelayOff
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaRelayFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayFlag, result: inout SharedCore.SuplaRelayFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayFlag, result: inout SharedCore.SuplaRelayFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayFlag?) -> SharedCore.SuplaRelayFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaRelayFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaRelayFlag
+  public typealias Companion = SharedCore.__SuplaRelayFlag.Companion
+  public static func == (a: SharedCore.SuplaRelayFlag, b: SharedCore.SuplaRelayFlag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [SharedCore.SuplaRelayFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaRelayFlag] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaRelayFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaRelayFlag
+}
+extension SharedCore.__SuplaRelayFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaRelayFlag
 }
 @frozen public enum SuplaThermostatFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case setpointTempMinSet
@@ -733,6 +773,8 @@ extension SharedCore.ContainerFlag : Swift.Sendable {}
 extension SharedCore.ContainerFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.Sendable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaRelayFlag : Swift.Sendable {}
+extension SharedCore.SuplaRelayFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaThermostatFlag : Swift.Sendable {}
 extension SharedCore.SuplaThermostatFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaValveFlag : Swift.Sendable {}

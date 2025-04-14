@@ -131,14 +131,13 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
         tabBar.isHidden = pages.count == 1
     }
     
-    private func switchGeneral() -> SwitchGeneralVC {
-        let vc = SwitchGeneralVC(remoteId: item.remoteId)
+    private func switchGeneral() -> UIViewController {
+        let vc = SwitchGeneralFeature.ViewController.create(channelId: item.remoteId)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Switch.rawValue
         )
-        vc.navigationBarMaintainedByParent = true
         return vc
     }
     

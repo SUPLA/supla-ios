@@ -387,6 +387,8 @@
 "switch_detail_state_label_for_timer" = "Stato fino alle ore %@:";
 "switch_detail_state_on" = "abilitato";
 "switch_detail_state_off" = "disabilitato";
+"overcurrent_warning" = "L'alimentazione è stata spenta a causa del superamento della soglia di corrente impostata";
+"overcurrent_question" = "L'alimentazione è stata spenta a causa del superamento della soglia di corrente impostata. Sei sicuro di voler riattivare l'alimentazione?";
 
 /* Timer Detail */
 "timer_detail_header" = "Specifica il tempo in cui il dispositivo deve essere:";
@@ -591,6 +593,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente. Sei sicuro di voler aprire la valvola dall'applicazione?";
+"valve_warning_manually_closed_short" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente.";
 
 /* State */
 "state_channel_id" = "Id canale";

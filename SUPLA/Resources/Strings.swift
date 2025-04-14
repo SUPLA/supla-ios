@@ -186,6 +186,8 @@ struct Strings {
         static let stateOn = "switch_detail_state_on".toLocalized()
         static let stateOff = "switch_detail_state_off".toLocalized()
         static let stateOffline = "switch_detail_state_offline".toLocalized()
+        static let overcurrentWarning = "overcurrent_warning".toLocalized()
+        static let overcurrentQuestion = "overcurrent_question".toLocalized()
     }
     
     struct TimerDetail {

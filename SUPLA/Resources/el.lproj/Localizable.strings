@@ -370,6 +370,8 @@
 "switch_detail_state_label_for_timer" = "Κατάσταση μέχρι της %@:";
 "switch_detail_state_on" = "ενεργ.";
 "switch_detail_state_off" = "απενεργ.";
+"overcurrent_warning" = "La alimentación se desactivo al superar el umbral establecido de corriente permitida.";
+"overcurrent_question" = "La alimentación se desactivo al superar el umbral establecido de corriente permitida. ¿Estás seguro de que deseas encenderlo?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Ο χρόνος πρέπει να είναι μεγαλύτερος από 0";
@@ -557,6 +559,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα. Είστε σίγουροι ότι θέλετε να ανοίξετε τη βαλβίδα μέσω της εφαρμογής;!";
+"valve_warning_manually_closed_short" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα.";
 
 /* State */
 "state_channel_id" = "Αναγνωριστικό καναλιού";

@@ -29,6 +29,7 @@ enum ChannelBaseActionResult {
     case valveFlooding
     case valveMotorProblemOpening
     case valveMotorProblemClosing
+    case overcurrentRelayOff
 }
 
 final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
@@ -58,6 +59,14 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
                     return Observable.just(.valveMotorProblemClosing)
                 }
             }
+        }
+        
+        if (channelBase.isSwitch()),
+           let channel = channelBase as? SAChannel,
+           let value = channel.value?.asRelayValue(),
+           value.flags.contains(.overcurrentRelayOff)
+        {
+            return Observable.just(.overcurrentRelayOff)
         }
         
         if let action = getAction(channelBase, buttonType) {

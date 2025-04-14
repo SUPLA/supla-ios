@@ -42,7 +42,7 @@
     return result && result.length == SUPLA_CHANNELVALUE_SIZE ? result : nil;
 }
 
-- (NSData *) unsafeDataValue {
+- (NSData *) rawDataValue {
     return [super dataValue];
 }
 

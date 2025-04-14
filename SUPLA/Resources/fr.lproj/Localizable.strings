@@ -370,6 +370,8 @@
 "switch_detail_state_label_for_timer" = "Etat à %@ heure :";
 "switch_detail_state_on" = "activé";
 "switch_detail_state_off" = "désactivé";
+"overcurrent_warning" = "L'alimentation a été coupée après avoir dépassé le seuil de limite de courant fixé.";
+"overcurrent_question" = "L'alimentation a été coupée lorsque la limite de courant fixée a été dépassée. Êtes-vous sûr de vouloir mettre l'appareil sous tension?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Le temps doit être supérieur à 0";
@@ -556,7 +558,8 @@
 "details_em_current_month_consumption" = "Consommation dans le mois courant";
 
 /* Valve */
-"valve_warning_manually_closed" = "La vanne a été fermée en mode manuel. Avant de l\'ouvrir, assurez-vous qu\'elle n\'a pas été fermée en raison d\'une inondation. Pour désactiver l\'avertissement, ouvrez la vanne manuellement. Êtes-vous sûr de vouloir ouvrir la vanne à partir de l\'application?";
+"valve_warning_manually_closed" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement. Êtes-vous sûr de vouloir ouvrir la vanne à partir de l'application?";
+"valve_warning_manually_closed_short" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement.";
 
 /* State */
 "state_channel_id" = "Id du canal";

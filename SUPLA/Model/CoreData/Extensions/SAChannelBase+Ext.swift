@@ -30,6 +30,18 @@ extension SAChannelBase {
             subfunction: subfunction
         )
     }
+    
+    func getIconData(state: ChannelState, type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
+        @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
+        return IconData(
+            function: self.func,
+            altIcon: self.alticon,
+            state: state,
+            type: type,
+            userIcon: self.usericon,
+            subfunction: subfunction
+        )
+    }
 
     func isElectricityMeter() -> Bool {
         self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER

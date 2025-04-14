@@ -375,6 +375,8 @@
 "switch_detail_state_label_for_timer" = "Estado até às %@:";
 "switch_detail_state_on" = "ligado";
 "switch_detail_state_off" = "desligado";
+"overcurrent_warning" = "A potência foi desligada quando o limiar definido de corrente admissível foi ultrapassado.";
+"overcurrent_question" = "A potência foi desligada quando o limiar definido de corrente admissível foi ultrapassado. Tem certeza que quer ligar a energia?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "O tempo deve ser superior a 0";
@@ -559,6 +561,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula. Tem a certeza que quer abrir a válvula a partir da aplicação!";
+"valve_warning_manually_closed_short" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula.";
 
 /* State */
 "state_channel_id" = "ID do Canal";

@@ -19,6 +19,13 @@
 import SwiftUI
     
 extension SuplaCore {
+    struct AlertDialogState {
+        var header: String
+        var message: String
+        var positiveButtonText: String?
+        var negativeButtonText: String?
+    }
+    
     struct AlertDialog: View {
         var header: String
         var message: String
@@ -27,6 +34,39 @@ extension SuplaCore {
         var negativeButtonText: String?
         var onPositiveButtonClick: (() -> Void)?
         var onNegativeButtonClick: (() -> Void)?
+        
+        init(
+            header: String,
+            message: String,
+            onDismiss: @escaping () -> Void,
+            positiveButtonText: String? = nil,
+            negativeButtonText: String? = nil,
+            onPositiveButtonClick: (() -> Void)? = nil,
+            onNegativeButtonClick: (() -> Void)? = nil
+        ) {
+            self.header = header
+            self.message = message
+            self.onDismiss = onDismiss
+            self.positiveButtonText = positiveButtonText
+            self.negativeButtonText = negativeButtonText
+            self.onPositiveButtonClick = onPositiveButtonClick
+            self.onNegativeButtonClick = onNegativeButtonClick
+        }
+        
+        init (
+            state: AlertDialogState,
+            onDismiss: @escaping () -> Void,
+            onPositiveButtonClick: (() -> Void)? = nil,
+            onNegativeButtonClick: (() -> Void)? = nil
+        ) {
+            self.header = state.header
+            self.message = state.message
+            self.positiveButtonText = state.positiveButtonText
+            self.negativeButtonText = state.negativeButtonText
+            self.onDismiss = onDismiss
+            self.onPositiveButtonClick = onPositiveButtonClick
+            self.onNegativeButtonClick = onNegativeButtonClick
+        }
         
         var body: some View {
             SuplaCore.Dialog.Base(onDismiss: onDismiss) {
