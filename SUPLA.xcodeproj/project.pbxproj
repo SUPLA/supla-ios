@@ -356,7 +356,6 @@
 		A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */; };
 		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
 		A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */; };
-		A519CCBD2D38FBEF00F858A4 /* SwitchImpulseCounterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */; };
 		A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* 7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */; };
@@ -423,8 +422,6 @@
 		A530EDEB2A53F60400F8DAEE /* SwitchDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */; };
 		A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */; };
 		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
-		A530EDF32A54018A00F8DAEE /* SwitchGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF22A54018A00F8DAEE /* SwitchGeneralVM.swift */; };
-		A530EDF52A5401BE00F8DAEE /* SwitchGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF42A5401BE00F8DAEE /* SwitchGeneralVC.swift */; };
 		A530EDF72A5404A200F8DAEE /* UIFont+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF62A5404A200F8DAEE /* UIFont+Supla.swift */; };
 		A530EDFA2A54063F00F8DAEE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */; };
 		A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */; };
@@ -655,6 +652,7 @@
 		A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */; };
 		A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */; };
 		A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */; };
+		A567C7572DAD1272006245B5 /* SuplaCoreViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */; };
 		A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */; };
 		A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */; };
 		A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */; };
@@ -668,6 +666,13 @@
 		A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */; };
 		A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */; };
 		A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */; };
+		A56F8D072DA84DA300F097CE /* SwitchGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D062DA84D9D00F097CE /* SwitchGeneralView.swift */; };
+		A56F8D092DA84DF000F097CE /* SwitchGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D082DA84DEB00F097CE /* SwitchGeneralViewState.swift */; };
+		A56F8D0B2DA8EBC200F097CE /* SwitchGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D0A2DA8EBBA00F097CE /* SwitchGeneralFeature.swift */; };
+		A56F8D0D2DA8EC1F00F097CE /* SwitchGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D0C2DA8EC1A00F097CE /* SwitchGeneralVM.swift */; };
+		A56F8D0F2DA8ED8600F097CE /* SwitchGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D0E2DA8ED8200F097CE /* SwitchGeneralVC.swift */; };
+		A56F8D112DA9261A00F097CE /* SwitchButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D102DA9261600F097CE /* SwitchButtons.swift */; };
+		A56F8D132DA9357200F097CE /* ChannelListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D122DA9356600F097CE /* ChannelListViewState.swift */; };
 		A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0952A5FD152001E19D0 /* FatalError.swift */; };
 		A573B0992A5FD869001E19D0 /* SwitchDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0982A5FD869001E19D0 /* SwitchDetailVMTests.swift */; };
 		A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09D2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift */; };
@@ -817,7 +822,6 @@
 		A598CAB52CBEFD0E00A784FA /* LoadElectricityMeterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */; };
 		A598CAB92CC0EDFD00A784FA /* ElectricityMeterGeneralBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAB82CC0EDF300A784FA /* ElectricityMeterGeneralBaseView.swift */; };
 		A598CABB2CC0EE5200A784FA /* View+SuplaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */; };
-		A598CABD2CC0F45300A784FA /* SwitchElectricityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */; };
 		A598CABF2CC1340C00A784FA /* SwitchWithElectricityMeterValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CABE2CC1340B00A784FA /* SwitchWithElectricityMeterValueProvider.swift */; };
 		A598CAC12CC13AFB00A784FA /* SwitchWithElectricityMeterValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAC02CC13AF200A784FA /* SwitchWithElectricityMeterValueStringProvider.swift */; };
 		A598CAC32CC246DF00A784FA /* ImpulseCounterValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAC22CC246DE00A784FA /* ImpulseCounterValueProvider.swift */; };
@@ -1940,7 +1944,6 @@
 		A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedMeasurements.swift; sourceTree = "<group>"; };
 		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVC.swift; sourceTree = "<group>"; };
-		A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchImpulseCounterDetailsView.swift; sourceTree = "<group>"; };
 		A519CCC02D393EE300F858A4 /* 7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
@@ -2008,8 +2011,6 @@
 		A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVM.swift; sourceTree = "<group>"; };
 		A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVC.swift; sourceTree = "<group>"; };
 		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
-		A530EDF22A54018A00F8DAEE /* SwitchGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralVM.swift; sourceTree = "<group>"; };
-		A530EDF42A5401BE00F8DAEE /* SwitchGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralVC.swift; sourceTree = "<group>"; };
 		A530EDF62A5404A200F8DAEE /* UIFont+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Supla.swift"; sourceTree = "<group>"; };
 		A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
 		A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
@@ -2242,6 +2243,7 @@
 		A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Ext.swift"; sourceTree = "<group>"; };
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
+		A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreViewModelTest.swift; sourceTree = "<group>"; };
 		A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUpdatesObserver.swift; sourceTree = "<group>"; };
 		A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogFeature.swift; sourceTree = "<group>"; };
 		A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogView.swift; sourceTree = "<group>"; };
@@ -2257,6 +2259,13 @@
 		A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEntitiesMigrationPolicy.swift; sourceTree = "<group>"; };
 		A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration12to13ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAccount12to13MigrationPolicy.swift; sourceTree = "<group>"; };
+		A56F8D062DA84D9D00F097CE /* SwitchGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralView.swift; sourceTree = "<group>"; };
+		A56F8D082DA84DEB00F097CE /* SwitchGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralViewState.swift; sourceTree = "<group>"; };
+		A56F8D0A2DA8EBBA00F097CE /* SwitchGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralFeature.swift; sourceTree = "<group>"; };
+		A56F8D0C2DA8EC1A00F097CE /* SwitchGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralVM.swift; sourceTree = "<group>"; };
+		A56F8D0E2DA8ED8200F097CE /* SwitchGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralVC.swift; sourceTree = "<group>"; };
+		A56F8D102DA9261600F097CE /* SwitchButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchButtons.swift; sourceTree = "<group>"; };
+		A56F8D122DA9356600F097CE /* ChannelListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListViewState.swift; sourceTree = "<group>"; };
 		A573B0942A5E9191001E19D0 /* SUPLA 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 14.xcdatamodel"; sourceTree = "<group>"; };
 		A573B0952A5FD152001E19D0 /* FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		A573B0982A5FD869001E19D0 /* SwitchDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVMTests.swift; sourceTree = "<group>"; };
@@ -2410,7 +2419,6 @@
 		A598CAB42CBEFD0200A784FA /* LoadElectricityMeterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadElectricityMeterMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A598CAB82CC0EDF300A784FA /* ElectricityMeterGeneralBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralBaseView.swift; sourceTree = "<group>"; };
 		A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SuplaCard.swift"; sourceTree = "<group>"; };
-		A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchElectricityDetailsView.swift; sourceTree = "<group>"; };
 		A598CABE2CC1340B00A784FA /* SwitchWithElectricityMeterValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchWithElectricityMeterValueProvider.swift; sourceTree = "<group>"; };
 		A598CAC02CC13AF200A784FA /* SwitchWithElectricityMeterValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchWithElectricityMeterValueStringProvider.swift; sourceTree = "<group>"; };
 		A598CAC22CC246DE00A784FA /* ImpulseCounterValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterValueProvider.swift; sourceTree = "<group>"; };
@@ -4095,10 +4103,11 @@
 		A530EDF12A54001F00F8DAEE /* SwitchGeneral */ = {
 			isa = PBXGroup;
 			children = (
-				A519CCBC2D38FBE200F858A4 /* SwitchImpulseCounterDetailsView.swift */,
-				A598CABC2CC0F44900A784FA /* SwitchElectricityDetailsView.swift */,
-				A530EDF22A54018A00F8DAEE /* SwitchGeneralVM.swift */,
-				A530EDF42A5401BE00F8DAEE /* SwitchGeneralVC.swift */,
+				A56F8D0E2DA8ED8200F097CE /* SwitchGeneralVC.swift */,
+				A56F8D0C2DA8EC1A00F097CE /* SwitchGeneralVM.swift */,
+				A56F8D0A2DA8EBBA00F097CE /* SwitchGeneralFeature.swift */,
+				A56F8D082DA84DEB00F097CE /* SwitchGeneralViewState.swift */,
+				A56F8D062DA84D9D00F097CE /* SwitchGeneralView.swift */,
 			);
 			path = SwitchGeneral;
 			sourceTree = "<group>";
@@ -5353,6 +5362,7 @@
 		A59AB8A92A306FB600D91F1F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */,
 				A59AB8AA2A306FC700D91F1F /* ViewModelTest.swift */,
 				A59AB8E02A309C1500D91F1F /* UseCaseTest.swift */,
 				A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */,
@@ -5621,6 +5631,7 @@
 		A5A1601B2C2BEE7F0049AA73 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				A56F8D102DA9261600F097CE /* SwitchButtons.swift */,
 				A5C5F6E12D91760400E303B8 /* IconButton.swift */,
 				A5A160192C2BEC6B0049AA73 /* FilledButton.swift */,
 				A5A15FF32C2994BF0049AA73 /* BorderedButton.swift */,
@@ -6433,6 +6444,7 @@
 		A5F29B5E2A1E18BC00ED700A /* ChannelList */ = {
 			isa = PBXGroup;
 			children = (
+				A56F8D122DA9356600F097CE /* ChannelListViewState.swift */,
 				A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */,
 				A58A9BFF2AA0ACFC00D28848 /* Cells */,
 				A5F29B5F2A1E18E600ED700A /* ChannelListVC.swift */,
@@ -7155,7 +7167,6 @@
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */,
-				A598CABD2CC0F45300A784FA /* SwitchElectricityDetailsView.swift in Sources */,
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
 				A5E0DF702CEB79C300362451 /* CacheFileAccessProxy.swift in Sources */,
 				A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */,
@@ -7164,6 +7175,7 @@
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				A522DB3A2D0B09E600163BA2 /* GetChannelBatteryIconUseCase.swift in Sources */,
 				A530EE472A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift in Sources */,
+				A56F8D0B2DA8EBC200F097CE /* SwitchGeneralFeature.swift in Sources */,
 				A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */,
 				A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */,
 				A5AD701B2C00B1D700A36318 /* ControlButtonType.swift in Sources */,
@@ -7178,6 +7190,7 @@
 				A5DF8A212D632C4C00C210DA /* FormatterUnit.swift in Sources */,
 				A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */,
 				A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */,
+				A56F8D132DA9357200F097CE /* ChannelListViewState.swift in Sources */,
 				A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
@@ -7226,6 +7239,7 @@
 				A50716D32D6892400060FA0D /* StateDialogView.swift in Sources */,
 				A5C5F6ED2D93EBB000E303B8 /* SuplaCoreDialog.swift in Sources */,
 				A5EC524E2C10799B0022F055 /* BaseWindowViewDimens.swift in Sources */,
+				A56F8D072DA84DA300F097CE /* SwitchGeneralView.swift in Sources */,
 				A5EDE21C2CA5693500BEDAE4 /* ElectricityMeterGeneralFeature.swift in Sources */,
 				A585421F2D80664300D314A2 /* LogWrapper.swift in Sources */,
 				A5AD70232C00C71200A36318 /* WindowHorizontalControls.swift in Sources */,
@@ -7497,7 +7511,6 @@
 				A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */,
 				A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
-				A530EDF32A54018A00F8DAEE /* SwitchGeneralVM.swift in Sources */,
 				A598CAC72CC24EC400A784FA /* ImpulseCounterValueStringProvider.swift in Sources */,
 				A58542292D80D02B00D314A2 /* SuplaChannelContainerConfig.swift in Sources */,
 				A50B5D4C2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift in Sources */,
@@ -7534,6 +7547,7 @@
 				A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */,
 				A5E0DF7E2CEC8E7A00362451 /* StoreChannelOcrPhotoUseCase.swift in Sources */,
 				A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */,
+				A56F8D0F2DA8ED8600F097CE /* SwitchGeneralVC.swift in Sources */,
 				A539C2802D686AD300D9DD47 /* ListItemIssueIcon.swift in Sources */,
 				A505EC332CF70D8D00E69BDB /* AuthorizationType.swift in Sources */,
 				A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */,
@@ -7626,6 +7640,7 @@
 				A5477DBD2AA52F5700220B4A /* ThermostatValue+iOS.swift in Sources */,
 				A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */,
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
+				A56F8D092DA84DF000F097CE /* SwitchGeneralViewState.swift in Sources */,
 				A522DB3E2D0B1EF700163BA2 /* SAElectricityMeterExtendedValue+Ext.swift in Sources */,
 				A598CACB2CC2572300A784FA /* SwitchWithImpulseCounterValueStringProvider.swift in Sources */,
 				A5552EDC2D537D5100A3F6A2 /* ElectricityChannelDto.swift in Sources */,
@@ -7723,6 +7738,7 @@
 				A5F29B6F2A1E305500ED700A /* Repository.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				A5AD70272C04656700A36318 /* LeftMiddleRightControlButton.swift in Sources */,
+				A56F8D0D2DA8EC1F00F097CE /* SwitchGeneralVM.swift in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
@@ -7815,6 +7831,7 @@
 				01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */,
 				A5F5C3F62C36827B0058E255 /* PinSetupViewState.swift in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
+				A56F8D112DA9261A00F097CE /* SwitchButtons.swift in Sources */,
 				A5B3CC002B62770F00F95AC3 /* DistanceValueStringProvider.swift in Sources */,
 				A54637B92D37EC9000D746F5 /* EnergySummaryBox.swift in Sources */,
 				A503ABAB2B67A094008CDA1F /* CandleChartData.swift in Sources */,
@@ -7868,7 +7885,6 @@
 				A50B5D4E2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift in Sources */,
 				A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */,
 				A5A160132C2AD4470049AA73 /* Synchronization.swift in Sources */,
-				A530EDF52A5401BE00F8DAEE /* SwitchGeneralVC.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
 				A5812CBC2BBC305200FC5998 /* NightModeCell.swift in Sources */,
 				A5E05BBD2CB5274000202583 /* ElectricityConsumptionProvider.swift in Sources */,
@@ -8051,7 +8067,6 @@
 				A5DDF92A2D79A8070056B539 /* ContainerGeneralVM.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
-				A519CCBD2D38FBEF00F858A4 /* SwitchImpulseCounterDetailsView.swift in Sources */,
 				A56233DD2AB065AD001CB948 /* EditQuartersDialogVC.swift in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				A5552ED22D536ADC00A3F6A2 /* VoltageValueFormatter.swift in Sources */,
@@ -8156,6 +8171,7 @@
 				A5F5C3EF2C358AF90058E255 /* LockScreenSettingsTests.swift in Sources */,
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
 				A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */,
+				A567C7572DAD1272006245B5 /* SuplaCoreViewModelTest.swift in Sources */,
 				A5AD702C2C04773F00A36318 /* CurtainVMTests.swift in Sources */,
 				A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */,

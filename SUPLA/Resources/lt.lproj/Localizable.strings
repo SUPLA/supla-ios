@@ -372,6 +372,8 @@
 "switch_detail_state_label_for_timer" = "Būsena iki %@ val.:";
 "switch_detail_state_on" = "įjungtas";
 "switch_detail_state_off" = "išjungtas";
+"overcurrent_warning" = "Maitinimas buvo atjungtas viršijus nustatytą leistinos elektros srovės ribą.";
+"overcurrent_question" = "Maitinimas buvo atjungtas viršijus nustatytą leistinos elektros srovės ribą. Ar tikrai norite įjungti maitinimą?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Laikas turi būti didesnis nei 0";
@@ -559,6 +561,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu. Ar tikrai norite atidaryti vožtuvą programoje?!";
+"valve_warning_manually_closed_short" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu.";
 
 /* State */
 "state_channel_id" = "Kanalo ID";

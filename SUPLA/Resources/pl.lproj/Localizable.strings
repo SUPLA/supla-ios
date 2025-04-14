@@ -389,6 +389,8 @@
 "switch_detail_state_label_for_timer" = "Stan do godz. %@:";
 "switch_detail_state_on" = "włączony";
 "switch_detail_state_off" = "wyłączony";
+"overcurrent_warning" = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu.";
+"overcurrent_question" = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu. Czy na pewno chcesz włączyć zasilanie?";
 
 /* Timer Detail */
 "timer_detail_header" = "Określ czas, w którym urządzenie powinno być:";
@@ -620,7 +622,7 @@
 "valve_warning_manually_closed" = "Zawór został zamknięty w trybie manualnym lub radiowo. Zanim go otworzysz upewnij się, że nie został zamknięty z powodu zalania. Aby wyłączyć ostrzeżenie otwórz zawór manualnie. Czy na pewno chcesz otworzyć zawór z aplikacji?!";
 "valve_warning_flooding" = "Zawór został zamknięty z powodu wykrycia zalania. Przed otwarciem zaworu upewnij się, że przyczyna została usunięta. Otwarcie zaworu czyści alarm. Czy na pewno chcesz go otworzyć?";
 "flooding_alarm_message" = "Czujnik zgłasza zalanie!";
-"valve_warning_manually_closed_short" = "Zawór został zamknięty w trybie manualnym lub radiowo (możliwe zalanie).";
+"valve_warning_manually_closed_short" = "Zawór został zamknięty w trybie manualnym lub radiowo. Zanim go otworzysz upewnij się, że nie został zamknięty z powodu zalania. Aby wyłączyć ostrzeżenie otwórz zawór manualnie.";
 "valve_warning_flooding_short" = "Zawór został zamknięty z powodu wykrycia zalania.";
 "valve_warning_motor_problem" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty.";
 "valve_warning_motor_problem_opening" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty. Czy na pewno chcesz go otworzyć?";
