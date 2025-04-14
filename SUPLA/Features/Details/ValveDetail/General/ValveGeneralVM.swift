@@ -58,6 +58,8 @@ extension ValveGeneralFeature {
                             self?.state.alertDialog = .confirmation(message: Strings.Valve.warningMotorProblemClosing, action: .close)
                         case .success:
                             self?.vibrationService.vibrate()
+                        case .overcurrentRelayOff:
+                            break // should never happen
                         }
                     }
                 )

@@ -18,7 +18,6 @@
     
 extension ValveGeneralFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        @Singleton<SuplaAppCoordinator> var coordinator
         
         private var channelId: Int32
         private lazy var stateViewModel: StateDialogFeature.ViewModel = {

@@ -22,7 +22,7 @@ import XCTest
 
 @testable import SUPLA
 
-class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEvent> {
+class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> {
     private lazy var viewModel: ChannelListViewModel! = ChannelListViewModel()
     
     private lazy var createProfileChannelsListUseCase: CreateProfileChannelsListUseCaseMock! = CreateProfileChannelsListUseCaseMock()

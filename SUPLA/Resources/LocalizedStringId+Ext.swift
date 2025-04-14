@@ -93,6 +93,8 @@ extension LocalizedStringId {
         case .calibrationLost: Strings.RollerShutterDetail.calibrationLost
         case .calibrationFailed: Strings.RollerShutterDetail.calibrationFailed
             
+        case .overcurrentWarning: Strings.SwitchDetail.overcurrentWarning
+            
         case .thermostatThermometerError: Strings.ThermostatDetail.thermometerError
         case .thermostatBatterCoverOpen: Strings.ThermostatDetail.batteryCoverOpen
         case .thermostatClockError: Strings.ThermostatDetail.clockError
@@ -114,6 +116,7 @@ extension LocalizedStringId {
         case .channelStatusAwaiting: Strings.General.Channel.statusAwaiting
         case .channelStatusUpdating: Strings.General.Channel.statusUpdating
         case .channelStatusNotAvailable: Strings.General.Channel.statusNotAvailable
+        
         }
     }
 }

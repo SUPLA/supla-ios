@@ -369,6 +369,8 @@
 "switch_detail_state_label_for_timer" = "Stav do hod. %@:";
 "switch_detail_state_on" = "zapnutý";
 "switch_detail_state_off" = "vypnutý";
+"overcurrent_warning" = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení.";
+"overcurrent_question" = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení. Jste si jisti, že chcete zapnout napájení?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas musí být větší než 0";
@@ -557,6 +559,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";
+"valve_warning_manually_closed_short" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.";
 
 /* State */
 "state_channel_id" = "Id kanálu";

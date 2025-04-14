@@ -370,6 +370,8 @@
 "switch_detail_state_label_for_timer" = "Status per uur %@";
 "switch_detail_state_on" = "op";
 "switch_detail_state_off" = "uitgeschakeld";
+"overcurrent_warning" = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden.";
+"overcurrent_question" = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden. Weet je zeker dat je de stroom aan wilt zetten?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Tijd moet groter zijn dan 0";
@@ -557,6 +559,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig. Weet je zeker dat je de klep wilt openen vanuit de toepassing!";
+"valve_warning_manually_closed_short" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig.";
 
 /* State */
 "state_channel_id" = "Kanaal id";

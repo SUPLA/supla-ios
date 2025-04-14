@@ -355,6 +355,8 @@
 "switch_detail_state_label_for_timer" = "Zustand bis zum %@ Uhr:";
 "switch_detail_state_on" = "eingeschaltet";
 "switch_detail_state_off" = "ausgeschaltet";
+"overcurrent_warning" = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet.";
+"overcurrent_question" = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet. Möchten Sie wirklich die Versorgung einschalten?";
 
 /* Timer Detail */
 "timer_detail_header" = "Bestimmen Sie bitte die Zeit, zu der das Gerät ein- oder ausgeschaltet werden sollte";
