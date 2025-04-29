@@ -26,6 +26,10 @@ final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
         parameters.append(channelBase)
         return returns
     }
+    
+    func getOfflineState(_ function: Int32) -> SUPLA.ChannelState {
+        .notUsed
+    }
 }
 
 final class GetChannelBaseIconUseCaseMock: GetChannelBaseIconUseCase {

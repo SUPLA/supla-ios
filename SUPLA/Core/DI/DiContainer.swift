@@ -36,19 +36,23 @@ final class DiContainer: NSObject, DiContainerProtocol {
         if (!(component is Component)) {
             fatalError("Registered component (type: `\(type)` does not implement defined protocol")
         }
-        components["\(type)"] = component
+        let typeName = String(reflecting: type)
+        components[typeName] = component
     }
     
     func register<Component>(type: Component.Type, producer: @escaping () -> Any) {
-        producers["\(type)"] = producer
+        let typeName = String(reflecting: type)
+        producers[typeName] = producer
     }
     
     func resolve<Component>(type: Component.Type) -> Component? {
-        return components["\(type)"] as? Component
+        let typeName = String(reflecting: type)
+        return components[typeName] as? Component
     }
     
     func producer<Component>(type: Component.Type) -> Component? {
-        if let producer = producers["\(type)"] {
+        let typeName = String(reflecting: type)
+        if let producer = producers[typeName] {
             return producer() as? Component
         }
         
@@ -128,6 +132,7 @@ extension DiContainer {
         register((any NotificationRepository).self, NotificationRepositoryImpl())
         register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
         register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
+        register((any CarPlayItemRepository).self, CarPlayItemRepositoryImpl())
         
         // MARK: Usecases
 
@@ -264,7 +269,13 @@ extension DiContainer {
         // UseCases - Scene
         register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
         register(ReadSceneByRemoteIdUseCase.self, ReadSceneByRemoteIdUseCaseImpl())
-        
+        register(GetSceneIconUseCase.self, GetSceneIconUseCaseImpl())
+        // UseCases - CarPlayItem
+        register(CreateCarPlayItemUseCase.self, CreateCarPlayItemUseCaseImpl())
+        register(ReadCarPlayItems.UseCase.self, ReadCarPlayItems.Implementation())
+        register(UpdateCarPlayOrder.UseCase.self, UpdateCarPlayOrder.Implementation())
+        register(UpdateCarPlayItem.UseCase.self, UpdateCarPlayItem.Implementation())
+        register(CarPlayRefresh.UseCase.self, CarPlayRefresh.Implementation())
         
         // MARK: Features
         

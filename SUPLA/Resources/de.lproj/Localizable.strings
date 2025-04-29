@@ -264,8 +264,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=de";
 
-"Scenes.ActionButtons.execute" = "Ausführen";
-"Scenes.ActionButtons.abort" = "Abbrechen";
+"scenes_action_buttons_execute" = "Ausführen";
+"scenes_action_buttons_abort" = "Abbrechen";
+"scenes_action_buttons_abort_and_execute" = "Abbrechen und ausführen";
 
 "Cfg.removal.title" = "Das Konto löschen?";
 "Cfg.removal.action.logout" = "Vergiss auf diesem Gerät";
@@ -283,9 +284,20 @@
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
 "time_hours_and_minutes" = "%d Std. %d Min.";
+"general_shut" = "Verhüllen";
+"general_reveal" = "Enthüllen";
+"general_collapse" = "Einklappen";
+"general_expand" = "Ausklappen";
 "general_state_opened" = "geöffnet";
 "general_state_closed" = "geschloßen";
 "general_function" = "Funktion";
+"general_toggle" = "Umschalten";
+"general_channel" = "Kanal";
+"general_group" = "Gruppe";
+"general_scene" = "Szene";
+"general_profile" = "Konto";
+"general_action" = "Aktion";
+"general_delete" = "Löschen";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -307,6 +319,8 @@
 "channel_caption_container_level_sensor" = "Behälterfüllstandssensor";
 "channel_caption_flood_sensor" = "Flutsensor";
 "channel_offline" = "Das Kanal ist offline";
+"channel_not_found" = "Kanal nicht gefunden";
+"scene_inactive" = "Szene ist nicht active";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 /* General - Channel status */
 "channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
@@ -622,3 +636,13 @@
 "container_alarm_level" = "Behälterfüllstandsalarm!";
 "container_invalid_sensor_state" = "Ungültiger Sensorzustand";
 "container_sound_alarm" = "Akustischer Alarm aktiv";
+
+/* Car play */
+"car_play_voice_messages" = "Nachrichten abspielen";
+"car_play_action" = "Aktion: %@";
+"car_play_display_name" = "Anzeigename";
+"car_play_execution_error" = "Das Ausführen ist fehlgeschlagen";
+"car_play_executing" = "Ausführen...";
+"car_play_delete_title" = "Eintrag löschen";
+"car_play_delete_message" = "Wollen Sie fortfahren?";
+"car_play_confirm_delete" = "Löschen";

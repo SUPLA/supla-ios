@@ -272,8 +272,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=cs";
 
-"Scenes.ActionButtons.execute" = "Provést";
-"Scenes.ActionButtons.abort" = "Přerušit";
+"scenes_action_buttons_execute" = "Provést";
+"scenes_action_buttons_abort" = "Přerušit";
+"scenes_action_buttons_abort_and_execute" = "Přerušit a provést";
 
 "Cfg.removal.title" = "Smazat účet?";
 "Cfg.removal.action.logout" = "Zapomenout na tomto zařízení";
@@ -291,6 +292,13 @@
 "turn_off" = "Vypnout";
 "save" = "Uložit";
 "general_function" = "Funkce";
+"general_toggle" = "Přepnout";
+"general_channel" = "Kanál";
+"general_group" = "Skupina";
+"general_scene" = "Scéna";
+"general_profile" = "Účet";
+"general_action" = "Akce";
+"general_delete" = "Odstranit";
 /* General - DayOfWeek */
 "monday" = "Pondělí";
 "tuesday" = "Útery";
@@ -580,3 +588,7 @@
 "change_caption_channel_name" = "Název kanálu";
 "change_caption_scene_name" = "Název scény";
 "change_caption_location_name" = "Název umístění";
+
+/* Car play */
+"car_play_action" = "Akce: %@";
+"car_play_display_name" = "Název";

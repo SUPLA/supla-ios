@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nl";
 
-"Scenes.ActionButtons.execute" = "Ik wil  volgen";
-"Scenes.ActionButtons.abort" = "Onderbreek";
+"scenes_action_buttons_execute" = "Ik wil volgen";
+"scenes_action_buttons_abort" = "Onderbreek";
+"scenes_action_buttons_abort_and_execute" = "Scrollen en uitvoeren";
 
 "Cfg.removal.dialog.missing_name" = "Voer de naam van uw rekening in";
 "Cfg.removal.dialog.duplicated_name" = "Er is al een rekening met deze naam";
@@ -290,6 +291,13 @@
 "turn_off" = "Schakel uit";
 "save" = "Opslaan";
 "general_function" = "Functie";
+"general_toggle" = "Schakel";
+"general_channel" = "Kanaal";
+"general_group" = "Groep";
+"general_scene" = "Podium";
+"general_profile" = "Rekening";
+"general_action" = "Actie";
+"general_delete" = "Delete";
 /* General - DayOfWeek */
 "monday" = "Maandag";
 "tuesday" = "Diensdag";
@@ -580,3 +588,7 @@
 "change_caption_channel_name" = "Naam kanaal";
 "change_caption_scene_name" = "Scènenaam";
 "change_caption_location_name" = "Naam van de plaats";
+
+/* Car play */
+"car_play_action" = "Actie: %@";
+"car_play_display_name" = "Naam";

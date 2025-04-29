@@ -1,3 +1,4 @@
+
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -16,7 +17,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SharedCore
 
 extension SAScene {
     @objc func setItemVisible(_ visible: Int32) -> Bool {
@@ -26,6 +27,10 @@ extension SAScene {
         }
 
         return false
+    }
+    
+    var shareable: SharedCore.Scene {
+        SharedCore.Scene(remoteId: sceneId, caption: caption ?? "")
     }
 }
 

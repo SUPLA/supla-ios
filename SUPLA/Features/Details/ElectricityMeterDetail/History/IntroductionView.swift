@@ -278,14 +278,14 @@ private func mockSetsForSinglePhase() -> ChannelChartSets {
 }
 
 #Preview("Single phase") {
-    var state = ElectricityMeterHistoryFeature.IntroductionState()
+    let state = ElectricityMeterHistoryFeature.IntroductionState()
     state.pages = [.firstForSinglePhase, .second]
     
     return ElectricityMeterHistoryFeature.IntroductionView(viewState: state)
 }
 
 #Preview("Multiple phases") {
-    var state = ElectricityMeterHistoryFeature.IntroductionState()
+    let state = ElectricityMeterHistoryFeature.IntroductionState()
     state.pages = [.firstForMultiplePhases, .second]
     
     return ElectricityMeterHistoryFeature.IntroductionView(viewState: state)

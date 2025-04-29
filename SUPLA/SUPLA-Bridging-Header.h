@@ -29,6 +29,7 @@
 #import "SAChannelRelation+CoreDataClass.h"
 #import "SAChannelState+CoreDataClass.h"
 #import "SAProfileServer+CoreDataClass.h"
+#import "SACarPlayItem+CoreDataClass.h"
 #import "SAEvent.h"
 #import "SARateApp.h"
 #import "SADownloadUserIcons.h"

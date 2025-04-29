@@ -43,7 +43,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToSettings() {
     }
     
+    var navigateToLocationOrderingMock: FunctionMock<Void, Void> = .void()
     func navigateToLocationOrdering() {
+        navigateToLocationOrderingMock.handle(())
     }
     
     var navigateToProfilesMock: FunctionMock<Void, Void> = .void()
@@ -100,7 +102,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToElectricityMeterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
+    var navigateToPinSetupMock: FunctionMock<LockScreenScope, Void> = .void()
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
+        navigateToPinSetupMock.handle(lockScreenScope)
     }
     
     var navigateToLockScreenMock: FunctionMock<LockScreenFeature.UnlockAction, Void> = .void()
@@ -121,6 +125,15 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     }
     
     func navigateToCounterPhoto(channelId: Int32) {
+    }
+    
+    func navigateToCarPlayList() {
+    }
+    
+    func navigateToCarPlayAdd() {
+    }
+    
+    func navigateToCarPlayEdit(id: NSManagedObjectID) {
     }
     
     func popToStatus() {

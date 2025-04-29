@@ -273,8 +273,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=lt";
 
-"Scenes.ActionButtons.execute" = "Atlikti";
-"Scenes.ActionButtons.abort" = "Nutraukti";
+"scenes_action_buttons_execute" = "Atlikti";
+"scenes_action_buttons_abort" = "Nutraukti";
+"scenes_action_buttons_abort_and_execute" = "Nutraukti ir atlikti";
 
 "Cfg.removal.dialog.missing_name" = "Įveskite paskyros pavadinimą";
 "Cfg.removal.dialog.duplicated_name" = "Paskyra su tokiu pavadinimu jau yra";
@@ -292,6 +293,13 @@
 "turn_off" = "Išjungti";
 "save" = "Išsaugoti";
 "general_function" = "Funkcija";
+"general_toggle" = "Perjungti";
+"general_channel" = "Kanalas";
+"general_group" = "Grupė";
+"general_scene" = "Scena";
+"general_profile" = "Paskyra";
+"general_action" = "Veiksmas";
+"general_delete" = "Pašalinti";
 /* General - DayOfWeek */
 "monday" = "Pirmadienis";
 "tuesday" = "Antradienis";
@@ -582,3 +590,7 @@
 "change_caption_channel_name" = "Kanalo pavadinimas";
 "change_caption_scene_name" = "Scenos pavadinimas";
 "change_caption_location_name" = "Vietos pavadinimas";
+
+/* Car play */
+"car_play_action" = "Veiksmas: %@";
+"car_play_display_name" = "Pavadinimas";

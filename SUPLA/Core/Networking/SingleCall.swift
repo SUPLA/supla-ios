@@ -17,16 +17,31 @@
  */
 
 protocol SingleCall {
-    func registerPushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws
+    func registerPushToken(_ profile: AuthProfileItem, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws
+    func executeAction(_ action: Action, subjectType: SubjectType, subjectId: Int32, profile: AuthProfileItem) throws
 }
 
 class SingleCallImpl: SingleCall {
     
-    func registerPushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws {
-        var authDetails = authDetails
+    func registerPushToken(_ profile: AuthProfileItem, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws {
+        var authDetails = profile.authDetails
         var tokenDetails = tokenDetails
         
         let result = supla_single_call_register_pn_client_token(&authDetails, protocolVersion, 5000, &tokenDetails)
+        
+        if (result != SUPLA_RESULTCODE_TRUE) {
+            throw SingleCallError.resultException(errorCode: result)
+        }
+    }
+    
+    func executeAction(_ action: Action, subjectType: SubjectType, subjectId: Int32, profile: AuthProfileItem) throws {
+        var authDetails = profile.authDetails
+        var clientAction = TCS_Action()
+        clientAction.SubjectType = UInt8(subjectType.rawValue)
+        clientAction.SubjectId = subjectId
+        clientAction.ActionId = action.rawValue
+        
+        let result = supla_single_call_execute_action(&authDetails, profile.preferredProtocolVersion, 5000, &clientAction)
         
         if (result != SUPLA_RESULTCODE_TRUE) {
             throw SingleCallError.resultException(errorCode: result)
@@ -36,4 +51,27 @@ class SingleCallImpl: SingleCall {
 
 enum SingleCallError: Error {
     case resultException(errorCode: Int32)
+}
+
+fileprivate extension AuthProfileItem {
+    var authDetails: TCS_ClientAuthorizationDetails {
+        var authDetails: TCS_ClientAuthorizationDetails = TCS_ClientAuthorizationDetails()
+        withUnsafeMutablePointer(to: &authDetails.GUID.0) { pointer in
+            clientGUID.copyBytes(to: UnsafeMutableRawPointer(pointer).assumingMemoryBound(to: UInt8.self), count: Int(SUPLA_GUID_SIZE))
+        }
+        withUnsafeMutablePointer(to: &authDetails.AuthKey.0) { pointer in
+            authKey.copyBytes(to: UnsafeMutableRawPointer(pointer).assumingMemoryBound(to: UInt8.self), count: Int(SUPLA_GUID_SIZE))
+        }
+        
+        switch (authorizationType) {
+        case .email:
+            email?.copyToCharArray(array: &authDetails.Email, capacity: Int(SUPLA_EMAIL_MAXSIZE))
+            server?.address?.copyToCharArray(array: &authDetails.ServerName, capacity: Int(SUPLA_SERVER_NAME_MAXSIZE))
+        case .accessId:
+            authDetails.AccessID = accessId
+            accessIdPassword?.copyToCharArray(array: &authDetails.AccessIDpwd, capacity: Int(SUPLA_ACCESSID_PWD_MAXSIZE))
+        }
+        
+        return authDetails
+    }
 }

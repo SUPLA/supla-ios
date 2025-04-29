@@ -87,4 +87,13 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
     }
+    
+    func getAllVisibleChannels(forProfileId profileId: Int32) -> RxSwift.Observable<[SAChannel]> {
+        .empty()
+    }
+    
+    func getAllChannels() -> RxSwift.Observable<[SAChannel]> {
+        .empty()
+    }
+    
 }

@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pl";
 
-"Scenes.ActionButtons.execute" = "Wykonaj";
-"Scenes.ActionButtons.abort" = "Przerwij";
+"scenes_action_buttons_execute" = "Wykonaj";
+"scenes_action_buttons_abort" = "Przerwij";
+"scenes_action_buttons_abort_and_execute" = "Przerwij i wykonaj";
 
 "Cfg.removal.title" = "Usunąć konto?";
 "Cfg.removal.action.logout" = "Zapomnij na tym urządzeniu";
@@ -298,6 +299,13 @@
 "general_state_opened" = "otwarty";
 "general_state_closed" = "zamknięty";
 "general_function" = "Funkcja";
+"general_toggle" = "Przełącz";
+"general_channel" = "Kanał";
+"general_group" = "Grupa";
+"general_scene" = "Scena";
+"general_profile" = "Konto";
+"general_action" = "Akcja";
+"general_delete" = "Usuń";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -336,6 +344,8 @@
 "channel_caption_container_level_sensor" = "Czujnik poziomu zbiornika";
 "channel_caption_flood_sensor" = "Czujnik zalania";
 "channel_offline" = "Kanał jest offline";
+"channel_not_found" = "Kanał nie istnieje";
+"scene_inactive" = "Scena jest nieaktywna";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
 /* General - Channel status */
 "channel_status_not_available" = "Kanał nie jest dostępny ze względu na konfigurację. Zalecamy ukrycie kanału, aby nie był widoczny w aplikacji.";
@@ -659,3 +669,13 @@
 "container_alarm_level" = "Poziom alarmowy!";
 "container_invalid_sensor_state" = "Nieprawidłowy stan czujników";
 "container_sound_alarm" = "Alarm dźwiękowy aktywny";
+
+/* Car play */
+"car_play_voice_messages" = "Odtwarzaj komunikaty";
+"car_play_action" = "Akcja: %@";
+"car_play_display_name" = "Nazwa";
+"car_play_execution_error" = "Wykonanie nie powiodło się";
+"car_play_executing" = "Wykonywanie...";
+"car_play_delete_title" = "Usuwanie";
+"car_play_delete_message" = "Chcesz kontynuować?";
+"car_play_confirm_delete" = "Usuń";

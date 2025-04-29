@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=sl";
 
-"Scenes.ActionButtons.execute" = "Izvedi";
-"Scenes.ActionButtons.abort" = "Prekini";
+"scenes_action_buttons_execute" = "Izvedi";
+"scenes_action_buttons_abort" = "Prekini";
+"scenes_action_buttons_abort_and_execute" = "Previjte in izvedite";
 
 "Cfg.removal.dialog.missing_name" = "Vnesite ime računa";
 "Cfg.removal.dialog.duplicated_name" = "Račun s takšim imenom že obstaja";
@@ -290,6 +291,13 @@
 "turn_off" = "Izklopi";
 "save" = "Shrani";
 "general_function" = "Funkcija";
+"general_toggle" = "Preklopi";
+"general_channel" = "Kanal";
+"general_group" = "Skupina";
+"general_scene" = "Scena";
+"general_profile" = "Račun";
+"general_action" = "Dejanje";
+"general_delete" = "Izbišite";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -580,3 +588,7 @@
 "change_caption_channel_name" = "Ime kanala";
 "change_caption_scene_name" = "Ime prizora";
 "change_caption_location_name" = "Ime lokacije";
+
+/* Car play */
+"car_play_action" = "Dejanje: %@";
+"car_play_display_name" = "Ime";

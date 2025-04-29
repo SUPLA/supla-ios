@@ -48,6 +48,9 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToCarPlayList()
+    func navigateToCarPlayAdd()
+    func navigateToCarPlayEdit(id: NSManagedObjectID)
     
     func popToStatus()
     
@@ -237,6 +240,18 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToCounterPhoto(channelId: Int32) {
         navigateTo(CounterPhotoFeature.ViewController.create(channelId: channelId))
+    }
+    
+    func navigateToCarPlayList() {
+        navigateTo(CarPlayListFeature.ViewController.create())
+    }
+    
+    func navigateToCarPlayAdd() {
+        navigateTo(CarPlayAddFeature.ViewController.create())
+    }
+    
+    func navigateToCarPlayEdit(id: NSManagedObjectID) {
+        navigateTo(CarPlayAddFeature.ViewController.create(id: id))
     }
     
     func popToStatus() {

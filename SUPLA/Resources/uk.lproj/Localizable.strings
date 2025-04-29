@@ -270,8 +270,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=uk";
 
-"Scenes.ActionButtons.execute" = "Виконати";
-"Scenes.ActionButtons.abort" = "Перервати";
+"scenes_action_buttons_execute" = "Виконати";
+"scenes_action_buttons_abort" = "Перервати";
+"scenes_action_buttons_abort_and_execute" = "Перервати і виконати";
 
 "Cfg.removal.dialog.missing_name" = "Введіть назву облікового запису";
 "Cfg.removal.dialog.duplicated_name" = "Обліковий запис із такою назвою вже існує";
@@ -289,6 +290,13 @@
 "turn_off" = "Вимкнути";
 "save" = "Зберегти";
 "general_function" = "Функція";
+"general_toggle" = "Переключити";
+"general_channel" = "Канал";
+"general_group" = "Група";
+"general_scene" = "Етап";
+"general_profile" = "Обліковий запис";
+"general_action" = "Подія";
+"general_delete" = "Видалити";
 /* General - DayOfWeek */
 "monday" = "Понеділок";
 "tuesday" = "Вівторок";
@@ -579,3 +587,7 @@
 /* Change caption */
 "change_caption_channel_name" = "Назва каналу";
 "change_caption_location_name" = "Назва місця";
+
+/* Car play */
+"car_play_action" = "Подія: %@";
+"car_play_display_name" = "Назва";

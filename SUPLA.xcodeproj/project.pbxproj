@@ -419,6 +419,18 @@
 		A52BFEF82B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */; };
 		A52BFEFA2B18A43000A2F64C /* DeleteProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF92B18A43000A2F64C /* DeleteProfileUseCaseTests.swift */; };
 		A52D13B12C8F0F3000134961 /* SuplaClient+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D13B02C8F0F3000134961 /* SuplaClient+Ext.swift */; };
+		A52F03D52DB8F1AC00472ED1 /* CarPlayListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03D42DB8F1A100472ED1 /* CarPlayListViewState.swift */; };
+		A52F03D72DB8F33000472ED1 /* CarPlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03D62DB8F32800472ED1 /* CarPlayListView.swift */; };
+		A52F03D92DBA196600472ED1 /* CarPlayListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03D82DBA195F00472ED1 /* CarPlayListVM.swift */; };
+		A52F03DB2DBA19B800472ED1 /* CarPlayListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03DA2DBA19B100472ED1 /* CarPlayListVC.swift */; };
+		A52F03DD2DBA265200472ED1 /* CarPlayAddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03DC2DBA264800472ED1 /* CarPlayAddFeature.swift */; };
+		A52F03DF2DBA266500472ED1 /* CarPlayAddViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03DE2DBA265D00472ED1 /* CarPlayAddViewState.swift */; };
+		A52F03E12DBA2A9000472ED1 /* CarPlayAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E02DBA2A8B00472ED1 /* CarPlayAddView.swift */; };
+		A52F03E32DBA63B400472ED1 /* SegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E22DBA63B100472ED1 /* SegmentedPicker.swift */; };
+		A52F03E52DBA668C00472ED1 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E42DBA668700472ED1 /* EmptyListView.swift */; };
+		A52F03E72DBA6F1700472ED1 /* CarPlayAddVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E62DBA6F1300472ED1 /* CarPlayAddVM.swift */; };
+		A52F03E92DBA6F4A00472ED1 /* CarPlayAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E82DBA6F4400472ED1 /* CarPlayAddVC.swift */; };
+		A52F03EC2DBBA08700472ED1 /* SubjectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03EB2DBBA08400472ED1 /* SubjectPicker.swift */; };
 		A530EDEB2A53F60400F8DAEE /* SwitchDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */; };
 		A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */; };
 		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
@@ -653,6 +665,7 @@
 		A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */; };
 		A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */; };
 		A567C7572DAD1272006245B5 /* SuplaCoreViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */; };
+		A567C75F2DAE610E006245B5 /* CarPlayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567C75E2DAE6104006245B5 /* CarPlayListFeature.swift */; };
 		A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */; };
 		A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */; };
 		A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */; };
@@ -686,6 +699,7 @@
 		A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
 		A5741D862DC1FC9F00ED6C18 /* ProfileServerUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */; };
+		A5741D842DC0EE0100ED6C18 /* CarPlayRefreshUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D832DC0EDFA00ED6C18 /* CarPlayRefreshUseCase.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
 		A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */; };
 		A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */; };
@@ -773,6 +787,15 @@
 		A5862C092CEF2F5F00DFFD55 /* ChannelStateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */; };
 		A5862C0C2CEF816B00DFFD55 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C0B2CEF813B00DFFD55 /* TimerState.swift */; };
 		A5862C0E2CF125AC00DFFD55 /* ChannelToRootRelationHolderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */; };
+		A5882EC72DBD732400F1FC4A /* CarPlayItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882EC62DBD731700F1FC4A /* CarPlayItemRepository.swift */; };
+		A5882ECB2DBD743D00F1FC4A /* CreateCarPlayItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ECA2DBD742400F1FC4A /* CreateCarPlayItemUseCase.swift */; };
+		A5882ECD2DBF51DA00F1FC4A /* ReadCarPlayItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ECC2DBF51D200F1FC4A /* ReadCarPlayItemsUseCase.swift */; };
+		A5882ECF2DBF5F9300F1FC4A /* SACarPlayItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ECE2DBF5F8B00F1FC4A /* SACarPlayItem+Ext.swift */; };
+		A5882ED12DBF75A500F1FC4A /* UpdateCarPlayOrderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ED02DBF759800F1FC4A /* UpdateCarPlayOrderUseCase.swift */; };
+		A5882ED32DBF92E300F1FC4A /* UpdateCarPlayItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ED22DBF92DA00F1FC4A /* UpdateCarPlayItemUseCase.swift */; };
+		A5882ED52DBF936B00F1FC4A /* CarPlayAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ED42DBF936700F1FC4A /* CarPlayAction.swift */; };
+		A5882ED82DBF9E7500F1FC4A /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882ED72DBF9E6200F1FC4A /* CarPlaySceneDelegate.swift */; };
+		A5882EDC2DC026AA00F1FC4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5882EDB2DC026AA00F1FC4A /* SceneDelegate.swift */; };
 		A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */; };
 		A58A63072C07163E00A9D02D /* VerticalBlindWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */; };
 		A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */; };
@@ -1094,6 +1117,7 @@
 		A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */; };
 		A5E0DF8E2CECAD3000362451 /* CounterPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */; };
 		A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */; };
+		A5E13B722DBC2E0D00C6DE14 /* GetSceneIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E13B712DBC2E0700C6DE14 /* GetSceneIconUseCase.swift */; };
 		A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */; };
 		A5E160A52D307EAB003A7C71 /* ContainerValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */; };
 		A5E160A72D3108F3003A7C71 /* ContainerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */; };
@@ -2008,6 +2032,18 @@
 		A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A52BFEF92B18A43000A2F64C /* DeleteProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A52D13B02C8F0F3000134961 /* SuplaClient+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaClient+Ext.swift"; sourceTree = "<group>"; };
+		A52F03D42DB8F1A100472ED1 /* CarPlayListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListViewState.swift; sourceTree = "<group>"; };
+		A52F03D62DB8F32800472ED1 /* CarPlayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListView.swift; sourceTree = "<group>"; };
+		A52F03D82DBA195F00472ED1 /* CarPlayListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListVM.swift; sourceTree = "<group>"; };
+		A52F03DA2DBA19B100472ED1 /* CarPlayListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListVC.swift; sourceTree = "<group>"; };
+		A52F03DC2DBA264800472ED1 /* CarPlayAddFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddFeature.swift; sourceTree = "<group>"; };
+		A52F03DE2DBA265D00472ED1 /* CarPlayAddViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddViewState.swift; sourceTree = "<group>"; };
+		A52F03E02DBA2A8B00472ED1 /* CarPlayAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddView.swift; sourceTree = "<group>"; };
+		A52F03E22DBA63B100472ED1 /* SegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPicker.swift; sourceTree = "<group>"; };
+		A52F03E42DBA668700472ED1 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
+		A52F03E62DBA6F1300472ED1 /* CarPlayAddVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddVM.swift; sourceTree = "<group>"; };
+		A52F03E82DBA6F4400472ED1 /* CarPlayAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddVC.swift; sourceTree = "<group>"; };
+		A52F03EB2DBBA08400472ED1 /* SubjectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectPicker.swift; sourceTree = "<group>"; };
 		A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVM.swift; sourceTree = "<group>"; };
 		A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVC.swift; sourceTree = "<group>"; };
 		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
@@ -2244,6 +2280,8 @@
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
 		A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreViewModelTest.swift; sourceTree = "<group>"; };
+		A567C75E2DAE6104006245B5 /* CarPlayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListFeature.swift; sourceTree = "<group>"; };
+		A567C7602DAE6145006245B5 /* SUPLA 23.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 23.xcdatamodel"; sourceTree = "<group>"; };
 		A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUpdatesObserver.swift; sourceTree = "<group>"; };
 		A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogFeature.swift; sourceTree = "<group>"; };
 		A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogView.swift; sourceTree = "<group>"; };
@@ -2280,6 +2318,7 @@
 		A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseTests.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServerUseCasesMocks.swift; sourceTree = "<group>"; };
+		A5741D832DC0EDFA00ED6C18 /* CarPlayRefreshUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayRefreshUseCase.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
 		A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerMock.swift; sourceTree = "<group>"; };
@@ -2369,6 +2408,15 @@
 		A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepository.swift; sourceTree = "<group>"; };
 		A5862C0B2CEF813B00DFFD55 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		A5862C0D2CF1259600DFFD55 /* ChannelToRootRelationHolderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToRootRelationHolderUseCase.swift; sourceTree = "<group>"; };
+		A5882EC62DBD731700F1FC4A /* CarPlayItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayItemRepository.swift; sourceTree = "<group>"; };
+		A5882ECA2DBD742400F1FC4A /* CreateCarPlayItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCarPlayItemUseCase.swift; sourceTree = "<group>"; };
+		A5882ECC2DBF51D200F1FC4A /* ReadCarPlayItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCarPlayItemsUseCase.swift; sourceTree = "<group>"; };
+		A5882ECE2DBF5F8B00F1FC4A /* SACarPlayItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SACarPlayItem+Ext.swift"; sourceTree = "<group>"; };
+		A5882ED02DBF759800F1FC4A /* UpdateCarPlayOrderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCarPlayOrderUseCase.swift; sourceTree = "<group>"; };
+		A5882ED22DBF92DA00F1FC4A /* UpdateCarPlayItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCarPlayItemUseCase.swift; sourceTree = "<group>"; };
+		A5882ED42DBF936700F1FC4A /* CarPlayAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAction.swift; sourceTree = "<group>"; };
+		A5882ED72DBF9E6200F1FC4A /* CarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlaySceneDelegate.swift; sourceTree = "<group>"; };
+		A5882EDB2DC026AA00F1FC4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalBlindsVM.swift; path = SUPLA/Features/Details/WindowDetail/VerticalBlind/VerticalBlindsVM.swift; sourceTree = SOURCE_ROOT; };
 		A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindWindowState.swift; sourceTree = "<group>"; };
 		A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVC.swift; sourceTree = "<group>"; };
@@ -2691,6 +2739,7 @@
 		A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoViewState.swift; sourceTree = "<group>"; };
 		A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVC.swift; sourceTree = "<group>"; };
 		A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrImageNamingProvider.swift; sourceTree = "<group>"; };
+		A5E13B712DBC2E0700C6DE14 /* GetSceneIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSceneIconUseCase.swift; sourceTree = "<group>"; };
 		A5E160A22D306A83003A7C71 /* ContainerIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerIconNameProducer.swift; sourceTree = "<group>"; };
 		A5E160A42D307EA5003A7C71 /* ContainerValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueProvider.swift; sourceTree = "<group>"; };
 		A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueStringProvider.swift; sourceTree = "<group>"; };
@@ -3110,6 +3159,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				A5882ED62DBF9E5800F1FC4A /* CarPlay */,
 				A59AB8962A2F6D3900D91F1F /* Model */,
 				A5F29B842A1F95B100ED700A /* UseCase */,
 				A5F29B7C2A1E36B300ED700A /* Repositories */,
@@ -3150,6 +3200,7 @@
 				01433DF6257F8FE20093C5DB /* SAWifi.h */,
 				01433DF7257F8FE20093C5DB /* SAWifi.m */,
 				A5A15FE52C256F850049AA73 /* AppDelegate.swift */,
+				A5882EDB2DC026AA00F1FC4A /* SceneDelegate.swift */,
 			);
 			path = SUPLA;
 			sourceTree = "<group>";
@@ -4079,6 +4130,15 @@
 			path = TimerDetail;
 			sourceTree = "<group>";
 		};
+		A52F03EA2DBBA06C00472ED1 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				A52F03EB2DBBA08400472ED1 /* SubjectPicker.swift */,
+				A5B8A48C2CBD35B8002FA7B2 /* Picker.swift */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
 		A530EDE92A53F5CB00F8DAEE /* SwitchDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -4281,6 +4341,7 @@
 		A539C27A2D686A6D00D9DD47 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				A52F03E42DBA668700472ED1 /* EmptyListView.swift */,
 				A539C2812D686B1100D9DD47 /* ListItemDot.swift */,
 				A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */,
 				A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */,
@@ -4820,6 +4881,39 @@
 			path = Thermostat;
 			sourceTree = "<group>";
 		};
+		A567C75B2DAE5F34006245B5 /* CarPlay */ = {
+			isa = PBXGroup;
+			children = (
+				A567C75D2DAE5F46006245B5 /* Add */,
+				A567C75C2DAE5F3D006245B5 /* List */,
+			);
+			path = CarPlay;
+			sourceTree = "<group>";
+		};
+		A567C75C2DAE5F3D006245B5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A52F03DA2DBA19B100472ED1 /* CarPlayListVC.swift */,
+				A52F03D82DBA195F00472ED1 /* CarPlayListVM.swift */,
+				A52F03D62DB8F32800472ED1 /* CarPlayListView.swift */,
+				A52F03D42DB8F1A100472ED1 /* CarPlayListViewState.swift */,
+				A567C75E2DAE6104006245B5 /* CarPlayListFeature.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		A567C75D2DAE5F46006245B5 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				A52F03E82DBA6F4400472ED1 /* CarPlayAddVC.swift */,
+				A52F03E62DBA6F1300472ED1 /* CarPlayAddVM.swift */,
+				A52F03E02DBA2A8B00472ED1 /* CarPlayAddView.swift */,
+				A52F03DE2DBA265D00472ED1 /* CarPlayAddViewState.swift */,
+				A52F03DC2DBA264800472ED1 /* CarPlayAddFeature.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		A56851B42D6CA15C00942F8B /* CaptionChangeDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -4928,6 +5022,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A567C75B2DAE5F34006245B5 /* CarPlay */,
 				A54737552D89A84D00B2E227 /* ChannelsCleanup */,
 				A56851B42D6CA15C00942F8B /* CaptionChangeDialog */,
 				A50716D12D68922F0060FA0D /* StateDialog */,
@@ -5140,6 +5235,27 @@
 				A5862C0B2CEF813B00DFFD55 /* TimerState.swift */,
 			);
 			path = ChannelState;
+			sourceTree = "<group>";
+		};
+		A5882EC92DBD73DA00F1FC4A /* CarPlayItem */ = {
+			isa = PBXGroup;
+			children = (
+				A5741D832DC0EDFA00ED6C18 /* CarPlayRefreshUseCase.swift */,
+				A5882ED42DBF936700F1FC4A /* CarPlayAction.swift */,
+				A5882ED22DBF92DA00F1FC4A /* UpdateCarPlayItemUseCase.swift */,
+				A5882ED02DBF759800F1FC4A /* UpdateCarPlayOrderUseCase.swift */,
+				A5882ECC2DBF51D200F1FC4A /* ReadCarPlayItemsUseCase.swift */,
+				A5882ECA2DBD742400F1FC4A /* CreateCarPlayItemUseCase.swift */,
+			);
+			path = CarPlayItem;
+			sourceTree = "<group>";
+		};
+		A5882ED62DBF9E5800F1FC4A /* CarPlay */ = {
+			isa = PBXGroup;
+			children = (
+				A5882ED72DBF9E6200F1FC4A /* CarPlaySceneDelegate.swift */,
+			);
+			path = CarPlay;
 			sourceTree = "<group>";
 		};
 		A58A63032C07154700A9D02D /* VerticalBlind */ = {
@@ -5582,13 +5698,14 @@
 				A539C27A2D686A6D00D9DD47 /* List */,
 				A58542202D806DF400D314A2 /* SensorData */,
 				A505EC422CF74B5700E69BDB /* TextField */,
+				A52F03EA2DBBA06C00472ED1 /* Picker */,
 				A54637C02D38041000D746F5 /* ChannelOfflineView.swift */,
 				A54637BA2D37F25A00D746F5 /* ActivityIndicator.swift */,
 				A5A15FF62C299C8A0049AA73 /* BackgroundStack.swift */,
 				A598CAB22CBE90AE00A784FA /* Divider.swift */,
 				A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */,
 				A5E039E82CA1F85C0018CEB7 /* LazyList.swift */,
-				A5B8A48C2CBD35B8002FA7B2 /* Picker.swift */,
+				A52F03E22DBA63B100472ED1 /* SegmentedPicker.swift */,
 				A5F5C3F92C36963B0058E255 /* PinTextField.swift */,
 				A5A160022C2AAEDE0049AA73 /* Text.swift */,
 				A547821E2CA2B4BB00CD3010 /* UiSettings.swift */,
@@ -5874,6 +5991,7 @@
 		A5B3CC0F2B62935800F95AC3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5882ECE2DBF5F8B00F1FC4A /* SACarPlayItem+Ext.swift */,
 				A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */,
 				A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */,
 				A5552ED32D53755400A3F6A2 /* SAVoltageMeasurementItem+Ext.swift */,
@@ -6487,6 +6605,7 @@
 		A5F29B7C2A1E36B300ED700A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A5882EC62DBD731700F1FC4A /* CarPlayItemRepository.swift */,
 				A550F2832D5211450011463B /* Measurements */,
 				A505EC492CF88C1E00E69BDB /* ProfileServerRepository.swift */,
 				A5862C082CEF2F5A00DFFD55 /* ChannelStateRepository.swift */,
@@ -6548,6 +6667,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A5882EC92DBD73DA00F1FC4A /* CarPlayItem */,
 				A505EC482CF88C1000E69BDB /* ProfileServer */,
 				A56EC92D2CEF1CD800A6E2CB /* ChannelState */,
 				A5E0DF802CEC986800362451 /* File */,
@@ -6599,6 +6719,7 @@
 		A5F29B912A20B53F00ED700A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				A5E13B712DBC2E0700C6DE14 /* GetSceneIconUseCase.swift */,
 				A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */,
 				A5F29B922A20B56500ED700A /* CreateProfileScenesListUseCase.swift */,
 				A5F29BA72A24B0FC00ED700A /* UpdateSceneStateUseCase.swift */,
@@ -7149,6 +7270,7 @@
 				A530EE162A56F82A00F8DAEE /* GateIconNameProducer.swift in Sources */,
 				A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */,
 				A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */,
+				A52F03EC2DBBA08700472ED1 /* SubjectPicker.swift in Sources */,
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
@@ -7159,6 +7281,7 @@
 				A5F29B802A1E489300ED700A /* ProfileRepository.swift in Sources */,
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
 				A594ADD02C9C402B00780EF3 /* ThermostatSlavesView.swift in Sources */,
+				A52F03D52DB8F1AC00472ED1 /* CarPlayListViewState.swift in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				A5F29BB62A24CAAB00ED700A /* UpdateChannelValueUseCase.swift in Sources */,
 				A505EC4E2CFA618100E69BDB /* Migration17to19ModelMapping.xcmappingmodel in Sources */,
@@ -7168,6 +7291,7 @@
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */,
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
+				A52F03E32DBA63B400472ED1 /* SegmentedPicker.swift in Sources */,
 				A5E0DF702CEB79C300362451 /* CacheFileAccessProxy.swift in Sources */,
 				A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */,
 				A57668F52AEAA8410025509D /* TemperatureChartState.swift in Sources */,
@@ -7220,6 +7344,7 @@
 				A57668E12AE99DB90025509D /* ChartDataAggregation.swift in Sources */,
 				A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */,
 				A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */,
+				A52F03D92DBA196600472ED1 /* CarPlayListVM.swift in Sources */,
 				A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */,
 				A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
@@ -7421,6 +7546,7 @@
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				A5C5F6E82D92B0B700E303B8 /* ChannelListView.swift in Sources */,
+				A5882ED52DBF936B00F1FC4A /* CarPlayAction.swift in Sources */,
 				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
@@ -7442,6 +7568,7 @@
 				A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				A5EDE2192CA55FB400BEDAE4 /* ElectricityMeterDetailVC.swift in Sources */,
+				A52F03DB2DBA19B800472ED1 /* CarPlayListVC.swift in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
 				A5477DC52AA5C47F00220B4A /* SAChannelValue+Ext.swift in Sources */,
@@ -7513,6 +7640,7 @@
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				A598CAC72CC24EC400A784FA /* ImpulseCounterValueStringProvider.swift in Sources */,
 				A58542292D80D02B00D314A2 /* SuplaChannelContainerConfig.swift in Sources */,
+				A52F03DF2DBA266500472ED1 /* CarPlayAddViewState.swift in Sources */,
 				A50B5D4C2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift in Sources */,
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */,
@@ -7553,6 +7681,7 @@
 				A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */,
 				A539C2822D686B1400D9DD47 /* ListItemDot.swift in Sources */,
 				A519CCB22D38559100F858A4 /* ImpulseCounterGeneralStateHandler.swift in Sources */,
+				A52F03DD2DBA265200472ED1 /* CarPlayAddFeature.swift in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */,
 				A5F29B762A1E33D500ED700A /* FetchedResultsControllerEntityObserver.swift in Sources */,
@@ -7590,6 +7719,7 @@
 				A5E05BAB2CB469CE00202583 /* ChannelMeasurementsProvider.swift in Sources */,
 				A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */,
 				A503ABB82B6BB082008CDA1F /* ChannelValueFormatter.swift in Sources */,
+				A5882ED82DBF9E7500F1FC4A /* CarPlaySceneDelegate.swift in Sources */,
 				A598CAC12CC13AFB00A784FA /* SwitchWithElectricityMeterValueStringProvider.swift in Sources */,
 				A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */,
 				A50B5CFD2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift in Sources */,
@@ -7603,8 +7733,11 @@
 				A5E160C12D354974003A7C71 /* ImpulseCounterHistoryDetailVC.swift in Sources */,
 				A5074BC22BCE61E60081B6B1 /* RoofWindowVC.swift in Sources */,
 				A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */,
+				A5882ED32DBF92E300F1FC4A /* UpdateCarPlayItemUseCase.swift in Sources */,
+				A52F03E92DBA6F4A00472ED1 /* CarPlayAddVC.swift in Sources */,
 				A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
+				A52F03D72DB8F33000472ED1 /* CarPlayListView.swift in Sources */,
 				A5B3CC0A2B6282B800F95AC3 /* WindValueStringProvider.swift in Sources */,
 				A5C5F6EA2D93480B00E303B8 /* StateDialogViewModel.swift in Sources */,
 				A503ABB52B6B7713008CDA1F /* BaseMeasurementRepository.swift in Sources */,
@@ -7689,6 +7822,7 @@
 				A57668D32AE941630025509D /* DownloadChannelMeasurementsUseCase.swift in Sources */,
 				A5DDF9202D79A5BA0056B539 /* ContainerDetailVC.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
+				A5E13B722DBC2E0D00C6DE14 /* GetSceneIconUseCase.swift in Sources */,
 				A55A8DB32BAC65E500C540D4 /* SADialogNegativeButton.swift in Sources */,
 				A505EC442CF74B6D00E69BDB /* StandardTextField.swift in Sources */,
 				AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */,
@@ -7701,6 +7835,7 @@
 				AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */,
 				A5C5F6E42D91F1B200E303B8 /* View+If.swift in Sources */,
 				A50B5D242BEE4CE600918D18 /* UIViewController+Toast.swift in Sources */,
+				A5882EDC2DC026AA00F1FC4A /* SceneDelegate.swift in Sources */,
 				A539C27C2D686A7C00D9DD47 /* ListItemIcon.swift in Sources */,
 				A55A8D8E2BAB101600C540D4 /* ReadGroupByRemoteIdUseCase.swift in Sources */,
 				A5DDF91E2D79A5610056B539 /* ContainerDetailVM.swift in Sources */,
@@ -7708,6 +7843,7 @@
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
 				A51BE90B2AAAF29D00718F2F /* SetpointType.swift in Sources */,
+				A52F03E52DBA668C00472ED1 /* EmptyListView.swift in Sources */,
 				A550F2922D52539C0011463B /* ElectricityMeterMeasurementsProvider.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
 				A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */,
@@ -7785,6 +7921,7 @@
 				A57668E72AEA68A60025509D /* DaysRange.swift in Sources */,
 				A58472012C2D7F3200713D36 /* UIViewController+SuplaNavBar.swift in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
+				A5882EC72DBD732400F1FC4A /* CarPlayItemRepository.swift in Sources */,
 				A54149332B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift in Sources */,
 				A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */,
 				A5D712702C3E68D400A8EF52 /* OptionalValue.swift in Sources */,
@@ -7844,6 +7981,7 @@
 				A5C5F6FD2D94486200E303B8 /* ReadLocationByRemoteIdUseCase.swift in Sources */,
 				A58D1B862CDCFABB00B5A019 /* GetChannelIssuesForListUseCase.swift in Sources */,
 				A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */,
+				A567C75F2DAE610E006245B5 /* CarPlayListFeature.swift in Sources */,
 				A58542222D806E4700D314A2 /* SensorItemsView.swift in Sources */,
 				A52BFEB12B06163B00A2F64C /* SADateTimePicker.swift in Sources */,
 				A57668F92AEAB12D0025509D /* HideableValue.swift in Sources */,
@@ -7860,6 +7998,7 @@
 				A505EC3B2CF71E6100E69BDB /* CreateProfileViewState.swift in Sources */,
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
 				A550F28F2D5236E50011463B /* DownloadPowerActiveLogUseCase.swift in Sources */,
+				A5882ED12DBF75A500F1FC4A /* UpdateCarPlayOrderUseCase.swift in Sources */,
 				A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */,
 				A5A15FFF2C2AA44B0049AA73 /* StatusFeature.swift in Sources */,
 				A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */,
@@ -7883,6 +8022,7 @@
 				A5F29BC42A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift in Sources */,
 				A5B3CBEF2B625D9000F95AC3 /* WeightValueProvider.swift in Sources */,
 				A50B5D4E2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift in Sources */,
+				A52F03E72DBA6F1700472ED1 /* CarPlayAddVM.swift in Sources */,
 				A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */,
 				A5A160132C2AD4470049AA73 /* Synchronization.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
@@ -7890,6 +8030,7 @@
 				A5E05BBD2CB5274000202583 /* ElectricityConsumptionProvider.swift in Sources */,
 				A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */,
 				A5F29BD22A26239C00ED700A /* TemperatureMeasurementItemRepository.swift in Sources */,
+				A5741D842DC0EE0100ED6C18 /* CarPlayRefreshUseCase.swift in Sources */,
 				A5E05BA52CB3DBA800202583 /* ElectricityChartFilters.swift in Sources */,
 				A5F29BB42A24C96600ED700A /* ChannelValueRepository.swift in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
@@ -7923,6 +8064,7 @@
 				A57668D12AE918100025509D /* SuplaCloudService.swift in Sources */,
 				A5E9CE2D2C32CE6D00509702 /* SACredentialsDialogBaseVM.swift in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
+				A5882ECF2DBF5F9300F1FC4A /* SACarPlayItem+Ext.swift in Sources */,
 				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
@@ -7939,6 +8081,7 @@
 				A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */,
 				A5FE675F2A65CC4300147D1F /* Autodiscover.swift in Sources */,
 				A55A8D802BA9AD8000C540D4 /* RollerShutterView.swift in Sources */,
+				A5882ECB2DBD743D00F1FC4A /* CreateCarPlayItemUseCase.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
 				A539C26E2D6777F700D9DD47 /* ValveDetailVC.swift in Sources */,
@@ -8003,6 +8146,7 @@
 				A5F29BD02A26237200ED700A /* ImpulseCounterMeasurementItemRepository.swift in Sources */,
 				A52BFECC2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift in Sources */,
 				A5074BD62BCE9DD40081B6B1 /* ShadowValues.swift in Sources */,
+				A52F03E12DBA2A9000472ED1 /* CarPlayAddView.swift in Sources */,
 				A5F29B692A1E269800ED700A /* GroupListVM.swift in Sources */,
 				A56233E72AB2FE37001CB948 /* Changeable.swift in Sources */,
 				A56233F52AB856B3001CB948 /* DelayedCommandSubject.swift in Sources */,
@@ -8020,6 +8164,7 @@
 				A55A8DB72BAC766A00C540D4 /* SALabeledTextField.swift in Sources */,
 				A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */,
 				A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */,
+				A5882ECD2DBF51DA00F1FC4A /* ReadCarPlayItemsUseCase.swift in Sources */,
 				A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */,
 				A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */,
 				A585421D2D7F7B2900D314A2 /* ControlLevel.swift in Sources */,
@@ -8932,6 +9077,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A567C7602DAE6145006245B5 /* SUPLA 23.xcdatamodel */,
 				A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */,
 				A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */,
 				A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */,
@@ -8955,7 +9101,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A58542322D84130900D314A2 /* SUPLA 22.xcdatamodel */;
+			currentVersion = A567C7602DAE6145006245B5 /* SUPLA 23.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

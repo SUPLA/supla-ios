@@ -157,4 +157,9 @@ class GlobalSettingsMock: GlobalSettings {
         get { showEmHistoryIntroductionMock.get() }
         set { showEmHistoryIntroductionMock.set(newValue) }
     }
+    
+    var carPlayVoiceMessages: Bool {
+        get { false }
+        set { }
+    }
 }

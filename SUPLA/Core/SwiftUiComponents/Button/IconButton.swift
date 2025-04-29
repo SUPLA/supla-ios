@@ -51,8 +51,18 @@ struct BorderedIconStyle: ButtonStyle {
             .foregroundColor(.Supla.onBackground)
             .font(.Supla.labelLarge)
             .cornerRadius(Dimens.buttonRadius)
-            //.padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
             .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(color, lineWidth: 1))
+    }
+}
+
+struct FilledIconStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        let color = configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
+        configuration.label
+            .foregroundColor(.Supla.onPrimary)
+            .font(.Supla.labelLarge)
+            .background(Color.Supla.primary)
+            .cornerRadius(Dimens.buttonRadius)
     }
 }
 
@@ -61,5 +71,7 @@ struct BorderedIconStyle: ButtonStyle {
         IconButton(name: .Icons.arrowClose) {}
         IconButton(name: .Icons.arrowRight) {}
             .buttonStyle(BorderedIconStyle())
+        IconButton(name: .Icons.arrowRight, color: .Supla.onPrimary) {}
+            .buttonStyle(FilledIconStyle())
     }
 }
