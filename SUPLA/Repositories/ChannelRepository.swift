@@ -22,8 +22,10 @@ import RxSwift
 
 protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
+    func getAllVisibleChannels(forProfileId profileId: Int32) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
+    func getAllChannels() -> Observable<[SAChannel]>
     func getChannel(_ remoteId: Int32) -> Observable<SAChannel>
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
@@ -36,8 +38,12 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
+        getAllVisibleChannels(forProfileId: profile.id)
+    }
+    
+    func getAllVisibleChannels(forProfileId profileId: Int32) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id = %d", profileId))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -73,6 +79,10 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
             .ordered(by: "remote_id")
         
         return query(request)
+    }
+    
+    func getAllChannels() -> Observable<[SAChannel]> {
+        return query(SAChannel.fetchRequest().ordered(by: "remote_id"))
     }
     
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]> {

@@ -21,7 +21,9 @@ import RxSwift
 
 protocol GroupRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAChannelGroup {
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
+    func getAllVisibleGroups(forProfileId profileId: Int32) -> Observable<[SAChannelGroup]>
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]>
+    func getAllGroups() -> Observable<[SAChannelGroup]>
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -31,8 +33,12 @@ protocol GroupRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater w
 class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
+        getAllVisibleGroups(forProfileId: profile.id)
+    }
+    
+    func getAllVisibleGroups(forProfileId profileId: Int32) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id = %d", profileId))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -68,6 +74,10 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
             .ordered(by: "remote_id")
         
         return query(request)
+    }
+    
+    func getAllGroups() -> Observable<[SAChannelGroup]> {
+        return query(SAChannelGroup.fetchRequest().ordered(by: "remote_id"))
     }
     
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {

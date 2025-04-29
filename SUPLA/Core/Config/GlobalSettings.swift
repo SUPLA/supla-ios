@@ -41,6 +41,7 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var nextServerId: Int32 { get }
     var showEmGeneralIntroduction: Bool { get set }
     var showEmHistoryIntroduction: Bool { get set }
+    var carPlayVoiceMessages: Bool { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -239,6 +240,16 @@ class GlobalSettingsImpl: GlobalSettings {
         }
         set {
             defaults.set(newValue, forKey: emHistoryIntroductionKey)
+        }
+    }
+    
+    private let carPlayVoiceMessagesKey = "car_play_voice_messages"
+    var carPlayVoiceMessages: Bool {
+        get {
+            exists(carPlayVoiceMessagesKey).ifTrue { defaults.bool(forKey: carPlayVoiceMessagesKey) } ?? true
+        }
+        set {
+            defaults.set(newValue, forKey: carPlayVoiceMessagesKey)
         }
     }
     

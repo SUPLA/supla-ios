@@ -26,12 +26,14 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
     private lazy var viewModel: AppSettingsVM! = AppSettingsVM()
     
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
+    private lazy var appCoordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
 
     private lazy var notificationCenter: UserNotificationCenterMock! = UserNotificationCenterMock()
     
     override func setUp() {
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: UserNotificationCenter.self, notificationCenter!)
+        DiContainer.shared.register(type: SuplaAppCoordinator.self, appCoordinator!)
     }
     
     override func tearDown() {
@@ -39,6 +41,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         settings = nil
         notificationCenter = nil
+        appCoordinator = nil
         
         super.tearDown()
     }
@@ -73,7 +76,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
                 .batteryLevelWarning(level: 10, callback: { _ in }),
-                .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
+                .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {}),
+                .arrowButtonItem(title: Strings.CarPlay.label, callback: {})
             ]),
             .permissions(items: [
                 .permissionItem(title: Strings.AppSettings.notificationsLabel, active: true, callback: {})
@@ -118,7 +122,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
                 .batteryLevelWarning(level: 10, callback: { _ in }),
-                .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
+                .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {}),
+                .arrowButtonItem(title: Strings.CarPlay.label, callback: {})
             ]),
             .permissions(items: [
                 .permissionItem(title: Strings.AppSettings.notificationsLabel, active: false, callback: {})
@@ -423,7 +428,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinVerification(unlockAction: .confirmAuthorizeApplication))])
+        XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
@@ -432,6 +437,9 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+        
+        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
+        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [.confirmAuthorizeApplication])
     }
     
     func test_shouldNavigateToPinVerification_scopeChangeToAccounts() {
@@ -458,7 +466,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinVerification(unlockAction: .confirmAuthorizeAccounts))])
+        XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
@@ -467,6 +475,9 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+        
+        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
+        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [.confirmAuthorizeAccounts])
     }
     
     func test_shouldNavigateToPinVerification_turnPinOff() {
@@ -493,7 +504,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinVerification(unlockAction: .turnOffPin))])
+        XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
@@ -502,6 +513,9 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+        
+        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
+        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [.turnOffPin])
     }
     
     func test_shouldNavigateToPinSetup() {
@@ -527,7 +541,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinSetup(scope: .application))])
+        XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
@@ -536,6 +550,9 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+        
+        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [.application])
+        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [])
     }
     
     func test_shouldSaveBatteryWarningLevel() {
@@ -596,7 +613,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
-        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToLocationOrdering)])
+        XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
@@ -605,6 +622,10 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+        
+        XCTAssertEqual(appCoordinator.navigateToLocationOrderingMock.parameters.count, 1)
+        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
+        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [])
     }
     
     func test_shouldNavigateToAppPreferences() {

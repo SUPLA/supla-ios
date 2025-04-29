@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=el";
 
-"Scenes.ActionButtons.execute" = "Εφαρμογή";
-"Scenes.ActionButtons.abort" = "Παύση";
+"scenes_action_buttons_execute" = "Εφαρμογή";
+"scenes_action_buttons_abort" = "Παύση";
+"scenes_action_buttons_abort_and_execute" = "Παύση και εφαρμογή";
 
 "Cfg.removal.dialog.missing_name" = "Εισαγάγετε ένα όνομα λογαριασμού";
 "Cfg.removal.dialog.duplicated_name" = "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα";
@@ -290,6 +291,13 @@
 "turn_off" = "Απενεργοποίηση";
 "save" = "Αποθήκευση";
 "general_function" = "Λειτουργία";
+"general_toggle" = "Εναλλαγή";
+"general_channel" = "Κανάλι";
+"general_group" = "Oμάδα";
+"general_scene" = "Σκηνή";
+"general_profile" = "Λογαριασμός";
+"general_action" = "Ενέργεια";
+"general_delete" = "Αφαιρώ";
 /* General - DayOfWeek */
 "monday" = "Δευτέρα";
 "tuesday" = "Τρίτη";
@@ -580,3 +588,7 @@
 "change_caption_channel_name" = "Όνομα καναλιού";
 "change_caption_scene_name" = "Όνομα σκηνής";
 "change_caption_location_name" = "Όνομα τοποθεσίας";
+
+/* Car play */
+"car_play_action" = "Ενέργεια: %@";
+"car_play_display_name" = "Όνομα";

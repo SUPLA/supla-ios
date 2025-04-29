@@ -23,8 +23,6 @@ import UIKit
 
 class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewEvent, AppSettingsVM> {
     
-    @Singleton<SuplaAppCoordinator> private var coordinator
-    
     let tableView = UITableView(frame: .zero, style: .grouped)
     
     init() {
@@ -57,14 +55,10 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     
     override func handle(event: AppSettingsViewEvent) {
         switch (event) {
-        case .navigateToLocationOrdering:
-            coordinator.navigateToLocationOrdering()
         case .navigateToAppPreferences:
             openAppSettings()
-        case .navigateToPinSetup(let scope): coordinator.navigateToPinSetup(lockScreenScope: scope)
-        case .navigateToPinVerification(let unlockAction): coordinator.navigateToLockScreen(unlockAction: unlockAction)
         case .changeInterfaceStyle(let style):
-            (UIApplication.shared.delegate as? AppDelegate)?.window?.overrideUserInterfaceStyle = style
+            (view.window?.windowScene?.delegate as? SceneDelegate)?.window?.overrideUserInterfaceStyle = style
             overrideUserInterfaceStyle = style
         }
     }

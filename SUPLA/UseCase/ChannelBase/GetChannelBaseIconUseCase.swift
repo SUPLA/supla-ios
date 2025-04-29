@@ -31,6 +31,17 @@ extension GetChannelBaseIconUseCase {
     ) -> IconResult {
         return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction))
     }
+    
+    func stateIcon(channel: SAChannel, state: ChannelState) -> IconResult {
+        let subfunction = channel.isHvacThermostat().ifTrue { channel.value?.asThermostatValue().subfunction }
+        let iconData = channel.getIconData(state: state, subfunction: subfunction)
+        
+        return invoke(iconData: iconData)
+    }
+    
+    func stateIcon(channel: SAChannelGroup, state: ChannelState) -> IconResult {
+        invoke(iconData: channel.getIconData(state: state))
+    }
 }
 
 final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
@@ -108,7 +119,7 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     }
 }
 
-enum IconResult: Equatable {
+enum IconResult: Equatable, Hashable {
     case suplaIcon(name: String)
     case userIcon(icon: UIImage?)
 }

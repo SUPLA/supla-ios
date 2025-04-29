@@ -20,7 +20,7 @@ import SharedCore
 
 let VALUE_IGNORE = -1
 
-public enum Action: Int32, Equatable {
+public enum Action: Int32, Equatable, CaseIterable {
     case open = 10
     case close = 20
     case shut = 30

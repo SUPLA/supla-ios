@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=sk";
 
-"Scenes.ActionButtons.execute" = "Vykonať";
-"Scenes.ActionButtons.abort" = "Prerušiť";
+"scenes_action_buttons_execute" = "Vykonať";
+"scenes_action_buttons_abort" = "Prerušiť";
+"scenes_action_buttons_abort_and_execute" = "Prerušiť a vykonať";
 
 "Cfg.removal.dialog.missing_name" = "Zadaj názov účtu";
 "Cfg.removal.dialog.duplicated_name" = "Účet s týmto názvom už existuje";
@@ -290,6 +291,13 @@
 "turn_off" = "Vypnúť";
 "save" = "Uložiť";
 "general_function" = "Funkcia";
+"general_toggle" = "Prepnúť";
+"general_channel" = "Kanál";
+"general_group" = "Skupina";
+"general_scene" = "Scéna";
+"general_profile" = "Účet";
+"general_action" = "Činnosť";
+"general_delete" = "Odstrániť";
 /* General - DayOfWeek */
 "monday" = "Pondelok";
 "tuesday" = "Utorok";
@@ -578,3 +586,7 @@
 "change_caption_channel_name" = "Názov kanála";
 "change_caption_scene_name" = "Názov scény";
 "change_caption_location_name" = "Názov miesta";
+
+/* Car play */
+"car_play_action" = "Činnosť: %@";
+"car_play_display_name" = "Názov";

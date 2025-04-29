@@ -23,11 +23,8 @@ private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
 private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    var window: UIWindow? = nil
-    
     @Singleton private var settings: GlobalSettings
     @Singleton private var insertNotificationUseCase: InsertNotificationUseCase
-    @Singleton private var coordinator: SuplaAppCoordinator
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
     @Singleton private var disconnectUseCase: DisconnectUseCase
     @Singleton private var dateProvider: DateProvider
@@ -58,13 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         #endif
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        if let window = window {
-            window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
-            coordinator.attachToWindow(window)
-            coordinator.start(animated: true)
-        }
-        
         CoreDataManager.shared.setup {
             DispatchQueue.global(qos: .userInitiated).async {
                 InitializationUseCase.invoke()
@@ -73,6 +63,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         registerForNotifications()
         return true
+    }
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -136,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     private func registerForNotifications() {
         UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { [weak self] (granted, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .carPlay]) { [weak self] (granted, error) in
             
             if (granted) {
                 DispatchQueue.main.async { UIApplication.shared.registerForRemoteNotifications() }

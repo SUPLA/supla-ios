@@ -95,6 +95,7 @@ extension String {
         
         static let ocrPhoto = "icon_ocr_photo"
         static let noPhoto = "icon_no_photo"
+        static let moveHandle = "order"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"

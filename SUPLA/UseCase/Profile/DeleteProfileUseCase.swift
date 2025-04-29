@@ -66,11 +66,10 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
     private func removeToken(profile: AuthProfileItem) -> Completable {
         Completable.create { completable in
             if profile.isAuthDataComplete {
-                let authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
                 let tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
                 
                 do {
-                    try self.singleCall.registerPushToken(authDetails, profile.preferredProtocolVersion, tokenDetails)
+                    try self.singleCall.registerPushToken(profile, profile.preferredProtocolVersion, tokenDetails)
                 } catch {
                     SALog.error("Push token removal failed with error: \(error)")
                 }

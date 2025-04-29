@@ -60,5 +60,13 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
     func update(caption: String, remoteId: Int32) -> RxSwift.Observable<Void> {
         .empty()
     }
+    
+    func getAllVisibleScenes(forProfileId profileId: Int32) -> RxSwift.Observable<[SAScene]> {
+        .empty()
+    }
+    
+    func getAllScenes() -> RxSwift.Observable<[SAScene]> {
+        .empty()
+    }
 }
 

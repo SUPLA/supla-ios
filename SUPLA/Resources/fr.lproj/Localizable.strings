@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=fr";
 
-"Scenes.ActionButtons.execute" = "Exécuter";
-"Scenes.ActionButtons.abort" = "Arrêter";
+"scenes_action_buttons_execute" = "Exécuter";
+"scenes_action_buttons_abort" = "Arrêter";
+"scenes_action_buttons_abort_and_execute" = "Défiler et exécuter";
 
 "Cfg.removal.title" = "Supprimer le compte ?";
 "Cfg.removal.action.logout" = "Oublier sur cet appareil";
@@ -290,6 +291,13 @@
 "turn_off" = "Désactivez";
 "save" = "Sauvegarder";
 "general_function" = "Fonction";
+"general_toggle" = "Changez";
+"general_channel" = "Chaîne";
+"general_group" = "Groupe";
+"general_scene" = "Scène";
+"general_profile" = "Compte";
+"general_action" = "Action";
+"general_delete" = "Supprimer";
 /* General - DayOfWeek */
 "monday" = "Lundi";
 "tuesday" = "Mardi";
@@ -580,3 +588,7 @@
 "change_caption_channel_name" = "Nom du canal";
 "change_caption_scene_name" = "Nom de la scène";
 "change_caption_location_name" = "Nom de la localisation";
+
+/* Car play */
+"car_play_action" = "Action: %@";
+"car_play_display_name" = "Nom";

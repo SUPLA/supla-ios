@@ -23,7 +23,9 @@ import RxBlocking
 
 protocol SceneRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAScene {
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
+    func getAllVisibleScenes(forProfileId profileId: Int32) -> Observable<[SAScene]>
     func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]>
+    func getAllScenes() -> Observable<[SAScene]>
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
     func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -33,8 +35,12 @@ protocol SceneRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater w
 final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
 
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
+        getAllVisibleScenes(forProfileId: profile.id)
+    }
+    
+    func getAllVisibleScenes(forProfileId profileId: Int32) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0", profile))
+            .filtered(by: NSPredicate(format: "profile.id = %d AND visible > 0", profileId))
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
             NSSortDescriptor(key: "location.caption", ascending: true),
@@ -64,6 +70,10 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
             .ordered(by: "sceneId")
         
         return self.query(fetchRequest)
+    }
+    
+    func getAllScenes() -> Observable<[SAScene]> {
+        return self.query(SAScene.fetchRequest().ordered(by: "sceneId"))
     }
     
     func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene> {
