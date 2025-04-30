@@ -108,7 +108,7 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice, withDeviceCatalog: true)
+        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice, withDeviceCatalog: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE)
     }
     
     private func setupView() {
