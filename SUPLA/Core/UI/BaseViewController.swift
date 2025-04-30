@@ -50,7 +50,10 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         viewModel.onViewDidLoad()
         
         viewModel.eventsObervable()
-            .subscribe(onNext: { [weak self] event in self?.handle(event: event) })
+            .subscribe(
+                onNext: { [weak self] event in self?.handle(event: event) },
+                onError: { SALog.error("Failed by handling event \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
@@ -65,7 +68,10 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         viewModel.onViewWillAppear()
         
         stateDisposable = viewModel.stateObservable()
-            .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
+            .subscribe(
+                onNext: { [weak self] state in self?.handle(state: state) },
+                onError: { SALog.error("Failed by handling state \(String(describing: $0))") }
+            )
         
         NotificationCenter.default.addObserver(self, selector: #selector(onViewAppeared), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onViewDisappeared), name: UIApplication.didEnterBackgroundNotification, object: nil)

@@ -85,18 +85,23 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         stateDisposable = stateHolder.state()
             .subscribe(on: schedulers.background)
             .observe(on: schedulers.main)
-            .subscribe(onNext: {
-                switch ($0) {
-                case .initialization, .connecting(_), .finished:
-                    self.navigateToStatusView()
-                case .locked:
-                    self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
-                    self.popToViewController(ofClass: StatusFeature.ViewController.self)
-                    self.navigateToLockScreen(unlockAction: .authorizeApplication)
-                default:
-                    break
+            .subscribe(
+                onNext: {
+                    switch ($0) {
+                    case .initialization, .connecting(_), .finished:
+                        self.navigateToStatusView()
+                    case .locked:
+                        self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
+                        self.popToViewController(ofClass: StatusFeature.ViewController.self)
+                        self.navigateToLockScreen(unlockAction: .authorizeApplication)
+                    default:
+                        break
+                    }
+                },
+                onError: {
+                    SALog.error("Failed by handling app state: \(String(describing: $0))")
                 }
-            })
+            )
     }
     
     func currentController() -> UIViewController? {

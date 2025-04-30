@@ -42,7 +42,10 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     
     override func reloadTable() {
         createProfileChannelsListUseCase.invoke()
-            .subscribe(onNext: { self.listItems.accept($0) })
+            .subscribe(
+                onNext: { self.listItems.accept($0) },
+                onError: { SALog.error("Creating channels list failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: self)
     }
     

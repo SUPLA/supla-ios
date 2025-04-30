@@ -680,6 +680,7 @@
 		A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */; };
 		A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
+		A5741D862DC1FC9F00ED6C18 /* ProfileServerUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
 		A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */; };
 		A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */; };
@@ -2269,6 +2270,7 @@
 		A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationServiceMock.swift; sourceTree = "<group>"; };
 		A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseTests.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServerUseCasesMocks.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
 		A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerMock.swift; sourceTree = "<group>"; };
@@ -5330,6 +5332,7 @@
 		A59AB89E2A30534F00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */,
 				A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */,
 				A59AB8A12A30583E00D91F1F /* DetailUseCasesMocks.swift */,
 				A59AB8A52A305D8700D91F1F /* LocationUseCasesMocks.swift */,
@@ -8211,6 +8214,7 @@
 				A54A066F2AF540AD00C03DBC /* ChartDataAggregationTests.swift in Sources */,
 				A50E5D7E2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift in Sources */,
 				A50B5D262BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift in Sources */,
+				A5741D862DC1FC9F00ED6C18 /* ProfileServerUseCasesMocks.swift in Sources */,
 				A5519B342B6D32DE00811747 /* ThermometerAndHumidityValueProviderTest.swift in Sources */,
 				A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */,
 				A59AB8A82A306B4E00D91F1F /* NSManagedObject+Test.swift in Sources */,

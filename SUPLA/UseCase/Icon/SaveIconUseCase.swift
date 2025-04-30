@@ -56,7 +56,7 @@ final class SaveIconUseCase {
                 .toBlocking()
                 .first()
         } catch {
-            
+            SALog.error("Could not save icons: \(String(describing: error))")
         }
     }
     

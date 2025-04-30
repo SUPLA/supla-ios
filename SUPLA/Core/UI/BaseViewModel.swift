@@ -27,31 +27,46 @@ protocol BaseViewModelBinder {
 extension BaseViewModelBinder {
     func bind(_ observable: Observable<Void>, _ action: @escaping () -> Void) {
         observable
-            .subscribe(onNext: { action() })
+            .subscribe(
+                onNext: { action() },
+                onError: { SALog.error("Binding void observable failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
     func bind(_ single: Single<Void>, _ action: @escaping () -> Void) {
         single
-            .subscribe(onSuccess: { action() })
+            .subscribe(
+                onSuccess: { action() },
+                onFailure: { SALog.error("Binding singe failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
     func bind<T>(_ observable: Observable<T>, _ action: @escaping (T) -> Void) {
         observable
-            .subscribe(onNext: { action($0) })
+            .subscribe(
+                onNext: { action($0) },
+                onError: { SALog.error("Binding typed observable failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
     func bind(_ observable: ControlEvent<Void>, _ action: @escaping () -> Void) {
         observable
-            .subscribe(onNext: { action() })
+            .subscribe(
+                onNext: { action() },
+                onError: { SALog.error("Binding control event failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
     func bind<T>(_ observable: ControlProperty<T>, _ action: @escaping (T) -> Void) {
         observable
-            .subscribe(onNext: { action($0) })
+            .subscribe(
+                onNext: { action($0) },
+                onError: { SALog.error("Binding control property failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
 }
@@ -84,31 +99,40 @@ class BaseViewModel<S: ViewState, E: ViewEvent>: BaseViewModelBinder {
     
     func bind<T>(field path: WritableKeyPath<S, T>, toObservable observable: Observable<T>) {
         observable
-            .subscribe(onNext: { [weak self] value in
-                self?.updateView() { state in state.changing(path: path, to: value) }
-            })
+            .subscribe(
+                onNext: { [weak self] value in
+                    self?.updateView() { state in state.changing(path: path, to: value) }
+                },
+                onError: { SALog.error("Binding field with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
     func bindWhenInitialized<T>(field path: WritableKeyPath<S, T?>, toObservable observable: Observable<T>) {
         observable
-            .subscribe(onNext: { [weak self] value in
-                self?.updateView() { state in
-                    if (state.value(path: path) == nil) {
-                        return state
+            .subscribe(
+                onNext: { [weak self] value in
+                    self?.updateView() { state in
+                        if (state.value(path: path) == nil) {
+                            return state
+                        }
+                        return state.changing(path: path, to: value)
                     }
-                    return state.changing(path: path, to: value)
-                }
-            })
+                },
+                onError: { SALog.error("Binding field when initialized failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
     func bind<T>(field path: WritableKeyPath<S, T>, toOptional observable: Observable<T?>) {
         observable
-            .subscribe(onNext: { [weak self] value in
-                guard let value = value else { return }
-                self?.updateView() { state in state.changing(path: path, to: value) }
-            })
+            .subscribe(
+                onNext: { [weak self] value in
+                    guard let value = value else { return }
+                    self?.updateView() { state in state.changing(path: path, to: value) }
+                },
+                onError: { SALog.error("Binding optional field failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
     }
     
