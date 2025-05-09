@@ -91,9 +91,9 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
                let profile = item.profile
             {
                 do {
-                    try singleCall.executeAction(action, subjectType: item.subjectType, subjectId: item.subjectId, profile: profile)
+                    try singleCall.executeAction(action, subjectType: item.subjectType, subjectId: item.subjectId, authorizationEntity: profile.authorizationEntity)
                 } catch {
-                    let errorMessage = self?.getErrorMessage(for: error, subjectType: item.subjectType)
+                    let errorMessage = error.getErrorMessage(subjectType: item.subjectType)
                     self?.errorItems[item.id] = errorMessage
                     self?.sayErrorMessage(errorMessage)
                     DispatchQueue.main.async { [weak self] in
@@ -106,27 +106,6 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
                     self?.errorItems.removeValue(forKey: item.id)
                     self?.reloadItems()
                 }
-            }
-        }
-    }
-
-    private func getErrorMessage(for error: Error, subjectType: SubjectType) -> String {
-        guard let singleCallError = error as? SingleCallError else {
-            return Strings.CarPlay.executionError
-        }
-
-        return switch (singleCallError) {
-        case .resultException(let errorCode):
-            switch (errorCode) {
-            case SUPLA_RESULTCODE_CHANNEL_IS_OFFLINE: Strings.General.channelOffline
-            case SUPLA_RESULTCODE_CHANNELNOTFOUND: Strings.General.channelNotFound
-            case SUPLA_RESULTCODE_INACTIVE:
-                if (subjectType == .scene) {
-                    Strings.General.sceneInactive
-                } else {
-                    Strings.CarPlay.executionError
-                }
-            default: Strings.CarPlay.executionError
             }
         }
     }

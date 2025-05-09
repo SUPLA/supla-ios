@@ -31,6 +31,7 @@ extension Color {
         static let surfaceVariant = Color(UIColor.surfaceVariant)
         
         static let primaryContainer = Color(UIColor.primaryContainer)
+        static let secondaryContainer = Color(UIColor.secondaryContainer)
         
         static let onBackground = Color(UIColor.onBackground)
         static let onPrimary = Color(UIColor.onPrimary)

@@ -32,15 +32,19 @@ extension GetChannelBaseIconUseCase {
         return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction))
     }
     
-    func stateIcon(channel: SAChannel, state: ChannelState) -> IconResult {
-        let subfunction = channel.isHvacThermostat().ifTrue { channel.value?.asThermostatValue().subfunction }
-        let iconData = channel.getIconData(state: state, subfunction: subfunction)
+    func stateIcon(_ channelBase: SAChannelBase, state: ChannelState) -> IconResult {
+        if let channel = channelBase as? SAChannel {
+            let subfunction = channel.isHvacThermostat().ifTrue { channel.value?.asThermostatValue().subfunction }
+            let iconData = channel.getIconData(state: state, subfunction: subfunction)
+            
+            return invoke(iconData: iconData)
+        }
         
-        return invoke(iconData: iconData)
-    }
-    
-    func stateIcon(channel: SAChannelGroup, state: ChannelState) -> IconResult {
-        invoke(iconData: channel.getIconData(state: state))
+        if let group = channelBase as? SAChannelGroup {
+            return invoke(iconData: group.getIconData(state: state))
+        }
+        
+        return .suplaIcon(name: .Icons.fncUnknown)
     }
 }
 
@@ -53,12 +57,12 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
             // Currently only humidity and temperature may have multiple icons
             fatalError("Wrong icon configuration (iconType: '\(iconData.type)', function: '\(iconData.function)'")
         }
-
-        if let icon = getUserIcon(iconData.function, iconData.userIcon, iconData.state, iconData.type, iconData.subfunction) {
-            return .userIcon(icon: icon)
-        }
-
+        
         let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
+        
+        if let icon = getUserIcon(iconData.function, iconData.userIcon, iconData.state, iconData.type, iconData.subfunction) {
+            return .userIcon(icon: icon, fallbackName: name)
+        }
 
         return .suplaIcon(name: name)
     }
@@ -121,14 +125,14 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
 
 enum IconResult: Equatable, Hashable {
     case suplaIcon(name: String)
-    case userIcon(icon: UIImage?)
+    case userIcon(icon: UIImage?, fallbackName: String)
 }
 
 extension IconResult {
     var uiImage: UIImage? {
         switch (self) {
         case .suplaIcon(let name): return .init(named: name)
-        case .userIcon(let icon): return icon
+        case .userIcon(let icon, _): return icon
         }
     }
     
@@ -136,12 +140,19 @@ extension IconResult {
         switch (self) {
         case .suplaIcon(let name):
             Image(name)
-        case .userIcon(let icon):
+        case .userIcon(let icon, _):
             if let icon = icon {
                 Image(uiImage: icon)
             } else {
                 Image(.Icons.fncUnknown)
             }
+        }
+    }
+    
+    var name: String {
+        switch (self) {
+        case .suplaIcon(let name): name
+        case .userIcon(_ , let fallbackName): fallbackName
         }
     }
 }

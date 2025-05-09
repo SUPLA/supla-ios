@@ -21,10 +21,10 @@
 final class SingleCallMock: SingleCall {
     
     var registerPushTokenCalls = 0
-    func registerPushToken(_ profile: AuthProfileItem, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws {
+    func registerPushToken(_ authorizationEntity: SingleCallAuthorizationEntity, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws {
         registerPushTokenCalls += 1
     }
     
-    func executeAction(_ action: SUPLA.Action, subjectType: SUPLA.SubjectType, subjectId: Int32, profile: AuthProfileItem) throws {
+    func executeAction(_ action: SUPLA.Action, subjectType: SUPLA.SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws {
     }
 }

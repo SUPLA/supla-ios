@@ -20,7 +20,7 @@ import SharedCore
 
 let VALUE_IGNORE = -1
 
-public enum Action: Int32, Equatable, CaseIterable {
+public enum Action: Int32, Equatable, CaseIterable, Codable, Sendable {
     case open = 10
     case close = 20
     case shut = 30
@@ -80,4 +80,43 @@ public enum ActionParameters {
         setpointTemperatureHeat: Float?,
         setpointTemperatureCool: Float?
     )
+}
+
+
+extension Action {
+    func state(_ function: Int32) -> ChannelState {
+        switch (self) {
+        case .open: .opened
+        case .close: .closed
+        case .shut: .closed
+        case .reveal: .opened
+        case .revealPartially: .opened
+        case .shutPartially: .closed
+        case .turnOn:
+            if (function == SuplaFunction.dimmerAndRgbLighting.value) {
+                .complex([.on, .on])
+            } else {
+                .on
+            }
+        case .turnOff:
+            if (function == SuplaFunction.dimmerAndRgbLighting.value) {
+                .complex([.off, .off])
+            } else {
+                .off
+            }
+        case .setRgbwParameters: .complex([.on, .on])
+        case .openClose: .opened
+        case .stop: .notUsed
+        case .toggle: .on
+        case .upOrStop: .opened
+        case .downOrStop: .closed
+        case .stepByStep: .opened
+        case .up: .opened
+        case .down: .closed
+        case .setHvacParameters: .on
+        case .execute: .notUsed
+        case .interrupt: .notUsed
+        case .interruptAndExecute: .notUsed
+        }
+    }
 }

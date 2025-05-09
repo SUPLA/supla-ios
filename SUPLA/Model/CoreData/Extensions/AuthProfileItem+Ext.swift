@@ -97,4 +97,17 @@ extension AuthProfileItem {
         }
     }
     
+    var authorizationEntity: SingleCallAuthorizationEntity {
+        let authorizationData: SingleCallAuthorizationData = switch (authorizationType) {
+        case .email: .email(email: email ?? "")
+        case .accessId: .accessId(id: accessId, password: accessIdPassword ?? "")
+        }
+        
+        return SingleCallAuthorizationEntity(
+            profileId: id,
+            data: authorizationData,
+            serverAddress: server?.address ?? "",
+            preferredProtocolVersion: preferredProtocolVersion
+        )
+    }
 }

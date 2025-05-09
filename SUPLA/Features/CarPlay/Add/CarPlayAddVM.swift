@@ -24,6 +24,7 @@ extension CarPlayAddFeature {
         @Singleton<UpdateCarPlayItem.UseCase> private var updateCarPlayItemUseCase
         @Singleton<CreateCarPlayItemUseCase> private var createCarPlayItemUseCase
         @Singleton<CarPlayRefresh.UseCase> private var carPlayRefreshUseCase
+        @Singleton<DeleteCarPlayItem.UseCase> private var deleteCarPlayItemUseCase
         @Singleton<CarPlayItemRepository> private var carPlayItemRepository
         @Singleton<ProfileRepository> private var profileRepository
         @Singleton<SuplaAppCoordinator> private var coordinator
@@ -167,9 +168,7 @@ extension CarPlayAddFeature {
             if let id {
                 @Singleton<CarPlayItemRepository> var carPlayItemRepository
 
-                carPlayItemRepository.queryItem(id)
-                    .compactMap { $0 }
-                    .flatMapFirst { carPlayItemRepository.delete($0) }
+                deleteCarPlayItemUseCase.invoke(id)
                     .asDriverWithoutError()
                     .drive(
                         onNext: { [weak self] in
@@ -326,7 +325,7 @@ private extension SAChannel {
             remoteId: remote_id,
             label: getCaptionUseCase.invoke(data: shareable).string,
             actions: SharedCore.SuplaFunction.companion.from(value: self.func).actions,
-            icon: getChannelBaseIconUseCase.stateIcon(channel: self, state: getChannelBaseStateUseCase.getOfflineState(self.func)),
+            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(self.func)),
             isLocation: false
         )
     }
@@ -343,7 +342,7 @@ private extension SAChannelGroup {
             remoteId: remote_id,
             label: getCaptionUseCase.invoke(data: shareable).string,
             actions: SharedCore.SuplaFunction.companion.from(value: self.func).actions,
-            icon: getChannelBaseIconUseCase.stateIcon(channel: self, state: getChannelBaseStateUseCase.getOfflineState(self.func)),
+            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(self.func)),
             isLocation: false
         )
     }

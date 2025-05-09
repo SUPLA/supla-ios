@@ -239,6 +239,16 @@ final class UseCaseLegacyWrapper: NSObject {
         useCase.reloadRelations()
     }
     
+    @available(iOS 17.0, *)
+    @objc static func exportCarPlayItems() {
+        @Singleton<ExportCarPlayItems.UseCase> var useCase
+        do {
+            try useCase.invoke().subscribeSynchronous()
+        } catch {
+            SALog.error("Could not export carplay items")
+        }
+    }
+    
     @objc static func startHiddenChannelsCleanup() {
         @Singleton<RemoveHiddenChannelsManager> var manager
         manager.start()

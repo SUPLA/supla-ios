@@ -17,8 +17,9 @@
  */
 
 import RxSwift
+import WidgetKit
 
-struct ReadCarPlayItems {
+enum ReadCarPlayItems {
     protocol UseCase {
         func invoke() -> Observable<[Item]>
     }
@@ -54,6 +55,11 @@ struct ReadCarPlayItems {
                         }
                     }
                 }
+                
+                if #available(iOS 17.0, *) {
+                    ExportCarPlayItems.Implementation.update(items, channels, groups, scenes)
+                }
+                
                 return result
             }
         }
@@ -80,7 +86,7 @@ extension ReadCarPlayItems {
             icon: IconResult,
             caption: String,
             profileName: String,
-            profile: AuthProfileItem? = nil
+            profile: AuthProfileItem? = nil,
         ) {
             self.id = id
             self.subjectId = subjectId
@@ -104,8 +110,8 @@ private extension SACarPlayItem {
             subjectId: subjectId,
             subjectType: .channel,
             action: action,
-            icon: getChannelBaseIconUseCase.stateIcon(channel: channel, state: action.action.state),
-            caption: getCaptionUseCase.invoke(data: channel.shareable).string,
+            icon: getChannelBaseIconUseCase.stateIcon(channel, state: action.action.state(channel.func)),
+            caption: caption ?? getCaptionUseCase.invoke(data: channel.shareable).string,
             profileName: channel.profile.displayName,
             profile: channel.profile
         )
@@ -118,10 +124,10 @@ private extension SACarPlayItem {
         return ReadCarPlayItems.Item(
             id: objectID,
             subjectId: subjectId,
-            subjectType: .channel,
+            subjectType: .group,
             action: action,
-            icon: getChannelBaseIconUseCase.stateIcon(channel: group, state: action.action.state),
-            caption: getCaptionUseCase.invoke(data: group.shareable).string,
+            icon: getChannelBaseIconUseCase.stateIcon(group, state: action.action.state(group.func)),
+            caption: caption ?? getCaptionUseCase.invoke(data: group.shareable).string,
             profileName: group.profile.displayName,
             profile: group.profile
         )
@@ -134,40 +140,12 @@ private extension SACarPlayItem {
         return ReadCarPlayItems.Item(
             id: objectID,
             subjectId: subjectId,
-            subjectType: .channel,
+            subjectType: .scene,
             action: action,
             icon: getSceneIconUseCase.invoke(scene),
-            caption: getCaptionUseCase.invoke(data: scene.shareable).string,
+            caption: caption ?? getCaptionUseCase.invoke(data: scene.shareable).string,
             profileName: scene.profile?.displayName ?? "",
             profile: scene.profile
         )
-    }
-}
-
-private extension SUPLA.Action {
-    var state: ChannelState {
-        switch (self) {
-        case .open: .opened
-        case .close: .closed
-        case .shut: .closed
-        case .reveal: .opened
-        case .revealPartially: .opened
-        case .shutPartially: .closed
-        case .turnOn: .on
-        case .turnOff: .off
-        case .setRgbwParameters: .complex([.on, .on])
-        case .openClose: .opened
-        case .stop: .notUsed
-        case .toggle: .on
-        case .upOrStop: .opened
-        case .downOrStop: .closed
-        case .stepByStep: .opened
-        case .up: .opened
-        case .down: .closed
-        case .setHvacParameters: .on
-        case .execute: .notUsed
-        case .interrupt: .notUsed
-        case .interruptAndExecute: .notUsed
-        }
     }
 }

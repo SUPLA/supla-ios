@@ -18,6 +18,7 @@
  */
 
 import SwiftUI
+import Foundation
 
 extension View {
     func textColor(_ color: Color) -> some View {

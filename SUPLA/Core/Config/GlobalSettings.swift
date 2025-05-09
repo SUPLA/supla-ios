@@ -42,6 +42,7 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var showEmGeneralIntroduction: Bool { get set }
     var showEmHistoryIntroduction: Bool { get set }
     var carPlayVoiceMessages: Bool { get set }
+    var migratedForAppGroups: Bool { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -250,6 +251,16 @@ class GlobalSettingsImpl: GlobalSettings {
         }
         set {
             defaults.set(newValue, forKey: carPlayVoiceMessagesKey)
+        }
+    }
+    
+    private let migratedForAppGroupsKey = "GlobalSettings.migrated_for_app_groups"
+    var migratedForAppGroups: Bool {
+        get {
+            exists(migratedForAppGroupsKey).ifTrue { defaults.bool(forKey: migratedForAppGroupsKey) } ?? false
+        }
+        set {
+            defaults.set(newValue, forKey: migratedForAppGroupsKey)
         }
     }
     

@@ -18,6 +18,7 @@
  */
 
 import SwiftUI
+import CoreFoundation
 
 extension Font {
     enum Supla {

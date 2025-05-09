@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-public enum SubjectType: Int32, Equatable, CaseIterable, Identifiable {
+public enum SubjectType: Int32, Equatable, CaseIterable, Identifiable, Codable, Sendable {
     case channel = 1
     case group = 2
     case scene = 3
@@ -26,14 +26,6 @@ public enum SubjectType: Int32, Equatable, CaseIterable, Identifiable {
     }
     
     public var id: Int32 { rawValue }
-    
-    var name: String {
-        switch (self) {
-        case .channel: Strings.General.channel
-        case .group: Strings.General.group
-        case .scene: Strings.General.scene
-        }
-    }
     
     static func from(rawValue: Int32) -> SubjectType {
         for subjectType in allCases {

@@ -439,7 +439,7 @@
 "container_sound_alarm" = "Sound alarm active";
 
 /* apple car play */
-"car_play_label" = "Apple CarPlay";
+"car_play_label" = "Actions for CarPlay/Widgets";
 "car_play_voice_messages" = "Play messages";
 "car_play_action" = "Action: %@";
 "car_play_display_name" = "Display name";
@@ -448,3 +448,10 @@
 "car_play_delete_title" = "Deleting item";
 "car_play_delete_message" = "Do you want to continue";
 "car_play_confirm_delete" = "Delete";
+
+/* Widget */
+"widget_empty_hint" = "No common action defined. Go to Supla APP -> Settings -> Actions for CarPlay/Widgets and define your actions.";
+"widget_control_hint" = "Perform action";
+"widgets_actions_name" = "Actions";
+"widgets_actions_description" = "Simplifies access to the most common actions.";
+"widgets_unknown_action" = "Unknown action!";

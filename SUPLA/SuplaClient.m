@@ -886,6 +886,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
         [DiContainer.updateEventsManager emitChannelsUpdate];
         DataChanged = [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0];
         [UseCaseLegacyWrapper startHiddenChannelsCleanup];
+        if (@available(iOS 17.0, *)) {
+            [UseCaseLegacyWrapper exportCarPlayItems];
+        }
     }
     
     if ( DataChanged ) {

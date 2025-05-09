@@ -86,6 +86,11 @@ extension DiContainer {
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(BuildInfo.self, BuildInfoImpl())
         
+        if #available(iOS 17.0, *) {
+            register(GroupShared.Settings.self, GroupShared.Implementation())
+            register(ExportCarPlayItems.UseCase.self, ExportCarPlayItems.Implementation())
+        }
+        
         // Managers
         register(UpdateEventsManager.self, UpdateEventsManagerImpl())
         register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
@@ -276,6 +281,7 @@ extension DiContainer {
         register(UpdateCarPlayOrder.UseCase.self, UpdateCarPlayOrder.Implementation())
         register(UpdateCarPlayItem.UseCase.self, UpdateCarPlayItem.Implementation())
         register(CarPlayRefresh.UseCase.self, CarPlayRefresh.Implementation())
+        register(DeleteCarPlayItem.UseCase.self, DeleteCarPlayItem.Implementation())
         
         // MARK: Features
         
