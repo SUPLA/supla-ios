@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-enum CarPlayAction: PickerItem, CaseIterable {
+enum CarPlayAction: CaseIterable, Codable, Sendable {
     case open
     case close
     case shut
@@ -72,7 +72,7 @@ enum CarPlayAction: PickerItem, CaseIterable {
 
     var label: String { name }
 
-    var action: SUPLA.Action {
+    var action: Action {
         switch (self) {
         case .open: .open
         case .close: .close

@@ -15,7 +15,6 @@
 #import "SAChannelBase+CoreDataClass.h"
 #import "DetailView.h"
 #import "SAMoveTableView.h"
-#import "SAKeychain.h"
 #import "SAChartFilterField.h"
 #import "SAFormatter.h"
 #import "SAScene+CoreDataClass.h"

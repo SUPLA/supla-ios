@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 import Foundation
 
 struct Strings {
@@ -577,6 +576,14 @@ struct Strings {
         static let deleteTitle = "car_play_delete_title".toLocalized()
         static let deleteMessage = "car_play_delete_message".toLocalized()
         static let confirmDelete = "car_play_confirm_delete".toLocalized()
+    }
+    
+    struct Widget {
+        static let emptyHint = "widget_empty_hint".toLocalized()
+        static let controlHint = "widget_control_hint".toLocalized()
+        static var actionsName = "widgets_actions_name".toLocalized()
+        static var actionsDescription = "widgets_actions_description".toLocalized()
+        static var unknownAction = "widgets_unknown_action".toLocalized()
     }
 }
 

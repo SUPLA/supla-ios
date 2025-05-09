@@ -28,7 +28,7 @@ extension View {
         _ value: CGFloat,
         limit: CellScalingLimit = .none
     ) -> CGFloat {
-        SUPLA.scale(scaleFactor, value, limit: limit)
+        internScale(scaleFactor, value, limit: limit)
     }
 }
 
@@ -37,11 +37,11 @@ extension CGFloat {
         _ value: CGFloat,
         limit: CellScalingLimit = .none
     ) -> CGFloat {
-        return SUPLA.scale(self, value, limit: limit)
+        return internScale(self, value, limit: limit)
     }
 }
 
-private func scale(
+private func internScale(
     _ scaleFactor: CGFloat,
     _ value: CGFloat,
     limit: CellScalingLimit = .none

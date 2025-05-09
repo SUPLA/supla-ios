@@ -28,7 +28,7 @@ final class GetSceneIconUseCaseImpl: GetSceneIconUseCase {
             let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
             
             if let imageData = scene.usericon?.getIcon(.icon1, darkMode: darkMode) as? Data {
-                return .userIcon(icon: UIImage(data: imageData as Data))
+                return .userIcon(icon: UIImage(data: imageData as Data), fallbackName: "scene_0")
             } else {
                 return .suplaIcon(name: "scene_0")
             }

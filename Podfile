@@ -13,12 +13,18 @@ target 'SUPLA' do
   pod 'QueryKit'
   pod 'PaddingLabel', '1.2'
   pod 'FMMoveTableView', '~> 1.1'
-  pod 'SwiftyBeaver', '1.9.5'
+  pod 'SwiftyBeaver'
 
   target 'SUPLATests' do
     inherit! :search_paths
     # Pods for testing
     pod 'RxTest'
+  end
+  
+  target 'SUPLAWidgetsExtension' do
+    inherit! :search_paths
+    # Pods for widgets
+    pod 'SwiftyBeaver'
   end
 end
 

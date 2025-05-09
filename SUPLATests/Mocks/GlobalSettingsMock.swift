@@ -158,6 +158,12 @@ class GlobalSettingsMock: GlobalSettings {
         set { showEmHistoryIntroductionMock.set(newValue) }
     }
     
+    var migratedForAppGroupsMock: FunctionMock<Bool, Bool> = .init()
+    var migratedForAppGroups: Bool {
+        get { migratedForAppGroupsMock.get() }
+        set { migratedForAppGroupsMock.set(newValue) }
+    }
+    
     var carPlayVoiceMessages: Bool {
         get { false }
         set { }

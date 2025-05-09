@@ -69,7 +69,7 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                 let tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
                 
                 do {
-                    try self.singleCall.registerPushToken(profile, profile.preferredProtocolVersion, tokenDetails)
+                    try self.singleCall.registerPushToken(profile.authorizationEntity, profile.preferredProtocolVersion, tokenDetails)
                 } catch {
                     SALog.error("Push token removal failed with error: \(error)")
                 }

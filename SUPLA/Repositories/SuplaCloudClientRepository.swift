@@ -37,7 +37,7 @@ final class SuplaCloudClientRepositoryImpl: SuplaCloudClientRepository {
             )
         }
         
-        let urlString = String.init(format: usersUrl, encodedEmail)
+        let urlString = String(format: usersUrl, encodedEmail)
         return requestHelper.getRequest(urlString: urlString)
             .map { data in
                 if let autodiscover = SuplaCloudClient.Autodiscover(data: data) {
@@ -49,3 +49,8 @@ final class SuplaCloudClientRepositoryImpl: SuplaCloudClientRepository {
     }
 }
 
+private extension String {
+    func urlEncoded() -> String? {
+        addingPercentEncoding(withAllowedCharacters: SuplaCloudClient.emailCharacterSet)
+    }
+}

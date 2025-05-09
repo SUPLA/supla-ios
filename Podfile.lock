@@ -41,7 +41,7 @@ DEPENDENCIES:
   - RxSwift
   - RxSwiftExt
   - RxTest
-  - SwiftyBeaver (= 1.9.5)
+  - SwiftyBeaver
 
 SPEC REPOS:
   trunk:
@@ -74,6 +74,6 @@ SPEC CHECKSUMS:
   RxTest: d0fa1ec82feb41efa826a59173ec65eafbbe4aaf
   SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
 
-PODFILE CHECKSUM: 0e3a7627c2a4b42378b1d934c3e7deec11f7336a
+PODFILE CHECKSUM: 46b0b798f1be27ccbd79b35144fd5824fb14af4b
 
 COCOAPODS: 1.16.2

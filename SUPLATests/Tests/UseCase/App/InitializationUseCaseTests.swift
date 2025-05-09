@@ -48,6 +48,7 @@ final class InitializationUseCaseTests: XCTestCase {
         // given
         dateProvider.currentTimestampReturns = .many([0.0, 0.2])
         settings.lockScreenSettingsReturns = LockScreenSettings(scope: .application, pinSum: "123", biometricAllowed: false)
+        settings.migratedForAppGroupsMock.returns = .single(false)
         
         // when
         InitializationUseCase.invoke()
@@ -63,6 +64,7 @@ final class InitializationUseCaseTests: XCTestCase {
         // given
         dateProvider.currentTimestampReturns = .many([0.0, 0.2])
         settings.lockScreenSettingsReturns = LockScreenSettings.DEFAULT
+        settings.migratedForAppGroupsMock.returns = .single(false)
         
         // when
         InitializationUseCase.invoke()
@@ -78,6 +80,7 @@ final class InitializationUseCaseTests: XCTestCase {
         // given
         dateProvider.currentTimestampReturns = .many([0.0, 1.3])
         settings.lockScreenSettingsReturns = LockScreenSettings.DEFAULT
+        settings.migratedForAppGroupsMock.returns = .single(false)
         let profile = AuthProfileItem(testContext: nil)
         profile.isActive = true
         profileRepository.activeProfileObservable = .just(profile)
