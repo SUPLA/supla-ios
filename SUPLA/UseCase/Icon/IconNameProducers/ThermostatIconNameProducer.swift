@@ -22,7 +22,7 @@ final class ThermostatIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || function == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         if (iconData.function == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER) {
             return .Icons.fncThermostatDhw
         }

@@ -37,11 +37,6 @@ final class UseCaseLegacyWrapper: NSObject {
         return UpdateSceneStateUseCase().invoke(state: state, clientId: clientId)
     }
     
-    @objc
-    static func updateSceneIconsRelation() {
-        UpdateSceneIconRelationsUseCase().invoke()
-    }
-    
     // MARK: Locations
     
     @objc
@@ -77,11 +72,6 @@ final class UseCaseLegacyWrapper: NSObject {
         return UpdateChannelExtendedValueUseCase().invoke(suplaChannelExtendedValue: suplaChannelExtendedValue)
     }
     
-    @objc
-    static func updateChannelIconsRelation() {
-        UpdateChannelIconRelationsUseCase().invoke()
-    }
-    
     // MARK: Groups
     
     @objc
@@ -115,22 +105,7 @@ final class UseCaseLegacyWrapper: NSObject {
         }
     }
     
-    @objc
-    static func updateGroupIconsRelation() {
-        UpdateGroupIconRelationsUseCase().invoke()
-    }
-    
-    // MARK: Icons
-    
-    @objc
-    static func getAllIconsToDownload() -> [Int32] {
-        return GetAllIconsToDownloadUseCase().invoke()
-    }
-    
-    @objc
-    static func saveIcon(remoteId: NSNumber, images: [String], darkImages: [String]?) {
-        SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images, darkImages: darkImages)
-    }
+    // MARK: Relations
     
     @objc
     static func insertChannelRelation(relation: TSC_SuplaChannelRelation) {

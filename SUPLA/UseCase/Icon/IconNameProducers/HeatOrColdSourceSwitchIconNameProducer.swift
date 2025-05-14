@@ -21,7 +21,7 @@ final class HeatOrColdSourceSwitchIconNameProducer: IconNameProducer {
         function == SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH
     }
 
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         addStateSuffix(name: altIcon(iconData.altIcon), state: iconData.state)
     }
 

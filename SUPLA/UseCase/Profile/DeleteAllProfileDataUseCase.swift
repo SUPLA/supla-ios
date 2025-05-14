@@ -35,7 +35,6 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
     @Singleton<SceneRepository> private var sceneRepository
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
-    @Singleton<UserIconRepository> private var userIconRepository
     @Singleton<ThermostatMeasurementItemRepository> private var thermostatMeasurementItemRepository
     @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
@@ -54,7 +53,6 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
             self.sceneRepository.deleteAll(for: profile),
             self.temperatureMeasurementItemRepository.deleteAll(for: profile.server?.id),
             self.tempHumidityMeasurementItemRepository.deleteAll(for: profile.server?.id),
-            self.userIconRepository.deleteAll(for: profile),
             self.thermostatMeasurementItemRepository.deleteAll(for: profile.server?.id),
             self.generalPurposeMeterItemRepository.deleteAll(for: profile.server?.id),
             self.generalPurposeMeasurementItemRepository.deleteAll(for: profile.server?.id),

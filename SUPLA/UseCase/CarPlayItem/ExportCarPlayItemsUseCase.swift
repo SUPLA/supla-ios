@@ -92,7 +92,7 @@ private extension SACarPlayItem {
             subjectId: subjectId,
             caption: caption ?? getCaptionUseCase.invoke(data: channelBase.shareableBase).string,
             action: action,
-            icon: getChannelBaseIconUseCase.stateIcon(channelBase, state: action.action.state(channelBase.func)).name,
+            icon: getChannelBaseIconUseCase.stateIcon(channelBase, state: action.action.state(channelBase.func)),
             sfIcon: channelBase.sfIconName(action, thermostatSubfunction),
             authorizationEntity: profile?.authorizationEntity
         )
@@ -102,7 +102,7 @@ private extension SACarPlayItem {
         @Singleton<GetSceneIconUseCase> var getSceneIconUseCase
         @Singleton<GetCaptionUseCase> var getCaptionUseCase
         
-        let iconName = getSceneIconUseCase.invoke(scene).name
+        let iconName = getSceneIconUseCase.invoke(scene)
         
         return GroupShared.WidgetAction(
             profileId: profile?.id ?? 0,

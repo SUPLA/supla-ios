@@ -1,3 +1,4 @@
+//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -15,18 +16,27 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-extension SAUserIcon {
-    func isEmpty() -> Bool {
-        return uimage1 == nil && uimage2 == nil && uimage3 == nil && uimage4 == nil
+    
+struct UserIconData: Hashable {
+    let id: Int32
+    let subjectType: SubjectType
+    let subjectId: Int32
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(subjectType)
+        hasher.combine(subjectId)
     }
-
-    func getIcon(_ icon: UserIcon, darkMode: Bool) -> NSObject? {
-        return switch (icon) {
-        case .icon1: darkMode && uimage1_dark != nil ? uimage1_dark : uimage1
-        case .icon2: darkMode && uimage2_dark != nil ? uimage2_dark : uimage2
-        case .icon3: darkMode && uimage3_dark != nil ? uimage3_dark : uimage3
-        case .icon4: darkMode && uimage4_dark != nil ? uimage4_dark : uimage4
-        }
+    
+    static func channelIconData(_ id: Int32, channelId: Int32) -> UserIconData {
+        return .init(id: id, subjectType: .channel, subjectId: channelId)
+    }
+    
+    static func groupIconData(_ id: Int32, groupId: Int32) -> UserIconData {
+        return .init(id: id, subjectType: .group, subjectId: groupId)
+    }
+    
+    static func sceneIconData(_ id: Int32, sceneId: Int32) -> UserIconData {
+        return .init(id: id, subjectType: .scene, subjectId: sceneId)
     }
 }

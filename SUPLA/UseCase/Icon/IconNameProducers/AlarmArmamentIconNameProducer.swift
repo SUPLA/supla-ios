@@ -21,7 +21,7 @@ final class AlarmArmamentIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
     }
 
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         addStateSuffix(name: icon(iconData.altIcon), state: iconData.state)
     }
 

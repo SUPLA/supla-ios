@@ -36,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t visible;
 @property (nonatomic) int32_t position;
 @property (nullable, nonatomic, retain) _SALocation *location;
-@property (nullable, nonatomic, retain) SAUserIcon *usericon;
 @property (nonatomic, retain) AuthProfileItem *profile;
 @end
 

@@ -19,7 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
-#import "SAUserIcon+CoreDataClass.h"
 #import "SADigiglassValue.h"
 #import "proto.h"
 #import "SharedCore/SharedCore.h"

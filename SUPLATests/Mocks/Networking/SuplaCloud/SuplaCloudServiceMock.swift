@@ -148,4 +148,8 @@ final class SuplaCloudServiceMock: SuplaCloudService {
     func getImpulseCounterPhotoHistory(remoteId: Int32) -> Observable<[ImpulseCounterPhotoDto]> {
         .empty()
     }
+    
+    func getUserIcons(_ remoteIds: [Int32]) -> RxSwift.Observable<[SUPLA.SuplaCloudClient.UserIcon]> {
+        .empty()
+    }
 }

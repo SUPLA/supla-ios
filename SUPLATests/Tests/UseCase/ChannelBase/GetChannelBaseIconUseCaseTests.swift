@@ -39,12 +39,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         // when
         expectFatalError(expectedMessage: "Wrong icon configuration (iconType: 'IconType(rawValue: 1)', function: '140'") {
             _ = self.useCase.invoke(
-                iconData: IconData(
+                iconData: FetchIconData(
                     function: SUPLA_CHANNELFNC_LIGHTSWITCH,
                     altIcon: 123,
+                    profileId: 1,
                     state: .notUsed,
-                    type: .first,
-                    userIcon: nil
+                    type: .first
                 )
             )
         }
@@ -56,12 +56,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: SUPLA_CHANNELFNC_LIGHTSWITCH,
                 altIcon: 123,
+                profileId: 1,
                 state: .on,
-                type: .single,
-                userIcon: nil
+                type: .single
             )
         )
         
@@ -72,14 +72,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_activeState() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage2 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_LIGHTSWITCH,
             altIcon: 123,
+            profileId: 1,
             state: .on,
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
         
         // when
@@ -92,14 +90,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_inactiveState() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage1 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_LIGHTSWITCH,
             altIcon: 123,
+            profileId: 1,
             state: .off,
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
         
         // when
@@ -113,14 +109,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_humidityAndTemperatureFirst() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage2 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
             altIcon: 123,
+            profileId: 1,
             state: .notUsed,
-            type: .first,
-            userIcon: userIcon
+            type: .first
         )
         
         // when
@@ -134,14 +128,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_humidityAndTemperatureSecond() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage1 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
             altIcon: 123,
+            profileId: 1,
             state: .notUsed,
-            type: .second,
-            userIcon: userIcon
+            type: .second
         )
         
         // when
@@ -155,14 +147,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_thermometer() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage1 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_THERMOMETER,
             altIcon: 123,
+            profileId: 1,
             state: .notUsed,
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
         
         // when
@@ -176,14 +166,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_garageDoorOpened() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage1 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             altIcon: 123,
+            profileId: 1,
             state: .opened,
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
         
         // when
@@ -197,14 +185,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_garageDoorPartialyOpened() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage3 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             altIcon: 123,
+            profileId: 1,
             state: .partialyOpened,
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
         
         // when
@@ -218,14 +204,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_garageDoorClosed() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage2 = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             altIcon: 123,
+            profileId: 1,
             state: .closed,
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
         
         // when
@@ -239,17 +223,13 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_dimmerAndRgb_icon1() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
+            profileId: 1,
             state: .complex([.off, .off]),
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
-        
-        userIcon.uimage1 = image
         
         // when
         let icon = useCase.invoke(iconData: iconData)
@@ -262,17 +242,13 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_dimmerAndRgb_icon2() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
+            profileId: 1,
             state: .complex([.on, .off]),
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
-        
-        userIcon.uimage2 = image
         
         // when
         let icon = useCase.invoke(iconData: iconData)
@@ -285,17 +261,13 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_dimmerAndRgb_icon3() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
+            profileId: 1,
             state: .complex([.off, .on]),
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
-        
-        userIcon.uimage3 = image
         
         // when
         let icon = useCase.invoke(iconData: iconData)
@@ -308,17 +280,13 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_userIcon_dimmerAndRgb_icon4() {
         // given
-        let userIcon = SAUserIcon(testContext: nil)
-        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
-        let iconData = IconData(
+        let iconData = FetchIconData(
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
+            profileId: 1,
             state: .complex([.on, .on]),
-            type: .single,
-            userIcon: userIcon
+            type: .single
         )
-        
-        userIcon.uimage4 = image
         
         // when
         let icon = useCase.invoke(iconData: iconData)

@@ -20,9 +20,9 @@
 
 final class GetDefaultIconNameUseCaseMock: GetDefaultIconNameUseCase {
     
-    var parameters: [IconData] = []
+    var parameters: [FetchIconData] = []
     var returns: String = ""
-    func invoke(iconData: IconData) -> String {
+    func invoke(iconData: FetchIconData) -> String {
         parameters.append(iconData)
         return returns
     }

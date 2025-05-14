@@ -15,26 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import RxSwift
-
-@testable import SUPLA
-
-final class UserIconRepositoryMock: BaseRepositoryMock<SAUserIcon>, UserIconRepository {
     
-    var deleteAllObservable: Observable<Void> = Observable.empty()
-    var deleteAllCounter = 0
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllCounter += 1
-        return deleteAllObservable
-    }
-    
-    func getIcon(for profile: AuthProfileItem, withId remoteId: Int32) -> Observable<SAUserIcon> {
-        Observable.empty()
-    }
-    
-    func getDownloadedIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
-        Observable.empty()
-    }
+enum IconResult: Equatable, Hashable, Codable {
+    case suplaIcon(name: String)
+    case userIcon(profileId: Int32, iconId: Int32, type: UserIcon, defaultName: String)
 }
-

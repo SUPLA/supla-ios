@@ -15,13 +15,23 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-final class FloodSensorIconNameProducer: IconNameProducer {
-    func accepts(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_FLOOD_SENSOR
-    }
 
-    func produce(iconData: FetchIconData) -> String {
-        addStateSuffix(name: .Icons.fncFloodSensor, state: iconData.state)
+import Foundation
+    
+extension URL {
+    func appendFilename(_ name: String) -> URL {
+        if #available(iOS 16.0, *) {
+            appending(path: name, directoryHint: .notDirectory)
+        } else {
+            appendingPathComponent(name)
+        }
+    }
+    
+    func appendDirname(_ name: String) -> URL {
+        if #available(iOS 16.0, *) {
+            appending(path: name, directoryHint: .isDirectory)
+        } else {
+            appendingPathComponent(name)
+        }
     }
 }

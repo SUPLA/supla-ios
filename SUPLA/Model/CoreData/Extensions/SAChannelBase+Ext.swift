@@ -19,26 +19,28 @@
 import SharedCore
 
 extension SAChannelBase {
-    func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
+    func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> FetchIconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
-        return IconData(
+        return FetchIconData(
             function: self.func,
             altIcon: self.alticon,
+            profileId: profile.id,
             state: getChannelBaseStateUseCase.invoke(channelBase: self),
             type: type,
-            userIcon: self.usericon,
+            userIconId: usericon_id,
             subfunction: subfunction
         )
     }
     
-    func getIconData(state: ChannelState, type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
+    func getIconData(state: ChannelState, type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> FetchIconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
-        return IconData(
+        return FetchIconData(
             function: self.func,
             altIcon: self.alticon,
+            profileId: profile.id,
             state: state,
             type: type,
-            userIcon: self.usericon,
+            userIconId: usericon_id,
             subfunction: subfunction
         )
     }

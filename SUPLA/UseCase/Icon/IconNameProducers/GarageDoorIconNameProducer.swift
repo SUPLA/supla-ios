@@ -22,7 +22,7 @@ final class GarageDoorIconNameProducer: IconNameProducer {
         || function == SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         if (iconData.state == .partialyOpened) {
             return "garagedoor-closed-50percent"
         }

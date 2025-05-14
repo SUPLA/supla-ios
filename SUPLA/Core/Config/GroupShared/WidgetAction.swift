@@ -27,7 +27,7 @@ extension GroupShared {
         let subjectId: Int32
         let caption: String
         let action: CarPlayAction?
-        let icon: String
+        let icon: IconResult
         let sfIcon: String?
         let authorizationEntity: SingleCallAuthorizationEntity?
         
@@ -54,7 +54,7 @@ extension GroupShared {
             subjectId: Int32,
             caption: String,
             action: CarPlayAction?,
-            icon: String,
+            icon: IconResult,
             sfIcon: String?,
             authorizationEntity: SingleCallAuthorizationEntity?
         ) {
@@ -75,7 +75,7 @@ extension GroupShared {
             subjectId = try container.decode(Int32.self, forKey: .subjectId)
             caption = try container.decode(String.self, forKey: .caption)
             action = try container.decode(CarPlayAction.self, forKey: .action)
-            icon = try container.decode(String.self, forKey: .icon)
+            icon = try container.decode(IconResult.self, forKey: .icon)
             sfIcon = try container.decode(String?.self, forKey: .sfIcon)
             authorizationEntity = try container.decode(SingleCallAuthorizationEntity.self, forKey: .authorizationEntity)
         }

@@ -671,7 +671,7 @@
 "container_sound_alarm" = "Alarm dźwiękowy aktywny";
 
 /* Car play */
-"car_play_label" = "Akcje dla CarPlay/Widżetów";
+"car_play_label" = "Akcje dla widżetów";
 "car_play_voice_messages" = "Odtwarzaj komunikaty";
 "car_play_action" = "Akcja: %@";
 "car_play_display_name" = "Nazwa";

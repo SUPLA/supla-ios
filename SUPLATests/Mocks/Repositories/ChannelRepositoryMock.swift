@@ -73,7 +73,7 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
         return allVisibleChannelsInLocationObservable
     }
     
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]> {
         Observable.empty()
     }
     

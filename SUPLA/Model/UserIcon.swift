@@ -16,6 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-enum UserIcon {
+enum UserIcon: Codable {
     case icon1, icon2, icon3, icon4
 }

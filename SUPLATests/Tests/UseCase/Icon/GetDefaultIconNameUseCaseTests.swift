@@ -33,9 +33,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -51,9 +52,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -69,9 +71,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -87,9 +90,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -105,9 +109,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .partialyOpened,
                 type: .single
             )
@@ -123,9 +128,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .partialyOpened,
                 type: .single
             )
@@ -141,9 +147,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 2,
+                profileId: 1,
                 state: .partialyOpened,
                 type: .single
             )
@@ -159,9 +166,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -177,9 +185,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -195,9 +204,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -213,9 +223,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -231,9 +242,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 2,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -249,9 +261,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .partialyOpened,
                 type: .single
             )
@@ -267,9 +280,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -285,9 +299,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -303,9 +318,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -321,9 +337,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -339,9 +356,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -357,9 +375,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -375,9 +394,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -393,9 +413,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -411,9 +432,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -429,9 +451,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -447,9 +470,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -465,9 +489,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -483,9 +508,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 2,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -501,9 +527,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 3,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -519,9 +546,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 4,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -537,9 +565,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -555,9 +584,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -573,9 +603,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 2,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -591,9 +622,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -609,9 +641,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -627,9 +660,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -645,9 +679,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -663,9 +698,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .second
             )
@@ -681,9 +717,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -699,9 +736,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -717,9 +755,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -735,9 +774,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -753,9 +793,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -771,9 +812,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -789,9 +831,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -807,9 +850,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .complex([.on, .on]),
                 type: .single
             )
@@ -825,9 +869,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .complex([.off, .off]),
                 type: .single
             )
@@ -843,9 +888,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .complex([.off, .on]),
                 type: .single
             )
@@ -861,9 +907,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .complex([.on, .off]),
                 type: .single
             )
@@ -880,9 +927,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // when
         expectFatalError(expectedMessage: "Dimmer and RGB function needs complex state") {
             _ = self.useCase.invoke(
-                iconData: IconData(
+                iconData: FetchIconData(
                     function: function,
                     altIcon: 0,
+                    profileId: 1,
                     state: .notUsed,
                     type: .single
                 )
@@ -897,9 +945,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // when
         expectFatalError(expectedMessage: "Dimmer and RGB function needs complex with two values but got [SUPLA.ChannelState.on, SUPLA.ChannelState.off, SUPLA.ChannelState.on]") {
             _ = self.useCase.invoke(
-                iconData: IconData(
+                iconData: FetchIconData(
                     function: function,
                     altIcon: 0,
+                    profileId: 1,
                     state: .complex([.on, .off, .on]),
                     type: .single
                 )
@@ -913,9 +962,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -931,9 +981,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -949,9 +1000,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -967,9 +1019,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -985,9 +1038,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1003,9 +1057,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1021,9 +1076,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1039,9 +1095,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1057,9 +1114,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1075,9 +1133,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -1093,9 +1152,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -1111,9 +1171,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 2,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -1129,9 +1190,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 3,
+                profileId: 1,
                 state: .off,
                 type: .single
             )
@@ -1147,9 +1209,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 4,
+                profileId: 1,
                 state: .on,
                 type: .single
             )
@@ -1165,9 +1228,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1183,9 +1247,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1201,9 +1266,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1219,9 +1285,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1237,9 +1304,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1255,9 +1323,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1273,9 +1342,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single
             )
@@ -1291,9 +1361,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single
             )
@@ -1309,9 +1380,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opaque,
                 type: .single
             )
@@ -1327,9 +1399,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .transparent,
                 type: .single
             )
@@ -1345,9 +1418,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .transparent,
                 type: .single
             )
@@ -1363,9 +1437,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opaque,
                 type: .single
             )
@@ -1381,9 +1456,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .transparent,
                 type: .single
             )
@@ -1399,9 +1475,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .opaque,
                 type: .single
             )
@@ -1417,9 +1494,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 1,
+                profileId: 1,
                 state: .opaque,
                 type: .single
             )
@@ -1435,9 +1513,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single,
                 subfunction: .heat
@@ -1454,9 +1533,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single,
                 subfunction: .cool
@@ -1473,9 +1553,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single
             )
@@ -1491,9 +1572,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .notUsed,
                 type: .single,
                 subfunction: .notSet
@@ -1510,9 +1592,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single,
                 subfunction: .notSet
@@ -1529,9 +1612,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .off,
                 type: .single,
                 subfunction: .notSet
@@ -1548,9 +1632,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .on,
                 type: .single,
                 subfunction: .notSet
@@ -1567,9 +1652,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .off,
                 type: .single,
                 subfunction: .notSet
@@ -1586,9 +1672,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single,
                 subfunction: .notSet
@@ -1605,9 +1692,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single,
                 subfunction: .notSet
@@ -1624,9 +1712,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single,
                 subfunction: .notSet
@@ -1643,9 +1732,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single,
                 subfunction: .notSet
@@ -1662,9 +1752,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single,
                 subfunction: .notSet
@@ -1681,9 +1772,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single,
                 subfunction: .notSet
@@ -1700,9 +1792,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single,
                 subfunction: .notSet
@@ -1719,9 +1812,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single,
                 subfunction: .notSet
@@ -1738,9 +1832,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .opened,
                 type: .single,
                 subfunction: .notSet
@@ -1757,9 +1852,10 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // when
         let iconName = useCase.invoke(
-            iconData: IconData(
+            iconData: FetchIconData(
                 function: function,
                 altIcon: 0,
+                profileId: 1,
                 state: .closed,
                 type: .single,
                 subfunction: .notSet

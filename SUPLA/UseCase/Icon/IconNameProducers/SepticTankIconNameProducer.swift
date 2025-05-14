@@ -21,7 +21,7 @@ final class SepticTankIconNameProducer: IconNameProducer {
         function == SUPLA_CHANNELFNC_SEPTIC_TANK
     }
 
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
         case 1: addStateSuffix(name: .Icons.fncSepticTank1, state: iconData.state)
         default: addStateSuffix(name: .Icons.fncSepticTank, state: iconData.state)

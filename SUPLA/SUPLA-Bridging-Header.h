@@ -31,7 +31,6 @@
 #import "SACarPlayItem+CoreDataClass.h"
 #import "SAEvent.h"
 #import "SARateApp.h"
-#import "SADownloadUserIcons.h"
 #import "SingleCallWrapper.h"
 #import "SuplaConfigIntegrator.h"
 #import "TFHpple.h"

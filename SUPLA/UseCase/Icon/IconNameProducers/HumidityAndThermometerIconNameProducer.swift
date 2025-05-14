@@ -21,7 +21,7 @@ final class HumidityAndThermometerIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_THERMOMETER || function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         switch (iconData.type) {
         case .single, .first: thermometerIcon(iconData.altIcon)
         case .second: "humidity"

@@ -15,13 +15,21 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-final class FloodSensorIconNameProducer: IconNameProducer {
-    func accepts(function: Int32) -> Bool {
-        function == SUPLA_CHANNELFNC_FLOOD_SENSOR
+
+extension UserIcon {
+    var darkMode: Bool {
+        @Singleton<GlobalSettings> var settings
+
+        return settings.darkMode == .always
+            || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
     }
 
-    func produce(iconData: FetchIconData) -> String {
-        addStateSuffix(name: .Icons.fncFloodSensor, state: iconData.state)
+    var type: UserIcons.IconType {
+        switch (self) {
+        case .icon1: darkMode ? .night0 : .light0
+        case .icon2: darkMode ? .night1 : .light1
+        case .icon3: darkMode ? .night2 : .light2
+        case .icon4: darkMode ? .night3 : .light3
+        }
     }
 }

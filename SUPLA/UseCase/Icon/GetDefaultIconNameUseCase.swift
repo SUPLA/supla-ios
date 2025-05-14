@@ -19,21 +19,12 @@
 import SharedCore
 
 protocol GetDefaultIconNameUseCase {
-    func invoke(iconData: IconData) -> String
+    func invoke(iconData: FetchIconData) -> String
 }
 
 protocol IconNameProducer {
     func accepts(function: Int32) -> Bool
-    func produce(iconData: IconData) -> String
-}
-
-struct IconData: Changeable, Equatable {
-    let function: Int32
-    let altIcon: Int32
-    var state: ChannelState = .notUsed
-    var type: IconType = .single
-    var userIcon: SAUserIcon? = nil
-    var subfunction: ThermostatSubfunction? = nil // Thermostat specific parameter
+    func produce(iconData: FetchIconData) -> String
 }
 
 extension IconNameProducer {
@@ -53,7 +44,7 @@ extension IconNameProducer {
 }
 
 final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
-    func invoke(iconData: IconData) -> String {
+    func invoke(iconData: FetchIconData) -> String {
         var name: String? = nil
         for producer in producers {
             if (producer.accepts(function: iconData.function)) {
