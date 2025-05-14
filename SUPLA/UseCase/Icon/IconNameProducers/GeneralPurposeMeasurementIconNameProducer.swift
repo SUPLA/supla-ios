@@ -21,7 +21,7 @@ final class GeneralPurposeMeasurementIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         return addStateSuffix(name: altIcon(iconData.altIcon), state: iconData.state)
     }
     

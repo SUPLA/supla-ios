@@ -23,7 +23,7 @@ struct Singleton<T> {
     var wrappedValue: T {
         get {
             guard let object = DiContainer.shared.resolve(type: T.self) else {
-                fatalError("Object of type \(T.self) not registered")
+                fatalError("Object of type \(String(reflecting: T.self)) not registered")
             }
             
             return object

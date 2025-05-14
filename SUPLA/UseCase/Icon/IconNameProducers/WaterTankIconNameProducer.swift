@@ -21,7 +21,7 @@ final class WaterTankIconNameProducer: IconNameProducer {
         function == SUPLA_CHANNELFNC_WATER_TANK
     }
 
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
         case 1: addStateSuffix(name: .Icons.fncWaterTank1, state: iconData.state)
         case 2: addStateSuffix(name: .Icons.fncWaterTank2, state: iconData.state)

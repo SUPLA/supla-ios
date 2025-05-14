@@ -44,7 +44,6 @@
         <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="SALocation"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="AuthProfileItem"/>
-        <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAUserIcon"/>
     </entity>
     <entity name="SAChannelConfig" representedClassName="SAChannelConfig" syncable="YES" codeGenerationType="class">
         <attribute name="config" optional="YES" attributeType="String"/>
@@ -223,7 +222,6 @@
         <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="SALocation"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="AuthProfileItem"/>
-        <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAUserIcon"/>
     </entity>
     <entity name="SATemperatureMeasurementItem" representedClassName="SATemperatureMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
         <attribute name="temperature" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
@@ -236,18 +234,6 @@
         <attribute name="is_on" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="measured" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="preset" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-    </entity>
-    <entity name="SAUserIcon" representedClassName="SAUserIcon" syncable="YES">
-        <attribute name="remote_id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="uimage1" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage1_dark" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage2" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage2_dark" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage3" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage3_dark" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage4" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <attribute name="uimage4_dark" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
-        <relationship name="profile" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="AuthProfileItem"/>
     </entity>
     <entity name="SAVoltageMeasurementItem" representedClassName="SAVoltageMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES" codeGenerationType="class">
         <attribute name="avg" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

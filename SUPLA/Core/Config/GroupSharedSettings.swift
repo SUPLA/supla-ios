@@ -18,13 +18,14 @@
 
 import AppIntents
 
-@available(iOS 17.0, *)
 struct GroupShared {
     enum Groups {
         static let iOS = "group.org.supla.ios"
     }
     
     protocol Settings {
+        
+        @available(iOS 17.0, *)
         var actions: [WidgetAction] { get set }
     }
     
@@ -32,6 +33,7 @@ struct GroupShared {
         let userDefaults = UserDefaults(suiteName: Groups.iOS)
         
         private let actionsKey = "GroupShared.actions"
+        @available(iOS 17.0, *)
         var actions: [WidgetAction] {
             get {
                 WidgetAction.fromJson(userDefaults?.string(forKey: actionsKey)) ?? []

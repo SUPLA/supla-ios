@@ -34,7 +34,7 @@ final class DiContainer: NSObject, DiContainerProtocol {
     
     func register<Component>(type: Component.Type, _ component: Any) {
         if (!(component is Component)) {
-            fatalError("Registered component (type: `\(type)` does not implement defined protocol")
+            fatalError("Registered component (type: `\(String(reflecting: type))` does not implement defined protocol")
         }
         let typeName = String(reflecting: type)
         components[typeName] = component
@@ -113,7 +113,6 @@ extension DiContainer {
         register((any ElectricityMeasurementItemRepository).self, electricityMeasurementItemRepository)
         let impulseCounterMeasurementItemRepository = ImpulseCounterMeasurementItemRepositoryImpl()
         register((any ImpulseCounterMeasurementItemRepository).self, impulseCounterMeasurementItemRepository)
-        register((any UserIconRepository).self, UserIconRepositoryImpl())
         register((any ThermostatMeasurementItemRepository).self, ThermostatMeasurementItemRepositoryImpl())
         register((any SuplaCloudClientRepository).self, SuplaCloudClientRepositoryImpl())
         register((any ChannelRelationRepository).self, ChannelRelationRepositoryImpl())
@@ -247,6 +246,10 @@ extension DiContainer {
         register(ReadGroupTiltingDetailsUseCase.self, ReadGroupTiltingDetailsUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
+        register(UserIcons.UseCase.self, UserIcons.Implementation())
+        register(DownloadUserIcons.UseCase.self, DownloadUserIcons.Implementation())
+        register(DownloadUserIconsManager.self, DownloadUserIconsManagerImpl())
+        register(GetAllIconsToDownload.UseCase.self, GetAllIconsToDownload.Implementation())
         // Usecases - Location
         register(ToggleLocationUseCase.self, ToggleLocationUseCaseImpl())
         register(ReadLocationByRemoteIdUseCase.self, ReadLocationByRemoteIdUseCaseImpl())

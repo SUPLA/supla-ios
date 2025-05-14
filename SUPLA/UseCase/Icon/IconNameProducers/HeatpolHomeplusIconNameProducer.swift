@@ -21,7 +21,7 @@ final class HeatpolHomeplusIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         var name = "thermostat_hp_homeplus"
         if (iconData.altIcon > 0 && iconData.altIcon <= 3) {
             name = String.init(format: "%@%i", name, iconData.altIcon)

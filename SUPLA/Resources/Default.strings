@@ -439,7 +439,7 @@
 "container_sound_alarm" = "Sound alarm active";
 
 /* apple car play */
-"car_play_label" = "Actions for CarPlay/Widgets";
+"car_play_label" = "Actions for Widgets";
 "car_play_voice_messages" = "Play messages";
 "car_play_action" = "Action: %@";
 "car_play_display_name" = "Display name";

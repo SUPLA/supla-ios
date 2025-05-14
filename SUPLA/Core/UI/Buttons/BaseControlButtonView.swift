@@ -56,8 +56,6 @@ class BaseControlButtonView: UIView {
             case .suplaIcon(let icon):
                 iconView.image = .init(named: icon)?.withRenderingMode(.alwaysTemplate)
                 iconView.tintColor = iconColor
-            case .userIcon(let icon, _):
-                iconView.image = icon
             default:
                 iconView.image = icon?.uiImage
             }

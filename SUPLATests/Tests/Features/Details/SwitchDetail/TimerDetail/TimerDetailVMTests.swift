@@ -77,7 +77,6 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         let function: Int32 = 123
         let altIcon: Int32 = 2
         let startTime = Date()
-        let userIcon = SAUserIcon(testContext: nil)
         let extendedValue = SAChannelExtendedValue(testContext: nil)
         extendedValue.timerStartTime = startTime
         extendedValue.setValueWith(&suplaExtendedValue)
@@ -85,7 +84,6 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         let channel = createChannelWithHiValue(1, isOnline: isOnline)
         channel.func = function
         channel.alticon = altIcon
-        channel.usericon = userIcon
         channel.ev = extendedValue
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
@@ -105,7 +103,6 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         assertState(1, withPath: \.deviceState?.timerEndDate?.timeIntervalSince1970, equalTo: 122)
         assertState(1, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
         assertState(1, withPath: \.deviceState?.iconData.function, equalTo: function)
-        assertState(1, withPath: \.deviceState?.iconData.userIcon, equalTo: userIcon)
         assertState(1, withPath: \.deviceState?.iconData.state, equalTo: .opened)
         assertState(1, withPath: \.editMode, equalTo: false)
         
@@ -131,7 +128,6 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         let function: Int32 = 123
         let altIcon: Int32 = 2
         let startTime = Date()
-        let userIcon = SAUserIcon(testContext: nil)
         let extendedValue = SAChannelExtendedValue(testContext: nil)
         extendedValue.timerStartTime = startTime
         extendedValue.setValueWith(&suplaExtendedValue)
@@ -139,7 +135,6 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         let channel = createChannelWithHiValue(1, isOnline: isOnline)
         channel.func = function
         channel.alticon = altIcon
-        channel.usericon = userIcon
         channel.ev = extendedValue
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
@@ -161,7 +156,6 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         assertState(2, withPath: \.deviceState?.timerEndDate?.timeIntervalSince1970, equalTo: 122)
         assertState(2, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
         assertState(2, withPath: \.deviceState?.iconData.function, equalTo: function)
-        assertState(2, withPath: \.deviceState?.iconData.userIcon, equalTo: userIcon)
         assertState(2, withPath: \.deviceState?.iconData.state, equalTo: .opened)
         assertState(2, withPath: \.editMode, equalTo: false)
         

@@ -21,7 +21,7 @@ final class ElelectricityMeterIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_ELECTRICITY_METER || function == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
         case 1: return "powerstation"
         default: return .Icons.fncElectricitymeter

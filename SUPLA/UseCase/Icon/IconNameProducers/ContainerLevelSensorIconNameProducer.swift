@@ -21,7 +21,7 @@ final class ContainerLevelSensorIconNameProducer: IconNameProducer {
         function == SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR
     }
 
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         addStateSuffix(name: .Icons.fncContainerLevelSensor, state: iconData.state)
     }
 }

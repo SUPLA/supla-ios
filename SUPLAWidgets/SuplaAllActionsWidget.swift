@@ -81,9 +81,10 @@ extension SuplaAllActionsWidget {
         var body: some SwiftUI.View {
             Button(intent: TriggerActionIntent(action: item)) {
                 VStack {
-                    Image(item.icon)
+                    item.icon.Image
                         .resizable()
-                        .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+                        .scaledToFit()
+                        .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
                         .padding(Distance.tiny)
                         .background {
                             RoundedRectangle(cornerRadius: Dimens.buttonRadius).fill(Color.Supla.surface)
@@ -95,7 +96,7 @@ extension SuplaAllActionsWidget {
                         .fontBodySmall()
                         .textColor(.Supla.onBackground)
                 }
-                .frame(maxWidth: 50)
+                .frame(maxWidth: 70)
             }
             .buttonStyle(.plain)
         }
@@ -198,7 +199,7 @@ private extension GroupShared.WidgetAction {
             subjectId: 1,
             caption: caption,
             action: .close,
-            icon: icon,
+            icon: .suplaIcon(name: icon),
             sfIcon: nil,
             authorizationEntity: nil
         )
