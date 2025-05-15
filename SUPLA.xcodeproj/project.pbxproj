@@ -1043,6 +1043,8 @@
 		A5CF3D852DD4C3E000207384 /* UserIconsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536364D2DD3239100D470CE /* UserIconsUseCase.swift */; };
 		A5CF3D892DD4C9D000207384 /* URL+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */; };
 		A5CF3D8A2DD4C9E100207384 /* URL+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */; };
+		A5CF3DD22DD6847900207384 /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
+		A5CF3DD32DD6848000207384 /* LibSuplaClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */; };
 		A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */; };
 		A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */; };
 		A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */; };
@@ -1177,10 +1179,6 @@
 		A5E2D7032DCB64AF00EBDADB /* SAKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2D7012DCB64A700EBDADB /* SAKeychain.swift */; };
 		A5E2D7042DCB7DC800EBDADB /* AuthorizationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC322CF70D8800E69BDB /* AuthorizationType.swift */; };
 		A5E2D7052DCB853000EBDADB /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
-		A5E2D7062DCB854200EBDADB /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
-		A5E2D7072DCB854200EBDADB /* LibSsl.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A5E2D7082DCB854200EBDADB /* LibSuplaClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */; };
-		A5E2D7092DCB854200EBDADB /* LibSuplaClient.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5E2D70C2DCB922000EBDADB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67662A666F2200147D1F /* String+Ext.swift */; };
 		A5E2D70D2DCBEC9300EBDADB /* Color+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A15FF82C299D230049AA73 /* Color+Supla.swift */; };
 		A5E2D70E2DCBEC9C00EBDADB /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
@@ -1403,18 +1401,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A5085AEA2CC84FF100ACA8C4 /* SharedCore.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5E2D70A2DCB854200EBDADB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A5E2D7092DCB854200EBDADB /* LibSuplaClient.xcframework in Embed Frameworks */,
-				A5E2D7072DCB854200EBDADB /* LibSsl.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3134,8 +3120,8 @@
 			files = (
 				A5741DAC2DC2513E00ED6C18 /* SwiftUI.framework in Frameworks */,
 				A5741DAB2DC2513E00ED6C18 /* WidgetKit.framework in Frameworks */,
-				A5E2D7062DCB854200EBDADB /* LibSsl.xcframework in Frameworks */,
-				A5E2D7082DCB854200EBDADB /* LibSuplaClient.xcframework in Frameworks */,
+				A5CF3DD22DD6847900207384 /* LibSsl.xcframework in Frameworks */,
+				A5CF3DD32DD6848000207384 /* LibSuplaClient.xcframework in Frameworks */,
 				756E5856FB49A0330E8AF32C /* Pods_SUPLAWidgetsExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7125,7 +7111,6 @@
 				A5741DA62DC2513E00ED6C18 /* Sources */,
 				A5741DA72DC2513E00ED6C18 /* Frameworks */,
 				A5741DA82DC2513E00ED6C18 /* Resources */,
-				A5E2D70A2DCB854200EBDADB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
