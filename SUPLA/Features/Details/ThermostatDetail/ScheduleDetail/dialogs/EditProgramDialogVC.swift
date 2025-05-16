@@ -21,7 +21,7 @@ import RxSwift
 
 final class EditProgramDialogVC : SACustomDialogVC<EditProgramDialogViewState, EditProgramDialogViewEvent, EditProgramDialogVM> {
     
-    @Singleton<GlobalSettings> private var settings
+    @Singleton<GroupShared.Settings> private var settings
     
     var onFinishCallback: ((ScheduleDetailProgram) -> Void)? = nil
     

@@ -27,7 +27,6 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var pushToken: Data? { get set }
     var pushTokenLastUpdate: Double { get set }
     
-    var temperatureUnit: TemperatureUnit { get set }
     var autohideButtons: Bool { get set }
     var showChannelInfo: Bool { get set }
     var showBottomMenu: Bool { get set }
@@ -98,12 +97,6 @@ class GlobalSettingsImpl: GlobalSettings {
     var pushTokenLastUpdate: Double {
         get { defaults.double(forKey: pushTokenLastUpdateKey) }
         set { defaults.set(newValue, forKey: pushTokenLastUpdateKey) }
-    }
-    
-    private let temperatureUnitKey = "supla_config_temp_unit"
-    var temperatureUnit: TemperatureUnit {
-        get { TemperatureUnit(rawValue: defaults.string(forKey: temperatureUnitKey) ?? "") ?? .celsius }
-        set { defaults.set(newValue.rawValue, forKey: temperatureUnitKey) }
     }
     
     private let keepButtonsVisibleKey = "supla_config_buttons_keep_visible"
@@ -291,7 +284,7 @@ class GlobalSettingsImpl: GlobalSettings {
     @objc
     var currentTemperaturePresenter: TemperaturePresenter {
         return TemperaturePresenter(
-            temperatureUnit: settings.temperatureUnit,
+            temperatureUnit: GroupShared.Implementation().temperatureUnit,
             locale: .autoupdatingCurrent,
             shouldDisplayUnit: true
         )

@@ -1027,6 +1027,17 @@
 		A5C5F6F92D9428C600E303B8 /* SceneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F82D9428C100E303B8 /* SceneListView.swift */; };
 		A5C5F6FB2D94294600E303B8 /* ReadSceneByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */; };
 		A5C5F6FD2D94486200E303B8 /* ReadLocationByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6FC2D94485700E303B8 /* ReadLocationByRemoteIdUseCase.swift */; };
+		A5C690362DD7366400194C1B /* IntValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F72B644F75006113F8 /* IntValueParser.swift */; };
+		A5C690372DD7366B00194C1B /* DoubleValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBE42B62546800F95AC3 /* DoubleValueParser.swift */; };
+		A5C6903A2DD736C600194C1B /* SingleCallResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C690392DD736C100194C1B /* SingleCallResult.swift */; };
+		A5C6903B2DD736C600194C1B /* SingleCallResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C690392DD736C100194C1B /* SingleCallResult.swift */; };
+		A5C6903C2DD74E3F00194C1B /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */; };
+		A5C6903D2DD74FF000194C1B /* ValuesFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C882F2ACAA445000B0F10 /* ValuesFormatter.swift */; };
+		A5C6903E2DD750E800194C1B /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEAE2B060EAA00A2F64C /* Hour.swift */; };
+		A5C690402DD7515800194C1B /* Int16+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */; };
+		A5C690412DD7516E00194C1B /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DC22AA5BE7A00220B4A /* Int+Ext.swift */; };
+		A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */; };
+		A5C6905F2DD7760C00194C1B /* GroupSharedSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
 		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
@@ -1043,8 +1054,13 @@
 		A5CF3D852DD4C3E000207384 /* UserIconsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536364D2DD3239100D470CE /* UserIconsUseCase.swift */; };
 		A5CF3D892DD4C9D000207384 /* URL+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */; };
 		A5CF3D8A2DD4C9E100207384 /* URL+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */; };
-		A5CF3DD22DD6847900207384 /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
-		A5CF3DD32DD6848000207384 /* LibSuplaClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */; };
+		A5CF3DAE2DD5CDD000207384 /* WidgetChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3DAD2DD5CDBB00207384 /* WidgetChannel.swift */; };
+		A5CF3DAF2DD5CDD000207384 /* WidgetChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3DAD2DD5CDBB00207384 /* WidgetChannel.swift */; };
+		A5CF3DBA2DD62AD200207384 /* String+Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E72B7F96E600FD3296 /* String+Icons.swift */; };
+		A5CF3E542DD6870100207384 /* LibSuplaClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */; };
+		A5CF3E552DD6870500207384 /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
+		A5CF3E572DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
+		A5CF3E582DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
 		A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */; };
 		A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */; };
 		A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */; };
@@ -2702,6 +2718,9 @@
 		A5C5F6F82D9428C100E303B8 /* SceneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListView.swift; sourceTree = "<group>"; };
 		A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSceneByRemoteIdUseCase.swift; sourceTree = "<group>"; };
 		A5C5F6FC2D94485700E303B8 /* ReadLocationByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadLocationByRemoteIdUseCase.swift; sourceTree = "<group>"; };
+		A5C690392DD736C100194C1B /* SingleCallResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallResult.swift; sourceTree = "<group>"; };
+		A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int16+Ext.swift"; sourceTree = "<group>"; };
+		A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettingsMock.swift; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
 		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
@@ -2713,6 +2732,8 @@
 		A5CF3D6D2DD4BC8700207384 /* IconResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconResult.swift; sourceTree = "<group>"; };
 		A5CF3D702DD4BCAE00207384 /* IconResult+SuplaExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IconResult+SuplaExt.swift"; sourceTree = "<group>"; };
 		A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Ext.swift"; sourceTree = "<group>"; };
+		A5CF3DAD2DD5CDBB00207384 /* WidgetChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetChannel.swift; sourceTree = "<group>"; };
+		A5CF3E562DD6880300207384 /* WidgetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetIcon.swift; sourceTree = "<group>"; };
 		A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenFeature.swift; sourceTree = "<group>"; };
 		A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewState.swift; sourceTree = "<group>"; };
 		A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVM.swift; sourceTree = "<group>"; };
@@ -3118,10 +3139,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CF3E542DD6870100207384 /* LibSuplaClient.xcframework in Frameworks */,
+				A5CF3E552DD6870500207384 /* LibSsl.xcframework in Frameworks */,
 				A5741DAC2DC2513E00ED6C18 /* SwiftUI.framework in Frameworks */,
 				A5741DAB2DC2513E00ED6C18 /* WidgetKit.framework in Frameworks */,
-				A5CF3DD22DD6847900207384 /* LibSsl.xcframework in Frameworks */,
-				A5CF3DD32DD6848000207384 /* LibSuplaClient.xcframework in Frameworks */,
 				756E5856FB49A0330E8AF32C /* Pods_SUPLAWidgetsExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4148,11 +4169,9 @@
 		A52ACD4329CB92C50092729F /* SuplaClient */ = {
 			isa = PBXGroup;
 			children = (
+				A5C690382DD736AF00194C1B /* SingleCall */,
 				A52ACD4829CB940B0092729F /* ActionParameters.swift */,
 				A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */,
-				A56D5ACC2A4C304C004F45DA /* SingleCall.swift */,
-				A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */,
-				A56D5AD02A4C37DA004F45DA /* SingleCallWrapper.h */,
 				A56233F42AB856B3001CB948 /* DelayedCommandSubject.swift */,
 				A58472032C2EACA600713D36 /* SuplaResultCode.swift */,
 				A58472072C2ED60E00713D36 /* SuplaAppProvider.swift */,
@@ -5176,6 +5195,7 @@
 		A57638CA29E5EF80003E15A3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */,
 				A5D712832C3EA39B00A8EF52 /* Navigation */,
 				A54A066A2AF528F200C03DBC /* Events */,
 				A54A06672AF527CD00C03DBC /* Config */,
@@ -6150,6 +6170,17 @@
 			path = Dialog;
 			sourceTree = "<group>";
 		};
+		A5C690382DD736AF00194C1B /* SingleCall */ = {
+			isa = PBXGroup;
+			children = (
+				A5C690392DD736C100194C1B /* SingleCallResult.swift */,
+				A56D5ACC2A4C304C004F45DA /* SingleCall.swift */,
+				A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */,
+				A56D5AD02A4C37DA004F45DA /* SingleCallWrapper.h */,
+			);
+			path = SingleCall;
+			sourceTree = "<group>";
+		};
 		A5CE73252B45A6C8003F882C /* Esp */ = {
 			isa = PBXGroup;
 			children = (
@@ -6417,6 +6448,8 @@
 		A5E2D6842DC8E11A00EBDADB /* GroupShared */ = {
 			isa = PBXGroup;
 			children = (
+				A5CF3E562DD6880300207384 /* WidgetIcon.swift */,
+				A5CF3DAD2DD5CDBB00207384 /* WidgetChannel.swift */,
 				A5E2D68F2DC9EC4100EBDADB /* WidgetAction.swift */,
 			);
 			path = GroupShared;
@@ -6750,6 +6783,7 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */,
 				A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */,
 				A5552ED92D537A6000A3F6A2 /* Dictonary+Ext.swift */,
 				A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */,
@@ -7647,6 +7681,7 @@
 				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
 				A5EDE2212CA56B4B00BEDAE4 /* SummaryCardData.swift in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
+				A5C690402DD7515800194C1B /* Int16+Ext.swift in Sources */,
 				A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */,
 				A5F29BEB2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
@@ -8088,6 +8123,7 @@
 				A5552EE42D54FF8A00A3F6A2 /* SACurrentMeasurementItem+Ext.swift in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */,
+				A5C6903B2DD736C600194C1B /* SingleCallResult.swift in Sources */,
 				A5E05BCC2CB6A90F00202583 /* Equatable+Ext.swift in Sources */,
 				A57C4AAC2AAB20B100D9C695 /* RequestResult.swift in Sources */,
 				A57668CF2AE914140025509D /* TemperatureMeasurement.swift in Sources */,
@@ -8302,6 +8338,7 @@
 				A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */,
 				A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */,
 				A598CABB2CC0EE5200A784FA /* View+SuplaCard.swift in Sources */,
+				A5CF3E572DD6880A00207384 /* WidgetIcon.swift in Sources */,
 				A58A9BFE2AA0A4BD00D28848 /* UIView+Ext.swift in Sources */,
 				A5477DC92AA5E6EE00220B4A /* ChannelWithChildren.swift in Sources */,
 				A50B5D2B2BF49F3000918D18 /* TerraceAwningVC.swift in Sources */,
@@ -8311,6 +8348,7 @@
 				A5E2D6832DC8E07500EBDADB /* GroupSharedSettings.swift in Sources */,
 				A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */,
 				A594ADC72C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift in Sources */,
+				A5CF3DAE2DD5CDD000207384 /* WidgetChannel.swift in Sources */,
 				A530EE2C2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift in Sources */,
 				A5E0DF6E2CEB66C900362451 /* ImpulseCounterDetailVC.swift in Sources */,
 				A54149302B63059200B44BD6 /* GpmHistoryDetailVC.swift in Sources */,
@@ -8509,6 +8547,7 @@
 				A5AD702C2C04773F00A36318 /* CurtainVMTests.swift in Sources */,
 				A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */,
+				A5C6905F2DD7760C00194C1B /* GroupSharedSettingsMock.swift in Sources */,
 				A5EC52442C0F33990022F055 /* RequestChannelConfigUseCaseTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				A5D712722C3E6FD700A8EF52 /* LockUseCasesMocks.swift in Sources */,
@@ -8664,8 +8703,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CF3DAF2DD5CDD000207384 /* WidgetChannel.swift in Sources */,
 				A5E2D70D2DCBEC9300EBDADB /* Color+Supla.swift in Sources */,
 				A519BFE22DD209C90045EB77 /* ChannelState.swift in Sources */,
+				A5C6903E2DD750E800194C1B /* Hour.swift in Sources */,
 				A5E2D6B32DCA26D300EBDADB /* CarPlayAction.swift in Sources */,
 				A5CF3D732DD4C0D100207384 /* UserIcon.swift in Sources */,
 				A5E2D7002DCB62C100EBDADB /* AuthProfileItemKeychainHelper.swift in Sources */,
@@ -8675,14 +8716,23 @@
 				A5E9C2062DCCBDF40001F263 /* Font+Supla.swift in Sources */,
 				A5CF3D652DD4A95700207384 /* UserIconData.swift in Sources */,
 				A5E9C2052DCCBDE90001F263 /* Text.swift in Sources */,
+				A5CF3E582DD6880A00207384 /* WidgetIcon.swift in Sources */,
+				A5C690412DD7516E00194C1B /* Int+Ext.swift in Sources */,
 				A5E9C2082DCCBE0A0001F263 /* Distance.swift in Sources */,
+				A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */,
 				A5CF3D8A2DD4C9E100207384 /* URL+Ext.swift in Sources */,
 				A5CF3D6F2DD4BC8900207384 /* IconResult.swift in Sources */,
+				A5C6903A2DD736C600194C1B /* SingleCallResult.swift in Sources */,
 				A5CF3D852DD4C3E000207384 /* UserIconsUseCase.swift in Sources */,
+				A5C6903C2DD74E3F00194C1B /* TemperatureUnit.swift in Sources */,
+				A5C6903D2DD74FF000194C1B /* ValuesFormatter.swift in Sources */,
+				A5C690372DD7366B00194C1B /* DoubleValueParser.swift in Sources */,
+				A5C690362DD7366400194C1B /* IntValueParser.swift in Sources */,
 				A5E9C20C2DCCBF710001F263 /* View+ScaleFactor.swift in Sources */,
 				A5E9C2072DCCBE050001F263 /* Dimens.swift in Sources */,
 				A5E2D6972DCA038500EBDADB /* ActionParameters.swift in Sources */,
 				A5E2D7042DCB7DC800EBDADB /* AuthorizationType.swift in Sources */,
+				A5CF3DBA2DD62AD200207384 /* String+Icons.swift in Sources */,
 				A519BFE52DD21AAA0045EB77 /* UserNotificationCenter.swift in Sources */,
 				A5E2D70E2DCBEC9C00EBDADB /* UIColor+Supla.swift in Sources */,
 				A5E9C2032DCCA8270001F263 /* FlowHStack.swift in Sources */,

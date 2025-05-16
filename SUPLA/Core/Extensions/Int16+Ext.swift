@@ -15,23 +15,9 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-protocol IntValueParser {}
-
-extension IntValueParser {
-    func asIntValue(_ data: Data?, startingFromByte: Int = 0) -> Int? {
-        if let value = data,
-           value.count >= MemoryLayout<Int32>.size + startingFromByte
-        {
-            let uintValue = Int32(value[startingFromByte]) +
-                Int32(value[startingFromByte + 1]) << 8 +
-                Int32(value[startingFromByte + 2]) << 16 +
-                Int32(value[startingFromByte + 3]) << 24
-            return Int(uintValue)
-        }
-
-        return nil
+    
+extension Int16 {
+    func fromSuplaTemperature() -> Float {
+        return (Float(self) / 100).roundToTenths()
     }
 }

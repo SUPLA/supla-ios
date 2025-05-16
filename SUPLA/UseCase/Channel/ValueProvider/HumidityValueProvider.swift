@@ -26,7 +26,7 @@ final class HumidityValueProviderImpl: HumidityValueProvider, IntValueParser {
     }
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
-        if let intValue = asIntValue(channel.value, startingFromByte: 4) {
+        if let intValue = asIntValue(channel.value?.dataValue(), startingFromByte: 4) {
             return Double(intValue) / 1000.0
         }
         

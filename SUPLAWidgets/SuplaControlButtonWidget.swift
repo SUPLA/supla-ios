@@ -42,9 +42,9 @@ struct SuplaControlButtonWidget: ControlWidget {
 
 @available(iOS 17.0, *)
 struct SuplaControlButtonConfigurationIntent: ControlConfigurationIntent {
-    static var title: LocalizedStringResource = .init("widgets_control_title", defaultValue: "Action Button")
+    static var title: LocalizedStringResource = .init("widgets_control_title", defaultValue: "Control Button")
 
-    @Parameter(title: LocalizedStringResource("general_action", defaultValue: "Action"))
+    @Parameter(title: LocalizedStringResource("widgets_selected_action", defaultValue: "Selected Action"))
     var action: GroupShared.WidgetAction?
 
     init(action: GroupShared.WidgetAction?) {

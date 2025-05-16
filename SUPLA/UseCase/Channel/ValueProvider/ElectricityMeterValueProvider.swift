@@ -53,7 +53,7 @@ final class ElectricityMeterValueProviderImpl: ElectricityMeterValueProvider, In
                 .map { electricityMeterValue.voltege(forPhase: $0.rawValue) }
                 .avgOrNan()
         default:
-            if let value = asIntValue(channel.value, startingFromByte: 1) {
+            if let value = asIntValue(channel.value?.dataValue(), startingFromByte: 1) {
                 return Double(value) / 100
             } else {
                 return ElectricityMeterValueProviderImpl.UNKNOWN_VALUE

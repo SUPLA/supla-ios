@@ -25,6 +25,7 @@ struct SUPLAWidgetsBundle: WidgetBundle {
     var body: some Widget {
         if #available(iOS 17.0, *) {
             SuplaAllActionsWidget()
+            SuplaValueWidget()
         }
         if #available(iOS 18.0, *) {
             SuplaControlButtonWidget()

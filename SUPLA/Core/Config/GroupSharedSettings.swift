@@ -23,10 +23,14 @@ struct GroupShared {
         static let iOS = "group.org.supla.ios"
     }
     
-    protocol Settings {
+    protocol Settings: AnyObject {
         
         @available(iOS 17.0, *)
         var actions: [WidgetAction] { get set }
+        @available(iOS 17.0, *)
+        var channels: [WidgetChannel] { get set }
+        
+        var temperatureUnit: TemperatureUnit { get set }
     }
     
     final class Implementation: Settings {
@@ -41,6 +45,23 @@ struct GroupShared {
             set {
                 userDefaults?.setValue(newValue.toJson(), forKey: actionsKey)
             }
+        }
+        
+        private let channelsKey = "GroupShared.channels"
+        @available(iOS 17.0, *)
+        var channels: [WidgetChannel] {
+            get {
+                WidgetChannel.fromJson(userDefaults?.string(forKey: channelsKey)) ?? []
+            }
+            set {
+                userDefaults?.setValue(newValue.toJson(), forKey: channelsKey)
+            }
+        }
+        
+        private let temperatureUnitKey = "GroupShared.temperatureUnit"
+        var temperatureUnit: TemperatureUnit {
+            get { TemperatureUnit(rawValue: userDefaults?.string(forKey: temperatureUnitKey) ?? "") ?? .celsius }
+            set { userDefaults?.set(newValue.rawValue, forKey: temperatureUnitKey) }
         }
     }
 }

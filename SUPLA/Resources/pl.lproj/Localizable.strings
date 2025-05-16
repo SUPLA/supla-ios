@@ -306,6 +306,7 @@
 "general_profile" = "Konto";
 "general_action" = "Akcja";
 "general_delete" = "Usuń";
+"general_select" = "-- wybierz --";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -683,9 +684,13 @@
 
 /* Widgets */
 "widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla CarPlay/Widżetów i zdefiniuj wybrane akcje.";
-"widgets_control_title" = "Przycisk akcji";
+"widgets_control_title" = "Przycisk sterujący";
 "widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
+"widgets_selected_action" = "Wybrana akcja";
 "widget_control_hint" = "Wykonanie akcji";
 "widgets_actions_name" = "Akcje";
 "widgets_actions_description" = "Ułatwia dostęp do najczęściej wykonywanych czynności";
 "widgets_unknown_action" = "Nieznana akcja!";
+"widgets_value_title" = "Szybki podgląd";
+"widgets_value_description" = "Widżet pozwalający na szybki podgląd aktualnej wartości kanału.";
+"widget_configuration_error" = "Konfiguracja widżetu jest nieprawidłowa";

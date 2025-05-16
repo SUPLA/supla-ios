@@ -22,11 +22,13 @@ import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEvent> {
     private lazy var viewModel: AppSettingsVM! = AppSettingsVM()
     
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     private lazy var appCoordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
 
     private lazy var notificationCenter: UserNotificationCenterMock! = UserNotificationCenterMock()
     
@@ -34,6 +36,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: UserNotificationCenter.self, notificationCenter!)
         DiContainer.shared.register(type: SuplaAppCoordinator.self, appCoordinator!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings!)
     }
     
     override func tearDown() {
@@ -42,6 +45,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         settings = nil
         notificationCenter = nil
         appCoordinator = nil
+        groupSharedSettings = nil
         
         super.tearDown()
     }
@@ -156,7 +160,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues[0], .height60)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -190,7 +194,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues[0], .celsius)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters[0], .celsius)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -224,7 +228,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues[0], true)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -258,7 +262,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues[0], false)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -292,7 +296,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomMenuValues, [true])
@@ -327,7 +331,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues[0], false)
@@ -361,7 +365,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -395,7 +399,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events, [.next(0, .changeInterfaceStyle(style: .dark))])
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -430,7 +434,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -468,7 +472,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -506,7 +510,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -543,7 +547,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -580,7 +584,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events, [])
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -615,7 +619,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 0)
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -653,7 +657,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events, [.next(0, .navigateToAppPreferences)])
         XCTAssertEqual(settings.channelHeightValues.count, 0)
-        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
@@ -671,7 +675,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         notificationStatus: UNAuthorizationStatus = .authorized
     ) {
         settings.channelHeightReturns = channelHeight
-        settings.temperatureUnitReturns = temperatureUnit
+        groupSharedSettings.temperatureUnitMock.returns = .single(temperatureUnit)
         settings.autohideButtonsReturns = autoHide
         settings.showChannelInfoReturns = infoButtons
         settings.showOpeningPercentReturns = showOpening
