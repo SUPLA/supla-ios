@@ -16,11 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Foundation
+
 protocol DoubleValueParser {}
 
 extension DoubleValueParser {
-    func asDoubleValue(_ channelValue: SAChannelValue?) -> Double? {
-        if let value = channelValue?.dataValue(),
+    func asDoubleValue(_ dataValue: Data?) -> Double? {
+        if let value = dataValue,
            value.count >= MemoryLayout<Double>.size
         {
             return value.withUnsafeBytes { $0.load(as: Double.self) }

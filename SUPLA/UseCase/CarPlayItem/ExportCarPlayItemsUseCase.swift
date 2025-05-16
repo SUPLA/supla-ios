@@ -66,7 +66,14 @@ struct ExportCarPlayItems {
                 }
             }
             
+            var widgetChannels: [GroupShared.WidgetChannel] = []
+            channels.filter { $0.widgetSupported }.forEach {
+                widgetChannels.append($0.widgetChannel)
+            }
+            
             settings.actions = widgetActions
+            settings.channels = widgetChannels
+            
             WidgetCenter.shared.reloadAllTimelines()
         }
     }
@@ -209,6 +216,46 @@ private extension SAChannelBase {
              .waterTank,
              .containerLevelSensor,
              .floodSensor: nil
+        }
+    }
+}
+
+private extension SAChannel {
+    var widgetSupported: Bool {
+        switch (self.func.suplaFuntion) {
+        case .thermometer, .humidityAndTemperature, .humidity: true
+        default: false
+        }
+    }
+    
+    @available(iOS 17.0, *)
+    var widgetChannel: GroupShared.WidgetChannel {
+        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
+        @Singleton<GetCaptionUseCase> var getCaptionUseCase
+        
+        return GroupShared.WidgetChannel(
+            profileId: profile.id,
+            profileCaption: profile.displayName,
+            locationId: location_id,
+            locationCaption: location?.caption ?? "Location ID(\(location_id))",
+            subjectId: remote_id,
+            subjectCaption: getNonEmptyCaption(),
+            icon: widgetIcon,
+            authorizationEntity: profile.authorizationEntity
+        )
+    }
+    
+    var widgetIcon: GroupShared.WidgetIcon {
+        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
+        
+        return switch (self.func) {
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            .double(
+                first: getChannelBaseIconUseCase.invoke(channel: self),
+                second: getChannelBaseIconUseCase.invoke(channel: self, type: .second)
+            )
+        default:
+            .single(getChannelBaseIconUseCase.invoke(channel: self))
         }
     }
 }

@@ -24,7 +24,7 @@ final class HumidityAndThermometerIconNameProducer: IconNameProducer {
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.type) {
         case .single, .first: thermometerIcon(iconData.altIcon)
-        case .second: "humidity"
+        case .second: .Icons.fncHumidity
         }
     }
     

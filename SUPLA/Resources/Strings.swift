@@ -334,6 +334,7 @@ struct Strings {
         static let function = "general_function".toLocalized()
         static let profile = "general_profile".toLocalized()
         static let action = "general_action".toLocalized()
+        static let select = "general_select".toLocalized()
         
         struct Channel {
             static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
@@ -582,8 +583,11 @@ struct Strings {
         static let emptyHint = "widget_empty_hint".toLocalized()
         static let controlHint = "widget_control_hint".toLocalized()
         static var actionsName = "widgets_actions_name".toLocalized()
-        static var actionsDescription = "widgets_actions_description".toLocalized()
-        static var unknownAction = "widgets_unknown_action".toLocalized()
+        static let actionsDescription = "widgets_actions_description".toLocalized()
+        static let unknownAction = "widgets_unknown_action".toLocalized()
+        static let valueTitle = "widgets_value_title".toLocalized()
+        static let valueDescription = "widgets_value_description".toLocalized()
+        static let configurationError = "widget_configuration_error".toLocalized()
     }
 }
 

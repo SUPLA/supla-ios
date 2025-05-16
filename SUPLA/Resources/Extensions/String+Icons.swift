@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import UIKit
 
 extension String {
     
@@ -158,6 +158,7 @@ extension String {
         static let fncThermometerHome = "fnc_thermometer_home"
         static let fncThermometerTap = "fnc_thermometer_tap"
         static let fncThermometerWater = "fnc_thermometer_water"
+        static let fncHumidity = "humidity"
         // Thermostat
         static let fncThermostatHeat = "fnc_thermostat_heat"
         static let fncThermostatCool = "fnc_thermostat_cool"

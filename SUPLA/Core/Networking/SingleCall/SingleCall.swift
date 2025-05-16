@@ -48,6 +48,15 @@ class SingleCallImpl: SingleCall {
             throw SingleCallError.resultException(errorCode: result)
         }
     }
+    
+    func getValue(channelId: Int32, authorizationEntity: SingleCallAuthorizationEntity) -> SingleCallResult {
+        var authDetails = authorizationEntity.authDetails
+        var value = TSC_GetChannelValueResult()
+        
+        supla_single_call_get_channel_value(&authDetails, authorizationEntity.preferredProtocolVersion, 500, channelId, &value)
+        
+        return SingleCallResult.from(valueResult: value)
+    }
 }
 
 enum SingleCallError: Error {

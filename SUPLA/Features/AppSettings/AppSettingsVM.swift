@@ -26,6 +26,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     @Singleton<GlobalSettings> private var settings
     @Singleton<UserNotificationCenter> private var notificationCenter
     @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<GroupShared.Settings> private var groupSettings
     
     override func defaultViewState() -> AppSettingsViewState { AppSettingsViewState(list: []) }
     
@@ -66,7 +67,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 callback: { [weak self] in self?.updateChannelHeight(selectedItem: $0) }
             ),
             .temperatureUnitItem(
-                temperatureUnit: settings.temperatureUnit,
+                temperatureUnit: groupSettings.temperatureUnit,
                 callback: { [weak self] in self?.updateTemperatureUnit(selectedItem: $0) }
             ),
             .switchItem(
@@ -137,7 +138,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     
     private func updateTemperatureUnit(selectedItem: Int) {
         if let unit = TemperatureUnit.allCases.enumerated().first(where: { (i, _) in i == selectedItem })?.element {
-            settings.temperatureUnit = unit
+            groupSettings.temperatureUnit = unit
         }
     }
     

@@ -26,12 +26,12 @@ final class ThermometerAndHumidityValueProviderImpl: ThermometerAndHumidityValue
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
         if (valueType == .first) {
-            if let value = asIntValue(channel.value) {
+            if let value = asIntValue(channel.value?.dataValue()) {
                 return Double(value) / 1000.0
             }
             return  ThermometerValueProviderImpl.UNKNOWN_VALUE
         } else {
-            if let value = asIntValue(channel.value, startingFromByte: 4) {
+            if let value = asIntValue(channel.value?.dataValue(), startingFromByte: 4) {
                 return Double(value) / 1000.0
             }
             return HumidityValueProviderImpl.UNKNOWN_VALUE

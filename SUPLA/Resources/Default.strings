@@ -60,6 +60,7 @@
 "general_profile" = "Profile";
 "general_action" = "Action";
 "general_delete" = "Delete";
+"general_select" = "-- select --";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -455,3 +456,6 @@
 "widgets_actions_name" = "Actions";
 "widgets_actions_description" = "Simplifies access to the most common actions.";
 "widgets_unknown_action" = "Unknown action!";
+"widgets_value_title" = "Quick View";
+"widgets_value_description" = "Widget which serves a quick preview of the current channel value.";
+"widget_configuration_error" = "Widget is not configured properly";

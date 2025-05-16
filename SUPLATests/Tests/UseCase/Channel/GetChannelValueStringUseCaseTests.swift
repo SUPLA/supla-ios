@@ -19,6 +19,7 @@
 import XCTest
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class GetChannelValueStringUseCaseTests: XCTestCase {
     
     private lazy var depthValueProvider: DepthValueProviderMock! = {
@@ -65,6 +66,8 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         GetChannelValueStringUseCaseImpl()
     }()
     
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
+    
     override func setUp() {
         super.setUp()
         
@@ -78,6 +81,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         DiContainer.shared.register(type: ThermometerValueProvider.self, thermometerValueProvider!)
         DiContainer.shared.register(type: WeightValueProvider.self, weightValueProvider!)
         DiContainer.shared.register(type: WindValueProvider.self, windValueProvider!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings!)
     }
     
     override func tearDown() {
@@ -91,6 +95,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         thermometerValueProvider = nil
         weightValueProvider = nil
         windValueProvider = nil
+        groupSharedSettings = nil
         
         super.tearDown()
     }
@@ -310,6 +315,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
             value: SAChannelValue.mock(status: .online)
         )
+        groupSharedSettings.temperatureUnitMock.returns = .many([.celsius, .celsius])
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
         // when

@@ -70,13 +70,6 @@ class GlobalSettingsMock: GlobalSettings {
         set { pushTokenLastUpdateValues.append(newValue) }
     }
     
-    var temperatureUnitReturns: TemperatureUnit = .celsius
-    var temperatureUnitValues: [TemperatureUnit] = []
-    var temperatureUnit: TemperatureUnit {
-        get { temperatureUnitReturns }
-        set { temperatureUnitValues.append(newValue) }
-    }
-    
     var autohideButtonsReturns: Bool = false
     var autohideButtonsValues: [Bool] = []
     var autohideButtons: Bool {

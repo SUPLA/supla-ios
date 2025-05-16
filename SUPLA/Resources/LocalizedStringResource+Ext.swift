@@ -25,7 +25,7 @@ extension LocalizedStringResource {
     }
 
     enum Widgets {
-        static var controlNameDefault = String.LocalizationValue("Action Button")
+        static var controlNameDefault = String.LocalizationValue("Control Button")
         static var controlName: LocalizedStringResource { LocalizedStringResource("widgets_control_title", defaultValue: controlNameDefault) }
         static var controlDescription: LocalizedStringResource { LocalizedStringResource("widgets_control_description", defaultValue: "Button which allows to perform a predefined single action.") }
     }

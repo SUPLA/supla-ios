@@ -111,12 +111,16 @@ extension GroupShared {
     }
     
     struct WidgetConfigurationQuery: EntityQuery {
-        func entities(for identifiers: [WidgetAction.ID]) async throws -> [WidgetAction] {
+        func entities(for identifiers: [WidgetAction.ID]) throws -> [WidgetAction] {
             Implementation().actions.filter { $0.sfIcon != nil }.filter { identifiers.contains($0.id) }
         }
         
-        func suggestedEntities() async throws -> [WidgetAction] {
+        func suggestedEntities() throws -> [WidgetAction] {
             Implementation().actions.filter { $0.sfIcon != nil }
+        }
+        
+        func defaultResult() -> WidgetAction? {
+            try? suggestedEntities().first
         }
     }
 }

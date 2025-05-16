@@ -16,22 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+extension GroupShared {
+    enum WidgetIcon: Codable {
+        case single(IconResult)
+        case double(first: IconResult, second: IconResult)
 
-protocol IntValueParser {}
-
-extension IntValueParser {
-    func asIntValue(_ data: Data?, startingFromByte: Int = 0) -> Int? {
-        if let value = data,
-           value.count >= MemoryLayout<Int32>.size + startingFromByte
-        {
-            let uintValue = Int32(value[startingFromByte]) +
-                Int32(value[startingFromByte + 1]) << 8 +
-                Int32(value[startingFromByte + 2]) << 16 +
-                Int32(value[startingFromByte + 3]) << 24
-            return Int(uintValue)
+        var first: IconResult {
+            switch self {
+            case .single(let icon): icon
+            case .double(let first, _): first
+            }
         }
 
-        return nil
+        var second: IconResult? {
+            switch self {
+            case .single: nil
+            case .double(_, let second): second
+            }
+        }
     }
 }
