@@ -865,7 +865,7 @@
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
-		A599E8F92CD3AB9100C83A2B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		A599E8F92CD3AB9100C83A2B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -1271,6 +1271,9 @@
 		A5F237992DDB18EF00E090E9 /* UserIconsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */; };
 		A5F2379B2DDB21EF00E090E9 /* CarPlayItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */; };
 		A5F2379D2DDB24E000E090E9 /* UserIconsUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */; };
+		A5F2384C2DDB645400E090E9 /* DiContainer+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2384B2DDB644E00E090E9 /* DiContainer+Supla.swift */; };
+		A5F2384D2DDB64CA00E090E9 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
+		A5F2384E2DDB64D200E090E9 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */; };
 		A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5A2A1E15D600ED700A /* MainVC.swift */; };
 		A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5C2A1E161500ED700A /* MainVM.swift */; };
@@ -2924,6 +2927,7 @@
 		A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCaseTests.swift; sourceTree = "<group>"; };
 		A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCasesMocks.swift; sourceTree = "<group>"; };
+		A5F2384B2DDB644E00E090E9 /* DiContainer+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiContainer+Supla.swift"; sourceTree = "<group>"; };
 		A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A5F29B5A2A1E15D600ED700A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A5F29B5C2A1E161500ED700A /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -4809,6 +4813,7 @@
 		A553862929E0201A00B5CF3F /* DI */ = {
 			isa = PBXGroup;
 			children = (
+				A5F2384B2DDB644E00E090E9 /* DiContainer+Supla.swift */,
 				A553862A29E0202700B5CF3F /* Singleton.swift */,
 				A553862C29E021AE00B5CF3F /* DiContainer.swift */,
 				A553862E29E0297400B5CF3F /* Inject.swift */,
@@ -7385,9 +7390,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7424,9 +7433,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7721,7 +7734,7 @@
 				A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
-				A599E8F92CD3AB9100C83A2B /* BuildFile in Sources */,
+				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
 				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
@@ -8144,6 +8157,7 @@
 				A594ADD42C9C451400780EF3 /* ThermostatSlavesFeature.swift in Sources */,
 				A51BE90D2AAAF82000718F2F /* GetChannelConfigUseCase.swift in Sources */,
 				A53636552DD3723D00D470CE /* DownloadUserIconsUseCase.swift in Sources */,
+				A5F2384C2DDB645400E090E9 /* DiContainer+Supla.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
 				A5C5F6F52D940B4B00E303B8 /* CaptionChangeViewModel.swift in Sources */,
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,
@@ -8701,6 +8715,7 @@
 				A519BFE22DD209C90045EB77 /* ChannelState.swift in Sources */,
 				A5C6903E2DD750E800194C1B /* Hour.swift in Sources */,
 				A5E2D6B32DCA26D300EBDADB /* CarPlayAction.swift in Sources */,
+				A5F2384E2DDB64D200E090E9 /* Singleton.swift in Sources */,
 				A5CF3D732DD4C0D100207384 /* UserIcon.swift in Sources */,
 				A5E2D7002DCB62C100EBDADB /* AuthProfileItemKeychainHelper.swift in Sources */,
 				A5E2D6852DC8E58800EBDADB /* GroupSharedSettings.swift in Sources */,
@@ -8726,6 +8741,7 @@
 				A5E2D6972DCA038500EBDADB /* ActionParameters.swift in Sources */,
 				A5E2D7042DCB7DC800EBDADB /* AuthorizationType.swift in Sources */,
 				A5CF3DBA2DD62AD200207384 /* String+Icons.swift in Sources */,
+				A5F2384D2DDB64CA00E090E9 /* DiContainer.swift in Sources */,
 				A519BFE52DD21AAA0045EB77 /* UserNotificationCenter.swift in Sources */,
 				A5E2D70E2DCBEC9C00EBDADB /* UIColor+Supla.swift in Sources */,
 				A5E9C2032DCCA8270001F263 /* FlowHStack.swift in Sources */,
