@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -865,7 +865,7 @@
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
-		A599E8F92CD3AB9100C83A2B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		A599E8F92CD3AB9100C83A2B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -3102,7 +3102,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A5741DBA2DC2513F00ED6C18 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		A5741DBA2DC2513F00ED6C18 /* Exceptions for "SUPLAWidgets" folder in "SUPLAWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -3112,7 +3112,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A5741DAD2DC2513E00ED6C18 /* SUPLAWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A5741DBA2DC2513F00ED6C18 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SUPLAWidgets; sourceTree = "<group>"; };
+		A5741DAD2DC2513E00ED6C18 /* SUPLAWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A5741DBA2DC2513F00ED6C18 /* Exceptions for "SUPLAWidgets" folder in "SUPLAWidgetsExtension" target */,
+			);
+			path = SUPLAWidgets;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -7193,7 +7200,6 @@
 				};
 			};
 			buildConfigurationList = 401CA1B41BA067DB00117AF4 /* Build configuration list for PBXProject "SUPLA" */;
-			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -7215,6 +7221,7 @@
 				uk,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 401CA1BA1BA067DB00117AF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -7375,35 +7382,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DGCharts/DGCharts.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/FMMoveTableView/FMMoveTableView.framework",
-				"${BUILT_PRODUCTS_DIR}/PaddingLabel/PaddingLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/QueryKit/QueryKit.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGCharts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMMoveTableView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaddingLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QueryKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7437,15 +7421,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7740,7 +7721,7 @@
 				A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
-				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
+				A599E8F92CD3AB9100C83A2B /* BuildFile in Sources */,
 				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
@@ -9200,7 +9181,10 @@
 					USE_DEPRECATED_EMEV_V1,
 					"COCOAPODS=1",
 				);
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -9239,7 +9223,10 @@
 					"COCOAPODS=1",
 					USE_DEPRECATED_EMEV_V1,
 				);
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -9263,7 +9250,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
@@ -9295,7 +9281,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
@@ -9330,7 +9315,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SUPLAWidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -9383,7 +9367,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SUPLAWidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
