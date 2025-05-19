@@ -68,7 +68,7 @@ class UpdateTokenTask: NSObject {
     private func updateToken(token: Data, forProfile profile: AuthProfileItem) -> Bool {
         let name = profile.name ?? "<<>>"
         do {
-            let tokenDetails = SingleCallWrapper.prepareClientToken(for: token, andProfile: profile.name)
+            let tokenDetails = profile.token(token)
             
             if (profile.isAuthDataComplete) {
                 try singleCall.registerPushToken(profile.authorizationEntity, profile.preferredProtocolVersion, tokenDetails)
