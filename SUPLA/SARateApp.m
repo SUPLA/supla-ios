@@ -91,7 +91,7 @@
     [alert addAction:laterBtn];
     [alert addAction:noBtn];
     
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
 }
 
