@@ -22,9 +22,10 @@ enum UserIcons {
     private static let iconsDirectoryName = "icons"
     
     protocol UseCase {
-        func existingIconIds(profileId: Int32) -> [Int32]
         func getIcon(profileId: Int32, iconId: Int32, icon: UserIcon) -> UIImage?
         func storeIconData(_ data: Data, profileId: Int32, iconId: Int32, type: IconType)
+        func existingIconIds(profileId: Int32) -> [Int32]
+        func removeProfileIcons(_ profileId: Int32)
     }
     
     final class Implementation: UseCase {
@@ -42,20 +43,6 @@ enum UserIcons {
             guard let data = FileManager.default.contents(atPath: url.path) else { return nil }
             
             return UIImage(data: data)
-        }
-        
-        func getIconDirectoryUrl(profileId: Int32, iconId: Int32) -> URL? {
-            guard let sharedDirectory else { return nil }
-            
-            return sharedDirectory
-                .appendDirname(iconsDirectoryName)
-                .appendDirname("\(profileId)")
-                .appendDirname("\(iconId)")
-        }
-        
-        func getIconUrl(profileId: Int32, iconId: Int32, type: IconType) -> URL? {
-            return getIconDirectoryUrl(profileId: profileId, iconId: iconId)?
-                .appendFilename(type.rawValue)
         }
         
         func storeIconData(_ data: Data, profileId: Int32, iconId: Int32, type: IconType) {
@@ -87,12 +74,6 @@ enum UserIcons {
             }
         }
         
-        func iconExists(profileId: Int32, iconId: Int32, type: IconType) -> Bool {
-            guard let url = getIconUrl(profileId: profileId, iconId: iconId, type: type) else { return false }
-            var isDir = ObjCBool(false)
-            return FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir) && !isDir.boolValue
-        }
-        
         func existingIconIds(profileId: Int32) -> [Int32] {
             guard let sharedDirectory else { return [] }
             
@@ -120,6 +101,41 @@ enum UserIcons {
             }
             
             return result
+        }
+        
+        func removeProfileIcons(_ profileId: Int32) {
+            guard let directory = getProfileDirectoryUrl(profileId) else { return }
+            
+            do {
+                try FileManager.default.removeItem(at: directory)
+                SALog.info("Removed icons directory for profile \(profileId)")
+            } catch {
+                SALog.warning("Could not remove icons directory for profile \(profileId): \(error.localizedDescription)")
+            }
+        }
+        
+        private func getProfileDirectoryUrl(_ profileId: Int32) -> URL? {
+            guard let sharedDirectory else { return nil }
+            
+            return sharedDirectory
+                .appendDirname(iconsDirectoryName)
+                .appendDirname("\(profileId)")
+        }
+        
+        private func getIconDirectoryUrl(profileId: Int32, iconId: Int32) -> URL? {
+            return getProfileDirectoryUrl(profileId)?
+                .appendDirname("\(iconId)")
+        }
+        
+        private func getIconUrl(profileId: Int32, iconId: Int32, type: IconType) -> URL? {
+            return getIconDirectoryUrl(profileId: profileId, iconId: iconId)?
+                .appendFilename(type.rawValue)
+        }
+        
+        private func iconExists(profileId: Int32, iconId: Int32, type: IconType) -> Bool {
+            guard let url = getIconUrl(profileId: profileId, iconId: iconId, type: type) else { return false }
+            var isDir = ObjCBool(false)
+            return FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir) && !isDir.boolValue
         }
     }
     

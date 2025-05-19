@@ -15,30 +15,26 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
+    
+@testable import SUPLA
 import RxSwift
-    
-protocol CarPlayItemRepository: RepositoryProtocol where T == SACarPlayItem {
-    func findAll() -> Observable<[SACarPlayItem]>
-    func findMaxOrder() -> Observable<Int32>
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-}
 
-final class CarPlayItemRepositoryImpl: Repository<SACarPlayItem>, CarPlayItemRepository {
+final class CarPlayItemRepositoryMock: BaseRepositoryMock<SACarPlayItem>, CarPlayItemRepository {
     
+    var findAllMock: FunctionMock<Void, Observable<[SACarPlayItem]>> = .init()
     func findAll() -> Observable<[SACarPlayItem]> {
-        return query(SACarPlayItem.fetchRequest().ordered(by: "order"))
+        findAllMock.handle(())
     }
     
+    var findMaxOrderMock: FunctionMock<Void, Observable<Int32>> = .init()
     func findMaxOrder() -> Observable<Int32> {
-        let request = SACarPlayItem.fetchRequest()
-            .ordered(by: "order", ascending: false)
-        request.fetchLimit = 1
-        
-        return query(request).map { $0.first?.order ?? 0 }
+        findMaxOrderMock.handle(())
     }
     
+    var deleteAllMock: FunctionMock<AuthProfileItem, Observable<Void>> = .init()
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAll(SACarPlayItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+        deleteAllMock.handle(profile)
     }
+    
+    
 }

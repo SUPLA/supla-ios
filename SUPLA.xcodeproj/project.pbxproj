@@ -1268,6 +1268,9 @@
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
 		A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7829DED9F000682FA6 /* BaseViewController.swift */; };
 		A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */; };
+		A5F237992DDB18EF00E090E9 /* UserIconsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */; };
+		A5F2379B2DDB21EF00E090E9 /* CarPlayItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */; };
+		A5F2379D2DDB24E000E090E9 /* UserIconsUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */; };
 		A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */; };
 		A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5A2A1E15D600ED700A /* MainVC.swift */; };
 		A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5C2A1E161500ED700A /* MainVM.swift */; };
@@ -2918,6 +2921,9 @@
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
 		A5F14B7829DED9F000682FA6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVMTests.swift; sourceTree = "<group>"; };
+		A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCaseTests.swift; sourceTree = "<group>"; };
+		A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayItemRepositoryMock.swift; sourceTree = "<group>"; };
+		A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCasesMocks.swift; sourceTree = "<group>"; };
 		A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A5F29B5A2A1E15D600ED700A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A5F29B5C2A1E161500ED700A /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -4339,6 +4345,7 @@
 		A530EE312A57E36600F8DAEE /* Icon */ = {
 			isa = PBXGroup;
 			children = (
+				A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */,
 				A530EE322A57E42100F8DAEE /* GetDefaultIconNameUseCaseTests.swift */,
 			);
 			path = Icon;
@@ -5589,20 +5596,21 @@
 		A59AB89E2A30534F00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */,
+				A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */,
+				A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */,
 				A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */,
+				A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */,
 				A59AB8A12A30583E00D91F1F /* DetailUseCasesMocks.swift */,
-				A59AB8A52A305D8700D91F1F /* LocationUseCasesMocks.swift */,
+				A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */,
 				A59AB8AF2A30721D00D91F1F /* GroupUseCasesMocks.swift */,
+				A59AB8A52A305D8700D91F1F /* LocationUseCasesMocks.swift */,
+				A5D712712C3E6FD700A8EF52 /* LockUseCasesMocks.swift */,
+				A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */,
+				A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */,
 				A59AB8B42A30795B00D91F1F /* SceneUseCasesMocks.swift */,
 				A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */,
-				A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */,
 				A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */,
-				A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */,
-				A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */,
-				A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */,
 				A5E40B5C2B86075500DB6ABE /* ValueProviderMocks.swift */,
-				A5D712712C3E6FD700A8EF52 /* LockUseCasesMocks.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -5649,6 +5657,7 @@
 		A59AB8B92A307FAD00D91F1F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */,
 				A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */,
 				A59AB8BA2A30800F00D91F1F /* ProfileRepositoryMock.swift */,
 				A59AB8BC2A30806800D91F1F /* BaseRepositoryMock.swift */,
@@ -6541,9 +6550,9 @@
 		A5E490582A3FA137006801FE /* Icon */ = {
 			isa = PBXGroup;
 			children = (
+				A530EE122A56F55400F8DAEE /* IconNameProducers */,
 				A5CF3D6B2DD4BB8E00207384 /* UserIcon+Ext.swift */,
 				A5CF3D612DD4869400207384 /* DownloadUserIconsManager.swift */,
-				A530EE122A56F55400F8DAEE /* IconNameProducers */,
 				A53636542DD3723600D470CE /* DownloadUserIconsUseCase.swift */,
 				A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */,
 				A530EE0E2A56E52000F8DAEE /* GetDefaultIconNameUseCase.swift */,
@@ -8524,6 +8533,7 @@
 				A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */,
 				A54A06772AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift in Sources */,
 				A5519B402B6D383900811747 /* DepthValueProviderTest.swift in Sources */,
+				A5F2379D2DDB24E000E090E9 /* UserIconsUseCasesMocks.swift in Sources */,
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
 				A50B5CF92BE9FD4700918D18 /* UpdateChannelGroupTotalValueUseCaseTests.swift in Sources */,
 				A54A06662AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift in Sources */,
@@ -8645,6 +8655,7 @@
 				A5519B3A2B6D362A00811747 /* HumidityValueProviderTest.swift in Sources */,
 				A55A8DD12BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift in Sources */,
 				A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */,
+				A5F237992DDB18EF00E090E9 /* UserIconsUseCaseTests.swift in Sources */,
 				A5D712882C3EB24900A8EF52 /* PinSetupVMTests.swift in Sources */,
 				A594ADC32C9C0A9500780EF3 /* ThermostatIndicatorIconTests.swift in Sources */,
 				A5E40B5B2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift in Sources */,
@@ -8696,6 +8707,7 @@
 				A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */,
 				A573B0B12A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift in Sources */,
 				A5D712772C3E769300A8EF52 /* SingleTestCase.swift in Sources */,
+				A5F2379B2DDB21EF00E090E9 /* CarPlayItemRepositoryMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
