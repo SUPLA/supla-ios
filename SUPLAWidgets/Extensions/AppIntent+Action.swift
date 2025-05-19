@@ -17,6 +17,7 @@
  */
     
 import AppIntents
+import AudioToolbox
 
 @available(iOS 17.0, *)
 extension AppIntent {
@@ -30,6 +31,7 @@ extension AppIntent {
             let singleCall = SingleCallImpl()
             
             do {
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
                 try singleCall.executeAction(action, subjectType: subjectType, subjectId: subjectId, authorizationEntity: authorizationEntity)
                 NSLog("Widget action performed")
             } catch {

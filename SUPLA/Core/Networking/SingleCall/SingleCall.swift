@@ -23,6 +23,7 @@ let SINGLE_CALL_APP_ID: Int32 = 1
 protocol SingleCall {
     func registerPushToken(_ authorizationEntity: SingleCallAuthorizationEntity, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws
     func executeAction(_ action: Action, subjectType: SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws
+    func getValue(channelId: Int32, authorizationEntity: SingleCallAuthorizationEntity) -> SingleCallResult
 }
 
 class SingleCallImpl: SingleCall {
