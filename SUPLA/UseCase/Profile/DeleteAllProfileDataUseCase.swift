@@ -18,6 +18,7 @@
 
 import Foundation
 import RxSwift
+import WidgetKit
 
 protocol DeleteAllProfileDataUseCase {
     func invoke(profile: AuthProfileItem) -> Observable<Void>
@@ -40,6 +41,8 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
     @Singleton<ChannelConfigRepository> private var channelConfigRepository
     @Singleton<ChannelStateRepository> private var channelStateRepository
+    @Singleton<CarPlayItemRepository> private var carPlayItemRepository
+    @Singleton<UserIcons.UseCase> private var userIconsUseCase
     
     func invoke(profile: AuthProfileItem) -> Observable<Void> {
         return Observable.zip([
@@ -57,9 +60,12 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
             self.generalPurposeMeterItemRepository.deleteAll(for: profile.server?.id),
             self.generalPurposeMeasurementItemRepository.deleteAll(for: profile.server?.id),
             self.channelConfigRepository.deleteAllFor(profile: profile),
-            self.channelStateRepository.deleteAll(for: profile)
+            self.channelStateRepository.deleteAll(for: profile),
+            self.carPlayItemRepository.deleteAll(for: profile)
         ]).map { _ in
             AuthProfileItemKeychainHelper.clear(id: profile.id)
+            self.userIconsUseCase.removeProfileIcons(profile.id)
+            WidgetCenter.shared.reloadAllTimelines()
             return ()
         }
     }

@@ -54,6 +54,10 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
     private lazy var channelConfigRepository: ChannelConfigRepositoryMock! = ChannelConfigRepositoryMock()
     
     private lazy var channelStateRepository: ChannelStateRepositoryMock! = ChannelStateRepositoryMock()
+    
+    private lazy var carPlayItemRepository: CarPlayItemRepositoryMock! = CarPlayItemRepositoryMock()
+    
+    private lazy var userIconsUseCase: UserIcons.Mock! = UserIcons.Mock()
 
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, channelExtendedValueRepository!)
@@ -71,6 +75,8 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
         DiContainer.shared.register(type: (any ChannelConfigRepository).self, channelConfigRepository!)
         DiContainer.shared.register(type: (any ChannelStateRepository).self, channelStateRepository!)
+        DiContainer.shared.register(type: (any CarPlayItemRepository).self, carPlayItemRepository!)
+        DiContainer.shared.register(type: UserIcons.UseCase.self, userIconsUseCase!)
     }
 
     override func tearDown() {
@@ -91,6 +97,8 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         generalPurposeMeasurementItemRepository = nil
         channelConfigRepository = nil
         channelStateRepository = nil
+        carPlayItemRepository = nil
+        userIconsUseCase = nil
 
         super.tearDown()
     }
@@ -115,6 +123,7 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         generalPurposeMeasurementItemRepository.deleteAllForProfileReturns = .just(())
         channelConfigRepository.deleteAllForProfileReturns = .just(())
         channelStateRepository.deleteAllMock.returns = .single(.just(()))
+        carPlayItemRepository.deleteAllMock.returns = .single(.just(()))
 
         // when
         useCase.invoke(profile: profile).subscribe(observer).disposed(by: disposeBag)
@@ -136,5 +145,7 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(generalPurposeMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
         XCTAssertEqual(channelConfigRepository.deleteAllForProfileParameters, [profile])
         XCTAssertEqual(channelStateRepository.deleteAllMock.parameters, [profile])
+        XCTAssertEqual(carPlayItemRepository.deleteAllMock.parameters, [profile])
+        XCTAssertEqual(userIconsUseCase.removeProfileIconsMock.parameters, [profile.id])
     }
 }
