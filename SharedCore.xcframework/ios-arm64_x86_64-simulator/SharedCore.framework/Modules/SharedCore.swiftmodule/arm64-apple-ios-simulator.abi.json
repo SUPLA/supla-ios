@@ -5749,6 +5749,44 @@
           },
           {
             "kind": "Var",
+            "name": "valveSensorOffline",
+            "printedName": "valveSensorOffline",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO18valveSensorOfflineyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO18valveSensorOfflineyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 83
+          },
+          {
+            "kind": "Var",
             "name": "containerAlarmLevel",
             "printedName": "containerAlarmLevel",
             "children": [
@@ -5783,7 +5821,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19containerAlarmLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19containerAlarmLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 83
+            "fixedbinaryorder": 84
           },
           {
             "kind": "Var",
@@ -5821,7 +5859,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21containerWarningLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21containerWarningLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 84
+            "fixedbinaryorder": 85
           },
           {
             "kind": "Var",
@@ -5859,7 +5897,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO27containerInvalidSensorStateyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO27containerInvalidSensorStateyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 85
+            "fixedbinaryorder": 86
           },
           {
             "kind": "Var",
@@ -5897,7 +5935,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19containerSoundAlarmyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19containerSoundAlarmyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 86
+            "fixedbinaryorder": 87
           },
           {
             "kind": "Var",

@@ -529,6 +529,7 @@ struct Strings {
         static let warningMotorProblemClosing = "valve_warning_motor_problem_closing".toLocalized()
         static let detailSensors = "valve_detail_sensors".toLocalized()
         static let actionError = "valve_action_error".toLocalized()
+        static let errorSensorOffline = "valve_error_sensor_offline".toLocalized()
     }
     
     struct State {
