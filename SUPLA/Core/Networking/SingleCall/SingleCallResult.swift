@@ -22,7 +22,8 @@ enum SingleCallResult {
     case temperature(Double)
     case humidity(Double)
     case temperatureAndHumidity(temperature: Double, humidity: Double)
-    case error
+    case offline
+    case error(errorCode: Int)
 }
 
 private let thermometerParser = ThermometerValueParser()
@@ -31,8 +32,11 @@ private let humidityAndTemperatureParser = HumidityAndTemperatureValueParser()
 
 extension SingleCallResult {
     static func from(valueResult: TSC_GetChannelValueResult) -> SingleCallResult {
+        if (valueResult.ResultCode == SUPLA_RESULTCODE_CHANNEL_IS_OFFLINE) {
+            return .offline
+        }
         if (valueResult.ResultCode != SUPLA_RESULTCODE_TRUE) {
-            return .error
+            return .error(errorCode: Int(valueResult.ResultCode))
         }
         var value = valueResult
 
@@ -42,7 +46,7 @@ extension SingleCallResult {
         case .thermometer: thermometerParser.parse(data)
         case .humidityAndTemperature: humidityAndTemperatureParser.parse(data)
         case .humidity: humidityParser.parse(data)
-        default: .error
+        default: .error(errorCode: -100000 - Int(valueResult.Function))
         }
     }
 }

@@ -27,4 +27,9 @@ final class SingleCallMock: SingleCall {
     
     func executeAction(_ action: SUPLA.Action, subjectType: SUPLA.SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws {
     }
+    
+    var getValueMock: FunctionMock<(Int32, SUPLA.SingleCallAuthorizationEntity), SUPLA.SingleCallResult> = .init()
+    func getValue(channelId: Int32, authorizationEntity: SUPLA.SingleCallAuthorizationEntity) -> SUPLA.SingleCallResult {
+        getValueMock.handle((channelId, authorizationEntity))
+    }
 }
