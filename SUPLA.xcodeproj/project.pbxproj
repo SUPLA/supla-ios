@@ -1274,6 +1274,7 @@
 		A5F2384C2DDB645400E090E9 /* DiContainer+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2384B2DDB644E00E090E9 /* DiContainer+Supla.swift */; };
 		A5F2384D2DDB64CA00E090E9 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
 		A5F2384E2DDB64D200E090E9 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
+		A5F238992DDC72C400E090E9 /* AuthProfileItemTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F238982DDC72BB00E090E9 /* AuthProfileItemTokenTests.swift */; };
 		A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */; };
 		A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5A2A1E15D600ED700A /* MainVC.swift */; };
 		A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5C2A1E161500ED700A /* MainVM.swift */; };
@@ -2928,6 +2929,7 @@
 		A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCasesMocks.swift; sourceTree = "<group>"; };
 		A5F2384B2DDB644E00E090E9 /* DiContainer+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiContainer+Supla.swift"; sourceTree = "<group>"; };
+		A5F238982DDC72BB00E090E9 /* AuthProfileItemTokenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemTokenTests.swift; sourceTree = "<group>"; };
 		A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A5F29B5A2A1E15D600ED700A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		A5F29B5C2A1E161500ED700A /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
@@ -5935,6 +5937,7 @@
 		A5A23C2A2ABD96BE00233542 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A5F238972DDC72B300E090E9 /* CoreData */,
 				A5F5C3ED2C358ADC0058E255 /* AppSettings */,
 				A55A8DD22BB44ED700C540D4 /* SuplaApp */,
 				A54A066D2AF5409D00C03DBC /* Chart */,
@@ -6721,6 +6724,14 @@
 				A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */,
 			);
 			path = AccountRemoval;
+			sourceTree = "<group>";
+		};
+		A5F238972DDC72B300E090E9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A5F238982DDC72BB00E090E9 /* AuthProfileItemTokenTests.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		A5F29B592A1E157A00ED700A /* Main */ = {
@@ -8624,6 +8635,7 @@
 				A5E9CE392C35385700509702 /* SuplaAppStateHolderMock.swift in Sources */,
 				A59AB8E12A309C1500D91F1F /* UseCaseTest.swift in Sources */,
 				A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */,
+				A5F238992DDC72C400E090E9 /* AuthProfileItemTokenTests.swift in Sources */,
 				A5A23C312ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift in Sources */,
 				A585422C2D81687200D314A2 /* SuplaChannelContainerConfigTest.swift in Sources */,
 				A52BFEE82B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift in Sources */,

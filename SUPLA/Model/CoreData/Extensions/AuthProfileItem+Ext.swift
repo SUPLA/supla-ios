@@ -133,8 +133,10 @@ extension AuthProfileItem {
                 displayName.utf8StringToBuffer(ptr, withSize: Int(SUPLA_PN_PROFILE_NAME_MAXSIZE))
             }
             
-            token.TokenSize = UInt16(min(tokenString.count + 1, Int(SUPLA_PN_CLIENT_TOKEN_MAXSIZE)))
-            token.RealTokenSize = UInt16(tokenString.count)
+            // One more because of \0 character at string end
+            let realSize = tokenString.count + 1
+            token.TokenSize = UInt16(min(realSize, Int(SUPLA_PN_CLIENT_TOKEN_MAXSIZE)))
+            token.RealTokenSize = UInt16(realSize)
         }
         
         return token
