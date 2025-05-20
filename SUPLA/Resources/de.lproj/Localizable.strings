@@ -606,6 +606,7 @@
 "valve_warning_motor_problem_closing" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet. Möchten Sie es wirklich schließen?";
 "valve_detail_sensors" = "Verbundene Sensoren";
 "valve_action_error" = "Ein Kommunikationfehler ist aufgetreten. Bitte versuchen Sie später noch mal.";
+"valve_error_sensor_offline" = "Überflutungssensor nicht verfügbar – mögliche unentdeckte Überflutung";
 
 /* State */
 "state_channel_id" = "Kanal-ID";
