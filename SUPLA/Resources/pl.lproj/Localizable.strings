@@ -676,7 +676,7 @@
 "car_play_voice_messages" = "Odtwarzaj komunikaty";
 "car_play_action" = "Akcja: %@";
 "car_play_display_name" = "Nazwa";
-"car_play_execution_error" = "Wykonanie nie powiodło się";
+"car_play_execution_error" = "Wykonanie nie powiodło się (kod błędu: %d)";
 "car_play_executing" = "Wykonywanie...";
 "car_play_delete_title" = "Usuwanie";
 "car_play_delete_message" = "Chcesz kontynuować?";

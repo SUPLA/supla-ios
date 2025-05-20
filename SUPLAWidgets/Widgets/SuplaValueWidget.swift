@@ -73,7 +73,7 @@ extension SuplaValueWidget {
             if let profile, let location, let channel,
                profile.id != -1 && location.id != -1 && channel.id != -1
             {
-                .correct(name: channel.name, icon: channel.icon, value: value)
+                .correct(profile: profile.name, name: channel.name, icon: channel.icon, value: value)
             } else {
                 .incorrect
             }
@@ -92,6 +92,7 @@ extension SuplaValueWidget {
             Entry(
                 date: .now,
                 content: .correct(
+                    profile: Strings.Profiles.defaultProfileName,
                     name: Strings.General.Channel.captionHumidity,
                     icon: .single(.suplaIcon(name: .Icons.fncHumidity)),
                     value: .single("75,4")
@@ -143,18 +144,22 @@ extension SuplaValueWidget {
     }
 
     enum ContentType {
-        case correct(name: String, icon: GroupShared.WidgetIcon, value: FormattedValue)
+        case correct(profile: String, name: String, icon: GroupShared.WidgetIcon, value: FormattedValue)
         case incorrect
     }
 
     enum FormattedValue {
         case single(String)
         case double(first: String, second: String)
+        case error(Int)
+        case offline
 
         var first: String {
             switch self {
             case .single(let icon): icon
             case .double(let first, _): first
+            case .error(_): NO_VALUE_TEXT
+            case .offline: Strings.General.channelOffline
             }
         }
 
@@ -162,6 +167,22 @@ extension SuplaValueWidget {
             switch self {
             case .single: nil
             case .double(_, let second): second
+            case .error(let errorCode): "(EC: \(errorCode))"
+            case .offline: nil
+            }
+        }
+        
+        var isError: Bool {
+            switch self {
+            case .single, .double, .offline: false
+            case .error: true
+            }
+        }
+        
+        var isOffline: Bool {
+            switch self {
+            case .single, .double, .error: false
+            case .offline: true
             }
         }
 
@@ -176,7 +197,8 @@ extension SuplaValueWidget {
                     first: formatter.temperatureToString(value: Float(temperature)),
                     second: formatter.humidityToString(humidity)
                 )
-            default: .single("---")
+            case .error(let errorCode): .error(errorCode)
+            case .offline: .offline
             }
         }
     }
@@ -195,8 +217,8 @@ extension SuplaValueWidget {
 
         var body: some SwiftUI.View {
             switch (entry.content) {
-            case .correct(let name, let icon, let value):
-                CorrectValue(name: name, icon: icon, value: value)
+            case .correct(let profile, let name, let icon, let value):
+                CorrectValue(profile: profile, name: name, icon: icon, value: value)
             case .incorrect: IncorrectValue()
             }
         }
@@ -207,9 +229,18 @@ extension SuplaValueWidget {
                 .multilineTextAlignment(.center)
         }
 
-        private func CorrectValue(name: String, icon: GroupShared.WidgetIcon, value: FormattedValue) -> some SwiftUI.View {
-            VStack(spacing: Distance.small) {
-                if (icon.second != nil) {
+        private func CorrectValue(profile: String, name: String, icon: GroupShared.WidgetIcon, value: FormattedValue) -> some SwiftUI.View {
+            VStack(spacing: Distance.tiny) {
+                Text(profile)
+                    .fontBodySmall()
+                    .lineLimit(1)
+                if (value.isOffline) {
+                    Text(value.first)
+                        .fontBodyMedium()
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .frame(maxHeight: .infinity)
+                } else if (icon.second != nil || value.isError) {
                     VStack(alignment: .leading, spacing: 4) {
                         IconValueRow(icon: icon.first, value: value.first)
                         IconValueRow(icon: icon.second, value: value.second)
@@ -257,6 +288,7 @@ extension SuplaValueWidget {
     SuplaValueWidget.Entry(
         date: .now,
         content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
             name: Strings.General.Channel.captionHumidity,
             icon: .single(.suplaIcon(name: .Icons.fncHumidity)),
             value: .single("50")
@@ -266,6 +298,7 @@ extension SuplaValueWidget {
     SuplaValueWidget.Entry(
         date: .now,
         content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
             name: Strings.General.Channel.captionHumidityAndTemperature,
             icon: .double(first: .suplaIcon(name: .Icons.fncThermometerHome), second: .suplaIcon(name: .Icons.fncHumidity)),
             value: .double(first: "24°C", second: "50")
@@ -275,9 +308,35 @@ extension SuplaValueWidget {
     SuplaValueWidget.Entry(
         date: .now,
         content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
             name: Strings.General.Channel.captionHumidity,
             icon: .single(.suplaIcon(name: .Icons.fncHumidity)),
             value: .single("1500%")
+        )
+    )
+    
+    SuplaValueWidget.Entry(
+        date: .now,
+        content: .incorrect
+    )
+    
+    SuplaValueWidget.Entry(
+        date: .now,
+        content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
+            name: Strings.General.Channel.captionHumidity,
+            icon: .single(.suplaIcon(name: .Icons.fncHumidity)),
+            value: .error(12)
+        )
+    )
+    
+    SuplaValueWidget.Entry(
+        date: .now,
+        content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
+            name: Strings.General.Channel.captionHumidityAndTemperature,
+            icon: .double(first: .suplaIcon(name: .Icons.fncThermometerHome), second: .suplaIcon(name: .Icons.fncHumidity)),
+            value: .error(14)
         )
     )
 }

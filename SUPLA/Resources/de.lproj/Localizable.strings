@@ -641,7 +641,7 @@
 "car_play_voice_messages" = "Nachrichten abspielen";
 "car_play_action" = "Aktion: %@";
 "car_play_display_name" = "Anzeigename";
-"car_play_execution_error" = "Das Ausführen ist fehlgeschlagen";
+"car_play_execution_error" = "Das Ausführen ist fehlgeschlagen (Fehlercode: %d)";
 "car_play_executing" = "Ausführen...";
 "car_play_delete_title" = "Eintrag löschen";
 "car_play_delete_message" = "Wollen Sie fortfahren?";

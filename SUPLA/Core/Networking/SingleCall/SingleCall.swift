@@ -75,7 +75,7 @@ enum SingleCallError: Error {
 extension Error {
     func getErrorMessage(subjectType: SubjectType) -> String {
         guard let singleCallError = self as? SingleCallError else {
-            return Strings.CarPlay.executionError
+            return Strings.CarPlay.executionError.arguments(-11)
         }
 
         return switch (singleCallError.errorCode) {
@@ -85,9 +85,9 @@ extension Error {
             if (subjectType == .scene) {
                 Strings.General.sceneInactive
             } else {
-                Strings.CarPlay.executionError
+                Strings.CarPlay.executionError.arguments(singleCallError.errorCode)
             }
-        default: Strings.CarPlay.executionError
+        default: Strings.CarPlay.executionError.arguments(singleCallError.errorCode)
         }
     }
 }
