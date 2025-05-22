@@ -27,9 +27,16 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
     @Singleton<ValuesFormatter> private var formatter
     
     func invoke(channelWithChildren: ChannelWithChildren) -> [MeasurementValue] {
+        let temperatureControlType = channelWithChildren.channel.temperatureControlType
         let children = channelWithChildren.children
             .filter { $0.relationType.isThermometer() }
-            .sorted { $0.relationType.value < $1.relationType.value }
+            .sorted {
+                if (temperatureControlType == .aux_heater_cooler_temperature) {
+                    $0.relationType.value > $1.relationType.value
+                } else {
+                    $0.relationType.value < $1.relationType.value
+                }
+            }
         
         var result: [MeasurementValue] = []
         if (children.filter({ $0.relationType == .mainThermometer }).isEmpty) {

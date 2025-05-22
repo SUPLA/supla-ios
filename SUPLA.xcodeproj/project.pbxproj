@@ -866,7 +866,7 @@
 		A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD52CC6E91D00A784FA /* Int+SuplaChannelFunction.swift */; };
 		A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD72CC77D3A00A784FA /* PieChartData.swift */; };
 		A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CAD92CC7977200A784FA /* SuplaPieChartView.swift */; };
-		A599E8F92CD3AB9100C83A2B /* (null) in Sources */ = {isa = PBXBuildFile; };
+		A599E8F92CD3AB9100C83A2B /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
 		A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */; };
@@ -7403,13 +7403,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7446,13 +7442,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7747,7 +7739,7 @@
 				A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
-				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
+				A599E8F92CD3AB9100C83A2B /* BuildFile in Sources */,
 				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,

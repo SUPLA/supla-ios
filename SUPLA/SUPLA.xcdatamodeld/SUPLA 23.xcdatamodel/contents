@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E263" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AuthProfileItem" representedClassName="AuthProfileItem" syncable="YES" codeGenerationType="class">
         <attribute name="accessId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="accessIdPassword" optional="YES" attributeType="String"/>
@@ -27,7 +27,7 @@
         <attribute name="product_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="protocolversion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="config" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelConfig" inverseName="channel" inverseEntity="SAChannelConfig"/>
+        <relationship name="config" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelConfig" inverseName="channel" inverseEntity="SAChannelConfig"/>
         <relationship name="ev" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelExtendedValue"/>
         <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelState" inverseName="channel" inverseEntity="SAChannelState"/>
         <relationship name="value" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelValueBase"/>
@@ -49,7 +49,7 @@
         <attribute name="config" optional="YES" attributeType="String"/>
         <attribute name="config_crc32" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="config_type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannel" inverseName="config" inverseEntity="SAChannel"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannel" inverseName="config" inverseEntity="SAChannel"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuthProfileItem"/>
     </entity>
     <entity name="SAChannelExtendedValue" representedClassName="SAChannelExtendedValue" parentEntity="SAChannelValueBase" syncable="YES">

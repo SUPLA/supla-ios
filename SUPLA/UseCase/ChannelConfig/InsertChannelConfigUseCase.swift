@@ -34,6 +34,20 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
             return Observable.just(())
         }
         
+        if let suplaConfig = config as? SuplaChannelContainerConfig {
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
+            return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
+                .map { self.updateConfig($0, suplaConfig) }
+                .flatMap { self.channelConfigRepository.save($0) }
+        }
+        
+        if let suplaConfig = config as? SuplaChannelHvacConfig {
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
+            return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
+                .map { self.updateConfig($0, suplaConfig) }
+                .flatMap { self.channelConfigRepository.save($0) }
+        }
+        
         if let suplaConfig = config as? SuplaChannelGeneralPurposeMeasurementConfig {
             SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`")
             return getOrCreateConfig(suplaConfig.remoteId)
@@ -49,13 +63,6 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
         }
         
         if let suplaConfig = config as? SuplaChannelFacadeBlindConfig {
-            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
-            return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
-                .map { self.updateConfig($0, suplaConfig) }
-                .flatMap { self.channelConfigRepository.save($0) }
-        }
-        
-        if let suplaConfig = config as? SuplaChannelContainerConfig {
             SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
             return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
                 .map { self.updateConfig($0, suplaConfig) }
@@ -160,6 +167,17 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
     ) -> SAChannelConfig {
         config.config = suplaConfig.toJson()
         config.config_type = Int32(ChannelConfigType.container.rawValue)
+        config.config_crc32 = suplaConfig.crc32
+        
+        return config
+    }
+    
+    private func updateConfig(
+        _ config: SAChannelConfig,
+        _ suplaConfig: SuplaChannelHvacConfig
+    ) -> SAChannelConfig {
+        config.config = suplaConfig.toJson()
+        config.config_type = Int32(ChannelConfigType.hvac.rawValue)
         config.config_crc32 = suplaConfig.crc32
         
         return config
