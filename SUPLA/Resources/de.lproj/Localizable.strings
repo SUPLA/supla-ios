@@ -623,6 +623,7 @@
 "state_source_operating_time" = "Betriebszeit der Lichtquelle";
 "state_dialog_index" = "(%d von %d)";
 "state_dialog_lightsource_settings" = "Einstellungen für die Lebensdauer der Lichtquelle ändern";
+"state_switch_cycle_count" = "Schaltzyklusanzahl";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";

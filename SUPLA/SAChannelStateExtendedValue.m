@@ -84,6 +84,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return [NSString stringWithFormat:@"%i", _csev.ChannelID];
 }
 
+-(NSString *)switchCycleCount {
+    if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_SWITCHCYCLECOUNT) {
+        return [NSString stringWithFormat:@"%i", _csev.SwitchCycleCount];
+    }
+    return nil;
+}
+
 -(NSNumber *)ipv4 {
     if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_IPV4) {
         return [NSNumber numberWithInt:_csev.IPv4];
