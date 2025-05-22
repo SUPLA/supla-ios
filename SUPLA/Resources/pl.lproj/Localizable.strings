@@ -683,7 +683,7 @@
 "car_play_confirm_delete" = "Usuń";
 
 /* Widgets */
-"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla CarPlay/Widżetów i zdefiniuj wybrane akcje.";
+"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów i zdefiniuj wybrane akcje.";
 "widgets_control_title" = "Przycisk sterujący";
 "widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
 "widgets_selected_action" = "Wybrana akcja";
