@@ -245,6 +245,8 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
                 repeats: true
             )
         }
+        
+        infoView.isHidden = !showChannelInfo || !data.infoSupported || !online()
     }
     
     func timerEndDate() -> Date? { nil }
