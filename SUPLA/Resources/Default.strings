@@ -425,6 +425,7 @@
 "state_source_operating_time" = "Light source operating time";
 "state_dialog_index" = "(%d of %d)";
 "state_dialog_lightsource_settings" = "Change the light source lifespan settings";
+"state_switch_cycle_count" = "Switch cycles";
 
 /* Change caption */
 "change_caption_header" = "Caption Change";

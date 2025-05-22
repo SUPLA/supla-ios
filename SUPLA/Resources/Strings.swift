@@ -550,6 +550,7 @@ struct Strings {
         static let sourceOperatingTime = "state_source_operating_time".toLocalized()
         static let dialogIndex = "state_dialog_index".toLocalized()
         static let lightsourceSettings = "state_dialog_lightsource_settings".toLocalized()
+        static let switchCycleCount = "state_switch_cycle_count".toLocalized()
     }
     
     struct ChangeCaption {
