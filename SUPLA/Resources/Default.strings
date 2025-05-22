@@ -405,7 +405,7 @@
 "valve_warning_motor_problem_closing" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open. Are you sure you want to close it?";
 "valve_detail_sensors" = "Connected sensors";
 "valve_action_error" = "Communication error occurred. Please try again later";
-"valve_error_sensor_offline" = "Unavailable flooding sensor - possible undetected flooding";
+"valve_error_sensor_offline" = "Flood sensor unavailable - risk of undetected flooding";
 
 /* State */
 "state_channel_id" = "Channel id";

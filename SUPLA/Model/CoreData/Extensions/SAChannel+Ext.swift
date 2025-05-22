@@ -80,5 +80,9 @@ extension SAChannel {
             value: KotlinByteArray.from(nullable: value?.dataValue())
         )
     }
+    
+    var temperatureControlType: SuplaTemperatureControlType? {
+        (config?.configAsSuplaConfig() as? SuplaChannelHvacConfig)?.temperatureControlType
+    }
 }
 

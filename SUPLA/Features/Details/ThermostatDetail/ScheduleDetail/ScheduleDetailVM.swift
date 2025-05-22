@@ -16,14 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
 import RxRelay
+import RxSwift
 import SharedCore
 
 private let REFRESH_DELAY_S: Double = 3
+private let DEFAULT_HEAT_TEMPERATURE: Float = 21
+private let DEFAULT_WATER_TEMPERATURE: Float = 40
 
 class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailViewEvent> {
-    
     @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
     @Singleton<DeviceConfigEventsManager> private var deviceConfigEventsManager
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
@@ -45,16 +46,16 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     func observeConfig(remoteId: Int32, deviceId: Int32) {
         Observable.combineLatest(
             channelConfigEventsManager.observeConfig(id: remoteId)
-                .filter { $0.config is SuplaChannelWeeklyScheduleConfig},
+                .filter { $0.config is SuplaChannelWeeklyScheduleConfig },
             channelConfigEventsManager.observeConfig(id: remoteId)
-                .filter { $0.config is SuplaChannelHvacConfig},
+                .filter { $0.config is SuplaChannelHvacConfig },
             deviceConfigEventsManager.observeConfig(id: deviceId),
-            resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config as! SuplaChannelHvacConfig, $1.result, $2.config)}
+            resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config as! SuplaChannelHvacConfig, $1.result, $2.config) }
         )
-            .asDriverWithoutError()
-            .debounce(.milliseconds(50))
-            .drive(onNext: { [weak self] in self?.onConfigLoaded(configs: $0) })
-            .disposed(by: self)
+        .asDriverWithoutError()
+        .debounce(.milliseconds(50))
+        .drive(onNext: { [weak self] in self?.onConfigLoaded(configs: $0) })
+        .disposed(by: self)
         
         reloadConfigRelay
             .subscribe(on: schedulers.background)
@@ -83,24 +84,33 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         if let state = currentState(),
            let configMin = state.configMin,
            let configMax = state.configMax,
-           let program = state.programs.first(where: { $0.scheduleProgram.program == program} ),
+           let program = state.programs.first(where: { $0.scheduleProgram.program == program }),
            let channelFunc = state.channelFunction,
-           let subfunction = state.thermostatSubfunction {
+           let subfunction = state.thermostatSubfunction
+        {
             let isHeat = channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT && subfunction == .heat
             let isCool = channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT && subfunction == .cool
+            let heatTemperature = state.alignTemperature(program.scheduleProgram.setpointTemperatureHeat?.fromSuplaTemperature())
+            let coolTemperature = state.alignTemperature(program.scheduleProgram.setpointTemperatureCool?.fromSuplaTemperature())
             
             let programState = EditProgramDialogViewState(
-                program: program,
-                heatTemperatureText: program.scheduleProgram.setpointTemperatureHeat?.fromSuplaTemperature().toTemperatureString(),
-                coolTemperatureText: program.scheduleProgram.setpointTemperatureCool?.fromSuplaTemperature().toTemperatureString(),
+                program: program.scheduleProgram.program,
+                mode: program.scheduleProgram.mode,
+                setpointTemperatureHeat: heatTemperature,
+                setpointTemperatureCool: coolTemperature,
+                heatTemperatureText: heatTemperature.toTemperatureString(),
+                coolTemperatureText: coolTemperature.toTemperatureString(),
                 showHeatEdit: isHeat || channelFunc == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
                 showCoolEdit: isCool,
                 configMin: configMin,
-                configMax: configMax
+                configMax: configMax,
+                heatPlusActive: heatTemperature < configMax,
+                heatMinusActive: heatTemperature > configMin,
+                coolPlusActive: coolTemperature < configMax,
+                coolMinusActive: coolTemperature > configMin
             )
             send(event: .editProgram(state: programState))
         }
-        
     }
     
     func onBoxEvent(_ event: PanningEvent) {
@@ -119,8 +129,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     
     func onBoxLongPress(_ key: ScheduleDetailBoxKey) {
         if let currentState = currentState(),
-           let programs = currentState.schedule[key] {
-            
+           let programs = currentState.schedule[key]
+        {
             let state = EditQuartersDialogViewState(
                 key: key,
                 activeProgram: currentState.activeProgram,
@@ -145,20 +155,19 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         }
     }
     
-    func onProgramChanged(_ program: ScheduleDetailProgram) {
+    func onProgramChanged(_ program: SuplaWeeklyScheduleProgram) {
         updateView { state in
-            let programs = state.programs.map { $0.scheduleProgram.program == program.scheduleProgram.program ? program : $0 }
+            let programs = state.programs.map { $0.scheduleProgram.program == program.program ? $0.changing(path: \.scheduleProgram, to: program) : $0 }
             return publishChanges(
                 state.changing(path: \.programs, to: programs)
-                    .changing(path: \.activeProgram, to: program.scheduleProgram.program)
+                    .changing(path: \.activeProgram, to: program.program)
                     .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
             )
         }
     }
     
     func onHelpClosed() {
-        var settings = globalSettings
-        settings.shouldShowThermostatScheduleInfo = false
+        globalSettings.shouldShowThermostatScheduleInfo = false
         updateView { $0.changing(path: \.showHelp, to: false) }
     }
     
@@ -168,7 +177,6 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     }
     
     private func onConfigLoaded(configs: (SuplaChannelWeeklyScheduleConfig, SuplaConfigResult, SuplaChannelHvacConfig, SuplaConfigResult, SuplaDeviceConfig)) {
-        
         SALog.debug("Schedule detail got data: `\(configs)`")
         let weeklyScheduleConfig = configs.0
         let weeklyScheduleResult = configs.1
@@ -179,8 +187,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             SALog.info("Got unsuccessfull result (schedule: \(weeklyScheduleResult), hvac: \(hvacResult))")
             return
         }
-        guard let configMin = hvacConfig.temperatures.roomMin?.fromSuplaTemperature(),
-              let configMax = hvacConfig.temperatures.roomMax?.fromSuplaTemperature()
+        guard let configMin = hvacConfig.minTemperature,
+              let configMax = hvacConfig.maxTemperature
         else { return }
         
         updateView { state in
@@ -188,7 +196,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                 return state // Do not change anything, when user makes manual operations
             }
             if let lastInteractionTime = state.lastInteractionTime,
-               lastInteractionTime + REFRESH_DELAY_S >= dateProvider.currentTimestamp() {
+               lastInteractionTime + REFRESH_DELAY_S >= dateProvider.currentTimestamp()
+            {
                 reloadConfigRelay.accept(())
                 return state // Do not change anything during 3 secs after last user interaction
             }
@@ -211,8 +220,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     
     private func boxTap(_ key: ScheduleDetailBoxKey) {
         if let state = currentState(),
-           let activeProgram = state.activeProgram {
-            
+           let activeProgram = state.activeProgram
+        {
             return updateView { state in
                 var schedule = state.schedule
                 schedule[key] = ScheduleDetailBoxValue(oneProgram: activeProgram)
@@ -244,7 +253,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                 self?.updateView {
                     $0.changing(
                         path: \.thermostatSubfunction,
-                        to: channel.value?.asThermostatValue().subfunction)
+                        to: channel.value?.asThermostatValue().subfunction
+                    )
                 }
             })
             .disposed(by: self)
@@ -263,7 +273,7 @@ struct ScheduleDetailViewState: ViewState {
     var thermostatSubfunction: ThermostatSubfunction? = nil
     var remoteId: Int32? = nil
     var activeProgram: SuplaScheduleProgram? = nil
-    var schedule: [ScheduleDetailBoxKey:ScheduleDetailBoxValue] = [:]
+    var schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [:]
     var programs: [ScheduleDetailProgram] = []
     var configMin: Float? = nil
     var configMax: Float? = nil
@@ -273,15 +283,30 @@ struct ScheduleDetailViewState: ViewState {
     
     var showDayIndicator: Bool = true
     var showHelp: Bool = false
+    
+    func alignTemperature(_ temperature: Float?) -> Float {
+        let temperatureToAlign = temperature
+            ?? (channelFunction == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER ? DEFAULT_WATER_TEMPERATURE : DEFAULT_HEAT_TEMPERATURE)
+        
+        if let configMin, let configMax {
+            if (temperatureToAlign < configMin) {
+                return configMin
+            } else if (temperatureToAlign > configMax) {
+                return configMax
+            } else {
+                return temperatureToAlign
+            }
+        }
+        
+        return temperatureToAlign
+    }
 }
 
 struct ScheduleDetailProgram: Equatable, Changeable {
     var scheduleProgram: SuplaWeeklyScheduleProgram
     var icon: String? = nil
     
-    var text: String {
-        get { scheduleProgram.description }
-    }
+    var text: String { scheduleProgram.description }
 }
 
 struct ScheduleDetailBoxKey: Equatable, Hashable {
@@ -290,18 +315,15 @@ struct ScheduleDetailBoxKey: Equatable, Hashable {
 }
 
 struct ScheduleDetailBoxValue: Equatable {
-    
     var firstQuarterProgram: SuplaScheduleProgram
     var secondQuarterProgram: SuplaScheduleProgram
     var thirdQuarterProgram: SuplaScheduleProgram
     var fourthQuarterProgram: SuplaScheduleProgram
     
     var hasSingleProgram: Bool {
-        get {
-            return firstQuarterProgram == secondQuarterProgram
-                    && secondQuarterProgram == thirdQuarterProgram
-                    && thirdQuarterProgram == fourthQuarterProgram
-        }
+        return firstQuarterProgram == secondQuarterProgram
+            && secondQuarterProgram == thirdQuarterProgram
+            && thirdQuarterProgram == fourthQuarterProgram
     }
     
     init(_ first: SuplaScheduleProgram, _ second: SuplaScheduleProgram, _ third: SuplaScheduleProgram, _ fourth: SuplaScheduleProgram) {
@@ -319,7 +341,7 @@ struct ScheduleDetailBoxValue: Equatable {
     }
 }
 
-fileprivate extension SuplaChannelWeeklyScheduleConfig {
+private extension SuplaChannelWeeklyScheduleConfig {
     func viewProgramsList() -> [ScheduleDetailProgram] {
         var result: [ScheduleDetailProgram] = []
         
@@ -338,14 +360,14 @@ fileprivate extension SuplaChannelWeeklyScheduleConfig {
         return result
     }
     
-    func viewScheduleBoxes() -> [ScheduleDetailBoxKey:ScheduleDetailBoxValue] {
-        var result: [ScheduleDetailBoxKey:ScheduleDetailBoxValue] = [:]
+    func viewScheduleBoxes() -> [ScheduleDetailBoxKey: ScheduleDetailBoxValue] {
+        var result: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [:]
         
         for entry in schedule {
             let key = ScheduleDetailBoxKey(dayOfWeek: entry.dayOfWeek, hour: Int(entry.hour))
             
             if var value = result[key] {
-                switch(entry.quarterOfHour) {
+                switch (entry.quarterOfHour) {
                 case .first: value.firstQuarterProgram = entry.program
                 case .second: value.secondQuarterProgram = entry.program
                 case .third: value.thirdQuarterProgram = entry.program
@@ -354,7 +376,7 @@ fileprivate extension SuplaChannelWeeklyScheduleConfig {
                 result[key] = value
             } else {
                 var value = ScheduleDetailBoxValue(oneProgram: .off)
-                switch(entry.quarterOfHour) {
+                switch (entry.quarterOfHour) {
                 case .first: value.firstQuarterProgram = entry.program
                 case .second: value.secondQuarterProgram = entry.program
                 case .third: value.thirdQuarterProgram = entry.program
@@ -376,12 +398,11 @@ fileprivate extension SuplaChannelWeeklyScheduleConfig {
     }
 }
 
-fileprivate extension ScheduleDetailViewState {
-    
+private extension ScheduleDetailViewState {
     func suplaPrograms() -> [SuplaWeeklyScheduleProgram] {
         var result: [SuplaWeeklyScheduleProgram] = []
         
-        programs.forEach { program in
+        for program in programs {
             if (program.scheduleProgram.program != .off) {
                 result.append(program.scheduleProgram)
             }
@@ -393,7 +414,7 @@ fileprivate extension ScheduleDetailViewState {
     func suplaSchedule() -> [SuplaWeeklyScheduleEntry] {
         var result: [SuplaWeeklyScheduleEntry] = []
         
-        schedule.forEach { entry in
+        for entry in schedule {
             result.append(
                 SuplaWeeklyScheduleEntry(
                     dayOfWeek: entry.key.dayOfWeek,

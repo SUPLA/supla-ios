@@ -198,8 +198,8 @@ class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, The
         let timerEndDate = channel.getTimerEndDate()
         let isTimerOn = timerEndDate != nil && timerEndDate!.timeIntervalSince1970 > currentDate.timeIntervalSince1970
         
-        guard let configMinTemperature = config.temperatures.roomMin,
-              let configMaxTemperature = config.temperatures.roomMax,
+        guard let minTemperature = config.minTemperature,
+              let maxTemperature = config.maxTemperature,
               let thermostatValue = channel.value?.asThermostatValue()
         else { return }
         
@@ -213,8 +213,8 @@ class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, The
                 .changing(path: \.timerEndDate, to: isTimerOn ? timerEndDate : nil)
             
                 .changing(path: \.subfunction, to: thermostatValue.subfunction)
-                .changing(path: \.minTemperature, to: configMinTemperature.fromSuplaTemperature())
-                .changing(path: \.maxTemperature, to: configMaxTemperature.fromSuplaTemperature())
+                .changing(path: \.minTemperature, to: minTemperature)
+                .changing(path: \.maxTemperature, to: maxTemperature)
                 .changing(path: \.currentTemperature, to: getSetpointTemperature(channel, thermostatValue))
                 .changing(path: \.usingHeatSetpoint, to: useHeatSetpoint(channel, thermostatValue))
                 .changing(path: \.loadingState, to: $0.loadingState.copy(loading: false))
