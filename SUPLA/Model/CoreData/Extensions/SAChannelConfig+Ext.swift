@@ -46,6 +46,12 @@ extension SAChannelConfig {
             return try? jsonDecoder.decode(SuplaChannelContainerConfig.self, from: configData)
         }
         
+        if (channelConfigType == .hvac) {
+            let jsonDecoder = JSONDecoder()
+            let result = try? jsonDecoder.decode(SuplaChannelHvacConfig.self, from: configData)
+            return result
+        }
+        
         if let channel = channel {
             return SuplaChannelConfig(remoteId: channel.remote_id, channelFunc: channel.func, crc32: 0)
         } else {

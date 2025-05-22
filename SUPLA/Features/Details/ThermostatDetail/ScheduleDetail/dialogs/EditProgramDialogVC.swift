@@ -23,7 +23,7 @@ final class EditProgramDialogVC : SACustomDialogVC<EditProgramDialogViewState, E
     
     @Singleton<GroupShared.Settings> private var settings
     
-    var onFinishCallback: ((ScheduleDetailProgram) -> Void)? = nil
+    var onFinishCallback: ((SuplaWeeklyScheduleProgram) -> Void)? = nil
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -99,8 +99,8 @@ final class EditProgramDialogVC : SACustomDialogVC<EditProgramDialogViewState, E
     }
     
     override func handle(state: EditProgramDialogViewState) {
-        titleLabel.text = Strings.ThermostatDetail.editProgramDialogHeader.arguments(state.program.scheduleProgram.program.rawValue)
-        titleIconView.backgroundColor = state.program.scheduleProgram.program.color()
+        titleLabel.text = Strings.ThermostatDetail.editProgramDialogHeader.arguments(state.program.rawValue)
+        titleIconView.backgroundColor = state.program.color()
         editHeatTemperatureView.isHidden = !state.showHeatEdit
         editHeatTemperatureView.minusIconButton.isEnabled = state.heatMinusActive
         editHeatTemperatureView.plusIconButton.isEnabled = state.heatPlusActive

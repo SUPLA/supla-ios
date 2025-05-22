@@ -30,14 +30,13 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     
     func save() {
         if let state = currentState() {
-            send(event: .dismiss(program: state.program))
+            send(event: .dismiss(program: state.weeklyScheduleProgram))
         }
     }
     
     func heatTemperatureChange(_ step: TemperatureChangeStep) {
         updateView { state in
-            let setpointTemperature = state.program.scheduleProgram.setpointTemperatureHeat
-            guard let heatTemperature = setpointTemperature?.fromSuplaTemperature() else { return state }
+            guard let heatTemperature = state.setpointTemperatureHeat else { return state }
             return changeHeatTemperature(state: state, temperature: heatTemperature + step.rawValue)
         }
     }
@@ -54,8 +53,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     
     func coolTemperatureChange(_ step: TemperatureChangeStep) {
         updateView { state in
-            let setpointTemperature = state.program.scheduleProgram.setpointTemperatureCool
-            guard let coolTemperature = setpointTemperature?.fromSuplaTemperature() else { return state }
+            guard let coolTemperature = state.setpointTemperatureCool else { return state }
             return changeCoolTemperature(state: state, temperature: coolTemperature + step.rawValue)
         }
     }
@@ -81,13 +79,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     private func changeHeatTemperature(state: EditProgramDialogViewState, temperature: Float, temperatureText: String? = nil) -> EditProgramDialogViewState {
         let (plusActive, minusActive) = checkTemperature(temperature, min: state.configMin, max: state.configMax)
         return state
-            .changing(
-                path: \.program,
-                to: state.program.changing(
-                    path: \.scheduleProgram,
-                    to: state.program.scheduleProgram.copy(newHeatTemperature: temperature.toSuplaTemperature())
-                )
-            )
+            .changing(path: \.setpointTemperatureHeat, to: temperature)
             .changing(path: \.heatTemperatureText, to: temperatureText ?? temperature.toTemperatureString())
             .changing(path: \.heatPlusActive, to: plusActive)
             .changing(path: \.heatMinusActive, to: minusActive)
@@ -97,13 +89,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     private func changeCoolTemperature(state: EditProgramDialogViewState, temperature: Float, temperatureText: String? = nil) -> EditProgramDialogViewState {
         let (plusActive, minusActive) = checkTemperature(temperature, min: state.configMin, max: state.configMax)
         return state
-            .changing(
-                path: \.program,
-                to: state.program.changing(
-                    path: \.scheduleProgram,
-                    to: state.program.scheduleProgram.copy(newCoolTemperature: temperature.toSuplaTemperature())
-                )
-            )
+            .changing(path: \.setpointTemperatureCool, to: temperature)
             .changing(path: \.coolTemperatureText, to: temperatureText ?? temperature.toTemperatureString())
             .changing(path: \.coolPlusActive, to: plusActive)
             .changing(path: \.coolMinusActive, to: minusActive)
@@ -120,6 +106,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     }
     
     private func checkTemperature(_ temperature: Float, min: Float, max: Float) -> (plusActive: Bool, minusActive: Bool) {
+        let temperature = temperature.roundToTenths()
         let minusActive = temperature > min
         let plusActive = temperature < max
         
@@ -132,7 +119,11 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
 }
 
 struct EditProgramDialogViewState: ViewState {
-    var program: ScheduleDetailProgram
+    let program: SuplaScheduleProgram
+    let mode: SuplaHvacMode
+    var setpointTemperatureHeat: Float?
+    var setpointTemperatureCool: Float?
+    
     var heatTemperatureText: String?
     var coolTemperatureText: String?
     var showHeatEdit: Bool
@@ -161,8 +152,17 @@ struct EditProgramDialogViewState: ViewState {
             return true
         }
     }
+    
+    var weeklyScheduleProgram: SuplaWeeklyScheduleProgram {
+        SuplaWeeklyScheduleProgram(
+            program: program,
+            mode: mode,
+            setpointTemperatureHeat: setpointTemperatureHeat?.toSuplaTemperature(),
+            setpointTemperatureCool: setpointTemperatureCool?.toSuplaTemperature()
+        )
+    }
 }
 
 enum EditProgramDialogViewEvent: ViewEvent {
-    case dismiss(program: ScheduleDetailProgram)
+    case dismiss(program: SuplaWeeklyScheduleProgram)
 }

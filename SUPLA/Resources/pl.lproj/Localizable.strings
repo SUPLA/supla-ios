@@ -640,7 +640,7 @@
 "valve_warning_motor_problem_closing" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty. Czy na pewno chcesz go zamknąć?";
 "valve_detail_sensors" = "Powiązane czujniki";
 "valve_action_error" = "Wystąpił błąd podczas komunikacji. Spróbuj ponownie później.";
-"valve_error_sensor_offline" = "Niedostępny czujnik zalania - możliwe niewykryte zalanie";
+"valve_error_sensor_offline" = "Niedostępny czujnik zalania - istnieje ryzyko niewykrycia zalania";
 
 /* State */
 "state_channel_id" = "Id kanału";

@@ -172,8 +172,8 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
             indicatorView.image = thermostatValue.indicatorIcon.mergeWith(data.children.indicatorIcon).resource
         }
         
-        if let mainThermometer = data.children.first(where: { $0.relationType == .mainThermometer })?.channel {
-            currentTemperatureView.text = mainThermometer.attrStringValue().string
+        if let thermometer = data.children.first(where: { data.channel.temperatureControlType.filterRelationType($0.relationType) })?.channel {
+            currentTemperatureView.text = thermometer.attrStringValue().string
         } else {
             currentTemperatureView.text = NO_VALUE_TEXT
         }
