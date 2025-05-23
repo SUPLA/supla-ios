@@ -459,3 +459,7 @@
 "widgets_value_title" = "Quick View";
 "widgets_value_description" = "Widget which serves a quick preview of the current channel value.";
 "widget_configuration_error" = "Widget is not configured properly";
+"widgets_single_action_title" = "Single Action";
+"widgets_single_action_description" = "Simplifies access to single action.";
+"widgets_double_action_title" = "Double Action";
+"widgets_double_action_description" = "Simplifies access to two actions.";

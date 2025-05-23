@@ -101,28 +101,6 @@ extension SuplaAllActionsWidget {
             .buttonStyle(.plain)
         }
     }
-
-    struct TriggerActionIntent: AppIntent {
-        
-        static var title: LocalizedStringResource = "Actions"
-        static var description = IntentDescription("Simplifies access to the most common actions.")
-        
-        @Parameter(title: "Action")
-        var action: GroupShared.WidgetAction?
-        
-        init() {
-            action = nil
-        }
-        
-        init (action: GroupShared.WidgetAction) {
-            self.action = action
-        }
-
-        func perform() async throws -> some IntentResult {
-            executeAction(action: action)
-            return .result()
-        }
-    }
 }
 
 @available(iOS 17.0, *)
@@ -188,20 +166,4 @@ private func buildMocks(count: Int32) -> [GroupShared.WidgetAction] {
 } timeline: {
     SuplaAllActionsWidget.Entry(date: .now, actions: buildMocks(count: 25))
     SuplaAllActionsWidget.Entry(date: .now, actions: [])
-}
-
-@available(iOSApplicationExtension 17.0, *)
-private extension GroupShared.WidgetAction {
-    static func mock(_ id: Int32, caption: String = "Garage door", icon: String = "fnc_garage_door-open") -> Self {
-        .init(
-            profileId: id,
-            subjectType: .channel,
-            subjectId: 1,
-            caption: caption,
-            action: .close,
-            icon: .suplaIcon(name: icon),
-            sfIcon: nil,
-            authorizationEntity: nil
-        )
-    }
 }

@@ -32,7 +32,7 @@ struct LocationParameter: AppEntity {
     static var defaultQuery = Query()
     
     struct Query: EntityQuery {
-        @IntentParameterDependency<SuplaValueWidget.Intent>(\.$profile)
+        @IntentParameterDependency<SuplaValueWidget.ValueIntent>(\.$profile)
         var intent
         
         func entities(for identifiers: [LocationParameter.ID]) async throws -> [LocationParameter] {

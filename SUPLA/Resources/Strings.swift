@@ -588,6 +588,10 @@ struct Strings {
         static let valueTitle = "widgets_value_title".toLocalized()
         static let valueDescription = "widgets_value_description".toLocalized()
         static let configurationError = "widget_configuration_error".toLocalized()
+        static let singleActionTitle = "widgets_single_action_title".toLocalized()
+        static let singleActionDescription = "widgets_single_action_description".toLocalized()
+        static let doubleActionTitle = "widgets_double_action_title".toLocalized()
+        static let doubleActionDescription = "widgets_double_action_description".toLocalized()
     }
 }
 

@@ -659,3 +659,9 @@
 "widgets_value_title" = "Schnellansicht";
 "widgets_value_description" = "Ein Widget, mit dem Sie schnell den aktuellen Wert eines Kanals ansehen können.";
 "widget_configuration_error" = "Die Widget-Konfiguration ist ungültig.";
+"widgets_single_action_title" = "Einzelne Aktion";
+"widgets_single_action_description" = "Erleichtert den Zugriff auf die einzelne Aktivität.";
+"widgets_single_action_title" = "Doppelaktion";
+"widgets_single_action_description" = "Vereinfacht den Zugriff auf zwei Aktionen.";
+"widgets_first_action" = "Erste Aktion";
+"widgets_second_action" = "Zweite Aktion";

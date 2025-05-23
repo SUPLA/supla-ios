@@ -23,6 +23,7 @@ extension GroupShared {
     struct WidgetAction: Codable, AppEntity {
         var id: String { "\(String(format: "%03d", profileId))\(String(format: "%02d", action?.id ?? 0))\(String(format: "%08d", subjectId))" }
         let profileId: Int32
+        let profileName: String
         let subjectType: SubjectType
         let subjectId: Int32
         let caption: String
@@ -50,6 +51,7 @@ extension GroupShared {
         
         init(
             profileId: Int32,
+            profileName: String,
             subjectType: SubjectType,
             subjectId: Int32,
             caption: String,
@@ -59,6 +61,7 @@ extension GroupShared {
             authorizationEntity: SingleCallAuthorizationEntity?
         ) {
             self.profileId = profileId
+            self.profileName = profileName
             self.subjectType = subjectType
             self.subjectId = subjectId
             self.caption = caption
@@ -71,6 +74,7 @@ extension GroupShared {
         init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             profileId = try container.decode(Int32.self, forKey: .profileId)
+            profileName = try container.decode(String.self, forKey: .profileName)
             subjectType = try container.decode(SubjectType.self, forKey: .subjectType)
             subjectId = try container.decode(Int32.self, forKey: .subjectId)
             caption = try container.decode(String.self, forKey: .caption)
@@ -83,6 +87,7 @@ extension GroupShared {
         func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(profileId, forKey: .profileId)
+            try container.encode(profileName, forKey: .profileName)
             try container.encode(subjectType, forKey: .subjectType)
             try container.encode(subjectId, forKey: .subjectId)
             try container.encode(caption, forKey: .caption)
@@ -94,6 +99,7 @@ extension GroupShared {
         
         enum CodingKeys: String, CodingKey {
             case profileId
+            case profileName
             case subjectType
             case subjectId
             case caption

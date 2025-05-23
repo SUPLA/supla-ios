@@ -95,6 +95,7 @@ private extension SACarPlayItem {
         
         return GroupShared.WidgetAction(
             profileId: profile?.id ?? 0,
+            profileName: profile?.name ?? Strings.Profiles.defaultProfileName,
             subjectType: subjectType,
             subjectId: subjectId,
             caption: caption ?? getCaptionUseCase.invoke(data: channelBase.shareableBase).string,
@@ -113,6 +114,7 @@ private extension SACarPlayItem {
         
         return GroupShared.WidgetAction(
             profileId: profile?.id ?? 0,
+            profileName: profile?.name ?? Strings.Profiles.defaultProfileName,
             subjectType: subjectType,
             subjectId: subjectId,
             caption: caption ?? getCaptionUseCase.invoke(data: scene.shareable).string,
