@@ -16,21 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-
-import WidgetKit
-import SwiftUI
-
-@main
-struct SUPLAWidgetsBundle: WidgetBundle {
-    var body: some Widget {
-        if #available(iOS 17.0, *) {
-            SuplaValueWidget()
-            SuplaSingleActionWidget()
-            SuplaDoubleActionWidget()
-            SuplaAllActionsWidget()
-        }
-        if #available(iOS 18.0, *) {
-            SuplaControlButtonWidget()
-        }
+@available(iOS 17.0, *)
+extension GroupShared.WidgetAction {
+    static func mock(_ id: Int32, caption: String = "Garage door", icon: String = "fnc_garage_door-open") -> Self {
+        .init(
+            profileId: id,
+            profileName: Strings.Profiles.defaultProfileName,
+            subjectType: .channel,
+            subjectId: 1,
+            caption: caption,
+            action: .close,
+            icon: .suplaIcon(name: icon),
+            sfIcon: nil,
+            authorizationEntity: nil
+        )
     }
 }

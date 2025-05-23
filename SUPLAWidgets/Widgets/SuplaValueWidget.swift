@@ -25,13 +25,13 @@ struct SuplaValueWidget: Widget {
     let kind: String = "com.acsoftware.ios.supla.SuplaValueWidget"
 
     var body: some WidgetConfiguration {
-        let configuration = AppIntentConfiguration(kind: kind, intent: Intent.self, provider: Provider()) { entry in
+        let configuration = AppIntentConfiguration(kind: kind, intent: ValueIntent.self, provider: Provider()) { entry in
             View(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName(Strings.Widget.valueTitle)
         .description(Strings.Widget.valueDescription)
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
 
         if #available(iOS 18.0, *) {
             return configuration.promptsForUserConfiguration()
@@ -45,7 +45,7 @@ struct SuplaValueWidget: Widget {
 
 @available(iOS 17.0, *)
 extension SuplaValueWidget {
-    struct Intent: WidgetConfigurationIntent {
+    struct ValueIntent: WidgetConfigurationIntent {
         static var title: LocalizedStringResource = .init("widgets_value_title", defaultValue: "Quick View")
 
         @Parameter(title: LocalizedStringResource("general_profile", defaultValue: "Profile"))
@@ -100,14 +100,14 @@ extension SuplaValueWidget {
             )
         }
 
-        func snapshot(for configuration: Intent, in context: Context) async -> Entry {
+        func snapshot(for configuration: ValueIntent, in context: Context) async -> Entry {
             Entry(
                 date: .now,
                 content: configuration.content(value: getValue(configuration.channel))
             )
         }
 
-        func timeline(for configuration: Intent, in context: Context) async -> Timeline<Entry> {
+        func timeline(for configuration: ValueIntent, in context: Context) async -> Timeline<Entry> {
             let entries: [Entry] = [
                 Entry(
                     date: Calendar.current.date(byAdding: .minute, value: 30, to: Date())!,
@@ -158,7 +158,7 @@ extension SuplaValueWidget {
             switch self {
             case .single(let icon): icon
             case .double(let first, _): first
-            case .error(_): NO_VALUE_TEXT
+            case .error: NO_VALUE_TEXT
             case .offline: Strings.General.channelOffline
             }
         }
@@ -171,14 +171,14 @@ extension SuplaValueWidget {
             case .offline: nil
             }
         }
-        
+
         var isError: Bool {
             switch self {
             case .single, .double, .offline: false
             case .error: true
             }
         }
-        
+
         var isOffline: Bool {
             switch self {
             case .single, .double, .error: false
@@ -209,6 +209,8 @@ extension SuplaValueWidget {
 @available(iOS 17.0, *)
 extension SuplaValueWidget {
     struct View: SwiftUI.View {
+        @Environment(\.widgetFamily) var family
+
         let entry: Entry
 
         init(entry: Entry) {
@@ -241,23 +243,36 @@ extension SuplaValueWidget {
                         .multilineTextAlignment(.center)
                         .frame(maxHeight: .infinity)
                 } else if (icon.second != nil || value.isError) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        IconValueRow(icon: icon.first, value: value.first)
-                        IconValueRow(icon: icon.second, value: value.second)
+                    if (family == .systemSmall) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            IconValueRowVertical(icon: icon.first, value: value.first)
+                            IconValueRowVertical(icon: icon.second, value: value.second)
+                        }
+                        .frame(maxHeight: .infinity)
+                    } else {
+                        HStack(spacing: Distance.tiny) {
+                            IconValueRowHorizontal(icon: icon.first, value: value.first)
+                            IconValueRowHorizontal(icon: icon.second, value: value.second)
+                        }
+                        .frame(maxHeight: .infinity)
                     }
-                    .frame(maxHeight: .infinity)
                 } else {
-                    HStack(spacing: Distance.tiny) {
-                        icon.first.Image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: Dimens.iconSizeVeryBig, height: Dimens.iconSizeVeryBig)
-                        Text(value.first)
-                            .fontHeadlineSmall()
-                            .lineLimit(2)
-                            .multilineTextAlignment(.center)
+                    if (family == .systemSmall) {
+                        HStack(spacing: Distance.tiny) {
+                            icon.first.Image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: Dimens.iconSizeVeryBig, height: Dimens.iconSizeVeryBig)
+                            Text(value.first)
+                                .fontHeadlineSmall()
+                                .lineLimit(2)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxHeight: .infinity)
+                    } else {
+                        IconValueRowHorizontal(icon: icon.first, value: value.first, lineLimit: 1)
+                            .frame(maxHeight: .infinity)
                     }
-                    .frame(maxHeight: .infinity)
                 }
                 Text(name)
                     .fontBodyMedium()
@@ -265,7 +280,7 @@ extension SuplaValueWidget {
             }
         }
 
-        private func IconValueRow(icon: IconResult?, value: String?) -> some SwiftUI.View {
+        private func IconValueRowVertical(icon: IconResult?, value: String?) -> some SwiftUI.View {
             HStack {
                 icon?.Image
                     .resizable()
@@ -274,6 +289,20 @@ extension SuplaValueWidget {
                 if let value {
                     Text(value)
                         .fontBodyLarge()
+                        .lineLimit(1)
+                }
+            }
+        }
+
+        private func IconValueRowHorizontal(icon: IconResult?, value: String?, lineLimit: Int = 2) -> some SwiftUI.View {
+            HStack {
+                icon?.Image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: Dimens.iconSizeVeryBig, height: Dimens.iconSizeVeryBig)
+                if let value {
+                    Text(value)
+                        .fontHeadlineLarge()
                         .lineLimit(1)
                 }
             }
@@ -314,12 +343,12 @@ extension SuplaValueWidget {
             value: .single("1500%")
         )
     )
-    
+
     SuplaValueWidget.Entry(
         date: .now,
         content: .incorrect
     )
-    
+
     SuplaValueWidget.Entry(
         date: .now,
         content: .correct(
@@ -329,7 +358,7 @@ extension SuplaValueWidget {
             value: .error(12)
         )
     )
-    
+
     SuplaValueWidget.Entry(
         date: .now,
         content: .correct(
@@ -337,6 +366,30 @@ extension SuplaValueWidget {
             name: Strings.General.Channel.captionHumidityAndTemperature,
             icon: .double(first: .suplaIcon(name: .Icons.fncThermometerHome), second: .suplaIcon(name: .Icons.fncHumidity)),
             value: .error(14)
+        )
+    )
+}
+
+@available(iOS 17.0, *)
+#Preview(as: .systemMedium) {
+    SuplaValueWidget()
+} timeline: {
+    SuplaValueWidget.Entry(
+        date: .now,
+        content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
+            name: Strings.General.Channel.captionHumidityAndTemperature,
+            icon: .double(first: .suplaIcon(name: .Icons.fncThermometerHome), second: .suplaIcon(name: .Icons.fncHumidity)),
+            value: .double(first: "24°C", second: "50")
+        )
+    )
+    SuplaValueWidget.Entry(
+        date: .now,
+        content: .correct(
+            profile: Strings.Profiles.defaultProfileName,
+            name: "Temperature",
+            icon: .single(.suplaIcon(name: .Icons.fncThermometerHome)),
+            value: .single("24°C")
         )
     )
 }

@@ -694,3 +694,9 @@
 "widgets_value_title" = "Szybki podgląd";
 "widgets_value_description" = "Widżet pozwalający na szybki podgląd aktualnej wartości kanału.";
 "widget_configuration_error" = "Konfiguracja widżetu jest nieprawidłowa";
+"widgets_single_action_title" = "Pojedyncza akcja";
+"widgets_single_action_description" = "Ułatwia dostęp do pojedynczej akcji.";
+"widgets_single_action_title" = "Podwójna akcja";
+"widgets_single_action_description" = "Ułatwia dostęp do podwójnej akcji.";
+"widgets_first_action" = "Pierwsza akcja";
+"widgets_second_action" = "Druga akcja";

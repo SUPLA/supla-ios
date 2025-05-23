@@ -34,7 +34,7 @@ struct ChannelParameter: AppEntity {
     static var defaultQuery = Query()
     
     struct Query: EntityQuery {
-        @IntentParameterDependency<SuplaValueWidget.Intent>(\.$profile, \.$location)
+        @IntentParameterDependency<SuplaValueWidget.ValueIntent>(\.$profile, \.$location)
         var intent
         
         func entities(for identifiers: [ChannelParameter.ID]) async throws -> [ChannelParameter] {

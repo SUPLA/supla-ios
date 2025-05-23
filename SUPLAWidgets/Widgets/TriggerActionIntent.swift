@@ -15,22 +15,28 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+   
+import AppIntents
+
+@available(iOS 17.0, *)
+struct TriggerActionIntent: AppIntent {
     
+    static var title: LocalizedStringResource = "Action trigger"
+    static var description = IntentDescription("Triggers single action.")
+    
+    @Parameter(title: "Action")
+    var action: GroupShared.WidgetAction?
+    
+    init() {
+        action = nil
+    }
+    
+    init (action: GroupShared.WidgetAction) {
+        self.action = action
+    }
 
-import WidgetKit
-import SwiftUI
-
-@main
-struct SUPLAWidgetsBundle: WidgetBundle {
-    var body: some Widget {
-        if #available(iOS 17.0, *) {
-            SuplaValueWidget()
-            SuplaSingleActionWidget()
-            SuplaDoubleActionWidget()
-            SuplaAllActionsWidget()
-        }
-        if #available(iOS 18.0, *) {
-            SuplaControlButtonWidget()
-        }
+    func perform() async throws -> some IntentResult {
+        executeAction(action: action)
+        return .result()
     }
 }
