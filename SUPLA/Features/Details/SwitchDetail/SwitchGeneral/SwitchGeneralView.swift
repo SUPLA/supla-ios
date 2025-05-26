@@ -77,10 +77,12 @@ extension SwitchGeneralFeature {
                         SwitchButtons(
                             isOn: viewState.on,
                             enabled: viewState.online,
-                            onIcon: viewState.iconTurnOn,
-                            offIcon: viewState.iconTurnOff,
-                            onTurnOnClick: onTurnOn,
-                            onTurnOffClick: onTurnOff
+                            positiveText: Strings.General.turnOn,
+                            negativeText: Strings.General.turnOff,
+                            positiveIcon: viewState.iconTurnOn,
+                            negativeIcon: viewState.iconTurnOff,
+                            onPositiveClick: onTurnOn,
+                            onNegativeClick: onTurnOff
                         )
                     }
                 }

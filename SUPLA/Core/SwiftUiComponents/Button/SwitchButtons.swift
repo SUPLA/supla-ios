@@ -21,30 +21,32 @@ import SwiftUI
 struct SwitchButtons: View {
     let isOn: Bool
     let enabled: Bool
-    let onIcon: IconResult?
-    let offIcon: IconResult?
+    let positiveText: String
+    let negativeText: String
+    let positiveIcon: IconResult?
+    let negativeIcon: IconResult?
 
-    let onTurnOnClick: () -> Void
-    let onTurnOffClick: () -> Void
+    let onPositiveClick: () -> Void
+    let onNegativeClick: () -> Void
 
     var body: some View {
         HStack(spacing: Distance.default) {
             RoundedControlButtonWrapperView(
                 type: .negative,
-                text: Strings.General.turnOff,
-                icon: offIcon,
+                text: negativeText,
+                icon: negativeIcon,
                 active: enabled && !isOn,
                 isEnabled: enabled,
-                onTap: onTurnOffClick
+                onTap: onNegativeClick
             )
             .frame(height: Dimens.buttonHeight)
             RoundedControlButtonWrapperView(
                 type: .positive,
-                text: Strings.General.turnOn,
-                icon: onIcon,
+                text: positiveText,
+                icon: positiveIcon,
                 active: enabled && isOn,
                 isEnabled: enabled,
-                onTap: onTurnOnClick
+                onTap: onPositiveClick
             )
             .frame(height: Dimens.buttonHeight)
         }
