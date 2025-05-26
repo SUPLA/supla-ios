@@ -302,8 +302,8 @@ extension SuplaValueWidget {
                     .frame(width: Dimens.iconSizeVeryBig, height: Dimens.iconSizeVeryBig)
                 if let value {
                     Text(value)
-                        .fontHeadlineLarge()
-                        .lineLimit(1)
+                        .fontTitleLarge()
+                        .lineLimit(2)
                 }
             }
         }
