@@ -52,10 +52,12 @@ extension ValveGeneralFeature {
                     SwitchButtons(
                         isOn: !viewState.isClosed,
                         enabled: !viewState.offline,
-                        onIcon: .suplaIcon(name: "valve-open"),
-                        offIcon: .suplaIcon(name: "valve-closed"),
-                        onTurnOnClick: onOpenClick,
-                        onTurnOffClick: onCloseClick
+                        positiveText: Strings.General.open,
+                        negativeText: Strings.General.close,
+                        positiveIcon: .suplaIcon(name: "valve-open"),
+                        negativeIcon: .suplaIcon(name: "valve-closed"),
+                        onPositiveClick: onOpenClick,
+                        onNegativeClick: onCloseClick
                     )
                 }
                 
