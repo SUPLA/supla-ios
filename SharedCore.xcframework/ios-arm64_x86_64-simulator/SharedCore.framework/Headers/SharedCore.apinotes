@@ -118,12 +118,6 @@ Classes:
     SwiftName: "size"
     Type: "int32_t"
   Methods:
-  - Selector: "arrayWithSize:"
-    MethodKind: "Instance"
-    SwiftName: "init(size:)"
-    Parameters:
-    - Position: 0
-      Type: "int32_t"
   - Selector: "arrayWithSize:init:"
     MethodKind: "Instance"
     SwiftName: "init(size:init:)"
@@ -132,6 +126,12 @@ Classes:
       Type: "int32_t"
     - Position: 1
       Type: "SharedCoreByte * _Nonnull (^ _Nonnull)(SharedCoreInt * _Nonnull)"
+  - Selector: "arrayWithSize:"
+    MethodKind: "Instance"
+    SwiftName: "init(size:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
   - Selector: "getIndex:"
     MethodKind: "Instance"
     SwiftName: "get(index:)"
@@ -894,6 +894,10 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "calibrationFailed"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "overcurrentWarning"
+    PropertyKind: "Class"
+    SwiftName: "overcurrentWarning"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "thermostatThermometerError"
     PropertyKind: "Class"
     SwiftName: "thermostatThermometerError"
@@ -1025,6 +1029,10 @@ Classes:
   SwiftName: "__SuplaFunction"
   SwiftPrivate: true
   Properties:
+  - Name: "hasThermostatSubfunction"
+    PropertyKind: "Instance"
+    SwiftName: "hasThermostatSubfunction"
+    Type: "BOOL"
   - Name: "value"
     PropertyKind: "Instance"
     SwiftName: "value"
@@ -1694,6 +1702,10 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "facadeBlindValue"
     Type: "SharedCoreFacadeBlindValue * _Nullable"
+  - Name: "relayValue"
+    PropertyKind: "Instance"
+    SwiftName: "relayValue"
+    Type: "SharedCoreRelayValue * _Nullable"
   - Name: "rollerShutterValue"
     PropertyKind: "Instance"
     SwiftName: "rollerShutterValue"
@@ -2597,6 +2609,19 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
+- Name: "SharedCoreRelayIssuesProvider"
+  SwiftName: "RelayIssuesProvider"
+  Methods:
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "provideChannelWithChildren:"
+    MethodKind: "Instance"
+    SwiftName: "provide(channelWithChildren:)"
+    ResultType: "NSArray<SharedCoreChannelIssueItem *> * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreChannelWithChildren * _Nonnull"
 - Name: "SharedCoreShadingSystemIssuesProvider"
   SwiftName: "ShadingSystemIssuesProvider"
   Methods:
@@ -2922,6 +2947,98 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "MAX_VALUE"
     Type: "int32_t"
+- Name: "SharedCoreRelayValue"
+  SwiftName: "RelayValue"
+  Properties:
+  - Name: "flags"
+    PropertyKind: "Instance"
+    SwiftName: "flags"
+    Type: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
+  - Name: "on"
+    PropertyKind: "Instance"
+    SwiftName: "on"
+    Type: "BOOL"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  Methods:
+  - Selector: "initWithStatus:on:flags:"
+    MethodKind: "Instance"
+    SwiftName: "init(status:on:flags:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
+  - Selector: "doCopyStatus:on:flags:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(status:on:flags:)"
+    ResultType: "SharedCoreRelayValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreRelayValueCompanion"
+  SwiftName: "RelayValue.Companion"
+  Methods:
+  - Selector: "fromStatus:bytes:"
+    MethodKind: "Instance"
+    SwiftName: "from(status:bytes:)"
+    ResultType: "SharedCoreRelayValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreSuplaRelayFlag"
+  SwiftBridge: "SuplaRelayFlag"
+  SwiftName: "__SuplaRelayFlag"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "overcurrentRelayOff"
+    PropertyKind: "Class"
+    SwiftName: "overcurrentRelayOff"
+    Type: "SharedCoreSuplaRelayFlag * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreSuplaRelayFlagCompanion"
+  SwiftName: "__SuplaRelayFlag.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreRollerShutterValue"
   SwiftName: "RollerShutterValue"
   Properties:

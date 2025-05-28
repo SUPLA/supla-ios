@@ -45,8 +45,6 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
 
     private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = TempHumidityMeasurementItemRepositoryMock()
 
-    private lazy var userIconRepository: UserIconRepositoryMock! = UserIconRepositoryMock()
-
     private lazy var thermostatMeasurementItemRepository: ThermostatMeasurementItemRepositoryMock! = ThermostatMeasurementItemRepositoryMock()
 
     private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = GeneralPurposeMeterItemRepositoryMock()
@@ -56,6 +54,10 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
     private lazy var channelConfigRepository: ChannelConfigRepositoryMock! = ChannelConfigRepositoryMock()
     
     private lazy var channelStateRepository: ChannelStateRepositoryMock! = ChannelStateRepositoryMock()
+    
+    private lazy var carPlayItemRepository: CarPlayItemRepositoryMock! = CarPlayItemRepositoryMock()
+    
+    private lazy var userIconsUseCase: UserIcons.Mock! = UserIcons.Mock()
 
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, channelExtendedValueRepository!)
@@ -68,12 +70,13 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         DiContainer.shared.register(type: (any SceneRepository).self, sceneRepository!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any UserIconRepository).self, userIconRepository!)
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, thermostatMeasurementItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
         DiContainer.shared.register(type: (any ChannelConfigRepository).self, channelConfigRepository!)
         DiContainer.shared.register(type: (any ChannelStateRepository).self, channelStateRepository!)
+        DiContainer.shared.register(type: (any CarPlayItemRepository).self, carPlayItemRepository!)
+        DiContainer.shared.register(type: UserIcons.UseCase.self, userIconsUseCase!)
     }
 
     override func tearDown() {
@@ -89,12 +92,13 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         sceneRepository = nil
         temperatureMeasurementItemRepository = nil
         tempHumidityMeasurementItemRepository = nil
-        userIconRepository = nil
         thermostatMeasurementItemRepository = nil
         generalPurposeMeterItemRepository = nil
         generalPurposeMeasurementItemRepository = nil
         channelConfigRepository = nil
         channelStateRepository = nil
+        carPlayItemRepository = nil
+        userIconsUseCase = nil
 
         super.tearDown()
     }
@@ -114,12 +118,12 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         sceneRepository.deleteAllObservable = .just(())
         temperatureMeasurementItemRepository.deleteAllForProfileReturns = .just(())
         tempHumidityMeasurementItemRepository.deleteAllForProfileReturns = .just(())
-        userIconRepository.deleteAllObservable = .just(())
         thermostatMeasurementItemRepository.deleteAllObservable = .just(())
         generalPurposeMeterItemRepository.deleteAllForProfileReturns = .just(())
         generalPurposeMeasurementItemRepository.deleteAllForProfileReturns = .just(())
         channelConfigRepository.deleteAllForProfileReturns = .just(())
         channelStateRepository.deleteAllMock.returns = .single(.just(()))
+        carPlayItemRepository.deleteAllMock.returns = .single(.just(()))
 
         // when
         useCase.invoke(profile: profile).subscribe(observer).disposed(by: disposeBag)
@@ -136,11 +140,12 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(sceneRepository.deleteAllCounter, 1)
         XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
         XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
-        XCTAssertEqual(userIconRepository.deleteAllCounter, 1)
         XCTAssertEqual(thermostatMeasurementItemRepository.deleteAllCounter, 1)
         XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [serverId])
         XCTAssertEqual(generalPurposeMeasurementItemRepository.deleteAllForProfileParameters, [serverId])
         XCTAssertEqual(channelConfigRepository.deleteAllForProfileParameters, [profile])
         XCTAssertEqual(channelStateRepository.deleteAllMock.parameters, [profile])
+        XCTAssertEqual(carPlayItemRepository.deleteAllMock.parameters, [profile])
+        XCTAssertEqual(userIconsUseCase.removeProfileIconsMock.parameters, [profile.id])
     }
 }

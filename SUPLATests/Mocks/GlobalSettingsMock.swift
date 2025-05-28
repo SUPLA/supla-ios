@@ -70,13 +70,6 @@ class GlobalSettingsMock: GlobalSettings {
         set { pushTokenLastUpdateValues.append(newValue) }
     }
     
-    var temperatureUnitReturns: TemperatureUnit = .celsius
-    var temperatureUnitValues: [TemperatureUnit] = []
-    var temperatureUnit: TemperatureUnit {
-        get { temperatureUnitReturns }
-        set { temperatureUnitValues.append(newValue) }
-    }
-    
     var autohideButtonsReturns: Bool = false
     var autohideButtonsValues: [Bool] = []
     var autohideButtons: Bool {
@@ -156,5 +149,16 @@ class GlobalSettingsMock: GlobalSettings {
     var showEmHistoryIntroduction: Bool {
         get { showEmHistoryIntroductionMock.get() }
         set { showEmHistoryIntroductionMock.set(newValue) }
+    }
+    
+    var migratedForAppGroupsMock: FunctionMock<Bool, Bool> = .init()
+    var migratedForAppGroups: Bool {
+        get { migratedForAppGroupsMock.get() }
+        set { migratedForAppGroupsMock.set(newValue) }
+    }
+    
+    var carPlayVoiceMessages: Bool {
+        get { false }
+        set { }
     }
 }

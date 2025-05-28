@@ -21,8 +21,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=en";
 
-"Scenes.ActionButtons.execute" = "Execute";
-"Scenes.ActionButtons.abort" = "Abort";
+"scenes_action_buttons_execute" = "Execute";
+"scenes_action_buttons_abort" = "Abort";
+"scenes_action_buttons_abort_and_execute" = "Abort and execute";
 
 
 "Cfg.removal.title" = "Delete account?";
@@ -51,6 +52,15 @@
 "general_collapse" = "Collapse";
 "general_expand" = "Expand";
 "general_function" = "Function";
+"general_stop" = "Stop";
+"general_toggle" = "Toggle";
+"general_channel" = "Channel";
+"general_group" = "Group";
+"general_scene" = "Scene";
+"general_profile" = "Profile";
+"general_action" = "Action";
+"general_delete" = "Delete";
+"general_select" = "-- select --";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -89,6 +99,8 @@
 "channel_caption_container_level_sensor" = "Container level sensor";
 "channel_caption_flood_sensor" = "Flood sensor";
 "channel_offline" = "Channel is offline";
+"channel_not_found" = "Channel not found";
+"scene_inactive" = "Scene is inactive";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
 /* General - Channel status */
 "channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
@@ -143,6 +155,8 @@
 "switch_detail_state_on" = "on";
 "switch_detail_state_off" = "off";
 "switch_detail_state_offline" = "offline";
+"overcurrent_warning" = "The power was turned off after the set threshold of the allowable current was exceeded.";
+"overcurrent_question" = "The power was turned off after exceeding the set threshold of the allowable current. Are you sure you want to power on?";
 
 /* Timer Detail */
 "timer_detail_header" = "Define time for which device should stay:";
@@ -384,7 +398,7 @@
 "valve_warning_manually_closed" = "The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application?!";
 "valve_warning_flooding" = "The valve has been closed due to detected flooding. Before opening the valve, ensure that the cause has been resolved. Opening the valve clears the alarm. Are you sure you want to open it?";
 "flooding_alarm_message" = "The sensor reports flooding!";
-"valve_warning_manually_closed_short" = "The valve has been closed manually or via radio (possible flooding).";
+"valve_warning_manually_closed_short" = "The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually.";
 "valve_warning_flooding_short" = "The valve has been closed due to detected flooding.";
 "valve_warning_motor_problem" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open.";
 "valve_warning_motor_problem_opening" = "A motor problem has been detected. Make sure nothing is blocking the valve. The valve may be partially open. Are you sure you want to open it?";
@@ -424,3 +438,28 @@
 "container_alarm_level" = "Container level alarm!";
 "container_invalid_sensor_state" = "Invalid sensor state";
 "container_sound_alarm" = "Sound alarm active";
+
+/* apple car play */
+"car_play_label" = "Actions for Widgets";
+"car_play_voice_messages" = "Play messages";
+"car_play_action" = "Action: %@";
+"car_play_display_name" = "Display name";
+"car_play_execution_error" = "Execution failed (error code: %d)";
+"car_play_executing" = "Executing...";
+"car_play_delete_title" = "Deleting item";
+"car_play_delete_message" = "Do you want to continue";
+"car_play_confirm_delete" = "Delete";
+
+/* Widget */
+"widget_empty_hint" = "No common action defined. Go to Supla APP -> Settings -> Actions for Widgets and define your actions.";
+"widget_control_hint" = "Perform action";
+"widgets_actions_name" = "Actions";
+"widgets_actions_description" = "Simplifies access to the most common actions.";
+"widgets_unknown_action" = "Unknown action!";
+"widgets_value_title" = "Quick View";
+"widgets_value_description" = "Widget which serves a quick preview of the current channel value.";
+"widget_configuration_error" = "Widget is not configured properly";
+"widgets_single_action_title" = "Single Action";
+"widgets_single_action_description" = "Simplifies access to single action.";
+"widgets_double_action_title" = "Double Action";
+"widgets_double_action_description" = "Simplifies access to two actions.";

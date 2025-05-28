@@ -22,6 +22,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     @Singleton private var settings: GlobalSettings
     @Singleton private var coordinator: SuplaAppCoordinator
     @Singleton private var stateHolder: SuplaAppStateHolder
+    @Singleton private var downloadUserIconsManager: DownloadUserIconsManager
     
     private let notificationView: NotificationView = .init()
     private let newGestureInfoView: NewGestureInfoView = .init()
@@ -29,8 +30,6 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     
     private var notificationTimer: Timer? = nil
     private var profileChooser: ProfileChooser? = nil
-    
-    private var iconsDownloadTask: SADownloadUserIcons? = nil
     
     init() {
         super.init(viewModel: MainViewModel())
@@ -239,17 +238,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     // MARK: Downloading user icons
     
     private func runIconsDownloadTask() {
-        if (iconsDownloadTask != nil && !iconsDownloadTask!.isTaskIsAlive(withTimeout: 90)) {
-            iconsDownloadTask?.cancel()
-            iconsDownloadTask?.delegate = nil
-            iconsDownloadTask = nil
-        }
-        
-        if (iconsDownloadTask == nil) {
-            iconsDownloadTask = SADownloadUserIcons()
-            iconsDownloadTask?.delegate = self
-            iconsDownloadTask?.start()
-        }
+        downloadUserIconsManager.download()
     }
 }
 
@@ -259,18 +248,8 @@ extension MainVC: ProfileChooserDelegate {
     }
 }
 
-extension MainVC: SARestApiClientTaskDelegate {
-    func onRestApiTaskFinished(_ task: SARestApiClientTask) {
-        if (iconsDownloadTask == task) {
-            iconsDownloadTask?.delegate = nil
-            iconsDownloadTask = nil
-        }
-    }
-}
-
 extension MainVC: NewGestureInfoDelegate {
     func onCloseTapped() {
-        var settings = settings
         settings.newGestureInfoShown = true
         newGestureInfoView.isHidden = true
     }

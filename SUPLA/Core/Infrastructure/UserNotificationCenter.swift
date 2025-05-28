@@ -18,6 +18,8 @@
 
 import UserNotifications
 
+let widgetNotificationsIdentifier = "com.acsoftware.widgetNotifications"
+
 protocol UserNotificationCenter {
     func getNotificationSettings(completionHandler: @escaping (UNNotificationSettings) -> Void)
 }
@@ -26,4 +28,12 @@ final class UserNotificationCenterImpl: UserNotificationCenter {
     func getNotificationSettings(completionHandler: @escaping (UNNotificationSettings) -> Void) {
         UNUserNotificationCenter.current().getNotificationSettings(completionHandler: completionHandler)
     }
+}
+
+func showWidgetErrorNotification(_ error: Error, _ subjectType: SubjectType) {
+    let content = UNMutableNotificationContent()
+    content.title = Strings.General.error
+    content.body = error.getErrorMessage(subjectType: subjectType)
+    
+    UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: widgetNotificationsIdentifier, content: content, trigger: nil))
 }

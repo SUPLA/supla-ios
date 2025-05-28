@@ -21,7 +21,7 @@ final class GateIconNameProducer: IconNameProducer {
         function == SUPLA_CHANNELFNC_CONTROLLINGTHEGATE || function == SUPLA_CHANNELFNC_OPENINGSENSOR_GATE
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         if (iconData.function == SUPLA_CHANNELFNC_CONTROLLINGTHEGATE && iconData.state == .partialyOpened && iconData.altIcon != 2) {
             return iconData.altIcon == 1 ? "gatealt1-closed-50percent" : "gate-closed-50percent"
         }

@@ -21,7 +21,7 @@ final class DimmerAndRgbLightningIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         switch (iconData.state) {
         case .complex(let values):
             if (values.count == 2) {

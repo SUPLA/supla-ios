@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setValueSwift:(TSuplaChannelValue_B)value;
 - (NSData *) dataValue;
 - (NSData *) dataSubValue;
-- (NSData *) unsafeDataValue;
+- (NSData *) rawDataValue;
 
 - (int) hiValue;
 - (int) hiSubValue;

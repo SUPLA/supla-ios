@@ -42,10 +42,16 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
         viewModel.onViewDidLoad()
         
         viewModel.eventsObervable()
-            .subscribe(onNext: { [weak self] event in self?.handle(event: event) })
+            .subscribe(
+                onNext: { [weak self] event in self?.handle(event: event) },
+                onError: { SALog.error("Events handling failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
         viewModel.stateObservable()
-            .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
+            .subscribe(
+                onNext: { [weak self] state in self?.handle(state: state) },
+                onError: { SALog.error("State handling failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: disposeBag)
         
         setupView()

@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import Foundation
+
 struct Distance {
     static let tiny = CGFloat(8)
     static let small = CGFloat(16)

@@ -25,6 +25,8 @@ import UserNotifications
 class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     @Singleton<GlobalSettings> private var settings
     @Singleton<UserNotificationCenter> private var notificationCenter
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<GroupShared.Settings> private var groupSettings
     
     override func defaultViewState() -> AppSettingsViewState { AppSettingsViewState(list: []) }
     
@@ -65,7 +67,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 callback: { [weak self] in self?.updateChannelHeight(selectedItem: $0) }
             ),
             .temperatureUnitItem(
-                temperatureUnit: settings.temperatureUnit,
+                temperatureUnit: groupSettings.temperatureUnit,
                 callback: { [weak self] in self?.updateTemperatureUnit(selectedItem: $0) }
             ),
             .switchItem(
@@ -109,7 +111,11 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             ),
             .arrowButtonItem(
                 title: Strings.Cfg.locationOrdering,
-                callback: { self.send(event: .navigateToLocationOrdering) }
+                callback: { [weak self] in self?.coordinator.navigateToLocationOrdering() }
+            ),
+            .arrowButtonItem(
+                title: Strings.CarPlay.label,
+                callback: { [weak self] in self?.coordinator.navigateToCarPlayList()}
             )
         ])
     }
@@ -119,7 +125,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             .permissionItem(
                 title: Strings.AppSettings.notificationsLabel,
                 active: notificationsAllowed,
-                callback: { self.send(event: .navigateToAppPreferences) }
+                callback: { [weak self] in self?.send(event: .navigateToAppPreferences) }
             )
         ])
     }
@@ -132,7 +138,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     
     private func updateTemperatureUnit(selectedItem: Int) {
         if let unit = TemperatureUnit.allCases.enumerated().first(where: { (i, _) in i == selectedItem })?.element {
-            settings.temperatureUnit = unit
+            groupSettings.temperatureUnit = unit
         }
     }
     
@@ -144,13 +150,13 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
         let pinSum = lockScreenSettings.pinSum
         
         if (scope == .none) {
-            send(event: .navigateToPinVerification(unlockAction: .turnOffPin))
+            coordinator.navigateToLockScreen(unlockAction: .turnOffPin)
         } else if (pinSum != nil && scope == .accounts) {
-            send(event: .navigateToPinVerification(unlockAction: .confirmAuthorizeAccounts))
+            coordinator.navigateToLockScreen(unlockAction: .confirmAuthorizeAccounts)
         } else if (pinSum != nil && scope == .application) {
-            send(event: .navigateToPinVerification(unlockAction: .confirmAuthorizeApplication))
+            coordinator.navigateToLockScreen(unlockAction: .confirmAuthorizeApplication)
         } else {
-            send(event: .navigateToPinSetup(scope: scope))
+            coordinator.navigateToPinSetup(lockScreenScope: scope)
         }
     }
 }
@@ -220,11 +226,8 @@ extension SettingsList: SectionModelType {
 }
 
 enum AppSettingsViewEvent: ViewEvent {
-    case navigateToLocationOrdering
     case navigateToAppPreferences
     case changeInterfaceStyle(style: UIUserInterfaceStyle)
-    case navigateToPinSetup(scope: LockScreenScope)
-    case navigateToPinVerification(unlockAction: LockScreenFeature.UnlockAction)
 }
 
 struct AppSettingsViewState: ViewState {

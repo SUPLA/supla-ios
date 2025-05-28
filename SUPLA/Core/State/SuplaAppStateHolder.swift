@@ -45,6 +45,9 @@ final class SuplaAppStateHolderImpl: SuplaAppStateHolder {
                     case .connecting: SAApp.suplaClient()
                     default: break
                     }
+                },
+                onError: {
+                    SALog.error("Failed by handling app state: \(String(describing: $0))")
                 }
             )
     }

@@ -16,12 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-public enum SubjectType: Int32, Equatable {
+public enum SubjectType: Int32, Equatable, CaseIterable, Identifiable, Codable, Sendable {
     case channel = 1
     case group = 2
     case scene = 3
     
     var isGroup: Bool {
         self == .group
+    }
+    
+    public var id: Int32 { rawValue }
+    
+    static func from(rawValue: Int32) -> SubjectType {
+        for subjectType in allCases {
+            if (subjectType.rawValue == rawValue) {
+                return subjectType
+            }
+        }
+        
+        fatalError("Subject type for rawValue \(rawValue) not found")
     }
 }

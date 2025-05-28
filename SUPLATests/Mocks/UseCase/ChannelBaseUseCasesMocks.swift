@@ -26,12 +26,16 @@ final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
         parameters.append(channelBase)
         return returns
     }
+    
+    func getOfflineState(_ function: Int32) -> SUPLA.ChannelState {
+        .notUsed
+    }
 }
 
 final class GetChannelBaseIconUseCaseMock: GetChannelBaseIconUseCase {
     var returns: IconResult = .suplaIcon(name: "")
-    var parameters: [IconData] = []
-    func invoke(iconData: IconData) -> IconResult {
+    var parameters: [FetchIconData] = []
+    func invoke(iconData: FetchIconData) -> IconResult {
         parameters.append(iconData)
         return returns
     }

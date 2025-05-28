@@ -21,7 +21,7 @@ final class LiquidSensorIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_NOLIQUIDSENSOR
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         return iconData.state.isActive() ? "liquid" : "noliquid"
     }
 }

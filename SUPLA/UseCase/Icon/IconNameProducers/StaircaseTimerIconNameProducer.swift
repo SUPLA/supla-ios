@@ -21,7 +21,7 @@ final class StaircaseTimerIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_STAIRCASETIMER
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         addStateSuffix(name: switchIcon(iconData.altIcon), state: iconData.state)
     }
     

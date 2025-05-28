@@ -48,27 +48,17 @@ extension ValveGeneralFeature {
                             )
                         }
                     }
-                    HStack(spacing: Distance.default) {
-                        RoundedControlButtonWrapperView(
-                            type: .negative,
-                            text: Strings.General.close,
-                            icon: .suplaIcon(name: "valve-closed"),
-                            active: viewState.isClosed,
-                            isEnabled: !viewState.offline,
-                            onTap: onCloseClick
-                        )
-                        .frame(height: Dimens.buttonHeight)
-                        RoundedControlButtonWrapperView(
-                            type: .positive,
-                            text: Strings.General.open,
-                            icon: .suplaIcon(name: "valve-open"),
-                            active: !viewState.isClosed,
-                            isEnabled: !viewState.offline,
-                            onTap: onOpenClick
-                        )
-                        .frame(height: Dimens.buttonHeight)
-                    }
-                    .padding(Distance.default)
+                    
+                    SwitchButtons(
+                        isOn: !viewState.isClosed,
+                        enabled: !viewState.offline,
+                        positiveText: Strings.General.open,
+                        negativeText: Strings.General.close,
+                        positiveIcon: .suplaIcon(name: "valve-open"),
+                        negativeIcon: .suplaIcon(name: "valve-closed"),
+                        onPositiveClick: onOpenClick,
+                        onNegativeClick: onCloseClick
+                    )
                 }
                 
                 if (stateDialogViewModel.present) {

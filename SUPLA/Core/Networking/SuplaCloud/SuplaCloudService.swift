@@ -87,6 +87,8 @@ protocol SuplaCloudService {
     func getElectricityMeterChannel(
         remoteId: Int32
     ) -> Observable<SharedCore.ElectricityChannelDto>
+    
+    func getUserIcons(_ remoteIds: [Int32]) -> Observable<[SuplaCloudClient.UserIcon]>
 }
 
 extension SuplaCloudService {
@@ -382,6 +384,26 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
             }
     }
     
+    func getUserIcons(_ remoteIds: [Int32]) -> Observable<[SuplaCloudClient.UserIcon]> {
+        urlLoader { try self.buildUserIconsUrl(remoteIds) }
+            .flatMap { self.requestHelper.getOAuthRequest(urlString: $0) }
+            .flatMap { (response, data) in
+                if (response.statusCode != 200) {
+                    let dataString = String(data: data, encoding: String.Encoding.utf8) ?? "Data could not be printed"
+                    SALog.error("Data: \(dataString)")
+                    return Observable<[SuplaCloudClient.UserIcon]>
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                }
+                
+                do {
+                    let measurements = try SuplaCloudClient.UserIcon.fromJson(data: data)
+                    return Observable.just(measurements)
+                } catch {
+                    return Observable.error(error)
+                }
+            }
+    }
+    
     private func urlLoader(_ loader: @escaping () throws -> String) -> Observable<String> {
         return Observable.create { observer in
             do {
@@ -442,6 +464,12 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         return "\(host)\(urlPath)"
     }
     
+    private func buildUserIconsUrl(_ userIds: [Int32]) throws -> String {
+        let host = try configHolder.requireUrl()
+        let urlPath = Constants.urlUserIcons
+        return "\(host)\(urlPath)\(userIds.map { "\($0)" }.joined(separator: ","))"
+    }
+    
     fileprivate enum Constants {
         static let apiVersion = "3"
         
@@ -454,6 +482,8 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         static let urlFirstMeasurementBefore = "/api/\(apiVersion)/channels/{remoteId}/measurement-logs?order=DESC&limit=1&beforeTimestamp="
         
         static let urlOcrPhoto = "/api/\(apiVersion)/integrations/ocr/{remoteId}/images"
+        
+        static let urlUserIcons = "/api/\(apiVersion)/user-icons?include=images&ids="
     }
 }
 

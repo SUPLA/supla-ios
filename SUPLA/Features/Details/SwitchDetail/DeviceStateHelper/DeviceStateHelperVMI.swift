@@ -32,14 +32,15 @@ extension DeviceStateHelperVMI {
         )
     }
     
-    private func createIconData(_ channel: SAChannelBase) -> IconData {
+    private func createIconData(_ channel: SAChannelBase) -> FetchIconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
         
-        return IconData(
+        return FetchIconData(
             function: channel.func,
             altIcon: channel.alticon,
+            profileId: channel.profile.id,
             state: getChannelBaseStateUseCase.invoke(channelBase: channel),
-            userIcon: channel.usericon
+            userIconId: channel.usericon_id
         )
     }
     
@@ -63,5 +64,5 @@ struct DeviceStateViewState: Equatable {
     let isOn: Bool
     let timerEndDate: Date?
     let timerStartDate: Date?
-    let iconData: IconData
+    let iconData: FetchIconData
 }

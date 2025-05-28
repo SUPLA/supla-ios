@@ -43,12 +43,17 @@ class AuthProfileItemKeychainHelper {
     }
     
     static func clear(id: Int32) {
-        SAKeychain.deleteObject(withKey: keychainKey(key: authKey, id: id))
-        SAKeychain.deleteObject(withKey: keychainKey(key: guidKey, id: id))
+        _ = SAKeychain.deleteObject(withKey: keychainKey(key: authKey, id: id))
+        _ = SAKeychain.deleteObject(withKey: keychainKey(key: guidKey, id: id))
+    }
+    
+    static func migrateForAppGroup(profileId: Int32) {
+        SAKeychain.migrate(keychainKey(key: authKey, id: profileId))
+        SAKeychain.migrate(keychainKey(key: guidKey, id: profileId))
     }
 
     private static func bytes(for key: String, size: Int) -> Data? {
-        if let data = SAKeychain.getObjectWithKey(key) as? Data,
+        if let data = SAKeychain.getObjectWithKey(key),
            data.count == size {
             return data
         } else {
@@ -57,8 +62,8 @@ class AuthProfileItemKeychainHelper {
     }
 
     private static func setBytes(_ bytes: Data, for key: String) {
-        SAKeychain.deleteObject(withKey: key)
-        SAKeychain.add(bytes, withKey: key)
+        _ = SAKeychain.deleteObject(withKey: key)
+        _ = SAKeychain.add(bytes, withKey: key)
     }
 
 

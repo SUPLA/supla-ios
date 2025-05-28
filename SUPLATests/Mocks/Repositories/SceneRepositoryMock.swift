@@ -53,11 +53,19 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
         return deleteAllObservable
     }
     
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]> {
         Observable.empty()
     }
     
     func update(caption: String, remoteId: Int32) -> RxSwift.Observable<Void> {
+        .empty()
+    }
+    
+    func getAllVisibleScenes(forProfileId profileId: Int32) -> RxSwift.Observable<[SAScene]> {
+        .empty()
+    }
+    
+    func getAllScenes() -> RxSwift.Observable<[SAScene]> {
         .empty()
     }
 }

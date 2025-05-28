@@ -18,6 +18,7 @@
  */
 
 import SwiftUI
+import Foundation
 
 extension View {
     func textColor(_ color: Color) -> some View {
@@ -65,8 +66,16 @@ extension View {
         font(.Supla.titleMedium)
     }
     
+    func fontTitleLarge() -> some View {
+        font(.Supla.titleLarge)
+    }
+    
     func fontHeadlineSmall() -> some View {
         font(.Supla.headlineSmall)
+    }
+    
+    func fontHeadlineMedium() -> some View {
+        font(.Supla.headlineMedium)
     }
     
     func fontHeadlineLarge() -> some View {

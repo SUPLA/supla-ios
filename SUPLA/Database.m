@@ -24,7 +24,6 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
-#import "SAUserIcon+CoreDataClass.h"
 #import "SUPLA-Swift.h"
 
 @interface SADatabase ()
@@ -145,7 +144,7 @@ again:
             @"SALocation", @"SAChannel", @"SAChannelValue",
             @"SAChannelExtendedValue", @"SAChannelGroup",
             @"SAScene", @"SAChannelGroupRelation",
-            @"SAUserIcon", @"SAColorListItem", nil
+            @"SAColorListItem", nil
     ];
     
     NSSet *entitiesWithServerId = [
@@ -223,7 +222,7 @@ again:
             @"SALocation", @"SAChannel", @"SAChannelValue",
             @"SAChannelExtendedValue", @"SAChannelGroup",
             @"SAScene", @"SAChannelGroupRelation",
-            @"SAUserIcon", @"SAColorListItem", nil
+            @"SAColorListItem", nil
     ];
     
     NSSet *entitiesWithServerId = [

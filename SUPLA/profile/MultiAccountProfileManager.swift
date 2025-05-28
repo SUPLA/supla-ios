@@ -153,16 +153,4 @@ extension MultiAccountProfileManager: ProfileManager {
         
         suplaClientProvider.provide()?.reconnect()
     }
-    
-    private func deletePushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ profileName: String?) {
-        DispatchQueue.global(qos: .default).async {
-            do {
-                let authDetails = authDetails
-                let tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profileName)
-                try self.singleCall.registerPushToken(authDetails, protocolVersion, tokenDetails)
-            } catch {
-                SALog.error("Push token removal failed with error: \(error)")
-            }
-        }
-    }
 }

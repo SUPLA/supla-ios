@@ -271,8 +271,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nl";
 
-"Scenes.ActionButtons.execute" = "Ik wil  volgen";
-"Scenes.ActionButtons.abort" = "Onderbreek";
+"scenes_action_buttons_execute" = "Ik wil volgen";
+"scenes_action_buttons_abort" = "Onderbreek";
+"scenes_action_buttons_abort_and_execute" = "Scrollen en uitvoeren";
 
 "Cfg.removal.dialog.missing_name" = "Voer de naam van uw rekening in";
 "Cfg.removal.dialog.duplicated_name" = "Er is al een rekening met deze naam";
@@ -290,6 +291,13 @@
 "turn_off" = "Schakel uit";
 "save" = "Opslaan";
 "general_function" = "Functie";
+"general_toggle" = "Schakel";
+"general_channel" = "Kanaal";
+"general_group" = "Groep";
+"general_scene" = "Podium";
+"general_profile" = "Rekening";
+"general_action" = "Actie";
+"general_delete" = "Delete";
 /* General - DayOfWeek */
 "monday" = "Maandag";
 "tuesday" = "Diensdag";
@@ -370,6 +378,8 @@
 "switch_detail_state_label_for_timer" = "Status per uur %@";
 "switch_detail_state_on" = "op";
 "switch_detail_state_off" = "uitgeschakeld";
+"overcurrent_warning" = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden.";
+"overcurrent_question" = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden. Weet je zeker dat je de stroom aan wilt zetten?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Tijd moet groter zijn dan 0";
@@ -557,6 +567,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig. Weet je zeker dat je de klep wilt openen vanuit de toepassing!";
+"valve_warning_manually_closed_short" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig.";
 
 /* State */
 "state_channel_id" = "Kanaal id";
@@ -577,3 +588,7 @@
 "change_caption_channel_name" = "Naam kanaal";
 "change_caption_scene_name" = "Scènenaam";
 "change_caption_location_name" = "Naam van de plaats";
+
+/* Car play */
+"car_play_action" = "Actie: %@";
+"car_play_display_name" = "Naam";

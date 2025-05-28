@@ -272,8 +272,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nb";
 
-"Scenes.ActionButtons.execute" = "Følg";
-"Scenes.ActionButtons.abort" = "Avbryt";
+"scenes_action_buttons_execute" = "Følg";
+"scenes_action_buttons_abort" = "Avbryt";
+"scenes_action_buttons_abort_and_execute" = "Bla og utfør";
 
 "Cfg.removal.dialog.missing_name" = "Skriv inn et kontonavn";
 "Cfg.removal.dialog.duplicated_name" = "En konto med dette navnet eksisterer allerede";
@@ -291,6 +292,13 @@
 "turn_off" = "Slå av";
 "save" = "Lagre";
 "general_function" = "Funksjon";
+"general_toggle" = "Bytt om";
+"general_channel" = "Kanal";
+"general_group" = "Gruppe";
+"general_scene" = "Scene";
+"general_profile" = "Konto";
+"general_action" = "Handling";
+"general_delete" = "Slett";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -371,6 +379,8 @@
 "switch_detail_state_label_for_timer" = "Status til kl. %@:";
 "switch_detail_state_on" = "på";
 "switch_detail_state_off" = "deaktivert";
+"overcurrent_warning" = "Strømmen ble slått av etter at den innstilte terskelen for den tillatte strømmen ble overskredet.";
+"overcurrent_question" = "Strømmen ble slått av etter at den innstilte terskelen for den tillatte strømmen ble overskredet. Er du sikker på at du vil slå på?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Tiden må være større enn 0";
@@ -557,6 +567,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventilen ble stengt i manuell modus. Før du åpner den, sørg for at den ikke har vært lukket på grunn av flom. For å deaktivere advarselen, åpne ventilen manuelt. Er du sikker på at du vil åpne ventilen fra appen?!";
+"valve_warning_manually_closed_short" = "Ventilen ble stengt i manuell modus. Før du åpner den, sørg for at den ikke har vært lukket på grunn av flom. For å deaktivere advarselen, åpne ventilen manuelt.";
 
 /* State */
 "state_channel_id" = "Kanal-ID";
@@ -577,3 +588,7 @@
 "change_caption_channel_name" = "Kanalnavn";
 "change_caption_scene_name" = "Navn på scenen";
 "change_caption_location_name" = "Stedsnavn";
+
+/* Car play */
+"car_play_action" = "Handling: %@";
+"car_play_display_name" = "Navn";

@@ -28,6 +28,16 @@ enum InitializationUseCase {
         @Singleton<ThreadHandler> var threadHandler
             
         let initializationStartTime = dateProvider.currentTimestamp()
+        
+        // migrate GUIDs and AuthKeys
+        if (!settings.migratedForAppGroups) {
+            let profiles = profileRepository.getAllProfiles().subscribeSynchronous(defaultValue: [])
+            SALog.info("Migrating \(profiles.count) profiles to be ready to use with App Groups.")
+            profiles.forEach {
+                AuthProfileItemKeychainHelper.migrateForAppGroup(profileId: $0.id)
+            }
+            settings.migratedForAppGroups = true
+        }
             
         // Check if there is an active profile
         let profileFound = (try? profileRepository.getActiveProfile().subscribeSynchronous()?.isActive) ?? false

@@ -19,7 +19,7 @@
 import SharedCore
 import SwiftUI
 
-class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
+class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
     
     private lazy var stateViewModel: StateDialogFeature.ViewModel = {
@@ -35,7 +35,10 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     private lazy var overlay: UIHostingController = {
         let view = UIHostingController(rootView: ChannelListView(
             stateDialogViewModel: stateViewModel,
-            captionChangeDialogViewModel: captionChangeViewModel
+            captionChangeDialogViewModel: captionChangeViewModel,
+            channelListViewState: viewModel.channelListViewState,
+            onAlertConfirmed: { [weak self] in self?.viewModel.forceAction($1, remoteId: $0) },
+            onAlertDismissed: { [weak self] in self?.viewModel.dismissAlertDialog() }
         ))
         view.view.translatesAutoresizingMaskIntoConstraints = false
         view.view.backgroundColor = .clear
@@ -45,9 +48,11 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     init() {
         super.init(viewModel: ChannelListViewModel())
+        viewModel.presentationCallback = { [weak self] in self?.overlay.view.isHidden = !$0 }
         setupView()
     }
     
+    @available(*, unavailable)
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -84,12 +89,10 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             coordinator.navigateToContainerDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
-        case .showValveWarningDialog(let remoteId, let message, let action):
-            showValveWarningDialog(remoteId, message, action)
         }
     }
     
-    override func handle(state: ChannelListViewState) {
+    override func handle(state: ChannelListState) {
         overlay.view.isHidden = state.overlayHidden
     }
     
@@ -108,7 +111,7 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice, withDeviceCatalog: true)
+        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice, withDeviceCatalog: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE)
     }
     
     private func setupView() {
@@ -118,18 +121,6 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             .drive(onNext: { [weak self] in self?.coordinator.navigateToDeviceCatalog() })
             .disposed(by: self)
         setupOverlay(overlay)
-    }
-    
-    private func showValveWarningDialog(_ remoteId: Int32, _ message: String, _ action: Action) {
-        let alert = UIAlertController(title: Strings.General.warning, message: message, preferredStyle: .alert)
-        let yesButton = UIAlertAction(title: Strings.General.yes, style: .default) { [weak self] _ in
-            self?.viewModel.forceAction(action, remoteId: remoteId)
-        }
-        let noButton = UIAlertAction(title: Strings.General.no, style: .cancel)
-        
-        alert.addAction(yesButton)
-        alert.addAction(noButton)
-        coordinator.present(alert, animated: true)
     }
 }
 
@@ -152,12 +143,7 @@ extension ChannelListVC: BaseCellDelegate {
     }
     
     func onIssuesIconTapped(issues: ListItemIssues) {
-        let alert = UIAlertController(title: "SUPLA", message: issues.message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: Strings.General.ok, style: .default)
-        
-        alert.title = NSLocalizedString("Warning", comment: "")
-        alert.addAction(okButton)
-        coordinator.present(alert, animated: true)
+        viewModel.showAlert(issues.message)
     }
     
     func onCaptionLongPress(_ remoteId: Int32) {

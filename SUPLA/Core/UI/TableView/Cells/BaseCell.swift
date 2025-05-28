@@ -245,6 +245,8 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
                 repeats: true
             )
         }
+        
+        infoView.isHidden = !showChannelInfo || !data.infoSupported || !online()
     }
     
     func timerEndDate() -> Date? { nil }
@@ -526,12 +528,6 @@ extension BaseCell: MoveableCell {
     func dropAllowed(to destination: MoveableCell) -> Bool {
         getLocationCaption() == destination.getLocationCaption()
     }
-}
-
-enum CellScalingLimit {
-    case none /// no scale limiting
-    case upper(CGFloat) /// upper limit for scaling factor
-    case lower(CGFloat) /// lower limit for scaling factor
 }
 
 class CellStatusIndicatorView: UIView {

@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Foundation
+
 let NO_VALUE_TEXT = "---"
 private let MIN_TEMPERATURE_VALUE: Float = -273
 
@@ -63,7 +65,7 @@ extension ValuesFormatter {
 
 final class ValuesFormatterImpl: ValuesFormatter {
     
-    @Singleton<GlobalSettings> private var settings
+    private let settings = GroupShared.Implementation()
     
     let dateFormatter = DateFormatter()
     
@@ -99,7 +101,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
         formatter.maximumFractionDigits = precision
         guard let value = value,
               value >= 0 && value <= 100,
-              let formatted = formatter.string(from: NSNumber(value: convert(Float(value))))
+              let formatted = formatter.string(from: NSNumber(value: value))
         else {
             return NO_VALUE_TEXT
         }

@@ -55,11 +55,19 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
         return deleteAllObservable
     }
     
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]> {
         Observable.empty()
     }
     
     func update(caption: String, remoteId: Int32) -> RxSwift.Observable<Void> {
+        .empty()
+    }
+    
+    func getAllVisibleGroups(forProfileId profileId: Int32) -> Observable<[SAChannelGroup]> {
+        .empty()
+    }
+    
+    func getAllGroups() -> Observable<[SAChannelGroup]> {
         .empty()
     }
 }

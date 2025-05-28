@@ -272,8 +272,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=cs";
 
-"Scenes.ActionButtons.execute" = "Provést";
-"Scenes.ActionButtons.abort" = "Přerušit";
+"scenes_action_buttons_execute" = "Provést";
+"scenes_action_buttons_abort" = "Přerušit";
+"scenes_action_buttons_abort_and_execute" = "Přerušit a provést";
 
 "Cfg.removal.title" = "Smazat účet?";
 "Cfg.removal.action.logout" = "Zapomenout na tomto zařízení";
@@ -291,6 +292,13 @@
 "turn_off" = "Vypnout";
 "save" = "Uložit";
 "general_function" = "Funkce";
+"general_toggle" = "Přepnout";
+"general_channel" = "Kanál";
+"general_group" = "Skupina";
+"general_scene" = "Scéna";
+"general_profile" = "Účet";
+"general_action" = "Akce";
+"general_delete" = "Odstranit";
 /* General - DayOfWeek */
 "monday" = "Pondělí";
 "tuesday" = "Útery";
@@ -369,6 +377,8 @@
 "switch_detail_state_label_for_timer" = "Stav do hod. %@:";
 "switch_detail_state_on" = "zapnutý";
 "switch_detail_state_off" = "vypnutý";
+"overcurrent_warning" = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení.";
+"overcurrent_question" = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení. Jste si jisti, že chcete zapnout napájení?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas musí být větší než 0";
@@ -557,6 +567,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";
+"valve_warning_manually_closed_short" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.";
 
 /* State */
 "state_channel_id" = "Id kanálu";
@@ -577,3 +588,7 @@
 "change_caption_channel_name" = "Název kanálu";
 "change_caption_scene_name" = "Název scény";
 "change_caption_location_name" = "Název umístění";
+
+/* Car play */
+"car_play_action" = "Akce: %@";
+"car_play_display_name" = "Název";

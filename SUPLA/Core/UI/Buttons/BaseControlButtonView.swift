@@ -56,8 +56,6 @@ class BaseControlButtonView: UIView {
             case .suplaIcon(let icon):
                 iconView.image = .init(named: icon)?.withRenderingMode(.alwaysTemplate)
                 iconView.tintColor = iconColor
-            case .userIcon(let icon):
-                iconView.image = icon
             default:
                 iconView.image = icon?.uiImage
             }
@@ -168,6 +166,7 @@ class BaseControlButtonView: UIView {
 
         layer.cornerRadius = height / 2
 
+        
         BaseControlButtonView.setupLayer(layer)
 
         addSubview(innerShadowView)
@@ -286,18 +285,21 @@ class BaseControlButtonView: UIView {
     }
 
     static func setupLayer(_ layer: CALayer) {
-        layer.backgroundColor = UIColor.surface.cgColor
-
         ShadowValues.apply(toButton: layer)
-
-        layer.borderColor = UIColor.disabled.cgColor
+        
+        UIApplication.traitCollection.performAsCurrent {
+            layer.backgroundColor = UIColor.surface.cgColor
+            layer.borderColor = UIColor.disabled.cgColor
+        }
         layer.borderWidth = 1
     }
 
     static func setupPressedLayer(_ layer: CALayer, _ type: ButtonType) {
         layer.shadowRadius = 6
-        layer.shadowColor = type.pressedColor.cgColor
-        layer.borderColor = type.pressedColor.cgColor
+        UIApplication.traitCollection.performAsCurrent {
+            layer.shadowColor = type.pressedColor.cgColor
+            layer.borderColor = type.pressedColor.cgColor
+        }
     }
 }
 

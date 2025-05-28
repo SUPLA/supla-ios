@@ -147,4 +147,20 @@ extension XCTestCase {
         
         XCTFail("Time is up!")
     }
+    
+    func XCTAssertTuple(_ first: Mirror, _ second: String) {
+        let firstArray = Array(first.children)
+        let secondArray = Array(second)
+        for letterIndex in 0..<second.count {
+            XCTAssertEqual(UInt8(firstArray[letterIndex].value as! Int8), secondArray[letterIndex].asciiValue!)
+        }
+    }
+    
+    func XCTAssertTupleHex(_ first: Mirror, _ second: String) {
+        let firstArray = Array(first.children)
+        let secondArray = Array(second.data(using: .utf8)!.map { String(format: "%02.2hhx", $0) }.joined())
+        for letterIndex in 0..<second.count {
+            XCTAssertEqual(UInt8(firstArray[letterIndex].value as! Int8), secondArray[letterIndex].asciiValue!)
+        }
+    }
 }

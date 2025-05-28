@@ -22,7 +22,7 @@ final class LightSwitchIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_LIGHTSWITCH
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         addStateSuffix(name: switchIcon(iconData.altIcon), state: iconData.state)
     }
     

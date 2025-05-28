@@ -80,24 +80,6 @@ class CacheFileAccessProxyImpl: CacheFileAccessProxy {
     }
 }
 
-extension URL {
-    func appendFilename(_ name: String) -> URL {
-        if #available(iOS 16.0, *) {
-            appending(path: name, directoryHint: .notDirectory)
-        } else {
-            appendingPathComponent(name)
-        }
-    }
-    
-    func appendDirname(_ name: String) -> URL {
-        if #available(iOS 16.0, *) {
-            appending(path: name, directoryHint: .isDirectory)
-        } else {
-            appendingPathComponent(name)
-        }
-    }
-}
-
 extension CacheFileAccessFile {
     func file(_ cacheUrl: URL) -> URL {
         if let dirname = directory {

@@ -22,7 +22,7 @@ final class ContainerIconNameProducer: IconNameProducer {
         function == SUPLA_CHANNELFNC_CONTAINER
     }
 
-    func produce(iconData: IconData) -> String {
+    func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
         case 1: addStateSuffix(name: .Icons.fncContainer1, state: iconData.state)
         case 2: addStateSuffix(name: .Icons.fncContainer2, state: iconData.state)

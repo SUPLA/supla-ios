@@ -48,6 +48,9 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToCarPlayList()
+    func navigateToCarPlayAdd()
+    func navigateToCarPlayEdit(id: NSManagedObjectID)
     
     func popToStatus()
     
@@ -85,18 +88,23 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         stateDisposable = stateHolder.state()
             .subscribe(on: schedulers.background)
             .observe(on: schedulers.main)
-            .subscribe(onNext: {
-                switch ($0) {
-                case .initialization, .connecting(_), .finished:
-                    self.navigateToStatusView()
-                case .locked:
-                    self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
-                    self.popToViewController(ofClass: StatusFeature.ViewController.self)
-                    self.navigateToLockScreen(unlockAction: .authorizeApplication)
-                default:
-                    break
+            .subscribe(
+                onNext: {
+                    switch ($0) {
+                    case .initialization, .connecting(_), .finished:
+                        self.navigateToStatusView()
+                    case .locked:
+                        self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
+                        self.popToViewController(ofClass: StatusFeature.ViewController.self)
+                        self.navigateToLockScreen(unlockAction: .authorizeApplication)
+                    default:
+                        break
+                    }
+                },
+                onError: {
+                    SALog.error("Failed by handling app state: \(String(describing: $0))")
                 }
-            })
+            )
     }
     
     func currentController() -> UIViewController? {
@@ -232,6 +240,18 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToCounterPhoto(channelId: Int32) {
         navigateTo(CounterPhotoFeature.ViewController.create(channelId: channelId))
+    }
+    
+    func navigateToCarPlayList() {
+        navigateTo(CarPlayListFeature.ViewController.create())
+    }
+    
+    func navigateToCarPlayAdd() {
+        navigateTo(CarPlayAddFeature.ViewController.create())
+    }
+    
+    func navigateToCarPlayEdit(id: NSManagedObjectID) {
+        navigateTo(CarPlayAddFeature.ViewController.create(id: id))
     }
     
     func popToStatus() {

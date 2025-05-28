@@ -18,7 +18,7 @@
 
 import Foundation
 
-class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelListViewEvent> {
+class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListViewEvent> {
     @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
     @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
     @Singleton<ProvideChannelDetailTypeUseCase> private var provideDetailTypeUseCase
@@ -26,6 +26,9 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    
+    var channelListViewState = ChannelListViewState()
+    var presentationCallback: ((Bool) -> Void)? = nil
     
     override init() {
         super.init()
@@ -37,12 +40,14 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             .disposed(by: self)
     }
     
-    override func defaultViewState() -> ChannelListViewState { ChannelListViewState() }
-    
+    override func defaultViewState() -> ChannelListState { ChannelListState() }
     
     override func reloadTable() {
         createProfileChannelsListUseCase.invoke()
-            .subscribe(onNext: { self.listItems.accept($0) })
+            .subscribe(
+                onNext: { self.listItems.accept($0) },
+                onError: { SALog.error("Creating channels list failed with error: \(String(describing: $0))") }
+            )
             .disposed(by: self)
     }
     
@@ -73,31 +78,18 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] result in
+                        let remoteId = channelWithChildren.remoteId
                         switch result {
                         case .valveFlooding:
-                            self?.send(event: .showValveWarningDialog(
-                                remoteId: channelWithChildren.remoteId,
-                                message: Strings.Valve.warningFlooding,
-                                action: .open
-                            ))
+                            self?.showAlertDialog(Strings.Valve.warningFlooding, remoteId, .open)
                         case .valveManuallyClosed:
-                            self?.send(event: .showValveWarningDialog(
-                                remoteId: channelWithChildren.remoteId,
-                                message: Strings.Valve.warningManuallyClosed,
-                                action: .open
-                            ))
+                            self?.showAlertDialog(Strings.Valve.warningManuallyClosed, remoteId, .open)
                         case .valveMotorProblemOpening:
-                            self?.send(event: .showValveWarningDialog(
-                                remoteId: channelWithChildren.remoteId,
-                                message: Strings.Valve.warningMotorProblemOpening,
-                                action: .open
-                            ))
+                            self?.showAlertDialog(Strings.Valve.warningMotorProblemOpening, remoteId, .open)
                         case .valveMotorProblemClosing:
-                            self?.send(event: .showValveWarningDialog(
-                                remoteId: channelWithChildren.remoteId,
-                                message: Strings.Valve.warningMotorProblemClosing,
-                                action: .close
-                            ))
+                            self?.showAlertDialog(Strings.Valve.warningMotorProblemClosing, remoteId, .close)
+                        case .overcurrentRelayOff:
+                            self?.showAlertDialog(Strings.SwitchDetail.overcurrentQuestion, remoteId, .turnOn)
                         case .success: break // Nothing to do
                         }
                     }
@@ -106,15 +98,27 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         }
     }
     
+    func dismissAlertDialog() {
+        if let callback = presentationCallback { callback(false) }
+        channelListViewState.alertDialogState = nil
+    }
+    
+    func showAlert(_ message: String) {
+        showAlertDialog(message, positiveButtonText: Strings.General.ok, negativeButtonText: nil)
+    }
+    
     func onNoContentButtonClicked() {
         send(event: .showAddWizard)
     }
     
-    func forceAction(_ action: Action, remoteId: Int32) {
-        executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
-            .asDriverWithoutError()
-            .drive()
-            .disposed(by: self)
+    func forceAction(_ action: Action?, remoteId: Int32?) {
+        dismissAlertDialog()
+        if let action, let remoteId {
+            executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: self)
+        }
     }
     
     private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
@@ -154,6 +158,24 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             send(event: .navigateToContainerDetail(item: channel.item(), pages: pages))
         }
     }
+    
+    private func showAlertDialog(
+        _ message: String,
+        _ remoteId: Int32? = nil,
+        _ action: Action? = nil,
+        positiveButtonText: String? = Strings.General.yes,
+        negativeButtonText: String? = Strings.General.no
+    ) {
+        if let callback = presentationCallback { callback(true) }
+        
+        channelListViewState.alertDialogState = ChannelListAlertDialogState(
+            message: message,
+            remoteId: remoteId,
+            action: action,
+            positiveButtonText: positiveButtonText,
+            negativeButtonText: negativeButtonText
+        )
+    }
 }
 
 enum ChannelListViewEvent: ViewEvent {
@@ -169,9 +191,8 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
-    case showValveWarningDialog(remoteId: Int32, message: String, action: Action)
 }
 
-struct ChannelListViewState: ViewState {
+struct ChannelListState: ViewState {
     var overlayHidden: Bool = true
 }

@@ -272,8 +272,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=es";
 
-"Scenes.ActionButtons.execute" = "Ejecutar";
-"Scenes.ActionButtons.abort" = "Anular";
+"scenes_action_buttons_execute" = "Ejecutar";
+"scenes_action_buttons_abort" = "Anular";
+"scenes_action_buttons_abort_and_execute" = "Ejecutar y anular";
 
 "Cfg.removal.dialog.missing_name" = "Introducir el nombre de cuenta";
 "Cfg.removal.dialog.duplicated_name" = "La cuenta con este nombre ya existe";
@@ -291,6 +292,13 @@
 "turn_off" = "Desactivar";
 "save" = "Guardar";
 "general_function" = "Función";
+"general_toggle" = "Cambiar";
+"general_channel" = "Canal";
+"general_group" = "Grupo";
+"general_scene" = "Escena";
+"general_profile" = "Cuenta";
+"general_action" = "Acción";
+"general_delete" = "Borrar";
 /* General - DayOfWeek */
 "monday" = "Lunes";
 "tuesday" = "Martes";
@@ -371,6 +379,8 @@
 "switch_detail_state_label_for_timer" = "Estado hasta las %@:";
 "switch_detail_state_on" = "encendido";
 "switch_detail_state_off" = "apagado";
+"overcurrent_warning" = "La alimentación se desactivo al superar el umbral establecido de corriente permitida.";
+"overcurrent_question" = "La alimentación se desactivo al superar el umbral establecido de corriente permitida. ¿Estás seguro de que deseas encenderlo?";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "La hora debe ser mayor que 0";
@@ -557,6 +567,7 @@
 
 /* Valve */
 "valve_warning_manually_closed" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente. ¿Estás seguro de que quieres abrir la válvula desde la aplicación?";
+"valve_warning_manually_closed_short" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente.";
 
 /* State */
 "state_channel_id" = "ID del Canal";
@@ -577,3 +588,7 @@
 "change_caption_channel_name" = "Nombre del canal";
 "change_caption_scene_name" = "Nombre de la escena";
 "change_caption_location_name" = "Nombre de la localización";
+
+/* Car play */
+"car_play_action" = "Acción: %@";
+"car_play_display_name" = "Nombre";

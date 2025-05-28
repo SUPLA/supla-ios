@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 import Foundation
 
 struct Strings {
@@ -151,8 +150,9 @@ struct Strings {
     
     struct Scenes {
         struct ActionButtons {
-            static let execute = "Scenes.ActionButtons.execute".toLocalized()
-            static let abort = "Scenes.ActionButtons.abort".toLocalized()
+            static let execute = "scenes_action_buttons_execute".toLocalized()
+            static let abort = "scenes_action_buttons_abort".toLocalized()
+            static let abortAndExecute = "scenes_action_buttons_abort_and_execute".toLocalized()
         }
         static let emptyListButton = "scenes_empty_list_button".toLocalized()
     }
@@ -186,6 +186,8 @@ struct Strings {
         static let stateOn = "switch_detail_state_on".toLocalized()
         static let stateOff = "switch_detail_state_off".toLocalized()
         static let stateOffline = "switch_detail_state_offline".toLocalized()
+        static let overcurrentWarning = "overcurrent_warning".toLocalized()
+        static let overcurrentQuestion = "overcurrent_question".toLocalized()
     }
     
     struct TimerDetail {
@@ -284,10 +286,11 @@ struct Strings {
         static let reveal = "general_reveal".toLocalized()
         static let collapse = "general_collapse".toLocalized()
         static let expand = "general_expand".toLocalized()
+        static let stop = "general_stop".toLocalized()
+        static let toggle = "general_toggle".toLocalized()
         static let save = "save".toLocalized()
         static let stateOpened = "general_state_opened".toLocalized()
         static let stateClosed = "general_state_closed".toLocalized()
-        static let function = "general_function".toLocalized()
         
         static let hourFormat = "general_hour_format".toLocalized()
         
@@ -300,6 +303,7 @@ struct Strings {
         static let no = NSLocalizedString("No", comment: "")
         static let turnOn = "turn_on".toLocalized()
         static let turnOff = "turn_off".toLocalized()
+        static let delete = "general_delete".toLocalized()
         
         static let monday = "monday".toLocalized()
         static let tuesday = "tuesday".toLocalized()
@@ -321,6 +325,16 @@ struct Strings {
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
         
         static let channelOffline = "channel_offline".toLocalized()
+        static let channelNotFound = "channel_not_found".toLocalized()
+        static let sceneInactive = "scene_inactive".toLocalized()
+        
+        static let channel = "general_channel".toLocalized()
+        static let group = "general_group".toLocalized()
+        static let scene = "general_scene".toLocalized()
+        static let function = "general_function".toLocalized()
+        static let profile = "general_profile".toLocalized()
+        static let action = "general_action".toLocalized()
+        static let select = "general_select".toLocalized()
         
         struct Channel {
             static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
@@ -551,6 +565,33 @@ struct Strings {
         static let alarmLevel = "container_alarm_level".toLocalized()
         static let invalidSensorState = "container_invalid_sensor_state".toLocalized()
         static let soundAlarm = "container_sound_alarm".toLocalized()
+    }
+    
+    struct CarPlay {
+        static let label = "car_play_label".toLocalized()
+        static let voiceMessages = "car_play_voice_messages".toLocalized()
+        static let action = "car_play_action".toLocalized()
+        static let displayName = "car_play_display_name".toLocalized()
+        static let executionError = "car_play_execution_error".toLocalized()
+        static let executing = "car_play_executing".toLocalized()
+        static let deleteTitle = "car_play_delete_title".toLocalized()
+        static let deleteMessage = "car_play_delete_message".toLocalized()
+        static let confirmDelete = "car_play_confirm_delete".toLocalized()
+    }
+    
+    struct Widget {
+        static let emptyHint = "widget_empty_hint".toLocalized()
+        static let controlHint = "widget_control_hint".toLocalized()
+        static var actionsName = "widgets_actions_name".toLocalized()
+        static let actionsDescription = "widgets_actions_description".toLocalized()
+        static let unknownAction = "widgets_unknown_action".toLocalized()
+        static let valueTitle = "widgets_value_title".toLocalized()
+        static let valueDescription = "widgets_value_description".toLocalized()
+        static let configurationError = "widget_configuration_error".toLocalized()
+        static let singleActionTitle = "widgets_single_action_title".toLocalized()
+        static let singleActionDescription = "widgets_single_action_description".toLocalized()
+        static let doubleActionTitle = "widgets_double_action_title".toLocalized()
+        static let doubleActionDescription = "widgets_double_action_description".toLocalized()
     }
 }
 

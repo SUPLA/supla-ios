@@ -50,7 +50,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 @class SAChannelValue;
 @class SAColorListItem;
 @class SAChannelGroup;
-@class SAUserIcon;
 @class SAChannelBase;
 @interface SADatabase :NSObject
 

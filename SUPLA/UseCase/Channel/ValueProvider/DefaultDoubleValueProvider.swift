@@ -27,7 +27,7 @@ class DefaultDoubleValueProvider: ChannelValueProvider, DoubleValueParser {
     }
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
-        asDoubleValue(channel.value) ?? unknownValue
+        asDoubleValue(channel.value?.dataValue()) ?? unknownValue
     }
 }
 

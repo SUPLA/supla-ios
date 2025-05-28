@@ -16,43 +16,28 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxSwift
 @testable import SUPLA
 import XCTest
-import RxSwift
 
 final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
+    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
+    private lazy var singleCall: SingleCallMock! = SingleCallMock()
     
-    private lazy var singleCall: SingleCallMock! = {
-        SingleCallMock()
-    }()
+    private lazy var deleteAllProfileDataUseCase: DeleteAllProfileDataUseCaseMock! = DeleteAllProfileDataUseCaseMock()
     
-    private lazy var deleteAllProfileDataUseCase: DeleteAllProfileDataUseCaseMock! = {
-        DeleteAllProfileDataUseCaseMock()
-    }()
+    private lazy var activateProfileUseCase: ActivateProfileUseCaseMock! = ActivateProfileUseCaseMock()
     
-    private lazy var activateProfileUseCase: ActivateProfileUseCaseMock! = {
-        ActivateProfileUseCaseMock()
-    }()
+    private lazy var runtimeConfig: RuntimeConfigMock! = RuntimeConfigMock()
     
-    private lazy var runtimeConfig: RuntimeConfigMock! = {
-        RuntimeConfigMock()
-    }()
-    
-    private lazy var settings: GlobalSettingsMock! = {
-        GlobalSettingsMock()
-    }()
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     
     private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
     
     private lazy var suplaAppStateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     
-    private lazy var useCase: DeleteProfileUseCase! = {
-        DeleteProfileUseCaseImpl()
-    }()
+    private lazy var useCase: DeleteProfileUseCase! = DeleteProfileUseCaseImpl()
     
     override func setUp() {
         super.setUp()

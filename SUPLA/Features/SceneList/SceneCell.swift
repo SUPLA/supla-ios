@@ -23,6 +23,7 @@ import RxSwift
 final class SceneCell: BaseCell<SAScene> {
     
     @Singleton<GlobalSettings> private var settings
+    @Singleton<GetSceneIconUseCase> private var getSceneIconUseCase
     
     private lazy var sceneIconView: UIImageView = {
         let view = UIImageView()
@@ -89,21 +90,7 @@ final class SceneCell: BaseCell<SAScene> {
         super.updateContent(data: data)
         
         caption = data.caption ?? "" 
-        
-        if data.usericon_id != 0 {
-            let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
-            
-            if let imageData = data.usericon?.getIcon(.icon1, darkMode: darkMode) as? Data {
-                sceneIconView.image = UIImage(data: imageData as Data)
-            } else {
-                sceneIconView.image = UIImage(named: "scene_0")
-            }
-        } else if data.alticon < 20 {
-            sceneIconView.image = UIImage(named: "scene_\(data.alticon)")
-        } else {
-            sceneIconView.image = UIImage(named: "scene_0")
-        }
-        
+        sceneIconView.image = getSceneIconUseCase.invoke(data).uiImage
         setActive(data.estimatedEndDate != nil)
     }
     

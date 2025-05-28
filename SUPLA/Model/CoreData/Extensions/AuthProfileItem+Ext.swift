@@ -97,4 +97,48 @@ extension AuthProfileItem {
         }
     }
     
+    var authorizationEntity: SingleCallAuthorizationEntity {
+        let authorizationData: SingleCallAuthorizationData = switch (authorizationType) {
+        case .email: .email(email: email ?? "")
+        case .accessId: .accessId(id: accessId, password: accessIdPassword ?? "")
+        }
+        
+        return SingleCallAuthorizationEntity(
+            profileId: id,
+            data: authorizationData,
+            serverAddress: server?.address ?? "",
+            preferredProtocolVersion: preferredProtocolVersion
+        )
+    }
+    
+    @objc
+    var authDetails: TCS_ClientAuthorizationDetails {
+        authorizationEntity.authDetails
+    }
+    
+    @objc
+    func token(_ tokenData: Data?) -> TCS_PnClientToken {
+        var token = TCS_PnClientToken()
+        token.AppId = SINGLE_CALL_APP_ID
+        token.Platform = PLATFORM_IOS
+#if DEBUG
+        token.DevelopmentEnv = 1;
+#endif
+        if let tokenData {
+            let tokenString = tokenData.map { String(format: "%02.2hhx", $0) }.joined()
+            withUnsafeMutablePointer(to: &token.Token.0) { ptr in
+                tokenString.utf8StringToBuffer(ptr, withSize: Int(SUPLA_PN_CLIENT_TOKEN_MAXSIZE))
+            }
+            withUnsafeMutablePointer(to: &token.ProfileName.0) { ptr in
+                displayName.utf8StringToBuffer(ptr, withSize: Int(SUPLA_PN_PROFILE_NAME_MAXSIZE))
+            }
+            
+            // One more because of \0 character at string end
+            let realSize = tokenString.count + 1
+            token.TokenSize = UInt16(min(realSize, Int(SUPLA_PN_CLIENT_TOKEN_MAXSIZE)))
+            token.RealTokenSize = UInt16(realSize)
+        }
+        
+        return token
+    }
 }

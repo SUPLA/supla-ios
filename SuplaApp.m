@@ -20,7 +20,6 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "NSData+AES.h"
-#import "SAKeychain.h"
 #import "SASuperuserAuthorizationDialog.h"
 #import "NSNumber+SUPLA.h"
 #import "SUPLA-Swift.h"
@@ -159,7 +158,7 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
             
             if (!keychainStored) {
                 [SAKeychain deleteObjectWithKey:pref_key];
-                if ([SAKeychain addObject:data withKey:pref_key]) {
+                if ([SAKeychain add:data withKey:pref_key]) {
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_keychain", pref_key]];
                 }
             }

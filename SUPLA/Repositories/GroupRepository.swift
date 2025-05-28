@@ -21,18 +21,24 @@ import RxSwift
 
 protocol GroupRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater where T == SAChannelGroup {
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
+    func getAllVisibleGroups(forProfileId profileId: Int32) -> Observable<[SAChannelGroup]>
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]>
+    func getAllGroups() -> Observable<[SAChannelGroup]>
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
 }
 
 class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
+        getAllVisibleGroups(forProfileId: profile.id)
+    }
+    
+    func getAllVisibleGroups(forProfileId profileId: Int32) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id = %d", profileId))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -70,6 +76,10 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
         return query(request)
     }
     
+    func getAllGroups() -> Observable<[SAChannelGroup]> {
+        return query(SAChannelGroup.fetchRequest().ordered(by: "remote_id"))
+    }
+    
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {
         queryItem(NSPredicate(format: "remote_id = %d AND profile = %@", remoteId, profile))
             .compactMap { $0 }
@@ -79,15 +89,15 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
         deleteAll(SAChannelGroup.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
     
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]> {
         let request = SAChannelGroup.fetchRequest()
             .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "usericon_id")
         
         return query(request)
             .map { groups in
-                var resultSet: Set<Int32> = []
-                groups.forEach { resultSet.insert($0.usericon_id) }
+                var resultSet: Set<UserIconData> = []
+                groups.forEach { resultSet.insert(.groupIconData($0.usericon_id, groupId: $0.remote_id)) }
                 return Array(resultSet)
             }
     }

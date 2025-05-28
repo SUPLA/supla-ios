@@ -264,8 +264,9 @@
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=de";
 
-"Scenes.ActionButtons.execute" = "Ausführen";
-"Scenes.ActionButtons.abort" = "Abbrechen";
+"scenes_action_buttons_execute" = "Ausführen";
+"scenes_action_buttons_abort" = "Abbrechen";
+"scenes_action_buttons_abort_and_execute" = "Abbrechen und ausführen";
 
 "Cfg.removal.title" = "Das Konto löschen?";
 "Cfg.removal.action.logout" = "Vergiss auf diesem Gerät";
@@ -283,9 +284,20 @@
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
 "time_hours_and_minutes" = "%d Std. %d Min.";
+"general_shut" = "Verhüllen";
+"general_reveal" = "Enthüllen";
+"general_collapse" = "Einklappen";
+"general_expand" = "Ausklappen";
 "general_state_opened" = "geöffnet";
 "general_state_closed" = "geschloßen";
 "general_function" = "Funktion";
+"general_toggle" = "Umschalten";
+"general_channel" = "Kanal";
+"general_group" = "Gruppe";
+"general_scene" = "Szene";
+"general_profile" = "Konto";
+"general_action" = "Aktion";
+"general_delete" = "Löschen";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -307,6 +319,8 @@
 "channel_caption_container_level_sensor" = "Behälterfüllstandssensor";
 "channel_caption_flood_sensor" = "Flutsensor";
 "channel_offline" = "Das Kanal ist offline";
+"channel_not_found" = "Kanal nicht gefunden";
+"scene_inactive" = "Szene ist nicht active";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
 /* General - Channel status */
 "channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
@@ -355,6 +369,8 @@
 "switch_detail_state_label_for_timer" = "Zustand bis zum %@ Uhr:";
 "switch_detail_state_on" = "eingeschaltet";
 "switch_detail_state_off" = "ausgeschaltet";
+"overcurrent_warning" = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet.";
+"overcurrent_question" = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet. Möchten Sie wirklich die Versorgung einschalten?";
 
 /* Timer Detail */
 "timer_detail_header" = "Bestimmen Sie bitte die Zeit, zu der das Gerät ein- oder ausgeschaltet werden sollte";
@@ -620,3 +636,32 @@
 "container_alarm_level" = "Behälterfüllstandsalarm!";
 "container_invalid_sensor_state" = "Ungültiger Sensorzustand";
 "container_sound_alarm" = "Akustischer Alarm aktiv";
+
+/* Car play */
+"car_play_voice_messages" = "Nachrichten abspielen";
+"car_play_action" = "Aktion: %@";
+"car_play_display_name" = "Anzeigename";
+"car_play_execution_error" = "Das Ausführen ist fehlgeschlagen (Fehlercode: %d)";
+"car_play_executing" = "Ausführen...";
+"car_play_delete_title" = "Eintrag löschen";
+"car_play_delete_message" = "Wollen Sie fortfahren?";
+"car_play_confirm_delete" = "Löschen";
+
+/* Widgets */
+"widget_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets und definieren Sie die Aktionen.";
+"widgets_control_title" = "Steuertaste";
+"widgets_control_description" = "Eine Schaltfläche, mit der Sie eine einzelne vordefinierte Aktion auslösen können";
+"widgets_selected_action" = "Ausgewählte Aktion";
+"widget_control_hint" = "Durchführung der Aktion";
+"widgets_actions_name" = "Aktionen";
+"widgets_actions_description" = "Erleichtert den Zugriff auf die am häufigsten verwendeten Aktivitäten";
+"widgets_unknown_action" = "Unbekannte Aktion!";
+"widgets_value_title" = "Schnellansicht";
+"widgets_value_description" = "Ein Widget, mit dem Sie schnell den aktuellen Wert eines Kanals ansehen können.";
+"widget_configuration_error" = "Die Widget-Konfiguration ist ungültig.";
+"widgets_single_action_title" = "Einzelne Aktion";
+"widgets_single_action_description" = "Erleichtert den Zugriff auf die einzelne Aktivität.";
+"widgets_single_action_title" = "Doppelaktion";
+"widgets_single_action_description" = "Vereinfacht den Zugriff auf zwei Aktionen.";
+"widgets_first_action" = "Erste Aktion";
+"widgets_second_action" = "Zweite Aktion";

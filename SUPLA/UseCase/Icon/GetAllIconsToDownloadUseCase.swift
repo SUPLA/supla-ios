@@ -18,59 +18,40 @@
 
 import RxSwift
 
-final class GetAllIconsToDownloadUseCase {
+struct GetAllIconsToDownload {
+    protocol UseCase {
+        func invoke() -> Observable<[UserIconData]>
+    }
     
-    @Singleton<UserIconRepository> private var userIconRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<GroupRepository> private var groupRepository
-    @Singleton<SceneRepository> private var sceneRepository
-    
-    @available(*, deprecated, message: "Only for legacy code")
-    func invoke() -> [Int32] {
-        do {
-            let downloadedIcons = try profileRepository.getActiveProfile()
-                .flatMapFirst { self.userIconRepository.getDownloadedIconIds(for: $0 )}
-                .toBlocking()
-                .first()
-
-            guard let downloadedIcons = downloadedIcons
-            else { return [] }
-
-            
-            let channelIcons = try profileRepository.getActiveProfile()
-                .flatMapFirst { self.channelRepository.getAllIconIds(for: $0 )}
-                .toBlocking()
-                .first()
-            let groupIcons = try profileRepository.getActiveProfile()
-                .flatMapFirst { self.groupRepository.getAllIconIds(for: $0 )}
-                .toBlocking()
-                .first()
-            let sceneIcons = try profileRepository.getActiveProfile()
-                .flatMapFirst { self.sceneRepository.getAllIconIds(for: $0 )}
-                .toBlocking()
-                .first()
-            
-            var result: Set<Int32> = []
-            channelIcons?.forEach { icon in
-                if (!downloadedIcons.contains(icon)) {
-                    result.insert(icon)
+    final class Implementation: UseCase {
+        @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<ChannelRepository> private var channelRepository
+        @Singleton<GroupRepository> private var groupRepository
+        @Singleton<SceneRepository> private var sceneRepository
+        @Singleton<UserIcons.UseCase> private var userIconsUseCase
+        
+        func invoke() -> Observable<[UserIconData]> {
+            profileRepository.getActiveProfile()
+                .flatMapFirst { profile in
+                    Observable.zip(
+                        self.channelRepository.getAllIcons(for: profile),
+                        self.groupRepository.getAllIcons(for: profile),
+                        self.sceneRepository.getAllIcons(for: profile)
+                    ) { channelIcons, groupIcons, sceneIcons in
+                        channelIcons + groupIcons + sceneIcons
+                    }
+                    .map { allIconIds in
+                        let downloadedIcons = self.userIconsUseCase.existingIconIds(profileId: profile.id)
+                        
+                        var result: Set<UserIconData> = []
+                        allIconIds.forEach {
+                            if (!downloadedIcons.contains($0.id)) {
+                                result.insert($0)
+                            }
+                        }
+                        return Array(result)
+                    }
                 }
-            }
-            groupIcons?.forEach { icon in
-                if (!downloadedIcons.contains(icon)) {
-                    result.insert(icon)
-                }
-            }
-            sceneIcons?.forEach { icon in
-                if (!downloadedIcons.contains(icon)) {
-                    result.insert(icon)
-                }
-            }
-            
-            return Array(result)
-        } catch {
-            return []
         }
     }
 }

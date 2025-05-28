@@ -22,22 +22,28 @@ import RxSwift
 
 protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
+    func getAllVisibleChannels(forProfileId profileId: Int32) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
+    func getAllChannels() -> Observable<[SAChannel]>
     func getChannel(_ remoteId: Int32) -> Observable<SAChannel>
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
     func getHiddenChannelsSync() -> [SAChannel]
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
+        getAllVisibleChannels(forProfileId: profile.id)
+    }
+    
+    func getAllVisibleChannels(forProfileId profileId: Int32) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id = %d", profileId))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -75,6 +81,10 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         return query(request)
     }
     
+    func getAllChannels() -> Observable<[SAChannel]> {
+        return query(SAChannel.fetchRequest().ordered(by: "remote_id"))
+    }
+    
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "profile = %@ && remote_id IN %@", profile, ids))
@@ -101,15 +111,15 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         deleteAll(SAChannel.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
     
-    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+    func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "usericon_id")
         
         return query(request)
             .map { channels in
-                var resultSet: Set<Int32> = []
-                channels.forEach { resultSet.insert($0.usericon_id) }
+                var resultSet: Set<UserIconData> = []
+                channels.forEach { resultSet.insert(.channelIconData($0.usericon_id, channelId: $0.remote_id)) }
                 return Array(resultSet)
             }
     }

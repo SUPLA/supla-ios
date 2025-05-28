@@ -20,7 +20,7 @@ import SwiftUI
 import SharedCore
 
 protocol GetChannelBaseIconUseCase {
-    func invoke(iconData: IconData) -> IconResult
+    func invoke(iconData: FetchIconData) -> IconResult
 }
 
 extension GetChannelBaseIconUseCase {
@@ -31,106 +31,80 @@ extension GetChannelBaseIconUseCase {
     ) -> IconResult {
         return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction))
     }
+
+    func stateIcon(_ channelBase: SAChannelBase, state: ChannelState) -> IconResult {
+        if let channel = channelBase as? SAChannel {
+            let subfunction = channel.isHvacThermostat().ifTrue { channel.value?.asThermostatValue().subfunction }
+            let iconData = channel.getIconData(state: state, subfunction: subfunction)
+
+            return invoke(iconData: iconData)
+        }
+
+        if let group = channelBase as? SAChannelGroup {
+            return invoke(iconData: group.getIconData(state: state))
+        }
+
+        return .suplaIcon(name: .Icons.fncUnknown)
+    }
 }
 
 final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     @Singleton<GetDefaultIconNameUseCase> private var getDefaultIconNameUseCase
     @Singleton<GlobalSettings> private var settings
+    @Singleton<UserIcons.UseCase> private var iconPathsUseCase
 
-    func invoke(iconData: IconData) -> IconResult {
+    func invoke(iconData: FetchIconData) -> IconResult {
         if (iconData.type != .single && iconData.function != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             // Currently only humidity and temperature may have multiple icons
             fatalError("Wrong icon configuration (iconType: '\(iconData.type)', function: '\(iconData.function)'")
         }
-
-        if let icon = getUserIcon(iconData.function, iconData.userIcon, iconData.state, iconData.type, iconData.subfunction) {
-            return .userIcon(icon: icon)
-        }
-
+        
         let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
+        
+        if (iconData.userIconId != 0){
+            return .userIcon(profileId: iconData.profileId, iconId: iconData.userIconId, type: getIcon(iconData), defaultName: name)
+        }
 
         return .suplaIcon(name: name)
     }
 
-    private func getUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType, _ subfunction: ThermostatSubfunction?) -> UIImage? {
-        if let data = findUserIcon(function, userIcon, channelState, iconType, subfunction) as? Data {
-            return UIImage(data: data)
-        }
-
-        return nil
-    }
-
-    private func findUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType, _ subfunction: ThermostatSubfunction?) -> NSObject? {
-        let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
-
-        switch (function) {
+    private func getIcon(_ iconData: FetchIconData) -> UserIcon {
+        switch (iconData.function) {
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return iconType == .second ? userIcon?.getIcon(.icon1, darkMode: darkMode) : userIcon?.getIcon(.icon2, darkMode: darkMode)
-        case SUPLA_CHANNELFNC_THERMOMETER:
-            return userIcon?.getIcon(.icon1, darkMode: darkMode)
+            iconData.type == .second ? .icon1 : .icon2
+        case SUPLA_CHANNELFNC_THERMOMETER: .icon1
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
              SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            if (channelState == .closed) {
-                return userIcon?.getIcon(.icon2, darkMode: darkMode)
-            } else if (channelState == .partialyOpened) {
-                return userIcon?.getIcon(.icon3, darkMode: darkMode)
+            if (iconData.state == .closed) {
+                .icon2
+            } else if (iconData.state == .partialyOpened) {
+                .icon3
             } else {
-                return userIcon?.getIcon(.icon1, darkMode: darkMode)
+                .icon1
             }
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
-            if (subfunction == nil || subfunction == .heat) {
-                return userIcon?.getIcon(.icon1, darkMode: darkMode)
-            } else {
-                return userIcon?.getIcon(.icon2, darkMode: darkMode)
-            }
+            iconData.subfunction == .cool ? .icon2 : .icon1
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            switch (channelState) {
+            switch (iconData.state) {
             case .complex(let states):
                 switch (states) {
                 case [.off, .off]:
-                    return userIcon?.getIcon(.icon1, darkMode: darkMode)
+                        .icon1
                 case [.on, .off]:
-                    return userIcon?.getIcon(.icon2, darkMode: darkMode)
+                        .icon2
                 case [.off, .on]:
-                    return userIcon?.getIcon(.icon3, darkMode: darkMode)
+                        .icon3
                 case [.on, .on]:
-                    return userIcon?.getIcon(.icon4, darkMode: darkMode)
+                        .icon4
                 default:
-                    return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
+                    iconData.state.isActive() ? .icon2 : .icon1
                 }
             default:
-                return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
+                iconData.state.isActive() ? .icon2 : .icon1
             }
         default:
-            return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
-        }
-    }
-}
-
-enum IconResult: Equatable {
-    case suplaIcon(name: String)
-    case userIcon(icon: UIImage?)
-}
-
-extension IconResult {
-    var uiImage: UIImage? {
-        switch (self) {
-        case .suplaIcon(let name): return .init(named: name)
-        case .userIcon(let icon): return icon
-        }
-    }
-    
-    var image: Image {
-        switch (self) {
-        case .suplaIcon(let name):
-            Image(name)
-        case .userIcon(let icon):
-            if let icon = icon {
-                Image(uiImage: icon)
-            } else {
-                Image(.Icons.fncUnknown)
-            }
+            iconData.state.isActive() ? .icon2 : .icon1
         }
     }
 }

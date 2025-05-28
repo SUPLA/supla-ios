@@ -28,8 +28,10 @@ extension Color {
         
         static let background = Color(UIColor.background)
         static let surface = Color(UIColor.surface)
+        static let surfaceVariant = Color(UIColor.surfaceVariant)
         
         static let primaryContainer = Color(UIColor.primaryContainer)
+        static let secondaryContainer = Color(UIColor.secondaryContainer)
         
         static let onBackground = Color(UIColor.onBackground)
         static let onPrimary = Color(UIColor.onPrimary)
