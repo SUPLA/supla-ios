@@ -42,8 +42,8 @@ extension DiContainer {
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(BuildInfo.self, BuildInfoImpl())
         
+        register(GroupShared.Settings.self, GroupShared.Implementation())
         if #available(iOS 17.0, *) {
-            register(GroupShared.Settings.self, GroupShared.Implementation())
             register(ExportCarPlayItems.UseCase.self, ExportCarPlayItems.Implementation())
         }
         
