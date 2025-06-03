@@ -70,7 +70,7 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "remote_id")
         
         return query(request)

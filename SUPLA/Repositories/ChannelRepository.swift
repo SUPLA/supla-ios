@@ -75,7 +75,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "remote_id")
         
         return query(request)
