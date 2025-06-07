@@ -44,8 +44,7 @@ struct ExportCarPlayItems {
         }
         
         static func update(_ items: [SACarPlayItem], _ channels: [SAChannel], _ groups: [SAChannelGroup], _ scenes: [SAScene]) {
-            @Singleton<GroupShared.Settings> var groupSharedSettings
-            var settings = groupSharedSettings
+            @Singleton<GroupShared.Settings> var settings
             
             var widgetActions: [GroupShared.WidgetAction] = []
             

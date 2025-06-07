@@ -672,7 +672,7 @@
 "container_sound_alarm" = "Alarm dźwiękowy aktywny";
 
 /* Car play */
-"car_play_label" = "Akcje dla widżetów";
+"car_play_label" = "Akcje dla widżetów/CarPlay";
 "car_play_voice_messages" = "Odtwarzaj komunikaty";
 "car_play_action" = "Akcja: %@";
 "car_play_display_name" = "Nazwa";
@@ -683,7 +683,7 @@
 "car_play_confirm_delete" = "Usuń";
 
 /* Widgets */
-"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów i zdefiniuj wybrane akcje.";
+"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i zdefiniuj wybrane akcje.";
 "widgets_control_title" = "Przycisk sterujący";
 "widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
 "widgets_selected_action" = "Wybrana akcja";
