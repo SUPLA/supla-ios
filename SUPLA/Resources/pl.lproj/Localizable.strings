@@ -640,6 +640,7 @@
 "valve_warning_motor_problem_closing" = "Wystąpił problem z silnikiem. Upewnij się, czy nic nie blokuje zaworu. Zawór może być częściowo otwarty. Czy na pewno chcesz go zamknąć?";
 "valve_detail_sensors" = "Powiązane czujniki";
 "valve_action_error" = "Wystąpił błąd podczas komunikacji. Spróbuj ponownie później.";
+"valve_error_sensor_offline" = "Niedostępny czujnik zalania - istnieje ryzyko niewykrycia zalania";
 
 /* State */
 "state_channel_id" = "Id kanału";
@@ -656,6 +657,7 @@
 "state_source_operating_time" = "Czas pracy źródła światła";
 "state_dialog_index" = "(%d z %d)";
 "state_dialog_lightsource_settings" = "Zmień ustawienia żywotności źródła światła";
+"state_switch_cycle_count" = "Przełączenia przekaźnika";
 
 /* Change caption */
 "change_caption_header" = "Zmiana nazwy";
@@ -672,7 +674,7 @@
 "container_sound_alarm" = "Alarm dźwiękowy aktywny";
 
 /* Car play */
-"car_play_label" = "Akcje dla widżetów";
+"car_play_label" = "Akcje dla widżetów/CarPlay";
 "car_play_voice_messages" = "Odtwarzaj komunikaty";
 "car_play_action" = "Akcja: %@";
 "car_play_display_name" = "Nazwa";
@@ -683,7 +685,7 @@
 "car_play_confirm_delete" = "Usuń";
 
 /* Widgets */
-"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów i zdefiniuj wybrane akcje.";
+"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i zdefiniuj wybrane akcje.";
 "widgets_control_title" = "Przycisk sterujący";
 "widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
 "widgets_selected_action" = "Wybrana akcja";

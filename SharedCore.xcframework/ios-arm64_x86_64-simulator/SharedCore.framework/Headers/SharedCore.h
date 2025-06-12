@@ -1324,6 +1324,7 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *valveManuallyClosed __attribute__((swift_name("valveManuallyClosed")));
 @property (class, readonly) SharedCoreLocalizedStringId *valveFlooding __attribute__((swift_name("valveFlooding")));
 @property (class, readonly) SharedCoreLocalizedStringId *valveMotorProblem __attribute__((swift_name("valveMotorProblem")));
+@property (class, readonly) SharedCoreLocalizedStringId *valveSensorOffline __attribute__((swift_name("valveSensorOffline")));
 @property (class, readonly) SharedCoreLocalizedStringId *containerAlarmLevel __attribute__((swift_name("containerAlarmLevel")));
 @property (class, readonly) SharedCoreLocalizedStringId *containerWarningLevel __attribute__((swift_name("containerWarningLevel")));
 @property (class, readonly) SharedCoreLocalizedStringId *containerInvalidSensorState __attribute__((swift_name("containerInvalidSensorState")));

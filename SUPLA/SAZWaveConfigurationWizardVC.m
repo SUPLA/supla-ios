@@ -1242,7 +1242,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
 }
 
@@ -1296,7 +1296,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
 }
 

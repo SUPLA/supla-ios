@@ -31,6 +31,7 @@ extension StateDialogFeature {
         case connectionTime
         case batteryHealth
         case connectionReset
+        case switchCycleCount
         case lightSourceLifespan
         case lightSourceOperatingTime
         
@@ -53,6 +54,7 @@ extension StateDialogFeature {
             case .connectionTime: Strings.State.connectionTime
             case .batteryHealth: Strings.State.batteryHealth
             case .connectionReset: Strings.State.connectionResetCause
+            case .switchCycleCount: Strings.State.switchCycleCount
             case .lightSourceLifespan: Strings.State.lightSourceLifespan
             case .lightSourceOperatingTime: Strings.State.sourceOperatingTime
             }
@@ -73,6 +75,7 @@ extension StateDialogFeature {
             case .connectionTime: value.connectionUptimeString()
             case .batteryHealth: value.batteryHealthString()
             case .connectionReset: value.lastConnectionResetCauseString()
+            case .switchCycleCount: value.switchCycleCount()
             case .lightSourceLifespan: value.lightSourceLifespanString()
             case .lightSourceOperatingTime: value.lightSourceOperatingTimeString()
             }

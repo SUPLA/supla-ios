@@ -36,6 +36,7 @@ extension SuplaChannelHvacConfig {
             minOffTimeSec: 111,
             outputValueOnError: 111,
             subfunction: subfunction,
+            temperatureControlType: .roomTemperature,
             temperatures: SuplaHvacTemperatures(
                 freezeProtection: nil,
                 eco: nil,

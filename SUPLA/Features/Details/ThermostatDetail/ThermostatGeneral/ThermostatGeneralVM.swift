@@ -293,8 +293,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.mode, to: thermostatValue.mode)
                 .changing(path: \.childrenIds, to: channel.allDescendantFlat.map { $0.channel.remote_id })
                 .changing(path: \.offline, to: channel.channel.status().offline)
-                .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
-                .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
+                .changing(path: \.configMin, to: config.minTemperature)
+                .changing(path: \.configMax, to: config.maxTemperature)
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
                 .changing(path: \.issues, to: createThermostatIssues(channelWithChildren: channel))
                 .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
@@ -307,10 +307,10 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.status().online)
             changedState = handleButtons(changedState, channel: channel.channel)
             
-            if let mainTermometer = channel.children.first(where: { $0.relation.relationType == .mainThermometer }),
+            if let thermometer = channel.children.first(where: { channel.channel.temperatureControlType.filterRelationType($0.relation.relationType) }),
                channel.channel.status().online
             {
-                let temperature = mainTermometer.channel.temperatureValue()
+                let temperature = thermometer.channel.temperatureValue()
                 changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
             }
             

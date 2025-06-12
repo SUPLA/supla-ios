@@ -104,10 +104,13 @@ extension LocalizedStringId {
         case .channelCaptionWaterTank: Strings.General.Channel.captionWaterTank
         case .channelCaptionContainerLevelSensor: Strings.General.Channel.captionContainerLevelSensor
         case .channelCaptionFloodSensor: Strings.General.Channel.captionFloodSensor
+            
         case .floodSensorActive: Strings.Valve.floodingAlarmMessage
         case .valveManuallyClosed: Strings.Valve.warningManuallyClosedShort
         case .valveFlooding: Strings.Valve.warningFloodingShort
         case .valveMotorProblem: Strings.Valve.warningMotorProblem
+        case .valveSensorOffline: Strings.Valve.errorSensorOffline
+            
         case .containerAlarmLevel: Strings.Container.alarmLevel
         case .containerWarningLevel: Strings.Container.warningLevel
         case .containerInvalidSensorState: Strings.Container.invalidSensorState

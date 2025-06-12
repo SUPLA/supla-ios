@@ -529,6 +529,7 @@ struct Strings {
         static let warningMotorProblemClosing = "valve_warning_motor_problem_closing".toLocalized()
         static let detailSensors = "valve_detail_sensors".toLocalized()
         static let actionError = "valve_action_error".toLocalized()
+        static let errorSensorOffline = "valve_error_sensor_offline".toLocalized()
     }
     
     struct State {
@@ -549,6 +550,7 @@ struct Strings {
         static let sourceOperatingTime = "state_source_operating_time".toLocalized()
         static let dialogIndex = "state_dialog_index".toLocalized()
         static let lightsourceSettings = "state_dialog_lightsource_settings".toLocalized()
+        static let switchCycleCount = "state_switch_cycle_count".toLocalized()
     }
     
     struct ChangeCaption {

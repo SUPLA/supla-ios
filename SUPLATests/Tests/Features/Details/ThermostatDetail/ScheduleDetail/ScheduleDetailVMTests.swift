@@ -111,8 +111,12 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             eventObserver.events[0].value.element,
             .editProgram(
                 state: EditProgramDialogViewState(
-                    program: program,
+                    program: program.scheduleProgram.program,
+                    mode: program.scheduleProgram.mode,
+                    setpointTemperatureHeat: 22,
+                    setpointTemperatureCool: 21,
                     heatTemperatureText: "22.0",
+                    coolTemperatureText: "21.0",
                     showHeatEdit: true,
                     showCoolEdit: false,
                     configMin: 10,
@@ -146,7 +150,11 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             eventObserver.events[0].value.element,
             .editProgram(
                 state: EditProgramDialogViewState(
-                    program: program,
+                    program: program.scheduleProgram.program,
+                    mode: program.scheduleProgram.mode,
+                    setpointTemperatureHeat: 21,
+                    setpointTemperatureCool: 22,
+                    heatTemperatureText: "21.0",
                     coolTemperatureText: "22.0",
                     showHeatEdit: false,
                     showCoolEdit: true,
@@ -314,7 +322,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         
         // when
         observe(viewModel)
-        viewModel.onProgramChanged(newProgram)
+        viewModel.onProgramChanged(newProgram.scheduleProgram)
         
         // then
         assertObserverItems(statesCount: 2, eventsCount: 0)
