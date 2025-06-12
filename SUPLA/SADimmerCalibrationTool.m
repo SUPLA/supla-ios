@@ -166,7 +166,7 @@
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
     
     return NO;
@@ -200,7 +200,7 @@
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
 }
 
@@ -243,7 +243,7 @@
     [alert addAction:noBtn];
     [alert addAction:cancelBtn];
     
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
     
 }

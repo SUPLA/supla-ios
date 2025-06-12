@@ -1672,7 +1672,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             [alert addAction:noBtn];
             [alert addAction:yesBtn];
             
-            UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+            UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
             [vc presentViewController:alert animated:YES completion:nil];
             
             return true;
