@@ -28,7 +28,7 @@ final class PowerActiveMeasurementsProviderImpl: PowerActiveMeasurementsProvider
     private let formatter = PowerActiveValueFormatter()
     
     func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String {
-        formatter.format(electricityValue.current(forPhase: phase.rawValue), withUnit: false)
+        formatter.format(electricityValue.powerActive(forPhase: phase.rawValue), withUnit: false)
     }
     
     func findMeasurementsForPhase(
