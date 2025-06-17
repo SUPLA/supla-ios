@@ -18,11 +18,26 @@
 
 import Foundation
 
+private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
+private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var settings: GlobalSettings
+    @Singleton private var dateProvider: DateProvider
     @Singleton private var coordinator: SuplaAppCoordinator
+    @Singleton private var disconnectUseCase: DisconnectUseCase
+    @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
 
     var window: UIWindow?
+    
+    private var wasInBackground = true
+    private var backgroundUnlockedTime: Double {
+        #if DEBUG
+        BACKGROUND_UNLOCKED_TIME_DEBUG_S
+        #else
+        BACKGROUND_UNLOCKED_TIME_S
+        #endif
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
@@ -40,5 +55,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator.attachToWindow(window)
             coordinator.start(animated: true)
         }
+    }
+    
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        SALog.debug("Application did become active")
+        
+        #if DEBUG
+        if (ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil) {
+            return
+        }
+        #endif
+        
+        if wasInBackground && settings.lockScreenSettings.pinForAppRequired,
+           let backgroundEntryTime = settings.backgroundEntryTime,
+           dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
+        {
+            suplaAppStateHolder.handle(event: .lock)
+        } else {
+            suplaAppStateHolder.handle(event: .onStart)
+        }
+        
+        wasInBackground = false
+    }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        SALog.debug("Application did enter background")
+        wasInBackground = true
+        
+        settings.backgroundEntryTime = dateProvider.currentTimestamp()
+        
+        disconnectUseCase.invokeSynchronous(reason: .appInBackground)
     }
 }

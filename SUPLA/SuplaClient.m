@@ -644,7 +644,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
                     NSLog(@"%@", exception);
                 }
                 @finally {
-                    [UseCaseLegacyWrapper killHiddenChannelsCleanup];
+                    [UseCaseLegacyWrapper killAsyncChannelsManager];
                     @synchronized(self) {
                         supla_client_free(_sclient);
                         _sclient = NULL;
@@ -885,10 +885,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     if ( channel->EOL == 1 ) {
         [DiContainer.updateEventsManager emitChannelsUpdate];
         DataChanged = [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0];
-        [UseCaseLegacyWrapper startHiddenChannelsCleanup];
-        if (@available(iOS 17.0, *)) {
-            [UseCaseLegacyWrapper exportCarPlayItems];
-        }
+        [UseCaseLegacyWrapper startAsyncChannelsManager];
     }
     
     if ( DataChanged ) {
