@@ -66,7 +66,7 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
     
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0 AND profile = %@", profile))
+            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0", profile))
             .ordered(by: "sceneId")
         
         return self.query(fetchRequest)

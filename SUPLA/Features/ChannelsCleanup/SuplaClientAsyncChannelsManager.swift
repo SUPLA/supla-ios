@@ -16,12 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-protocol RemoveHiddenChannelsManager {
+protocol SuplaClientAsyncChannelsManager {
     func start()
     func kill()
 }
     
-class RemoveHiddenChannelsManagerImpl: RemoveHiddenChannelsManager {
+class SuplaClientAsyncChannelsManagerImpl: SuplaClientAsyncChannelsManager {
     
     @Singleton<RemoveHiddenChannelsUseCase> private var removeHiddenChannelsUseCase
     
@@ -32,11 +32,26 @@ class RemoveHiddenChannelsManagerImpl: RemoveHiddenChannelsManager {
             SALog.info("Starting hidden channels removal manager")
             removeHiddenChannelsUseCase.invoke()
             SALog.info("Finishing hidden channels removal manager")
+            if #available(iOS 17.0, *) {
+                exportCarPlayItems()
+            }
         }
     }
     
     func kill() {
         SALog.info("Killing hidden channels removal manager")
         task?.cancel()
+    }
+    
+    @available(iOS 17.0, *)
+    private func exportCarPlayItems() {
+        SALog.info("Starting car play items export")
+        @Singleton<ExportCarPlayItems.UseCase> var exportCarPlayItemsUseCase
+        do {
+            try exportCarPlayItemsUseCase.invoke().subscribeSynchronous()
+            SALog.info("Finishing car play items export")
+        } catch {
+            SALog.error("Could not export carplay items \(String(describing: error))")
+        }
     }
 }
