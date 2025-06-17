@@ -53,7 +53,7 @@ extension DiContainer {
         register(DeviceConfigEventsManager.self, DeviceConfigEventsManagerImpl())
         register(DownloadEventsManager.self, DownloadEventsManagerImpl())
         register(ApplicationEventsManager.self, ApplicationEventsManagerImpl())
-        register(RemoveHiddenChannelsManager.self, RemoveHiddenChannelsManagerImpl())
+        register(SuplaClientAsyncChannelsManager.self, SuplaClientAsyncChannelsManagerImpl())
         
         // MARK: Repositories
 

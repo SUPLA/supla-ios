@@ -517,7 +517,7 @@
 		A54637BD2D37FF6300D746F5 /* ImpulseCounterGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */; };
 		A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */; };
 		A54637C12D38041A00D746F5 /* ChannelOfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637C02D38041000D746F5 /* ChannelOfflineView.swift */; };
-		A54737572D89A87300B2E227 /* RemoveHiddenChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54737562D89A87100B2E227 /* RemoveHiddenChannelsManager.swift */; };
+		A54737572D89A87300B2E227 /* SuplaClientAsyncChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54737562D89A87100B2E227 /* SuplaClientAsyncChannelsManager.swift */; };
 		A54737592D89B89A00B2E227 /* RemoveHiddenChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54737582D89B89700B2E227 /* RemoveHiddenChannelsUseCase.swift */; };
 		A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */; };
 		A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */; };
@@ -2207,7 +2207,7 @@
 		A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralViewState.swift; sourceTree = "<group>"; };
 		A54637BE2D38006C00D746F5 /* ImpulseCounterGeneralBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralBaseView.swift; sourceTree = "<group>"; };
 		A54637C02D38041000D746F5 /* ChannelOfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelOfflineView.swift; sourceTree = "<group>"; };
-		A54737562D89A87100B2E227 /* RemoveHiddenChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHiddenChannelsManager.swift; sourceTree = "<group>"; };
+		A54737562D89A87100B2E227 /* SuplaClientAsyncChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientAsyncChannelsManager.swift; sourceTree = "<group>"; };
 		A54737582D89B89700B2E227 /* RemoveHiddenChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveHiddenChannelsUseCase.swift; sourceTree = "<group>"; };
 		A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationsAsRemovableUseCase.swift; sourceTree = "<group>"; };
 		A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationsUseCase.swift; sourceTree = "<group>"; };
@@ -4607,7 +4607,7 @@
 		A54737552D89A84D00B2E227 /* ChannelsCleanup */ = {
 			isa = PBXGroup;
 			children = (
-				A54737562D89A87100B2E227 /* RemoveHiddenChannelsManager.swift */,
+				A54737562D89A87100B2E227 /* SuplaClientAsyncChannelsManager.swift */,
 			);
 			path = ChannelsCleanup;
 			sourceTree = "<group>";
@@ -7205,7 +7205,6 @@
 				TargetAttributes = {
 					401CA1B81BA067DB00117AF4 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = T6ZPGSWA75;
 						LastSwiftMigration = 1020;
 					};
 					401CA1D41BA067DB00117AF4 = {
@@ -8111,7 +8110,7 @@
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
-				A54737572D89A87300B2E227 /* RemoveHiddenChannelsManager.swift in Sources */,
+				A54737572D89A87300B2E227 /* SuplaClientAsyncChannelsManager.swift in Sources */,
 				A530EE112A56E5F300F8DAEE /* ChannelState.swift in Sources */,
 				A539C2672D67662F00D9DD47 /* GetAllChannelIssuesUseCase.swift in Sources */,
 				A5A15FF42C2994BF0049AA73 /* BorderedButton.swift in Sources */,
@@ -9204,7 +9203,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 240;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
@@ -9227,10 +9227,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 25.06;
+				MARKETING_VERSION = 25.06.02;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -9246,7 +9247,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 240;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
@@ -9269,9 +9271,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 25.06;
+				MARKETING_VERSION = 25.06.02;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

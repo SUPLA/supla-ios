@@ -606,6 +606,7 @@
 "valve_warning_motor_problem_closing" = "Es wurde ein Motorproblem erkannt. Stellen Sie sicher, dass das Ventil nicht blockiert ist. Das Ventil ist möglicherweise teilweise geöffnet. Möchten Sie es wirklich schließen?";
 "valve_detail_sensors" = "Verbundene Sensoren";
 "valve_action_error" = "Ein Kommunikationfehler ist aufgetreten. Bitte versuchen Sie später noch mal.";
+"valve_error_sensor_offline" = "Überflutungssensor nicht verfügbar – Gefahr einer unentdeckten Überschwemmung";
 
 /* State */
 "state_channel_id" = "Kanal-ID";
@@ -622,6 +623,7 @@
 "state_source_operating_time" = "Betriebszeit der Lichtquelle";
 "state_dialog_index" = "(%d von %d)";
 "state_dialog_lightsource_settings" = "Einstellungen für die Lebensdauer der Lichtquelle ändern";
+"state_switch_cycle_count" = "Schaltzyklusanzahl";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";
@@ -638,6 +640,7 @@
 "container_sound_alarm" = "Akustischer Alarm aktiv";
 
 /* Car play */
+"car_play_label" = "Aktionen für Widgets/CarPlay";
 "car_play_voice_messages" = "Nachrichten abspielen";
 "car_play_action" = "Aktion: %@";
 "car_play_display_name" = "Anzeigename";
@@ -648,7 +651,7 @@
 "car_play_confirm_delete" = "Löschen";
 
 /* Widgets */
-"widget_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets und definieren Sie die Aktionen.";
+"widget_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets/CarPlay und definieren Sie die Aktionen.";
 "widgets_control_title" = "Steuertaste";
 "widgets_control_description" = "Eine Schaltfläche, mit der Sie eine einzelne vordefinierte Aktion auslösen können";
 "widgets_selected_action" = "Ausgewählte Aktion";

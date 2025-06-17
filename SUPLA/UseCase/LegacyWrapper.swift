@@ -214,23 +214,13 @@ final class UseCaseLegacyWrapper: NSObject {
         useCase.reloadRelations()
     }
     
-    @available(iOS 17.0, *)
-    @objc static func exportCarPlayItems() {
-        @Singleton<ExportCarPlayItems.UseCase> var useCase
-        do {
-            try useCase.invoke().subscribeSynchronous()
-        } catch {
-            SALog.error("Could not export carplay items")
-        }
-    }
-    
-    @objc static func startHiddenChannelsCleanup() {
-        @Singleton<RemoveHiddenChannelsManager> var manager
+    @objc static func startAsyncChannelsManager() {
+        @Singleton<SuplaClientAsyncChannelsManager> var manager
         manager.start()
     }
     
-    @objc static func killHiddenChannelsCleanup() {
-        @Singleton<RemoveHiddenChannelsManager> var manager
+    @objc static func killAsyncChannelsManager() {
+        @Singleton<SuplaClientAsyncChannelsManager> var manager
         manager.kill()
     }
 }

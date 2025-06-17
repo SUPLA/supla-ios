@@ -15,6 +15,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAWarningIcon.h"
 #import "SAChannel+CoreDataClass.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAWarningIcon {
     SAChannelBase *_channel;
@@ -75,7 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
        [alert setTitle: NSLocalizedString(@"Warning", nil)];
        [alert addAction:btnOK];
        
-       UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+       UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
        [vc presentViewController:alert animated:YES completion:nil];
  }
 

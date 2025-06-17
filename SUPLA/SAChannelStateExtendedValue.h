@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(TDSC_ChannelState)state;
 -(NSNumber *)channelId;
 -(NSString *)channelIdString;
+-(NSString *)switchCycleCount;
 -(NSNumber *)ipv4;
 -(NSString *)ipv4String;
 -(NSData *)macAddress;
