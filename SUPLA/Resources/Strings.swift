@@ -579,6 +579,7 @@ struct Strings {
         static let deleteTitle = "car_play_delete_title".toLocalized()
         static let deleteMessage = "car_play_delete_message".toLocalized()
         static let confirmDelete = "car_play_confirm_delete".toLocalized()
+        static let empty = "car_play_empty".toLocalized()
     }
     
     struct Widget {

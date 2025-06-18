@@ -31,11 +31,14 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
 
     var processingItems: [NSManagedObjectID] = []
     var errorItems: [NSManagedObjectID: String] = [:]
-
+    
     func templateApplicationScene(_ templateApplicationScene: CPTemplateApplicationScene, didConnect interfaceController: CPInterfaceController) {
         self.interfaceController = interfaceController
 
         let list = CPListTemplate(title: Strings.appName, sections: [])
+        if #available(iOS 18.4, *) {
+            list.showsSpinnerWhileEmpty = true
+        }
         interfaceController.setRootTemplate(list, animated: false, completion: { [weak self] success, _ in
             if (success) {
                 self?.reloadItems()
@@ -75,6 +78,13 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
                         )
                     }
                     list?.updateSections([CPListSection(items: sectionItems)])
+                    
+                    if (sectionItems.isEmpty && self?.interfaceController?.presentedTemplate == nil) {
+                        let emptyDialog = CPAlertTemplate(titleVariants: [Strings.CarPlay.empty], actions: [])
+                        self?.interfaceController?.presentTemplate(emptyDialog, animated: true, completion: { _, _ in})
+                    } else if (!sectionItems.isEmpty && self?.interfaceController?.presentedTemplate != nil) {
+                        self?.interfaceController?.dismissTemplate(animated: true, completion: {_, _ in })
+                    }
                 }
             )
             .disposed(by: disposeBag)

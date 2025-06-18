@@ -649,6 +649,7 @@
 "car_play_delete_title" = "Eintrag löschen";
 "car_play_delete_message" = "Wollen Sie fortfahren?";
 "car_play_confirm_delete" = "Löschen";
+"car_play_empty" = "CarPlay ist nicht konfiguriert. Öffnen Sie bitte Supla App -> Einstelllungen -> Aktionen für Widgets/CarPlay und konfiguriere dort.";
 
 /* Widgets */
 "widget_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets/CarPlay und definieren Sie die Aktionen.";
