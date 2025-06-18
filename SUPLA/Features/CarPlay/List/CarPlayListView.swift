@@ -30,17 +30,16 @@ extension CarPlayListFeature {
         var body: some SwiftUI.View {
             BackgroundStack(alignment: .top) {
                 VStack(spacing: 1) {
-// Commented out until we get car play entitlement..
-//                    HStack {
-//                        Toggle(isOn: $viewState.playMessages) {
-//                            Text(Strings.CarPlay.voiceMessages)
-//                                .fontBodyMedium()
-//                        }
-//                        .onChange(of: viewState.playMessages) { onPlayMessagesChange($0) }
-//                    }
-//                    .padding([.leading, .trailing], Distance.default)
-//                    .padding([.top, .bottom], Distance.small)
-//                    .background(Color.Supla.surface)
+                    HStack {
+                        Toggle(isOn: $viewState.playMessages) {
+                            Text(Strings.CarPlay.voiceMessages)
+                                .fontBodyMedium()
+                        }
+                        .onChange(of: viewState.playMessages) { onPlayMessagesChange($0) }
+                    }
+                    .padding([.leading, .trailing], Distance.default)
+                    .padding([.top, .bottom], Distance.small)
+                    .background(Color.Supla.surface)
 
                     if (viewState.items.isEmpty) {
                         Spacer()

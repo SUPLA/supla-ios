@@ -683,6 +683,7 @@
 "car_play_delete_title" = "Usuwanie";
 "car_play_delete_message" = "Chcesz kontynuować?";
 "car_play_confirm_delete" = "Usuń";
+"car_play_empty" = "CarPlay nie jest skonfigurowany. Otwórz aplikację Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i przygotuj swoją konfigurację.";
 
 /* Widgets */
 "widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i zdefiniuj wybrane akcje.";
