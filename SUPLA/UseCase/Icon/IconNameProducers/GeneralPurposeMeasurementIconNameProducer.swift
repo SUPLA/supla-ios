@@ -58,6 +58,20 @@ final class GeneralPurposeMeasurementIconNameProducer: IconNameProducer {
         case 29: .Icons.fncGpmTransfer
         case 30: .Icons.fncGpmVoltage1
         case 31: .Icons.fncGpmVoltage2
+        case 32: .Icons.fncGpmNo1
+        case 33: .Icons.fncGpmNo2
+        case 34: .Icons.fncGpmNo3
+        case 35: .Icons.fncGpmNo2_1
+        case 36: .Icons.fncGpmNo2_2
+        case 37: .Icons.fncGpmNo2_3
+        case 38: .Icons.fncGpmO3_1
+        case 39: .Icons.fncGpmO3_2
+        case 40: .Icons.fncGpmO3_3
+        case 41: .Icons.fncGpmCo1
+        case 42: .Icons.fncGpmCo2
+        case 43: .Icons.fncGpmCo3
+        case 44: .Icons.fncGpmCash1
+        case 45: .Icons.fncGpmCash2
         default: .Icons.fncGpm5
         }
     }
