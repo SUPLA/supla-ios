@@ -25,7 +25,7 @@ final class WindValueStringProvider: ChannelValueStringProvider {
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         if let value = windValueProvider.value(channel, valueType: valueType) as? Double,
-           value > WindValueProviderImpl.UNKNOWN_VALUE
+           value > WindValueProviderImpl.UNKNOWN_VALUE && value.isNaN == false
         {
             return withUnit ? "\(value.toString(precision: 1)) m/s" : value.toString(precision: 1)
         } else {

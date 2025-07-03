@@ -429,7 +429,7 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         let host = try configHolder.requireUrl()
         let urlPath = Constants.urlMeasurements.replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
         if let type {
-            return "\(host)\(urlPath)\(Int(afterTimestamp))?&logsType=\(type.rawValue)"
+            return "\(host)\(urlPath)\(Int(afterTimestamp))&logsType=\(type.rawValue)"
         } else {
             return "\(host)\(urlPath)\(Int(afterTimestamp))"
         }
