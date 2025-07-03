@@ -28,7 +28,7 @@ final class RainValueStringProvider: ChannelValueStringProvider {
            value > RainValueProviderImpl.UNKNOWN_VALUE
         {
             let stringValue = (value / 1000.0).toString(minPrecision: 1, maxPrecision: 2)
-            return withUnit ? "\(stringValue) l/m²" : stringValue
+            return withUnit ? "\(stringValue) mm" : stringValue
         } else {
             return NO_VALUE_TEXT
         }
