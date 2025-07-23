@@ -176,10 +176,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
 "Planned regeneration is in progress." = "Rigenerazione pianificata in corso.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
-"Device setup" = "Impostazioni dispositivo";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Il dispositivo non ha alcun canale visibile per l'applicazione. Per completare la configurazione accedi a cloud.supla.org";
-"I understand" = "Ho capito";
-"Go to CLOUD" = "Accedi al CLOUD";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assicurati che l'applicazione abbia i permessi per cercare e connettersi ai dispositivi nella rete locale. Controlla che in \"Impostazioni -> SUPLA -> Rete locale\" il permesso sia abilitato per funzionare correttamente";
 "Close" = "Chiudi";
 "Yes" = "Si";
@@ -654,3 +650,7 @@
 "wizard_iodev_data" = "Dati del dispositivo";
 "wizard_iodev_name" = "Nome";
 "wizard_iodev_laststate" = "Stato precedente";
+"add_device_needs_cloud_title" = "Impostazioni dispositivo";
+"add_device_needs_cloud_message" = "Il dispositivo non ha alcun canale visibile per l'applicazione. Per completare la configurazione accedi a cloud.supla.org";
+"add_device_needs_cloud_close" = "Ho capito";
+"add_device_needs_cloud_go_to_cloud" = "Accedi al CLOUD";

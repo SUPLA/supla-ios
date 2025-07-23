@@ -216,10 +216,6 @@
 "Channel height" = "Kanaalhoogte";
 "Temperature unit" = "Temperatuur eenheid";
 "Auto-hide buttons" = "Automatisch verbergen van knoppen";
-"Device setup" = "Configuratie apparaat";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Dit apparaat heeft geen kanalen die zichtbaar zijn in de applicatie. Om de configuratie te voltooien, ga naar cloud.supla.org";
-"I understand" = "Ik begrijp het.";
-"Go to CLOUD" = "Ga naar CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "De functie van het kanaal dat met de actietrigger is geassocieerd, kan niet worden gewijzigd.";
 "The function of the channel associated with the push notification cannot be changed." = "De functie van het kanaal dat is gekoppeld aan PUSH-meldingen kan niet worden gewijzigd.";
 "The channel function associated with reactions cannot be changed." = "De functie van het kanaal dat gekoppeld is aan de reacties kan niet worden gewijzigd.";
@@ -619,3 +615,7 @@
 "wizard_iodev_data" = "Apparaatgegevens";
 "wizard_iodev_name" = "Naam";
 "wizard_iodev_laststate" = "Vorige status";
+"add_device_needs_cloud_title" = "Configuratie apparaat";
+"add_device_needs_cloud_message" = "Dit apparaat heeft geen kanalen die zichtbaar zijn in de applicatie. Om de configuratie te voltooien, ga naar cloud.supla.org";
+"add_device_needs_cloud_close" = "Ik begrijp het.";
+"add_device_needs_cloud_go_to_cloud" = "Ga naar CLOUD";

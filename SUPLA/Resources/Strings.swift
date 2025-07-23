@@ -637,9 +637,13 @@ struct Strings {
         static let notAvailable = "add_wizard_is_not_available".toLocalized()
         static let rememberPassword = "add_wizard_remember_passwd".toLocalized()
         static let autoMode = "add_wizard_auto_mode".toLocalized()
-        static let manualModeMessge = "add_wizard_manual_mode_message".toLocalized()
+        static let manualModeMessage = "add_wizard_manual_mode_message".toLocalized()
         static let goToSettings = "add_wizard_manual_mode_settings".toLocalized()
         static let missingLocation = "add_wizard_missing_location".toLocalized()
+        static let cloudFollowupTitle = "add_device_needs_cloud_title".toLocalized()
+        static let cloudFollowupMessage = "add_device_needs_cloud_message".toLocalized()
+        static let cloudFollowupClose = "add_device_needs_cloud_close".toLocalized()
+        static let cloudFollowupGoToCloud = "add_device_needs_cloud_go_to_cloud".toLocalized()
     }
 }
 

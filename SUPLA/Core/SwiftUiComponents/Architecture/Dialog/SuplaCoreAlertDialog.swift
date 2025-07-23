@@ -82,7 +82,7 @@ extension SuplaCore {
                         .padding([.top], Distance.default)
                     
                     if let positiveButtonText, let negativeButtonText {
-                        HStack(spacing: Distance.default) {
+                        HStack(spacing: Distance.tiny) {
                             BorderedButton(title: negativeButtonText, fullWidth: true) {
                                 if let onNegativeButtonClick {
                                     onNegativeButtonClick()

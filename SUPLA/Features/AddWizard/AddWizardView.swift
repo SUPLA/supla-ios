@@ -27,6 +27,8 @@ extension AddWizardFeature {
         let onNext: (Screen) -> Void
         let onMessageAction: (AddWizardFeature.MessageAction) -> Void
         let onWifiSettings: () -> Void
+        let onFollowupPopupClose: () -> Void
+        let onFollowupPopupOpen: () -> Void
         
         var body: some SwiftUI.View {
             BackgroundStack(color: .Supla.primaryContainer) {
@@ -65,6 +67,14 @@ extension AddWizardFeature {
                         onNext: { onNext(screen) },
                         onAgain: { onMessageAction(.repeat) }
                     )
+                    if let dialogState = state.followupPopupState {
+                        SuplaCore.AlertDialog(
+                            state: dialogState,
+                            onDismiss: {},
+                            onPositiveButtonClick: onFollowupPopupOpen,
+                            onNegativeButtonClick: onFollowupPopupClose
+                        )
+                    }
                 case .message(let text, let action):
                     AddWizardFeature.AddWizardMessageView(
                         message: text,
@@ -99,6 +109,8 @@ extension AddWizardFeature {
         onBack: { _ in },
         onNext: { _ in },
         onMessageAction: { _ in },
-        onWifiSettings: {}
+        onWifiSettings: {},
+        onFollowupPopupClose: {},
+        onFollowupPopupOpen: {}
     )
 }

@@ -216,10 +216,6 @@
 "Channel height" = "Hauteur du canal";
 "Temperature unit" = "Unité de température";
 "Auto-hide buttons" = "Masquage automatique des boutons";
-"Device setup" = "Configuration du dispositif";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Ce dispositif n\'a pas de canaux visibles dans l\'application. Pour terminer la configuration, allez sur cloud.supla.org";
-"I understand" = "Je comprends.";
-"Go to CLOUD" = "Aller à CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "La fonction de canal associée au déclencheur d\'action ne peut pas être modifiée.";
 "The function of the channel associated with the push notification cannot be changed." = "La fonction de la chaîne associée aux notifications PUSH ne peut pas être modifiée.";
 "The channel function associated with reactions cannot be changed." = "La fonction de la chaîne associée aux réactions ne peut pas être modifiée.";
@@ -619,3 +615,7 @@
 "wizard_iodev_data" = "Données du dispositif";
 "wizard_iodev_name" = "Nom";
 "wizard_iodev_laststate" = "Statut précédent";
+"add_device_needs_cloud_title" = "Configuration du dispositif";
+"add_device_needs_cloud_message" = "Ce dispositif n'a pas de canaux visibles dans l'application. Pour terminer la configuration, allez sur cloud.supla.org";
+"add_device_needs_cloud_close" = "Je comprends";
+"add_device_needs_cloud_go_to_cloud" = "Aller à CLOUD";

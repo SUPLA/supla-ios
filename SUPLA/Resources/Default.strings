@@ -510,3 +510,7 @@
 "wizard_iodev_firmware" = "Firmware";
 "wizard_iodev_mac" = "MAC";
 "wizard_iodev_laststate" = "Previous state";
+"add_device_needs_cloud_title" = "Device setup";
+"add_device_needs_cloud_message" = "This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org";
+"add_device_needs_cloud_close" = "I understand";
+"add_device_needs_cloud_go_to_cloud" = "Go to CLOUD";

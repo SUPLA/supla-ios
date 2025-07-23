@@ -227,6 +227,7 @@ extension String {
             static let step3 = "add_wizard_step_3"
             static let success = "add_wizard_success"
             static let error = "add_wizard_error"
+            static let settings = "add_wizard_settings"
         }
     }
 }

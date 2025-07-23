@@ -81,11 +81,9 @@ class EspHtmlParserTests: XCTestCase {
         let inputs = parser.findInputs(document: documentThermostat)
         
         // when
-        let result = parser.prepareResult(document: html)
-        result.needsCloudConfig = parser.needsCloudConfig(fieldMap: inputs)
+        let result = parser.prepareResult(document: html, fieldMap: inputs)
         
         // then
-        XCTAssertEqual(result.resultCode, .failed)
         XCTAssertEqual(result.name, "Basic thermostat")
         XCTAssertEqual(result.state, "Config mode (145), Registered and ready (3)")
         XCTAssertEqual(result.version, "SDK 23.12.02-dev")
@@ -96,25 +94,26 @@ class EspHtmlParserTests: XCTestCase {
     
     func test_shouldLoadDeviceConfig_withNeedsCloudConfig() {
         // given
+        let html = String(decoding: fileDataThermostat, as: UTF8.self)
         var inputs = parser.findInputs(document: documentThermostat)
         inputs["no_visible_channels"] = "1"
         
         // when
-        let needsCloudConfig = parser.needsCloudConfig(fieldMap: inputs)
+        let result = parser.prepareResult(document: html, fieldMap: inputs)
         
         // then
-        XCTAssertTrue(needsCloudConfig)
+        XCTAssertTrue(result.needsCloudConfig)
     }
     
     func test_shouldLoadDiyDeviceParameters() {
         // given
         let html = String(decoding: fileDataDiy, as: UTF8.self)
+        var inputs = parser.findInputs(document: documentDiy)
         
         // when
-        let result = parser.prepareResult(document: html)
+        let result = parser.prepareResult(document: html, fieldMap: inputs)
         
         // then
-        XCTAssertEqual(result.resultCode, .failed)
         XCTAssertEqual(result.name, "YoDeCo - Sonoff MINIR4")
         XCTAssertEqual(result.state, "Zainicjowany")
         XCTAssertEqual(result.version, "SuplaDevice GG v7.8.17")

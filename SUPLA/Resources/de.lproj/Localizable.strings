@@ -215,10 +215,6 @@
 "Channel height" = "Höhe des Kanals";
 "Temperature unit" = "Temperatureinheit";
 "Auto-hide buttons" = "Automatische Ausblendung der Tasten";
-"Device setup" = "Konfiguration des Geräts";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Dieses Gerät hat keine in der App sichtbaren Kanäle. Um die Konfiguration abzuschließen, gehen Sie zum cloud.supla.org";
-"I understand" = "Verstehe";
-"Go to CLOUD" = "Zur CLOUD gehen";
 "The function of the channel associated with the action trigger cannot be changed." = "Die Funktion des mit dem Aktionsauslöser verbundenen Kanals kann nicht geändert werden.";
 "Show ⓘ button" = "Taste ⓘ zeigen";
 "Advanced settings" = "Fortgeschritten";
@@ -696,3 +692,7 @@
 "wizard_iodev_data" = "Daten des Gerätes";
 "wizard_iodev_name" = "Name";
 "wizard_iodev_laststate" = "Vorheriger Status";
+"add_device_needs_cloud_title" = "Konfiguration des Geräts";
+"add_device_needs_cloud_message" = "Dieses Gerät hat keine in der App sichtbaren Kanäle. Um die Konfiguration abzuschließen, gehen Sie zum cloud.supla.org";
+"add_device_needs_cloud_close" = "Verstehe";
+"add_device_needs_cloud_go_to_cloud" = "Zur CLOUD gehen";
