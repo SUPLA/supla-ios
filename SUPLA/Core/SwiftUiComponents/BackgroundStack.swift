@@ -35,7 +35,7 @@ struct BackgroundStack<Content: View>: View {
 
     var body: some View {
         ZStack(alignment: alignment) {
-            Color.Supla.background.ignoresSafeArea()
+            color.ignoresSafeArea()
             content()
         }
     }

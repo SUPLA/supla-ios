@@ -21,9 +21,10 @@ import SharedCore
 extension LocalizedString {
     var string: String {
         switch onEnum(of: self) {
-        case .constant(let constant): constant.text
-        case .withId(let id): id.id.value
-        case .withIdIntStringInt(let localized): localized.id.value.arguments(localized.arg1, localized.arg2.string, localized.arg3)
+        case .constant(let item): item.text
+        case .withId(let item): item.id.value
+        case .withIdIntStringInt(let item): item.id.value.arguments(item.arg1, item.arg2.string, item.arg3)
+        case .withIdAndString(let item): "\(item.id.value) \(item.string)"
         case .empty(_), .else: ""
         }
     }

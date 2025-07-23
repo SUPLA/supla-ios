@@ -65,9 +65,11 @@ class SACredentialsDialogVC<VM: SACredentialsDialogVM>: SACustomDialogVC<SACrede
     }()
     
     private let onAuthorizedCallback: () -> Void
+    private let onCanceled: () -> Void
     
-    init(_ viewModel: VM, _ onAuthorizedCallback: @escaping () -> Void) {
+    init(_ viewModel: VM, _ onAuthorizedCallback: @escaping () -> Void, _ onCanceled: @escaping () -> Void = {}) {
         self.onAuthorizedCallback = onAuthorizedCallback
+        self.onCanceled = onCanceled
         super.init(viewModel: viewModel)
         
         setupView()
@@ -119,7 +121,10 @@ class SACredentialsDialogVC<VM: SACredentialsDialogVM>: SACustomDialogVC<SACrede
         container.addSubview(positiveButton)
         container.addSubview(loadingIndicatorView)
         
-        negativeButton.rx.tap.subscribe(onNext: { [weak self] in self?.dismiss(animated: true) }).disposed(by: self)
+        negativeButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.dismiss(animated: true)
+            self?.onCanceled()
+        }).disposed(by: self)
         positiveButton.rx.tap
             .subscribe(
                 onNext: { [weak self] in

@@ -14,6 +14,8 @@ target 'SUPLA' do
   pod 'PaddingLabel', '1.2'
   pod 'FMMoveTableView', '~> 1.1'
   pod 'SwiftyBeaver'
+  pod 'SwiftSoup'
+  pod 'Alamofire'
 
   target 'SUPLATests' do
     inherit! :search_paths

@@ -663,7 +663,7 @@
 -(void) superuserAuthorizationSuccess {
     [SASuperuserAuthorizationDialog.globalInstance close];
     [self setStep:STEP_ENABLING_REGISTRATION];
-    [[SAApp SuplaClient] setIODeviceRegistrationEnabledForTime:3600 clientRegistrationEnabledForTime:-1];
+    [[SAApp SuplaClient] setRegistrationEnabledIoDeviceRegTimeSec:3600 clientRegTimeSec:-1];
 }
 
 -(void) superuserAuthorizationCanceled {

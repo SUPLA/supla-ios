@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "add_wizard_error.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

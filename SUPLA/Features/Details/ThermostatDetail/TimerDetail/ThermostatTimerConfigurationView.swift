@@ -105,7 +105,7 @@ final class ThermostatTimerConfigurationView: UIView {
     
     var editMode: Bool = false {
         didSet {
-            startButton.setAttributedTitle(editMode ? Strings.General.save : Strings.TimerDetail.start)
+            startButton.setAttributedTitle(editMode ? Strings.General.save : Strings.General.start)
             cancelButton.isHidden = !editMode
             setupChangeableConstraints()
         }
@@ -203,7 +203,7 @@ final class ThermostatTimerConfigurationView: UIView {
     
     private lazy var startButton: UIFilledButton = {
         let button = UIFilledButton()
-        button.setAttributedTitle(Strings.TimerDetail.start)
+        button.setAttributedTitle(Strings.General.start)
         return button
     }()
     

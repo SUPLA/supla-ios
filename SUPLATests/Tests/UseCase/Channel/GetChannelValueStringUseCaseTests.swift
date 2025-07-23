@@ -306,7 +306,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "0.25 l/m²")
+        XCTAssertEqual(valueText, "0.25 mm")
     }
     
     func test_shouldGetTemperatureAndHumidityValueString_temperature() {

@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaRelayFlagCompanion, SharedCoreSuplaRelayFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreSuplaChannelAvailabilityStatusCompanion, SharedCoreSuplaChannelAvailabilityStatus, SharedCoreSuplaCallConfigCommand, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreRelayValueCompanion, SharedCoreRelayValue, SharedCoreRelayIssuesProvider, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinThrowable, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconUpdate, SharedCoreIssueIconSound, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreGroup, SharedCoreGetChannelSpecificIssuesUseCase, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreGetAllChannelIssuesUseCase, SharedCoreFloat, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemSoundAlarmCompanion, SharedCoreChannelIssueItemSoundAlarm, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCore__SkieTypeExportsKt, SharedCore__SkieSuspendWrappersKt, SharedCoreZWaveWakeUpSettings, SharedCoreZWaveNode, SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaResultCodeCompanion, SharedCoreSuplaResultCode, SharedCoreSuplaRelayFlagCompanion, SharedCoreSuplaRelayFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreSuplaEventTypeCompanion, SharedCoreSuplaEventType, SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport, SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult, SharedCoreSuplaClientMessageZWaveResetAndClearResult, SharedCoreSuplaClientMessageZWaveRemoveNodeResult, SharedCoreSuplaClientMessageZWaveGetNodeListResult, SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult, SharedCoreSuplaClientMessageZWaveAssignNodeIdResult, SharedCoreSuplaClientMessageZWaveAddNodeResult, SharedCoreSuplaClientMessageSetRegistrationEnabledResult, SharedCoreSuplaClientMessageRegistrationEnabled, SharedCoreSuplaClientMessageOAuthToken, SharedCoreSuplaClientMessageGroupDataChanged, SharedCoreSuplaClientMessageEvent, SharedCoreSuplaClientMessageCompanion, SharedCoreSuplaClientMessageClientRegistrationError, SharedCoreSuplaClientMessageClientRegistered, SharedCoreSuplaClientMessageChannelState, SharedCoreSuplaClientMessageChannelFunctionSetResult, SharedCoreSuplaClientMessageChannelDataChanged, SharedCoreSuplaClientMessageChannelCaptionSetResult, SharedCoreSuplaClientMessageChannelBasicConfig, SharedCoreSuplaClientMessageCallConfigResult, SharedCoreSuplaClientMessageCallConfigProgressReport, SharedCoreSuplaClientMessageAuthorizationResult, SharedCoreSuplaChannelStateCompanion, SharedCoreSuplaChannelState, SharedCoreSuplaChannelBasicCfg, SharedCoreSuplaChannelAvailabilityStatusCompanion, SharedCoreSuplaChannelAvailabilityStatus, SharedCoreSuplaCallConfigCommand, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreSkie_SuspendResultSuccess, SharedCoreSkie_SuspendResultError, SharedCoreSkie_SuspendResultCanceled, SharedCoreSkie_SuspendResult, SharedCoreSkie_SuspendHandler, SharedCoreSkie_CancellationHandler, SharedCoreSkieKotlinStateFlow<T>, SharedCoreSkieKotlinSharedFlow<T>, SharedCoreSkieKotlinOptionalStateFlow<T>, SharedCoreSkieKotlinOptionalSharedFlow<T>, SharedCoreSkieKotlinOptionalMutableStateFlow<T>, SharedCoreSkieKotlinOptionalMutableSharedFlow<T>, SharedCoreSkieKotlinOptionalFlow<T>, SharedCoreSkieKotlinMutableStateFlow<T>, SharedCoreSkieKotlinMutableSharedFlow<T>, SharedCoreSkieKotlinFlow<T>, SharedCoreSkieColdFlowIterator<E>, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreRelayValueCompanion, SharedCoreRelayValue, SharedCoreRelayIssuesProvider, SharedCoreReconnecting, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreNetworkSearch, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithIdAndString, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinx_serialization_coreStructureKindOBJECT, SharedCoreKotlinx_serialization_coreStructureKindMAP, SharedCoreKotlinx_serialization_coreStructureKindLIST, SharedCoreKotlinx_serialization_coreStructureKindCLASS, SharedCoreKotlinx_serialization_coreStructureKind, SharedCoreKotlinx_serialization_coreSerializersModule, SharedCoreKotlinx_serialization_coreSerialKindENUM, SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL, SharedCoreKotlinx_serialization_coreSerialKind, SharedCoreKotlinx_serialization_corePrimitiveKindSTRING, SharedCoreKotlinx_serialization_corePrimitiveKindSHORT, SharedCoreKotlinx_serialization_corePrimitiveKindLONG, SharedCoreKotlinx_serialization_corePrimitiveKindINT, SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT, SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE, SharedCoreKotlinx_serialization_corePrimitiveKindCHAR, SharedCoreKotlinx_serialization_corePrimitiveKindBYTE, SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN, SharedCoreKotlinx_serialization_corePrimitiveKind, SharedCoreKotlinx_serialization_corePolymorphicKindSEALED, SharedCoreKotlinx_serialization_corePolymorphicKindOPEN, SharedCoreKotlinx_serialization_corePolymorphicKind, SharedCoreKotlinThrowable, SharedCoreKotlinRuntimeException, SharedCoreKotlinNothing, SharedCoreKotlinIllegalStateException, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinCancellationException, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconUpdate, SharedCoreIssueIconSound, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreIntExtensionsKt, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreIdle, SharedCoreIcon, SharedCoreGroup, SharedCoreGetChannelSpecificIssuesUseCase, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreGetAllChannelIssuesUseCase, SharedCoreFloat, SharedCoreFinished, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreEspConfigurationEventStart, SharedCoreEspConfigurationEventRegistrationUnknown, SharedCoreEspConfigurationEventRegistrationNotActivated, SharedCoreEspConfigurationEventRegistrationEnabled, SharedCoreEspConfigurationEventRegistrationDisabled, SharedCoreEspConfigurationEventRegistrationActivated, SharedCoreEspConfigurationEventReconnected, SharedCoreEspConfigurationEventReconnectTimeout, SharedCoreEspConfigurationEventNetworkScanDisabled, SharedCoreEspConfigurationEventNetworkNotFound, SharedCoreEspConfigurationEventNetworkFound, SharedCoreEspConfigurationEventNetworkConnectionFailure, SharedCoreEspConfigurationEventNetworkConnected, SharedCoreEspConfigurationEventMultipleNetworksFound, SharedCoreEspConfigurationEventEspConfigured, SharedCoreEspConfigurationEventEspConfigurationFailure, SharedCoreEspConfigurationEventCanceled, SharedCoreEspConfigurationEventCancel, SharedCoreEspConfigurationEventBack, SharedCoreEspConfigurationEventAuthorized, SharedCoreEspConfigurationErrorWifi, SharedCoreEspConfigurationErrorScan, SharedCoreEspConfigurationErrorRegistrationEnable, SharedCoreEspConfigurationErrorRegistrationCheck, SharedCoreEspConfigurationErrorReconnect, SharedCoreEspConfigurationErrorNotFound, SharedCoreEspConfigurationErrorConnect, SharedCoreEspConfigurationErrorConfigureTimeout, SharedCoreEspConfigurationErrorConfiguration, SharedCoreEspConfigurationErrorCompatibility, SharedCoreEspConfigurationErrorCommunication, SharedCoreEspConfigurationError, SharedCoreEnableRegistrationUseCaseResult, SharedCoreEnableRegistrationUseCase, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreConfiguringEsp, SharedCoreConfigurationFailure, SharedCoreCheckingRegistration, SharedCoreCheckRegistrationEnabledUseCaseResult, SharedCoreCheckRegistrationEnabledUseCase, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemSoundAlarmCompanion, SharedCoreChannelIssueItemSoundAlarm, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreChangingNetwork, SharedCoreCanceling, SharedCoreCanceled, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, SharedCoreAuthorizing, SharedCoreAddWizardFinalActionSuccess, SharedCoreAddWizardFinalActionError, SharedCoreAddWizardFinalActionClose, SharedCoreAddWizardFinalActionBack, SharedCoreActivatingRegistration, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
-@protocol SharedCoreLocalizedString, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, NSCopying;
+@protocol SharedCoreSuplaClientSharedProvider, SharedCoreSuplaClientSharedApi, SharedCoreSuplaClientMessageHandlerListener, SharedCoreSuplaClientMessageHandler, SharedCoreSuplaClientMessage, SharedCoreSkie_DispatcherDelegate, SharedCoreLocalizedString, SharedCoreKotlinx_serialization_coreSerializersModuleCollector, SharedCoreKotlinx_serialization_coreSerializationStrategy, SharedCoreKotlinx_serialization_coreSerialDescriptor, SharedCoreKotlinx_serialization_coreKSerializer, SharedCoreKotlinx_serialization_coreEncoder, SharedCoreKotlinx_serialization_coreDeserializationStrategy, SharedCoreKotlinx_serialization_coreDecoder, SharedCoreKotlinx_serialization_coreCompositeEncoder, SharedCoreKotlinx_serialization_coreCompositeDecoder, SharedCoreKotlinx_coroutines_coreStateFlow, SharedCoreKotlinx_coroutines_coreSharedFlow, SharedCoreKotlinx_coroutines_coreRunnable, SharedCoreKotlinx_coroutines_coreMutableStateFlow, SharedCoreKotlinx_coroutines_coreMutableSharedFlow, SharedCoreKotlinx_coroutines_coreFlowCollector, SharedCoreKotlinx_coroutines_coreFlow, SharedCoreKotlinKDeclarationContainer, SharedCoreKotlinKClassifier, SharedCoreKotlinKClass, SharedCoreKotlinKAnnotatedElement, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreKotlinAnnotation, SharedCoreEspConfigurationStateHolder, SharedCoreEspConfigurationState, SharedCoreEspConfigurationEvent, SharedCoreEspConfigurationController, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, SharedCoreAddWizardFinalAction, NSCopying;
 
 // Due to an Obj-C/Swift interop limitation, SKIE cannot generate Swift types with a lambda type argument.
 // Example of such type is: A<() -> Unit> where A<T> is a generic class.
@@ -30,7 +30,8 @@
 + (instancetype _Nonnull)new __attribute__((unavailable));
 @end
 
-typedef id<SharedCoreLocalizedString> _Nonnull Skie__TypeDef__0__id_SharedCoreLocalizedString_ __attribute__((__swift_private__));
+typedef id _Nonnull Skie__TypeDef__0__id __attribute__((__swift_private__));
+typedef id<SharedCoreLocalizedString> _Nonnull Skie__TypeDef__1__id_SharedCoreLocalizedString_ __attribute__((__swift_private__));
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -166,6 +167,319 @@ __attribute__((swift_name("KotlinBoolean")))
 + (instancetype)numberWithBool:(BOOL)value;
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieColdFlowIterator")))
+@interface SharedCoreSkieColdFlowIterator<E> : SharedCoreBase
+- (instancetype)initWithFlow:(id<SharedCoreKotlinx_coroutines_coreFlow>)flow __attribute__((swift_name("init(flow:)"))) __attribute__((objc_designated_initializer));
+- (void)cancel __attribute__((swift_name("cancel()")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)hasNextWithCompletionHandler:(void (^)(SharedCoreBoolean * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("hasNext(completionHandler:)")));
+- (E _Nullable)next __attribute__((swift_name("next()")));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreFlow")))
+@protocol SharedCoreKotlinx_coroutines_coreFlow
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinFlow")))
+@interface SharedCoreSkieKotlinFlow<__covariant T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreFlow>
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreSharedFlow")))
+@protocol SharedCoreKotlinx_coroutines_coreSharedFlow <SharedCoreKotlinx_coroutines_coreFlow>
+@required
+@property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreFlowCollector")))
+@protocol SharedCoreKotlinx_coroutines_coreFlowCollector
+@required
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)emitValue:(id _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreMutableSharedFlow")))
+@protocol SharedCoreKotlinx_coroutines_coreMutableSharedFlow <SharedCoreKotlinx_coroutines_coreSharedFlow, SharedCoreKotlinx_coroutines_coreFlowCollector>
+@required
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
+- (void)resetReplayCache __attribute__((swift_name("resetReplayCache()")));
+- (BOOL)tryEmitValue:(id _Nullable)value __attribute__((swift_name("tryEmit(value:)")));
+@property (readonly) id<SharedCoreKotlinx_coroutines_coreStateFlow> subscriptionCount __attribute__((swift_name("subscriptionCount")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinMutableSharedFlow")))
+@interface SharedCoreSkieKotlinMutableSharedFlow<T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreMutableSharedFlow>
+@property (readonly) NSArray<T> *replayCache __attribute__((swift_name("replayCache")));
+@property (readonly) id<SharedCoreKotlinx_coroutines_coreStateFlow> subscriptionCount __attribute__((swift_name("subscriptionCount")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreMutableSharedFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)emitValue:(T)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
+- (void)resetReplayCache __attribute__((swift_name("resetReplayCache()")));
+- (BOOL)tryEmitValue:(T)value __attribute__((swift_name("tryEmit(value:)")));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreStateFlow")))
+@protocol SharedCoreKotlinx_coroutines_coreStateFlow <SharedCoreKotlinx_coroutines_coreSharedFlow>
+@required
+@property (readonly) id _Nullable value __attribute__((swift_name("value")));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreMutableStateFlow")))
+@protocol SharedCoreKotlinx_coroutines_coreMutableStateFlow <SharedCoreKotlinx_coroutines_coreStateFlow, SharedCoreKotlinx_coroutines_coreMutableSharedFlow>
+@required
+- (void)setValue:(id _Nullable)value __attribute__((swift_name("setValue(_:)")));
+- (BOOL)compareAndSetExpect:(id _Nullable)expect update:(id _Nullable)update __attribute__((swift_name("compareAndSet(expect:update:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinMutableStateFlow")))
+@interface SharedCoreSkieKotlinMutableStateFlow<T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreMutableStateFlow>
+@property (readonly) NSArray<T> *replayCache __attribute__((swift_name("replayCache")));
+@property (readonly) id<SharedCoreKotlinx_coroutines_coreStateFlow> subscriptionCount __attribute__((swift_name("subscriptionCount")));
+@property T value __attribute__((swift_name("value")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreMutableStateFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+- (BOOL)compareAndSetExpect:(T)expect update:(T)update __attribute__((swift_name("compareAndSet(expect:update:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)emitValue:(T)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
+- (void)resetReplayCache __attribute__((swift_name("resetReplayCache()")));
+- (BOOL)tryEmitValue:(T)value __attribute__((swift_name("tryEmit(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinOptionalFlow")))
+@interface SharedCoreSkieKotlinOptionalFlow<__covariant T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreFlow>
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinOptionalMutableSharedFlow")))
+@interface SharedCoreSkieKotlinOptionalMutableSharedFlow<T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreMutableSharedFlow>
+@property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
+@property (readonly) id<SharedCoreKotlinx_coroutines_coreStateFlow> subscriptionCount __attribute__((swift_name("subscriptionCount")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreMutableSharedFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)emitValue:(T _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
+- (void)resetReplayCache __attribute__((swift_name("resetReplayCache()")));
+- (BOOL)tryEmitValue:(T _Nullable)value __attribute__((swift_name("tryEmit(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinOptionalMutableStateFlow")))
+@interface SharedCoreSkieKotlinOptionalMutableStateFlow<T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreMutableStateFlow>
+@property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
+@property (readonly) id<SharedCoreKotlinx_coroutines_coreStateFlow> subscriptionCount __attribute__((swift_name("subscriptionCount")));
+@property T _Nullable value __attribute__((swift_name("value")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreMutableStateFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+- (BOOL)compareAndSetExpect:(T _Nullable)expect update:(T _Nullable)update __attribute__((swift_name("compareAndSet(expect:update:)")));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)emitValue:(T _Nullable)value completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("emit(value:completionHandler:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.coroutines.ExperimentalCoroutinesApi
+*/
+- (void)resetReplayCache __attribute__((swift_name("resetReplayCache()")));
+- (BOOL)tryEmitValue:(T _Nullable)value __attribute__((swift_name("tryEmit(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinOptionalSharedFlow")))
+@interface SharedCoreSkieKotlinOptionalSharedFlow<__covariant T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreSharedFlow>
+@property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreSharedFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinOptionalStateFlow")))
+@interface SharedCoreSkieKotlinOptionalStateFlow<__covariant T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreStateFlow>
+@property (readonly) NSArray<id> *replayCache __attribute__((swift_name("replayCache")));
+@property (readonly) T _Nullable value __attribute__((swift_name("value")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreStateFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinSharedFlow")))
+@interface SharedCoreSkieKotlinSharedFlow<__covariant T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreSharedFlow>
+@property (readonly) NSArray<T> *replayCache __attribute__((swift_name("replayCache")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreSharedFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SkieKotlinStateFlow")))
+@interface SharedCoreSkieKotlinStateFlow<__covariant T> : SharedCoreBase <SharedCoreKotlinx_coroutines_coreStateFlow>
+@property (readonly) NSArray<T> *replayCache __attribute__((swift_name("replayCache")));
+@property (readonly) T value __attribute__((swift_name("value")));
+- (instancetype)initWithDelegate:(id<SharedCoreKotlinx_coroutines_coreStateFlow>)delegate __attribute__((swift_name("init(_:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)collectCollector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector completionHandler:(void (^)(NSError * _Nullable))completionHandler __attribute__((swift_name("collect(collector:completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Skie_CancellationHandler")))
+@interface SharedCoreSkie_CancellationHandler : SharedCoreBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (void)cancel __attribute__((swift_name("cancel()")));
+@end
+
+__attribute__((swift_name("Skie_DispatcherDelegate")))
+@protocol SharedCoreSkie_DispatcherDelegate
+@required
+- (void)dispatchBlock:(id<SharedCoreKotlinx_coroutines_coreRunnable>)block __attribute__((swift_name("dispatch(block:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Skie_SuspendHandler")))
+@interface SharedCoreSkie_SuspendHandler : SharedCoreBase
+- (instancetype)initWithCancellationHandler:(SharedCoreSkie_CancellationHandler *)cancellationHandler dispatcherDelegate:(id<SharedCoreSkie_DispatcherDelegate>)dispatcherDelegate onResult:(void (^)(SharedCoreSkie_SuspendResult *))onResult __attribute__((swift_name("init(cancellationHandler:dispatcherDelegate:onResult:)"))) __attribute__((objc_designated_initializer));
+@end
+
+__attribute__((swift_name("Skie_SuspendResult")))
+@interface SharedCoreSkie_SuspendResult : SharedCoreBase
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Skie_SuspendResult.Canceled")))
+@interface SharedCoreSkie_SuspendResultCanceled : SharedCoreSkie_SuspendResult
+@property (class, readonly, getter=shared) SharedCoreSkie_SuspendResultCanceled *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)canceled __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Skie_SuspendResult.Error")))
+@interface SharedCoreSkie_SuspendResultError : SharedCoreSkie_SuspendResult
+@property (readonly) NSError *error __attribute__((swift_name("error")));
+- (instancetype)initWithError:(NSError *)error __attribute__((swift_name("init(error:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSkie_SuspendResultError *)doCopyError:(NSError *)error __attribute__((swift_name("doCopy(error:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Skie_SuspendResult.Success")))
+@interface SharedCoreSkie_SuspendResultSuccess : SharedCoreSkie_SuspendResult
+@property (readonly) id _Nullable value __attribute__((swift_name("value")));
+- (instancetype)initWithValue:(id _Nullable)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSkie_SuspendResultSuccess *)doCopyValue:(id _Nullable)value __attribute__((swift_name("doCopy(value:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
 __attribute__((swift_name("KotlinComparable")))
 @protocol SharedCoreKotlinComparable
 @required
@@ -182,6 +496,39 @@ __attribute__((swift_name("KotlinEnum")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaEventType")))
+@interface SharedCoreSuplaEventType : SharedCoreKotlinEnum<SharedCoreSuplaEventType *>
+@property (class, readonly, getter=companion) SharedCoreSuplaEventTypeCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SharedCoreSuplaEventType *unknown __attribute__((swift_name("unknown")));
+@property (class, readonly) SharedCoreSuplaEventType *controllingTheGatewayLock __attribute__((swift_name("controllingTheGatewayLock")));
+@property (class, readonly) SharedCoreSuplaEventType *controllingTheGate __attribute__((swift_name("controllingTheGate")));
+@property (class, readonly) SharedCoreSuplaEventType *controllingTheGarageDoor __attribute__((swift_name("controllingTheGarageDoor")));
+@property (class, readonly) SharedCoreSuplaEventType *controllingTheDoorLock __attribute__((swift_name("controllingTheDoorLock")));
+@property (class, readonly) SharedCoreSuplaEventType *controllingTheRollerShutter __attribute__((swift_name("controllingTheRollerShutter")));
+@property (class, readonly) SharedCoreSuplaEventType *controllingTheRoofWindow __attribute__((swift_name("controllingTheRoofWindow")));
+@property (class, readonly) SharedCoreSuplaEventType *powerOnOff __attribute__((swift_name("powerOnOff")));
+@property (class, readonly) SharedCoreSuplaEventType *lightOnOff __attribute__((swift_name("lightOnOff")));
+@property (class, readonly) SharedCoreSuplaEventType *valveOpenClose __attribute__((swift_name("valveOpenClose")));
+@property (class, readonly) SharedCoreSuplaEventType *setBridgeValueFailed __attribute__((swift_name("setBridgeValueFailed")));
+@property (class, readonly) NSArray<SharedCoreSuplaEventType *> *entries __attribute__((swift_name("entries")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreSuplaEventType *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaEventType.Companion")))
+@interface SharedCoreSuplaEventTypeCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaEventTypeCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreSuplaEventType * _Nullable)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -230,7 +577,7 @@ __attribute__((swift_name("SuplaHvacMode")))
 @property (class, readonly) SharedCoreSuplaHvacMode *cmdWeeklySchedule __attribute__((swift_name("cmdWeeklySchedule")));
 @property (class, readonly) SharedCoreSuplaHvacMode *cmdSwitchToManual __attribute__((swift_name("cmdSwitchToManual")));
 @property (class, readonly) NSArray<SharedCoreSuplaHvacMode *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -269,6 +616,693 @@ __attribute__((swift_name("ThermostatSubfunction.Companion")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 - (SharedCoreThermostatSubfunction *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaChannelBasicCfg")))
+@interface SharedCoreSuplaChannelBasicCfg : SharedCoreBase
+@property (readonly) NSString *caption __attribute__((swift_name("caption")));
+@property (readonly) int32_t channelFlags __attribute__((swift_name("channelFlags")));
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) int32_t channelType __attribute__((swift_name("channelType")));
+@property (readonly) int32_t deviceFlags __attribute__((swift_name("deviceFlags")));
+@property (readonly) int32_t deviceId __attribute__((swift_name("deviceId")));
+@property (readonly) NSString *deviceName __attribute__((swift_name("deviceName")));
+@property (readonly) NSString *deviceSoftwareVersion __attribute__((swift_name("deviceSoftwareVersion")));
+@property (readonly) int32_t func __attribute__((swift_name("func")));
+@property (readonly) int32_t funcList __attribute__((swift_name("funcList")));
+@property (readonly) int32_t manufacturerId __attribute__((swift_name("manufacturerId")));
+@property (readonly) int32_t number __attribute__((swift_name("number")));
+@property (readonly) int32_t productId __attribute__((swift_name("productId")));
+- (instancetype)initWithDeviceName:(NSString *)deviceName deviceSoftwareVersion:(NSString *)deviceSoftwareVersion deviceId:(int32_t)deviceId deviceFlags:(int32_t)deviceFlags manufacturerId:(int32_t)manufacturerId productId:(int32_t)productId channelId:(int32_t)channelId number:(int32_t)number channelType:(int32_t)channelType func:(int32_t)func funcList:(int32_t)funcList channelFlags:(int32_t)channelFlags caption:(NSString *)caption __attribute__((swift_name("init(deviceName:deviceSoftwareVersion:deviceId:deviceFlags:manufacturerId:productId:channelId:number:channelType:func:funcList:channelFlags:caption:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaChannelBasicCfg *)doCopyDeviceName:(NSString *)deviceName deviceSoftwareVersion:(NSString *)deviceSoftwareVersion deviceId:(int32_t)deviceId deviceFlags:(int32_t)deviceFlags manufacturerId:(int32_t)manufacturerId productId:(int32_t)productId channelId:(int32_t)channelId number:(int32_t)number channelType:(int32_t)channelType func:(int32_t)func funcList:(int32_t)funcList channelFlags:(int32_t)channelFlags caption:(NSString *)caption __attribute__((swift_name("doCopy(deviceName:deviceSoftwareVersion:deviceId:deviceFlags:manufacturerId:productId:channelId:number:channelType:func:funcList:channelFlags:caption:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaChannelState")))
+@interface SharedCoreSuplaChannelState : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreSuplaChannelStateCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable batterPoweredString __attribute__((swift_name("batterPoweredString")));
+@property (readonly) SharedCoreInt * _Nullable batteryHealth __attribute__((swift_name("batteryHealth")));
+@property (readonly) NSString * _Nullable batteryHealthString __attribute__((swift_name("batteryHealthString")));
+@property (readonly) SharedCoreInt * _Nullable batteryLevel __attribute__((swift_name("batteryLevel")));
+@property (readonly) NSString * _Nullable batteryLevelString __attribute__((swift_name("batteryLevelString")));
+@property (readonly) SharedCoreBoolean * _Nullable batteryPowered __attribute__((swift_name("batteryPowered")));
+@property (readonly) SharedCoreBoolean * _Nullable bridgeNodeOnline __attribute__((swift_name("bridgeNodeOnline")));
+@property (readonly) SharedCoreInt * _Nullable bridgeNodeSignalStrength __attribute__((swift_name("bridgeNodeSignalStrength")));
+@property (readonly) NSString * _Nullable bridgeNodeSignalStrengthString __attribute__((swift_name("bridgeNodeSignalStrengthString")));
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) SharedCoreInt * _Nullable connectionUptime __attribute__((swift_name("connectionUptime")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable connectionUptimeString __attribute__((swift_name("connectionUptimeString")));
+@property (readonly) NSString * _Nullable ipV4 __attribute__((swift_name("ipV4")));
+@property (readonly) SharedCoreInt * _Nullable lastConnectionResetCause __attribute__((swift_name("lastConnectionResetCause")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable lastConnectionResetCauseString __attribute__((swift_name("lastConnectionResetCauseString")));
+@property (readonly) SharedCoreInt * _Nullable lightSourceLifespan __attribute__((swift_name("lightSourceLifespan")));
+@property (readonly) SharedCoreFloat * _Nullable lightSourceLifespanLeft __attribute__((swift_name("lightSourceLifespanLeft")));
+@property (readonly) SharedCoreInt * _Nullable lightSourceOperatingTime __attribute__((swift_name("lightSourceOperatingTime")));
+@property (readonly) SharedCoreFloat * _Nullable lightSourceOperatingTimePercent __attribute__((swift_name("lightSourceOperatingTimePercent")));
+@property (readonly) SharedCoreFloat * _Nullable lightSourceOperatingTimePercentLeft __attribute__((swift_name("lightSourceOperatingTimePercentLeft")));
+@property (readonly) NSString * _Nullable macAddress __attribute__((swift_name("macAddress")));
+@property (readonly) int8_t rawBatteryHealth __attribute__((swift_name("rawBatteryHealth")));
+@property (readonly) int8_t rawBatteryLevel __attribute__((swift_name("rawBatteryLevel")));
+@property (readonly) int8_t rawBatteryPowered __attribute__((swift_name("rawBatteryPowered")));
+@property (readonly) int8_t rawBridgeNodeOnline __attribute__((swift_name("rawBridgeNodeOnline")));
+@property (readonly) int8_t rawBridgeNodeSignalStrength __attribute__((swift_name("rawBridgeNodeSignalStrength")));
+@property (readonly) int32_t rawConnectionUptime __attribute__((swift_name("rawConnectionUptime")));
+@property (readonly) int32_t rawDefaultIconField __attribute__((swift_name("rawDefaultIconField")));
+@property (readonly) int32_t rawIpv4 __attribute__((swift_name("rawIpv4")));
+@property (readonly) int8_t rawLastConnectionResetCause __attribute__((swift_name("rawLastConnectionResetCause")));
+@property (readonly) int32_t rawLightSourceLifespan __attribute__((swift_name("rawLightSourceLifespan")));
+@property (readonly) int32_t rawLightSourceLifespanLeft __attribute__((swift_name("rawLightSourceLifespanLeft")));
+@property (readonly) SharedCoreKotlinByteArray *rawMacAddress __attribute__((swift_name("rawMacAddress")));
+@property (readonly) int32_t rawUptime __attribute__((swift_name("rawUptime")));
+@property (readonly) int8_t rawWifiRssi __attribute__((swift_name("rawWifiRssi")));
+@property (readonly) int8_t rawWifiSignalStrength __attribute__((swift_name("rawWifiSignalStrength")));
+@property (readonly) NSString * _Nullable switchCycleCountString __attribute__((swift_name("switchCycleCountString")));
+@property (readonly) SharedCoreInt * _Nullable uptime __attribute__((swift_name("uptime")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable uptimeString __attribute__((swift_name("uptimeString")));
+@property (readonly) SharedCoreInt * _Nullable wifiRssi __attribute__((swift_name("wifiRssi")));
+@property (readonly) NSString * _Nullable wifiRssiString __attribute__((swift_name("wifiRssiString")));
+@property (readonly) SharedCoreInt * _Nullable wifiSignalStrength __attribute__((swift_name("wifiSignalStrength")));
+@property (readonly) NSString * _Nullable wifiSignalStrengthString __attribute__((swift_name("wifiSignalStrengthString")));
+- (instancetype)initWithChannelId:(int32_t)channelId fields:(int32_t)fields rawDefaultIconField:(int32_t)rawDefaultIconField rawIpv4:(int32_t)rawIpv4 rawMacAddress:(SharedCoreKotlinByteArray *)rawMacAddress rawBatteryLevel:(int8_t)rawBatteryLevel rawBatteryPowered:(int8_t)rawBatteryPowered rawWifiRssi:(int8_t)rawWifiRssi rawWifiSignalStrength:(int8_t)rawWifiSignalStrength rawBridgeNodeOnline:(int8_t)rawBridgeNodeOnline rawBridgeNodeSignalStrength:(int8_t)rawBridgeNodeSignalStrength rawUptime:(int32_t)rawUptime rawConnectionUptime:(int32_t)rawConnectionUptime rawBatteryHealth:(int8_t)rawBatteryHealth rawLastConnectionResetCause:(int8_t)rawLastConnectionResetCause rawLightSourceLifespan:(int32_t)rawLightSourceLifespan rawLightSourceLifespanLeft:(int32_t)rawLightSourceLifespanLeft __attribute__((swift_name("init(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaChannelState *)doCopyChannelId:(int32_t)channelId fields:(int32_t)fields rawDefaultIconField:(int32_t)rawDefaultIconField rawIpv4:(int32_t)rawIpv4 rawMacAddress:(SharedCoreKotlinByteArray *)rawMacAddress rawBatteryLevel:(int8_t)rawBatteryLevel rawBatteryPowered:(int8_t)rawBatteryPowered rawWifiRssi:(int8_t)rawWifiRssi rawWifiSignalStrength:(int8_t)rawWifiSignalStrength rawBridgeNodeOnline:(int8_t)rawBridgeNodeOnline rawBridgeNodeSignalStrength:(int8_t)rawBridgeNodeSignalStrength rawUptime:(int32_t)rawUptime rawConnectionUptime:(int32_t)rawConnectionUptime rawBatteryHealth:(int8_t)rawBatteryHealth rawLastConnectionResetCause:(int8_t)rawLastConnectionResetCause rawLightSourceLifespan:(int32_t)rawLightSourceLifespan rawLightSourceLifespanLeft:(int32_t)rawLightSourceLifespanLeft __attribute__((swift_name("doCopy(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaChannelState.Companion")))
+@interface SharedCoreSuplaChannelStateCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaChannelStateCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) int32_t FIELD_BATTERYHEALTH __attribute__((swift_name("FIELD_BATTERYHEALTH")));
+@property (readonly) int32_t FIELD_BATTERYLEVEL __attribute__((swift_name("FIELD_BATTERYLEVEL")));
+@property (readonly) int32_t FIELD_BATTERYPOWERED __attribute__((swift_name("FIELD_BATTERYPOWERED")));
+@property (readonly) int32_t FIELD_BRIDGENODEONLINE __attribute__((swift_name("FIELD_BRIDGENODEONLINE")));
+@property (readonly) int32_t FIELD_BRIDGENODESIGNALSTRENGTH __attribute__((swift_name("FIELD_BRIDGENODESIGNALSTRENGTH")));
+@property (readonly) int32_t FIELD_CONNECTIONUPTIME __attribute__((swift_name("FIELD_CONNECTIONUPTIME")));
+@property (readonly) int32_t FIELD_IPV4 __attribute__((swift_name("FIELD_IPV4")));
+@property (readonly) int32_t FIELD_LASTCONNECTIONRESETCAUSE __attribute__((swift_name("FIELD_LASTCONNECTIONRESETCAUSE")));
+@property (readonly) int32_t FIELD_LIGHTSOURCELIFEOPERATINGTIME __attribute__((swift_name("FIELD_LIGHTSOURCELIFEOPERATINGTIME")));
+@property (readonly) int32_t FIELD_LIGHTSOURCELIFESPAN __attribute__((swift_name("FIELD_LIGHTSOURCELIFESPAN")));
+@property (readonly) int32_t FIELD_MAC __attribute__((swift_name("FIELD_MAC")));
+@property (readonly) int32_t FIELD_SWITCH_CYCLE_COUNT __attribute__((swift_name("FIELD_SWITCH_CYCLE_COUNT")));
+@property (readonly) int32_t FIELD_UPTIME __attribute__((swift_name("FIELD_UPTIME")));
+@property (readonly) int32_t FIELD_WIFIRSSI __attribute__((swift_name("FIELD_WIFIRSSI")));
+@property (readonly) int32_t FIELD_WIFISIGNALSTRENGTH __attribute__((swift_name("FIELD_WIFISIGNALSTRENGTH")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (id<SharedCoreKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ZWaveNode")))
+@interface SharedCoreZWaveNode : SharedCoreBase
+@property SharedCoreInt * _Nullable channelId __attribute__((swift_name("channelId")));
+@property (readonly) int32_t flags __attribute__((swift_name("flags")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
+@property (readonly) int16_t nodeId __attribute__((swift_name("nodeId")));
+@property (readonly) int16_t sceneType __attribute__((swift_name("sceneType")));
+- (instancetype)initWithNodeId:(int16_t)nodeId sceneType:(int16_t)sceneType flags:(int32_t)flags channelId:(SharedCoreInt * _Nullable)channelId name:(NSString *)name __attribute__((swift_name("init(nodeId:sceneType:flags:channelId:name:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreZWaveNode *)doCopyNodeId:(int16_t)nodeId sceneType:(int16_t)sceneType flags:(int32_t)flags channelId:(SharedCoreInt * _Nullable)channelId name:(NSString *)name __attribute__((swift_name("doCopy(nodeId:sceneType:flags:channelId:name:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ZWaveWakeUpSettings")))
+@interface SharedCoreZWaveWakeUpSettings : SharedCoreBase
+@property (readonly) int32_t maximum __attribute__((swift_name("maximum")));
+@property (readonly) int32_t minimum __attribute__((swift_name("minimum")));
+@property (readonly) int32_t step __attribute__((swift_name("step")));
+@property int32_t value __attribute__((swift_name("value")));
+- (instancetype)initWithMinimum:(int32_t)minimum maximum:(int32_t)maximum value:(int32_t)value step:(int32_t)step __attribute__((swift_name("init(minimum:maximum:value:step:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreZWaveWakeUpSettings *)doCopyMinimum:(int32_t)minimum maximum:(int32_t)maximum value:(int32_t)value step:(int32_t)step __attribute__((swift_name("doCopy(minimum:maximum:value:step:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("EspConfigurationState")))
+@protocol SharedCoreEspConfigurationState
+@required
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ActivatingRegistration")))
+@interface SharedCoreActivatingRegistration : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((swift_name("AddWizardFinalAction")))
+@protocol SharedCoreAddWizardFinalAction
+@required
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AddWizardFinalActionBack")))
+@interface SharedCoreAddWizardFinalActionBack : SharedCoreBase <SharedCoreAddWizardFinalAction>
+@property (class, readonly, getter=shared) SharedCoreAddWizardFinalActionBack *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)back __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AddWizardFinalActionClose")))
+@interface SharedCoreAddWizardFinalActionClose : SharedCoreBase <SharedCoreAddWizardFinalAction>
+@property (class, readonly, getter=shared) SharedCoreAddWizardFinalActionClose *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)close __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AddWizardFinalActionError")))
+@interface SharedCoreAddWizardFinalActionError : SharedCoreBase <SharedCoreAddWizardFinalAction>
+@property (readonly) SharedCoreEspConfigurationError *error __attribute__((swift_name("error")));
+- (instancetype)initWithError:(SharedCoreEspConfigurationError *)error __attribute__((swift_name("init(error:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreAddWizardFinalActionError *)doCopyError:(SharedCoreEspConfigurationError *)error __attribute__((swift_name("doCopy(error:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AddWizardFinalActionSuccess")))
+@interface SharedCoreAddWizardFinalActionSuccess : SharedCoreBase <SharedCoreAddWizardFinalAction>
+@property (class, readonly, getter=shared) SharedCoreAddWizardFinalActionSuccess *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)success __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Authorizing")))
+@interface SharedCoreAuthorizing : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Canceled")))
+@interface SharedCoreCanceled : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (class, readonly, getter=shared) SharedCoreCanceled *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)canceled __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Canceling")))
+@interface SharedCoreCanceling : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController finalAction:(id<SharedCoreAddWizardFinalAction>)finalAction reconnect:(BOOL)reconnect __attribute__((swift_name("init(stateHolder:espConfigurationController:finalAction:reconnect:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ChangingNetwork")))
+@interface SharedCoreChangingNetwork : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CheckingRegistration")))
+@interface SharedCoreCheckingRegistration : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ConfigurationFailure")))
+@interface SharedCoreConfigurationFailure : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ConfiguringEsp")))
+@interface SharedCoreConfiguringEsp : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((swift_name("EspConfigurationController")))
+@protocol SharedCoreEspConfigurationController
+@required
+- (void)activateRegistration __attribute__((swift_name("activateRegistration()")));
+- (void)authorize __attribute__((swift_name("authorize()")));
+- (void)back __attribute__((swift_name("back()")));
+- (void)cancel __attribute__((swift_name("cancel()")));
+- (void)checkRegistration __attribute__((swift_name("checkRegistration()")));
+- (void)close __attribute__((swift_name("close()")));
+- (void)configureEsp __attribute__((swift_name("configureEsp()")));
+- (void)connectToNetworkSsid:(NSString *)ssid __attribute__((swift_name("connectToNetwork(ssid:)")));
+- (void)findEspNetwork __attribute__((swift_name("findEspNetwork()")));
+- (void)reconnect __attribute__((swift_name("reconnect()")));
+- (void)showErrorError:(SharedCoreEspConfigurationError *)error __attribute__((swift_name("showError(error:)")));
+- (void)showFinished __attribute__((swift_name("showFinished()")));
+- (void)showNetworkSelectorSsids:(NSArray<NSString *> *)ssids cached:(BOOL)cached __attribute__((swift_name("showNetworkSelector(ssids:cached:)")));
+@end
+
+__attribute__((swift_name("EspConfigurationError")))
+@interface SharedCoreEspConfigurationError : SharedCoreBase
+@property (readonly) SharedCoreIcon *icon __attribute__((swift_name("icon")));
+@property (readonly) id<SharedCoreLocalizedString> message __attribute__((swift_name("message")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Communication")))
+@interface SharedCoreEspConfigurationErrorCommunication : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorCommunication *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)communication __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Compatibility")))
+@interface SharedCoreEspConfigurationErrorCompatibility : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorCompatibility *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)compatibility __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Configuration")))
+@interface SharedCoreEspConfigurationErrorConfiguration : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorConfiguration *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)configuration __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.ConfigureTimeout")))
+@interface SharedCoreEspConfigurationErrorConfigureTimeout : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorConfigureTimeout *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)configureTimeout __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Connect")))
+@interface SharedCoreEspConfigurationErrorConnect : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorConnect *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)connect __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.NotFound")))
+@interface SharedCoreEspConfigurationErrorNotFound : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorNotFound *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)notFound __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Reconnect")))
+@interface SharedCoreEspConfigurationErrorReconnect : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorReconnect *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)reconnect __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.RegistrationCheck")))
+@interface SharedCoreEspConfigurationErrorRegistrationCheck : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorRegistrationCheck *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationCheck __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.RegistrationEnable")))
+@interface SharedCoreEspConfigurationErrorRegistrationEnable : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorRegistrationEnable *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationEnable __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Scan")))
+@interface SharedCoreEspConfigurationErrorScan : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorScan *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)scan __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.Wifi")))
+@interface SharedCoreEspConfigurationErrorWifi : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorWifi *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)wifi __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("EspConfigurationEvent")))
+@protocol SharedCoreEspConfigurationEvent
+@required
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventAuthorized")))
+@interface SharedCoreEspConfigurationEventAuthorized : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventAuthorized *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)authorized __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventBack")))
+@interface SharedCoreEspConfigurationEventBack : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventBack *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)back __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventCancel")))
+@interface SharedCoreEspConfigurationEventCancel : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventCancel *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)cancel __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventCanceled")))
+@interface SharedCoreEspConfigurationEventCanceled : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventCanceled *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)canceled __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventEspConfigurationFailure")))
+@interface SharedCoreEspConfigurationEventEspConfigurationFailure : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (readonly) SharedCoreEspConfigurationError *error __attribute__((swift_name("error")));
+- (instancetype)initWithError:(SharedCoreEspConfigurationError *)error __attribute__((swift_name("init(error:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreEspConfigurationEventEspConfigurationFailure *)doCopyError:(SharedCoreEspConfigurationError *)error __attribute__((swift_name("doCopy(error:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventEspConfigured")))
+@interface SharedCoreEspConfigurationEventEspConfigured : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventEspConfigured *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)espConfigured __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventMultipleNetworksFound")))
+@interface SharedCoreEspConfigurationEventMultipleNetworksFound : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (readonly) NSArray<NSString *> *ssids __attribute__((swift_name("ssids")));
+- (instancetype)initWithSsids:(NSArray<NSString *> *)ssids __attribute__((swift_name("init(ssids:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreEspConfigurationEventMultipleNetworksFound *)doCopySsids:(NSArray<NSString *> *)ssids __attribute__((swift_name("doCopy(ssids:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventNetworkConnected")))
+@interface SharedCoreEspConfigurationEventNetworkConnected : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventNetworkConnected *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)networkConnected __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventNetworkConnectionFailure")))
+@interface SharedCoreEspConfigurationEventNetworkConnectionFailure : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventNetworkConnectionFailure *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)networkConnectionFailure __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventNetworkFound")))
+@interface SharedCoreEspConfigurationEventNetworkFound : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (readonly) NSString *ssid __attribute__((swift_name("ssid")));
+- (instancetype)initWithSsid:(NSString *)ssid __attribute__((swift_name("init(ssid:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreEspConfigurationEventNetworkFound *)doCopySsid:(NSString *)ssid __attribute__((swift_name("doCopy(ssid:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventNetworkNotFound")))
+@interface SharedCoreEspConfigurationEventNetworkNotFound : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventNetworkNotFound *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)networkNotFound __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventNetworkScanDisabled")))
+@interface SharedCoreEspConfigurationEventNetworkScanDisabled : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (readonly) NSArray<NSString *> *cached __attribute__((swift_name("cached")));
+- (instancetype)initWithCached:(NSArray<NSString *> *)cached __attribute__((swift_name("init(cached:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreEspConfigurationEventNetworkScanDisabled *)doCopyCached:(NSArray<NSString *> *)cached __attribute__((swift_name("doCopy(cached:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventReconnectTimeout")))
+@interface SharedCoreEspConfigurationEventReconnectTimeout : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventReconnectTimeout *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)reconnectTimeout __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventReconnected")))
+@interface SharedCoreEspConfigurationEventReconnected : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventReconnected *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)reconnected __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventRegistrationActivated")))
+@interface SharedCoreEspConfigurationEventRegistrationActivated : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventRegistrationActivated *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationActivated __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventRegistrationDisabled")))
+@interface SharedCoreEspConfigurationEventRegistrationDisabled : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventRegistrationDisabled *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationDisabled __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventRegistrationEnabled")))
+@interface SharedCoreEspConfigurationEventRegistrationEnabled : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventRegistrationEnabled *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationEnabled __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventRegistrationNotActivated")))
+@interface SharedCoreEspConfigurationEventRegistrationNotActivated : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventRegistrationNotActivated *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationNotActivated __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventRegistrationUnknown")))
+@interface SharedCoreEspConfigurationEventRegistrationUnknown : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventRegistrationUnknown *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)registrationUnknown __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventStart")))
+@interface SharedCoreEspConfigurationEventStart : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventStart *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)start __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("EspConfigurationStateHolder")))
+@protocol SharedCoreEspConfigurationStateHolder
+@required
+- (void)setStateState:(id<SharedCoreEspConfigurationState>)state __attribute__((swift_name("setState(state:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Finished")))
+@interface SharedCoreFinished : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Idle")))
+@interface SharedCoreIdle : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("NetworkSearch")))
+@interface SharedCoreNetworkSearch : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Reconnecting")))
+@interface SharedCoreReconnecting : SharedCoreBase <SharedCoreEspConfigurationState>
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController finalAction:(id<SharedCoreAddWizardFinalAction>)finalAction __attribute__((swift_name("init(stateHolder:espConfigurationController:finalAction:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -328,7 +1362,7 @@ __attribute__((swift_name("ChannelRelationType")))
 @property (class, readonly) SharedCoreChannelRelationType *heatOrColdSourceSwitch __attribute__((swift_name("heatOrColdSourceSwitch")));
 @property (class, readonly) SharedCoreChannelRelationType *pumpSwitch __attribute__((swift_name("pumpSwitch")));
 @property (class, readonly) NSArray<SharedCoreChannelRelationType *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int16_t value __attribute__((swift_name("value")));
+@property (readonly) int16_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -369,7 +1403,7 @@ __attribute__((swift_name("ContainerFlag")))
 @property (class, readonly) SharedCoreContainerFlag *invalidSensorState __attribute__((swift_name("invalidSensorState")));
 @property (class, readonly) SharedCoreContainerFlag *soundAlarmOn __attribute__((swift_name("soundAlarmOn")));
 @property (class, readonly) NSArray<SharedCoreContainerFlag *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -483,7 +1517,7 @@ __attribute__((swift_name("SuplaRelayFlag")))
 @property (class, readonly, getter=companion) SharedCoreSuplaRelayFlagCompanion *companion __attribute__((swift_name("companion")));
 @property (class, readonly) SharedCoreSuplaRelayFlag *overcurrentRelayOff __attribute__((swift_name("overcurrentRelayOff")));
 @property (class, readonly) NSArray<SharedCoreSuplaRelayFlag *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -546,7 +1580,7 @@ __attribute__((swift_name("SuplaThermostatFlag")))
 @property (class, readonly) SharedCoreSuplaThermostatFlag *batteryCoverOpen __attribute__((swift_name("batteryCoverOpen")));
 @property (class, readonly) SharedCoreSuplaThermostatFlag *calibrationError __attribute__((swift_name("calibrationError")));
 @property (class, readonly) NSArray<SharedCoreSuplaThermostatFlag *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -659,13 +1693,18 @@ __attribute__((swift_name("SuplaCallConfigCommand")))
 @property (class, readonly) SharedCoreSuplaCallConfigCommand *recalibrate __attribute__((swift_name("recalibrate")));
 @property (class, readonly) SharedCoreSuplaCallConfigCommand *muteAlarmSound __attribute__((swift_name("muteAlarmSound")));
 @property (class, readonly) NSArray<SharedCoreSuplaCallConfigCommand *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (SharedCoreKotlinArray<SharedCoreSuplaCallConfigCommand *> *)values __attribute__((swift_name("values()")));
 @end
 
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.Serializable
+*/
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SuplaFunction")))
 @interface SharedCoreSuplaFunction : SharedCoreKotlinEnum<SharedCoreSuplaFunction *>
@@ -738,7 +1777,7 @@ __attribute__((swift_name("SuplaFunction")))
 @property (class, readonly) SharedCoreSuplaFunction *floodSensor __attribute__((swift_name("floodSensor")));
 @property (class, readonly) NSArray<SharedCoreSuplaFunction *> *entries __attribute__((swift_name("entries")));
 @property (readonly) BOOL hasThermostatSubfunction __attribute__((swift_name("hasThermostatSubfunction")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -753,6 +1792,8 @@ __attribute__((swift_name("SuplaFunction.Companion")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 - (SharedCoreSuplaFunction *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
+- (id<SharedCoreKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("serializer()")));
+- (id<SharedCoreKotlinx_serialization_coreKSerializer>)serializerTypeParamsSerializers:(SharedCoreKotlinArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> *)typeParamsSerializers __attribute__((swift_name("serializer(typeParamsSerializers:)")));
 @end
 
 __attribute__((swift_name("ChannelIssueItem")))
@@ -1107,7 +2148,7 @@ __attribute__((swift_name("SuplaShadingSystemFlag")))
 @property (class, readonly) SharedCoreSuplaShadingSystemFlag *motorProblem __attribute__((swift_name("motorProblem")));
 @property (class, readonly) SharedCoreSuplaShadingSystemFlag *calibrationInProgress __attribute__((swift_name("calibrationInProgress")));
 @property (class, readonly) NSArray<SharedCoreSuplaShadingSystemFlag *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -1127,6 +2168,74 @@ __attribute__((swift_name("SuplaShadingSystemFlag.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaResultCode")))
+@interface SharedCoreSuplaResultCode : SharedCoreKotlinEnum<SharedCoreSuplaResultCode *>
+@property (class, readonly, getter=companion) SharedCoreSuplaResultCodeCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SharedCoreSuplaResultCode *unknown __attribute__((swift_name("unknown")));
+@property (class, readonly) SharedCoreSuplaResultCode *none __attribute__((swift_name("none")));
+@property (class, readonly) SharedCoreSuplaResultCode *unsupported __attribute__((swift_name("unsupported")));
+@property (class, readonly) SharedCoreSuplaResultCode *false_ __attribute__((swift_name("false_")));
+@property (class, readonly) SharedCoreSuplaResultCode *true_ __attribute__((swift_name("true_")));
+@property (class, readonly) SharedCoreSuplaResultCode *temporarilyUnavailable __attribute__((swift_name("temporarilyUnavailable")));
+@property (class, readonly) SharedCoreSuplaResultCode *badCredentials __attribute__((swift_name("badCredentials")));
+@property (class, readonly) SharedCoreSuplaResultCode *locationConflict __attribute__((swift_name("locationConflict")));
+@property (class, readonly) SharedCoreSuplaResultCode *channelConflict __attribute__((swift_name("channelConflict")));
+@property (class, readonly) SharedCoreSuplaResultCode *deviceDisabled __attribute__((swift_name("deviceDisabled")));
+@property (class, readonly) SharedCoreSuplaResultCode *accessIdDisabled __attribute__((swift_name("accessIdDisabled")));
+@property (class, readonly) SharedCoreSuplaResultCode *locationDisabled __attribute__((swift_name("locationDisabled")));
+@property (class, readonly) SharedCoreSuplaResultCode *clientDisabled __attribute__((swift_name("clientDisabled")));
+@property (class, readonly) SharedCoreSuplaResultCode *clientLimitExceeded __attribute__((swift_name("clientLimitExceeded")));
+@property (class, readonly) SharedCoreSuplaResultCode *deviceLimitExceeded __attribute__((swift_name("deviceLimitExceeded")));
+@property (class, readonly) SharedCoreSuplaResultCode *guidError __attribute__((swift_name("guidError")));
+@property (class, readonly) SharedCoreSuplaResultCode *deviceLocked __attribute__((swift_name("deviceLocked")));
+@property (class, readonly) SharedCoreSuplaResultCode *registrationDisabled __attribute__((swift_name("registrationDisabled")));
+@property (class, readonly) SharedCoreSuplaResultCode *accessIdNotAssigned __attribute__((swift_name("accessIdNotAssigned")));
+@property (class, readonly) SharedCoreSuplaResultCode *authKeyError __attribute__((swift_name("authKeyError")));
+@property (class, readonly) SharedCoreSuplaResultCode *noLocationAvailable __attribute__((swift_name("noLocationAvailable")));
+@property (class, readonly) SharedCoreSuplaResultCode *userConflict __attribute__((swift_name("userConflict")));
+@property (class, readonly) SharedCoreSuplaResultCode *unauthorized __attribute__((swift_name("unauthorized")));
+@property (class, readonly) SharedCoreSuplaResultCode *authorized __attribute__((swift_name("authorized")));
+@property (class, readonly) SharedCoreSuplaResultCode *notAllowed __attribute__((swift_name("notAllowed")));
+@property (class, readonly) SharedCoreSuplaResultCode *channelNotFound __attribute__((swift_name("channelNotFound")));
+@property (class, readonly) SharedCoreSuplaResultCode *unknownError __attribute__((swift_name("unknownError")));
+@property (class, readonly) SharedCoreSuplaResultCode *denyChannelBelongToGroup __attribute__((swift_name("denyChannelBelongToGroup")));
+@property (class, readonly) SharedCoreSuplaResultCode *denyChannelHasSchedule __attribute__((swift_name("denyChannelHasSchedule")));
+@property (class, readonly) SharedCoreSuplaResultCode *denyChannelIsAssociatedWithScene __attribute__((swift_name("denyChannelIsAssociatedWithScene")));
+@property (class, readonly) SharedCoreSuplaResultCode *denyChannelIsAssociatedWithActionTrigger __attribute__((swift_name("denyChannelIsAssociatedWithActionTrigger")));
+@property (class, readonly) SharedCoreSuplaResultCode *inactive __attribute__((swift_name("inactive")));
+@property (class, readonly) SharedCoreSuplaResultCode *cfgModeRequested __attribute__((swift_name("cfgModeRequested")));
+@property (class, readonly) SharedCoreSuplaResultCode *actionUnsupported __attribute__((swift_name("actionUnsupported")));
+@property (class, readonly) SharedCoreSuplaResultCode *subjectNotFound __attribute__((swift_name("subjectNotFound")));
+@property (class, readonly) SharedCoreSuplaResultCode *incorrectParameters __attribute__((swift_name("incorrectParameters")));
+@property (class, readonly) SharedCoreSuplaResultCode *clientNotExists __attribute__((swift_name("clientNotExists")));
+@property (class, readonly) SharedCoreSuplaResultCode *countryRejected __attribute__((swift_name("countryRejected")));
+@property (class, readonly) SharedCoreSuplaResultCode *channelIsOffline __attribute__((swift_name("channelIsOffline")));
+@property (class, readonly) SharedCoreSuplaResultCode *notRegistered __attribute__((swift_name("notRegistered")));
+@property (class, readonly) SharedCoreSuplaResultCode *denyChannelIsAssociatedWithVbt __attribute__((swift_name("denyChannelIsAssociatedWithVbt")));
+@property (class, readonly) SharedCoreSuplaResultCode *denyChannelIsAssociatedWithPush __attribute__((swift_name("denyChannelIsAssociatedWithPush")));
+@property (class, readonly) SharedCoreSuplaResultCode *restartRequested __attribute__((swift_name("restartRequested")));
+@property (class, readonly) SharedCoreSuplaResultCode *identifyRequested __attribute__((swift_name("identifyRequested")));
+@property (class, readonly) SharedCoreSuplaResultCode *malformedEmail __attribute__((swift_name("malformedEmail")));
+@property (class, readonly) NSArray<SharedCoreSuplaResultCode *> *entries __attribute__((swift_name("entries")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreSuplaResultCode *> *)values __attribute__((swift_name("values()")));
+- (id<SharedCoreLocalizedString>)messageIsLogin:(BOOL)isLogin __attribute__((swift_name("message(isLogin:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaResultCode.Companion")))
+@interface SharedCoreSuplaResultCodeCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaResultCodeCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreSuplaResultCode *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SuplaValveFlag")))
 @interface SharedCoreSuplaValveFlag : SharedCoreKotlinEnum<SharedCoreSuplaValveFlag *>
 @property (class, readonly, getter=companion) SharedCoreSuplaValveFlagCompanion *companion __attribute__((swift_name("companion")));
@@ -1134,7 +2243,7 @@ __attribute__((swift_name("SuplaValveFlag")))
 @property (class, readonly) SharedCoreSuplaValveFlag *manuallyClosed __attribute__((swift_name("manuallyClosed")));
 @property (class, readonly) SharedCoreSuplaValveFlag *motorProblem __attribute__((swift_name("motorProblem")));
 @property (class, readonly) NSArray<SharedCoreSuplaValveFlag *> *entries __attribute__((swift_name("entries")));
-@property (readonly) int32_t value __attribute__((swift_name("value")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
@@ -1185,6 +2294,17 @@ __attribute__((swift_name("Base64Helper")))
 - (NSString *)encodeData:(SharedCoreKotlinByteArray *)data __attribute__((swift_name("encode(data:)")));
 @end
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Icon")))
+@interface SharedCoreIcon : SharedCoreKotlinEnum<SharedCoreIcon *>
+@property (class, readonly) SharedCoreIcon *addWizardError __attribute__((swift_name("addWizardError")));
+@property (class, readonly) NSArray<SharedCoreIcon *> *entries __attribute__((swift_name("entries")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreIcon *> *)values __attribute__((swift_name("values()")));
+@end
+
 __attribute__((swift_name("LocalizedString")))
 @protocol SharedCoreLocalizedString
 @required
@@ -1216,9 +2336,22 @@ __attribute__((swift_name("LocalizedStringEmpty")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("LocalizedStringWithId")))
 @interface SharedCoreLocalizedStringWithId : SharedCoreBase <SharedCoreLocalizedString>
+@property (readonly) NSArray<id> *arguments __attribute__((swift_name("arguments")));
 @property (readonly) SharedCoreLocalizedStringId *id __attribute__((swift_name("id")));
-- (instancetype)initWithId:(SharedCoreLocalizedStringId *)id __attribute__((swift_name("init(id:)"))) __attribute__((objc_designated_initializer));
-- (SharedCoreLocalizedStringWithId *)doCopyId:(SharedCoreLocalizedStringId *)id __attribute__((swift_name("doCopy(id:)")));
+- (instancetype)initWithId:(SharedCoreLocalizedStringId *)id arguments:(NSArray<id> *)arguments __attribute__((swift_name("init(id:arguments:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreLocalizedStringWithId *)doCopyId:(SharedCoreLocalizedStringId *)id arguments:(NSArray<id> *)arguments __attribute__((swift_name("doCopy(id:arguments:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LocalizedStringWithIdAndString")))
+@interface SharedCoreLocalizedStringWithIdAndString : SharedCoreBase <SharedCoreLocalizedString>
+@property (readonly) SharedCoreLocalizedStringId *id __attribute__((swift_name("id")));
+@property (readonly) NSString *text __attribute__((swift_name("text")));
+- (instancetype)initWithId:(SharedCoreLocalizedStringId *)id text:(NSString *)text __attribute__((swift_name("init(id:text:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreLocalizedStringWithIdAndString *)doCopyId:(SharedCoreLocalizedStringId *)id text:(NSString *)text __attribute__((swift_name("doCopy(id:text:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1329,11 +2462,348 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *containerWarningLevel __attribute__((swift_name("containerWarningLevel")));
 @property (class, readonly) SharedCoreLocalizedStringId *containerInvalidSensorState __attribute__((swift_name("containerInvalidSensorState")));
 @property (class, readonly) SharedCoreLocalizedStringId *containerSoundAlarm __attribute__((swift_name("containerSoundAlarm")));
+@property (class, readonly) SharedCoreLocalizedStringId *deviceRegistrationRequestTimeout __attribute__((swift_name("deviceRegistrationRequestTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *enablingRegistrationTimeout __attribute__((swift_name("enablingRegistrationTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardScanTimeout __attribute__((swift_name("addWizardScanTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardDeviceNotFound __attribute__((swift_name("addWizardDeviceNotFound")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardConnectTimeout __attribute__((swift_name("addWizardConnectTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardConfigureTimeout __attribute__((swift_name("addWizardConfigureTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardWifiError __attribute__((swift_name("addWizardWifiError")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardResultNotCompatible __attribute__((swift_name("addWizardResultNotCompatible")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardResultConnectionError __attribute__((swift_name("addWizardResultConnectionError")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardResultFailed __attribute__((swift_name("addWizardResultFailed")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardReconnectTimeout __attribute__((swift_name("addWizardReconnectTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelStateUptime __attribute__((swift_name("channelStateUptime")));
+@property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseUnknown __attribute__((swift_name("lastConnectionResetCauseUnknown")));
+@property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseActivityTimeout __attribute__((swift_name("lastConnectionResetCauseActivityTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseWifiConnectionLost __attribute__((swift_name("lastConnectionResetCauseWifiConnectionLost")));
+@property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseServerConnectionLost __attribute__((swift_name("lastConnectionResetCauseServerConnectionLost")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeTemporarilyUnavailable __attribute__((swift_name("resultCodeTemporarilyUnavailable")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeClientLimitExceeded __attribute__((swift_name("resultCodeClientLimitExceeded")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeDeviceDisabled __attribute__((swift_name("resultCodeDeviceDisabled")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeAccessIdDisabled __attribute__((swift_name("resultCodeAccessIdDisabled")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeRegistrationDisabled __attribute__((swift_name("resultCodeRegistrationDisabled")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeAccessIdNotAssigned __attribute__((swift_name("resultCodeAccessIdNotAssigned")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeInactive __attribute__((swift_name("resultCodeInactive")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeIncorrectEmailOrPassword __attribute__((swift_name("resultCodeIncorrectEmailOrPassword")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeBadCredentials __attribute__((swift_name("resultCodeBadCredentials")));
+@property (class, readonly) SharedCoreLocalizedStringId *resultCodeUnknownError __attribute__((swift_name("resultCodeUnknownError")));
 @property (class, readonly) NSArray<SharedCoreLocalizedStringId *> *entries __attribute__((swift_name("entries")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (SharedCoreKotlinArray<SharedCoreLocalizedStringId *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((swift_name("SuplaClientMessage")))
+@protocol SharedCoreSuplaClientMessage
+@required
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageAuthorizationResult")))
+@interface SharedCoreSuplaClientMessageAuthorizationResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) BOOL authorized __attribute__((swift_name("authorized")));
+@property (readonly) SharedCoreSuplaResultCode *code __attribute__((swift_name("code")));
+- (instancetype)initWithAuthorized:(BOOL)authorized code:(SharedCoreSuplaResultCode *)code __attribute__((swift_name("init(authorized:code:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageAuthorizationResult *)doCopyAuthorized:(BOOL)authorized code:(SharedCoreSuplaResultCode *)code __attribute__((swift_name("doCopy(authorized:code:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageCallConfigProgressReport")))
+@interface SharedCoreSuplaClientMessageCallConfigProgressReport : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) int32_t command __attribute__((swift_name("command")));
+@property (readonly) int16_t progress __attribute__((swift_name("progress")));
+- (instancetype)initWithChannelId:(int32_t)channelId command:(int32_t)command progress:(int16_t)progress __attribute__((swift_name("init(channelId:command:progress:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageCallConfigProgressReport *)doCopyChannelId:(int32_t)channelId command:(int32_t)command progress:(int16_t)progress __attribute__((swift_name("doCopy(channelId:command:progress:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageCallConfigResult")))
+@interface SharedCoreSuplaClientMessageCallConfigResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) int32_t command __attribute__((swift_name("command")));
+@property (readonly) SharedCoreKotlinByteArray * _Nullable data __attribute__((swift_name("data")));
+@property (readonly) int32_t result __attribute__((swift_name("result")));
+- (instancetype)initWithChannelId:(int32_t)channelId command:(int32_t)command result:(int32_t)result data:(SharedCoreKotlinByteArray * _Nullable)data __attribute__((swift_name("init(channelId:command:result:data:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageCallConfigResult *)doCopyChannelId:(int32_t)channelId command:(int32_t)command result:(int32_t)result data:(SharedCoreKotlinByteArray * _Nullable)data __attribute__((swift_name("doCopy(channelId:command:result:data:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageChannelBasicConfig")))
+@interface SharedCoreSuplaClientMessageChannelBasicConfig : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) SharedCoreSuplaChannelBasicCfg *channelBasicConfig __attribute__((swift_name("channelBasicConfig")));
+- (instancetype)initWithChannelBasicConfig:(SharedCoreSuplaChannelBasicCfg *)channelBasicConfig __attribute__((swift_name("init(channelBasicConfig:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageChannelBasicConfig *)doCopyChannelBasicConfig:(SharedCoreSuplaChannelBasicCfg *)channelBasicConfig __attribute__((swift_name("doCopy(channelBasicConfig:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageChannelCaptionSetResult")))
+@interface SharedCoreSuplaClientMessageChannelCaptionSetResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) NSString * _Nullable caption __attribute__((swift_name("caption")));
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithChannelId:(int32_t)channelId caption:(NSString * _Nullable)caption resultCode:(int32_t)resultCode __attribute__((swift_name("init(channelId:caption:resultCode:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageChannelCaptionSetResult *)doCopyChannelId:(int32_t)channelId caption:(NSString * _Nullable)caption resultCode:(int32_t)resultCode __attribute__((swift_name("doCopy(channelId:caption:resultCode:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageChannelDataChanged")))
+@interface SharedCoreSuplaClientMessageChannelDataChanged : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) BOOL extendedValueChanged __attribute__((swift_name("extendedValueChanged")));
+@property (readonly) BOOL timerValueChanged __attribute__((swift_name("timerValueChanged")));
+- (instancetype)initWithChannelId:(int32_t)channelId extendedValueChanged:(BOOL)extendedValueChanged timerValueChanged:(BOOL)timerValueChanged __attribute__((swift_name("init(channelId:extendedValueChanged:timerValueChanged:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageChannelDataChanged *)doCopyChannelId:(int32_t)channelId extendedValueChanged:(BOOL)extendedValueChanged timerValueChanged:(BOOL)timerValueChanged __attribute__((swift_name("doCopy(channelId:extendedValueChanged:timerValueChanged:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageChannelFunctionSetResult")))
+@interface SharedCoreSuplaClientMessageChannelFunctionSetResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) int32_t function __attribute__((swift_name("function")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithChannelId:(int32_t)channelId function:(int32_t)function resultCode:(int32_t)resultCode __attribute__((swift_name("init(channelId:function:resultCode:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageChannelFunctionSetResult *)doCopyChannelId:(int32_t)channelId function:(int32_t)function resultCode:(int32_t)resultCode __attribute__((swift_name("doCopy(channelId:function:resultCode:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageChannelState")))
+@interface SharedCoreSuplaClientMessageChannelState : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) SharedCoreSuplaChannelState *channelState __attribute__((swift_name("channelState")));
+- (instancetype)initWithChannelState:(SharedCoreSuplaChannelState *)channelState __attribute__((swift_name("init(channelState:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageChannelState *)doCopyChannelState:(SharedCoreSuplaChannelState *)channelState __attribute__((swift_name("doCopy(channelState:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageClientRegistered")))
+@interface SharedCoreSuplaClientMessageClientRegistered : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (class, readonly, getter=shared) SharedCoreSuplaClientMessageClientRegistered *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)clientRegistered __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageClientRegistrationError")))
+@interface SharedCoreSuplaClientMessageClientRegistrationError : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) SharedCoreSuplaResultCode *resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(SharedCoreSuplaResultCode *)resultCode __attribute__((swift_name("init(resultCode:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageClientRegistrationError *)doCopyResultCode:(SharedCoreSuplaResultCode *)resultCode __attribute__((swift_name("doCopy(resultCode:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageCompanion")))
+@interface SharedCoreSuplaClientMessageCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaClientMessageCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageEvent")))
+@interface SharedCoreSuplaClientMessageEvent : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t channelId __attribute__((swift_name("channelId")));
+@property (readonly) int64_t duration __attribute__((swift_name("duration")));
+@property (readonly) BOOL owner __attribute__((swift_name("owner")));
+@property (readonly) int32_t senderId __attribute__((swift_name("senderId")));
+@property (readonly) NSString * _Nullable senderName __attribute__((swift_name("senderName")));
+@property (readonly) SharedCoreSuplaEventType *type __attribute__((swift_name("type")));
+- (instancetype)initWithOwner:(BOOL)owner type:(SharedCoreSuplaEventType *)type channelId:(int32_t)channelId duration:(int64_t)duration senderId:(int32_t)senderId senderName:(NSString * _Nullable)senderName __attribute__((swift_name("init(owner:type:channelId:duration:senderId:senderName:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageEvent *)doCopyOwner:(BOOL)owner type:(SharedCoreSuplaEventType *)type channelId:(int32_t)channelId duration:(int64_t)duration senderId:(int32_t)senderId senderName:(NSString * _Nullable)senderName __attribute__((swift_name("doCopy(owner:type:channelId:duration:senderId:senderName:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageGroupDataChanged")))
+@interface SharedCoreSuplaClientMessageGroupDataChanged : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t groupId __attribute__((swift_name("groupId")));
+- (instancetype)initWithGroupId:(int32_t)groupId __attribute__((swift_name("init(groupId:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageGroupDataChanged *)doCopyGroupId:(int32_t)groupId __attribute__((swift_name("doCopy(groupId:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageOAuthToken")))
+@interface SharedCoreSuplaClientMessageOAuthToken : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int64_t creationTimestamp __attribute__((swift_name("creationTimestamp")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+@property (readonly) int32_t timeToLive __attribute__((swift_name("timeToLive")));
+@property (readonly) NSString * _Nullable token __attribute__((swift_name("token")));
+@property (readonly) NSString *url __attribute__((swift_name("url")));
+- (instancetype)initWithUrl:(NSString *)url creationTimestamp:(int64_t)creationTimestamp resultCode:(int32_t)resultCode timeToLive:(int32_t)timeToLive token:(NSString * _Nullable)token __attribute__((swift_name("init(url:creationTimestamp:resultCode:timeToLive:token:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageOAuthToken *)doCopyUrl:(NSString *)url creationTimestamp:(int64_t)creationTimestamp resultCode:(int32_t)resultCode timeToLive:(int32_t)timeToLive token:(NSString * _Nullable)token __attribute__((swift_name("doCopy(url:creationTimestamp:resultCode:timeToLive:token:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageRegistrationEnabled")))
+@interface SharedCoreSuplaClientMessageRegistrationEnabled : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int64_t clientRegistrationExpirationTimestamp __attribute__((swift_name("clientRegistrationExpirationTimestamp")));
+@property (readonly) int64_t deviceRegistrationExpirationTimestamp __attribute__((swift_name("deviceRegistrationExpirationTimestamp")));
+@property (readonly) BOOL isClientRegistrationEnabled __attribute__((swift_name("isClientRegistrationEnabled")));
+@property (readonly) BOOL isDeviceRegistrationEnabled __attribute__((swift_name("isDeviceRegistrationEnabled")));
+- (instancetype)initWithClientRegistrationExpirationTimestamp:(int64_t)clientRegistrationExpirationTimestamp deviceRegistrationExpirationTimestamp:(int64_t)deviceRegistrationExpirationTimestamp __attribute__((swift_name("init(clientRegistrationExpirationTimestamp:deviceRegistrationExpirationTimestamp:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageRegistrationEnabled *)doCopyClientRegistrationExpirationTimestamp:(int64_t)clientRegistrationExpirationTimestamp deviceRegistrationExpirationTimestamp:(int64_t)deviceRegistrationExpirationTimestamp __attribute__((swift_name("doCopy(clientRegistrationExpirationTimestamp:deviceRegistrationExpirationTimestamp:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageSetRegistrationEnabledResult")))
+@interface SharedCoreSuplaClientMessageSetRegistrationEnabledResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) SharedCoreSuplaResultCode *resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(SharedCoreSuplaResultCode *)resultCode __attribute__((swift_name("init(resultCode:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageSetRegistrationEnabledResult *)doCopyResultCode:(SharedCoreSuplaResultCode *)resultCode __attribute__((swift_name("doCopy(resultCode:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveAddNodeResult")))
+@interface SharedCoreSuplaClientMessageZWaveAddNodeResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) SharedCoreZWaveNode * _Nullable node __attribute__((swift_name("node")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(int32_t)resultCode node:(SharedCoreZWaveNode * _Nullable)node __attribute__((swift_name("init(resultCode:node:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveAddNodeResult *)doCopyResultCode:(int32_t)resultCode node:(SharedCoreZWaveNode * _Nullable)node __attribute__((swift_name("doCopy(resultCode:node:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveAssignNodeIdResult")))
+@interface SharedCoreSuplaClientMessageZWaveAssignNodeIdResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int16_t nodeId __attribute__((swift_name("nodeId")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(int32_t)resultCode nodeId:(int16_t)nodeId __attribute__((swift_name("init(resultCode:nodeId:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveAssignNodeIdResult *)doCopyResultCode:(int32_t)resultCode nodeId:(int16_t)nodeId __attribute__((swift_name("doCopy(resultCode:nodeId:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveGetAssignedNodeIdResult")))
+@interface SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int16_t nodeId __attribute__((swift_name("nodeId")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(int32_t)resultCode nodeId:(int16_t)nodeId __attribute__((swift_name("init(resultCode:nodeId:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult *)doCopyResultCode:(int32_t)resultCode nodeId:(int16_t)nodeId __attribute__((swift_name("doCopy(resultCode:nodeId:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveGetNodeListResult")))
+@interface SharedCoreSuplaClientMessageZWaveGetNodeListResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) SharedCoreZWaveNode * _Nullable node __attribute__((swift_name("node")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(int32_t)resultCode node:(SharedCoreZWaveNode * _Nullable)node __attribute__((swift_name("init(resultCode:node:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveGetNodeListResult *)doCopyResultCode:(int32_t)resultCode node:(SharedCoreZWaveNode * _Nullable)node __attribute__((swift_name("doCopy(resultCode:node:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveRemoveNodeResult")))
+@interface SharedCoreSuplaClientMessageZWaveRemoveNodeResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int16_t nodeId __attribute__((swift_name("nodeId")));
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(int32_t)resultCode nodeId:(int16_t)nodeId __attribute__((swift_name("init(resultCode:nodeId:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveRemoveNodeResult *)doCopyResultCode:(int32_t)resultCode nodeId:(int16_t)nodeId __attribute__((swift_name("doCopy(resultCode:nodeId:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveResetAndClearResult")))
+@interface SharedCoreSuplaClientMessageZWaveResetAndClearResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+- (instancetype)initWithResultCode:(int32_t)resultCode __attribute__((swift_name("init(resultCode:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveResetAndClearResult *)doCopyResultCode:(int32_t)resultCode __attribute__((swift_name("doCopy(resultCode:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveSetWakeUpTimeResult")))
+@interface SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t result __attribute__((swift_name("result")));
+- (instancetype)initWithResult:(int32_t)result __attribute__((swift_name("init(result:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult *)doCopyResult:(int32_t)result __attribute__((swift_name("doCopy(result:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaClientMessageZWaveWakeUpSettingsReport")))
+@interface SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport : SharedCoreBase <SharedCoreSuplaClientMessage>
+@property (readonly) int32_t resultCode __attribute__((swift_name("resultCode")));
+@property (readonly) SharedCoreZWaveWakeUpSettings * _Nullable settings __attribute__((swift_name("settings")));
+- (instancetype)initWithResultCode:(int32_t)resultCode settings:(SharedCoreZWaveWakeUpSettings * _Nullable)settings __attribute__((swift_name("init(resultCode:settings:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport *)doCopyResultCode:(int32_t)resultCode settings:(SharedCoreZWaveWakeUpSettings * _Nullable)settings __attribute__((swift_name("doCopy(resultCode:settings:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("SuplaClientMessageHandler")))
+@protocol SharedCoreSuplaClientMessageHandler
+@required
+- (void)registerListener:(id<SharedCoreSuplaClientMessageHandlerListener>)listener __attribute__((swift_name("register(listener:)")));
+- (void)unregisterListener:(id<SharedCoreSuplaClientMessageHandlerListener>)listener __attribute__((swift_name("unregister(listener:)")));
+@end
+
+__attribute__((swift_name("SuplaClientMessageHandlerListener")))
+@protocol SharedCoreSuplaClientMessageHandlerListener
+@required
+- (void)onReceivedMessage:(id<SharedCoreSuplaClientMessage>)message __attribute__((swift_name("onReceived(message:)")));
 @end
 
 __attribute__((swift_name("ApplicationPreferences")))
@@ -1375,6 +2845,19 @@ __attribute__((swift_name("CacheFileAccessFile")))
 - (NSString *)description __attribute__((swift_name("description()")));
 @end
 
+__attribute__((swift_name("SuplaClientSharedApi")))
+@protocol SharedCoreSuplaClientSharedApi
+@required
+- (void)getRegistrationEnabled __attribute__((swift_name("getRegistrationEnabled()")));
+- (BOOL)setRegistrationEnabledIoDeviceRegTimeSec:(int32_t)ioDeviceRegTimeSec clientRegTimeSec:(int32_t)clientRegTimeSec __attribute__((swift_name("setRegistrationEnabled(ioDeviceRegTimeSec:clientRegTimeSec:)")));
+@end
+
+__attribute__((swift_name("SuplaClientSharedProvider")))
+@protocol SharedCoreSuplaClientSharedProvider
+@required
+- (id<SharedCoreSuplaClientSharedApi> _Nullable)provide __attribute__((swift_name("provide()")));
+@end
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GetCaptionUseCase")))
 @interface SharedCoreGetCaptionUseCase : SharedCoreBase
@@ -1389,6 +2872,56 @@ __attribute__((swift_name("GetChannelActionStringUseCase")))
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (SharedCoreLocalizedStringId * _Nullable)leftButtonFunction:(SharedCoreSuplaFunction *)function __attribute__((swift_name("leftButton(function:)")));
 - (SharedCoreLocalizedStringId * _Nullable)rightButtonFunction:(SharedCoreSuplaFunction *)function __attribute__((swift_name("rightButton(function:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CheckRegistrationEnabledUseCase")))
+@interface SharedCoreCheckRegistrationEnabledUseCase : SharedCoreBase
+- (instancetype)initWithSuplaClientMessageHandler:(id<SharedCoreSuplaClientMessageHandler>)suplaClientMessageHandler suplaClientProvider:(id<SharedCoreSuplaClientSharedProvider>)suplaClientProvider __attribute__((swift_name("init(suplaClientMessageHandler:suplaClientProvider:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(SharedCoreCheckRegistrationEnabledUseCaseResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CheckRegistrationEnabledUseCase.Result")))
+@interface SharedCoreCheckRegistrationEnabledUseCaseResult : SharedCoreKotlinEnum<SharedCoreCheckRegistrationEnabledUseCaseResult *>
+@property (class, readonly) SharedCoreCheckRegistrationEnabledUseCaseResult *enabled __attribute__((swift_name("enabled")));
+@property (class, readonly) SharedCoreCheckRegistrationEnabledUseCaseResult *disabled __attribute__((swift_name("disabled")));
+@property (class, readonly) SharedCoreCheckRegistrationEnabledUseCaseResult *timeout __attribute__((swift_name("timeout")));
+@property (class, readonly) NSArray<SharedCoreCheckRegistrationEnabledUseCaseResult *> *entries __attribute__((swift_name("entries")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreCheckRegistrationEnabledUseCaseResult *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EnableRegistrationUseCase")))
+@interface SharedCoreEnableRegistrationUseCase : SharedCoreBase
+- (instancetype)initWithSuplaClientMessageHandler:(id<SharedCoreSuplaClientMessageHandler>)suplaClientMessageHandler suplaClientProvider:(id<SharedCoreSuplaClientSharedProvider>)suplaClientProvider __attribute__((swift_name("init(suplaClientMessageHandler:suplaClientProvider:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This method converts instances of CancellationException to errors.
+ * Other uncaught Kotlin exceptions are fatal.
+*/
+- (void)invokeWithCompletionHandler:(void (^)(SharedCoreEnableRegistrationUseCaseResult * _Nullable, NSError * _Nullable))completionHandler __attribute__((swift_name("invoke(completionHandler:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EnableRegistrationUseCase.Result")))
+@interface SharedCoreEnableRegistrationUseCaseResult : SharedCoreKotlinEnum<SharedCoreEnableRegistrationUseCaseResult *>
+@property (class, readonly) SharedCoreEnableRegistrationUseCaseResult *success __attribute__((swift_name("success")));
+@property (class, readonly) SharedCoreEnableRegistrationUseCaseResult *failure __attribute__((swift_name("failure")));
+@property (class, readonly) SharedCoreEnableRegistrationUseCaseResult *timeout __attribute__((swift_name("timeout")));
+@property (class, readonly) NSArray<SharedCoreEnableRegistrationUseCaseResult *> *entries __attribute__((swift_name("entries")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreEnableRegistrationUseCaseResult *> *)values __attribute__((swift_name("values()")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1574,10 +3107,17 @@ __attribute__((swift_name("GetChannelIssuesForListUseCaseKt")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("IntExtensionsKt")))
+@interface SharedCoreIntExtensionsKt : SharedCoreBase
++ (NSString *)ipV4String:(int32_t)receiver __attribute__((swift_name("ipV4String(_:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("LocalizedStringKt")))
 @interface SharedCoreLocalizedStringKt : SharedCoreBase
 + (id<SharedCoreLocalizedString>)localizedStringId:(SharedCoreLocalizedStringId * _Nullable)id __attribute__((swift_name("localizedString(id:)")));
 + (id<SharedCoreLocalizedString>)localizedStringId:(SharedCoreLocalizedStringId *)id arg1:(int32_t)arg1 arg2:(id<SharedCoreLocalizedString>)arg2 arg3:(int32_t)arg3 __attribute__((swift_name("localizedString(id:arg1:arg2:arg3:)")));
++ (id<SharedCoreLocalizedString>)localizedStringId:(SharedCoreLocalizedStringId *)id arg1:(id)arg1 arg2:(id)arg2 arg3:(id)arg3 arg4:(id)arg4 __attribute__((swift_name("localizedString(id:arg1:arg2:arg3:arg4:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -1599,24 +3139,19 @@ __attribute__((swift_name("SuplaFunctionKt")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinEnumCompanion")))
-@interface SharedCoreKotlinEnumCompanion : SharedCoreBase
-@property (class, readonly, getter=shared) SharedCoreKotlinEnumCompanion *shared __attribute__((swift_name("shared")));
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)companion __attribute__((swift_name("init()")));
+__attribute__((swift_name("__SkieSuspendWrappersKt")))
+@interface SharedCore__SkieSuspendWrappersKt : SharedCoreBase
++ (void)Skie_Suspend__0__hasNextDispatchReceiver:(SharedCoreSkieColdFlowIterator<id> *)dispatchReceiver suspendHandler:(SharedCoreSkie_SuspendHandler *)suspendHandler __attribute__((swift_name("Skie_Suspend__0__hasNext(dispatchReceiver:suspendHandler:)")));
++ (void)Skie_Suspend__1__collectDispatchReceiver:(id<SharedCoreKotlinx_coroutines_coreFlow>)dispatchReceiver collector:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)collector suspendHandler:(SharedCoreSkie_SuspendHandler *)suspendHandler __attribute__((swift_name("Skie_Suspend__1__collect(dispatchReceiver:collector:suspendHandler:)")));
++ (void)Skie_Suspend__2__emitDispatchReceiver:(id<SharedCoreKotlinx_coroutines_coreFlowCollector>)dispatchReceiver value:(id _Nullable)value suspendHandler:(SharedCoreSkie_SuspendHandler *)suspendHandler __attribute__((swift_name("Skie_Suspend__2__emit(dispatchReceiver:value:suspendHandler:)")));
++ (void)Skie_Suspend__3__invokeDispatchReceiver:(SharedCoreCheckRegistrationEnabledUseCase *)dispatchReceiver suspendHandler:(SharedCoreSkie_SuspendHandler *)suspendHandler __attribute__((swift_name("Skie_Suspend__3__invoke(dispatchReceiver:suspendHandler:)")));
++ (void)Skie_Suspend__4__invokeDispatchReceiver:(SharedCoreEnableRegistrationUseCase *)dispatchReceiver suspendHandler:(SharedCoreSkie_SuspendHandler *)suspendHandler __attribute__((swift_name("Skie_Suspend__4__invoke(dispatchReceiver:suspendHandler:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinArray")))
-@interface SharedCoreKotlinArray<T> : SharedCoreBase
-@property (readonly) int32_t size __attribute__((swift_name("size")));
-+ (instancetype)arrayWithSize:(int32_t)size init:(T _Nullable (^)(SharedCoreInt *))init __attribute__((swift_name("init(size:init:)")));
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-- (T _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
-- (id<SharedCoreKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
-- (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
+__attribute__((swift_name("__SkieTypeExportsKt")))
+@interface SharedCore__SkieTypeExportsKt : SharedCoreBase
++ (void)skieTypeExports_0P0:(SharedCoreKotlinx_serialization_corePolymorphicKind *)p0 p1:(SharedCoreKotlinx_serialization_corePolymorphicKindOPEN *)p1 p2:(SharedCoreKotlinx_serialization_corePolymorphicKindSEALED *)p2 p3:(SharedCoreKotlinx_serialization_corePrimitiveKind *)p3 p4:(SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN *)p4 p5:(SharedCoreKotlinx_serialization_corePrimitiveKindBYTE *)p5 p6:(SharedCoreKotlinx_serialization_corePrimitiveKindCHAR *)p6 p7:(SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE *)p7 p8:(SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT *)p8 p9:(SharedCoreKotlinx_serialization_corePrimitiveKindINT *)p9 p10:(SharedCoreKotlinx_serialization_corePrimitiveKindLONG *)p10 p11:(SharedCoreKotlinx_serialization_corePrimitiveKindSHORT *)p11 p12:(SharedCoreKotlinx_serialization_corePrimitiveKindSTRING *)p12 p13:(SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL *)p13 p14:(SharedCoreKotlinx_serialization_coreSerialKindENUM *)p14 p15:(SharedCoreKotlinx_serialization_coreStructureKind *)p15 p16:(SharedCoreKotlinx_serialization_coreStructureKindCLASS *)p16 p17:(SharedCoreKotlinx_serialization_coreStructureKindLIST *)p17 p18:(SharedCoreKotlinx_serialization_coreStructureKindMAP *)p18 p19:(SharedCoreKotlinx_serialization_coreStructureKindOBJECT *)p19 __attribute__((swift_name("skieTypeExports_0(p0:p1:p2:p3:p4:p5:p6:p7:p8:p9:p10:p11:p12:p13:p14:p15:p16:p17:p18:p19:)")));
 @end
 
 __attribute__((swift_name("KotlinThrowable")))
@@ -1648,6 +3183,84 @@ __attribute__((swift_name("KotlinException")))
 - (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
 @end
 
+__attribute__((swift_name("KotlinRuntimeException")))
+@interface SharedCoreKotlinRuntimeException : SharedCoreKotlinException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+@end
+
+__attribute__((swift_name("KotlinIllegalStateException")))
+@interface SharedCoreKotlinIllegalStateException : SharedCoreKotlinRuntimeException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.4")
+*/
+__attribute__((swift_name("KotlinCancellationException")))
+@interface SharedCoreKotlinCancellationException : SharedCoreKotlinIllegalStateException
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedCoreKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+@end
+
+__attribute__((swift_name("Kotlinx_coroutines_coreRunnable")))
+@protocol SharedCoreKotlinx_coroutines_coreRunnable
+@required
+- (void)run __attribute__((swift_name("run()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinEnumCompanion")))
+@interface SharedCoreKotlinEnumCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreKotlinEnumCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinArray")))
+@interface SharedCoreKotlinArray<T> : SharedCoreBase
+@property (readonly) int32_t size __attribute__((swift_name("size")));
++ (instancetype)arrayWithSize:(int32_t)size init:(T _Nullable (^)(SharedCoreInt *))init __attribute__((swift_name("init(size:init:)")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (T _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
+- (id<SharedCoreKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
+- (void)setIndex:(int32_t)index value:(T _Nullable)value __attribute__((swift_name("set(index:value:)")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerializationStrategy")))
+@protocol SharedCoreKotlinx_serialization_coreSerializationStrategy
+@required
+- (void)serializeEncoder:(id<SharedCoreKotlinx_serialization_coreEncoder>)encoder value:(id _Nullable)value __attribute__((swift_name("serialize(encoder:value:)")));
+@property (readonly) id<SharedCoreKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreDeserializationStrategy")))
+@protocol SharedCoreKotlinx_serialization_coreDeserializationStrategy
+@required
+- (id _Nullable)deserializeDecoder:(id<SharedCoreKotlinx_serialization_coreDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+@property (readonly) id<SharedCoreKotlinx_serialization_coreSerialDescriptor> descriptor __attribute__((swift_name("descriptor")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreKSerializer")))
+@protocol SharedCoreKotlinx_serialization_coreKSerializer <SharedCoreKotlinx_serialization_coreSerializationStrategy, SharedCoreKotlinx_serialization_coreDeserializationStrategy>
+@required
+@end
+
 __attribute__((swift_name("KotlinIterator")))
 @protocol SharedCoreKotlinIterator
 @required
@@ -1661,6 +3274,422 @@ __attribute__((swift_name("KotlinByteIterator")))
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (SharedCoreByte *)next __attribute__((swift_name("next()")));
 - (int8_t)nextByte __attribute__((swift_name("nextByte()")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerialKind")))
+@interface SharedCoreKotlinx_serialization_coreSerialKind : SharedCoreBase
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+__attribute__((swift_name("Kotlinx_serialization_corePolymorphicKind")))
+@interface SharedCoreKotlinx_serialization_corePolymorphicKind : SharedCoreKotlinx_serialization_coreSerialKind
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePolymorphicKind.OPEN")))
+@interface SharedCoreKotlinx_serialization_corePolymorphicKindOPEN : SharedCoreKotlinx_serialization_corePolymorphicKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePolymorphicKindOPEN *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)oPEN __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePolymorphicKind.SEALED")))
+@interface SharedCoreKotlinx_serialization_corePolymorphicKindSEALED : SharedCoreKotlinx_serialization_corePolymorphicKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePolymorphicKindSEALED *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)sEALED __attribute__((swift_name("init()")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKind : SharedCoreKotlinx_serialization_coreSerialKind
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.BOOLEAN")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)bOOLEAN __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.BYTE")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindBYTE : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindBYTE *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)bYTE __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.CHAR")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindCHAR : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindCHAR *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)cHAR __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.DOUBLE")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)dOUBLE __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.FLOAT")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)fLOAT __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.INT")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindINT : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindINT *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)iNT __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.LONG")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindLONG : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindLONG *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)lONG __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.SHORT")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindSHORT : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindSHORT *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)sHORT __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_corePrimitiveKind.STRING")))
+@interface SharedCoreKotlinx_serialization_corePrimitiveKindSTRING : SharedCoreKotlinx_serialization_corePrimitiveKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_corePrimitiveKindSTRING *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)sTRING __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_coreSerialKind.CONTEXTUAL")))
+@interface SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL : SharedCoreKotlinx_serialization_coreSerialKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)cONTEXTUAL __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_coreSerialKind.ENUM")))
+@interface SharedCoreKotlinx_serialization_coreSerialKindENUM : SharedCoreKotlinx_serialization_coreSerialKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_coreSerialKindENUM *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)eNUM __attribute__((swift_name("init()")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreStructureKind")))
+@interface SharedCoreKotlinx_serialization_coreStructureKind : SharedCoreKotlinx_serialization_coreSerialKind
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_coreStructureKind.CLASS")))
+@interface SharedCoreKotlinx_serialization_coreStructureKindCLASS : SharedCoreKotlinx_serialization_coreStructureKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_coreStructureKindCLASS *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)cLASS __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_coreStructureKind.LIST")))
+@interface SharedCoreKotlinx_serialization_coreStructureKindLIST : SharedCoreKotlinx_serialization_coreStructureKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_coreStructureKindLIST *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)lIST __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_coreStructureKind.MAP")))
+@interface SharedCoreKotlinx_serialization_coreStructureKindMAP : SharedCoreKotlinx_serialization_coreStructureKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_coreStructureKindMAP *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)mAP __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_coreStructureKind.OBJECT")))
+@interface SharedCoreKotlinx_serialization_coreStructureKindOBJECT : SharedCoreKotlinx_serialization_coreStructureKind
+@property (class, readonly, getter=shared) SharedCoreKotlinx_serialization_coreStructureKindOBJECT *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)oBJECT __attribute__((swift_name("init()")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreEncoder")))
+@protocol SharedCoreKotlinx_serialization_coreEncoder
+@required
+- (id<SharedCoreKotlinx_serialization_coreCompositeEncoder>)beginCollectionDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor collectionSize:(int32_t)collectionSize __attribute__((swift_name("beginCollection(descriptor:collectionSize:)")));
+- (id<SharedCoreKotlinx_serialization_coreCompositeEncoder>)beginStructureDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
+- (void)encodeBooleanValue:(BOOL)value __attribute__((swift_name("encodeBoolean(value:)")));
+- (void)encodeByteValue:(int8_t)value __attribute__((swift_name("encodeByte(value:)")));
+- (void)encodeCharValue:(unichar)value __attribute__((swift_name("encodeChar(value:)")));
+- (void)encodeDoubleValue:(double)value __attribute__((swift_name("encodeDouble(value:)")));
+- (void)encodeEnumEnumDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)enumDescriptor index:(int32_t)index __attribute__((swift_name("encodeEnum(enumDescriptor:index:)")));
+- (void)encodeFloatValue:(float)value __attribute__((swift_name("encodeFloat(value:)")));
+- (id<SharedCoreKotlinx_serialization_coreEncoder>)encodeInlineDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("encodeInline(descriptor:)")));
+- (void)encodeIntValue:(int32_t)value __attribute__((swift_name("encodeInt(value:)")));
+- (void)encodeLongValue:(int64_t)value __attribute__((swift_name("encodeLong(value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNotNullMark __attribute__((swift_name("encodeNotNullMark()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNull __attribute__((swift_name("encodeNull()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNullableSerializableValueSerializer:(id<SharedCoreKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableValue(serializer:value:)")));
+- (void)encodeSerializableValueSerializer:(id<SharedCoreKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableValue(serializer:value:)")));
+- (void)encodeShortValue:(int16_t)value __attribute__((swift_name("encodeShort(value:)")));
+- (void)encodeStringValue:(NSString *)value __attribute__((swift_name("encodeString(value:)")));
+@property (readonly) SharedCoreKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerialDescriptor")))
+@protocol SharedCoreKotlinx_serialization_coreSerialDescriptor
+@required
+- (NSArray<id<SharedCoreKotlinAnnotation>> *)getElementAnnotationsIndex:(int32_t)index __attribute__((swift_name("getElementAnnotations(index:)")));
+- (id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)getElementDescriptorIndex:(int32_t)index __attribute__((swift_name("getElementDescriptor(index:)")));
+- (int32_t)getElementIndexName:(NSString *)name __attribute__((swift_name("getElementIndex(name:)")));
+- (NSString *)getElementNameIndex:(int32_t)index __attribute__((swift_name("getElementName(index:)")));
+- (BOOL)isElementOptionalIndex:(int32_t)index __attribute__((swift_name("isElementOptional(index:)")));
+@property (readonly) NSArray<id<SharedCoreKotlinAnnotation>> *annotations __attribute__((swift_name("annotations")));
+@property (readonly) int32_t elementsCount __attribute__((swift_name("elementsCount")));
+@property (readonly) BOOL isInline __attribute__((swift_name("isInline")));
+@property (readonly) BOOL isNullable __attribute__((swift_name("isNullable")));
+@property (readonly) SharedCoreKotlinx_serialization_coreSerialKind *kind __attribute__((swift_name("kind")));
+@property (readonly) NSString *serialName __attribute__((swift_name("serialName")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreDecoder")))
+@protocol SharedCoreKotlinx_serialization_coreDecoder
+@required
+- (id<SharedCoreKotlinx_serialization_coreCompositeDecoder>)beginStructureDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("beginStructure(descriptor:)")));
+- (BOOL)decodeBoolean __attribute__((swift_name("decodeBoolean()")));
+- (int8_t)decodeByte __attribute__((swift_name("decodeByte()")));
+- (unichar)decodeChar __attribute__((swift_name("decodeChar()")));
+- (double)decodeDouble __attribute__((swift_name("decodeDouble()")));
+- (int32_t)decodeEnumEnumDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)enumDescriptor __attribute__((swift_name("decodeEnum(enumDescriptor:)")));
+- (float)decodeFloat __attribute__((swift_name("decodeFloat()")));
+- (id<SharedCoreKotlinx_serialization_coreDecoder>)decodeInlineDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeInline(descriptor:)")));
+- (int32_t)decodeInt __attribute__((swift_name("decodeInt()")));
+- (int64_t)decodeLong __attribute__((swift_name("decodeLong()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)decodeNotNullMark __attribute__((swift_name("decodeNotNullMark()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (SharedCoreKotlinNothing * _Nullable)decodeNull __attribute__((swift_name("decodeNull()")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id _Nullable)decodeNullableSerializableValueDeserializer:(id<SharedCoreKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeNullableSerializableValue(deserializer:)")));
+- (id _Nullable)decodeSerializableValueDeserializer:(id<SharedCoreKotlinx_serialization_coreDeserializationStrategy>)deserializer __attribute__((swift_name("decodeSerializableValue(deserializer:)")));
+- (int16_t)decodeShort __attribute__((swift_name("decodeShort()")));
+- (NSString *)decodeString __attribute__((swift_name("decodeString()")));
+@property (readonly) SharedCoreKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreCompositeEncoder")))
+@protocol SharedCoreKotlinx_serialization_coreCompositeEncoder
+@required
+- (void)encodeBooleanElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(BOOL)value __attribute__((swift_name("encodeBooleanElement(descriptor:index:value:)")));
+- (void)encodeByteElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int8_t)value __attribute__((swift_name("encodeByteElement(descriptor:index:value:)")));
+- (void)encodeCharElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(unichar)value __attribute__((swift_name("encodeCharElement(descriptor:index:value:)")));
+- (void)encodeDoubleElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(double)value __attribute__((swift_name("encodeDoubleElement(descriptor:index:value:)")));
+- (void)encodeFloatElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(float)value __attribute__((swift_name("encodeFloatElement(descriptor:index:value:)")));
+- (id<SharedCoreKotlinx_serialization_coreEncoder>)encodeInlineElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("encodeInlineElement(descriptor:index:)")));
+- (void)encodeIntElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int32_t)value __attribute__((swift_name("encodeIntElement(descriptor:index:value:)")));
+- (void)encodeLongElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int64_t)value __attribute__((swift_name("encodeLongElement(descriptor:index:value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)encodeNullableSerializableElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<SharedCoreKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableElement(descriptor:index:serializer:value:)")));
+- (void)encodeSerializableElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index serializer:(id<SharedCoreKotlinx_serialization_coreSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableElement(descriptor:index:serializer:value:)")));
+- (void)encodeShortElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(int16_t)value __attribute__((swift_name("encodeShortElement(descriptor:index:value:)")));
+- (void)encodeStringElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index value:(NSString *)value __attribute__((swift_name("encodeStringElement(descriptor:index:value:)")));
+- (void)endStructureDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)shouldEncodeElementDefaultDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(descriptor:index:)")));
+@property (readonly) SharedCoreKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreSerializersModule")))
+@interface SharedCoreKotlinx_serialization_coreSerializersModule : SharedCoreBase
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (void)dumpToCollector:(id<SharedCoreKotlinx_serialization_coreSerializersModuleCollector>)collector __attribute__((swift_name("dumpTo(collector:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SharedCoreKotlinx_serialization_coreKSerializer> _Nullable)getContextualKClass:(id<SharedCoreKotlinKClass>)kClass typeArgumentsSerializers:(NSArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> *)typeArgumentsSerializers __attribute__((swift_name("getContextual(kClass:typeArgumentsSerializers:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nullable)getPolymorphicBaseClass:(id<SharedCoreKotlinKClass>)baseClass value:(id)value __attribute__((swift_name("getPolymorphic(baseClass:value:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nullable)getPolymorphicBaseClass:(id<SharedCoreKotlinKClass>)baseClass serializedClassName:(NSString * _Nullable)serializedClassName __attribute__((swift_name("getPolymorphic(baseClass:serializedClassName:)")));
+@end
+
+__attribute__((swift_name("KotlinAnnotation")))
+@protocol SharedCoreKotlinAnnotation
+@required
+@end
+
+__attribute__((swift_name("Kotlinx_serialization_coreCompositeDecoder")))
+@protocol SharedCoreKotlinx_serialization_coreCompositeDecoder
+@required
+- (BOOL)decodeBooleanElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeBooleanElement(descriptor:index:)")));
+- (int8_t)decodeByteElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeByteElement(descriptor:index:)")));
+- (unichar)decodeCharElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeCharElement(descriptor:index:)")));
+- (int32_t)decodeCollectionSizeDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeCollectionSize(descriptor:)")));
+- (double)decodeDoubleElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeDoubleElement(descriptor:index:)")));
+- (int32_t)decodeElementIndexDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("decodeElementIndex(descriptor:)")));
+- (float)decodeFloatElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeFloatElement(descriptor:index:)")));
+- (id<SharedCoreKotlinx_serialization_coreDecoder>)decodeInlineElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeInlineElement(descriptor:index:)")));
+- (int32_t)decodeIntElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeIntElement(descriptor:index:)")));
+- (int64_t)decodeLongElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeLongElement(descriptor:index:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (id _Nullable)decodeNullableSerializableElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<SharedCoreKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeNullableSerializableElement(descriptor:index:deserializer:previousValue:)")));
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+- (BOOL)decodeSequentially __attribute__((swift_name("decodeSequentially()")));
+- (id _Nullable)decodeSerializableElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index deserializer:(id<SharedCoreKotlinx_serialization_coreDeserializationStrategy>)deserializer previousValue:(id _Nullable)previousValue __attribute__((swift_name("decodeSerializableElement(descriptor:index:deserializer:previousValue:)")));
+- (int16_t)decodeShortElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeShortElement(descriptor:index:)")));
+- (NSString *)decodeStringElementDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor index:(int32_t)index __attribute__((swift_name("decodeStringElement(descriptor:index:)")));
+- (void)endStructureDescriptor:(id<SharedCoreKotlinx_serialization_coreSerialDescriptor>)descriptor __attribute__((swift_name("endStructure(descriptor:)")));
+@property (readonly) SharedCoreKotlinx_serialization_coreSerializersModule *serializersModule __attribute__((swift_name("serializersModule")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinNothing")))
+@interface SharedCoreKotlinNothing : SharedCoreBase
+@end
+
+
+/**
+ * @note annotations
+ *   kotlinx.serialization.ExperimentalSerializationApi
+*/
+__attribute__((swift_name("Kotlinx_serialization_coreSerializersModuleCollector")))
+@protocol SharedCoreKotlinx_serialization_coreSerializersModuleCollector
+@required
+- (void)contextualKClass:(id<SharedCoreKotlinKClass>)kClass provider:(id<SharedCoreKotlinx_serialization_coreKSerializer> (^)(NSArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> *))provider __attribute__((swift_name("contextual(kClass:provider:)")));
+- (void)contextualKClass:(id<SharedCoreKotlinKClass>)kClass serializer:(id<SharedCoreKotlinx_serialization_coreKSerializer>)serializer __attribute__((swift_name("contextual(kClass:serializer:)")));
+- (void)polymorphicBaseClass:(id<SharedCoreKotlinKClass>)baseClass actualClass:(id<SharedCoreKotlinKClass>)actualClass actualSerializer:(id<SharedCoreKotlinx_serialization_coreKSerializer>)actualSerializer __attribute__((swift_name("polymorphic(baseClass:actualClass:actualSerializer:)")));
+- (void)polymorphicDefaultBaseClass:(id<SharedCoreKotlinKClass>)baseClass defaultDeserializerProvider:(id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefault(baseClass:defaultDeserializerProvider:)"))) __attribute__((deprecated("Deprecated in favor of function with more precise name: polymorphicDefaultDeserializer")));
+- (void)polymorphicDefaultDeserializerBaseClass:(id<SharedCoreKotlinKClass>)baseClass defaultDeserializerProvider:(id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nullable (^)(NSString * _Nullable))defaultDeserializerProvider __attribute__((swift_name("polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)")));
+- (void)polymorphicDefaultSerializerBaseClass:(id<SharedCoreKotlinKClass>)baseClass defaultSerializerProvider:(id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nullable (^)(id))defaultSerializerProvider __attribute__((swift_name("polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)")));
+@end
+
+__attribute__((swift_name("KotlinKDeclarationContainer")))
+@protocol SharedCoreKotlinKDeclarationContainer
+@required
+@end
+
+__attribute__((swift_name("KotlinKAnnotatedElement")))
+@protocol SharedCoreKotlinKAnnotatedElement
+@required
+@end
+
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.1")
+*/
+__attribute__((swift_name("KotlinKClassifier")))
+@protocol SharedCoreKotlinKClassifier
+@required
+@end
+
+__attribute__((swift_name("KotlinKClass")))
+@protocol SharedCoreKotlinKClass <SharedCoreKotlinKDeclarationContainer, SharedCoreKotlinKAnnotatedElement, SharedCoreKotlinKClassifier>
+@required
+
+/**
+ * @note annotations
+ *   kotlin.SinceKotlin(version="1.1")
+*/
+- (BOOL)isInstanceValue:(id _Nullable)value __attribute__((swift_name("isInstance(value:)")));
+@property (readonly) NSString * _Nullable qualifiedName __attribute__((swift_name("qualifiedName")));
+@property (readonly) NSString * _Nullable simpleName __attribute__((swift_name("simpleName")));
 @end
 
 #pragma pop_macro("_Nullable_result")

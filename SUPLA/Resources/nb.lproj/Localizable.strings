@@ -59,19 +59,11 @@
 "Add I/O device" = "Legg til enhet";
 "Donate" = "Støtt prosjektet";
 "Create an account" = "Opprett konto";
-"Device registration availability information timeout!" = "Ventetiden for informasjon om registrering av enheter er tilgjengelig er overskredet!";
 "Next" = "Videre";
-"Start" = "Start";
 "Cancel" = "Avbryt";
-"Go to the system settings" = "Gå til systeminnstillinger";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Veiviseren legg er kun tilgjengelig når tilkobling til serveren er etablert basert på e-postadressen som er angitt! (Deaktiver avanserte innstillinger i kontokonfigurasjonen din).";
 "The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
-"Device Configuration Completion timeout!" = "Ventetiden for avslutning av konfigurasjon av enheten er overskredet!";
 "Incorrect input parameters (%@)!" = "wizard_result_param_error (%@)!";
-"The connected device is not compatible with this Wizard!" = "Enheten som er koblet til er ikke kompatibel med denne assistenten!";
-"Configuration Failed!" = "Konfigurasjon mislykket!";
-"Connection with the device cannot be set!" = "Kunne ikke koble til enheten!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Sørg for at tilkoblingen til WiFi-nettverket til den utøvende enheten er opprettet.";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
@@ -156,7 +148,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Levetiden til uv-lampen er % ,02f %%.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Levetiden til uv-lampen er % ,02f %%. Bytt varmeapparatet ut.";
 "The lifespan of the light source is %.02f%%." = "Levetiden til lyskilden er % ,02f %%.";
-"Timeout for enabling registration has expired!" = "Ventetiden for å slå på registrering er utløpt!";
 "Please enter your Supla Cloud login details." = "Skriv inn påloggingsinformasjonen for cloud.supla.org.";
 "Enter superuser credentials" = "Skriv inn superbrukerens legitimasjon";
 "Dimmer settings" = "Dimmerinnstillinger";
@@ -169,8 +160,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\n%@\n";
 "Press Next to continue." = "For å fortsette trykk på Videre.";
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
-"I/O Device connection setting timeout!" = "Ventetiden for etablering av kobling med aktuator er overskredet!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Sørg for at applikasjonen har tillatelser til å oppdage og koble til enheter i det lokale nettverket. Dette betyr at tillatelsen \"iOS-> Innstillinger-> SUPLA-> Lokalt nettverk \" må være aktivert for at veiviseren skal fungere skikkelig.";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Glasspartiene er eksponert i mer enn 20 timer, noe som kan ha negativ innvirkning på levetiden. Det anbefales å dekke alle seksjoner i minimum 4 timer for å regenerere dem.";
 "Planned regeneration is in progress." = "Planlagt regenerering pågår.";
@@ -222,10 +211,6 @@
 "Z-Wave bridge" = "Z-wave bro";
 "opened / closed the roof window" = "åpnet / lukket takvinduet";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Strømmen ble slått av etter at den innstilte terskelen for den tillatte strømmen ble overskredet.";
-"0: unknown" = "0: ukjent";
-"1: server timeout" = "1: ingen respons fra serveren";
-"2: Wi-Fi connection lost" = "2: Mistet WiFi-tilkobling";
-"3: server connection reset" = "3: tilbakestilling av servertilkobling";
 "Your account" = "Kontoen din";
 "App Settings" = "Innstillinger";
 "Channel height" = "Kanalhøyde";
@@ -244,7 +229,6 @@
 "ACCESS IDENTIFIER" = "TILGANG IDENTIFIKATOR";
 "E-MAIL ADDRESS" = "E-POST ADRESSE";
 "SERVER ADDRESS" = "SERVERADRESSE";
-"PASSWORD" = "PASSORD";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Veiviseren for automatisk tillegging  enheter er ikke tilgjengelig i ID-tilgangsautentiseringsmodus. Enheter kan deretter legges til manuelt.";
 "Don't have an account in Supla Cloud yet?" = "Du har ikke en Suppla Cloud-konto ennå?";
 "Create" = "Opprett en konto";
@@ -291,6 +275,11 @@
 "turn_on" = "Slå på";
 "turn_off" = "Slå av";
 "save" = "Lagre";
+"next" = "Videre";
+"password" = "Passord";
+"start" = "Start";
+"exit" = "Avslutt";
+"general_back" = "Tilbake";
 "general_function" = "Funksjon";
 "general_toggle" = "Bytt om";
 "general_channel" = "Kanal";
@@ -583,6 +572,11 @@
 "state_light_source_lifespan" = "Lyskildens levetid";
 "state_source_operating_time" = "Lyskildens arbeidstid";
 "state_dialog_lightsource_settings" = "ENDRE LIVSKILDEINNSTILLING";
+"channel_state_uptime" = "%d dager %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: ukjent";
+"lastconnectionresetcause_activity_timeout" = "1: ingen respons fra serveren";
+"lastconnectionresetcause_wifi_connection_lost" = "2: Mistet WiFi-tilkobling";
+"lastconnectionresetcause_server_connection_lost" = "3: tilbakestilling av servertilkobling";
 
 /* Change caption */
 "change_caption_channel_name" = "Kanalnavn";
@@ -592,3 +586,36 @@
 /* Car play */
 "car_play_action" = "Handling: %@";
 "car_play_display_name" = "Navn";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Ventetiden for informasjon om registrering av enheter er tilgjengelig er overskredet!";
+"enabling_registration_timeout" = "Ventetiden for å slå på registrering er utløpt!";
+"add_wizard_step_1_welcome" = "Velkommen til assistenten for å legge til enheter som vil hjelpe deg å legge til enheter til systemet på en enkel og rask måte.";
+"add_wizard_step_1_continue" = "For å fortsette trykk på **Videre**.";
+"add_wizard_step_2_message" = "Tast inn navnet og passordet til ditt hjemme- eller firmanettverk som enheten inngang/utgang kan bruke for å koble til serveren.";
+"add_wizard_network_name" = "Nettverksnavn";
+"add_wizard_step_3_message_1" = "Koble enheten til strømforsyningen. Enheten skal som standard fungere i konfigurasjonsmodus, indikert av status-LED-en som blinker som følger.";
+"add_wizard_step_3_message_2" = "Hvis enheten ikke er i konfigurasjonsmodus etter oppstart, trykk og hold CONFIG-knappen i minst 5 sekunder.";
+"add_wizard_step_3_message_3" = "Trykk på knappen **START** for å starte konfigurasjonen.";
+"add_wizard_add_more" = "Legg til mer";
+"add_wizard_repeat" = "Prøv igjen";
+"add_wizard_is_not_available" = "Veiviseren legg er kun tilgjengelig når tilkobling til serveren er etablert basert på e-postadressen som er angitt! (Deaktiver avanserte innstillinger i kontokonfigurasjonen din).";
+"add_wizard_remember_passwd" = "Husk passord";
+"add_wizard_auto_mode" = "Automodus";
+"add_wizard_manual_mode_message" = "Gå til iOS-systeminnstillinger og koble manuelt til et WiFi-nettverk som begynner med navnet SUPLA, ZAMEL, NICE eller HEATPOL.\n\nFor eksempel \"SUPLA-A220A63612B1\". Dette er et midlertidig nettverk for enheter inngang/utgang som brukes til konfigurasjon.\n\nNår du er koblet til nettverket, gå tilbake til denne applikasjonen og fortsette med leggingsprosedyren ved å trykke på **Start**-knappen";
+"add_wizard_manual_mode_settings" = "Gå til systeminnstillinger";
+"add_wizard_missing_location" = "For at veiviseren for tillegg av enheter skal fungere riktig, må posisjonstjenesten være aktivert på denne enheten. Gå til systeminnstillingene dine og sørg for at den er slått på.";
+"wizard_scan_timeout" = "Ventetiden for avslutning av trådløs nettverk søket er overskredet!";
+"wizard_iodevice_notfound" = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";
+"wizard_connect_timeout" = "Ventetiden for etablering av kobling med aktuator er overskredet!";
+"wizard_configure_timeout" = "Ventetiden for avslutning av konfigurasjon av enheten er overskredet!";
+"wizard_wifi_error" = "Trådløs nettverket er skrudd av eller så er det ikke mulig å avlese dens identifikator eller navn!";
+"wizard_result_compat_error" = "Enheten som er koblet til er ikke kompatibel med denne assistenten!";
+"wizard_result_conn_error" = "Kunne ikke koble til enheten!";
+"wizard_result_failed" = "Konfigurasjon mislykket!";
+"wizard_reconnect_timeout" = "Ventetiden for returnering til basis trådløs nettverk er overskredet!";
+"wizard_done" = "Konfigurering av enheten ble vellykket :)";
+"wizard_done_explanations" = "Hvis enheten ikke vises i applikasjonen, gjenta denne tilleggsprosedyren igjen og les \"Forrige status\" vist ovenfor. Den inneholder informasjon som gjør det mulig å finne ut hvorfor enheten ikke klarte å koble til serveren. Meldingen \"SSID not found\" betyr at det angitte navnet på 2,4 GHz WiFi-nettverket ikke ble funnet eller at nettverket er utenfor rekkevidde.";
+"wizard_iodev_data" = "Opplysninger om enheten";
+"wizard_iodev_name" = "Navn";
+"wizard_iodev_laststate" = "Forrige status";

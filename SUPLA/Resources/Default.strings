@@ -47,6 +47,11 @@
 "turn_on" = "Turn on";
 "turn_off" = "Turn off";
 "save" = "Save";
+"next" = "Next";
+"password" = "Password";
+"start" = "Start";
+"exit" = "Exit";
+"general_back" = "Back";
 "general_shut" = "Shut";
 "general_reveal" = "Reveal";
 "general_collapse" = "Collapse";
@@ -176,7 +181,6 @@
 "timer_detail_info_off" = "off";
 "timer_detail_info_next_on" = "on";
 "timer_detail_info_next_off" = "off";
-"timer_detail_start" = "Start";
 "timer_detail_stop" = "Leave it %@";
 "timer_detail_cancel" = "Cancel and turn %@";
 "timer_detail_cancel_on" = "on";
@@ -426,6 +430,11 @@
 "state_dialog_index" = "(%d of %d)";
 "state_dialog_lightsource_settings" = "Change the light source lifespan settings";
 "state_switch_cycle_count" = "Switch cycles";
+"channel_state_uptime" = "%d days %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: unknown";
+"lastconnectionresetcause_activity_timeout" = "1: server timeout";
+"lastconnectionresetcause_wifi_connection_lost" = "2: WiFi connection lost";
+"lastconnectionresetcause_server_connection_lost" = "3: server connection lost";
 
 /* Change caption */
 "change_caption_header" = "Caption Change";
@@ -466,3 +475,38 @@
 "widgets_single_action_description" = "Simplifies access to single action.";
 "widgets_double_action_title" = "Double Action";
 "widgets_double_action_description" = "Simplifies access to two actions.";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Device registration availability information timeout!";
+"enabling_registration_timeout" = "Timeout for enabling registration has expired!";
+"add_wizard_step_1_welcome" = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps.";
+"add_wizard_step_1_continue" = "Press **Next** to continue.";
+"add_wizard_step_2_message" = "Enter Wi-Fi Network name and password to use with new I/O Device";
+"add_wizard_network_name" = "Network name";
+"add_wizard_step_3_message_1" = "Connect your device to the power supply. The device should, by default, operate in configuration mode, indicated by the status LED flashing as follows.";
+"add_wizard_step_3_message_2" = "If the device isn't in configuration mode after powering on, press and hold the CONFIG button for at least 5 seconds.";
+"add_wizard_step_3_message_3" = "Press **START** to start configuration.";
+"add_wizard_add_more" = "Add more";
+"add_wizard_repeat" = "Try again";
+"add_wizard_is_not_available" = "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)";
+"add_wizard_remember_passwd" = "Remember password";
+"add_wizard_auto_mode" = "Auto mode";
+"add_wizard_manual_mode_message" = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and continue adding procedure by pressing the START button.";
+"add_wizard_manual_mode_settings" = "Go to the system settings";
+"add_wizard_missing_location" = "For the Add Device Wizard to work properly, the Location service must be enabled on this device. Go to your system settings, and make sure it's turned on.";
+"wizard_scan_timeout" = "WiFi Network Scan timeout!";
+"wizard_iodevice_notfound" = "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode.";
+"wizard_connect_timeout" = "I/O Device connection setting timeout!";
+"wizard_wifi_error" = "WiFi Network is disabled or it is impossible to read its identifier or name!";
+"wizard_result_compat_error" = "The connected device is not compatible with this Wizard!";
+"wizard_result_conn_error" = "Connection with the device cannot be set!";
+"wizard_result_failed" = "Configuration Failed!";
+"wizard_reconnect_timeout" = "Basic WiFi Network return timeout!";
+"wizard_configure_timeout" = "Device configuration completion timeout!";
+"wizard_done" = "The settings have been transferred to the I/O device.";
+"wizard_done_explanations" = "If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4GHz network is ether not in range or its name was incorrect.";
+"wizard_iodev_data" = "Device parameters";
+"wizard_iodev_name" = "Name";
+"wizard_iodev_firmware" = "Firmware";
+"wizard_iodev_mac" = "MAC";
+"wizard_iodev_laststate" = "Previous state";

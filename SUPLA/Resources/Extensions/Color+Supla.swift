@@ -36,6 +36,7 @@ extension Color {
         static let onBackground = Color(UIColor.onBackground)
         static let onPrimary = Color(UIColor.onPrimary)
         static let onSurfaceVariant = Color(UIColor.onSurfaceVariant)
+        static let onPrimaryContainer = Color(UIColor.onPrimaryContainer)
         
         static let outline = Color(UIColor.outline)
         static let separator = Color("Colors/separator")

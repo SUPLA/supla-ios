@@ -59,19 +59,11 @@
 "Add I/O device" = "Gerät hinzufügen";
 "Donate" = "Spenden";
 "Create an account" = "Konto erstellen";
-"Device registration availability information timeout!" = "Für die Information von der Verfügbarkeit der Geräteregistrierung wurde das Zeitlimit überschritten!";
 "Next" = "Weiter";
-"Start" = "Start";
 "Cancel" = "Annullieren";
-"Go to the system settings" = "Gehe Sie zu den Systemeinstellungen rüber";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Die Registrierung der Ein-/Ausgabegeräte ist momentan deaktiviert. Um fortzusetzen, kommen Sie zur Website %@ und im Bereich Meine SUPLA aktivieren Sie die Funktion Geräte hinzufügen.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Der Hinzufügen-Assistent ist nur verfügbar, wenn die Verbindung zum Server basierend auf der eingegebenen E-Mail-Adresse hergestellt wurde! (Erweiterte Optionen in Ihrer Kontokonfiguration deaktivieren)";
 "The connected Server does not support this function!" = "Der Server, mit dem eine Verbindung herstellen wurde, unterstützt diese Funktion nicht!";
-"Device Configuration Completion timeout!" = "Für den Abschluss der Konfiguration des Gerätes wurde das Zeitlimit überschritten!";
 "Incorrect input parameters (%@)!" = "Falsche Eingabeparameter (%@)!";
-"The connected device is not compatible with this Wizard!" = "Das Gerät, mit dem die Verbindung hergestellt wurde, ist mit diesem Assistenten nicht kompatibel!";
-"Configuration Failed!" = "Die Konfiguration war nicht erfolgreich!";
-"Connection with the device cannot be set!" = "Es gelang nicht, die Verbindung mit dem Gerät herzustellen!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Versichern Sie sich, dass die Verbindung des Ausführungsgeräts mit dem WiFi-Netzwerk hergestellt wurde.";
 "Help" = "Hilfe";
 "Staircase timer" = "Treppenlichtsensor";
@@ -155,7 +147,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Planen Sie den Austausch.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Den Strahler austauschen.";
 "The lifespan of the light source is %.02f%%." = "Lebensdauer der Lichtquelle beträgt %.02f%%.";
-"Timeout for enabling registration has expired!" = "Die Wartezeit auf das Aktivieren der Registrierung wurde überschritten!";
 "Please enter your Supla Cloud login details." = "Geben Sie Ihre Anmeldedaten für cloud.supla.org ein.";
 "Enter superuser credentials" = "Geben Sie die Superuser-Anmeldeinformationen ein";
 "Dimmer settings" = "Einstellungen des Helligkeitsreglers";
@@ -168,8 +159,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Wenn das Gerät nach dem Einschalten im Konfigurationsmodus nicht funktioniert, halten Sie die Taste CONFIG für mindestens 5 Sekunden gedrückt.\n\n%@\n";
 "Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
 "Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";
-"I/O Device connection setting timeout!" = "Für die Herstellung der Verbindung mit dem Betätigungsgerät wurde das Zeitlimit überschritten!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Die Suche nach irgendwelchen Geräten war erfolglos! Stellen Sie sicher, dass das Gerät, dass Sie konfigurieren lassen möchten im Konfigurationsmodus funktioniert und versuchen Sie erneut.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Versichern Sie sich, dass die App Befugnisse zur Erkennung der Geräte im lokalen Netzwerk und Verbindung mit ihnen hat. Es bedeutet, dass zur korrekten Funktion des Assistenten die Befugnis \„iOS->Einstellungen->SUPLA->Lokales Netzwerk\“ eingeschaltet sein muss.";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
 "Planned regeneration is in progress." = "Geplante Regeneration läuft.";
@@ -221,10 +210,6 @@
 "Z-Wave bridge" = "Brücke z-Wave";
 "opened / closed the roof window" = "Öffnete / schloss das Dachfenster";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet.";
-"0: unknown" = "0: unbekannt";
-"1: server timeout" = "1: keine Serverantwort";
-"2: Wi-Fi connection lost" = "2: Unterbrechung der WiFi-Verbindung";
-"3: server connection reset" = "3: Zurücksetzung der Verbindung mit dem Server";
 "Your account" = "Ihr Konto";
 "App Settings" = "Einstellungen";
 "Channel height" = "Höhe des Kanals";
@@ -241,7 +226,6 @@
 "ACCESS IDENTIFIER" = "ZUGRIFFSKENNUNG";
 "E-MAIL ADDRESS" = "E-MAIL-ADRESSE";
 "SERVER ADDRESS" = "SERVER ADRESSE";
-"PASSWORD" = "KENNWORT";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Der Assistent automatischer Hinzufügung der Geräte ist im Modus der Authentifizierung durch die Zugriffskennung nicht verfügbar. Die Geräte können manuell hinzugefügt werden.";
 "Don't have an account in Supla Cloud yet?" = "Haben Sie noch kein Konto bei Supla Cloud?";
 "Create" = "Konto erstellen";
@@ -280,6 +264,12 @@
 /* General */
 "general_error" = "Fehler";
 "general_warning" = "Warnung";
+"save" = "Speichern";
+"next" = "Weiter";
+"password" = "Kennwort";
+"start" = "Start";
+"exit" = "Beenden";
+"general_back" = "Zurück";
 "turn_on" = "Einschalten";
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
@@ -624,6 +614,11 @@
 "state_dialog_index" = "(%d von %d)";
 "state_dialog_lightsource_settings" = "Einstellungen für die Lebensdauer der Lichtquelle ändern";
 "state_switch_cycle_count" = "Schaltzyklusanzahl";
+"channel_state_uptime" = "%d Tage %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: unbekannt";
+"lastconnectionresetcause_activity_timeout" = "1: keine Serverantwort";
+"lastconnectionresetcause_wifi_connection_lost" = "2: Unterbrechung der WiFi-Verbindung";
+"lastconnectionresetcause_server_connection_lost" = "3: Zurücksetzung der Verbindung mit dem Server";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";
@@ -669,3 +664,35 @@
 "widgets_single_action_description" = "Vereinfacht den Zugriff auf zwei Aktionen.";
 "widgets_first_action" = "Erste Aktion";
 "widgets_second_action" = "Zweite Aktion";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Für die Information von der Verfügbarkeit der Geräteregistrierung wurde das Zeitlimit überschritten!";
+"enabling_registration_timeout" = "Die Wartezeit auf das Aktivieren der Registrierung wurde überschritten!";
+"add_wizard_step_1_welcome" = "Willkommen bei dem Assistenten zum Hinzufügen der Geräte! Er hilft Ihnen, ein neues Gerät an das System hinzuzufügen.";
+"add_wizard_step_1_continue" = "Um fortzusetzen, drücken Sie **Weiter**.";
+"add_wizard_step_2_message" = "Geben Sie den Namen und das Kennwort Ihres Heim- oder Unternehmens-Wi-Fi-Netzwerks ein, über das das Ausführungsgerät eine Verbindung zum Server herstellen kann.";
+"add_wizard_network_name" = "Netzwerkname";
+"add_wizard_step_3_message_1" = "Schließen Sie Ihr Gerät an die Stromversorgung an. Das Gerät sollte standardmäßig im Konfigurationsmodus arbeiten, was durch das Blinken der Status-LED wie folgt signalisiert wird.";
+"add_wizard_step_3_message_2" = "Wenn das Gerät nach dem Einschalten nicht im Konfigurationsmodus arbeitet, halten Sie die Taste CONFIG für mindestens 5 Sekunden gedrückt.";
+"add_wizard_step_3_message_3" = "Drücken Sie die Taste **START**, um die Konfiguration zu beginnen.";"add_wizard_add_more" = "Weitere hinzufügen";
+"add_wizard_repeat" = "Nochmal versuchen";
+"add_wizard_is_not_available" = "Der Hinzufügen-Assistent ist nur verfügbar, wenn die Verbindung zum Server basierend auf der eingegebenen E-Mail-Adresse hergestellt wurde! (Erweiterte Optionen in Ihrer Kontokonfiguration deaktivieren)";
+"add_wizard_remember_passwd" = "Passwort speichern";
+"add_wizard_auto_mode" = "Automodus";
+"add_wizard_manual_mode_message" = "Wechseln Sie zu den iOS-Systemeinstellungen und stellen Sie manuell eine Verbindung zu einem Wi-Fi-Netzwerk her, das mit dem Name SUPLA oder ZAMEL oder NICE oder HEATPOL beginnt. \n\nZum Beispiel \"SUPLA-A220A63612B1\". Dies ist ein temporäres Geräteausführungsnetzwerk, das zum Konfigurieren dient.\n\n Nachdem Sie sich mit diesem Netzwerk verbunden haben, kehren Sie zu dieser Anwendung zurück und fahren Sie mit dem Hinzufügen fort, indem Sie auf die Schaltfläche **Start** klicken";
+"add_wizard_manual_mode_settings" = "Gehe Sie zu den Systemeinstellungen rüber";
+"add_wizard_missing_location" = "Damit der Assistent zum Hinzufügen von Geräten ordnungsgemäß funktioniert, muss der Standortdienst auf diesem Gerät aktiviert sein. Gehen Sie zu Ihren Systemeinstellungen und stellen Sie sicher, dass er eingeschaltet ist.";
+"wizard_scan_timeout" = "Für den Abschluss des Browsens des WiFi-Netzes wurde das Zeitlimit abgeschlossen!";
+"wizard_iodevice_notfound" = "Die Suche nach irgendwelchen Geräten war erfolglos! Stellen Sie sicher, dass das Gerät, dass Sie konfigurieren lassen möchten im Konfigurationsmodus funktioniert und versuchen Sie erneut.";
+"wizard_connect_timeout" = "Für die Herstellung der Verbindung mit dem Betätigungsgerät wurde das Zeitlimit überschritten!";
+"wizard_configure_timeout" = "Für den Abschluss der Konfiguration des Gerätes wurde das Zeitlimit überschritten!";
+"wizard_wifi_error" = "Das WiFi-Netzwerk ist deaktiviert oder sein Code bzw. Name kann nicht abgelesen werden!";
+"wizard_result_compat_error" = "Das Gerät, mit dem die Verbindung hergestellt wurde, ist mit diesem Assistenten nicht kompatibel!";
+"wizard_result_conn_error" = "Es gelang nicht, die Verbindung mit dem Gerät herzustellen!";
+"wizard_result_failed" = "Die Konfiguration war nicht erfolgreich!";
+"wizard_reconnect_timeout" = "Für die Rückkehr zum Grundversorgungs-WiFi-Netz wurde das Zeitlimit überschritten!";
+"wizard_done" = "Die Konfiguration wurde erfolgreich abgeschlossen :)";
+"wizard_done_explanations" = "Wenn das Gerät nicht in der App erscheint, wiederholen Sie dieses Hinzufügungsverfahren noch einmal und lesen Sie „Bisheriger Status“, das oben zu sehen ist, ab. Er enthält eine Information, warum das Gerät sich nicht mit dem Server verbunden hat. Meldung „SSID not found“ bedeutet, dass der eingeführte Name des WiFi-Netzwerks 2,4 GHz nicht gefunden wurde oder dieses Netzwerk sich außerhalb der Reichweite befindet.";
+"wizard_iodev_data" = "Daten des Gerätes";
+"wizard_iodev_name" = "Name";
+"wizard_iodev_laststate" = "Vorheriger Status";

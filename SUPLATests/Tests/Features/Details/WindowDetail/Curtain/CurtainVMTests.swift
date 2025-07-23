@@ -71,7 +71,7 @@ final class CurtainVMTests: ViewModelTest<CurtainViewState, BaseWindowViewEvent>
                 remoteId: 123,
                 curtainWindowState: CurtainWindowState(position: .similar(50)),
                 issues: [
-                    ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.motorProblem))
+                    ChannelIssueItem.Error(string: localizedString(id: LocalizedStringId.motorProblem))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,

@@ -134,7 +134,7 @@ final class SwitchTimerConfigurationView: UIView {
     
     private lazy var startButton: UIFilledButton = {
         let button = UIFilledButton()
-        button.setAttributedTitle(Strings.TimerDetail.start)
+        button.setAttributedTitle(Strings.General.start)
         return button
     }()
     
@@ -223,7 +223,7 @@ final class SwitchTimerConfigurationView: UIView {
         divider.isHidden = editMode
         editCancelButton.isHidden = !editMode
         
-        startButton.setAttributedTitle(editMode ? Strings.TimerDetail.save : Strings.TimerDetail.start)
+        startButton.setAttributedTitle(editMode ? Strings.TimerDetail.save : Strings.General.start)
         
         if (actionSwitch.selectedSegmentIndex == 0) {
             infoTextView.text = Strings.TimerDetail.info.arguments(

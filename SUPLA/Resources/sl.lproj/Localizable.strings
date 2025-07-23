@@ -59,19 +59,11 @@
 "Add I/O device" = "Dodajte napravo";
 "Donate" = "Podprite projekt";
 "Create an account" = "Ustvarite račun";
-"Device registration availability information timeout!" = "Čakalna doba za pridobitev informacije o razpoložljivosti registracije naprav je prekoračena!";
 "Next" = "Naprej";
-"Start" = "Start";
 "Cancel" = "Prekličite";
-"Go to the system settings" = "Pojdi na sistemske nastavitve";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registracija naprav je trenutno izklopljena. Za nadaljevanje pojdite na stran %@ in v zavihku \"Moja SUPLA\" omogočite dodajanje naprav.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Čarovnik za dodajanje je na voljo le, če je na podlagi vnesenega e-poštnega naslova vzpostavljena povezava s strežnikom! (Onemogočite napredne možnosti v konfiguraciji računa)";
 "The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
-"Device Configuration Completion timeout!" = "Čakalna doba za dokončanje konfiguracije naprave je prekoračena!";
 "Incorrect input parameters (%@)!" = "Napačni vhodni parametri (%@)!";
-"The connected device is not compatible with this Wizard!" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
-"Configuration Failed!" = "Konfiguracija ni bila uspešna!";
-"Connection with the device cannot be set!" = "Povezave z napravo ni mogoče nastaviti!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Prepričajte se, da je vzpostavljena povezava z omrežjem WiFi izvršne naprave.";
 "Help" = "Pomoč";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
@@ -156,7 +148,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%. Načrtujte njeno menjavo.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%. Menjajte grelno žarnico.";
 "The lifespan of the light source is %.02f%%." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%.";
-"Timeout for enabling registration has expired!" = "Časovna omejitev za registracijo je potekla!";
 "Please enter your Supla Cloud login details." = "Vnesite svoje prijavne podatke za cloud.supla.org.";
 "Enter superuser credentials" = "Vnesite poverilnice podupravitelja";
 "Dimmer settings" = "Nastavitve zatemnitve";
@@ -169,8 +160,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
-"I/O Device connection setting timeout!" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Prepričajte se, da ima aplikacija dovoljenja za iskanje naprav v lokalnem omrežju in povezovanje z njimi. To pomeni, da mora biti dovoljenje\"iOS-> Nastavitve-> SUPLA-> Lokalno omrežje\" vključeno za pravilno delovanje čarovnika.";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stekleni deli so izpostavljeni več kot 20 ur, kar lahko negativno vpliva na njihovo življenjsko dobo. Priporočljivo je, da vse dele prekrijete za najmanj 4 ure, da se obnovijo.";
 "Planned regeneration is in progress." = "Načrtovana obnova je v teku.";
@@ -222,10 +211,6 @@
 "Z-Wave bridge" = "Most z-wave";
 "opened / closed the roof window" = "Odprl / zaprl je strešno okno";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Napeljava je bila onemogočena po prekoračitvi nastavljenega praga dovoljenega električnega toka.";
-"0: unknown" = "0: neznan";
-"1: server timeout" = "1: ni odgovora strežnika";
-"2: Wi-Fi connection lost" = "2: izguba WiFi povezave";
-"3: server connection reset" = "3: ponovni zagon povezave s strežnikom";
 "Your account" = "Vaš račun";
 "App Settings" = "Nastavitve";
 "Channel height" = "Višina kanala";
@@ -244,7 +229,6 @@
 "ACCESS IDENTIFIER" = "IDENTIFIKATOR DOSTOPA";
 "E-MAIL ADDRESS" = "E-POŠTNI NASLOV";
 "SERVER ADDRESS" = "NASLOV STREžNIKA";
-"PASSWORD" = "GESLO";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Čarovnik za samodejno dodajanje naprave ni na voljo v načinu avtentifijacije z identifikatorjem dostopa. Medtem je mogoče naprave dodati ročno.";
 "Don't have an account in Supla Cloud yet?" = "Nimate še računa v Supla Cloud?";
 "Create" = "Ustvarite račun";
@@ -290,6 +274,11 @@
 "turn_on" = "Vklopi";
 "turn_off" = "Izklopi";
 "save" = "Shrani";
+"next" = "Naprej";
+"password" = "Geslo";
+"start" = "Start";
+"exit" = "Izhod";
+"general_back" = "Nazaj";
 "general_function" = "Funkcija";
 "general_toggle" = "Preklopi";
 "general_channel" = "Kanal";
@@ -583,6 +572,11 @@
 "state_light_source_lifespan" = "Življenjska doba svetlobnega vira";
 "state_source_operating_time" = "Delovni čas svetlobnega vira";
 "state_dialog_lightsource_settings" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
+"channel_state_uptime" = "%d dni %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: neznan";
+"lastconnectionresetcause_activity_timeout" = "1: ni odgovora strežnika";
+"lastconnectionresetcause_wifi_connection_lost" = "2: izguba WiFi povezave";
+"lastconnectionresetcause_server_connection_lost" = "3: ponovni zagon povezave s strežnikom";
 
 /* Change caption */
 "change_caption_channel_name" = "Ime kanala";
@@ -592,3 +586,36 @@
 /* Car play */
 "car_play_action" = "Dejanje: %@";
 "car_play_display_name" = "Ime";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Čakalna doba za pridobitev informacije o razpoložljivosti registracije naprav je prekoračena!";
+"enabling_registration_timeout" = "Časovna omejitev za registracijo je potekla!";
+"add_wizard_step_1_welcome" = "Dobrodošli v čarovniku za dodajanje naprav, ki vam bo pomagal hitro in enostavno dodati novo napravo v sistem.";
+"add_wizard_step_1_continue" = "Če želite nadaljevati, pritisnite **Naprej**.";
+"add_wizard_step_2_message" = "Vnesite ime in geslo vašega domačega ali poslovnega omrežja WiFi, prek katerega bo izvršilna naprava lahko vzpostavila povezavo s strežnikom.";
+"add_wizard_network_name" = "Ime omrežja";
+"add_wizard_step_3_message_1" = "Priključite napravo na napajanje. Naprava bi morala privzeto delovati v konfiguracijskem načinu, kar označuje utripanje LED lučke stanja na naslednji način.";
+"add_wizard_step_3_message_2" = "Če naprava po vklopu ni v načinu konfiguracije, pritisnite in držite gumb CONFIG vsaj 5 sekund.";
+"add_wizard_step_3_message_3" = "Pritisnite tipko **START** da začnete konfiguracijo.";
+"add_wizard_add_more" = "Dodaj več";
+"add_wizard_repeat" = "Poskusite znova";
+"add_wizard_is_not_available" = "Čarovnik za dodajanje je na voljo le, če je na podlagi vnesenega e-poštnega naslova vzpostavljena povezava s strežnikom! (Onemogočite napredne možnosti v konfiguraciji računa)";
+"add_wizard_remember_passwd" = "Shranite geslo";
+"add_wizard_auto_mode" = "Samodejni način";
+"add_wizard_manual_mode_message" = "Pojdite na sistemske nastavitve za iOS in se ročno povežite z omrežjem WiFi, ki se začne z imenom SUPLA ali ZAMEL ali NICE ali HEATPOL.\n\nNa primer \"SUPLA-A220A63612B1\". To je začasno izvršilno omrežje naprave, ki se ga uporablja za konfiguracijo.\n\nKo se povežete s tem omrežjem, se vrnite v to aplikacijo in nadaljujte postopek dodajanja s pritiskom na gumb **Start**";
+"add_wizard_manual_mode_settings" = "Pojdi na sistemske nastavitve";
+"add_wizard_missing_location" = "Za pravilno delovanje čarovnika za dodajanje naprave mora biti na tej napravi omogočena storitev lokacije. Pojdite v sistemske nastavitve in se prepričajte, da je vklopljena.";
+"wizard_scan_timeout" = "Čakalna doba za dokončanje iskanja WiFi je prekoračena!";
+"wizard_iodevice_notfound" = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
+"wizard_connect_timeout" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";
+"wizard_configure_timeout" = "Čakalna doba za dokončanje konfiguracije naprave je prekoračena!";
+"wizard_wifi_error" = "Omrežje WiFi je izklopljeno ali njegovega identifikatorja ali imena ni mogoče prebrati!";
+"wizard_result_compat_error" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
+"wizard_result_conn_error" = "Povezave z napravo ni mogoče nastaviti!";
+"wizard_result_failed" = "Konfiguracija ni bila uspešna!";
+"wizard_reconnect_timeout" = "Čakalna doba za vrnitev v primarno omrežje WiFi je prekoračena!";
+"wizard_done" = "Konfiguracija naprave je bila uspešna :)";
+"wizard_done_explanations" = "Če se naprava ne prikaže v aplikaciji, ponovite ta postopek dodajanja še enkrat in preberite \"Prejšnje stanje\", prikazano zgoraj. Vsebuje informacije, na podlagi katerih je mogoče ugotoviti, zakaj naprava ni vzpostavila povezave s strežnikom. Sporočilo »SSID not found« pomeni, da vnesenega imena 2,4 GHz WiFi omrežja ni bilo mogoče najti ali pa je omrežje izven dosega.";
+"wizard_iodev_data" = "Podatki o napravi";
+"wizard_iodev_name" = "Ime";
+"wizard_iodev_laststate" = "Prejšnji status";

@@ -16,20 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
 @testable import SUPLA
+import SwiftSoup
+import XCTest
 
 class EspHtmlParserTests: XCTestCase {
-    
     private lazy var fileDataThermostat: Data! = {
         let testBundle = Bundle(for: type(of: self))
         let file = testBundle.url(forResource: "arduino", withExtension: "html")!
         return try! Data(contentsOf: file)
     }()
     
-    private lazy var documentThermostat: TFHpple! = {
-        return TFHpple(htmlData: fileDataThermostat)
-    }()
+    private lazy var documentThermostat: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataThermostat, encoding: .utf8)!)
     
     private lazy var fileDataDiy: Data! = {
         let testBundle = Bundle(for: type(of: self))
@@ -37,12 +35,13 @@ class EspHtmlParserTests: XCTestCase {
         return try! Data(contentsOf: file)
     }()
     
-    private lazy var parser: EspHtmlParser! = {
-        EspHtmlParser()
-    }()
+    private lazy var documentDiy: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataDiy, encoding: .utf8)!)
+    
+    private lazy var parser: EspHtmlParser! = EspHtmlParser()
     
     override func tearDown() {
         documentThermostat = nil
+        documentDiy = nil
         parser = nil
     }
     
@@ -52,12 +51,28 @@ class EspHtmlParserTests: XCTestCase {
         
         // then
         XCTAssertEqual(inputs.keys.count, 37)
+        for (key, value) in inputsMapThermostat {
+            XCTAssertEqual(inputs[key], value, "Failed by key: \(key)")
+        }
         // no input without names
-        XCTAssertEqual(inputs.keys.filter({ $0.isEmpty }).count, 0)
+        XCTAssertEqual(inputs.keys.filter { $0.isEmpty }.count, 0)
         // no checkboxes without checked attribute
-        XCTAssertEqual(inputs.keys.filter({ $0 == "set_time_toggle" }).count, 0)
+        XCTAssertEqual(inputs.keys.filter { $0 == "set_time_toggle" }.count, 0)
         // checkboxes with checked attribute
-        XCTAssertEqual(inputs.keys.filter({ $0 == "0_t_chng_keeps" }).count, 1)
+        XCTAssertEqual(inputs.keys.filter { $0 == "0_t_chng_keeps" }.count, 1)
+    }
+    
+    func test_shouldLoadInputsDiy() {
+        // when
+        let inputs = parser.findInputs(document: documentDiy)
+        
+        // then
+        XCTAssertEqual(inputs.keys.count, 7)
+        for (key, value) in inputsMapDiy {
+            XCTAssertEqual(inputs[key], value, "Failed by key: \(key)")
+        }
+        // no input without names
+        XCTAssertEqual(inputs.keys.filter { $0.isEmpty }.count, 0)
     }
     
     func test_shouldLoadDeviceConfig() {
@@ -106,4 +121,54 @@ class EspHtmlParserTests: XCTestCase {
         XCTAssertEqual(result.guid, "C85A6230A251518F61CFDE8704B6A7D8")
         XCTAssertEqual(result.mac, "30:C9:22:D2:BE:E8")
     }
+    
+    private let inputsMapThermostat: [String: String] = [
+        "mqtttls": "0",
+        "mqttprefix": "",
+        "date_time_value": "",
+        "0_algorithm": "1",
+        "0_t_freeze": "",
+        "0_t_aux_min": "",
+        "0_min_on_s": "0",
+        "sec": "0",
+        "0_subfnc": "1",
+        "timesync_auto": "on",
+        "protocol_supla": "1",
+        "0_fnc": "420",
+        "rbt": "0",
+        "mqttserver": "",
+        "0_t_aux_max": "",
+        "0_t_heat": "",
+        "mqttport": "1883",
+        "mqttqos": "0",
+        "mqttauth": "1",
+        "0_t_hister": "0.4",
+        "mqttretain": "0",
+        "0_t_aux": "2",
+        "0_error_val": "0",
+        "0_min_off_s": "0",
+        "protocol_mqtt": "0",
+        "mqttpasswd": "",
+        "svr": "beta-cloud.supla.org",
+        "mqttuser": "",
+        "sid": "truskawka_IoT",
+        "wpw": "",
+        "led": "0",
+        "0_t_main": "1",
+        "0_t_max": "",
+        "0_hvac_mode": "2",
+        "0_t_aux_type": "2",
+        "0_t_chng_keeps": "on",
+        "eml": "krz.lewandowski@gmail.com"
+    ]
+    
+    private let inputsMapDiy: [String: String] = [
+        "mps": "pass",
+        "mlg": "admin",
+        "shn": "YoDeCo - Sonoff MINIR4",
+        "svr": "svrxx.supla.org",
+        "wpw": "",
+        "eml": "xxx.xxxxx@gmail.com",
+        "sid": "XYZ",
+    ]
 }

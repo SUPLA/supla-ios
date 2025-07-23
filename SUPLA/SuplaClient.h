@@ -19,8 +19,9 @@
 #import <Foundation/Foundation.h>
 #import "SAThermostatScheduleCfg.h"
 #import "proto.h"
+#import "SharedCore/SharedCore.h"
 
-@protocol SuplaClientProtocol <NSObject>
+@protocol SuplaClientProtocol <SharedCoreSuplaClientSharedApi>
 - (int) getServerTimeDiffInSec;
 
 - (void) cancel;
@@ -89,7 +90,6 @@
 - (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
 - (BOOL) getDeviceConfig: (TCS_GetDeviceConfigRequest*) configRequest;
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
-- (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;
 - (void) getSuperuserAuthorizationResult;
 - (BOOL) isSuperuserAuthorized;

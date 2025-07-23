@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import SwiftSoup
 
 fileprivate let STATE_PATTERN = "\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ ([A-Za-z0-9\\:]*)"
 
@@ -64,6 +65,38 @@ class EspHtmlParser: NSObject {
         return map
     }
     
+    func findInputs(document: SwiftSoup.Document) -> [String: String] {
+        var map: [String: String] = [:]
+
+        if let inputs = try? document.select("input") {
+            for input in inputs {
+                guard let name = try? input.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
+                let value = try? input.attr("value")
+
+                if (input.attribute("type", is: "checkbox")) {
+                    if (input.hasAttr("checked")) {
+                        map[name] = value ?? ""
+                    }
+                } else {
+                    map[name] = value ?? ""
+                }
+            }
+        }
+
+        if let selects = try? document.select("select") {
+            for select in selects {
+                guard let name = try? select.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
+                if let option = try? select.select("option[selected]").first(),
+                   let value = try? option.val()
+                {
+                    map[name] = value
+                }
+            }
+        }
+
+        return map
+    }
+    
     @objc func prepareResult(document: String?) -> EspConfigResult {
         let result = EspConfigResult()
         
@@ -93,5 +126,15 @@ class EspHtmlParser: NSObject {
     
     @objc func needsCloudConfig(fieldMap: [String: String]) -> Bool {
         fieldMap.contains { $0 == "no_visible_channels" && $1 == "1" }
+    }
+}
+
+private extension SwiftSoup.Element {
+    func attribute(_ name: String, is value: String) -> Bool {
+        if let attr = try? attr(name), attr.caseInsensitiveCompare(value) == .orderedSame {
+            return true
+        } else {
+            return false
+        }
     }
 }

@@ -71,7 +71,7 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
                 remoteId: 123,
                 terraceAwningWindowState: TerraceAwningWindowState(position: .similar(50)),
                 issues: [
-                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.calibrationFailed))
+                    ChannelIssueItem.Warning(string: localizedString(id: LocalizedStringId.calibrationFailed))
                 ],
                 offline: false,
                 calibrating: false,

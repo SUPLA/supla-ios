@@ -74,7 +74,7 @@ struct Strings {
         static let accessIdLabel = NSLocalizedString("ACCESS IDENTIFIER", comment: "")
         static let emailLabel = NSLocalizedString("E-MAIL ADDRESS", comment: "")
         static let serverLabel = NSLocalizedString("SERVER ADDRESS", comment: "")
-        static let passwordLabel = NSLocalizedString("PASSWORD", comment: "")
+        static let passwordLabel = General.password.uppercased()
         static let wizardWarningText = NSLocalizedString("In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure.", comment: "")
         static let createAccountPrompt = NSLocalizedString("Don't have an account in Supla Cloud yet?", comment: "")
         static let createAccountButton = NSLocalizedString("Create", comment: "")
@@ -208,7 +208,6 @@ struct Strings {
         static let infoOff = "timer_detail_info_off".toLocalized()
         static let infoNextOn = "timer_detail_info_next_on".toLocalized()
         static let infoNextOff = "timer_detail_info_next_off".toLocalized()
-        static let start = "timer_detail_start".toLocalized()
         static let stop = "timer_detail_stop".toLocalized()
         static let cancel = "timer_detail_cancel".toLocalized()
         static let cancelOn = "timer_detail_cancel_on".toLocalized()
@@ -289,6 +288,11 @@ struct Strings {
         static let stop = "general_stop".toLocalized()
         static let toggle = "general_toggle".toLocalized()
         static let save = "save".toLocalized()
+        static let next = "next".toLocalized()
+        static let password = "password".toLocalized()
+        static let start = "start".toLocalized()
+        static let exit = "exit".toLocalized()
+        static let back = "general_back".toLocalized()
         static let stateOpened = "general_state_opened".toLocalized()
         static let stateClosed = "general_state_closed".toLocalized()
         
@@ -392,7 +396,7 @@ struct Strings {
         static let privateTitle = NSLocalizedString("Enter superuser credentials", comment: "")
         
         static let emailAddress = NSLocalizedString("E-MAIL ADDRESS", comment: "")
-        static let password = NSLocalizedString("PASSWORD", comment: "")
+        static let password = General.password.uppercased()
     }
     
     struct DeviceCatalog {
@@ -551,6 +555,11 @@ struct Strings {
         static let dialogIndex = "state_dialog_index".toLocalized()
         static let lightsourceSettings = "state_dialog_lightsource_settings".toLocalized()
         static let switchCycleCount = "state_switch_cycle_count".toLocalized()
+        static let uptimeValue = "channel_state_uptime".toLocalized()
+        static let connectionResetCauseUnknown = "lastconnectionresetcause_unknown".toLocalized()
+        static let connectionResetCauseActivityTimeout = "lastconnectionresetcause_activity_timeout".toLocalized()
+        static let connectionResetCauseWifiConnectionLost = "lastconnectionresetcause_wifi_connection_lost".toLocalized()
+        static let connectionResetCauseServerConnectionLost = "lastconnectionresetcause_server_connection_lost".toLocalized()
     }
     
     struct ChangeCaption {
@@ -596,6 +605,42 @@ struct Strings {
         static let doubleActionTitle = "widgets_double_action_title".toLocalized()
         static let doubleActionDescription = "widgets_double_action_description".toLocalized()
     }
+    
+    struct AddWizard {
+        static let deviceRegistrationRequestTimeout = "device_reg_request_timeout".toLocalized()
+        static let enablingRegistrationTimeout = "enabling_registration_timeout".toLocalized()
+        static let scanTimeout = "wizard_scan_timeout".toLocalized()
+        static let deviceNotFound = "wizard_iodevice_notfound".toLocalized()
+        static let connectTimeout = "wizard_connect_timeout".toLocalized()
+        static let configureTimeout = "wizard_configure_timeout".toLocalized()
+        static let wifiError = "wizard_wifi_error".toLocalized()
+        static let resultNotCompatible = "wizard_result_compat_error".toLocalized()
+        static let resultConnectionError = "wizard_result_conn_error".toLocalized()
+        static let resultFailed = "wizard_result_failed".toLocalized()
+        static let reconnectTimeout = "wizard_reconnect_timeout".toLocalized()
+        static let step1Welcome = "add_wizard_step_1_welcome".toLocalized()
+        static let step1Continue = "add_wizard_step_1_continue".toLocalized()
+        static let step2Message = "add_wizard_step_2_message".toLocalized()
+        static let networkName = "add_wizard_network_name".toLocalized()
+        static let step3Message1 = "add_wizard_step_3_message_1".toLocalized()
+        static let step3Message2 = "add_wizard_step_3_message_2".toLocalized()
+        static let step3Message3 = "add_wizard_step_3_message_3".toLocalized()
+        static let done = "wizard_done".toLocalized()
+        static let doneExplanation = "wizard_done_explanations".toLocalized()
+        static let addMore = "add_wizard_add_more".toLocalized()
+        static let tryAgain = "add_wizard_repeat".toLocalized()
+        static let deviceParameters = "wizard_iodev_data".toLocalized()
+        static let deviceName = "wizard_iodev_name".toLocalized()
+        static let deviceFirmware = "wizard_iodev_firmware".toLocalized()
+        static let deviceMac = "wizard_iodev_mac".toLocalized()
+        static let lastState = "wizard_iodev_laststate".toLocalized()
+        static let notAvailable = "add_wizard_is_not_available".toLocalized()
+        static let rememberPassword = "add_wizard_remember_passwd".toLocalized()
+        static let autoMode = "add_wizard_auto_mode".toLocalized()
+        static let manualModeMessge = "add_wizard_manual_mode_message".toLocalized()
+        static let goToSettings = "add_wizard_manual_mode_settings".toLocalized()
+        static let missingLocation = "add_wizard_missing_location".toLocalized()
+    }
 }
 
 extension String {
@@ -630,4 +675,9 @@ class LegacyStrings: NSObject {
     @objc static let stateConnectionResetCause = Strings.State.connectionResetCause
     @objc static let stateLightSourceLifespan = Strings.State.lightSourceLifespan
     @objc static let stateSourceOperatingTime = Strings.State.sourceOperatingTime
+    
+    @objc static let stateConnectionResetCauseUnknown = Strings.State.connectionResetCauseUnknown
+    @objc static let stateConnectionResetCauseActivityTimeout = Strings.State.connectionResetCauseActivityTimeout
+    @objc static let stateConnectionResetCauseWifiConnectionLost = Strings.State.connectionResetCauseWifiConnectionLost
+    @objc static let stateConnectionResetCauseServerConnectionLost = Strings.State.connectionResetCauseServerConnectionLost
 }

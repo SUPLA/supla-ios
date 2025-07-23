@@ -8,6 +8,739 @@ import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+public enum Skie {
+  public enum RuntimeKotlin {
+    public enum SkieColdFlowIterator {
+      public typealias __Kotlin = SharedCore.SkieColdFlowIterator
+    }
+    public enum SkieKotlinFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinFlow
+    }
+    public enum SkieKotlinMutableSharedFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinMutableSharedFlow
+    }
+    public enum SkieKotlinMutableStateFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinMutableStateFlow
+    }
+    public enum SkieKotlinOptionalFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinOptionalFlow
+    }
+    public enum SkieKotlinOptionalMutableSharedFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinOptionalMutableSharedFlow
+    }
+    public enum SkieKotlinOptionalMutableStateFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinOptionalMutableStateFlow
+    }
+    public enum SkieKotlinOptionalSharedFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinOptionalSharedFlow
+    }
+    public enum SkieKotlinOptionalStateFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinOptionalStateFlow
+    }
+    public enum SkieKotlinSharedFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinSharedFlow
+    }
+    public enum SkieKotlinStateFlow {
+      public typealias __Kotlin = SharedCore.SkieKotlinStateFlow
+    }
+    public enum Skie_CancellationHandler {
+      public typealias __Kotlin = SharedCore.Skie_CancellationHandler
+    }
+    public enum Skie_DispatcherDelegate {
+      public typealias __Kotlin = SharedCore.Skie_DispatcherDelegate
+    }
+    public enum Skie_SuspendHandler {
+      public typealias __Kotlin = SharedCore.Skie_SuspendHandler
+    }
+    public enum Skie_SuspendResult {
+      public typealias __Kotlin = SharedCore.Skie_SuspendResult
+      public enum Success {
+        public typealias __Kotlin = SharedCore.Skie_SuspendResult.Success
+      }
+      public enum Error {
+        public typealias __Kotlin = SharedCore.Skie_SuspendResult.Error
+      }
+      public enum Canceled {
+        public typealias __Kotlin = SharedCore.Skie_SuspendResult.Canceled
+      }
+    }
+  }
+  public typealias co_touchlab_skie__runtime_kotlin = SharedCore.Skie.RuntimeKotlin
+  public enum KotlinxCoroutinesCore {
+    public enum Flow {
+      public typealias __Kotlin = SharedCore.Kotlinx_coroutines_coreFlow
+    }
+    public enum StateFlow {
+      public typealias __Kotlin = SharedCore.Kotlinx_coroutines_coreStateFlow
+    }
+    public enum SharedFlow {
+      public typealias __Kotlin = SharedCore.Kotlinx_coroutines_coreSharedFlow
+    }
+    public enum MutableSharedFlow {
+      public typealias __Kotlin = SharedCore.Kotlinx_coroutines_coreMutableSharedFlow
+    }
+    public enum MutableStateFlow {
+      public typealias __Kotlin = SharedCore.Kotlinx_coroutines_coreMutableStateFlow
+    }
+    public enum Runnable {
+      public typealias __Kotlin = SharedCore.Kotlinx_coroutines_coreRunnable
+    }
+  }
+  public typealias org_jetbrains_kotlinx__kotlinx_coroutines_core = SharedCore.Skie.KotlinxCoroutinesCore
+  public enum supla_android__shared_core {
+    public enum LocalizedString {
+    }
+    public enum SuplaClientMessage {
+    }
+    public enum BaseData {
+    }
+    public enum ChannelIssueItem {
+    }
+    public enum IssueIcon {
+    }
+    public enum AddWizardFinalAction {
+    }
+    public enum EspConfigurationError {
+    }
+    public enum EspConfigurationEvent {
+    }
+    public enum EspConfigurationState {
+    }
+    public enum ChannelDto {
+    }
+  }
+  public typealias supla_android__shared_core_ = SharedCore.Skie.supla_android__shared_core
+  public enum KotlinxSerializationCore {
+    public enum SerialKind {
+    }
+    public enum SerializersModule {
+    }
+    public enum PolymorphicKind {
+    }
+    public enum PrimitiveKind {
+    }
+    public enum StructureKind {
+    }
+  }
+  public typealias org_jetbrains_kotlinx__kotlinx_serialization_core = SharedCore.Skie.KotlinxSerializationCore
+}
+@_hasMissingDesignatedInitializers public class SkieSwiftFlowIterator<T> : _Concurrency.AsyncIteratorProtocol {
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  public func next() async -> T?
+  @objc deinit
+  public typealias Element = T
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncIteratorProtocol, Failure) public typealias __AsyncIteratorProtocol_Failure = Swift.Never
+}
+public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
+  associatedtype Element
+  associatedtype Delegate : SharedCore.Kotlinx_coroutines_coreFlow
+  @_spi(SKIE) var delegate: Self.Delegate { get }
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreFlow
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
+  public typealias Element = T
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftOptionalFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreFlow
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias Element = T?
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftSharedFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreSharedFlow
+  final public var replayCache: [T] {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftSharedFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftSharedFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
+  public typealias Element = T
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreSharedFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftOptionalSharedFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreSharedFlow
+  final public var replayCache: [T?] {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalSharedFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalSharedFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias Element = T?
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreSharedFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftMutableSharedFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreMutableSharedFlow
+  final public var subscriptionCount: SharedCore.SkieSwiftStateFlow<SharedCore.KotlinInt> {
+    get
+  }
+  final public var replayCache: [T] {
+    get
+  }
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  final public func emit(value: T) async throws
+  final public func tryEmit(value: T) -> Swift.Bool
+  final public func resetReplayCache()
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableSharedFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableSharedFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
+  public typealias Element = T
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreMutableSharedFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftOptionalMutableSharedFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreMutableSharedFlow
+  final public var subscriptionCount: SharedCore.SkieSwiftStateFlow<SharedCore.KotlinInt> {
+    get
+  }
+  final public var replayCache: [T?] {
+    get
+  }
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  final public func emit(value: T?) async throws
+  final public func tryEmit(value: T?) -> Swift.Bool
+  final public func resetReplayCache()
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableSharedFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableSharedFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias Element = T?
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreMutableSharedFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftStateFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreStateFlow
+  final public var value: T {
+    get
+  }
+  final public var replayCache: [T] {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftStateFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftStateFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinStateFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinStateFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
+  public typealias Element = T
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinStateFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreStateFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftOptionalStateFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreStateFlow
+  final public var value: T? {
+    get
+  }
+  final public var replayCache: [T?] {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalStateFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalStateFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias Element = T?
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreStateFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftMutableStateFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreMutableStateFlow
+  final public var value: T {
+    get
+    set(value)
+  }
+  final public var replayCache: [T] {
+    get
+  }
+  final public var subscriptionCount: SharedCore.SkieSwiftStateFlow<SharedCore.KotlinInt> {
+    get
+  }
+  final public func compareAndSet(expect: T, update: T) -> Swift.Bool
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  final public func emit(value: T) async throws
+  final public func tryEmit(value: T) -> Swift.Bool
+  final public func resetReplayCache()
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableStateFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableStateFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
+  public typealias Element = T
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreMutableStateFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class SkieSwiftOptionalMutableStateFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  @_spi(SKIE) final public let delegate: any SharedCore.Kotlinx_coroutines_coreMutableStateFlow
+  final public var value: T? {
+    get
+    set(value)
+  }
+  final public var replayCache: [T?] {
+    get
+  }
+  final public var subscriptionCount: SharedCore.SkieSwiftStateFlow<SharedCore.KotlinInt> {
+    get
+  }
+  final public func compareAndSet(expect: T?, update: T?) -> Swift.Bool
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  final public func emit(value: T?) async throws
+  final public func tryEmit(value: T?) -> Swift.Bool
+  final public func resetReplayCache()
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableStateFlow<T>?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableStateFlow<T>?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>?) -> Self
+  final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>
+  final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
+  public typealias Element = T?
+  public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>
+  public typealias Delegate = any SharedCore.Kotlinx_coroutines_coreMutableStateFlow
+  @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
+  @_implements(_Concurrency.AsyncSequence, Failure) public typealias __AsyncSequence_Failure = Swift.Never
+  @objc deinit
+}
+extension SharedCore.Skie.RuntimeKotlin.SkieColdFlowIterator {
+  public struct __Suspend<E> where E : AnyObject {
+    public let __kotlinObject: SharedCore.SkieColdFlowIterator<E>
+    public init(_ __kotlinObject: SharedCore.SkieColdFlowIterator<E>)
+  }
+}
+public func skie<E>(_ kotlinObject: SharedCore.SkieColdFlowIterator<E>) -> SharedCore.Skie.RuntimeKotlin.SkieColdFlowIterator.__Suspend<E> where E : AnyObject
+extension SharedCore.Skie.RuntimeKotlin.SkieColdFlowIterator.__Suspend {
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  public func hasNext() async throws -> SharedCore.KotlinBoolean
+}
+extension SharedCore.Kotlinx_coroutines_coreFlow {
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  public func collect(collector: any SharedCore.Kotlinx_coroutines_coreFlowCollector) async throws
+}
+extension SharedCore.Kotlinx_coroutines_coreFlowCollector {
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  public func emit(value: Any?) async throws
+}
+extension SharedCore.CheckRegistrationEnabledUseCase {
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  public func invoke() async throws -> SharedCore.CheckRegistrationEnabledUseCase.Result
+}
+extension SharedCore.EnableRegistrationUseCase {
+  @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
+  public func invoke() async throws -> SharedCore.EnableRegistrationUseCase.Result
+}
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftFlow<T>) -> SharedCore.SkieKotlinFlow<T> where T : AnyObject
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinFlow<T> where T : AnyObject
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinFlow<T> where T : AnyObject
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinFlow<T> where T : AnyObject
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinFlow<T> where T : AnyObject
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftFlow<T>) -> SharedCore.SkieKotlinFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T> where T : AnyObject
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftOptionalFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftOptionalFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T> where T : AnyObject
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T> where T : AnyObject
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T> where T : AnyObject
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T> where T : AnyObject
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftSharedFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftSharedFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftOptionalSharedFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftOptionalSharedFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+public func SkieKotlinMutableSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinMutableSharedFlow<T> where T : AnyObject
+public func SkieKotlinMutableSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftMutableSharedFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+}
+extension SharedCore.SkieSwiftMutableSharedFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+}
+public func SkieKotlinOptionalMutableSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalMutableSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalMutableSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalMutableSharedFlow<T> where T : AnyObject
+public func SkieKotlinOptionalMutableSharedFlow<T>(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalMutableSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalMutableSharedFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>) -> SharedCore.SkieKotlinOptionalMutableSharedFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftOptionalMutableSharedFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>)
+}
+extension SharedCore.SkieSwiftOptionalMutableSharedFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableSharedFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableSharedFlow<T>)
+}
+public func SkieKotlinStateFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinStateFlow<T> where T : AnyObject
+public func SkieKotlinStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinStateFlow<T> where T : AnyObject
+public func SkieKotlinStateFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftStateFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftStateFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T> where T : AnyObject
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T> where T : AnyObject
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T> where T : AnyObject
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T> where T : AnyObject
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalStateFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftOptionalStateFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftOptionalStateFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+public func SkieKotlinMutableStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinMutableStateFlow<T> where T : AnyObject
+public func SkieKotlinMutableStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftMutableStateFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftMutableStateFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+}
+public func SkieKotlinOptionalMutableStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalMutableStateFlow<T> where T : AnyObject
+public func SkieKotlinOptionalMutableStateFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalMutableStateFlow<T> where T : AnyObject
+public func SkieKotlinOptionalMutableStateFlow<T>(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalMutableStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+public func SkieKotlinOptionalMutableStateFlow<T>(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>) -> SharedCore.SkieKotlinOptionalMutableStateFlow<T._ObjectiveCType> where T : Swift._ObjectiveCBridgeable
+extension SharedCore.SkieSwiftOptionalMutableStateFlow where T : AnyObject {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+extension SharedCore.SkieSwiftOptionalMutableStateFlow where T : Swift._ObjectiveCBridgeable {
+  convenience public init(_ flow: SharedCore.SkieKotlinMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieKotlinOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T._ObjectiveCType>)
+  convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
+  convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
+}
+@frozen public enum SuplaEventType : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case unknown
+  case controllingTheGatewayLock
+  case controllingTheGate
+  case controllingTheGarageDoor
+  case controllingTheDoorLock
+  case controllingTheRollerShutter
+  case controllingTheRoofWindow
+  case powerOnOff
+  case lightOnOff
+  case valveOpenClose
+  case setBridgeValueFailed
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaEventType.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaEventType, result: inout SharedCore.SuplaEventType?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaEventType, result: inout SharedCore.SuplaEventType?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaEventType?) -> SharedCore.SuplaEventType
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaEventType
+  public typealias _ObjectiveCType = SharedCore.__SuplaEventType
+  public typealias Companion = SharedCore.__SuplaEventType.Companion
+  public static func == (a: SharedCore.SuplaEventType, b: SharedCore.SuplaEventType) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaEventType]
+  nonisolated public static var allCases: [SharedCore.SuplaEventType] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaEventType {
+  public func toKotlinEnum() -> SharedCore.__SuplaEventType
+}
+extension SharedCore.__SuplaEventType {
+  public func toSwiftEnum() -> SharedCore.SuplaEventType
+}
 @frozen public enum SuplaChannelAvailabilityStatus : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case online
   case offline
@@ -135,6 +868,35 @@ extension SharedCore.ThermostatSubfunction {
 extension SharedCore.__ThermostatSubfunction {
   public func toSwiftEnum() -> SharedCore.ThermostatSubfunction
 }
+@frozen public enum Icon : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case addWizardError
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__Icon, result: inout SharedCore.Icon?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__Icon, result: inout SharedCore.Icon?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__Icon?) -> SharedCore.Icon
+  public func _bridgeToObjectiveC() -> SharedCore.__Icon
+  public typealias _ObjectiveCType = SharedCore.__Icon
+  public static func == (a: SharedCore.Icon, b: SharedCore.Icon) -> Swift.Bool
+  public typealias AllCases = [SharedCore.Icon]
+  nonisolated public static var allCases: [SharedCore.Icon] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.Icon {
+  public func toKotlinEnum() -> SharedCore.__Icon
+}
+extension SharedCore.__Icon {
+  public func toSwiftEnum() -> SharedCore.Icon
+}
 @frozen public enum LocalizedStringId : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case generalTurnOn
   case generalTurnOff
@@ -224,6 +986,32 @@ extension SharedCore.__ThermostatSubfunction {
   case containerWarningLevel
   case containerInvalidSensorState
   case containerSoundAlarm
+  case deviceRegistrationRequestTimeout
+  case enablingRegistrationTimeout
+  case addWizardScanTimeout
+  case addWizardDeviceNotFound
+  case addWizardConnectTimeout
+  case addWizardConfigureTimeout
+  case addWizardWifiError
+  case addWizardResultNotCompatible
+  case addWizardResultConnectionError
+  case addWizardResultFailed
+  case addWizardReconnectTimeout
+  case channelStateUptime
+  case lastConnectionResetCauseUnknown
+  case lastConnectionResetCauseActivityTimeout
+  case lastConnectionResetCauseWifiConnectionLost
+  case lastConnectionResetCauseServerConnectionLost
+  case resultCodeTemporarilyUnavailable
+  case resultCodeClientLimitExceeded
+  case resultCodeDeviceDisabled
+  case resultCodeAccessIdDisabled
+  case resultCodeRegistrationDisabled
+  case resultCodeAccessIdNotAssigned
+  case resultCodeInactive
+  case resultCodeIncorrectEmailOrPassword
+  case resultCodeBadCredentials
+  case resultCodeUnknownError
   public var name: Swift.String {
     get
   }
@@ -250,6 +1038,87 @@ extension SharedCore.LocalizedStringId {
 }
 extension SharedCore.__LocalizedStringId {
   public func toSwiftEnum() -> SharedCore.LocalizedStringId
+}
+@frozen public enum SuplaResultCode : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case unknown
+  case none
+  case unsupported
+  case `false`
+  case `true`
+  case temporarilyUnavailable
+  case badCredentials
+  case locationConflict
+  case channelConflict
+  case deviceDisabled
+  case accessIdDisabled
+  case locationDisabled
+  case clientDisabled
+  case clientLimitExceeded
+  case deviceLimitExceeded
+  case guidError
+  case deviceLocked
+  case registrationDisabled
+  case accessIdNotAssigned
+  case authKeyError
+  case noLocationAvailable
+  case userConflict
+  case unauthorized
+  case authorized
+  case notAllowed
+  case channelNotFound
+  case unknownError
+  case denyChannelBelongToGroup
+  case denyChannelHasSchedule
+  case denyChannelIsAssociatedWithScene
+  case denyChannelIsAssociatedWithActionTrigger
+  case inactive
+  case cfgModeRequested
+  case actionUnsupported
+  case subjectNotFound
+  case incorrectParameters
+  case clientNotExists
+  case countryRejected
+  case channelIsOffline
+  case notRegistered
+  case denyChannelIsAssociatedWithVbt
+  case denyChannelIsAssociatedWithPush
+  case restartRequested
+  case identifyRequested
+  case malformedEmail
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaResultCode.Companion {
+    get
+  }
+  public func message(isLogin: Swift.Bool) -> any SharedCore.LocalizedString
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaResultCode, result: inout SharedCore.SuplaResultCode?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaResultCode, result: inout SharedCore.SuplaResultCode?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaResultCode?) -> SharedCore.SuplaResultCode
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaResultCode
+  public typealias _ObjectiveCType = SharedCore.__SuplaResultCode
+  public typealias Companion = SharedCore.__SuplaResultCode.Companion
+  public static func == (a: SharedCore.SuplaResultCode, b: SharedCore.SuplaResultCode) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaResultCode]
+  nonisolated public static var allCases: [SharedCore.SuplaResultCode] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaResultCode {
+  public func toKotlinEnum() -> SharedCore.__SuplaResultCode
+}
+extension SharedCore.__SuplaResultCode {
+  public func toSwiftEnum() -> SharedCore.SuplaResultCode
 }
 @frozen public enum SuplaFunction : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case unknown
@@ -354,6 +1223,74 @@ extension SharedCore.SuplaFunction {
 }
 extension SharedCore.__SuplaFunction {
   public func toSwiftEnum() -> SharedCore.SuplaFunction
+}
+extension SharedCore.CheckRegistrationEnabledUseCase {
+  public typealias Result = SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result
+}
+extension SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result {
+  public func toKotlinEnum() -> SharedCore.CheckRegistrationEnabledUseCase.__Result
+}
+extension SharedCore.CheckRegistrationEnabledUseCase.__Result {
+  public func toSwiftEnum() -> SharedCore.CheckRegistrationEnabledUseCase.Result
+}
+@frozen public enum __Bridge__CheckRegistrationEnabledUseCase_Result : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case enabled
+  case disabled
+  case timeout
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.CheckRegistrationEnabledUseCase.__Result, result: inout SharedCore.CheckRegistrationEnabledUseCase.Result?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.CheckRegistrationEnabledUseCase.__Result, result: inout SharedCore.CheckRegistrationEnabledUseCase.Result?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.CheckRegistrationEnabledUseCase.__Result?) -> SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result
+  public func _bridgeToObjectiveC() -> SharedCore.CheckRegistrationEnabledUseCase.__Result
+  public typealias _ObjectiveCType = SharedCore.CheckRegistrationEnabledUseCase.__Result
+  public static func == (a: SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result, b: SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result) -> Swift.Bool
+  public typealias AllCases = [SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result]
+  nonisolated public static var allCases: [SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.EnableRegistrationUseCase {
+  public typealias Result = SharedCore.__Bridge__EnableRegistrationUseCase_Result
+}
+extension SharedCore.__Bridge__EnableRegistrationUseCase_Result {
+  public func toKotlinEnum() -> SharedCore.EnableRegistrationUseCase.__Result
+}
+extension SharedCore.EnableRegistrationUseCase.__Result {
+  public func toSwiftEnum() -> SharedCore.EnableRegistrationUseCase.Result
+}
+@frozen public enum __Bridge__EnableRegistrationUseCase_Result : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case success
+  case failure
+  case timeout
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.EnableRegistrationUseCase.__Result, result: inout SharedCore.EnableRegistrationUseCase.Result?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.EnableRegistrationUseCase.__Result, result: inout SharedCore.EnableRegistrationUseCase.Result?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.EnableRegistrationUseCase.__Result?) -> SharedCore.__Bridge__EnableRegistrationUseCase_Result
+  public func _bridgeToObjectiveC() -> SharedCore.EnableRegistrationUseCase.__Result
+  public typealias _ObjectiveCType = SharedCore.EnableRegistrationUseCase.__Result
+  public static func == (a: SharedCore.__Bridge__EnableRegistrationUseCase_Result, b: SharedCore.__Bridge__EnableRegistrationUseCase_Result) -> Swift.Bool
+  public typealias AllCases = [SharedCore.__Bridge__EnableRegistrationUseCase_Result]
+  nonisolated public static var allCases: [SharedCore.__Bridge__EnableRegistrationUseCase_Result] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
 @frozen public enum ChannelRelationType : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case unknown
@@ -644,26 +1581,26 @@ extension SharedCore.SuplaCallConfigCommand {
 extension SharedCore.__SuplaCallConfigCommand {
   public func toSwiftEnum() -> SharedCore.SuplaCallConfigCommand
 }
-public enum Skie {
-  public enum supla_android__shared_core {
-    public enum LocalizedString {
-    }
-    public enum BaseData {
-    }
-    public enum ChannelIssueItem {
-    }
-    public enum IssueIcon {
-    }
-    public enum ChannelDto {
+extension SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case canceled(SharedCore.Skie_SuspendResult.Canceled)
+    case error(SharedCore.Skie_SuspendResult.Error)
+    case success(SharedCore.Skie_SuspendResult.Success)
+    public static func == (a: SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult.__Sealed, b: SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
     }
   }
-  public typealias supla_android__shared_core_ = SharedCore.Skie.supla_android__shared_core
 }
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult.__Sealed where __Sealed : SharedCore.Skie_SuspendResult
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult.__Sealed? where __Sealed : SharedCore.Skie_SuspendResult
 extension SharedCore.Skie.supla_android__shared_core.LocalizedString {
   @frozen public enum __Sealed : Swift.Hashable {
     case constant(SharedCore.LocalizedStringConstant)
     case empty(SharedCore.LocalizedStringEmpty)
     case withId(SharedCore.LocalizedStringWithId)
+    case withIdAndString(SharedCore.LocalizedStringWithIdAndString)
     case withIdIntStringInt(SharedCore.LocalizedStringWithIdIntStringInt)
     case `else`
     public static func == (a: SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed, b: SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed) -> Swift.Bool
@@ -675,6 +1612,40 @@ extension SharedCore.Skie.supla_android__shared_core.LocalizedString {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed where __Sealed : SharedCore.LocalizedString
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed? where __Sealed : SharedCore.LocalizedString
+extension SharedCore.Skie.supla_android__shared_core.SuplaClientMessage {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case authorizationResult(SharedCore.SuplaClientMessageAuthorizationResult)
+    case callConfigProgressReport(SharedCore.SuplaClientMessageCallConfigProgressReport)
+    case callConfigResult(SharedCore.SuplaClientMessageCallConfigResult)
+    case channelBasicConfig(SharedCore.SuplaClientMessageChannelBasicConfig)
+    case channelCaptionSetResult(SharedCore.SuplaClientMessageChannelCaptionSetResult)
+    case channelDataChanged(SharedCore.SuplaClientMessageChannelDataChanged)
+    case channelFunctionSetResult(SharedCore.SuplaClientMessageChannelFunctionSetResult)
+    case channelState(SharedCore.SuplaClientMessageChannelState)
+    case clientRegistered(SharedCore.SuplaClientMessageClientRegistered)
+    case clientRegistrationError(SharedCore.SuplaClientMessageClientRegistrationError)
+    case event(SharedCore.SuplaClientMessageEvent)
+    case groupDataChanged(SharedCore.SuplaClientMessageGroupDataChanged)
+    case oAuthToken(SharedCore.SuplaClientMessageOAuthToken)
+    case registrationEnabled(SharedCore.SuplaClientMessageRegistrationEnabled)
+    case setRegistrationEnabledResult(SharedCore.SuplaClientMessageSetRegistrationEnabledResult)
+    case zWaveAddNodeResult(SharedCore.SuplaClientMessageZWaveAddNodeResult)
+    case zWaveAssignNodeIdResult(SharedCore.SuplaClientMessageZWaveAssignNodeIdResult)
+    case zWaveGetAssignedNodeIdResult(SharedCore.SuplaClientMessageZWaveGetAssignedNodeIdResult)
+    case zWaveGetNodeListResult(SharedCore.SuplaClientMessageZWaveGetNodeListResult)
+    case zWaveRemoveNodeResult(SharedCore.SuplaClientMessageZWaveRemoveNodeResult)
+    case zWaveResetAndClearResult(SharedCore.SuplaClientMessageZWaveResetAndClearResult)
+    case zWaveSetWakeUpTimeResult(SharedCore.SuplaClientMessageZWaveSetWakeUpTimeResult)
+    case zWaveWakeUpSettingsReport(SharedCore.SuplaClientMessageZWaveWakeUpSettingsReport)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.SuplaClientMessage.__Sealed, b: SharedCore.Skie.supla_android__shared_core.SuplaClientMessage.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.SuplaClientMessage.__Sealed where __Sealed : SharedCore.SuplaClientMessage
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.SuplaClientMessage.__Sealed? where __Sealed : SharedCore.SuplaClientMessage
 extension SharedCore.Skie.supla_android__shared_core.BaseData {
   @frozen public enum __Sealed : Swift.Hashable {
     case channel(SharedCore.Channel)
@@ -726,6 +1697,97 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed where __Sealed : SharedCore.IssueIcon
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed? where __Sealed : SharedCore.IssueIcon
+extension SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case back(SharedCore.AddWizardFinalActionBack)
+    case close(SharedCore.AddWizardFinalActionClose)
+    case error(SharedCore.AddWizardFinalActionError)
+    case success(SharedCore.AddWizardFinalActionSuccess)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed, b: SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed where __Sealed : SharedCore.AddWizardFinalAction
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed? where __Sealed : SharedCore.AddWizardFinalAction
+extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case communication(SharedCore.EspConfigurationError.Communication)
+    case compatibility(SharedCore.EspConfigurationError.Compatibility)
+    case configuration(SharedCore.EspConfigurationError.Configuration)
+    case configureTimeout(SharedCore.EspConfigurationError.ConfigureTimeout)
+    case connect(SharedCore.EspConfigurationError.Connect)
+    case notFound(SharedCore.EspConfigurationError.NotFound)
+    case reconnect(SharedCore.EspConfigurationError.Reconnect)
+    case registrationCheck(SharedCore.EspConfigurationError.RegistrationCheck)
+    case registrationEnable(SharedCore.EspConfigurationError.RegistrationEnable)
+    case scan(SharedCore.EspConfigurationError.Scan)
+    case wifi(SharedCore.EspConfigurationError.Wifi)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed, b: SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed where __Sealed : SharedCore.EspConfigurationError
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed? where __Sealed : SharedCore.EspConfigurationError
+extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case authorized(SharedCore.EspConfigurationEventAuthorized)
+    case back(SharedCore.EspConfigurationEventBack)
+    case cancel(SharedCore.EspConfigurationEventCancel)
+    case canceled(SharedCore.EspConfigurationEventCanceled)
+    case espConfigurationFailure(SharedCore.EspConfigurationEventEspConfigurationFailure)
+    case espConfigured(SharedCore.EspConfigurationEventEspConfigured)
+    case multipleNetworksFound(SharedCore.EspConfigurationEventMultipleNetworksFound)
+    case networkConnected(SharedCore.EspConfigurationEventNetworkConnected)
+    case networkConnectionFailure(SharedCore.EspConfigurationEventNetworkConnectionFailure)
+    case networkFound(SharedCore.EspConfigurationEventNetworkFound)
+    case networkNotFound(SharedCore.EspConfigurationEventNetworkNotFound)
+    case networkScanDisabled(SharedCore.EspConfigurationEventNetworkScanDisabled)
+    case reconnectTimeout(SharedCore.EspConfigurationEventReconnectTimeout)
+    case reconnected(SharedCore.EspConfigurationEventReconnected)
+    case registrationActivated(SharedCore.EspConfigurationEventRegistrationActivated)
+    case registrationDisabled(SharedCore.EspConfigurationEventRegistrationDisabled)
+    case registrationEnabled(SharedCore.EspConfigurationEventRegistrationEnabled)
+    case registrationNotActivated(SharedCore.EspConfigurationEventRegistrationNotActivated)
+    case registrationUnknown(SharedCore.EspConfigurationEventRegistrationUnknown)
+    case start(SharedCore.EspConfigurationEventStart)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed, b: SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed where __Sealed : SharedCore.EspConfigurationEvent
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed? where __Sealed : SharedCore.EspConfigurationEvent
+extension SharedCore.Skie.supla_android__shared_core.EspConfigurationState {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case activatingRegistration(SharedCore.ActivatingRegistration)
+    case authorizing(SharedCore.Authorizing)
+    case canceled(SharedCore.Canceled)
+    case canceling(SharedCore.Canceling)
+    case changingNetwork(SharedCore.ChangingNetwork)
+    case checkingRegistration(SharedCore.CheckingRegistration)
+    case configurationFailure(SharedCore.ConfigurationFailure)
+    case configuringEsp(SharedCore.ConfiguringEsp)
+    case finished(SharedCore.Finished)
+    case idle(SharedCore.Idle)
+    case networkSearch(SharedCore.NetworkSearch)
+    case reconnecting(SharedCore.Reconnecting)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed, b: SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed where __Sealed : SharedCore.EspConfigurationState
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed? where __Sealed : SharedCore.EspConfigurationState
 extension SharedCore.Skie.supla_android__shared_core.ChannelDto {
   @frozen public enum __Sealed : Swift.Hashable {
     case defaultChannelDto(SharedCore.DefaultChannelDto)
@@ -739,6 +1801,82 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelDto {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed where __Sealed : SharedCore.ChannelDto
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed? where __Sealed : SharedCore.ChannelDto
+extension SharedCore.Skie.KotlinxSerializationCore.SerialKind {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case polymorphicKind(SharedCore.Kotlinx_serialization_corePolymorphicKind)
+    case primitiveKind(SharedCore.Kotlinx_serialization_corePrimitiveKind)
+    case cONTEXTUAL(SharedCore.Kotlinx_serialization_coreSerialKind.CONTEXTUAL)
+    case eNUM(SharedCore.Kotlinx_serialization_coreSerialKind.ENUM)
+    case structureKind(SharedCore.Kotlinx_serialization_coreStructureKind)
+    public static func == (a: SharedCore.Skie.KotlinxSerializationCore.SerialKind.__Sealed, b: SharedCore.Skie.KotlinxSerializationCore.SerialKind.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.SerialKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreSerialKind
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.SerialKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreSerialKind
+extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case `else`
+    public static func == (a: SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed, b: SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreSerializersModule
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreSerializersModule
+extension SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case oPEN(SharedCore.Kotlinx_serialization_corePolymorphicKind.OPEN)
+    case sEALED(SharedCore.Kotlinx_serialization_corePolymorphicKind.SEALED)
+    public static func == (a: SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind.__Sealed, b: SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_corePolymorphicKind
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_corePolymorphicKind
+extension SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case bOOLEAN(SharedCore.Kotlinx_serialization_corePrimitiveKind.BOOLEAN)
+    case bYTE(SharedCore.Kotlinx_serialization_corePrimitiveKind.BYTE)
+    case cHAR(SharedCore.Kotlinx_serialization_corePrimitiveKind.CHAR)
+    case dOUBLE(SharedCore.Kotlinx_serialization_corePrimitiveKind.DOUBLE)
+    case fLOAT(SharedCore.Kotlinx_serialization_corePrimitiveKind.FLOAT)
+    case iNT(SharedCore.Kotlinx_serialization_corePrimitiveKind.INT)
+    case lONG(SharedCore.Kotlinx_serialization_corePrimitiveKind.LONG)
+    case sHORT(SharedCore.Kotlinx_serialization_corePrimitiveKind.SHORT)
+    case sTRING(SharedCore.Kotlinx_serialization_corePrimitiveKind.STRING)
+    public static func == (a: SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind.__Sealed, b: SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_corePrimitiveKind
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_corePrimitiveKind
+extension SharedCore.Skie.KotlinxSerializationCore.StructureKind {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case cLASS(SharedCore.Kotlinx_serialization_coreStructureKind.CLASS)
+    case lIST(SharedCore.Kotlinx_serialization_coreStructureKind.LIST)
+    case mAP(SharedCore.Kotlinx_serialization_coreStructureKind.MAP)
+    case oBJECT(SharedCore.Kotlinx_serialization_coreStructureKind.OBJECT)
+    public static func == (a: SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed, b: SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreStructureKind
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreStructureKind
 extension Swift.Bool {
   public var localizedString: any SharedCore.LocalizedString {
     get
@@ -748,6 +1886,12 @@ extension Swift.Bool {
   public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
 }
 public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
+extension Swift.Int32 {
+  public var ipV4String: Swift.String {
+    get
+  }
+  public func suplaFunction() -> SharedCore.SuplaFunction
+}
 extension Swift.Int16 {
   public func fromSuplaTemperature() -> Swift.Float
 }
@@ -755,20 +1899,28 @@ extension Swift.String {
   public func localized() -> any SharedCore.LocalizedString
 }
 public func localizedString(id: SharedCore.LocalizedStringId?) -> any SharedCore.LocalizedString
+public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any, arg3: Any, arg4: Any) -> any SharedCore.LocalizedString
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Swift.Int32, arg2: any SharedCore.LocalizedString, arg3: Swift.Int32) -> any SharedCore.LocalizedString
-extension Swift.Int32 {
-  public func suplaFunction() -> SharedCore.SuplaFunction
-}
+extension SharedCore.SuplaEventType : Swift.Sendable {}
+extension SharedCore.SuplaEventType : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaChannelAvailabilityStatus : Swift.Sendable {}
 extension SharedCore.SuplaChannelAvailabilityStatus : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaHvacMode : Swift.Sendable {}
 extension SharedCore.SuplaHvacMode : Swift.BitwiseCopyable {}
 extension SharedCore.ThermostatSubfunction : Swift.Sendable {}
 extension SharedCore.ThermostatSubfunction : Swift.BitwiseCopyable {}
+extension SharedCore.Icon : Swift.Sendable {}
+extension SharedCore.Icon : Swift.BitwiseCopyable {}
 extension SharedCore.LocalizedStringId : Swift.Sendable {}
 extension SharedCore.LocalizedStringId : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaResultCode : Swift.Sendable {}
+extension SharedCore.SuplaResultCode : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaFunction : Swift.Sendable {}
 extension SharedCore.SuplaFunction : Swift.BitwiseCopyable {}
+extension SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result : Swift.Sendable {}
+extension SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result : Swift.BitwiseCopyable {}
+extension SharedCore.__Bridge__EnableRegistrationUseCase_Result : Swift.Sendable {}
+extension SharedCore.__Bridge__EnableRegistrationUseCase_Result : Swift.BitwiseCopyable {}
 extension SharedCore.ChannelRelationType : Swift.Sendable {}
 extension SharedCore.ChannelRelationType : Swift.BitwiseCopyable {}
 extension SharedCore.ContainerFlag : Swift.Sendable {}
@@ -783,3 +1935,5 @@ extension SharedCore.SuplaValveFlag : Swift.Sendable {}
 extension SharedCore.SuplaValveFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaCallConfigCommand : Swift.Sendable {}
 extension SharedCore.SuplaCallConfigCommand : Swift.BitwiseCopyable {}
+extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed : Swift.Sendable {}
+extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed : Swift.BitwiseCopyable {}

@@ -142,9 +142,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToAddWizard() {
-        navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
-        
-        let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
+        let avc = AddWizardFeature.ViewController.create()
         avc.modalPresentationStyle = .fullScreen
         avc.modalTransitionStyle = .crossDissolve
         present(avc, animated: true)
