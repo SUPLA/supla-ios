@@ -19,6 +19,8 @@
 import Foundation
 
 extension Double {
+    var int64: Int64 { Int64(self) }
+    
     func minus(_ value: Double) -> Double {
         return self - value
     }

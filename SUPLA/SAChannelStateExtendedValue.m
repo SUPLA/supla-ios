@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAChannelStateExtendedValue.h"
 #import "SuplaApp.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAChannelStateExtendedValue {
     TChannelState_ExtendedValue _csev;
@@ -278,9 +279,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(NSString *)lastConnectionResetCauseString {
     if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_LASTCONNECTIONRESETCAUSE) {
-        NSArray<NSString*>* key_table = @[@"0: unknown", @"1: server timeout",
-                                          @"2: Wi-Fi connection lost",
-                                          @"3: server connection reset"];
+        NSArray<NSString*>* key_table = @[
+            LegacyStrings.stateConnectionResetCauseUnknown,
+            LegacyStrings.stateConnectionResetCauseActivityTimeout,
+            LegacyStrings.stateConnectionResetCauseWifiConnectionLost,
+            LegacyStrings.stateConnectionResetCauseServerConnectionLost
+        ];
         if (_csev.LastConnectionResetCause >= 0 &&
             _csev.LastConnectionResetCause < key_table.count) {
             return NSLocalizedString(key_table[_csev.LastConnectionResetCause], nil);

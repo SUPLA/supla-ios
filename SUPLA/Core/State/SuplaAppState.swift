@@ -27,6 +27,13 @@ enum SuplaAppState: Equatable {
     case locking
     case finished(reason: Reason? = nil)
     
+    var isFinished: Bool {
+        switch (self) {
+        case .finished: true
+        default: false
+        }
+    }
+    
     enum Reason: Equatable {
         case connectionError(code: Int32)
         case registerError(code: Int32)

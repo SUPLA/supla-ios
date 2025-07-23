@@ -20,15 +20,17 @@ import SwiftUI
 
 struct PasswordTextField: View {
     
-    private var title: String
+    private let title: String
+    private let disabled: Bool
+    private let error: Bool
     @Binding private var text: String
-    private var disabled: Bool
     @State private var isSecured: Bool = true
     
-    init(title: String = "", text: Binding<String>, disabled: Bool = false) {
+    init(title: String = "", text: Binding<String>, disabled: Bool = false, error: Bool = false) {
         self.title = title
         self._text = text
         self.disabled = disabled
+        self.error = error
     }
     
     var body: some View {
@@ -51,10 +53,13 @@ struct PasswordTextField: View {
         .padding([.leading, .trailing], Distance.small)
         .background(disabled ? Color.clear : Color.Supla.surface)
         .clipShape(RoundedRectangle(cornerRadius: Dimens.buttonRadius))
-        .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
+        .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(error ? Color.Supla.error : Color.Supla.outline))
     }
 }
 
 #Preview {
-    PasswordTextField(text: .constant("Some text"))
+    VStack {
+        PasswordTextField(text: .constant("Some text"))
+        PasswordTextField(text: .constant("Error"), error: true)
+    }
 }

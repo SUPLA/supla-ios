@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 protocol SuplaClientProvider {
     func provide() -> SuplaClientProtocol?
     func forcedProvide() -> SuplaClientProtocol
@@ -24,6 +26,10 @@ protocol SuplaClientProvider {
 class SuplaClientProviderImpl: SuplaClientProvider {
     func provide() -> SuplaClientProtocol? { SAApp.instance().optionalSuplaClient() }
     func forcedProvide() -> any SuplaClientProtocol { SAApp.suplaClient() }
+}
+
+class SuplaClientSharedApiProvider: SharedCore.SuplaClientSharedProvider {
+    func provide() -> (any SuplaClientSharedApi)? { SAApp.instance().optionalSuplaClient() }
 }
 
 extension SuplaClientProtocol {

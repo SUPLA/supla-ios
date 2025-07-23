@@ -30,6 +30,79 @@ Classes:
   SwiftName: "KotlinDouble"
 - Name: "SharedCoreBoolean"
   SwiftName: "KotlinBoolean"
+- Name: "SharedCoreKotlinCancellationException"
+  SwiftName: "KotlinCancellationException"
+  Methods:
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+  - Selector: "initWithMessage:cause:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "initWithCause:"
+    MethodKind: "Instance"
+    SwiftName: "init(cause:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+- Name: "SharedCoreKotlinThrowable"
+  SwiftName: "KotlinThrowable"
+  Properties:
+  - Name: "cause"
+    PropertyKind: "Instance"
+    SwiftName: "cause"
+    Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Name: "message"
+    PropertyKind: "Instance"
+    SwiftName: "message"
+    Type: "NSString * _Nullable"
+  Methods:
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+  - Selector: "initWithCause:"
+    MethodKind: "Instance"
+    SwiftName: "init(cause:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:cause:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "getStackTrace"
+    MethodKind: "Instance"
+    SwiftName: "getStackTrace()"
+    ResultType: "SharedCoreKotlinArray<NSString *> * _Nonnull"
+  - Selector: "printStackTrace"
+    MethodKind: "Instance"
+    SwiftName: "printStackTrace()"
+    ResultType: "void"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreKotlinArray"
   SwiftName: "KotlinArray"
   Properties:
@@ -66,50 +139,84 @@ Classes:
       Type: "int32_t"
     - Position: 1
       Type: "T _Nullable"
-- Name: "SharedCoreKotlinEnum"
-  SwiftName: "KotlinEnum"
-  Properties:
-  - Name: "name"
-    PropertyKind: "Instance"
-    SwiftName: "name"
-    Type: "NSString * _Nonnull"
-  - Name: "ordinal"
-    PropertyKind: "Instance"
-    SwiftName: "ordinal"
-    Type: "int32_t"
+- Name: "SharedCoreKotlinIllegalStateException"
+  SwiftName: "KotlinIllegalStateException"
   Methods:
-  - Selector: "initWithName:ordinal:"
+  - Selector: "init"
     MethodKind: "Instance"
-    SwiftName: "init(name:ordinal:)"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
     Parameters:
     - Position: 0
-      Type: "NSString * _Nonnull"
+      Type: "NSString * _Nullable"
+  - Selector: "initWithMessage:cause:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
     - Position: 1
-      Type: "int32_t"
-  - Selector: "compareToOther:"
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "initWithCause:"
     MethodKind: "Instance"
-    SwiftName: "compareTo(other:)"
-    ResultType: "int32_t"
+    SwiftName: "init(cause:)"
     Parameters:
     - Position: 0
-      Type: "E _Nonnull"
-  - Selector: "isEqual:"
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+- Name: "SharedCoreKotlinRuntimeException"
+  SwiftName: "KotlinRuntimeException"
+  Methods:
+  - Selector: "init"
     MethodKind: "Instance"
-    SwiftName: "isEqual(_:)"
-    ResultType: "BOOL"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
     Parameters:
     - Position: 0
-      Type: "id _Nullable"
-  - Selector: "hash"
+      Type: "NSString * _Nullable"
+  - Selector: "initWithMessage:cause:"
     MethodKind: "Instance"
-    SwiftName: "hash()"
-    ResultType: "NSUInteger"
-  - Selector: "description"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "initWithCause:"
     MethodKind: "Instance"
-    SwiftName: "description()"
-    ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreKotlinEnumCompanion"
-  SwiftName: "KotlinEnumCompanion"
+    SwiftName: "init(cause:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+- Name: "SharedCoreKotlinException"
+  SwiftName: "KotlinException"
+  Methods:
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "initWithMessage:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+  - Selector: "initWithMessage:cause:"
+    MethodKind: "Instance"
+    SwiftName: "init(message:cause:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "SharedCoreKotlinThrowable * _Nullable"
+  - Selector: "initWithCause:"
+    MethodKind: "Instance"
+    SwiftName: "init(cause:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinThrowable * _Nullable"
 - Name: "SharedCoreKotlinByteArray"
   SwiftName: "KotlinByteArray"
   Properties:
@@ -191,79 +298,1433 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "nextByte()"
     ResultType: "int8_t"
-- Name: "SharedCoreKotlinException"
-  SwiftName: "KotlinException"
-  Methods:
-  - Selector: "init"
-    MethodKind: "Instance"
-    SwiftName: "init()"
-  - Selector: "initWithMessage:"
-    MethodKind: "Instance"
-    SwiftName: "init(message:)"
-    Parameters:
-    - Position: 0
-      Type: "NSString * _Nullable"
-  - Selector: "initWithMessage:cause:"
-    MethodKind: "Instance"
-    SwiftName: "init(message:cause:)"
-    Parameters:
-    - Position: 0
-      Type: "NSString * _Nullable"
-    - Position: 1
-      Type: "SharedCoreKotlinThrowable * _Nullable"
-  - Selector: "initWithCause:"
-    MethodKind: "Instance"
-    SwiftName: "init(cause:)"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreKotlinThrowable * _Nullable"
-- Name: "SharedCoreKotlinThrowable"
-  SwiftName: "KotlinThrowable"
+- Name: "SharedCoreKotlinNothing"
+  SwiftName: "KotlinNothing"
+- Name: "SharedCoreKotlinEnum"
+  SwiftName: "KotlinEnum"
   Properties:
-  - Name: "cause"
+  - Name: "name"
     PropertyKind: "Instance"
-    SwiftName: "cause"
-    Type: "SharedCoreKotlinThrowable * _Nullable"
-  - Name: "message"
+    SwiftName: "name"
+    Type: "NSString * _Nonnull"
+  - Name: "ordinal"
     PropertyKind: "Instance"
-    SwiftName: "message"
-    Type: "NSString * _Nullable"
+    SwiftName: "ordinal"
+    Type: "int32_t"
   Methods:
-  - Selector: "initWithMessage:"
+  - Selector: "initWithName:ordinal:"
     MethodKind: "Instance"
-    SwiftName: "init(message:)"
+    SwiftName: "init(name:ordinal:)"
     Parameters:
     - Position: 0
-      Type: "NSString * _Nullable"
-  - Selector: "initWithCause:"
-    MethodKind: "Instance"
-    SwiftName: "init(cause:)"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreKotlinThrowable * _Nullable"
-  - Selector: "init"
-    MethodKind: "Instance"
-    SwiftName: "init()"
-  - Selector: "initWithMessage:cause:"
-    MethodKind: "Instance"
-    SwiftName: "init(message:cause:)"
-    Parameters:
-    - Position: 0
-      Type: "NSString * _Nullable"
+      Type: "NSString * _Nonnull"
     - Position: 1
-      Type: "SharedCoreKotlinThrowable * _Nullable"
-  - Selector: "getStackTrace"
+      Type: "int32_t"
+  - Selector: "compareToOther:"
     MethodKind: "Instance"
-    SwiftName: "getStackTrace()"
-    ResultType: "SharedCoreKotlinArray<NSString *> * _Nonnull"
-  - Selector: "printStackTrace"
+    SwiftName: "compareTo(other:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "E _Nonnull"
+  - Selector: "isEqual:"
     MethodKind: "Instance"
-    SwiftName: "printStackTrace()"
-    ResultType: "void"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
   - Selector: "description"
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreKotlinEnumCompanion"
+  SwiftName: "KotlinEnumCompanion"
+- Name: "SharedCoreSkieColdFlowIterator"
+  SwiftName: "SkieColdFlowIterator"
+  SwiftPrivate: true
+  Methods:
+  - Selector: "initWithFlow:"
+    MethodKind: "Instance"
+    SwiftName: "init(flow:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlow> _Nonnull"
+  - Selector: "cancel"
+    MethodKind: "Instance"
+    SwiftName: "cancel()"
+    ResultType: "void"
+  - Selector: "hasNextWithCompletionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__hasNext(completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "void (^ _Nonnull)(SharedCoreBoolean * _Nullable, NSError * _Nullable)"
+  - Selector: "next"
+    MethodKind: "Instance"
+    SwiftName: "next()"
+    ResultType: "E _Nullable"
+- Name: "SharedCoreSkieKotlinFlow"
+  SwiftBridge: "SkieSwiftFlow"
+  SwiftName: "SkieKotlinFlow"
+  SwiftPrivate: true
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreSkieKotlinMutableSharedFlow"
+  SwiftBridge: "SkieSwiftMutableSharedFlow"
+  SwiftName: "SkieKotlinMutableSharedFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<T> * _Nonnull"
+  - Name: "subscriptionCount"
+    PropertyKind: "Instance"
+    SwiftName: "subscriptionCount"
+    Type: "SharedCoreSkieKotlinStateFlow<SharedCoreInt *> * _Nonnull"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreMutableSharedFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "emitValue:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__emit(value:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "T _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "resetReplayCache"
+    MethodKind: "Instance"
+    SwiftName: "resetReplayCache()"
+    ResultType: "void"
+  - Selector: "tryEmitValue:"
+    MethodKind: "Instance"
+    SwiftName: "tryEmit(value:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "T _Nonnull"
+- Name: "SharedCoreSkieKotlinMutableStateFlow"
+  SwiftBridge: "SkieSwiftMutableStateFlow"
+  SwiftName: "SkieKotlinMutableStateFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<T> * _Nonnull"
+  - Name: "subscriptionCount"
+    PropertyKind: "Instance"
+    SwiftName: "subscriptionCount"
+    Type: "SharedCoreSkieKotlinStateFlow<SharedCoreInt *> * _Nonnull"
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "T _Nonnull"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreMutableStateFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "compareAndSetExpect:update:"
+    MethodKind: "Instance"
+    SwiftName: "compareAndSet(expect:update:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "T _Nonnull"
+    - Position: 1
+      Type: "T _Nonnull"
+  - Selector: "emitValue:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__emit(value:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "T _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "resetReplayCache"
+    MethodKind: "Instance"
+    SwiftName: "resetReplayCache()"
+    ResultType: "void"
+  - Selector: "tryEmitValue:"
+    MethodKind: "Instance"
+    SwiftName: "tryEmit(value:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "T _Nonnull"
+- Name: "SharedCoreSkieKotlinOptionalFlow"
+  SwiftBridge: "SkieSwiftOptionalFlow"
+  SwiftName: "SkieKotlinOptionalFlow"
+  SwiftPrivate: true
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreSkieKotlinOptionalMutableSharedFlow"
+  SwiftBridge: "SkieSwiftOptionalMutableSharedFlow"
+  SwiftName: "SkieKotlinOptionalMutableSharedFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<id> * _Nonnull"
+  - Name: "subscriptionCount"
+    PropertyKind: "Instance"
+    SwiftName: "subscriptionCount"
+    Type: "SharedCoreSkieKotlinStateFlow<SharedCoreInt *> * _Nonnull"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreMutableSharedFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "emitValue:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__emit(value:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "T _Nullable"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "resetReplayCache"
+    MethodKind: "Instance"
+    SwiftName: "resetReplayCache()"
+    ResultType: "void"
+  - Selector: "tryEmitValue:"
+    MethodKind: "Instance"
+    SwiftName: "tryEmit(value:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "T _Nullable"
+- Name: "SharedCoreSkieKotlinOptionalMutableStateFlow"
+  SwiftBridge: "SkieSwiftOptionalMutableStateFlow"
+  SwiftName: "SkieKotlinOptionalMutableStateFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<id> * _Nonnull"
+  - Name: "subscriptionCount"
+    PropertyKind: "Instance"
+    SwiftName: "subscriptionCount"
+    Type: "SharedCoreSkieKotlinStateFlow<SharedCoreInt *> * _Nonnull"
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "T _Nullable"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreMutableStateFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "compareAndSetExpect:update:"
+    MethodKind: "Instance"
+    SwiftName: "compareAndSet(expect:update:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "T _Nullable"
+    - Position: 1
+      Type: "T _Nullable"
+  - Selector: "emitValue:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__emit(value:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "T _Nullable"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "resetReplayCache"
+    MethodKind: "Instance"
+    SwiftName: "resetReplayCache()"
+    ResultType: "void"
+  - Selector: "tryEmitValue:"
+    MethodKind: "Instance"
+    SwiftName: "tryEmit(value:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "T _Nullable"
+- Name: "SharedCoreSkieKotlinOptionalSharedFlow"
+  SwiftBridge: "SkieSwiftOptionalSharedFlow"
+  SwiftName: "SkieKotlinOptionalSharedFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<id> * _Nonnull"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreSharedFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreSkieKotlinOptionalStateFlow"
+  SwiftBridge: "SkieSwiftOptionalStateFlow"
+  SwiftName: "SkieKotlinOptionalStateFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<id> * _Nonnull"
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "T _Nullable"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreStateFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreSkieKotlinSharedFlow"
+  SwiftBridge: "SkieSwiftSharedFlow"
+  SwiftName: "SkieKotlinSharedFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<T> * _Nonnull"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreSharedFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreSkieKotlinStateFlow"
+  SwiftBridge: "SkieSwiftStateFlow"
+  SwiftName: "SkieKotlinStateFlow"
+  SwiftPrivate: true
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<T> * _Nonnull"
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "T _Nonnull"
+  Methods:
+  - Selector: "initWithDelegate:"
+    MethodKind: "Instance"
+    SwiftName: "init(_:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreStateFlow> _Nonnull"
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreSkie_CancellationHandler"
+  SwiftName: "Skie_CancellationHandler"
+  SwiftPrivate: true
+  Methods:
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+  - Selector: "cancel"
+    MethodKind: "Instance"
+    SwiftName: "cancel()"
+    ResultType: "void"
+- Name: "SharedCoreSkie_SuspendHandler"
+  SwiftName: "Skie_SuspendHandler"
+  SwiftPrivate: true
+  Methods:
+  - Selector: "initWithCancellationHandler:dispatcherDelegate:onResult:"
+    MethodKind: "Instance"
+    SwiftName: "init(cancellationHandler:dispatcherDelegate:onResult:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSkie_CancellationHandler * _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreSkie_DispatcherDelegate> _Nonnull"
+    - Position: 2
+      Type: "void (^ _Nonnull)(SharedCoreSkie_SuspendResult * _Nonnull)"
+- Name: "SharedCoreSkie_SuspendResult"
+  SwiftName: "Skie_SuspendResult"
+  SwiftPrivate: true
+- Name: "SharedCoreSkie_SuspendResultSuccess"
+  SwiftName: "Skie_SuspendResult.Success"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "id _Nullable"
+  Methods:
+  - Selector: "initWithValue:"
+    MethodKind: "Instance"
+    SwiftName: "init(value:)"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "doCopyValue:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(value:)"
+    ResultType: "SharedCoreSkie_SuspendResultSuccess * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSkie_SuspendResultError"
+  SwiftName: "Skie_SuspendResult.Error"
+  SwiftPrivate: true
+  Properties:
+  - Name: "error"
+    PropertyKind: "Instance"
+    SwiftName: "error"
+    Type: "NSError * _Nonnull"
+  Methods:
+  - Selector: "initWithError:"
+    MethodKind: "Instance"
+    SwiftName: "init(error:)"
+    Parameters:
+    - Position: 0
+      Type: "NSError * _Nonnull"
+  - Selector: "doCopyError:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(error:)"
+    ResultType: "SharedCoreSkie_SuspendResultError * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSError * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSkie_SuspendResultCanceled"
+  SwiftName: "Skie_SuspendResult.Canceled"
+  SwiftPrivate: true
+- Name: "SharedCoreSuplaChannelBasicCfg"
+  SwiftName: "SuplaChannelBasicCfg"
+  Properties:
+  - Name: "caption"
+    PropertyKind: "Instance"
+    SwiftName: "caption"
+    Type: "NSString * _Nonnull"
+  - Name: "channelFlags"
+    PropertyKind: "Instance"
+    SwiftName: "channelFlags"
+    Type: "int32_t"
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "channelType"
+    PropertyKind: "Instance"
+    SwiftName: "channelType"
+    Type: "int32_t"
+  - Name: "deviceFlags"
+    PropertyKind: "Instance"
+    SwiftName: "deviceFlags"
+    Type: "int32_t"
+  - Name: "deviceId"
+    PropertyKind: "Instance"
+    SwiftName: "deviceId"
+    Type: "int32_t"
+  - Name: "deviceName"
+    PropertyKind: "Instance"
+    SwiftName: "deviceName"
+    Type: "NSString * _Nonnull"
+  - Name: "deviceSoftwareVersion"
+    PropertyKind: "Instance"
+    SwiftName: "deviceSoftwareVersion"
+    Type: "NSString * _Nonnull"
+  - Name: "func"
+    PropertyKind: "Instance"
+    SwiftName: "func"
+    Type: "int32_t"
+  - Name: "funcList"
+    PropertyKind: "Instance"
+    SwiftName: "funcList"
+    Type: "int32_t"
+  - Name: "manufacturerId"
+    PropertyKind: "Instance"
+    SwiftName: "manufacturerId"
+    Type: "int32_t"
+  - Name: "number"
+    PropertyKind: "Instance"
+    SwiftName: "number"
+    Type: "int32_t"
+  - Name: "productId"
+    PropertyKind: "Instance"
+    SwiftName: "productId"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithDeviceName:deviceSoftwareVersion:deviceId:deviceFlags:manufacturerId:productId:channelId:number:channelType:func:funcList:channelFlags:caption:"
+    MethodKind: "Instance"
+    SwiftName: "init(deviceName:deviceSoftwareVersion:deviceId:deviceFlags:manufacturerId:productId:channelId:number:channelType:func:funcList:channelFlags:caption:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "int32_t"
+    - Position: 6
+      Type: "int32_t"
+    - Position: 7
+      Type: "int32_t"
+    - Position: 8
+      Type: "int32_t"
+    - Position: 9
+      Type: "int32_t"
+    - Position: 10
+      Type: "int32_t"
+    - Position: 11
+      Type: "int32_t"
+    - Position: 12
+      Type: "NSString * _Nonnull"
+  - Selector: "doCopyDeviceName:deviceSoftwareVersion:deviceId:deviceFlags:manufacturerId:productId:channelId:number:channelType:func:funcList:channelFlags:caption:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(deviceName:deviceSoftwareVersion:deviceId:deviceFlags:manufacturerId:productId:channelId:number:channelType:func:funcList:channelFlags:caption:)"
+    ResultType: "SharedCoreSuplaChannelBasicCfg * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "int32_t"
+    - Position: 6
+      Type: "int32_t"
+    - Position: 7
+      Type: "int32_t"
+    - Position: 8
+      Type: "int32_t"
+    - Position: 9
+      Type: "int32_t"
+    - Position: 10
+      Type: "int32_t"
+    - Position: 11
+      Type: "int32_t"
+    - Position: 12
+      Type: "NSString * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaChannelState"
+  SwiftName: "SuplaChannelState"
+  Properties:
+  - Name: "batterPoweredString"
+    PropertyKind: "Instance"
+    SwiftName: "batterPoweredString"
+    Type: "id<SharedCoreLocalizedString> _Nullable"
+  - Name: "batteryHealth"
+    PropertyKind: "Instance"
+    SwiftName: "batteryHealth"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "batteryHealthString"
+    PropertyKind: "Instance"
+    SwiftName: "batteryHealthString"
+    Type: "NSString * _Nullable"
+  - Name: "batteryLevel"
+    PropertyKind: "Instance"
+    SwiftName: "batteryLevel"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "batteryLevelString"
+    PropertyKind: "Instance"
+    SwiftName: "batteryLevelString"
+    Type: "NSString * _Nullable"
+  - Name: "batteryPowered"
+    PropertyKind: "Instance"
+    SwiftName: "batteryPowered"
+    Type: "SharedCoreBoolean * _Nullable"
+  - Name: "bridgeNodeOnline"
+    PropertyKind: "Instance"
+    SwiftName: "bridgeNodeOnline"
+    Type: "SharedCoreBoolean * _Nullable"
+  - Name: "bridgeNodeSignalStrength"
+    PropertyKind: "Instance"
+    SwiftName: "bridgeNodeSignalStrength"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "bridgeNodeSignalStrengthString"
+    PropertyKind: "Instance"
+    SwiftName: "bridgeNodeSignalStrengthString"
+    Type: "NSString * _Nullable"
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "connectionUptime"
+    PropertyKind: "Instance"
+    SwiftName: "connectionUptime"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "connectionUptimeString"
+    PropertyKind: "Instance"
+    SwiftName: "connectionUptimeString"
+    Type: "id<SharedCoreLocalizedString> _Nullable"
+  - Name: "ipV4"
+    PropertyKind: "Instance"
+    SwiftName: "ipV4"
+    Type: "NSString * _Nullable"
+  - Name: "lastConnectionResetCause"
+    PropertyKind: "Instance"
+    SwiftName: "lastConnectionResetCause"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "lastConnectionResetCauseString"
+    PropertyKind: "Instance"
+    SwiftName: "lastConnectionResetCauseString"
+    Type: "id<SharedCoreLocalizedString> _Nullable"
+  - Name: "lightSourceLifespan"
+    PropertyKind: "Instance"
+    SwiftName: "lightSourceLifespan"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "lightSourceLifespanLeft"
+    PropertyKind: "Instance"
+    SwiftName: "lightSourceLifespanLeft"
+    Type: "SharedCoreFloat * _Nullable"
+  - Name: "lightSourceOperatingTime"
+    PropertyKind: "Instance"
+    SwiftName: "lightSourceOperatingTime"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "lightSourceOperatingTimePercent"
+    PropertyKind: "Instance"
+    SwiftName: "lightSourceOperatingTimePercent"
+    Type: "SharedCoreFloat * _Nullable"
+  - Name: "lightSourceOperatingTimePercentLeft"
+    PropertyKind: "Instance"
+    SwiftName: "lightSourceOperatingTimePercentLeft"
+    Type: "SharedCoreFloat * _Nullable"
+  - Name: "macAddress"
+    PropertyKind: "Instance"
+    SwiftName: "macAddress"
+    Type: "NSString * _Nullable"
+  - Name: "rawBatteryHealth"
+    PropertyKind: "Instance"
+    SwiftName: "rawBatteryHealth"
+    Type: "int8_t"
+  - Name: "rawBatteryLevel"
+    PropertyKind: "Instance"
+    SwiftName: "rawBatteryLevel"
+    Type: "int8_t"
+  - Name: "rawBatteryPowered"
+    PropertyKind: "Instance"
+    SwiftName: "rawBatteryPowered"
+    Type: "int8_t"
+  - Name: "rawBridgeNodeOnline"
+    PropertyKind: "Instance"
+    SwiftName: "rawBridgeNodeOnline"
+    Type: "int8_t"
+  - Name: "rawBridgeNodeSignalStrength"
+    PropertyKind: "Instance"
+    SwiftName: "rawBridgeNodeSignalStrength"
+    Type: "int8_t"
+  - Name: "rawConnectionUptime"
+    PropertyKind: "Instance"
+    SwiftName: "rawConnectionUptime"
+    Type: "int32_t"
+  - Name: "rawDefaultIconField"
+    PropertyKind: "Instance"
+    SwiftName: "rawDefaultIconField"
+    Type: "int32_t"
+  - Name: "rawIpv4"
+    PropertyKind: "Instance"
+    SwiftName: "rawIpv4"
+    Type: "int32_t"
+  - Name: "rawLastConnectionResetCause"
+    PropertyKind: "Instance"
+    SwiftName: "rawLastConnectionResetCause"
+    Type: "int8_t"
+  - Name: "rawLightSourceLifespan"
+    PropertyKind: "Instance"
+    SwiftName: "rawLightSourceLifespan"
+    Type: "int32_t"
+  - Name: "rawLightSourceLifespanLeft"
+    PropertyKind: "Instance"
+    SwiftName: "rawLightSourceLifespanLeft"
+    Type: "int32_t"
+  - Name: "rawMacAddress"
+    PropertyKind: "Instance"
+    SwiftName: "rawMacAddress"
+    Type: "SharedCoreKotlinByteArray * _Nonnull"
+  - Name: "rawUptime"
+    PropertyKind: "Instance"
+    SwiftName: "rawUptime"
+    Type: "int32_t"
+  - Name: "rawWifiRssi"
+    PropertyKind: "Instance"
+    SwiftName: "rawWifiRssi"
+    Type: "int8_t"
+  - Name: "rawWifiSignalStrength"
+    PropertyKind: "Instance"
+    SwiftName: "rawWifiSignalStrength"
+    Type: "int8_t"
+  - Name: "switchCycleCountString"
+    PropertyKind: "Instance"
+    SwiftName: "switchCycleCountString"
+    Type: "NSString * _Nullable"
+  - Name: "uptime"
+    PropertyKind: "Instance"
+    SwiftName: "uptime"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "uptimeString"
+    PropertyKind: "Instance"
+    SwiftName: "uptimeString"
+    Type: "id<SharedCoreLocalizedString> _Nullable"
+  - Name: "wifiRssi"
+    PropertyKind: "Instance"
+    SwiftName: "wifiRssi"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "wifiRssiString"
+    PropertyKind: "Instance"
+    SwiftName: "wifiRssiString"
+    Type: "NSString * _Nullable"
+  - Name: "wifiSignalStrength"
+    PropertyKind: "Instance"
+    SwiftName: "wifiSignalStrength"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "wifiSignalStrengthString"
+    PropertyKind: "Instance"
+    SwiftName: "wifiSignalStrengthString"
+    Type: "NSString * _Nullable"
+  Methods:
+  - Selector: "initWithChannelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
+    - Position: 5
+      Type: "int8_t"
+    - Position: 6
+      Type: "int8_t"
+    - Position: 7
+      Type: "int8_t"
+    - Position: 8
+      Type: "int8_t"
+    - Position: 9
+      Type: "int8_t"
+    - Position: 10
+      Type: "int8_t"
+    - Position: 11
+      Type: "int32_t"
+    - Position: 12
+      Type: "int32_t"
+    - Position: 13
+      Type: "int8_t"
+    - Position: 14
+      Type: "int8_t"
+    - Position: 15
+      Type: "int32_t"
+    - Position: 16
+      Type: "int32_t"
+  - Selector: "doCopyChannelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"
+    ResultType: "SharedCoreSuplaChannelState * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
+    - Position: 5
+      Type: "int8_t"
+    - Position: 6
+      Type: "int8_t"
+    - Position: 7
+      Type: "int8_t"
+    - Position: 8
+      Type: "int8_t"
+    - Position: 9
+      Type: "int8_t"
+    - Position: 10
+      Type: "int8_t"
+    - Position: 11
+      Type: "int32_t"
+    - Position: 12
+      Type: "int32_t"
+    - Position: 13
+      Type: "int8_t"
+    - Position: 14
+      Type: "int8_t"
+    - Position: 15
+      Type: "int32_t"
+    - Position: 16
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaChannelStateCompanion"
+  SwiftName: "SuplaChannelState.Companion"
+  Properties:
+  - Name: "FIELD_BATTERYHEALTH"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_BATTERYHEALTH"
+    Type: "int32_t"
+  - Name: "FIELD_BATTERYLEVEL"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_BATTERYLEVEL"
+    Type: "int32_t"
+  - Name: "FIELD_BATTERYPOWERED"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_BATTERYPOWERED"
+    Type: "int32_t"
+  - Name: "FIELD_BRIDGENODEONLINE"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_BRIDGENODEONLINE"
+    Type: "int32_t"
+  - Name: "FIELD_BRIDGENODESIGNALSTRENGTH"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_BRIDGENODESIGNALSTRENGTH"
+    Type: "int32_t"
+  - Name: "FIELD_CONNECTIONUPTIME"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_CONNECTIONUPTIME"
+    Type: "int32_t"
+  - Name: "FIELD_IPV4"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_IPV4"
+    Type: "int32_t"
+  - Name: "FIELD_LASTCONNECTIONRESETCAUSE"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_LASTCONNECTIONRESETCAUSE"
+    Type: "int32_t"
+  - Name: "FIELD_LIGHTSOURCELIFEOPERATINGTIME"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_LIGHTSOURCELIFEOPERATINGTIME"
+    Type: "int32_t"
+  - Name: "FIELD_LIGHTSOURCELIFESPAN"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_LIGHTSOURCELIFESPAN"
+    Type: "int32_t"
+  - Name: "FIELD_MAC"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_MAC"
+    Type: "int32_t"
+  - Name: "FIELD_SWITCH_CYCLE_COUNT"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_SWITCH_CYCLE_COUNT"
+    Type: "int32_t"
+  - Name: "FIELD_UPTIME"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_UPTIME"
+    Type: "int32_t"
+  - Name: "FIELD_WIFIRSSI"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_WIFIRSSI"
+    Type: "int32_t"
+  - Name: "FIELD_WIFISIGNALSTRENGTH"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_WIFISIGNALSTRENGTH"
+    Type: "int32_t"
+  Methods:
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+- Name: "SharedCoreLocalizedStringEmpty"
+  SwiftName: "LocalizedStringEmpty"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreLocalizedStringConstant"
+  SwiftName: "LocalizedStringConstant"
+  Properties:
+  - Name: "text"
+    PropertyKind: "Instance"
+    SwiftName: "text"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "initWithText:"
+    MethodKind: "Instance"
+    SwiftName: "init(text:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+  - Selector: "doCopyText:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(text:)"
+    ResultType: "SharedCoreLocalizedStringConstant * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreLocalizedStringWithId"
+  SwiftName: "LocalizedStringWithId"
+  Properties:
+  - Name: "arguments"
+    PropertyKind: "Instance"
+    SwiftName: "arguments"
+    Type: "NSArray<id> * _Nonnull"
+  - Name: "id"
+    PropertyKind: "Instance"
+    SwiftName: "id"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  Methods:
+  - Selector: "initWithId:arguments:"
+    MethodKind: "Instance"
+    SwiftName: "init(id:arguments:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "NSArray<Skie__TypeDef__0__id> * _Nonnull"
+  - Selector: "doCopyId:arguments:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(id:arguments:)"
+    ResultType: "SharedCoreLocalizedStringWithId * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "NSArray<Skie__TypeDef__0__id> * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreLocalizedStringWithIdAndString"
+  SwiftName: "LocalizedStringWithIdAndString"
+  Properties:
+  - Name: "id"
+    PropertyKind: "Instance"
+    SwiftName: "id"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "text"
+    PropertyKind: "Instance"
+    SwiftName: "text"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "initWithId:text:"
+    MethodKind: "Instance"
+    SwiftName: "init(id:text:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+  - Selector: "doCopyId:text:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(id:text:)"
+    ResultType: "SharedCoreLocalizedStringWithIdAndString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreLocalizedStringWithIdIntStringInt"
+  SwiftName: "LocalizedStringWithIdIntStringInt"
+  Properties:
+  - Name: "arg1"
+    PropertyKind: "Instance"
+    SwiftName: "arg1"
+    Type: "int32_t"
+  - Name: "arg2"
+    PropertyKind: "Instance"
+    SwiftName: "arg2"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
+  - Name: "arg3"
+    PropertyKind: "Instance"
+    SwiftName: "arg3"
+    Type: "int32_t"
+  - Name: "id"
+    PropertyKind: "Instance"
+    SwiftName: "id"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  Methods:
+  - Selector: "initWithId:arg1:arg2:arg3:"
+    MethodKind: "Instance"
+    SwiftName: "init(id:arg1:arg2:arg3:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    - Position: 3
+      Type: "int32_t"
+  - Selector: "doCopyId:arg1:arg2:arg3:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(id:arg1:arg2:arg3:)"
+    ResultType: "SharedCoreLocalizedStringWithIdIntStringInt * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    - Position: 3
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreZWaveNode"
+  SwiftName: "ZWaveNode"
+  Properties:
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "SharedCoreInt * _Nullable"
+  - Name: "flags"
+    PropertyKind: "Instance"
+    SwiftName: "flags"
+    Type: "int32_t"
+  - Name: "name"
+    PropertyKind: "Instance"
+    SwiftName: "name"
+    Type: "NSString * _Nonnull"
+  - Name: "nodeId"
+    PropertyKind: "Instance"
+    SwiftName: "nodeId"
+    Type: "int16_t"
+  - Name: "sceneType"
+    PropertyKind: "Instance"
+    SwiftName: "sceneType"
+    Type: "int16_t"
+  Methods:
+  - Selector: "initWithNodeId:sceneType:flags:channelId:name:"
+    MethodKind: "Instance"
+    SwiftName: "init(nodeId:sceneType:flags:channelId:name:)"
+    Parameters:
+    - Position: 0
+      Type: "int16_t"
+    - Position: 1
+      Type: "int16_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "SharedCoreInt * _Nullable"
+    - Position: 4
+      Type: "NSString * _Nonnull"
+  - Selector: "doCopyNodeId:sceneType:flags:channelId:name:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(nodeId:sceneType:flags:channelId:name:)"
+    ResultType: "SharedCoreZWaveNode * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int16_t"
+    - Position: 1
+      Type: "int16_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "SharedCoreInt * _Nullable"
+    - Position: 4
+      Type: "NSString * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreZWaveWakeUpSettings"
+  SwiftName: "ZWaveWakeUpSettings"
+  Properties:
+  - Name: "maximum"
+    PropertyKind: "Instance"
+    SwiftName: "maximum"
+    Type: "int32_t"
+  - Name: "minimum"
+    PropertyKind: "Instance"
+    SwiftName: "minimum"
+    Type: "int32_t"
+  - Name: "step"
+    PropertyKind: "Instance"
+    SwiftName: "step"
+    Type: "int32_t"
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithMinimum:maximum:value:step:"
+    MethodKind: "Instance"
+    SwiftName: "init(minimum:maximum:value:step:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+  - Selector: "doCopyMinimum:maximum:value:step:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(minimum:maximum:value:step:)"
+    ResultType: "SharedCoreZWaveWakeUpSettings * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaEventType"
+  SwiftBridge: "SuplaEventType"
+  SwiftName: "__SuplaEventType"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value_"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "unknown"
+    PropertyKind: "Class"
+    SwiftName: "unknown"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "controllingTheGatewayLock"
+    PropertyKind: "Class"
+    SwiftName: "controllingTheGatewayLock"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "controllingTheGate"
+    PropertyKind: "Class"
+    SwiftName: "controllingTheGate"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "controllingTheGarageDoor"
+    PropertyKind: "Class"
+    SwiftName: "controllingTheGarageDoor"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "controllingTheDoorLock"
+    PropertyKind: "Class"
+    SwiftName: "controllingTheDoorLock"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "controllingTheRollerShutter"
+    PropertyKind: "Class"
+    SwiftName: "controllingTheRollerShutter"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "controllingTheRoofWindow"
+    PropertyKind: "Class"
+    SwiftName: "controllingTheRoofWindow"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "powerOnOff"
+    PropertyKind: "Class"
+    SwiftName: "powerOnOff"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "lightOnOff"
+    PropertyKind: "Class"
+    SwiftName: "lightOnOff"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "valveOpenClose"
+    PropertyKind: "Class"
+    SwiftName: "valveOpenClose"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  - Name: "setBridgeValueFailed"
+    PropertyKind: "Class"
+    SwiftName: "setBridgeValueFailed"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreSuplaEventTypeCompanion"
+  SwiftName: "__SuplaEventType.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreSuplaEventType * _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreSuplaChannelAvailabilityStatus"
   SwiftBridge: "SuplaChannelAvailabilityStatus"
   SwiftName: "__SuplaChannelAvailabilityStatus"
@@ -328,7 +1789,7 @@ Classes:
   SwiftName: "__SuplaHvacMode"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -423,156 +1884,6 @@ Classes:
     Parameters:
     - Position: 0
       Type: "int32_t"
-- Name: "SharedCoreLocalizedStringEmpty"
-  SwiftName: "LocalizedStringEmpty"
-  Methods:
-  - Selector: "isEqual:"
-    MethodKind: "Instance"
-    SwiftName: "isEqual(_:)"
-    ResultType: "BOOL"
-    Parameters:
-    - Position: 0
-      Type: "id _Nullable"
-  - Selector: "hash"
-    MethodKind: "Instance"
-    SwiftName: "hash()"
-    ResultType: "NSUInteger"
-  - Selector: "description"
-    MethodKind: "Instance"
-    SwiftName: "description()"
-    ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreLocalizedStringConstant"
-  SwiftName: "LocalizedStringConstant"
-  Properties:
-  - Name: "text"
-    PropertyKind: "Instance"
-    SwiftName: "text"
-    Type: "NSString * _Nonnull"
-  Methods:
-  - Selector: "initWithText:"
-    MethodKind: "Instance"
-    SwiftName: "init(text:)"
-    Parameters:
-    - Position: 0
-      Type: "NSString * _Nonnull"
-  - Selector: "doCopyText:"
-    MethodKind: "Instance"
-    SwiftName: "doCopy(text:)"
-    ResultType: "SharedCoreLocalizedStringConstant * _Nonnull"
-    Parameters:
-    - Position: 0
-      Type: "NSString * _Nonnull"
-  - Selector: "isEqual:"
-    MethodKind: "Instance"
-    SwiftName: "isEqual(_:)"
-    ResultType: "BOOL"
-    Parameters:
-    - Position: 0
-      Type: "id _Nullable"
-  - Selector: "hash"
-    MethodKind: "Instance"
-    SwiftName: "hash()"
-    ResultType: "NSUInteger"
-  - Selector: "description"
-    MethodKind: "Instance"
-    SwiftName: "description()"
-    ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreLocalizedStringWithId"
-  SwiftName: "LocalizedStringWithId"
-  Properties:
-  - Name: "id"
-    PropertyKind: "Instance"
-    SwiftName: "id"
-    Type: "SharedCoreLocalizedStringId * _Nonnull"
-  Methods:
-  - Selector: "initWithId:"
-    MethodKind: "Instance"
-    SwiftName: "init(id:)"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-  - Selector: "doCopyId:"
-    MethodKind: "Instance"
-    SwiftName: "doCopy(id:)"
-    ResultType: "SharedCoreLocalizedStringWithId * _Nonnull"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-  - Selector: "isEqual:"
-    MethodKind: "Instance"
-    SwiftName: "isEqual(_:)"
-    ResultType: "BOOL"
-    Parameters:
-    - Position: 0
-      Type: "id _Nullable"
-  - Selector: "hash"
-    MethodKind: "Instance"
-    SwiftName: "hash()"
-    ResultType: "NSUInteger"
-  - Selector: "description"
-    MethodKind: "Instance"
-    SwiftName: "description()"
-    ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreLocalizedStringWithIdIntStringInt"
-  SwiftName: "LocalizedStringWithIdIntStringInt"
-  Properties:
-  - Name: "arg1"
-    PropertyKind: "Instance"
-    SwiftName: "arg1"
-    Type: "int32_t"
-  - Name: "arg2"
-    PropertyKind: "Instance"
-    SwiftName: "arg2"
-    Type: "id<SharedCoreLocalizedString> _Nonnull"
-  - Name: "arg3"
-    PropertyKind: "Instance"
-    SwiftName: "arg3"
-    Type: "int32_t"
-  - Name: "id"
-    PropertyKind: "Instance"
-    SwiftName: "id"
-    Type: "SharedCoreLocalizedStringId * _Nonnull"
-  Methods:
-  - Selector: "initWithId:arg1:arg2:arg3:"
-    MethodKind: "Instance"
-    SwiftName: "init(id:arg1:arg2:arg3:)"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-    - Position: 1
-      Type: "int32_t"
-    - Position: 2
-      Type: "Skie__TypeDef__0__id_SharedCoreLocalizedString_"
-    - Position: 3
-      Type: "int32_t"
-  - Selector: "doCopyId:arg1:arg2:arg3:"
-    MethodKind: "Instance"
-    SwiftName: "doCopy(id:arg1:arg2:arg3:)"
-    ResultType: "SharedCoreLocalizedStringWithIdIntStringInt * _Nonnull"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-    - Position: 1
-      Type: "int32_t"
-    - Position: 2
-      Type: "Skie__TypeDef__0__id_SharedCoreLocalizedString_"
-    - Position: 3
-      Type: "int32_t"
-  - Selector: "isEqual:"
-    MethodKind: "Instance"
-    SwiftName: "isEqual(_:)"
-    ResultType: "BOOL"
-    Parameters:
-    - Position: 0
-      Type: "id _Nullable"
-  - Selector: "hash"
-    MethodKind: "Instance"
-    SwiftName: "hash()"
-    ResultType: "NSUInteger"
-  - Selector: "description"
-    MethodKind: "Instance"
-    SwiftName: "description()"
-    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreBase64Helper"
   SwiftName: "Base64Helper"
   Methods:
@@ -593,6 +1904,20 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreIcon"
+  SwiftBridge: "Icon"
+  SwiftName: "__Icon"
+  SwiftPrivate: true
+  Properties:
+  - Name: "addWizardError"
+    PropertyKind: "Class"
+    SwiftName: "addWizardError"
+    Type: "SharedCoreIcon * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
 - Name: "SharedCoreLocalizedStringId"
   SwiftBridge: "LocalizedStringId"
   SwiftName: "__LocalizedStringId"
@@ -950,11 +2275,1370 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "containerSoundAlarm"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "deviceRegistrationRequestTimeout"
+    PropertyKind: "Class"
+    SwiftName: "deviceRegistrationRequestTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "enablingRegistrationTimeout"
+    PropertyKind: "Class"
+    SwiftName: "enablingRegistrationTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardScanTimeout"
+    PropertyKind: "Class"
+    SwiftName: "addWizardScanTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardDeviceNotFound"
+    PropertyKind: "Class"
+    SwiftName: "addWizardDeviceNotFound"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardConnectTimeout"
+    PropertyKind: "Class"
+    SwiftName: "addWizardConnectTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardConfigureTimeout"
+    PropertyKind: "Class"
+    SwiftName: "addWizardConfigureTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardWifiError"
+    PropertyKind: "Class"
+    SwiftName: "addWizardWifiError"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardResultNotCompatible"
+    PropertyKind: "Class"
+    SwiftName: "addWizardResultNotCompatible"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardResultConnectionError"
+    PropertyKind: "Class"
+    SwiftName: "addWizardResultConnectionError"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardResultFailed"
+    PropertyKind: "Class"
+    SwiftName: "addWizardResultFailed"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "addWizardReconnectTimeout"
+    PropertyKind: "Class"
+    SwiftName: "addWizardReconnectTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelStateUptime"
+    PropertyKind: "Class"
+    SwiftName: "channelStateUptime"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "lastConnectionResetCauseUnknown"
+    PropertyKind: "Class"
+    SwiftName: "lastConnectionResetCauseUnknown"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "lastConnectionResetCauseActivityTimeout"
+    PropertyKind: "Class"
+    SwiftName: "lastConnectionResetCauseActivityTimeout"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "lastConnectionResetCauseWifiConnectionLost"
+    PropertyKind: "Class"
+    SwiftName: "lastConnectionResetCauseWifiConnectionLost"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "lastConnectionResetCauseServerConnectionLost"
+    PropertyKind: "Class"
+    SwiftName: "lastConnectionResetCauseServerConnectionLost"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeTemporarilyUnavailable"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeTemporarilyUnavailable"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeClientLimitExceeded"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeClientLimitExceeded"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeDeviceDisabled"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeDeviceDisabled"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeAccessIdDisabled"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeAccessIdDisabled"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeRegistrationDisabled"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeRegistrationDisabled"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeAccessIdNotAssigned"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeAccessIdNotAssigned"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeInactive"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeInactive"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeIncorrectEmailOrPassword"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeIncorrectEmailOrPassword"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeBadCredentials"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeBadCredentials"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "resultCodeUnknownError"
+    PropertyKind: "Class"
+    SwiftName: "resultCodeUnknownError"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   Methods:
   - Selector: "initWithName:ordinal:"
     MethodKind: "Instance"
     SwiftName: "init(name:ordinal:)"
     Availability: "nonswift"
+- Name: "SharedCoreSuplaClientMessageChannelDataChanged"
+  SwiftName: "SuplaClientMessageChannelDataChanged"
+  Properties:
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "extendedValueChanged"
+    PropertyKind: "Instance"
+    SwiftName: "extendedValueChanged"
+    Type: "BOOL"
+  - Name: "timerValueChanged"
+    PropertyKind: "Instance"
+    SwiftName: "timerValueChanged"
+    Type: "BOOL"
+  Methods:
+  - Selector: "initWithChannelId:extendedValueChanged:timerValueChanged:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelId:extendedValueChanged:timerValueChanged:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "BOOL"
+  - Selector: "doCopyChannelId:extendedValueChanged:timerValueChanged:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelId:extendedValueChanged:timerValueChanged:)"
+    ResultType: "SharedCoreSuplaClientMessageChannelDataChanged * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "BOOL"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageGroupDataChanged"
+  SwiftName: "SuplaClientMessageGroupDataChanged"
+  Properties:
+  - Name: "groupId"
+    PropertyKind: "Instance"
+    SwiftName: "groupId"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithGroupId:"
+    MethodKind: "Instance"
+    SwiftName: "init(groupId:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "doCopyGroupId:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(groupId:)"
+    ResultType: "SharedCoreSuplaClientMessageGroupDataChanged * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageClientRegistered"
+  SwiftName: "SuplaClientMessageClientRegistered"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageClientRegistrationError"
+  SwiftName: "SuplaClientMessageClientRegistrationError"
+  Properties:
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  Methods:
+  - Selector: "initWithResultCode:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Selector: "doCopyResultCode:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:)"
+    ResultType: "SharedCoreSuplaClientMessageClientRegistrationError * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageEvent"
+  SwiftName: "SuplaClientMessageEvent"
+  Properties:
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "duration"
+    PropertyKind: "Instance"
+    SwiftName: "duration"
+    Type: "int64_t"
+  - Name: "owner"
+    PropertyKind: "Instance"
+    SwiftName: "owner"
+    Type: "BOOL"
+  - Name: "senderId"
+    PropertyKind: "Instance"
+    SwiftName: "senderId"
+    Type: "int32_t"
+  - Name: "senderName"
+    PropertyKind: "Instance"
+    SwiftName: "senderName"
+    Type: "NSString * _Nullable"
+  - Name: "type"
+    PropertyKind: "Instance"
+    SwiftName: "type"
+    Type: "SharedCoreSuplaEventType * _Nonnull"
+  Methods:
+  - Selector: "initWithOwner:type:channelId:duration:senderId:senderName:"
+    MethodKind: "Instance"
+    SwiftName: "init(owner:type:channelId:duration:senderId:senderName:)"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "SharedCoreSuplaEventType * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int64_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "NSString * _Nullable"
+  - Selector: "doCopyOwner:type:channelId:duration:senderId:senderName:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(owner:type:channelId:duration:senderId:senderName:)"
+    ResultType: "SharedCoreSuplaClientMessageEvent * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "SharedCoreSuplaEventType * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int64_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "NSString * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageRegistrationEnabled"
+  SwiftName: "SuplaClientMessageRegistrationEnabled"
+  Properties:
+  - Name: "clientRegistrationExpirationTimestamp"
+    PropertyKind: "Instance"
+    SwiftName: "clientRegistrationExpirationTimestamp"
+    Type: "int64_t"
+  - Name: "deviceRegistrationExpirationTimestamp"
+    PropertyKind: "Instance"
+    SwiftName: "deviceRegistrationExpirationTimestamp"
+    Type: "int64_t"
+  - Name: "isClientRegistrationEnabled"
+    PropertyKind: "Instance"
+    SwiftName: "isClientRegistrationEnabled"
+    Type: "BOOL"
+  - Name: "isDeviceRegistrationEnabled"
+    PropertyKind: "Instance"
+    SwiftName: "isDeviceRegistrationEnabled"
+    Type: "BOOL"
+  Methods:
+  - Selector: "initWithClientRegistrationExpirationTimestamp:deviceRegistrationExpirationTimestamp:"
+    MethodKind: "Instance"
+    SwiftName: "init(clientRegistrationExpirationTimestamp:deviceRegistrationExpirationTimestamp:)"
+    Parameters:
+    - Position: 0
+      Type: "int64_t"
+    - Position: 1
+      Type: "int64_t"
+  - Selector: "doCopyClientRegistrationExpirationTimestamp:deviceRegistrationExpirationTimestamp:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(clientRegistrationExpirationTimestamp:deviceRegistrationExpirationTimestamp:)"
+    ResultType: "SharedCoreSuplaClientMessageRegistrationEnabled * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int64_t"
+    - Position: 1
+      Type: "int64_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageOAuthToken"
+  SwiftName: "SuplaClientMessageOAuthToken"
+  Properties:
+  - Name: "creationTimestamp"
+    PropertyKind: "Instance"
+    SwiftName: "creationTimestamp"
+    Type: "int64_t"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  - Name: "timeToLive"
+    PropertyKind: "Instance"
+    SwiftName: "timeToLive"
+    Type: "int32_t"
+  - Name: "token"
+    PropertyKind: "Instance"
+    SwiftName: "token"
+    Type: "NSString * _Nullable"
+  - Name: "url"
+    PropertyKind: "Instance"
+    SwiftName: "url"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "initWithUrl:creationTimestamp:resultCode:timeToLive:token:"
+    MethodKind: "Instance"
+    SwiftName: "init(url:creationTimestamp:resultCode:timeToLive:token:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "int64_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "NSString * _Nullable"
+  - Selector: "doCopyUrl:creationTimestamp:resultCode:timeToLive:token:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(url:creationTimestamp:resultCode:timeToLive:token:)"
+    ResultType: "SharedCoreSuplaClientMessageOAuthToken * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "int64_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "NSString * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageCallConfigResult"
+  SwiftName: "SuplaClientMessageCallConfigResult"
+  Properties:
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "command"
+    PropertyKind: "Instance"
+    SwiftName: "command"
+    Type: "int32_t"
+  - Name: "data"
+    PropertyKind: "Instance"
+    SwiftName: "data"
+    Type: "SharedCoreKotlinByteArray * _Nullable"
+  - Name: "result"
+    PropertyKind: "Instance"
+    SwiftName: "result"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithChannelId:command:result:data:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelId:command:result:data:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "SharedCoreKotlinByteArray * _Nullable"
+  - Selector: "doCopyChannelId:command:result:data:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelId:command:result:data:)"
+    ResultType: "SharedCoreSuplaClientMessageCallConfigResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "SharedCoreKotlinByteArray * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageAuthorizationResult"
+  SwiftName: "SuplaClientMessageAuthorizationResult"
+  Properties:
+  - Name: "authorized"
+    PropertyKind: "Instance"
+    SwiftName: "authorized"
+    Type: "BOOL"
+  - Name: "code"
+    PropertyKind: "Instance"
+    SwiftName: "code"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  Methods:
+  - Selector: "initWithAuthorized:code:"
+    MethodKind: "Instance"
+    SwiftName: "init(authorized:code:)"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Selector: "doCopyAuthorized:code:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(authorized:code:)"
+    ResultType: "SharedCoreSuplaClientMessageAuthorizationResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+    - Position: 1
+      Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageChannelState"
+  SwiftName: "SuplaClientMessageChannelState"
+  Properties:
+  - Name: "channelState"
+    PropertyKind: "Instance"
+    SwiftName: "channelState"
+    Type: "SharedCoreSuplaChannelState * _Nonnull"
+  Methods:
+  - Selector: "initWithChannelState:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelState:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelState * _Nonnull"
+  - Selector: "doCopyChannelState:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelState:)"
+    ResultType: "SharedCoreSuplaClientMessageChannelState * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelState * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageChannelBasicConfig"
+  SwiftName: "SuplaClientMessageChannelBasicConfig"
+  Properties:
+  - Name: "channelBasicConfig"
+    PropertyKind: "Instance"
+    SwiftName: "channelBasicConfig"
+    Type: "SharedCoreSuplaChannelBasicCfg * _Nonnull"
+  Methods:
+  - Selector: "initWithChannelBasicConfig:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelBasicConfig:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelBasicCfg * _Nonnull"
+  - Selector: "doCopyChannelBasicConfig:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelBasicConfig:)"
+    ResultType: "SharedCoreSuplaClientMessageChannelBasicConfig * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelBasicCfg * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageChannelFunctionSetResult"
+  SwiftName: "SuplaClientMessageChannelFunctionSetResult"
+  Properties:
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "function"
+    PropertyKind: "Instance"
+    SwiftName: "function"
+    Type: "int32_t"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithChannelId:function:resultCode:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelId:function:resultCode:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "doCopyChannelId:function:resultCode:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelId:function:resultCode:)"
+    ResultType: "SharedCoreSuplaClientMessageChannelFunctionSetResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageChannelCaptionSetResult"
+  SwiftName: "SuplaClientMessageChannelCaptionSetResult"
+  Properties:
+  - Name: "caption"
+    PropertyKind: "Instance"
+    SwiftName: "caption"
+    Type: "NSString * _Nullable"
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithChannelId:caption:resultCode:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelId:caption:resultCode:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "NSString * _Nullable"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "doCopyChannelId:caption:resultCode:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelId:caption:resultCode:)"
+    ResultType: "SharedCoreSuplaClientMessageChannelCaptionSetResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "NSString * _Nullable"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageSetRegistrationEnabledResult"
+  SwiftName: "SuplaClientMessageSetRegistrationEnabledResult"
+  Properties:
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  Methods:
+  - Selector: "initWithResultCode:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Selector: "doCopyResultCode:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:)"
+    ResultType: "SharedCoreSuplaClientMessageSetRegistrationEnabledResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveResetAndClearResult"
+  SwiftName: "SuplaClientMessageZWaveResetAndClearResult"
+  Properties:
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResultCode:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "doCopyResultCode:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveResetAndClearResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveAddNodeResult"
+  SwiftName: "SuplaClientMessageZWaveAddNodeResult"
+  Properties:
+  - Name: "node"
+    PropertyKind: "Instance"
+    SwiftName: "node"
+    Type: "SharedCoreZWaveNode * _Nullable"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResultCode:node:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:node:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreZWaveNode * _Nullable"
+  - Selector: "doCopyResultCode:node:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:node:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveAddNodeResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreZWaveNode * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveRemoveNodeResult"
+  SwiftName: "SuplaClientMessageZWaveRemoveNodeResult"
+  Properties:
+  - Name: "nodeId"
+    PropertyKind: "Instance"
+    SwiftName: "nodeId"
+    Type: "int16_t"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResultCode:nodeId:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:nodeId:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int16_t"
+  - Selector: "doCopyResultCode:nodeId:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:nodeId:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveRemoveNodeResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int16_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveGetNodeListResult"
+  SwiftName: "SuplaClientMessageZWaveGetNodeListResult"
+  Properties:
+  - Name: "node"
+    PropertyKind: "Instance"
+    SwiftName: "node"
+    Type: "SharedCoreZWaveNode * _Nullable"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResultCode:node:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:node:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreZWaveNode * _Nullable"
+  - Selector: "doCopyResultCode:node:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:node:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveGetNodeListResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreZWaveNode * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult"
+  SwiftName: "SuplaClientMessageZWaveGetAssignedNodeIdResult"
+  Properties:
+  - Name: "nodeId"
+    PropertyKind: "Instance"
+    SwiftName: "nodeId"
+    Type: "int16_t"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResultCode:nodeId:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:nodeId:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int16_t"
+  - Selector: "doCopyResultCode:nodeId:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:nodeId:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int16_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveAssignNodeIdResult"
+  SwiftName: "SuplaClientMessageZWaveAssignNodeIdResult"
+  Properties:
+  - Name: "nodeId"
+    PropertyKind: "Instance"
+    SwiftName: "nodeId"
+    Type: "int16_t"
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResultCode:nodeId:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:nodeId:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int16_t"
+  - Selector: "doCopyResultCode:nodeId:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:nodeId:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveAssignNodeIdResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int16_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageCallConfigProgressReport"
+  SwiftName: "SuplaClientMessageCallConfigProgressReport"
+  Properties:
+  - Name: "channelId"
+    PropertyKind: "Instance"
+    SwiftName: "channelId"
+    Type: "int32_t"
+  - Name: "command"
+    PropertyKind: "Instance"
+    SwiftName: "command"
+    Type: "int32_t"
+  - Name: "progress"
+    PropertyKind: "Instance"
+    SwiftName: "progress"
+    Type: "int16_t"
+  Methods:
+  - Selector: "initWithChannelId:command:progress:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelId:command:progress:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int16_t"
+  - Selector: "doCopyChannelId:command:progress:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelId:command:progress:)"
+    ResultType: "SharedCoreSuplaClientMessageCallConfigProgressReport * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int16_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport"
+  SwiftName: "SuplaClientMessageZWaveWakeUpSettingsReport"
+  Properties:
+  - Name: "resultCode"
+    PropertyKind: "Instance"
+    SwiftName: "resultCode"
+    Type: "int32_t"
+  - Name: "settings"
+    PropertyKind: "Instance"
+    SwiftName: "settings"
+    Type: "SharedCoreZWaveWakeUpSettings * _Nullable"
+  Methods:
+  - Selector: "initWithResultCode:settings:"
+    MethodKind: "Instance"
+    SwiftName: "init(resultCode:settings:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreZWaveWakeUpSettings * _Nullable"
+  - Selector: "doCopyResultCode:settings:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(resultCode:settings:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreZWaveWakeUpSettings * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult"
+  SwiftName: "SuplaClientMessageZWaveSetWakeUpTimeResult"
+  Properties:
+  - Name: "result"
+    PropertyKind: "Instance"
+    SwiftName: "result"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithResult:"
+    MethodKind: "Instance"
+    SwiftName: "init(result:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "doCopyResult:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(result:)"
+    ResultType: "SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaClientMessageCompanion"
+  SwiftName: "SuplaClientMessageCompanion"
+- Name: "SharedCoreSuplaResultCode"
+  SwiftBridge: "SuplaResultCode"
+  SwiftName: "__SuplaResultCode"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value_"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "unknown"
+    PropertyKind: "Class"
+    SwiftName: "unknown"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "none"
+    PropertyKind: "Class"
+    SwiftName: "none"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "unsupported"
+    PropertyKind: "Class"
+    SwiftName: "unsupported"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "false_"
+    PropertyKind: "Class"
+    SwiftName: "false"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "true_"
+    PropertyKind: "Class"
+    SwiftName: "true"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "temporarilyUnavailable"
+    PropertyKind: "Class"
+    SwiftName: "temporarilyUnavailable"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "badCredentials"
+    PropertyKind: "Class"
+    SwiftName: "badCredentials"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "locationConflict"
+    PropertyKind: "Class"
+    SwiftName: "locationConflict"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "channelConflict"
+    PropertyKind: "Class"
+    SwiftName: "channelConflict"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "deviceDisabled"
+    PropertyKind: "Class"
+    SwiftName: "deviceDisabled"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "accessIdDisabled"
+    PropertyKind: "Class"
+    SwiftName: "accessIdDisabled"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "locationDisabled"
+    PropertyKind: "Class"
+    SwiftName: "locationDisabled"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "clientDisabled"
+    PropertyKind: "Class"
+    SwiftName: "clientDisabled"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "clientLimitExceeded"
+    PropertyKind: "Class"
+    SwiftName: "clientLimitExceeded"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "deviceLimitExceeded"
+    PropertyKind: "Class"
+    SwiftName: "deviceLimitExceeded"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "guidError"
+    PropertyKind: "Class"
+    SwiftName: "guidError"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "deviceLocked"
+    PropertyKind: "Class"
+    SwiftName: "deviceLocked"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "registrationDisabled"
+    PropertyKind: "Class"
+    SwiftName: "registrationDisabled"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "accessIdNotAssigned"
+    PropertyKind: "Class"
+    SwiftName: "accessIdNotAssigned"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "authKeyError"
+    PropertyKind: "Class"
+    SwiftName: "authKeyError"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "noLocationAvailable"
+    PropertyKind: "Class"
+    SwiftName: "noLocationAvailable"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "userConflict"
+    PropertyKind: "Class"
+    SwiftName: "userConflict"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "unauthorized"
+    PropertyKind: "Class"
+    SwiftName: "unauthorized"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "authorized"
+    PropertyKind: "Class"
+    SwiftName: "authorized"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "notAllowed"
+    PropertyKind: "Class"
+    SwiftName: "notAllowed"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "channelNotFound"
+    PropertyKind: "Class"
+    SwiftName: "channelNotFound"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "unknownError"
+    PropertyKind: "Class"
+    SwiftName: "unknownError"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "denyChannelBelongToGroup"
+    PropertyKind: "Class"
+    SwiftName: "denyChannelBelongToGroup"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "denyChannelHasSchedule"
+    PropertyKind: "Class"
+    SwiftName: "denyChannelHasSchedule"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "denyChannelIsAssociatedWithScene"
+    PropertyKind: "Class"
+    SwiftName: "denyChannelIsAssociatedWithScene"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "denyChannelIsAssociatedWithActionTrigger"
+    PropertyKind: "Class"
+    SwiftName: "denyChannelIsAssociatedWithActionTrigger"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "inactive"
+    PropertyKind: "Class"
+    SwiftName: "inactive"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "cfgModeRequested"
+    PropertyKind: "Class"
+    SwiftName: "cfgModeRequested"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "actionUnsupported"
+    PropertyKind: "Class"
+    SwiftName: "actionUnsupported"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "subjectNotFound"
+    PropertyKind: "Class"
+    SwiftName: "subjectNotFound"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "incorrectParameters"
+    PropertyKind: "Class"
+    SwiftName: "incorrectParameters"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "clientNotExists"
+    PropertyKind: "Class"
+    SwiftName: "clientNotExists"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "countryRejected"
+    PropertyKind: "Class"
+    SwiftName: "countryRejected"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "channelIsOffline"
+    PropertyKind: "Class"
+    SwiftName: "channelIsOffline"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "notRegistered"
+    PropertyKind: "Class"
+    SwiftName: "notRegistered"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "denyChannelIsAssociatedWithVbt"
+    PropertyKind: "Class"
+    SwiftName: "denyChannelIsAssociatedWithVbt"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "denyChannelIsAssociatedWithPush"
+    PropertyKind: "Class"
+    SwiftName: "denyChannelIsAssociatedWithPush"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "restartRequested"
+    PropertyKind: "Class"
+    SwiftName: "restartRequested"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "identifyRequested"
+    PropertyKind: "Class"
+    SwiftName: "identifyRequested"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  - Name: "malformedEmail"
+    PropertyKind: "Class"
+    SwiftName: "malformedEmail"
+    Type: "SharedCoreSuplaResultCode * _Nonnull"
+  Methods:
+  - Selector: "messageIsLogin:"
+    MethodKind: "Instance"
+    SwiftName: "message(isLogin:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreSuplaResultCodeCompanion"
+  SwiftName: "__SuplaResultCode.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreSuplaResultCode * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreCacheFileAccessFile"
   SwiftName: "CacheFileAccessFile"
   Properties:
@@ -1037,7 +3721,7 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "hasThermostatSubfunction"
     Type: "BOOL"
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -1320,6 +4004,17 @@ Classes:
     Parameters:
     - Position: 0
       Type: "int32_t"
+  - Selector: "serializerTypeParamsSerializers:"
+    MethodKind: "Instance"
+    SwiftName: "serializer(typeParamsSerializers:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> * _Nonnull"
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
 - Name: "SharedCoreGetChannelActionStringUseCase"
   SwiftName: "GetChannelActionStringUseCase"
   Methods:
@@ -1340,6 +4035,88 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreSuplaFunction * _Nonnull"
+- Name: "SharedCoreCheckRegistrationEnabledUseCase"
+  SwiftName: "CheckRegistrationEnabledUseCase"
+  Methods:
+  - Selector: "initWithSuplaClientMessageHandler:suplaClientProvider:"
+    MethodKind: "Instance"
+    SwiftName: "init(suplaClientMessageHandler:suplaClientProvider:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreSuplaClientMessageHandler> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreSuplaClientSharedProvider> _Nonnull"
+  - Selector: "invokeWithCompletionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__invoke(completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "void (^ _Nonnull)(SharedCoreCheckRegistrationEnabledUseCaseResult * _Nullable, NSError * _Nullable)"
+- Name: "SharedCoreCheckRegistrationEnabledUseCaseResult"
+  SwiftBridge: "__Bridge__CheckRegistrationEnabledUseCase_Result"
+  SwiftName: "CheckRegistrationEnabledUseCase.__Result"
+  SwiftPrivate: true
+  Properties:
+  - Name: "enabled"
+    PropertyKind: "Class"
+    SwiftName: "enabled"
+    Type: "SharedCoreCheckRegistrationEnabledUseCaseResult * _Nonnull"
+  - Name: "disabled"
+    PropertyKind: "Class"
+    SwiftName: "disabled"
+    Type: "SharedCoreCheckRegistrationEnabledUseCaseResult * _Nonnull"
+  - Name: "timeout"
+    PropertyKind: "Class"
+    SwiftName: "timeout"
+    Type: "SharedCoreCheckRegistrationEnabledUseCaseResult * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreEnableRegistrationUseCase"
+  SwiftName: "EnableRegistrationUseCase"
+  Methods:
+  - Selector: "initWithSuplaClientMessageHandler:suplaClientProvider:"
+    MethodKind: "Instance"
+    SwiftName: "init(suplaClientMessageHandler:suplaClientProvider:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreSuplaClientMessageHandler> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreSuplaClientSharedProvider> _Nonnull"
+  - Selector: "invokeWithCompletionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__invoke(completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "void (^ _Nonnull)(SharedCoreEnableRegistrationUseCaseResult * _Nullable, NSError * _Nullable)"
+- Name: "SharedCoreEnableRegistrationUseCaseResult"
+  SwiftBridge: "__Bridge__EnableRegistrationUseCase_Result"
+  SwiftName: "EnableRegistrationUseCase.__Result"
+  SwiftPrivate: true
+  Properties:
+  - Name: "success"
+    PropertyKind: "Class"
+    SwiftName: "success"
+    Type: "SharedCoreEnableRegistrationUseCaseResult * _Nonnull"
+  - Name: "failure"
+    PropertyKind: "Class"
+    SwiftName: "failure"
+    Type: "SharedCoreEnableRegistrationUseCaseResult * _Nonnull"
+  - Name: "timeout"
+    PropertyKind: "Class"
+    SwiftName: "timeout"
+    Type: "SharedCoreEnableRegistrationUseCaseResult * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
 - Name: "SharedCoreCheckOcrPhotoExistsUseCase"
   SwiftName: "CheckOcrPhotoExistsUseCase"
   Methods:
@@ -1560,7 +4337,7 @@ Classes:
   SwiftName: "__ChannelRelationType"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int16_t"
@@ -2665,6 +5442,966 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
+- Name: "SharedCoreAddWizardFinalActionClose"
+  SwiftName: "AddWizardFinalActionClose"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreAddWizardFinalActionError"
+  SwiftName: "AddWizardFinalActionError"
+  Properties:
+  - Name: "error"
+    PropertyKind: "Instance"
+    SwiftName: "error"
+    Type: "SharedCoreEspConfigurationError * _Nonnull"
+  Methods:
+  - Selector: "initWithError:"
+    MethodKind: "Instance"
+    SwiftName: "init(error:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEspConfigurationError * _Nonnull"
+  - Selector: "doCopyError:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(error:)"
+    ResultType: "SharedCoreAddWizardFinalActionError * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEspConfigurationError * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreAddWizardFinalActionSuccess"
+  SwiftName: "AddWizardFinalActionSuccess"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreAddWizardFinalActionBack"
+  SwiftName: "AddWizardFinalActionBack"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationError"
+  SwiftName: "EspConfigurationError"
+  Properties:
+  - Name: "icon"
+    PropertyKind: "Instance"
+    SwiftName: "icon"
+    Type: "SharedCoreIcon * _Nonnull"
+  - Name: "message"
+    PropertyKind: "Instance"
+    SwiftName: "message"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorRegistrationCheck"
+  SwiftName: "EspConfigurationError.RegistrationCheck"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorRegistrationEnable"
+  SwiftName: "EspConfigurationError.RegistrationEnable"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorScan"
+  SwiftName: "EspConfigurationError.Scan"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorNotFound"
+  SwiftName: "EspConfigurationError.NotFound"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorConnect"
+  SwiftName: "EspConfigurationError.Connect"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorConfigureTimeout"
+  SwiftName: "EspConfigurationError.ConfigureTimeout"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorWifi"
+  SwiftName: "EspConfigurationError.Wifi"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorCompatibility"
+  SwiftName: "EspConfigurationError.Compatibility"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorCommunication"
+  SwiftName: "EspConfigurationError.Communication"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorConfiguration"
+  SwiftName: "EspConfigurationError.Configuration"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorReconnect"
+  SwiftName: "EspConfigurationError.Reconnect"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventStart"
+  SwiftName: "EspConfigurationEventStart"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventCancel"
+  SwiftName: "EspConfigurationEventCancel"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventBack"
+  SwiftName: "EspConfigurationEventBack"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventCanceled"
+  SwiftName: "EspConfigurationEventCanceled"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventRegistrationDisabled"
+  SwiftName: "EspConfigurationEventRegistrationDisabled"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventRegistrationEnabled"
+  SwiftName: "EspConfigurationEventRegistrationEnabled"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventRegistrationUnknown"
+  SwiftName: "EspConfigurationEventRegistrationUnknown"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventAuthorized"
+  SwiftName: "EspConfigurationEventAuthorized"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventRegistrationActivated"
+  SwiftName: "EspConfigurationEventRegistrationActivated"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventRegistrationNotActivated"
+  SwiftName: "EspConfigurationEventRegistrationNotActivated"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventNetworkFound"
+  SwiftName: "EspConfigurationEventNetworkFound"
+  Properties:
+  - Name: "ssid"
+    PropertyKind: "Instance"
+    SwiftName: "ssid"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "initWithSsid:"
+    MethodKind: "Instance"
+    SwiftName: "init(ssid:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+  - Selector: "doCopySsid:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(ssid:)"
+    ResultType: "SharedCoreEspConfigurationEventNetworkFound * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventMultipleNetworksFound"
+  SwiftName: "EspConfigurationEventMultipleNetworksFound"
+  Properties:
+  - Name: "ssids"
+    PropertyKind: "Instance"
+    SwiftName: "ssids"
+    Type: "NSArray<NSString *> * _Nonnull"
+  Methods:
+  - Selector: "initWithSsids:"
+    MethodKind: "Instance"
+    SwiftName: "init(ssids:)"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<NSString *> * _Nonnull"
+  - Selector: "doCopySsids:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(ssids:)"
+    ResultType: "SharedCoreEspConfigurationEventMultipleNetworksFound * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<NSString *> * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventNetworkScanDisabled"
+  SwiftName: "EspConfigurationEventNetworkScanDisabled"
+  Properties:
+  - Name: "cached"
+    PropertyKind: "Instance"
+    SwiftName: "cached"
+    Type: "NSArray<NSString *> * _Nonnull"
+  Methods:
+  - Selector: "initWithCached:"
+    MethodKind: "Instance"
+    SwiftName: "init(cached:)"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<NSString *> * _Nonnull"
+  - Selector: "doCopyCached:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(cached:)"
+    ResultType: "SharedCoreEspConfigurationEventNetworkScanDisabled * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<NSString *> * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventNetworkNotFound"
+  SwiftName: "EspConfigurationEventNetworkNotFound"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventNetworkConnected"
+  SwiftName: "EspConfigurationEventNetworkConnected"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventNetworkConnectionFailure"
+  SwiftName: "EspConfigurationEventNetworkConnectionFailure"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventEspConfigured"
+  SwiftName: "EspConfigurationEventEspConfigured"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventEspConfigurationFailure"
+  SwiftName: "EspConfigurationEventEspConfigurationFailure"
+  Properties:
+  - Name: "error"
+    PropertyKind: "Instance"
+    SwiftName: "error"
+    Type: "SharedCoreEspConfigurationError * _Nonnull"
+  Methods:
+  - Selector: "initWithError:"
+    MethodKind: "Instance"
+    SwiftName: "init(error:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEspConfigurationError * _Nonnull"
+  - Selector: "doCopyError:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(error:)"
+    ResultType: "SharedCoreEspConfigurationEventEspConfigurationFailure * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEspConfigurationError * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventReconnected"
+  SwiftName: "EspConfigurationEventReconnected"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventReconnectTimeout"
+  SwiftName: "EspConfigurationEventReconnectTimeout"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreIdle"
+  SwiftName: "Idle"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreCheckingRegistration"
+  SwiftName: "CheckingRegistration"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreAuthorizing"
+  SwiftName: "Authorizing"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreActivatingRegistration"
+  SwiftName: "ActivatingRegistration"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreNetworkSearch"
+  SwiftName: "NetworkSearch"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreChangingNetwork"
+  SwiftName: "ChangingNetwork"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreConfiguringEsp"
+  SwiftName: "ConfiguringEsp"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreReconnecting"
+  SwiftName: "Reconnecting"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:finalAction:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:finalAction:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+    - Position: 2
+      Type: "id<SharedCoreAddWizardFinalAction> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreCanceling"
+  SwiftName: "Canceling"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:finalAction:reconnect:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:finalAction:reconnect:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+    - Position: 2
+      Type: "id<SharedCoreAddWizardFinalAction> _Nonnull"
+    - Position: 3
+      Type: "BOOL"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreCanceled"
+  SwiftName: "Canceled"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreFinished"
+  SwiftName: "Finished"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreConfigurationFailure"
+  SwiftName: "ConfigurationFailure"
+  Methods:
+  - Selector: "initWithStateHolder:espConfigurationController:"
+    MethodKind: "Instance"
+    SwiftName: "init(stateHolder:espConfigurationController:)"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationStateHolder> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreEspConfigurationController> _Nonnull"
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
 - Name: "SharedCoreContainerValue"
   SwiftName: "ContainerValue"
   Properties:
@@ -2738,7 +6475,7 @@ Classes:
   SwiftName: "__ContainerFlag"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -2862,7 +6599,7 @@ Classes:
   SwiftName: "__SuplaShadingSystemFlag"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -3020,7 +6757,7 @@ Classes:
   SwiftName: "__SuplaRelayFlag"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -3200,7 +6937,7 @@ Classes:
   SwiftName: "__SuplaThermostatFlag"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -3396,7 +7133,7 @@ Classes:
   SwiftName: "__SuplaValveFlag"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -3528,7 +7265,7 @@ Classes:
   SwiftName: "__SuplaCallConfigCommand"
   SwiftPrivate: true
   Properties:
-  - Name: "value"
+  - Name: "value_"
     PropertyKind: "Instance"
     SwiftName: "value"
     Type: "int32_t"
@@ -3743,6 +7480,16 @@ Classes:
       Type: "BOOL"
     - Position: 1
       Type: "id _Nullable (^ _Nonnull)(void)"
+- Name: "SharedCoreIntExtensionsKt"
+  SwiftName: "IntExtensionsKt"
+  Methods:
+  - Selector: "ipV4String:"
+    MethodKind: "Class"
+    SwiftName: "ipV4String(_:)"
+    ResultType: "NSString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreShortExtensionsKt"
   SwiftName: "ShortExtensionsKt"
   Methods:
@@ -3769,21 +7516,36 @@ Classes:
   - Selector: "localizedStringId:"
     MethodKind: "Class"
     SwiftName: "localizedString(id:)"
-    ResultType: "Skie__TypeDef__0__id_SharedCoreLocalizedString_"
+    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
     Parameters:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nullable"
+  - Selector: "localizedStringId:arg1:arg2:arg3:arg4:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(id:arg1:arg2:arg3:arg4:)"
+    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "Skie__TypeDef__0__id"
+    - Position: 2
+      Type: "Skie__TypeDef__0__id"
+    - Position: 3
+      Type: "Skie__TypeDef__0__id"
+    - Position: 4
+      Type: "Skie__TypeDef__0__id"
   - Selector: "localizedStringId:arg1:arg2:arg3:"
     MethodKind: "Class"
     SwiftName: "localizedString(id:arg1:arg2:arg3:)"
-    ResultType: "Skie__TypeDef__0__id_SharedCoreLocalizedString_"
+    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
     Parameters:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nonnull"
     - Position: 1
       Type: "int32_t"
     - Position: 2
-      Type: "Skie__TypeDef__0__id_SharedCoreLocalizedString_"
+      Type: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
     - Position: 3
       Type: "int32_t"
 - Name: "SharedCoreGetChannelIssuesForListUseCaseKt"
@@ -3806,6 +7568,202 @@ Classes:
     Parameters:
     - Position: 0
       Type: "int32_t"
+- Name: "SharedCoreKotlinx_serialization_coreSerialKind"
+  SwiftName: "Kotlinx_serialization_coreSerialKind"
+  Methods:
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL"
+  SwiftName: "Kotlinx_serialization_coreSerialKind.CONTEXTUAL"
+- Name: "SharedCoreKotlinx_serialization_coreSerialKindENUM"
+  SwiftName: "Kotlinx_serialization_coreSerialKind.ENUM"
+- Name: "SharedCoreKotlinx_serialization_coreSerializersModule"
+  SwiftName: "Kotlinx_serialization_coreSerializersModule"
+  Methods:
+  - Selector: "dumpToCollector:"
+    MethodKind: "Instance"
+    SwiftName: "dumpTo(collector:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerializersModuleCollector> _Nonnull"
+  - Selector: "getContextualKClass:typeArgumentsSerializers:"
+    MethodKind: "Instance"
+    SwiftName: "getContextual(kClass:typeArgumentsSerializers:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "NSArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> * _Nonnull"
+  - Selector: "getPolymorphicBaseClass:value:"
+    MethodKind: "Instance"
+    SwiftName: "getPolymorphic(baseClass:value:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id _Nonnull"
+  - Selector: "getPolymorphicBaseClass:serializedClassName:"
+    MethodKind: "Instance"
+    SwiftName: "getPolymorphic(baseClass:serializedClassName:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nullable"
+- Name: "SharedCoreKotlinx_serialization_corePolymorphicKind"
+  SwiftName: "Kotlinx_serialization_corePolymorphicKind"
+- Name: "SharedCoreKotlinx_serialization_corePolymorphicKindOPEN"
+  SwiftName: "Kotlinx_serialization_corePolymorphicKind.OPEN"
+- Name: "SharedCoreKotlinx_serialization_corePolymorphicKindSEALED"
+  SwiftName: "Kotlinx_serialization_corePolymorphicKind.SEALED"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKind"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.BOOLEAN"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindBYTE"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.BYTE"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindCHAR"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.CHAR"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.DOUBLE"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.FLOAT"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindINT"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.INT"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindLONG"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.LONG"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindSHORT"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.SHORT"
+- Name: "SharedCoreKotlinx_serialization_corePrimitiveKindSTRING"
+  SwiftName: "Kotlinx_serialization_corePrimitiveKind.STRING"
+- Name: "SharedCoreKotlinx_serialization_coreStructureKind"
+  SwiftName: "Kotlinx_serialization_coreStructureKind"
+- Name: "SharedCoreKotlinx_serialization_coreStructureKindCLASS"
+  SwiftName: "Kotlinx_serialization_coreStructureKind.CLASS"
+- Name: "SharedCoreKotlinx_serialization_coreStructureKindLIST"
+  SwiftName: "Kotlinx_serialization_coreStructureKind.LIST"
+- Name: "SharedCoreKotlinx_serialization_coreStructureKindMAP"
+  SwiftName: "Kotlinx_serialization_coreStructureKind.MAP"
+- Name: "SharedCoreKotlinx_serialization_coreStructureKindOBJECT"
+  SwiftName: "Kotlinx_serialization_coreStructureKind.OBJECT"
+- Name: "SharedCore__SkieTypeExportsKt"
+  SwiftName: "__SkieTypeExportsKt"
+  Availability: "nonswift"
+  Methods:
+  - Selector: "skieTypeExports_0P0:p1:p2:p3:p4:p5:p6:p7:p8:p9:p10:p11:p12:p13:p14:p15:p16:p17:p18:p19:"
+    MethodKind: "Class"
+    SwiftName: "skieTypeExports_0(p0:p1:p2:p3:p4:p5:p6:p7:p8:p9:p10:p11:p12:p13:p14:p15:p16:p17:p18:p19:)"
+    Availability: "nonswift"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinx_serialization_corePolymorphicKind * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreKotlinx_serialization_corePolymorphicKindOPEN * _Nonnull"
+    - Position: 2
+      Type: "SharedCoreKotlinx_serialization_corePolymorphicKindSEALED * _Nonnull"
+    - Position: 3
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKind * _Nonnull"
+    - Position: 4
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN * _Nonnull"
+    - Position: 5
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindBYTE * _Nonnull"
+    - Position: 6
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindCHAR * _Nonnull"
+    - Position: 7
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE * _Nonnull"
+    - Position: 8
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT * _Nonnull"
+    - Position: 9
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindINT * _Nonnull"
+    - Position: 10
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindLONG * _Nonnull"
+    - Position: 11
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindSHORT * _Nonnull"
+    - Position: 12
+      Type: "SharedCoreKotlinx_serialization_corePrimitiveKindSTRING * _Nonnull"
+    - Position: 13
+      Type: "SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL * _Nonnull"
+    - Position: 14
+      Type: "SharedCoreKotlinx_serialization_coreSerialKindENUM * _Nonnull"
+    - Position: 15
+      Type: "SharedCoreKotlinx_serialization_coreStructureKind * _Nonnull"
+    - Position: 16
+      Type: "SharedCoreKotlinx_serialization_coreStructureKindCLASS * _Nonnull"
+    - Position: 17
+      Type: "SharedCoreKotlinx_serialization_coreStructureKindLIST * _Nonnull"
+    - Position: 18
+      Type: "SharedCoreKotlinx_serialization_coreStructureKindMAP * _Nonnull"
+    - Position: 19
+      Type: "SharedCoreKotlinx_serialization_coreStructureKindOBJECT * _Nonnull"
+- Name: "SharedCore__SkieSuspendWrappersKt"
+  SwiftName: "__SkieSuspendWrappersKt"
+  Availability: "nonswift"
+  Methods:
+  - Selector: "Skie_Suspend__0__hasNextDispatchReceiver:suspendHandler:"
+    MethodKind: "Class"
+    SwiftName: "Skie_Suspend__0__hasNext(dispatchReceiver:suspendHandler:)"
+    Availability: "nonswift"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSkieColdFlowIterator<id> * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreSkie_SuspendHandler * _Nonnull"
+  - Selector: "Skie_Suspend__1__collectDispatchReceiver:collector:suspendHandler:"
+    MethodKind: "Class"
+    SwiftName: "Skie_Suspend__1__collect(dispatchReceiver:collector:suspendHandler:)"
+    Availability: "nonswift"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlow> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 2
+      Type: "SharedCoreSkie_SuspendHandler * _Nonnull"
+  - Selector: "Skie_Suspend__2__emitDispatchReceiver:value:suspendHandler:"
+    MethodKind: "Class"
+    SwiftName: "Skie_Suspend__2__emit(dispatchReceiver:value:suspendHandler:)"
+    Availability: "nonswift"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "id _Nullable"
+    - Position: 2
+      Type: "SharedCoreSkie_SuspendHandler * _Nonnull"
+  - Selector: "Skie_Suspend__3__invokeDispatchReceiver:suspendHandler:"
+    MethodKind: "Class"
+    SwiftName: "Skie_Suspend__3__invoke(dispatchReceiver:suspendHandler:)"
+    Availability: "nonswift"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreCheckRegistrationEnabledUseCase * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreSkie_SuspendHandler * _Nonnull"
+  - Selector: "Skie_Suspend__4__invokeDispatchReceiver:suspendHandler:"
+    MethodKind: "Class"
+    SwiftName: "Skie_Suspend__4__invoke(dispatchReceiver:suspendHandler:)"
+    Availability: "nonswift"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEnableRegistrationUseCase * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreSkie_SuspendHandler * _Nonnull"
 Protocols:
 - Name: "SharedCoreKotlinIterator"
   SwiftName: "KotlinIterator"
@@ -3818,6 +7776,44 @@ Protocols:
     MethodKind: "Instance"
     SwiftName: "next()"
     ResultType: "id _Nullable"
+- Name: "SharedCoreKotlinAnnotation"
+  SwiftName: "KotlinAnnotation"
+- Name: "SharedCoreKotlinKClass"
+  SwiftName: "KotlinKClass"
+  Properties:
+  - Name: "qualifiedName"
+    PropertyKind: "Instance"
+    SwiftName: "qualifiedName"
+    Type: "NSString * _Nullable"
+  - Name: "simpleName"
+    PropertyKind: "Instance"
+    SwiftName: "simpleName"
+    Type: "NSString * _Nullable"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "isInstanceValue:"
+    MethodKind: "Instance"
+    SwiftName: "isInstance(value:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+- Name: "SharedCoreKotlinKClassifier"
+  SwiftName: "KotlinKClassifier"
+- Name: "SharedCoreKotlinKAnnotatedElement"
+  SwiftName: "KotlinKAnnotatedElement"
+- Name: "SharedCoreKotlinKDeclarationContainer"
+  SwiftName: "KotlinKDeclarationContainer"
 - Name: "SharedCoreKotlinComparable"
   SwiftName: "KotlinComparable"
   Methods:
@@ -3828,8 +7824,152 @@ Protocols:
     Parameters:
     - Position: 0
       Type: "id _Nullable"
+- Name: "SharedCoreSkie_DispatcherDelegate"
+  SwiftName: "Skie_DispatcherDelegate"
+  SwiftPrivate: true
+  Methods:
+  - Selector: "dispatchBlock:"
+    MethodKind: "Instance"
+    SwiftName: "dispatch(block:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreRunnable> _Nonnull"
+- Name: "SharedCoreKotlinx_coroutines_coreFlow"
+  SwiftName: "Kotlinx_coroutines_coreFlow"
+  Methods:
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreKotlinx_coroutines_coreFlowCollector"
+  SwiftName: "Kotlinx_coroutines_coreFlowCollector"
+  Methods:
+  - Selector: "emitValue:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__emit(value:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreKotlinx_coroutines_coreStateFlow"
+  SwiftName: "Kotlinx_coroutines_coreStateFlow"
+  Properties:
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "id _Nullable"
+- Name: "SharedCoreKotlinx_coroutines_coreSharedFlow"
+  SwiftName: "Kotlinx_coroutines_coreSharedFlow"
+  Properties:
+  - Name: "replayCache"
+    PropertyKind: "Instance"
+    SwiftName: "replayCache"
+    Type: "NSArray<id> * _Nonnull"
+  Methods:
+  - Selector: "collectCollector:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__collect(collector:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_coroutines_coreFlowCollector> _Nonnull"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+- Name: "SharedCoreKotlinx_coroutines_coreMutableSharedFlow"
+  SwiftName: "Kotlinx_coroutines_coreMutableSharedFlow"
+  Properties:
+  - Name: "subscriptionCount"
+    PropertyKind: "Instance"
+    SwiftName: "subscriptionCount"
+    Type: "SharedCoreSkieKotlinStateFlow<SharedCoreInt *> * _Nonnull"
+  Methods:
+  - Selector: "emitValue:completionHandler:"
+    MethodKind: "Instance"
+    SwiftName: "__emit(value:completionHandler:)"
+    SwiftPrivate: true
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+    - Position: 1
+      Type: "void (^ _Nonnull)(NSError * _Nullable)"
+  - Selector: "resetReplayCache"
+    MethodKind: "Instance"
+    SwiftName: "resetReplayCache()"
+    ResultType: "void"
+  - Selector: "tryEmitValue:"
+    MethodKind: "Instance"
+    SwiftName: "tryEmit(value:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+- Name: "SharedCoreKotlinx_coroutines_coreMutableStateFlow"
+  SwiftName: "Kotlinx_coroutines_coreMutableStateFlow"
+  Properties:
+  - Name: "value"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "id _Nullable"
+  Methods:
+  - Selector: "compareAndSetExpect:update:"
+    MethodKind: "Instance"
+    SwiftName: "compareAndSet(expect:update:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+    - Position: 1
+      Type: "id _Nullable"
+- Name: "SharedCoreKotlinx_coroutines_coreRunnable"
+  SwiftName: "Kotlinx_coroutines_coreRunnable"
+  Methods:
+  - Selector: "run"
+    MethodKind: "Instance"
+    SwiftName: "run()"
+    ResultType: "void"
 - Name: "SharedCoreLocalizedString"
   SwiftName: "LocalizedString"
+- Name: "SharedCoreSuplaClientMessage"
+  SwiftName: "SuplaClientMessage"
+- Name: "SharedCoreSuplaClientMessageHandler"
+  SwiftName: "SuplaClientMessageHandler"
+  Methods:
+  - Selector: "registerListener:"
+    MethodKind: "Instance"
+    SwiftName: "register(listener:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreSuplaClientMessageHandlerListener> _Nonnull"
+  - Selector: "unregisterListener:"
+    MethodKind: "Instance"
+    SwiftName: "unregister(listener:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreSuplaClientMessageHandlerListener> _Nonnull"
+- Name: "SharedCoreSuplaClientMessageHandlerListener"
+  SwiftName: "SuplaClientMessageHandlerListener"
+  Methods:
+  - Selector: "onReceivedMessage:"
+    MethodKind: "Instance"
+    SwiftName: "onReceived(message:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreSuplaClientMessage> _Nonnull"
 - Name: "SharedCoreApplicationPreferences"
   SwiftName: "ApplicationPreferences"
   Properties:
@@ -3884,6 +8024,29 @@ Protocols:
       Type: "SharedCoreCacheFileAccessFile * _Nonnull"
     - Position: 1
       Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreSuplaClientSharedProvider"
+  SwiftName: "SuplaClientSharedProvider"
+  Methods:
+  - Selector: "provide"
+    MethodKind: "Instance"
+    SwiftName: "provide()"
+    ResultType: "id<SharedCoreSuplaClientSharedApi> _Nullable"
+- Name: "SharedCoreSuplaClientSharedApi"
+  SwiftName: "SuplaClientSharedApi"
+  Methods:
+  - Selector: "getRegistrationEnabled"
+    MethodKind: "Instance"
+    SwiftName: "getRegistrationEnabled()"
+    ResultType: "void"
+  - Selector: "setRegistrationEnabledIoDeviceRegTimeSec:clientRegTimeSec:"
+    MethodKind: "Instance"
+    SwiftName: "setRegistrationEnabled(ioDeviceRegTimeSec:clientRegTimeSec:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
 - Name: "SharedCoreBaseData"
   SwiftName: "BaseData"
   Properties:
@@ -3905,6 +8068,96 @@ Protocols:
     Parameters:
     - Position: 0
       Type: "SharedCoreChannelWithChildren * _Nonnull"
+- Name: "SharedCoreAddWizardFinalAction"
+  SwiftName: "AddWizardFinalAction"
+- Name: "SharedCoreEspConfigurationController"
+  SwiftName: "EspConfigurationController"
+  Methods:
+  - Selector: "activateRegistration"
+    MethodKind: "Instance"
+    SwiftName: "activateRegistration()"
+    ResultType: "void"
+  - Selector: "authorize"
+    MethodKind: "Instance"
+    SwiftName: "authorize()"
+    ResultType: "void"
+  - Selector: "back"
+    MethodKind: "Instance"
+    SwiftName: "back()"
+    ResultType: "void"
+  - Selector: "cancel"
+    MethodKind: "Instance"
+    SwiftName: "cancel()"
+    ResultType: "void"
+  - Selector: "checkRegistration"
+    MethodKind: "Instance"
+    SwiftName: "checkRegistration()"
+    ResultType: "void"
+  - Selector: "close"
+    MethodKind: "Instance"
+    SwiftName: "close()"
+    ResultType: "void"
+  - Selector: "configureEsp"
+    MethodKind: "Instance"
+    SwiftName: "configureEsp()"
+    ResultType: "void"
+  - Selector: "connectToNetworkSsid:"
+    MethodKind: "Instance"
+    SwiftName: "connectToNetwork(ssid:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+  - Selector: "findEspNetwork"
+    MethodKind: "Instance"
+    SwiftName: "findEspNetwork()"
+    ResultType: "void"
+  - Selector: "reconnect"
+    MethodKind: "Instance"
+    SwiftName: "reconnect()"
+    ResultType: "void"
+  - Selector: "showErrorError:"
+    MethodKind: "Instance"
+    SwiftName: "showError(error:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEspConfigurationError * _Nonnull"
+  - Selector: "showFinished"
+    MethodKind: "Instance"
+    SwiftName: "showFinished()"
+    ResultType: "void"
+  - Selector: "showNetworkSelectorSsids:cached:"
+    MethodKind: "Instance"
+    SwiftName: "showNetworkSelector(ssids:cached:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<NSString *> * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+- Name: "SharedCoreEspConfigurationEvent"
+  SwiftName: "EspConfigurationEvent"
+- Name: "SharedCoreEspConfigurationState"
+  SwiftName: "EspConfigurationState"
+  Methods:
+  - Selector: "handleEvent:"
+    MethodKind: "Instance"
+    SwiftName: "handle(event:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationEvent> _Nonnull"
+- Name: "SharedCoreEspConfigurationStateHolder"
+  SwiftName: "EspConfigurationStateHolder"
+  Methods:
+  - Selector: "setStateState:"
+    MethodKind: "Instance"
+    SwiftName: "setState(state:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreEspConfigurationState> _Nonnull"
 - Name: "SharedCoreChannelDto"
   SwiftName: "ChannelDto"
   Properties:
@@ -3912,3 +8165,687 @@ Protocols:
     PropertyKind: "Instance"
     SwiftName: "remoteId"
     Type: "int32_t"
+- Name: "SharedCoreKotlinx_serialization_coreKSerializer"
+  SwiftName: "Kotlinx_serialization_coreKSerializer"
+  Properties:
+  - Name: "descriptor"
+    PropertyKind: "Instance"
+    SwiftName: "descriptor"
+    Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+- Name: "SharedCoreKotlinx_serialization_coreDeserializationStrategy"
+  SwiftName: "Kotlinx_serialization_coreDeserializationStrategy"
+  Properties:
+  - Name: "descriptor"
+    PropertyKind: "Instance"
+    SwiftName: "descriptor"
+    Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  Methods:
+  - Selector: "deserializeDecoder:"
+    MethodKind: "Instance"
+    SwiftName: "deserialize(decoder:)"
+    ResultType: "id _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreDecoder> _Nonnull"
+- Name: "SharedCoreKotlinx_serialization_coreDecoder"
+  SwiftName: "Kotlinx_serialization_coreDecoder"
+  Properties:
+  - Name: "serializersModule"
+    PropertyKind: "Instance"
+    SwiftName: "serializersModule"
+    Type: "SharedCoreKotlinx_serialization_coreSerializersModule * _Nonnull"
+  Methods:
+  - Selector: "beginStructureDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "beginStructure(descriptor:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreCompositeDecoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "decodeBoolean"
+    MethodKind: "Instance"
+    SwiftName: "decodeBoolean()"
+    ResultType: "BOOL"
+  - Selector: "decodeByte"
+    MethodKind: "Instance"
+    SwiftName: "decodeByte()"
+    ResultType: "int8_t"
+  - Selector: "decodeChar"
+    MethodKind: "Instance"
+    SwiftName: "decodeChar()"
+    ResultType: "unichar"
+  - Selector: "decodeDouble"
+    MethodKind: "Instance"
+    SwiftName: "decodeDouble()"
+    ResultType: "double"
+  - Selector: "decodeEnumEnumDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "decodeEnum(enumDescriptor:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "decodeFloat"
+    MethodKind: "Instance"
+    SwiftName: "decodeFloat()"
+    ResultType: "float"
+  - Selector: "decodeInlineDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "decodeInline(descriptor:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreDecoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "decodeInt"
+    MethodKind: "Instance"
+    SwiftName: "decodeInt()"
+    ResultType: "int32_t"
+  - Selector: "decodeLong"
+    MethodKind: "Instance"
+    SwiftName: "decodeLong()"
+    ResultType: "int64_t"
+  - Selector: "decodeNotNullMark"
+    MethodKind: "Instance"
+    SwiftName: "decodeNotNullMark()"
+    ResultType: "BOOL"
+  - Selector: "decodeNull"
+    MethodKind: "Instance"
+    SwiftName: "decodeNull()"
+    ResultType: "SharedCoreKotlinNothing * _Nullable"
+  - Selector: "decodeNullableSerializableValueDeserializer:"
+    MethodKind: "Instance"
+    SwiftName: "decodeNullableSerializableValue(deserializer:)"
+    ResultType: "id _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nonnull"
+  - Selector: "decodeSerializableValueDeserializer:"
+    MethodKind: "Instance"
+    SwiftName: "decodeSerializableValue(deserializer:)"
+    ResultType: "id _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nonnull"
+  - Selector: "decodeShort"
+    MethodKind: "Instance"
+    SwiftName: "decodeShort()"
+    ResultType: "int16_t"
+  - Selector: "decodeString"
+    MethodKind: "Instance"
+    SwiftName: "decodeString()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreKotlinx_serialization_coreSerialDescriptor"
+  SwiftName: "Kotlinx_serialization_coreSerialDescriptor"
+  Properties:
+  - Name: "annotations"
+    PropertyKind: "Instance"
+    SwiftName: "annotations"
+    Type: "NSArray<id<SharedCoreKotlinAnnotation>> * _Nonnull"
+  - Name: "elementsCount"
+    PropertyKind: "Instance"
+    SwiftName: "elementsCount"
+    Type: "int32_t"
+  - Name: "isInline"
+    PropertyKind: "Instance"
+    SwiftName: "isInline"
+    Type: "BOOL"
+  - Name: "isNullable"
+    PropertyKind: "Instance"
+    SwiftName: "isNullable"
+    Type: "BOOL"
+  - Name: "kind"
+    PropertyKind: "Instance"
+    SwiftName: "kind"
+    Type: "SharedCoreKotlinx_serialization_coreSerialKind * _Nonnull"
+  - Name: "serialName"
+    PropertyKind: "Instance"
+    SwiftName: "serialName"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "getElementAnnotationsIndex:"
+    MethodKind: "Instance"
+    SwiftName: "getElementAnnotations(index:)"
+    ResultType: "NSArray<id<SharedCoreKotlinAnnotation>> * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "getElementDescriptorIndex:"
+    MethodKind: "Instance"
+    SwiftName: "getElementDescriptor(index:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "getElementIndexName:"
+    MethodKind: "Instance"
+    SwiftName: "getElementIndex(name:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+  - Selector: "getElementNameIndex:"
+    MethodKind: "Instance"
+    SwiftName: "getElementName(index:)"
+    ResultType: "NSString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "isElementOptionalIndex:"
+    MethodKind: "Instance"
+    SwiftName: "isElementOptional(index:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+- Name: "SharedCoreKotlinx_serialization_coreCompositeDecoder"
+  SwiftName: "Kotlinx_serialization_coreCompositeDecoder"
+  Properties:
+  - Name: "serializersModule"
+    PropertyKind: "Instance"
+    SwiftName: "serializersModule"
+    Type: "SharedCoreKotlinx_serialization_coreSerializersModule * _Nonnull"
+  Methods:
+  - Selector: "decodeBooleanElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeBooleanElement(descriptor:index:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeByteElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeByteElement(descriptor:index:)"
+    ResultType: "int8_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeCharElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeCharElement(descriptor:index:)"
+    ResultType: "unichar"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeCollectionSizeDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "decodeCollectionSize(descriptor:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "decodeDoubleElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeDoubleElement(descriptor:index:)"
+    ResultType: "double"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeElementIndexDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "decodeElementIndex(descriptor:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "decodeFloatElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeFloatElement(descriptor:index:)"
+    ResultType: "float"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeInlineElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeInlineElement(descriptor:index:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreDecoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeIntElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeIntElement(descriptor:index:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeLongElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeLongElement(descriptor:index:)"
+    ResultType: "int64_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeNullableSerializableElementDescriptor:index:deserializer:previousValue:"
+    MethodKind: "Instance"
+    SwiftName: "decodeNullableSerializableElement(descriptor:index:deserializer:previousValue:)"
+    ResultType: "id _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nonnull"
+    - Position: 3
+      Type: "id _Nullable"
+  - Selector: "decodeSequentially"
+    MethodKind: "Instance"
+    SwiftName: "decodeSequentially()"
+    ResultType: "BOOL"
+  - Selector: "decodeSerializableElementDescriptor:index:deserializer:previousValue:"
+    MethodKind: "Instance"
+    SwiftName: "decodeSerializableElement(descriptor:index:deserializer:previousValue:)"
+    ResultType: "id _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nonnull"
+    - Position: 3
+      Type: "id _Nullable"
+  - Selector: "decodeShortElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeShortElement(descriptor:index:)"
+    ResultType: "int16_t"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "decodeStringElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "decodeStringElement(descriptor:index:)"
+    ResultType: "NSString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "endStructureDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "endStructure(descriptor:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+- Name: "SharedCoreKotlinx_serialization_coreSerializationStrategy"
+  SwiftName: "Kotlinx_serialization_coreSerializationStrategy"
+  Properties:
+  - Name: "descriptor"
+    PropertyKind: "Instance"
+    SwiftName: "descriptor"
+    Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  Methods:
+  - Selector: "serializeEncoder:value:"
+    MethodKind: "Instance"
+    SwiftName: "serialize(encoder:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreEncoder> _Nonnull"
+    - Position: 1
+      Type: "id _Nullable"
+- Name: "SharedCoreKotlinx_serialization_coreEncoder"
+  SwiftName: "Kotlinx_serialization_coreEncoder"
+  Properties:
+  - Name: "serializersModule"
+    PropertyKind: "Instance"
+    SwiftName: "serializersModule"
+    Type: "SharedCoreKotlinx_serialization_coreSerializersModule * _Nonnull"
+  Methods:
+  - Selector: "beginCollectionDescriptor:collectionSize:"
+    MethodKind: "Instance"
+    SwiftName: "beginCollection(descriptor:collectionSize:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreCompositeEncoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "beginStructureDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "beginStructure(descriptor:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreCompositeEncoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "encodeBooleanValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeBoolean(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "BOOL"
+  - Selector: "encodeByteValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeByte(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "int8_t"
+  - Selector: "encodeCharValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeChar(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "unichar"
+  - Selector: "encodeDoubleValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeDouble(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "double"
+  - Selector: "encodeEnumEnumDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "encodeEnum(enumDescriptor:index:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "encodeFloatValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeFloat(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "float"
+  - Selector: "encodeInlineDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "encodeInline(descriptor:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreEncoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "encodeIntValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeInt(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "encodeLongValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeLong(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "int64_t"
+  - Selector: "encodeNotNullMark"
+    MethodKind: "Instance"
+    SwiftName: "encodeNotNullMark()"
+    ResultType: "void"
+  - Selector: "encodeNull"
+    MethodKind: "Instance"
+    SwiftName: "encodeNull()"
+    ResultType: "void"
+  - Selector: "encodeNullableSerializableValueSerializer:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeNullableSerializableValue(serializer:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nonnull"
+    - Position: 1
+      Type: "id _Nullable"
+  - Selector: "encodeSerializableValueSerializer:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeSerializableValue(serializer:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nonnull"
+    - Position: 1
+      Type: "id _Nullable"
+  - Selector: "encodeShortValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeShort(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "int16_t"
+  - Selector: "encodeStringValue:"
+    MethodKind: "Instance"
+    SwiftName: "encodeString(value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+- Name: "SharedCoreKotlinx_serialization_coreCompositeEncoder"
+  SwiftName: "Kotlinx_serialization_coreCompositeEncoder"
+  Properties:
+  - Name: "serializersModule"
+    PropertyKind: "Instance"
+    SwiftName: "serializersModule"
+    Type: "SharedCoreKotlinx_serialization_coreSerializersModule * _Nonnull"
+  Methods:
+  - Selector: "encodeBooleanElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeBooleanElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "BOOL"
+  - Selector: "encodeByteElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeByteElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int8_t"
+  - Selector: "encodeCharElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeCharElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "unichar"
+  - Selector: "encodeDoubleElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeDoubleElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "double"
+  - Selector: "encodeFloatElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeFloatElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "float"
+  - Selector: "encodeInlineElementDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "encodeInlineElement(descriptor:index:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreEncoder> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+  - Selector: "encodeIntElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeIntElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "encodeLongElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeLongElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int64_t"
+  - Selector: "encodeNullableSerializableElementDescriptor:index:serializer:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeNullableSerializableElement(descriptor:index:serializer:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nonnull"
+    - Position: 3
+      Type: "id _Nullable"
+  - Selector: "encodeSerializableElementDescriptor:index:serializer:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeSerializableElement(descriptor:index:serializer:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nonnull"
+    - Position: 3
+      Type: "id _Nullable"
+  - Selector: "encodeShortElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeShortElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "int16_t"
+  - Selector: "encodeStringElementDescriptor:index:value:"
+    MethodKind: "Instance"
+    SwiftName: "encodeStringElement(descriptor:index:value:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "NSString * _Nonnull"
+  - Selector: "endStructureDescriptor:"
+    MethodKind: "Instance"
+    SwiftName: "endStructure(descriptor:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+  - Selector: "shouldEncodeElementDefaultDescriptor:index:"
+    MethodKind: "Instance"
+    SwiftName: "shouldEncodeElementDefault(descriptor:index:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinx_serialization_coreSerialDescriptor> _Nonnull"
+    - Position: 1
+      Type: "int32_t"
+- Name: "SharedCoreKotlinx_serialization_coreSerializersModuleCollector"
+  SwiftName: "Kotlinx_serialization_coreSerializersModuleCollector"
+  Methods:
+  - Selector: "contextualKClass:serializer:"
+    MethodKind: "Instance"
+    SwiftName: "contextual(kClass:serializer:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+  - Selector: "contextualKClass:provider:"
+    MethodKind: "Instance"
+    SwiftName: "contextual(kClass:provider:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull (^ _Nonnull)(NSArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> * _Nonnull)"
+  - Selector: "polymorphicBaseClass:actualClass:actualSerializer:"
+    MethodKind: "Instance"
+    SwiftName: "polymorphic(baseClass:actualClass:actualSerializer:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 2
+      Type: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+  - Selector: "polymorphicDefaultBaseClass:defaultDeserializerProvider:"
+    MethodKind: "Instance"
+    SwiftName: "polymorphicDefault(baseClass:defaultDeserializerProvider:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nullable (^ _Nonnull)(NSString * _Nullable)"
+  - Selector: "polymorphicDefaultDeserializerBaseClass:defaultDeserializerProvider:"
+    MethodKind: "Instance"
+    SwiftName: "polymorphicDefaultDeserializer(baseClass:defaultDeserializerProvider:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinx_serialization_coreDeserializationStrategy> _Nullable (^ _Nonnull)(NSString * _Nullable)"
+  - Selector: "polymorphicDefaultSerializerBaseClass:defaultSerializerProvider:"
+    MethodKind: "Instance"
+    SwiftName: "polymorphicDefaultSerializer(baseClass:defaultSerializerProvider:)"
+    ResultType: "void"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreKotlinKClass> _Nonnull"
+    - Position: 1
+      Type: "id<SharedCoreKotlinx_serialization_coreSerializationStrategy> _Nullable (^ _Nonnull)(id _Nonnull)"

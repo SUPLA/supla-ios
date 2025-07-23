@@ -15,3 +15,5 @@
  */
 
 "NSLocalNetworkUsageDescription" = "Ta aplikacja będzie mogła znajdować i konfigurować urządzenia IoT zgodne z SUPLĄ.";
+"NSLocationAlwaysUsageDescription" = "Usługi lokalizacji są wymagane do prawidłowego funkcjonowania automatycznego dodawania urządzeń";
+"NSLocationWhenInUseUsageDescription" = "Usługi lokalizacji są wymagane do prawidłowego funkcjonowania automatycznego dodawania urządzeń";

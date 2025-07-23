@@ -91,7 +91,7 @@ extension StatusFeature {
                 case SUPLA_RESULT_HOST_NOT_FOUND: Strings.Status.errorHostNotFound
                 default: nil
                 }
-            case .registerError(let code): SuplaResultCode.from(value: code).getTextMessage(authDialog: true)
+            case .registerError(let code): SuplaResultCode.companion.from(value: code).message(isLogin: true).string
             case .noNetwork, .versionError, .appInBackground, .addWizardStarted, .none: nil
             }
         }

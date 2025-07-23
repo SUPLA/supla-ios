@@ -5,7 +5,7 @@
     <key>CFBundleExecutable</key>
     <string>SharedCore</string>
     <key>CFBundleIdentifier</key>
-    <string>org.supla.SharedCore</string>
+    <string>SharedCore</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>

@@ -59,19 +59,11 @@
 "Add I/O device" = "Apparaat toevoegen";
 "Donate" = "Steun het project";
 "Create an account" = "Account maken";
-"Device registration availability information timeout!" = "Wachttijd voor informatie over de beschikbaarheid van apparaatregistratie is overschreden!";
 "Next" = "Doorgaan";
-"Start" = "Opstarten";
 "Cancel" = "Annuleren";
-"Go to the system settings" = "Ga naar systeemvoorkeuren.";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "I / O-apparaatregistratie is momenteel uitgeschakeld. Ga door naar pagina %@ en schakel op het tabblad \"Mijn SUPLA\" het toevoegen van apparaten in.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "De Toevoegen-Wizard is alleen beschikbaar als er op basis van het ingevoerde e-mailadres! een verbinding met de server tot stand is gebracht (Schakel geavanceerde opties in uw accountconfiguratie uit)";
 "The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
-"Device Configuration Completion timeout!" = "Wachttijd voor het voltooien van de apparaatconfiguratie overschreden!";
 "Incorrect input parameters (%@)!" = "Ongeldige invoerparameters (%@)!";
-"The connected device is not compatible with this Wizard!" = "Het apparaat waarmee u verbonden bent, is niet compatibel met deze wizard!";
-"Configuration Failed!" = "Configuratie mislukt!";
-"Connection with the device cannot be set!" = "U kunt geen verbinding maken met het apparaat!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Zorg ervoor dat de verbinding met het WiFi-netwerk van het uitvoerende toestel tot stand is gebracht.";
 "Help" = "Help";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
@@ -156,7 +148,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "De levensduur van de uv-straal is %.02f%%. Plan zijn vervanging.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "De levensduur van het uv-belichtingstoestel bedraagt %,02f%%. Vervang de stralingsbuis.";
 "The lifespan of the light source is %.02f%%." = "De levensduur van de lichtbron is %.02f%%.";
-"Timeout for enabling registration has expired!" = "De wachttijd voor het activeren van de registratie is verstreken!";
 "Please enter your Supla Cloud login details." = "Voer uw inloggegevens voor cloud.supla.org in.";
 "Enter superuser credentials" = "Voer de inloggegevens van de superuser in";
 "Dimmer settings" = "Dimmer instellingen";
@@ -169,8 +160,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Als het apparaat niet werkt in de configuratiemodus na het inschakelen van de stroom, houdt u de knop CONFIG minimaal 5 seconden ingedrukt.\n\n%@\n";
 "Press Next to continue." = "Druk op Volgende om door te gaan.";
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
-"I/O Device connection setting timeout!" = "Wachttijd voor het tot stand brengen van een verbinding met het uitvoerende apparaat is overschreden!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zorg ervoor dat de app toestemming heeft om apparaten op het lokale netwerk te vinden en er verbinding mee te maken. Dit betekent dat de \"iOS->Instellingen->SUPLA->Lokaal netwerk\" toestemming moet zijn ingeschakeld om de wizard correct te laten werken. ";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
 "Planned regeneration is in progress." = "Geplande regeneratie is aan de gang.";
@@ -222,10 +211,6 @@
 "Z-Wave bridge" = "Z-wave brug";
 "opened / closed the roof window" = "het dakvenster werd geopend/gesloten door";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden.";
-"0: unknown" = "0: onbekend";
-"1: server timeout" = "1: geen antwoord van de server";
-"2: Wi-Fi connection lost" = "2: verlies van WiFi verbinding";
-"3: server connection reset" = "3: Reset de verbinding met de server";
 "Your account" = "Uw rekening";
 "App Settings" = "Instellingen";
 "Channel height" = "Kanaalhoogte";
@@ -244,7 +229,6 @@
 "ACCESS IDENTIFIER" = "TOEGANG IDU";
 "E-MAIL ADDRESS" = "E-MAILADRES";
 "SERVER ADDRESS" = "SERVERADRES";
-"PASSWORD" = "WACHTWOORD";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "De wizard voor het automatisch toevoegen van apparaten is niet beschikbaar in de Access ID-authenticatiemodus. In dit geval kunnen de toestellen handmatig worden toegevoegd.";
 "Don't have an account in Supla Cloud yet?" = "Heeft u nog geen Supla Cloud account?";
 "Create" = "Account aanmaken";
@@ -290,6 +274,11 @@
 "turn_on" = "Zet in";
 "turn_off" = "Schakel uit";
 "save" = "Opslaan";
+"next" = "Doorgaan";
+"password" = "Wachtwoord";
+"start" = "Opstarten";
+"exit" = "Uitgang";
+"general_back" = "Terug";
 "general_function" = "Functie";
 "general_toggle" = "Schakel";
 "general_channel" = "Kanaal";
@@ -583,6 +572,11 @@
 "state_light_source_lifespan" = "Levensduur van de lichtbron";
 "state_source_operating_time" = "Lichtbron werktijd";
 "state_dialog_lightsource_settings" = "DE INSTELLING VOOR DE LEVENSDUUR VAN DE LICHTBRON WIJZIGEN";
+"channel_state_uptime" = "%d dagen %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: onbekend";
+"lastconnectionresetcause_activity_timeout" = "1: geen antwoord van de server";
+"lastconnectionresetcause_wifi_connection_lost" = "2: verlies van WiFi verbinding";
+"lastconnectionresetcause_server_connection_lost" = "3: Reset de verbinding met de server";
 
 /* Change caption */
 "change_caption_channel_name" = "Naam kanaal";
@@ -592,3 +586,36 @@
 /* Car play */
 "car_play_action" = "Actie: %@";
 "car_play_display_name" = "Naam";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Wachttijd voor informatie over de beschikbaarheid van apparaatregistratie is overschreden!";
+"enabling_registration_timeout" = "De wachttijd voor het activeren van de registratie is verstreken!";
+"add_wizard_step_1_welcome" = "Welkom bij de wizard voor het toevoegen van apparaten, waarmee u op een snelle en eenvoudige manier een nieuw apparaat aan het systeem kunt toevoegen.";
+"add_wizard_step_1_continue" = "Druk op **Volgende** om door te gaan.";
+"add_wizard_step_2_message" = "Voer de naam en het wachtwoord in van uw thuis- of bedrijfs WiFi-netwerk waarmee het uitvoerende apparaat verbinding kan maken met de server.";
+"add_wizard_network_name" = "Netwerknaam";
+"add_wizard_step_3_message_1" = "Sluit uw apparaat aan op de stroomvoorziening. Het apparaat zou standaard in de configuratiemodus moeten werken, aangegeven door de status-LED die als volgt knippert.";
+"add_wizard_step_3_message_2" = "Als het apparaat na het inschakelen niet in de configuratiemodus staat, houd dan de CONFIG-knop minstens 5 seconden ingedrukt.";
+"add_wizard_step_3_message_3" = "Druk op de knop **START** om de configuratie te starten.";
+"add_wizard_add_more" = "Toevoegen";
+"add_wizard_repeat" = "Probeer het opnieuw";
+"add_wizard_is_not_available" = "De Toevoegen-Wizard is alleen beschikbaar als er op basis van het ingevoerde e-mailadres! een verbinding met de server tot stand is gebracht (Schakel geavanceerde opties in uw accountconfiguratie uit)";
+"add_wizard_remember_passwd" = "Wachtwoord onthouden";
+"add_wizard_auto_mode" = "Automatische modus";
+"add_wizard_manual_mode_message" = "Ga naar de iOS-systeeminstellingen en maak handmatig verbinding met het WiFi-netwerk, te beginnen met de naam SUPLA of ZAMEL of NICE of HEATPOL.\n\nBijvoorbeeld, \"SUPLA-A220A63612B1\". Het is een tijdelijk netwerk van het uitvoerende apparaat dat wordt gebruikt voor de configuratie.\n\nNadat u verbinding heeft gemaakt met dit netwerk, keert u terug naar deze toepassing en gaat u verder met het toevoegen door op de **Start**-knop te klikken.";
+"add_wizard_manual_mode_settings" = "Ga naar systeemvoorkeuren";
+"add_wizard_missing_location" = "Om de wizard Apparaat toevoegen correct te laten werken, moet de Locatieservice op dit apparaat zijn ingeschakeld. Ga naar uw systeeminstellingen en zorg ervoor dat deze is ingeschakeld.";
+"wizard_scan_timeout" = "Wachttijd overschreden wachten op WiFi zoeken voltooid!";
+"wizard_iodevice_notfound" = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";
+"wizard_connect_timeout" = "Wachttijd voor het tot stand brengen van een verbinding met het uitvoerende apparaat is overschreden!";
+"wizard_configure_timeout" = "Wachttijd voor het voltooien van de apparaatconfiguratie overschreden!";
+"wizard_wifi_error" = "Het WiFi-netwerk is uitgeschakeld of de ID of naam kan niet worden gelezen!";
+"wizard_result_compat_error" = "Het apparaat waarmee u verbonden bent, is niet compatibel met deze wizard!";
+"wizard_result_conn_error" = "U kunt geen verbinding maken met het apparaat!";
+"wizard_result_failed" = "Configuratie mislukt!";
+"wizard_reconnect_timeout" = "Wachttijd voor terugkeer naar primair WiFi-netwerk overschreden!";
+"wizard_done" = "De apparaatconfiguratie is geslaagd :)";
+"wizard_done_explanations" = "Als het toestel niet in de toepassing verschijnt, herhaalt u deze toevoegingsprocedure nogmaals en leest u de hierboven getoonde \"Vorige status\". Dit bevat informatie om te bepalen waarom het toestel geen verbinding maakte met de server. De melding \"SSID niet gevonden\" betekent dat de ingevoerde 2,4 GHz WiFi-netwerknaam niet is gevonden of dat het netwerk buiten bereik is.";
+"wizard_iodev_data" = "Apparaatgegevens";
+"wizard_iodev_name" = "Naam";
+"wizard_iodev_laststate" = "Vorige status";

@@ -59,19 +59,11 @@
 "Add I/O device" = "Додайте пристрій";
 "Donate" = "Підтримайте проект";
 "Create an account" = "Створити";
-"Device registration availability information timeout!" = "Минув час очікування інформації про наявність реєстрації пристрою!";
 "Next" = "Далі";
-"Start" = "старт";
 "Cancel" = "Скасувати";
-"Go to the system settings" = "Перейдіть до налаштувань системи";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Реєстрацію пристроїв введення/виведення наразі вимкнено. Щоб продовжити, перейдіть на сторінку %@ і на вкладці «Моя SUPLA» увімкніть додавання пристроїв.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Майстер додавання доступний лише тоді, коли встановлено з’єднання з сервером на основі введеної електронної адреси! (Вимкніть додаткові параметри в налаштуваннях облікового запису)";
 "The connected Server does not support this function!" = "Сервер, до якого ви підключені, не підтримує цю функцію!";
-"Device Configuration Completion timeout!" = "Час очікування завершення налаштування пристрою минув!";
 "Incorrect input parameters (%@)!" = "Неправильні вхідні параметри (%@)!";
-"The connected device is not compatible with this Wizard!" = "Підключений пристрій несумісний із цим майстром!";
-"Configuration Failed!" = "Помилка налаштування!";
-"Connection with the device cannot be set!" = "Неможливо підключитися до пристрою!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Переконайтеся, що з'єднання виконавчого пристрою з мережею WiFi встановлено.";
 "Help" = "Довідка";
 
@@ -155,7 +147,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Термін служби УФ-випромінювача становить %,02f%%. Заплануйте його заміну.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Термін служби УФ-випромінювача становить %,02f%%. Замінити випромінювач.";
 "The lifespan of the light source is %.02f%%." = "Термін служби джерела світла становить %,02f%%.";
-"Timeout for enabling registration has expired!" = "Час реєстрації минув!";
 "Please enter your Supla Cloud login details." = "Введіть дані для входу в Supla Cloud.";
 "Enter superuser credentials" = "Введіть облікові дані основного користувача";
 "Dimmer settings" = "Налаштування регулятора освітленості";
@@ -168,8 +159,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Якщо пристрій не перебуває в режимі налаштування після ввімкнення живлення, утримуйте кнопку CONFIG принаймні 5 секунд.\n\n%@\n";
 "Press Next to continue." = "Натисніть Далі, щоб продовжити.";
 "Press START to start configuration." = "Натисніть кнопку СТАРТ, щоб почати налаштування.";
-"I/O Device connection setting timeout!" = "Минув час очікування встановлення з'єднання з пристроєм виконання!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Пристроїв не знайдено! Переконайтеся, що пристрій, який ви хочете налаштувати, знаходиться в режимі налаштування, а потім повторіть спробу.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Переконайтеся, що програма має дозвіл на пошук пристроїв у вашій локальній мережі та підключення до них. Це означає, що для належної роботи майстра має бути ввімкнено дозвіл \"iOS->Налаштування->SUPLA->Локальна мережа\".";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Скляні секції експонуються більше 20 годин, що може негативно вплинути на термін їх служби. Рекомендується накрити всі секції мінімум на 4 години для їх регенерації.";
 "Planned regeneration is in progress." = "Виконується планова регенерація.";
@@ -221,10 +210,6 @@
 "Z-Wave bridge" = "Міст z-wave";
 "opened / closed the roof window" = "відчинив/зачинив мансардне вікно";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Відключення живлення відбулося після перевищення встановленого порогу допустимої сили струму.";
-"0: unknown" = "0: невідомо";
-"1: server timeout" = "1: немає відповіді сервера";
-"2: Wi-Fi connection lost" = "2: Wi-Fi з’єднання втрачено";
-"3: server connection reset" = "3: скидання підключення до сервера";
 "Your account" = "Ваш обліковий запис";
 "App Settings" = "Налаштування";
 "Channel height" = "Висота каналу";
@@ -289,6 +274,11 @@
 "turn_on" = "Ввімкнути";
 "turn_off" = "Вимкнути";
 "save" = "Зберегти";
+"next" = "Далі";
+"password" = "Пароль";
+"start" = "Старт";
+"exit" = "Вихід";
+"general_back" = "Назад";
 "general_function" = "Функція";
 "general_toggle" = "Переключити";
 "general_channel" = "Канал";
@@ -583,6 +573,11 @@
 "state_light_source_lifespan" = "Термін служби джерела світла";
 "state_source_operating_time" = "Час роботи джерела світла";
 "state_dialog_lightsource_settings" = "ЗМІНИТИ НАЛАШТУВАННЯ РЕСУРСУ ДЖЕРЕЛА СВІТЛА";
+"channel_state_uptime" = "%d дні %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: невідомо";
+"lastconnectionresetcause_activity_timeout" = "1: немає відповіді сервера";
+"lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi з’єднання втрачено";
+"lastconnectionresetcause_server_connection_lost" = "3: скидання підключення до сервера";
 
 /* Change caption */
 "change_caption_channel_name" = "Назва каналу";
@@ -591,3 +586,36 @@
 /* Car play */
 "car_play_action" = "Подія: %@";
 "car_play_display_name" = "Назва";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Минув час очікування інформації про наявність реєстрації пристрою!";
+"enabling_registration_timeout" = "TЧас реєстрації минув!";
+"add_wizard_step_1_welcome" = "Вітаємо у майстрі додавання пристроїв, який допоможе Вам швидко та легко додати новий пристрій до системи.";
+"add_wizard_step_1_continue" = "Для продовження натисніть **Далі**.";
+"add_wizard_step_2_message" = "Введіть ім'я та пароль вашої домашньої або корпоративної WiFi мережі, через яку виконавчий пристрій зможе встановити з'єднання з сервером.";
+"add_wizard_network_name" = "Назва мережі";
+"add_wizard_step_3_message_1" = "Підключіть пристрій до джерела живлення. Пристрій за замовчуванням повинен працювати в режимі конфігурації, про що свідчить миготіння індикатора стану наступним чином.";
+"add_wizard_step_3_message_2" = "Якщо пристрій не перебуває в режимі конфігурації після увімкнення, натисніть і утримуйте кнопку CONFIG протягом щонайменше 5 секунд.";
+"add_wizard_step_3_message_3" = "Натисніть кнопку **СТАРТ**, щоб почати налаштування.";
+"add_wizard_add_more" = "Додати більше";
+"add_wizard_repeat" = "Спробуйте ще раз";
+"add_wizard_is_not_available" = "Майстер додавання доступний лише тоді, коли встановлено з’єднання з сервером на основі введеної електронної адреси! (Вимкніть додаткові параметри в налаштуваннях облікового запису)";
+"add_wizard_remember_passwd" = "Запам’ятати пароль";
+"add_wizard_auto_mode" = "Автоматичний режим";
+"add_wizard_manual_mode_message" = "Будь ласка, скористайтеся ярликом Системні налаштування нижче, щоб вибрати мережу Wi-Fi вашого пристрою вводу/виводу для конфігурації, наприклад SUPLA-A220A63612B1*. Після встановлення з'єднання поверніться до програми Supla та натисніть Почати.\n\n*Назва мережі Wi-Fi для конфігурації зазвичай містить назву виробника, наприклад SUPLA, ZAMEL, NICE, HEATPOL тощо.\n\nПісля встановлення з'єднання поверніться до програми та продовжте процедуру додавання, натиснувши кнопку **ПОЧАТИ**.";
+"add_wizard_manual_mode_settings" = "Перейдіть до налаштувань системи";
+"add_wizard_missing_location" = "Щоб Майстер додавання пристроїв працював належним чином, на цьому пристрої має бути ввімкнена служба локації. Перейдіть до налаштувань системи та переконайтеся, що вона ввімкнена.";
+"wizard_scan_timeout" = "Минув час очікування завершення сканування мережі WiFi!";
+"wizard_iodevice_notfound" = "Пристроїв не знайдено! Переконайтеся, що пристрій, який ви хочете налаштувати, знаходиться в режимі налаштування, а потім повторіть спробу.";
+"wizard_connect_timeout" = "Минув час очікування встановлення з'єднання з пристроєм виконання!";
+"wizard_configure_timeout" = "Час очікування завершення налаштування пристрою минув!";
+"wizard_wifi_error" = "Wi-Fi вимкнено або не може прочитати свій ідентифікатор чи назву!";
+"wizard_result_compat_error" = "Підключений пристрій несумісний із цим майстром!";
+"wizard_result_conn_error" = "Неможливо підключитися до пристрою!";
+"wizard_result_failed" = "Помилка налаштування!";
+"wizard_reconnect_timeout" = "Минув час для повернення до основного Wi-Fi!";
+"wizard_done" = "Налаштування перенесено на пристрій.";
+"wizard_done_explanations" = "Якщо пристрій не відображається в додатку, повторіть процедуру додавання ще раз і прочитайте «попередній статус», показаний вище. Він містить інформацію, яка дозволяє визначити, чому пристрій не підключився до сервера. Повідомлення \"SSID not found \" («SSID не знайдено»)означає, що введене ім'я мережі Wi-Fi 2,4 ГГц не знайдено або ця мережа недоступна.";
+"wizard_iodev_data" = "Дані пристрою";
+"wizard_iodev_name" = "Назва";
+"wizard_iodev_laststate" = "Попередній статус";

@@ -109,10 +109,10 @@ extension ContainerGeneralFeature {
     state.containerType = .water
     state.issues = [
         SharedCore.ChannelIssueItem.Error(
-            string: LocalizedStringWithId(id: LocalizedStringId.containerAlarmLevel)
+            string: localizedString(id: LocalizedStringId.containerAlarmLevel)
         ),
         SharedCore.ChannelIssueItem.Warning(
-            string: LocalizedStringWithId(id: LocalizedStringId.containerWarningLevel)
+            string: localizedString(id: LocalizedStringId.containerWarningLevel)
         )
     ]
     state.sensors = [

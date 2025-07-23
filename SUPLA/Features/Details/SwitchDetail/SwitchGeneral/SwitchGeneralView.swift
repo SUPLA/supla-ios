@@ -134,7 +134,7 @@ extension SwitchGeneralFeature {
     viewState.showButtons = true
     viewState.issues = [
         SharedCore.ChannelIssueItem.Error(
-            string: LocalizedStringWithId(id: LocalizedStringId.overcurrentWarning)
+            string: localizedString(id: LocalizedStringId.overcurrentWarning)
         ),
     ]
 

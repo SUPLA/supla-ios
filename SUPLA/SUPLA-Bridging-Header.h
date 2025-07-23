@@ -47,5 +47,6 @@
 #import "SAVoltageMeasurementItem+CoreDataClass.h"
 #import "SAPowerActiveMeasurementItem+CoreDataClass.h"
 #import "SALightsourceLifespanSettingsDialog.h"
+#import "SARegistrationEnabled.h"
 
 #import "supla-client.h"

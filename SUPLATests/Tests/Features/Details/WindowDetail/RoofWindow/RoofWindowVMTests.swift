@@ -71,7 +71,7 @@ final class RoofWindowVMTests: ViewModelTest<RoofWindowViewState, BaseWindowView
                 remoteId: 123,
                 roofWindowState: RoofWindowState(position: .similar(50)),
                 issues: [
-                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.calibrationFailed))
+                    ChannelIssueItem.Warning(string: localizedString(id: LocalizedStringId.calibrationFailed))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,

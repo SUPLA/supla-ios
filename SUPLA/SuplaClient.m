@@ -1463,12 +1463,14 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     }
 }
 
-- (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec {
+- (BOOL) setRegistrationEnabledIoDeviceRegTimeSec:(int32_t)ioDeviceRegTimeSec clientRegTimeSec:(int32_t)clientRegTimeSec {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_set_registration_enabled(_sclient, iodevice_sec, client_sec);
+            supla_client_set_registration_enabled(_sclient, ioDeviceRegTimeSec, clientRegTimeSec);
+            return TRUE;
         }
     }
+    return FALSE;
 }
 
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId {

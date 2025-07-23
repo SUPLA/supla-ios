@@ -19,8 +19,7 @@
 import Foundation
 
 class EspConfigResult: NSObject {
-    
-    @objc var resultCode: EspConfigResultCode = .failed
+    @objc var resultCode: EspConfigResultCode = .failed // to remove
     @objc var extendedResultError: String? = nil
     @objc var extendedResultCode: Int64 = 0
     
@@ -31,6 +30,27 @@ class EspConfigResult: NSObject {
     @objc var mac: String? = nil
     
     @objc var needsCloudConfig: Bool = false
+    
+    var isCompatible: Bool { version != nil }
+    
+    var parameters: [DeviceParameter] {
+        var result: [DeviceParameter] = []
+        
+        if let name {
+            result.append(DeviceParameter(label: Strings.AddWizard.deviceName, value: name))
+        }
+        if let version {
+            result.append(DeviceParameter(label: Strings.AddWizard.deviceFirmware, value: version))
+        }
+        if let mac {
+            result.append(DeviceParameter(label: Strings.AddWizard.deviceMac, value: mac))
+        }
+        if let state {
+            result.append(DeviceParameter(label: Strings.AddWizard.lastState, value: state))
+        }
+        
+        return result
+    }
     
     @objc func merge(result: EspConfigResult) {
         name = result.name

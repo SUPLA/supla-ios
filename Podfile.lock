@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.10.2)
   - DGCharts (5.1.0):
     - DGCharts/Core (= 5.1.0)
   - DGCharts/Core (5.1.0)
@@ -28,9 +29,11 @@ PODS:
     - RxSwiftExt/Core
   - RxTest (6.8.0):
     - RxSwift (= 6.8.0)
+  - SwiftSoup (2.7.6)
   - SwiftyBeaver (1.9.5)
 
 DEPENDENCIES:
+  - Alamofire
   - DGCharts (= 5.1.0)
   - FMMoveTableView (~> 1.1)
   - PaddingLabel (= 1.2)
@@ -41,10 +44,12 @@ DEPENDENCIES:
   - RxSwift
   - RxSwiftExt
   - RxTest
+  - SwiftSoup
   - SwiftyBeaver
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - DGCharts
     - Differentiator
     - FMMoveTableView
@@ -57,9 +62,11 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
     - RxTest
+    - SwiftSoup
     - SwiftyBeaver
 
 SPEC CHECKSUMS:
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   FMMoveTableView: 63b46cf806133f5220cf92592dc0e6f7eb07633d
@@ -72,8 +79,9 @@ SPEC CHECKSUMS:
   RxSwift: 4e28be97cbcfeee614af26d83415febbf2bf6f45
   RxSwiftExt: 43aaacb6a4d3c69c55e9d1cf4f79920043d13583
   RxTest: d0fa1ec82feb41efa826a59173ec65eafbbe4aaf
+  SwiftSoup: 9ec2526c76ebc3fe5d3157c82b40b45a27eeb82d
   SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
 
-PODFILE CHECKSUM: 46b0b798f1be27ccbd79b35144fd5824fb14af4b
+PODFILE CHECKSUM: 7b843d9c7469b2a21886e7bf9b1f839719d5ce2c
 
 COCOAPODS: 1.16.2

@@ -125,17 +125,17 @@ extension ValveGeneralFeature {
     state.icon = .suplaIcon(name: "valve-open")
     state.issues = [
         SharedCore.ChannelIssueItem.Error(
-            string: LocalizedStringWithId(id: LocalizedStringId.floodSensorActive)
+            string: localizedString(id: LocalizedStringId.floodSensorActive)
         ),
         SharedCore.ChannelIssueItem.Error(
-            string: LocalizedStringWithId(id: LocalizedStringId.valveFlooding)
+            string: localizedString(id: LocalizedStringId.valveFlooding)
         ),
         SharedCore.ChannelIssueItem.Error(
-            string: LocalizedStringWithId(id: LocalizedStringId.valveManuallyClosed)
+            string: localizedString(id: LocalizedStringId.valveManuallyClosed)
         ),
         SharedCore.ChannelIssueItem.LowBattery(messages: [
-            LocalizedStringWithId(id: LocalizedStringId.channelBatteryLevel),
-            LocalizedStringWithId(id: LocalizedStringId.channelBatteryLevel)
+            localizedString(id: LocalizedStringId.channelBatteryLevel),
+            localizedString(id: LocalizedStringId.channelBatteryLevel)
         ])
     ]
     state.sensors = [

@@ -41,6 +41,7 @@ extension DiContainer {
         register(ThreadHandler.self, ThreadHandlerImpl())
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(BuildInfo.self, BuildInfoImpl())
+        register(SecureSettings.Interface.self, SecureSettings.Implementation())
         
         register(GroupShared.Settings.self, GroupShared.Implementation())
         if #available(iOS 17.0, *) {
@@ -241,6 +242,16 @@ extension DiContainer {
         register(UpdateCarPlayItem.UseCase.self, UpdateCarPlayItem.Implementation())
         register(CarPlayRefresh.UseCase.self, CarPlayRefresh.Implementation())
         register(DeleteCarPlayItem.UseCase.self, DeleteCarPlayItem.Implementation())
+        // UseCase - Infrastructure
+        register(ProvideCurrentSsid.UseCase.self, ProvideCurrentSsid.Implementation())
+        // UseCase - AddWizard
+        register(ConnectToEsp.UseCase.self, ConnectToEsp.Implementation())
+        register(ConfigureEsp.UseCase.self, ConfigureEsp.Implementation())
+        register(AwaitConnectivity.UseCase.self, AwaitConnectivity.Implementation())
+        let suplaClientMessageHandler: SuplaClientMessage.Proxy = SuplaClientMessage.Implementation()
+        let suplaClientSharedProvider = SuplaClientSharedApiProvider()
+        register(EnableRegistration.UseCase.self, SharedCore.EnableRegistrationUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
+        register(CheckRegistrationEnabled.UseCase.self, SharedCore.CheckRegistrationEnabledUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
         
         // MARK: Features
         
