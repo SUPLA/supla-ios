@@ -21,49 +21,8 @@ import SwiftSoup
 
 fileprivate let STATE_PATTERN = "\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ ([A-Za-z0-9\\:]*)"
 
-@objc
-class EspHtmlParser: NSObject {
-    
-    @objc func findInputs(document: TFHpple) -> [String: String] {
-        var map: [String: String] = [:]
-        
-        if let inputs = document.search(withXPathQuery: "//input") {
-            for next in inputs {
-                guard let element = next as? TFHppleElement,
-                      let attributes = element.attributes,
-                      let name = (attributes["name"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
-                else { continue }
-                
-                let value = attributes["value"] as? String
-                
-                if let type = attributes["type"] as? String,
-                   type.caseInsensitiveCompare("checkbox") == .orderedSame {
-                    if let checked = attributes["checked"] as? String,
-                       checked.caseInsensitiveCompare("checked") == .orderedSame {
-                        map[name] = value ?? ""
-                    }
-                } else if (!name.isEmpty) {
-                    map[name] = value ?? ""
-                }
-                
-            }
-        }
-        
-        if let selects = document.search(withXPathQuery: "//select") {
-            for next in selects {
-                guard let element = next as? TFHppleElement,
-                      let name = (element.attributes["name"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines),
-                      let options = element.search(withXPathQuery: "//option[@selected=\"selected\"]"),
-                      let option = options.first as? TFHppleElement,
-                      let value = option.attributes["value"] as? String
-                else { continue }
-                
-                map[name] = value
-            }
-        }
-        
-        return map
-    }
+
+class EspHtmlParser {
     
     func findInputs(document: SwiftSoup.Document) -> [String: String] {
         var map: [String: String] = [:]
@@ -97,7 +56,7 @@ class EspHtmlParser: NSObject {
         return map
     }
     
-    @objc func prepareResult(document: String?) -> EspConfigResult {
+    func prepareResult(document: String?) -> EspConfigResult {
         let result = EspConfigResult()
         
         guard let html = document else { return result }
@@ -124,7 +83,7 @@ class EspHtmlParser: NSObject {
         return result
     }
     
-    @objc func needsCloudConfig(fieldMap: [String: String]) -> Bool {
+    func needsCloudConfig(fieldMap: [String: String]) -> Bool {
         fieldMap.contains { $0 == "no_visible_channels" && $1 == "1" }
     }
 }
