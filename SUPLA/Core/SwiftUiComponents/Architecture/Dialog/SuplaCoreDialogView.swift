@@ -40,7 +40,7 @@ extension SuplaCore.Dialog {
                     }
 
                 content
-                    .frame(maxWidth: UIScreen.main.bounds.size.width - 100)
+                    .frame(maxWidth: UIScreen.main.bounds.size.width - 50)
                     .background(Color.Supla.surface)
                     .cornerRadius(Dimens.radiusDefault)
             }

@@ -28,14 +28,14 @@ extension AddWizardFeature {
 
         var body: some SwiftUI.View {
             AddWizardFeature.AddWizardScaffold(
-                icon: .Icons.settings,
+                icon: .Image.AddWizard.settings,
                 onCancel: onCancel,
                 onBack: onBack,
                 onNext: onNext,
                 nextButtonTitle: Strings.General.start,
                 processing: processing
             ) {
-                AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessge)
+                AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)
 
                 SettingsButton(action: onSettings)
             }

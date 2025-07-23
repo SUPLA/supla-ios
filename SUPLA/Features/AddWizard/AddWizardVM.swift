@@ -34,6 +34,7 @@ extension AddWizardFeature {
         @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
         @Singleton<AwaitConnectivity.UseCase> private var awaitConnectivityUseCase
         @Singleton<DisconnectUseCase> private var disconnectUseCase
+        @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
         
         private lazy var stateHandler: IosEspConfigurationStateHolder = .init(espConfigurationController: self)
         private var workingTask: Task<Void, Never>? = nil
@@ -93,7 +94,11 @@ extension AddWizardFeature {
             case .manualConfiguration:
                 stateHandler.handle(EspConfigurationEventBack.shared)
             default:
-                state.screens = state.screens.pop()
+                if (state.screens.screens.count > 1) {
+                    state.screens = state.screens.pop()
+                } else {
+                    coordinator.dismiss()
+                }
             }
         }
         
@@ -158,6 +163,20 @@ extension AddWizardFeature {
         func onAuthorizationCanceled() {
             state.processing = false
             stateHandler = .init(espConfigurationController: self)
+        }
+        
+        func onFollowupClose() {
+            state.followupPopupState = nil
+        }
+        
+        func onFollowupOpen() {
+            state.followupPopupState = nil
+            loadActiveProfileUrlUseCase.invoke()
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] url in
+                    self?.coordinator.openUrl(url: url.urlString)
+                })
+                .disposed(by: disposeBag)
         }
         
         // MARK: - EspConfigurationController methods
@@ -244,6 +263,14 @@ extension AddWizardFeature {
                     case .timeout: stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.ConfigureTimeout.shared))
                     case .success(let result):
                         state.deviceParameters = result.parameters
+                        if (result.needsCloudConfig) {
+                            state.followupPopupState = .init(
+                                header: Strings.AddWizard.cloudFollowupTitle,
+                                message: Strings.AddWizard.cloudFollowupMessage,
+                                positiveButtonText: Strings.AddWizard.cloudFollowupGoToCloud,
+                                negativeButtonText: Strings.AddWizard.cloudFollowupClose
+                            )
+                        }
                         stateHandler.handle(EspConfigurationEventEspConfigured.shared)
                     }
                 }

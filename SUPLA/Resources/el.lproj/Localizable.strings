@@ -216,10 +216,6 @@
 "Channel height" = "Ύψος καναλιού";
 "Temperature unit" = "Μονάδα θερμοκρασίας";
 "Auto-hide buttons" = "Αυτόματη απόκρυψη κουμπιών";
-"Device setup" = "Διαμόρφωση συσκευής";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Αυτή η συσκευή δεν έχει ορατά κανάλια στην εφαρμογή. Για να ολοκληρώσετε τη ρύθμιση, μεταβείτε στο cloud.supla.org";
-"I understand" = "Καταλαβαίνω";
-"Go to CLOUD" = "Μεταβείτε στο CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Δεν μπορείτε να αλλάξετε τη λειτουργία του καναλιού που σχετίζεται με το έναυσμα ενέργειας.";
 "The function of the channel associated with the push notification cannot be changed." = "Η λειτουργία του καναλιού που σχετίζεται με τις ειδοποιήσεις PUSH δεν μπορεί να αλλάξει.";
 "The channel function associated with reactions cannot be changed." = "Η λειτουργία του καναλιού που σχετίζεται με τις αντιδράσεις δεν μπορεί να αλλάξει.";
@@ -619,3 +615,7 @@
 "wizard_iodev_data" = "Τα στοιχεία της συσκευής";
 "wizard_iodev_name" = "Ονομασία";
 "wizard_iodev_laststate" = "Προηγούμενη κατάσταση";
+"add_device_needs_cloud_title" = "Διαμόρφωση συσκευής";
+"add_device_needs_cloud_message" = "Αυτή η συσκευή δεν έχει ορατά κανάλια στην εφαρμογή. Για να ολοκληρώσετε τη ρύθμιση, μεταβείτε στο cloud.supla.org";
+"add_device_needs_cloud_close" = "Καταλαβαίνω";
+"add_device_needs_cloud_go_to_cloud" = "Μεταβείτε στο CLOUD";

@@ -216,10 +216,6 @@
 "Channel height" = "Výška kanála";
 "Temperature unit" = "Jednotka teploty";
 "Auto-hide buttons" = "Automatické schovanie tlačidiel";
-"Device setup" = "Konfigurácia zariadenia";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Toto zariadenie nemá v aplikácii žiadne viditeľné kanály. Ak chceš dokončiť konfiguráciu, prejdi na stránku cloud.supla.org";
-"I understand" = "Rozumiem";
-"Go to CLOUD" = "Prejsť na CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Funkciu kanála spojeného so spúšťačom akcie nemožno zmeniť.";
 "The function of the channel associated with the push notification cannot be changed." = "Funkciu kanála spojeného s oznámeniami PUSH nemožno zmeniť.";
 "The channel function associated with reactions cannot be changed." = "Funkciu kanála spojeného s reakciami nemožno zmeniť.";
@@ -617,3 +613,7 @@
 "wizard_iodev_data" = "Údaje zariadenia";
 "wizard_iodev_name" = "Názov";
 "wizard_iodev_laststate" = "Predchádzajúci status";
+"add_device_needs_cloud_title" = "Konfigurácia zariadenia";
+"add_device_needs_cloud_message" = "Toto zariadenie nemá v aplikácii žiadne viditeľné kanály. Ak chceš dokončiť konfiguráciu, prejdi na stránku cloud.supla.org";
+"add_device_needs_cloud_close" = "Rozumiem";
+"add_device_needs_cloud_go_to_cloud" = "Prejsť na CLOUD";

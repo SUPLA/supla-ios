@@ -56,8 +56,9 @@ class EspHtmlParser {
         return map
     }
     
-    func prepareResult(document: String?) -> EspConfigResult {
+    func prepareResult(document: String?, fieldMap: [String: String]) -> EspConfigResult {
         let result = EspConfigResult()
+        result.needsCloudConfig = needsCloudConfig(fieldMap: fieldMap)
         
         guard let html = document else { return result }
         do {
@@ -83,7 +84,7 @@ class EspHtmlParser {
         return result
     }
     
-    func needsCloudConfig(fieldMap: [String: String]) -> Bool {
+    private func needsCloudConfig(fieldMap: [String: String]) -> Bool {
         fieldMap.contains { $0 == "no_visible_channels" && $1 == "1" }
     }
 }

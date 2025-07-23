@@ -18,18 +18,15 @@
 
 import Foundation
 
-class EspConfigResult: NSObject {
-    @objc var resultCode: EspConfigResultCode = .failed // to remove
-    @objc var extendedResultError: String? = nil
-    @objc var extendedResultCode: Int64 = 0
+class EspConfigResult {
     
-    @objc var name: String? = nil
-    @objc var state: String? = nil
-    @objc var version: String? = nil
-    @objc var guid: String? = nil
-    @objc var mac: String? = nil
+    var name: String? = nil
+    var state: String? = nil
+    var version: String? = nil
+    var guid: String? = nil
+    var mac: String? = nil
     
-    @objc var needsCloudConfig: Bool = false
+    var needsCloudConfig: Bool = false
     
     var isCompatible: Bool { version != nil }
     
@@ -51,23 +48,4 @@ class EspConfigResult: NSObject {
         
         return result
     }
-    
-    @objc func merge(result: EspConfigResult) {
-        name = result.name
-        state = result.state
-        version = result.version
-        guid = result.guid
-        mac = result.mac
-        
-        needsCloudConfig = result.needsCloudConfig
-    }
-}
-
-@objc
-enum EspConfigResultCode: Int32 {
-    case paramError = -3
-    case compatError = -2
-    case connectionError = -1
-    case failed = 0
-    case success = 1
 }

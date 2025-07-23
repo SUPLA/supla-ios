@@ -18,7 +18,7 @@
     
 import Network
 
-private let TIMEOUT_SECS: UInt64 = 15
+private let TIMEOUT_SECS: UInt64 = 30
 
 struct AwaitConnectivity {
     protocol UseCase {
@@ -52,7 +52,13 @@ struct AwaitConnectivity {
             }
             
             do {
-                let result = try await mainTask.value
+                let result = try await withTaskCancellationHandler {
+                    try await mainTask.value
+                } onCancel: {
+                    SALog.debug("Reconnect task canceled")
+                    mainTask.cancel()
+                    timeoutTask.cancel()
+                }
                 timeoutTask.cancel()
                 return result
             } catch {

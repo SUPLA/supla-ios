@@ -216,10 +216,6 @@
 "Channel height" = "Kanalhøyde";
 "Temperature unit" = "Temperaturenhet";
 "Auto-hide buttons" = "Automatisk skjuling av knapper";
-"Device setup" = "Enhetskonfigurasjon";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Denne enheten har ingen synlige kanaler i appen. Gå til cloud.supla.org for å fullføre konfigurasjonen";
-"I understand" = "Jeg forstår";
-"Go to CLOUD" = "Gå til CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Funksjonen til kanalen knyttet til handlingsutløseren kan ikke endres.";
 "The function of the channel associated with the push notification cannot be changed." = "Funksjonen til kanalen som er knyttet til PUSH-varsler, kan ikke endres.";
 "The channel function associated with reactions cannot be changed." = "Funksjonen til kanalen som er knyttet til reaksjonene, kan ikke endres.";
@@ -619,3 +615,7 @@
 "wizard_iodev_data" = "Opplysninger om enheten";
 "wizard_iodev_name" = "Navn";
 "wizard_iodev_laststate" = "Forrige status";
+"add_device_needs_cloud_title" = "Enhetskonfigurasjon";
+"add_device_needs_cloud_message" = "Denne enheten har ingen synlige kanaler i appen. Gå til cloud.supla.org for å fullføre konfigurasjonen";
+"add_device_needs_cloud_close" = "Jeg forstår";
+"add_device_needs_cloud_go_to_cloud" = "Gå til CLOUD";

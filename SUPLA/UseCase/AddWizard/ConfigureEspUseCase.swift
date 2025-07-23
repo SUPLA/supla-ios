@@ -85,8 +85,9 @@ enum ConfigureEsp {
             }
             
             let parser = EspHtmlParser()
-            let result = parser.prepareResult(document: html)
             let espData = EspPostData(fieldMap: parser.findInputs(document: document))
+            let result = parser.prepareResult(document: html, fieldMap: espData.fieldMap)
+            
             if (!espData.isCompatible || !result.isCompatible) {
                 SALog.warning("Got incompatible data")
                 return .incompatible

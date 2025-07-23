@@ -218,10 +218,6 @@
 "Channel height" = "Kanalo aukštis";
 "Temperature unit" = "Temperatūros vienetas";
 "Auto-hide buttons" = "Automatinis mygtukų slėpimas";
-"Device setup" = "Įrenginio konfigūravimas";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Šiame įrenginyje nėra jokių programoje matomų kanalų. Norėdami užbaigti konfigūravimą, pereikite į cloud.supla.org";
-"I understand" = "Suprantu";
-"Go to CLOUD" = "Pereiti į CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Susieto su veiksmo paleidikliu kanalo funkcijų negalima pakeisti.";
 "The function of the channel associated with the push notification cannot be changed." = "Negalima pakeisti kanalo, susieto su PUSH pranešimais, funkcijos.";
 "The channel function associated with reactions cannot be changed." = "Negalima pakeisti kanalo, susieto su reakcijomis, funkcijos.";
@@ -621,3 +617,7 @@
 "wizard_iodev_data" = "Įrenginio duomenys";
 "wizard_iodev_name" = "Pavadinimas";
 "wizard_iodev_laststate" = "Ankstesnis statusas";
+"add_device_needs_cloud_title" = "Įrenginio konfigūravimas";
+"add_device_needs_cloud_message" = "Šiame įrenginyje nėra jokių programoje matomų kanalų. Norėdami užbaigti konfigūravimą, pereikite į cloud.supla.org";
+"add_device_needs_cloud_close" = "Suprantu";
+"add_device_needs_cloud_go_to_cloud" = "Pereiti į CLOUD";
