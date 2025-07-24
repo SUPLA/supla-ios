@@ -45,7 +45,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id = %d", profileId))
         
-        let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
+        let localeAwareCompare = #selector(NSString.localizedStandardCompare)
         request.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
             NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),
@@ -61,7 +61,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@ AND location.caption = %@", profile, locationCaption))
         
-        let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
+        let localeAwareCompare = #selector(NSString.localizedStandardCompare)
         request.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
             NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),

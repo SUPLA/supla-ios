@@ -41,11 +41,12 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
     func getAllVisibleScenes(forProfileId profileId: Int32) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
             .filtered(by: NSPredicate(format: "profile.id = %d AND visible > 0", profileId))
+        let localeAwareCompare = #selector(NSString.localizedStandardCompare)
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
-            NSSortDescriptor(key: "location.caption", ascending: true),
+            NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),
             NSSortDescriptor(key: "sortOrder", ascending: true),
-            NSSortDescriptor(key: "caption", ascending: true),
+            NSSortDescriptor(key: "caption", ascending: true, selector: localeAwareCompare),
             NSSortDescriptor(key: "sceneId", ascending: true)
         ]
         return self.query(fetchRequest)
@@ -54,11 +55,12 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
     func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
             .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0 AND location.caption = %@", profile, locationCaption))
+        let localeAwareCompare = #selector(NSString.localizedStandardCompare)
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
-            NSSortDescriptor(key: "location.caption", ascending: true),
+            NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),
             NSSortDescriptor(key: "sortOrder", ascending: true),
-            NSSortDescriptor(key: "caption", ascending: true),
+            NSSortDescriptor(key: "caption", ascending: true, selector: localeAwareCompare),
             NSSortDescriptor(key: "sceneId", ascending: true)
         ]
         return self.query(fetchRequest)
