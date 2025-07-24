@@ -35,7 +35,7 @@ class LocationRepositoryImpl: Repository<_SALocation>, LocationRepository {
         let request = _SALocation.fetchRequest()
             .filtered(by: NSPredicate(format: "profile = %@", profile))
             .ordered(by: "sortOrder")
-            .ordered(by: "caption", selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+            .ordered(by: "caption", selector: #selector(NSString.localizedStandardCompare))
         return query(request)
     }
 

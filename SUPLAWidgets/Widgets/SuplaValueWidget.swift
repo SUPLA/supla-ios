@@ -276,6 +276,7 @@ extension SuplaValueWidget {
                 }
                 Text(name)
                     .fontBodyMedium()
+                    .multilineTextAlignment(.center)
                     .lineLimit(2)
             }
         }

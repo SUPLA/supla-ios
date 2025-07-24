@@ -183,6 +183,7 @@ extension SuplaDoubleActionWidget {
                 .frame(maxHeight: .infinity, alignment: .center)
                 Text(name)
                     .fontBodyMedium()
+                    .multilineTextAlignment(.center)
                     .lineLimit(2)
             }
         }
