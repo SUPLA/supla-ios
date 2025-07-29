@@ -331,6 +331,7 @@ extension AddWizardFeature {
         }
         
         func showError(error: EspConfigurationError) {
+            state.processing = false
             state.screens = state.screens.push(.message(text: error.message.string, action: .repeat))
         }
         
@@ -346,12 +347,14 @@ extension AddWizardFeature {
         // MARK: - Private methods
         
         private func welcomeNextStep() {
-            let status = locationManager.authorizationStatus
-            SALog.info("Location status: \(status)")
+            let appStatus = locationManager.authorizationStatus
+            SALog.info("Location status: \(appStatus)")
             
-            if (status == .authorizedWhenInUse || status == .authorizedAlways) {
+            if (!CLLocationManager.locationServicesEnabled()) {
+                state.screens = state.screens.just(.message(text: Strings.AddWizard.locationServiceOff, action: .location))
+            } else if (appStatus == .authorizedWhenInUse || appStatus == .authorizedAlways) {
                 navigateToNetworkSelection()
-            } else if (status == .denied) {
+            } else if (appStatus == .denied) {
                 state.screens = state.screens.just(.message(text: Strings.AddWizard.missingLocation, action: .location))
             } else {
                 locationManager.requestWhenInUseAuthorization()

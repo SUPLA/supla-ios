@@ -600,7 +600,8 @@
 "add_wizard_auto_mode" = "Automatický režim";
 "add_wizard_manual_mode_message" = "Přejděte do nastavení systému iOS a ručně připojte k síti WiFi začínající názvem SUPLA nebo ZAMEL nebo NICE nebo HEATPOL. \n\nNapříklad „SUPLA-A220A63612B1”. Jedná se o dočasnou síť pro konfiguraci vykonávajícího zařízení. \n\nPo připojení k této síti se vraťte do této aplikace a pokračujte v přidávání procedury stisknutím tlačítka **Start**";
 "add_wizard_manual_mode_settings" = "Přejděte do nastavení systému";
-"add_wizard_missing_location" = "Aby Průvodce přidáním zařízení fungoval správně, musí být na tomto zařízení povolena služba Poloha. Přejděte do nastavení systému a ujistěte se, že je zapnutá.";
+"add_wizard_location_service_off" = "Aby Průvodce přidáním zařízení správně fungoval, musí být na vašem zařízení povoleny služby určování polohy. Přejděte do nastavení systému a ujistěte se, že jsou povoleny (Nastavení -> Soukromí a zabezpečení -> Služby určování polohy).";
+"add_wizard_missing_location" = "Aplikace SUPLA vyžaduje přístup k poloze, aby Průvodce přidáním zařízení správně fungoval. Povolte aplikaci SUPLA přístup k vaší poloze v nastavení systému.";
 "wizard_scan_timeout" = "Byla překročena doba čekání na dokončení vyhledávání sítě WiFi!";
 "wizard_iodevice_notfound" = "Nebyly nalezeny žádné přístroje! Ujistěte se, že zařízení, které chcete konfigurovat, je v konfiguračním režimu a zkuste to znovu.";
 "wizard_connect_timeout" = "Doba čekání na spojení s vykonávajícím zařízením byla překročena!";

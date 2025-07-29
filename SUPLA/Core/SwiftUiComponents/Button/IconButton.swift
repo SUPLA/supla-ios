@@ -61,7 +61,7 @@ struct FilledIconStyle: ButtonStyle {
         configuration.label
             .foregroundColor(.Supla.onPrimary)
             .font(.Supla.labelLarge)
-            .background(Color.Supla.primary)
+            .background(color)
             .cornerRadius(Dimens.buttonRadius)
     }
 }

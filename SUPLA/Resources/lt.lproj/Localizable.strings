@@ -602,7 +602,8 @@
 "add_wizard_auto_mode" = "Automatinis režimas";
 "add_wizard_manual_mode_message" = "Eikite į iOS sistemos nustatymus ir rankiniu būdu prisijunkite prie WiFi tinklo, kuris prasideda pavadinimu SUPLA ar ZAMEL ar NICE ar HEATPOL.\n\nPavyzdžiui „SUPLA-A220A63612B1“.Tai yra vykdomojo įrenginio laikinas tinklas, skirtas konfigūravimui. \n\nPrisijungus prie šio tinklo grįžkite prie šios programos ir tęskite pridėjimo procedūrą paspausdami mygtuką **Startas**.";
 "add_wizard_manual_mode_settings" = "Eikite į iOS sistemos nustatymus";
-"add_wizard_missing_location" = "Kad įrenginio pridėjimo vedlys veiktų tinkamai, šiame įrenginyje turi būti įjungta vietos nustatymo paslauga. Eikite į sistemos nustatymus ir įsitikinkite, kad ji įjungta.";
+"add_wizard_location_service_off" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, jūsų įrenginyje turi būti įjungtos vietos nustatymo paslaugos. Eikite į sistemos nustatymus ir įsitikinkite, kad jos įjungtos (Nustatymai -> Privatumas ir sauga -> Vietos nustatymo paslaugos).";
+"add_wizard_missing_location" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, SUPLA programėlei reikalingas vietos nustatymo priėjimas. Leiskite SUPLA programėlei pasiekti jūsų vietą sistemos nustatymuose.";
 "wizard_scan_timeout" = "Viršytas WiFi tinklo paieškos pabaigimo laukimo laikas!";
 "wizard_iodevice_notfound" = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";
 "wizard_connect_timeout" = "Viršytas ryšio užmezgimo su vykdomuoju įrenginiu laukimo laikas!";

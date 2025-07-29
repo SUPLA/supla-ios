@@ -600,7 +600,8 @@
 "add_wizard_auto_mode" = "Samodejni način";
 "add_wizard_manual_mode_message" = "Pojdite na sistemske nastavitve za iOS in se ročno povežite z omrežjem WiFi, ki se začne z imenom SUPLA ali ZAMEL ali NICE ali HEATPOL.\n\nNa primer \"SUPLA-A220A63612B1\". To je začasno izvršilno omrežje naprave, ki se ga uporablja za konfiguracijo.\n\nKo se povežete s tem omrežjem, se vrnite v to aplikacijo in nadaljujte postopek dodajanja s pritiskom na gumb **Start**";
 "add_wizard_manual_mode_settings" = "Pojdi na sistemske nastavitve";
-"add_wizard_missing_location" = "Za pravilno delovanje čarovnika za dodajanje naprave mora biti na tej napravi omogočena storitev lokacije. Pojdite v sistemske nastavitve in se prepričajte, da je vklopljena.";
+"add_wizard_location_service_off" = "Za pravilno delovanje Čarovnika za dodajanje naprave morajo biti na vaši napravi omogočene lokacijske storitve. Pojdite v sistemske nastavitve in se prepričajte, da so omogočene (Nastavitve -> Zasebnost in varnost -> Lokacijske storitve).";
+"add_wizard_missing_location" = "Aplikacija SUPLA potrebuje dostop do lokacije za pravilno delovanje čarovnika za dodajanje naprav. Dovoli aplikaciji SUPLA dostop do tvoje lokacije v sistemskih nastavitvah.";
 "wizard_scan_timeout" = "Čakalna doba za dokončanje iskanja WiFi je prekoračena!";
 "wizard_iodevice_notfound" = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
 "wizard_connect_timeout" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";

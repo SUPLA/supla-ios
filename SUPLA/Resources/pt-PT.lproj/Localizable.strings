@@ -602,7 +602,8 @@
 "add_wizard_auto_mode" = "Modo automático";
 "add_wizard_manual_mode_message" = "Passe às configurações do Sistema iOS e estabeleça manualmente uma ligação à rede WiFi cujo nome começa com a palavra SUPLA, ZAMEL ou NICE ou HEATPOL.\n\nPor exemplo “SUPLA-A220A63612B1”. É uma rede temporária do dispositivo que serve para configurar.\n\nDepois de estabelecer uma ligação, volte para a aplicação e continue o procedimento relativo à inclusão carregando no botão **Start**.";
 "add_wizard_manual_mode_settings" = "Passe às configurações do sistema";
-"add_wizard_missing_location" = "Para que o Assistente de Adição de Dispositivo funcione corretamente, o serviço de Localização deve estar ativado neste dispositivo. Vá para as configurações do seu sistema e certifique-se de que esteja ligado.";
+"add_wizard_location_service_off" = "Para que o Assistente de Adição de Dispositivo funcione corretamente, os serviços de localização devem estar ativados no seu dispositivo. Vá para as configurações do sistema e certifique-se de que estão ativados (Configurações -> Privacidade e Segurança -> Serviços de Localização).";
+"add_wizard_missing_location" = "O aplicativo SUPLA requer acesso à localização para que o Assistente de Adição de Dispositivo funcione corretamente. Permita que o aplicativo SUPLA acesse sua localização nas configurações do sistema.";
 "wizard_scan_timeout" = "O tempo-limite de pesquisa da rede WiFi foi excedido!";
 "wizard_iodevice_notfound" = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
 "wizard_connect_timeout" = "O tempo-limite de conexão a um atuador foi excedido!";
