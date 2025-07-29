@@ -493,7 +493,8 @@
 "add_wizard_auto_mode" = "Auto mode";
 "add_wizard_manual_mode_message" = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and continue adding procedure by pressing the START button.";
 "add_wizard_manual_mode_settings" = "Go to the system settings";
-"add_wizard_missing_location" = "For the Add Device Wizard to work properly, the Location service must be enabled on this device. Go to your system settings, and make sure it's turned on.";
+"add_wizard_location_service_off" = "For the Add Device Wizard to work properly, location services must be enabled on your device. Go to your system settings and make sure it's enabled (Settings -> Privacy & Security -> Location Services).";
+"add_wizard_missing_location" = "The SUPLA app requires location access for the Add Device Wizard to function properly. Allow the SUPLA app to access your location in your system settings.";
 "wizard_scan_timeout" = "WiFi Network Scan timeout!";
 "wizard_iodevice_notfound" = "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode.";
 "wizard_connect_timeout" = "I/O Device connection setting timeout!";

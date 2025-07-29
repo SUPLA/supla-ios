@@ -600,7 +600,8 @@
 "add_wizard_auto_mode" = "Automodus";
 "add_wizard_manual_mode_message" = "Gå til iOS-systeminnstillinger og koble manuelt til et WiFi-nettverk som begynner med navnet SUPLA, ZAMEL, NICE eller HEATPOL.\n\nFor eksempel \"SUPLA-A220A63612B1\". Dette er et midlertidig nettverk for enheter inngang/utgang som brukes til konfigurasjon.\n\nNår du er koblet til nettverket, gå tilbake til denne applikasjonen og fortsette med leggingsprosedyren ved å trykke på **Start**-knappen";
 "add_wizard_manual_mode_settings" = "Gå til systeminnstillinger";
-"add_wizard_missing_location" = "For at veiviseren for tillegg av enheter skal fungere riktig, må posisjonstjenesten være aktivert på denne enheten. Gå til systeminnstillingene dine og sørg for at den er slått på.";
+"add_wizard_location_service_off" = "For at veiviseren for tillegg av enheter skal fungere korrekt, må lokasjonstjenester være aktivert på enheten din. Gå til systeminnstillingene dine og sørg for at det er aktivert (Innstillinger -> Personvern og sikkerhet -> Lokasjonstjenester).";
+"add_wizard_missing_location" = "SUPLA-appen krever lokasjonstilgang for at veiviseren for tillegg av enheter skal fungere korrekt. Tillat SUPLA-appen å få tilgang til lokasjonen din i systeminnstillingene dine.";
 "wizard_scan_timeout" = "Ventetiden for avslutning av trådløs nettverk søket er overskredet!";
 "wizard_iodevice_notfound" = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";
 "wizard_connect_timeout" = "Ventetiden for etablering av kobling med aktuator er overskredet!";

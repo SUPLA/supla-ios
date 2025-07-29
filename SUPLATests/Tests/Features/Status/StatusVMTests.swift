@@ -50,7 +50,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.connected)
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         XCTAssertEqual(coordinator.navigateToMainMock.parameters.count, 1)
@@ -61,7 +61,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.firstProfileCreation)
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         XCTAssertEqual(coordinator.navigateToProfileMock.parameters, [nil])
@@ -72,7 +72,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.initialization)
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -84,7 +84,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.connecting(reason: nil))
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -96,7 +96,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.disconnecting())
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -108,7 +108,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.locking)
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -134,7 +134,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.finished(reason: .registerError(code: SUPLA_RESULTCODE_REGISTRATION_DISABLED)))
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         coordinator.showLoginMock.verifyCalls(1)
@@ -147,7 +147,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.finished(reason: .appInBackground))
         
         // when
-        viewModel.onViewWillAppear()
+        viewModel.onViewAppeared()
         
         // then
         coordinator.showLoginMock.verifyCalls(0)

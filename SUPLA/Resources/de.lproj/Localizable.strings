@@ -677,7 +677,8 @@
 "add_wizard_auto_mode" = "Automodus";
 "add_wizard_manual_mode_message" = "Wechseln Sie zu den iOS-Systemeinstellungen und stellen Sie manuell eine Verbindung zu einem Wi-Fi-Netzwerk her, das mit dem Name SUPLA oder ZAMEL oder NICE oder HEATPOL beginnt. \n\nZum Beispiel \"SUPLA-A220A63612B1\". Dies ist ein temporäres Geräteausführungsnetzwerk, das zum Konfigurieren dient.\n\n Nachdem Sie sich mit diesem Netzwerk verbunden haben, kehren Sie zu dieser Anwendung zurück und fahren Sie mit dem Hinzufügen fort, indem Sie auf die Schaltfläche **Start** klicken";
 "add_wizard_manual_mode_settings" = "Gehe Sie zu den Systemeinstellungen rüber";
-"add_wizard_missing_location" = "Damit der Assistent zum Hinzufügen von Geräten ordnungsgemäß funktioniert, muss der Standortdienst auf diesem Gerät aktiviert sein. Gehen Sie zu Ihren Systemeinstellungen und stellen Sie sicher, dass er eingeschaltet ist.";
+"add_wizard_location_service_off" = "Damit der Assistent zum Hinzufügen von Geräten ordnungsgemäß funktioniert, müssen die Standortdienste auf Ihrem Gerät aktiviert sein. Gehen Sie zu Ihren Systemeinstellungen und stellen Sie sicher, dass diese aktiviert sind (Einstellungen -> Datenschutz & Sicherheit -> Ortungsdienste).";
+"add_wizard_missing_location" = "Die SUPLA-App benötigt Zugriff auf den Standort, damit der Assistent zum Hinzufügen von Geräten ordnungsgemäß funktioniert. Erlauben Sie der SUPLA-App den Zugriff auf Ihren Standort in den Systemeinstellungen.";
 "wizard_scan_timeout" = "Für den Abschluss des Browsens des WiFi-Netzes wurde das Zeitlimit abgeschlossen!";
 "wizard_iodevice_notfound" = "Die Suche nach irgendwelchen Geräten war erfolglos! Stellen Sie sicher, dass das Gerät, dass Sie konfigurieren lassen möchten im Konfigurationsmodus funktioniert und versuchen Sie erneut.";
 "wizard_connect_timeout" = "Für die Herstellung der Verbindung mit dem Betätigungsgerät wurde das Zeitlimit überschritten!";

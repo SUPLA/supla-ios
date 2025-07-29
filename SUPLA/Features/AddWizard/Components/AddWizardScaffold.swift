@@ -98,7 +98,7 @@ private extension AddWizardFeature {
                     .textColor(.Supla.onPrimary)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.trailing, 48)
+                    .padding(.trailing, 60)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
