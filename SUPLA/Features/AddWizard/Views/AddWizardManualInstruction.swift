@@ -37,7 +37,11 @@ extension AddWizardFeature {
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)
 
-                SettingsButton(action: onSettings)
+                SettingsButton(action: {
+                    if (!processing) {
+                        onSettings()
+                    }
+                })
             }
         }
     }

@@ -48,6 +48,7 @@ extension AddWizardFeature {
                         .fontBodyMedium()
                         .textColor(.Supla.onPrimaryContainer)
                 }
+                .disabled(processing)
                 .toggleStyle(iOSCheckboxToggleStyle(color: .onPrimaryContainer))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding([.top], Distance.default)
