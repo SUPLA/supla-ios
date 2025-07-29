@@ -38,6 +38,7 @@ enum ConfigureEsp {
             configuration.waitsForConnectivity = true
             configuration.timeoutIntervalForRequest = 30
             configuration.timeoutIntervalForResource = 30
+            configuration.requestCachePolicy = .reloadIgnoringCacheData
             return Alamofire.Session(configuration: configuration, delegate: Alamofire.Session.default.delegate)
         }()
         
