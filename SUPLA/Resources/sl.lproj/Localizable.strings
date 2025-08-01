@@ -598,7 +598,7 @@
 "add_wizard_is_not_available" = "Čarovnik za dodajanje je na voljo le, če je na podlagi vnesenega e-poštnega naslova vzpostavljena povezava s strežnikom! (Onemogočite napredne možnosti v konfiguraciji računa)";
 "add_wizard_remember_passwd" = "Shranite geslo";
 "add_wizard_auto_mode" = "Samodejni način";
-"add_wizard_manual_mode_message" = "Pojdite na sistemske nastavitve za iOS in se ročno povežite z omrežjem WiFi, ki se začne z imenom SUPLA ali ZAMEL ali NICE ali HEATPOL.\n\nNa primer \"SUPLA-A220A63612B1\". To je začasno izvršilno omrežje naprave, ki se ga uporablja za konfiguracijo.\n\nKo se povežete s tem omrežjem, se vrnite v to aplikacijo in nadaljujte postopek dodajanja s pritiskom na gumb **Start**";
+"add_wizard_manual_mode_message" = "Prosimo, uporabite spodnjo bližnjico Sistemske nastavitve, da izberete Wi-Fi vaše V/I naprave za konfiguracijo, kot je SUPLA-A220A63612B1.\n\nIme konfiguracijskega omrežja Wi-Fi običajno vsebuje ime proizvajalca, npr. SUPLA, ZAMEL, NICE, HEATPOL itd.\n\nKo je povezava vzpostavljena, se vrnite v aplikacijo in nadaljujte postopek dodajanja s pritiskom na gumb **START**.";
 "add_wizard_manual_mode_settings" = "Pojdi na sistemske nastavitve";
 "add_wizard_location_service_off" = "Za pravilno delovanje Čarovnika za dodajanje naprave morajo biti na vaši napravi omogočene lokacijske storitve. Pojdite v sistemske nastavitve in se prepričajte, da so omogočene (Nastavitve -> Zasebnost in varnost -> Lokacijske storitve).";
 "add_wizard_missing_location" = "Aplikacija SUPLA potrebuje dostop do lokacije za pravilno delovanje čarovnika za dodajanje naprav. Dovoli aplikaciji SUPLA dostop do tvoje lokacije v sistemskih nastavitvah.";

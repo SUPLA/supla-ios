@@ -491,7 +491,7 @@
 "add_wizard_is_not_available" = "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)";
 "add_wizard_remember_passwd" = "Remember password";
 "add_wizard_auto_mode" = "Auto mode";
-"add_wizard_manual_mode_message" = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and continue adding procedure by pressing the START button.";
+"add_wizard_manual_mode_message" = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1.\n\nConfiguration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc.\n\nWhen the connection has been set, go back to the application and continue adding procedure by pressing the **START** button.";
 "add_wizard_manual_mode_settings" = "Go to the system settings";
 "add_wizard_location_service_off" = "For the Add Device Wizard to work properly, location services must be enabled on your device. Go to your system settings and make sure it's enabled (Settings -> Privacy & Security -> Location Services).";
 "add_wizard_missing_location" = "The SUPLA app requires location access for the Add Device Wizard to function properly. Allow the SUPLA app to access your location in your system settings.";

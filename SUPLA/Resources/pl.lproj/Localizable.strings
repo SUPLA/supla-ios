@@ -709,7 +709,7 @@
 "add_wizard_repeat" = "Spróbuj ponownie";
 "add_wizard_remember_passwd" = "Zapamiętaj hasło";
 "add_wizard_auto_mode" = "Tryb automatyczny";
-"add_wizard_manual_mode_message" = "Przejdź do ustawień systemowych iOS i ręcznie połącz się z siecią WiFi rozpoczynającą się od nazwy SUPLA lub ZAMEL lub NICE lub HEATPOL. \n\nPrzykładowo „SUPLA-A220A63612B1”. Jest to sieć tymczasowa urządzenia wykonawczego służąca do konfiguracji. \n\nPo połączeniu się z tą siecią wróć do tej aplikacji i kontynuuj procedurę dodawania poprzez naciśnięcie przycisku **Start**";
+"add_wizard_manual_mode_message" = "Użyj poniższego skrótu do Ustawień systemowych, aby wybrać urządzenie Wi-Fi do konfiguracji, np. SUPLA-A220A63612B1.\n\nNazwa sieci Wi-Fi zazwyczaj zawiera nazwę producenta, np. SUPLA, ZAMEL, NICE, HEATPOL itp.\n\nPo nawiązaniu połączenia wróć do aplikacji i kontynuuj procedurę dodawania, naciskając przycisk **START**.";
 "add_wizard_manual_mode_settings" = "Przejdź do ustawień systemowych";
 "add_wizard_location_service_off" = "Aby Kreator dodawania urządzenia działał poprawnie, usługa lokalizacji musi być włączona na tym urządzeniu. Przejdź do ustawień systemowych i upewnij się, że jest włączona (Ustawienia -> Prywatność i ochrona -> Usługi lokalizacji).";
 "add_wizard_missing_location" = "Aplikacja SUPLA wymaga dostępu do lokalizacji, aby kreator dodawania urządzenia działał poprawnie. Zezwól aplikacji SUPLA na dostęp do lokalizacji w ustawieniach systemowych.";
