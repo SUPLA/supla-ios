@@ -32,7 +32,7 @@ extension AddWizardFeature {
                 onCancel: onCancel,
                 onBack: onBack,
                 onNext: onNext,
-                nextButtonTitle: Strings.General.start,
+                nextButtonTitle: Strings.General.start.uppercased(),
                 processing: processing
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)

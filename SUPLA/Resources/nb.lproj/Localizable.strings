@@ -598,7 +598,7 @@
 "add_wizard_is_not_available" = "Veiviseren legg er kun tilgjengelig når tilkobling til serveren er etablert basert på e-postadressen som er angitt! (Deaktiver avanserte innstillinger i kontokonfigurasjonen din).";
 "add_wizard_remember_passwd" = "Husk passord";
 "add_wizard_auto_mode" = "Automodus";
-"add_wizard_manual_mode_message" = "Gå til iOS-systeminnstillinger og koble manuelt til et WiFi-nettverk som begynner med navnet SUPLA, ZAMEL, NICE eller HEATPOL.\n\nFor eksempel \"SUPLA-A220A63612B1\". Dette er et midlertidig nettverk for enheter inngang/utgang som brukes til konfigurasjon.\n\nNår du er koblet til nettverket, gå tilbake til denne applikasjonen og fortsette med leggingsprosedyren ved å trykke på **Start**-knappen";
+"add_wizard_manual_mode_message" = "Vennligst bruk snarveien for systeminnstillinger nedenfor for å velge Wi-Fi-enheten din for konfigurasjon, for eksempel SUPLA-A220A63612B1.\n\nKonfigurasjons-Wi-Fi-navnet inneholder vanligvis produsentens navn, f.eks. SUPLA, ZAMEL, NICE, HEATPOL osv.\n\nNår tilkoblingen er etablert, gå tilbake til applikasjonen og fortsett tilleggsprosedyren ved å trykke på knappen **START**.";
 "add_wizard_manual_mode_settings" = "Gå til systeminnstillinger";
 "add_wizard_location_service_off" = "For at veiviseren for tillegg av enheter skal fungere korrekt, må lokasjonstjenester være aktivert på enheten din. Gå til systeminnstillingene dine og sørg for at det er aktivert (Innstillinger -> Personvern og sikkerhet -> Lokasjonstjenester).";
 "add_wizard_missing_location" = "SUPLA-appen krever lokasjonstilgang for at veiviseren for tillegg av enheter skal fungere korrekt. Tillat SUPLA-appen å få tilgang til lokasjonen din i systeminnstillingene dine.";

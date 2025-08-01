@@ -598,7 +598,7 @@
 "add_wizard_is_not_available" = "Průvodce přidáním je dostupný pouze v případě, že bylo navázáno připojení k serveru na základě zadané e-mailové adresy! (vypněte možnost pokročilé konfigurace účtu)";
 "add_wizard_remember_passwd" = "Zapamatujte si heslo";
 "add_wizard_auto_mode" = "Automatický režim";
-"add_wizard_manual_mode_message" = "Přejděte do nastavení systému iOS a ručně připojte k síti WiFi začínající názvem SUPLA nebo ZAMEL nebo NICE nebo HEATPOL. \n\nNapříklad „SUPLA-A220A63612B1”. Jedná se o dočasnou síť pro konfiguraci vykonávajícího zařízení. \n\nPo připojení k této síti se vraťte do této aplikace a pokračujte v přidávání procedury stisknutím tlačítka **Start**";
+"add_wizard_manual_mode_message" = "Použijte prosím níže uvedenou zkratku Systémová nastavení pro výběr Wi-Fi vašeho I/O zařízení pro konfiguraci, například SUPLA-A220A63612B1.\n\nNázev konfigurační Wi-Fi obvykle obsahuje název výrobce, např. SUPLA, ZAMEL, NICE, HEATPOL atd.\n\nJakmile je připojení nastaveno, vraťte se zpět do aplikace a pokračujte v postupu přidávání stisknutím tlačítka **START**.";
 "add_wizard_manual_mode_settings" = "Přejděte do nastavení systému";
 "add_wizard_location_service_off" = "Aby Průvodce přidáním zařízení správně fungoval, musí být na vašem zařízení povoleny služby určování polohy. Přejděte do nastavení systému a ujistěte se, že jsou povoleny (Nastavení -> Soukromí a zabezpečení -> Služby určování polohy).";
 "add_wizard_missing_location" = "Aplikace SUPLA vyžaduje přístup k poloze, aby Průvodce přidáním zařízení správně fungoval. Povolte aplikaci SUPLA přístup k vaší poloze v nastavení systému.";
