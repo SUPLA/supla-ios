@@ -36,6 +36,7 @@ extension AddWizardFeature {
                 switch (screen) {
                 case .welcome:
                     AddWizardFeature.AddWizardWelcomeView(
+                        processing: state.processing,
                         onCancel: { onCancel(screen) },
                         onBack: { onBack(screen) },
                         onNext: { onNext(screen) }
@@ -77,7 +78,7 @@ extension AddWizardFeature {
                     }
                 case .message(let text, let action):
                     AddWizardFeature.AddWizardMessageView(
-                        message: text,
+                        messages: text,
                         action: action,
                         onCancel: { onCancel(screen) },
                         onBack: { onBack(screen) },

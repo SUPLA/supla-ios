@@ -31,8 +31,8 @@ extension SuplaCore {
             }
             .ignoresSafeArea(.all)
             .frame(
-                width: UIScreen.main.bounds.size.width,
-                height: UIScreen.main.bounds.size.height,
+                maxWidth: .infinity,
+                maxHeight: .infinity,
                 alignment: .center
             )
         }

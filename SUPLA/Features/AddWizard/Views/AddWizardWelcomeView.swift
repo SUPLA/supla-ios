@@ -20,6 +20,7 @@ import SwiftUI
 
 extension AddWizardFeature {
     struct AddWizardWelcomeView: SwiftUI.View {
+        let processing: Bool
         let onCancel: () -> Void
         let onBack: () -> Void
         let onNext: () -> Void
@@ -29,7 +30,8 @@ extension AddWizardFeature {
                 icon: .Image.AddWizard.step1,
                 onCancel: onCancel,
                 onBack: onBack,
-                onNext: onNext
+                onNext: onNext,
+                processing: processing
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step1Welcome)
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step1Continue)
@@ -41,6 +43,7 @@ extension AddWizardFeature {
 #Preview {
     BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
         AddWizardFeature.AddWizardWelcomeView(
+            processing: false,
             onCancel: {},
             onBack: {},
             onNext: {}

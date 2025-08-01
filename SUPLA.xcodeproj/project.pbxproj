@@ -1226,6 +1226,7 @@
 		A5E490552A3C7F2A006801FE /* UserNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */; };
 		A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */; };
 		A5E5553A2E2A816D00E829C7 /* AwaitConnectivityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E555392E2A815C00E829C7 /* AwaitConnectivityUseCase.swift */; };
+		A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E556C72E3CA17C00E829C7 /* ObjectContainer.swift */; };
 		A5E9C2032DCCA8270001F263 /* FlowHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */; };
 		A5E9C2052DCCBDE90001F263 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160022C2AAEDE0049AA73 /* Text.swift */; };
 		A5E9C2062DCCBDF40001F263 /* Font+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160042C2AAFBD0049AA73 /* Font+Supla.swift */; };
@@ -2875,6 +2876,7 @@
 		A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterMock.swift; sourceTree = "<group>"; };
 		A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllIconsToDownloadUseCase.swift; sourceTree = "<group>"; };
 		A5E555392E2A815C00E829C7 /* AwaitConnectivityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitConnectivityUseCase.swift; sourceTree = "<group>"; };
+		A5E556C72E3CA17C00E829C7 /* ObjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContainer.swift; sourceTree = "<group>"; };
 		A5E9C2092DCCBE8C0001F263 /* CellScalingLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellScalingLimit.swift; sourceTree = "<group>"; };
 		A5E9CE232C32BB8700509702 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		A5E9CE262C32CE3500509702 /* SALoginDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SALoginDialogVC.swift; sourceTree = "<group>"; };
@@ -5519,6 +5521,7 @@
 				A57C882F2ACAA445000B0F10 /* ValuesFormatter.swift */,
 				A57668DC2AE995590025509D /* GeneralError.swift */,
 				A5B8A48E2CBD3F4A002FA7B2 /* SelectableItem.swift */,
+				A5E556C72E3CA17C00E829C7 /* ObjectContainer.swift */,
 				A57668E82AEA7AF50025509D /* SelectableList.swift */,
 				A57668F82AEAB12D0025509D /* HideableValue.swift */,
 				A5D837E22AF3A728002A420D /* LinkedList.swift */,
@@ -7700,6 +7703,7 @@
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
 				A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */,
 				A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */,
+				A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */,
 				A55A8DAC2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift in Sources */,
 				A5E9CE372C3430DB00509702 /* Completable+Supla.swift in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
