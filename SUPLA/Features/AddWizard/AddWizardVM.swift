@@ -56,7 +56,7 @@ extension AddWizardFeature {
                     onNext: { [weak self] profile in
                         if (profile.authorizationType != .email) {
                             if let self {
-                                state.screens = state.screens.just(.message(text: Strings.AddWizard.notAvailable, action: nil))
+                                state.screens = state.screens.just(.message(text: [Strings.AddWizard.notAvailable], action: nil))
                             }
                         }
                     }
@@ -332,7 +332,8 @@ extension AddWizardFeature {
         
         func showError(error: EspConfigurationError) {
             state.processing = false
-            state.screens = state.screens.push(.message(text: error.message.string, action: .repeat))
+            state.canceling = false
+            state.screens = state.screens.push(.message(text: error.messages.map { $0.string }, action: .repeat))
         }
         
         func showFinished() {
@@ -347,17 +348,28 @@ extension AddWizardFeature {
         // MARK: - Private methods
         
         private func welcomeNextStep() {
-            let appStatus = locationManager.authorizationStatus
-            SALog.info("Location status: \(appStatus)")
+            state.processing = true
             
-            if (!CLLocationManager.locationServicesEnabled()) {
-                state.screens = state.screens.just(.message(text: Strings.AddWizard.locationServiceOff, action: .location))
-            } else if (appStatus == .authorizedWhenInUse || appStatus == .authorizedAlways) {
-                navigateToNetworkSelection()
-            } else if (appStatus == .denied) {
-                state.screens = state.screens.just(.message(text: Strings.AddWizard.missingLocation, action: .location))
-            } else {
-                locationManager.requestWhenInUseAuthorization()
+            DispatchQueue.global(qos: .userInitiated).async {
+                let locationEnabled = CLLocationManager.locationServicesEnabled()
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    state.processing = false
+                    
+                    let appStatus = locationManager.authorizationStatus
+                    SALog.info("Location status: \(appStatus)")
+                    
+                    if (!locationEnabled) {
+                        state.screens = state.screens.just(.message(text: [Strings.AddWizard.locationServiceOff], action: .location))
+                    } else if (appStatus == .authorizedWhenInUse || appStatus == .authorizedAlways) {
+                        navigateToNetworkSelection()
+                    } else if (appStatus == .denied) {
+                        state.screens = state.screens.just(.message(text: [Strings.AddWizard.missingLocation], action: .location))
+                    } else {
+                        locationManager.requestWhenInUseAuthorization()
+                    }
+                }
             }
         }
         
@@ -403,7 +415,7 @@ extension AddWizardFeature.ViewModel: CLLocationManagerDelegate {
             if (status == .authorizedAlways || status == .authorizedWhenInUse) {
                 navigateToNetworkSelection()
             } else if (status == .denied) {
-                state.screens = state.screens.just(.message(text: Strings.AddWizard.missingLocation, action: .location))
+                state.screens = state.screens.just(.message(text: [Strings.AddWizard.missingLocation], action: .location))
             }
         }
     }

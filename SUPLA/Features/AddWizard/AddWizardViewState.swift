@@ -69,6 +69,6 @@ extension AddWizardFeature {
     
     enum Screen: Equatable {
         case welcome, networkSelection, configuration, success, manualConfiguration
-        case message(text: String, action: AddWizardFeature.MessageAction?)
+        case message(text: [String], action: AddWizardFeature.MessageAction?)
     }
 }

@@ -1703,6 +1703,7 @@ public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_andro
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed? where __Sealed : SharedCore.AddWizardFinalAction
 extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
   @frozen public enum __Sealed : Swift.Hashable {
+    case combined(SharedCore.EspConfigurationError.Combined)
     case communication(SharedCore.EspConfigurationError.Communication)
     case compatibility(SharedCore.EspConfigurationError.Compatibility)
     case configuration(SharedCore.EspConfigurationError.Configuration)

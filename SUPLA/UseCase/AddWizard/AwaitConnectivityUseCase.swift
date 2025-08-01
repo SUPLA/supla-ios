@@ -18,9 +18,10 @@
     
 import Network
 
-private let TIMEOUT_SECS: UInt64 = 30
+private let TIMEOUT_SECS: UInt64 = 15
+private let TEST_ENDPOINT = "http://captive.apple.com/hotspot-detect.html"
 
-struct AwaitConnectivity {
+enum AwaitConnectivity {
     protocol UseCase {
         func invoke() async -> Result
     }
@@ -28,26 +29,21 @@ struct AwaitConnectivity {
     class Implementation: UseCase {
         func invoke() async -> Result {
             let mainTask = Task {
-                let result: Result = await withCheckedContinuation { continuation in
-                    let monitor = NWPathMonitor()
-                    monitor.pathUpdateHandler = { path in
-                        switch path.status {
-                        case .satisfied:
-                            SALog.debug("Got connection")
-                            monitor.cancel()
-                            continuation.resume(returning: .success)
-                        default:
-                            SALog.debug("Awaiting connection (status: \(path.status))")
-                        }
-                    }
-                    monitor.start(queue: DispatchQueue(label: "InternetConnectionMonitor"))
-                }
+                let result = try await checkNetworkConnection()
+                let hasConnectivity = await checkInternetConnection()
+                
                 try Task.checkCancellation()
-                return result
+                
+                if (result == .success && hasConnectivity) {
+                    return result
+                } else {
+                    return .timeout
+                }
             }
             
             let timeoutTask = Task {
                 try await Task.sleep(nanoseconds: TIMEOUT_SECS * NSEC_PER_SEC)
+                SALog.debug("Timeout reached - canceling main task")
                 mainTask.cancel()
             }
             
@@ -65,6 +61,57 @@ struct AwaitConnectivity {
                 SALog.error("Reconnect timeout")
                 return .timeout
             }
+        }
+        
+        private func checkNetworkConnection() async throws -> Result {
+            let monitor = NWPathMonitor()
+            let continuationContainer = ObjectContainer<CheckedContinuation<AwaitConnectivity.Result, any Error>>()
+            
+            return try await withTaskCancellationHandler {
+                try await withCheckedThrowingContinuation { continuation in
+                    continuationContainer.object = continuation
+                    monitor.pathUpdateHandler = { path in
+                        switch path.status {
+                        case .satisfied:
+                            SALog.debug("Got connection")
+                            monitor.cancel()
+                            continuation.resume(returning: .success)
+                        default:
+                            if #available(iOS 14.2, *) {
+                                SALog.debug("Awaiting connection (status: \(path.status), reason: \(path.unsatisfiedReason))")
+                            } else {
+                                SALog.debug("Awaiting connection (status: \(path.status))")
+                            }
+                        }
+                    }
+                    monitor.start(queue: DispatchQueue(label: "InternetConnectionMonitor"))
+                }
+            } onCancel: {
+                SALog.debug("Canceling monitor")
+                monitor.cancel()
+                continuationContainer.object?.resume(throwing: CancellationError())
+            }
+        }
+        
+        private func checkInternetConnection() async -> Bool {
+            guard let url = URL(string: TEST_ENDPOINT) else {
+                return false
+            }
+            
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 10
+            request.httpMethod = "GET"
+            
+            if let (data, response) = try? await URLSession.shared.data(for: request),
+               let httpResponse = response as? HTTPURLResponse,
+               httpResponse.statusCode == 200,
+               let responseString = String(data: data, encoding: .utf8),
+               responseString.contains("Success")
+            {
+                return true
+            }
+            
+            return false
         }
     }
     

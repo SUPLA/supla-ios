@@ -5535,14 +5535,18 @@ Classes:
 - Name: "SharedCoreEspConfigurationError"
   SwiftName: "EspConfigurationError"
   Properties:
-  - Name: "icon"
+  - Name: "messages"
     PropertyKind: "Instance"
-    SwiftName: "icon"
-    Type: "SharedCoreIcon * _Nonnull"
-  - Name: "message"
-    PropertyKind: "Instance"
-    SwiftName: "message"
-    Type: "id<SharedCoreLocalizedString> _Nonnull"
+    SwiftName: "messages"
+    Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
+  Methods:
+  - Selector: "combineError:"
+    MethodKind: "Instance"
+    SwiftName: "combine(error:)"
+    ResultType: "SharedCoreEspConfigurationError * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreEspConfigurationError * _Nonnull"
 - Name: "SharedCoreEspConfigurationErrorRegistrationCheck"
   SwiftName: "EspConfigurationError.RegistrationCheck"
   Methods:
@@ -5726,6 +5730,42 @@ Classes:
 - Name: "SharedCoreEspConfigurationErrorReconnect"
   SwiftName: "EspConfigurationError.Reconnect"
   Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorCombined"
+  SwiftName: "EspConfigurationError.Combined"
+  Properties:
+  - Name: "messages"
+    PropertyKind: "Instance"
+    SwiftName: "messages"
+    Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
+  Methods:
+  - Selector: "initWithMessages:"
+    MethodKind: "Instance"
+    SwiftName: "init(messages:)"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
+  - Selector: "doCopyMessages:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(messages:)"
+    ResultType: "SharedCoreEspConfigurationErrorCombined * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSArray<id<SharedCoreLocalizedString>> * _Nonnull"
   - Selector: "isEqual:"
     MethodKind: "Instance"
     SwiftName: "isEqual(_:)"

@@ -20,7 +20,7 @@ import SwiftUI
 
 extension AddWizardFeature {
     struct AddWizardMessageView: SwiftUI.View {
-        let message: String
+        let messages: [String]
         let action: MessageAction?
         let onCancel: () -> Void
         let onBack: () -> Void
@@ -35,7 +35,9 @@ extension AddWizardFeature {
                 onNext: onNext,
                 nextButtonTitle: Strings.General.exit
             ) {
-                AddWizardFeature.AddWizardContentText(text: message)
+                ForEach(messages, id: \.self) { message in
+                    AddWizardFeature.AddWizardContentText(text: message)
+                }
 
                 if let action {
                     switch (action) {
@@ -88,7 +90,7 @@ private struct LocationButton: SwiftUI.View {
 #Preview {
     BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
         AddWizardFeature.AddWizardMessageView(
-            message: LocalizedStringId.addWizardConfigureTimeout.value,
+            messages: [LocalizedStringId.addWizardConfigureTimeout.value],
             action: .repeat,
             onCancel: {},
             onBack: {},
