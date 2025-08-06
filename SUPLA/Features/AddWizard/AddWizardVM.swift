@@ -35,6 +35,7 @@ extension AddWizardFeature {
         @Singleton<AwaitConnectivity.UseCase> private var awaitConnectivityUseCase
         @Singleton<DisconnectUseCase> private var disconnectUseCase
         @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
+        @Singleton<DateProvider> private var dateProvider
         
         private lazy var stateHandler: IosEspConfigurationStateHolder = .init(espConfigurationController: self)
         private var workingTask: Task<Void, Never>? = nil
@@ -223,7 +224,7 @@ extension AddWizardFeature {
             workingTask = Task {
                 dispatchPrecondition(condition: .notOnQueue(.main))
                 
-                let firstResult = try? await checkRegistrationEnabledUseCase.invoke()
+                let firstResult = await checkRegistrationEnabledCall()
                 if (firstResult == .timeout) {
                     let secondResult = try? await checkRegistrationEnabledUseCase.invoke()
                     
@@ -243,6 +244,17 @@ extension AddWizardFeature {
                         }
                     }
                 }
+            }
+        }
+        
+        private func checkRegistrationEnabledCall() async -> SharedCore.CheckRegistrationEnabledUseCase.Result? {
+            let currentTimestamp = dateProvider.currentTimestamp()
+            if let registrationTime = state.registrationActivationTime,
+               currentTimestamp < registrationTime + 3600 {
+                return .enabled
+            } else {
+                state.registrationActivationTime = currentTimestamp
+                return try? await checkRegistrationEnabledUseCase.invoke()
             }
         }
         

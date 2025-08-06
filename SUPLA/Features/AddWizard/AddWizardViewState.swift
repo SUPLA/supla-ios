@@ -30,6 +30,8 @@ extension AddWizardFeature {
         @Published var deviceParameters: [DeviceParameter] = []
         @Published var canceling: Bool = false
         @Published var followupPopupState: SuplaCore.AlertDialogState? = nil
+        
+        var registrationActivationTime: TimeInterval? = nil
     }
     
     struct ScreenStack {
