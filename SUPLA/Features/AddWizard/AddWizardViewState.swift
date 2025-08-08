@@ -27,6 +27,8 @@ extension AddWizardFeature {
         @Published var networkConfigurationError: Bool = false
         @Published var autoMode: Bool = true
         @Published var processing: Bool = false
+        @Published var progress: Float = 0
+        @Published var progressLabel: String? = nil
         @Published var deviceParameters: [DeviceParameter] = []
         @Published var canceling: Bool = false
         @Published var followupPopupState: SuplaCore.AlertDialogState? = nil

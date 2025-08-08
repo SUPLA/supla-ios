@@ -184,6 +184,7 @@ extension AddWizardFeature {
         }
         
         func onCloseProvidePasswordDialog() {
+            state.canceling = true
             state.providePasswordDialogState = nil
             stateHandler.handle(EspConfigurationEventCancel.shared)
         }
@@ -220,6 +221,7 @@ extension AddWizardFeature {
         }
 
         func onCloseSetPasswordDialog() {
+            state.canceling = true
             state.setPasswordDialogState = nil
             stateHandler.handle(EspConfigurationEventCancel.shared)
         }
@@ -417,7 +419,8 @@ extension AddWizardFeature {
         }
 
         func updateProgress(progress: Float, descriptionLabel: (any LocalizedString)?) {
-            // TODO
+            state.progress = progress
+            state.progressLabel = descriptionLabel?.string
         }
 
         func reconnect() {

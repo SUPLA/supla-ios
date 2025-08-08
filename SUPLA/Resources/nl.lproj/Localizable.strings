@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "I / O-apparaatregistratie is momenteel uitgeschakeld. Ga door naar pagina %@ en schakel op het tabblad \"Mijn SUPLA\" het toevoegen van apparaten in.";
 "The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
 "Incorrect input parameters (%@)!" = "Ongeldige invoerparameters (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Zorg ervoor dat de verbinding met het WiFi-netwerk van het uitvoerende toestel tot stand is gebracht.";
 "Help" = "Help";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trap automaat";
@@ -572,7 +571,7 @@
 "channel_state_uptime" = "%d dagen %02d:%02d:%02d";
 "lastconnectionresetcause_unknown" = "0: onbekend";
 "lastconnectionresetcause_activity_timeout" = "1: geen antwoord van de server";
-"lastconnectionresetcause_wifi_connection_lost" = "2: verlies van WiFi verbinding";
+"lastconnectionresetcause_wifi_connection_lost" = "2: verlies van Wi-Fi verbinding";
 "lastconnectionresetcause_server_connection_lost" = "3: Reset de verbinding met de server";
 
 /* Change caption */
@@ -603,7 +602,7 @@
 "add_wizard_manual_mode_settings" = "Ga naar systeemvoorkeuren";
 "add_wizard_location_service_off" = "Om de wizard \"Apparaat toevoegen\" correct te laten werken, moeten locatieservices op uw apparaat zijn ingeschakeld. Ga naar uw systeeminstellingen en zorg ervoor dat deze zijn ingeschakeld (Instellingen -> Privacy en beveiliging -> Locatieservices).";
 "add_wizard_missing_location" = "De SUPLA-app vereist locatietoegang om de wizard \"Apparaat toevoegen\" correct te laten werken. Geef de SUPLA-app toegang tot uw locatie in uw systeeminstellingen.";
-"wizard_scan_timeout" = "Wachttijd overschreden wachten op WiFi zoeken voltooid!";
+"wizard_scan_timeout" = "Wachttijd overschreden wachten op Wi-Fi zoeken voltooid!";
 "wizard_iodevice_notfound" = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";
 "wizard_connect_timeout" = "Wachttijd voor het tot stand brengen van een verbinding met het uitvoerende apparaat is overschreden!";
 "wizard_configure_timeout" = "Wachttijd voor het voltooien van de apparaatconfiguratie overschreden!";

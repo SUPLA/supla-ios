@@ -21,6 +21,8 @@ import SwiftUI
 extension AddWizardFeature {
     struct AddWizardManualInstruction: SwiftUI.View {
         let processing: Bool
+        let progress: Float
+        let progressLabel: String?
         let onCancel: () -> Void
         let onBack: () -> Void
         let onNext: () -> Void
@@ -36,6 +38,14 @@ extension AddWizardFeature {
                 processing: processing
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)
+                
+                if (processing) {
+                    AddWizardFeature.ProgressInformationView(
+                        progress: progress,
+                        label: progressLabel
+                    )
+                    .padding([.top, .bottom], Distance.default)
+                }
 
                 SettingsButton(action: {
                     if (!processing) {
@@ -77,6 +87,22 @@ private struct SettingsButton: SwiftUI.View {
     BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
         AddWizardFeature.AddWizardManualInstruction(
             processing: false,
+            progress: 0,
+            progressLabel: nil,
+            onCancel: {},
+            onBack: {},
+            onNext: {},
+            onSettings: {}
+        )
+    }
+}
+
+#Preview("Processing") {
+    BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
+        AddWizardFeature.AddWizardManualInstruction(
+            processing: true,
+            progress: 0.2,
+            progressLabel: Strings.AddWizard.statePreparing,
             onCancel: {},
             onBack: {},
             onNext: {},

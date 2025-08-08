@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Die Registrierung der Ein-/Ausgabegeräte ist momentan deaktiviert. Um fortzusetzen, kommen Sie zur Website %@ und im Bereich Meine SUPLA aktivieren Sie die Funktion Geräte hinzufügen.";
 "The connected Server does not support this function!" = "Der Server, mit dem eine Verbindung herstellen wurde, unterstützt diese Funktion nicht!";
 "Incorrect input parameters (%@)!" = "Falsche Eingabeparameter (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Versichern Sie sich, dass die Verbindung des Ausführungsgeräts mit dem WiFi-Netzwerk hergestellt wurde.";
 "Help" = "Hilfe";
 "Staircase timer" = "Treppenlichtsensor";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=de";
