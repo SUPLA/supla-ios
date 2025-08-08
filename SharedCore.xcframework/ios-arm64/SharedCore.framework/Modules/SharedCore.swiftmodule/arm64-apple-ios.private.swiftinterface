@@ -997,6 +997,11 @@ extension SharedCore.__Icon {
   case addWizardResultConnectionError
   case addWizardResultFailed
   case addWizardReconnectTimeout
+  case addWizardDeviceTemporarilyLocked
+  case addWizardStatePreparing
+  case addWizardStateConnecting
+  case addWizardStateConfiguring
+  case addWizardStateFinishing
   case channelStateUptime
   case lastConnectionResetCauseUnknown
   case lastConnectionResetCauseActivityTimeout
@@ -1702,6 +1707,7 @@ extension SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction {
     case back(SharedCore.AddWizardFinalActionBack)
     case close(SharedCore.AddWizardFinalActionClose)
     case error(SharedCore.AddWizardFinalActionError)
+    case reinitialize(SharedCore.AddWizardFinalActionReinitialize)
     case success(SharedCore.AddWizardFinalActionSuccess)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed, b: SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
@@ -1725,6 +1731,7 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
     case registrationCheck(SharedCore.EspConfigurationError.RegistrationCheck)
     case registrationEnable(SharedCore.EspConfigurationError.RegistrationEnable)
     case scan(SharedCore.EspConfigurationError.Scan)
+    case temporarilyLocked(SharedCore.EspConfigurationError.TemporarilyLocked)
     case wifi(SharedCore.EspConfigurationError.Wifi)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed, b: SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
@@ -1741,6 +1748,8 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
     case back(SharedCore.EspConfigurationEventBack)
     case cancel(SharedCore.EspConfigurationEventCancel)
     case canceled(SharedCore.EspConfigurationEventCanceled)
+    case close(SharedCore.EspConfigurationEventClose)
+    case credentialsNeeded(SharedCore.EspConfigurationEventCredentialsNeeded)
     case espConfigurationFailure(SharedCore.EspConfigurationEventEspConfigurationFailure)
     case espConfigured(SharedCore.EspConfigurationEventEspConfigured)
     case multipleNetworksFound(SharedCore.EspConfigurationEventMultipleNetworksFound)
@@ -1749,6 +1758,7 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
     case networkFound(SharedCore.EspConfigurationEventNetworkFound)
     case networkNotFound(SharedCore.EspConfigurationEventNetworkNotFound)
     case networkScanDisabled(SharedCore.EspConfigurationEventNetworkScanDisabled)
+    case passwordProvided(SharedCore.EspConfigurationEventPasswordProvided)
     case reconnectTimeout(SharedCore.EspConfigurationEventReconnectTimeout)
     case reconnected(SharedCore.EspConfigurationEventReconnected)
     case registrationActivated(SharedCore.EspConfigurationEventRegistrationActivated)
@@ -1756,6 +1766,7 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
     case registrationEnabled(SharedCore.EspConfigurationEventRegistrationEnabled)
     case registrationNotActivated(SharedCore.EspConfigurationEventRegistrationNotActivated)
     case registrationUnknown(SharedCore.EspConfigurationEventRegistrationUnknown)
+    case setupNeeded(SharedCore.EspConfigurationEventSetupNeeded)
     case start(SharedCore.EspConfigurationEventStart)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed, b: SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
@@ -1776,9 +1787,11 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationState {
     case checkingRegistration(SharedCore.CheckingRegistration)
     case configurationFailure(SharedCore.ConfigurationFailure)
     case configuringEsp(SharedCore.ConfiguringEsp)
+    case configuringPassword(SharedCore.ConfiguringPassword)
     case finished(SharedCore.Finished)
     case idle(SharedCore.Idle)
     case networkSearch(SharedCore.NetworkSearch)
+    case providingPassword(SharedCore.ProvidingPassword)
     case reconnecting(SharedCore.Reconnecting)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed, b: SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)

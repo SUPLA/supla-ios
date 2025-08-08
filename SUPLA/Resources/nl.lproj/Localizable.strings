@@ -283,6 +283,7 @@
 "general_profile" = "Rekening";
 "general_action" = "Actie";
 "general_delete" = "Delete";
+"incorrect_password" = "Onjuist wachtwoord";
 /* General - DayOfWeek */
 "monday" = "Maandag";
 "tuesday" = "Diensdag";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Dit apparaat heeft geen kanalen die zichtbaar zijn in de applicatie. Om de configuratie te voltooien, ga naar cloud.supla.org";
 "add_device_needs_cloud_close" = "Ik begrijp het.";
 "add_device_needs_cloud_go_to_cloud" = "Ga naar CLOUD";
+"add_wizard_device_temporarily_locked" = "Het limiet voor mislukte inlogpogingen is overschreden. Probeer het later opnieuw…";
+"add_wizard_state_preparing" = "Voorbereiden van het proces…";
+"add_wizard_state_connecting" = "Verbinden met het apparaat…";
+"add_wizard_state_configuring" = "Configureren van het apparaat…";
+"add_wizard_state_finishing" = "Afronding…";
+"add_wizard_password_clarification" = "Registratie van nieuwe apparaten in de Cloud is uitgeschakeld. Schakel deze handmatig in of geef uw accountwachtwoord op zodat de wizard deze automatisch kan inschakelen tijdens de registratie van nieuwe apparaten.";
+"add_wizard_password_rules" = "Het wachtwoord moet minimaal 8 tekens lang zijn en ten minste één hoofdletter, één kleine letter en één cijfer bevatten.";
+"add_wizard_password_set_title" = "Apparaatwachtwoord instellen";
+"add_wizard_password_new_label" = "Nieuw wachtwoord";
+"add_wizard_password_repeat_label" = "Herhaal wachtwoord";
+"add_wizard_password_enter_title" = "Apparaatwachtwoord";
+"add_wizard_password_instruction" = "Gebruik het wachtwoord dat is gebruikt voor toegang tot de lokale configuratie webpagina.\n\nWachtwoord vergeten? Je kunt het wijzigen op Supla Cloud of het apparaat terugzetten naar de fabrieksinstellingen.";

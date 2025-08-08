@@ -538,6 +538,15 @@
 		A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */; };
 		A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */; };
 		A54A068E2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */; };
+		A54E2A582E435CFB003F2926 /* EspRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2A572E435CEC003F2926 /* EspRepository.swift */; };
+		A54E2A5B2E436320003F2926 /* EspRequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2A5A2E43631D003F2926 /* EspRequestResult.swift */; };
+		A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2A5C2E437021003F2926 /* AuthorizeEspUseCase.swift */; };
+		A54E2AEF2E448F67003F2926 /* EspCookieInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AEE2E448F5A003F2926 /* EspCookieInterceptor.swift */; };
+		A54E2AF12E44B4E3003F2926 /* CreateEspPasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF02E44B4DD003F2926 /* CreateEspPasswordUseCase.swift */; };
+		A54E2AF32E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF22E44B572003F2926 /* TaskTimeoutHelper.swift */; };
+		A54E2AF42E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF22E44B572003F2926 /* TaskTimeoutHelper.swift */; };
+		A54E2AF62E44D43E003F2926 /* View+Focused.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF52E44D439003F2926 /* View+Focused.swift */; };
+		A54E2AF82E44D4A7003F2926 /* View+onSubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */; };
 		A54E7E8C2DE09BC6002FB0DE /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */; };
 		A550F2822D520F760011463B /* HistoryMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2812D520F6C0011463B /* HistoryMeasurement.swift */; };
 		A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */; };
@@ -643,6 +652,7 @@
 		A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FC2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift */; };
 		A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */; };
 		A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */; };
+		A56504E72E422FE3008DAE3D /* SetPasswordDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */; };
 		A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */; };
 		A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */; };
 		A567C7572DAD1272006245B5 /* SuplaCoreViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */; };
@@ -679,6 +689,8 @@
 		A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */; };
 		A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
+		A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D522E40AA5D0089DBD0 /* EspConfigurationSession.swift */; };
+		A5741D552E40DC630089DBD0 /* ProvidePasswordDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D542E40DC4C0089DBD0 /* ProvidePasswordDialog.swift */; };
 		A5741D842DC0EE0100ED6C18 /* CarPlayRefreshUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D832DC0EDFA00ED6C18 /* CarPlayRefreshUseCase.swift */; };
 		A5741D862DC1FC9F00ED6C18 /* ProfileServerUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */; };
 		A5741DAB2DC2513E00ED6C18 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5741D8C2DC24DF800ED6C18 /* WidgetKit.framework */; };
@@ -1227,6 +1239,8 @@
 		A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */; };
 		A5E5553A2E2A816D00E829C7 /* AwaitConnectivityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E555392E2A815C00E829C7 /* AwaitConnectivityUseCase.swift */; };
 		A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E556C72E3CA17C00E829C7 /* ObjectContainer.swift */; };
+		A5E557A62E3CE2B200E829C7 /* EspClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E557A52E3CE2AD00E829C7 /* EspClient.swift */; };
+		A5E557A82E3CEB3B00E829C7 /* supla_org_cert.cer in Resources */ = {isa = PBXBuildFile; fileRef = A5E557A72E3CEB3B00E829C7 /* supla_org_cert.cer */; };
 		A5E9C2032DCCA8270001F263 /* FlowHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A48A2CBD2812002FA7B2 /* FlowHStack.swift */; };
 		A5E9C2052DCCBDE90001F263 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160022C2AAEDE0049AA73 /* Text.swift */; };
 		A5E9C2062DCCBDF40001F263 /* Font+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160042C2AAFBD0049AA73 /* Font+Supla.swift */; };
@@ -2213,6 +2227,14 @@
 		A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCasesMocks.swift; sourceTree = "<group>"; };
 		A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift; sourceTree = "<group>"; };
 		A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A54E2A572E435CEC003F2926 /* EspRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepository.swift; sourceTree = "<group>"; };
+		A54E2A5A2E43631D003F2926 /* EspRequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRequestResult.swift; sourceTree = "<group>"; };
+		A54E2A5C2E437021003F2926 /* AuthorizeEspUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCase.swift; sourceTree = "<group>"; };
+		A54E2AEE2E448F5A003F2926 /* EspCookieInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspCookieInterceptor.swift; sourceTree = "<group>"; };
+		A54E2AF02E44B4DD003F2926 /* CreateEspPasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEspPasswordUseCase.swift; sourceTree = "<group>"; };
+		A54E2AF22E44B572003F2926 /* TaskTimeoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeoutHelper.swift; sourceTree = "<group>"; };
+		A54E2AF52E44D439003F2926 /* View+Focused.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Focused.swift"; sourceTree = "<group>"; };
+		A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onSubmit.swift"; sourceTree = "<group>"; };
 		A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 		A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 21.xcdatamodel"; sourceTree = "<group>"; };
 		A550F2812D520F6C0011463B /* HistoryMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMeasurement.swift; sourceTree = "<group>"; };
@@ -2319,6 +2341,7 @@
 		A56233FC2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationRepositoryMock.swift; sourceTree = "<group>"; };
 		A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIconNameProducer.swift; sourceTree = "<group>"; };
 		A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Ext.swift"; sourceTree = "<group>"; };
+		A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordDialog.swift; sourceTree = "<group>"; };
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
 		A567C7562DAD126D006245B5 /* SuplaCoreViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreViewModelTest.swift; sourceTree = "<group>"; };
@@ -2359,6 +2382,8 @@
 		A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationServiceMock.swift; sourceTree = "<group>"; };
 		A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseTests.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		A5741D522E40AA5D0089DBD0 /* EspConfigurationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigurationSession.swift; sourceTree = "<group>"; };
+		A5741D542E40DC4C0089DBD0 /* ProvidePasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidePasswordDialog.swift; sourceTree = "<group>"; };
 		A5741D832DC0EDFA00ED6C18 /* CarPlayRefreshUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayRefreshUseCase.swift; sourceTree = "<group>"; };
 		A5741D852DC1FC9000ED6C18 /* ProfileServerUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServerUseCasesMocks.swift; sourceTree = "<group>"; };
 		A5741D8C2DC24DF800ED6C18 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -2877,6 +2902,8 @@
 		A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllIconsToDownloadUseCase.swift; sourceTree = "<group>"; };
 		A5E555392E2A815C00E829C7 /* AwaitConnectivityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitConnectivityUseCase.swift; sourceTree = "<group>"; };
 		A5E556C72E3CA17C00E829C7 /* ObjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContainer.swift; sourceTree = "<group>"; };
+		A5E557A52E3CE2AD00E829C7 /* EspClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspClient.swift; sourceTree = "<group>"; };
+		A5E557A72E3CEB3B00E829C7 /* supla_org_cert.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = supla_org_cert.cer; sourceTree = "<group>"; };
 		A5E9C2092DCCBE8C0001F263 /* CellScalingLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellScalingLimit.swift; sourceTree = "<group>"; };
 		A5E9CE232C32BB8700509702 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		A5E9CE262C32CE3500509702 /* SALoginDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SALoginDialogVC.swift; sourceTree = "<group>"; };
@@ -3556,6 +3583,7 @@
 		407E7C331BBEB81B00D8878C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5E557A12E3CDF3500E829C7 /* RootCA */,
 				A5E2D6B02DCA238B00EBDADB /* LocalizedStringResource+Ext.swift */,
 				A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */,
 				A598CAD22CC6E5CE00A784FA /* LocalizedStringId+Ext.swift */,
@@ -4708,6 +4736,16 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		A54E2A592E436304003F2926 /* Esp */ = {
+			isa = PBXGroup;
+			children = (
+				A54E2AEE2E448F5A003F2926 /* EspCookieInterceptor.swift */,
+				A54E2A5A2E43631D003F2926 /* EspRequestResult.swift */,
+				A54E2A572E435CEC003F2926 /* EspRepository.swift */,
+			);
+			path = Esp;
+			sourceTree = "<group>";
+		};
 		A550F2832D5211450011463B /* Measurements */ = {
 			isa = PBXGroup;
 			children = (
@@ -5114,6 +5152,15 @@
 				A5A15FFC2C2A161E0049AA73 /* SuplaCore.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		A5741D562E40DC690089DBD0 /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */,
+				A5741D542E40DC4C0089DBD0 /* ProvidePasswordDialog.swift */,
+			);
+			path = Dialogs;
 			sourceTree = "<group>";
 		};
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
@@ -5551,6 +5598,7 @@
 		A59AB8982A2F6D5600D91F1F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				A54E2AF22E44B572003F2926 /* TaskTimeoutHelper.swift */,
 				A5E2D7012DCB64A700EBDADB /* SAKeychain.swift */,
 				A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */,
 			);
@@ -6027,6 +6075,7 @@
 		A5AE6D712E1E669C00BC2B67 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A5741D562E40DC690089DBD0 /* Dialogs */,
 				A5BCA94F2E262D9C00A5054A /* AddWizardManualInstruction.swift */,
 				A5AE6D7E2E1FD68700BC2B67 /* AddWizardSuccessView.swift */,
 				A5AE6D7C2E1FA6B500BC2B67 /* AddWizardMessageView.swift */,
@@ -6190,7 +6239,6 @@
 		A5BCA9582E277BCD00A5054A /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				A5BCA9B92E2A605F00A5054A /* Esp.swift */,
 				A5BCA9592E277BD400A5054A /* IosEspConfigurationStateHolder.swift */,
 			);
 			path = Configuration;
@@ -6199,6 +6247,9 @@
 		A5BCA95B2E2781A200A5054A /* AddWizard */ = {
 			isa = PBXGroup;
 			children = (
+				A54E2AF02E44B4DD003F2926 /* CreateEspPasswordUseCase.swift */,
+				A54E2A5C2E437021003F2926 /* AuthorizeEspUseCase.swift */,
+				A5741D522E40AA5D0089DBD0 /* EspConfigurationSession.swift */,
 				A5E555392E2A815C00E829C7 /* AwaitConnectivityUseCase.swift */,
 				A5BCA9B22E2A3A3700A5054A /* ConfigureEspUseCase.swift */,
 				A5BCA9662E27E2DB00A5054A /* ConnectToEspUseCase.swift */,
@@ -6229,8 +6280,10 @@
 		A5BCA9B42E2A481600A5054A /* Esp */ = {
 			isa = PBXGroup;
 			children = (
+				A5E557A42E3CE2A100E829C7 /* Client */,
 				A5BCA9B72E2A488300A5054A /* EspDeviceProtocol.swift */,
 				A5BCA9B52E2A481E00A5054A /* EspPostData.swift */,
+				A5BCA9B92E2A605F00A5054A /* Esp.swift */,
 			);
 			path = Esp;
 			sourceTree = "<group>";
@@ -6628,6 +6681,22 @@
 			path = Icon;
 			sourceTree = "<group>";
 		};
+		A5E557A12E3CDF3500E829C7 /* RootCA */ = {
+			isa = PBXGroup;
+			children = (
+				A5E557A72E3CEB3B00E829C7 /* supla_org_cert.cer */,
+			);
+			path = RootCA;
+			sourceTree = "<group>";
+		};
+		A5E557A42E3CE2A100E829C7 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				A5E557A52E3CE2AD00E829C7 /* EspClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
 		A5E9CE252C32CE0B00509702 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
@@ -6843,6 +6912,7 @@
 		A5F29B7C2A1E36B300ED700A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				A54E2A592E436304003F2926 /* Esp */,
 				A5882EC62DBD731700F1FC4A /* CarPlayItemRepository.swift */,
 				A550F2832D5211450011463B /* Measurements */,
 				A505EC492CF88C1E00E69BDB /* ProfileServerRepository.swift */,
@@ -6867,39 +6937,41 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */,
-				A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */,
-				A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */,
-				A5552ED92D537A6000A3F6A2 /* Dictonary+Ext.swift */,
-				A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */,
-				A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */,
-				A5E05BCD2CB7154100202583 /* NSDecimalNumber+Ext.swift */,
-				A5E05BCB2CB6A90A00202583 /* Equatable+Ext.swift */,
-				A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */,
 				A57668EC2AEA85150025509D /* Array+Ext.swift */,
+				A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */,
+				A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */,
 				A56233EA2AB31A45001CB948 /* CALayer+Ext.swift */,
 				A56233E82AB31A26001CB948 /* CGPoint+Ext.swift */,
 				A5AD70172C00766400A36318 /* CGRect+Ext.swift */,
 				A5E9CE362C3430DB00509702 /* Completable+Supla.swift */,
 				A57668E22AEA4E450025509D /* Date+Ext.swift */,
+				A5552ED92D537A6000A3F6A2 /* Dictonary+Ext.swift */,
 				A57668FE2AEFB96A0025509D /* Double+Ext.swift */,
+				A5E05BCB2CB6A90A00202583 /* Equatable+Ext.swift */,
 				A573B0952A5FD152001E19D0 /* FatalError.swift */,
 				A56233E22AB1903C001CB948 /* Float+Ext.swift */,
 				A5477DC22AA5BE7A00220B4A /* Int+Ext.swift */,
+				A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */,
+				A5E05BCD2CB7154100202583 /* NSDecimalNumber+Ext.swift */,
 				A5F29B8A2A209EC900ED700A /* NSFetchRequest+Ext.swift */,
 				A5F29B732A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift */,
 				A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */,
 				A5F29C012A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift */,
 				A5F29BA22A234BFA00ED700A /* ObservableType+Ext.swift */,
+				A584E2062CABCE3B00232A98 /* SAExectricityMeterExtendedValue+Ext.swift */,
 				A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */,
 				A5FE67662A666F2200147D1F /* String+Ext.swift */,
 				A5A160122C2AD4470049AA73 /* Synchronization.swift */,
+				A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */,
 				A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */,
 				A5A15FE92C2987450049AA73 /* UINavigationController+Ext.swift */,
 				A58A9BFD2AA0A4BD00D28848 /* UIView+Ext.swift */,
 				A58472002C2D7F3200713D36 /* UIViewController+SuplaNavBar.swift */,
 				A50B5D232BEE4CE600918D18 /* UIViewController+Toast.swift */,
-				A5E039E62CA18E350018CEB7 /* Bool+Ext.swift */,
+				A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */,
+				A54E2AF52E44D439003F2926 /* View+Focused.swift */,
+				A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */,
+				A5B8A4902CBD4752002FA7B2 /* WithFunction.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -7311,6 +7383,7 @@
 				013F7EC523EB4B500061A497 /* battery@2x.png in Resources */,
 				010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
+				A5E557A82E3CEB3B00E829C7 /* supla_org_cert.cer in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
 				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
 				011021AF25CC337500621D41 /* bridge_disconnected@3x.png in Resources */,
@@ -7583,8 +7656,10 @@
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
 				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
+				A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */,
 				A57668F32AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift in Sources */,
 				A584E2052CAB390700232A98 /* ElectricityMeterValueFormatter.swift in Sources */,
+				A56504E72E422FE3008DAE3D /* SetPasswordDialog.swift in Sources */,
 				A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
 				A58D1B842CDCF28700B5A019 /* Supla+Shareable.swift in Sources */,
@@ -7619,6 +7694,7 @@
 				A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */,
 				A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
+				A5741D552E40DC630089DBD0 /* ProvidePasswordDialog.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
 				A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */,
 				A594ADC52C9C19E900780EF3 /* ListOnlineState.swift in Sources */,
@@ -7689,6 +7765,7 @@
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */,
 				A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */,
+				A5E557A62E3CE2B200E829C7 /* EspClient.swift in Sources */,
 				A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */,
 				A5F5C3E82C357DF00058E255 /* LockScreenCell.swift in Sources */,
 				A505EC3F2CF71F4A00E69BDB /* CreateProfileView.swift in Sources */,
@@ -7743,6 +7820,7 @@
 				A584E1FF2CAAC88900232A98 /* ElectricityMeterSettings.swift in Sources */,
 				A594ADC92C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift in Sources */,
 				A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */,
+				A54E2AF32E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */,
 				A5BCA95F2E278E7300A5054A /* SuplaClientMessageProxy.swift in Sources */,
 				A503ABAD2B67AC44008CDA1F /* LoadChannelConfigUseCase.swift in Sources */,
 				A56233E52AB1AB69001CB948 /* UIIconButton.swift in Sources */,
@@ -7750,6 +7828,7 @@
 				A584E1F82CA6CA8A00232A98 /* Distance.swift in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
 				A5A160112C2AD0F70049AA73 /* SuplaAppStateHolder.swift in Sources */,
+				A54E2AF62E44D43E003F2926 /* View+Focused.swift in Sources */,
 				A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */,
 				A5F29BC22A24E30100ED700A /* ChangeChannelsVisibilityUseCase.swift in Sources */,
 				A5E05BC32CB552DE00202583 /* ElectricityMarkerCustomData.swift in Sources */,
@@ -7853,6 +7932,7 @@
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
 				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
+				A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				A55A8D982BAB28CC00C540D4 /* ScopeFunctions.swift in Sources */,
 				A5E9CE292C32CE4700509702 /* SALoginDialogVM.swift in Sources */,
@@ -7876,6 +7956,7 @@
 				A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */,
 				A56233F92AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift in Sources */,
 				A57668E92AEA7AF50025509D /* SelectableList.swift in Sources */,
+				A54E2A582E435CFB003F2926 /* EspRepository.swift in Sources */,
 				A58D1B8C2CDD695400B5A019 /* GetChannelDefaultCaptionUseCase.swift in Sources */,
 				A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */,
 				A5A15FEF2C298AAD0049AA73 /* StatusVM.swift in Sources */,
@@ -8025,6 +8106,7 @@
 				A52BFEB32B063EAC00A2F64C /* RangeValueType.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				A5A15FE32C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift in Sources */,
+				A54E2A5B2E436320003F2926 /* EspRequestResult.swift in Sources */,
 				A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */,
 				A5F29BA12A20D6DD00ED700A /* ChannelBaseTableViewController.swift in Sources */,
 				A5B8A47A2CB86AF7002FA7B2 /* ChartStyle.swift in Sources */,
@@ -8032,6 +8114,7 @@
 				A530EE0D2A56C65D00F8DAEE /* UIImage+Supla.swift in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */,
+				A54E2AF12E44B4E3003F2926 /* CreateEspPasswordUseCase.swift in Sources */,
 				A5F29B9D2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift in Sources */,
 				A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
@@ -8304,6 +8387,7 @@
 				A54149272B63031800B44BD6 /* GpmDetailVM.swift in Sources */,
 				A51BE8FC2AA7300A00718F2F /* ThermometerValues.swift in Sources */,
 				A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */,
+				A54E2AEF2E448F67003F2926 /* EspCookieInterceptor.swift in Sources */,
 				A58A63072C07163E00A9D02D /* VerticalBlindWindowState.swift in Sources */,
 				A5F29BC42A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift in Sources */,
 				A5B3CBEF2B625D9000F95AC3 /* WeightValueProvider.swift in Sources */,
@@ -8539,6 +8623,7 @@
 				A54637A72D37A94A00D746F5 /* ImpulseCounterChartMarkerView.swift in Sources */,
 				A57668F72AEAA8870025509D /* ChartParameters.swift in Sources */,
 				A5DDF9242D79A7530056B539 /* ContainerGeneralFeature.swift in Sources */,
+				A54E2AF82E44D4A7003F2926 /* View+onSubmit.swift in Sources */,
 				A5A15FF92C299D230049AA73 /* Color+Supla.swift in Sources */,
 				A50B5D222BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift in Sources */,
 			);
@@ -8804,6 +8889,7 @@
 				A5C6903A2DD736C600194C1B /* SingleCallResult.swift in Sources */,
 				A5CF3D852DD4C3E000207384 /* UserIconsUseCase.swift in Sources */,
 				A5C6903C2DD74E3F00194C1B /* TemperatureUnit.swift in Sources */,
+				A54E2AF42E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */,
 				A5C6903D2DD74FF000194C1B /* ValuesFormatter.swift in Sources */,
 				A5C690372DD7366B00194C1B /* DoubleValueParser.swift in Sources */,
 				A5C690362DD7366400194C1B /* IntValueParser.swift in Sources */,

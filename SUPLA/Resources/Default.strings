@@ -66,6 +66,7 @@
 "general_action" = "Action";
 "general_delete" = "Delete";
 "general_select" = "-- select --";
+"incorrect_password" = "Incorrect password";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -515,3 +516,15 @@
 "add_device_needs_cloud_message" = "This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org";
 "add_device_needs_cloud_close" = "I understand";
 "add_device_needs_cloud_go_to_cloud" = "Go to CLOUD";
+"add_wizard_device_temporarily_locked" = "The limit of unsuccessful login attempts has been exceeded. Please try again later…";
+"add_wizard_state_preparing" = "Preparation…";
+"add_wizard_state_connecting" = "Connecting…";
+"add_wizard_state_configuring" = "Configuring…";
+"add_wizard_state_finishing" = "Finishing…";
+"add_wizard_password_clarification" = "Registration of new devices in the Cloud is disabled. Enable it manually or provide your account password for the wizard to enable it automatically during the new device registration.";
+"add_wizard_password_rules" = "Password should be at least 8 characters long and contain at least one uppercase, one lowercase letter and one number.";
+"add_wizard_password_set_title" = "Set Device Password";
+"add_wizard_password_new_label" = "New password";
+"add_wizard_password_repeat_label" = "Repeat password";
+"add_wizard_password_enter_title" = "Device Password";
+"add_wizard_password_instruction" = "Please use the password used for local configuration web page access.\n\nForgot your password? You can change it on Supla Cloud or reset the device to factory settings.";

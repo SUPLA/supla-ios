@@ -283,6 +283,7 @@
 "general_profile" = "Račun";
 "general_action" = "Dejanje";
 "general_delete" = "Izbišite";
+"incorrect_password" = "Napačno geslo";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Ta naprava nima nobenih drugih kanalov, vidnih v aplikacji. Če želite dokončati konfiguracijo, pojdite na cloud.supla.org";
 "add_device_needs_cloud_close" = "Razumem";
 "add_device_needs_cloud_go_to_cloud" = "Pojdite na CLOUD";
+"add_wizard_device_temporarily_locked" = "Prekoračena je bila omejitev neuspešnih poskusov prijave. Prosimo, poskusite znova kasneje…";
+"add_wizard_state_preparing" = "Priprava procesa…";
+"add_wizard_state_connecting" = "Povezovanje z napravo…";
+"add_wizard_state_configuring" = "Konfiguracija naprave…";
+"add_wizard_state_finishing" = "Zaključevanje…";
+"add_wizard_password_clarification" = "Registracija novih naprav v oblaku je onemogočena. Omogočite jo ročno ali vnesite geslo svojega računa, da jo čarovnik samodejno omogoči med registracijo novih naprav.";
+"add_wizard_password_rules" = "Geslo mora biti dolgo vsaj 8 znakov in vsebovati vsaj eno veliko, eno malo črko in eno številko.";
+"add_wizard_password_set_title" = "Nastavi geslo naprave";
+"add_wizard_password_new_label" = "Novo geslo";
+"add_wizard_password_repeat_label" = "Ponovi geslo";
+"add_wizard_password_enter_title" = "Geslo naprave";
+"add_wizard_password_instruction" = "Prosimo, uporabite geslo, ki je bilo uporabljeno za dostop do spletne strani lokalne konfiguracije.\n\nSte pozabili geslo? Lahko ga spremenite na Supla Cloud ali ponastavite napravo na tovarniške nastavitve.";

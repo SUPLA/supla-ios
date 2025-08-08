@@ -15,39 +15,29 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
 extension CaptionChangeDialogFeature {
     struct Dialog: View {
         @ObservedObject var viewModel: ViewModel
-        
+
         var body: some View {
             SuplaCore.Dialog.Base(onDismiss: viewModel.hide) {
-                VStack(alignment: .leading, spacing: 0) {
-                    SuplaCore.Dialog.Header(title: Strings.ChangeCaption.header)
+                SuplaCore.Dialog.Header(title: Strings.ChangeCaption.header)
+                
+                SuplaCore.Dialog.Content(spacing: 0) {
                     SuplaCore.Dialog.TextField(value: $viewModel.caption, label: viewModel.label)
-                        .padding([.leading, .trailing], Distance.default)
+                    
                     if let error = viewModel.error {
-                        Text(error)
-                            .fontTitleSmall()
-                            .textColor(Color.Supla.error)
-                            .padding([.leading, .trailing], Distance.small + Distance.default)
-                            .padding(.top, 2)
+                        SuplaCore.Dialog.FieldErrorText(error)
                     }
-                    SuplaCore.Dialog.Divider()
-                        .padding([.top], Distance.default)
-                    HStack(spacing: Distance.default) {
-                        BorderedButton(title: Strings.General.cancel, fullWidth: true) {
-                            viewModel.hide()
-                        }
-                        FilledButton(title: Strings.General.ok, fullWidth: true) {
-                            viewModel.onApply()
-                        }
-                    }
-                    .padding([.top, .bottom], Distance.small)
-                    .padding([.leading, .trailing], Distance.default)
                 }
+                
+                SuplaCore.Dialog.DoubleButtons(
+                    onNegativeClick: { viewModel.hide() },
+                    onPositiveClick: { viewModel.onApply() }
+                )
             }
         }
     }

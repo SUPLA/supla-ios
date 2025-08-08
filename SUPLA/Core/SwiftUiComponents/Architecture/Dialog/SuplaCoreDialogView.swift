@@ -21,10 +21,19 @@ import SwiftUI
 extension SuplaCore.Dialog {
     struct Base<Content: View>: SwiftUI.View {
         let onDismiss: () -> Void
+        let alignment: SwiftUICore.HorizontalAlignment
+        let spacing: CGFloat
         let content: Content
         
-        init(onDismiss: @escaping () -> Void = {}, @ViewBuilder _ content: () -> Content) {
+        init(
+            onDismiss: @escaping () -> Void = {},
+            alignment: SwiftUICore.HorizontalAlignment = .center,
+            spacing: CGFloat = 0,
+            @ViewBuilder _ content: () -> Content
+        ) {
             self.onDismiss = onDismiss
+            self.alignment = alignment
+            self.spacing = spacing
             self.content = content()
         }
         
@@ -39,11 +48,36 @@ extension SuplaCore.Dialog {
                         }
                     }
 
-                content
-                    .frame(maxWidth: UIScreen.main.bounds.size.width - 50)
-                    .background(Color.Supla.surface)
-                    .cornerRadius(Dimens.radiusDefault)
+                VStack(alignment: alignment, spacing: spacing) {
+                    content
+                }
+                .frame(maxWidth: UIScreen.main.bounds.size.width - 50)
+                .background(Color.Supla.surface)
+                .cornerRadius(Dimens.radiusDefault)
             }
+        }
+    }
+    
+    struct Content<Content: View>: SwiftUI.View {
+        let alignment: SwiftUICore.HorizontalAlignment
+        let spacing: CGFloat
+        let content: Content
+        
+        init(
+            alignment: SwiftUICore.HorizontalAlignment = .leading,
+            spacing: CGFloat = Distance.default,
+            @ViewBuilder _ content: () -> Content
+        ) {
+            self.alignment = alignment
+            self.spacing = spacing
+            self.content = content()
+        }
+        
+        var body: some SwiftUI.View {
+            VStack(alignment: alignment, spacing: spacing) {
+                content
+            }
+            .padding([.leading, .trailing], Distance.default)
         }
     }
     
@@ -98,11 +132,90 @@ extension SuplaCore.Dialog {
             .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
         }
     }
+    
+    struct DoubleButtons: SwiftUI.View {
+        let onNegativeClick: () -> Void
+        let onPositiveClick: () -> Void
+        let processing: Bool
+        let positiveDisabled: Bool
+        let negativeText: String
+        let positiveText: String
+        
+        init(
+            onNegativeClick: @escaping () -> Void,
+            onPositiveClick: @escaping () -> Void,
+            processing: Bool = false,
+            positiveDisabled: Bool = false,
+            negativeText: String = Strings.General.cancel,
+            positiveText: String = Strings.General.ok
+        ) {
+            self.onNegativeClick = onNegativeClick
+            self.onPositiveClick = onPositiveClick
+            self.processing = processing
+            self.positiveDisabled = positiveDisabled
+            self.negativeText = negativeText
+            self.positiveText = positiveText
+        }
+        
+        var body: some SwiftUI.View {
+            Divider()
+                .padding(.top, Distance.default)
+            HStack(spacing: Distance.tiny) {
+                BorderedButton(
+                    title: negativeText,
+                    fullWidth: true,
+                    action: onNegativeClick
+                )
+                if (processing) {
+                    ZStack {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }.frame(maxWidth: .infinity)
+                } else {
+                    FilledButton(
+                        title: positiveText,
+                        fullWidth: true,
+                        action: onPositiveClick
+                    ).disabled(positiveDisabled)
+                }
+            }
+            .padding(Distance.default)
+        }
+    }
+    
+    struct FieldErrorText: SwiftUI.View {
+        let text: String
+        
+        init(_ text: String) {
+            self.text = text
+        }
+        
+        var body: some SwiftUI.View {
+            Text(text)
+                .fontTitleSmall()
+                .textColor(Color.Supla.error)
+                .padding([.leading], Distance.small)
+                .padding(.top, 2)
+        }
+    }
 }
 
 #Preview {
     VStack {
-        SuplaCore.Dialog.TextField(value: .constant("Value"), label: "Label")
-        SuplaCore.Dialog.TextField(value: .constant(""), label: "Label")
+        SuplaCore.Dialog.Base(onDismiss: {}) {
+            SuplaCore.Dialog.Header(title: "Header")
+            
+            SuplaCore.Dialog.Content {
+                SuplaCore.Dialog.TextField(value: .constant("Value"), label: "Label")
+                    .padding([.leading, .trailing], Distance.default)
+                SuplaCore.Dialog.TextField(value: .constant(""), label: "Label")
+                    .padding([.leading, .trailing], Distance.default)
+            }
+            
+            SuplaCore.Dialog.DoubleButtons(
+                onNegativeClick: {},
+                onPositiveClick: {}
+            )
+        }
     }
 }

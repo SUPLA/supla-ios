@@ -283,6 +283,7 @@
 "general_profile" = "Compte";
 "general_action" = "Action";
 "general_delete" = "Supprimer";
+"incorrect_password" = "Mot de passe incorrect";
 /* General - DayOfWeek */
 "monday" = "Lundi";
 "tuesday" = "Mardi";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Ce dispositif n'a pas de canaux visibles dans l'application. Pour terminer la configuration, allez sur cloud.supla.org";
 "add_device_needs_cloud_close" = "Je comprends";
 "add_device_needs_cloud_go_to_cloud" = "Aller à CLOUD";
+"add_wizard_device_temporarily_locked" = "La limite de tentatives de connexion infructueuses a été dépassée. Veuillez réessayer plus tard…";
+"add_wizard_state_preparing" = "Préparation du processus…";
+"add_wizard_state_connecting" = "Connexion à l'appareil…";
+"add_wizard_state_configuring" = "Configuration de l'appareil…";
+"add_wizard_state_finishing" = "Finalisation…";
+"add_wizard_password_clarification" = "L'enregistrement de nouveaux appareils dans le Cloud est désactivé. Activez-le manuellement ou fournissez le mot de passe de votre compte pour que l'assistant l'active automatiquement pendant l'enregistrement de nouveaux appareils.";
+"add_wizard_password_rules" = "Le mot de passe doit contenir au moins 8 caractères et inclure au moins une lettre majuscule, une lettre minuscule et un chiffre.";
+"add_wizard_password_set_title" = "Définir le mot de passe de l'appareil";
+"add_wizard_password_new_label" = "Nouveau mot de passe";
+"add_wizard_password_repeat_label" = "Répéter le mot de passe";
+"add_wizard_password_enter_title" = "Mot de passe de l'appareil";
+"add_wizard_password_instruction" = "Veuillez utiliser le mot de passe utilisé pour l'accès à la page web de configuration locale.\n\nMot de passe oublié ? Vous pouvez le modifier sur Supla Cloud ou réinitialiser l'appareil aux paramètres d'usine.";

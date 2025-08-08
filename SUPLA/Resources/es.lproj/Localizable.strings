@@ -284,6 +284,7 @@
 "general_profile" = "Cuenta";
 "general_action" = "Acción";
 "general_delete" = "Borrar";
+"incorrect_password" = "Contraseña incorrecta";
 /* General - DayOfWeek */
 "monday" = "Lunes";
 "tuesday" = "Martes";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Este dispositivo no tiene ningún canal visible en la aplicación. Ir a cloud.supla.org para completar la configuración";
 "add_device_needs_cloud_close" = "entiendo";
 "add_device_needs_cloud_go_to_cloud" = "Ir a CLOUD";
+"add_wizard_device_temporarily_locked" = "Se ha excedido el límite de intentos de inicio de sesión fallidos. Por favor, inténtelo de nuevo más tarde…";
+"add_wizard_state_preparing" = "Preparando el proceso…";
+"add_wizard_state_connecting" = "Conectando al dispositivo…";
+"add_wizard_state_configuring" = "Configurando el dispositivo…";
+"add_wizard_state_finishing" = "Finalización…";
+"add_wizard_password_clarification" = "El registro de nuevos dispositivos en la Nube está deshabilitado. Habilítelo manualmente o proporcione la contraseña de su cuenta para que el asistente lo habilite automáticamente durante el registro de nuevos dispositivos.";
+"add_wizard_password_rules" = "La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula y un número.";
+"add_wizard_password_set_title" = "Establecer contraseña del dispositivo";
+"add_wizard_password_new_label" = "Nueva contraseña";
+"add_wizard_password_repeat_label" = "Repetir contraseña";
+"add_wizard_password_enter_title" = "Contraseña del dispositivo";
+"add_wizard_password_instruction" = "Por favor, use la contraseña utilizada para el acceso a la página web de configuración local.\n\n¿Olvidaste tu contraseña? Puedes cambiarla en Supla Cloud o restablecer el dispositivo a la configuración de fábrica.";

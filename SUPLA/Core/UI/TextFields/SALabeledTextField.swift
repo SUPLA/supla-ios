@@ -46,6 +46,11 @@ class SALabeledTextField: UIView {
         set { textField.isEnabled = newValue }
     }
     
+    var returnKeyType: UIReturnKeyType {
+        get { textField.returnKeyType }
+        set { textField.returnKeyType = newValue }
+    }
+    
     fileprivate lazy var labelView: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -106,6 +111,10 @@ class SALabeledTextField: UIView {
 extension Reactive where Base: SALabeledTextField {
     var text: ControlProperty<String?> {
         base.textField.rx.text
+    }
+    
+    var returnEvent: ControlEvent<()> {
+        base.textField.rx.controlEvent(.editingDidEndOnExit)
     }
 }
 

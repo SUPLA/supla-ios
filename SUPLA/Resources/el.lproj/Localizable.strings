@@ -283,6 +283,7 @@
 "general_profile" = "Λογαριασμός";
 "general_action" = "Ενέργεια";
 "general_delete" = "Αφαιρώ";
+"incorrect_password" = "Λανθασμένος κωδικός πρόσβασης";
 /* General - DayOfWeek */
 "monday" = "Δευτέρα";
 "tuesday" = "Τρίτη";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Αυτή η συσκευή δεν έχει ορατά κανάλια στην εφαρμογή. Για να ολοκληρώσετε τη ρύθμιση, μεταβείτε στο cloud.supla.org";
 "add_device_needs_cloud_close" = "Καταλαβαίνω";
 "add_device_needs_cloud_go_to_cloud" = "Μεταβείτε στο CLOUD";
+"add_wizard_device_temporarily_locked" = "Έχει ξεπεραστεί το όριο των ανεπιτυχών προσπαθειών σύνδεσης. Παρακαλώ δοκιμάστε ξανά αργότερα…";
+"add_wizard_state_preparing" = "Προετοιμασία της διαδικασίας…";
+"add_wizard_state_connecting" = "Σύνδεση με τη συσκευή…";
+"add_wizard_state_configuring" = "Διαμόρφωση της συσκευής…";
+"add_wizard_state_finishing" = "Ολοκλήρωση…";
+"add_wizard_password_clarification" = "Η εγγραφή νέων συσκευών στο Cloud είναι απενεργοποιημένη. Ενεργοποιήστε την χειροκίνητα ή δώστε τον κωδικό πρόσβασης του λογαριασμού σας για να την ενεργοποιήσει αυτόματα ο οδηγός κατά την εγγραφή νέων συσκευών.";
+"add_wizard_password_rules" = "Ο κωδικός πρόσβασης πρέπει να έχει μήκος τουλάχιστον 8 χαρακτήρες και να περιέχει τουλάχιστον ένα κεφαλαίο, ένα πεζό γράμμα και έναν αριθμό.";
+"add_wizard_password_set_title" = "Ορισμός κωδικού πρόσβασης συσκευής";
+"add_wizard_password_new_label" = "Νέος κωδικός πρόσβασης";
+"add_wizard_password_repeat_label" = "Επανάληψη κωδικού πρόσβασης";
+"add_wizard_password_enter_title" = "Κωδικός πρόσβασης συσκευής";
+"add_wizard_password_instruction" = "Παρακαλώ χρησιμοποιήστε τον κωδικό πρόσβασης που χρησιμοποιήθηκε για την πρόσβαση στην τοπική ιστοσελίδα διαμόρφωσης.\n\nΞεχάσατε τον κωδικό πρόσβασης; Μπορείτε να τον αλλάξετε στο Supla Cloud ή να επαναφέρετε τη συσκευή στις εργοστασιακές ρυθμίσεις.";

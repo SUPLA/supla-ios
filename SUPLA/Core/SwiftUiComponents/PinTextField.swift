@@ -128,40 +128,6 @@ struct PinTextFieldModifier<Value: Hashable>: ViewModifier {
     }
 }
 
-private extension View {
-    @ViewBuilder
-    func focused<Value>(_ binding: Binding<Value?>, equals value: Value) -> some View where Value: Hashable {
-        self.modifier(TextFieldFocused(binding: binding, value: value))
-    }
-}
-
-private struct TextFieldFocused<Value>: ViewModifier where Value: Hashable {
-    private let value: Value
-    @FocusState private var focused: Value?
-    @Binding private var binding: Value?
-
-    init(binding: Binding<Value?>, value: Value) {
-        self._binding = binding
-        self.value = value
-    }
-
-    func body(content: Content) -> some View {
-        content
-            .focused($focused, equals: value)
-            .onChange(of: binding) { newValue in
-                focused = newValue
-            }
-            .onChange(of: focused) { newValue in
-                if newValue != nil {
-                    binding = newValue
-                }
-            }
-            .onAppear {
-                focused = binding
-            }
-    }
-}
-
 private enum TestFieldFocus: Hashable {}
 
 #Preview("Empty") {
