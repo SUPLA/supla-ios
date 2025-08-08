@@ -284,6 +284,7 @@
 "general_profile" = "Konto";
 "general_action" = "Aktion";
 "general_delete" = "Löschen";
+"incorrect_password" = "Falsches Passwort";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -697,3 +698,15 @@
 "add_device_needs_cloud_message" = "Dieses Gerät hat keine in der App sichtbaren Kanäle. Um die Konfiguration abzuschließen, gehen Sie zum cloud.supla.org";
 "add_device_needs_cloud_close" = "Verstehe";
 "add_device_needs_cloud_go_to_cloud" = "Zur CLOUD gehen";
+"add_wizard_device_temporarily_locked" = "Das Limit für erfolglose Anmeldeversuche wurde überschritten. Bitte versuchen Sie es später noch einmal…";
+"add_wizard_state_preparing" = "Prozessvorbereitung…";
+"add_wizard_state_connecting" = "Verbindung zum Gerät…";
+"add_wizard_state_configuring" = "Gerätekonfiguration…";
+"add_wizard_state_finishing" = "Abschluss…";
+"add_wizard_password_clarification" = "Die Registrierung neuer Geräte in der Cloud ist deaktiviert. Aktivieren Sie sie manuell oder geben Sie Ihr Kontopasswort ein, damit der Assistent sie während der Registrierung neuer Geräte automatisch aktiviert.";
+"add_wizard_password_rules" = "Das Passwort sollte mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, einen Kleinbuchstaben und eine Zahl enthalten.";
+"add_wizard_password_set_title" = "Gerätepasswort festlegen";
+"add_wizard_password_new_label" = "Neues Passwort";
+"add_wizard_password_repeat_label" = "Passwort wiederholen";
+"add_wizard_password_enter_title" = "Gerätepasswort";
+"add_wizard_password_instruction" = "Bitte verwenden Sie das Passwort, das für den Zugriff auf die lokale Konfigurationswebseite verwendet wurde.\n\nPasswort vergessen? Sie können es in der Supla Cloud ändern oder das Gerät auf die Werkseinstellungen zurücksetzen.";

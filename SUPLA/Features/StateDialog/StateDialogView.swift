@@ -24,46 +24,44 @@ extension StateDialogFeature {
 
         var body: some View {
             SuplaCore.Dialog.Base(onDismiss: viewModel.onDismiss) {
-                VStack(spacing: 0) {
-                    StateDialogHeader(viewModel.title, viewModel.subtitle)
+                StateDialogHeader(viewModel.title, viewModel.subtitle)
 
-                    ZStack {
-                        VStack(spacing: 0) {
-                            StateDialogValueRow(Strings.General.function, viewModel.function)
-                            ForEach(Array(viewModel.values.keys).sorted { $0.rawValue < $1.rawValue }) { key in
-                                StateDialogValueRow(key.label, viewModel.values[key] ?? "")
-                            }
+                ZStack {
+                    VStack(spacing: 0) {
+                        StateDialogValueRow(Strings.General.function, viewModel.function)
+                        ForEach(Array(viewModel.values.keys).sorted { $0.rawValue < $1.rawValue }) { key in
+                            StateDialogValueRow(key.label, viewModel.values[key] ?? "")
                         }
-
-                        if (viewModel.loading) {
-                            LoadingView()
-                        } else if (!viewModel.online) {
-                            OfflineView()
-                        }
-                    }.fixedSize(horizontal: false, vertical: true)
-                    
-                    if (viewModel.showLifespanSettingsButton) {
-                        Button(action: viewModel.onLifespanSettingsButton, label: {
-                            Text(Strings.State.lightsourceSettings)
-                                .fontLabelSmall()
-                                .foregroundColor(.Supla.primary)
-                                .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
-                        })
-                        
-                        SuplaCore.Dialog.Divider()
-                            .padding([.top], Distance.tiny)
-                    } else {
-                        SuplaCore.Dialog.Divider()
-                            .padding([.top], Distance.default)
                     }
 
-                    Buttons(
-                        showArrows: viewModel.showArrows,
-                        onDismiss: viewModel.onDismiss,
-                        onPrevious: viewModel.onPrevious,
-                        onNext: viewModel.onNext
-                    )
+                    if (viewModel.loading) {
+                        LoadingView()
+                    } else if (!viewModel.online) {
+                        OfflineView()
+                    }
+                }.fixedSize(horizontal: false, vertical: true)
+
+                if (viewModel.showLifespanSettingsButton) {
+                    Button(action: viewModel.onLifespanSettingsButton, label: {
+                        Text(Strings.State.lightsourceSettings)
+                            .fontLabelSmall()
+                            .foregroundColor(.Supla.primary)
+                            .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
+                    })
+
+                    SuplaCore.Dialog.Divider()
+                        .padding([.top], Distance.tiny)
+                } else {
+                    SuplaCore.Dialog.Divider()
+                        .padding([.top], Distance.default)
                 }
+
+                Buttons(
+                    showArrows: viewModel.showArrows,
+                    onDismiss: viewModel.onDismiss,
+                    onPrevious: viewModel.onPrevious,
+                    onNext: viewModel.onNext
+                )
             }
         }
     }
@@ -72,7 +70,7 @@ extension StateDialogFeature {
 private struct StateDialogHeader: SwiftUI.View {
     let title: String
     let subtitle: String?
-    
+
     init(_ title: String, _ subtitle: String?) {
         self.title = title
         self.subtitle = subtitle
@@ -93,7 +91,7 @@ private struct StateDialogHeader: SwiftUI.View {
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], Distance.default)
             }
-            
+
             SuplaCore.Dialog.Divider()
                 .padding(.top, Distance.small)
         }
@@ -104,7 +102,7 @@ private struct StateDialogHeader: SwiftUI.View {
 private struct StateDialogValueRow: SwiftUI.View {
     let label: String
     let value: String
-    
+
     init(_ label: String, _ value: String) {
         self.label = label
         self.value = value
@@ -160,11 +158,11 @@ private struct OfflineView: View {
 
 private struct Buttons: View {
     let showArrows: Bool
-    
+
     let onDismiss: () -> Void
     let onPrevious: () -> Void
     let onNext: () -> Void
-    
+
     var body: some View {
         HStack(spacing: 0) {
             if (showArrows) {
@@ -250,4 +248,3 @@ private struct Buttons: View {
         )
     )
 }
-

@@ -284,6 +284,7 @@
 "general_profile" = "Konto";
 "general_action" = "Handling";
 "general_delete" = "Slett";
+"incorrect_password" = "Feil passord";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Denne enheten har ingen synlige kanaler i appen. Gå til cloud.supla.org for å fullføre konfigurasjonen";
 "add_device_needs_cloud_close" = "Jeg forstår";
 "add_device_needs_cloud_go_to_cloud" = "Gå til CLOUD";
+"add_wizard_device_temporarily_locked" = "Grensen for mislykkede påloggingsforsøk er overskredet. Vennligst prøv igjen senere…";
+"add_wizard_state_preparing" = "Forberedelse av prosessen…";
+"add_wizard_state_connecting" = "Kobler til enheten…";
+"add_wizard_state_configuring" = "Konfigurering av enheten…";
+"add_wizard_state_finishing" = "Ferdigstilling…";
+"add_wizard_password_clarification" = "Registrering av nye enheter i skyen er deaktivert. Aktiver den manuelt eller oppgi kontopassordet ditt slik at veiviseren kan aktivere den automatisk under registrering av nye enheter.";
+"add_wizard_password_rules" = "Passordet må være minst 8 tegn langt og inneholde minst én stor bokstav, én liten bokstav og ett tall.";
+"add_wizard_password_set_title" = "Angi enhetspassord";
+"add_wizard_password_new_label" = "Nytt passord";
+"add_wizard_password_repeat_label" = "Gjenta passord";
+"add_wizard_password_enter_title" = "Enhetspassord";
+"add_wizard_password_instruction" = "Vennligst bruk passordet som ble brukt for tilgang til den lokale konfigurasjonswebsiden.\n\nGlemt passordet ditt? Du kan endre det på Supla Cloud eller tilbakestille enheten til fabrikkinnstillinger.";

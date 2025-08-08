@@ -22,21 +22,24 @@ import SharedCore
 import SystemConfiguration.CaptiveNetwork
 
 extension AddWizardFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, EspConfigurationController {
-        @Singleton<SuplaAppCoordinator> private var coordinator
-        @Singleton<ProfileRepository> private var profileRepository
-        @Singleton<SecureSettings.Interface> private var secureSettings
-        @Singleton<ProvideCurrentSsid.UseCase> private var provideCurrentSsidUseCase
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, EspConfigurationController, ViewDelegate {
         @Singleton<CheckRegistrationEnabled.UseCase> private var checkRegistrationEnabledUseCase
+        @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
+        @Singleton<ProvideCurrentSsid.UseCase> private var provideCurrentSsidUseCase
         @Singleton<EnableRegistration.UseCase> private var enableRegistrationUseCase
+        @Singleton<AwaitConnectivity.UseCase> private var awaitConnectivityUseCase
+        @Singleton<CreateEspPassword.UseCase> private var createEspPasswordUseCase
+        @Singleton<EspConfigurationSession> private var espConfigurationSession
         @Singleton<ConnectToEsp.UseCase> private var connectToEspUseCase
         @Singleton<ConfigureEsp.UseCase> private var configureEspUseCase
+        @Singleton<AuthorizeEsp.UseCase> private var authorizeEspUseCase
+        @Singleton<SecureSettings.Interface> private var secureSettings
         @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
-        @Singleton<AwaitConnectivity.UseCase> private var awaitConnectivityUseCase
+        @Singleton<ProfileRepository> private var profileRepository
         @Singleton<DisconnectUseCase> private var disconnectUseCase
-        @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
+        @Singleton<SuplaAppCoordinator> private var coordinator
         @Singleton<DateProvider> private var dateProvider
-        
+
         private lazy var stateHandler: IosEspConfigurationStateHolder = .init(espConfigurationController: self)
         private var workingTask: Task<Void, Never>? = nil
         
@@ -73,10 +76,10 @@ extension AddWizardFeature {
                 if (stateHandler.isInactive) {
                     state.screens = state.screens.pop()
                 } else {
-                    stateHandler.handle(EspConfigurationEventCancel.shared)
+                    stateHandler.handle(EspConfigurationEventClose.shared)
                 }
             case .manualConfiguration:
-                stateHandler.handle(EspConfigurationEventCancel.shared)
+                stateHandler.handle(EspConfigurationEventClose.shared)
             default:
                 coordinator.dismiss()
             }
@@ -165,12 +168,12 @@ extension AddWizardFeature {
             state.processing = false
             stateHandler = .init(espConfigurationController: self)
         }
-        
-        func onFollowupClose() {
+
+        func onFollowupPopupClose() {
             state.followupPopupState = nil
         }
         
-        func onFollowupOpen() {
+        func onFollowupPopupOpen() {
             state.followupPopupState = nil
             loadActiveProfileUrlUseCase.invoke()
                 .asDriverWithoutError()
@@ -180,6 +183,78 @@ extension AddWizardFeature {
                 .disposed(by: disposeBag)
         }
         
+        func onCloseProvidePasswordDialog() {
+            state.providePasswordDialogState = nil
+            stateHandler.handle(EspConfigurationEventCancel.shared)
+        }
+
+        func onPasswordProvided(_ password: String) {
+            state.providePasswordDialogState = state.providePasswordDialogState?
+                .changing(path: \.processing, to: true)
+                .changing(path: \.error, to: nil)
+
+            workingTask = Task {
+                dispatchPrecondition(condition: .notOnQueue(.main))
+
+                let result = await authorizeEspUseCase.invoke(password: password)
+
+                await MainActor.run {
+                    switch result {
+                    case .success:
+                        state.providePasswordDialogState = nil
+                        stateHandler.handle(EspConfigurationEventPasswordProvided.shared)
+                    case .failureWrongPassword:
+                        state.providePasswordDialogState = state.providePasswordDialogState?
+                            .changing(path: \.error, to: Strings.General.incorrectPassword)
+                            .changing(path: \.processing, to: false)
+                    case .failureUnknown:
+                        state.providePasswordDialogState = state.providePasswordDialogState?
+                            .changing(path: \.error, to: Strings.Status.errorUnknown)
+                            .changing(path: \.processing, to: false)
+                    case .temporarilyLocked:
+                        state.providePasswordDialogState = nil
+                        stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: .TemporarilyLocked.shared))
+                    }
+                }
+            }
+        }
+
+        func onCloseSetPasswordDialog() {
+            state.setPasswordDialogState = nil
+            stateHandler.handle(EspConfigurationEventCancel.shared)
+        }
+
+        func onSetPassword(_ password: String, _ repeatPassword: String) {
+            if (password.isAcceptablePassword() && password == repeatPassword) {
+                state.setPasswordDialogState = state.setPasswordDialogState?
+                    .changing(path: \.processing, to: true)
+                    .changing(path: \.error, to: false)
+                
+                workingTask = Task {
+                    dispatchPrecondition(condition: .notOnQueue(.main))
+                    
+                    let result = await createEspPasswordUseCase.invoke(password: password)
+                    
+                    await MainActor.run {
+                        switch result {
+                        case .success:
+                            state.setPasswordDialogState = nil
+                            stateHandler.handle(EspConfigurationEventPasswordProvided.shared)
+                        case .failure:
+                            state.setPasswordDialogState = state.setPasswordDialogState?
+                                .changing(path: \.error, to: true)
+                        case .temporarilyLocked:
+                            state.providePasswordDialogState = nil
+                            stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: .TemporarilyLocked.shared))
+                        }
+                    }
+                }
+            } else {
+                state.setPasswordDialogState = state.setPasswordDialogState?
+                    .changing(path: \.error, to: true)
+            }
+        }
+
         // MARK: - EspConfigurationController methods
         
         func activateRegistration() {
@@ -257,7 +332,7 @@ extension AddWizardFeature {
                 return try? await checkRegistrationEnabledUseCase.invoke()
             }
         }
-        
+
         func close() {
             coordinator.dismiss()
         }
@@ -273,6 +348,9 @@ extension AddWizardFeature {
                     case .failed: stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.Configuration.shared))
                     case .incompatible: stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.Compatibility.shared))
                     case .timeout: stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.ConfigureTimeout.shared))
+                    case .credentialsNeeded: stateHandler.handle(EspConfigurationEventCredentialsNeeded.shared)
+                    case .setupNeeded: stateHandler.handle(EspConfigurationEventSetupNeeded.shared)
+                    case .temporarilyLocked: stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.TemporarilyLocked.shared))
                     case .success(let result):
                         state.deviceParameters = result.parameters
                         if (result.needsCloudConfig) {
@@ -320,6 +398,28 @@ extension AddWizardFeature {
             stateHandler.handle(EspConfigurationEventNetworkFound(ssid: ""))
         }
         
+        func configurePassword() {
+            state.setPasswordDialogState = SetPasswordDialogState()
+        }
+
+        func providePassword() {
+            state.providePasswordDialogState = ProvidePasswordDialogState()
+        }
+
+        func reinitialize() {
+            state.processing = false
+            state.canceling = false
+        }
+
+        func setupEspConfiguration() {
+            SALog.debug("setEspConfiguration")
+            espConfigurationSession.reset()
+        }
+
+        func updateProgress(progress: Float, descriptionLabel: (any LocalizedString)?) {
+            // TODO
+        }
+
         func reconnect() {
             NEHotspotConfigurationManager.shared.getConfiguredSSIDs { ssids in
                 if (!ssids.isEmpty) {
@@ -430,5 +530,15 @@ extension AddWizardFeature.ViewModel: CLLocationManagerDelegate {
                 state.screens = state.screens.just(.message(text: [Strings.AddWizard.missingLocation], action: .location))
             }
         }
+    }
+}
+
+private extension String {
+    func isAcceptablePassword() -> Bool {
+        let hasLowercase = range(of: ".*[a-z].*", options: .regularExpression) != nil
+        let hasUppercase = range(of: ".*[A-Z].*", options: .regularExpression) != nil
+        let hasDigit = range(of: ".*[0-9].*", options: .regularExpression) != nil
+
+        return hasLowercase && hasUppercase && hasDigit
     }
 }

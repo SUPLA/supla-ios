@@ -30,7 +30,9 @@ extension AddWizardFeature {
         @Published var deviceParameters: [DeviceParameter] = []
         @Published var canceling: Bool = false
         @Published var followupPopupState: SuplaCore.AlertDialogState? = nil
-        
+        @Published var providePasswordDialogState: ProvidePasswordDialogState? = nil
+        @Published var setPasswordDialogState: SetPasswordDialogState? = nil
+
         var registrationActivationTime: TimeInterval? = nil
     }
     

@@ -22,7 +22,7 @@ extension AddWizardFeature {
     struct AddWizardNetworkSelectionView: SwiftUI.View {
         @Binding var networkName: String
         @Binding var networkPassword: String
-        @Binding var rememberPasswrord: Bool
+        @Binding var rememberPassword: Bool
         let error: Bool
         let onCancel: () -> Void
         let onBack: () -> Void
@@ -45,7 +45,7 @@ extension AddWizardFeature {
                 TextFieldScaffold(label: Strings.General.password) {
                     VStack(spacing: Distance.tiny) {
                         PasswordTextField(text: $networkPassword, error: error)
-                        Toggle(isOn: $rememberPasswrord) {
+                        Toggle(isOn: $rememberPassword) {
                             Text(Strings.AddWizard.rememberPassword)
                                 .fontBodyMedium()
                                 .textColor(.Supla.onPrimaryContainer)
@@ -78,7 +78,7 @@ private struct TextFieldScaffold<Content: View>: View {
         AddWizardFeature.AddWizardNetworkSelectionView(
             networkName: .constant("Ssid"),
             networkPassword: .constant("pass"),
-            rememberPasswrord: .constant(true),
+            rememberPassword: .constant(true),
             error: false,
             onCancel: {},
             onBack: {},

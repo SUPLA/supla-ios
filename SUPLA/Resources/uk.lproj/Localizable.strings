@@ -283,6 +283,7 @@
 "general_profile" = "Обліковий запис";
 "general_action" = "Подія";
 "general_delete" = "Видалити";
+"incorrect_password" = "Неправильний пароль";
 /* General - DayOfWeek */
 "monday" = "Понеділок";
 "tuesday" = "Вівторок";
@@ -620,3 +621,15 @@
 "add_device_needs_cloud_message" = "Цей пристрій не має видимих каналів у програмі. Щоб завершити налаштування, перейдіть на cloud.supla.org";
 "add_device_needs_cloud_close" = "Розумію";
 "add_device_needs_cloud_go_to_cloud" = "Перейдіть до CLOUD";
+"add_wizard_device_temporarily_locked" = "Перевищено ліміт невдалих спроб входу. Будь ласка, спробуйте ще раз пізніше…";
+"add_wizard_state_preparing" = "Підготовка процесу…";
+"add_wizard_state_connecting" = "Підключення до пристрою…";
+"add_wizard_state_configuring" = "Налаштування пристрою…";
+"add_wizard_state_finishing" = "Завершення…";
+"add_wizard_password_clarification" = "Реєстрація нових пристроїв у Хмарі вимкнена. Увімкніть її вручну або надайте пароль до свого облікового запису, щоб майстер автоматично увімкнув її на час реєстрації нових пристроїв.";
+"add_wizard_password_rules" = "Пароль має бути довжиною щонайменше 8 символів і містити принаймні одну велику, одну малу літеру та одну цифру.";
+"add_wizard_password_set_title" = "Встановити пароль пристрою";
+"add_wizard_password_new_label" = "Новий пароль";
+"add_wizard_password_repeat_label" = "Повторіть пароль";
+"add_wizard_password_enter_title" = "Пароль пристрою";
+"add_wizard_password_instruction" = "Будь ласка, використовуйте пароль, який використовувався для доступу до локальної веб-сторінки конфігурації.\n\nЗабули пароль? Ви можете змінити його в Supla Cloud або скинути пристрій до заводських налаштувань.";

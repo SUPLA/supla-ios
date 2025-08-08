@@ -285,6 +285,7 @@
 "general_profile" = "Paskyra";
 "general_action" = "Veiksmas";
 "general_delete" = "Pašalinti";
+"incorrect_password" = "Neteisingas slaptažodis";
 /* General - DayOfWeek */
 "monday" = "Pirmadienis";
 "tuesday" = "Antradienis";
@@ -622,3 +623,15 @@
 "add_device_needs_cloud_message" = "Šiame įrenginyje nėra jokių programoje matomų kanalų. Norėdami užbaigti konfigūravimą, pereikite į cloud.supla.org";
 "add_device_needs_cloud_close" = "Suprantu";
 "add_device_needs_cloud_go_to_cloud" = "Pereiti į CLOUD";
+"add_wizard_device_temporarily_locked" = "Viršytas nesėkmingų prisijungimo bandymų limitas. Bandykite dar kartą vėliau…";
+"add_wizard_state_preparing" = "Proceso paruošimas…";
+"add_wizard_state_connecting" = "Prisijungimas prie įrenginio…";
+"add_wizard_state_configuring" = "Įrenginio konfigūravimas…";
+"add_wizard_state_finishing" = "Baigimas…";
+"add_wizard_password_clarification" = "Naujų įrenginių registracija Debesyje yra išjungta. Įjunkite ją rankiniu būdu arba pateikite savo paskyros slaptažodį, kad vedlys automatiškai ją įjungtų naujų įrenginių registracijos metu.";
+"add_wizard_password_rules" = "Slaptažodis turi būti bent 8 simbolių ilgio ir jame turi būti bent viena didžioji, viena mažoji raidė ir vienas skaičius.";
+"add_wizard_password_set_title" = "Nustatyti įrenginio slaptažodį";
+"add_wizard_password_new_label" = "Naujas slaptažodis";
+"add_wizard_password_repeat_label" = "Pakartoti slaptažodį";
+"add_wizard_password_enter_title" = "Įrenginio slaptažodis";
+"add_wizard_password_instruction" = "Prašome naudoti slaptažodį, kuris buvo naudojamas vietinės konfigūracijos tinklalapio prieigai.\n\nPamiršote slaptažodį? Galite jį pakeisti Supla Cloud sistemoje arba atkurti gamyklinius įrenginio nustatymus.";

@@ -26,13 +26,7 @@ extension AddWizardFeature {
             
             contentView = View(
                 state: viewModel.state,
-                onCancel: { [weak self] in self?.viewModel.onCancel($0) },
-                onBack: { [weak self] in self?.viewModel.onBack($0) },
-                onNext: { [weak self] in self?.viewModel.onNext($0) },
-                onMessageAction: { [weak self] in self?.viewModel.onMessageAction($0) },
-                onWifiSettings: { [weak self] in self?.viewModel.onWifiSettings() },
-                onFollowupPopupClose: { [weak self] in self?.viewModel.onFollowupClose() },
-                onFollowupPopupOpen: { [weak self] in self?.viewModel.onFollowupOpen() }
+                delegate: viewModel
             )
             
             viewModel.authorizationCallback = { [weak self] in self?.authorize() }

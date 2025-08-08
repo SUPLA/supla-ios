@@ -283,6 +283,7 @@
 "general_profile" = "Účet";
 "general_action" = "Činnosť";
 "general_delete" = "Odstrániť";
+"incorrect_password" = "Nesprávne heslo";
 /* General - DayOfWeek */
 "monday" = "Pondelok";
 "tuesday" = "Utorok";
@@ -618,3 +619,15 @@
 "add_device_needs_cloud_message" = "Toto zariadenie nemá v aplikácii žiadne viditeľné kanály. Ak chceš dokončiť konfiguráciu, prejdi na stránku cloud.supla.org";
 "add_device_needs_cloud_close" = "Rozumiem";
 "add_device_needs_cloud_go_to_cloud" = "Prejsť na CLOUD";
+"add_wizard_device_temporarily_locked" = "Bol prekročený limit neúspešných pokusov o prihlásenie. Skúste to prosím neskôr…";
+"add_wizard_state_preparing" = "Príprava procesu…";
+"add_wizard_state_connecting" = "Pripájanie k zariadeniu…";
+"add_wizard_state_configuring" = "Konfigurácia zariadenia…";
+"add_wizard_state_finishing" = "Dokončovanie…";
+"add_wizard_password_clarification" = "Registrácia nových zariadení v Cloude je vypnutá. Povoľte ju manuálne alebo zadajte heslo k vášmu účtu, aby ju sprievodca automaticky povolil počas registrácie nových zariadení.";
+"add_wizard_password_rules" = "Heslo by malo mať aspoň 8 znakov a obsahovať minimálne jedno veľké, jedno malé písmeno a jednu číslicu.";
+"add_wizard_password_set_title" = "Nastaviť heslo zariadenia";
+"add_wizard_password_new_label" = "Nové heslo";
+"add_wizard_password_repeat_label" = "Zopakovať heslo";
+"add_wizard_password_enter_title" = "Heslo zariadenia";
+"add_wizard_password_instruction" = "Použite heslo, ktoré bolo použité pre prístup k webovej stránke lokálnej konfigurácie.\n\nZabudli ste heslo? Môžete ho zmeniť na Supla Cloud alebo resetovať zariadenie na výrobné nastavenia.";

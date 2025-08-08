@@ -293,6 +293,7 @@
 "general_action" = "Akcja";
 "general_delete" = "Usuń";
 "general_select" = "-- wybierz --";
+"incorrect_password" = "Nieprawidłowe hasło";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -731,3 +732,15 @@
 "add_device_needs_cloud_message" = "To urządzenie nie ma żadnych kanałów widocznych w aplikacji. Aby dokończyć konfigurację przejdź do cloud.supla.org";
 "add_device_needs_cloud_close" = "Rozumiem";
 "add_device_needs_cloud_go_to_cloud" = "Przejdź do CLOUD";
+"add_wizard_device_temporarily_locked" = "Limit nieudanych prób logowania został przekroczony. Spróbuj ponownie później…";
+"add_wizard_state_preparing" = "Przygotowywanie procesu…";
+"add_wizard_state_connecting" = "Łączenie z urządzeniem…";
+"add_wizard_state_configuring" = "Konfigurowanie urządzenia…";
+"add_wizard_state_finishing" = "Finalizacja…";
+"add_wizard_password_clarification" = "Rejestracja nowych urządzeń w Cloud jest wyłączona. Włącz ją ręcznie lub podaj hasło do Twojego konta, aby kreator samodzielnie ją włączył na czas rejestracji nowych urządzeń.";
+"add_wizard_password_rules" = "Hasło powinno mieć co najmniej 8 znaków i zawierać co najmniej jedną wielką literę, jedną małą literę oraz jedną cyfrę.";
+"add_wizard_password_set_title" = "Ustaw hasło do urządzenia";
+"add_wizard_password_new_label" = "Nowe hasło";
+"add_wizard_password_repeat_label" = "Powtórz hasło";
+"add_wizard_password_enter_title" = "Hasło do urządzenia";
+"add_wizard_password_instruction" = "Zastosuj hasło dostępu używane do lokalnej strony konfiguracyjnej.\n\nZapomniałeś hasła? Możesz je zmienić w Supla Cloud lub zresetować urządzenie do ustawień fabrycznych.";
