@@ -634,3 +634,4 @@
 "add_wizard_password_repeat_label" = "Repetir palavra-passe";
 "add_wizard_password_enter_title" = "Senha do dispositivo";
 "add_wizard_password_instruction" = "Por favor, use a senha usada para o acesso à página web de configuração local.\n\nEsqueceu sua senha? Você pode alterá-la no Supla Cloud ou redefinir o dispositivo para as configurações de fábrica.";
+"add_wizard_manual_reconnect_message" = "A conexão com a internet falhou.\n\nVá para as configurações do sistema e selecione uma rede Wi-Fi que tenha conexão com a internet. Depois, volte ao aplicativo e continue pressionando **Próximo**.";

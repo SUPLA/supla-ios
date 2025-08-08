@@ -632,3 +632,4 @@
 "add_wizard_password_repeat_label" = "Répéter le mot de passe";
 "add_wizard_password_enter_title" = "Mot de passe de l'appareil";
 "add_wizard_password_instruction" = "Veuillez utiliser le mot de passe utilisé pour l'accès à la page web de configuration locale.\n\nMot de passe oublié ? Vous pouvez le modifier sur Supla Cloud ou réinitialiser l'appareil aux paramètres d'usine.";
+"add_wizard_manual_reconnect_message" = "La connexion Internet a échoué.\n\nAccédez aux paramètres système et sélectionnez un réseau Wi-Fi disposant d'une connexion Internet. Revenez ensuite à l'application et continuez en appuyant sur **Suivant**.";

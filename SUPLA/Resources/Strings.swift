@@ -639,6 +639,7 @@ struct Strings {
         static let rememberPassword = "add_wizard_remember_passwd".toLocalized()
         static let autoMode = "add_wizard_auto_mode".toLocalized()
         static let manualModeMessage = "add_wizard_manual_mode_message".toLocalized()
+        static let manualReconnectMessage = "add_wizard_manual_reconnect_message".toLocalized()
         static let goToSettings = "add_wizard_manual_mode_settings".toLocalized()
         static let locationServiceOff = "add_wizard_location_service_off".toLocalized()
         static let missingLocation = "add_wizard_missing_location".toLocalized()

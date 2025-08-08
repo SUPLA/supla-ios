@@ -61,6 +61,11 @@ extension AddWizardFeature {
                 // It should not be shown when going back.
                 screens.removeLast()
             }
+            if (screens.last == .manualReconnect) {
+                // Manual reconnect screen is a part of configuration process.
+                // It should not be shown like manual configuration when going back.
+                screens.removeLast()
+            }
             return .init(screens: screens)
         }
         
@@ -74,7 +79,7 @@ extension AddWizardFeature {
     }
     
     enum Screen: Equatable {
-        case welcome, networkSelection, configuration, success, manualConfiguration
+        case welcome, networkSelection, configuration, success, manualConfiguration, manualReconnect
         case message(text: [String], action: AddWizardFeature.MessageAction?)
     }
 }

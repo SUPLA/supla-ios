@@ -30,8 +30,8 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.success,
                 onCancel: onCancel,
-                onBack: onBack,
                 onNext: onNext,
+                onBack: onBack,
                 nextButtonTitle: Strings.General.exit
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.done)

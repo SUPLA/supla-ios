@@ -548,6 +548,8 @@
 		A54E2AF62E44D43E003F2926 /* View+Focused.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF52E44D439003F2926 /* View+Focused.swift */; };
 		A54E2AF82E44D4A7003F2926 /* View+onSubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */; };
 		A54E2AFB2E45E657003F2926 /* ProgressInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AFA2E45E64F003F2926 /* ProgressInformationView.swift */; };
+		A54E2AFD2E4612AE003F2926 /* AddWizardManualReconnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AFC2E4612A5003F2926 /* AddWizardManualReconnect.swift */; };
+		A54E2AFF2E4615FF003F2926 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */; };
 		A54E7E8C2DE09BC6002FB0DE /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */; };
 		A550F2822D520F760011463B /* HistoryMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2812D520F6C0011463B /* HistoryMeasurement.swift */; };
 		A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */; };
@@ -2237,6 +2239,8 @@
 		A54E2AF52E44D439003F2926 /* View+Focused.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Focused.swift"; sourceTree = "<group>"; };
 		A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onSubmit.swift"; sourceTree = "<group>"; };
 		A54E2AFA2E45E64F003F2926 /* ProgressInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressInformationView.swift; sourceTree = "<group>"; };
+		A54E2AFC2E4612A5003F2926 /* AddWizardManualReconnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardManualReconnect.swift; sourceTree = "<group>"; };
+		A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 		A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 21.xcdatamodel"; sourceTree = "<group>"; };
 		A550F2812D520F6C0011463B /* HistoryMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMeasurement.swift; sourceTree = "<group>"; };
@@ -4751,6 +4755,7 @@
 		A54E2AF92E45E582003F2926 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */,
 				A54E2AFA2E45E64F003F2926 /* ProgressInformationView.swift */,
 			);
 			path = Components;
@@ -6088,6 +6093,7 @@
 				A54E2AF92E45E582003F2926 /* Components */,
 				A5741D562E40DC690089DBD0 /* Dialogs */,
 				A5BCA94F2E262D9C00A5054A /* AddWizardManualInstruction.swift */,
+				A54E2AFC2E4612A5003F2926 /* AddWizardManualReconnect.swift */,
 				A5AE6D7E2E1FD68700BC2B67 /* AddWizardSuccessView.swift */,
 				A5AE6D7C2E1FA6B500BC2B67 /* AddWizardMessageView.swift */,
 				A5AE6D7A2E1E9F6900BC2B67 /* AddWizardConfigurationView.swift */,
@@ -7732,6 +7738,7 @@
 				A55A8D842BAAD06C00C540D4 /* UpDownControllButton.swift in Sources */,
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
 				A5E0DF862CECA1D500362451 /* CounterPhotoFeature.swift in Sources */,
+				A54E2AFF2E4615FF003F2926 /* SettingsButton.swift in Sources */,
 				A55A8DAA2BAC608C00C540D4 /* SAAuthorizationDialogVC.swift in Sources */,
 				A5B8A47E2CBD0806002FA7B2 /* SuplaCore+Dialog.swift in Sources */,
 				A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */,
@@ -8101,6 +8108,7 @@
 				A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */,
 				A5882ED32DBF92E300F1FC4A /* UpdateCarPlayItemUseCase.swift in Sources */,
 				A52F03E92DBA6F4A00472ED1 /* CarPlayAddVC.swift in Sources */,
+				A54E2AFD2E4612AE003F2926 /* AddWizardManualReconnect.swift in Sources */,
 				A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				A52F03D72DB8F33000472ED1 /* CarPlayListView.swift in Sources */,

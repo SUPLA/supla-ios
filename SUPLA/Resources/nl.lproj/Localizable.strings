@@ -632,3 +632,4 @@
 "add_wizard_password_repeat_label" = "Herhaal wachtwoord";
 "add_wizard_password_enter_title" = "Apparaatwachtwoord";
 "add_wizard_password_instruction" = "Gebruik het wachtwoord dat is gebruikt voor toegang tot de lokale configuratie webpagina.\n\nWachtwoord vergeten? Je kunt het wijzigen op Supla Cloud of het apparaat terugzetten naar de fabrieksinstellingen.";
+"add_wizard_manual_reconnect_message" = "Internetverbinding mislukt.\n\nGa naar de systeeminstellingen en selecteer een Wi-Fi-netwerk met een internetverbinding. Keer vervolgens terug naar de app en ga verder door op **Volgende** te drukken.";

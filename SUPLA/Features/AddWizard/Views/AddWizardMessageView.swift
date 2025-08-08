@@ -31,8 +31,8 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.error,
                 onCancel: onCancel,
-                onBack: onBack,
                 onNext: onNext,
+                onBack: onBack,
                 nextButtonTitle: Strings.General.exit
             ) {
                 ForEach(messages, id: \.self) { message in

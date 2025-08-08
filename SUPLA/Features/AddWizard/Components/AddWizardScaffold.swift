@@ -22,8 +22,8 @@ extension AddWizardFeature {
     struct AddWizardScaffold<Content: SwiftUI.View>: SwiftUI.View {
         let icon: String
         let onCancel: () -> Void
-        let onBack: () -> Void
         let onNext: () -> Void
+        let onBack: (() -> Void)?
         let nextButtonTitle: String
         let processing: Bool
         let content: () -> Content
@@ -31,16 +31,16 @@ extension AddWizardFeature {
         init(
             icon: String,
             onCancel: @escaping () -> Void,
-            onBack: @escaping () -> Void,
             onNext: @escaping () -> Void,
+            onBack: (() -> Void)? = nil,
             nextButtonTitle: String = Strings.General.next,
             processing: Bool = false,
             @ViewBuilder content: @escaping () -> Content
         ) {
             self.icon = icon
             self.onCancel = onCancel
-            self.onBack = onBack
             self.onNext = onNext
+            self.onBack = onBack
             self.nextButtonTitle = nextButtonTitle
             self.processing = processing
             self.content = content
@@ -62,12 +62,14 @@ extension AddWizardFeature {
                 }
 
                 HStack {
-                    TextButton(
-                        title: Strings.General.back,
-                        normalColor: .Supla.onPrimaryContainer,
-                        pressedColor: .Supla.onSurfaceVariant,
-                        action: onBack
-                    )
+                    if let onBack {
+                        TextButton(
+                            title: Strings.General.back,
+                            normalColor: .Supla.onPrimaryContainer,
+                            pressedColor: .Supla.onSurfaceVariant,
+                            action: onBack
+                        )
+                    }
                     Spacer()
                     NextButton(
                         title: nextButtonTitle,
@@ -169,8 +171,8 @@ private struct ProcessingText: View {
         AddWizardFeature.AddWizardScaffold(
             icon: .Image.AddWizard.step1,
             onCancel: {},
-            onBack: {},
-            onNext: {}
+            onNext: {},
+            onBack: {}
         ) {
             VStack {}
         }
@@ -182,8 +184,8 @@ private struct ProcessingText: View {
         AddWizardFeature.AddWizardScaffold(
             icon: .Image.AddWizard.step1,
             onCancel: {},
-            onBack: {},
             onNext: {},
+            onBack: {},
             processing: true
         ) {
             VStack {}

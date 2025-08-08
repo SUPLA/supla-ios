@@ -29,8 +29,8 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.step1,
                 onCancel: onCancel,
-                onBack: onBack,
                 onNext: onNext,
+                onBack: onBack,
                 processing: processing
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step1Welcome)
