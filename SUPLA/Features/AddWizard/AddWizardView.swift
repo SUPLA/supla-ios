@@ -59,6 +59,8 @@ extension AddWizardFeature {
                     AddWizardFeature.AddWizardConfigurationView(
                         autoMode: $state.autoMode,
                         processing: state.processing,
+                        progress: state.progress,
+                        progressLabel: state.progressLabel,
                         onCancel: { delegate?.onCancel(screen) },
                         onBack: { delegate?.onBack(screen) },
                         onNext: { delegate?.onNext(screen) }
@@ -91,6 +93,8 @@ extension AddWizardFeature {
                 case .manualConfiguration:
                     AddWizardFeature.AddWizardManualInstruction(
                         processing: state.processing,
+                        progress: state.progress,
+                        progressLabel: state.progressLabel,
                         onCancel: { delegate?.onCancel(screen) },
                         onBack: { delegate?.onBack(screen) },
                         onNext: { delegate?.onNext(screen) },

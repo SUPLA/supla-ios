@@ -40,5 +40,6 @@ class IosEspConfigurationStateHolder: SharedCore.EspConfigurationStateHolder {
     func setState(state: any EspConfigurationState) {
         SALog.info("State changed to \(state)")
         self.state = state
+        espConfigurationController.updateProgress(progress: state.progress, descriptionLabel: state.progressLabel)
     }
 }

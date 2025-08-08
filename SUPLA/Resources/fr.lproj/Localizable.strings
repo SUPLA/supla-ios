@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Enregistrement des dispositifs d'entrée/sortie est actuellement désactivé. Pour continuer, allez à %@ et activez l'ajout de dispositifs dans l'onglet Ma SUPLA.";
 "The connected Server does not support this function!" = "Le serveur auquel vous êtes connecté ne prend pas en charge cette fonctionnalité!";
 "Incorrect input parameters (%@)!" = "Paramètres d'entrée erronés (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Assurez-vous que la connexion au réseau WiFi de l\'unité exécutive a été établie.";
 "Help" = "Aide";
 
 "Staircase timer" = "Minuterie d'escalier";
@@ -559,7 +558,7 @@
 "state_channel_id" = "Id du canal";
 "state_battery_level" = "Niveau de batterie";
 "state_battery_powered" = "Alimenté par pile";
-"state_wifi_signal_strength" = "Force du signal WiFi";
+"state_wifi_signal_strength" = "Force du signal Wi-Fi";
 "state_bridge_node_online" = "Nœud de pont - en ligne";
 "state_bridge_node_signal" = "Nœud de pont - puissance du signal";
 "state_uptime" = "Temps de travail";
@@ -572,7 +571,7 @@
 "channel_state_uptime" = "%d jours %02d:%02d:%02d";
 "lastconnectionresetcause_unknown" = "0 : inconnu";
 "lastconnectionresetcause_activity_timeout" = "1 : aucune réponse du serveur";
-"lastconnectionresetcause_wifi_connection_lost" = "2 : perte de la connexion WiFi";
+"lastconnectionresetcause_wifi_connection_lost" = "2 : perte de la connexion Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3 : réinitialisation de la connexion avec le serveur";
 
 /* Change caption */
@@ -589,7 +588,7 @@
 "enabling_registration_timeout" = "Le temps d’attente pour activer l'enregistrement a expiré !";
 "add_wizard_step_1_welcome" = "Bienvenue dans l'assistant d'ajout des dispositifs qui vous aidera d'une manière simple et rapide à ajouter un nouveau dispositif au système.";
 "add_wizard_step_1_continue" = "Pour continuer, appuyez sur **Continuer**.";
-"add_wizard_step_2_message" = "Entrez un nom et un mot de passe du Votre réseau WiFi domestique ou d'entreprise ave laquelle d’appareil pourra se connecter avec le serveur.";
+"add_wizard_step_2_message" = "Entrez un nom et un mot de passe du Votre réseau Wi-Fi domestique ou d'entreprise ave laquelle d’appareil pourra se connecter avec le serveur.";
 "add_wizard_network_name" = "Nom du réseau";
 "add_wizard_step_3_message_1" = "Connectez votre appareil à l'alimentation électrique. L'appareil devrait, par défaut, fonctionner en mode de configuration, indiqué par le clignotement de la LED d'état comme suit.";
 "add_wizard_step_3_message_2" = "Si l'appareil n'est pas en mode de configuration après la mise sous tension, appuyez et maintenez le bouton CONFIG enfoncé pendant au moins 5 secondes.";
@@ -603,17 +602,17 @@
 "add_wizard_manual_mode_settings" = "Passez aux paramètres du système";
 "add_wizard_location_service_off" = "Pour que l'Assistant d'ajout d'appareil fonctionne correctement, les services de localisation doivent être activés sur votre appareil. Accédez aux paramètres de votre système et assurez-vous qu'ils sont activés (Paramètres -> Confidentialité et sécurité -> Services de localisation).";
 "add_wizard_missing_location" = "L'application SUPLA nécessite un accès à la localisation pour que l'Assistant d'ajout d'appareil fonctionne correctement. Autorisez l'application SUPLA à accéder à votre position dans les paramètres de votre système.";
-"wizard_scan_timeout" = "Le délai d'attente pour la recherche des réseaux WiFi est dépassé !";
+"wizard_scan_timeout" = "Le délai d'attente pour la recherche des réseaux Wi-Fi est dépassé !";
 "wizard_iodevice_notfound" = "Aucun dispositif n'a été trouvé ! Assurez-vous que le dispositif que vous souhaitez configurer fonctionne en mode de configuration, puis essayez à nouveau.";
 "wizard_connect_timeout" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato !";
 "wizard_configure_timeout" = "Le délai d'attente pour la configuration du dispositif est dépassé !";
-"wizard_wifi_error" = "Le réseau WiFi est désactivé ou il est impossible de lire son l'ID ou nom !";
+"wizard_wifi_error" = "Le réseau Wi-Fi est désactivé ou il est impossible de lire son l'ID ou nom !";
 "wizard_result_compat_error" = "Le dispositif connecté n'est pas compatible avec cet assistant !";
 "wizard_result_conn_error" = "Impossible de se connecter au dispositif !";
 "wizard_result_failed" = "Échec de la configuration !";
-"wizard_reconnect_timeout" = "Le délai d'attente pour revenir au réseau WiFi de base est dépassé !";
+"wizard_reconnect_timeout" = "Le délai d'attente pour revenir au réseau Wi-Fi de base est dépassé !";
 "wizard_done" = "Configuration du dispositif est terminée avec succès :)";
-"wizard_done_explanations" = "Si l'appareil n'apparaît pas dans l'application, répétez à nouveau cette procédure d'ajout et lisez le « Statut précédent » indiqué ci-dessus. Il contient des informations permettant de déterminer pourquoi l'appareil ne s'est pas connecté au serveur. Le message « SSID non trouvé » signifie que le nom du réseau WiFi 2,4 GHz saisi n'a pas été trouvé ou que le réseau est hors de portée.";
+"wizard_done_explanations" = "Si l'appareil n'apparaît pas dans l'application, répétez à nouveau cette procédure d'ajout et lisez le « Statut précédent » indiqué ci-dessus. Il contient des informations permettant de déterminer pourquoi l'appareil ne s'est pas connecté au serveur. Le message « SSID non trouvé » signifie que le nom du réseau Wi-Fi 2,4 GHz saisi n'a pas été trouvé ou que le réseau est hors de portée.";
 "wizard_iodev_data" = "Données du dispositif";
 "wizard_iodev_name" = "Nom";
 "wizard_iodev_laststate" = "Statut précédent";

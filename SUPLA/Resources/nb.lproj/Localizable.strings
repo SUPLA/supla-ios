@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
 "The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
 "Incorrect input parameters (%@)!" = "wizard_result_param_error (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Sørg for at tilkoblingen til WiFi-nettverket til den utøvende enheten er opprettet.";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trappeautomat";
@@ -559,7 +558,7 @@
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batterinivå";
 "state_battery_powered" = "Batteriforsyning";
-"state_wifi_signal_strength" = "WiFi signalstyrke";
+"state_wifi_signal_strength" = "Wi-Fi signalstyrke";
 "state_bridge_node_online" = "Bridge node (bronode) - online";
 "state_bridge_node_signal" = "Bronode - signalstyrke";
 "state_uptime" = "Arbeidstid";

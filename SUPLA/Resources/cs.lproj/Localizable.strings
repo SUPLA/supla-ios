@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrace I / O zařízení je momentálně zakázána. Chcete-li pokračovat, přejděte na stránku %@ a na kartě Moje SUPLA povolte přidávání zařízení.";
 "The connected Server does not support this function!" = "Server, ke kterému jste se připojili, nepodporuje tuto funkci!";
 "Incorrect input parameters (%@)!" = "Chybné vstupní parametry (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Ujistěte se, že bylo navázáno připojení k síti WiFi pracovního zařízení.";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
@@ -559,7 +558,7 @@
 "state_channel_id" = "Id kanálu";
 "state_battery_level" = "Stav baterie";
 "state_battery_powered" = "Napájení baterie";
-"state_wifi_signal_strength" = "Síla signálu WiFi";
+"state_wifi_signal_strength" = "Síla signálu Wi-Fi";
 "state_bridge_node_online" = "Uzel můstku - online";
 "state_bridge_node_signal" = "Uzel můstku - síla signálu";
 "state_uptime" = "Provozní doba";
@@ -572,7 +571,7 @@
 "channel_state_uptime" = "%d dny %02d:%02d:%02d";
 "lastconnectionresetcause_unknown" = "0: neznámý";
 "lastconnectionresetcause_activity_timeout" = "1: žádná odpověď serveru";
-"lastconnectionresetcause_wifi_connection_lost" = "2: ztráta WiFi připojení";
+"lastconnectionresetcause_wifi_connection_lost" = "2: ztráta Wi-Fi připojení";
 "lastconnectionresetcause_server_connection_lost" = "3: restart připojení k serveru";
 
 /* Change caption */
@@ -589,7 +588,7 @@
 "enabling_registration_timeout" = "Vypršel časový limit při čekání na zapnutí registrace!";
 "add_wizard_step_1_welcome" = "Vítejte v Průvodci přidáním zařízení, který vám pomůže rychle a snadno přidat nové zařízení do vašeho systému.";
 "add_wizard_step_1_continue" = "Chcete-li pokračovat, stiskněte tlačítko **Další**.";
-"add_wizard_step_2_message" = "Zadejte jméno a heslo vaší domácí nebo firemní sítě WiFi, pomocí kterého se bude možné připojit k serveru.";
+"add_wizard_step_2_message" = "Zadejte jméno a heslo vaší domácí nebo firemní sítě Wi-Fi, pomocí kterého se bude možné připojit k serveru.";
 "add_wizard_network_name" = "Název sítě";
 "add_wizard_step_3_message_1" = "Připojte zařízení k napájení. Zařízení by mělo ve výchozím nastavení fungovat v konfiguračním režimu, indikovaném blikáním stavové LED diody následovně.";
 "add_wizard_step_3_message_2" = "Pokud zařízení po zapnutí není v konfiguračním režimu, stiskněte a podržte tlačítko CONFIG po dobu alespoň 5 sekund.";
@@ -603,17 +602,17 @@
 "add_wizard_manual_mode_settings" = "Přejděte do nastavení systému";
 "add_wizard_location_service_off" = "Aby Průvodce přidáním zařízení správně fungoval, musí být na vašem zařízení povoleny služby určování polohy. Přejděte do nastavení systému a ujistěte se, že jsou povoleny (Nastavení -> Soukromí a zabezpečení -> Služby určování polohy).";
 "add_wizard_missing_location" = "Aplikace SUPLA vyžaduje přístup k poloze, aby Průvodce přidáním zařízení správně fungoval. Povolte aplikaci SUPLA přístup k vaší poloze v nastavení systému.";
-"wizard_scan_timeout" = "Byla překročena doba čekání na dokončení vyhledávání sítě WiFi!";
+"wizard_scan_timeout" = "Byla překročena doba čekání na dokončení vyhledávání sítě Wi-Fi!";
 "wizard_iodevice_notfound" = "Nebyly nalezeny žádné přístroje! Ujistěte se, že zařízení, které chcete konfigurovat, je v konfiguračním režimu a zkuste to znovu.";
 "wizard_connect_timeout" = "Doba čekání na spojení s vykonávajícím zařízením byla překročena!";
 "wizard_configure_timeout" = "Doba čekání na dokončení konfigurace zařízení byla překročena!";
-"wizard_wifi_error" = "Síť WiFi je vypnuta nebo její ID nebo jméno nelze přečíst!";
+"wizard_wifi_error" = "Síť Wi-Fi je vypnuta nebo její ID nebo jméno nelze přečíst!";
 "wizard_result_compat_error" = "Zařízení, které jste připojili, není kompatibilní s tímto průvodcem!";
-"wizard_result_conn_error" = "Nelze se připojit k zařízení! Ujistěte se, že došlo k připojení vykonívajícího zařízení k WiFi síti.";
+"wizard_result_conn_error" = "Nelze se připojit k zařízení! Ujistěte se, že došlo k připojení vykonívajícího zařízení k Wi-Fi síti.";
 "wizard_result_failed" = "Konfigurace se nezdařila!";
-"wizard_reconnect_timeout" = "Doba čekání na návrat do základní sítě WiFi byla překročena!";
+"wizard_reconnect_timeout" = "Doba čekání na návrat do základní sítě Wi-Fi byla překročena!";
 "wizard_done" = "Konfigurace zařízení byla úspěšně dokončena :)";
-"wizard_done_explanations" = "Pokud se zařízení v aplikaci nezobrazí, zopakujte tento postup přidání znovu a přečtěte si výše uvedený \"Předchozí stav\". Obsahuje informace, díky nímž lze zjistit, proč se zařízení nepřipojilo k serveru. Zpráva  \"SSID not found“ znamená, že zadaný název sítě WiFi 2,4 GHz nebyl nalezen nebo je síť mimo dosah.";
+"wizard_done_explanations" = "Pokud se zařízení v aplikaci nezobrazí, zopakujte tento postup přidání znovu a přečtěte si výše uvedený \"Předchozí stav\". Obsahuje informace, díky nímž lze zjistit, proč se zařízení nepřipojilo k serveru. Zpráva  \"SSID not found“ znamená, že zadaný název sítě Wi-Fi 2,4 GHz nebyl nalezen nebo je síť mimo dosah.";
 "wizard_iodev_data" = "Data zařízení";
 "wizard_iodev_name" = "Název";
 "wizard_iodev_laststate" = "Předchozí stav";
