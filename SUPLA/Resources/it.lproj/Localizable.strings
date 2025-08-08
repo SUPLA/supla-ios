@@ -667,3 +667,4 @@
 "add_wizard_password_repeat_label" = "Ripeti password";
 "add_wizard_password_enter_title" = "Password del dispositivo";
 "add_wizard_password_instruction" = "Si prega di utilizzare la password usata per l'accesso alla pagina web di configurazione locale.\n\nHai dimenticato la password? Puoi cambiarla su Supla Cloud o ripristinare il dispositivo alle impostazioni di fabbrica.";
+"add_wizard_manual_reconnect_message" = "La connessione a internet non è riuscita.\n\nVai alle impostazioni di sistema e seleziona una rete Wi-Fi con una connessione a internet. Poi torna all'app e continua premendo **Avanti**.";

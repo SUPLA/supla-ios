@@ -32,8 +32,8 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.settings,
                 onCancel: onCancel,
-                onBack: onBack,
                 onNext: onNext,
+                onBack: onBack,
                 nextButtonTitle: Strings.General.start.uppercased(),
                 processing: processing
             ) {
@@ -47,39 +47,13 @@ extension AddWizardFeature {
                     .padding([.top, .bottom], Distance.default)
                 }
 
-                SettingsButton(action: {
+                AddWizardFeature.SettingsButton(action: {
                     if (!processing) {
                         onSettings()
                     }
                 })
             }
         }
-    }
-}
-
-private struct SettingsButton: SwiftUI.View {
-    let action: () -> Void
-
-    var body: some SwiftUI.View {
-        Button(
-            action: action
-        ) {
-            HStack(alignment: .center, spacing: Distance.tiny) {
-                Image(.Icons.wifiSettings)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: Dimens.iconSizeSmall, height: Dimens.iconSizeSmall)
-                    .foregroundColor(.Supla.primary)
-                Text(Strings.AddWizard.goToSettings)
-                    .fontBodySmall()
-            }
-        }
-        .buttonStyle(
-            BorderedButtonStyle(
-                backgroundColor: .Supla.background,
-                padding: EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 24)
-            )
-        )
     }
 }
 

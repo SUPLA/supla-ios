@@ -632,3 +632,4 @@
 "add_wizard_password_repeat_label" = "Zopakujte heslo";
 "add_wizard_password_enter_title" = "Heslo zařízení";
 "add_wizard_password_instruction" = "Použijte heslo, které bylo použito pro přístup k webové stránce místní konfigurace.\n\nZapomněli jste heslo? Můžete ho změnit na Supla Cloud nebo resetovat zařízení na tovární nastavení.";
+"add_wizard_manual_reconnect_message" = "Připojení k internetu se nezdařilo.\n\nPřejděte do nastavení systému a vyberte síť Wi-Fi, která má připojení k internetu. Poté se vraťte do aplikace a pokračujte stisknutím **Další**.";

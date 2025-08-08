@@ -123,6 +123,8 @@ extension AddWizardFeature {
             case .manualConfiguration:
                 state.processing = true
                 stateHandler.handle(EspConfigurationEventNetworkConnected.shared)
+            case .manualReconnect:
+                stateHandler.handle(EspConfigurationEventReconnected.shared)
             }
         }
         
@@ -186,7 +188,10 @@ extension AddWizardFeature {
         func onCloseProvidePasswordDialog() {
             state.canceling = true
             state.providePasswordDialogState = nil
-            stateHandler.handle(EspConfigurationEventCancel.shared)
+            switch (state.screens.current) {
+            case .manualConfiguration: stateHandler.handle(EspConfigurationEventBack.shared)
+            default: stateHandler.handle(EspConfigurationEventCancel.shared)
+            }
         }
 
         func onPasswordProvided(_ password: String) {
@@ -223,7 +228,10 @@ extension AddWizardFeature {
         func onCloseSetPasswordDialog() {
             state.canceling = true
             state.setPasswordDialogState = nil
-            stateHandler.handle(EspConfigurationEventCancel.shared)
+            switch (state.screens.current) {
+            case .manualConfiguration: stateHandler.handle(EspConfigurationEventBack.shared)
+            default: stateHandler.handle(EspConfigurationEventCancel.shared)
+            }
         }
 
         func onSetPassword(_ password: String, _ repeatPassword: String) {
@@ -327,7 +335,8 @@ extension AddWizardFeature {
         private func checkRegistrationEnabledCall() async -> SharedCore.CheckRegistrationEnabledUseCase.Result? {
             let currentTimestamp = dateProvider.currentTimestamp()
             if let registrationTime = state.registrationActivationTime,
-               currentTimestamp < registrationTime + 3600 {
+               currentTimestamp < registrationTime + 3600
+            {
                 return .enabled
             } else {
                 state.registrationActivationTime = currentTimestamp
@@ -424,11 +433,20 @@ extension AddWizardFeature {
         }
 
         func reconnect() {
+            var configurationRemoved = false
             NEHotspotConfigurationManager.shared.getConfiguredSSIDs { ssids in
                 if (!ssids.isEmpty) {
                     SALog.debug("Removing hotspot configuration for \(ssids[0])")
                     NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: ssids[0])
+                    configurationRemoved = true
                 }
+            }
+            
+            if (state.autoMode == false && configurationRemoved == false) {
+                // let the user manually change the network
+                state.canceling = false
+                state.screens = state.screens.push(.manualReconnect)
+                return
             }
             
             workingTask = Task {

@@ -743,3 +743,4 @@
 "add_wizard_password_repeat_label" = "Powtórz hasło";
 "add_wizard_password_enter_title" = "Hasło do urządzenia";
 "add_wizard_password_instruction" = "Zastosuj hasło dostępu używane do lokalnej strony konfiguracyjnej.\n\nZapomniałeś hasła? Możesz je zmienić w Supla Cloud lub zresetować urządzenie do ustawień fabrycznych.";
+"add_wizard_manual_reconnect_message" = "Nawiązanie połączenie z internetem nie powiodło się.\n\n Przejdź do ustawień systemowych i wybierz sieć Wi-Fi, która posiada połączenie z internetem. Następnie wróć do aplikacji i kontynuuj naciskająć przycisk Dalej";

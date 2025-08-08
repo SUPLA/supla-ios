@@ -709,3 +709,4 @@
 "add_wizard_password_repeat_label" = "Passwort wiederholen";
 "add_wizard_password_enter_title" = "Gerätepasswort";
 "add_wizard_password_instruction" = "Bitte verwenden Sie das Passwort, das für den Zugriff auf die lokale Konfigurationswebseite verwendet wurde.\n\nPasswort vergessen? Sie können es in der Supla Cloud ändern oder das Gerät auf die Werkseinstellungen zurücksetzen.";
+"add_wizard_manual_reconnect_message" = "Die Internetverbindung ist fehlgeschlagen.\n\nGehen Sie bitte zu den Systemeinstellungen und wählen ein WLAN-Netzwerk mit Internetverbindung aus. Kehren Sie dann zur App zurück und fahren fort, indem Sie **Weiter** drücken.";

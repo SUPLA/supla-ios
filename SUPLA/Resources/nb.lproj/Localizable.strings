@@ -632,3 +632,4 @@
 "add_wizard_password_repeat_label" = "Gjenta passord";
 "add_wizard_password_enter_title" = "Enhetspassord";
 "add_wizard_password_instruction" = "Vennligst bruk passordet som ble brukt for tilgang til den lokale konfigurasjonswebsiden.\n\nGlemt passordet ditt? Du kan endre det på Supla Cloud eller tilbakestille enheten til fabrikkinnstillinger.";
+"add_wizard_manual_reconnect_message" = "Internett-tilkoblingen mislyktes.\n\nGå til systeminnstillingene og velg et Wi-Fi-nettverk som har en internett-tilkobling. Deretter går du tilbake til appen og fortsetter ved å trykke på **Neste**.";

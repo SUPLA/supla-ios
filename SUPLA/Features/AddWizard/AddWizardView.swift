@@ -100,6 +100,12 @@ extension AddWizardFeature {
                         onNext: { delegate?.onNext(screen) },
                         onSettings: { delegate?.onWifiSettings() }
                     )
+                case .manualReconnect:
+                    AddWizardFeature.AddWizardManualReconnect(
+                        onCancel: { delegate?.onCancel(screen) },
+                        onNext: { delegate?.onNext(screen) },
+                        onSettings: { delegate?.onWifiSettings() }
+                    )
                 }
                 
                 if (state.canceling) {

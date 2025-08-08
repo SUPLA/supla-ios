@@ -33,8 +33,8 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.step2,
                 onCancel: onCancel,
-                onBack: onBack,
-                onNext: onNext
+                onNext: onNext,
+                onBack: onBack
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step2Message)
                 
