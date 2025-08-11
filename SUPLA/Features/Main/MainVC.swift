@@ -191,8 +191,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     }
     
     private func getNotificationHeight() -> CGFloat {
-        if #available(iOS 11, *),
-           let keyWindow = UIApplication.shared.keyWindow,
+        if let keyWindow = UIApplication.shared.keyWindow,
            keyWindow.safeAreaInsets.bottom > 0
         {
             return 140

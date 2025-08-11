@@ -77,11 +77,7 @@ enum AwaitConnectivity {
                             monitor.cancel()
                             continuation.resume(returning: .success)
                         default:
-                            if #available(iOS 14.2, *) {
-                                SALog.debug("Awaiting connection (status: \(path.status), reason: \(path.unsatisfiedReason))")
-                            } else {
-                                SALog.debug("Awaiting connection (status: \(path.status))")
-                            }
+                            SALog.debug("Awaiting connection (status: \(path.status), reason: \(path.unsatisfiedReason))")
                         }
                     }
                     monitor.start(queue: DispatchQueue(label: "InternetConnectionMonitor"))

@@ -28,19 +28,9 @@ struct LazyList<Content: View, Item: Identifiable>: View {
                 ForEach(items) { item in
                     content(item)
                         .listRowInsets(EdgeInsets())
-                        .listRowSeparatorInvisible()
+                        .listRowSeparator(.hidden)
                 }
             }
-        }
-    }
-}
-
-extension SwiftUI.View {
-    func listRowSeparatorInvisible() -> some View {
-        if #available(iOS 15.0, *) {
-            return self.listRowSeparator(.hidden)
-        } else {
-            return self
         }
     }
 }
