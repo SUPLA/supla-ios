@@ -50,7 +50,7 @@ extension CarPlayListFeature {
                             ForEach(viewState.items) { item in
                                 ItemRow(data: item)
                                     .listRowInsets(EdgeInsets())
-                                    .listRowSeparatorInvisible()
+                                    .listRowSeparator(.hidden)
                                     .onTapGesture { onItemTapped(item.id) }
                             }
                             .onMove(perform: onMoved)

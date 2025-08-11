@@ -85,13 +85,8 @@ class ProfilesVC: BaseViewController {
             view.addSubview(item)
         }
 
-        if #available(iOS 11, *) {
-            _headline.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                           constant: Dimens.distanceDefault).isActive = true
-        } else {
-            _headline.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.distanceDefault)
-                .isActive = true
-        }
+        _headline.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                       constant: Dimens.distanceDefault).isActive = true
         _headline.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault)
             .isActive = true
         _headline.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.distanceDefault)
@@ -116,13 +111,8 @@ class ProfilesVC: BaseViewController {
         _profileList.tableFooterView = UIView(frame: .zero)
         _profileList.backgroundColor = .clear
 
-        if #available(iOS 11, *) {
-            _profileList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-                .isActive = true
-        } else {
-            _profileList.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                .isActive = true
-        }
+        _profileList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            .isActive = true
 
         _profileList.register(AddNewProfileCell.self,
                               forCellReuseIdentifier: ProfilesVC._addNewCellId)

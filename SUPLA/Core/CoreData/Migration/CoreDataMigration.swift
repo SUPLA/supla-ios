@@ -47,11 +47,7 @@ class CoreDataMigratorImpl: CoreDataMigrator {
             let manager = NSMigrationManager(sourceModel: migrationStep.sourceModel, destinationModel: migrationStep.destinationModel)
             let destinationURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString)
             
-            if #available(iOS 15.0, *) {
-                try manager.migrateStore(from: currentURL, type: .sqlite, options: nil, mapping: migrationStep.mappingModel, to: destinationURL, type: .sqlite, options: nil)
-            } else {
-                try manager.migrateStore(from: currentURL, sourceType: NSSQLiteStoreType, options: nil, with: migrationStep.mappingModel, toDestinationURL: destinationURL, destinationType: NSSQLiteStoreType, destinationOptions: nil)
-            }
+            try manager.migrateStore(from: currentURL, type: .sqlite, options: nil, mapping: migrationStep.mappingModel, to: destinationURL, type: .sqlite, options: nil)
             
             if currentURL != storeURL {
                 //Destroy intermediate step's store

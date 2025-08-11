@@ -131,15 +131,10 @@ struct PinTextFieldModifier<Value: Hashable>: ViewModifier {
 private extension View {
     @ViewBuilder
     func focused<Value>(_ binding: Binding<Value?>, equals value: Value) -> some View where Value: Hashable {
-        if #available(iOS 15.0, *) {
-            self.modifier(TextFieldFocused(binding: binding, value: value))
-        } else {
-            self
-        }
+        self.modifier(TextFieldFocused(binding: binding, value: value))
     }
 }
 
-@available(iOS 15.0, *)
 private struct TextFieldFocused<Value>: ViewModifier where Value: Hashable {
     private let value: Value
     @FocusState private var focused: Value?

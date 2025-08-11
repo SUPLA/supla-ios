@@ -212,11 +212,7 @@ extension CounterPhotoFeature {
 
 extension View {
     func onRefresh(_ action: @Sendable @escaping () async -> Void) -> some View {
-        if #available(iOS 15.0, *) {
-            return refreshable(action: action)
-        } else {
-            return self
-        }
+        refreshable(action: action)
     }
 }
 
