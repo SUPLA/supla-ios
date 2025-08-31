@@ -53,6 +53,14 @@ extension Single {
 }
 
 extension Observable {
+    func subscribeAwait() async throws -> Element? {
+        try? await withUnsafeThrowingContinuation { continuation in
+            _ = subscribe(
+                onNext: { continuation.resume(returning: $0) },
+                onError: { continuation.resume(throwing: $0) }
+            )
+        }
+    }
     func subscribeSynchronous() throws -> Element? {
         let subscriber = SynchronousSubscriber(observable: self)
         return try subscriber.subscribeAndWait()

@@ -83,7 +83,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     slatTilt: .similar(70)
                 ),
                 issues: [
-                    ChannelIssueItem.Error(string: LocalizedStringWithId(id: LocalizedStringId.motorProblem))
+                    ChannelIssueItem.Error(string: localizedString(id: LocalizedStringId.motorProblem))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,

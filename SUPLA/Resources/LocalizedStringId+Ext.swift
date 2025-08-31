@@ -120,6 +120,34 @@ extension LocalizedStringId {
         case .channelStatusUpdating: Strings.General.Channel.statusUpdating
         case .channelStatusNotAvailable: Strings.General.Channel.statusNotAvailable
         
+        case .deviceRegistrationRequestTimeout: Strings.AddWizard.deviceRegistrationRequestTimeout
+        case .enablingRegistrationTimeout: Strings.AddWizard.enablingRegistrationTimeout
+        case .addWizardScanTimeout: Strings.AddWizard.scanTimeout
+        case .addWizardDeviceNotFound: Strings.AddWizard.deviceNotFound
+        case .addWizardConnectTimeout: Strings.AddWizard.connectTimeout
+        case .addWizardConfigureTimeout: Strings.AddWizard.configureTimeout
+        case .addWizardWifiError: Strings.AddWizard.wifiError
+        case .addWizardResultNotCompatible: Strings.AddWizard.resultNotCompatible
+        case .addWizardResultConnectionError: Strings.AddWizard.resultConnectionError
+        case .addWizardResultFailed: Strings.AddWizard.resultFailed
+        case .addWizardReconnectTimeout: Strings.AddWizard.reconnectTimeout
+            
+        case .channelStateUptime: Strings.State.uptimeValue
+        case .lastConnectionResetCauseUnknown: Strings.State.connectionResetCauseUnknown
+        case .lastConnectionResetCauseActivityTimeout: Strings.State.connectionResetCauseActivityTimeout
+        case .lastConnectionResetCauseWifiConnectionLost: Strings.State.connectionResetCauseWifiConnectionLost
+        case .lastConnectionResetCauseServerConnectionLost: Strings.State.connectionResetCauseServerConnectionLost
+            
+        case .resultCodeTemporarilyUnavailable: Strings.Status.errorUnavailable
+        case .resultCodeClientLimitExceeded: Strings.Status.errorClientLimitExceeded
+        case .resultCodeDeviceDisabled: Strings.Status.errorDeviceDisabled
+        case .resultCodeAccessIdDisabled: Strings.Status.errorAccessIdDisabled
+        case .resultCodeRegistrationDisabled: Strings.Status.errorRegistrationDisabled
+        case .resultCodeAccessIdNotAssigned: Strings.Status.errorAccessIdNotAssigned
+        case .resultCodeInactive: Strings.Status.errorAccessIdInactive
+        case .resultCodeIncorrectEmailOrPassword: Strings.Status.errorInvalidData
+        case .resultCodeBadCredentials: Strings.Status.errorBadCredentials
+        case .resultCodeUnknownError: Strings.Status.errorUnknown
         }
     }
 }

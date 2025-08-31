@@ -21,10 +21,6 @@ protocol NavigationBarVisibilityController {
     var navigationBarHidden: Bool { get }
 }
 
-extension SAAddWizardVC: NavigationBarVisibilityController {
-    var navigationBarHidden: Bool { true }
-}
-
 extension SAZWaveConfigurationWizardVC: NavigationBarVisibilityController {
     var navigationBarHidden: Bool { true }
 }

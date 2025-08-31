@@ -17,55 +17,48 @@
  */
 
 import Foundation
+import SwiftSoup
 
 fileprivate let STATE_PATTERN = "\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ ([A-Za-z0-9\\:]*)"
 
-@objc
-class EspHtmlParser: NSObject {
+
+class EspHtmlParser {
     
-    @objc func findInputs(document: TFHpple) -> [String: String] {
+    func findInputs(document: SwiftSoup.Document) -> [String: String] {
         var map: [String: String] = [:]
-        
-        if let inputs = document.search(withXPathQuery: "//input") {
-            for next in inputs {
-                guard let element = next as? TFHppleElement,
-                      let attributes = element.attributes,
-                      let name = (attributes["name"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
-                else { continue }
-                
-                let value = attributes["value"] as? String
-                
-                if let type = attributes["type"] as? String,
-                   type.caseInsensitiveCompare("checkbox") == .orderedSame {
-                    if let checked = attributes["checked"] as? String,
-                       checked.caseInsensitiveCompare("checked") == .orderedSame {
+
+        if let inputs = try? document.select("input") {
+            for input in inputs {
+                guard let name = try? input.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
+                let value = try? input.attr("value")
+
+                if (input.attribute("type", is: "checkbox")) {
+                    if (input.hasAttr("checked")) {
                         map[name] = value ?? ""
                     }
-                } else if (!name.isEmpty) {
+                } else {
                     map[name] = value ?? ""
                 }
-                
             }
         }
-        
-        if let selects = document.search(withXPathQuery: "//select") {
-            for next in selects {
-                guard let element = next as? TFHppleElement,
-                      let name = (element.attributes["name"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines),
-                      let options = element.search(withXPathQuery: "//option[@selected=\"selected\"]"),
-                      let option = options.first as? TFHppleElement,
-                      let value = option.attributes["value"] as? String
-                else { continue }
-                
-                map[name] = value
+
+        if let selects = try? document.select("select") {
+            for select in selects {
+                guard let name = try? select.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
+                if let option = try? select.select("option[selected]").first(),
+                   let value = try? option.val()
+                {
+                    map[name] = value
+                }
             }
         }
-        
+
         return map
     }
     
-    @objc func prepareResult(document: String?) -> EspConfigResult {
+    func prepareResult(document: String?, fieldMap: [String: String]) -> EspConfigResult {
         let result = EspConfigResult()
+        result.needsCloudConfig = needsCloudConfig(fieldMap: fieldMap)
         
         guard let html = document else { return result }
         do {
@@ -91,7 +84,17 @@ class EspHtmlParser: NSObject {
         return result
     }
     
-    @objc func needsCloudConfig(fieldMap: [String: String]) -> Bool {
+    private func needsCloudConfig(fieldMap: [String: String]) -> Bool {
         fieldMap.contains { $0 == "no_visible_channels" && $1 == "1" }
+    }
+}
+
+private extension SwiftSoup.Element {
+    func attribute(_ name: String, is value: String) -> Bool {
+        if let attr = try? attr(name), attr.caseInsensitiveCompare(value) == .orderedSame {
+            return true
+        } else {
+            return false
+        }
     }
 }

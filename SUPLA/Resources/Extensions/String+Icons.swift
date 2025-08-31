@@ -96,6 +96,10 @@ extension String {
         static let ocrPhoto = "icon_ocr_photo"
         static let noPhoto = "icon_no_photo"
         static let moveHandle = "order"
+        static let findWifi = "icon_find_wifi"
+        static let replay = "icon_replay"
+        static let wifiSettings = "icon_wifi_settings"
+        static let locationProblem = "icon_location_problem"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"
@@ -216,5 +220,14 @@ extension String {
         static let logoLight = "logo_light"
         static let logoWithName = "logo_with_name"
         static let garageContent = "garage_content"
+        
+        struct AddWizard {
+            static let step1 = "add_wizard_step_1"
+            static let step2 = "add_wizard_step_2"
+            static let step3 = "add_wizard_step_3"
+            static let success = "add_wizard_success"
+            static let error = "add_wizard_error"
+            static let settings = "add_wizard_settings"
+        }
     }
 }

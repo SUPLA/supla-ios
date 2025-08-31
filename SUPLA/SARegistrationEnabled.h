@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SARegistrationEnabled : NSObject
 
-@property (nonatomic)NSDate* ClientRegistrationExpirationDate;
-@property (nonatomic)NSDate* IODeviceRegistrationExpirationDate;
+@property (nonatomic, nullable)NSDate* ClientRegistrationExpirationDate;
+@property (nonatomic, nullable)NSDate* IODeviceRegistrationExpirationDate;
 
 -(BOOL)isClientRegistrationEnabled;
 -(BOOL)isIODeviceRegistrationEnabled;

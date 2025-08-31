@@ -27,6 +27,10 @@ private let calendar: Calendar = {
 
 extension Date {
     
+    var javaTimestamp: Int64 {
+        Int64(timeIntervalSince1970) * 1000
+    }
+    
     func inHalfOfHour() -> Date {
         let hour = calendar.component(.hour, from: self)
         return calendar.date(bySettingHour: hour, minute: 0, second: 0, of: self)!

@@ -59,19 +59,11 @@
 "Add I/O device" = "Pridať zariadenie";
 "Donate" = "Podporiť projekt";
 "Create an account" = "Vytvoriť účet";
-"Device registration availability information timeout!" = "Bola prekročená lehota čakania na informácie o dostupnosti registrácie zariadení!";
 "Next" = "Ďalej";
-"Start" = "Štart";
 "Cancel" = "Zrušiť";
-"Go to the system settings" = "Prejdite na nastavenia systému";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrácia I / O zariadení je momentálne vypnutá. Ak chcete pokračovať, prejdite na stránku %@ a v záložke \"Moja SUPLA\" zapnite pridávanie zariadení.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Sprievodca pridávaním je dostupný len po nadviazaní spojenia so serverom na základe zadanej e-mailovej adresy! (Vypnite pokročilé možnosti v nastavení svojho účtu)";
 "The connected Server does not support this function!" = "Server, s ktorým bolo nadviazané spojenie, túto funkciu nepodporuje!";
-"Device Configuration Completion timeout!" = "Bola prekročená lehota čakania na dokončenie konfigurácie zariadenia!";
 "Incorrect input parameters (%@)!" = "Nesprávne vstupné parametre (%@)!";
-"The connected device is not compatible with this Wizard!" = "Pripojené zariadenie nie je kompatibilné s týmto sprievodcom!";
-"Configuration Failed!" = "Konfigurácia zlyhala!";
-"Connection with the device cannot be set!" = "Nedá sa pripojiť k zariadeniu!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Uistite sa, že vykonávacie zariadenie bolo pripojené k sieti WiFi.";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
@@ -156,7 +148,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Životnosť UV žiariča je %.02f%%. Naplánujte jeho výmenu.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Životnosť UV žiariča je %.02f%%. Vymeň žiarič.";
 "The lifespan of the light source is %.02f%%." = "Životnosť svetelného zdroja je %.02f%%.";
-"Timeout for enabling registration has expired!" = "Časový limit na aktiváciu registrácie vypršal!";
 "Please enter your Supla Cloud login details." = "Zadajte svoje prihlasovacie údaje do Supla Cloud.";
 "Enter superuser credentials" = "Zadajte prihlasovacie údaje hlavného používateľa";
 "Dimmer settings" = "Nastavenia stmievača";
@@ -169,8 +160,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Ak zariadenie po pripojení k el. napätiu nie je spustené v konfiguračnom režime, stlačte a na aspoň 5 sekúnd podržte tlačidlo CONFIG.\n\n%@\n";
 "Press Next to continue." = "Pokračujte stlačením Ďalej.";
 "Press START to start configuration." = "Stlačte tlačidlo ŠTART a začnite konfiguráciu.";
-"I/O Device connection setting timeout!" = "Bola prekročená lehota čakania na nadviazanie spojenia s vykonávacím zariadením!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nenašli sa žiadne zariadenia! Skontrolujte, či zariadenie, ktoré chcete konfigurovať, pracuje v konfiguračnom režime, a potom to skúste znova.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Uistite sa, že aplikácia má povolenia na zisťovanie a pripojenie k zariadeniam v lokálnej sieti. To znamená, že pre správne fungovanie sprievodcu musí byť povolené oprávnenie \"iOS->Nastavenia->SUPLA->Lokálna sieť\".";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Zasklenie je odhalené viac ako 20 hodín, čo môže mať negatívny vplyv na jeho životnosť. Odporúča sa všetky úseky pokryť minimálne 4 hodiny, aby sa zregenerovali.";
 "Planned regeneration is in progress." = "Prebieha plánovaná regenerácia.";
@@ -222,19 +211,11 @@
 "Z-Wave bridge" = "Most z-wave";
 "opened / closed the roof window" = "otvoril/zatvoril strešné okno";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Napájanie bolo vypnuté po prekročení nastavenej prahovej hodnoty povoleného prúdu.";
-"0: unknown" = "0: neznámy";
-"1: server timeout" = "1: žiadna odpoveď zo servera";
-"2: Wi-Fi connection lost" = "2: stratené WiFi pripojenie";
-"3: server connection reset" = "3: obnovenie pripojenia k serveru";
 "Your account" = "Váš účet";
 "App Settings" = "Nastavenie";
 "Channel height" = "Výška kanála";
 "Temperature unit" = "Jednotka teploty";
 "Auto-hide buttons" = "Automatické schovanie tlačidiel";
-"Device setup" = "Konfigurácia zariadenia";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Toto zariadenie nemá v aplikácii žiadne viditeľné kanály. Ak chceš dokončiť konfiguráciu, prejdi na stránku cloud.supla.org";
-"I understand" = "Rozumiem";
-"Go to CLOUD" = "Prejsť na CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Funkciu kanála spojeného so spúšťačom akcie nemožno zmeniť.";
 "The function of the channel associated with the push notification cannot be changed." = "Funkciu kanála spojeného s oznámeniami PUSH nemožno zmeniť.";
 "The channel function associated with reactions cannot be changed." = "Funkciu kanála spojeného s reakciami nemožno zmeniť.";
@@ -244,7 +225,6 @@
 "ACCESS IDENTIFIER" = "IDENTIFIKÁTOR PRÍSTUPU";
 "E-MAIL ADDRESS" = "E-MAILOVÁ ADRESA";
 "SERVER ADDRESS" = "ADRESA SERVERA";
-"PASSWORD" = "HESLO";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Sprievodca automatického pridávania zariadení nie je dostupný v režime overenia identifikátorom prístupu. Zariadenia vtedy môžeš pridať manuálne.";
 "Don't have an account in Supla Cloud yet?" = "Nemáte ešte účet v Supla Cloud?";
 "Create" = "Vytvoriť účet";
@@ -290,6 +270,11 @@
 "turn_on" = "Zapnúť";
 "turn_off" = "Vypnúť";
 "save" = "Uložiť";
+"next" = "Ďalej";
+"password" = "Heslo";
+"start" = "Štart";
+"exit" = "Výstup";
+"general_back" = "Späť";
 "general_function" = "Funkcia";
 "general_toggle" = "Prepnúť";
 "general_channel" = "Kanál";
@@ -581,6 +566,11 @@
 "state_light_source_lifespan" = "Životnosť svetelného zdroja";
 "state_source_operating_time" = "Pracovný čas svetelného zdroja";
 "state_dialog_lightsource_settings" = "ZMENIŤ NASTAVENIA ŽIVOTNOSTI ZDROJA SVETLA";
+"channel_state_uptime" = "%d dni %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: neznámy";
+"lastconnectionresetcause_activity_timeout" = "1: žiadna odpoveď zo servera";
+"lastconnectionresetcause_wifi_connection_lost" = "2: stratené WiFi pripojenie";
+"lastconnectionresetcause_server_connection_lost" = "3: obnovenie pripojenia k serveru";
 
 /* Change caption */
 "change_caption_channel_name" = "Názov kanála";
@@ -590,3 +580,41 @@
 /* Car play */
 "car_play_action" = "Činnosť: %@";
 "car_play_display_name" = "Názov";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Bola prekročená lehota čakania na informácie o dostupnosti registrácie zariadení!";
+"enabling_registration_timeout" = "Časový limit na aktiváciu registrácie vypršal!";
+"add_wizard_step_1_welcome" = "Vitajte v sprievodcovi pridaním zariadenia, ktorý vám pomôže rýchlo a jednoducho pridať nové zariadenie do systému.";
+"add_wizard_step_1_continue" = "Pokračujte stlačením **Ďalej**.";
+"add_wizard_step_2_message" = "Zadajte názov a heslo vašej domácej alebo obchodnej WiFi siete, prostredníctvom ktorej sa bude môcť výkonné zariadenie pripojiť k serveru.";
+"add_wizard_network_name" = "Názov siete";
+"add_wizard_step_3_message_1" = "Pripojte zariadenie k napájaniu. Zariadenie by malo štandardne fungovať v konfiguračnom režime, indikovanom blikaním stavovej LED diódy nasledovne.";
+"add_wizard_step_3_message_2" = "Ak zariadenie po zapnutí nie je v konfiguračnom režime, stlačte a podržte tlačidlo CONFIG po dobu aspoň 5 sekúnd.";
+"add_wizard_step_3_message_3" = "Stlačte tlačidlo **ŠTART** a začnite konfiguráciu.";
+"add_wizard_add_more" = "Pridať ďalšie";
+"add_wizard_repeat" = "Skúsiť znova";
+"add_wizard_is_not_available" = "Sprievodca pridávaním je dostupný len po nadviazaní spojenia so serverom na základe zadanej e-mailovej adresy! (Vypnite pokročilé možnosti v nastavení svojho účtu)";
+"add_wizard_remember_passwd" = "Zapamätať si heslo";
+"add_wizard_auto_mode" = "Automatický režim";
+"add_wizard_manual_mode_message" = "Použite, prosím, skratku Systémové nastavenia nižšie na výber Wi-Fi vášho I/O Zariadenia pre konfiguráciu, napríklad SUPLA-A220A63612B1.\n\nNázov konfiguračnej Wi-Fi zvyčajne obsahuje názov výrobcu, napr. SUPLA, ZAMEL, NICE, HEATPOL atď.\n\nKeď je pripojenie nastavené, vráťte sa späť do aplikácie a pokračujte v postupe pridávania stlačením tlačidla **ŠTART**.";
+"add_wizard_manual_mode_settings" = "Prejdite na nastavenia systému";
+"add_wizard_location_service_off" = "Aby Sprievodca pridaním zariadenia fungoval správne, musia byť na vašom zariadení povolené služby určovania polohy. Prejdite do nastavení systému a uistite sa, že sú povolené (Nastavenia -> Súkromie a zabezpečenie -> Služby určovania polohy).";
+"add_wizard_missing_location" = "Aplikácia SUPLA vyžaduje prístup k polohe, aby Sprievodca pridaním zariadenia fungoval správne. Povoľte aplikácii SUPLA prístup k vašej polohe v nastaveniach systému.";
+"wizard_scan_timeout" = "Bola prekročená lehota čakana na dokončenie vyhľadávania WiFi sietí!";
+"wizard_iodevice_notfound" = "Nenašli sa žiadne zariadenia! Skontrolujte, či zariadenie, ktoré chcete konfigurovať, pracuje v konfiguračnom režime, a potom to skúste znova.";
+"wizard_connect_timeout" = "Bola prekročená lehota čakania na nadviazanie spojenia s vykonávacím zariadením!";
+"wizard_configure_timeout" = "Bola prekročená lehota čakania na dokončenie konfigurácie zariadenia!";
+"wizard_wifi_error" = "WiFi sieť je vypnutá alebo sa nedá načítať jej identifikátor alebo názov!";
+"wizard_result_compat_error" = "Pripojené zariadenie nie je kompatibilné s týmto sprievodcom!";
+"wizard_result_conn_error" = "Nedá sa pripojiť k zariadeniu!";
+"wizard_result_failed" = "Konfigurácia zlyhala!";
+"wizard_reconnect_timeout" = "Bola prekročená lehota čakania na návrat do základnej WiFi siete!";
+"wizard_done" = "Konfigurácia zariadenia bola úspešne dokončená :)";
+"wizard_done_explanations" = "Ak sa zariadenie v aplikácii nezobrazí, zopakujte postup pridávania znova a prečítajte si „Predchádzajúci status” zobrazený vyššie. Obsahuje informácie, na základe ktorých vieme určiť, prečo sa zariadeniu nepodarilo pripojiť k serveru. Hlásenie “SSID Not Found” znamená, že zadaný názov WiFi siete 2,4 GHz nebol nájdený alebo je sieť mimo dosahu.";
+"wizard_iodev_data" = "Údaje zariadenia";
+"wizard_iodev_name" = "Názov";
+"wizard_iodev_laststate" = "Predchádzajúci status";
+"add_device_needs_cloud_title" = "Konfigurácia zariadenia";
+"add_device_needs_cloud_message" = "Toto zariadenie nemá v aplikácii žiadne viditeľné kanály. Ak chceš dokončiť konfiguráciu, prejdi na stránku cloud.supla.org";
+"add_device_needs_cloud_close" = "Rozumiem";
+"add_device_needs_cloud_go_to_cloud" = "Prejsť na CLOUD";

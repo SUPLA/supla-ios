@@ -18,6 +18,7 @@
  */
     
 import RxSwift
+import SharedCore
 
 protocol LoginUseCase {
     func invoke(userName: String, password: String) -> Completable
@@ -119,7 +120,7 @@ private class RegisterErrorMessageObserver {
               let resultCode = result as? NSNumber
         else { return }
         
-        resultObserver(LoginUseCaseImpl.AuthorizationResult(success: false, error: SuplaResultCode.from(value: Int32(truncating: resultCode)).getTextMessage(authDialog: true)))
+        resultObserver(LoginUseCaseImpl.AuthorizationResult(success: false, error: SuplaResultCode.companion.from(value: Int32(truncating: resultCode)).message(isLogin: true).string))
         
         notificationCenterWrapper.unregisterObserver(self)
     }

@@ -20,7 +20,9 @@
 
 class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>: BaseViewControllerVM<S, E, VM>, WKNavigationDelegate {
     lazy var webView: WKWebView! = {
-        let view = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.applicationNameForUserAgent = "SuplaApp (iOS)"
+        let view = WKWebView(frame: .zero, configuration: webConfiguration)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.navigationDelegate = self
         return view

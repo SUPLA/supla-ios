@@ -164,4 +164,11 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     
     func setLocationCaption(_ locationId: Int32, caption: String!) {
     }
+    
+    func getRegistrationEnabled() {
+    }
+    
+    func setRegistrationEnabled(ioDeviceRegTimeSec: Int32, clientRegTimeSec: Int32) -> Bool {
+        true
+    }
 }

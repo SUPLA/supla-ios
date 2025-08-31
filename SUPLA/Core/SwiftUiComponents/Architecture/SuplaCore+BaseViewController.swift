@@ -65,14 +65,11 @@ extension SuplaCore {
             super.viewWillAppear(animated)
             overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
             viewModel.onViewWillAppear()
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(onViewAppeared), name: UIApplication.willEnterForegroundNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(onViewDisappeared), name: UIApplication.didEnterBackgroundNotification, object: nil)
         }
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-            onViewAppeared()
+            viewModel.onViewAppeared()
         }
         
         override func viewWillLayoutSubviews() {
@@ -87,14 +84,12 @@ extension SuplaCore {
             super.viewWillDisappear(animated)
             viewModel.onViewWillDisappear()
             
-            NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
             NotificationCenter.default.removeObserver(self)
         }
         
         override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
-            onViewDisappeared()
+            viewModel.onViewDisappeared()
         }
         
         func observeNotification(name: NSNotification.Name?, selector: Selector) {
@@ -110,14 +105,6 @@ extension SuplaCore {
             ])
         }
         
-        @objc func onViewAppeared() {
-            viewModel.onViewAppeared()
-        }
-        
-        @objc func onViewDisappeared() {
-            viewModel.onViewDisappeared()
-        }
-
         #if DEBUG
             deinit {
                 let className = NSStringFromClass(type(of: self))

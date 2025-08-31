@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -20,7 +19,7 @@
 import RxSwift
 
 extension SuplaCore {
-    class BaseViewModel<S: ObservableObject>: BaseViewModelBinder {
+    class BaseViewModel<S: ObservableObject>: NSObject, BaseViewModelBinder {
         let disposeBag = DisposeBag()
         var visibilityScopedDisposeBag = DisposeBag()
         

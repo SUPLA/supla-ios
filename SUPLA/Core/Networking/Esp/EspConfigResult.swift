@@ -18,36 +18,34 @@
 
 import Foundation
 
-class EspConfigResult: NSObject {
+class EspConfigResult {
     
-    @objc var resultCode: EspConfigResultCode = .failed
-    @objc var extendedResultError: String? = nil
-    @objc var extendedResultCode: Int64 = 0
+    var name: String? = nil
+    var state: String? = nil
+    var version: String? = nil
+    var guid: String? = nil
+    var mac: String? = nil
     
-    @objc var name: String? = nil
-    @objc var state: String? = nil
-    @objc var version: String? = nil
-    @objc var guid: String? = nil
-    @objc var mac: String? = nil
+    var needsCloudConfig: Bool = false
     
-    @objc var needsCloudConfig: Bool = false
+    var isCompatible: Bool { version != nil }
     
-    @objc func merge(result: EspConfigResult) {
-        name = result.name
-        state = result.state
-        version = result.version
-        guid = result.guid
-        mac = result.mac
+    var parameters: [DeviceParameter] {
+        var result: [DeviceParameter] = []
         
-        needsCloudConfig = result.needsCloudConfig
+        if let name {
+            result.append(DeviceParameter(label: Strings.AddWizard.deviceName, value: name))
+        }
+        if let version {
+            result.append(DeviceParameter(label: Strings.AddWizard.deviceFirmware, value: version))
+        }
+        if let mac {
+            result.append(DeviceParameter(label: Strings.AddWizard.deviceMac, value: mac))
+        }
+        if let state {
+            result.append(DeviceParameter(label: Strings.AddWizard.lastState, value: state))
+        }
+        
+        return result
     }
-}
-
-@objc
-enum EspConfigResultCode: Int32 {
-    case paramError = -3
-    case compatError = -2
-    case connectionError = -1
-    case failed = 0
-    case success = 1
 }

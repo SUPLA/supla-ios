@@ -17,7 +17,7 @@
  */
 
 final class SAAuthorizationDialogVC: SACredentialsDialogVC<SAAuthorizationDialogVM> {
-    init(_ onAuthorizedCallback: @escaping () -> Void) {
-        super.init(SAAuthorizationDialogVM(), onAuthorizedCallback)
+    init(_ onAuthorizedCallback: @escaping () -> Void, onCanceled: @escaping () -> Void = {}) {
+        super.init(SAAuthorizationDialogVM(), onAuthorizedCallback, onCanceled)
     }
 }

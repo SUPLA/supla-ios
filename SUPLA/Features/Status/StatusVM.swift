@@ -28,7 +28,7 @@ extension StatusFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewWillAppear() {
+        override func onViewAppeared() {
             stateHolder.state()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] state in
@@ -48,7 +48,7 @@ extension StatusFeature {
                         self?.state.viewType = .connecting
                         self?.state.stateText = .disconnecting
                     case .locked:
-                        break // Logic for locked placed in SuplaAppCoordinator
+                        self?.coordinator.navigateToLockScreen(unlockAction: .authorizeApplication)
                     }
                 })
                 .disposedWhenDisappear(by: self)
@@ -91,7 +91,7 @@ extension StatusFeature {
                 case SUPLA_RESULT_HOST_NOT_FOUND: Strings.Status.errorHostNotFound
                 default: nil
                 }
-            case .registerError(let code): SuplaResultCode.from(value: code).getTextMessage(authDialog: true)
+            case .registerError(let code): SuplaResultCode.companion.from(value: code).message(isLogin: true).string
             case .noNetwork, .versionError, .appInBackground, .addWizardStarted, .none: nil
             }
         }

@@ -71,7 +71,7 @@ final class GarageDoorVMTests: ViewModelTest<GarageDoorViewState, BaseWindowView
                 remoteId: 123,
                 garageDoorState: GarageDoorState(position: .similar(50)),
                 issues: [
-                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.calibrationFailed))
+                    ChannelIssueItem.Warning(string: localizedString(id: LocalizedStringId.calibrationFailed))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,

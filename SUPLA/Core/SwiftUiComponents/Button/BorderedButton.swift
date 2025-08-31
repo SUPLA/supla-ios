@@ -22,6 +22,7 @@ import SwiftUI
 struct BorderedButton: View {
     var title: String
     var fullWidth: Bool = false
+    var backgroundColor: Color? = nil
     var action: () -> Void
 
     var body: some View {
@@ -35,22 +36,46 @@ struct BorderedButton: View {
                     .fontLabelLarge()
             }
         }
-        .buttonStyle(BorderedButtonStyle())
+        .buttonStyle(BorderedButtonStyle(backgroundColor: backgroundColor))
     }
 }
 
 #Preview {
-    BorderedButton(title: "Title") {}
+    VStack {
+        BorderedButton(title: "Title") {}
+        BorderedButton(title: "Title", backgroundColor: .Supla.background) {}
+    }
 }
 
 struct BorderedButtonStyle: ButtonStyle {
+    let backgroundColor: Color?
+    let padding: EdgeInsets
+    
+    init(
+        backgroundColor: Color? = nil,
+        padding: EdgeInsets = EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24)
+    ) {
+        self.backgroundColor = backgroundColor
+        self.padding = padding
+    }
+    
     func makeBody(configuration: Configuration) -> some View {
         let color = configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
-        configuration.label
+        let result = configuration.label
             .foregroundColor(.Supla.onBackground)
             .font(.Supla.labelLarge)
-            .cornerRadius(Dimens.buttonRadius)
-            .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
-            .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(color, lineWidth: 1))
+            .padding(padding)
+            .frame(minHeight: 40)
+            
+        
+        if let backgroundColor {
+            result
+                .background(backgroundColor)
+                .cornerRadius(Dimens.buttonRadius)
+                .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(color, lineWidth: 1))
+        } else {
+            result
+                .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(color, lineWidth: 1))
+        }
     }
 }

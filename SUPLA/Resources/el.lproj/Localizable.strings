@@ -59,19 +59,11 @@
 "Add I/O device" = "Προσθήκη συσκευής";
 "Donate" = "Υποστηρίξτε το έργο";
 "Create an account" = "Δημιουργία λογαριασμού";
-"Device registration availability information timeout!" = "Υπέρβαση χρόνου αναμονής για τις πληροφορίες σχετικά με τη διαθεσιμότητα εγγραφής των συσκευών!";
 "Next" = "Επόμενο";
-"Start" = "Εναρξη";
 "Cancel" = "Ακύρωση";
-"Go to the system settings" = "Μετάβαση στις ρυθμίσεις συστήματος";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Η εγγραφή συσκευών εισόδου/εξόδου είναι αυτή τη στιγμή απενεργοποιημένη. Για να συνεχίσετε, μεταβείτε στην ιστοσελίδα %@ και στην καρτέλα \"Η SUPLA μου\" ενεργοποιήστε την προσθήκη συσκευών.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Ο Οδηγός εγκατάστασης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί σύνδεση με τον διακομιστή με βάση τη διεύθυνση e-mail που είχατε εισαγάγει! (Απενεργοποιήστε τις σύνθετες επιλογές στη διαμόρφωση του λογαριασμού σας)";
 "The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
-"Device Configuration Completion timeout!" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση διαμόρφωσης της συσκευής!";
 "Incorrect input parameters (%@)!" = "Μη έγκυρες παράμετροι εισόδου (%@)!";
-"The connected device is not compatible with this Wizard!" = "Η συσκευή με την οποία συνδεθήκατε δεν είναι συμβατή με αυτόν τον οδηγό!";
-"Configuration Failed!" = "Η διαμόρφωση απέτυχε!";
-"Connection with the device cannot be set!" = "Δεν είναι δυνατή η σύνδεση με τη συσκευή!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Βεβαιωθείτε ότι έχει δημιουργηθεί η σύνδεση του ενεργοποιητή με το δίκτυο WiFi.";
 "Help" = "Βοήθεια";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
@@ -156,7 +148,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Προγραμματίστε την αντικατάστασή του.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Αντικαταστήστε το θερμαντικό σώμα.";
 "The lifespan of the light source is %.02f%%." = "Η διάρκεια ζωής της πηγής φωτός είναι %.02f%%.";
-"Timeout for enabling registration has expired!" = "Υπέρβαση χρόνου αναμονής για την ενεργοποίηση της εγγραφής έχει λήξει!";
 "Please enter your Supla Cloud login details." = "Εισαγάγετε τα στοιχεία σύνδεσής σας στο cloud.supla.org.";
 "Enter superuser credentials" = "Καταχωρίστε τα διαπιστευτήρια superuser";
 "Dimmer settings" = "Ρυθμίσεις ροοστάτη";
@@ -169,8 +160,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
-"I/O Device connection setting timeout!" = "Υπέρβαση χρόνου αναμονής για τη σύνδεση με την εκτελεστική συσκευή!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Βεβαιωθείτε ότι η εφαρμογή έχει άδεια εντοπισμού και σύνδεσης σε συσκευές στο τοπικό σας δίκτυο. Αυτό σημαίνει ότι το δικαίωμα \"iOS->Ρυθμίσεις->SUPLA->Τοπικό δίκτυο\" πρέπει να είναι ενεργοποιημένο για να λειτουργήσει σωστά ο οδηγός. ";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
 "Planned regeneration is in progress." = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
@@ -222,19 +211,11 @@
 "Z-Wave bridge" = "Γέφυρα κύματος Ζ";
 "opened / closed the roof window" = "άνοιξε / έκλεισε το παράθυρο της οροφής";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Η παροχή ρεύματος απενεργοποιήθηκε όταν ξεπεράστηκε το καθορισμένο όριο επιτρεπόμενου ρεύματος.";
-"0: unknown" = "0: άγνωστο";
-"1: server timeout" = "1: δεν υπάρχει απόκριση διακομιστή";
-"2: Wi-Fi connection lost" = "2: απώλεια σύνδεσης WiFi";
-"3: server connection reset" = "3: επαναφέρετε τη σύνδεση με τον διακομιστή";
 "Your account" = "Ο λογαριασμός σας";
 "App Settings" = "Ρυθμίσεις";
 "Channel height" = "Ύψος καναλιού";
 "Temperature unit" = "Μονάδα θερμοκρασίας";
 "Auto-hide buttons" = "Αυτόματη απόκρυψη κουμπιών";
-"Device setup" = "Διαμόρφωση συσκευής";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Αυτή η συσκευή δεν έχει ορατά κανάλια στην εφαρμογή. Για να ολοκληρώσετε τη ρύθμιση, μεταβείτε στο cloud.supla.org";
-"I understand" = "Καταλαβαίνω";
-"Go to CLOUD" = "Μεταβείτε στο CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Δεν μπορείτε να αλλάξετε τη λειτουργία του καναλιού που σχετίζεται με το έναυσμα ενέργειας.";
 "The function of the channel associated with the push notification cannot be changed." = "Η λειτουργία του καναλιού που σχετίζεται με τις ειδοποιήσεις PUSH δεν μπορεί να αλλάξει.";
 "The channel function associated with reactions cannot be changed." = "Η λειτουργία του καναλιού που σχετίζεται με τις αντιδράσεις δεν μπορεί να αλλάξει.";
@@ -244,7 +225,6 @@
 "ACCESS IDENTIFIER" = "ΑΝΑΓΝΩΡΙΣΤΙΚΟ ΠΡΟΣΒΑΣΗΣ";
 "E-MAIL ADDRESS" = "ΔΙΕΥΘΥΝΣΗ E-MAIL";
 "SERVER ADDRESS" = "ΔΙΕΥΘΥΝΣΗ ΔΙΑΚΟΜΙΣΤΗ";
-"PASSWORD" = "ΚΩΔΙΚΌΣ ΠΡΌΣΒΑΣΗΣ";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Ο Οδηγός αυτόματης προσθήκης συσκευής δεν είναι διαθέσιμος στη λειτουργία ελέγχου ταυτότητας με αναγνωριστικό πρόσβασης. Στη συνέχεια, οι συσκευές μπορούν να προστεθούν χειροκίνητα.";
 "Don't have an account in Supla Cloud yet?" = "Δεν έχετε ακόμα λογαριασμό στο Supla Cloud;";
 "Create" = "Δημιουργία λογαριασμού";
@@ -290,6 +270,11 @@
 "turn_on" = "Ενεργοποίηση";
 "turn_off" = "Απενεργοποίηση";
 "save" = "Αποθήκευση";
+"next" = "Επόμενο";
+"password" = "Κωδικός πρόσβασης";
+"start" = "Εναρξη";
+"exit" = "Εξοδος";
+"general_back" = "Πίσω";
 "general_function" = "Λειτουργία";
 "general_toggle" = "Εναλλαγή";
 "general_channel" = "Κανάλι";
@@ -583,6 +568,11 @@
 "state_light_source_lifespan" = "Διάρκεια ζωής της πηγής φωτός";
 "state_source_operating_time" = "Χρόνος εργασίας πηγής φωτός";
 "state_dialog_lightsource_settings" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
+"channel_state_uptime" = "%d ημέρες %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: άγνωστο";
+"lastconnectionresetcause_activity_timeout" = "1: δεν υπάρχει απόκριση διακομιστή";
+"lastconnectionresetcause_wifi_connection_lost" = "2: απώλεια σύνδεσης WiFi";
+"lastconnectionresetcause_server_connection_lost" = "3: επαναφέρετε τη σύνδεση με τον διακομιστή";
 
 /* Change caption */
 "change_caption_channel_name" = "Όνομα καναλιού";
@@ -592,3 +582,41 @@
 /* Car play */
 "car_play_action" = "Ενέργεια: %@";
 "car_play_display_name" = "Όνομα";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Υπέρβαση χρόνου αναμονής για τις πληροφορίες σχετικά με τη διαθεσιμότητα εγγραφής των συσκευών!";
+"enabling_registration_timeout" = "Υπέρβαση χρόνου αναμονής για την ενεργοποίηση της εγγραφής έχει λήξει!";
+"add_wizard_step_1_welcome" = "Καλώς ορίσατε στον οδηγό προσθήκης συσκευής, ο οποίος θα σας βοηθήσει να προσθέσετε μια νέα συσκευή στο σύστημα με γρήγορο και εύκολο τρόπο.";
+"add_wizard_step_1_continue" = "Για να συνεχίσετε, πατήστε **Επόμενο**.";
+"add_wizard_step_2_message" = "Πληκτρολογήστε το όνομα και τον κωδικό πρόσβασης του οικιακού ή επιχειρηματικού σας δικτύου WiFi μέσω του οποίου η εκτελεστική συσκευή θα μπορεί να συνδεθεί με τον διακομιστή.";
+"add_wizard_network_name" = "Όνομα δικτύου";
+"add_wizard_step_3_message_1" = "Συνδέστε τη συσκευή σας στην παροχή ρεύματος. Η συσκευή θα πρέπει, εξ ορισμού, να λειτουργεί σε λειτουργία διαμόρφωσης, όπως υποδεικνύεται από το LED κατάστασης που αναβοσβήνει ως εξής.";
+"add_wizard_step_3_message_2" = "Εάν η συσκευή δεν είναι σε λειτουργία διαμόρφωσης μετά την ενεργοποίηση, πατήστε και κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.";
+"add_wizard_step_3_message_3" = "Πατήστε το κουμπί **ΕΝΑΡΞΗ** για να ξεκινήσει η διαμόρφωση.";
+"add_wizard_add_more" = "Πρόσθεσε κι άλλα";
+"add_wizard_repeat" = "Προσπάθησε ξανά";
+"add_wizard_is_not_available" = "Ο Οδηγός εγκατάστασης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί σύνδεση με τον διακομιστή με βάση τη διεύθυνση e-mail που είχατε εισαγάγει! (Απενεργοποιήστε τις σύνθετες επιλογές στη διαμόρφωση του λογαριασμού σας)";
+"add_wizard_remember_passwd" = "Απομνημόνευση κωδικού πρόσβασης";
+"add_wizard_auto_mode" = "Αυτόματη λειτουργία";
+"add_wizard_manual_mode_message" = "Παρακαλώ χρησιμοποιήστε τη συντόμευση Ρυθμίσεις συστήματος παρακάτω για να επιλέξετε τη συσκευή Wi-Fi I/O σας για ρύθμιση, όπως SUPLA-A220A63612B1.\n\nΤο όνομα του Wi-Fi ρύθμισης συνήθως περιέχει το όνομα του κατασκευαστή, π.χ. SUPLA, ZAMEL, NICE, HEATPOL κ.λπ.\n\nΌταν η σύνδεση έχει ρυθμιστεί, επιστρέψτε στην εφαρμογή και συνεχίστε τη διαδικασία προσθήκης πατώντας το κουμπί **ΕΝΑΡΞΗ**.";
+"add_wizard_manual_mode_settings" = "Μετάβαση στις ρυθμίσεις συστήματος";
+"add_wizard_location_service_off" = "Για να λειτουργεί σωστά ο Οδηγός Προσθήκης Συσκευής, οι υπηρεσίες τοποθεσίας πρέπει να είναι ενεργοποιημένες στη συσκευή σας. Μεταβείτε στις ρυθμίσεις του συστήματός σας και βεβαιωθείτε ότι είναι ενεργοποιημένες (Ρυθμίσεις -> Απόρρητο & Ασφάλεια -> Υπηρεσίες Τοποθεσίας).";
+"add_wizard_missing_location" = "Η εφαρμογή SUPLA απαιτεί πρόσβαση στην τοποθεσία για να λειτουργεί σωστά ο Οδηγός Προσθήκης Συσκευής. Επιτρέψτε στην εφαρμογή SUPLA να έχει πρόσβαση στην τοποθεσία σας στις ρυθμίσεις συστήματος.";
+"wizard_scan_timeout" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση της αναζήτησης WiFi!";
+"wizard_iodevice_notfound" = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";
+"wizard_connect_timeout" = "Υπέρβαση χρόνου αναμονής για τη σύνδεση με την εκτελεστική συσκευή!";
+"wizard_configure_timeout" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση διαμόρφωσης της συσκευής!";
+"wizard_wifi_error" = "Το δίκτυο WiFi είναι απενεργοποιημένο ή δεν μπορούν να διαβαστούν το αναγνωριστικό ή το όνομα του!";
+"wizard_result_compat_error" = "Η συσκευή με την οποία συνδεθήκατε δεν είναι συμβατή με αυτόν τον οδηγό!";
+"wizard_result_conn_error" = "Δεν είναι δυνατή η σύνδεση με τη συσκευή!";
+"wizard_result_failed" = "Η διαμόρφωση απέτυχε!";
+"wizard_reconnect_timeout" = "Υπέρβαση χρόνου αναμονής για την επιστροφή στο κύριο δίκτυο WiFi!";
+"wizard_done" = "Η διαμόρφωση της συσκευής ολοκληρώθηκε με επιτυχία :)";
+"wizard_done_explanations" = "Εάν η συσκευή σας δεν εμφανίζεται στην εφαρμογή, επαναλάβετε αυτήν τη διαδικασία προσθήκης ξανά και διαβάστε την ενότητα \"Προηγούμενη κατάσταση\" που εμφανίζεται παραπάνω. Περιέχει πληροφορίες για να προσδιορίσετε γιατί η συσκευή δεν συνδέθηκε στο διακομιστή. Το μήνυμα \"Το SSID δεν βρέθηκε\" σημαίνει ότι το όνομα δικτύου WiFi 2,4 GHz που εισαγάγατε δεν βρέθηκε ή το δίκτυο είναι εκτός εμβέλειας.";
+"wizard_iodev_data" = "Τα στοιχεία της συσκευής";
+"wizard_iodev_name" = "Ονομασία";
+"wizard_iodev_laststate" = "Προηγούμενη κατάσταση";
+"add_device_needs_cloud_title" = "Διαμόρφωση συσκευής";
+"add_device_needs_cloud_message" = "Αυτή η συσκευή δεν έχει ορατά κανάλια στην εφαρμογή. Για να ολοκληρώσετε τη ρύθμιση, μεταβείτε στο cloud.supla.org";
+"add_device_needs_cloud_close" = "Καταλαβαίνω";
+"add_device_needs_cloud_go_to_cloud" = "Μεταβείτε στο CLOUD";

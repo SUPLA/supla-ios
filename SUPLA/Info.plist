@@ -81,15 +81,19 @@
 			<key>CPTemplateApplicationSceneSessionRoleApplication</key>
 			<array>
 				<dict>
-				<key>UISceneClassName</key>
-				<string>CPTemplateApplicationScene</string>
-				<key>UISceneConfigurationName</key>
-				<string>SUPLA-Car</string>
-				<key>UISceneDelegateClassName</key>
-				<string>SUPLA.CarPlaySceneDelegate</string>
+					<key>UISceneClassName</key>
+					<string>CPTemplateApplicationScene</string>
+					<key>UISceneConfigurationName</key>
+					<string>SUPLA-Car</string>
+					<key>UISceneDelegateClassName</key>
+					<string>SUPLA.CarPlaySceneDelegate</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Location is required to get the SSID of the Wi-Fi you're currently connect to</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Location is required to get the SSID of the Wi-Fi you're currently connect to</string>
 </dict>
 </plist>

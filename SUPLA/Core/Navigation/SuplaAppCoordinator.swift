@@ -90,13 +90,15 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
             .observe(on: schedulers.main)
             .subscribe(
                 onNext: {
+                    SALog.debug("Coordinator got state \($0)")
                     switch ($0) {
                     case .initialization, .connecting(_), .finished:
                         self.navigateToStatusView()
                     case .locked:
                         self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
-                        self.popToViewController(ofClass: StatusFeature.ViewController.self)
-                        self.navigateToLockScreen(unlockAction: .authorizeApplication)
+                        if (!(self.navigationController.viewControllers.last is StatusFeature.ViewController)) {
+                            self.popToViewController(ofClass: StatusFeature.ViewController.self)
+                        }
                     default:
                         break
                     }
@@ -142,9 +144,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToAddWizard() {
-        navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
-        
-        let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
+        let avc = AddWizardFeature.ViewController.create()
         avc.modalPresentationStyle = .fullScreen
         avc.modalTransitionStyle = .crossDissolve
         present(avc, animated: true)

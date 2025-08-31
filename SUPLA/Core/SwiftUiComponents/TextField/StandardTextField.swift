@@ -20,9 +20,11 @@ import SwiftUI
 
 struct StandardTextFieldStyle: TextFieldStyle {
     let disabled: Bool
+    let error: Bool
     
-    init(disabled: Bool = false) {
+    init(disabled: Bool = false, error: Bool = false) {
         self.disabled = disabled
+        self.error = error
     }
     
     func _body(configuration: TextField<Self._Label>) -> some SwiftUI.View {
@@ -32,6 +34,6 @@ struct StandardTextFieldStyle: TextFieldStyle {
             .padding([.leading, .trailing], Distance.small)
             .background(disabled ? Color.clear : Color.Supla.surface)
             .clipShape(RoundedRectangle(cornerRadius: Dimens.buttonRadius))
-            .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
+            .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(error ? Color.Supla.error : Color.Supla.outline))
     }
 }

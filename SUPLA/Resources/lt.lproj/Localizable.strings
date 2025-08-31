@@ -61,19 +61,11 @@
 "Add I/O device" = "Pridėti įrenginį";
 "Donate" = "Paremti projektą";
 "Create an account" = "Sukurti paskyrą";
-"Device registration availability information timeout!" = "Viršytas informacijos apie įrenginių registracijos prieinamumą laukimo laikas!";
 "Next" = "Toliau";
-"Start" = "Startas";
 "Cancel" = "Atšaukti";
-"Go to the system settings" = "Eikite į iOS sistemos nustatymus";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Įv/iš įrenginių registracija dabar yra išjungta. Norėdami tęsti eikite į puslapį %%@ ir žymėje „Mano SUPLA” įjunkite įrenginių pridėjimą.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Pridėjimo vedlys prieinamas tik tada, kai pagal įvestą el. pašto adresą užmegztas ryšys su serveriu! (Savo paskyros konfigūracijoje išjunkite išplėstines parinktis)";
 "The connected Server does not support this function!" = "Serveris, prie kurio prisijungta, nepaliko šios funkcijos!";
-"Device Configuration Completion timeout!" = "Viršytas įrenginio konfigūracijos užbaigimo laukimo laikas!";
 "Incorrect input parameters (%@)!" = "Klaidingi įvesties parametrai (%@)!";
-"The connected device is not compatible with this Wizard!" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
-"Configuration Failed!" = "Nepavyko sėkmingai baigti konfigūravimo!";
-"Connection with the device cannot be set!" = "Negalima užmegzti ryšio su įrenginiu!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Įsitikinkite, kad vykdomasis įrenginys prisijungė prie Wi-Fi tinklo.";
 "Help" = "Pagalba";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
@@ -158,7 +150,6 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "UV spinduolio tarnavimo laikas tai %.02f%%. Suplanuoti jo pakeitimą.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "UV spinduolio tarnavimo laikas tai %.02f%%. Pakeisti spinduolį.";
 "The lifespan of the light source is %.02f%%." = "Šviesos šaltinio tarnavimo laikas tai %.02f%%.";
-"Timeout for enabling registration has expired!" = "Baigėsi registracijos įjungimo laukimo laikas!";
 "Please enter your Supla Cloud login details." = "Įveskite savo prisijungimo prie cloud.supla.org duomenis.";
 "Enter superuser credentials" = "Įveskite pagrindinio vartotojo kredencialus";
 "Dimmer settings" = "Šviesos srauto nustatymai";
@@ -171,8 +162,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Jei įrenginys įjungus maitinimą neveikia konfigūracijos režimu, palaikykite paspaustą mygtuką CONFIG bent 5 sekundes.\n\n%@\n";
 "Press Next to continue." = "Spustelėkite Pirmyn, jei norite tęsti";
 "Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";
-"I/O Device connection setting timeout!" = "Viršytas ryšio užmezgimo su vykdomuoju įrenginiu laukimo laikas!";
-"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Įsitikinkite, kad programoje yra leidimas aptikti įrenginius vietiniame tinkle ir prisijungti prie jų. Tai reiškia kad tam, kad vedlys veiktų tinkamai leidimas \“iOS->Nustatymai->SUPLA->Vietinis tinklas\“ turi būti įjungtas.";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
 "Planned regeneration is in progress." = "Vyksta suplanuotas regeneravimas.";
@@ -224,19 +213,11 @@
 "Z-Wave bridge" = "Z-wave tiltas";
 "opened / closed the roof window" = "atidarė / uždarė stoglangį";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Maitinimas buvo atjungtas viršijus nustatytą leistinos elektros srovės ribą.";
-"0: unknown" = "0: nežinoma";
-"1: server timeout" = "1: serveris neatsako";
-"2: Wi-Fi connection lost" = "2: prarastas Wi-Fi ryšys";
-"3: server connection reset" = "3: ryšys su serveriu nustatomas iš nauja";
 "Your account" = "Jūsų paskyra";
 "App Settings" = "Nustatymai";
 "Channel height" = "Kanalo aukštis";
 "Temperature unit" = "Temperatūros vienetas";
 "Auto-hide buttons" = "Automatinis mygtukų slėpimas";
-"Device setup" = "Įrenginio konfigūravimas";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Šiame įrenginyje nėra jokių programoje matomų kanalų. Norėdami užbaigti konfigūravimą, pereikite į cloud.supla.org";
-"I understand" = "Suprantu";
-"Go to CLOUD" = "Pereiti į CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Susieto su veiksmo paleidikliu kanalo funkcijų negalima pakeisti.";
 "The function of the channel associated with the push notification cannot be changed." = "Negalima pakeisti kanalo, susieto su PUSH pranešimais, funkcijos.";
 "The channel function associated with reactions cannot be changed." = "Negalima pakeisti kanalo, susieto su reakcijomis, funkcijos.";
@@ -246,7 +227,6 @@
 "ACCESS IDENTIFIER" = "PRIEIGOS IDENTIFIKATORIUS";
 "E-MAIL ADDRESS" = "EL. PAŠTO ADRESAS";
 "SERVER ADDRESS" = "SERVERIO ADRESAS";
-"PASSWORD" = "SLAPTAŽODIS";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Automatinio įrenginių pridėjimo vedlys neprieinamas prieigos autentifikavimo režime. Tokiu atveju įrenginius galima pridėti rankiniu būdu.";
 "Don't have an account in Supla Cloud yet?" = "Dar neturite paskyros Supla Cloud?";
 "Create" = "Sukurti paskyrą";
@@ -292,6 +272,11 @@
 "turn_on" = "Įjungti";
 "turn_off" = "Išjungti";
 "save" = "Išsaugoti";
+"next" = "Toliau";
+"password" = "Slaptažodis";
+"start" = "Startas";
+"exit" = "Išėjimas";
+"general_back" = "Atgal";
 "general_function" = "Funkcija";
 "general_toggle" = "Perjungti";
 "general_channel" = "Kanalas";
@@ -585,6 +570,11 @@
 "state_light_source_lifespan" = "Šviesos šaltinio eksploatavimo laikas";
 "state_source_operating_time" = "Šviesos šaltinio veikimo laikas";
 "state_dialog_lightsource_settings" = "PAKEISTI ŠVIESOS ŠALTINIO GYVAVIMO TRUKMĖS NUSTATYMUS";
+"channel_state_uptime" = "%d dienos %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: nežinoma";
+"lastconnectionresetcause_activity_timeout" = "1: serveris neatsako";
+"lastconnectionresetcause_wifi_connection_lost" = "2: prarastas Wi-Fi ryšys";
+"lastconnectionresetcause_server_connection_lost" = "3: ryšys su serveriu nustatomas iš nauja";
 
 /* Change caption */
 "change_caption_channel_name" = "Kanalo pavadinimas";
@@ -594,3 +584,41 @@
 /* Car play */
 "car_play_action" = "Veiksmas: %@";
 "car_play_display_name" = "Pavadinimas";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Viršytas informacijos apie įrenginių registracijos prieinamumą laukimo laikas!";
+"enabling_registration_timeout" = "Baigėsi registracijos įjungimo laukimo laikas!";
+"add_wizard_step_1_welcome" = "Sveiki atvykę į įrenginių pridėjimo vedlį, kuris padės Jums lengvai ir greitai pridėti naujus įrenginius prie sistemos.";
+"add_wizard_step_1_continue" = "Norėdami tęsti, paspauskite **Toliau**.";
+"add_wizard_step_2_message" = "Įveskite savo namų ar įmonės WiFi tinklo, kurio pagalba vykdomasis įrenginys galės užmegzti ryšį su serveriu, pavadinimą ir slaptažodį.";
+"add_wizard_network_name" = "Tinklo pavadinimas";
+"add_wizard_step_3_message_1" = "Prijunkite įrenginį prie maitinimo šaltinio. Įrenginys pagal numatytuosius nustatymus turėtų veikti konfigūravimo režimu, kurį rodo šviesos diodo mirksėjimas taip.";
+"add_wizard_step_3_message_2" = "Jei įrenginys po įjungimo nėra konfigūracijos režime, paspauskite ir palaikykite mygtuką CONFIG bent 5 sekundes.";
+"add_wizard_step_3_message_3" = "Paspauskite mygtuką **STARTAS**, kad pradėti konfigūravimą.";
+"add_wizard_add_more" = "Pridėti daugiau";
+"add_wizard_repeat" = "Bandykite dar kartą";
+"add_wizard_is_not_available" = "Pridėjimo vedlys prieinamas tik tada, kai pagal įvestą el. pašto adresą užmegztas ryšys su serveriu! (Savo paskyros konfigūracijoje išjunkite išplėstines parinktis)";
+"add_wizard_remember_passwd" = "Išsaugoti slaptažodį";
+"add_wizard_auto_mode" = "Automatinis režimas";
+"add_wizard_manual_mode_message" = "Norėdami pasirinkti I/O įrenginio „Wi-Fi“ ryšį konfigūravimui, pvz., SUPLA-A220A63612B1, naudokite nuorodą į sistemos nustatymus, esančią žemiau.\n\nKonfigūracijos „Wi-Fi“ pavadinime paprastai būna gamintojo pavadinimas, pvz., SUPLA, ZAMEL, NICE, HEATPOL ir t. t.\n\nKai ryšys bus nustatytas, grįžkite į programą ir tęskite pridėjimo procedūrą paspausdami mygtuką **STARTAS**.";
+"add_wizard_manual_mode_settings" = "Eikite į iOS sistemos nustatymus";
+"add_wizard_location_service_off" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, jūsų įrenginyje turi būti įjungtos vietos nustatymo paslaugos. Eikite į sistemos nustatymus ir įsitikinkite, kad jos įjungtos (Nustatymai -> Privatumas ir sauga -> Vietos nustatymo paslaugos).";
+"add_wizard_missing_location" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, SUPLA programėlei reikalingas vietos nustatymo priėjimas. Leiskite SUPLA programėlei pasiekti jūsų vietą sistemos nustatymuose.";
+"wizard_scan_timeout" = "Viršytas WiFi tinklo paieškos pabaigimo laukimo laikas!";
+"wizard_iodevice_notfound" = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";
+"wizard_connect_timeout" = "Viršytas ryšio užmezgimo su vykdomuoju įrenginiu laukimo laikas!";
+"wizard_configure_timeout" = "Viršytas įrenginio konfigūracijos užbaigimo laukimo laikas!";
+"wizard_wifi_error" = "WiFi tinklas yra išjungtas arba negalima atpažinti jo identifikatoriaus arba pavadinimo!";
+"wizard_result_compat_error" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
+"wizard_result_conn_error" = "Negalima užmegzti ryšio su įrenginiu!";
+"wizard_result_failed" = "Nepavyko sėkmingai baigti konfigūravimo!";
+"wizard_reconnect_timeout" = "Viršytas grįžimo prie pagrindinio WiFi tinklo laukimo laikas!";
+"wizard_done" = "Įrenginio konfigūravimas baigtas sėkmingai :)";
+"wizard_done_explanations" = "Jei įrenginys nebus matomas programoje, pakartokite šią pridėjimo procedūrą dar kartą ir nuskaitykite žemiau matomą „Ankstesnį statusą“. Jame yra informacija, kuri leidžia nustatyti, kodėl įrenginys neprisijungė prie serverio. Pranešimas “SSID not found“ reiškia, kad įvestas Wi-Fi 2,4 GHz tinklo pavadinimas nebuvo rastas arba tinklas neprieinamas.";
+"wizard_iodev_data" = "Įrenginio duomenys";
+"wizard_iodev_name" = "Pavadinimas";
+"wizard_iodev_laststate" = "Ankstesnis statusas";
+"add_device_needs_cloud_title" = "Įrenginio konfigūravimas";
+"add_device_needs_cloud_message" = "Šiame įrenginyje nėra jokių programoje matomų kanalų. Norėdami užbaigti konfigūravimą, pereikite į cloud.supla.org";
+"add_device_needs_cloud_close" = "Suprantu";
+"add_device_needs_cloud_go_to_cloud" = "Pereiti į CLOUD";

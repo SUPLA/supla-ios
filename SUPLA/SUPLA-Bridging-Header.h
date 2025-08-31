@@ -5,7 +5,6 @@
 #import "SuplaApp.h"
 #import "SAChartHelper.h"
 #import "CreateAccountVC.h"
-#import "AddWizardVC.h"
 #import "UIButton+SUPLA.h"
 #import "SuplaApp.h"
 #import "AuthProfileItem+CoreDataClass.h"
@@ -33,7 +32,6 @@
 #import "SARateApp.h"
 #import "SingleCallWrapper.h"
 #import "SuplaConfigIntegrator.h"
-#import "TFHpple.h"
 #import "SAGeneralPurposeMeasurementItem+CoreDataClass.h"
 #import "SAGeneralPurposeMeterItem+CoreDataClass.h"
 #import "SAChannelConfig+CoreDataClass.h"
@@ -47,5 +45,6 @@
 #import "SAVoltageMeasurementItem+CoreDataClass.h"
 #import "SAPowerActiveMeasurementItem+CoreDataClass.h"
 #import "SALightsourceLifespanSettingsDialog.h"
+#import "SARegistrationEnabled.h"
 
 #import "supla-client.h"

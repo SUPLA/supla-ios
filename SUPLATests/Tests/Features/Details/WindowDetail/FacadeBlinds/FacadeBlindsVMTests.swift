@@ -91,7 +91,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                     slatTilt: .similar(70)
                 ),
                 issues: [
-                    ChannelIssueItem.Warning(string: LocalizedStringWithId(id: LocalizedStringId.calibrationFailed))
+                    ChannelIssueItem.Warning(string: localizedString(id: LocalizedStringId.calibrationFailed))
                 ],
                 offline: false,
                 positionPresentation: .asClosed,
