@@ -33,6 +33,7 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
     func getHiddenChannelsSync() -> [SAChannel]
+    func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32>
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
@@ -159,5 +160,14 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 try? context.save()
             }
         }
+    }
+    
+    func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "location.location_id = %d AND profile.isActive = 1", locationId))
+            .ordered(by: "position", ascending: false)
+        
+        return query(request)
+            .map { $0.first?.position ?? -1 }
     }
 }
