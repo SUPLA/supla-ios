@@ -417,7 +417,9 @@
 "state_ip_address" = "IP";
 "state_mac_address" = "MAC";
 "state_battery_level" = "Battery level";
-"state_battery_powered" = "Battery powered";
+"state_power_supply" = "Power supply";
+"channel_state_battery_powered" = "battery";
+"channel_state_main_powered" = "mains";
 "state_wifi_rssi" = "Wi-Fi RSSI";
 "state_wifi_signal_strength" = "Wi-Fi signal strength";
 "state_bridge_node_online" = "Bridge node online";

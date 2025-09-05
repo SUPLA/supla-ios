@@ -597,7 +597,9 @@
 /* State */
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batteriefüllstand";
-"state_battery_powered" = "Batteriebetrieb";
+"state_power_supply" = "Stromversorgung";
+"channel_state_battery_powered" = "Batterie";
+"channel_state_main_powered" = "Netz";
 "state_wifi_signal_strength" = "WLAN-Signalstärke";
 "state_bridge_node_online" = "Brückenknoten - online";
 "state_bridge_node_signal" = "Brückenknoten - Signalstärke";

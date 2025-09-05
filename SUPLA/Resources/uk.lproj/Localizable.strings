@@ -558,7 +558,9 @@
 /* State */
 "state_channel_id" = "Ідентифікатор каналу";
 "state_battery_level" = "Рівень заряду батареї";
-"state_battery_powered" = "Працює від батареї";
+"state_power_supply" = "Живлення";
+"channel_state_battery_powered" = "від батареї";
+"channel_state_main_powered" = "від мережі";
 "state_wifi_signal_strength" = "Потужність сигналу Wi-Fi";
 "state_bridge_node_online" = "Мостовий вузол - онлайн";
 "state_bridge_node_signal" = "Мостовий вузол  - потужність сигналу";

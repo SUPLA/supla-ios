@@ -37167,6 +37167,82 @@
           },
           {
             "kind": "Var",
+            "name": "channelStateBatteryPowered",
+            "printedName": "channelStateBatteryPowered",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO26channelStateBatteryPoweredyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO26channelStateBatteryPoweredyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 105
+          },
+          {
+            "kind": "Var",
+            "name": "channelStateMainsPowered",
+            "printedName": "channelStateMainsPowered",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO24channelStateMainsPoweredyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO24channelStateMainsPoweredyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 106
+          },
+          {
+            "kind": "Var",
             "name": "lastConnectionResetCauseUnknown",
             "printedName": "lastConnectionResetCauseUnknown",
             "children": [
@@ -37201,7 +37277,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO31lastConnectionResetCauseUnknownyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO31lastConnectionResetCauseUnknownyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 105
+            "fixedbinaryorder": 107
           },
           {
             "kind": "Var",
@@ -37239,7 +37315,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39lastConnectionResetCauseActivityTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39lastConnectionResetCauseActivityTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 106
+            "fixedbinaryorder": 108
           },
           {
             "kind": "Var",
@@ -37277,7 +37353,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO028lastConnectionResetCauseWifiG4LostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO028lastConnectionResetCauseWifiG4LostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 107
+            "fixedbinaryorder": 109
           },
           {
             "kind": "Var",
@@ -37315,7 +37391,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO030lastConnectionResetCauseServerG4LostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO030lastConnectionResetCauseServerG4LostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 108
+            "fixedbinaryorder": 110
           },
           {
             "kind": "Var",
@@ -37353,7 +37429,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO32resultCodeTemporarilyUnavailableyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO32resultCodeTemporarilyUnavailableyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 109
+            "fixedbinaryorder": 111
           },
           {
             "kind": "Var",
@@ -37391,7 +37467,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO29resultCodeClientLimitExceededyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO29resultCodeClientLimitExceededyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 110
+            "fixedbinaryorder": 112
           },
           {
             "kind": "Var",
@@ -37429,7 +37505,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24resultCodeDeviceDisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24resultCodeDeviceDisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 111
+            "fixedbinaryorder": 113
           },
           {
             "kind": "Var",
@@ -37467,7 +37543,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO016resultCodeAccessE8DisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO016resultCodeAccessE8DisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 112
+            "fixedbinaryorder": 114
           },
           {
             "kind": "Var",
@@ -37505,7 +37581,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO30resultCodeRegistrationDisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO30resultCodeRegistrationDisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 113
+            "fixedbinaryorder": 115
           },
           {
             "kind": "Var",
@@ -37543,7 +37619,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO016resultCodeAccessE11NotAssignedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO016resultCodeAccessE11NotAssignedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 114
+            "fixedbinaryorder": 116
           },
           {
             "kind": "Var",
@@ -37581,7 +37657,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18resultCodeInactiveyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18resultCodeInactiveyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 115
+            "fixedbinaryorder": 117
           },
           {
             "kind": "Var",
@@ -37619,7 +37695,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO34resultCodeIncorrectEmailOrPasswordyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO34resultCodeIncorrectEmailOrPasswordyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 116
+            "fixedbinaryorder": 118
           },
           {
             "kind": "Var",
@@ -37657,7 +37733,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24resultCodeBadCredentialsyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24resultCodeBadCredentialsyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 117
+            "fixedbinaryorder": 119
           },
           {
             "kind": "Var",
@@ -37695,7 +37771,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO22resultCodeUnknownErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO22resultCodeUnknownErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 118
+            "fixedbinaryorder": 120
           },
           {
             "kind": "Var",

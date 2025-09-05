@@ -559,7 +559,9 @@
 /* State */
 "state_channel_id" = "ID do Canal";
 "state_battery_level" = "Nível de bateria";
-"state_battery_powered" = "Bateria";
+"state_power_supply" = "Alimentação";
+"channel_state_battery_powered" = "a bateria";
+"channel_state_main_powered" = "de rede";
 "state_wifi_signal_strength" = "Força do sinal Wi-Fi";
 "state_bridge_node_online" = "Junção de pontes - online";
 "state_bridge_node_signal" = "Junção da ponte - força do sinal";

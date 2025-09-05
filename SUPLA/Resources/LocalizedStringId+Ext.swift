@@ -138,6 +138,8 @@ extension LocalizedStringId {
         case .addWizardStateFinishing: Strings.AddWizard.stateFinishing
             
         case .channelStateUptime: Strings.State.uptimeValue
+        case .channelStateBatteryPowered: Strings.State.batteryPowered
+        case .channelStateMainsPowered: Strings.State.mainPowered
         case .lastConnectionResetCauseUnknown: Strings.State.connectionResetCauseUnknown
         case .lastConnectionResetCauseActivityTimeout: Strings.State.connectionResetCauseActivityTimeout
         case .lastConnectionResetCauseWifiConnectionLost: Strings.State.connectionResetCauseWifiConnectionLost

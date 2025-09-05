@@ -559,7 +559,9 @@
 /* State */
 "state_channel_id" = "Kanalo ID";
 "state_battery_level" = "Baterijos lygis";
-"state_battery_powered" = "Maitinimas baterija";
+"state_power_supply" = "Maitinimas";
+"channel_state_battery_powered" = "iš baterijų";
+"channel_state_main_powered" = "iš tinklo";
 "state_wifi_signal_strength" = "Wi-Fi signalo stiprumas";
 "state_bridge_node_online" = "Tilto mazgas – online";
 "state_bridge_node_signal" = "Tilto mazgas – signalo stiprumas";
