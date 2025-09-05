@@ -96,4 +96,7 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
         .empty()
     }
     
+    func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32> {
+        .empty()
+    }
 }
