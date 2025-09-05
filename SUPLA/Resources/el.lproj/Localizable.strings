@@ -557,7 +557,9 @@
 /* State */
 "state_channel_id" = "Αναγνωριστικό καναλιού";
 "state_battery_level" = "Επίπεδο μπαταρίας";
-"state_battery_powered" = "Τροφοδοσία μπαταρίας";
+"state_power_supply" = "Τροφοδοσία";
+"channel_state_battery_powered" = "μπαταρίας";
+"channel_state_main_powered" = "ρεύματος";
 "state_wifi_signal_strength" = "Ισχύς σήματος Wi-Fi";
 "state_bridge_node_online" = "Κόμβος γέφυρας - online";
 "state_bridge_node_signal" = "Κόμβος γέφυρας - ισχύς σήματος";

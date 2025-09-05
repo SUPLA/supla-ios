@@ -557,7 +557,9 @@
 /* State */
 "state_channel_id" = "Kanaal id";
 "state_battery_level" = "Batterijniveau";
-"state_battery_powered" = "Batterijstroomvoorziening";
+"state_power_supply" = "Voeding";
+"channel_state_battery_powered" = "batterij";
+"channel_state_main_powered" = "netstroom";
 "state_wifi_signal_strength" = "WiFi-signaalsterkte";
 "state_bridge_node_online" = "Brugknooppunt - online";
 "state_bridge_node_signal" = "Brug knooppunt - signaalsterkte";

@@ -555,7 +555,9 @@
 /* State */
 "state_channel_id" = "ID kanála";
 "state_battery_level" = "Úroveň batérie";
-"state_battery_powered" = "Napájanie z batérie";
+"state_power_supply" = "Napájanie";
+"channel_state_battery_powered" = "batériové";
+"channel_state_main_powered" = "sieťové";
 "state_wifi_signal_strength" = "Sila signálu Wi-Fi";
 "state_bridge_node_online" = "Uzol mosta – online";
 "state_bridge_node_signal" = "Uzol mosta - sila signálu";

@@ -557,7 +557,9 @@
 /* State */
 "state_channel_id" = "Identifikator kanala";
 "state_battery_level" = "Raven baterije";
-"state_battery_powered" = "Baterija";
+"state_power_supply" = "Napajanje";
+"channel_state_battery_powered" = "baterijsko";
+"channel_state_main_powered" = "omrežno";
 "state_wifi_signal_strength" = "Moč Wi-Fi signala";
 "state_bridge_node_online" = "Vozlišče mosta - online";
 "state_bridge_node_signal" = "Vozlišče mosta - moč signala";

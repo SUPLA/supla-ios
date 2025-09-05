@@ -650,12 +650,12 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SuplaChannelState")))
 @interface SharedCoreSuplaChannelState : SharedCoreBase
 @property (class, readonly, getter=companion) SharedCoreSuplaChannelStateCompanion *companion __attribute__((swift_name("companion")));
-@property (readonly) id<SharedCoreLocalizedString> _Nullable batterPoweredString __attribute__((swift_name("batterPoweredString")));
 @property (readonly) SharedCoreInt * _Nullable batteryHealth __attribute__((swift_name("batteryHealth")));
 @property (readonly) NSString * _Nullable batteryHealthString __attribute__((swift_name("batteryHealthString")));
 @property (readonly) SharedCoreInt * _Nullable batteryLevel __attribute__((swift_name("batteryLevel")));
 @property (readonly) NSString * _Nullable batteryLevelString __attribute__((swift_name("batteryLevelString")));
 @property (readonly) SharedCoreBoolean * _Nullable batteryPowered __attribute__((swift_name("batteryPowered")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable batteryPoweredString __attribute__((swift_name("batteryPoweredString")));
 @property (readonly) SharedCoreBoolean * _Nullable bridgeNodeOnline __attribute__((swift_name("bridgeNodeOnline")));
 @property (readonly) SharedCoreInt * _Nullable bridgeNodeSignalStrength __attribute__((swift_name("bridgeNodeSignalStrength")));
 @property (readonly) NSString * _Nullable bridgeNodeSignalStrengthString __attribute__((swift_name("bridgeNodeSignalStrengthString")));
@@ -2611,6 +2611,8 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *addWizardStateConfiguring __attribute__((swift_name("addWizardStateConfiguring")));
 @property (class, readonly) SharedCoreLocalizedStringId *addWizardStateFinishing __attribute__((swift_name("addWizardStateFinishing")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelStateUptime __attribute__((swift_name("channelStateUptime")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelStateBatteryPowered __attribute__((swift_name("channelStateBatteryPowered")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelStateMainsPowered __attribute__((swift_name("channelStateMainsPowered")));
 @property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseUnknown __attribute__((swift_name("lastConnectionResetCauseUnknown")));
 @property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseActivityTimeout __attribute__((swift_name("lastConnectionResetCauseActivityTimeout")));
 @property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseWifiConnectionLost __attribute__((swift_name("lastConnectionResetCauseWifiConnectionLost")));

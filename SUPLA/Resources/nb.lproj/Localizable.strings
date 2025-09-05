@@ -557,7 +557,9 @@
 /* State */
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batterinivå";
-"state_battery_powered" = "Batteriforsyning";
+"state_power_supply" = "Strømforsyning";
+"channel_state_battery_powered" = "batteri";
+"channel_state_main_powered" = "nettstrøm";
 "state_wifi_signal_strength" = "Wi-Fi signalstyrke";
 "state_bridge_node_online" = "Bridge node (bronode) - online";
 "state_bridge_node_signal" = "Bronode - signalstyrke";

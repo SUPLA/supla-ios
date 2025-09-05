@@ -992,6 +992,8 @@ extension SharedCore.__Icon {
   case addWizardStateConfiguring
   case addWizardStateFinishing
   case channelStateUptime
+  case channelStateBatteryPowered
+  case channelStateMainsPowered
   case lastConnectionResetCauseUnknown
   case lastConnectionResetCauseActivityTimeout
   case lastConnectionResetCauseWifiConnectionLost
