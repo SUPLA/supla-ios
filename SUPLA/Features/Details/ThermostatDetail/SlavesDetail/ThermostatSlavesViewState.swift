@@ -29,6 +29,8 @@ extension ThermostatSlavesFeature {
 
     struct ThermostatData: Equatable, Identifiable {
         let id: Int32
+        let deviceId: Int32
+        let function: Int32
         let onlineState: ListOnlineState
         let caption: String
         let userCaption: String

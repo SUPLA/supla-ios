@@ -50,6 +50,11 @@ final class UpdateEventsManagerMock: UpdateEventsManager {
         return observeChannelWithChildrenReturns
     }
     
+    var observeChannelWithChildrenTreeMock: FunctionMock<Int, Observable<SUPLA.ChannelWithChildren>> = .init()
+    func observeChannelWithChildrenTree(remoteId: Int) -> Observable<SUPLA.ChannelWithChildren> {
+        observeChannelWithChildrenTreeMock.handle(remoteId)
+    }
+    
     var observeChannelUpdatesObservable: Observable<Void> = Observable.empty()
     func observeChannelsUpdate() -> Observable<Void> {
         return observeChannelUpdatesObservable

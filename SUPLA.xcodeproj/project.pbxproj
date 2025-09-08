@@ -1058,6 +1058,7 @@
 		A5C690412DD7516E00194C1B /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DC22AA5BE7A00220B4A /* Int+Ext.swift */; };
 		A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */; };
 		A5C6905F2DD7760C00194C1B /* GroupSharedSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */; };
+		A5CA8ACA2E6EF353005B55F4 /* CheckIsSlaveThermostatUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
 		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
@@ -2751,6 +2752,7 @@
 		A5C690392DD736C100194C1B /* SingleCallResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallResult.swift; sourceTree = "<group>"; };
 		A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int16+Ext.swift"; sourceTree = "<group>"; };
 		A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettingsMock.swift; sourceTree = "<group>"; };
+		A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIsSlaveThermostatUseCase.swift; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
 		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
@@ -5029,6 +5031,7 @@
 		A56233F12AB3A375001CB948 /* Thermostat */ = {
 			isa = PBXGroup;
 			children = (
+				A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */,
 				A56233F22AB3A386001CB948 /* CreateTemperaturesListUseCase.swift */,
 			);
 			path = Thermostat;
@@ -8062,6 +8065,7 @@
 				A530EE452A58AAD800F8DAEE /* DeviceStateHelperVMI.swift in Sources */,
 				A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */,
 				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
+				A5CA8ACA2E6EF353005B55F4 /* CheckIsSlaveThermostatUseCase.swift in Sources */,
 				A5477DBF2AA5B40C00220B4A /* SuplaHvacMode+iOS.swift in Sources */,
 				A5862C0E2CF125AC00DFFD55 /* ChannelToRootRelationHolderUseCase.swift in Sources */,
 				A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */,
