@@ -18,19 +18,19 @@
 
 import RxSwift
 
-protocol ChannelUpdatesObserver: AnyObject {
-    func handle(_ disposable: Disposable)
-    func onChannelUpdate(_ channelWithChildren: ChannelWithChildren)
-}
+enum CheckIsSlaveThermostat {
+    protocol UseCase {
+        func invoke(remoteId: Int32) -> Observable<Bool>
+    }
 
-extension ChannelUpdatesObserver {
-    func observe(remoteId: Int) {
-        @Singleton<UpdateEventsManager> var updateEventsManager
+    final class Implementation: UseCase {
+        @Singleton<ChannelRelationRepository> private var channelRelationRepository
 
-        handle(
-            updateEventsManager.observeChannelWithChildrenTree(remoteId: remoteId)
-                .asDriverWithoutError()
-                .drive(onNext: { [weak self] in self?.onChannelUpdate($0) })
-        )
+        func invoke(remoteId: Int32) -> Observable<Bool> {
+            channelRelationRepository.findParentsOf(childId: remoteId)
+                .map { relations in
+                    relations.filter { $0.relationType == .masterThermostat }.count > 0
+                }
+        }
     }
 }

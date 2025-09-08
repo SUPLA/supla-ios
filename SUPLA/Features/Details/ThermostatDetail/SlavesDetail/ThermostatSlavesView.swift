@@ -27,8 +27,9 @@ extension ThermostatSlavesFeature {
 
         let onInfoAction: (String) -> Void
         let onStatusAction: (Int32) -> Void
-        
+
         let onCaptionLongPress: (ThermostatData) -> Void
+        let onSlaveClick: (ThermostatData) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -40,7 +41,8 @@ extension ThermostatSlavesFeature {
                             data: master,
                             onInfoAction: onInfoAction,
                             onStatusAction: onStatusAction,
-                            onCaptionLongPress: onCaptionLongPress
+                            onCaptionLongPress: onCaptionLongPress,
+                            onSlaveClick: { _ in }
                         )
                     }
                     HeaderText(title: Strings.ThermostatDetail.otherThermostats)
@@ -51,7 +53,8 @@ extension ThermostatSlavesFeature {
                             data: $0,
                             onInfoAction: onInfoAction,
                             onStatusAction: onStatusAction,
-                            onCaptionLongPress: onCaptionLongPress
+                            onCaptionLongPress: onCaptionLongPress,
+                            onSlaveClick: onSlaveClick
                         )
                     }
                 }.padding([.top], Dimens.distanceDefault)
@@ -85,6 +88,7 @@ extension ThermostatSlavesFeature {
         let onInfoAction: (String) -> Void
         let onStatusAction: (Int32) -> Void
         let onCaptionLongPress: (ThermostatData) -> Void
+        let onSlaveClick: (ThermostatData) -> Void
 
         var body: some SwiftUI.View {
             ZStack {
@@ -129,9 +133,12 @@ extension ThermostatSlavesFeature {
                             .onTapGesture { onStatusAction(data.id) }
                     }
                     ListItemDot(onlineState: data.onlineState)
-                }.padding([.trailing], Dimens.distanceSmall)
-            }.padding([.top, .bottom], Dimens.distanceTiny)
-                .background(Color.Supla.surface)
+                }
+                .padding([.trailing], Dimens.distanceSmall)
+            }
+            .padding([.top, .bottom], Dimens.distanceTiny)
+            .background(Color.Supla.surface)
+            .onTapGesture { onSlaveClick(data) }
         }
     }
 
@@ -166,6 +173,8 @@ extension ThermostatSlavesFeature {
     let viewState = ThermostatSlavesFeature.ViewState()
     viewState.master = ThermostatSlavesFeature.ThermostatData(
         id: 1,
+        deviceId: 1,
+        function: 0,
         onlineState: .online,
         caption: "FHC #0",
         userCaption: "FHC #0",
@@ -182,6 +191,8 @@ extension ThermostatSlavesFeature {
     viewState.slaves = [
         ThermostatSlavesFeature.ThermostatData(
             id: 1,
+            deviceId: 1,
+            function: 0,
             onlineState: .online,
             caption: "FHC #1",
             userCaption: "FHC #1",
@@ -197,6 +208,8 @@ extension ThermostatSlavesFeature {
         ),
         ThermostatSlavesFeature.ThermostatData(
             id: 2,
+            deviceId: 1,
+            function: 0,
             onlineState: .online,
             caption: "FHC #2",
             userCaption: "FHC #2",
@@ -213,13 +226,14 @@ extension ThermostatSlavesFeature {
     ]
     let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
     let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
-    
+
     return ThermostatSlavesFeature.View(
         viewState: viewState,
         stateDialogViewModel: stateDialogViewModel,
         captionChangeDialogViewModel: captionChangeDialogViewModel,
         onInfoAction: { _ in },
         onStatusAction: { _ in },
-        onCaptionLongPress: { _ in }
+        onCaptionLongPress: { _ in },
+        onSlaveClick: { _ in }
     )
 }

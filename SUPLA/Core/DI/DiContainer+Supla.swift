@@ -105,7 +105,6 @@ extension DiContainer {
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
         register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
         register(ReadChannelWithChildrenTreeUseCase.self, ReadChannelWithChildrenTreeUseCaseImpl())
-        register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
         register(DownloadChannelMeasurementsUseCase.self, DownloadChannelMeasurementsUseCaseImpl())
         register(DownloadTemperatureLogUseCase.self,
                  DownloadTemperatureLogUseCaseImpl(temperatureMeasurementItemRepository))
@@ -256,6 +255,9 @@ extension DiContainer {
         let suplaClientSharedProvider = SuplaClientSharedApiProvider()
         register(EnableRegistration.UseCase.self, SharedCore.EnableRegistrationUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
         register(CheckRegistrationEnabled.UseCase.self, SharedCore.CheckRegistrationEnabledUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
+        // UseCase - Thermostat
+        register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
+        register(CheckIsSlaveThermostat.UseCase.self, CheckIsSlaveThermostat.Implementation())
         
         // MARK: Features
         

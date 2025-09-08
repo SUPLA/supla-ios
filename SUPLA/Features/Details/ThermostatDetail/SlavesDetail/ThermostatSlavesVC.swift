@@ -41,7 +41,19 @@ extension ThermostatSlavesFeature {
                 captionChangeDialogViewModel: captionChangeViewModel,
                 onInfoAction: { [weak self] in self?.onIssueIconTapped(issueMessage: $0) },
                 onStatusAction: { [weak self] in self?.stateDialogViewModel.show(remoteId: $0) },
-                onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, thermostatData: $0) }
+                onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, thermostatData: $0) },
+                onSlaveClick: { [weak self] data in
+                    let bundle = ItemBundle(
+                        remoteId: data.id,
+                        deviceId: data.deviceId,
+                        subjectType: .channel,
+                        function: data.function
+                    )
+                    self?.coordinator.navigateToThermostatDetail(
+                        item: bundle,
+                        pages: [.thermostatGeneral, .thermostatHistory]
+                    )
+                }
             )
             
             viewModel.observe(remoteId: Int(item.remoteId))

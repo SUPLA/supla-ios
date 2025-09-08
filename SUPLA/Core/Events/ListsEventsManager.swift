@@ -34,6 +34,7 @@ protocol UpdateEventsManager: UpdateEventsManagerEmitter {
     func observeChannel(remoteId: Int) -> Observable<SAChannel>
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup>
     func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren>
+    func observeChannelWithChildrenTree(remoteId: Int) -> Observable<ChannelWithChildren>
     func observeChannelsUpdate() -> Observable<Void>
     func observeGroupsUpdate() -> Observable<Void>
     func observeScenesUpdate() -> Observable<Void>
@@ -50,12 +51,13 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     private let sceneUpdatesSubject = BehaviorRelay(value: ())
     
     @Singleton<SceneRepository> private var sceneRepository
-    @Singleton<ChannelRepository> private var channelRepository
     @Singleton<GroupRepository> private var groupRepository
+    @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
-    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
+    @Singleton<ReadChannelWithChildrenTreeUseCase> private var readChannelWithChildrenTreeUseCase
     @Singleton<ChannelToRootRelationHolderUseCase> private var channelToRootRelationHolderUseCase
     
     func emitSceneUpdate(sceneId: Int) {
@@ -119,6 +121,11 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
         getSubjectForChannel(channelId: remoteId)
             .flatMap { _ in self.readChannelWithChildrenUseCase.invoke(remoteId: Int32(remoteId)) }
+    }
+    
+    func observeChannelWithChildrenTree(remoteId: Int) -> Observable<ChannelWithChildren> {
+        getSubjectForChannel(channelId: remoteId)
+            .flatMap { _ in self.readChannelWithChildrenTreeUseCase.invoke(remoteId: Int32(remoteId)) }
     }
     
     func observeChannelsUpdate() -> Observable<Void> { channelUpdatesSubject.asObservable() }
