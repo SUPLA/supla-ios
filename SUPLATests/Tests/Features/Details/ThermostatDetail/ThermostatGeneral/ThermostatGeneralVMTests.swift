@@ -23,6 +23,7 @@ import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
     private lazy var viewModel: ThermostatGeneralVM! = ThermostatGeneralVM()
     
@@ -42,6 +43,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
 
     private lazy var loadingTimeoutManager: LoadingTimeoutManagerMock! = LoadingTimeoutManagerMock()
     
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
+    
     private lazy var checkIsSlaveThermostatUseCase: CheckIsSlaveThermostatUseCaseMock! = CheckIsSlaveThermostatUseCaseMock()
     
     override func setUp() {
@@ -56,6 +59,10 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { self.loadingTimeoutManager! })
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseMock())
         DiContainer.shared.register(type: CheckIsSlaveThermostat.UseCase.self, checkIsSlaveThermostatUseCase!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, self.groupSharedSettings!)
+        
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
     }
     
     override func tearDown() {
@@ -69,6 +76,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         delayedThermostatActionSubject = nil
         dateProvider = nil
         loadingTimeoutManager = nil
+        groupSharedSettings = nil
         
         super.tearDown()
     }
@@ -151,7 +159,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
 
         assertState(1) {
             XCTAssertEqual($0.off, false)
-            XCTAssertEqual($0.setpointText, "21.2")
+            XCTAssertEqual($0.setpointText, "21.2°")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
             XCTAssertEqual($0.operationalMode, .standby)
@@ -243,7 +251,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         assertState(1) {
             XCTAssertEqual($0.off, false)
-            XCTAssertEqual($0.setpointText, "23.0")
+            XCTAssertEqual($0.setpointText, "23.0°")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
             XCTAssertEqual($0.powerIconColor, .primary)

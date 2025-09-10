@@ -18,7 +18,7 @@
 
 final class ThermometerValueStringProvider: ChannelValueStringProvider {
     @Singleton<ThermometerValueProvider> private var thermometerValueProvider
-    private let formatter = ThermometerValueFormatter()
+    @Singleton<ThermometerValueFormatter> private var formatter
 
     func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_THERMOMETER

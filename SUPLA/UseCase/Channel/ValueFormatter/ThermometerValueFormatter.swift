@@ -23,19 +23,31 @@ final class ThermometerValueFormatter: ChannelValueFormatter {
         function == SUPLA_CHANNELFNC_THERMOMETER
     }
     
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
-        if let doubleValue = value as? Double,
-           doubleValue > ThermometerValueProviderImpl.UNKNOWN_VALUE
-        {
-            let stringValue = convert(doubleValue).toString(precision: 1)
-            return withUnit ? "\(stringValue) \(settings.temperatureUnit.symbol)" : "\(stringValue)°"
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+        let format = custom as? TemperatureFormat ?? TemperatureFormat.default
+        
+        return if let doubleValue = value as? Double, doubleValue > ThermometerValueFormatter.UNKNOWN_VALUE {
+             toString(doubleValue, withUnit: withUnit, format: format)
+        } else if let floatValue = value as? Float, floatValue > Float(ThermometerValueFormatter.UNKNOWN_VALUE) {
+             toString(Double(floatValue), withUnit: withUnit, format: format)
         } else {
-            return NO_VALUE_TEXT
+             NO_VALUE_TEXT
         }
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
+    }
+    
+    private func toString(_ value: Double, withUnit: Bool, format: TemperatureFormat) -> String {
+        let stringValue = convert(value).toString(precision: settings.temperaturePrecision)
+        return if (withUnit) {
+            "\(stringValue) \(settings.temperatureUnit.symbol)"
+        } else if (format.withDegreeSymbol) {
+            "\(stringValue)°"
+        } else {
+            stringValue
+        }
     }
     
     private func convert(_ value: Double) -> Double {
@@ -44,4 +56,13 @@ final class ThermometerValueFormatter: ChannelValueFormatter {
         case .fahrenheit: return (value * 9.0 / 5.0) + 32.0
         }
     }
+    
+    static let UNKNOWN_VALUE = -273.0
+}
+
+struct TemperatureFormat {
+    let withDegreeSymbol: Bool
+    
+    static let scheduleSettings = TemperatureFormat(withDegreeSymbol: false)
+    static let `default` = TemperatureFormat(withDegreeSymbol: true)
 }

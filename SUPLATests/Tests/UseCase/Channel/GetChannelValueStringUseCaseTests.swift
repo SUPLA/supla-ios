@@ -316,6 +316,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             value: SAChannelValue.mock(status: .online)
         )
         groupSharedSettings.temperatureUnitMock.returns = .many([.celsius, .celsius])
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
         // when

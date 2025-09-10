@@ -341,6 +341,7 @@
 "settings_lock_screen_app" = "Anwendung";
 "settings_lock_screen_accounts" = "Konten";
 "settings_battery_level_warnign" = "Batteriestandswarnung";
+"app_settings_temperature_precision" = "Temperaturpräzision";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";

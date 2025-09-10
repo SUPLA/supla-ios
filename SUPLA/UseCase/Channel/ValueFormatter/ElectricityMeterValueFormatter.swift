@@ -24,7 +24,7 @@ final class ListElectricityMeterValueFormatter: BaseElectricityMeterValueFormatt
         self.useNoValue = useNoValue
     }
     
-    override func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    override func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         let unit: String? = withUnit ? getUnit(custom: custom) : nil
         let checkNoValue = checkNoValue(custom)
         
@@ -61,7 +61,7 @@ final class ListElectricityMeterValueFormatter: BaseElectricityMeterValueFormatt
 
 final class ChartAxisElectricityMeterValueFormatter: BaseElectricityMeterValueFormatter {
     
-    override func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    override func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let value = value as? Double {
             return format(value, unit: withUnit ? "kWh" : nil, precision: value == 0.0 ? 0 : precision.value, checkNoValue: false)
         }
@@ -76,11 +76,11 @@ class BaseElectricityMeterValueFormatter: ChannelValueFormatter {
         function == SUPLA_CHANNELFNC_ELECTRICITY_METER
     }
     
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         fatalError("format(_:withUnit:precision:) has not been implemented!")
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
     

@@ -16,35 +16,33 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
 import SharedCore
+import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class ThermostatProgramInfoTests: XCTestCase {
-    
-    private lazy var builder: ThermostatProgramInfo.Builder! = {
-        ThermostatProgramInfo.Builder()
-    }()
-    
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
-    
-    private lazy var valuesFormatter: ValuesFormatterMock! = {
-        ValuesFormatterMock()
-    }()
+    private lazy var builder: ThermostatProgramInfo.Builder! = ThermostatProgramInfo.Builder()
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
+    private lazy var valuesFormatter: ValuesFormatterMock! = ValuesFormatterMock()
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
     
     override func setUp() {
-        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
-        DiContainer.shared.register(type: ValuesFormatter.self, valuesFormatter!)
+        DiContainer.shared.register(type: DateProvider.self, self.dateProvider!)
+        DiContainer.shared.register(type: ValuesFormatter.self, self.valuesFormatter!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, self.groupSharedSettings!)
+        
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
     }
     
     override func tearDown() {
-        dateProvider = nil
-        valuesFormatter = nil
+        self.dateProvider = nil
+        self.valuesFormatter = nil
+        self.groupSharedSettings = nil
         
-        builder = nil
+        self.builder = nil
     }
     
     func test_shouldNotBuildWhenConfigNotSet() {
@@ -96,7 +94,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.channelOnline = false
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [])
@@ -111,7 +109,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.channelOnline = true
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [])
@@ -126,7 +124,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.channelOnline = true
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [])
@@ -141,7 +139,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.channelOnline = true
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [])
@@ -156,7 +154,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.channelOnline = true
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [
@@ -165,7 +163,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: Strings.ThermostatDetail.clockError,
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.iconColor,
-                description: "10.0",
+                description: "10.0°",
                 manualActive: false
             )
         ])
@@ -180,7 +178,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.channelOnline = true
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [])
@@ -198,10 +196,10 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.currentTemperature = 10
         self.builder.channelOnline = true
         
-        dateProvider.currentDayOfWeekReturns = .sunday
+        self.dateProvider.currentDayOfWeekReturns = .sunday
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [])
@@ -218,22 +216,22 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.currentTemperature = 10
         self.builder.channelOnline = true
         
-        dateProvider.currentDayOfWeekReturns = .sunday
-        dateProvider.currentMinuteReturns = 4
+        self.dateProvider.currentDayOfWeekReturns = .sunday
+        self.dateProvider.currentMinuteReturns = 4
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [
             ThermostatProgramInfo(
                 type: .current,
                 time: Strings.ThermostatDetail.programTime.arguments(
-                    valuesFormatter.minutesToString(minutes: 86)
+                    self.valuesFormatter.minutesToString(minutes: 86)
                 ),
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.iconColor,
-                description: "10.0",
+                description: "10.0°",
                 manualActive: false
             ),
             ThermostatProgramInfo(
@@ -241,7 +239,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: nil,
                 icon: SuplaHvacMode.cool.icon,
                 iconColor: SuplaHvacMode.cool.iconColor,
-                description: "12.0",
+                description: "12.0°",
                 manualActive: false
             )
         ])
@@ -258,18 +256,18 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.currentTemperature = 10
         self.builder.channelOnline = true
         
-        dateProvider.currentDayOfWeekReturns = .sunday
-        dateProvider.currentMinuteReturns = 34
+        self.dateProvider.currentDayOfWeekReturns = .sunday
+        self.dateProvider.currentMinuteReturns = 34
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [
             ThermostatProgramInfo(
                 type: .current,
                 time: Strings.ThermostatDetail.programTime.arguments(
-                    valuesFormatter.minutesToString(minutes: 56)
+                    self.valuesFormatter.minutesToString(minutes: 56)
                 ),
                 icon: SuplaHvacMode.off.icon,
                 iconColor: SuplaHvacMode.off.iconColor,
@@ -281,7 +279,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: nil,
                 icon: SuplaHvacMode.cool.icon,
                 iconColor: SuplaHvacMode.cool.iconColor,
-                description: "12.0",
+                description: "12.0°",
                 manualActive: false
             )
         ])
@@ -299,22 +297,22 @@ final class ThermostatProgramInfoTests: XCTestCase {
         self.builder.currentTemperature = 10
         self.builder.channelOnline = true
         
-        dateProvider.currentDayOfWeekReturns = .sunday
-        dateProvider.currentMinuteReturns = 4
+        self.dateProvider.currentDayOfWeekReturns = .sunday
+        self.dateProvider.currentMinuteReturns = 4
         
         // when
-        let result = builder.build()
+        let result = self.builder.build()
         
         // then
         XCTAssertEqual(result, [
             ThermostatProgramInfo(
                 type: .current,
                 time: Strings.ThermostatDetail.programTime.arguments(
-                    valuesFormatter.minutesToString(minutes: 86)
+                    self.valuesFormatter.minutesToString(minutes: 86)
                 ),
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.iconColor,
-                description: "10.0",
+                description: "10.0°",
                 manualActive: false
             ),
             ThermostatProgramInfo(

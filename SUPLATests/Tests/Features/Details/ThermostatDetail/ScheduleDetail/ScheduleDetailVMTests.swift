@@ -16,34 +16,29 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, ScheduleDetailViewEvent> {
+    private lazy var viewModel: ScheduleDetailVM! = ScheduleDetailVM()
     
-    private lazy var viewModel: ScheduleDetailVM! = { ScheduleDetailVM() }()
+    private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = ChannelConfigEventsManagerMock()
+
+    private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = DeviceConfigEventsManagerMock()
+
+    private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = GetChannelConfigUseCaseMock()
+
+    private lazy var dealyedWeeklyScheduleConfigSubject: DelayedWeeklyScheduleConfigSubjectMock! = DelayedWeeklyScheduleConfigSubjectMock()
+
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
-    private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = {
-        ChannelConfigEventsManagerMock()
-    }()
-    private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = {
-        DeviceConfigEventsManagerMock()
-    }()
-    private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = {
-        GetChannelConfigUseCaseMock()
-    }()
-    private lazy var dealyedWeeklyScheduleConfigSubject: DelayedWeeklyScheduleConfigSubjectMock! = {
-        DelayedWeeklyScheduleConfigSubjectMock()
-    }()
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
-    private lazy var readChannelByRemoteIdUseCAse: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
-    }()
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
+
+    private lazy var readChannelByRemoteIdUseCAse: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: ChannelConfigEventsManager.self, channelConfigEventsManager!)
@@ -53,6 +48,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
         DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCAse!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings!)
     }
     
     override func tearDown() {
@@ -64,6 +60,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         dealyedWeeklyScheduleConfigSubject = nil
         dateProvider = nil
         readChannelByRemoteIdUseCAse = nil
+        groupSharedSettings = nil
         
         super.tearDown()
     }
@@ -99,6 +96,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: 40
         )
         viewModel.updateView { _ in state }
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
         
         // when
         observe(viewModel)
@@ -138,6 +137,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 configMax: 40
             )
         }
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
         
         // when
         observe(viewModel)
@@ -169,8 +170,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
         let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey : ScheduleDetailBoxValue(oneProgram: .program2),
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+            firstKey: ScheduleDetailBoxValue(oneProgram: .program2),
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
         ]
         viewModel.updateView { _ in
             ScheduleDetailViewState(
@@ -192,14 +193,14 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             state,
             state
                 .changing(path: \.schedule, to: [
-                    firstKey : ScheduleDetailBoxValue(oneProgram: .off),
-                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+                    firstKey: ScheduleDetailBoxValue(oneProgram: .off),
+                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
                 ])
                 .changing(path: \.changing, to: true),
             state
                 .changing(path: \.schedule, to: [
-                    firstKey : ScheduleDetailBoxValue(oneProgram: .off),
-                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+                    firstKey: ScheduleDetailBoxValue(oneProgram: .off),
+                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
                 ])
                 .changing(path: \.lastInteractionTime, to: 123)
         ])
@@ -209,8 +210,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
         let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey : ScheduleDetailBoxValue(oneProgram: .program2),
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+            firstKey: ScheduleDetailBoxValue(oneProgram: .program2),
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
         ]
         viewModel.updateView { _ in
             ScheduleDetailViewState(
@@ -227,7 +228,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         assertObserverItems(statesCount: 1, eventsCount: 0)
         let state = ScheduleDetailViewState(schedule: schedule)
         assertStates(expected: [
-            state,
+            state
         ])
     }
     
@@ -237,8 +238,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
         let firstValue = ScheduleDetailBoxValue(oneProgram: .program2)
         let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey : firstValue,
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+            firstKey: firstValue,
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
         ]
         let programs = [ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil))]
         viewModel.updateView { _ in
@@ -271,8 +272,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
         let firstValue = ScheduleDetailBoxValue(oneProgram: .program2)
         let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey : firstValue,
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+            firstKey: firstValue,
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
         ]
         let initialState = ScheduleDetailViewState(
             remoteId: remoteId,
@@ -292,8 +293,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             initialState,
             initialState
                 .changing(path: \.schedule, to: [
-                    firstKey : ScheduleDetailBoxValue(oneProgram: .program1),
-                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
+                    firstKey: ScheduleDetailBoxValue(oneProgram: .program1),
+                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
                     
                 ])
                 .changing(path: \.activeProgram, to: .program1)
@@ -427,7 +428,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         assertObserverItems(statesCount: 1, eventsCount: 0)
         let state = ScheduleDetailViewState()
         assertStates(expected: [
-            state,
+            state
         ])
     }
     
@@ -460,7 +461,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         assertObserverItems(statesCount: 1, eventsCount: 0)
         let state = ScheduleDetailViewState()
         assertStates(expected: [
-            state,
+            state
         ])
     }
     
@@ -501,7 +502,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         assertObserverItems(statesCount: 2, eventsCount: 0)
         assertStates(expected: [
             initialState,
-            initialState,
+            initialState
         ])
     }
     
@@ -543,7 +544,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         assertObserverItems(statesCount: 2, eventsCount: 0)
         assertStates(expected: [
             initialState,
-            initialState,
+            initialState
         ])
         XCTAssertTuples(getChannelConfigUseCase.parameters, [
             (remoteId, .defaultConfig),

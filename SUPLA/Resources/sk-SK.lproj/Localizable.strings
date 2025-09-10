@@ -348,6 +348,7 @@
 "settings_show_labels" = "Zobrazenie štítkov v spodnej ponuke";
 "settings_dark_mode" = "Nočný režim";
 "settings_show_bottom_menu" = "Zobraziť spodnú ponuku";
+"app_settings_temperature_precision" = "Presnosť teploty";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Všeobecné";

@@ -1059,6 +1059,11 @@
 		A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */; };
 		A5C6905F2DD7760C00194C1B /* GroupSharedSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */; };
 		A5CA8ACA2E6EF353005B55F4 /* CheckIsSlaveThermostatUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */; };
+		A5CA8ACC2E701DEA005B55F4 /* TemperaturePrecisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */; };
+		A5CA8ACD2E703B9E005B55F4 /* ThermometerValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBB2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift */; };
+		A5CA8ACE2E703BBB005B55F4 /* ChannelValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABB72B6BB082008CDA1F /* ChannelValueFormatter.swift */; };
+		A5CA8AD42E703C34005B55F4 /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACC2CC2997900A784FA /* DoubleFormatter.swift */; };
+		A5CA8AD52E7054CF005B55F4 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FE2AEFB96A0025509D /* Double+Ext.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
 		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
@@ -1398,7 +1403,6 @@
 		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
 		AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB195DD276E5A040091D314 /* FadeTransition.swift */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
-		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
 		AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEA2711CB67001A9714 /* AuthInfo.swift */; };
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
 		AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */; };
@@ -2753,6 +2757,7 @@
 		A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int16+Ext.swift"; sourceTree = "<group>"; };
 		A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettingsMock.swift; sourceTree = "<group>"; };
 		A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIsSlaveThermostatUseCase.swift; sourceTree = "<group>"; };
+		A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePrecisionCell.swift; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
 		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
@@ -3059,7 +3064,6 @@
 		AEA1E96127422AA9005C34CB /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AEB195DD276E5A040091D314 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
-		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
 		AECB1BEA2711CB67001A9714 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
 		AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 12.xcdatamodel"; sourceTree = "<group>"; };
@@ -4731,7 +4735,6 @@
 		A54A06922AFB740900C03DBC /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
 				A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
 				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
@@ -5187,17 +5190,16 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				A5AE6D632E1D492F00BC2B67 /* AddWizard */,
-				A567C75B2DAE5F34006245B5 /* CarPlay */,
-				A54737552D89A84D00B2E227 /* ChannelsCleanup */,
-				A56851B42D6CA15C00942F8B /* CaptionChangeDialog */,
-				A50716D12D68922F0060FA0D /* StateDialog */,
-				A505EC372CF71E3300E69BDB /* CreateProfile */,
 				A5D7128C2C41079500A8EF52 /* About */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
+				A5AE6D632E1D492F00BC2B67 /* AddWizard */,
 				A5AE7A822A39E6C20097FA8B /* AppSettings */,
 				A5E9CE252C32CE0B00509702 /* Authorization */,
+				A56851B42D6CA15C00942F8B /* CaptionChangeDialog */,
+				A567C75B2DAE5F34006245B5 /* CarPlay */,
 				A5F29B5E2A1E18BC00ED700A /* ChannelList */,
+				A54737552D89A84D00B2E227 /* ChannelsCleanup */,
+				A505EC372CF71E3300E69BDB /* CreateProfile */,
 				A54149242B6302B100B44BD6 /* Details */,
 				A5074BAD2BC954A10081B6B1 /* DeviceCatalog */,
 				A5F29B642A1E236000ED700A /* GroupList */,
@@ -5209,6 +5211,7 @@
 				A5F5C3F02C36822A0058E255 /* PinSetup */,
 				A58472022C2D9CF400713D36 /* Profiles */,
 				A5F29B652A1E237700ED700A /* SceneList */,
+				A50716D12D68922F0060FA0D /* StateDialog */,
 				A5A15FEB2C298A580049AA73 /* Status */,
 				A56D5AD12A4C68F4004F45DA /* UpdateToken */,
 				A5074BA52BC922E70081B6B1 /* WebContent */,
@@ -6122,6 +6125,7 @@
 		A5AE7A832A3AC6E80097FA8B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */,
 				A54058192CE34B4500EC98C8 /* EditTextCell.swift */,
 				A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */,
 				A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */,
@@ -7815,6 +7819,7 @@
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */,
 				A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */,
+				A5CA8ACC2E701DEA005B55F4 /* TemperaturePrecisionCell.swift in Sources */,
 				A539C2732D6778BA00D9DD47 /* ValveGeneralViewState.swift in Sources */,
 				A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */,
 				A55501E82B7F96E600FD3296 /* String+Icons.swift in Sources */,
@@ -8746,7 +8751,6 @@
 				A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */,
 				A5519B3C2B6D36BD00811747 /* GpmValueProviderTest.swift in Sources */,
 				A5E05BD42CB809A700202583 /* HistoryDataSet+Test.swift in Sources */,
-				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
 				A5F5C3E62C35501D0058E255 /* SuplaAppProviderMock.swift in Sources */,
 				A54A06612AF50E2200C03DBC /* SuplaCloudServiceTests.swift in Sources */,
 				A5ABE5CF2ABD696900FFA50B /* DataMocks.swift in Sources */,
@@ -8897,10 +8901,12 @@
 				A5CF3DAF2DD5CDD000207384 /* WidgetChannel.swift in Sources */,
 				A5E2D70D2DCBEC9300EBDADB /* Color+Supla.swift in Sources */,
 				A519BFE22DD209C90045EB77 /* ChannelState.swift in Sources */,
+				A5CA8ACE2E703BBB005B55F4 /* ChannelValueFormatter.swift in Sources */,
 				A5C6903E2DD750E800194C1B /* Hour.swift in Sources */,
 				A5E2D6B32DCA26D300EBDADB /* CarPlayAction.swift in Sources */,
 				A5F2384E2DDB64D200E090E9 /* Singleton.swift in Sources */,
 				A5CF3D732DD4C0D100207384 /* UserIcon.swift in Sources */,
+				A5CA8ACD2E703B9E005B55F4 /* ThermometerValueFormatter.swift in Sources */,
 				A5E2D7002DCB62C100EBDADB /* AuthProfileItemKeychainHelper.swift in Sources */,
 				A5E2D6852DC8E58800EBDADB /* GroupSharedSettings.swift in Sources */,
 				A5E2D6FE2DCA3D7000EBDADB /* SALog.swift in Sources */,
@@ -8917,11 +8923,13 @@
 				A5C6903A2DD736C600194C1B /* SingleCallResult.swift in Sources */,
 				A5CF3D852DD4C3E000207384 /* UserIconsUseCase.swift in Sources */,
 				A5C6903C2DD74E3F00194C1B /* TemperatureUnit.swift in Sources */,
+				A5CA8AD52E7054CF005B55F4 /* Double+Ext.swift in Sources */,
 				A54E2AF42E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */,
 				A5C6903D2DD74FF000194C1B /* ValuesFormatter.swift in Sources */,
 				A5C690372DD7366B00194C1B /* DoubleValueParser.swift in Sources */,
 				A5C690362DD7366400194C1B /* IntValueParser.swift in Sources */,
 				A5E9C20C2DCCBF710001F263 /* View+ScaleFactor.swift in Sources */,
+				A5CA8AD42E703C34005B55F4 /* DoubleFormatter.swift in Sources */,
 				A5E9C2072DCCBE050001F263 /* Dimens.swift in Sources */,
 				A5E2D6972DCA038500EBDADB /* ActionParameters.swift in Sources */,
 				A5E2D7042DCB7DC800EBDADB /* AuthorizationType.swift in Sources */,

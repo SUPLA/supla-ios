@@ -25,15 +25,15 @@ private let DEFAULT_HEAT_TEMPERATURE: Float = 21
 private let DEFAULT_WATER_TEMPERATURE: Float = 40
 
 class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailViewEvent> {
+    @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
     @Singleton<DeviceConfigEventsManager> private var deviceConfigEventsManager
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
-    @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
-    @Singleton<DateProvider> private var dateProvider
-    @Singleton<SuplaSchedulers> private var schedulers
     @Singleton<GlobalSettings> private var globalSettings
+    @Singleton<SuplaSchedulers> private var schedulers
+    @Singleton<DateProvider> private var dateProvider
     
     private let reloadConfigRelay = PublishRelay<Void>()
     
@@ -98,8 +98,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                 mode: program.scheduleProgram.mode,
                 setpointTemperatureHeat: heatTemperature,
                 setpointTemperatureCool: coolTemperature,
-                heatTemperatureText: heatTemperature.toTemperatureString(),
-                coolTemperatureText: coolTemperature.toTemperatureString(),
+                heatTemperatureText: heatTemperature.toTemperatureString(format: .scheduleSettings),
+                coolTemperatureText: coolTemperature.toTemperatureString(format: .scheduleSettings),
                 showHeatEdit: isHeat || channelFunc == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
                 showCoolEdit: isCool,
                 configMin: configMin,

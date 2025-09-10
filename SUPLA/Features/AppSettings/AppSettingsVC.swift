@@ -66,6 +66,7 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     private func setupTableView() {
         tableView.register(ChannelHeightCell.self, forCellReuseIdentifier: ChannelHeightCell.id)
         tableView.register(TemperatureUnitCell.self, forCellReuseIdentifier: TemperatureUnitCell.id)
+        tableView.register(TemperaturePrecisionCell.self, forCellReuseIdentifier: TemperaturePrecisionCell.id)
         tableView.register(TitleSwitchCell.self, forCellReuseIdentifier: TitleSwitchCell.id)
         tableView.register(RsOpenningClosingPersentageCell.self, forCellReuseIdentifier: RsOpenningClosingPersentageCell.id)
         tableView.register(TitleArrowButtonCell.self, forCellReuseIdentifier: TitleArrowButtonCell.id)
@@ -93,6 +94,10 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
                 case .temperatureUnitItem(let temperatureUnit, let callback):
                     return TemperatureUnitCell.configure(temperatureUnit, callback) {
                         self.getCell(for: TemperatureUnitCell.id, indexPath)
+                    }
+                case .temperaturePrecisionItem(let precision, let callback):
+                    return TemperaturePrecisionCell.configure(precision, callback) {
+                        self.getCell(for: TemperaturePrecisionCell.id, indexPath)
                     }
                 case .switchItem(let title, let selected, let callback, let enabled):
                     return TitleSwitchCell.configure(title, selected, enabled, callback) {

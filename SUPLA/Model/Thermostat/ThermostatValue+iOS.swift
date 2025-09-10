@@ -40,15 +40,13 @@ extension ThermostatValue {
             return ""
         }
 
-        @Singleton var formatter: ValuesFormatter
-
         switch (mode) {
-        case .cool: return formatter.temperatureToString(setpointTemperatureCool)
-        case .heat: return formatter.temperatureToString(setpointTemperatureHeat)
+        case .cool: return setpointTemperatureCool.toTemperatureString()
+        case .heat: return setpointTemperatureHeat.toTemperatureString()
         case .off: return "Off"
         case .heatCool:
-            let min = formatter.temperatureToString(setpointTemperatureHeat)
-            let max = formatter.temperatureToString(setpointTemperatureCool)
+            let min = setpointTemperatureHeat.toTemperatureString()
+            let max = setpointTemperatureCool.toTemperatureString()
             return "\(min) - \(max)"
         default: return ""
         }

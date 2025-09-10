@@ -72,6 +72,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             .preferences(items: [
                 .heightItem(channelHeight: .height100, callback: { _ in }),
                 .temperatureUnitItem(temperatureUnit: .fahrenheit, callback: { _ in }),
+                .temperaturePrecisionItem(precision: 2, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.buttonAutoHide, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showBottomMenu, selected: true, callback: { _ in }),
@@ -118,6 +119,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             .preferences(items: [
                 .heightItem(channelHeight: .height150, callback: { _ in }),
                 .temperatureUnitItem(temperatureUnit: .celsius, callback: { _ in }),
+                .temperaturePrecisionItem(precision: 2, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.buttonAutoHide, selected: false, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showBottomMenu, selected: true, callback: { _ in }),
@@ -217,7 +219,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[2]) {
+        switch (list[0].items[3]) {
         case .switchItem(_, _, let callback, _):
             callback(true)
         default:
@@ -251,7 +253,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[3]) {
+        switch (list[0].items[4]) {
         case .switchItem(_, _, let callback, _):
             callback(false)
         default:
@@ -285,7 +287,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[4]) {
+        switch (list[0].items[5]) {
         case .switchItem(_, _, let callback, _):
             callback(true)
         default:
@@ -320,7 +322,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[5]) {
+        switch (list[0].items[6]) {
         case .switchItem(_, _, let callback, _):
             callback(false)
         default:
@@ -354,7 +356,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[6]) {
+        switch (list[0].items[7]) {
         case .rsOpeningPercentageItem(_, let callback):
             callback(true)
         default:
@@ -388,7 +390,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[7]) {
+        switch (list[0].items[8]) {
         case .darkModeItem(_, let callback):
             callback(.always)
         default:
@@ -423,7 +425,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[8]) {
+        switch (list[0].items[9]) {
         case .lockScreenItem(_, let callback):
             callback(.application)
         default:
@@ -461,7 +463,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[8]) {
+        switch (list[0].items[9]) {
         case .lockScreenItem(_, let callback):
             callback(.accounts)
         default:
@@ -499,7 +501,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[8]) {
+        switch (list[0].items[9]) {
         case .lockScreenItem(_, let callback):
             callback(.none)
         default:
@@ -536,7 +538,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[8]) {
+        switch (list[0].items[9]) {
         case .lockScreenItem(_, let callback):
             callback(.application)
         default:
@@ -573,7 +575,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[9]) {
+        switch (list[0].items[10]) {
         case .batteryLevelWarning(_, let callback):
             callback(20)
         default:
@@ -608,7 +610,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[10]) {
+        switch (list[0].items[11]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:
@@ -676,6 +678,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
     ) {
         settings.channelHeightReturns = channelHeight
         groupSharedSettings.temperatureUnitMock.returns = .single(temperatureUnit)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(2)
         settings.autohideButtonsReturns = autoHide
         settings.showChannelInfoReturns = infoButtons
         settings.showOpeningPercentReturns = showOpening

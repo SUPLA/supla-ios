@@ -31,6 +31,7 @@ struct GroupShared {
         var channels: [WidgetChannel] { get set }
         
         var temperatureUnit: TemperatureUnit { get set }
+        var temperaturePrecision: Int { get set }
     }
     
     final class Implementation: Settings {
@@ -62,6 +63,15 @@ struct GroupShared {
         var temperatureUnit: TemperatureUnit {
             get { TemperatureUnit(rawValue: userDefaults?.string(forKey: temperatureUnitKey) ?? "") ?? .celsius }
             set { userDefaults?.set(newValue.rawValue, forKey: temperatureUnitKey) }
+        }
+        
+        private let temperaturePrecisionKey = "GroupShared.temperaturePrecision"
+        var temperaturePrecision: Int {
+            get {
+                guard let precision = userDefaults?.integer(forKey: temperaturePrecisionKey) else { return 1 }
+                return precision < 1 ? 1 : precision
+            }
+            set { userDefaults?.set(newValue, forKey: temperaturePrecisionKey) }
         }
     }
 }

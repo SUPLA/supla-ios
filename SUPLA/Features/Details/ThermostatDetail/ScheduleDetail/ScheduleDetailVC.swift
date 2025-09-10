@@ -593,7 +593,7 @@ fileprivate class ScheduleInfoView: UIView {
         let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
         buttonView.backgroundColor = SuplaScheduleProgram.program1.color()
         buttonView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.text = formatter.temperatureToString(CGFloat(19), withUnit: false)
+        buttonView.text = Float(19).toTemperatureString()
         buttonView.textFont = .scheduleDetailButton
         buttonView.type = .neutral
         buttonView.isClickable = false

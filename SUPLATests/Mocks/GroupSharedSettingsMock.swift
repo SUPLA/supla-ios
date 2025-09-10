@@ -39,5 +39,11 @@ extension GroupShared {
             get { temperatureUnitMock.returns.next() }
             set { temperatureUnitMock.set(newValue) }
         }
+        
+        var temperaturePrecisionMock: FunctionMock<Int, Int> = .init()
+        var temperaturePrecision: Int {
+            get { temperaturePrecisionMock.returns.next() }
+            set { temperaturePrecisionMock.set(newValue) }
+        }
     }
 }

@@ -32,12 +32,10 @@ enum DeviceState {
     static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor { mode?.iconColor ?? .disabled }
     
     static func currentStateValue(_ mode: SuplaHvacMode?, heatSetpoint: Float?, coolSetpoint: Float?) -> String {
-        @Singleton<ValuesFormatter> var formatter
-        
         return switch (mode) {
         case .off: "OFF"
-        case .heat: formatter.temperatureToString(heatSetpoint, withUnit: false)
-        case .cool: formatter.temperatureToString(coolSetpoint, withUnit: false)
+        case .heat: heatSetpoint.toTemperatureString()
+        case .cool: coolSetpoint.toTemperatureString()
         default: ""
         }
     }

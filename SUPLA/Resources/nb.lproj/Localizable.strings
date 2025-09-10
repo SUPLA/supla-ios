@@ -349,6 +349,7 @@
 "settings_lock_screen_app" = "En app";
 "settings_lock_screen_none" = "Ingen";
 "settings_show_bottom_menu" = "Vis bunnmeny";
+"app_settings_temperature_precision" = "Temperaturpresisjon";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generelt";

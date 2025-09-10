@@ -29,7 +29,7 @@ final class ThermometerAndHumidityValueProviderImpl: ThermometerAndHumidityValue
             if let value = asIntValue(channel.value?.dataValue()) {
                 return Double(value) / 1000.0
             }
-            return  ThermometerValueProviderImpl.UNKNOWN_VALUE
+            return  ThermometerValueFormatter.UNKNOWN_VALUE
         } else {
             if let value = asIntValue(channel.value?.dataValue(), startingFromByte: 4) {
                 return Double(value) / 1000.0
