@@ -19,9 +19,9 @@
 import Foundation
 
 extension Float {
-    func toTemperatureString() -> String {
-        @Singleton<ValuesFormatter> var formatter
-        return formatter.temperatureToString(self, withUnit: false, withDegree: false)
+    func toTemperatureString(withUnit: Bool = false, precision: ChannelValuePrecision = .defaultPrecision(value: 1), format: TemperatureFormat = .default) -> String {
+        @Singleton<ThermometerValueFormatter> var formatter
+        return formatter.format(self, withUnit: withUnit, precision: precision, custom: format)
     }
     
     var cg: CGFloat {
@@ -42,6 +42,17 @@ extension Float {
     
     func roundToTenths() -> Float {
         (self * 10).rounded() / 10
+    }
+}
+
+extension Float? {
+    func toTemperatureString(
+        withUnit: Bool = false,
+        precision: ChannelValuePrecision = .defaultPrecision(value: 1),
+        format: TemperatureFormat = .default
+    ) -> String {
+        guard let self = self else { return NO_VALUE_TEXT }
+        return self.toTemperatureString(withUnit: withUnit, precision: precision, format: format)
     }
 }
 

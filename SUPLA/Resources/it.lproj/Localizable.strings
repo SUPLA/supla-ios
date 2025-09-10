@@ -366,6 +366,7 @@
 "settings_lock_screen_none" = "Nessuno";
 "settings_lock_screen_app" = "Applicazione";
 "settings_lock_screen_accounts" = "Account";
+"app_settings_temperature_precision" = "Precisione della temperatura";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generali";

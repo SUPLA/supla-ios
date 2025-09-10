@@ -26,6 +26,7 @@ struct ThermostatProgramInfo: Equatable {
     let description: String?
     let manualActive: Bool
     
+    
     enum InfoType {
         case current, next
         
@@ -115,15 +116,13 @@ extension ThermostatProgramInfo.Builder {
     }
     
     fileprivate func clockErrorList() -> [ThermostatProgramInfo] {
-        @Singleton<ValuesFormatter> var valuesFormatter
-        
-        return [
+        [
             ThermostatProgramInfo(
                 type: .current,
                 time: Strings.ThermostatDetail.clockError,
                 icon: currentMode?.icon,
                 iconColor: currentMode?.iconColor,
-                description: valuesFormatter.temperatureToString(currentTemperature, withUnit: false, withDegree: false),
+                description: currentTemperature.toTemperatureString(),
                 manualActive: false
             )
         ]
@@ -134,7 +133,7 @@ extension ThermostatProgramInfo.Builder {
         
         let minutesToNextProgram = quartersToNextProgram! * 15 + (15 - (currentMinute! % 15))
         let nextScheduleProgram = getProgram(program: foundNextProgram)
-        let currentTemperatureString = valuesFormatter.temperatureToString(currentTemperature, withUnit: false)
+        let currentTemperatureString = currentTemperature.toTemperatureString()
         
         if (deviceConfig?.isAutomaticTimeSyncDisabled() == true) {
             return [

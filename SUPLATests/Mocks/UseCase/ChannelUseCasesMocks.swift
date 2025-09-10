@@ -180,14 +180,14 @@ final class ChannelValueFormatterMock: ChannelValueFormatter {
         return handleReturns
     }
     
-    var formatParameters: [(Any, Bool, ChannelValuePrecision, Any?)] = []
+    var formatParameters: [(Any?, Bool, ChannelValuePrecision, Any?)] = []
     var formatReturns: String = ""
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         formatParameters.append((value, withUnit, precision, custom))
         return formatReturns
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         ""
     }
 }

@@ -190,11 +190,11 @@ extension SuplaValueWidget {
 
         static func from(_ result: SingleCallResult) -> FormattedValue {
             switch (result) {
-            case .temperature(let value): .single(formatter.temperatureToString(value: Float(value)))
+            case .temperature(let value): .single(value.toTemperatureString(withUnit: true))
             case .humidity(let value): .single(formatter.humidityToString(value))
             case .temperatureAndHumidity(let temperature, let humidity):
                 .double(
-                    first: formatter.temperatureToString(value: Float(temperature)),
+                    first: temperature.toTemperatureString(withUnit: true),
                     second: formatter.humidityToString(humidity)
                 )
             case .error(let errorCode): .error(errorCode)

@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Toepassing";
 "settings_lock_screen_none" = "Geen";
 "settings_show_bottom_menu" = "Menu onderaan tonen";
+"app_settings_temperature_precision" = "Temperatuurnauwkeurigheid";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Algemeen";

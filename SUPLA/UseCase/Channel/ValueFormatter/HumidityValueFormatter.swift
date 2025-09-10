@@ -21,7 +21,7 @@ final class HumidityValueFormatter: ChannelValueFormatter {
         function == SUPLA_CHANNELFNC_HUMIDITY
     }
 
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double,
            doubleValue > HumidityValueProviderImpl.UNKNOWN_VALUE
         {
@@ -37,7 +37,7 @@ final class HumidityValueFormatter: ChannelValueFormatter {
         }
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
 

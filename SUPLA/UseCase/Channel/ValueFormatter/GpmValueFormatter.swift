@@ -34,7 +34,7 @@ final class GpmValueFormatter: ChannelValueFormatter {
             function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
     }
 
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         guard let doubleValue = value as? Double else { return NO_VALUE_TEXT }
         if (doubleValue.isNaN) {
             return NO_VALUE_TEXT
@@ -48,7 +48,7 @@ final class GpmValueFormatter: ChannelValueFormatter {
         }
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool = true) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool = true) -> String {
         guard let doubleValue = value as? Double else { return NO_VALUE_TEXT }
         if (doubleValue.isNaN) {
             return NO_VALUE_TEXT

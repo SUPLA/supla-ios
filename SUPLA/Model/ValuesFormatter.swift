@@ -19,11 +19,10 @@
 import Foundation
 
 let NO_VALUE_TEXT = "---"
-private let MIN_TEMPERATURE_VALUE: Float = -273
+private let MIN_TEMPERATURE_VALUE: Double = -273
 
 protocol ValuesFormatter {
     // Values
-    func temperatureToString(value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
     func humidityToString(value: Double?, withPercentage: Bool, precision: Int) -> String
     func percentageToString(_ value: Float) -> String
     
@@ -45,16 +44,6 @@ protocol ValuesFormatter {
 }
 
 extension ValuesFormatter {
-    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
-        temperatureToString(value: value, withUnit: withUnit, withDegree: withDegree, precision: precision)
-    }
-    func temperatureToString(_ value: Double?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
-        if let value = value {
-            return temperatureToString(value: Float(value), withUnit: withUnit, withDegree: withDegree, precision: precision)
-        } else {
-            return temperatureToString(value: nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
-        }
-    }
     func humidityToString(_ value: Double?, withPercentage: Bool = false, precision: Int = 1) -> String {
         humidityToString(value: value, withPercentage: withPercentage, precision: precision)
     }
@@ -76,25 +65,6 @@ final class ValuesFormatterImpl: ValuesFormatter {
     }()
     
     // MARK: - Values
-    
-    func temperatureToString(value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
-        formatter.minimumFractionDigits = precision
-        formatter.maximumFractionDigits = precision
-        guard let value = value,
-              value >= MIN_TEMPERATURE_VALUE,
-              let formatted = formatter.string(from: NSNumber(value: convert(value)))
-        else {
-            return NO_VALUE_TEXT
-        }
-        
-        if (withUnit) {
-            return "\(formatted) \(settings.temperatureUnit.symbol)"
-        } else if (withDegree) {
-            return "\(formatted)°"
-        } else {
-            return formatted
-        }
-    }
     
     func humidityToString(value: Double?, withPercentage: Bool, precision: Int = 1) -> String {
         formatter.minimumFractionDigits = precision

@@ -42,6 +42,7 @@ extension DiContainer {
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(BuildInfo.self, BuildInfoImpl())
         register(SecureSettings.Interface.self, SecureSettings.Implementation())
+        register(ThermometerValueFormatter.self, ThermometerValueFormatter())
         
         register(GroupShared.Settings.self, GroupShared.Implementation())
         if #available(iOS 17.0, *) {

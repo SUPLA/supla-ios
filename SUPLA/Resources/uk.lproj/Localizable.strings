@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Додаток";
 "settings_lock_screen_none" = "Немає";
 "settings_show_bottom_menu" = "Показати нижнє меню";
+"app_settings_temperature_precision" = "Точність температури";
 
 
 /* Standard Detail */

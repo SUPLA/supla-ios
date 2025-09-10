@@ -20,9 +20,8 @@ import RxSwift
 
 final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
-    @Singleton<ValuesFormatter> private var formatter
-    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var thermostatIconView: UIImageView = {

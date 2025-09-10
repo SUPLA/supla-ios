@@ -49,6 +49,7 @@ struct Strings {
     }
     
     struct AppSettings {
+        static let temperaturePrecision = "app_settings_temperature_precision".toLocalized()
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()

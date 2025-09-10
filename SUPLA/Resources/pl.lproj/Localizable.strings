@@ -371,6 +371,7 @@
 "settings_lock_screen_app" = "Aplikacja";
 "settings_lock_screen_accounts" = "Konta";
 "settings_battery_level_warnign" = "Sygnalizacja słabej baterii";
+"app_settings_temperature_precision" = "Precyzja temperatury";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";

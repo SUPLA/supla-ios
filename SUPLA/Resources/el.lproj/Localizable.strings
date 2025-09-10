@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Εφαρμογή";
 "settings_lock_screen_none" = "Δεν υπάρχει";
 "settings_show_bottom_menu" = "Εμφάνιση κάτω μενού";
+"app_settings_temperature_precision" = "Ακρίβεια θερμοκρασίας";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Γενικά";

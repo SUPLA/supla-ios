@@ -139,8 +139,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             // Set it only once at the begining.
             thermostatControlView.setpointToDrag = state.activeSetpointType
         }
-        thermostatControlView.minTemperatureText = formatter.temperatureToString(state.configMin, withUnit: false)
-        thermostatControlView.maxTemperatureText = formatter.temperatureToString(state.configMax, withUnit: false)
+        thermostatControlView.minTemperatureText = state.configMin.toTemperatureString()
+        thermostatControlView.maxTemperatureText = state.configMax.toTemperatureString()
         thermostatControlView.minMaxHidden = state.configMinMaxHidden
         thermostatControlView.setpointText = state.setpointText
         thermostatControlView.setpointHeatPercentage = state.setpointHeatPercentage?.cg

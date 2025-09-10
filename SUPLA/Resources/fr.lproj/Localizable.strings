@@ -348,6 +348,7 @@
 "settings_show_bottom_menu" = "Afficher le menu du bas";
 "settings_show_labels" = "Afficher les étiquettes dans le menu inférieur";
 "settings_dark_mode" = "Mode nuit";
+"app_settings_temperature_precision" = "Précision de la température";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Générale";

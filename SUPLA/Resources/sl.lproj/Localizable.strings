@@ -348,6 +348,7 @@
 "settings_show_bottom_menu" = "Prikaži spodnji meni";
 "settings_show_labels" = "Prikaži oznake v spodnjem meniju";
 "settings_dark_mode" = "Nočni pogled";
+"app_settings_temperature_precision" = "Natančnost temperature";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Splošno";

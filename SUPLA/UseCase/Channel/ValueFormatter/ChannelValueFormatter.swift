@@ -18,21 +18,21 @@
 
 protocol ChannelValueFormatter {
     func handle(function: Int32) -> Bool
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String
 }
 
 extension ChannelValueFormatter {
-    func format(_ value: Any) -> String {
+    func format(_ value: Any?) -> String {
         format(value, withUnit: true, precision: .defaultPrecision(value: 1), custom: nil)
     }
-    func format(_ value: Any, withUnit: Bool) -> String {
+    func format(_ value: Any?, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: 1), custom: nil)
     }
-    func format(_ value: Any, withUnit: Bool = true, precision: Int = 1) -> String {
+    func format(_ value: Any?, withUnit: Bool = true, precision: Int = 1) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
-    func format(_ value: Any, withUnit: Bool = true, precision: ChannelValuePrecision = .defaultPrecision(value: 1)) -> String {
+    func format(_ value: Any?, withUnit: Bool = true, precision: ChannelValuePrecision = .defaultPrecision(value: 1)) -> String {
         format(value, withUnit: withUnit, precision: precision, custom: nil)
     }
 }

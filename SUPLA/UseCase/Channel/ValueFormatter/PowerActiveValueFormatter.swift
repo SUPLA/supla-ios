@@ -21,7 +21,7 @@ final class PowerActiveValueFormatter: ChannelValueFormatter {
         fatalError("Not expected to be called")
     }
     
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         guard let doubleValue = value as? Double else {
             return NO_VALUE_TEXT
         }
@@ -33,7 +33,7 @@ final class PowerActiveValueFormatter: ChannelValueFormatter {
         }
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
 }

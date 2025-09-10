@@ -145,6 +145,7 @@
 "settings_lock_screen_app" = "App";
 "settings_lock_screen_accounts" = "Accounts";
 "settings_battery_level_warnign" = "Low battery alert";
+"app_settings_temperature_precision" = "Temperature precision";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";

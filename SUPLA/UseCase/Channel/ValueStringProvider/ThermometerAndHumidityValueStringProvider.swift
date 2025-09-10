@@ -18,8 +18,8 @@
 
 final class ThermometerAndHumidityValueStringProvider: ChannelValueStringProvider {
     @Singleton<ThermometerAndHumidityValueProvider> private var thermometerAndHumidityValueProvider
+    @Singleton<ThermometerValueFormatter> private var temperatureFormatter
     
-    private let temperatureFormatter = ThermometerValueFormatter()
     private let humidityFormatter = HumidityValueFormatter()
     
     func handle(_ channel: SAChannel) -> Bool {

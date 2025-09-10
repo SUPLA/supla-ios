@@ -603,9 +603,9 @@ struct ThermostatGeneralViewState: ViewState {
         } else if (off) {
             return "off"
         } else if (mode == .heat) {
-            return formatter.temperatureToString(setpointHeat, withUnit: false)
+            return setpointHeat.toTemperatureString()
         } else if (mode == .cool) {
-            return formatter.temperatureToString(setpointCool, withUnit: false)
+            return setpointCool.toTemperatureString()
         }
             
         return nil

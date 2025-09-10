@@ -48,6 +48,11 @@ extension Double {
     func convert<T>(_ transformation: (Double) -> T) -> T {
         return transformation(self)
     }
+    
+    func toTemperatureString(withUnit: Bool = false, precision: ChannelValuePrecision = .defaultPrecision(value: 1), format: TemperatureFormat = .default) -> String {
+        @Singleton<ThermometerValueFormatter> var formatter
+        return formatter.format(self, withUnit: withUnit, precision: precision, custom: format)
+    }
 }
 
 extension Double? {

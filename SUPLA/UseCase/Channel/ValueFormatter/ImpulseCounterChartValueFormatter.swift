@@ -34,7 +34,7 @@ final class ImpulseCounterChartValueFormatter: ChannelValueFormatter {
         }
     }
 
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double {
             let precision = getPrecision(precision)
 
@@ -48,7 +48,7 @@ final class ImpulseCounterChartValueFormatter: ChannelValueFormatter {
         }
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
 

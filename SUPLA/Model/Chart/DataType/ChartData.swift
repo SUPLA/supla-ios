@@ -260,7 +260,7 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
 private class DefaultValueFormatter: ChannelValueFormatter {
     func handle(function: Int32) -> Bool { true }
     
-    func format(_ value: Any, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
+    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
         if let doubleValue = value as? Double {
             return String(format: "%.2f", doubleValue)
         }
@@ -274,7 +274,7 @@ private class DefaultValueFormatter: ChannelValueFormatter {
         return String(describing: value)
     }
     
-    func formatChartLabel(_ value: Any, precision: Int, withUnit: Bool) -> String {
+    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
         format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
 }

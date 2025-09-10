@@ -70,6 +70,10 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 temperatureUnit: groupSettings.temperatureUnit,
                 callback: { [weak self] in self?.updateTemperatureUnit(selectedItem: $0) }
             ),
+            .temperaturePrecisionItem(
+                precision: groupSettings.temperaturePrecision,
+                callback: { [weak self] in self?.updateTemperaturePrecision(selectedItem: $0) }
+            ),
             .switchItem(
                 title: Strings.Cfg.buttonAutoHide,
                 selected: settings.autohideButtons,
@@ -142,6 +146,10 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
         }
     }
     
+    private func updateTemperaturePrecision(selectedItem: Int) {
+        groupSettings.temperaturePrecision = selectedItem + 1
+    }
+    
     private func updateLockScreen(scope: LockScreenScope) {
         let lockScreenSettings = settings.lockScreenSettings
         if (lockScreenSettings.scope == scope) {
@@ -169,6 +177,7 @@ enum SettingsList: Equatable {
 enum SettingsListItem: Equatable {
     case heightItem(channelHeight: ChannelHeight, callback: (Int) -> Void)
     case temperatureUnitItem(temperatureUnit: TemperatureUnit, callback: (Int) -> Void)
+    case temperaturePrecisionItem(precision: Int, callback: (Int) -> Void)
     case switchItem(title: String, selected: Bool, callback: (Bool) -> Void, enabled: Bool = true)
     case rsOpeningPercentageItem(opening: Bool, callback: (Bool) -> Void)
     case arrowButtonItem(title: String, callback: () -> Void)
@@ -182,6 +191,8 @@ enum SettingsListItem: Equatable {
         case (.heightItem(let lHeight, _), .heightItem(let rHeight, _)):
             return lHeight == rHeight
         case (.temperatureUnitItem(let lUnit, _), .temperatureUnitItem(let rUnit, _)):
+            return lUnit == rUnit
+        case (.temperaturePrecisionItem(let lUnit, _), .temperaturePrecisionItem(let rUnit, _)):
             return lUnit == rUnit
         case (.switchItem(let lTitle, let lValue, _, _), .switchItem(let rTitle, let rValue, _, _)):
             return lTitle == rTitle && lValue == rValue

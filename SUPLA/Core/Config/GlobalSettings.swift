@@ -283,11 +283,7 @@ class GlobalSettingsImpl: GlobalSettings {
     
     @objc
     var currentTemperaturePresenter: TemperaturePresenter {
-        return TemperaturePresenter(
-            temperatureUnit: GroupShared.Implementation().temperatureUnit,
-            locale: .autoupdatingCurrent,
-            shouldDisplayUnit: true
-        )
+        TemperaturePresenter()
     }
     
     @objc

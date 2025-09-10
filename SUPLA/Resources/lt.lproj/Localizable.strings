@@ -350,6 +350,7 @@
 "settings_lock_screen_app" = "Programėlė";
 "settings_lock_screen_none" = "Nėra";
 "settings_show_bottom_menu" = "Rodyti apatinį meniu";
+"app_settings_temperature_precision" = "Temperatūros tikslumas";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Bendrieji";
