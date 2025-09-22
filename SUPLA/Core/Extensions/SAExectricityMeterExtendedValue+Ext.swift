@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import SharedCore
+
 extension SAElectricityMeterExtendedValue {
     var priceFormatter: NumberFormatter {
         let formatter = NumberFormatter()
@@ -33,16 +35,16 @@ extension SAElectricityMeterExtendedValue {
         Int32(measuredValues()) & SuplaElectricityMeasurementType.reverseActiveEnergy.value > 0
     }
     
-    func getForwardEnergy(formatter: ListElectricityMeterValueFormatter) -> SummaryCardData? {
+    func getForwardEnergy(formatter: SharedCore.ValueFormatter) -> SummaryCardData? {
         hasForwardEnergy.ifTrue {
             SummaryCardData(formatter: formatter, energy: totalForwardActiveEnergy(), pricePerUnit: pricePerUnit(), currency: currency())
         }
     }
     
-    func getReverseEnergy(formatter: ListElectricityMeterValueFormatter) -> SummaryCardData? {
+    func getReverseEnergy(formatter: SharedCore.ValueFormatter) -> SummaryCardData? {
         hasReverseEnergy.ifTrue {
             let energy = totalReverseActiveEnergy()
-            return SummaryCardData(energy: formatter.format(energy))
+            return SummaryCardData(energy: formatter.format(value: energy))
         }
     }
     

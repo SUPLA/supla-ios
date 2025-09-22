@@ -366,7 +366,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
             XCTAssertEqual(groupTotalValue.values.count, 1)
             XCTAssertEqual(firstRelationValue.on, true)
             XCTAssertEqual(firstRelationValue.measuredTemperature, 1)
-            XCTAssertEqual(firstRelationValue.presetTemperature, 1.2)
+            XCTAssertEqual(firstRelationValue.presetTemperature, 1.2, accuracy: 0.1)
         } else {
             XCTFail("First group total value not created!")
         }

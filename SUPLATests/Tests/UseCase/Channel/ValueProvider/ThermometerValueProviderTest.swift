@@ -72,6 +72,6 @@ final class ThermometerValueProviderTest: XCTestCase {
         let value = provider.value(channel, valueType: .first)
         
         // then
-        XCTAssertEqual(value as! Double, ThermometerValueFormatter.UNKNOWN_VALUE)
+        XCTAssertEqual(value as! Double, ThermometerValueProviderImpl.UNKNOWN_VALUE)
     }
 }

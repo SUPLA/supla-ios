@@ -368,6 +368,14 @@ struct Strings {
             static let statusAwaiting = "channel_status_awaiting".toLocalized()
             static let statusUpdating = "channel_status_updating".toLocalized()
             static let statusNotAvailable = "channel_status_not_available".toLocalized()
+            
+            static let lightSourceWarning = "channel_lightsource_warning".toLocalized()
+            static let uvWarning = "channel_uv_warning".toLocalized()
+            static let uvError = "channel_uv_error".toLocalized()
+            
+            static let digiglassTooLongOperating = "dgf_too_long_operation_warning".toLocalized()
+            static let digiglassPlannedRegeneration = "dgf_planned_regeneration_in_progress".toLocalized()
+            static let digiglassRegeneration = "dgf_regeneration_after20h".toLocalized()
         }
     }
     

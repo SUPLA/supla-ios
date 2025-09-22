@@ -21,8 +21,8 @@ import RxSwift
 
 final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
     var parameters: [SAChannelBase] = []
-    var returns: ChannelState = .notUsed
-    func invoke(channelBase: SAChannelBase) -> ChannelState {
+    var returns: SUPLA.ChannelState = .notUsed
+    func invoke(channelBase: SAChannelBase) -> SUPLA.ChannelState {
         parameters.append(channelBase)
         return returns
     }

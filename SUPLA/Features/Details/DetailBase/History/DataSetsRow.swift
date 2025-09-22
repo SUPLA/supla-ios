@@ -19,6 +19,7 @@
 import RxRelay
 import RxSwift
 import SwiftUI
+import SharedCore
 
 final class DataSetsViewState: ObservableObject {
     @Published var channelsSets: [ChannelChartSets] = []
@@ -147,7 +148,7 @@ private struct DataSetItem: View {
                         value: "301,7",
                         color: .chartPhase1
                     )),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 )
@@ -176,7 +177,7 @@ private struct DataSetItem: View {
                             )
                         ]
                     ),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 )
@@ -201,7 +202,7 @@ private struct DataSetItem: View {
                         value: "301,7",
                         color: .chartPhase1
                     )),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 ),
@@ -212,7 +213,7 @@ private struct DataSetItem: View {
                         value: "298,7",
                         color: .chartPhase2
                     )),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 )

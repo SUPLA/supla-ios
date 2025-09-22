@@ -39,7 +39,7 @@ class GpmValueStringProvider: ChannelValueStringProvider {
             return String(format: "%.f", value)
         }
         
-        let formatter = GpmValueFormatter(config: config)
-        return formatter.format(value, withUnit: withUnit)
+        let formatter = GpmValueFormatter.staticFormatter(config)
+        return formatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
     }
 }

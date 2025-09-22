@@ -108,7 +108,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, NO_VALUE_TEXT)
+        XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
     }
     
     func test_shouldGetNoValueTest_whenNoProviderFound() {
@@ -119,7 +119,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, NO_VALUE_TEXT)
+        XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
     }
     
     func test_shouldGetDepthValueStringInMeters() {
@@ -218,7 +218,8 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             valuePrecision: 2,
             unitBeforValue: "$",
             unitAfterValue: "k",
-            noSpaceBeforeValue: true
+            noSpaceBeforeValue: true,
+            noSpaceAfterValue: false
         )
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
@@ -246,7 +247,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, NO_VALUE_TEXT)
+        XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
     }
     
     func test_shouldGetGpmValueString_whenNoConfigFound() {

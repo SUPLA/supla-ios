@@ -41,12 +41,12 @@ extension ThermostatValue {
         }
 
         switch (mode) {
-        case .cool: return setpointTemperatureCool.toTemperatureString()
-        case .heat: return setpointTemperatureHeat.toTemperatureString()
+        case .cool: return setpointTemperatureCool.toTemperatureString(ValueFormat.companion.WithoutUnit)
+        case .heat: return setpointTemperatureHeat.toTemperatureString(ValueFormat.companion.WithoutUnit)
         case .off: return "Off"
         case .heatCool:
-            let min = setpointTemperatureHeat.toTemperatureString()
-            let max = setpointTemperatureCool.toTemperatureString()
+            let min = setpointTemperatureHeat.toTemperatureString(ValueFormat.companion.WithoutUnit)
+            let max = setpointTemperatureCool.toTemperatureString(ValueFormat.companion.WithoutUnit)
             return "\(min) - \(max)"
         default: return ""
         }

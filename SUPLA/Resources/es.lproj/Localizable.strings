@@ -145,9 +145,6 @@
 "Default settings" = "Configuración por defecto";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La vida útil de la lámpara ultravioleta es% .02f %%. Planee su reemplazo.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La vida útil de la lámpara ultravioleta es% .02f %%. Reemplácela.";
-"The lifespan of the light source is %.02f%%." = "La vida útil de la fuente de luz es% .02f %%.";
 "Please enter your Supla Cloud login details." = "Ingrese sus datos de inicio de sesión en cloud.supla.org.";
 "Enter superuser credentials" = "Ingrese las credenciales de superusuario";
 "Dimmer settings" = "Ajustes de atenuación";
@@ -161,9 +158,6 @@
 "Press Next to continue." = "Para continuar presiona Siguiente.";
 "Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
-"Planned regeneration is in progress." = "La regeneración planificada está en curso.";
-"Regeneration initiated after 20 hours of operation is in progress." = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
 "Back" = "Atrás";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifica si el puente está conectado con al servidor.";
 "Exit" = "Salir";
@@ -318,6 +312,12 @@
 "channel_caption_humidityandtemperature" = "Temperatura y humedad";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería (%d - %@): %d%%";
+"channel_uv_warning" = "La vida útil de la lámpara ultravioleta es %.01f %%. Planee su reemplazo.";
+"channel_uv_error" = "La vida útil de la lámpara ultravioleta es %.01f %%. Reemplácela.";
+"channel_lightsource_warning" = "La vida útil de la fuente de luz es %.01f %%.";
+"dgf_too_long_operation_warning" = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
+"dgf_planned_regeneration_in_progress" = "La regeneración planificada está en curso.";
+"dgf_regeneration_after20h" = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Hemos eliminado el gesto de deslizar para abrir los detalles, pulsa sobre el canal seleccionado para verlos.";

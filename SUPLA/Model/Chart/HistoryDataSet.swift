@@ -23,7 +23,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
 
     let type: ChartEntryType
     let label: Label
-    let valueFormatter: ChannelValueFormatter
+    let valueFormatter: SharedCore.ValueFormatter
     var entries: [[AggregatedEntity]]
     var active: Bool
 

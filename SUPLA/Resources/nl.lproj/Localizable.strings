@@ -144,9 +144,6 @@
 "Default settings" = "Standaard instellingen";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "DE INSTELLING VOOR DE LEVENSDUUR VAN DE LICHTBRON WIJZIGEN";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "De levensduur van de uv-straal is %.02f%%. Plan zijn vervanging.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "De levensduur van het uv-belichtingstoestel bedraagt %,02f%%. Vervang de stralingsbuis.";
-"The lifespan of the light source is %.02f%%." = "De levensduur van de lichtbron is %.02f%%.";
 "Please enter your Supla Cloud login details." = "Voer uw inloggegevens voor cloud.supla.org in.";
 "Enter superuser credentials" = "Voer de inloggegevens van de superuser in";
 "Dimmer settings" = "Dimmer instellingen";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Druk op Volgende om door te gaan.";
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zorg ervoor dat de app toestemming heeft om apparaten op het lokale netwerk te vinden en er verbinding mee te maken. Dit betekent dat de \"iOS->Instellingen->SUPLA->Lokaal netwerk\" toestemming moet zijn ingeschakeld om de wizard correct te laten werken. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
-"Planned regeneration is in progress." = "Geplande regeneratie is aan de gang.";
-"Regeneration initiated after 20 hours of operation is in progress." = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
 "Back" = "Terug";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave brug reageert niet. Controleer of de brug met de server is verbonden.";
 "Exit" = "Uitgang";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Temperatuur en luchtvochtigheid";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
+"channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
+"channel_uv_error" = "De levensduur van het uv-belichtingstoestel bedraagt %.01f%%. Vervang de stralingsbuis.";
+"channel_lightsource_warning" = "De levensduur van de lichtbron is %.01f%%.";
+"dgf_too_long_operation_warning" = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
+"dgf_planned_regeneration_in_progress" = "Geplande regeneratie is aan de gang.";
+"dgf_regeneration_after20h" = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";

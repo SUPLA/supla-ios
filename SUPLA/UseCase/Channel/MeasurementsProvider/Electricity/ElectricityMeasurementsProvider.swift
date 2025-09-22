@@ -23,7 +23,7 @@ protocol ElectricityMeasurementsProvider: MeasurementsProvider {
     
     func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String
     func findMeasurementsForPhase(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ isFirst: Bool,
         _ phase: Phase
@@ -41,13 +41,13 @@ extension ElectricityMeasurementsProvider {
         var observables: [Observable<(Phase, HistoryDataSet)>] = []
         
         spec.customFilters?.ifPhase1 {
-            observables.append(findMeasurementsForPhase(channel, spec, observables.isEmpty, .phase1))
+            observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase1))
         }
         spec.customFilters?.ifPhase2 {
-            observables.append(findMeasurementsForPhase(channel, spec, observables.isEmpty, .phase2))
+            observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase2))
         }
         spec.customFilters?.ifPhase3 {
-            observables.append(findMeasurementsForPhase(channel, spec, observables.isEmpty, .phase3))
+            observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase3))
         }
         
         return Observable.zip(observables)
@@ -94,7 +94,7 @@ extension ElectricityMeasurementsProvider {
     }
 
     func historyDataSet(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ phase: Phase,
         _ isFirst: Bool,
         _ type: ChartEntryType,
@@ -103,8 +103,8 @@ extension ElectricityMeasurementsProvider {
     ) -> HistoryDataSet {
         HistoryDataSet(
             type: type,
-            label: createLabel(channel: channel, phase: phase, isFirst: isFirst),
-            valueFormatter: getValueFormatter(type, channel),
+            label: createLabel(channel: channelWithChildren.channel, phase: phase, isFirst: isFirst),
+            valueFormatter: getValueFormatter(type, channelWithChildren),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )

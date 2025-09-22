@@ -26,6 +26,9 @@ final class HumidityValueStringProvider: ChannelValueStringProvider {
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        formatter.format(humidityValueProvider.value(channel, valueType: valueType), withUnit: withUnit)
+        formatter.format(
+            value: humidityValueProvider.value(channel, valueType: valueType),
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
     }
 }

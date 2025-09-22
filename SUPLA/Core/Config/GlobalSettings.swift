@@ -47,6 +47,7 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
 class GlobalSettingsImpl: GlobalSettings {
     
     @Singleton<RuntimeConfig> private var runtimeConfig
+    @Singleton<GroupShared.Settings> private var groupSharedSettings
     
     let defaults = UserDefaults.standard
     
@@ -56,6 +57,16 @@ class GlobalSettingsImpl: GlobalSettings {
             shouldShowNewGestureInfoKey: false,
             showBottomLabelsKey: true
         ])
+    }
+    
+    var temperaturePrecision: Int32 {
+        get { Int32(groupSharedSettings.temperaturePrecision) }
+        set { groupSharedSettings.temperaturePrecision = Int(newValue) }
+    }
+    
+    var temperatureUnit: SharedCore.TemperatureUnit {
+        get { groupSharedSettings.temperatureUnit }
+        set { groupSharedSettings.temperatureUnit = newValue }
     }
     
     private let anyAccountRegisteredKey = "GlobalSettings.anyAccountRegisteredKey"

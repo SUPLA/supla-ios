@@ -172,22 +172,5 @@ final class LoadChannelConfigUseCaseMock: LoadChannelConfigUseCase {
 
 // MARK: - Channel Values Formatter Mocks -
 
-final class ChannelValueFormatterMock: ChannelValueFormatter {
-    var handleParameters: [Int32] = []
-    var handleReturns: Bool = false
-    func handle(function: Int32) -> Bool {
-        handleParameters.append(function)
-        return handleReturns
-    }
-    
-    var formatParameters: [(Any?, Bool, ChannelValuePrecision, Any?)] = []
-    var formatReturns: String = ""
-    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
-        formatParameters.append((value, withUnit, precision, custom))
-        return formatReturns
-    }
-    
-    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
-        ""
-    }
+final class ChannelValueFormatterMock: SharedCore.ValueFormatter {
 }

@@ -20,13 +20,14 @@ import Charts
 import RxRelay
 import RxSwift
 import SwiftUI
+import SharedCore
 
 @objc class ElectricityChartMarkerView: BaseRowsChartMarkerView {
     
     override var rows: [MarkerRowView] { _rows }
     
     private lazy var _rows: [MarkerRowView] = [.init(), .init(), .init(), .init()]
-    private let formatter = ListElectricityMeterValueFormatter(useNoValue: false)
+    private let formatter = SharedCore.ElectricityMeterValueFormatter()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,7 +91,7 @@ import SwiftUI
                let value = barEntry.yValues?[yIdx]
             {
                 rows[yIdx].setData(
-                    value: formatter.format(value),
+                    value: formatter.format(value: value, format: ValueFormatKt.forChartMarker(unit: nil)),
                     color: phase.color,
                     label: selectedPhases.count == 1 ? "" : phase.label,
                     price: customData.priceString(value)
@@ -108,7 +109,7 @@ import SwiftUI
         
         if (yIdx > 1) {
             rows[yIdx].setData(
-                value: formatter.format(sum),
+                value: formatter.format(value: sum, format: ValueFormatKt.forChartMarker(unit: nil)),
                 label: Strings.ElectricityMeter.sum,
                 price: customData.priceString(sum)
             )
@@ -123,7 +124,7 @@ import SwiftUI
         var yIdx = 0
         if let forwardEnergy = barEntry.yValues?[0] {
             rows[yIdx].setData(
-                value: formatter.format(forwardEnergy),
+                value: formatter.format(value: forwardEnergy, format: ValueFormatKt.forChartMarker(unit: nil)),
                 icon: .iconForwardEnergy,
                 price: customData.priceString(forwardEnergy)
             )
@@ -134,7 +135,7 @@ import SwiftUI
         
         if let reverseEnergy = barEntry.yValues?[1] {
             rows[yIdx].setData(
-                value: formatter.format(reverseEnergy),
+                value: formatter.format(value: reverseEnergy, format: ValueFormatKt.forChartMarker(unit: nil)),
                 icon: .iconReversedEnergy
             )
             
@@ -149,7 +150,7 @@ import SwiftUI
         var yIdx = 0
         if let value = barEntry.yValues?[3] {
             rows[yIdx].setData(
-                value: formatter.format(value),
+                value: formatter.format(value: value, format: ValueFormatKt.forChartMarker(unit: nil)),
                 color: .onSurfaceVariant
             )
             
@@ -158,7 +159,7 @@ import SwiftUI
         }
         if let value = barEntry.yValues?[1] {
             rows[yIdx].setData(
-                value: formatter.format(value),
+                value: formatter.format(value: value, format: ValueFormatKt.forChartMarker(unit: nil)),
                 icon: .iconForwardEnergy
             )
             
@@ -167,7 +168,7 @@ import SwiftUI
         }
         if let value = barEntry.yValues?[2] {
             rows[yIdx].setData(
-                value: formatter.format(value),
+                value: formatter.format(value: value, format: ValueFormatKt.forChartMarker(unit: nil)),
                 icon: .iconReversedEnergy
             )
             
@@ -176,7 +177,7 @@ import SwiftUI
         }
         if let value = barEntry.yValues?[0] {
             rows[yIdx].setData(
-                value: formatter.format(value),
+                value: formatter.format(value: value, format: ValueFormatKt.forChartMarker(unit: nil)),
                 color: .onSurfaceVariant
             )
             
@@ -201,7 +202,7 @@ import SwiftUI
         }
         
         rows[0].setData(
-            value: formatter.format(pieEntry.value),
+            value: formatter.format(value: pieEntry.value, format: ValueFormatKt.forChartMarker(unit: nil)),
             color: color,
             price: customData.priceString(pieEntry.value)
         )

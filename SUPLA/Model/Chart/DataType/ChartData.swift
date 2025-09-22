@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 let CHART_TOP_MARGIN = 0.2
 
 /**
@@ -91,12 +93,12 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
         return toCoordinate(dateRange?.end.timeIntervalSince1970.plus(chartRangeMargin(daysCount)))
     }
     
-    var leftAxisFormatter: ChannelValueFormatter {
-        sets.flatMap { $0.dataSets }.first { $0.type.leftAxis() }?.valueFormatter ?? DefaultValueFormatter()
+    var leftAxisFormatter: SharedCore.ValueFormatter {
+        sets.flatMap { $0.dataSets }.first { $0.type.leftAxis() }?.valueFormatter ?? SharedCore.DefaultValueFormatter.shared
     }
     
-    var rightAxisFormatter: ChannelValueFormatter {
-        sets.flatMap { $0.dataSets }.first { $0.type.rightAxis() }?.valueFormatter ?? DefaultValueFormatter()
+    var rightAxisFormatter: SharedCore.ValueFormatter {
+        sets.flatMap { $0.dataSets }.first { $0.type.rightAxis() }?.valueFormatter ?? SharedCore.DefaultValueFormatter.shared
     }
     
     var distanceInDays: Int? { dateRange?.daysCount }
@@ -254,27 +256,5 @@ class ChartData: CoordinatesConverter, Equatable, CustomStringConvertible {
             lhs.chartRange == rhs.chartRange &&
             lhs.aggregation == rhs.aggregation &&
             lhs.sets == rhs.sets
-    }
-}
-
-private class DefaultValueFormatter: ChannelValueFormatter {
-    func handle(function: Int32) -> Bool { true }
-    
-    func format(_ value: Any?, withUnit: Bool, precision: ChannelValuePrecision, custom: Any?) -> String {
-        if let doubleValue = value as? Double {
-            return String(format: "%.2f", doubleValue)
-        }
-        if let floatValue = value as? Float {
-            return String(format: "%.2f", floatValue)
-        }
-        if let intValue = value as? Int {
-            return "\(intValue)"
-        }
-        
-        return String(describing: value)
-    }
-    
-    func formatChartLabel(_ value: Any?, precision: Int, withUnit: Bool) -> String {
-        format(value, withUnit: withUnit, precision: .defaultPrecision(value: precision), custom: nil)
     }
 }

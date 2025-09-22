@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import SharedCore
 
 protocol ElectricityConsumptionProvider: MeasurementsProvider {}
 
@@ -24,6 +25,8 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
+    
+    private let formatter = SharedCore.ElectricityMeterValueFormatter(defaultFormatSpecification: SharedCore.ValueFormatSpecification.companion.ElectricityMeterForChartSummary)
     
     func provide(
         _ channelWithChildren: ChannelWithChildren,
@@ -42,7 +45,7 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
             .map { self.aggregating($0, spec) }
             .map {
                 let labels = self.labels(spec, self.getChannelBaseIconUseCase.invoke(channel: channel), $0)
-                return [self.historyDataSet(channel, labels, spec.aggregation, $0.list)]
+                return [self.historyDataSet(channelWithChildren, labels, spec.aggregation, $0.list)]
             }
             .map {
                 let typeName: String? = (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
@@ -65,20 +68,19 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
     
     private func labels(_ spec: ChartDataSpec, _ icon: IconResult, _ result: AggregationResult) -> HistoryDataSet.Label {
         var result = result
-        let formatter = ListElectricityMeterValueFormatter()
         
         switch ((spec.customFilters as? ElectricityChartFilters)?.type) {
         case .balanceVector,
              .balanceArithmetic,
              .balanceHourly: return .multiple([
                 HistoryDataSet.LabelData(icon: icon, value: "", color: .onSurfaceVariant, presentColor: false, useColor: false),
-                .forwarded(formatter.format(result.nextSum(), withUnit: false)),
-                .reversed(formatter.format(result.nextSum(), withUnit: false))
+                .forwarded(formatter.format(value: result.nextSum())),
+                .reversed(formatter.format(value: result.nextSum()))
             ])
         case .balanceChartAggregated: return .multiple([
                 .init(icon: icon, value: "", color: .onSurfaceVariant, presentColor: false),
-                .forwarded(formatter.format(result.nextSum(), withUnit: false)),
-                .reversed(formatter.format(result.nextSum(), withUnit: false)),
+                .forwarded(formatter.format(value: result.nextSum())),
+                .reversed(formatter.format(value: result.nextSum())),
                 .init(color: .onSurfaceVariant)
             ])
         default:
@@ -86,21 +88,21 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
             spec.customFilters?.ifPhase1 {
                 labels.append(.init(
                     icon: icon,
-                    value: formatter.format(result.nextSum(), withUnit: false),
+                    value: formatter.format(value: result.nextSum()),
                     color: .phase1Color
                 ))
             }
             spec.customFilters?.ifPhase2 {
                 labels.append(.init(
                     icon: labels.count == 0 ? icon : nil,
-                    value: formatter.format(result.nextSum(), withUnit: false),
+                    value: formatter.format(value: result.nextSum()),
                     color: .phase2Color
                 ))
             }
             spec.customFilters?.ifPhase3 {
                 labels.append(.init(
                     icon: labels.count == 0 ? icon : nil,
-                    value: formatter.format(result.nextSum(), withUnit: false),
+                    value: formatter.format(value: result.nextSum()),
                     color: .phase3Color
                 ))
             }
@@ -110,7 +112,7 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
     }
     
     private func historyDataSet(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ label: HistoryDataSet.Label,
         _ aggregation: ChartDataAggregation,
         _ measurements: [AggregatedEntity]
@@ -118,7 +120,7 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
         HistoryDataSet(
             type: .electricity,
             label: label,
-            valueFormatter: getValueFormatter(.electricity, channel),
+            valueFormatter: getValueFormatter(.electricity, channelWithChildren),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )

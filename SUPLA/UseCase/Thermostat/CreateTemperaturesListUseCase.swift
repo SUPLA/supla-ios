@@ -62,7 +62,7 @@ fileprivate extension SAChannel {
         MeasurementValue(
             id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self),
-            value: status().online ? temperatureValue().toTemperatureString() : NO_VALUE_TEXT,
+            value: status().online ? temperatureValue().toTemperatureString(ValueFormat.companion.WithoutUnit) : NO_VALUE_TEXT,
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }

@@ -36,8 +36,8 @@ extension SAChannelValue {
         FacadeBlindValue.companion.from(status: status, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
-    func asHeatpolThermostatValue() -> HeatpolThermostatValue {
-        HeatpolThermostatValue.from(dataValue(), online: online == SUPLA_CHANNEL_ONLINE_FLAG_ONLINE)
+    func asHeatpolThermostatValue() -> HomePlusThermostatValue {
+        HomePlusThermostatValue.companion.from(status: status, bytes: KotlinByteArray.from(data: dataValue()))
     }
     
     func asContainerValue() -> ContainerValue {

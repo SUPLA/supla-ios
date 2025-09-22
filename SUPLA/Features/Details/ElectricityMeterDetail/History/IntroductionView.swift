@@ -210,9 +210,7 @@ extension ElectricityMeterHistoryFeature {
 }
 
 private func mockSetsForMultiplePhases() -> ChannelChartSets {
-    let formatter = ListElectricityMeterValueFormatter()
-
-    return ChannelChartSets(
+    ChannelChartSets(
         remoteId: 124,
         function: 123,
         name: Strings.ElectricityMeter.forwardActiveEnergy,
@@ -224,22 +222,22 @@ private func mockSetsForMultiplePhases() -> ChannelChartSets {
                     [
                         HistoryDataSet.LabelData(
                             icon: .suplaIcon(name: "fnc_electricitymeter"),
-                            value: formatter.format(78.08, withUnit: false),
+                            value: "78,08",
                             color: .chartPhase1
                         ),
                         HistoryDataSet.LabelData(
                             icon: nil,
-                            value: formatter.format(73.45, withUnit: false),
+                            value: "73,45",
                             color: .chartPhase2
                         ),
                         HistoryDataSet.LabelData(
                             icon: nil,
-                            value: formatter.format(28.66, withUnit: false),
+                            value: "28,66",
                             color: .chartPhase3
                         )
                     ]
                 ),
-                valueFormatter: formatter,
+                valueFormatter: SharedCore.DefaultValueFormatter.shared,
                 entries: [],
                 active: true
             )
@@ -249,9 +247,7 @@ private func mockSetsForMultiplePhases() -> ChannelChartSets {
 }
 
 private func mockSetsForSinglePhase() -> ChannelChartSets {
-    let formatter = ListElectricityMeterValueFormatter()
-
-    return ChannelChartSets(
+    ChannelChartSets(
         remoteId: 124,
         function: 123,
         name: Strings.ElectricityMeter.forwardActiveEnergy,
@@ -263,12 +259,12 @@ private func mockSetsForSinglePhase() -> ChannelChartSets {
                     [
                         HistoryDataSet.LabelData(
                             icon: .suplaIcon(name: "fnc_electricitymeter"),
-                            value: formatter.format(78.08, withUnit: false),
+                            value: "78,08",
                             color: .chartPhase1
                         )
                     ]
                 ),
-                valueFormatter: formatter,
+                valueFormatter: SharedCore.DefaultValueFormatter.shared,
                 entries: [],
                 active: true
             )

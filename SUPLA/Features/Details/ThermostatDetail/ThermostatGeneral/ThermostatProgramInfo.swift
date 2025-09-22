@@ -122,7 +122,7 @@ extension ThermostatProgramInfo.Builder {
                 time: Strings.ThermostatDetail.clockError,
                 icon: currentMode?.icon,
                 iconColor: currentMode?.iconColor,
-                description: currentTemperature.toTemperatureString(),
+                description: currentTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit),
                 manualActive: false
             )
         ]
@@ -133,7 +133,7 @@ extension ThermostatProgramInfo.Builder {
         
         let minutesToNextProgram = quartersToNextProgram! * 15 + (15 - (currentMinute! % 15))
         let nextScheduleProgram = getProgram(program: foundNextProgram)
-        let currentTemperatureString = currentTemperature.toTemperatureString()
+        let currentTemperatureString = currentTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
         
         if (deviceConfig?.isAutomaticTimeSyncDisabled() == true) {
             return [

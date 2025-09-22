@@ -15,6 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
+import SharedCore
     
 protocol ElectricityMeterGeneralStateHandler {
     func updateState(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?)
@@ -30,7 +32,8 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
     @Singleton private var getChannelValueUseCase: GetChannelValueUseCase
     @Singleton private var settings: GlobalSettings
     
-    private let formatter = ListElectricityMeterValueFormatter(useNoValue: false)
+    private let defaultFormatter = SharedCore.DefaultValueFormatter.shared
+    private let emFormatter = SharedCore.ElectricityMeterValueFormatter(defaultFormatSpecification: ValueFormatSpecification.companion.ElectricityMeterForGeneral)
     
     func updateState(_ state: ElectricityMeterGeneralState, _ channel: ChannelWithChildren, _ measurements: ElectricityMeasurements?) {
         if (!channel.channel.isElectricityMeter() && !channel.isOrHasElectricityMeter) {
@@ -49,12 +52,12 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
             .count > 1
         
         state.online = channel.channel.status().online
-        state.totalForwardActiveEnergy = extendedValue.getForwardEnergy(formatter: formatter)
-        state.totalReverseActiveEnergy = extendedValue.getReverseEnergy(formatter: formatter)
-        state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter, value: extendedValue)
-        state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter, value: extendedValue)
+        state.totalForwardActiveEnergy = extendedValue.getForwardEnergy(formatter: emFormatter)
+        state.totalReverseActiveEnergy = extendedValue.getReverseEnergy(formatter: emFormatter)
+        state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: emFormatter, value: extendedValue)
+        state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: emFormatter, value: extendedValue)
         state.phaseMeasurementTypes = phaseTypes
-        state.phaseMeasurementValues = getPhaseData(phaseTypes, channel.channel.flags, extendedValue, formatter)
+        state.phaseMeasurementValues = getPhaseData(phaseTypes, channel.channel.flags, extendedValue, defaultFormatter)
         state.vectorBalancedValues = vectorBalancedValues(moreThanOnePhase, extendedValue, allTypes)
         state.electricGridParameters = getGridParameters(channel.channel.flags, extendedValue)
         state.showIntroduction = settings.showEmGeneralIntroduction && channel.channel.status().online && moreThanOnePhase
@@ -64,10 +67,10 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         let value: Double = getChannelValueUseCase.invoke(channel.channel)
         
         state.online = channel.channel.status().online
-        state.totalForwardActiveEnergy = SummaryCardData(energy: formatter.format(value))
+        state.totalForwardActiveEnergy = SummaryCardData(energy: emFormatter.format(value: value))
         state.totalReverseActiveEnergy = nil
-        state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: formatter)
-        state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: formatter)
+        state.currentMonthForwardActiveEnergy = measurements?.toForwardEnergy(formatter: emFormatter)
+        state.currentMonthReverseActiveEnergy = measurements?.toReverseEnergy(formatter: emFormatter)
         state.phaseMeasurementTypes = []
         state.phaseMeasurementValues = []
         state.vectorBalancedValues = nil
@@ -77,7 +80,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
         _ types: [SuplaElectricityMeasurementType],
         _ channelFlags: Int64,
         _ extendedValue: SAElectricityMeterExtendedValue,
-        _ formatter: ListElectricityMeterValueFormatter
+        _ formatter: SharedCore.ValueFormatter
     ) -> [PhaseWithMeasurements] {
         // Collect data for each phase
         let phasesWithData: [(Int, String, [SuplaElectricityMeasurementType: SuplaElectricityMeasurementType.Value])] = Phase.allCases
@@ -152,11 +155,11 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
             return [
                 .init(
                     type: .forwardActiveEnergyBanalced,
-                    value: formatter.format(value.totalForwardActiveEnergyBalanced(), withUnit: false)
+                    value: defaultFormatter.format(value: value.totalForwardActiveEnergyBalanced())
                 ),
                 .init(
                     type: .reverseActiveEnergyBalanced,
-                    value: formatter.format(value.totalReverseActiveEnergyBalanced(), withUnit: false)
+                    value: defaultFormatter.format(value: value.totalReverseActiveEnergyBalanced())
                 )
             ]
         }
@@ -175,20 +178,20 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
             if let phase = Phase.allCases.first(where: { channelFlags & $0.disabledFlag == 0 }) {
                 result.append(.init(
                     type: .frequency,
-                    value: formatter.format(value.freq(forPhase: phase.rawValue), withUnit: false, precision: SuplaElectricityMeasurementType.frequency.precision)
+                    value: defaultFormatter.custom(value.freq(forPhase: phase.rawValue), SuplaElectricityMeasurementType.frequency.precision)
                 ))
             }
         }
         if (measuredValues.contains(.voltagePhaseAngle12)) {
             result.append(.init(
                 type: .voltagePhaseAngle12,
-                value: formatter.format(value.voltagePhaseAngle12(), withUnit: false, precision: .customPrecision(value: SuplaElectricityMeasurementType.voltagePhaseAngle12.precision))
+                value: defaultFormatter.custom(value.voltagePhaseAngle12(), SuplaElectricityMeasurementType.voltagePhaseAngle12.precision)
             ))
         }
         if (measuredValues.contains(.voltagePhaseAngle13)) {
             result.append(.init(
                 type: .voltagePhaseAngle13,
-                value: formatter.format(value.voltagePhaseAngle13(), withUnit: false, precision: .customPrecision(value: SuplaElectricityMeasurementType.voltagePhaseAngle13.precision))
+                value: defaultFormatter.custom(value.voltagePhaseAngle13(), SuplaElectricityMeasurementType.voltagePhaseAngle13.precision)
             ))
         }
         if (measuredValues.contains(.voltagePhaseSequence)) {
@@ -209,7 +212,7 @@ final class ElectricityMeterGeneralStateHandlerImpl: ElectricityMeterGeneralStat
 }
 
 private extension Dictionary where Key == SuplaElectricityMeasurementType, Value == SuplaElectricityMeasurementType.Value? {
-    func toMeasurementTypeValue(_ formatter: ListElectricityMeterValueFormatter) -> [ElectricityMeterGeneralState.MeaurementTypeValue] {
+    func toMeasurementTypeValue(_ formatter: SharedCore.ValueFormatter) -> [ElectricityMeterGeneralState.MeaurementTypeValue] {
         map {
             if let value = $0.value {
                 ElectricityMeterGeneralState.MeaurementTypeValue(type: $0.key, value: format(formatter, value, $0.key.precision))
@@ -221,18 +224,22 @@ private extension Dictionary where Key == SuplaElectricityMeasurementType, Value
 }
 
 private func format(
-    _ formatter: ListElectricityMeterValueFormatter,
+    _ formatter: SharedCore.ValueFormatter,
     _ value: SuplaElectricityMeasurementType.Value,
     _ precision: Int
 ) -> String {
-    let precision: ChannelValuePrecision = .customPrecision(value: precision)
-    
     switch (value) {
     case .single(let value):
-        return formatter.format(value, withUnit: false, precision: precision)
+        return formatter.custom(value, precision)
     case .double(let first, let second):
-        let firstFormatted = formatter.format(first, withUnit: false, precision: .customPrecision(value: 0))
-        let secondFormatted = formatter.format(second, withUnit: false, precision: .customPrecision(value: 0))
+        let firstFormatted = formatter.custom(first, 0)
+        let secondFormatted = formatter.custom(second, 0)
         return "\(firstFormatted) - \(secondFormatted)"
+    }
+}
+
+private extension SharedCore.ValueFormatter {
+    func custom(_ value: Double, _ precision: Int) -> String {
+        format(value: value, format: ValueFormatKt.customPrecision(precision: Int32(precision)))
     }
 }

@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import SharedCore
+
 extension DiContainer {
     @objc static func start() {
         // MARK: General
@@ -42,7 +44,7 @@ extension DiContainer {
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(BuildInfo.self, BuildInfoImpl())
         register(SecureSettings.Interface.self, SecureSettings.Implementation())
-        register(ThermometerValueFormatter.self, ThermometerValueFormatter())
+        register(SharedCore.ThermometerValueFormatter.self, SharedCore.ThermometerValueFormatter(preferences: globalSettings))
         
         register(GroupShared.Settings.self, GroupShared.Implementation())
         if #available(iOS 17.0, *) {
@@ -154,6 +156,7 @@ extension DiContainer {
         register(ImpulseCounterValueProvider.self, ImpulseCounterValueProviderImpl())
         register(SwitchWithImpulseCounterValueProvider.self, SwitchWithImpulseCounterValueProviderImpl())
         register(ContainerValueProvider.self, ContainerValueProviderImpl())
+        register(HomePlusThermostatValueProvider.self, HomePlusThermostatValueProviderImpl())
         register(RemoveHiddenChannelsUseCase.self, RemoveHiddenChannelsUseCaseImpl())
         // Usecases - Channel - MeasurementProvider
         register(TemperatureMeasurementsProvider.self, TemperatureMeasurementsProviderImpl())

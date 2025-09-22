@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 struct SummaryCardData: Equatable {
     let energy: String
     let price: String?
@@ -25,8 +27,8 @@ struct SummaryCardData: Equatable {
         self.price = price
     }
 
-    init(formatter: ChannelValueFormatter, energy: Double, pricePerUnit: Double, currency: String) {
-        self.energy = formatter.format(energy)
+    init(formatter: SharedCore.ValueFormatter, energy: Double, pricePerUnit: Double, currency: String) {
+        self.energy = formatter.format(value: energy)
         self.price = pricePerUnit.ifNotZero {
             let priceFormatter = NumberFormatter()
             priceFormatter.decimalSeparator = Locale.current.decimalSeparator

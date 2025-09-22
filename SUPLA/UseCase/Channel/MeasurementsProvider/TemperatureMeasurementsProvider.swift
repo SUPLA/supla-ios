@@ -40,7 +40,7 @@ final class TemperatureMeasurementsProviderImpl: TemperatureMeasurementsProvider
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingTemperature(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channelWithChildren.channel, entryType, color, spec.aggregation, $0)] }
+            .map { [self.historyDataSet(channelWithChildren, entryType, color, spec.aggregation, $0)] }
             .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
     }
 }

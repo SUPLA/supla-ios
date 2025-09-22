@@ -16,15 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 final class ThermometerValueStringProvider: ChannelValueStringProvider {
     @Singleton<ThermometerValueProvider> private var thermometerValueProvider
-    @Singleton<ThermometerValueFormatter> private var formatter
+    @Singleton<SharedCore.ThermometerValueFormatter> private var formatter
 
     func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_THERMOMETER
     }
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        return formatter.format(thermometerValueProvider.value(channel, valueType: valueType), withUnit: withUnit)
+        return formatter.format(value: thermometerValueProvider.value(channel, valueType: valueType), format: ValueFormatKt.withUnit(withUnit: withUnit))
     }
 }

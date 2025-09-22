@@ -80,7 +80,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
         let (plusActive, minusActive) = checkTemperature(temperature, min: state.configMin, max: state.configMax)
         return state
             .changing(path: \.setpointTemperatureHeat, to: temperature)
-            .changing(path: \.heatTemperatureText, to: temperatureText ?? temperature.toTemperatureString(format: .scheduleSettings))
+            .changing(path: \.heatTemperatureText, to: temperatureText ?? SharedCore.DefaultValueFormatter.shared.format(value: temperature))
             .changing(path: \.heatPlusActive, to: plusActive)
             .changing(path: \.heatMinusActive, to: minusActive)
             .changing(path: \.heatCorrect, to: temperatureCorrect(temperature, min: state.configMin, max: state.configMax))
@@ -90,7 +90,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
         let (plusActive, minusActive) = checkTemperature(temperature, min: state.configMin, max: state.configMax)
         return state
             .changing(path: \.setpointTemperatureCool, to: temperature)
-            .changing(path: \.coolTemperatureText, to: temperatureText ?? temperature.toTemperatureString(format: .scheduleSettings))
+            .changing(path: \.coolTemperatureText, to: temperatureText ?? SharedCore.DefaultValueFormatter.shared.format(value: temperature))
             .changing(path: \.coolPlusActive, to: plusActive)
             .changing(path: \.coolMinusActive, to: minusActive)
             .changing(path: \.coolCorrect, to: temperatureCorrect(temperature, min: state.configMin, max: state.configMax))

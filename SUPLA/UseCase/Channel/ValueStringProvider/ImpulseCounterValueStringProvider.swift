@@ -16,8 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import SharedCore
 class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
     @Singleton<ImpulseCounterValueProvider> private var impulseCounterValueProvider
+    
+    private let impulseCounterFormatter = SharedCore.ImpulseCounterValueFormatter()
+    private let electricityMeterFormatter = SharedCore.ElectricityMeterValueFormatter()
     
     func handle(_ channel: SAChannel) -> Bool {
         impulseCounterValueProvider.handle(channel)
@@ -28,13 +32,17 @@ class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
             return NO_VALUE_TEXT
         }
         
-        let unit = channel.ev?.impulseCounter().unit()
         if (channel.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
-            let formatter = ListElectricityMeterValueFormatter(useNoValue: true)
-            return formatter.format(value, withUnit: withUnit, precision: .defaultPrecision(value: 1), custom: FormatterUnit.custom(unit: unit))
+            return electricityMeterFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
         } else {
-            let formatter = ImpulseCounterChartValueFormatter(unit: unit)
-            return formatter.format(value, withUnit: withUnit)
+            return impulseCounterFormatter.format(
+                value: value,
+                format: ValueFormatKt.withUnit(
+                    withUnit: withUnit,
+                    unit: channel.ev?.impulseCounter().unit(),
+                    leadingSpace: true
+                )
+            )
         }
     }
 }

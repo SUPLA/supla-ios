@@ -106,7 +106,7 @@ extension SAChannelGroup {
     
     override open func measuredTemperatureMin() -> Double {
         guard let totalValue = total_value as? GroupTotalValue else {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         let temperaturesOnly = totalValue.values
@@ -114,7 +114,7 @@ extension SAChannelGroup {
             .compactMap { $0 }
         
         if (temperaturesOnly.isEmpty) {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         return temperaturesOnly
@@ -129,7 +129,7 @@ extension SAChannelGroup {
     
     override open func presetTemperatureMin() -> Double {
         guard let totalValue = total_value as? GroupTotalValue else {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         let temperaturesOnly = totalValue.values
@@ -137,7 +137,7 @@ extension SAChannelGroup {
             .compactMap { $0 }
         
         if (temperaturesOnly.isEmpty) {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         return temperaturesOnly
@@ -152,7 +152,7 @@ extension SAChannelGroup {
     
     override open func measuredTemperatureMax() -> Double {
         guard let totalValue = total_value as? GroupTotalValue else {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         let temperaturesOnly = totalValue.values
@@ -160,11 +160,11 @@ extension SAChannelGroup {
             .compactMap { $0 }
         
         if (temperaturesOnly.isEmpty) {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         return temperaturesOnly
-            .reduce(ThermometerValueFormatter.UNKNOWN_VALUE) { result, measuredTemperature in
+            .reduce(ThermometerValueProviderImpl.UNKNOWN_VALUE) { result, measuredTemperature in
                 if (measuredTemperature > result) {
                     return Double(measuredTemperature)
                 }
@@ -175,7 +175,7 @@ extension SAChannelGroup {
     
     override open func presetTemperatureMax() -> Double {
         guard let totalValue = total_value as? GroupTotalValue else {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         let temperaturesOnly = totalValue.values
@@ -183,11 +183,11 @@ extension SAChannelGroup {
             .compactMap { $0 }
         
         if (temperaturesOnly.isEmpty) {
-            return Double(ThermometerValueFormatter.UNKNOWN_VALUE)
+            return Double(ThermometerValueProviderImpl.UNKNOWN_VALUE)
         }
         
         return temperaturesOnly
-            .reduce(ThermometerValueFormatter.UNKNOWN_VALUE) { result, measuredTemperature in
+            .reduce(ThermometerValueProviderImpl.UNKNOWN_VALUE) { result, measuredTemperature in
                 if (measuredTemperature > result) {
                     return Double(measuredTemperature)
                 }

@@ -144,9 +144,6 @@
 "Default settings" = "Výchozí nastavení";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMĚNIT NASTAVENÍ ŽIVOTNOSTI SVĚTELNÉHO ZDROJE";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Životnost UV zářiče je %,02f%%. Naplánovat jeho výměnu.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Životnost UV zářiče je %,02f%%. Vyměnit zářič";
-"The lifespan of the light source is %.02f%%." = "Životnost světelného zdroje je %.02f%%.";
 "Please enter your Supla Cloud login details." = "Zadejte své přihlašovací údaje cloud.supla.org.";
 "Enter superuser credentials" = "Zadejte pověření superuživatele";
 "Dimmer settings" = "Nastavení stmívače";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Chcete-li pokračovat, stiskněte tlačítko Další.";
 "Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zkontrolujte, zda má aplikace oprávnění vyhledávat zařízení v místní síti a připojovat se k nim. To znamená, že pro správnou funkci průvodce musí být povoleno oprávnění \"iOS->Nastavení->SUPLA->Místní síť\"i. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
-"Planned regeneration is in progress." = "Probíhá plánovaná obnova.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Obnova byla zahájena po 20h provozní činnosti.";
 "Back" = "Zpět";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave můstek neodpovídá. Zkontrolujte zda je můstek připojen k serveru.";
 "Exit" = "Výstup";
@@ -316,6 +310,12 @@
 "channel_caption_humidityandtemperature" = "Teplota a vlhkost";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie (%d - %@): %d%%";
+"channel_uv_warning" = "Životnost UV zářiče je %.01f%%. Naplánovat jeho výměnu.";
+"channel_uv_error" = "Životnost UV zářiče je %.01f%%. Vyměnit zářič.";
+"channel_lightsource_warning" = "Životnost světelného zdroje je %.01f%%.";
+"dgf_too_long_operation_warning" = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
+"dgf_planned_regeneration_in_progress" = "Probíhá plánovaná obnova.";
+"dgf_regeneration_after20h" = "Obnova byla zahájena po 20h provozní činnosti.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";

@@ -144,9 +144,6 @@
 "Default settings" = "Predvolené nastavenia";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMENIŤ NASTAVENIA ŽIVOTNOSTI ZDROJA SVETLA";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Životnosť UV žiariča je %.02f%%. Naplánujte jeho výmenu.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Životnosť UV žiariča je %.02f%%. Vymeň žiarič.";
-"The lifespan of the light source is %.02f%%." = "Životnosť svetelného zdroja je %.02f%%.";
 "Please enter your Supla Cloud login details." = "Zadajte svoje prihlasovacie údaje do Supla Cloud.";
 "Enter superuser credentials" = "Zadajte prihlasovacie údaje hlavného používateľa";
 "Dimmer settings" = "Nastavenia stmievača";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Pokračujte stlačením Ďalej.";
 "Press START to start configuration." = "Stlačte tlačidlo ŠTART a začnite konfiguráciu.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Uistite sa, že aplikácia má povolenia na zisťovanie a pripojenie k zariadeniam v lokálnej sieti. To znamená, že pre správne fungovanie sprievodcu musí byť povolené oprávnenie \"iOS->Nastavenia->SUPLA->Lokálna sieť\".";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Zasklenie je odhalené viac ako 20 hodín, čo môže mať negatívny vplyv na jeho životnosť. Odporúča sa všetky úseky pokryť minimálne 4 hodiny, aby sa zregenerovali.";
-"Planned regeneration is in progress." = "Prebieha plánovaná regenerácia.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Prebieha regenerácia, ktorá bola spustená po 20 h prevádzky.";
 "Back" = "Späť";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
 "Exit" = "Výstup";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Teplota a vlhkosť";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
+"channel_uv_warning" = "Životnosť UV žiariča je %.01f%%. Naplánujte jeho výmenu.";
+"channel_uv_error" = "Životnosť UV žiariča je %.01f%%. Vymeň žiarič.";
+"channel_lightsource_warning" = "Životnosť svetelného zdroja je %.01f%%.";
+"dgf_too_long_operation_warning" = "Zasklenie je odhalené viac ako 20 hodín, čo môže mať negatívny vplyv na jeho životnosť. Odporúča sa všetky úseky pokryť minimálne 4 hodiny, aby sa zregenerovali.";
+"dgf_planned_regeneration_in_progress" = "Prebieha plánovaná regenerácia.";
+"dgf_regeneration_after20h" = "Prebieha regenerácia, ktorá bola spustená po 20 h prevádzky.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstránili sme gesto potiahnutia, ktoré otvára podrobnosti, zobrazíte ich ťuknutím na vybraný kanál.";

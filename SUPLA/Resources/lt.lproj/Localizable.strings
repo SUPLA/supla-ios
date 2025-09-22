@@ -146,9 +146,6 @@
 "Default settings" = "Numatytieji nustatymai";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "PAKEISTI ŠVIESOS ŠALTINIO GYVAVIMO TRUKMĖS NUSTATYMUS";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "UV spinduolio tarnavimo laikas tai %.02f%%. Suplanuoti jo pakeitimą.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "UV spinduolio tarnavimo laikas tai %.02f%%. Pakeisti spinduolį.";
-"The lifespan of the light source is %.02f%%." = "Šviesos šaltinio tarnavimo laikas tai %.02f%%.";
 "Please enter your Supla Cloud login details." = "Įveskite savo prisijungimo prie cloud.supla.org duomenis.";
 "Enter superuser credentials" = "Įveskite pagrindinio vartotojo kredencialus";
 "Dimmer settings" = "Šviesos srauto nustatymai";
@@ -162,9 +159,6 @@
 "Press Next to continue." = "Spustelėkite Pirmyn, jei norite tęsti";
 "Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Įsitikinkite, kad programoje yra leidimas aptikti įrenginius vietiniame tinkle ir prisijungti prie jų. Tai reiškia kad tam, kad vedlys veiktų tinkamai leidimas \“iOS->Nustatymai->SUPLA->Vietinis tinklas\“ turi būti įjungtas.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
-"Planned regeneration is in progress." = "Vyksta suplanuotas regeneravimas.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
 "Back" = "Atgal";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
 "Exit" = "Išėjimas";
@@ -319,6 +313,12 @@
 "channel_caption_humidityandtemperature" = "Temperatūra ir drėgmė";
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
+"channel_uv_warning" = "UV spinduolio tarnavimo laikas tai %.01f%%. Suplanuoti jo pakeitimą.";
+"channel_uv_error" = "UV spinduolio tarnavimo laikas tai %.01f%%. Pakeisti spinduolį.";
+"channel_lightsource_warning" = "Šviesos šaltinio tarnavimo laikas tai %.01f%%.";
+"dgf_too_long_operation_warning" = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
+"dgf_planned_regeneration_in_progress" = "Vyksta suplanuotas regeneravimas.";
+"dgf_regeneration_after20h" = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";

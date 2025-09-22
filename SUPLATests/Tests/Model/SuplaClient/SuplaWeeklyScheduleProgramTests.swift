@@ -95,6 +95,6 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
         let result = program.description
         
         // then
-        XCTAssertEqual(result, NO_VALUE_TEXT)
+        XCTAssertEqual(result, ValueFormatterKt.NO_VALUE_TEXT)
     }
 }
