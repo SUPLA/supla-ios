@@ -144,9 +144,6 @@
 "Are you sure you want to restore the default settings?" = "Czy na pewno chcesz przywrócić ustawienia domyślne ?";
 "Default settings" = "Ustawienia domyślne";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMIEŃ USTAWIENIA ŻYWOTNOŚCI ŹRÓDŁA ŚWIATŁA";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Żywotność promiennika uv wynosi %.02f%%. Zaplanuj jego wymianę.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Żywotność promiennika uv wynosi %.02f%%. Wymień promiennik.";
-"The lifespan of the light source is %.02f%%." = "Żywotność źródła światła wynosi %.02f%%.";
 "Please enter your Supla Cloud login details." = "Wprowadź Twoje dane logowania do Supla Cloud.";
 "Enter superuser credentials" = "Wprowadź poświadczenia głównego użytkownika";
 "Dimmer settings" = "Ustawienia ściemniacza";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Naciśnij Dalej aby kontynuować.";
 "Press START to start configuration." = "Naciśnij przycisk START aby rozpocząć konfigurację.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Upewnij się, że aplikacja ma uprawnienia do odnajdywania urządzeń w sieci lokalnej i łączenia się z nimi. Oznacza to, że uprawnienie \"iOS->Ustawienia->SUPLA->Sieć lokalna\" musi być włączone aby kreator działał poprawnie. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Sekcje szyby są odsłonięte dłużej niż 20 godzin co może negatywnie wpłynąć na ich żywotność. Zalecane jest zasłonięcie wszystkich sekcji na minimum 4 godziny w celu ich regeneracji.";
-"Planned regeneration is in progress." = "Trwa zaplanowana regeneracja.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
 "Back" = "Wstecz";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";
 "Exit" = "Wyjście";
@@ -334,6 +328,12 @@
 "channel_not_found" = "Kanał nie istnieje";
 "scene_inactive" = "Scena jest nieaktywna";
 "channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
+"channel_uv_warning1" = "Żywotność promiennika uv wynosi %.01f%%. Zaplanuj jego wymianę.";
+"channel_uv_warning2" = "Żywotność promiennika uv wynosi %.01f%%. Wymień promiennik.";
+"channel_lightsource_warning" = "Żywotność źródła światła wynosi %.01f%%.";
+"dgf_too_long_operation_warning" = "Sekcje szyby są odsłonięte dłużej niż 20 godzin co może negatywnie wpłynąć na ich żywotność. Zalecane jest zasłonięcie wszystkich sekcji na minimum 4 godziny w celu ich regeneracji.";
+"dgf_planned_regeneration_in_progress" = "Trwa zaplanowana regeneracja.";
+"dgf_regeneration_after20h" = "Trwa regeneracja zainicjowana po 20h pracy.";
 /* General - Channel status */
 "channel_status_not_available" = "Kanał nie jest dostępny ze względu na konfigurację. Zalecamy ukrycie kanału, aby nie był widoczny w aplikacji.";
 "channel_status_awaiting" = "Tego urządzenia nie można zdalnie wybudzić. Oczekujemy na komunikację ze strony urządzenia…";

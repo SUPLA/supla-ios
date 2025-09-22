@@ -17,6 +17,7 @@
  */
     
 import RxSwift
+import SharedCore
     
 protocol CurrentMeasurementsProvider: ElectricityMeasurementsProvider {
 }
@@ -25,27 +26,27 @@ final class CurrentMeasurementsProviderImpl: CurrentMeasurementsProvider {
     @Singleton<CurrentMeasurementItemRepository> private var repository
     @Singleton<GetCaptionUseCase> var getCaptionUseCase
     
-    private let formatter = CurrentValueFormatter()
+    private let formatter = SharedCore.CurrentValueFormatter.shared
     
     func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String {
-        formatter.format(electricityValue.current(forPhase: phase.rawValue), withUnit: false)
+        formatter.format(value: electricityValue.current(forPhase: phase.rawValue), format: ValueFormat.companion.WithoutUnit)
     }
     
     func findMeasurementsForPhase(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ isFirst: Bool,
         _ phase: Phase
     ) -> Observable<(Phase, HistoryDataSet)> {
         repository.findMeasurements(
-            remoteId: channel.remote_id,
-            serverId: channel.profile.server?.id,
+            remoteId: channelWithChildren.channel.remote_id,
+            serverId: channelWithChildren.channel.profile.server?.id,
             phase: phase,
             startDate: spec.startDate,
             endDate: spec.endDate
         )
         .map { self.aggregating($0, spec.aggregation) }
-        .map { (phase, self.historyDataSet(channel, phase, isFirst, .current, spec.aggregation, $0)) }
+        .map { (phase, self.historyDataSet(channelWithChildren, phase, isFirst, .current, spec.aggregation, $0)) }
     }
 }
 

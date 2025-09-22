@@ -19,9 +19,13 @@
 import Foundation
 
 extension Float {
-    func toTemperatureString(withUnit: Bool = false, precision: ChannelValuePrecision = .defaultPrecision(value: 1), format: TemperatureFormat = .default) -> String {
-        @Singleton<ThermometerValueFormatter> var formatter
-        return formatter.format(self, withUnit: withUnit, precision: precision, custom: format)
+    func toTemperatureString(_ format: ValueFormat? = nil) -> String {
+        @Singleton<SharedCore.ThermometerValueFormatter> var formatter
+        return if let format {
+            formatter.format(value: self, format: format)
+        } else {
+            formatter.format(value: self)
+        }
     }
     
     var cg: CGFloat {
@@ -46,13 +50,9 @@ extension Float {
 }
 
 extension Float? {
-    func toTemperatureString(
-        withUnit: Bool = false,
-        precision: ChannelValuePrecision = .defaultPrecision(value: 1),
-        format: TemperatureFormat = .default
-    ) -> String {
+    func toTemperatureString(_ format: ValueFormat? = nil) -> String {
         guard let self = self else { return NO_VALUE_TEXT }
-        return self.toTemperatureString(withUnit: withUnit, precision: precision, format: format)
+        return self.toTemperatureString(format)
     }
 }
 

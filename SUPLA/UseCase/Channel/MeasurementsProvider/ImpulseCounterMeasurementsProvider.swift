@@ -99,14 +99,12 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
 
     private func historyDataSet(_ result: AggregationResult, _ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> HistoryDataSet {
         var result = result
-        let unit = channelWithChildren.channel.isImpulseCounter() ? channelWithChildren.channel.ev?.impulseCounter().unit() :
-            channelWithChildren.children.first { $0.relationType == .meter }?.channel.ev?.impulseCounter().unit()
-        let formatter = ImpulseCounterChartValueFormatter(unit: unit)
+        let formatter = SharedCore.ImpulseCounterValueFormatter.staticFormatter(channelWithChildren)
 
         let label = HistoryDataSet.Label.single(
             HistoryDataSet.LabelData(
                 icon: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel),
-                value: formatter.format(result.nextSum()),
+                value: formatter.format(value: result.nextSum()),
                 color: .chartGpm
             )
         )

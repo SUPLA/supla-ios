@@ -28,6 +28,19 @@ class GlobalSettingsMock: GlobalSettings {
         1
     }
     
+    
+    var temperaturePrecisionMock: FunctionMock<Int32, Int32> = .init()
+    var temperaturePrecision: Int32 {
+        get { temperaturePrecisionMock.get() }
+        set { temperaturePrecisionMock.set(newValue) }
+    }
+    
+    var temperatureUnitMock: FunctionMock<SharedCore.TemperatureUnit, SharedCore.TemperatureUnit> = .init()
+    var temperatureUnit: SharedCore.TemperatureUnit {
+        get { temperatureUnitMock.get() }
+        set { temperatureUnitMock.set(newValue) }
+    }
+    
     var anyAccountRegisteredReturns: Bool = false
     var anyAccountRegisteredValues: [Bool] = []
     var anyAccountRegistered: Bool {

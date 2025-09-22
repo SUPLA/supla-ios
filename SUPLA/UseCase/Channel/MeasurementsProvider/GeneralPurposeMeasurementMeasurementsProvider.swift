@@ -44,7 +44,7 @@ final class GeneralPurposeMeasurementMeasurementsProviderImpl: GeneralPurposeMea
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingGeneralPurposeMeasurement(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channelWithChildren.channel, .generalPurposeMeasurement, color, spec.aggregation, $0)] }
+            .map { [self.historyDataSet(channelWithChildren, .generalPurposeMeasurement, color, spec.aggregation, $0)] }
             .map {
                 ChannelChartSets(
                     remoteId: channelWithChildren.channel.remote_id,

@@ -23,11 +23,11 @@ class TemperaturePresenter: NSObject {
     
     @objc
     func stringRepresentation(_ value: Float) -> String {
-        value.toTemperatureString(withUnit: true)
+        value.toTemperatureString(ValueFormat.companion.WithUnit)
     }
 
     @objc
     var unitString: String {
-        settings.temperatureUnit.symbol
+        settings.temperatureUnit.valueUnit.getString()
     }
 }

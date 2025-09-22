@@ -144,9 +144,6 @@
 "Default settings" = "Standard instillinger";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ENDRE LIVSKILDEINNSTILLING";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Levetiden til uv-lampen er % ,02f %%.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Levetiden til uv-lampen er % ,02f %%. Bytt varmeapparatet ut.";
-"The lifespan of the light source is %.02f%%." = "Levetiden til lyskilden er % ,02f %%.";
 "Please enter your Supla Cloud login details." = "Skriv inn påloggingsinformasjonen for cloud.supla.org.";
 "Enter superuser credentials" = "Skriv inn superbrukerens legitimasjon";
 "Dimmer settings" = "Dimmerinnstillinger";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "For å fortsette trykk på Videre.";
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Sørg for at applikasjonen har tillatelser til å oppdage og koble til enheter i det lokale nettverket. Dette betyr at tillatelsen \"iOS-> Innstillinger-> SUPLA-> Lokalt nettverk \" må være aktivert for at veiviseren skal fungere skikkelig.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Glasspartiene er eksponert i mer enn 20 timer, noe som kan ha negativ innvirkning på levetiden. Det anbefales å dekke alle seksjoner i minimum 4 timer for å regenerere dem.";
-"Planned regeneration is in progress." = "Planlagt regenerering pågår.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Regenerering pågår, startet etter 20 timers drift.";
 "Back" = "Tilbake";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave bro svarer ikke. Kontroller om broen er tilkoblet serveren.";
 "Exit" = "Avslutt";
@@ -318,6 +312,12 @@
 "channel_caption_humidityandtemperature" = "Temperatur og fuktighet";
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå (%d - %@): %d%%";
+"channel_uv_warning" = "Levetiden til uv-lampen er %.01f%%.";
+"channel_uv_error" = "Levetiden til uv-lampen er %.01f%%. Bytt varmeapparatet ut.";
+"channel_lightsource_warning" = "Levetiden til lyskilden er %.01f%%.";
+"dgf_too_long_operation_warning" = "Glasspartiene er eksponert i mer enn 20 timer, noe som kan ha negativ innvirkning på levetiden. Det anbefales å dekke alle seksjoner i minimum 4 timer for å regenerere dem.";
+"dgf_planned_regeneration_in_progress" = "Planlagt regenerering pågår.";
+"dgf_regeneration_after20h" = "Regenerering pågår, startet etter 20 timers drift.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";

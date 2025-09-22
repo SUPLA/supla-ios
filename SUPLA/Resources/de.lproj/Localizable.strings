@@ -143,9 +143,6 @@
 "Are you sure you want to restore the default settings?" = "Sind Sie sicher, dass Sie die Voreinstellungen wiederherstellen möchten?";
 "Default settings" = "Standardeinstellungen";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "EINSTELLUNGEN FÜR DIE LEBENSDAUER DER LICHTQUELLE ÄNDERN";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Planen Sie den Austausch.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Den Strahler austauschen.";
-"The lifespan of the light source is %.02f%%." = "Lebensdauer der Lichtquelle beträgt %.02f%%.";
 "Please enter your Supla Cloud login details." = "Geben Sie Ihre Anmeldedaten für cloud.supla.org ein.";
 "Enter superuser credentials" = "Geben Sie die Superuser-Anmeldeinformationen ein";
 "Dimmer settings" = "Einstellungen des Helligkeitsreglers";
@@ -159,9 +156,6 @@
 "Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
 "Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Versichern Sie sich, dass die App Befugnisse zur Erkennung der Geräte im lokalen Netzwerk und Verbindung mit ihnen hat. Es bedeutet, dass zur korrekten Funktion des Assistenten die Befugnis \„iOS->Einstellungen->SUPLA->Lokales Netzwerk\“ eingeschaltet sein muss.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
-"Planned regeneration is in progress." = "Geplante Regeneration läuft.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Es läuft die nach 20 Betriebsstunden begonnene Regeneration.";
 "Back" = "Zurück";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
 "Exit" = "Beenden";
@@ -308,6 +302,12 @@
 "channel_not_found" = "Kanal nicht gefunden";
 "scene_inactive" = "Szene ist nicht active";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
+"channel_uv_warning" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Planen Sie den Austausch.";
+"channel_uv_error" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Den Strahler austauschen.";
+"channel_lightsource_warning" = "Lebensdauer der Lichtquelle beträgt %.01f%%.";
+"dgf_too_long_operation_warning" = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
+"dgf_planned_regeneration_in_progress" = "Geplante Regeneration läuft.";
+"dgf_regeneration_after20h" = "Es läuft die nach 20 Betriebsstunden begonnene Regeneration.";
 /* General - Channel status */
 "channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
 "channel_status_awaiting" = "Dieses Gerät kann nicht per Fernzugriff aktiviert werden. Wir warten auf eine Kommunikation mit dem Gerät…";

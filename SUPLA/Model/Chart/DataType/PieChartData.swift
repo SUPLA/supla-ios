@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 private let valueFont = UIFont(name: "OpenSans", size: 8)!
 private let labelFont = UIFont(name: "OpenSans", size: 11)!
 
@@ -53,7 +55,7 @@ final class PieChartData: ChartData {
 private extension HistoryDataSet {
     func asPieChartData(
         aggregation: ChartDataAggregation,
-        formatter: ChannelValueFormatter,
+        formatter: SharedCore.ValueFormatter,
         dateFormatter: DateFormatter,
         customData: (any Equatable)?
     ) -> [PieChartDataSet]? {
@@ -102,7 +104,7 @@ private extension HistoryDataSet {
     }
 }
 
-private func pieDataSet(set: [ChartDataEntry], aggregation: ChartDataAggregation, formatter: ChannelValueFormatter) -> PieChartDataSet {
+private func pieDataSet(set: [ChartDataEntry], aggregation: ChartDataAggregation, formatter: SharedCore.ValueFormatter) -> PieChartDataSet {
     let set = PieChartDataSet(entries: set, label: "")
     set.colors = aggregation.colors
     set.valueFont = valueFont
@@ -113,15 +115,15 @@ private func pieDataSet(set: [ChartDataEntry], aggregation: ChartDataAggregation
     return set
 }
 
-private class PieChartSetFormatter: ValueFormatter {
-    let formatter: ChannelValueFormatter
+private class PieChartSetFormatter: DGCharts.ValueFormatter {
+    let formatter: SharedCore.ValueFormatter
 
-    init(formatter: ChannelValueFormatter) {
+    init(formatter: SharedCore.ValueFormatter) {
         self.formatter = formatter
     }
 
     func stringForValue(_ value: Double, entry: DGCharts.ChartDataEntry, dataSetIndex: Int, viewPortHandler: DGCharts.ViewPortHandler?) -> String {
-        formatter.format(value, precision: .customPrecision(value: 1))
+        formatter.format(value: value)
     }
 }
 

@@ -22,7 +22,7 @@ final class TemperatureUnitCell: BaseSettingsCell<UISegmentedControl> {
     
     override func provideActionView() -> UISegmentedControl {
         let units = TemperatureUnit.allCases
-        let view = UISegmentedControl(items: units.map { $0.symbol })
+        let view = UISegmentedControl(items: units.map { $0.valueUnit.text })
         units.enumerated().forEach { (i, _) in view.setWidth(60, forSegmentAt: i)}
         return view
     }

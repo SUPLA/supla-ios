@@ -19,6 +19,7 @@
 import AppIntents
 import SwiftUI
 import WidgetKit
+import SharedCore
 
 @available(iOS 17.0, *)
 struct SuplaValueWidget: Widget {
@@ -190,11 +191,11 @@ extension SuplaValueWidget {
 
         static func from(_ result: SingleCallResult) -> FormattedValue {
             switch (result) {
-            case .temperature(let value): .single(value.toTemperatureString(withUnit: true))
+            case .temperature(let value): .single(value.toTemperatureString(ValueFormat.companion.WithUnit))
             case .humidity(let value): .single(formatter.humidityToString(value))
             case .temperatureAndHumidity(let temperature, let humidity):
                 .double(
-                    first: temperature.toTemperatureString(withUnit: true),
+                    first: temperature.toTemperatureString(ValueFormat.companion.WithUnit),
                     second: formatter.humidityToString(humidity)
                 )
             case .error(let errorCode): .error(errorCode)

@@ -108,6 +108,12 @@
 "channel_not_found" = "Channel not found";
 "scene_inactive" = "Scene is inactive";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
+"channel_uv_warning" = "The lifespan of the uv radiator is %.01f%%. Schedule its replacement.";
+"channel_uv_error" = "The lifespan of the uv radiator is %.01f%%. Replace the radiator.";
+"channel_lightsource_warning" = "The lifespan of the light source is %.01f%%.";
+"dgf_too_long_operation_warning" = "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them.";
+"dgf_planned_regeneration_in_progress" = "Planned regeneration is in progress.";
+"dgf_regeneration_after20h" = "Regeneration initiated after 20 hours of operation is in progress.";
 /* General - Channel status */
 "channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
 "channel_status_awaiting" = "This device cannot be remotely awakened. We are awaiting communication from the device…";

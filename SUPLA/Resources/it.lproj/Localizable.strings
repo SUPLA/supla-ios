@@ -173,9 +173,6 @@
 "Roof window" = "Lucernario";
 "Roof window operation" = "Funzionamento Lucernario";
 "opened / closed the roof window" = "apri / chiudi lucernario";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
-"Planned regeneration is in progress." = "Rigenerazione pianificata in corso.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assicurati che l'applicazione abbia i permessi per cercare e connettersi ai dispositivi nella rete locale. Controlla che in \"Impostazioni -> SUPLA -> Rete locale\" il permesso sia abilitato per funzionare correttamente";
 "Close" = "Chiudi";
 "Yes" = "Si";
@@ -201,9 +198,6 @@
 "Opening" = "Apertura";
 "Closing" = "Chiusura";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "L'uscita è stata spenta a causa del superamento della soglia di corrente impostata.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La durata di vita della lampada UV è %.02f%%. Sostituire la lampada.";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La durata di vita della lampada UV è %.02f%%. Programmare la sua sostituzione.";
-"The lifespan of the light source is %.02f%%." = "La durata di vita della sorgente luminosta è %.02f%%.";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIA LE IMPOSTAZIONI DELLA DURATA DI VITA DELLA SORGENTE LUMINOSA";
 "Arithmetic balance - Minutes" = "Bilanciamento aritmetico - Minuti";
 "Arithmetic balance - Hours" = "Bilanciamento aritmetico - Ore";
@@ -334,6 +328,12 @@
 "channel_caption_humidityandtemperature" = "Temperatura e umidità";
 "channel_offline" = "Il canale è offline";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
+"channel_uv_warning" = "La durata di vita della lampada UV è %.01f%%. Sostituire la lampada.";
+"channel_uv_error" = "La durata di vita della lampada UV è %.01f%%. Programmare la sua sostituzione.";
+"channel_lightsource_warning" = "La durata di vita della sorgente luminosta è %.01f%%.";
+"dgf_too_long_operation_warning" = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
+"dgf_planned_regeneration_in_progress" = "Rigenerazione pianificata in corso.";
+"dgf_regeneration_after20h" = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Abbiamo eliminato il gesto di scorrimento che apre i dettagli, per vederli devi toccare il canale selezionato.";

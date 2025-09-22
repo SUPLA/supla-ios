@@ -43,14 +43,14 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
             .map { measurements in
                 [
                     self.historyDataSet(
-                        channelWithChildren.channel,
+                        channelWithChildren,
                         .temperature,
                         colorProvider?(.temperature) ?? TemperatureColors.standard,
                         spec.aggregation,
                         self.aggregatingTemperature(measurements, spec.aggregation)
                     ),
                     self.historyDataSet(
-                        channelWithChildren.channel,
+                        channelWithChildren,
                         .humidity,
                         colorProvider?(.humidity) ?? HumidityColors.standard,
                         spec.aggregation,

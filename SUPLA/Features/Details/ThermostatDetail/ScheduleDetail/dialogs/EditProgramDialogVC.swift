@@ -18,6 +18,7 @@
 
 import Foundation
 import RxSwift
+import SharedCore
 
 final class EditProgramDialogVC : SACustomDialogVC<EditProgramDialogViewState, EditProgramDialogViewEvent, EditProgramDialogVM> {
     
@@ -239,7 +240,7 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
     
     var unit: TemperatureUnit? = nil {
         didSet {
-            (temperatureTextField.rightView as? UILabel)?.text = unit?.symbol
+            (temperatureTextField.rightView as? UILabel)?.text = unit?.valueUnit.text
         }
     }
     
@@ -267,7 +268,7 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
     
     lazy var temperatureTextField = {
         let unitLabel = UILabel()
-        unitLabel.text = unit?.symbol
+        unitLabel.text = unit?.valueUnit.text
         unitLabel.textColor = .gray
         unitLabel.font = .body2
         unitLabel.translatesAutoresizingMaskIntoConstraints = false

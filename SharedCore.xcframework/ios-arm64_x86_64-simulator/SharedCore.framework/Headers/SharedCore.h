@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCore__SkieTypeExportsKt, SharedCore__SkieSuspendWrappersKt, SharedCoreZWaveWakeUpSettings, SharedCoreZWaveNode, SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaResultCodeCompanion, SharedCoreSuplaResultCode, SharedCoreSuplaRelayFlagCompanion, SharedCoreSuplaRelayFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreSuplaEventTypeCompanion, SharedCoreSuplaEventType, SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport, SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult, SharedCoreSuplaClientMessageZWaveResetAndClearResult, SharedCoreSuplaClientMessageZWaveRemoveNodeResult, SharedCoreSuplaClientMessageZWaveGetNodeListResult, SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult, SharedCoreSuplaClientMessageZWaveAssignNodeIdResult, SharedCoreSuplaClientMessageZWaveAddNodeResult, SharedCoreSuplaClientMessageSetRegistrationEnabledResult, SharedCoreSuplaClientMessageRegistrationEnabled, SharedCoreSuplaClientMessageOAuthToken, SharedCoreSuplaClientMessageGroupDataChanged, SharedCoreSuplaClientMessageEvent, SharedCoreSuplaClientMessageCompanion, SharedCoreSuplaClientMessageClientRegistrationError, SharedCoreSuplaClientMessageClientRegistered, SharedCoreSuplaClientMessageChannelState, SharedCoreSuplaClientMessageChannelFunctionSetResult, SharedCoreSuplaClientMessageChannelDataChanged, SharedCoreSuplaClientMessageChannelCaptionSetResult, SharedCoreSuplaClientMessageChannelBasicConfig, SharedCoreSuplaClientMessageCallConfigResult, SharedCoreSuplaClientMessageCallConfigProgressReport, SharedCoreSuplaClientMessageAuthorizationResult, SharedCoreSuplaChannelStateCompanion, SharedCoreSuplaChannelState, SharedCoreSuplaChannelBasicCfg, SharedCoreSuplaChannelAvailabilityStatusCompanion, SharedCoreSuplaChannelAvailabilityStatus, SharedCoreSuplaCallConfigCommand, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreSkie_SuspendResultSuccess, SharedCoreSkie_SuspendResultError, SharedCoreSkie_SuspendResultCanceled, SharedCoreSkie_SuspendResult, SharedCoreSkie_SuspendHandler, SharedCoreSkie_CancellationHandler, SharedCoreSkieKotlinStateFlow<T>, SharedCoreSkieKotlinSharedFlow<T>, SharedCoreSkieKotlinOptionalStateFlow<T>, SharedCoreSkieKotlinOptionalSharedFlow<T>, SharedCoreSkieKotlinOptionalMutableStateFlow<T>, SharedCoreSkieKotlinOptionalMutableSharedFlow<T>, SharedCoreSkieKotlinOptionalFlow<T>, SharedCoreSkieKotlinMutableStateFlow<T>, SharedCoreSkieKotlinMutableSharedFlow<T>, SharedCoreSkieKotlinFlow<T>, SharedCoreSkieColdFlowIterator<E>, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreRelayValueCompanion, SharedCoreRelayValue, SharedCoreRelayIssuesProvider, SharedCoreReconnecting, SharedCoreProvidingPassword, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreNetworkSearch, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithIdAndString, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinx_serialization_coreStructureKindOBJECT, SharedCoreKotlinx_serialization_coreStructureKindMAP, SharedCoreKotlinx_serialization_coreStructureKindLIST, SharedCoreKotlinx_serialization_coreStructureKindCLASS, SharedCoreKotlinx_serialization_coreStructureKind, SharedCoreKotlinx_serialization_coreSerializersModule, SharedCoreKotlinx_serialization_coreSerialKindENUM, SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL, SharedCoreKotlinx_serialization_coreSerialKind, SharedCoreKotlinx_serialization_corePrimitiveKindSTRING, SharedCoreKotlinx_serialization_corePrimitiveKindSHORT, SharedCoreKotlinx_serialization_corePrimitiveKindLONG, SharedCoreKotlinx_serialization_corePrimitiveKindINT, SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT, SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE, SharedCoreKotlinx_serialization_corePrimitiveKindCHAR, SharedCoreKotlinx_serialization_corePrimitiveKindBYTE, SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN, SharedCoreKotlinx_serialization_corePrimitiveKind, SharedCoreKotlinx_serialization_corePolymorphicKindSEALED, SharedCoreKotlinx_serialization_corePolymorphicKindOPEN, SharedCoreKotlinx_serialization_corePolymorphicKind, SharedCoreKotlinThrowable, SharedCoreKotlinRuntimeException, SharedCoreKotlinNothing, SharedCoreKotlinIllegalStateException, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinCancellationException, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconUpdate, SharedCoreIssueIconSound, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreIntExtensionsKt, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreIdle, SharedCoreIcon, SharedCoreGroup, SharedCoreGetChannelSpecificIssuesUseCase, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreGetAllChannelIssuesUseCase, SharedCoreFloat, SharedCoreFinished, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreEspConfigurationEventStart, SharedCoreEspConfigurationEventSetupNeeded, SharedCoreEspConfigurationEventRegistrationUnknown, SharedCoreEspConfigurationEventRegistrationNotActivated, SharedCoreEspConfigurationEventRegistrationEnabled, SharedCoreEspConfigurationEventRegistrationDisabled, SharedCoreEspConfigurationEventRegistrationActivated, SharedCoreEspConfigurationEventReconnected, SharedCoreEspConfigurationEventReconnectTimeout, SharedCoreEspConfigurationEventPasswordProvided, SharedCoreEspConfigurationEventNetworkScanDisabled, SharedCoreEspConfigurationEventNetworkNotFound, SharedCoreEspConfigurationEventNetworkFound, SharedCoreEspConfigurationEventNetworkConnectionFailure, SharedCoreEspConfigurationEventNetworkConnected, SharedCoreEspConfigurationEventMultipleNetworksFound, SharedCoreEspConfigurationEventEspConfigured, SharedCoreEspConfigurationEventEspConfigurationFailure, SharedCoreEspConfigurationEventCredentialsNeeded, SharedCoreEspConfigurationEventClose, SharedCoreEspConfigurationEventCanceled, SharedCoreEspConfigurationEventCancel, SharedCoreEspConfigurationEventBack, SharedCoreEspConfigurationEventAuthorized, SharedCoreEspConfigurationErrorWifi, SharedCoreEspConfigurationErrorTemporarilyLocked, SharedCoreEspConfigurationErrorScan, SharedCoreEspConfigurationErrorRegistrationEnable, SharedCoreEspConfigurationErrorRegistrationCheck, SharedCoreEspConfigurationErrorReconnect, SharedCoreEspConfigurationErrorNotFound, SharedCoreEspConfigurationErrorConnect, SharedCoreEspConfigurationErrorConfigureTimeout, SharedCoreEspConfigurationErrorConfiguration, SharedCoreEspConfigurationErrorCompatibility, SharedCoreEspConfigurationErrorCommunication, SharedCoreEspConfigurationErrorCombined, SharedCoreEspConfigurationError, SharedCoreEnableRegistrationUseCaseResult, SharedCoreEnableRegistrationUseCase, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreConfiguringPassword, SharedCoreConfiguringEsp, SharedCoreConfigurationFailure, SharedCoreCheckingRegistration, SharedCoreCheckRegistrationEnabledUseCaseResult, SharedCoreCheckRegistrationEnabledUseCase, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemSoundAlarmCompanion, SharedCoreChannelIssueItemSoundAlarm, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreChangingNetwork, SharedCoreCanceling, SharedCoreCanceled, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, SharedCoreAuthorizing, SharedCoreAddWizardFinalActionSuccess, SharedCoreAddWizardFinalActionReinitialize, SharedCoreAddWizardFinalActionError, SharedCoreAddWizardFinalActionClose, SharedCoreAddWizardFinalActionBack, SharedCoreActivatingRegistration, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCore__SkieTypeExportsKt, SharedCore__SkieSuspendWrappersKt, SharedCoreZWaveWakeUpSettings, SharedCoreZWaveNode, SharedCoreWindValueFormatter, SharedCoreWeightValueFormatter, SharedCoreVoltageValueFormatter, SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreValueUnit, SharedCoreValuePrecisionKt, SharedCoreValueFormatterKt, SharedCoreValueFormatter, SharedCoreValueFormatSpecificationCompanion, SharedCoreValueFormatSpecification, SharedCoreValueFormatPrecisionDefault, SharedCoreValueFormatPrecisionCustom, SharedCoreValueFormatKt, SharedCoreValueFormatCompanion, SharedCoreValueFormat, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreThermometerValueFormatter, SharedCoreThermometerAndHumidityValueFormatter, SharedCoreTemperatureUnitCompanion, SharedCoreTemperatureUnit, SharedCoreTemperatureAndHumidity, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaResultCodeCompanion, SharedCoreSuplaResultCode, SharedCoreSuplaRelayFlagCompanion, SharedCoreSuplaRelayFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaHeatpolThermostatFlagCompanion, SharedCoreSuplaHeatpolThermostatFlag, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreSuplaEventTypeCompanion, SharedCoreSuplaEventType, SharedCoreSuplaDigiglassFlagCompanion, SharedCoreSuplaDigiglassFlag, SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport, SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult, SharedCoreSuplaClientMessageZWaveResetAndClearResult, SharedCoreSuplaClientMessageZWaveRemoveNodeResult, SharedCoreSuplaClientMessageZWaveGetNodeListResult, SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult, SharedCoreSuplaClientMessageZWaveAssignNodeIdResult, SharedCoreSuplaClientMessageZWaveAddNodeResult, SharedCoreSuplaClientMessageSetRegistrationEnabledResult, SharedCoreSuplaClientMessageRegistrationEnabled, SharedCoreSuplaClientMessageOAuthToken, SharedCoreSuplaClientMessageGroupDataChanged, SharedCoreSuplaClientMessageEvent, SharedCoreSuplaClientMessageCompanion, SharedCoreSuplaClientMessageClientRegistrationError, SharedCoreSuplaClientMessageClientRegistered, SharedCoreSuplaClientMessageChannelState, SharedCoreSuplaClientMessageChannelFunctionSetResult, SharedCoreSuplaClientMessageChannelDataChanged, SharedCoreSuplaClientMessageChannelCaptionSetResult, SharedCoreSuplaClientMessageChannelBasicConfig, SharedCoreSuplaClientMessageCallConfigResult, SharedCoreSuplaClientMessageCallConfigProgressReport, SharedCoreSuplaClientMessageAuthorizationResult, SharedCoreSuplaChannelStateCompanion, SharedCoreSuplaChannelState, SharedCoreSuplaChannelBasicCfg, SharedCoreSuplaChannelAvailabilityStatusCompanion, SharedCoreSuplaChannelAvailabilityStatus, SharedCoreSuplaCallConfigCommand, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreSkie_SuspendResultSuccess, SharedCoreSkie_SuspendResultError, SharedCoreSkie_SuspendResultCanceled, SharedCoreSkie_SuspendResult, SharedCoreSkie_SuspendHandler, SharedCoreSkie_CancellationHandler, SharedCoreSkieKotlinStateFlow<T>, SharedCoreSkieKotlinSharedFlow<T>, SharedCoreSkieKotlinOptionalStateFlow<T>, SharedCoreSkieKotlinOptionalSharedFlow<T>, SharedCoreSkieKotlinOptionalMutableStateFlow<T>, SharedCoreSkieKotlinOptionalMutableSharedFlow<T>, SharedCoreSkieKotlinOptionalFlow<T>, SharedCoreSkieKotlinMutableStateFlow<T>, SharedCoreSkieKotlinMutableSharedFlow<T>, SharedCoreSkieKotlinFlow<T>, SharedCoreSkieColdFlowIterator<E>, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreRelayValueCompanion, SharedCoreRelayValue, SharedCoreRelayIssuesProvider, SharedCoreReconnecting, SharedCoreRainValueFormatter, SharedCoreProvidingPassword, SharedCorePressureValueFormatter, SharedCorePowerActiveValueFormatter, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreNetworkSearch, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLogger, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithIdAndString, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreLifespanIssuesProvider, SharedCoreKotlinx_serialization_coreStructureKindOBJECT, SharedCoreKotlinx_serialization_coreStructureKindMAP, SharedCoreKotlinx_serialization_coreStructureKindLIST, SharedCoreKotlinx_serialization_coreStructureKindCLASS, SharedCoreKotlinx_serialization_coreStructureKind, SharedCoreKotlinx_serialization_coreSerializersModule, SharedCoreKotlinx_serialization_coreSerialKindENUM, SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL, SharedCoreKotlinx_serialization_coreSerialKind, SharedCoreKotlinx_serialization_corePrimitiveKindSTRING, SharedCoreKotlinx_serialization_corePrimitiveKindSHORT, SharedCoreKotlinx_serialization_corePrimitiveKindLONG, SharedCoreKotlinx_serialization_corePrimitiveKindINT, SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT, SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE, SharedCoreKotlinx_serialization_corePrimitiveKindCHAR, SharedCoreKotlinx_serialization_corePrimitiveKindBYTE, SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN, SharedCoreKotlinx_serialization_corePrimitiveKind, SharedCoreKotlinx_serialization_corePolymorphicKindSEALED, SharedCoreKotlinx_serialization_corePolymorphicKindOPEN, SharedCoreKotlinx_serialization_corePolymorphicKind, SharedCoreKotlinThrowable, SharedCoreKotlinRuntimeException, SharedCoreKotlinNothing, SharedCoreKotlinIllegalStateException, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinCancellationException, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconUpdate, SharedCoreIssueIconSound, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreInvalidValueValueOrNan, SharedCoreInvalidValueNone, SharedCoreInvalidValueNaN, SharedCoreInvalidValueCompanion, SharedCoreIntExtensionsKt, SharedCoreInt, SharedCoreImpulseCounterValueFormatterCompanion, SharedCoreImpulseCounterValueFormatter, SharedCoreImpulseCounterPhotoDto, SharedCoreIdle, SharedCoreIcon, SharedCoreHumidityValueFormatter, SharedCoreHomePlusThermostatValueCompanion, SharedCoreHomePlusThermostatValue, SharedCoreHelperFunctionsKt, SharedCoreGroup, SharedCoreGpmValueFormatterCompanion, SharedCoreGpmValueFormatter, SharedCoreGetChannelSpecificIssuesUseCase, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreGetAllChannelIssuesUseCase, SharedCoreFloat, SharedCoreFinished, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreEspConfigurationEventStart, SharedCoreEspConfigurationEventSetupNeeded, SharedCoreEspConfigurationEventRegistrationUnknown, SharedCoreEspConfigurationEventRegistrationNotActivated, SharedCoreEspConfigurationEventRegistrationEnabled, SharedCoreEspConfigurationEventRegistrationDisabled, SharedCoreEspConfigurationEventRegistrationActivated, SharedCoreEspConfigurationEventReconnected, SharedCoreEspConfigurationEventReconnectTimeout, SharedCoreEspConfigurationEventPasswordProvided, SharedCoreEspConfigurationEventNetworkScanDisabled, SharedCoreEspConfigurationEventNetworkNotFound, SharedCoreEspConfigurationEventNetworkFound, SharedCoreEspConfigurationEventNetworkConnectionFailure, SharedCoreEspConfigurationEventNetworkConnected, SharedCoreEspConfigurationEventMultipleNetworksFound, SharedCoreEspConfigurationEventEspConfigured, SharedCoreEspConfigurationEventEspConfigurationFailure, SharedCoreEspConfigurationEventCredentialsNeeded, SharedCoreEspConfigurationEventClose, SharedCoreEspConfigurationEventCanceled, SharedCoreEspConfigurationEventCancel, SharedCoreEspConfigurationEventBack, SharedCoreEspConfigurationEventAuthorized, SharedCoreEspConfigurationErrorWifi, SharedCoreEspConfigurationErrorTemporarilyLocked, SharedCoreEspConfigurationErrorScan, SharedCoreEspConfigurationErrorRegistrationEnable, SharedCoreEspConfigurationErrorRegistrationCheck, SharedCoreEspConfigurationErrorReconnect, SharedCoreEspConfigurationErrorNotFound, SharedCoreEspConfigurationErrorConnect, SharedCoreEspConfigurationErrorConfigureTimeout, SharedCoreEspConfigurationErrorConfiguration, SharedCoreEspConfigurationErrorCompatibility, SharedCoreEspConfigurationErrorCommunication, SharedCoreEspConfigurationErrorCombined, SharedCoreEspConfigurationError, SharedCoreEnableRegistrationUseCaseResult, SharedCoreEnableRegistrationUseCase, SharedCoreElectricityMeterValueFormatter, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDistanceValueFormatter, SharedCoreDigiglassValueCompanion, SharedCoreDigiglassValue, SharedCoreDigiglassIssuesProvider, SharedCoreDefaultValueFormatter, SharedCoreDefaultChannelDto, SharedCoreDecimalFormatter, SharedCoreCurrentValueFormatter, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreConfiguringPassword, SharedCoreConfiguringEsp, SharedCoreConfigurationFailure, SharedCoreCheckingRegistration, SharedCoreCheckRegistrationEnabledUseCaseResult, SharedCoreCheckRegistrationEnabledUseCase, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelValue, SharedCoreChannelState, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemSoundAlarmCompanion, SharedCoreChannelIssueItemSoundAlarm, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreChangingNetwork, SharedCoreCanceling, SharedCoreCanceled, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, SharedCoreAuthorizing, SharedCoreAddWizardFinalActionSuccess, SharedCoreAddWizardFinalActionReinitialize, SharedCoreAddWizardFinalActionError, SharedCoreAddWizardFinalActionClose, SharedCoreAddWizardFinalActionBack, SharedCoreActivatingRegistration, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
-@protocol SharedCoreSuplaClientSharedProvider, SharedCoreSuplaClientSharedApi, SharedCoreSuplaClientMessageHandlerListener, SharedCoreSuplaClientMessageHandler, SharedCoreSuplaClientMessage, SharedCoreSkie_DispatcherDelegate, SharedCoreLocalizedString, SharedCoreKotlinx_serialization_coreSerializersModuleCollector, SharedCoreKotlinx_serialization_coreSerializationStrategy, SharedCoreKotlinx_serialization_coreSerialDescriptor, SharedCoreKotlinx_serialization_coreKSerializer, SharedCoreKotlinx_serialization_coreEncoder, SharedCoreKotlinx_serialization_coreDeserializationStrategy, SharedCoreKotlinx_serialization_coreDecoder, SharedCoreKotlinx_serialization_coreCompositeEncoder, SharedCoreKotlinx_serialization_coreCompositeDecoder, SharedCoreKotlinx_coroutines_coreStateFlow, SharedCoreKotlinx_coroutines_coreSharedFlow, SharedCoreKotlinx_coroutines_coreRunnable, SharedCoreKotlinx_coroutines_coreMutableStateFlow, SharedCoreKotlinx_coroutines_coreMutableSharedFlow, SharedCoreKotlinx_coroutines_coreFlowCollector, SharedCoreKotlinx_coroutines_coreFlow, SharedCoreKotlinKDeclarationContainer, SharedCoreKotlinKClassifier, SharedCoreKotlinKClass, SharedCoreKotlinKAnnotatedElement, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreKotlinAnnotation, SharedCoreEspConfigurationStateHolder, SharedCoreEspConfigurationState, SharedCoreEspConfigurationEvent, SharedCoreEspConfigurationController, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, SharedCoreAddWizardFinalAction, NSCopying;
+@protocol SharedCoreValueFormatPrecision, SharedCoreSuplaClientSharedProvider, SharedCoreSuplaClientSharedApi, SharedCoreSuplaClientMessageHandlerListener, SharedCoreSuplaClientMessageHandler, SharedCoreSuplaClientMessage, SharedCoreSkie_DispatcherDelegate, SharedCoreLocalizedString, SharedCoreKotlinx_serialization_coreSerializersModuleCollector, SharedCoreKotlinx_serialization_coreSerializationStrategy, SharedCoreKotlinx_serialization_coreSerialDescriptor, SharedCoreKotlinx_serialization_coreKSerializer, SharedCoreKotlinx_serialization_coreEncoder, SharedCoreKotlinx_serialization_coreDeserializationStrategy, SharedCoreKotlinx_serialization_coreDecoder, SharedCoreKotlinx_serialization_coreCompositeEncoder, SharedCoreKotlinx_serialization_coreCompositeDecoder, SharedCoreKotlinx_coroutines_coreStateFlow, SharedCoreKotlinx_coroutines_coreSharedFlow, SharedCoreKotlinx_coroutines_coreRunnable, SharedCoreKotlinx_coroutines_coreMutableStateFlow, SharedCoreKotlinx_coroutines_coreMutableSharedFlow, SharedCoreKotlinx_coroutines_coreFlowCollector, SharedCoreKotlinx_coroutines_coreFlow, SharedCoreKotlinKDeclarationContainer, SharedCoreKotlinKClassifier, SharedCoreKotlinKClass, SharedCoreKotlinKAnnotatedElement, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreKotlinAnnotation, SharedCoreInvalidValue, SharedCoreEspConfigurationStateHolder, SharedCoreEspConfigurationState, SharedCoreEspConfigurationEvent, SharedCoreEspConfigurationController, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, SharedCoreAddWizardFinalAction, NSCopying;
 
 // Due to an Obj-C/Swift interop limitation, SKIE cannot generate Swift types with a lambda type argument.
 // Example of such type is: A<() -> Unit> where A<T> is a generic class.
@@ -752,6 +752,22 @@ __attribute__((swift_name("ZWaveWakeUpSettings")))
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((swift_name("ChannelValue")))
+@interface SharedCoreChannelValue : SharedCoreBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("TemperatureAndHumidity")))
+@interface SharedCoreTemperatureAndHumidity : SharedCoreChannelValue
+@property (readonly) SharedCoreDouble * _Nullable humidity __attribute__((swift_name("humidity")));
+@property (readonly) SharedCoreDouble * _Nullable temperature __attribute__((swift_name("temperature")));
+- (instancetype)initWithTemperature:(SharedCoreDouble * _Nullable)temperature humidity:(SharedCoreDouble * _Nullable)humidity __attribute__((swift_name("init(temperature:humidity:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
 @end
 
 __attribute__((swift_name("EspConfigurationState")))
@@ -1515,6 +1531,19 @@ __attribute__((swift_name("ChannelRelationType.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ChannelState")))
+@interface SharedCoreChannelState : SharedCoreBase
+@property (readonly) SharedCoreInt * _Nullable lightSourceLifespan __attribute__((swift_name("lightSourceLifespan")));
+@property (readonly) SharedCoreFloat * _Nullable lightSourceLifespanLeft __attribute__((swift_name("lightSourceLifespanLeft")));
+@property (readonly) SharedCoreFloat * _Nullable lightSourceOperatingTimePercentLeft __attribute__((swift_name("lightSourceOperatingTimePercentLeft")));
+- (instancetype)initWithLightSourceLifespan:(SharedCoreInt * _Nullable)lightSourceLifespan lightSourceLifespanLeft:(SharedCoreFloat * _Nullable)lightSourceLifespanLeft lightSourceOperatingTimePercentLeft:(SharedCoreFloat * _Nullable)lightSourceOperatingTimePercentLeft __attribute__((swift_name("init(lightSourceLifespan:lightSourceLifespanLeft:lightSourceOperatingTimePercentLeft:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreChannelState *)doCopyLightSourceLifespan:(SharedCoreInt * _Nullable)lightSourceLifespan lightSourceLifespanLeft:(SharedCoreFloat * _Nullable)lightSourceLifespanLeft lightSourceOperatingTimePercentLeft:(SharedCoreFloat * _Nullable)lightSourceOperatingTimePercentLeft __attribute__((swift_name("doCopy(lightSourceLifespan:lightSourceLifespanLeft:lightSourceOperatingTimePercentLeft:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ChannelWithChildren")))
 @interface SharedCoreChannelWithChildren : SharedCoreBase
 @property (readonly) SharedCoreChannel *channel __attribute__((swift_name("channel")));
@@ -1575,6 +1604,57 @@ __attribute__((swift_name("ContainerValue.Companion")))
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
 - (SharedCoreContainerValue *)fromStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status bytes:(SharedCoreKotlinByteArray *)bytes __attribute__((swift_name("from(status:bytes:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DigiglassValue")))
+@interface SharedCoreDigiglassValue : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreDigiglassValueCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) NSArray<SharedCoreSuplaDigiglassFlag *> *flags __attribute__((swift_name("flags")));
+@property (readonly) BOOL isAnySectionTransparent __attribute__((swift_name("isAnySectionTransparent")));
+@property (readonly) int32_t mask __attribute__((swift_name("mask")));
+@property (readonly) int32_t sectionCount __attribute__((swift_name("sectionCount")));
+@property (readonly) SharedCoreSuplaChannelAvailabilityStatus *status __attribute__((swift_name("status")));
+- (instancetype)initWithStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status flags:(NSArray<SharedCoreSuplaDigiglassFlag *> *)flags sectionCount:(int32_t)sectionCount mask:(int32_t)mask __attribute__((swift_name("init(status:flags:sectionCount:mask:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreDigiglassValue *)doCopyStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status flags:(NSArray<SharedCoreSuplaDigiglassFlag *> *)flags sectionCount:(int32_t)sectionCount mask:(int32_t)mask __attribute__((swift_name("doCopy(status:flags:sectionCount:mask:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DigiglassValue.Companion")))
+@interface SharedCoreDigiglassValueCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreDigiglassValueCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreDigiglassValue *)fromStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status bytes:(SharedCoreKotlinByteArray *)bytes __attribute__((swift_name("from(status:bytes:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaDigiglassFlag")))
+@interface SharedCoreSuplaDigiglassFlag : SharedCoreKotlinEnum<SharedCoreSuplaDigiglassFlag *>
+@property (class, readonly, getter=companion) SharedCoreSuplaDigiglassFlagCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SharedCoreSuplaDigiglassFlag *tooLongOperation __attribute__((swift_name("tooLongOperation")));
+@property (class, readonly) SharedCoreSuplaDigiglassFlag *plannedRegenerationInProgress __attribute__((swift_name("plannedRegenerationInProgress")));
+@property (class, readonly) SharedCoreSuplaDigiglassFlag *regenerationAfter20hInProgress __attribute__((swift_name("regenerationAfter20hInProgress")));
+@property (class, readonly) NSArray<SharedCoreSuplaDigiglassFlag *> *entries __attribute__((swift_name("entries")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreSuplaDigiglassFlag *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaDigiglassFlag.Companion")))
+@interface SharedCoreSuplaDigiglassFlagCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaDigiglassFlagCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (NSArray<SharedCoreSuplaDigiglassFlag *> *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
 @end
 
 __attribute__((swift_name("ShadingSystemValue")))
@@ -1694,6 +1774,62 @@ __attribute__((swift_name("RollerShutterValue.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HomePlusThermostatValue")))
+@interface SharedCoreHomePlusThermostatValue : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreHomePlusThermostatValueCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) NSArray<SharedCoreSuplaHeatpolThermostatFlag *> *flags __attribute__((swift_name("flags")));
+@property (readonly) float measuredTemperature __attribute__((swift_name("measuredTemperature")));
+@property (readonly) BOOL on __attribute__((swift_name("on")));
+@property (readonly) float presetTemperature __attribute__((swift_name("presetTemperature")));
+@property (readonly) SharedCoreSuplaChannelAvailabilityStatus *status __attribute__((swift_name("status")));
+- (instancetype)initWithStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status on:(BOOL)on flags:(NSArray<SharedCoreSuplaHeatpolThermostatFlag *> *)flags measuredTemperature:(float)measuredTemperature presetTemperature:(float)presetTemperature __attribute__((swift_name("init(status:on:flags:measuredTemperature:presetTemperature:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreHomePlusThermostatValue *)doCopyStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status on:(BOOL)on flags:(NSArray<SharedCoreSuplaHeatpolThermostatFlag *> *)flags measuredTemperature:(float)measuredTemperature presetTemperature:(float)presetTemperature __attribute__((swift_name("doCopy(status:on:flags:measuredTemperature:presetTemperature:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HomePlusThermostatValue.Companion")))
+@interface SharedCoreHomePlusThermostatValueCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreHomePlusThermostatValueCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreHomePlusThermostatValue *)fromStatus:(SharedCoreSuplaChannelAvailabilityStatus *)status bytes:(SharedCoreKotlinByteArray *)bytes __attribute__((swift_name("from(status:bytes:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaHeatpolThermostatFlag")))
+@interface SharedCoreSuplaHeatpolThermostatFlag : SharedCoreKotlinEnum<SharedCoreSuplaHeatpolThermostatFlag *>
+@property (class, readonly, getter=companion) SharedCoreSuplaHeatpolThermostatFlagCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *on __attribute__((swift_name("on")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *autoMode __attribute__((swift_name("autoMode")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *coolMode __attribute__((swift_name("coolMode")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *headMode __attribute__((swift_name("headMode")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *ecoMode __attribute__((swift_name("ecoMode")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *dryMode __attribute__((swift_name("dryMode")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *fanOnlyMode __attribute__((swift_name("fanOnlyMode")));
+@property (class, readonly) SharedCoreSuplaHeatpolThermostatFlag *purifierMode __attribute__((swift_name("purifierMode")));
+@property (class, readonly) NSArray<SharedCoreSuplaHeatpolThermostatFlag *> *entries __attribute__((swift_name("entries")));
+@property (readonly) int32_t value_ __attribute__((swift_name("value_")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreSuplaHeatpolThermostatFlag *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuplaHeatpolThermostatFlag.Companion")))
+@interface SharedCoreSuplaHeatpolThermostatFlagCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreSuplaHeatpolThermostatFlagCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (NSArray<SharedCoreSuplaHeatpolThermostatFlag *> *)fromShort:(int16_t)short_ __attribute__((swift_name("from(short:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SuplaThermostatFlag")))
 @interface SharedCoreSuplaThermostatFlag : SharedCoreKotlinEnum<SharedCoreSuplaThermostatFlag *>
 @property (class, readonly, getter=companion) SharedCoreSuplaThermostatFlagCompanion *companion __attribute__((swift_name("companion")));
@@ -1780,14 +1916,16 @@ __attribute__((swift_name("BaseData")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Channel")))
 @interface SharedCoreChannel : SharedCoreBase <SharedCoreBaseData>
+@property (readonly) int32_t altIcon __attribute__((swift_name("altIcon")));
 @property (readonly) SharedCoreBatteryInfo * _Nullable batteryInfo __attribute__((swift_name("batteryInfo")));
 @property (readonly) NSString *caption __attribute__((swift_name("caption")));
+@property (readonly) SharedCoreChannelState * _Nullable channelState __attribute__((swift_name("channelState")));
 @property (readonly) SharedCoreSuplaFunction *function __attribute__((swift_name("function")));
 @property (readonly) int32_t remoteId __attribute__((swift_name("remoteId")));
 @property (readonly) SharedCoreSuplaChannelAvailabilityStatus *status __attribute__((swift_name("status")));
 @property (readonly) SharedCoreKotlinByteArray * _Nullable value __attribute__((swift_name("value")));
-- (instancetype)initWithRemoteId:(int32_t)remoteId caption:(NSString *)caption status:(SharedCoreSuplaChannelAvailabilityStatus *)status function:(SharedCoreSuplaFunction *)function batteryInfo:(SharedCoreBatteryInfo * _Nullable)batteryInfo value:(SharedCoreKotlinByteArray * _Nullable)value __attribute__((swift_name("init(remoteId:caption:status:function:batteryInfo:value:)"))) __attribute__((objc_designated_initializer));
-- (SharedCoreChannel *)doCopyRemoteId:(int32_t)remoteId caption:(NSString *)caption status:(SharedCoreSuplaChannelAvailabilityStatus *)status function:(SharedCoreSuplaFunction *)function batteryInfo:(SharedCoreBatteryInfo * _Nullable)batteryInfo value:(SharedCoreKotlinByteArray * _Nullable)value __attribute__((swift_name("doCopy(remoteId:caption:status:function:batteryInfo:value:)")));
+- (instancetype)initWithRemoteId:(int32_t)remoteId caption:(NSString *)caption status:(SharedCoreSuplaChannelAvailabilityStatus *)status function:(SharedCoreSuplaFunction *)function altIcon:(int32_t)altIcon batteryInfo:(SharedCoreBatteryInfo * _Nullable)batteryInfo channelState:(SharedCoreChannelState * _Nullable)channelState value:(SharedCoreKotlinByteArray * _Nullable)value __attribute__((swift_name("init(remoteId:caption:status:function:altIcon:batteryInfo:channelState:value:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreChannel *)doCopyRemoteId:(int32_t)remoteId caption:(NSString *)caption status:(SharedCoreSuplaChannelAvailabilityStatus *)status function:(SharedCoreSuplaFunction *)function altIcon:(int32_t)altIcon batteryInfo:(SharedCoreBatteryInfo * _Nullable)batteryInfo channelState:(SharedCoreChannelState * _Nullable)channelState value:(SharedCoreKotlinByteArray * _Nullable)value __attribute__((swift_name("doCopy(remoteId:caption:status:function:altIcon:batteryInfo:channelState:value:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -2368,6 +2506,33 @@ __attribute__((swift_name("SuplaResultCode.Companion")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("TemperatureUnit")))
+@interface SharedCoreTemperatureUnit : SharedCoreKotlinEnum<SharedCoreTemperatureUnit *>
+@property (class, readonly, getter=companion) SharedCoreTemperatureUnitCompanion *companion __attribute__((swift_name("companion")));
+@property (class, readonly) SharedCoreTemperatureUnit *celsius __attribute__((swift_name("celsius")));
+@property (class, readonly) SharedCoreTemperatureUnit *fahrenheit __attribute__((swift_name("fahrenheit")));
+@property (class, readonly) NSArray<SharedCoreTemperatureUnit *> *entries __attribute__((swift_name("entries")));
+@property (readonly) NSString *rawValue __attribute__((swift_name("rawValue")));
+@property (readonly) SharedCoreValueUnit *valueUnit __attribute__((swift_name("valueUnit")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreTemperatureUnit *> *)values __attribute__((swift_name("values()")));
+- (int32_t)position __attribute__((swift_name("position()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("TemperatureUnit.Companion")))
+@interface SharedCoreTemperatureUnitCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreTemperatureUnitCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (SharedCoreTemperatureUnit *)forPositionPosition:(int32_t)position __attribute__((swift_name("forPosition(position:)")));
+- (SharedCoreTemperatureUnit *)fromValueValue:(NSString * _Nullable)value __attribute__((swift_name("fromValue(value:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SuplaValveFlag")))
 @interface SharedCoreSuplaValveFlag : SharedCoreKotlinEnum<SharedCoreSuplaValveFlag *>
 @property (class, readonly, getter=companion) SharedCoreSuplaValveFlagCompanion *companion __attribute__((swift_name("companion")));
@@ -2627,11 +2792,30 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *resultCodeIncorrectEmailOrPassword __attribute__((swift_name("resultCodeIncorrectEmailOrPassword")));
 @property (class, readonly) SharedCoreLocalizedStringId *resultCodeBadCredentials __attribute__((swift_name("resultCodeBadCredentials")));
 @property (class, readonly) SharedCoreLocalizedStringId *resultCodeUnknownError __attribute__((swift_name("resultCodeUnknownError")));
+@property (class, readonly) SharedCoreLocalizedStringId *lifespanWarningReplace __attribute__((swift_name("lifespanWarningReplace")));
+@property (class, readonly) SharedCoreLocalizedStringId *lifespanWarningSchedule __attribute__((swift_name("lifespanWarningSchedule")));
+@property (class, readonly) SharedCoreLocalizedStringId *lifespanWarning __attribute__((swift_name("lifespanWarning")));
+@property (class, readonly) SharedCoreLocalizedStringId *digiglassPlannedRegeneration __attribute__((swift_name("digiglassPlannedRegeneration")));
+@property (class, readonly) SharedCoreLocalizedStringId *digiglassRegenerationAfter20h __attribute__((swift_name("digiglassRegenerationAfter20h")));
+@property (class, readonly) SharedCoreLocalizedStringId *digiglassToLongOperation __attribute__((swift_name("digiglassToLongOperation")));
 @property (class, readonly) NSArray<SharedCoreLocalizedStringId *> *entries __attribute__((swift_name("entries")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (SharedCoreKotlinArray<SharedCoreLocalizedStringId *> *)values __attribute__((swift_name("values()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Logger")))
+@interface SharedCoreLogger : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreLogger *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)logger __attribute__((swift_name("init()")));
+- (void)dTag:(NSString *)tag message:(NSString *)message throwable:(SharedCoreKotlinThrowable * _Nullable)throwable __attribute__((swift_name("d(tag:message:throwable:)")));
+- (void)eTag:(NSString *)tag message:(NSString *)message throwable:(SharedCoreKotlinThrowable * _Nullable)throwable __attribute__((swift_name("e(tag:message:throwable:)")));
+- (void)iTag:(NSString *)tag message:(NSString *)message throwable:(SharedCoreKotlinThrowable * _Nullable)throwable __attribute__((swift_name("i(tag:message:throwable:)")));
+- (void)wTag:(NSString *)tag message:(NSString *)message throwable:(SharedCoreKotlinThrowable * _Nullable)throwable __attribute__((swift_name("w(tag:message:throwable:)")));
 @end
 
 __attribute__((swift_name("SuplaClientMessage")))
@@ -2949,6 +3133,8 @@ __attribute__((swift_name("ApplicationPreferences")))
 @protocol SharedCoreApplicationPreferences
 @required
 @property int32_t batteryWarningLevel __attribute__((swift_name("batteryWarningLevel")));
+@property int32_t temperaturePrecision __attribute__((swift_name("temperaturePrecision")));
+@property SharedCoreTemperatureUnit *temperatureUnit __attribute__((swift_name("temperatureUnit")));
 @end
 
 __attribute__((swift_name("CacheFileAccess")))
@@ -3146,6 +3332,22 @@ __attribute__((swift_name("ContainerIssuesProvider")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DigiglassIssuesProvider")))
+@interface SharedCoreDigiglassIssuesProvider : SharedCoreBase <SharedCoreChannelIssuesProvider>
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (NSArray<SharedCoreChannelIssueItem *> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LifespanIssuesProvider")))
+@interface SharedCoreLifespanIssuesProvider : SharedCoreBase <SharedCoreChannelIssuesProvider>
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (NSArray<SharedCoreChannelIssueItem *> *)provideChannelWithChildren:(SharedCoreChannelWithChildren *)channelWithChildren __attribute__((swift_name("provide(channelWithChildren:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("RelayIssuesProvider")))
 @interface SharedCoreRelayIssuesProvider : SharedCoreBase <SharedCoreChannelIssuesProvider>
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -3188,6 +3390,588 @@ __attribute__((swift_name("OcrImageNamingProvider")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DecimalFormatter")))
+@interface SharedCoreDecimalFormatter : SharedCoreBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (NSString *)formatValue:(double)value minimumFractionDigits:(int32_t)minimumFractionDigits maximumFractionDigits:(int32_t)maximumFractionDigits __attribute__((swift_name("format(value:minimumFractionDigits:maximumFractionDigits:)")));
+@end
+
+__attribute__((swift_name("ValueFormatter")))
+@interface SharedCoreValueFormatter : SharedCoreBase
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (NSString * _Nullable)extractUnitFormat:(SharedCoreValueFormat *)format __attribute__((swift_name("extractUnit(format:)")));
+- (NSString *)formatValue:(id _Nullable)value __attribute__((swift_name("format(value:)")));
+- (NSString *)formatValue:(id _Nullable)value format:(SharedCoreValueFormat *)format __attribute__((swift_name("format(value:format:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (NSString *)formatValue:(double)value precision:(int32_t)precision unit:(NSString * _Nullable)unit predecessor:(NSString * _Nullable)predecessor showNoValueText:(BOOL)showNoValueText __attribute__((swift_name("format(value:precision:unit:predecessor:showNoValueText:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (int32_t)precision:(SharedCoreValueFormat *)receiver default:(int32_t)default_ __attribute__((swift_name("precision(_:default:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (double)preprocessValueValue:(double)value __attribute__((swift_name("preprocessValue(value:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (double)toDouble:(id _Nullable)receiver __attribute__((swift_name("toDouble(_:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DefaultValueFormatter")))
+@interface SharedCoreDefaultValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreDefaultValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)defaultValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormatSpecification")))
+@interface SharedCoreValueFormatSpecification : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreValueFormatSpecificationCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) int32_t precision __attribute__((swift_name("precision")));
+@property (readonly) NSString * _Nullable predecessor __attribute__((swift_name("predecessor")));
+@property (readonly) BOOL showNoValueText __attribute__((swift_name("showNoValueText")));
+@property (readonly) NSString * _Nullable unit __attribute__((swift_name("unit")));
+@property (readonly) BOOL withUnit __attribute__((swift_name("withUnit")));
+- (instancetype)initWithPrecision:(int32_t)precision withUnit:(BOOL)withUnit unit:(NSString * _Nullable)unit predecessor:(NSString * _Nullable)predecessor showNoValueText:(BOOL)showNoValueText __attribute__((swift_name("init(precision:withUnit:unit:predecessor:showNoValueText:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreValueFormatSpecification *)doCopyPrecision:(int32_t)precision withUnit:(BOOL)withUnit unit:(NSString * _Nullable)unit predecessor:(NSString * _Nullable)predecessor showNoValueText:(BOOL)showNoValueText __attribute__((swift_name("doCopy(precision:withUnit:unit:predecessor:showNoValueText:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormatSpecification.Companion")))
+@interface SharedCoreValueFormatSpecificationCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreValueFormatSpecificationCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *Default __attribute__((swift_name("Default")));
+@property (readonly) SharedCoreValueFormatSpecification *DistanceCenti __attribute__((swift_name("DistanceCenti")));
+@property (readonly) SharedCoreValueFormatSpecification *DistanceDefault __attribute__((swift_name("DistanceDefault")));
+@property (readonly) SharedCoreValueFormatSpecification *DistanceKilo __attribute__((swift_name("DistanceKilo")));
+@property (readonly) SharedCoreValueFormatSpecification *DistanceMilli __attribute__((swift_name("DistanceMilli")));
+@property (readonly) SharedCoreValueFormatSpecification *ElectricityMeter __attribute__((swift_name("ElectricityMeter")));
+@property (readonly) SharedCoreValueFormatSpecification *ElectricityMeterForChartSummary __attribute__((swift_name("ElectricityMeterForChartSummary")));
+@property (readonly) SharedCoreValueFormatSpecification *ElectricityMeterForGeneral __attribute__((swift_name("ElectricityMeterForGeneral")));
+@property (readonly) SharedCoreValueFormatSpecification *Gpm __attribute__((swift_name("Gpm")));
+@property (readonly) SharedCoreValueFormatSpecification *Humidity __attribute__((swift_name("Humidity")));
+@property (readonly) SharedCoreValueFormatSpecification *ImpulseCounter __attribute__((swift_name("ImpulseCounter")));
+@property (readonly) SharedCoreValueFormatSpecification *PowerActive __attribute__((swift_name("PowerActive")));
+@property (readonly) SharedCoreValueFormatSpecification *Pressure __attribute__((swift_name("Pressure")));
+@property (readonly) SharedCoreValueFormatSpecification *Rain __attribute__((swift_name("Rain")));
+@property (readonly) SharedCoreValueFormatSpecification *ThermometerDefault __attribute__((swift_name("ThermometerDefault")));
+@property (readonly) SharedCoreValueFormatSpecification *Voltage __attribute__((swift_name("Voltage")));
+@property (readonly) SharedCoreValueFormatSpecification *WeightDefault __attribute__((swift_name("WeightDefault")));
+@property (readonly) SharedCoreValueFormatSpecification *WeightKilo __attribute__((swift_name("WeightKilo")));
+@property (readonly) SharedCoreValueFormatSpecification *Wind __attribute__((swift_name("Wind")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("CurrentValueFormatter")))
+@interface SharedCoreCurrentValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreCurrentValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)currentValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DistanceValueFormatter")))
+@interface SharedCoreDistanceValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreDistanceValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)distanceValueFormatter __attribute__((swift_name("init()")));
+- (NSString *)formatValue:(id _Nullable)value __attribute__((swift_name("format(value:)")));
+- (NSString *)formatValue:(id _Nullable)value format:(SharedCoreValueFormat *)format __attribute__((swift_name("format(value:format:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ElectricityMeterValueFormatter")))
+@interface SharedCoreElectricityMeterValueFormatter : SharedCoreValueFormatter
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithDefaultFormatSpecification:(SharedCoreValueFormatSpecification *)defaultFormatSpecification __attribute__((swift_name("init(defaultFormatSpecification:)"))) __attribute__((objc_designated_initializer));
+- (NSString *)formatValue:(id _Nullable)value __attribute__((swift_name("format(value:)")));
+- (NSString *)formatValue:(id _Nullable)value format:(SharedCoreValueFormat *)format __attribute__((swift_name("format(value:format:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GpmValueFormatter")))
+@interface SharedCoreGpmValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=companion) SharedCoreGpmValueFormatterCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
+- (instancetype)initWithDefaultFormatSpecification:(SharedCoreValueFormatSpecification *)defaultFormatSpecification __attribute__((swift_name("init(defaultFormatSpecification:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GpmValueFormatter.Companion")))
+@interface SharedCoreGpmValueFormatterCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreGpmValueFormatterCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HumidityValueFormatter")))
+@interface SharedCoreHumidityValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreHumidityValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)humidityValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ImpulseCounterValueFormatter")))
+@interface SharedCoreImpulseCounterValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=companion) SharedCoreImpulseCounterValueFormatterCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithDefaultFormatSpecification:(SharedCoreValueFormatSpecification *)defaultFormatSpecification __attribute__((swift_name("init(defaultFormatSpecification:)"))) __attribute__((objc_designated_initializer));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ImpulseCounterValueFormatter.Companion")))
+@interface SharedCoreImpulseCounterValueFormatterCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreImpulseCounterValueFormatterCompanion *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("PowerActiveValueFormatter")))
+@interface SharedCorePowerActiveValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCorePowerActiveValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)powerActiveValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("PressureValueFormatter")))
+@interface SharedCorePressureValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCorePressureValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)pressureValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("RainValueFormatter")))
+@interface SharedCoreRainValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreRainValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)rainValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ThermometerAndHumidityValueFormatter")))
+@interface SharedCoreThermometerAndHumidityValueFormatter : SharedCoreValueFormatter
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
+- (instancetype)initWithPreferences:(id<SharedCoreApplicationPreferences>)preferences defaultFormatSpecification:(SharedCoreValueFormatSpecification *)defaultFormatSpecification __attribute__((swift_name("init(preferences:defaultFormatSpecification:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (NSString *)formatValue:(id _Nullable)value format:(SharedCoreValueFormat *)format __attribute__((swift_name("format(value:format:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ThermometerValueFormatter")))
+@interface SharedCoreThermometerValueFormatter : SharedCoreValueFormatter
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
+- (instancetype)initWithPreferences:(id<SharedCoreApplicationPreferences>)preferences __attribute__((swift_name("init(preferences:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (NSString *)formatValue:(id _Nullable)value format:(SharedCoreValueFormat *)format __attribute__((swift_name("format(value:format:)")));
+
+/**
+ * @note This method has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+- (double)preprocessValueValue:(double)value __attribute__((swift_name("preprocessValue(value:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VoltageValueFormatter")))
+@interface SharedCoreVoltageValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreVoltageValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)voltageValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("WeightValueFormatter")))
+@interface SharedCoreWeightValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreWeightValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)weightValueFormatter __attribute__((swift_name("init()")));
+- (NSString *)formatValue:(id _Nullable)value __attribute__((swift_name("format(value:)")));
+- (NSString *)formatValue:(id _Nullable)value format:(SharedCoreValueFormat *)format __attribute__((swift_name("format(value:format:)")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("WindValueFormatter")))
+@interface SharedCoreWindValueFormatter : SharedCoreValueFormatter
+@property (class, readonly, getter=shared) SharedCoreWindValueFormatter *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormatSpecification *defaultFormatSpecification __attribute__((swift_name("defaultFormatSpecification")));
+@property (readonly) id<SharedCoreInvalidValue> invalidValue __attribute__((swift_name("invalidValue")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
++ (instancetype)windValueFormatter __attribute__((swift_name("init()")));
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+
+/**
+ * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
+*/
+@end
+
+__attribute__((swift_name("InvalidValue")))
+@protocol SharedCoreInvalidValue
+@required
+- (BOOL)isEqualToOther:(double)other __attribute__((swift_name("isEqualTo(other:)")));
+@property (readonly) double value__ __attribute__((swift_name("value__")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("InvalidValueCompanion")))
+@interface SharedCoreInvalidValueCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreInvalidValueCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) double Distance __attribute__((swift_name("Distance")));
+@property (readonly) SharedCoreInvalidValueValueOrNan *ElectricityMeter __attribute__((swift_name("ElectricityMeter")));
+@property (readonly) double Humidity __attribute__((swift_name("Humidity")));
+@property (readonly) double ImpulseCounter __attribute__((swift_name("ImpulseCounter")));
+@property (readonly) double Pressure __attribute__((swift_name("Pressure")));
+@property (readonly) double Rain __attribute__((swift_name("Rain")));
+@property (readonly) double Thermometer __attribute__((swift_name("Thermometer")));
+@property (readonly) double Weight __attribute__((swift_name("Weight")));
+@property (readonly) double Wind __attribute__((swift_name("Wind")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("InvalidValueNaN")))
+@interface SharedCoreInvalidValueNaN : SharedCoreBase <SharedCoreInvalidValue>
+@property (class, readonly, getter=shared) SharedCoreInvalidValueNaN *shared __attribute__((swift_name("shared")));
+@property (readonly) double value__ __attribute__((swift_name("value__")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)naN __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (BOOL)isEqualToOther:(double)other __attribute__((swift_name("isEqualTo(other:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("InvalidValueNone")))
+@interface SharedCoreInvalidValueNone : SharedCoreBase <SharedCoreInvalidValue>
+@property (class, readonly, getter=shared) SharedCoreInvalidValueNone *shared __attribute__((swift_name("shared")));
+@property (readonly) double value__ __attribute__((swift_name("value__")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)none __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (BOOL)isEqualToOther:(double)other __attribute__((swift_name("isEqualTo(other:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("InvalidValueValueOrNan")))
+@interface SharedCoreInvalidValueValueOrNan : SharedCoreBase <SharedCoreInvalidValue>
+@property (readonly) double value__ __attribute__((swift_name("value__")));
+- (instancetype)initWithValue:(double)value __attribute__((swift_name("init(value:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreInvalidValueValueOrNan *)doCopyValue:(double)value __attribute__((swift_name("doCopy(value:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (BOOL)isEqualToOther:(double)other __attribute__((swift_name("isEqualTo(other:)")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormat")))
+@interface SharedCoreValueFormat : SharedCoreBase
+@property (class, readonly, getter=companion) SharedCoreValueFormatCompanion *companion __attribute__((swift_name("companion")));
+@property (readonly) NSString * _Nullable customUnit __attribute__((swift_name("customUnit")));
+@property (readonly) id<SharedCoreValueFormatPrecision> precision __attribute__((swift_name("precision")));
+@property (readonly) NSString * _Nullable predecessor __attribute__((swift_name("predecessor")));
+@property (readonly) SharedCoreBoolean * _Nullable showNoValueText __attribute__((swift_name("showNoValueText")));
+@property (readonly) SharedCoreBoolean * _Nullable withUnit __attribute__((swift_name("withUnit")));
+- (instancetype)initWithWithUnit:(SharedCoreBoolean * _Nullable)withUnit precision:(id<SharedCoreValueFormatPrecision>)precision customUnit:(NSString * _Nullable)customUnit predecessor:(NSString * _Nullable)predecessor showNoValueText:(SharedCoreBoolean * _Nullable)showNoValueText __attribute__((swift_name("init(withUnit:precision:customUnit:predecessor:showNoValueText:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreValueFormat *)doCopyWithUnit:(SharedCoreBoolean * _Nullable)withUnit precision:(id<SharedCoreValueFormatPrecision>)precision customUnit:(NSString * _Nullable)customUnit predecessor:(NSString * _Nullable)predecessor showNoValueText:(SharedCoreBoolean * _Nullable)showNoValueText __attribute__((swift_name("doCopy(withUnit:precision:customUnit:predecessor:showNoValueText:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormat.Companion")))
+@interface SharedCoreValueFormatCompanion : SharedCoreBase
+@property (class, readonly, getter=shared) SharedCoreValueFormatCompanion *shared __attribute__((swift_name("shared")));
+@property (readonly) SharedCoreValueFormat *ChartDefault __attribute__((swift_name("ChartDefault")));
+@property (readonly) SharedCoreValueFormat *TemperatureWithDegree __attribute__((swift_name("TemperatureWithDegree")));
+@property (readonly) SharedCoreValueFormat *WithUnit __attribute__((swift_name("WithUnit")));
+@property (readonly) SharedCoreValueFormat *WithoutUnit __attribute__((swift_name("WithoutUnit")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+@end
+
+__attribute__((swift_name("ValueFormatPrecision")))
+@protocol SharedCoreValueFormatPrecision
+@required
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormatPrecisionCustom")))
+@interface SharedCoreValueFormatPrecisionCustom : SharedCoreBase <SharedCoreValueFormatPrecision>
+@property (readonly) int32_t valuePrecision __attribute__((swift_name("valuePrecision")));
+- (instancetype)initWithValuePrecision:(int32_t)valuePrecision __attribute__((swift_name("init(valuePrecision:)"))) __attribute__((objc_designated_initializer));
+- (SharedCoreValueFormatPrecisionCustom *)doCopyValuePrecision:(int32_t)valuePrecision __attribute__((swift_name("doCopy(valuePrecision:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormatPrecisionDefault")))
+@interface SharedCoreValueFormatPrecisionDefault : SharedCoreBase <SharedCoreValueFormatPrecision>
+@property (class, readonly, getter=shared) SharedCoreValueFormatPrecisionDefault *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)default_ __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueUnit")))
+@interface SharedCoreValueUnit : SharedCoreKotlinEnum<SharedCoreValueUnit *>
+@property (class, readonly) SharedCoreValueUnit *empty __attribute__((swift_name("empty")));
+@property (class, readonly) SharedCoreValueUnit *voltage __attribute__((swift_name("voltage")));
+@property (class, readonly) SharedCoreValueUnit *temperatureCelsius __attribute__((swift_name("temperatureCelsius")));
+@property (class, readonly) SharedCoreValueUnit *temperatureFahrenheit __attribute__((swift_name("temperatureFahrenheit")));
+@property (class, readonly) SharedCoreValueUnit *temperatureDegree __attribute__((swift_name("temperatureDegree")));
+@property (class, readonly) SharedCoreValueUnit *humidity __attribute__((swift_name("humidity")));
+@property (class, readonly) SharedCoreValueUnit *electricityMeter __attribute__((swift_name("electricityMeter")));
+@property (class, readonly) SharedCoreValueUnit *powerActive __attribute__((swift_name("powerActive")));
+@property (class, readonly) SharedCoreValueUnit *current __attribute__((swift_name("current")));
+@property (class, readonly) SharedCoreValueUnit *pressure __attribute__((swift_name("pressure")));
+@property (class, readonly) SharedCoreValueUnit *rain __attribute__((swift_name("rain")));
+@property (class, readonly) SharedCoreValueUnit *wind __attribute__((swift_name("wind")));
+@property (class, readonly) SharedCoreValueUnit *weightDefault __attribute__((swift_name("weightDefault")));
+@property (class, readonly) SharedCoreValueUnit *weightKilo __attribute__((swift_name("weightKilo")));
+@property (class, readonly) SharedCoreValueUnit *distanceMilli __attribute__((swift_name("distanceMilli")));
+@property (class, readonly) SharedCoreValueUnit *distanceCenti __attribute__((swift_name("distanceCenti")));
+@property (class, readonly) SharedCoreValueUnit *distanceKilo __attribute__((swift_name("distanceKilo")));
+@property (class, readonly) SharedCoreValueUnit *distanceDefault __attribute__((swift_name("distanceDefault")));
+@property (class, readonly) NSArray<SharedCoreValueUnit *> *entries __attribute__((swift_name("entries")));
+@property (readonly) BOOL leadingSpace __attribute__((swift_name("leadingSpace")));
+@property (readonly) NSString *text __attribute__((swift_name("text")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (SharedCoreKotlinArray<SharedCoreValueUnit *> *)values __attribute__((swift_name("values()")));
+- (NSString *)getString __attribute__((swift_name("getString()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StoreFileInDirectoryUseCase")))
 @interface SharedCoreStoreFileInDirectoryUseCase : SharedCoreBase
 - (instancetype)initWithCacheFileAccess:(id<SharedCoreCacheFileAccess>)cacheFileAccess __attribute__((swift_name("init(cacheFileAccess:)"))) __attribute__((objc_designated_initializer));
@@ -3215,6 +3999,7 @@ __attribute__((swift_name("KotlinByteArray")))
 
 @interface SharedCoreChannel (Extensions)
 @property (readonly) SharedCoreContainerValue * _Nullable containerValue __attribute__((swift_name("containerValue")));
+@property (readonly) SharedCoreDigiglassValue * _Nullable digiglassValue __attribute__((swift_name("digiglassValue")));
 @property (readonly) SharedCoreFacadeBlindValue * _Nullable facadeBlindValue __attribute__((swift_name("facadeBlindValue")));
 @property (readonly) BOOL isFacadeBlind __attribute__((swift_name("isFacadeBlind")));
 @property (readonly) BOOL isGarageDoorRoller __attribute__((swift_name("isGarageDoorRoller")));
@@ -3243,6 +4028,14 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("GetChannelIssuesForListUseCaseKt")))
 @interface SharedCoreGetChannelIssuesForListUseCaseKt : SharedCoreBase
 + (BOOL)isNull:(id _Nullable)receiver __attribute__((swift_name("isNull(_:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("HelperFunctionsKt")))
+@interface SharedCoreHelperFunctionsKt : SharedCoreBase
++ (NSArray<id> *)guardLetElements:(SharedCoreKotlinArray<id> *)elements closure:(void (^)(void))closure __attribute__((swift_name("guardLet(elements:closure:)")));
++ (void)ifLetElements:(SharedCoreKotlinArray<id> *)elements closure:(void (^)(NSArray<id> *))closure __attribute__((swift_name("ifLet(elements:closure:)")));
++ (BOOL)notNullElements:(SharedCoreKotlinArray<id> *)elements __attribute__((swift_name("notNull(elements:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))
@@ -3275,6 +4068,39 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("SuplaFunctionKt")))
 @interface SharedCoreSuplaFunctionKt : SharedCoreBase
 + (SharedCoreSuplaFunction *)suplaFunction:(int32_t)receiver __attribute__((swift_name("suplaFunction(_:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormatKt")))
+@interface SharedCoreValueFormatKt : SharedCoreBase
++ (SharedCoreValueFormatPrecisionCustom *)customPrecision:(int32_t)precision __attribute__((swift_name("custom(precision:)")));
++ (SharedCoreValueFormat *)customPrecisionPrecision:(int32_t)precision __attribute__((swift_name("customPrecision(precision:)")));
++ (SharedCoreValueFormat *)customUnitUnit:(NSString *)unit __attribute__((swift_name("customUnit(unit:)")));
++ (SharedCoreValueFormat *)forChartMarkerUnit:(NSString * _Nullable)unit __attribute__((swift_name("forChartMarker(unit:)")));
++ (SharedCoreValueFormat *)withUnitWithUnit:(BOOL)withUnit __attribute__((swift_name("withUnit(withUnit:)")));
++ (SharedCoreValueFormat *)withUnitWithUnit:(BOOL)withUnit unit:(NSString * _Nullable)unit leadingSpace:(BOOL)leadingSpace __attribute__((swift_name("withUnit(withUnit:unit:leadingSpace:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValueFormatterKt")))
+@interface SharedCoreValueFormatterKt : SharedCoreBase
+@property (class, readonly) NSString *NO_VALUE_TEXT __attribute__((swift_name("NO_VALUE_TEXT")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ValuePrecisionKt")))
+@interface SharedCoreValuePrecisionKt : SharedCoreBase
+@property (class, readonly) int32_t DefaultPrecision __attribute__((swift_name("DefaultPrecision")));
+@property (class, readonly) int32_t DistanceCentiPrecision __attribute__((swift_name("DistanceCentiPrecision")));
+@property (class, readonly) int32_t DistanceDefaultPrecision __attribute__((swift_name("DistanceDefaultPrecision")));
+@property (class, readonly) int32_t DistanceMilliPrecision __attribute__((swift_name("DistanceMilliPrecision")));
+@property (class, readonly) int32_t GpmPrecision __attribute__((swift_name("GpmPrecision")));
+@property (class, readonly) int32_t ImpulseCounterPrecision __attribute__((swift_name("ImpulseCounterPrecision")));
+@property (class, readonly) int32_t PressurePrecision __attribute__((swift_name("PressurePrecision")));
+@property (class, readonly) int32_t RainPrecision __attribute__((swift_name("RainPrecision")));
+@property (class, readonly) int32_t VoltagePrecision __attribute__((swift_name("VoltagePrecision")));
+@property (class, readonly) int32_t WeightPrecision __attribute__((swift_name("WeightPrecision")));
++ (int32_t)exactPrecisionValue:(int32_t)value __attribute__((swift_name("exactPrecision(value:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))

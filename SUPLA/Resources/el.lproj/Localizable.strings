@@ -144,9 +144,6 @@
 "Default settings" = "Προεπιλογές";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Προγραμματίστε την αντικατάστασή του.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Αντικαταστήστε το θερμαντικό σώμα.";
-"The lifespan of the light source is %.02f%%." = "Η διάρκεια ζωής της πηγής φωτός είναι %.02f%%.";
 "Please enter your Supla Cloud login details." = "Εισαγάγετε τα στοιχεία σύνδεσής σας στο cloud.supla.org.";
 "Enter superuser credentials" = "Καταχωρίστε τα διαπιστευτήρια superuser";
 "Dimmer settings" = "Ρυθμίσεις ροοστάτη";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Βεβαιωθείτε ότι η εφαρμογή έχει άδεια εντοπισμού και σύνδεσης σε συσκευές στο τοπικό σας δίκτυο. Αυτό σημαίνει ότι το δικαίωμα \"iOS->Ρυθμίσεις->SUPLA->Τοπικό δίκτυο\" πρέπει να είναι ενεργοποιημένο για να λειτουργήσει σωστά ο οδηγός. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
-"Planned regeneration is in progress." = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
 "Back" = "Επιστροφή";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
 "Exit" = "Εξοδος";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Θερμοκρασία και υγρασία";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
+"channel_uv_warning" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Προγραμματίστε την αντικατάστασή του.";
+"channel_uv_error" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Αντικαταστήστε το θερμαντικό σώμα.";
+"channel_lightsource_warning" = "Η διάρκεια ζωής της πηγής φωτός είναι %.01f%%.";
+"dgf_too_long_operation_warning" = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
+"dgf_planned_regeneration_in_progress" = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
+"dgf_regeneration_after20h" = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Αφαιρέσαμε τη συρόμενη κίνηση που ανοίγει τις λεπτομέρειες, πατήστε στο επιλεγμένο κανάλι για να τις δείτε.";

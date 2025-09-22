@@ -32,7 +32,7 @@ extension ChannelMeasurementsProvider {
     }
     
     func historyDataSet(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ type: ChartEntryType,
         _ color: UIColor,
         _ aggregation: ChartDataAggregation,
@@ -42,19 +42,19 @@ extension ChannelMeasurementsProvider {
         @Singleton<GetChannelValueStringUseCase> var getChannelValueStringUseCase
         
         let icon = switch (type) {
-        case .humidity: getChannelBaseIconUseCase.invoke(channel: channel, type: .second)
-        default: getChannelBaseIconUseCase.invoke(channel: channel)
+        case .humidity: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel, type: .second)
+        default: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel)
         }
         
         let value = switch (type) {
-        case .humidity: getChannelValueStringUseCase.invoke(channel, valueType: .second)
-        default: getChannelValueStringUseCase.invoke(channel)
+        case .humidity: getChannelValueStringUseCase.invoke(channelWithChildren.channel, valueType: .second)
+        default: getChannelValueStringUseCase.invoke(channelWithChildren.channel)
         }
         
         return HistoryDataSet(
             type: type,
             label: singleLabel(icon, value, color),
-            valueFormatter: getValueFormatter(type, channel),
+            valueFormatter: getValueFormatter(type, channelWithChildren),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )
@@ -138,18 +138,18 @@ protocol MeasurementsProvider {
 }
 
 extension MeasurementsProvider {
-    func getValueFormatter(_ type: ChartEntryType, _ channel: SAChannel) -> ChannelValueFormatter {
+    func getValueFormatter(_ type: ChartEntryType, _ channelWithChildren: ChannelWithChildren) -> SharedCore.ValueFormatter {
         switch (type) {
-        case .humidity, .humidityOnly: HumidityValueFormatter()
-        case .temperature: ThermometerValueFormatter()
+        case .humidity, .humidityOnly: SharedCore.HumidityValueFormatter.shared
+        case .temperature: thermometerValueFormatter()
         case .generalPurposeMeasurement,
              .generalPurposeMeter:
-            GpmValueFormatter(config: channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
-        case .electricity: ChartAxisElectricityMeterValueFormatter()
-        case .impulseCounter: ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
-        case .voltage: VoltageValueFormatter()
-        case .current: CurrentValueFormatter()
-        case .powerActive: PowerActiveValueFormatter()
+            SharedCore.GpmValueFormatter.staticFormatter(channelWithChildren.channel.config?.configAsSuplaConfig())
+        case .electricity: ElectricityMeterValueFormatter()
+        case .impulseCounter: SharedCore.ImpulseCounterValueFormatter.staticFormatter(channelWithChildren)
+        case .voltage: SharedCore.VoltageValueFormatter.shared
+        case .current: SharedCore.CurrentValueFormatter.shared
+        case .powerActive: SharedCore.PowerActiveValueFormatter.shared
         }
     }
     
@@ -175,6 +175,11 @@ extension MeasurementsProvider {
         }
         
         return result
+    }
+    
+    private func thermometerValueFormatter() -> SharedCore.ValueFormatter {
+        @Singleton<SharedCore.ThermometerValueFormatter> var formatter
+        return formatter
     }
 }
 

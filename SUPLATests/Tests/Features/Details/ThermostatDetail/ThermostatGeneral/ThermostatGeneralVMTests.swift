@@ -98,7 +98,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         let measurements: [MeasurementValue] = [
             MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
-            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
+            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2°")
         ]
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))

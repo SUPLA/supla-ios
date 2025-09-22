@@ -98,6 +98,12 @@ public enum Skie {
     }
     public enum IssueIcon {
     }
+    public enum InvalidValue {
+    }
+    public enum ValueFormat {
+      public enum Precision {
+      }
+    }
     public enum AddWizardFinalAction {
     }
     public enum EspConfigurationError {
@@ -1019,6 +1025,12 @@ extension SharedCore.__Icon {
   case resultCodeIncorrectEmailOrPassword
   case resultCodeBadCredentials
   case resultCodeUnknownError
+  case lifespanWarningReplace
+  case lifespanWarningSchedule
+  case lifespanWarning
+  case digiglassPlannedRegeneration
+  case digiglassRegenerationAfter20H
+  case digiglassToLongOperation
   public var name: Swift.String {
     get
   }
@@ -1126,6 +1138,100 @@ extension SharedCore.SuplaResultCode {
 }
 extension SharedCore.__SuplaResultCode {
   public func toSwiftEnum() -> SharedCore.SuplaResultCode
+}
+@frozen public enum TemperatureUnit : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case celsius
+  case fahrenheit
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+  public var valueUnit: SharedCore.ValueUnit {
+    get
+  }
+  public static var companion: SharedCore.__TemperatureUnit.Companion {
+    get
+  }
+  public func position() -> Swift.Int32
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__TemperatureUnit, result: inout SharedCore.TemperatureUnit?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__TemperatureUnit, result: inout SharedCore.TemperatureUnit?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__TemperatureUnit?) -> SharedCore.TemperatureUnit
+  public func _bridgeToObjectiveC() -> SharedCore.__TemperatureUnit
+  public typealias _ObjectiveCType = SharedCore.__TemperatureUnit
+  public typealias Companion = SharedCore.__TemperatureUnit.Companion
+  public static func == (a: SharedCore.TemperatureUnit, b: SharedCore.TemperatureUnit) -> Swift.Bool
+  public typealias AllCases = [SharedCore.TemperatureUnit]
+  nonisolated public static var allCases: [SharedCore.TemperatureUnit] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.TemperatureUnit {
+  public func toKotlinEnum() -> SharedCore.__TemperatureUnit
+}
+extension SharedCore.__TemperatureUnit {
+  public func toSwiftEnum() -> SharedCore.TemperatureUnit
+}
+@frozen public enum ValueUnit : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case empty
+  case voltage
+  case temperatureCelsius
+  case temperatureFahrenheit
+  case temperatureDegree
+  case humidity
+  case electricityMeter
+  case powerActive
+  case current
+  case pressure
+  case rain
+  case wind
+  case weightDefault
+  case weightKilo
+  case distanceMilli
+  case distanceCenti
+  case distanceKilo
+  case distanceDefault
+  public var leadingSpace: Swift.Bool {
+    get
+  }
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var text: Swift.String {
+    get
+  }
+  public func getString() -> Swift.String
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ValueUnit, result: inout SharedCore.ValueUnit?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ValueUnit, result: inout SharedCore.ValueUnit?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ValueUnit?) -> SharedCore.ValueUnit
+  public func _bridgeToObjectiveC() -> SharedCore.__ValueUnit
+  public typealias _ObjectiveCType = SharedCore.__ValueUnit
+  public static func == (a: SharedCore.ValueUnit, b: SharedCore.ValueUnit) -> Swift.Bool
+  public typealias AllCases = [SharedCore.ValueUnit]
+  nonisolated public static var allCases: [SharedCore.ValueUnit] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.ValueUnit {
+  public func toKotlinEnum() -> SharedCore.__ValueUnit
+}
+extension SharedCore.__ValueUnit {
+  public func toSwiftEnum() -> SharedCore.ValueUnit
 }
 @frozen public enum SuplaFunction : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case unknown
@@ -1389,6 +1495,44 @@ extension SharedCore.ContainerFlag {
 extension SharedCore.__ContainerFlag {
   public func toSwiftEnum() -> SharedCore.ContainerFlag
 }
+@frozen public enum SuplaDigiglassFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case tooLongOperation
+  case plannedRegenerationInProgress
+  case regenerationAfter20HInProgress
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaDigiglassFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaDigiglassFlag, result: inout SharedCore.SuplaDigiglassFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaDigiglassFlag, result: inout SharedCore.SuplaDigiglassFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaDigiglassFlag?) -> SharedCore.SuplaDigiglassFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaDigiglassFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaDigiglassFlag
+  public typealias Companion = SharedCore.__SuplaDigiglassFlag.Companion
+  public static func == (a: SharedCore.SuplaDigiglassFlag, b: SharedCore.SuplaDigiglassFlag) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaDigiglassFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaDigiglassFlag] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaDigiglassFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaDigiglassFlag
+}
+extension SharedCore.__SuplaDigiglassFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaDigiglassFlag
+}
 @frozen public enum SuplaShadingSystemFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case tiltIsSet
   case calibrationFailed
@@ -1588,6 +1732,49 @@ extension SharedCore.SuplaCallConfigCommand {
 extension SharedCore.__SuplaCallConfigCommand {
   public func toSwiftEnum() -> SharedCore.SuplaCallConfigCommand
 }
+@frozen public enum SuplaHeatpolThermostatFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case on
+  case autoMode
+  case coolMode
+  case headMode
+  case ecoMode
+  case dryMode
+  case fanOnlyMode
+  case purifierMode
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaHeatpolThermostatFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaHeatpolThermostatFlag, result: inout SharedCore.SuplaHeatpolThermostatFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHeatpolThermostatFlag, result: inout SharedCore.SuplaHeatpolThermostatFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHeatpolThermostatFlag?) -> SharedCore.SuplaHeatpolThermostatFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaHeatpolThermostatFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaHeatpolThermostatFlag
+  public typealias Companion = SharedCore.__SuplaHeatpolThermostatFlag.Companion
+  public static func == (a: SharedCore.SuplaHeatpolThermostatFlag, b: SharedCore.SuplaHeatpolThermostatFlag) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaHeatpolThermostatFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaHeatpolThermostatFlag] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaHeatpolThermostatFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaHeatpolThermostatFlag
+}
+extension SharedCore.__SuplaHeatpolThermostatFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaHeatpolThermostatFlag
+}
 extension SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult {
   @frozen public enum __Sealed : Swift.Hashable {
     case canceled(SharedCore.Skie_SuspendResult.Canceled)
@@ -1704,6 +1891,34 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed where __Sealed : SharedCore.IssueIcon
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed? where __Sealed : SharedCore.IssueIcon
+extension SharedCore.Skie.supla_android__shared_core.InvalidValue {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case naN(SharedCore.InvalidValueNaN)
+    case none(SharedCore.InvalidValueNone)
+    case valueOrNan(SharedCore.InvalidValueValueOrNan)
+    case `else`
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.InvalidValue.__Sealed, b: SharedCore.Skie.supla_android__shared_core.InvalidValue.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.InvalidValue.__Sealed where __Sealed : SharedCore.InvalidValue
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.InvalidValue.__Sealed? where __Sealed : SharedCore.InvalidValue
+extension SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case custom(SharedCore.ValueFormatPrecisionCustom)
+    case `default`(SharedCore.ValueFormatPrecisionDefault)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision.__Sealed where __Sealed : SharedCore.ValueFormatPrecision
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision.__Sealed? where __Sealed : SharedCore.ValueFormatPrecision
 extension SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction {
   @frozen public enum __Sealed : Swift.Hashable {
     case back(SharedCore.AddWizardFinalActionBack)
@@ -1902,6 +2117,9 @@ extension Swift.Bool {
   public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
 }
 public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
+public func guardLet(elements: SharedCore.KotlinArray<Swift.AnyObject>, closure: @escaping () -> Swift.Void) -> [Any]
+public func ifLet(elements: SharedCore.KotlinArray<Swift.AnyObject>, closure: @escaping ([Any]) -> Swift.Void)
+public func notNull(elements: SharedCore.KotlinArray<Swift.AnyObject>) -> Swift.Bool
 extension Swift.Int32 {
   public var ipV4String: Swift.String {
     get
@@ -1917,6 +2135,46 @@ extension Swift.String {
 public func localizedString(id: SharedCore.LocalizedStringId?) -> any SharedCore.LocalizedString
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any, arg3: Any, arg4: Any) -> any SharedCore.LocalizedString
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Swift.Int32, arg2: any SharedCore.LocalizedString, arg3: Swift.Int32) -> any SharedCore.LocalizedString
+public var NO_VALUE_TEXT: Swift.String {
+  get
+}
+public func custom(precision: Swift.Int32) -> SharedCore.ValueFormatPrecisionCustom
+public func customPrecision(precision: Swift.Int32) -> SharedCore.ValueFormat
+public func customUnit(unit: Swift.String) -> SharedCore.ValueFormat
+public func forChartMarker(unit: Swift.String?) -> SharedCore.ValueFormat
+public func withUnit(withUnit: Swift.Bool) -> SharedCore.ValueFormat
+public func withUnit(withUnit: Swift.Bool, unit: Swift.String?, leadingSpace: Swift.Bool) -> SharedCore.ValueFormat
+public var DefaultPrecision: Swift.Int32 {
+  get
+}
+public var DistanceCentiPrecision: Swift.Int32 {
+  get
+}
+public var DistanceDefaultPrecision: Swift.Int32 {
+  get
+}
+public var DistanceMilliPrecision: Swift.Int32 {
+  get
+}
+public var GpmPrecision: Swift.Int32 {
+  get
+}
+public var ImpulseCounterPrecision: Swift.Int32 {
+  get
+}
+public var PressurePrecision: Swift.Int32 {
+  get
+}
+public var RainPrecision: Swift.Int32 {
+  get
+}
+public var VoltagePrecision: Swift.Int32 {
+  get
+}
+public var WeightPrecision: Swift.Int32 {
+  get
+}
+public func exactPrecision(value: Swift.Int32) -> Swift.Int32
 extension SharedCore.SuplaEventType : Swift.Sendable {}
 extension SharedCore.SuplaEventType : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaChannelAvailabilityStatus : Swift.Sendable {}
@@ -1931,6 +2189,10 @@ extension SharedCore.LocalizedStringId : Swift.Sendable {}
 extension SharedCore.LocalizedStringId : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaResultCode : Swift.Sendable {}
 extension SharedCore.SuplaResultCode : Swift.BitwiseCopyable {}
+extension SharedCore.TemperatureUnit : Swift.Sendable {}
+extension SharedCore.TemperatureUnit : Swift.BitwiseCopyable {}
+extension SharedCore.ValueUnit : Swift.Sendable {}
+extension SharedCore.ValueUnit : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaFunction : Swift.Sendable {}
 extension SharedCore.SuplaFunction : Swift.BitwiseCopyable {}
 extension SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result : Swift.Sendable {}
@@ -1941,6 +2203,8 @@ extension SharedCore.ChannelRelationType : Swift.Sendable {}
 extension SharedCore.ChannelRelationType : Swift.BitwiseCopyable {}
 extension SharedCore.ContainerFlag : Swift.Sendable {}
 extension SharedCore.ContainerFlag : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaDigiglassFlag : Swift.Sendable {}
+extension SharedCore.SuplaDigiglassFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.Sendable {}
 extension SharedCore.SuplaShadingSystemFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaRelayFlag : Swift.Sendable {}
@@ -1951,5 +2215,7 @@ extension SharedCore.SuplaValveFlag : Swift.Sendable {}
 extension SharedCore.SuplaValveFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaCallConfigCommand : Swift.Sendable {}
 extension SharedCore.SuplaCallConfigCommand : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaHeatpolThermostatFlag : Swift.Sendable {}
+extension SharedCore.SuplaHeatpolThermostatFlag : Swift.BitwiseCopyable {}
 extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed : Swift.Sendable {}
 extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed : Swift.BitwiseCopyable {}

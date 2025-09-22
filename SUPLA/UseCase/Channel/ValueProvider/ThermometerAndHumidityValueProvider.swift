@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 protocol ThermometerAndHumidityValueProvider: ChannelValueProvider {
 }
 
@@ -29,7 +31,7 @@ final class ThermometerAndHumidityValueProviderImpl: ThermometerAndHumidityValue
             if let value = asIntValue(channel.value?.dataValue()) {
                 return Double(value) / 1000.0
             }
-            return  ThermometerValueFormatter.UNKNOWN_VALUE
+            return ThermometerValueProviderImpl.UNKNOWN_VALUE
         } else {
             if let value = asIntValue(channel.value?.dataValue(), startingFromByte: 4) {
                 return Double(value) / 1000.0
