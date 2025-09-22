@@ -41,9 +41,7 @@ class LocationOrderingVC: BaseViewController {
         
         _tableView.dataSource = self
         _tableView.delegate = self
-        if #available(iOS 11.0, *) {
-            _tableView.dragInteractionEnabled = false
-        }
+        _tableView.dragInteractionEnabled = false
         _tableView.register(LocationCell.self, forCellReuseIdentifier: "locationCell")
         
         view.addSubview(_tableView)

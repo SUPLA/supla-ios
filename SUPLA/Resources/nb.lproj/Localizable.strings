@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
 "The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
 "Incorrect input parameters (%@)!" = "wizard_result_param_error (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Sørg for at tilkoblingen til WiFi-nettverket til den utøvende enheten er opprettet.";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trappeautomat";
@@ -284,6 +283,7 @@
 "general_profile" = "Konto";
 "general_action" = "Handling";
 "general_delete" = "Slett";
+"incorrect_password" = "Feil passord";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -558,7 +558,7 @@
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batterinivå";
 "state_battery_powered" = "Batteriforsyning";
-"state_wifi_signal_strength" = "WiFi signalstyrke";
+"state_wifi_signal_strength" = "Wi-Fi signalstyrke";
 "state_bridge_node_online" = "Bridge node (bronode) - online";
 "state_bridge_node_signal" = "Bronode - signalstyrke";
 "state_uptime" = "Arbeidstid";
@@ -620,3 +620,16 @@
 "add_device_needs_cloud_message" = "Denne enheten har ingen synlige kanaler i appen. Gå til cloud.supla.org for å fullføre konfigurasjonen";
 "add_device_needs_cloud_close" = "Jeg forstår";
 "add_device_needs_cloud_go_to_cloud" = "Gå til CLOUD";
+"add_wizard_device_temporarily_locked" = "Grensen for mislykkede påloggingsforsøk er overskredet. Vennligst prøv igjen senere…";
+"add_wizard_state_preparing" = "Forberedelse av prosessen…";
+"add_wizard_state_connecting" = "Kobler til enheten…";
+"add_wizard_state_configuring" = "Konfigurering av enheten…";
+"add_wizard_state_finishing" = "Ferdigstilling…";
+"add_wizard_password_clarification" = "Registrering av nye enheter i skyen er deaktivert. Aktiver den manuelt eller oppgi kontopassordet ditt slik at veiviseren kan aktivere den automatisk under registrering av nye enheter.";
+"add_wizard_password_rules" = "Passordet må være minst 8 tegn langt og inneholde minst én stor bokstav, én liten bokstav og ett tall.";
+"add_wizard_password_set_title" = "Angi enhetspassord";
+"add_wizard_password_new_label" = "Nytt passord";
+"add_wizard_password_repeat_label" = "Gjenta passord";
+"add_wizard_password_enter_title" = "Enhetspassord";
+"add_wizard_password_instruction" = "Vennligst bruk passordet som ble brukt for tilgang til den lokale konfigurasjonswebsiden.\n\nGlemt passordet ditt? Du kan endre det på Supla Cloud eller tilbakestille enheten til fabrikkinnstillinger.";
+"add_wizard_manual_reconnect_message" = "Internett-tilkoblingen mislyktes.\n\nGå til systeminnstillingene og velg et Wi-Fi-nettverk som har en internett-tilkobling. Deretter går du tilbake til appen og fortsetter ved å trykke på **Neste**.";

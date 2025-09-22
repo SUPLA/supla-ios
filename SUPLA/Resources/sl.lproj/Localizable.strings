@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registracija naprav je trenutno izklopljena. Za nadaljevanje pojdite na stran %@ in v zavihku \"Moja SUPLA\" omogočite dodajanje naprav.";
 "The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
 "Incorrect input parameters (%@)!" = "Napačni vhodni parametri (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Prepričajte se, da je vzpostavljena povezava z omrežjem WiFi izvršne naprave.";
 "Help" = "Pomoč";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Stopniščni avtomat";
@@ -283,6 +282,7 @@
 "general_profile" = "Račun";
 "general_action" = "Dejanje";
 "general_delete" = "Izbišite";
+"incorrect_password" = "Napačno geslo";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -558,7 +558,7 @@
 "state_channel_id" = "Identifikator kanala";
 "state_battery_level" = "Raven baterije";
 "state_battery_powered" = "Baterija";
-"state_wifi_signal_strength" = "Moč WiFi signala";
+"state_wifi_signal_strength" = "Moč Wi-Fi signala";
 "state_bridge_node_online" = "Vozlišče mosta - online";
 "state_bridge_node_signal" = "Vozlišče mosta - moč signala";
 "state_uptime" = "Čas delovanja";
@@ -571,7 +571,7 @@
 "channel_state_uptime" = "%d dni %02d:%02d:%02d";
 "lastconnectionresetcause_unknown" = "0: neznan";
 "lastconnectionresetcause_activity_timeout" = "1: ni odgovora strežnika";
-"lastconnectionresetcause_wifi_connection_lost" = "2: izguba WiFi povezave";
+"lastconnectionresetcause_wifi_connection_lost" = "2: izguba Wi-Fi povezave";
 "lastconnectionresetcause_server_connection_lost" = "3: ponovni zagon povezave s strežnikom";
 
 /* Change caption */
@@ -588,7 +588,7 @@
 "enabling_registration_timeout" = "Časovna omejitev za registracijo je potekla!";
 "add_wizard_step_1_welcome" = "Dobrodošli v čarovniku za dodajanje naprav, ki vam bo pomagal hitro in enostavno dodati novo napravo v sistem.";
 "add_wizard_step_1_continue" = "Če želite nadaljevati, pritisnite **Naprej**.";
-"add_wizard_step_2_message" = "Vnesite ime in geslo vašega domačega ali poslovnega omrežja WiFi, prek katerega bo izvršilna naprava lahko vzpostavila povezavo s strežnikom.";
+"add_wizard_step_2_message" = "Vnesite ime in geslo vašega domačega ali poslovnega omrežja Wi-Fi, prek katerega bo izvršilna naprava lahko vzpostavila povezavo s strežnikom.";
 "add_wizard_network_name" = "Ime omrežja";
 "add_wizard_step_3_message_1" = "Priključite napravo na napajanje. Naprava bi morala privzeto delovati v konfiguracijskem načinu, kar označuje utripanje LED lučke stanja na naslednji način.";
 "add_wizard_step_3_message_2" = "Če naprava po vklopu ni v načinu konfiguracije, pritisnite in držite gumb CONFIG vsaj 5 sekund.";
@@ -602,17 +602,17 @@
 "add_wizard_manual_mode_settings" = "Pojdi na sistemske nastavitve";
 "add_wizard_location_service_off" = "Za pravilno delovanje Čarovnika za dodajanje naprave morajo biti na vaši napravi omogočene lokacijske storitve. Pojdite v sistemske nastavitve in se prepričajte, da so omogočene (Nastavitve -> Zasebnost in varnost -> Lokacijske storitve).";
 "add_wizard_missing_location" = "Aplikacija SUPLA potrebuje dostop do lokacije za pravilno delovanje čarovnika za dodajanje naprav. Dovoli aplikaciji SUPLA dostop do tvoje lokacije v sistemskih nastavitvah.";
-"wizard_scan_timeout" = "Čakalna doba za dokončanje iskanja WiFi je prekoračena!";
+"wizard_scan_timeout" = "Čakalna doba za dokončanje iskanja Wi-Fi je prekoračena!";
 "wizard_iodevice_notfound" = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
 "wizard_connect_timeout" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";
 "wizard_configure_timeout" = "Čakalna doba za dokončanje konfiguracije naprave je prekoračena!";
-"wizard_wifi_error" = "Omrežje WiFi je izklopljeno ali njegovega identifikatorja ali imena ni mogoče prebrati!";
+"wizard_wifi_error" = "Omrežje Wi-Fi je izklopljeno ali njegovega identifikatorja ali imena ni mogoče prebrati!";
 "wizard_result_compat_error" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
 "wizard_result_conn_error" = "Povezave z napravo ni mogoče nastaviti!";
 "wizard_result_failed" = "Konfiguracija ni bila uspešna!";
-"wizard_reconnect_timeout" = "Čakalna doba za vrnitev v primarno omrežje WiFi je prekoračena!";
+"wizard_reconnect_timeout" = "Čakalna doba za vrnitev v primarno omrežje Wi-Fi je prekoračena!";
 "wizard_done" = "Konfiguracija naprave je bila uspešna :)";
-"wizard_done_explanations" = "Če se naprava ne prikaže v aplikaciji, ponovite ta postopek dodajanja še enkrat in preberite \"Prejšnje stanje\", prikazano zgoraj. Vsebuje informacije, na podlagi katerih je mogoče ugotoviti, zakaj naprava ni vzpostavila povezave s strežnikom. Sporočilo »SSID not found« pomeni, da vnesenega imena 2,4 GHz WiFi omrežja ni bilo mogoče najti ali pa je omrežje izven dosega.";
+"wizard_done_explanations" = "Če se naprava ne prikaže v aplikaciji, ponovite ta postopek dodajanja še enkrat in preberite \"Prejšnje stanje\", prikazano zgoraj. Vsebuje informacije, na podlagi katerih je mogoče ugotoviti, zakaj naprava ni vzpostavila povezave s strežnikom. Sporočilo »SSID not found« pomeni, da vnesenega imena 2,4 GHz Wi-Fi omrežja ni bilo mogoče najti ali pa je omrežje izven dosega.";
 "wizard_iodev_data" = "Podatki o napravi";
 "wizard_iodev_name" = "Ime";
 "wizard_iodev_laststate" = "Prejšnji status";
@@ -620,3 +620,16 @@
 "add_device_needs_cloud_message" = "Ta naprava nima nobenih drugih kanalov, vidnih v aplikacji. Če želite dokončati konfiguracijo, pojdite na cloud.supla.org";
 "add_device_needs_cloud_close" = "Razumem";
 "add_device_needs_cloud_go_to_cloud" = "Pojdite na CLOUD";
+"add_wizard_device_temporarily_locked" = "Prekoračena je bila omejitev neuspešnih poskusov prijave. Prosimo, poskusite znova kasneje…";
+"add_wizard_state_preparing" = "Priprava procesa…";
+"add_wizard_state_connecting" = "Povezovanje z napravo…";
+"add_wizard_state_configuring" = "Konfiguracija naprave…";
+"add_wizard_state_finishing" = "Zaključevanje…";
+"add_wizard_password_clarification" = "Registracija novih naprav v oblaku je onemogočena. Omogočite jo ročno ali vnesite geslo svojega računa, da jo čarovnik samodejno omogoči med registracijo novih naprav.";
+"add_wizard_password_rules" = "Geslo mora biti dolgo vsaj 8 znakov in vsebovati vsaj eno veliko, eno malo črko in eno številko.";
+"add_wizard_password_set_title" = "Nastavi geslo naprave";
+"add_wizard_password_new_label" = "Novo geslo";
+"add_wizard_password_repeat_label" = "Ponovi geslo";
+"add_wizard_password_enter_title" = "Geslo naprave";
+"add_wizard_password_instruction" = "Prosimo, uporabite geslo, ki je bilo uporabljeno za dostop do spletne strani lokalne konfiguracije.\n\nSte pozabili geslo? Lahko ga spremenite na Supla Cloud ali ponastavite napravo na tovarniške nastavitve.";
+"add_wizard_manual_reconnect_message" = "Povezava z internetom ni uspela.\n\nPojdite v sistemske nastavitve in izberite omrežje Wi-Fi, ki ima internetno povezavo. Nato se vrnite v aplikacijo in nadaljujte s pritiskom na **Naprej**.";

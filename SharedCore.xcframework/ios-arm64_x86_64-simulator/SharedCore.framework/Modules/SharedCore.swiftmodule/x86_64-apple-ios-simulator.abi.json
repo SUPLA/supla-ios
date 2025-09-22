@@ -4659,6 +4659,57 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "reinitialize",
+                        "printedName": "reinitialize",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed.Type) -> (SharedCore.AddWizardFinalActionReinitialize) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.AddWizardFinalActionReinitialize) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO20AddWizardFinalActionO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "AddWizardFinalActionReinitialize",
+                                    "printedName": "SharedCore.AddWizardFinalActionReinitialize",
+                                    "usr": "c:objc(cs)SharedCoreAddWizardFinalActionReinitialize"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO20AddWizardFinalActionO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO20AddWizardFinalActionO8__SealedO12reinitializeyAISo0abhijK12ReinitializeCcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO20AddWizardFinalActionO8__SealedO12reinitializeyAISo0abhijK12ReinitializeCcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 3
+                      },
+                      {
+                        "kind": "Var",
                         "name": "success",
                         "printedName": "success",
                         "children": [
@@ -4706,7 +4757,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO20AddWizardFinalActionO8__SealedO7successyAISo0abhijK7SuccessCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO20AddWizardFinalActionO8__SealedO7successyAISo0abhijK7SuccessCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 3
+                        "fixedbinaryorder": 4
                       },
                       {
                         "kind": "Var",
@@ -5444,6 +5495,57 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "temporarilyLocked",
+                        "printedName": "temporarilyLocked",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed.Type) -> (SharedCore.EspConfigurationError.TemporarilyLocked) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationError.TemporarilyLocked) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "TemporarilyLocked",
+                                    "printedName": "SharedCore.EspConfigurationError.TemporarilyLocked",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationErrorTemporarilyLocked"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO17temporarilyLockedyAISo0abhij11TemporarilyM0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO17temporarilyLockedyAISo0abhij11TemporarilyM0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 11
+                      },
+                      {
+                        "kind": "Var",
                         "name": "wifi",
                         "printedName": "wifi",
                         "children": [
@@ -5491,7 +5593,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO4wifiyAISo0abhiJ4WifiCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO4wifiyAISo0abhiJ4WifiCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 11
+                        "fixedbinaryorder": 12
                       },
                       {
                         "kind": "Var",
@@ -5872,6 +5974,108 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "close",
+                        "printedName": "close",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type) -> (SharedCore.EspConfigurationEventClose) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationEventClose) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "EspConfigurationEventClose",
+                                    "printedName": "SharedCore.EspConfigurationEventClose",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationEventClose"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO5closeyAISo0abhiJ5CloseCcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO5closeyAISo0abhiJ5CloseCcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 4
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "credentialsNeeded",
+                        "printedName": "credentialsNeeded",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type) -> (SharedCore.EspConfigurationEventCredentialsNeeded) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationEventCredentialsNeeded) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "EspConfigurationEventCredentialsNeeded",
+                                    "printedName": "SharedCore.EspConfigurationEventCredentialsNeeded",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationEventCredentialsNeeded"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO17credentialsNeededyAISo0abhij11CredentialsM0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO17credentialsNeededyAISo0abhij11CredentialsM0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 5
+                      },
+                      {
+                        "kind": "Var",
                         "name": "espConfigurationFailure",
                         "printedName": "espConfigurationFailure",
                         "children": [
@@ -5919,7 +6123,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO03espI7FailureyAISo0abhijhiM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO03espI7FailureyAISo0abhijhiM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 4
+                        "fixedbinaryorder": 6
                       },
                       {
                         "kind": "Var",
@@ -5970,7 +6174,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO13espConfiguredyAISo0abhijhM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO13espConfiguredyAISo0abhijhM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 5
+                        "fixedbinaryorder": 7
                       },
                       {
                         "kind": "Var",
@@ -6021,7 +6225,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO21multipleNetworksFoundyAISo0abhij8MultiplemN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO21multipleNetworksFoundyAISo0abhij8MultiplemN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 6
+                        "fixedbinaryorder": 8
                       },
                       {
                         "kind": "Var",
@@ -6072,7 +6276,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16networkConnectedyAISo0abhij7NetworkM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16networkConnectedyAISo0abhij7NetworkM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 7
+                        "fixedbinaryorder": 9
                       },
                       {
                         "kind": "Var",
@@ -6123,7 +6327,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO24networkConnectionFailureyAISo0abhij7NetworkmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO24networkConnectionFailureyAISo0abhij7NetworkmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 8
+                        "fixedbinaryorder": 10
                       },
                       {
                         "kind": "Var",
@@ -6174,7 +6378,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO12networkFoundyAISo0abhij7NetworkM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO12networkFoundyAISo0abhij7NetworkM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 9
+                        "fixedbinaryorder": 11
                       },
                       {
                         "kind": "Var",
@@ -6225,7 +6429,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO15networkNotFoundyAISo0abhij7NetworkmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO15networkNotFoundyAISo0abhij7NetworkmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 10
+                        "fixedbinaryorder": 12
                       },
                       {
                         "kind": "Var",
@@ -6276,7 +6480,58 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19networkScanDisabledyAISo0abhij7NetworkmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19networkScanDisabledyAISo0abhij7NetworkmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 11
+                        "fixedbinaryorder": 13
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "passwordProvided",
+                        "printedName": "passwordProvided",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type) -> (SharedCore.EspConfigurationEventPasswordProvided) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationEventPasswordProvided) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "EspConfigurationEventPasswordProvided",
+                                    "printedName": "SharedCore.EspConfigurationEventPasswordProvided",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationEventPasswordProvided"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16passwordProvidedyAISo0abhij8PasswordM0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16passwordProvidedyAISo0abhij8PasswordM0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 14
                       },
                       {
                         "kind": "Var",
@@ -6327,7 +6582,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16reconnectTimeoutyAISo0abhij9ReconnectM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16reconnectTimeoutyAISo0abhij9ReconnectM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 12
+                        "fixedbinaryorder": 15
                       },
                       {
                         "kind": "Var",
@@ -6378,7 +6633,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11reconnectedyAISo0abhiJ11ReconnectedCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11reconnectedyAISo0abhiJ11ReconnectedCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 13
+                        "fixedbinaryorder": 16
                       },
                       {
                         "kind": "Var",
@@ -6429,7 +6684,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO21registrationActivatedyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO21registrationActivatedyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 14
+                        "fixedbinaryorder": 17
                       },
                       {
                         "kind": "Var",
@@ -6480,7 +6735,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO20registrationDisabledyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO20registrationDisabledyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 15
+                        "fixedbinaryorder": 18
                       },
                       {
                         "kind": "Var",
@@ -6531,7 +6786,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationEnabledyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationEnabledyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 16
+                        "fixedbinaryorder": 19
                       },
                       {
                         "kind": "Var",
@@ -6582,7 +6837,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO24registrationNotActivatedyAISo0abhij12RegistrationmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO24registrationNotActivatedyAISo0abhij12RegistrationmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 17
+                        "fixedbinaryorder": 20
                       },
                       {
                         "kind": "Var",
@@ -6633,7 +6888,58 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationUnknownyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationUnknownyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 18
+                        "fixedbinaryorder": 21
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "setupNeeded",
+                        "printedName": "setupNeeded",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type) -> (SharedCore.EspConfigurationEventSetupNeeded) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationEventSetupNeeded) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "EspConfigurationEventSetupNeeded",
+                                    "printedName": "SharedCore.EspConfigurationEventSetupNeeded",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationEventSetupNeeded"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11setupNeededyAISo0abhij5SetupM0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11setupNeededyAISo0abhij5SetupM0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 22
                       },
                       {
                         "kind": "Var",
@@ -6684,7 +6990,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO5startyAISo0abhiJ5StartCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO5startyAISo0abhiJ5StartCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 19
+                        "fixedbinaryorder": 23
                       },
                       {
                         "kind": "Var",
@@ -7269,6 +7575,57 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "configuringPassword",
+                        "printedName": "configuringPassword",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed.Type) -> (SharedCore.ConfiguringPassword) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.ConfiguringPassword) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ConfiguringPassword",
+                                    "printedName": "SharedCore.ConfiguringPassword",
+                                    "usr": "c:objc(cs)SharedCoreConfiguringPassword"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO19configuringPasswordyAISo0ab11ConfiguringM0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO19configuringPasswordyAISo0ab11ConfiguringM0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 8
+                      },
+                      {
+                        "kind": "Var",
                         "name": "finished",
                         "printedName": "finished",
                         "children": [
@@ -7316,7 +7673,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO8finishedyAISo0aB8FinishedCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO8finishedyAISo0aB8FinishedCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 8
+                        "fixedbinaryorder": 9
                       },
                       {
                         "kind": "Var",
@@ -7367,7 +7724,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO4idleyAISo0aB4IdleCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO4idleyAISo0aB4IdleCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 9
+                        "fixedbinaryorder": 10
                       },
                       {
                         "kind": "Var",
@@ -7418,7 +7775,58 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO13networkSearchyAISo0ab7NetworkM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO13networkSearchyAISo0ab7NetworkM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 10
+                        "fixedbinaryorder": 11
+                      },
+                      {
+                        "kind": "Var",
+                        "name": "providingPassword",
+                        "printedName": "providingPassword",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed.Type) -> (SharedCore.ProvidingPassword) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.ProvidingPassword) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ProvidingPassword",
+                                    "printedName": "SharedCore.ProvidingPassword",
+                                    "usr": "c:objc(cs)SharedCoreProvidingPassword"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO17providingPasswordyAISo0ab9ProvidingM0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO17providingPasswordyAISo0ab9ProvidingM0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 12
                       },
                       {
                         "kind": "Var",
@@ -7469,7 +7877,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO12reconnectingyAISo0aB12ReconnectingCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationStateO8__SealedO12reconnectingyAISo0aB12ReconnectingCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 11
+                        "fixedbinaryorder": 13
                       },
                       {
                         "kind": "Var",
@@ -36531,6 +36939,196 @@
           },
           {
             "kind": "Var",
+            "name": "addWizardDeviceTemporarilyLocked",
+            "printedName": "addWizardDeviceTemporarilyLocked",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO32addWizardDeviceTemporarilyLockedyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO32addWizardDeviceTemporarilyLockedyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 99
+          },
+          {
+            "kind": "Var",
+            "name": "addWizardStatePreparing",
+            "printedName": "addWizardStatePreparing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO23addWizardStatePreparingyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO23addWizardStatePreparingyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 100
+          },
+          {
+            "kind": "Var",
+            "name": "addWizardStateConnecting",
+            "printedName": "addWizardStateConnecting",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO24addWizardStateConnectingyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO24addWizardStateConnectingyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 101
+          },
+          {
+            "kind": "Var",
+            "name": "addWizardStateConfiguring",
+            "printedName": "addWizardStateConfiguring",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO25addWizardStateConfiguringyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO25addWizardStateConfiguringyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 102
+          },
+          {
+            "kind": "Var",
+            "name": "addWizardStateFinishing",
+            "printedName": "addWizardStateFinishing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO23addWizardStateFinishingyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO23addWizardStateFinishingyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 103
+          },
+          {
+            "kind": "Var",
             "name": "channelStateUptime",
             "printedName": "channelStateUptime",
             "children": [
@@ -36565,7 +37163,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18channelStateUptimeyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18channelStateUptimeyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 99
+            "fixedbinaryorder": 104
           },
           {
             "kind": "Var",
@@ -36603,7 +37201,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO31lastConnectionResetCauseUnknownyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO31lastConnectionResetCauseUnknownyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 100
+            "fixedbinaryorder": 105
           },
           {
             "kind": "Var",
@@ -36641,7 +37239,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39lastConnectionResetCauseActivityTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39lastConnectionResetCauseActivityTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 101
+            "fixedbinaryorder": 106
           },
           {
             "kind": "Var",
@@ -36679,7 +37277,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO028lastConnectionResetCauseWifiG4LostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO028lastConnectionResetCauseWifiG4LostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 102
+            "fixedbinaryorder": 107
           },
           {
             "kind": "Var",
@@ -36717,7 +37315,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO030lastConnectionResetCauseServerG4LostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO030lastConnectionResetCauseServerG4LostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 103
+            "fixedbinaryorder": 108
           },
           {
             "kind": "Var",
@@ -36755,7 +37353,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO32resultCodeTemporarilyUnavailableyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO32resultCodeTemporarilyUnavailableyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 104
+            "fixedbinaryorder": 109
           },
           {
             "kind": "Var",
@@ -36793,7 +37391,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO29resultCodeClientLimitExceededyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO29resultCodeClientLimitExceededyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 105
+            "fixedbinaryorder": 110
           },
           {
             "kind": "Var",
@@ -36831,7 +37429,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24resultCodeDeviceDisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24resultCodeDeviceDisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 106
+            "fixedbinaryorder": 111
           },
           {
             "kind": "Var",
@@ -36869,7 +37467,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO016resultCodeAccessE8DisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO016resultCodeAccessE8DisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 107
+            "fixedbinaryorder": 112
           },
           {
             "kind": "Var",
@@ -36907,7 +37505,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO30resultCodeRegistrationDisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO30resultCodeRegistrationDisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 108
+            "fixedbinaryorder": 113
           },
           {
             "kind": "Var",
@@ -36945,7 +37543,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO016resultCodeAccessE11NotAssignedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO016resultCodeAccessE11NotAssignedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 109
+            "fixedbinaryorder": 114
           },
           {
             "kind": "Var",
@@ -36983,7 +37581,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18resultCodeInactiveyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18resultCodeInactiveyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 110
+            "fixedbinaryorder": 115
           },
           {
             "kind": "Var",
@@ -37021,7 +37619,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO34resultCodeIncorrectEmailOrPasswordyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO34resultCodeIncorrectEmailOrPasswordyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 111
+            "fixedbinaryorder": 116
           },
           {
             "kind": "Var",
@@ -37059,7 +37657,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24resultCodeBadCredentialsyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24resultCodeBadCredentialsyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 112
+            "fixedbinaryorder": 117
           },
           {
             "kind": "Var",
@@ -37097,7 +37695,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO22resultCodeUnknownErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO22resultCodeUnknownErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 113
+            "fixedbinaryorder": 118
           },
           {
             "kind": "Var",

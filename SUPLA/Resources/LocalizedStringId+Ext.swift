@@ -131,6 +131,11 @@ extension LocalizedStringId {
         case .addWizardResultConnectionError: Strings.AddWizard.resultConnectionError
         case .addWizardResultFailed: Strings.AddWizard.resultFailed
         case .addWizardReconnectTimeout: Strings.AddWizard.reconnectTimeout
+        case .addWizardDeviceTemporarilyLocked: Strings.AddWizard.deviceTemporarilyLocked
+        case .addWizardStatePreparing: Strings.AddWizard.statePreparing
+        case .addWizardStateConnecting: Strings.AddWizard.stateConnecting
+        case .addWizardStateConfiguring: Strings.AddWizard.stateConfiguring
+        case .addWizardStateFinishing: Strings.AddWizard.stateFinishing
             
         case .channelStateUptime: Strings.State.uptimeValue
         case .lastConnectionResetCauseUnknown: Strings.State.connectionResetCauseUnknown

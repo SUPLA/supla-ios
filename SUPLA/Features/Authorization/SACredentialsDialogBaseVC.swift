@@ -30,6 +30,7 @@ class SACredentialsDialogVC<VM: SACredentialsDialogVM>: SACustomDialogVC<SACrede
     private lazy var passwordField: SALabeledPasswordField = {
         let field = SALabeledPasswordField()
         field.label = Strings.AuthorizationDialog.password
+        field.returnKeyType = .go
         return field
     }()
     
@@ -138,6 +139,18 @@ class SACredentialsDialogVC<VM: SACredentialsDialogVM>: SACustomDialogVC<SACrede
                 }
             )
             .disposed(by: self)
+        passwordField.rx.returnEvent
+            .subscribe(
+                onNext: { [weak self] in
+                    self?.viewModel.onOk(
+                        userName: self?.userNameField.text ?? "",
+                        password: self?.passwordField.text ?? ""
+                    ) { [weak self] in
+                        self?.dismiss(animated: true)
+                        self?.onAuthorizedCallback()
+                    }
+                }
+            ).disposed(by: self)
         passwordField.rx.text
             .subscribe(onNext: { [weak self] in
                 self?.positiveButton.isEnabled = $0 != nil && !$0!.isEmpty

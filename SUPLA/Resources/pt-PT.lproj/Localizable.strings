@@ -64,7 +64,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "O registo de dispositivos de entrada/saída está atualmente desligado. Para continuar vá para a página %@ e ligue adicionar dispositivos no marcador “Meu SUPLA”.";
 "The connected Server does not support this function!" = "O assistente para adicionar está disponível só se uma ligação com o servidor foi criada usando o enderço e-mail presente nas configurações!";
 "Incorrect input parameters (%@)!" = "Os parâmetros de entrada errados (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Assegurar que a ligação à rede WiFi do dispositivo executivo tenha sido estabelecida.";
 "Help" = "Ajuda";
 
 "Staircase timer" = "Comutador de escada";
@@ -283,6 +282,7 @@
 "general_profile" = "Conta";
 "general_action" = "Acção";
 "general_delete" = "Eliminar";
+"incorrect_password" = "Senha incorreta";
 /* General - DayOfWeek */
 "monday" = "Segunda-feira";
 "tuesday" = "Terça-feira";
@@ -560,7 +560,7 @@
 "state_channel_id" = "ID do Canal";
 "state_battery_level" = "Nível de bateria";
 "state_battery_powered" = "Bateria";
-"state_wifi_signal_strength" = "Força do sinal WiFi";
+"state_wifi_signal_strength" = "Força do sinal Wi-Fi";
 "state_bridge_node_online" = "Junção de pontes - online";
 "state_bridge_node_signal" = "Junção da ponte - força do sinal";
 "state_uptime" = "Tempo de trabalho";
@@ -573,7 +573,7 @@
 "channel_state_uptime" = "%d dias %02d:%02d:%02d";
 "lastconnectionresetcause_unknown" = "0: desconhecido";
 "lastconnectionresetcause_activity_timeout" = "1: sem resposta do servidor";
-"lastconnectionresetcause_wifi_connection_lost" = "2: perda da ligação WiFi";
+"lastconnectionresetcause_wifi_connection_lost" = "2: perda da ligação Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3: Reiniciar a ligação ao servidor";
 
 /* Change caption */
@@ -590,7 +590,7 @@
 "enabling_registration_timeout" = "O tempo de espera para o registo ter sido activado expirou!";
 "add_wizard_step_1_welcome" = "Bem-vindo ao assistente para adicionar dispositivos que lhe permitirá adicionar novos dispositivos ao sistema de maneira simples e rápida.";
 "add_wizard_step_1_continue" = "Para continuar carregue em **Continuar**.";
-"add_wizard_step_2_message" = "Introduza o nome e a senha da sua rede WiFi doméstica ou empresarial através da qual o dispositivo poderá estabelecer uma conexão com o servidor.";
+"add_wizard_step_2_message" = "Introduza o nome e a senha da sua rede Wi-Fi doméstica ou empresarial através da qual o dispositivo poderá estabelecer uma conexão com o servidor.";
 "add_wizard_network_name" = "Nome da rede";
 "add_wizard_step_3_message_1" = "Conecte seu dispositivo à fonte de alimentação. O dispositivo deve, por padrão, operar no modo de configuração, indicado pelo LED de status piscando da seguinte forma.";
 "add_wizard_step_3_message_2" = "Se o dispositivo não estiver no modo de configuração após ligar, pressione e segure o botão CONFIG por pelo menos 5 segundos.";
@@ -604,17 +604,17 @@
 "add_wizard_manual_mode_settings" = "Passe às configurações do sistema";
 "add_wizard_location_service_off" = "Para que o Assistente de Adição de Dispositivo funcione corretamente, os serviços de localização devem estar ativados no seu dispositivo. Vá para as configurações do sistema e certifique-se de que estão ativados (Configurações -> Privacidade e Segurança -> Serviços de Localização).";
 "add_wizard_missing_location" = "O aplicativo SUPLA requer acesso à localização para que o Assistente de Adição de Dispositivo funcione corretamente. Permita que o aplicativo SUPLA acesse sua localização nas configurações do sistema.";
-"wizard_scan_timeout" = "O tempo-limite de pesquisa da rede WiFi foi excedido!";
+"wizard_scan_timeout" = "O tempo-limite de pesquisa da rede Wi-Fi foi excedido!";
 "wizard_iodevice_notfound" = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
 "wizard_connect_timeout" = "O tempo-limite de conexão a um atuador foi excedido!";
 "wizard_configure_timeout" = "O tempo-limite de configuração de um dispositivo foi excedido!";
-"wizard_wifi_error" = "A rede WiFi está desligada ou impossível ler o identificador ou o nome dela!";
+"wizard_wifi_error" = "A rede Wi-Fi está desligada ou impossível ler o identificador ou o nome dela!";
 "wizard_result_compat_error" = "O dispositivo que conectou não é compatível com este assistente!";
 "wizard_result_conn_error" = "Impossível conectar um dispositivo!";
 "wizard_result_failed" = "A configuração falhou!";
-"wizard_reconnect_timeout" = "O tempo-limite de volta para a rede básica WiFi foi excedido!";
+"wizard_reconnect_timeout" = "O tempo-limite de volta para a rede básica Wi-Fi foi excedido!";
 "wizard_done" = "O dispositivo foi configurado com sucesso :)";
-"wizard_done_explanations" = ">Se o seu dispositivo não aparecer na aplicação, repita este procedimento de adicionar novamente e leia o \"Estado anterior\" acima indicado. Contém informações para determinar por que razão o dispositivo não se ligou ao servidor. A mensagem \"SSID não encontrado\" significa que o nome de rede WiFi de 2,4 GHz que inseriu não foi encontrado ou a rede está fora de alcance.";
+"wizard_done_explanations" = ">Se o seu dispositivo não aparecer na aplicação, repita este procedimento de adicionar novamente e leia o \"Estado anterior\" acima indicado. Contém informações para determinar por que razão o dispositivo não se ligou ao servidor. A mensagem \"SSID não encontrado\" significa que o nome de rede Wi-Fi de 2,4 GHz que inseriu não foi encontrado ou a rede está fora de alcance.";
 "wizard_iodev_data" = "Dados do dispositivo";
 "wizard_iodev_name" = "Nome";
 "wizard_iodev_laststate" = "Estatuto anterior";
@@ -622,3 +622,16 @@
 "add_device_needs_cloud_message" = "Este dispositivo não tem quaisquer canais visíveis na aplicação. Para completar a configuração, vá a cloud.supla.org";
 "add_device_needs_cloud_close" = "Compreendo";
 "add_device_needs_cloud_go_to_cloud" = "Ir para a CLOUD";
+"add_wizard_device_temporarily_locked" = "O limite de tentativas de login sem sucesso foi excedido. Por favor, tente novamente mais tarde…";
+"add_wizard_state_preparing" = "Preparando o processo…";
+"add_wizard_state_connecting" = "Conectando ao dispositivo…";
+"add_wizard_state_configuring" = "Configurando o dispositivo…";
+"add_wizard_state_finishing" = "Finalização…";
+"add_wizard_password_clarification" = "O registro de novos dispositivos na Nuvem está desativado. Ative-o manualmente ou forneça a senha da sua conta para que o assistente o ative automaticamente durante o registro de novos dispositivos.";
+"add_wizard_password_rules" = "A palavra-passe deve ter pelo menos 8 caracteres e conter pelo menos uma letra maiúscula, uma letra minúscula e um número.";
+"add_wizard_password_set_title" = "Definir senha do dispositivo";
+"add_wizard_password_new_label" = "Nova palavra-passe";
+"add_wizard_password_repeat_label" = "Repetir palavra-passe";
+"add_wizard_password_enter_title" = "Senha do dispositivo";
+"add_wizard_password_instruction" = "Por favor, use a senha usada para o acesso à página web de configuração local.\n\nEsqueceu sua senha? Você pode alterá-la no Supla Cloud ou redefinir o dispositivo para as configurações de fábrica.";
+"add_wizard_manual_reconnect_message" = "A conexão com a internet falhou.\n\nVá para as configurações do sistema e selecione uma rede Wi-Fi que tenha conexão com a internet. Depois, volte ao aplicativo e continue pressionando **Próximo**.";

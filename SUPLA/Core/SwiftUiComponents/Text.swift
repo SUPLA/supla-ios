@@ -22,11 +22,7 @@ import Foundation
 
 extension View {
     func textColor(_ color: Color) -> some View {
-        if #available(iOS 15.0, *) {
-            return foregroundStyle(color)
-        } else {
-            return foregroundColor(color)
-        }
+        foregroundStyle(color)
     }
     
     func fontCaptionSmall() -> some View {

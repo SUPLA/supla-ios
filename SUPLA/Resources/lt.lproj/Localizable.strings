@@ -66,7 +66,6 @@
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Įv/iš įrenginių registracija dabar yra išjungta. Norėdami tęsti eikite į puslapį %%@ ir žymėje „Mano SUPLA” įjunkite įrenginių pridėjimą.";
 "The connected Server does not support this function!" = "Serveris, prie kurio prisijungta, nepaliko šios funkcijos!";
 "Incorrect input parameters (%@)!" = "Klaidingi įvesties parametrai (%@)!";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Įsitikinkite, kad vykdomasis įrenginys prisijungė prie Wi-Fi tinklo.";
 "Help" = "Pagalba";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Laiptų automatas";
@@ -285,6 +284,7 @@
 "general_profile" = "Paskyra";
 "general_action" = "Veiksmas";
 "general_delete" = "Pašalinti";
+"incorrect_password" = "Neteisingas slaptažodis";
 /* General - DayOfWeek */
 "monday" = "Pirmadienis";
 "tuesday" = "Antradienis";
@@ -560,7 +560,7 @@
 "state_channel_id" = "Kanalo ID";
 "state_battery_level" = "Baterijos lygis";
 "state_battery_powered" = "Maitinimas baterija";
-"state_wifi_signal_strength" = "WiFi signalo stiprumas";
+"state_wifi_signal_strength" = "Wi-Fi signalo stiprumas";
 "state_bridge_node_online" = "Tilto mazgas – online";
 "state_bridge_node_signal" = "Tilto mazgas – signalo stiprumas";
 "state_uptime" = "Darbo laikas";
@@ -590,7 +590,7 @@
 "enabling_registration_timeout" = "Baigėsi registracijos įjungimo laukimo laikas!";
 "add_wizard_step_1_welcome" = "Sveiki atvykę į įrenginių pridėjimo vedlį, kuris padės Jums lengvai ir greitai pridėti naujus įrenginius prie sistemos.";
 "add_wizard_step_1_continue" = "Norėdami tęsti, paspauskite **Toliau**.";
-"add_wizard_step_2_message" = "Įveskite savo namų ar įmonės WiFi tinklo, kurio pagalba vykdomasis įrenginys galės užmegzti ryšį su serveriu, pavadinimą ir slaptažodį.";
+"add_wizard_step_2_message" = "Įveskite savo namų ar įmonės Wi-Fi tinklo, kurio pagalba vykdomasis įrenginys galės užmegzti ryšį su serveriu, pavadinimą ir slaptažodį.";
 "add_wizard_network_name" = "Tinklo pavadinimas";
 "add_wizard_step_3_message_1" = "Prijunkite įrenginį prie maitinimo šaltinio. Įrenginys pagal numatytuosius nustatymus turėtų veikti konfigūravimo režimu, kurį rodo šviesos diodo mirksėjimas taip.";
 "add_wizard_step_3_message_2" = "Jei įrenginys po įjungimo nėra konfigūracijos režime, paspauskite ir palaikykite mygtuką CONFIG bent 5 sekundes.";
@@ -604,15 +604,15 @@
 "add_wizard_manual_mode_settings" = "Eikite į iOS sistemos nustatymus";
 "add_wizard_location_service_off" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, jūsų įrenginyje turi būti įjungtos vietos nustatymo paslaugos. Eikite į sistemos nustatymus ir įsitikinkite, kad jos įjungtos (Nustatymai -> Privatumas ir sauga -> Vietos nustatymo paslaugos).";
 "add_wizard_missing_location" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, SUPLA programėlei reikalingas vietos nustatymo priėjimas. Leiskite SUPLA programėlei pasiekti jūsų vietą sistemos nustatymuose.";
-"wizard_scan_timeout" = "Viršytas WiFi tinklo paieškos pabaigimo laukimo laikas!";
+"wizard_scan_timeout" = "Viršytas Wi-Fi tinklo paieškos pabaigimo laukimo laikas!";
 "wizard_iodevice_notfound" = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";
 "wizard_connect_timeout" = "Viršytas ryšio užmezgimo su vykdomuoju įrenginiu laukimo laikas!";
 "wizard_configure_timeout" = "Viršytas įrenginio konfigūracijos užbaigimo laukimo laikas!";
-"wizard_wifi_error" = "WiFi tinklas yra išjungtas arba negalima atpažinti jo identifikatoriaus arba pavadinimo!";
+"wizard_wifi_error" = "Wi-Fi tinklas yra išjungtas arba negalima atpažinti jo identifikatoriaus arba pavadinimo!";
 "wizard_result_compat_error" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
 "wizard_result_conn_error" = "Negalima užmegzti ryšio su įrenginiu!";
 "wizard_result_failed" = "Nepavyko sėkmingai baigti konfigūravimo!";
-"wizard_reconnect_timeout" = "Viršytas grįžimo prie pagrindinio WiFi tinklo laukimo laikas!";
+"wizard_reconnect_timeout" = "Viršytas grįžimo prie pagrindinio Wi-Fi tinklo laukimo laikas!";
 "wizard_done" = "Įrenginio konfigūravimas baigtas sėkmingai :)";
 "wizard_done_explanations" = "Jei įrenginys nebus matomas programoje, pakartokite šią pridėjimo procedūrą dar kartą ir nuskaitykite žemiau matomą „Ankstesnį statusą“. Jame yra informacija, kuri leidžia nustatyti, kodėl įrenginys neprisijungė prie serverio. Pranešimas “SSID not found“ reiškia, kad įvestas Wi-Fi 2,4 GHz tinklo pavadinimas nebuvo rastas arba tinklas neprieinamas.";
 "wizard_iodev_data" = "Įrenginio duomenys";
@@ -622,3 +622,16 @@
 "add_device_needs_cloud_message" = "Šiame įrenginyje nėra jokių programoje matomų kanalų. Norėdami užbaigti konfigūravimą, pereikite į cloud.supla.org";
 "add_device_needs_cloud_close" = "Suprantu";
 "add_device_needs_cloud_go_to_cloud" = "Pereiti į CLOUD";
+"add_wizard_device_temporarily_locked" = "Viršytas nesėkmingų prisijungimo bandymų limitas. Bandykite dar kartą vėliau…";
+"add_wizard_state_preparing" = "Proceso paruošimas…";
+"add_wizard_state_connecting" = "Prisijungimas prie įrenginio…";
+"add_wizard_state_configuring" = "Įrenginio konfigūravimas…";
+"add_wizard_state_finishing" = "Baigimas…";
+"add_wizard_password_clarification" = "Naujų įrenginių registracija Debesyje yra išjungta. Įjunkite ją rankiniu būdu arba pateikite savo paskyros slaptažodį, kad vedlys automatiškai ją įjungtų naujų įrenginių registracijos metu.";
+"add_wizard_password_rules" = "Slaptažodis turi būti bent 8 simbolių ilgio ir jame turi būti bent viena didžioji, viena mažoji raidė ir vienas skaičius.";
+"add_wizard_password_set_title" = "Nustatyti įrenginio slaptažodį";
+"add_wizard_password_new_label" = "Naujas slaptažodis";
+"add_wizard_password_repeat_label" = "Pakartoti slaptažodį";
+"add_wizard_password_enter_title" = "Įrenginio slaptažodis";
+"add_wizard_password_instruction" = "Prašome naudoti slaptažodį, kuris buvo naudojamas vietinės konfigūracijos tinklalapio prieigai.\n\nPamiršote slaptažodį? Galite jį pakeisti Supla Cloud sistemoje arba atkurti gamyklinius įrenginio nustatymus.";
+"add_wizard_manual_reconnect_message" = "Nepavyko prisijungti prie interneto.\n\nEikite į sistemos nustatymus ir pasirinkite „Wi-Fi“ tinklą, kuris turi interneto ryšį. Tada grįžkite į programėlę ir tęskite paspausdami **Toliau**.";

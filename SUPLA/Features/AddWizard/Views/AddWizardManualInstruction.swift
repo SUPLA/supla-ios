@@ -21,6 +21,8 @@ import SwiftUI
 extension AddWizardFeature {
     struct AddWizardManualInstruction: SwiftUI.View {
         let processing: Bool
+        let progress: Float
+        let progressLabel: String?
         let onCancel: () -> Void
         let onBack: () -> Void
         let onNext: () -> Void
@@ -30,14 +32,22 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.settings,
                 onCancel: onCancel,
-                onBack: onBack,
                 onNext: onNext,
+                onBack: onBack,
                 nextButtonTitle: Strings.General.start.uppercased(),
                 processing: processing
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)
+                
+                if (processing) {
+                    AddWizardFeature.ProgressInformationView(
+                        progress: progress,
+                        label: progressLabel
+                    )
+                    .padding([.top, .bottom], Distance.default)
+                }
 
-                SettingsButton(action: {
+                AddWizardFeature.SettingsButton(action: {
                     if (!processing) {
                         onSettings()
                     }
@@ -47,36 +57,26 @@ extension AddWizardFeature {
     }
 }
 
-private struct SettingsButton: SwiftUI.View {
-    let action: () -> Void
-
-    var body: some SwiftUI.View {
-        Button(
-            action: action
-        ) {
-            HStack(alignment: .center, spacing: Distance.tiny) {
-                Image(.Icons.wifiSettings)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: Dimens.iconSizeSmall, height: Dimens.iconSizeSmall)
-                    .foregroundColor(.Supla.primary)
-                Text(Strings.AddWizard.goToSettings)
-                    .fontBodySmall()
-            }
-        }
-        .buttonStyle(
-            BorderedButtonStyle(
-                backgroundColor: .Supla.background,
-                padding: EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 24)
-            )
-        )
-    }
-}
-
 #Preview {
     BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
         AddWizardFeature.AddWizardManualInstruction(
             processing: false,
+            progress: 0,
+            progressLabel: nil,
+            onCancel: {},
+            onBack: {},
+            onNext: {},
+            onSettings: {}
+        )
+    }
+}
+
+#Preview("Processing") {
+    BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
+        AddWizardFeature.AddWizardManualInstruction(
+            processing: true,
+            progress: 0.2,
+            progressLabel: Strings.AddWizard.statePreparing,
             onCancel: {},
             onBack: {},
             onNext: {},

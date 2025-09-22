@@ -19,16 +19,19 @@
 import SwiftUI
 
 extension AddWizardFeature {
+    protocol ViewDelegate: AnyObject, ProvidePasswordDialogDelegate, SetPasswordDialogDelegate {
+        func onCancel(_ screen: Screen)
+        func onBack(_ screen: Screen)
+        func onNext(_ screen: Screen)
+        func onMessageAction(_ action: AddWizardFeature.MessageAction)
+        func onWifiSettings()
+        func onFollowupPopupClose()
+        func onFollowupPopupOpen()
+    }
+    
     struct View: SwiftUI.View {
         @ObservedObject var state: ViewState
-        
-        let onCancel: (Screen) -> Void
-        let onBack: (Screen) -> Void
-        let onNext: (Screen) -> Void
-        let onMessageAction: (AddWizardFeature.MessageAction) -> Void
-        let onWifiSettings: () -> Void
-        let onFollowupPopupClose: () -> Void
-        let onFollowupPopupOpen: () -> Void
+        weak var delegate: ViewDelegate?
         
         var body: some SwiftUI.View {
             BackgroundStack(color: .Supla.primaryContainer) {
@@ -37,66 +40,90 @@ extension AddWizardFeature {
                 case .welcome:
                     AddWizardFeature.AddWizardWelcomeView(
                         processing: state.processing,
-                        onCancel: { onCancel(screen) },
-                        onBack: { onBack(screen) },
-                        onNext: { onNext(screen) }
+                        onCancel: { delegate?.onCancel(screen) },
+                        onBack: { delegate?.onBack(screen) },
+                        onNext: { delegate?.onNext(screen) }
                     )
                 case .networkSelection:
                     AddWizardFeature.AddWizardNetworkSelectionView(
                         networkName: $state.networkSsid,
                         networkPassword: $state.networkPassword,
-                        rememberPasswrord: $state.rememberPassword,
+                        rememberPassword: $state.rememberPassword,
                         error: state.networkConfigurationError,
-                        onCancel: { onCancel(screen) },
-                        onBack: { onBack(screen) },
-                        onNext: { onNext(screen) },
+                        onCancel: { delegate?.onCancel(screen) },
+                        onBack: { delegate?.onBack(screen) },
+                        onNext: { delegate?.onNext(screen) },
                         onNetworkSearch: {}
                     )
                 case .configuration:
                     AddWizardFeature.AddWizardConfigurationView(
                         autoMode: $state.autoMode,
                         processing: state.processing,
-                        onCancel: { onCancel(screen) },
-                        onBack: { onBack(screen) },
-                        onNext: { onNext(screen) }
+                        progress: state.progress,
+                        progressLabel: state.progressLabel,
+                        onCancel: { delegate?.onCancel(screen) },
+                        onBack: { delegate?.onBack(screen) },
+                        onNext: { delegate?.onNext(screen) }
                     )
                 case .success:
                     AddWizardFeature.AddWizardSuccessView(
                         parameters: state.deviceParameters,
-                        onCancel: { onCancel(screen) },
-                        onBack: { onBack(screen) },
-                        onNext: { onNext(screen) },
-                        onAgain: { onMessageAction(.repeat) }
+                        onCancel: { delegate?.onCancel(screen) },
+                        onBack: { delegate?.onBack(screen) },
+                        onNext: { delegate?.onNext(screen) },
+                        onAgain: { delegate?.onMessageAction(.repeat) }
                     )
                     if let dialogState = state.followupPopupState {
                         SuplaCore.AlertDialog(
                             state: dialogState,
                             onDismiss: {},
-                            onPositiveButtonClick: onFollowupPopupOpen,
-                            onNegativeButtonClick: onFollowupPopupClose
+                            onPositiveButtonClick: delegate?.onFollowupPopupOpen,
+                            onNegativeButtonClick: delegate?.onFollowupPopupClose
                         )
                     }
                 case .message(let text, let action):
                     AddWizardFeature.AddWizardMessageView(
                         messages: text,
                         action: action,
-                        onCancel: { onCancel(screen) },
-                        onBack: { onBack(screen) },
-                        onNext: { onNext(screen) },
-                        onAction: onMessageAction
+                        onCancel: { delegate?.onCancel(screen) },
+                        onBack: { delegate?.onBack(screen) },
+                        onNext: { delegate?.onNext(screen) },
+                        onAction: { delegate?.onMessageAction($0) }
                     )
                 case .manualConfiguration:
                     AddWizardFeature.AddWizardManualInstruction(
                         processing: state.processing,
-                        onCancel: { onCancel(screen) },
-                        onBack: { onBack(screen) },
-                        onNext: { onNext(screen) },
-                        onSettings: onWifiSettings
+                        progress: state.progress,
+                        progressLabel: state.progressLabel,
+                        onCancel: { delegate?.onCancel(screen) },
+                        onBack: { delegate?.onBack(screen) },
+                        onNext: { delegate?.onNext(screen) },
+                        onSettings: { delegate?.onWifiSettings() }
+                    )
+                case .manualReconnect:
+                    AddWizardFeature.AddWizardManualReconnect(
+                        onCancel: { delegate?.onCancel(screen) },
+                        onNext: { delegate?.onNext(screen) },
+                        onSettings: { delegate?.onWifiSettings() }
                     )
                 }
                 
                 if (state.canceling) {
                     SuplaCore.LoadingScrim()
+                }
+                
+                if let dialogState = state.providePasswordDialogState {
+                    ProvidePasswordDialog(
+                        state: dialogState,
+                        delegate: delegate
+                    )
+                }
+                
+                if let dialogState = state.setPasswordDialogState {
+                    SetPasswordDialog(
+                        state: dialogState,
+                        delegate: delegate
+                    )
                 }
             }
         }
@@ -105,13 +132,6 @@ extension AddWizardFeature {
 
 #Preview {
     AddWizardFeature.View(
-        state: AddWizardFeature.ViewState(),
-        onCancel: { _ in },
-        onBack: { _ in },
-        onNext: { _ in },
-        onMessageAction: { _ in },
-        onWifiSettings: {},
-        onFollowupPopupClose: {},
-        onFollowupPopupOpen: {}
+        state: AddWizardFeature.ViewState()
     )
 }

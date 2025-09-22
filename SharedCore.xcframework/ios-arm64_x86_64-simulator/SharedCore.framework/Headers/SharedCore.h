@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedCore__SkieTypeExportsKt, SharedCore__SkieSuspendWrappersKt, SharedCoreZWaveWakeUpSettings, SharedCoreZWaveNode, SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaResultCodeCompanion, SharedCoreSuplaResultCode, SharedCoreSuplaRelayFlagCompanion, SharedCoreSuplaRelayFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreSuplaEventTypeCompanion, SharedCoreSuplaEventType, SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport, SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult, SharedCoreSuplaClientMessageZWaveResetAndClearResult, SharedCoreSuplaClientMessageZWaveRemoveNodeResult, SharedCoreSuplaClientMessageZWaveGetNodeListResult, SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult, SharedCoreSuplaClientMessageZWaveAssignNodeIdResult, SharedCoreSuplaClientMessageZWaveAddNodeResult, SharedCoreSuplaClientMessageSetRegistrationEnabledResult, SharedCoreSuplaClientMessageRegistrationEnabled, SharedCoreSuplaClientMessageOAuthToken, SharedCoreSuplaClientMessageGroupDataChanged, SharedCoreSuplaClientMessageEvent, SharedCoreSuplaClientMessageCompanion, SharedCoreSuplaClientMessageClientRegistrationError, SharedCoreSuplaClientMessageClientRegistered, SharedCoreSuplaClientMessageChannelState, SharedCoreSuplaClientMessageChannelFunctionSetResult, SharedCoreSuplaClientMessageChannelDataChanged, SharedCoreSuplaClientMessageChannelCaptionSetResult, SharedCoreSuplaClientMessageChannelBasicConfig, SharedCoreSuplaClientMessageCallConfigResult, SharedCoreSuplaClientMessageCallConfigProgressReport, SharedCoreSuplaClientMessageAuthorizationResult, SharedCoreSuplaChannelStateCompanion, SharedCoreSuplaChannelState, SharedCoreSuplaChannelBasicCfg, SharedCoreSuplaChannelAvailabilityStatusCompanion, SharedCoreSuplaChannelAvailabilityStatus, SharedCoreSuplaCallConfigCommand, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreSkie_SuspendResultSuccess, SharedCoreSkie_SuspendResultError, SharedCoreSkie_SuspendResultCanceled, SharedCoreSkie_SuspendResult, SharedCoreSkie_SuspendHandler, SharedCoreSkie_CancellationHandler, SharedCoreSkieKotlinStateFlow<T>, SharedCoreSkieKotlinSharedFlow<T>, SharedCoreSkieKotlinOptionalStateFlow<T>, SharedCoreSkieKotlinOptionalSharedFlow<T>, SharedCoreSkieKotlinOptionalMutableStateFlow<T>, SharedCoreSkieKotlinOptionalMutableSharedFlow<T>, SharedCoreSkieKotlinOptionalFlow<T>, SharedCoreSkieKotlinMutableStateFlow<T>, SharedCoreSkieKotlinMutableSharedFlow<T>, SharedCoreSkieKotlinFlow<T>, SharedCoreSkieColdFlowIterator<E>, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreRelayValueCompanion, SharedCoreRelayValue, SharedCoreRelayIssuesProvider, SharedCoreReconnecting, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreNetworkSearch, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithIdAndString, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinx_serialization_coreStructureKindOBJECT, SharedCoreKotlinx_serialization_coreStructureKindMAP, SharedCoreKotlinx_serialization_coreStructureKindLIST, SharedCoreKotlinx_serialization_coreStructureKindCLASS, SharedCoreKotlinx_serialization_coreStructureKind, SharedCoreKotlinx_serialization_coreSerializersModule, SharedCoreKotlinx_serialization_coreSerialKindENUM, SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL, SharedCoreKotlinx_serialization_coreSerialKind, SharedCoreKotlinx_serialization_corePrimitiveKindSTRING, SharedCoreKotlinx_serialization_corePrimitiveKindSHORT, SharedCoreKotlinx_serialization_corePrimitiveKindLONG, SharedCoreKotlinx_serialization_corePrimitiveKindINT, SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT, SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE, SharedCoreKotlinx_serialization_corePrimitiveKindCHAR, SharedCoreKotlinx_serialization_corePrimitiveKindBYTE, SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN, SharedCoreKotlinx_serialization_corePrimitiveKind, SharedCoreKotlinx_serialization_corePolymorphicKindSEALED, SharedCoreKotlinx_serialization_corePolymorphicKindOPEN, SharedCoreKotlinx_serialization_corePolymorphicKind, SharedCoreKotlinThrowable, SharedCoreKotlinRuntimeException, SharedCoreKotlinNothing, SharedCoreKotlinIllegalStateException, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinCancellationException, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconUpdate, SharedCoreIssueIconSound, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreIntExtensionsKt, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreIdle, SharedCoreIcon, SharedCoreGroup, SharedCoreGetChannelSpecificIssuesUseCase, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreGetAllChannelIssuesUseCase, SharedCoreFloat, SharedCoreFinished, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreEspConfigurationEventStart, SharedCoreEspConfigurationEventRegistrationUnknown, SharedCoreEspConfigurationEventRegistrationNotActivated, SharedCoreEspConfigurationEventRegistrationEnabled, SharedCoreEspConfigurationEventRegistrationDisabled, SharedCoreEspConfigurationEventRegistrationActivated, SharedCoreEspConfigurationEventReconnected, SharedCoreEspConfigurationEventReconnectTimeout, SharedCoreEspConfigurationEventNetworkScanDisabled, SharedCoreEspConfigurationEventNetworkNotFound, SharedCoreEspConfigurationEventNetworkFound, SharedCoreEspConfigurationEventNetworkConnectionFailure, SharedCoreEspConfigurationEventNetworkConnected, SharedCoreEspConfigurationEventMultipleNetworksFound, SharedCoreEspConfigurationEventEspConfigured, SharedCoreEspConfigurationEventEspConfigurationFailure, SharedCoreEspConfigurationEventCanceled, SharedCoreEspConfigurationEventCancel, SharedCoreEspConfigurationEventBack, SharedCoreEspConfigurationEventAuthorized, SharedCoreEspConfigurationErrorWifi, SharedCoreEspConfigurationErrorScan, SharedCoreEspConfigurationErrorRegistrationEnable, SharedCoreEspConfigurationErrorRegistrationCheck, SharedCoreEspConfigurationErrorReconnect, SharedCoreEspConfigurationErrorNotFound, SharedCoreEspConfigurationErrorConnect, SharedCoreEspConfigurationErrorConfigureTimeout, SharedCoreEspConfigurationErrorConfiguration, SharedCoreEspConfigurationErrorCompatibility, SharedCoreEspConfigurationErrorCommunication, SharedCoreEspConfigurationErrorCombined, SharedCoreEspConfigurationError, SharedCoreEnableRegistrationUseCaseResult, SharedCoreEnableRegistrationUseCase, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreConfiguringEsp, SharedCoreConfigurationFailure, SharedCoreCheckingRegistration, SharedCoreCheckRegistrationEnabledUseCaseResult, SharedCoreCheckRegistrationEnabledUseCase, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemSoundAlarmCompanion, SharedCoreChannelIssueItemSoundAlarm, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreChangingNetwork, SharedCoreCanceling, SharedCoreCanceled, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, SharedCoreAuthorizing, SharedCoreAddWizardFinalActionSuccess, SharedCoreAddWizardFinalActionError, SharedCoreAddWizardFinalActionClose, SharedCoreAddWizardFinalActionBack, SharedCoreActivatingRegistration, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
+@class SharedCore__SkieTypeExportsKt, SharedCore__SkieSuspendWrappersKt, SharedCoreZWaveWakeUpSettings, SharedCoreZWaveNode, SharedCoreValveValueCompanion, SharedCoreValveValue, SharedCoreValveIssuesProvider, SharedCoreUShort, SharedCoreULong, SharedCoreUInt, SharedCoreUByte, SharedCoreThermostatValueCompanion, SharedCoreThermostatValue, SharedCoreThermostatSubfunctionCompanion, SharedCoreThermostatSubfunction, SharedCoreThermostatState, SharedCoreThermostatIssuesProvider, SharedCoreSuplaValveFlagCompanion, SharedCoreSuplaValveFlag, SharedCoreSuplaThermostatFlagCompanion, SharedCoreSuplaThermostatFlag, SharedCoreSuplaShadingSystemFlagCompanion, SharedCoreSuplaShadingSystemFlag, SharedCoreSuplaResultCodeCompanion, SharedCoreSuplaResultCode, SharedCoreSuplaRelayFlagCompanion, SharedCoreSuplaRelayFlag, SharedCoreSuplaHvacModeCompanion, SharedCoreSuplaHvacMode, SharedCoreSuplaFunctionKt, SharedCoreSuplaFunctionCompanion, SharedCoreSuplaFunction, SharedCoreSuplaEventTypeCompanion, SharedCoreSuplaEventType, SharedCoreSuplaClientMessageZWaveWakeUpSettingsReport, SharedCoreSuplaClientMessageZWaveSetWakeUpTimeResult, SharedCoreSuplaClientMessageZWaveResetAndClearResult, SharedCoreSuplaClientMessageZWaveRemoveNodeResult, SharedCoreSuplaClientMessageZWaveGetNodeListResult, SharedCoreSuplaClientMessageZWaveGetAssignedNodeIdResult, SharedCoreSuplaClientMessageZWaveAssignNodeIdResult, SharedCoreSuplaClientMessageZWaveAddNodeResult, SharedCoreSuplaClientMessageSetRegistrationEnabledResult, SharedCoreSuplaClientMessageRegistrationEnabled, SharedCoreSuplaClientMessageOAuthToken, SharedCoreSuplaClientMessageGroupDataChanged, SharedCoreSuplaClientMessageEvent, SharedCoreSuplaClientMessageCompanion, SharedCoreSuplaClientMessageClientRegistrationError, SharedCoreSuplaClientMessageClientRegistered, SharedCoreSuplaClientMessageChannelState, SharedCoreSuplaClientMessageChannelFunctionSetResult, SharedCoreSuplaClientMessageChannelDataChanged, SharedCoreSuplaClientMessageChannelCaptionSetResult, SharedCoreSuplaClientMessageChannelBasicConfig, SharedCoreSuplaClientMessageCallConfigResult, SharedCoreSuplaClientMessageCallConfigProgressReport, SharedCoreSuplaClientMessageAuthorizationResult, SharedCoreSuplaChannelStateCompanion, SharedCoreSuplaChannelState, SharedCoreSuplaChannelBasicCfg, SharedCoreSuplaChannelAvailabilityStatusCompanion, SharedCoreSuplaChannelAvailabilityStatus, SharedCoreSuplaCallConfigCommand, SharedCoreStringExtensionsKt, SharedCoreStoreFileInDirectoryUseCase, SharedCoreStoreChannelOcrPhotoUseCase, SharedCoreSkie_SuspendResultSuccess, SharedCoreSkie_SuspendResultError, SharedCoreSkie_SuspendResultCanceled, SharedCoreSkie_SuspendResult, SharedCoreSkie_SuspendHandler, SharedCoreSkie_CancellationHandler, SharedCoreSkieKotlinStateFlow<T>, SharedCoreSkieKotlinSharedFlow<T>, SharedCoreSkieKotlinOptionalStateFlow<T>, SharedCoreSkieKotlinOptionalSharedFlow<T>, SharedCoreSkieKotlinOptionalMutableStateFlow<T>, SharedCoreSkieKotlinOptionalMutableSharedFlow<T>, SharedCoreSkieKotlinOptionalFlow<T>, SharedCoreSkieKotlinMutableStateFlow<T>, SharedCoreSkieKotlinMutableSharedFlow<T>, SharedCoreSkieKotlinFlow<T>, SharedCoreSkieColdFlowIterator<E>, SharedCoreShortExtensionsKt, SharedCoreShort, SharedCoreShadingSystemValueCompanion, SharedCoreShadingSystemValue, SharedCoreShadingSystemIssuesProvider, SharedCoreScene, SharedCoreRollerShutterValueCompanion, SharedCoreRollerShutterValue, SharedCoreRelayValueCompanion, SharedCoreRelayValue, SharedCoreRelayIssuesProvider, SharedCoreReconnecting, SharedCoreProvidingPassword, SharedCoreOcrImageNamingProvider, SharedCoreNumber, SharedCoreNetworkSearch, SharedCoreMutableSet<ObjectType>, SharedCoreMutableDictionary<KeyType, ObjectType>, SharedCoreLong, SharedCoreLocalizedStringWithIdIntStringInt, SharedCoreLocalizedStringWithIdAndString, SharedCoreLocalizedStringWithId, SharedCoreLocalizedStringKt, SharedCoreLocalizedStringId, SharedCoreLocalizedStringEmpty, SharedCoreLocalizedStringConstant, SharedCoreListItemIssuesCompanion, SharedCoreListItemIssues, SharedCoreKotlinx_serialization_coreStructureKindOBJECT, SharedCoreKotlinx_serialization_coreStructureKindMAP, SharedCoreKotlinx_serialization_coreStructureKindLIST, SharedCoreKotlinx_serialization_coreStructureKindCLASS, SharedCoreKotlinx_serialization_coreStructureKind, SharedCoreKotlinx_serialization_coreSerializersModule, SharedCoreKotlinx_serialization_coreSerialKindENUM, SharedCoreKotlinx_serialization_coreSerialKindCONTEXTUAL, SharedCoreKotlinx_serialization_coreSerialKind, SharedCoreKotlinx_serialization_corePrimitiveKindSTRING, SharedCoreKotlinx_serialization_corePrimitiveKindSHORT, SharedCoreKotlinx_serialization_corePrimitiveKindLONG, SharedCoreKotlinx_serialization_corePrimitiveKindINT, SharedCoreKotlinx_serialization_corePrimitiveKindFLOAT, SharedCoreKotlinx_serialization_corePrimitiveKindDOUBLE, SharedCoreKotlinx_serialization_corePrimitiveKindCHAR, SharedCoreKotlinx_serialization_corePrimitiveKindBYTE, SharedCoreKotlinx_serialization_corePrimitiveKindBOOLEAN, SharedCoreKotlinx_serialization_corePrimitiveKind, SharedCoreKotlinx_serialization_corePolymorphicKindSEALED, SharedCoreKotlinx_serialization_corePolymorphicKindOPEN, SharedCoreKotlinx_serialization_corePolymorphicKind, SharedCoreKotlinThrowable, SharedCoreKotlinRuntimeException, SharedCoreKotlinNothing, SharedCoreKotlinIllegalStateException, SharedCoreKotlinException, SharedCoreKotlinEnumCompanion, SharedCoreKotlinEnum<E>, SharedCoreKotlinCancellationException, SharedCoreKotlinByteIterator, SharedCoreKotlinByteArray, SharedCoreKotlinArray<T>, SharedCoreIssueIconWarning, SharedCoreIssueIconUpdate, SharedCoreIssueIconSound, SharedCoreIssueIconError, SharedCoreIssueIconBatteryNotUsed, SharedCoreIssueIconBattery75, SharedCoreIssueIconBattery50, SharedCoreIssueIconBattery25, SharedCoreIssueIconBattery100, SharedCoreIssueIconBattery0, SharedCoreIssueIconBattery, SharedCoreIssueIcon, SharedCoreIntExtensionsKt, SharedCoreInt, SharedCoreImpulseCounterPhotoDto, SharedCoreIdle, SharedCoreIcon, SharedCoreGroup, SharedCoreGetChannelSpecificIssuesUseCase, SharedCoreGetChannelLowBatteryIssueUseCase, SharedCoreGetChannelIssuesForSlavesUseCase, SharedCoreGetChannelIssuesForListUseCaseKt, SharedCoreGetChannelIssuesForListUseCase, SharedCoreGetChannelDefaultCaptionUseCase, SharedCoreGetChannelBatteryIconUseCase, SharedCoreGetChannelActionStringUseCase, SharedCoreGetCaptionUseCase, SharedCoreGetAllChannelIssuesUseCase, SharedCoreFloat, SharedCoreFinished, SharedCoreFacadeBlindValueCompanion, SharedCoreFacadeBlindValue, SharedCoreEspConfigurationEventStart, SharedCoreEspConfigurationEventSetupNeeded, SharedCoreEspConfigurationEventRegistrationUnknown, SharedCoreEspConfigurationEventRegistrationNotActivated, SharedCoreEspConfigurationEventRegistrationEnabled, SharedCoreEspConfigurationEventRegistrationDisabled, SharedCoreEspConfigurationEventRegistrationActivated, SharedCoreEspConfigurationEventReconnected, SharedCoreEspConfigurationEventReconnectTimeout, SharedCoreEspConfigurationEventPasswordProvided, SharedCoreEspConfigurationEventNetworkScanDisabled, SharedCoreEspConfigurationEventNetworkNotFound, SharedCoreEspConfigurationEventNetworkFound, SharedCoreEspConfigurationEventNetworkConnectionFailure, SharedCoreEspConfigurationEventNetworkConnected, SharedCoreEspConfigurationEventMultipleNetworksFound, SharedCoreEspConfigurationEventEspConfigured, SharedCoreEspConfigurationEventEspConfigurationFailure, SharedCoreEspConfigurationEventCredentialsNeeded, SharedCoreEspConfigurationEventClose, SharedCoreEspConfigurationEventCanceled, SharedCoreEspConfigurationEventCancel, SharedCoreEspConfigurationEventBack, SharedCoreEspConfigurationEventAuthorized, SharedCoreEspConfigurationErrorWifi, SharedCoreEspConfigurationErrorTemporarilyLocked, SharedCoreEspConfigurationErrorScan, SharedCoreEspConfigurationErrorRegistrationEnable, SharedCoreEspConfigurationErrorRegistrationCheck, SharedCoreEspConfigurationErrorReconnect, SharedCoreEspConfigurationErrorNotFound, SharedCoreEspConfigurationErrorConnect, SharedCoreEspConfigurationErrorConfigureTimeout, SharedCoreEspConfigurationErrorConfiguration, SharedCoreEspConfigurationErrorCompatibility, SharedCoreEspConfigurationErrorCommunication, SharedCoreEspConfigurationErrorCombined, SharedCoreEspConfigurationError, SharedCoreEnableRegistrationUseCaseResult, SharedCoreEnableRegistrationUseCase, SharedCoreElectricityMeterConfigDto, SharedCoreElectricityChannelDto, SharedCoreDouble, SharedCoreDefaultChannelDto, SharedCoreContainerValueCompanion, SharedCoreContainerValue, SharedCoreContainerIssuesProvider, SharedCoreContainerFlagCompanion, SharedCoreContainerFlag, SharedCoreConfiguringPassword, SharedCoreConfiguringEsp, SharedCoreConfigurationFailure, SharedCoreCheckingRegistration, SharedCoreCheckRegistrationEnabledUseCaseResult, SharedCoreCheckRegistrationEnabledUseCase, SharedCoreCheckOcrPhotoExistsUseCase, SharedCoreChannelWithChildren, SharedCoreChannelRelationTypeCompanion, SharedCoreChannelRelationType, SharedCoreChannelRelation, SharedCoreChannelIssueItemWarningCompanion, SharedCoreChannelIssueItemWarning, SharedCoreChannelIssueItemSoundAlarmCompanion, SharedCoreChannelIssueItemSoundAlarm, SharedCoreChannelIssueItemLowBattery, SharedCoreChannelIssueItemErrorCompanion, SharedCoreChannelIssueItemError, SharedCoreChannelIssueItemCompanion, SharedCoreChannelIssueItem, SharedCoreChannelChild, SharedCoreChannel, SharedCoreChangingNetwork, SharedCoreCanceling, SharedCoreCanceled, SharedCoreCacheFileAccessFile, SharedCoreByte, SharedCoreBooleanExtensionsKt, SharedCoreBoolean, SharedCoreBatteryInfo, SharedCoreBase64Helper, SharedCoreBase, SharedCoreAuthorizing, SharedCoreAddWizardFinalActionSuccess, SharedCoreAddWizardFinalActionReinitialize, SharedCoreAddWizardFinalActionError, SharedCoreAddWizardFinalActionClose, SharedCoreAddWizardFinalActionBack, SharedCoreActivatingRegistration, NSString, NSSet<ObjectType>, NSObject, NSNumber, NSMutableSet<ObjectType>, NSMutableDictionary<KeyType, ObjectType>, NSMutableArray<ObjectType>, NSError, NSDictionary<KeyType, ObjectType>, NSArray<ObjectType>;
 
 @protocol SharedCoreSuplaClientSharedProvider, SharedCoreSuplaClientSharedApi, SharedCoreSuplaClientMessageHandlerListener, SharedCoreSuplaClientMessageHandler, SharedCoreSuplaClientMessage, SharedCoreSkie_DispatcherDelegate, SharedCoreLocalizedString, SharedCoreKotlinx_serialization_coreSerializersModuleCollector, SharedCoreKotlinx_serialization_coreSerializationStrategy, SharedCoreKotlinx_serialization_coreSerialDescriptor, SharedCoreKotlinx_serialization_coreKSerializer, SharedCoreKotlinx_serialization_coreEncoder, SharedCoreKotlinx_serialization_coreDeserializationStrategy, SharedCoreKotlinx_serialization_coreDecoder, SharedCoreKotlinx_serialization_coreCompositeEncoder, SharedCoreKotlinx_serialization_coreCompositeDecoder, SharedCoreKotlinx_coroutines_coreStateFlow, SharedCoreKotlinx_coroutines_coreSharedFlow, SharedCoreKotlinx_coroutines_coreRunnable, SharedCoreKotlinx_coroutines_coreMutableStateFlow, SharedCoreKotlinx_coroutines_coreMutableSharedFlow, SharedCoreKotlinx_coroutines_coreFlowCollector, SharedCoreKotlinx_coroutines_coreFlow, SharedCoreKotlinKDeclarationContainer, SharedCoreKotlinKClassifier, SharedCoreKotlinKClass, SharedCoreKotlinKAnnotatedElement, SharedCoreKotlinIterator, SharedCoreKotlinComparable, SharedCoreKotlinAnnotation, SharedCoreEspConfigurationStateHolder, SharedCoreEspConfigurationState, SharedCoreEspConfigurationEvent, SharedCoreEspConfigurationController, SharedCoreChannelIssuesProvider, SharedCoreChannelDto, SharedCoreCacheFileAccess, SharedCoreBaseData, SharedCoreApplicationPreferences, SharedCoreAddWizardFinalAction, NSCopying;
 
@@ -758,11 +758,15 @@ __attribute__((swift_name("EspConfigurationState")))
 @protocol SharedCoreEspConfigurationState
 @required
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 @end
 
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ActivatingRegistration")))
 @interface SharedCoreActivatingRegistration : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -808,6 +812,18 @@ __attribute__((swift_name("AddWizardFinalActionError")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("AddWizardFinalActionReinitialize")))
+@interface SharedCoreAddWizardFinalActionReinitialize : SharedCoreBase <SharedCoreAddWizardFinalAction>
+@property (class, readonly, getter=shared) SharedCoreAddWizardFinalActionReinitialize *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)reinitialize __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("AddWizardFinalActionSuccess")))
 @interface SharedCoreAddWizardFinalActionSuccess : SharedCoreBase <SharedCoreAddWizardFinalAction>
 @property (class, readonly, getter=shared) SharedCoreAddWizardFinalActionSuccess *shared __attribute__((swift_name("shared")));
@@ -822,6 +838,8 @@ __attribute__((swift_name("AddWizardFinalActionSuccess")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Authorizing")))
 @interface SharedCoreAuthorizing : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -830,6 +848,8 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Canceled")))
 @interface SharedCoreCanceled : SharedCoreBase <SharedCoreEspConfigurationState>
 @property (class, readonly, getter=shared) SharedCoreCanceled *shared __attribute__((swift_name("shared")));
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)canceled __attribute__((swift_name("init()")));
@@ -842,6 +862,8 @@ __attribute__((swift_name("Canceled")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Canceling")))
 @interface SharedCoreCanceling : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController finalAction:(id<SharedCoreAddWizardFinalAction>)finalAction reconnect:(BOOL)reconnect __attribute__((swift_name("init(stateHolder:espConfigurationController:finalAction:reconnect:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -849,6 +871,8 @@ __attribute__((swift_name("Canceling")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ChangingNetwork")))
 @interface SharedCoreChangingNetwork : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -856,6 +880,8 @@ __attribute__((swift_name("ChangingNetwork")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("CheckingRegistration")))
 @interface SharedCoreCheckingRegistration : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -863,6 +889,8 @@ __attribute__((swift_name("CheckingRegistration")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ConfigurationFailure")))
 @interface SharedCoreConfigurationFailure : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -870,6 +898,17 @@ __attribute__((swift_name("ConfigurationFailure")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ConfiguringEsp")))
 @interface SharedCoreConfiguringEsp : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ConfiguringPassword")))
+@interface SharedCoreConfiguringPassword : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -884,12 +923,17 @@ __attribute__((swift_name("EspConfigurationController")))
 - (void)checkRegistration __attribute__((swift_name("checkRegistration()")));
 - (void)close __attribute__((swift_name("close()")));
 - (void)configureEsp __attribute__((swift_name("configureEsp()")));
+- (void)configurePassword __attribute__((swift_name("configurePassword()")));
 - (void)connectToNetworkSsid:(NSString *)ssid __attribute__((swift_name("connectToNetwork(ssid:)")));
 - (void)findEspNetwork __attribute__((swift_name("findEspNetwork()")));
+- (void)providePassword __attribute__((swift_name("providePassword()")));
 - (void)reconnect __attribute__((swift_name("reconnect()")));
+- (void)reinitialize __attribute__((swift_name("reinitialize()")));
+- (void)setupEspConfiguration __attribute__((swift_name("setupEspConfiguration()")));
 - (void)showErrorError:(SharedCoreEspConfigurationError *)error __attribute__((swift_name("showError(error:)")));
 - (void)showFinished __attribute__((swift_name("showFinished()")));
 - (void)showNetworkSelectorSsids:(NSArray<NSString *> *)ssids cached:(BOOL)cached __attribute__((swift_name("showNetworkSelector(ssids:cached:)")));
+- (void)updateProgressProgress:(float)progress descriptionLabel:(id<SharedCoreLocalizedString> _Nullable)descriptionLabel __attribute__((swift_name("updateProgress(progress:descriptionLabel:)")));
 @end
 
 __attribute__((swift_name("EspConfigurationError")))
@@ -1030,6 +1074,18 @@ __attribute__((swift_name("EspConfigurationError.Scan")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationError.TemporarilyLocked")))
+@interface SharedCoreEspConfigurationErrorTemporarilyLocked : SharedCoreEspConfigurationError
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorTemporarilyLocked *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)temporarilyLocked __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("EspConfigurationError.Wifi")))
 @interface SharedCoreEspConfigurationErrorWifi : SharedCoreEspConfigurationError
 @property (class, readonly, getter=shared) SharedCoreEspConfigurationErrorWifi *shared __attribute__((swift_name("shared")));
@@ -1089,6 +1145,30 @@ __attribute__((swift_name("EspConfigurationEventCanceled")))
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)canceled __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventClose")))
+@interface SharedCoreEspConfigurationEventClose : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventClose *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)close __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventCredentialsNeeded")))
+@interface SharedCoreEspConfigurationEventCredentialsNeeded : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventCredentialsNeeded *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)credentialsNeeded __attribute__((swift_name("init()")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
@@ -1187,6 +1267,18 @@ __attribute__((swift_name("EspConfigurationEventNetworkScanDisabled")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventPasswordProvided")))
+@interface SharedCoreEspConfigurationEventPasswordProvided : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventPasswordProvided *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)passwordProvided __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("EspConfigurationEventReconnectTimeout")))
 @interface SharedCoreEspConfigurationEventReconnectTimeout : SharedCoreBase <SharedCoreEspConfigurationEvent>
 @property (class, readonly, getter=shared) SharedCoreEspConfigurationEventReconnectTimeout *shared __attribute__((swift_name("shared")));
@@ -1271,6 +1363,18 @@ __attribute__((swift_name("EspConfigurationEventRegistrationUnknown")))
 @end
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("EspConfigurationEventSetupNeeded")))
+@interface SharedCoreEspConfigurationEventSetupNeeded : SharedCoreBase <SharedCoreEspConfigurationEvent>
+@property (class, readonly, getter=shared) SharedCoreEspConfigurationEventSetupNeeded *shared __attribute__((swift_name("shared")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)setupNeeded __attribute__((swift_name("init()")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@end
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("EspConfigurationEventStart")))
 @interface SharedCoreEspConfigurationEventStart : SharedCoreBase <SharedCoreEspConfigurationEvent>
 @property (class, readonly, getter=shared) SharedCoreEspConfigurationEventStart *shared __attribute__((swift_name("shared")));
@@ -1291,6 +1395,8 @@ __attribute__((swift_name("EspConfigurationStateHolder")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Finished")))
 @interface SharedCoreFinished : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -1298,6 +1404,8 @@ __attribute__((swift_name("Finished")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Idle")))
 @interface SharedCoreIdle : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -1305,6 +1413,17 @@ __attribute__((swift_name("Idle")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("NetworkSearch")))
 @interface SharedCoreNetworkSearch : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
+- (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
+- (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ProvidingPassword")))
+@interface SharedCoreProvidingPassword : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController __attribute__((swift_name("init(stateHolder:espConfigurationController:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -1312,6 +1431,8 @@ __attribute__((swift_name("NetworkSearch")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("Reconnecting")))
 @interface SharedCoreReconnecting : SharedCoreBase <SharedCoreEspConfigurationState>
+@property (readonly) float progress __attribute__((swift_name("progress")));
+@property (readonly) id<SharedCoreLocalizedString> _Nullable progressLabel __attribute__((swift_name("progressLabel")));
 - (instancetype)initWithStateHolder:(id<SharedCoreEspConfigurationStateHolder>)stateHolder espConfigurationController:(id<SharedCoreEspConfigurationController>)espConfigurationController finalAction:(id<SharedCoreAddWizardFinalAction>)finalAction __attribute__((swift_name("init(stateHolder:espConfigurationController:finalAction:)"))) __attribute__((objc_designated_initializer));
 - (void)handleEvent:(id<SharedCoreEspConfigurationEvent>)event __attribute__((swift_name("handle(event:)")));
 @end
@@ -2484,6 +2605,11 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *addWizardResultConnectionError __attribute__((swift_name("addWizardResultConnectionError")));
 @property (class, readonly) SharedCoreLocalizedStringId *addWizardResultFailed __attribute__((swift_name("addWizardResultFailed")));
 @property (class, readonly) SharedCoreLocalizedStringId *addWizardReconnectTimeout __attribute__((swift_name("addWizardReconnectTimeout")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardDeviceTemporarilyLocked __attribute__((swift_name("addWizardDeviceTemporarilyLocked")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardStatePreparing __attribute__((swift_name("addWizardStatePreparing")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardStateConnecting __attribute__((swift_name("addWizardStateConnecting")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardStateConfiguring __attribute__((swift_name("addWizardStateConfiguring")));
+@property (class, readonly) SharedCoreLocalizedStringId *addWizardStateFinishing __attribute__((swift_name("addWizardStateFinishing")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelStateUptime __attribute__((swift_name("channelStateUptime")));
 @property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseUnknown __attribute__((swift_name("lastConnectionResetCauseUnknown")));
 @property (class, readonly) SharedCoreLocalizedStringId *lastConnectionResetCauseActivityTimeout __attribute__((swift_name("lastConnectionResetCauseActivityTimeout")));

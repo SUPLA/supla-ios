@@ -27,10 +27,14 @@ extension AddWizardFeature {
         @Published var networkConfigurationError: Bool = false
         @Published var autoMode: Bool = true
         @Published var processing: Bool = false
+        @Published var progress: Float = 0
+        @Published var progressLabel: String? = nil
         @Published var deviceParameters: [DeviceParameter] = []
         @Published var canceling: Bool = false
         @Published var followupPopupState: SuplaCore.AlertDialogState? = nil
-        
+        @Published var providePasswordDialogState: ProvidePasswordDialogState? = nil
+        @Published var setPasswordDialogState: SetPasswordDialogState? = nil
+
         var registrationActivationTime: TimeInterval? = nil
     }
     
@@ -57,6 +61,11 @@ extension AddWizardFeature {
                 // It should not be shown when going back.
                 screens.removeLast()
             }
+            if (screens.last == .manualReconnect) {
+                // Manual reconnect screen is a part of configuration process.
+                // It should not be shown like manual configuration when going back.
+                screens.removeLast()
+            }
             return .init(screens: screens)
         }
         
@@ -70,7 +79,7 @@ extension AddWizardFeature {
     }
     
     enum Screen: Equatable {
-        case welcome, networkSelection, configuration, success, manualConfiguration
+        case welcome, networkSelection, configuration, success, manualConfiguration, manualReconnect
         case message(text: [String], action: AddWizardFeature.MessageAction?)
     }
 }

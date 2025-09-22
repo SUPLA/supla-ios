@@ -19,7 +19,6 @@
 import Alamofire
 import SwiftSoup
 
-private let ESP_URL = "http://192.168.4.1"
 private let TAG_RESULT_MESSAGE = "#msg"
 private let GET_REPEATS = 10
 private let POST_REPEATS = 3
@@ -32,54 +31,25 @@ enum ConfigureEsp {
     
     class Implementation: UseCase {
         @Singleton<ProfileRepository> private var profileRepository
-        
-        private lazy var session: Alamofire.Session = {
-            let configuration = URLSessionConfiguration.default
-            configuration.waitsForConnectivity = true
-            configuration.timeoutIntervalForRequest = 30
-            configuration.timeoutIntervalForResource = 30
-            configuration.requestCachePolicy = .reloadIgnoringCacheData
-            return Alamofire.Session(configuration: configuration, delegate: Alamofire.Session.default.delegate)
-        }()
+        @Singleton<EspRepository> private var espRepository
         
         private var request: DataRequest? = nil
         
         func invoke(data: InputData) async -> Result {
             SALog.info("ESP Configuration started")
-            let mainTask = Task {
-                let result = await perform(data: data)
-                try Task.checkCancellation()
-                return result
-            }
             
-            let timeoutTask = Task {
-                try await Task.sleep(nanoseconds: TIMEOUT_SECS * NSEC_PER_SEC)
-                SALog.debug("Timeout reached - canceling task")
-                mainTask.cancel()
-            }
-            
-            do {
-                let result = try await withTaskCancellationHandler {
-                    try await mainTask.value
-                } onCancel: {
-                    SALog.debug("ESP Configuration task canceled")
-                    mainTask.cancel()
-                    timeoutTask.cancel()
-                }
-                timeoutTask.cancel()
-                return result
-            } catch {
-                SALog.error("Configure ESP device end up with timeout")
-                return .timeout
-            }
+            return await cancelableTaskWithTimeout(timeout: TIMEOUT_SECS) { [weak self] in
+                await self?.perform(data: data) ?? .timeout
+            } ?? .timeout
         }
         
         func perform(data: InputData) async -> Result {
             guard let profile = try? await profileRepository.getActiveProfile().subscribeAwait() else {
                 return .failed
             }
-            guard let html = await repeatCalls(times: GET_REPEATS, action: { await get() }),
-                  let document = try? SwiftSoup.parse(html)
+            let getResult: Esp.RequestResult? = await repeated(GET_REPEATS) { await espRepository.get() }
+            guard let html = getResult?.html else { return getResult?.result ?? .connectionError }
+            guard let document = try? SwiftSoup.parse(html)
             else {
                 SALog.warning("Could not connect to the ESP device")
                 return .connectionError
@@ -108,10 +78,15 @@ enum ConfigureEsp {
                 espData.protocol = EspDeviceProtocol.supla
             }
             
-            let postHtml = await repeatCalls(times: POST_REPEATS) { await post(espData.fieldMap) }
-            guard let postHtml else {
+            guard let postResult = await repeated(POST_REPEATS, { await espRepository.post(espData.fieldMap) })
+            else { return .failed }
+            if (!postResult.successful) {
                 return .failed
             }
+            
+            guard let getResult = await repeated(POST_REPEATS, { await espRepository.get() }),
+                  let postHtml = getResult.html
+            else { return .failed }
             
             if let postHtmlDocument = try? SwiftSoup.parse(postHtml),
                let resultMessage = try? postHtmlDocument.select(TAG_RESULT_MESSAGE).html(),
@@ -119,63 +94,10 @@ enum ConfigureEsp {
             {
                 SALog.info("Data saved, trying to reboot")
                 espData.reboot = true
-                _ = await post(espData.fieldMap)
+                _ = await espRepository.post(espData.fieldMap)
             }
             
             return .success(result: result)
-        }
-        
-        private func get() async -> String? {
-            await withTaskCancellationHandler {
-                try? await withUnsafeThrowingContinuation { continuation in
-                    request = session.request(ESP_URL)
-                        .responseString { response in
-                            switch response.result {
-                            case .success(let value):
-                                SALog.info("GET request finished with success")
-                                continuation.resume(returning: value)
-                            case .failure(let error):
-                                SALog.error("GET request failed with error: \(error)")
-                                continuation.resume(throwing: error)
-                            }
-                        }
-                }
-            } onCancel: {
-                request?.cancel()
-            }
-        }
-        
-        private func post(_ data: [String: String]) async -> String? {
-            await withTaskCancellationHandler {
-                try? await withUnsafeThrowingContinuation { continuation in
-                    session.request(ESP_URL, method: .post, parameters: data)
-                        .responseString { response in
-                            switch response.result {
-                            case .success(let value):
-                                SALog.info("POST request finished with success")
-                                continuation.resume(returning: value)
-                            case .failure(let error):
-                                SALog.error("POST request failed with error: \(error)")
-                                continuation.resume(throwing: error)
-                            }
-                        }
-                }
-            } onCancel: {
-                request?.cancel()
-            }
-        }
-        
-        private func repeatCalls<T>(times: Int = 3, action: () async -> T?) async -> T? {
-            for _ in 0 ..< times {
-                if (!Task.isCancelled) {
-                    if let result = await action() {
-                        return result
-                    } else {
-                        try? await Task.sleep(nanoseconds: NSEC_PER_SEC)
-                    }
-                }
-            }
-            return nil
         }
     }
     
@@ -190,5 +112,33 @@ enum ConfigureEsp {
         case incompatible
         case failed
         case timeout
+        case setupNeeded
+        case credentialsNeeded
+        case temporarilyLocked
+    }
+}
+
+private extension Esp.RequestResult {
+    var successful: Bool {
+        switch self {
+        case .success: true
+        default: false
+        }
+    }
+
+    var html: String? {
+        switch self {
+        case .success(let html): html
+        default: nil
+        }
+    }
+    
+    var result: ConfigureEsp.Result? {
+        switch self {
+        case .setupNeeded: .setupNeeded
+        case .credentialsNeeded: .credentialsNeeded
+        case .temporarilyLocked: .temporarilyLocked
+        default: nil
+        }
     }
 }

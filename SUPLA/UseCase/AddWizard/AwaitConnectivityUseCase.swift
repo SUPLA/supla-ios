@@ -28,47 +28,26 @@ enum AwaitConnectivity {
     
     class Implementation: UseCase {
         func invoke() async -> Result {
-            let mainTask = Task {
-                let result = try await checkNetworkConnection()
-                let hasConnectivity = await checkInternetConnection()
+            SALog.info("Awaiting connectivity task started")
+            
+            return await cancelableTaskWithTimeout(timeout: TIMEOUT_SECS) { [weak self] in
+                let result = await self?.checkNetworkConnection()
+                let hasConnectivity = await self?.checkInternetConnection()
                 
-                try Task.checkCancellation()
-                
-                if (result == .success && hasConnectivity) {
-                    return result
+                if (result == .success && hasConnectivity == true) {
+                    return .success
                 } else {
                     return .timeout
                 }
-            }
-            
-            let timeoutTask = Task {
-                try await Task.sleep(nanoseconds: TIMEOUT_SECS * NSEC_PER_SEC)
-                SALog.debug("Timeout reached - canceling main task")
-                mainTask.cancel()
-            }
-            
-            do {
-                let result = try await withTaskCancellationHandler {
-                    try await mainTask.value
-                } onCancel: {
-                    SALog.debug("Reconnect task canceled")
-                    mainTask.cancel()
-                    timeoutTask.cancel()
-                }
-                timeoutTask.cancel()
-                return result
-            } catch {
-                SALog.error("Reconnect timeout")
-                return .timeout
-            }
+            } ?? .timeout
         }
         
-        private func checkNetworkConnection() async throws -> Result {
+        private func checkNetworkConnection() async -> Result {
             let monitor = NWPathMonitor()
-            let continuationContainer = ObjectContainer<CheckedContinuation<AwaitConnectivity.Result, any Error>>()
+            let continuationContainer = ObjectContainer<CheckedContinuation<AwaitConnectivity.Result, Never>>()
             
-            return try await withTaskCancellationHandler {
-                try await withCheckedThrowingContinuation { continuation in
+            return await withTaskCancellationHandler {
+                await withCheckedContinuation { continuation in
                     continuationContainer.object = continuation
                     monitor.pathUpdateHandler = { path in
                         switch path.status {
@@ -77,11 +56,7 @@ enum AwaitConnectivity {
                             monitor.cancel()
                             continuation.resume(returning: .success)
                         default:
-                            if #available(iOS 14.2, *) {
-                                SALog.debug("Awaiting connection (status: \(path.status), reason: \(path.unsatisfiedReason))")
-                            } else {
-                                SALog.debug("Awaiting connection (status: \(path.status))")
-                            }
+                            SALog.debug("Awaiting connection (status: \(path.status), reason: \(path.unsatisfiedReason))")
                         }
                     }
                     monitor.start(queue: DispatchQueue(label: "InternetConnectionMonitor"))
@@ -89,7 +64,7 @@ enum AwaitConnectivity {
             } onCancel: {
                 SALog.debug("Canceling monitor")
                 monitor.cancel()
-                continuationContainer.object?.resume(throwing: CancellationError())
+                continuationContainer.object?.resume(returning: .timeout)
             }
         }
         

@@ -66,6 +66,7 @@
 "general_action" = "Action";
 "general_delete" = "Delete";
 "general_select" = "-- select --";
+"incorrect_password" = "Incorrect password";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -417,8 +418,8 @@
 "state_mac_address" = "MAC";
 "state_battery_level" = "Battery level";
 "state_battery_powered" = "Battery powered";
-"state_wifi_rssi" = "WiFi RSSI";
-"state_wifi_signal_strength" = "WiFi signal strength";
+"state_wifi_rssi" = "Wi-Fi RSSI";
+"state_wifi_signal_strength" = "Wi-Fi signal strength";
 "state_bridge_node_online" = "Bridge node online";
 "state_bridge_node_signal" = "Bridge signal strength";
 "state_uptime" = "Uptime";
@@ -433,7 +434,7 @@
 "channel_state_uptime" = "%d days %02d:%02d:%02d";
 "lastconnectionresetcause_unknown" = "0: unknown";
 "lastconnectionresetcause_activity_timeout" = "1: server timeout";
-"lastconnectionresetcause_wifi_connection_lost" = "2: WiFi connection lost";
+"lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi connection lost";
 "lastconnectionresetcause_server_connection_lost" = "3: server connection lost";
 
 /* Change caption */
@@ -495,14 +496,14 @@
 "add_wizard_manual_mode_settings" = "Go to the system settings";
 "add_wizard_location_service_off" = "For the Add Device Wizard to work properly, location services must be enabled on your device. Go to your system settings and make sure it's enabled (Settings -> Privacy & Security -> Location Services).";
 "add_wizard_missing_location" = "The SUPLA app requires location access for the Add Device Wizard to function properly. Allow the SUPLA app to access your location in your system settings.";
-"wizard_scan_timeout" = "WiFi Network Scan timeout!";
+"wizard_scan_timeout" = "Wi-Fi Network Scan timeout!";
 "wizard_iodevice_notfound" = "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode.";
 "wizard_connect_timeout" = "I/O Device connection setting timeout!";
-"wizard_wifi_error" = "WiFi Network is disabled or it is impossible to read its identifier or name!";
+"wizard_wifi_error" = "Wi-Fi Network is disabled or it is impossible to read its identifier or name!";
 "wizard_result_compat_error" = "The connected device is not compatible with this Wizard!";
 "wizard_result_conn_error" = "Connection with the device cannot be set!";
 "wizard_result_failed" = "Configuration Failed!";
-"wizard_reconnect_timeout" = "Basic WiFi Network return timeout!";
+"wizard_reconnect_timeout" = "Basic Wi-Fi Network return timeout!";
 "wizard_configure_timeout" = "Device configuration completion timeout!";
 "wizard_done" = "The settings have been transferred to the I/O device.";
 "wizard_done_explanations" = "If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4GHz network is ether not in range or its name was incorrect.";
@@ -515,3 +516,16 @@
 "add_device_needs_cloud_message" = "This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org";
 "add_device_needs_cloud_close" = "I understand";
 "add_device_needs_cloud_go_to_cloud" = "Go to CLOUD";
+"add_wizard_device_temporarily_locked" = "The limit of unsuccessful login attempts has been exceeded. Please try again later…";
+"add_wizard_state_preparing" = "Preparation…";
+"add_wizard_state_connecting" = "Connecting…";
+"add_wizard_state_configuring" = "Configuring…";
+"add_wizard_state_finishing" = "Finishing…";
+"add_wizard_password_clarification" = "Registration of new devices in the Cloud is disabled. Enable it manually or provide your account password for the wizard to enable it automatically during the new device registration.";
+"add_wizard_password_rules" = "Password should be at least 8 characters long and contain at least one uppercase, one lowercase letter and one number.";
+"add_wizard_password_set_title" = "Set Device Password";
+"add_wizard_password_new_label" = "New password";
+"add_wizard_password_repeat_label" = "Repeat password";
+"add_wizard_password_enter_title" = "Device Password";
+"add_wizard_password_instruction" = "Please use the password used for local configuration web page access.\n\nForgot your password? You can change it on Supla Cloud or reset the device to factory settings.";
+"add_wizard_manual_reconnect_message" = "Internet connection failed.\n\n Go to system settings and select a Wi-Fi network that has an internet connection. Then return to the app and continue by pressing **Next**.";

@@ -308,6 +308,7 @@ struct Strings {
         static let turnOn = "turn_on".toLocalized()
         static let turnOff = "turn_off".toLocalized()
         static let delete = "general_delete".toLocalized()
+        static let incorrectPassword = "incorrect_password".toLocalized()
         
         static let monday = "monday".toLocalized()
         static let tuesday = "tuesday".toLocalized()
@@ -638,6 +639,7 @@ struct Strings {
         static let rememberPassword = "add_wizard_remember_passwd".toLocalized()
         static let autoMode = "add_wizard_auto_mode".toLocalized()
         static let manualModeMessage = "add_wizard_manual_mode_message".toLocalized()
+        static let manualReconnectMessage = "add_wizard_manual_reconnect_message".toLocalized()
         static let goToSettings = "add_wizard_manual_mode_settings".toLocalized()
         static let locationServiceOff = "add_wizard_location_service_off".toLocalized()
         static let missingLocation = "add_wizard_missing_location".toLocalized()
@@ -645,6 +647,18 @@ struct Strings {
         static let cloudFollowupMessage = "add_device_needs_cloud_message".toLocalized()
         static let cloudFollowupClose = "add_device_needs_cloud_close".toLocalized()
         static let cloudFollowupGoToCloud = "add_device_needs_cloud_go_to_cloud".toLocalized()
+        static let deviceTemporarilyLocked = "add_wizard_device_temporarily_locked".toLocalized()
+        static let statePreparing = "add_wizard_state_preparing".toLocalized()
+        static let stateConnecting = "add_wizard_state_connecting".toLocalized()
+        static let stateConfiguring = "add_wizard_state_configuring".toLocalized()
+        static let stateFinishing = "add_wizard_state_finishing".toLocalized()
+        static let passwordClarification = "add_wizard_password_clarification".toLocalized()
+        static let passwordRules = "add_wizard_password_rules".toLocalized()
+        static let passwordSetTitle = "add_wizard_password_set_title".toLocalized()
+        static let passwordEnterTitle = "add_wizard_password_enter_title".toLocalized()
+        static let passwordNewLabel = "add_wizard_password_new_label".toLocalized()
+        static let passwordRepeatLabel = "add_wizard_password_repeat_label".toLocalized()
+        static let passwordInstruction = "add_wizard_password_instruction".toLocalized()
     }
 }
 

@@ -22,6 +22,8 @@ extension AddWizardFeature {
     struct AddWizardConfigurationView: SwiftUI.View {
         @Binding var autoMode: Bool
         let processing: Bool
+        let progress: Float
+        let progressLabel: String?
         let onCancel: () -> Void
         let onBack: () -> Void
         let onNext: () -> Void
@@ -30,8 +32,8 @@ extension AddWizardFeature {
             AddWizardFeature.AddWizardScaffold(
                 icon: .Image.AddWizard.step3,
                 onCancel: onCancel,
-                onBack: onBack,
                 onNext: onNext,
+                onBack: onBack,
                 nextButtonTitle: Strings.General.start.uppercased(),
                 processing: processing
             ) {
@@ -42,6 +44,14 @@ extension AddWizardFeature {
                 }.padding([.leading, .trailing], Distance.default)
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step3Message2)
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step3Message3)
+                
+                if (processing) {
+                    AddWizardFeature.ProgressInformationView(
+                        progress: progress,
+                        label: progressLabel
+                    )
+                    .padding(.top, Distance.default)
+                }
                 
                 Toggle(isOn: $autoMode) {
                     Text(Strings.AddWizard.autoMode)
@@ -82,6 +92,22 @@ private struct BlinkingDot: View {
         AddWizardFeature.AddWizardConfigurationView(
             autoMode: .constant(false),
             processing: false,
+            progress: 0,
+            progressLabel: nil,
+            onCancel: {},
+            onBack: {},
+            onNext: {}
+        )
+    }
+}
+
+#Preview("Processing") {
+    BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
+        AddWizardFeature.AddWizardConfigurationView(
+            autoMode: .constant(false),
+            processing: true,
+            progress: 0.2,
+            progressLabel: Strings.AddWizard.statePreparing,
             onCancel: {},
             onBack: {},
             onNext: {}

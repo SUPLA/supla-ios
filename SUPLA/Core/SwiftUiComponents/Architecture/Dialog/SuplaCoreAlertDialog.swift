@@ -53,7 +53,7 @@ extension SuplaCore {
             self.onNegativeButtonClick = onNegativeButtonClick
         }
         
-        init (
+        init(
             state: AlertDialogState,
             onDismiss: @escaping () -> Void,
             onPositiveButtonClick: (() -> Void)? = nil,
@@ -70,51 +70,72 @@ extension SuplaCore {
         
         var body: some View {
             SuplaCore.Dialog.Base(onDismiss: onDismiss) {
-                VStack(spacing: 0) {
-                    SuplaCore.Dialog.Header(title: header)
+                SuplaCore.Dialog.Header(title: header)
                     
-                    SwiftUI.Text(message)
-                        .fontBodyMedium()
-                        .multilineTextAlignment(.center)
-                        .padding([.leading, .trailing], Distance.default)
+                SwiftUI.Text(message)
+                    .fontBodyMedium()
+                    .multilineTextAlignment(.center)
+                    .padding([.leading, .trailing], Distance.default)
                     
+                if let positiveButtonText, let negativeButtonText {
+                    SuplaCore.Dialog.DoubleButtons(
+                        onNegativeClick: onNegativeButtonClick ?? {},
+                        onPositiveClick: onPositiveButtonClick ?? {},
+                        negativeText: negativeButtonText,
+                        positiveText: positiveButtonText
+                    )
+                } else if let positiveButtonText {
                     SuplaCore.Dialog.Divider()
                         .padding([.top], Distance.default)
-                    
-                    if let positiveButtonText, let negativeButtonText {
-                        HStack(spacing: Distance.tiny) {
-                            BorderedButton(title: negativeButtonText, fullWidth: true) {
-                                if let onNegativeButtonClick {
-                                    onNegativeButtonClick()
-                                }
-                            }
-                            FilledButton(title: positiveButtonText, fullWidth: true) {
-                                if let onPositiveButtonClick {
-                                    onPositiveButtonClick()
-                                }
-                            }
+                    FilledButton(title: positiveButtonText, fullWidth: true) {
+                        if let onPositiveButtonClick {
+                            onPositiveButtonClick()
                         }
-                        .padding([.top, .bottom], Distance.small)
-                        .padding([.leading, .trailing], Distance.default)
-                    } else if let positiveButtonText {
-                        FilledButton(title: positiveButtonText, fullWidth: true) {
-                            if let onPositiveButtonClick {
-                                onPositiveButtonClick()
-                            }
-                        }
-                        .padding([.top, .bottom], Distance.small)
-                        .padding([.leading, .trailing], Distance.default)
-                    } else if let negativeButtonText {
-                        BorderedButton(title: negativeButtonText, fullWidth: true) {
-                            if let onNegativeButtonClick {
-                                onNegativeButtonClick()
-                            }
-                        }
-                        .padding([.top, .bottom], Distance.small)
-                        .padding([.leading, .trailing], Distance.default)
                     }
+                    .padding(Distance.default)
+                } else if let negativeButtonText {
+                    SuplaCore.Dialog.Divider()
+                        .padding([.top], Distance.default)
+                    BorderedButton(title: negativeButtonText, fullWidth: true) {
+                        if let onNegativeButtonClick {
+                            onNegativeButtonClick()
+                        }
+                    }
+                    .padding(Distance.default)
                 }
             }
         }
     }
+}
+
+#Preview {
+    SuplaCore.AlertDialog(
+        header: Strings.CarPlay.deleteTitle,
+        message: Strings.CarPlay.deleteMessage,
+        onDismiss: {},
+        positiveButtonText: Strings.CarPlay.confirmDelete,
+        negativeButtonText: Strings.General.cancel,
+        onPositiveButtonClick: {},
+        onNegativeButtonClick: {}
+    )
+}
+
+#Preview("Only positive button") {
+    SuplaCore.AlertDialog(
+        header: Strings.CarPlay.deleteTitle,
+        message: Strings.CarPlay.deleteMessage,
+        onDismiss: {},
+        positiveButtonText: Strings.CarPlay.confirmDelete,
+        onPositiveButtonClick: {},
+    )
+}
+
+#Preview("Only negative button") {
+    SuplaCore.AlertDialog(
+        header: Strings.CarPlay.deleteTitle,
+        message: Strings.CarPlay.deleteMessage,
+        onDismiss: {},
+        negativeButtonText: Strings.General.cancel,
+        onNegativeButtonClick: {}
+    )
 }

@@ -94,6 +94,7 @@ extension DiContainer {
         register((any ChannelStateRepository).self, ChannelStateRepositoryImpl())
         register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
         register((any CarPlayItemRepository).self, CarPlayItemRepositoryImpl())
+        register((any EspRepository).self, EspRepositoryImpl())
         
         // MARK: Usecases
 
@@ -245,9 +246,12 @@ extension DiContainer {
         // UseCase - Infrastructure
         register(ProvideCurrentSsid.UseCase.self, ProvideCurrentSsid.Implementation())
         // UseCase - AddWizard
+        register(EspConfigurationSession.self, EspConfigurationSessionImpl())
         register(ConnectToEsp.UseCase.self, ConnectToEsp.Implementation())
         register(ConfigureEsp.UseCase.self, ConfigureEsp.Implementation())
         register(AwaitConnectivity.UseCase.self, AwaitConnectivity.Implementation())
+        register(AuthorizeEsp.UseCase.self, AuthorizeEsp.Implementation())
+        register(CreateEspPassword.UseCase.self, CreateEspPassword.Implementation())
         let suplaClientMessageHandler: SuplaClientMessage.Proxy = SuplaClientMessage.Implementation()
         let suplaClientSharedProvider = SuplaClientSharedApiProvider()
         register(EnableRegistration.UseCase.self, SharedCore.EnableRegistrationUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
