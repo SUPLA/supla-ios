@@ -144,6 +144,9 @@ struct Strings {
         static let markerOpening = "chart_marker_opening".toLocalized()
         static let markerClosing = "chart_marker_closing".toLocalized()
         
+        static let temperatureMeasured = "temperature_measured".toLocalized()
+        static let temperaturePreset = "temperature_preset".toLocalized()
+        
         struct Electricity {
             static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
         }

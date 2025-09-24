@@ -193,7 +193,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         profileRepository.activeProfileObservable = Observable.just(profile)
         userStateHolder.getDefaultChartStateReturns = chartState
         loadChannelConfigUseCase.returns = .just(config)
-        loadChannelMeasurementsUseCase.returns = .just(ChannelChartSets(remoteId: remoteId, function: channel.func, name: "", aggregation: .minutes, dataSets: []))
+        loadChannelMeasurementsUseCase.returns = .just([ChannelChartSets(remoteId: remoteId, function: channel.func, name: "", aggregation: .minutes, dataSets: [])])
         loadChannelMeasurementsDateRangeUseCase.returns = .just(nil)
         
         let expectation = expectation(description: "States loaded")

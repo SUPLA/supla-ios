@@ -111,6 +111,8 @@ enum DetailPage {
     case schedule
     case thermostatTimer
     case thermostatHistory
+    case thermostatHeatpolGeneral
+    case thermostatHeatpolHistory
     
     // Thermometers
     case thermometerHistory

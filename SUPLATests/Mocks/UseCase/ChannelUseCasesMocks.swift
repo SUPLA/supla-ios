@@ -94,8 +94,8 @@ final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsU
 
 final class LoadChannelMeasurementsUseCaseMock: LoadChannelMeasurementsUseCase {
     var parameters: [(Int32, ChartDataSpec)] = []
-    var returns: Observable<ChannelChartSets> = Observable.empty()
-    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+    var returns: Observable<[ChannelChartSets]> = Observable.empty()
+    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<[ChannelChartSets]> {
         parameters.append((remoteId, spec))
         return returns
     }

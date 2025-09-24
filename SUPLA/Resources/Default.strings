@@ -267,6 +267,8 @@
 "Days" = "Days";
 "Months" = "Months";
 "Years" = "Years";
+"temperature_measured" = "Measured";
+"temperature_preset" = "Preset";
 
 /* Notifications */
 "notifications_log_profile" = "Profile:";

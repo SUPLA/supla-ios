@@ -40,6 +40,7 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     @Singleton<DownloadVoltageLogUseCase> private var downloadVoltageLogUseCase
     @Singleton<DownloadCurrentLogUseCase> private var downloadCurrentLogUseCase
     @Singleton<DownloadPowerActiveLogUseCase> private var downloadPowerActiveLogUseCase
+    @Singleton<DownloadThermostatHeatpolLogUseCase> private var downloadThermostatHeatpolLogUseCase
     @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
@@ -86,6 +87,8 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
             startImpulseCounterMeasurementsDownload(id)
         } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
             startHumidityMeasurementsDownload(id)
+        } else if (function == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
+            startThermostatHeatpolMeasurementsDownload(id)
         } else {
             throw GeneralError.illegalArgument(message: "Trying to start download for unsupported function \(function)")
         }
@@ -158,6 +161,13 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
         setupObservable(
             id: id,
             observable: downloadPowerActiveLogUseCase.invoke(remoteId: id.id)
+        )
+    }
+    
+    private func startThermostatHeatpolMeasurementsDownload(_ id: Id) {
+        setupObservable(
+            id: id,
+            observable: downloadThermostatHeatpolLogUseCase.invoke(remoteId: id.id)
         )
     }
     

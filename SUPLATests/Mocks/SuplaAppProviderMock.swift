@@ -45,11 +45,6 @@ class SuplaAppProviderMock: SuplaAppProvider {
 
 class SuplaAppApiMock: NSObject, SuplaAppApi {
     
-    var cancelAllRestApiClientTasksCalls = 0
-    func cancelAllRestApiClientTasks() {
-        cancelAllRestApiClientTasksCalls += 1
-    }
-    
     var isClientRegisteredCalls = 0
     var isClientRegisteredReturns = false
     func isClientRegistered() -> Bool {

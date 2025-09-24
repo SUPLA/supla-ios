@@ -27,7 +27,7 @@ protocol ChannelMeasurementsProvider: MeasurementsProvider {
 }
 
 extension ChannelMeasurementsProvider {
-    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> Observable<[ChannelChartSets]> {
         provide(channelWithChildren, spec, nil)
     }
     
@@ -62,26 +62,32 @@ extension ChannelMeasurementsProvider {
     
     func aggregatingTemperature<T: BaseTemperatureEntity>(
         _ measurements: [T],
-        _ aggregation: ChartDataAggregation
+        _ aggregation: ChartDataAggregation,
+        _ extractor: (T) -> NSDecimalNumber? = { $0.temperature }
     ) -> [AggregatedEntity] {
         if (aggregation == .minutes) {
             return measurements
-                .filter { $0.temperature != nil }
-                .map { $0.toAggregatedEntity(aggregation) }
+                .filter { extractor($0) != nil }
+                .map {
+                    AggregatedEntity(
+                        date: $0.date!.timeIntervalSince1970,
+                        value: .single(value: extractor($0)!.toDouble(), min: nil, max: nil, open: nil, close: nil)
+                    )
+                }
         }
         
         return measurements
-            .filter { $0.temperature != nil }
+            .filter { extractor($0) != nil }
             .reduce([TimeInterval: LinkedList<T>]()) { aggregation.reductor($0, $1) }
             .map { group in
                 AggregatedEntity(
                     date: aggregation.groupTimeProvider(date: group.value.head!.value.date!),
                     value: .single(
-                        value: group.value.avg { $0.temperature!.toDouble() },
-                        min: group.value.min { $0.temperature!.toDouble() },
-                        max: group.value.max { $0.temperature!.toDouble() },
-                        open: group.value.head!.value.temperature!.toDouble(),
-                        close: group.value.tail!.value.temperature!.toDouble()
+                        value: group.value.avg { extractor($0)!.toDouble() },
+                        min: group.value.min { extractor($0)!.toDouble() },
+                        max: group.value.max { extractor($0)!.toDouble() },
+                        open: extractor(group.value.head!.value)!.toDouble(),
+                        close: extractor(group.value.tail!.value)!.toDouble()
                     )
                 )
             }
@@ -134,14 +140,14 @@ protocol MeasurementsProvider {
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets>
+    ) -> Observable<[ChannelChartSets]>
 }
 
 extension MeasurementsProvider {
     func getValueFormatter(_ type: ChartEntryType, _ channelWithChildren: ChannelWithChildren) -> SharedCore.ValueFormatter {
         switch (type) {
         case .humidity, .humidityOnly: SharedCore.HumidityValueFormatter.shared
-        case .temperature: thermometerValueFormatter()
+        case .temperature, .presetTemperature: thermometerValueFormatter()
         case .generalPurposeMeasurement,
              .generalPurposeMeter:
             SharedCore.GpmValueFormatter.staticFormatter(channelWithChildren.channel.config?.configAsSuplaConfig())

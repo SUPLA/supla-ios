@@ -19,7 +19,7 @@
 @testable import SUPLA
 import XCTest
 
-final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
+final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[ChannelChartSets]> {
     private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
     
     private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = TemperatureMeasurementItemRepositoryMock()
@@ -96,14 +96,14 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         XCTAssertEqual(observer.events.count, 2)
         let channelChartSets = observer.events[0].value.element!
         
-        XCTAssertEqual(channelChartSets.dataSets.count, 1)
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[0].type, .temperature)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.color, .chartTemperature1)
-        XCTAssertEqual(channelChartSets.dataSets[0].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.value, "0.0°")
+        XCTAssertEqual(channelChartSets[0].dataSets.count, 1)
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].type, .temperature)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.value, "0.0°")
         XCTAssertTuples(
-            channelChartSets.dataSets[0].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
+            channelChartSets[0].dataSets[0].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
             [
                 (startDate.timeIntervalSince1970, 107),
                 (endDate.timeIntervalSince1970, 109)
@@ -141,15 +141,15 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         XCTAssertEqual(observer.events.count, 2)
         let channelChartSets = observer.events[0].value.element!
         
-        XCTAssertEqual(channelChartSets.dataSets.count, 1)
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[0].type, .temperature)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.color, .chartTemperature1)
-        XCTAssertEqual(channelChartSets.dataSets[0].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.value, "0.0°")
+        XCTAssertEqual(channelChartSets[0].dataSets.count, 1)
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].type, .temperature)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.value, "0.0°")
         
         XCTAssertTuples(
-            channelChartSets.dataSets[0].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
+            channelChartSets[0].dataSets[0].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
             [(Date.create(2017, 8, 10, 19, 00, 00)?.timeIntervalSince1970, 108)]
         )
     }
@@ -184,15 +184,15 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         XCTAssertEqual(observer.events.count, 2)
         let channelChartSets = observer.events[0].value.element!
         
-        XCTAssertEqual(channelChartSets.dataSets.count, 1)
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[0].type, .temperature)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.color, .chartTemperature1)
-        XCTAssertEqual(channelChartSets.dataSets[0].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.value, "0.0°")
+        XCTAssertEqual(channelChartSets[0].dataSets.count, 1)
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].type, .temperature)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.value, "0.0°")
         
-        XCTAssertEqual(channelChartSets.dataSets[0].entries[0].map { $0.date }, [startDate.timeIntervalSince1970])
-        XCTAssertEqual(channelChartSets.dataSets[0].entries[1].map { $0.date }, [endDate.timeIntervalSince1970])
+        XCTAssertEqual(channelChartSets[0].dataSets[0].entries[0].map { $0.date }, [startDate.timeIntervalSince1970])
+        XCTAssertEqual(channelChartSets[0].dataSets[0].entries[1].map { $0.date }, [endDate.timeIntervalSince1970])
     }
     
     func test_shouldLoadTemperatureAndHumidityMeasurementsWithoutAggregating() {
@@ -228,16 +228,16 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         XCTAssertEqual(observer.events.count, 2)
         let channelChartSets = observer.events[0].value.element!
         
-        XCTAssertEqual(channelChartSets.dataSets.count, 2)
+        XCTAssertEqual(channelChartSets[0].dataSets.count, 2)
 
         // - temperature sets
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[0].type, .temperature)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.color, .chartTemperature1)
-        XCTAssertEqual(channelChartSets.dataSets[0].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.value, "0")
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].type, .temperature)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.value, "0")
         XCTAssertTuples(
-            channelChartSets.dataSets[0].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
+            channelChartSets[0].dataSets[0].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
             [
                 (startDate.timeIntervalSince1970, 107),
                 (endDate.timeIntervalSince1970, 109)
@@ -245,14 +245,14 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         )
         
         // - humidity sets
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[1].type, .humidity)
-        XCTAssertEqual(channelChartSets.dataSets[1].label.color, .chartHumidity1)
-        XCTAssertEqual(channelChartSets.dataSets[1].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[1].label.value, "0")
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[1].type, .humidity)
+        XCTAssertEqual(channelChartSets[0].dataSets[1].label.color, .chartHumidity1)
+        XCTAssertEqual(channelChartSets[0].dataSets[1].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[1].label.value, "0")
         
         XCTAssertTuples(
-            channelChartSets.dataSets[1].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
+            channelChartSets[0].dataSets[1].entries[0].map { ($0.date, Int(($0.value.value * 10).rounded())) },
             [
                 (startDate.timeIntervalSince1970, 554),
                 (endDate.timeIntervalSince1970, 558)
@@ -290,15 +290,15 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         XCTAssertEqual(observer.events.count, 2)
         let channelChartSets = observer.events[0].value.element!
         
-        XCTAssertEqual(channelChartSets.dataSets.count, 1)
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[0].type, .generalPurposeMeasurement)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.color, .chartTemperature1)
-        XCTAssertEqual(channelChartSets.dataSets[0].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.value, "0.0°")
+        XCTAssertEqual(channelChartSets[0].dataSets.count, 1)
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].type, .generalPurposeMeasurement)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.color, .chartTemperature1)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.value, "0.0°")
         
         XCTAssertTuples(
-            channelChartSets.dataSets[0].entries[0].map {
+            channelChartSets[0].dataSets[0].entries[0].map {
                 ($0.date, Int(($0.value.value * 10).rounded()), $0.value.min, $0.value.max, $0.value.open, $0.value.close)
             }, [
                 (startDate.timeIntervalSince1970, 107, 5, 12, 10, 11),
@@ -337,14 +337,14 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<ChannelChartSets> {
         XCTAssertEqual(observer.events.count, 2)
         let channelChartSets = observer.events[0].value.element!
         
-        XCTAssertEqual(channelChartSets.dataSets.count, 1)
-        XCTAssertEqual(channelChartSets.remoteId, remotId)
-        XCTAssertEqual(channelChartSets.dataSets[0].type, .generalPurposeMeter)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.color, .chartGpm)
-        XCTAssertEqual(channelChartSets.dataSets[0].active, true)
-        XCTAssertEqual(channelChartSets.dataSets[0].label.value, "0.0°")
+        XCTAssertEqual(channelChartSets[0].dataSets.count, 1)
+        XCTAssertEqual(channelChartSets[0].remoteId, remotId)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].type, .generalPurposeMeter)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.color, .chartGpm)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].active, true)
+        XCTAssertEqual(channelChartSets[0].dataSets[0].label.value, "0.0°")
         XCTAssertTuples(
-            channelChartSets.dataSets[0].entries[0].map {
+            channelChartSets[0].dataSets[0].entries[0].map {
                 ($0.date, Int(($0.value.value * 10).rounded()))
             }, [
                 (startDate.timeIntervalSince1970, 107),

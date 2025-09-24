@@ -15,12 +15,11 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import SharedCore
-import RxSwift
-
-final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
     
+import RxSwift
+import SharedCore
+
+final class HeatpolHistoryDetailVM: BaseHistoryDetailVM {
     @Singleton<DownloadEventsManager> private var downloadEventsManager
     @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase

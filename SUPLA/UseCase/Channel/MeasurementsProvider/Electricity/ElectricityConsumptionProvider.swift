@@ -32,7 +32,7 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         let channel = channelWithChildren.channel
         
         return electricityMeasurementItemRepository
@@ -50,19 +50,21 @@ final class ElectricityConsumptionProviderImpl: ElectricityConsumptionProvider {
             .map {
                 let typeName: String? = (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
                 
-                return ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: $0,
-                    customData: ElectricityMarkerCustomData(
-                        filters: spec.customFilters as? ElectricityChartFilters,
-                        price: channel.ev?.electricityMeter().pricePerUnit(),
-                        currency: channel.ev?.electricityMeter().currency()
-                    ),
-                    typeName: typeName
-                )
+                return [
+                    ChannelChartSets(
+                        remoteId: channel.remote_id,
+                        function: channel.func,
+                        name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
+                        aggregation: spec.aggregation,
+                        dataSets: $0,
+                        customData: ElectricityMarkerCustomData(
+                            filters: spec.customFilters as? ElectricityChartFilters,
+                            price: channel.ev?.electricityMeter().pricePerUnit(),
+                            currency: channel.ev?.electricityMeter().currency()
+                        ),
+                        typeName: typeName
+                    )
+                ]
             }
     }
     

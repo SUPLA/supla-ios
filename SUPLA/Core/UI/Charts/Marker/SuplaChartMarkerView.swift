@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Charts
+import DGCharts
 
 @objc class SuplaChartMarkerView: BaseChartMarkerView {
     @Singleton<ValuesFormatter> private var formatter
@@ -194,7 +194,7 @@ import Charts
     
     private func getValueString(_ details: ChartEntryDetails, _ value: Double, precision: Int = 1) -> String {
         switch (details.type) {
-        case .temperature:
+        case .temperature, .presetTemperature:
             details.valueFormatter.format(value: value, format: ValueFormat.companion.WithoutUnit)
         case .humidity, .humidityOnly:
             details.valueFormatter.format(value: value, format: ValueFormat.companion.WithUnit)

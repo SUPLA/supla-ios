@@ -113,7 +113,7 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     }
     
     private func createChartData(
-        _ sets: ChannelChartSets,
+        _ sets: [ChannelChartSets],
         _ daysRange: DaysRange,
         _ chartRange: ChartRange,
         _ aggregation: ChartDataAggregation,
@@ -121,19 +121,19 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     ) -> ChartData {
         if let config = config as? SuplaChannelGeneralPurposeMeterConfig {
             switch (config.chartType) {
-            case .bar: return BarChartData(daysRange, chartRange, aggregation, [sets])
-            case .linear: return LineChartData(daysRange, chartRange, aggregation, [sets])
+            case .bar: return BarChartData(daysRange, chartRange, aggregation, sets)
+            case .linear: return LineChartData(daysRange, chartRange, aggregation, sets)
             }
         }
         
         if let config = config as? SuplaChannelGeneralPurposeMeasurementConfig {
             switch (config.chartType) {
-            case .bar: return BarChartData(daysRange, chartRange, aggregation, [sets])
-            case .linear: return LineChartData(daysRange, chartRange, aggregation, [sets])
-            case .candle: return CandleChartData(daysRange, chartRange, aggregation, [sets])
+            case .bar: return BarChartData(daysRange, chartRange, aggregation, sets)
+            case .linear: return LineChartData(daysRange, chartRange, aggregation, sets)
+            case .candle: return CandleChartData(daysRange, chartRange, aggregation, sets)
             }
         }
         
-        return LineChartData(daysRange, chartRange, aggregation, [sets])
+        return LineChartData(daysRange, chartRange, aggregation, sets)
     }
 }

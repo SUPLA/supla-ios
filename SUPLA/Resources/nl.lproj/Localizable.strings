@@ -443,6 +443,8 @@
 "history_wait_for_download_completed" = "Even geduld, ik ben aan het downloaden...";
 "chart_marker_opening" = "Opening";
 "chart_marker_closing" = "Afsluiting";
+"temperature_measured" = "Gemeten";
+"temperature_preset" = "Vooraf ingesteld";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Verwijder ouder dan 30 dagen";

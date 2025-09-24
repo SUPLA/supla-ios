@@ -42,6 +42,8 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_WATER_TANK,
                  SUPLA_CHANNELFNC_SEPTIC_TANK: .containerDetail(pages: [.containerGeneral])
 
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: .thermostatDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])
+
             default: provide(channelWithChildren.channel)
         }
     }

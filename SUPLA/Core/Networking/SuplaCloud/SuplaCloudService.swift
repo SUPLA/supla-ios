@@ -89,6 +89,11 @@ protocol SuplaCloudService {
     ) -> Observable<SharedCore.ElectricityChannelDto>
     
     func getUserIcons(_ remoteIds: [Int32]) -> Observable<[SuplaCloudClient.UserIcon]>
+    
+    func getThermostatMeasurements(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.ThermostatMeasurement]>
 }
 
 extension SuplaCloudService {
@@ -397,6 +402,25 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
                 
                 do {
                     let measurements = try SuplaCloudClient.UserIcon.fromJson(data: data)
+                    return Observable.just(measurements)
+                } catch {
+                    return Observable.error(error)
+                }
+            }
+    }
+    
+    func getThermostatMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> RxSwift.Observable<[SuplaCloudClient.ThermostatMeasurement]> {
+        return urlLoader { try self.buildMeasurementsUrl(remoteId, afterTimestamp) }
+            .flatMap { self.requestHelper.getOAuthRequest(urlString: $0) }
+            .flatMap { (response, data) in
+                if (response.statusCode != 200) {
+                    return Observable<[SuplaCloudClient.ThermostatMeasurement]>
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                }
+                    
+                do {
+                    let measurements = try SuplaCloudClient.ThermostatMeasurement
+                        .fromJson(data: data)
                     return Observable.just(measurements)
                 } catch {
                     return Observable.error(error)

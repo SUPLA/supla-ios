@@ -471,6 +471,8 @@
 "history_wait_for_download_completed" = "Attendere prego, caricamento in corso...";
 "chart_marker_opening" = "Apertura";
 "chart_marker_closing" = "Chiusura";
+"temperature_measured" = "Misurato";
+"temperature_preset" = "Preimpostato";
 
 /* Notification */
 "notifications_log_profile" = "Profilo:";

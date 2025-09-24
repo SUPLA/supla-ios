@@ -447,6 +447,8 @@
 "history_wait_for_download_completed" = "Por favor, aguarde, a descarregar…";
 "chart_marker_opening" = "Aberto";
 "chart_marker_closing" = "Fechar";
+"temperature_measured" = "Medido";
+"temperature_preset" = "Predefinido";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Eliminar mais antigo que 30 dias";

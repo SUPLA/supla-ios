@@ -73,7 +73,8 @@ extension DiContainer {
         register((any ElectricityMeasurementItemRepository).self, electricityMeasurementItemRepository)
         let impulseCounterMeasurementItemRepository = ImpulseCounterMeasurementItemRepositoryImpl()
         register((any ImpulseCounterMeasurementItemRepository).self, impulseCounterMeasurementItemRepository)
-        register((any ThermostatMeasurementItemRepository).self, ThermostatMeasurementItemRepositoryImpl())
+        let thermostatMeasurementItemRepository = ThermostatMeasurementItemRepositoryImpl()
+        register((any ThermostatMeasurementItemRepository).self, thermostatMeasurementItemRepository)
         register((any SuplaCloudClientRepository).self, SuplaCloudClientRepositoryImpl())
         register((any ChannelRelationRepository).self, ChannelRelationRepositoryImpl())
         register((any ChannelConfigRepository).self, ChannelConfigRepositoryImpl())
@@ -129,6 +130,8 @@ extension DiContainer {
                  DownloadVoltageLogUseCaseImpl(voltageMeasurementItemRepository))
         register(DownloadPowerActiveLogUseCase.self,
                  DownloadPowerActiveLogUseCaseImpl(powerActiveMeasurementItemRepository))
+        register(DownloadThermostatHeatpolLogUseCase.self,
+                 DownloadThermostatHeatpolLogUseCaseImpl(thermostatMeasurementItemRepository))
         register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
         register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
@@ -170,6 +173,7 @@ extension DiContainer {
         register(PowerActiveMeasurementsProvider.self, PowerActiveMeasurementsProviderImpl())
         register(HumidityMeasurementsProvider.self, HumidityMeasurementsProviderImpl())
         register(ImpulseCounterMeasurementsProvider.self, ImpulseCounterMeasurementsProviderImpl())
+        register(ThermostatHeatpolMeasurementsProvider.self, ThermostatHeatpolMeasurementsProviderImpl())
         // Usecases - ChannelBase
         register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())

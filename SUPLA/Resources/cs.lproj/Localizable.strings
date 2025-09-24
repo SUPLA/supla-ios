@@ -441,6 +441,8 @@
 "history_wait_for_download_completed" = "Čekejte prosím, stahuji...";
 "chart_marker_opening" = "Otevření";
 "chart_marker_closing" = "Uzavření";
+"temperature_measured" = "Naměřený";
+"temperature_preset" = "Přednastavený";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Usuń starsze niż 30 dni";

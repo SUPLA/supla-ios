@@ -28,7 +28,11 @@ final class HumidityMeasurementsProviderImpl: HumidityMeasurementsProvider {
         channelWithChildren.function == SUPLA_CHANNELFNC_HUMIDITY
     }
     
-    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec, _ colorProvider: ((ChartEntryType) -> UIColor)?) -> Observable<ChannelChartSets> {
+    func provide(
+        _ channelWithChildren: ChannelWithChildren,
+        _ spec: ChartDataSpec,
+        _ colorProvider: ((ChartEntryType) -> UIColor)?
+    ) -> Observable<[ChannelChartSets]> {
         let entryType: ChartEntryType = .humidityOnly
         let color = colorProvider?(entryType) ?? HumidityColors.standard
 
@@ -41,6 +45,6 @@ final class HumidityMeasurementsProviderImpl: HumidityMeasurementsProvider {
             )
             .map { entities in self.aggregatingHumidity(entities, spec.aggregation) }
             .map { [self.historyDataSet(channelWithChildren, entryType, color, spec.aggregation, $0)] }
-            .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
+            .map { [self.channelChartSets(channelWithChildren.channel, spec, $0)] }
     }
 }

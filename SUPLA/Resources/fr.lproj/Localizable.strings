@@ -443,6 +443,8 @@
 "history_wait_for_download_completed" = "Veuillez patienter, le téléchargement est en cours...";
 "chart_marker_opening" = "Ouverture";
 "chart_marker_closing" = "Fermeture";
+"temperature_measured" = "Mesuré";
+"temperature_preset" = "Préréglé";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Supprimer les documents datant de plus de 30 jours";

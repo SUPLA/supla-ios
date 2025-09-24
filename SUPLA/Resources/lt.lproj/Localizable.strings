@@ -445,6 +445,8 @@
 "history_wait_for_download_completed" = "Prašome laukti, atsisiunčiu…";
 "chart_marker_opening" = "Atidarymas";
 "chart_marker_closing" = "Uždarymas";
+"temperature_measured" = "Išmatuotas";
+"temperature_preset" = "Iš anksto nustatytas";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Pašalinti senesnius nei 30 dienų";

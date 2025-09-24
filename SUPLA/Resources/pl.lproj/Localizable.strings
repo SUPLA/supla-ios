@@ -478,6 +478,8 @@
 "history_wait_for_download_completed" = "Proszę czekać, pobieram...";
 "chart_marker_opening" = "Otwarcie";
 "chart_marker_closing" = "Zamknięcie";
+"temperature_measured" = "Zmierzona";
+"temperature_preset" = "Ustawiona";
 
 /* Notifications */
 "notifications_log_profile" = "Profil:";

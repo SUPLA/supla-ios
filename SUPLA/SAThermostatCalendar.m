@@ -237,7 +237,7 @@ typedef struct {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, YES);
     
-    _boxSize.height = (self.frame.size.height - TC_SPACING * 25.0) / 26.0;
+    _boxSize.height = (self.frame.size.height - 180 - TC_SPACING * 25.0) / 26.0;
     _boxSize.width = (self.frame.size.width - TC_SPACING * 7.0) / 8.0;
     
     short dayIdx;

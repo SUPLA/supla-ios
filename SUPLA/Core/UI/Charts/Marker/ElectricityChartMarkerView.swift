@@ -21,6 +21,7 @@ import RxRelay
 import RxSwift
 import SwiftUI
 import SharedCore
+import DGCharts
 
 @objc class ElectricityChartMarkerView: BaseRowsChartMarkerView {
     

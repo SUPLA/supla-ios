@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol LoadChannelMeasurementsUseCase {
-    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<ChannelChartSets>
+    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<[ChannelChartSets]>
 }
 
 final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
@@ -31,6 +31,7 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
     @Singleton<ElectricityMeterMeasurementsProvider> private var electricityMeterMeasurementsProvider
     @Singleton<HumidityMeasurementsProvider> private var humidityMeasurementsProvider
     @Singleton<ImpulseCounterMeasurementsProvider> private var impulseCounterMeasurementsProvider
+    @Singleton<ThermostatHeatpolMeasurementsProvider> private var thermostatHeatpolMeasurementsProvider
     
     private lazy var providers: [ChannelMeasurementsProvider] = [
         temperatureMeasurementsProvider,
@@ -39,10 +40,11 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase {
         generalPurposeMeasurementMeasurementsProvider,
         electricityMeterMeasurementsProvider,
         humidityMeasurementsProvider,
-        impulseCounterMeasurementsProvider
+        impulseCounterMeasurementsProvider,
+        thermostatHeatpolMeasurementsProvider
     ]
 
-    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+    func invoke(remoteId: Int32, spec: ChartDataSpec) -> Observable<[ChannelChartSets]> {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
             .flatMapFirst { channelWithChildren in
                 for provider in self.providers {
