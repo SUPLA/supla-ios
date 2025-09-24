@@ -148,9 +148,6 @@ extension MultiAccountProfileManager: ProfileManager {
     }
     
     private func initiateReconnect() {
-        let app = SAApp.instance()
-        app.cancelAllRestApiClientTasks()
-        
         suplaClientProvider.provide()?.reconnect()
     }
 }

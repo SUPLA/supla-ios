@@ -101,6 +101,7 @@ struct DataSetContainer: View {
 private struct DataSetItem: View {
     var labelData: HistoryDataSet.LabelData
     var active: Bool
+    var description: String?
 
     var body: some View {
         HStack {
@@ -126,6 +127,13 @@ private struct DataSetItem: View {
                             .strokeBorder(Color(labelData.color), lineWidth: 1)
                             .frame(width: 50, height: 4)
                     }
+                }
+                
+                if let description = labelData.description {
+                    Text(description).fontLabelSmall()
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .padding([.top], 4)
                 }
             }
         }
@@ -219,6 +227,38 @@ private struct DataSetItem: View {
                 )
             ],
             typeName: "Voltage"
+        ),
+        ChannelChartSets(
+            remoteId: 124,
+            function: 123,
+            name: "Reverse active energy",
+            aggregation: .minutes,
+            dataSets: [
+                HistoryDataSet(
+                    type: .temperature,
+                    label: .single(HistoryDataSet.LabelData(
+                        icon: .suplaIcon(name: "thermometer"),
+                        value: "21.2",
+                        color: .chartTemperature1,
+                        description: "measured"
+                    )),
+                    valueFormatter: SharedCore.DefaultValueFormatter.shared,
+                    entries: [],
+                    active: true
+                ),
+                HistoryDataSet(
+                    type: .presetTemperature,
+                    label: .single(HistoryDataSet.LabelData(
+                        icon: nil,
+                        value: "21.0",
+                        color: .chartHumidity1,
+                        description: "preset"
+                    )),
+                    valueFormatter: SharedCore.DefaultValueFormatter.shared,
+                    entries: [],
+                    active: true
+                )
+            ]
         )
     ]
 

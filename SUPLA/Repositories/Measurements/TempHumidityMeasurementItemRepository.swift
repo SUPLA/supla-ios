@@ -24,12 +24,6 @@ protocol TempHumidityMeasurementItemRepository:
 {
     func deleteAll(for serverId: Int32?) -> Observable<Void>
     func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
-    func storeMeasurements(
-        measurements: [SuplaCloudClient.TemperatureAndHumidityMeasurement],
-        timestamp: TimeInterval,
-        serverId: Int32,
-        remoteId: Int32
-    ) throws -> TimeInterval
 }
 
 final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidityMeasurementItem>, TempHumidityMeasurementItemRepository {

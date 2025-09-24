@@ -443,6 +443,8 @@
 "history_disabled" = "Zgodovina je za ta kanal onemogočena";
 "chart_marker_opening" = "Odpiranje";
 "chart_marker_closing" = "Zapiranje";
+"temperature_measured" = "Izmerjena";
+"temperature_preset" = "Prednastavljeno";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Odstrani starejše od 30 dni";

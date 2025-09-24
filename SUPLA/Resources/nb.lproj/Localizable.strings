@@ -444,6 +444,8 @@
 "history_wait_for_download_completed" = "Vennligst vent, jeg laster ned...";
 "chart_marker_opening" = "Åpning";
 "chart_marker_closing" = "Avslutning";
+"temperature_measured" = "Målt";
+"temperature_preset" = "Forhåndsinnstilt";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Slett eldre enn 30 dager";

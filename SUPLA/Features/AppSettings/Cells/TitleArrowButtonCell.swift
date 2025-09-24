@@ -29,7 +29,7 @@ final class TitleArrowButtonCell: BaseSettingsCell<UIImageView> {
     
     override func setupLayout() {
         super.setupLayout()
-        contentView.addGestureRecognizer(NSUITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
     }
     
     @objc

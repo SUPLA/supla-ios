@@ -33,7 +33,7 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         impulseCounterMeasurementItemRepository
             .findMeasurements(
                 remoteId: channelWithChildren.remoteId,
@@ -44,17 +44,19 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
             .map { entities in self.aggregating(entities, spec) }
             .map { [self.historyDataSet($0, channelWithChildren, spec)] }
             .map {
-                ChannelChartSets(
-                    remoteId: channelWithChildren.remoteId,
-                    function: channelWithChildren.function,
-                    name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: $0,
-                    customData: ImpulseCounterMarkerCustomData(
-                        price: channelWithChildren.channel.ev?.impulseCounter().pricePerUnit(),
-                        currency: channelWithChildren.channel.ev?.impulseCounter().currency()
+                [
+                    ChannelChartSets(
+                        remoteId: channelWithChildren.remoteId,
+                        function: channelWithChildren.function,
+                        name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
+                        aggregation: spec.aggregation,
+                        dataSets: $0,
+                        customData: ImpulseCounterMarkerCustomData(
+                            price: channelWithChildren.channel.ev?.impulseCounter().pricePerUnit(),
+                            currency: channelWithChildren.channel.ev?.impulseCounter().currency()
+                        )
                     )
-                )
+                ]
             }
     }
 

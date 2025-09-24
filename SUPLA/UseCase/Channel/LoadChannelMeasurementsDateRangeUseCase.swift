@@ -41,7 +41,8 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
         ImpulseCounterDataRangeProvider(),
         VoltageDataRangeProvider(),
         CurrentDataRangeProvider(),
-        PowerActiveDataRangeProvider()
+        PowerActiveDataRangeProvider(),
+        ThermostatHeatpolDataRangeProvider()
     ]
     
     func invoke(remoteId: Int32, type: DownloadEventsManagerDataType) -> Observable<DaysRange?> {
@@ -237,5 +238,21 @@ final class PowerActiveDataRangeProvider: ChannelDataRangeProvider {
 
     func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
         powerActiveMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+}
+
+final class ThermostatHeatpolDataRangeProvider: ChannelDataRangeProvider {
+    @Singleton<ThermostatMeasurementItemRepository> private var thermostatMeasurementItemRepository
+
+    func handle(_ channelWithChildren: ChannelWithChildren, _ type: DownloadEventsManagerDataType) -> Bool {
+        channelWithChildren.function == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
+    }
+
+    func minTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        thermostatMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, serverId: serverId)
+    }
+
+    func maxTime(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        thermostatMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, serverId: serverId)
     }
 }

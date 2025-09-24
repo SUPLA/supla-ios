@@ -19,7 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "SAOAuthToken.h"
-#import "SARestApiClientTask.h"
 #import "SuplaClient.h"
 #import "proto.h"
 #import "SAChannelStateExtendedValue.h"
@@ -33,7 +32,6 @@
 
 @protocol SuplaAppApi <NSObject>
 
--(void) cancelAllRestApiClientTasks;
 -(BOOL) isClientRegistered;
 -(BOOL) isClientWorking;
 -(BOOL) isClientAuthorized;
@@ -64,9 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(BOOL) SuplaClientConnected;
 +(void) revokeOAuthToken;
 
--(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
--(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
--(void) cancelAllRestApiClientTasks;
 -(bool) isClientWorking;
 -(SASuplaClient *) optionalSuplaClient;
 @end

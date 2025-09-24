@@ -20,7 +20,7 @@ import RxSwift
 
 protocol ElectricityMeasurementsProvider: MeasurementsProvider {
     var getCaptionUseCase: GetCaptionUseCase { get }
-    
+
     func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String
     func findMeasurementsForPhase(
         _ channelWithChildren: ChannelWithChildren,
@@ -31,15 +31,14 @@ protocol ElectricityMeasurementsProvider: MeasurementsProvider {
 }
 
 extension ElectricityMeasurementsProvider {
-    
     func provide(
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         let channel = channelWithChildren.channel
         var observables: [Observable<(Phase, HistoryDataSet)>] = []
-        
+
         spec.customFilters?.ifPhase1 {
             observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase1))
         }
@@ -49,20 +48,22 @@ extension ElectricityMeasurementsProvider {
         spec.customFilters?.ifPhase3 {
             observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase3))
         }
-        
+
         return Observable.zip(observables)
             .map { historyDataSets in
-                ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: historyDataSets.map { $0.1 },
-                    typeName: (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
-                )
+                [
+                    ChannelChartSets(
+                        remoteId: channel.remote_id,
+                        function: channel.func,
+                        name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
+                        aggregation: spec.aggregation,
+                        dataSets: historyDataSets.map { $0.1 },
+                        typeName: (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
+                    )
+                ]
             }
     }
-    
+
     func aggregating<T: BaseHistoryEntity>(
         _ measurements: [T],
         _ aggregation: ChartDataAggregation
@@ -109,7 +110,7 @@ extension ElectricityMeasurementsProvider {
             active: true
         )
     }
-    
+
     private func createLabel(channel: SAChannel, phase: Phase, isFirst: Bool) -> HistoryDataSet.Label {
         @Singleton var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
         let icon = isFirst ? getChannelBaseIconUseCase.invoke(channel: channel) : nil
@@ -126,4 +127,3 @@ extension ElectricityMeasurementsProvider {
         return .single(HistoryDataSet.LabelData(icon: icon, value: NO_VALUE_TEXT, color: .disabled))
     }
 }
-

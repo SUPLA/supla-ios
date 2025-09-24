@@ -61,7 +61,6 @@ final class DisconnectUseCaseImpl: DisconnectUseCase {
             }
         }
         
-        suplaApp.cancelAllRestApiClientTasks()
         suplaAppProvider.revokeOAuthToken()
         
         updateEventsManager.cleanup()

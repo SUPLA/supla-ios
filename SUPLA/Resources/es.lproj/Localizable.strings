@@ -443,6 +443,8 @@
 "history_wait_for_download_completed" = "Por favor espera, estoy descargando...";
 "chart_marker_opening" = "Apertura";
 "chart_marker_closing" = "Cierre";
+"temperature_measured" = "Medido";
+"temperature_preset" = "Preestablecido";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Eliminar mediciones de más de 30 días";

@@ -61,20 +61,12 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 - (void)releaseSaveObserver;
 - (void)saveContext;
 
--(_SALocation*) fetchLocationById:(int)location_id;
--(_SALocation*) newLocation;
-
 -(SAChannel*) fetchChannelById:(int)channel_id;
 -(NSUInteger) getChannelCount;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 
--(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
--(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
--(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;
--(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id;
--(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
 -(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;
 -(BOOL) zwaveBridgeChannelAvailable;
 -(NSArray*) zwaveBridgeChannels;

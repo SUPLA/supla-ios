@@ -443,6 +443,8 @@
 "history_wait_for_download_completed" = "Παρακαλώ περιμένετε, γίνετια λήψη...";
 "chart_marker_opening" = "Άνοιγμα";
 "chart_marker_closing" = "Κλείσιμο";
+"temperature_measured" = "Μετρημένος";
+"temperature_preset" = "Προκαθορισμένος";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Απομακρύνετε παλαιότερα από 30 ημέρες";

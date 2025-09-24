@@ -17,6 +17,7 @@
  */
 
 import SharedCore
+import DGCharts
 
 let CHART_TOP_MARGIN = 0.2
 

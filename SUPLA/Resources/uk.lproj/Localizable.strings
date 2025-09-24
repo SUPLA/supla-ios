@@ -444,6 +444,8 @@
 "history_wait_for_download_completed" = "Будь ласка, зачекайте, завантажується...";
 "chart_marker_opening" = "Відкриття";
 "chart_marker_closing" = "Закриття";
+"temperature_measured" = "Виміряна";
+"temperature_preset" = "Заданий";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Видалити старіші за 30 днів";

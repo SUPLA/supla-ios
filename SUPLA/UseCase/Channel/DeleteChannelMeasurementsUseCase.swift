@@ -34,6 +34,7 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
     @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
     @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
+    @Singleton<ThermostatMeasurementItemRepository> private var thermostatMeasurementItemRepository
 
     func invoke(remoteId: Int32) -> Observable<Void> {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
@@ -52,6 +53,8 @@ final class DeleteChannelMeasurementsUseCaseImpl: DeleteChannelMeasurementsUseCa
                     self.generalPurposeMeterItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
                 } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
                     self.humidityMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
+                } else if (function == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
+                    self.thermostatMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId)
                 } else if (channelWithChildren.isOrHasElectricityMeter) {
                     Observable.merge([
                         self.currentMeasurementItemRepository.deleteAll(remoteId: remoteId, serverId: serverId),

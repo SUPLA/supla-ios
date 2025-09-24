@@ -20,7 +20,6 @@
 #import "DetailView.h"
 #import "SAThermostatCalendar.h"
 #import "SAPreloader.h"
-#import "SAChartFilterField.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @import DGCharts;
@@ -39,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) short value;
 @end
 
-@interface SAHomePlusDetailView : SADetailView <SARestApiClientTaskDelegate, SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate, UITableViewDataSource, UITableViewDelegate, SAChartFilterFieldDelegate>
+@interface SAHomePlusDetailView : SADetailView <SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEco;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgComfort;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEcoReduction;
@@ -61,12 +60,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vError;
 @property (weak, nonatomic) IBOutlet UILabel *lErrorMessage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cErrorHeight;
-@property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 - (IBAction)calendarButtonTouched:(id)sender;
 - (IBAction)settingsButtonTouched:(id)sender;
-@property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 @property (weak, nonatomic) IBOutlet UITableView *tvChannels;
-@property (weak, nonatomic) IBOutlet UIView *vCharts;
 @property (weak, nonatomic) IBOutlet UIButton *btnSettings;
 @property (weak, nonatomic) IBOutlet UIButton *btnSchedule;
 @property (weak, nonatomic) IBOutlet UILabel *lTemperature;
@@ -76,8 +72,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnEco;
 @property (weak, nonatomic) IBOutlet UIButton *btnTurbo;
 @property (weak, nonatomic) IBOutlet UIButton *btnAuto;
-@property (weak, nonatomic) IBOutlet SAChartFilterField *tfChartTypeFilter;
-@property (weak, nonatomic) IBOutlet SAChartFilterField *ftDateRangeFilter;
 - (IBAction)plusMinusTouched:(id)sender;
 - (IBAction)onOffTouched:(id)sender;
 - (void) updateViewWithEvent: (HomePlusRefreshEvent*) event;

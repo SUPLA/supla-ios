@@ -445,6 +445,8 @@
 "history_disabled" = "Der Verlauf ist für diesen Kanal deaktiviert.";
 "history_delete_data" = "Historie löschen und neuladen";
 "history_wait_for_download_completed" = "Bitte warten, herunterladen...";
+"temperature_measured" = "Gemessen";
+"temperature_preset" = "Voreingestellt";
 
 /* Notifications */
 "notifications_log_profile" = "Konto:";

@@ -59,7 +59,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
 
         let temperatureColors = TemperatureColors()
         let humidityColors = HumidityColors()
-        var observables: [Observable<ChannelChartSets>] = []
+        var observables: [Observable<[ChannelChartSets]>] = []
 
         for channel in channelsWithMeasurements {
             if (channel.function == SUPLA_CHANNELFNC_THERMOMETER) {
@@ -72,6 +72,6 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
             }
         }
 
-        return Observable.zip(observables)
+        return Observable.zip(observables, resultSelector: { $0.flatMap { $0 } })
     }
 }

@@ -21,7 +21,6 @@ import RxSwift
 @testable import SUPLA
 
 final class ThermostatMeasurementItemRepositoryMock: BaseRepositoryMock<SAThermostatMeasurementItem>, ThermostatMeasurementItemRepository {
-    
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     
@@ -31,6 +30,42 @@ final class ThermostatMeasurementItemRepositoryMock: BaseRepositoryMock<SAThermo
     }
     
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
+    }
+    
+    func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAThermostatMeasurementItem]> {
+        .empty()
+    }
+    
+    func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {
+        .empty()
+    }
+    
+    func findMinTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        .empty()
+    }
+    
+    func findMaxTimestamp(remoteId: Int32, serverId: Int32?) -> Observable<TimeInterval?> {
+        .empty()
+    }
+    
+    func findCount(remoteId: Int32, serverId: Int32?) -> Observable<Int> {
+        .empty()
+    }
+    
+    func getInitialMeasurements(remoteId: Int32) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        .empty()
+    }
+    
+    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ThermostatMeasurement]> {
+        .empty()
+    }
+    
+    func storeMeasurements(measurements: [SUPLA.SuplaCloudClient.ThermostatMeasurement], timestamp: TimeInterval, serverId: Int32, remoteId: Int32) throws -> TimeInterval {
+        0.0
+    }
+    
+    func fromJson(data: Data) throws -> [SUPLA.SuplaCloudClient.ThermostatMeasurement] {
+        []
     }
 }
 

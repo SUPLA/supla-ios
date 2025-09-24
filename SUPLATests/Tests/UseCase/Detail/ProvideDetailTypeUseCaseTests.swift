@@ -182,7 +182,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideTempHp_forHomeplusThermostatFunction() {
-        doTest(expectedResult: .legacy(type: .thermostat_hp)) {
+        doTest(expectedResult: .thermostatDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
             
