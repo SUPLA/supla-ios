@@ -465,14 +465,14 @@
 "container_sound_alarm" = "Sound alarm active";
 
 /* apple car play */
-"car_play_label" = "Actions for Widgets/CarPlay";
-"car_play_voice_messages" = "Play messages";
 "car_play_action" = "Action: %@";
 "car_play_display_name" = "Display name";
+"car_play_label" = "Actions for Widgets/CarPlay";
+"car_play_voice_messages" = "Play messages";
 "car_play_execution_error" = "Execution failed (error code: %d)";
 "car_play_executing" = "Executing...";
 "car_play_delete_title" = "Deleting item";
-"car_play_delete_message" = "Do you want to continue";
+"car_play_delete_message" = "Do you want to continue?";
 "car_play_confirm_delete" = "Delete";
 "car_play_empty" = "CarPlay is not configured. Go to Supla App -> Settings -> Actions for Widgets/CarPlay and prepare configuration.";
 

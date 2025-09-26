@@ -591,6 +591,33 @@
 /* Car play */
 "car_play_action" = "Acção: %@";
 "car_play_display_name" = "Nome";
+"car_play_label" = "Ações para Widgets/CarPlay";
+"car_play_voice_messages" = "Reproduzir mensagens";
+"car_play_execution_error" = "Falha na execução (código de erro: %d)";
+"car_play_executing" = "Executando...";
+"car_play_delete_title" = "Excluindo item";
+"car_play_delete_message" = "Deseja continuar?";
+"car_play_confirm_delete" = "Excluir";
+"car_play_empty" = "O CarPlay não está configurado. Vá para a App Supla -> Configurações -> Ações para Widgets/CarPlay e prepare a configuração.";
+
+/* Widgets */
+"widget_empty_hint" = "Nenhuma ação comum definida. Vá para o APP Supla -> Configurações -> Ações para Widgets/CarPlay e defina suas ações.";
+"widget_control_hint" = "Executar ação";
+"widgets_actions_name" = "Ações";
+"widgets_actions_description" = "Simplifica o acesso às ações mais comuns.";
+"widgets_unknown_action" = "Ação desconhecida!";
+"widgets_value_title" = "Visualização Rápida";
+"widgets_value_description" = "Widget que oferece uma prévia rápida do valor atual do canal.";
+"widget_configuration_error" = "O widget não está configurado corretamente";
+"widgets_single_action_title" = "Ação Única";
+"widgets_single_action_description" = "Simplifica o acesso a uma única ação.";
+"widgets_double_action_title" = "Ação Dupla";
+"widgets_double_action_description" = "Simplifica o acesso a duas ações.";
+"widgets_first_action" = "Primeira Ação";
+"widgets_second_action" = "Segunda Ação";
+"widgets_control_title" = "Botão de Controle";
+"widgets_control_description" = "Botão que permite executar uma única ação predefinida.";
+"widgets_selected_action" = "Ação Selecionada";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "O tempo-limite de informação sobre a disponibilidade do registo dos dispositivos foi excedido!";

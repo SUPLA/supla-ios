@@ -589,6 +589,33 @@
 /* Car play */
 "car_play_action" = "Подія: %@";
 "car_play_display_name" = "Назва";
+"car_play_label" = "Дії для Віджетів/CarPlay";
+"car_play_voice_messages" = "Відтворити повідомлення";
+"car_play_execution_error" = "Виконання не вдалося (код помилки: %d)";
+"car_play_executing" = "Виконується...";
+"car_play_delete_title" = "Видалення елемента";
+"car_play_delete_message" = "Бажаєте продовжити?";
+"car_play_confirm_delete" = "Видалити";
+"car_play_empty" = "CarPlay не налаштовано. Перейдіть до Supla App -> Налаштування -> Дії для Віджетів/CarPlay та підготуйте конфігурацію.";
+
+/* Widgets */
+"widget_empty_hint" = "Не визначено жодної спільної дії. Перейдіть до Supla APP -> Налаштування -> Дії для Віджетів/CarPlay та визначте свої дії.";
+"widget_control_hint" = "Виконати дію";
+"widgets_actions_name" = "Дії";
+"widgets_actions_description" = "Спрощує доступ до найпоширеніших дій.";
+"widgets_unknown_action" = "Невідома дія!";
+"widgets_value_title" = "Швидкий перегляд";
+"widgets_value_description" = "Віджет, який служить для швидкого попереднього перегляду поточного значення каналу.";
+"widget_configuration_error" = "Віджет налаштовано неправильно";
+"widgets_single_action_title" = "Одна дія";
+"widgets_single_action_description" = "Спрощує доступ до однієї дії.";
+"widgets_double_action_title" = "Подвійна дія";
+"widgets_double_action_description" = "Спрощує доступ до двох дій.";
+"widgets_first_action" = "Перша дія";
+"widgets_second_action" = "Друга дія";
+"widgets_control_title" = "Кнопка керування";
+"widgets_control_description" = "Кнопка, яка дозволяє виконати попередньо визначену одну дію.";
+"widgets_selected_action" = "Вибрана дія";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Минув час очікування інформації про наявність реєстрації пристрою!";

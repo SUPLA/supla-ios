@@ -589,6 +589,33 @@
 /* Car play */
 "car_play_action" = "Actie: %@";
 "car_play_display_name" = "Naam";
+"car_play_label" = "Acties voor Widgets/CarPlay";
+"car_play_voice_messages" = "Berichten afspelen";
+"car_play_execution_error" = "Uitvoering mislukt (foutcode: %d)";
+"car_play_executing" = "Bezig met uitvoeren...";
+"car_play_delete_title" = "Item verwijderen";
+"car_play_delete_message" = "Wilt u doorgaan?";
+"car_play_confirm_delete" = "Verwijderen";
+"car_play_empty" = "CarPlay is niet geconfigureerd. Ga naar Supla App -> Instellingen -> Acties voor Widgets/CarPlay en bereid de configuratie voor.";
+
+/* Widgets */
+"widget_empty_hint" = "Geen gemeenschappelijke actie gedefinieerd. Ga naar Supla APP -> Instellingen -> Acties voor Widgets/CarPlay en definieer uw acties.";
+"widget_control_hint" = "Voer actie uit";
+"widgets_actions_name" = "Acties";
+"widgets_actions_description" = "Vereenvoudigt de toegang tot de meest voorkomende acties.";
+"widgets_unknown_action" = "Onbekende actie!";
+"widgets_value_title" = "Snel Overzicht";
+"widgets_value_description" = "Widget die dient als een snel overzicht van de huidige kanaalwaarde.";
+"widget_configuration_error" = "Widget is niet correct geconfigureerd";
+"widgets_single_action_title" = "Enkele Actie";
+"widgets_single_action_description" = "Vereenvoudigt de toegang tot een enkele actie.";
+"widgets_double_action_title" = "Dubbele Actie";
+"widgets_double_action_description" = "Vereenvoudigt de toegang tot twee acties.";
+"widgets_first_action" = "Eerste Actie";
+"widgets_second_action" = "Tweede Actie";
+"widgets_control_title" = "Bedieningsknop";
+"widgets_control_description" = "Knop die het uitvoeren van een vooraf gedefinieerde enkele actie mogelijk maakt.";
+"widgets_selected_action" = "Geselecteerde Actie";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Wachttijd voor informatie over de beschikbaarheid van apparaatregistratie is overschreden!";
