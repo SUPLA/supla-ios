@@ -194,8 +194,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         }
         
         sensorIssueView.isHidden = state.sensorIssue == nil
-        sensorIssueView.icon = state.sensorIssue?.sensorIcon?.uiImage
-        sensorIssueView.message = state.sensorIssue?.message
+        sensorIssueView.sensorIssue = state.sensorIssue
     }
     
     private func setupView() {
@@ -560,18 +559,15 @@ private class ProgramView: UIView {
 }
 
 private class SensorIssueView: UIView {
-    var icon: UIImage? {
-        get { iconView.image }
-        set {
-            iconView.image = newValue
-            iconView.isHidden = newValue == nil
+    
+    var sensorIssue: SensorIssue? = nil {
+        didSet {
+            iconView.image = sensorIssue?.icon?.uiImage
+            iconView.isHidden = sensorIssue?.icon == nil
+            warningIconView.isHidden = sensorIssue?.showSensorIcon != true
+            messageView.text = sensorIssue?.message
             setupChangeableConstraints()
         }
-    }
-    
-    var message: String? {
-        get { messageView.text }
-        set { messageView.text = newValue }
     }
     
     private lazy var iconView: UIImageView = {
@@ -632,7 +628,7 @@ private class SensorIssueView: UIView {
             changeableConstraints.removeAll()
         }
         
-        if (icon != nil) {
+        if (sensorIssue?.icon != nil) {
             changeableConstraints.append(contentsOf: [
                 iconView.topAnchor.constraint(equalTo: topAnchor),
                 iconView.leftAnchor.constraint(equalTo: leftAnchor),
@@ -641,11 +637,14 @@ private class SensorIssueView: UIView {
                 iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
                 
                 messageView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceTiny),
-                
-                warningIconView.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: -4),
-                warningIconView.bottomAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 4)
             ])
-        } else {
+            if (sensorIssue?.showSensorIcon == true) {
+                changeableConstraints.append(contentsOf: [
+                    warningIconView.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: -4),
+                    warningIconView.bottomAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 4)
+                ])
+            }
+        } else if (sensorIssue?.showSensorIcon == true) {
             changeableConstraints.append(contentsOf: [
                 warningIconView.topAnchor.constraint(equalTo: topAnchor),
                 warningIconView.leftAnchor.constraint(equalTo: leftAnchor),

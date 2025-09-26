@@ -52660,6 +52660,44 @@
           },
           {
             "kind": "Var",
+            "name": "antifreezeOverheatActive",
+            "printedName": "antifreezeOverheatActive",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaThermostatFlag.Type) -> SharedCore.SuplaThermostatFlag",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaThermostatFlag",
+                    "printedName": "SharedCore.SuplaThermostatFlag",
+                    "usr": "s:10SharedCore19SuplaThermostatFlagO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaThermostatFlag.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaThermostatFlag",
+                        "printedName": "SharedCore.SuplaThermostatFlag",
+                        "usr": "s:10SharedCore19SuplaThermostatFlagO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore19SuplaThermostatFlagO24antifreezeOverheatActiveyA2CmF",
+            "mangledName": "$s10SharedCore19SuplaThermostatFlagO24antifreezeOverheatActiveyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 14
+          },
+          {
+            "kind": "Var",
             "name": "name",
             "printedName": "name",
             "children": [

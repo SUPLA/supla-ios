@@ -422,6 +422,8 @@
 "thermostat_detail_list" = "Liste";
 "thermostat_detail_main_thermostat" = "Hauptthermostat";
 "thermostat_detail_other_thermostats" = "Andere Thermostate";
+"thermostat_detail_antifreeze_active" = "Frostschutz aktiv";
+"thermostat_detail_overheat_active" = "Überhitzungsschutz aktiv";
 
 /* Combined Chart */
 "history_range_label" = "Bereich";

@@ -1615,6 +1615,7 @@ extension SharedCore.__SuplaRelayFlag {
   case weeklyScheduleTemporalOverride
   case batteryCoverOpen
   case calibrationError
+  case antifreezeOverheatActive
   public var name: Swift.String {
     get
   }

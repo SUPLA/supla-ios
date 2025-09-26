@@ -421,6 +421,8 @@
 "thermostat_detail_main_thermostat" = "Pagrindinis termostatas";
 "thermostat_detail_other_thermostats" = "Priklausomi termostatai";
 "thermostat_battery_cover_open" = "Baterijos dangtelis atidarytas";
+"thermostat_detail_antifreeze_active" = "Aktyvi apsauga nuo užšalimo";
+"thermostat_detail_overheat_active" = "Aktyvi apsauga nuo perkaitimo";
 
 /* Combined Chart */
 "history_range_last_day" = "Pastarosios 24 valandos";

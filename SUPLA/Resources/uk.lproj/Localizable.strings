@@ -420,6 +420,8 @@
 "thermostat_detail_main_thermostat" = "Головний термостат";
 "thermostat_detail_other_thermostats" = "Залежні термостати";
 "thermostat_battery_cover_open" = "Кришка акумулятора відкрита";
+"thermostat_detail_antifreeze_active" = "Активний захист від замерзання";
+"thermostat_detail_overheat_active" = "Активний захист від перегріву";
 
 /* Combined Chart */
 "history_range_last_day" = "Останні 24 години";

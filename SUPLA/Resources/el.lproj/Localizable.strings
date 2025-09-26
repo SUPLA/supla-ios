@@ -419,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Κύριος θερμοστάτης";
 "thermostat_detail_other_thermostats" = "Εξαρτώμενοι θερμοστάτες";
 "thermostat_battery_cover_open" = "Το κάλυμμα της μπαταρίας είναι ανοιχτό";
+"thermostat_detail_antifreeze_active" = "Ενεργή αντιπαγωτική προστασία";
+"thermostat_detail_overheat_active" = "Ενεργή προστασία από υπερθέρμανση";
 
 /* Combined Chart */
 "history_range_last_day" = "Οι τελευταίες 24 ώρες";

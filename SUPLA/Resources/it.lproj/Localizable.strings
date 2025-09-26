@@ -446,6 +446,8 @@
 "thermostat_detail_list" = "Elenco";
 "thermostat_detail_main_thermostat" = "Termostato principale";
 "thermostat_detail_other_thermostats" = "Termostati dipendenti";
+"thermostat_detail_antifreeze_active" = "Protezione antigelo attiva";
+"thermostat_detail_overheat_active" = "Protezione contro il surriscaldamento attiva";
 
 /* Combined Chart */
 "history_range_label" = "Intervallo";

@@ -304,7 +304,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.configMax, to: config.maxTemperature)
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
                 .changing(path: \.issues, to: createThermostatIssues(channelWithChildren: channel))
-                .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
+                .changing(path: \.sensorIssue, to: SensorIssue.build(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.status().online && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.status().online, data.3))
                 .changing(path: \.timerEndDate, to: channel.channel.getTimerEndDate())
@@ -476,31 +476,6 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     
     private func createThermostatIssues(channelWithChildren: ChannelWithChildren) -> [ChannelIssueItem] {
         thermostatIssuesProvider.provide(channelWithChildren: channelWithChildren.shareable)
-    }
-    
-    private func createSensorIssue(value: ThermostatValue, children: [ChannelChild]) -> SensorIssue? {
-        if (!value.flags.contains(.forcedOffBySensor)) {
-            return nil
-        }
-        
-        if let sensor = children.first(where: { $0.relationType == .default }) {
-            let message = switch (sensor.channel.func) {
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
-                Strings.ThermostatDetail.offByWindow
-            case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
-                Strings.ThermostatDetail.offByCard
-            default: Strings.ThermostatDetail.offBySensor
-            }
-            return SensorIssue(
-                sensorIcon: getChannelBaseIconUseCase.invoke(channel: sensor.channel),
-                message: message
-            )
-        } else {
-            return SensorIssue(
-                sensorIcon: nil,
-                message: Strings.ThermostatDetail.offBySensor
-            )
-        }
     }
     
     private func createProgramInfo(
@@ -754,11 +729,6 @@ private extension SAChannel {
     func isThermostat() -> Bool {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT
     }
-}
-
-struct SensorIssue: Equatable {
-    let sensorIcon: IconResult?
-    let message: String
 }
 
 private extension SAChannel {

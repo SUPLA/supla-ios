@@ -419,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Glavni termostat";
 "thermostat_detail_other_thermostats" = "Odvisni termostati";
 "thermostat_battery_cover_open" = "Odprt pokrov baterije";
+"thermostat_detail_antifreeze_active" = "Aktivna zaščita pred zmrzaljo";
+"thermostat_detail_overheat_active" = "Aktivna zaščita pred pregrevanjem";
 
 /* Combined Chart */
 "history_range_last_day" = "Zadnjih 24 ur";

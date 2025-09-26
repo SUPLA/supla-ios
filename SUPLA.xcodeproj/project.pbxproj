@@ -919,6 +919,7 @@
 		A5A325262E81861300E60812 /* DownloadThermostatHeatpolLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325252E81860300E60812 /* DownloadThermostatHeatpolLogUseCase.swift */; };
 		A5A325282E8284D000E60812 /* ThermostatHeatpolMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325272E8284C300E60812 /* ThermostatHeatpolMeasurementsProvider.swift */; };
 		A5A3252A2E82889400E60812 /* SAThermostatMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325292E82888700E60812 /* SAThermostatMeasurementItem+Ext.swift */; };
+		A5A3252C2E869A0A00E60812 /* SensorIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3252B2E869A0600E60812 /* SensorIssue.swift */; };
 		A5A601C72E7AD80700B1BFA6 /* SharedCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; };
 		A5A601C82E7AD80700B1BFA6 /* SharedCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */; };
@@ -2599,6 +2600,7 @@
 		A5A325252E81860300E60812 /* DownloadThermostatHeatpolLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadThermostatHeatpolLogUseCase.swift; sourceTree = "<group>"; };
 		A5A325272E8284C300E60812 /* ThermostatHeatpolMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHeatpolMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5A325292E82888700E60812 /* SAThermostatMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAThermostatMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A5A3252B2E869A0600E60812 /* SensorIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIssue.swift; sourceTree = "<group>"; };
 		A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationAsRemovableUseCaseTest.swift; sourceTree = "<group>"; };
 		A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteThermostatActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClientConfigUseCaseTests.swift; sourceTree = "<group>"; };
@@ -4033,6 +4035,7 @@
 		A51BE8F02AA7183F00718F2F /* ThermostatGeneral */ = {
 			isa = PBXGroup;
 			children = (
+				A5A3252B2E869A0600E60812 /* SensorIssue.swift */,
 				A51BE8FA2AA72FE200718F2F /* UI */,
 				A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */,
 				A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */,
@@ -8087,6 +8090,7 @@
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
 				A5C5F6EF2D93EBDA00E303B8 /* SuplaCoreDialogViewModel.swift in Sources */,
 				A57668C82AE7CE890025509D /* SuplaCombinedChartView.swift in Sources */,
+				A5A3252C2E869A0A00E60812 /* SensorIssue.swift in Sources */,
 				A505EC4C2CF88CAE00E69BDB /* ReadOrCreateProfileServerUseCase.swift in Sources */,
 				A5477DBD2AA52F5700220B4A /* ThermostatValue+iOS.swift in Sources */,
 				A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */,

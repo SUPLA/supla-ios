@@ -419,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Hoofdthermostaat";
 "thermostat_detail_other_thermostats" = "Afhankelijke thermostaten";
 "thermostat_battery_cover_open" = "Batterijklep openen";
+"thermostat_detail_antifreeze_active" = "Vorstbeveiliging actief";
+"thermostat_detail_overheat_active" = "Oververhittingsbeveiliging actief";
 
 /* Combined Chart */
 "history_range_last_day" = "De laatste 24 uur";

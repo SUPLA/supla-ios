@@ -453,6 +453,8 @@
 "thermostat_detail_list" = "Lista";
 "thermostat_detail_main_thermostat" = "Termostat główny";
 "thermostat_detail_other_thermostats" = "Lista pozostałych";
+"thermostat_detail_antifreeze_active" = "Aktywna ochrona przeciwzamrożeniowa";
+"thermostat_detail_overheat_active" = "Aktywna ochrona przed przegrzaniem";
 
 /* Combined Chart */
 "history_range_label" = "Zakres";

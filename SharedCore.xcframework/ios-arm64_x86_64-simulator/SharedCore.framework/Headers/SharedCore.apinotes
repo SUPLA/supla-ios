@@ -8661,6 +8661,10 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "calibrationError"
     Type: "SharedCoreSuplaThermostatFlag * _Nonnull"
+  - Name: "antifreezeOverheatActive"
+    PropertyKind: "Class"
+    SwiftName: "antifreezeOverheatActive"
+    Type: "SharedCoreSuplaThermostatFlag * _Nonnull"
   Methods:
   - Selector: "initWithName:ordinal:"
     MethodKind: "Instance"
