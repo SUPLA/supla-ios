@@ -420,6 +420,8 @@
 "thermostat_detail_main_thermostat" = "Hovedtermostat";
 "thermostat_detail_other_thermostats" = "Avhengige termostater";
 "thermostat_battery_cover_open" = "Åpne batteridekselet";
+"thermostat_detail_antifreeze_active" = "Frostsikring aktiv";
+"thermostat_detail_overheat_active" = "Overopphetingsvern aktiv";
 
 /* Combined Chart */
 "history_range_last_day" = "Siste 24 timer";

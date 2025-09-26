@@ -237,6 +237,8 @@
 "thermostat_detail_list" = "List";
 "thermostat_detail_main_thermostat" = "Main thermostat";
 "thermostat_detail_other_thermostats" = "Ohter thermostats";
+"thermostat_detail_antifreeze_active" = "Antifreeze protection active";
+"thermostat_detail_overheat_active" = "Overheat protection active";
 
 /* Combined Chart */
 "history_range_label" = "Range";

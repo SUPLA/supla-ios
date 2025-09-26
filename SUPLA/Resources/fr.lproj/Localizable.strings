@@ -419,6 +419,8 @@
 "schedule_detail_program_dialog_header" = "Paramètres du programme %d";
 "hvac_mode_temperature_heating" = "Température de chauffage";
 "hvac_mode_temperature_cooling" = "Température de refroidissement";
+"thermostat_detail_antifreeze_active" = "Protection antigel active";
+"thermostat_detail_overheat_active" = "Protection contre la surchauffe active";
 
 /* Combined Chart */
 "history_range_label" = "Plage";

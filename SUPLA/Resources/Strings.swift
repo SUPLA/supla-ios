@@ -268,6 +268,9 @@ struct Strings {
         static let list = "thermostat_detail_list".toLocalized()
         static let mainThermostat = "thermostat_detail_main_thermostat".toLocalized()
         static let otherThermostats = "thermostat_detail_other_thermostats".toLocalized()
+        
+        static let antifreezeActive = "thermostat_detail_antifreeze_active".toLocalized()
+        static let overheatActive = "thermostat_detail_overheat_active".toLocalized()
     }
     
     struct Notifications {

@@ -1847,6 +1847,7 @@ __attribute__((swift_name("SuplaThermostatFlag")))
 @property (class, readonly) SharedCoreSuplaThermostatFlag *weeklyScheduleTemporalOverride __attribute__((swift_name("weeklyScheduleTemporalOverride")));
 @property (class, readonly) SharedCoreSuplaThermostatFlag *batteryCoverOpen __attribute__((swift_name("batteryCoverOpen")));
 @property (class, readonly) SharedCoreSuplaThermostatFlag *calibrationError __attribute__((swift_name("calibrationError")));
+@property (class, readonly) SharedCoreSuplaThermostatFlag *antifreezeOverheatActive __attribute__((swift_name("antifreezeOverheatActive")));
 @property (class, readonly) NSArray<SharedCoreSuplaThermostatFlag *> *entries __attribute__((swift_name("entries")));
 @property (readonly) int32_t value_ __attribute__((swift_name("value_")));
 + (instancetype)alloc __attribute__((unavailable));

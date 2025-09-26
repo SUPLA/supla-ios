@@ -423,6 +423,8 @@
 "thermostat_detail_main_thermostat" = "Termostato principal";
 "thermostat_detail_other_thermostats" = "Termostatos dependentes";
 "thermostat_battery_cover_open" = "Tampa da bateria aberta";
+"thermostat_detail_antifreeze_active" = "Proteção anticongelante ativa";
+"thermostat_detail_overheat_active" = "Proteção contra superaquecimento ativa";
 
 /* Combined Chart */
 "history_range_last_day" = "Últimas 24 horas";

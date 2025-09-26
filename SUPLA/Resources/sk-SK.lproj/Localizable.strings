@@ -417,6 +417,8 @@
 "thermostat_detail_main_thermostat" = "Hlavný termostat";
 "thermostat_detail_other_thermostats" = "Závislé termostaty";
 "thermostat_battery_cover_open" = "Otvorte kryt batérie";
+"thermostat_detail_antifreeze_active" = "Aktívna protimrazová ochrana";
+"thermostat_detail_overheat_active" = "Aktívna ochrana proti prehriatiu";
 
 /* Combined Chart */
 "history_range_last_day" = "Posledných 24 hodín";
