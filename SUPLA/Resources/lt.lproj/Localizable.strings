@@ -591,6 +591,33 @@
 /* Car play */
 "car_play_action" = "Veiksmas: %@";
 "car_play_display_name" = "Pavadinimas";
+"car_play_label" = "Veiksmai valdikliams/CarPlay";
+"car_play_voice_messages" = "Leisti pranešimus";
+"car_play_execution_error" = "Nepavyko įvykdyti (klaidos kodas: %d)";
+"car_play_executing" = "Vykdoma...";
+"car_play_delete_title" = "Šalinamas elementas";
+"car_play_delete_message" = "Ar norite tęsti?";
+"car_play_confirm_delete" = "Ištrinti";
+"car_play_empty" = "CarPlay nėra sukonfigūruotas. Eikite į „Supla App“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir paruoškite konfigūraciją.";
+
+/* Widgets */
+"widget_empty_hint" = "Nenurodytas joks bendras veiksmas. Eikite į „Supla APP“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir nurodykite savo veiksmus.";
+"widget_control_hint" = "Atlikti veiksmą";
+"widgets_actions_name" = "Veiksmai";
+"widgets_actions_description" = "Supaprastina prieigą prie dažniausiai naudojamų veiksmų.";
+"widgets_unknown_action" = "Nežinomas veiksmas!";
+"widgets_value_title" = "Greitas Peržiūras";
+"widgets_value_description" = "Valdiklis, kuris rodo greitą dabartinės kanalo vertės peržiūrą.";
+"widget_configuration_error" = "Valdiklis nėra tinkamai sukonfigūruotas";
+"widgets_single_action_title" = "Vienas Veiksmas";
+"widgets_single_action_description" = "Supaprastina prieigą prie vieno veiksmo.";
+"widgets_double_action_title" = "Dvigubas Veiksmas";
+"widgets_double_action_description" = "Supaprastina prieigą prie dviejų veiksmų.";
+"widgets_first_action" = "Pirmas Veiksmas";
+"widgets_second_action" = "Antras Veiksmas";
+"widgets_control_title" = "Valdymo Mygtukas";
+"widgets_control_description" = "Mygtukas, leidžiantis atlikti iš anksto nustatytą vieną veiksmą.";
+"widgets_selected_action" = "Pasirinktas Veiksmas";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Viršytas informacijos apie įrenginių registracijos prieinamumą laukimo laikas!";

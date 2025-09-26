@@ -589,6 +589,33 @@
 /* Car play */
 "car_play_action" = "Ενέργεια: %@";
 "car_play_display_name" = "Όνομα";
+"car_play_label" = "Ενέργειες για Γραφικά Στοιχεία/CarPlay";
+"car_play_voice_messages" = "Αναπαραγωγή μηνυμάτων";
+"car_play_execution_error" = "Αποτυχία εκτέλεσης (κωδικός σφάλματος: %d)";
+"car_play_executing" = "Εκτελείται...";
+"car_play_delete_title" = "Διαγραφή στοιχείου";
+"car_play_delete_message" = "Θέλετε να συνεχίσετε;";
+"car_play_confirm_delete" = "Διαγραφή";
+"car_play_empty" = "Το CarPlay δεν έχει ρυθμιστεί. Μεταβείτε στην εφαρμογή Supla App -> Ρυθμίσεις -> Ενέργειες για Γραφικά Στοιχεία/CarPlay και προετοιμάστε τη ρύθμιση.";
+
+/* Widgets */
+"widget_empty_hint" = "Δεν έχει οριστεί κοινή ενέργεια. Μεταβείτε στην εφαρμογή Supla APP -> Ρυθμίσεις -> Ενέργειες για Γραφικά Στοιχεία/CarPlay και ορίστε τις ενέργειές σας.";
+"widget_control_hint" = "Εκτέλεση ενέργειας";
+"widgets_actions_name" = "Ενέργειες";
+"widgets_actions_description" = "Απλοποιεί την πρόσβαση στις πιο κοινές ενέργειες.";
+"widgets_unknown_action" = "Άγνωστη ενέργεια!";
+"widgets_value_title" = "Γρήγορη Προβολή";
+"widgets_value_description" = "Γραφικό στοιχείο που παρέχει μια γρήγορη προεπισκόπηση της τρέχουσας τιμής καναλιού.";
+"widget_configuration_error" = "Το γραφικό στοιχείο δεν έχει ρυθμιστεί σωστά";
+"widgets_single_action_title" = "Μονή Ενέργεια";
+"widgets_single_action_description" = "Απλοποιεί την πρόσβαση σε μονή ενέργεια.";
+"widgets_double_action_title" = "Διπλή Ενέργεια";
+"widgets_double_action_description" = "Απλοποιεί την πρόσβαση σε δύο ενέργειες.";
+"widgets_first_action" = "Πρώτη Ενέργεια";
+"widgets_second_action" = "Δεύτερη Ενέργεια";
+"widgets_control_title" = "Κουμπί Ελέγχου";
+"widgets_control_description" = "Κουμπί που επιτρέπει την εκτέλεση μιας προκαθορισμένης μονής ενέργειας.";
+"widgets_selected_action" = "Επιλεγμένη Ενέργεια";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Υπέρβαση χρόνου αναμονής για τις πληροφορίες σχετικά με τη διαθεσιμότητα εγγραφής των συσκευών!";

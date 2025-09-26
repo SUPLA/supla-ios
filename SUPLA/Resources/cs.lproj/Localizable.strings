@@ -589,6 +589,33 @@
 /* Car play */
 "car_play_action" = "Akce: %@";
 "car_play_display_name" = "Název";
+"car_play_label" = "Akce pro Widgety/CarPlay";
+"car_play_voice_messages" = "Přehrát zprávy";
+"car_play_execution_error" = "Selhání provedení (kód chyby: %d)";
+"car_play_executing" = "Provádění...";
+"car_play_delete_title" = "Odstraňování položky";
+"car_play_delete_message" = "Chcete pokračovat?";
+"car_play_confirm_delete" = "Smazat";
+"car_play_empty" = "CarPlay není nakonfigurován. Přejděte do App Supla -> Nastavení -> Akce pro Widgety/CarPlay a připravte konfiguraci.";
+
+/* Widgets */
+"widget_empty_hint" = "Není definována žádná běžná akce. Přejděte do APP Supla -> Nastavení -> Akce pro Widgety/CarPlay a definujte své akce.";
+"widget_control_hint" = "Provedení akce";
+"widgets_actions_name" = "Akce";
+"widgets_actions_description" = "Zjednodušuje přístup k nejběžnějším akcím.";
+"widgets_unknown_action" = "Neznámá akce!";
+"widgets_value_title" = "Rychlý náhled";
+"widgets_value_description" = "Widget, který slouží k rychlému náhledu aktuální hodnoty kanálu.";
+"widget_configuration_error" = "Widget není správně nakonfigurován";
+"widgets_single_action_title" = "Jedna akce";
+"widgets_single_action_description" = "Zjednodušuje přístup k jedné akci.";
+"widgets_double_action_title" = "Dvojitá akce";
+"widgets_double_action_description" = "Zjednodušuje přístup ke dvěma akcím.";
+"widgets_first_action" = "První akce";
+"widgets_second_action" = "Druhá akce";
+"widgets_control_title" = "Ovládací tlačítko";
+"widgets_control_description" = "Tlačítko, které umožňuje provést předdefinovanou jedinou akci.";
+"widgets_selected_action" = "Vybraná akce";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Doba čekání na informace o dostupnosti registrace zařízení byla překročena!";

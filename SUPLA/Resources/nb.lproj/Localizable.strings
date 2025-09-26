@@ -589,6 +589,33 @@
 /* Car play */
 "car_play_action" = "Handling: %@";
 "car_play_display_name" = "Navn";
+"car_play_label" = "Handlinger for Widgets/CarPlay";
+"car_play_voice_messages" = "Spill av meldinger";
+"car_play_execution_error" = "Utførelse mislyktes (feilkode: %d)";
+"car_play_executing" = "Utfører...";
+"car_play_delete_title" = "Sletter element";
+"car_play_delete_message" = "Vil du fortsette?";
+"car_play_confirm_delete" = "Slett";
+"car_play_empty" = "CarPlay er ikke konfigurert. Gå til Supla App -> Innstillinger -> Handlinger for Widgets/CarPlay og forbered konfigurasjon.";
+
+/* Widgets */
+"widget_empty_hint" = "Ingen felles handling definert. Gå til Supla APP -> Innstillinger -> Handlinger for Widgets/CarPlay og definer dine handlinger.";
+"widget_control_hint" = "Utfør handling";
+"widgets_actions_name" = "Handlinger";
+"widgets_actions_description" = "Forenkler tilgangen til de mest vanlige handlingene.";
+"widgets_unknown_action" = "Ukjent handling!";
+"widgets_value_title" = "Hurtigvisning";
+"widgets_value_description" = "Widget som gir en rask forhåndsvisning av gjeldende kanalverdi.";
+"widget_configuration_error" = "Widget er ikke riktig konfigurert";
+"widgets_single_action_title" = "Enkel Handling";
+"widgets_single_action_description" = "Forenkler tilgangen til enkelt handling.";
+"widgets_double_action_title" = "Dobbel Handling";
+"widgets_double_action_description" = "Forenkler tilgangen til to handlinger.";
+"widgets_first_action" = "Første handling";
+"widgets_second_action" = "Andre handling";
+"widgets_control_title" = "Kontrollknapp";
+"widgets_control_description" = "Knapp som tillater å utføre en forhåndsdefinert enkelt handling.";
+"widgets_selected_action" = "Valgt Handling";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Ventetiden for informasjon om registrering av enheter er tilgjengelig er overskredet!";

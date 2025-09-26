@@ -685,9 +685,6 @@
 
 /* Widgets */
 "widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i zdefiniuj wybrane akcje.";
-"widgets_control_title" = "Przycisk sterujący";
-"widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
-"widgets_selected_action" = "Wybrana akcja";
 "widget_control_hint" = "Wykonanie akcji";
 "widgets_actions_name" = "Akcje";
 "widgets_actions_description" = "Ułatwia dostęp do najczęściej wykonywanych czynności";
@@ -697,10 +694,13 @@
 "widget_configuration_error" = "Konfiguracja widżetu jest nieprawidłowa";
 "widgets_single_action_title" = "Pojedyncza akcja";
 "widgets_single_action_description" = "Ułatwia dostęp do pojedynczej akcji.";
-"widgets_single_action_title" = "Podwójna akcja";
-"widgets_single_action_description" = "Ułatwia dostęp do podwójnej akcji.";
+"widgets_double_action_title" = "Podwójna akcja";
+"widgets_double_action_description" = "Ułatwia dostęp do podwójnej akcji.";
 "widgets_first_action" = "Pierwsza akcja";
 "widgets_second_action" = "Druga akcja";
+"widgets_control_title" = "Przycisk sterujący";
+"widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
+"widgets_selected_action" = "Wybrana akcja";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Przekroczono czas oczekiwania na informację o dostępności rejestracji urządzeń!";

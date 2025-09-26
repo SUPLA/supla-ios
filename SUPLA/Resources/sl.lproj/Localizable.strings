@@ -589,6 +589,33 @@
 /* Car play */
 "car_play_action" = "Dejanje: %@";
 "car_play_display_name" = "Ime";
+"car_play_label" = "Dejanja za Pripomočke/CarPlay";
+"car_play_voice_messages" = "Predvajaj sporočila";
+"car_play_execution_error" = "Izvedba ni uspela (koda napake: %d)";
+"car_play_executing" = "Izvajanje...";
+"car_play_delete_title" = "Brisanje predmeta";
+"car_play_delete_message" = "Želite nadaljevati?";
+"car_play_confirm_delete" = "Izbriši";
+"car_play_empty" = "CarPlay ni konfiguriran. Pojdite v aplikacijo Supla App -> Nastavitve -> Dejanja za Pripomočke/CarPlay in pripravite konfiguracijo.";
+
+/* Widgets */
+"widget_empty_hint" = "Ni določeno nobeno skupno dejanje. Pojdite v aplikacijo Supla APP -> Nastavitve -> Dejanja za Pripomočke/CarPlay in določite svoja dejanja.";
+"widget_control_hint" = "Izvedi dejanje";
+"widgets_actions_name" = "Dejanja";
+"widgets_actions_description" = "Poenostavi dostop do najpogostejših dejanj.";
+"widgets_unknown_action" = "Neznano dejanje!";
+"widgets_value_title" = "Hiter Pregled";
+"widgets_value_description" = "Pripomoček, ki služi za hiter predogled trenutne vrednosti kanala.";
+"widget_configuration_error" = "Pripomoček ni pravilno konfiguriran";
+"widgets_single_action_title" = "Eno Dejanje";
+"widgets_single_action_description" = "Poenostavi dostop do enega dejanja.";
+"widgets_double_action_title" = "Dvojno Dejanje";
+"widgets_double_action_description" = "Poenostavi dostop do dveh dejanj.";
+"widgets_first_action" = "Prvo Dejanje";
+"widgets_second_action" = "Drugo Dejanje";
+"widgets_control_title" = "Kontrolni Gumb";
+"widgets_control_description" = "Gumb, ki omogoča izvedbo vnaprej določenega posameznega dejanja.";
+"widgets_selected_action" = "Izbrano Dejanje";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Čakalna doba za pridobitev informacije o razpoložljivosti registracije naprav je prekoračena!";
