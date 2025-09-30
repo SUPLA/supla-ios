@@ -83,12 +83,23 @@ enum ConfigureEsp {
             if (!postResult.successful) {
                 return .failed
             }
+        
+            if (postResult.code == 200) {
+                guard let postHtml = postResult.html else { return .failed }
+                await checkResultAndReboot(espData, postHtml)
+            } else {
+                guard let getResult = await repeated(POST_REPEATS, { await espRepository.get() }),
+                      let postHtml = getResult.html
+                else { return .failed }
+                
+                await checkResultAndReboot(espData, postHtml)
+            }
             
-            guard let getResult = await repeated(POST_REPEATS, { await espRepository.get() }),
-                  let postHtml = getResult.html
-            else { return .failed }
-            
-            if let postHtmlDocument = try? SwiftSoup.parse(postHtml),
+            return .success(result: result)
+        }
+        
+        private func checkResultAndReboot(_ espData: EspPostData, _ requestHtml: String) async {
+            if let postHtmlDocument = try? SwiftSoup.parse(requestHtml),
                let resultMessage = try? postHtmlDocument.select(TAG_RESULT_MESSAGE).html(),
                resultMessage.lowercased().contains("data saved")
             {
@@ -96,8 +107,6 @@ enum ConfigureEsp {
                 espData.reboot = true
                 _ = await espRepository.post(espData.fieldMap)
             }
-            
-            return .success(result: result)
         }
     }
     
@@ -119,6 +128,13 @@ enum ConfigureEsp {
 }
 
 private extension Esp.RequestResult {
+    var code: Int? {
+        switch self {
+        case .success(let code, _): code
+        case .failure(let code, _): code
+        default: nil
+        }
+    }
     var successful: Bool {
         switch self {
         case .success: true
@@ -128,7 +144,7 @@ private extension Esp.RequestResult {
 
     var html: String? {
         switch self {
-        case .success(let html): html
+        case .success(_, let html): html
         default: nil
         }
     }

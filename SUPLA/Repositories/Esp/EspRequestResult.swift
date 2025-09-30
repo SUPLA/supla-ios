@@ -18,12 +18,12 @@
     
 extension Esp {
     enum RequestResult {
-        case success(String)
+        case success(Int?, String)
         case setupNeeded
         case credentialsNeeded
         case temporarilyLocked
         case secureConnectionNeeded
         case cancelled
-        case failure(Error)
+        case failure(Int?, Error)
     }
 }

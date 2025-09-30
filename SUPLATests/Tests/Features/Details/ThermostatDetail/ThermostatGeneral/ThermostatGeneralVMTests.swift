@@ -150,7 +150,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.coolingIndicatorActive, to: false)
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0, 0])
-                .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: .suplaIcon(name: ""), message: Strings.ThermostatDetail.offByCard))
+                .changing(path: \.sensorIssue, to: SensorIssue(icon: .suplaIcon(name: ""), message: Strings.ThermostatDetail.offByCard))
                 .changing(path: \.subfunction, to: .heat)
                 .changing(path: \.currentPower, to: nil)
         ])

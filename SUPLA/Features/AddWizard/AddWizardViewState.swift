@@ -31,7 +31,7 @@ extension AddWizardFeature {
         @Published var progressLabel: String? = nil
         @Published var deviceParameters: [DeviceParameter] = []
         @Published var canceling: Bool = false
-        @Published var followupPopupState: SuplaCore.AlertDialogState? = nil
+        @Published var showCloudFollowupPopup: Bool = false
         @Published var providePasswordDialogState: ProvidePasswordDialogState? = nil
         @Published var setPasswordDialogState: SetPasswordDialogState? = nil
 
