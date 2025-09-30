@@ -921,7 +921,6 @@
 		A5A3252A2E82889400E60812 /* SAThermostatMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325292E82888700E60812 /* SAThermostatMeasurementItem+Ext.swift */; };
 		A5A3252C2E869A0A00E60812 /* SensorIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3252B2E869A0600E60812 /* SensorIssue.swift */; };
 		A5A601C72E7AD80700B1BFA6 /* SharedCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; };
-		A5A601C82E7AD80700B1BFA6 /* SharedCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */; };
 		A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */; };
 		A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */; };
@@ -1438,17 +1437,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A5085AEA2CC84FF100ACA8C4 /* SharedCore.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5A601C92E7AD80700B1BFA6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				A5A601C82E7AD80700B1BFA6 /* SharedCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7267,7 +7255,6 @@
 				A5741DA62DC2513E00ED6C18 /* Sources */,
 				A5741DA72DC2513E00ED6C18 /* Frameworks */,
 				A5741DA82DC2513E00ED6C18 /* Resources */,
-				A5A601C92E7AD80700B1BFA6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
