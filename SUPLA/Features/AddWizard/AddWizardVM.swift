@@ -172,11 +172,11 @@ extension AddWizardFeature {
         }
 
         func onFollowupPopupClose() {
-            state.followupPopupState = nil
+            state.showCloudFollowupPopup = false
         }
         
         func onFollowupPopupOpen() {
-            state.followupPopupState = nil
+            state.showCloudFollowupPopup = false
             loadActiveProfileUrlUseCase.invoke()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] url in
@@ -365,12 +365,7 @@ extension AddWizardFeature {
                     case .success(let result):
                         state.deviceParameters = result.parameters
                         if (result.needsCloudConfig) {
-                            state.followupPopupState = .init(
-                                header: Strings.AddWizard.cloudFollowupTitle,
-                                message: Strings.AddWizard.cloudFollowupMessage,
-                                positiveButtonText: Strings.AddWizard.cloudFollowupGoToCloud,
-                                negativeButtonText: Strings.AddWizard.cloudFollowupClose
-                            )
+                            state.showCloudFollowupPopup = true
                         }
                         stateHandler.handle(EspConfigurationEventEspConfigured.shared)
                     }

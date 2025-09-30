@@ -183,6 +183,56 @@ extension SuplaCore.Dialog {
         }
     }
     
+    struct VerticalButtons: SwiftUI.View {
+        let onNegativeClick: () -> Void
+        let onPositiveClick: () -> Void
+        let processing: Bool
+        let positiveDisabled: Bool
+        let negativeText: String
+        let positiveText: String
+        
+        init(
+            onNegativeClick: @escaping () -> Void,
+            onPositiveClick: @escaping () -> Void,
+            processing: Bool = false,
+            positiveDisabled: Bool = false,
+            negativeText: String = Strings.General.cancel,
+            positiveText: String = Strings.General.ok
+        ) {
+            self.onNegativeClick = onNegativeClick
+            self.onPositiveClick = onPositiveClick
+            self.processing = processing
+            self.positiveDisabled = positiveDisabled
+            self.negativeText = negativeText
+            self.positiveText = positiveText
+        }
+        
+        var body: some SwiftUI.View {
+            Divider()
+                .padding(.top, Distance.default)
+            VStack(spacing: Distance.tiny) {
+                BorderedButton(
+                    title: negativeText,
+                    fullWidth: true,
+                    action: onNegativeClick
+                )
+                if (processing) {
+                    ZStack {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }.frame(maxWidth: .infinity)
+                } else {
+                    FilledButton(
+                        title: positiveText,
+                        fullWidth: true,
+                        action: onPositiveClick
+                    ).disabled(positiveDisabled)
+                }
+            }
+            .padding(Distance.default)
+        }
+    }
+    
     struct FieldErrorText: SwiftUI.View {
         let text: String
         

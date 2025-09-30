@@ -73,10 +73,9 @@ extension AddWizardFeature {
                         onNext: { delegate?.onNext(screen) },
                         onAgain: { delegate?.onMessageAction(.repeat) }
                     )
-                    if let dialogState = state.followupPopupState {
-                        SuplaCore.AlertDialog(
-                            state: dialogState,
-                            onDismiss: {},
+                        
+                    if (state.showCloudFollowupPopup) {
+                        CloudFollowupPopup(
                             onPositiveButtonClick: delegate?.onFollowupPopupOpen,
                             onNegativeButtonClick: delegate?.onFollowupPopupClose
                         )
@@ -113,14 +112,14 @@ extension AddWizardFeature {
                 }
                 
                 if let dialogState = state.providePasswordDialogState {
-                    ProvidePasswordDialog(
+                    AddWizardFeature.ProvidePasswordDialog(
                         state: dialogState,
                         delegate: delegate
                     )
                 }
                 
                 if let dialogState = state.setPasswordDialogState {
-                    SetPasswordDialog(
+                    AddWizardFeature.SetPasswordDialog(
                         state: dialogState,
                         delegate: delegate
                     )
@@ -130,8 +129,50 @@ extension AddWizardFeature {
     }
 }
 
+struct CloudFollowupPopup: View {
+    var onPositiveButtonClick: (() -> Void)?
+    var onNegativeButtonClick: (() -> Void)?
+    
+    init(
+        onPositiveButtonClick: (() -> Void)? = nil,
+        onNegativeButtonClick: (() -> Void)? = nil
+    ) {
+        self.onPositiveButtonClick = onPositiveButtonClick
+        self.onNegativeButtonClick = onNegativeButtonClick
+    }
+    
+    var body: some View {
+        SuplaCore.Dialog.Base(onDismiss: {}) {
+            SuplaCore.Dialog.Header(title: Strings.AddWizard.cloudFollowupTitle)
+                
+            SwiftUI.Text(Strings.AddWizard.cloudFollowupMessage)
+                .fontBodyMedium()
+                .multilineTextAlignment(.center)
+                .padding([.leading, .trailing], Distance.default)
+                
+            SuplaCore.Dialog.VerticalButtons(
+                onNegativeClick: onNegativeButtonClick ?? {},
+                onPositiveClick: onPositiveButtonClick ?? {},
+                negativeText: Strings.AddWizard.cloudFollowupClose,
+                positiveText: Strings.AddWizard.cloudFollowupGoToCloud
+            )
+        }
+    }
+}
+
 #Preview {
     AddWizardFeature.View(
         state: AddWizardFeature.ViewState()
     )
 }
+
+#Preview("Cloud followup popup") {
+    let state = AddWizardFeature.ViewState()
+    state.showCloudFollowupPopup = true
+    state.screens = state.screens.just(.success)
+    
+    return AddWizardFeature.View(
+        state: state
+    )
+}
+
