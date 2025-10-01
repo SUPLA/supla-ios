@@ -679,6 +679,7 @@
 		A5741DAB2DC2513E00ED6C18 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5741D8C2DC24DF800ED6C18 /* WidgetKit.framework */; };
 		A5741DAC2DC2513E00ED6C18 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5741D8E2DC24DF800ED6C18 /* SwiftUI.framework */; };
 		A5741DB92DC2513F00ED6C18 /* SUPLAWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A5741DAA2DC2513E00ED6C18 /* SUPLAWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A574D1BA2E8D57F400538237 /* KotlinByteArray+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B7F2CDCD58100B5A019 /* KotlinByteArray+iOS.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
 		A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */; };
 		A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */; };
@@ -8848,6 +8849,7 @@
 				A5E9C2032DCCA8270001F263 /* FlowHStack.swift in Sources */,
 				A5E9C20B2DCCBE920001F263 /* CellScalingLimit.swift in Sources */,
 				A5E2D6942DC9F67D00EBDADB /* SubjectType.swift in Sources */,
+				A574D1BA2E8D57F400538237 /* KotlinByteArray+iOS.swift in Sources */,
 				A5E2D7052DCB853000EBDADB /* SingleCall.swift in Sources */,
 				A5E2D6B12DCA239A00EBDADB /* LocalizedStringResource+Ext.swift in Sources */,
 				A5E2D7032DCB64AF00EBDADB /* SAKeychain.swift in Sources */,

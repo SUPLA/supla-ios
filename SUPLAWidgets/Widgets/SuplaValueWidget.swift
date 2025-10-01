@@ -198,6 +198,7 @@ extension SuplaValueWidget {
                     first: temperature.toTemperatureString(ValueFormat.companion.WithUnit),
                     second: formatter.humidityToString(humidity)
                 )
+            case .container(let value): .single(ContainerValueFormatter.shared.format(value: value))
             case .error(let errorCode): .error(errorCode)
             case .offline: .offline
             }
