@@ -91,7 +91,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
                 }
             }
         }
-        if (channelBase.isHvacThermostat() || channelBase.isSwitch()) {
+        if (channelBase.isThermostat() || channelBase.isSwitch()) {
             return switch (buttonType) {
             case .leftButton: Action.turnOff
             case .rightButton: Action.turnOn
@@ -104,6 +104,12 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
             return switch (buttonType) {
             case .leftButton: Action.close
             case .rightButton: Action.open
+            }
+        }
+        if (channelBase.isRGBW()) {
+            return switch (buttonType) {
+            case .leftButton: .turnOff
+            case .rightButton: .turnOn
             }
         }
         return nil

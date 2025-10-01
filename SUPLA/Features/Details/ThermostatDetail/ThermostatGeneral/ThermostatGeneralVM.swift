@@ -361,7 +361,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let setpointHeatSet = value.flags.contains(.setpointTempMinSet)
         let dhv = channel.isDhw() && setpointHeatSet
         let autoHeat = channel.isThermostatAuto() && setpointHeatSet
-        let heat = channel.isThermostat() && setpointHeatSet && value.subfunction == .heat
+        let heat = channel.isThermostatOnly() && setpointHeatSet && value.subfunction == .heat
         if (dhv || autoHeat || heat) {
             changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat.roundToTenths())
         } else {
@@ -370,7 +370,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         
         let setpointCoolSet = value.flags.contains(.setpointTempMaxSet)
         let autoCool = channel.isThermostatAuto() && setpointCoolSet
-        let cool = channel.isThermostat() && setpointCoolSet && value.subfunction == .cool
+        let cool = channel.isThermostatOnly() && setpointCoolSet && value.subfunction == .cool
         if (autoCool || cool) {
             changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool.roundToTenths())
         } else {
@@ -726,7 +726,7 @@ private extension SAChannel {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL
     }
     
-    func isThermostat() -> Bool {
+    func isThermostatOnly() -> Bool {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT
     }
 }
