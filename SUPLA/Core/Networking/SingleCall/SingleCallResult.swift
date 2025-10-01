@@ -17,11 +17,13 @@
  */
 
 import Foundation
+import SharedCore
 
 enum SingleCallResult {
     case temperature(Double)
     case humidity(Double)
     case temperatureAndHumidity(temperature: Double, humidity: Double)
+    case container(value: ContainerValue)
     case offline
     case error(errorCode: Int)
 }
@@ -46,6 +48,7 @@ extension SingleCallResult {
         case .thermometer: thermometerParser.parse(data)
         case .humidityAndTemperature: humidityAndTemperatureParser.parse(data)
         case .humidity: humidityParser.parse(data)
+        case .container, .waterTank, .septicTank: .container(value: ContainerValue.companion.from(status: .offline, bytes: KotlinByteArray.from(data: data)))
         default: .error(errorCode: -100000 - Int(valueResult.Function))
         }
     }

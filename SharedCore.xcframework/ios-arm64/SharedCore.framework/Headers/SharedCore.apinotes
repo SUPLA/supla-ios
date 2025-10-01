@@ -1663,6 +1663,50 @@ Classes:
   - Selector: "init"
     MethodKind: "Instance"
     SwiftName: "init()"
+- Name: "SharedCoreContainerLevel"
+  SwiftName: "ContainerLevel"
+  Properties:
+  - Name: "level"
+    PropertyKind: "Instance"
+    SwiftName: "level"
+    Type: "int32_t"
+  - Name: "levelKnown"
+    PropertyKind: "Instance"
+    SwiftName: "levelKnown"
+    Type: "BOOL"
+  Methods:
+  - Selector: "initWithRawLevelPercentage:"
+    MethodKind: "Instance"
+    SwiftName: "init(rawLevelPercentage:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "doCopyRawLevelPercentage:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(rawLevelPercentage:)"
+    ResultType: "SharedCoreContainerLevel * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+    Availability: "nonswift"
 - Name: "SharedCoreTemperatureAndHumidity"
   SwiftName: "TemperatureAndHumidity"
   Properties:
@@ -3900,6 +3944,10 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "distanceDefault"
     Type: "SharedCoreValueUnit * _Nonnull"
+  - Name: "percentage"
+    PropertyKind: "Class"
+    SwiftName: "percentage"
+    Type: "SharedCoreValueUnit * _Nonnull"
   Methods:
   - Selector: "getString"
     MethodKind: "Instance"
@@ -6087,6 +6135,10 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "ImpulseCounter"
     Type: "SharedCoreValueFormatSpecification * _Nonnull"
+  - Name: "Percentage"
+    PropertyKind: "Instance"
+    SwiftName: "Percentage"
+    Type: "SharedCoreValueFormatSpecification * _Nonnull"
   - Name: "PowerActive"
     PropertyKind: "Instance"
     SwiftName: "PowerActive"
@@ -6353,6 +6405,38 @@ Classes:
       Type: "int32_t"
     - Position: 2
       Type: "int32_t"
+- Name: "SharedCoreContainerValueFormatter"
+  SwiftName: "ContainerValueFormatter"
+  Properties:
+  - Name: "defaultFormatSpecification"
+    PropertyKind: "Instance"
+    SwiftName: "defaultFormatSpecification"
+    Type: "SharedCoreValueFormatSpecification * _Nonnull"
+  - Name: "invalidValue"
+    PropertyKind: "Instance"
+    SwiftName: "invalidValue"
+    Type: "id<SharedCoreInvalidValue> _Nonnull"
+  Methods:
+  - Selector: "formatValue:"
+    MethodKind: "Instance"
+    SwiftName: "format(value:)"
+    ResultType: "NSString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "formatValue:format:"
+    MethodKind: "Instance"
+    SwiftName: "format(value:format:)"
+    ResultType: "NSString * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+    - Position: 1
+      Type: "SharedCoreValueFormat * _Nonnull"
+  - Selector: "init"
+    MethodKind: "Instance"
+    SwiftName: "init()"
+    Availability: "nonswift"
 - Name: "SharedCoreCurrentValueFormatter"
   SwiftName: "CurrentValueFormatter"
   Properties:
@@ -9472,6 +9556,10 @@ Classes:
   - Name: "ImpulseCounterPrecision"
     PropertyKind: "Class"
     SwiftName: "ImpulseCounterPrecision"
+    Type: "int32_t"
+  - Name: "PercentageDefaultPrecision"
+    PropertyKind: "Class"
+    SwiftName: "PercentageDefaultPrecision"
     Type: "int32_t"
   - Name: "PressurePrecision"
     PropertyKind: "Class"

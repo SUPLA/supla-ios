@@ -42960,6 +42960,44 @@
           },
           {
             "kind": "Var",
+            "name": "percentage",
+            "printedName": "percentage",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.ValueUnit.Type) -> SharedCore.ValueUnit",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ValueUnit",
+                    "printedName": "SharedCore.ValueUnit",
+                    "usr": "s:10SharedCore9ValueUnitO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.ValueUnit.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ValueUnit",
+                        "printedName": "SharedCore.ValueUnit",
+                        "usr": "s:10SharedCore9ValueUnitO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore9ValueUnitO10percentageyA2CmF",
+            "mangledName": "$s10SharedCore9ValueUnitO10percentageyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 18
+          },
+          {
+            "kind": "Var",
             "name": "leadingSpace",
             "printedName": "leadingSpace",
             "children": [
@@ -57966,6 +58004,46 @@
             "declKind": "Accessor",
             "usr": "s:10SharedCore23ImpulseCounterPrecisions5Int32Vvg",
             "mangledName": "$s10SharedCore23ImpulseCounterPrecisions5Int32Vvg",
+            "moduleName": "SharedCore",
+            "accessorKind": "get"
+          }
+        ]
+      },
+      {
+        "kind": "Var",
+        "name": "PercentageDefaultPrecision",
+        "printedName": "PercentageDefaultPrecision",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          }
+        ],
+        "declKind": "Var",
+        "usr": "s:10SharedCore26PercentageDefaultPrecisions5Int32Vvp",
+        "mangledName": "$s10SharedCore26PercentageDefaultPrecisions5Int32Vvp",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "accessors": [
+          {
+            "kind": "Accessor",
+            "name": "Get",
+            "printedName": "Get()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Accessor",
+            "usr": "s:10SharedCore26PercentageDefaultPrecisions5Int32Vvg",
+            "mangledName": "$s10SharedCore26PercentageDefaultPrecisions5Int32Vvg",
             "moduleName": "SharedCore",
             "accessorKind": "get"
           }

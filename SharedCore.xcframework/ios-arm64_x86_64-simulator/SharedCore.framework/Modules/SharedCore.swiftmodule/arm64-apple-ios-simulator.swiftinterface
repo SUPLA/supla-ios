@@ -1188,6 +1188,7 @@ extension SharedCore.__TemperatureUnit {
   case distanceCenti
   case distanceKilo
   case distanceDefault
+  case percentage
   public var leadingSpace: Swift.Bool {
     get
   }
@@ -2150,6 +2151,9 @@ public var GpmPrecision: Swift.Int32 {
   get
 }
 public var ImpulseCounterPrecision: Swift.Int32 {
+  get
+}
+public var PercentageDefaultPrecision: Swift.Int32 {
   get
 }
 public var PressurePrecision: Swift.Int32 {
