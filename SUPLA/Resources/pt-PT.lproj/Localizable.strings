@@ -601,7 +601,9 @@
 "car_play_empty" = "O CarPlay não está configurado. Vá para a App Supla -> Configurações -> Ações para Widgets/CarPlay e prepare a configuração.";
 
 /* Widgets */
-"widget_empty_hint" = "Nenhuma ação comum definida. Vá para o APP Supla -> Configurações -> Ações para Widgets/CarPlay e defina suas ações.";
+"widgets_label" = "Ações para widgets";
+"widget_empty_hint" = "Nenhuma ação comum definida. Vá para o APP Supla -> Configurações -> Ações para widgets e defina suas ações.";
+"widget_with_carplay_empty_hint" = "Nenhuma ação comum definida. Vá para o APP Supla -> Configurações -> Ações para Widgets/CarPlay e defina suas ações.";
 "widget_control_hint" = "Executar ação";
 "widgets_actions_name" = "Ações";
 "widgets_actions_description" = "Simplifica o acesso às ações mais comuns.";

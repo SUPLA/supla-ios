@@ -601,7 +601,9 @@
 "car_play_empty" = "CarPlay nėra sukonfigūruotas. Eikite į „Supla App“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir paruoškite konfigūraciją.";
 
 /* Widgets */
-"widget_empty_hint" = "Nenurodytas joks bendras veiksmas. Eikite į „Supla APP“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir nurodykite savo veiksmus.";
+"widgets_label" = "Veiksmai valdikliams";
+"widget_empty_hint" = "Nenurodytas joks bendras veiksmas. Eikite į „Supla APP“ -> Nustatymai -> Veiksmai valdikliams ir nurodykite savo veiksmus.";
+"widget_with_carplay_empty_hint" = "Nenurodytas joks bendras veiksmas. Eikite į „Supla APP“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir nurodykite savo veiksmus.";
 "widget_control_hint" = "Atlikti veiksmą";
 "widgets_actions_name" = "Veiksmai";
 "widgets_actions_description" = "Supaprastina prieigą prie dažniausiai naudojamų veiksmų.";

@@ -613,6 +613,10 @@
 		A55A8DCD2BB43CB600C540D4 /* ChannelGroupRelationRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DCC2BB43CB600C540D4 /* ChannelGroupRelationRepositoryMock.swift */; };
 		A55A8DD12BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DD02BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift */; };
 		A55A8DD52BB44EFC00C540D4 /* RollerShutterValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DD42BB44EFC00C540D4 /* RollerShutterValueTests.swift */; };
+		A55E7B492E8EAEC600DFA94D /* BrandingConfiguration+CarPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55E7B482E8EAEBE00DFA94D /* BrandingConfiguration+CarPlay.swift */; };
+		A55E7B4A2E8EBC4200DFA94D /* BrandingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */; };
+		A55E7B4B2E8EBC4600DFA94D /* BrandingConfiguration+CarPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55E7B482E8EAEBE00DFA94D /* BrandingConfiguration+CarPlay.swift */; };
+		A55E7B772E8EBCA200DFA94D /* BrandingConfiguration+ProjectorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */; };
 		A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */; };
 		A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */; };
 		A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorView.swift */; };
@@ -2276,6 +2280,8 @@
 		A55A8DCC2BB43CB600C540D4 /* ChannelGroupRelationRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelGroupRelationRepositoryMock.swift; sourceTree = "<group>"; };
 		A55A8DD02BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAuthorizationDialogVMTests.swift; sourceTree = "<group>"; };
 		A55A8DD42BB44EFC00C540D4 /* RollerShutterValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterValueTests.swift; sourceTree = "<group>"; };
+		A55E7B482E8EAEBE00DFA94D /* BrandingConfiguration+CarPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandingConfiguration+CarPlay.swift"; sourceTree = "<group>"; };
+		A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandingConfiguration+ProjectorScreen.swift"; sourceTree = "<group>"; };
 		A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVC.swift; sourceTree = "<group>"; };
 		A56233D72AB054EA001CB948 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -3711,6 +3717,8 @@
 		A5074BA62BC9239C0081B6B1 /* Branding */ = {
 			isa = PBXGroup;
 			children = (
+				A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */,
+				A55E7B482E8EAEBE00DFA94D /* BrandingConfiguration+CarPlay.swift */,
 				A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */,
 			);
 			path = Branding;
@@ -7643,6 +7651,7 @@
 				A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */,
 				A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
+				A55E7B492E8EAEC600DFA94D /* BrandingConfiguration+CarPlay.swift in Sources */,
 				A5741D552E40DC630089DBD0 /* ProvidePasswordDialog.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
 				A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */,
@@ -7746,6 +7755,7 @@
 				A5C5F6E22D91760700E303B8 /* IconButton.swift in Sources */,
 				A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */,
 				A598CAB92CC0EDFD00A784FA /* ElectricityMeterGeneralBaseView.swift in Sources */,
+				A55E7B772E8EBCA200DFA94D /* BrandingConfiguration+ProjectorScreen.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */,
 				A594ADC02C9C07C600780EF3 /* ThermostatIndicatorIcon.swift in Sources */,
@@ -8826,6 +8836,7 @@
 				A5E9C2052DCCBDE90001F263 /* Text.swift in Sources */,
 				A5CF3E582DD6880A00207384 /* WidgetIcon.swift in Sources */,
 				A5C690412DD7516E00194C1B /* Int+Ext.swift in Sources */,
+				A55E7B4B2E8EBC4600DFA94D /* BrandingConfiguration+CarPlay.swift in Sources */,
 				A5E9C2082DCCBE0A0001F263 /* Distance.swift in Sources */,
 				A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */,
 				A5CF3D8A2DD4C9E100207384 /* URL+Ext.swift in Sources */,
@@ -8847,6 +8858,7 @@
 				A519BFE52DD21AAA0045EB77 /* UserNotificationCenter.swift in Sources */,
 				A5E2D70E2DCBEC9C00EBDADB /* UIColor+Supla.swift in Sources */,
 				A5E9C2032DCCA8270001F263 /* FlowHStack.swift in Sources */,
+				A55E7B4A2E8EBC4200DFA94D /* BrandingConfiguration.swift in Sources */,
 				A5E9C20B2DCCBE920001F263 /* CellScalingLimit.swift in Sources */,
 				A5E2D6942DC9F67D00EBDADB /* SubjectType.swift in Sources */,
 				A574D1BA2E8D57F400538237 /* KotlinByteArray+iOS.swift in Sources */,

@@ -610,7 +610,9 @@ struct Strings {
     }
     
     struct Widget {
+        static let label = "widgets_label".toLocalized()
         static let emptyHint = "widget_empty_hint".toLocalized()
+        static let emptyHintWithCarplay = "widget_with_carplay_empty_hint".toLocalized()
         static let controlHint = "widget_control_hint".toLocalized()
         static var actionsName = "widgets_actions_name".toLocalized()
         static let actionsDescription = "widgets_actions_description".toLocalized()

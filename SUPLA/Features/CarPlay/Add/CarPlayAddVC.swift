@@ -33,7 +33,7 @@ extension CarPlayAddFeature {
                 onDelete: viewModel.onDelete
             )
             
-            title = Strings.CarPlay.label
+            title = BrandingConfiguration.actionsLabel
         }
         
         static func create(id: NSManagedObjectID? = nil) -> UIViewController {

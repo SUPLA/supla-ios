@@ -599,7 +599,9 @@
 "car_play_empty" = "CarPlay is niet geconfigureerd. Ga naar Supla App -> Instellingen -> Acties voor Widgets/CarPlay en bereid de configuratie voor.";
 
 /* Widgets */
-"widget_empty_hint" = "Geen gemeenschappelijke actie gedefinieerd. Ga naar Supla APP -> Instellingen -> Acties voor Widgets/CarPlay en definieer uw acties.";
+"widgets_label" = "Acties voor widgets";
+"widget_empty_hint" = "Geen gemeenschappelijke actie gedefinieerd. Ga naar Supla APP -> Instellingen -> Acties voor widgets en definieer uw acties.";
+"widget_with_carplay_empty_hint" = "Geen gemeenschappelijke actie gedefinieerd. Ga naar Supla APP -> Instellingen -> Acties voor Widgets/CarPlay en definieer uw acties.";
 "widget_control_hint" = "Voer actie uit";
 "widgets_actions_name" = "Acties";
 "widgets_actions_description" = "Vereenvoudigt de toegang tot de meest voorkomende acties.";

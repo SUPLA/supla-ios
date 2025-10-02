@@ -118,7 +118,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 callback: { [weak self] in self?.coordinator.navigateToLocationOrdering() }
             ),
             .arrowButtonItem(
-                title: Strings.CarPlay.label,
+                title: BrandingConfiguration.actionsLabel,
                 callback: { [weak self] in self?.coordinator.navigateToCarPlayList()}
             )
         ])

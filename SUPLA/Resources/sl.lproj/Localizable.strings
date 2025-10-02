@@ -599,7 +599,9 @@
 "car_play_empty" = "CarPlay ni konfiguriran. Pojdite v aplikacijo Supla App -> Nastavitve -> Dejanja za Pripomočke/CarPlay in pripravite konfiguracijo.";
 
 /* Widgets */
-"widget_empty_hint" = "Ni določeno nobeno skupno dejanje. Pojdite v aplikacijo Supla APP -> Nastavitve -> Dejanja za Pripomočke/CarPlay in določite svoja dejanja.";
+"widgets_label" = "Dejanja za pripomočke";
+"widget_empty_hint" = "Ni določeno nobeno skupno dejanje. Pojdite v aplikacijo Supla APP -> Nastavitve -> Dejanja za pripomočke in določite svoja dejanja.";
+"widget_with_carplay_empty_hint" = "Ni določeno nobeno skupno dejanje. Pojdite v aplikacijo Supla APP -> Nastavitve -> Dejanja za Pripomočke/CarPlay in določite svoja dejanja.";
 "widget_control_hint" = "Izvedi dejanje";
 "widgets_actions_name" = "Dejanja";
 "widgets_actions_description" = "Poenostavi dostop do najpogostejših dejanj.";
