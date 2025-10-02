@@ -24,6 +24,10 @@ import SharedCore
 @available(iOS 17.0, *)
 struct SuplaValueWidget: Widget {
     let kind: String = "com.acsoftware.ios.supla.SuplaValueWidget"
+    
+    init() {
+        DiContainer.start()
+    }
 
     var body: some WidgetConfiguration {
         let configuration = AppIntentConfiguration(kind: kind, intent: ValueIntent.self, provider: Provider()) { entry in

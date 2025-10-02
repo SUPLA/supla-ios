@@ -352,15 +352,6 @@ extension DiContainer {
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
     }
     
-    static func register<Component>(_ type: Component.Type, _ component: Any) {
-        DiContainer.shared.register(type: type, component)
-    }
-    
-    static func registerAndGet<Component, Instance>(_ type: Component.Type, _ component: Instance) -> Instance {
-        DiContainer.shared.register(type: type, component)
-        return component
-    }
-    
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: UpdateEventsManager.self)
     }
