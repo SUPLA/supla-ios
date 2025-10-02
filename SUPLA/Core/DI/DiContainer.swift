@@ -59,4 +59,13 @@ final class DiContainer: NSObject, DiContainerProtocol {
         
         return nil
     }
+    
+    static func register<Component>(_ type: Component.Type, _ component: Any) {
+        DiContainer.shared.register(type: type, component)
+    }
+    
+    static func registerAndGet<Component, Instance>(_ type: Component.Type, _ component: Instance) -> Instance {
+        DiContainer.shared.register(type: type, component)
+        return component
+    }
 }
