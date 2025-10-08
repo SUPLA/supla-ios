@@ -669,3 +669,8 @@
 "add_wizard_password_enter_title" = "Enhetspassord";
 "add_wizard_password_instruction" = "Vennligst bruk passordet som ble brukt for tilgang til den lokale konfigurasjonswebsiden.\n\nGlemt passordet ditt? Du kan endre det på Supla Cloud eller tilbakestille enheten til fabrikkinnstillinger.";
 "add_wizard_manual_reconnect_message" = "Internett-tilkoblingen mislyktes.\n\nGå til systeminnstillingene og velg et Wi-Fi-nettverk som har en internett-tilkobling. Deretter går du tilbake til appen og fortsetter ved å trykke på **Neste**.";
+"add_device_manual_popup_title" = "Klarte ikke å legge til enhet";
+"add_device_manual_popup_message" = "Et forsøk på å legge til en enhet automatisk mislyktes. Hvis problemet vedvarer, anbefaler vi å legge til enheten manuelt.";
+"add_device_manual_popup_resign" = "Behold automatisk modus";
+"add_device_manual_popup_continue" = "Prøv igjen i manuell modus";
+"add_wizard_internal_error_message" = "";

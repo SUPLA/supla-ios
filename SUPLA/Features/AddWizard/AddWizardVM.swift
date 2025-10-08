@@ -74,7 +74,7 @@ extension AddWizardFeature {
             switch (screen) {
             case .configuration:
                 if (stateHandler.isInactive) {
-                    state.screens = state.screens.pop()
+                    coordinator.dismiss()
                 } else {
                     stateHandler.handle(EspConfigurationEventClose.shared)
                 }
@@ -124,6 +124,7 @@ extension AddWizardFeature {
                 state.processing = true
                 stateHandler.handle(EspConfigurationEventNetworkConnected.shared)
             case .manualReconnect:
+                suplaAppStateHolder.handle(event: .addWizardFinished)
                 stateHandler.handle(EspConfigurationEventReconnected.shared)
             }
         }
@@ -134,7 +135,10 @@ extension AddWizardFeature {
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url)
                 }
-            case .repeat:
+            case .repeatError:
+                state.processing = false
+                state.screens = state.screens.pop()
+            case .repeatSuccess:
                 state.processing = false
                 state.screens = state.screens.pop()
             }
@@ -183,6 +187,24 @@ extension AddWizardFeature {
                     self?.coordinator.openUrl(url: url.urlString)
                 })
                 .disposed(by: disposeBag)
+        }
+        
+        func onManualPopupContinueManual() {
+            state.screens = state.screens.pop()
+            
+            state.showManualModePopup = false
+            state.processing = true
+            state.autoMode = false
+            
+            stateHandler.handle(EspConfigurationEventStart())
+        }
+        
+        func onManualPopupContinueAuto() {
+            state.showManualModePopup = false
+        }
+        
+        func onManualPopupClose() {
+            state.showManualModePopup = false
         }
         
         func onCloseProvidePasswordDialog() {
@@ -383,6 +405,7 @@ extension AddWizardFeature {
                         switch (result) {
                         case .success: stateHandler.handle(EspConfigurationEventNetworkConnected.shared)
                         case .failure: stateHandler.handle(EspConfigurationEventNetworkConnectionFailure.shared)
+                        case .fatalError: stateHandler.handle(EspConfigurationEventNetworkConnectionInternalError.shared)
                         }
                     }
                 }
@@ -461,7 +484,15 @@ extension AddWizardFeature {
         func showError(error: EspConfigurationError) {
             state.processing = false
             state.canceling = false
-            state.screens = state.screens.push(.message(text: error.messages.map { $0.string }, action: .repeat))
+            let errorText = switch(error) {
+            case _ as EspConfigurationError.InternalError: [Strings.AddWizard.internalErrorMessage]
+            default: error.messages.map { $0.string }
+            }
+            state.screens = state.screens.push(.message(text: errorText, action: .repeatError))
+            
+            if (state.autoMode == true) {
+                state.showManualModePopup = true
+            }
         }
         
         func showFinished() {

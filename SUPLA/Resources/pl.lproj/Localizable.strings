@@ -753,3 +753,8 @@
 "add_wizard_password_enter_title" = "Hasło do urządzenia";
 "add_wizard_password_instruction" = "Zastosuj hasło dostępu używane do lokalnej strony konfiguracyjnej.\n\nZapomniałeś hasła? Możesz je zmienić w Supla Cloud lub zresetować urządzenie do ustawień fabrycznych.";
 "add_wizard_manual_reconnect_message" = "Nawiązanie połączenie z internetem nie powiodło się.\n\n Przejdź do ustawień systemowych i wybierz sieć Wi-Fi, która posiada połączenie z internetem. Następnie wróć do aplikacji i kontynuuj naciskająć przycisk Dalej";
+"add_device_manual_popup_title" = "Nie udało się dodać urządzenia";
+"add_device_manual_popup_message" = "Próba dodania urządzenia w trybie automatycznym się nie powiodła. Jeśli problem się powtarza, zalecamy dodanie urządzenia w trybie ręcznym.";
+"add_device_manual_popup_resign" = "Pozostań w trybie automatycznym";
+"add_device_manual_popup_continue" = "Spróbuj ponownie w trybie ręcznym";
+"add_wizard_internal_error_message" = "Usługa systemowa iOS zgłosiła wewnętrzny błąd przy skanowaniu sieci, na który nie mamy wpływu. Spróbuj dodać urządzenie używając trybu ręcznego, lub uruchom ponownie telefon/tablet";

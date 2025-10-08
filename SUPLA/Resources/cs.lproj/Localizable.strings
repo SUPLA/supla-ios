@@ -669,3 +669,8 @@
 "add_wizard_password_enter_title" = "Heslo zařízení";
 "add_wizard_password_instruction" = "Použijte heslo, které bylo použito pro přístup k webové stránce místní konfigurace.\n\nZapomněli jste heslo? Můžete ho změnit na Supla Cloud nebo resetovat zařízení na tovární nastavení.";
 "add_wizard_manual_reconnect_message" = "Připojení k internetu se nezdařilo.\n\nPřejděte do nastavení systému a vyberte síť Wi-Fi, která má připojení k internetu. Poté se vraťte do aplikace a pokračujte stisknutím **Další**.";
+"add_device_manual_popup_title" = "Nepodařilo se přidat zařízení";
+"add_device_manual_popup_message" = "Pokus o automatické přidání zařízení se nezdařil. Pokud problém přetrvává, doporučujeme zařízení přidat ručně.";
+"add_device_manual_popup_resign" = "Zůstat v automatickém režimu";
+"add_device_manual_popup_continue" = "Zkusit znovu v ručním režimu";
+"add_wizard_internal_error_message" = "";

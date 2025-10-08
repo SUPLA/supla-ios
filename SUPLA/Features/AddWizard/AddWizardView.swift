@@ -27,6 +27,9 @@ extension AddWizardFeature {
         func onWifiSettings()
         func onFollowupPopupClose()
         func onFollowupPopupOpen()
+        func onManualPopupContinueManual()
+        func onManualPopupContinueAuto()
+        func onManualPopupClose()
     }
     
     struct View: SwiftUI.View {
@@ -71,7 +74,7 @@ extension AddWizardFeature {
                         onCancel: { delegate?.onCancel(screen) },
                         onBack: { delegate?.onBack(screen) },
                         onNext: { delegate?.onNext(screen) },
-                        onAgain: { delegate?.onMessageAction(.repeat) }
+                        onAgain: { delegate?.onMessageAction(.repeatSuccess) }
                     )
                         
                     if (state.showCloudFollowupPopup) {
@@ -89,6 +92,14 @@ extension AddWizardFeature {
                         onNext: { delegate?.onNext(screen) },
                         onAction: { delegate?.onMessageAction($0) }
                     )
+                    
+                    if (state.showManualModePopup) {
+                        ManualModePopup(
+                            onContinueManual: delegate?.onManualPopupContinueManual,
+                            onContinueAuto: delegate?.onManualPopupContinueAuto,
+                            onClose: delegate?.onManualPopupClose
+                        )
+                    }
                 case .manualConfiguration:
                     AddWizardFeature.AddWizardManualInstruction(
                         processing: state.processing,
@@ -160,6 +171,40 @@ struct CloudFollowupPopup: View {
     }
 }
 
+struct ManualModePopup: View {
+    var onContinueManual: (() -> Void)?
+    var onContinueAuto: (() -> Void)?
+    var onClose: (() -> Void)?
+    
+    init(
+        onContinueManual: (() -> Void)? = nil,
+        onContinueAuto: (() -> Void)? = nil,
+        onClose: (() -> Void)? = nil
+    ) {
+        self.onContinueManual = onContinueManual
+        self.onContinueAuto = onContinueAuto
+        self.onClose = onClose
+    }
+    
+    var body: some View {
+        SuplaCore.Dialog.Base(onDismiss: onClose ?? {}) {
+            SuplaCore.Dialog.Header(title: Strings.AddWizard.manualModePopupTitle)
+                
+            SwiftUI.Text(Strings.AddWizard.manualModePopupMessage)
+                .fontBodyMedium()
+                .multilineTextAlignment(.center)
+                .padding([.leading, .trailing], Distance.default)
+                
+            SuplaCore.Dialog.VerticalButtons(
+                onNegativeClick: onContinueAuto ?? {},
+                onPositiveClick: onContinueManual ?? {},
+                negativeText: Strings.AddWizard.manualModePopupResign,
+                positiveText: Strings.AddWizard.manualModePopupContinue
+            )
+        }
+    }
+}
+
 #Preview {
     AddWizardFeature.View(
         state: AddWizardFeature.ViewState()
@@ -176,3 +221,12 @@ struct CloudFollowupPopup: View {
     )
 }
 
+#Preview("Cloud manual mode popup") {
+    let state = AddWizardFeature.ViewState()
+    state.showManualModePopup = true
+    state.screens = state.screens.just(.message(text: [""], action: .repeatError))
+    
+    return AddWizardFeature.View(
+        state: state
+    )
+}

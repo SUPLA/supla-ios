@@ -671,3 +671,8 @@
 "add_wizard_password_enter_title" = "Įrenginio slaptažodis";
 "add_wizard_password_instruction" = "Prašome naudoti slaptažodį, kuris buvo naudojamas vietinės konfigūracijos tinklalapio prieigai.\n\nPamiršote slaptažodį? Galite jį pakeisti Supla Cloud sistemoje arba atkurti gamyklinius įrenginio nustatymus.";
 "add_wizard_manual_reconnect_message" = "Nepavyko prisijungti prie interneto.\n\nEikite į sistemos nustatymus ir pasirinkite „Wi-Fi“ tinklą, kuris turi interneto ryšį. Tada grįžkite į programėlę ir tęskite paspausdami **Toliau**.";
+"add_device_manual_popup_title" = "Nepavyko pridėti įrenginio";
+"add_device_manual_popup_message" = "Bandymas automatiškai pridėti įrenginį nepavyko. Jei problema kartojasi, rekomenduojame įrenginį pridėti rankiniu būdu.";
+"add_device_manual_popup_resign" = "Likti automatiniame režime";
+"add_device_manual_popup_continue" = "Bandyti dar kartą rankiniu būdu";
+"add_wizard_internal_error_message" = "";

@@ -5909,6 +5909,57 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "internalError",
+                        "printedName": "internalError",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed.Type) -> (SharedCore.EspConfigurationError.InternalError) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationError.InternalError) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "InternalError",
+                                    "printedName": "SharedCore.EspConfigurationError.InternalError",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationErrorInternalError"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO08internalJ0yAISo0abhij8InternalJ0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO08internalJ0yAISo0abhij8InternalJ0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 6
+                      },
+                      {
+                        "kind": "Var",
                         "name": "notFound",
                         "printedName": "notFound",
                         "children": [
@@ -5956,7 +6007,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO8notFoundyAISo0abhij3NotM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO8notFoundyAISo0abhij3NotM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 6
+                        "fixedbinaryorder": 7
                       },
                       {
                         "kind": "Var",
@@ -6007,7 +6058,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO9reconnectyAISo0abhiJ9ReconnectCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO9reconnectyAISo0abhiJ9ReconnectCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 7
+                        "fixedbinaryorder": 8
                       },
                       {
                         "kind": "Var",
@@ -6058,7 +6109,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO17registrationCheckyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO17registrationCheckyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 8
+                        "fixedbinaryorder": 9
                       },
                       {
                         "kind": "Var",
@@ -6109,7 +6160,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO18registrationEnableyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO18registrationEnableyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 9
+                        "fixedbinaryorder": 10
                       },
                       {
                         "kind": "Var",
@@ -6160,7 +6211,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO4scanyAISo0abhiJ4ScanCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO4scanyAISo0abhiJ4ScanCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 10
+                        "fixedbinaryorder": 11
                       },
                       {
                         "kind": "Var",
@@ -6211,7 +6262,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO17temporarilyLockedyAISo0abhij11TemporarilyM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO17temporarilyLockedyAISo0abhij11TemporarilyM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 11
+                        "fixedbinaryorder": 12
                       },
                       {
                         "kind": "Var",
@@ -6262,7 +6313,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO4wifiyAISo0abhiJ4WifiCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationErrorO8__SealedO4wifiyAISo0abhiJ4WifiCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 12
+                        "fixedbinaryorder": 13
                       },
                       {
                         "kind": "Var",
@@ -7000,6 +7051,57 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "networkConnectionInternalError",
+                        "printedName": "networkConnectionInternalError",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type) -> (SharedCore.EspConfigurationEventNetworkConnectionInternalError) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.EspConfigurationEventNetworkConnectionInternalError) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "EspConfigurationEventNetworkConnectionInternalError",
+                                    "printedName": "SharedCore.EspConfigurationEventNetworkConnectionInternalError",
+                                    "usr": "c:objc(cs)SharedCoreEspConfigurationEventNetworkConnectionInternalError"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO30networkConnectionInternalErroryAISo0abhij7NetworkmnO0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO30networkConnectionInternalErroryAISo0abhij7NetworkmnO0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 11
+                      },
+                      {
+                        "kind": "Var",
                         "name": "networkFound",
                         "printedName": "networkFound",
                         "children": [
@@ -7047,7 +7149,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO12networkFoundyAISo0abhij7NetworkM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO12networkFoundyAISo0abhij7NetworkM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 11
+                        "fixedbinaryorder": 12
                       },
                       {
                         "kind": "Var",
@@ -7098,7 +7200,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO15networkNotFoundyAISo0abhij7NetworkmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO15networkNotFoundyAISo0abhij7NetworkmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 12
+                        "fixedbinaryorder": 13
                       },
                       {
                         "kind": "Var",
@@ -7149,7 +7251,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19networkScanDisabledyAISo0abhij7NetworkmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19networkScanDisabledyAISo0abhij7NetworkmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 13
+                        "fixedbinaryorder": 14
                       },
                       {
                         "kind": "Var",
@@ -7200,7 +7302,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16passwordProvidedyAISo0abhij8PasswordM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16passwordProvidedyAISo0abhij8PasswordM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 14
+                        "fixedbinaryorder": 15
                       },
                       {
                         "kind": "Var",
@@ -7251,7 +7353,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16reconnectTimeoutyAISo0abhij9ReconnectM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO16reconnectTimeoutyAISo0abhij9ReconnectM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 15
+                        "fixedbinaryorder": 16
                       },
                       {
                         "kind": "Var",
@@ -7302,7 +7404,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11reconnectedyAISo0abhiJ11ReconnectedCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11reconnectedyAISo0abhiJ11ReconnectedCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 16
+                        "fixedbinaryorder": 17
                       },
                       {
                         "kind": "Var",
@@ -7353,7 +7455,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO21registrationActivatedyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO21registrationActivatedyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 17
+                        "fixedbinaryorder": 18
                       },
                       {
                         "kind": "Var",
@@ -7404,7 +7506,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO20registrationDisabledyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO20registrationDisabledyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 18
+                        "fixedbinaryorder": 19
                       },
                       {
                         "kind": "Var",
@@ -7455,7 +7557,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationEnabledyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationEnabledyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 19
+                        "fixedbinaryorder": 20
                       },
                       {
                         "kind": "Var",
@@ -7506,7 +7608,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO24registrationNotActivatedyAISo0abhij12RegistrationmN0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO24registrationNotActivatedyAISo0abhij12RegistrationmN0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 20
+                        "fixedbinaryorder": 21
                       },
                       {
                         "kind": "Var",
@@ -7557,7 +7659,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationUnknownyAISo0abhij12RegistrationM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO19registrationUnknownyAISo0abhij12RegistrationM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 21
+                        "fixedbinaryorder": 22
                       },
                       {
                         "kind": "Var",
@@ -7608,7 +7710,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11setupNeededyAISo0abhij5SetupM0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO11setupNeededyAISo0abhij5SetupM0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 22
+                        "fixedbinaryorder": 23
                       },
                       {
                         "kind": "Var",
@@ -7659,7 +7761,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO5startyAISo0abhiJ5StartCcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO21EspConfigurationEventO8__SealedO5startyAISo0abhiJ5StartCcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 23
+                        "fixedbinaryorder": 24
                       },
                       {
                         "kind": "Var",
