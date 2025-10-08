@@ -66,7 +66,12 @@ extension StateDialogFeature {
             case .ipAddress: value.ipv4String()
             case .macAddress: value.macAddressString()
             case .batteryLevel: value.batteryLevelString()
-            case .powerSupply: value.isBatteryPowered().boolValue ? Strings.State.batteryPowered : Strings.State.mainPowered
+            case .powerSupply:
+                if let batteryPowered = value.isBatteryPowered() {
+                    batteryPowered.boolValue ? Strings.State.batteryPowered : Strings.State.mainPowered
+                } else {
+                    nil
+                }
             case .wifiRssi: value.wiFiRSSIString()
             case .wifiSignal: value.wiFiSignalStrengthString()
             case .bridgeNode: value.isBridgeNodeOnlineString()
