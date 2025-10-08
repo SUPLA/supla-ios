@@ -678,6 +678,11 @@ struct Strings {
         static let passwordNewLabel = "add_wizard_password_new_label".toLocalized()
         static let passwordRepeatLabel = "add_wizard_password_repeat_label".toLocalized()
         static let passwordInstruction = "add_wizard_password_instruction".toLocalized()
+        static let manualModePopupTitle = "add_device_manual_popup_title".toLocalized()
+        static let manualModePopupMessage = "add_device_manual_popup_message".toLocalized()
+        static let manualModePopupResign = "add_device_manual_popup_resign".toLocalized()
+        static let manualModePopupContinue = "add_device_manual_popup_continue".toLocalized()
+        static let internalErrorMessage = "add_wizard_internal_error_message".toLocalized()
     }
 }
 

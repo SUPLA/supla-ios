@@ -19,6 +19,8 @@
 import NetworkExtension
 import SystemConfiguration.CaptiveNetwork
 
+private let ACCEPTED_INTERNAL_ERROR_RETRIES: Int = 3
+
 enum ConnectToEsp {
     protocol UseCase {
         func invoke() async -> Result
@@ -29,6 +31,7 @@ enum ConnectToEsp {
 
         func invoke() async -> Result {
             disconnectUseCase.invokeSynchronous(reason: .addWizardStarted)
+            var internalErrorRetries = 0
 
             for _ in 0 ..< 3 {
                 for prefix in Esp.prefixes {
@@ -41,12 +44,28 @@ enum ConnectToEsp {
                             return .success
                         } catch {
                             SALog.error("Connecting to prefix \(prefix) failed: \(error)")
+                            
                             if (error.isUserDenied) {
                                 return .failure
+                            }
+                            
+                            if (error.isInternal) {
+                                // await 2 seconds to give a short time for NEHelper to get his act together
+                                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                                
+                                internalErrorRetries = internalErrorRetries + 1
+                                if (internalErrorRetries > ACCEPTED_INTERNAL_ERROR_RETRIES) {
+                                    SALog.error("Internal error exceeded the limit, aborting!")
+                                    return .fatalError
+                                }
                             }
                         }
                     }
                 }
+                
+                // No success after all prefixes - wait short time
+                SALog.error("All prefixes scanned, waiting short time!")
+                try? await Task.sleep(nanoseconds: 2_000_000_000)
             }
 
             return .failure
@@ -54,7 +73,7 @@ enum ConnectToEsp {
     }
 
     enum Result {
-        case success, failure
+        case success, failure, fatalError
     }
 }
 
@@ -62,5 +81,10 @@ private extension Error {
     var isUserDenied: Bool {
         return (self as NSError).domain == NEHotspotConfigurationErrorDomain
             && (self as NSError).code == NEHotspotConfigurationError.userDenied.rawValue
+    }
+    
+    var isInternal: Bool {
+        return (self as NSError).domain == NEHotspotConfigurationErrorDomain
+            && (self as NSError).code == NEHotspotConfigurationError.internal.rawValue
     }
 }

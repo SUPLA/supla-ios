@@ -6981,6 +6981,24 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationErrorInternalError"
+  SwiftName: "EspConfigurationError.InternalError"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreEspConfigurationErrorConfigureTimeout"
   SwiftName: "EspConfigurationError.ConfigureTimeout"
   Methods:
@@ -7487,6 +7505,24 @@ Classes:
     ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreEspConfigurationEventNetworkConnectionFailure"
   SwiftName: "EspConfigurationEventNetworkConnectionFailure"
+  Methods:
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreEspConfigurationEventNetworkConnectionInternalError"
+  SwiftName: "EspConfigurationEventNetworkConnectionInternalError"
   Methods:
   - Selector: "isEqual:"
     MethodKind: "Instance"

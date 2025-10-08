@@ -669,3 +669,8 @@
 "add_wizard_password_enter_title" = "Apparaatwachtwoord";
 "add_wizard_password_instruction" = "Gebruik het wachtwoord dat is gebruikt voor toegang tot de lokale configuratie webpagina.\n\nWachtwoord vergeten? Je kunt het wijzigen op Supla Cloud of het apparaat terugzetten naar de fabrieksinstellingen.";
 "add_wizard_manual_reconnect_message" = "Internetverbinding mislukt.\n\nGa naar de systeeminstellingen en selecteer een Wi-Fi-netwerk met een internetverbinding. Keer vervolgens terug naar de app en ga verder door op **Volgende** te drukken.";
+"add_device_manual_popup_title" = "Toevoegen van apparaat mislukt";
+"add_device_manual_popup_message" = "De poging om een apparaat automatisch toe te voegen is mislukt. Als het probleem aanhoudt, raden we aan het apparaat handmatig toe te voegen.";
+"add_device_manual_popup_resign" = "Blijf in automatische modus";
+"add_device_manual_popup_continue" = "Probeer het opnieuw in handmatige modus";
+"add_wizard_internal_error_message" = "";

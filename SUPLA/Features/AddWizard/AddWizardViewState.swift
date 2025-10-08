@@ -32,6 +32,7 @@ extension AddWizardFeature {
         @Published var deviceParameters: [DeviceParameter] = []
         @Published var canceling: Bool = false
         @Published var showCloudFollowupPopup: Bool = false
+        @Published var showManualModePopup: Bool = false
         @Published var providePasswordDialogState: ProvidePasswordDialogState? = nil
         @Published var setPasswordDialogState: SetPasswordDialogState? = nil
 
@@ -56,14 +57,14 @@ extension AddWizardFeature {
             if (screens.count > 1) {
                 screens.removeLast()
             }
-            if (screens.last == .manualConfiguration) {
-                // Manual configuration screen is a part of configuration process.
-                // It should not be shown when going back.
-                screens.removeLast()
-            }
             if (screens.last == .manualReconnect) {
                 // Manual reconnect screen is a part of configuration process.
                 // It should not be shown like manual configuration when going back.
+                screens.removeLast()
+            }
+            if (screens.last == .manualConfiguration) {
+                // Manual configuration screen is a part of configuration process.
+                // It should not be shown when going back.
                 screens.removeLast()
             }
             return .init(screens: screens)

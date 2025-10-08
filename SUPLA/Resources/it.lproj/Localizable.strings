@@ -704,3 +704,8 @@
 "add_wizard_password_enter_title" = "Password del dispositivo";
 "add_wizard_password_instruction" = "Si prega di utilizzare la password usata per l'accesso alla pagina web di configurazione locale.\n\nHai dimenticato la password? Puoi cambiarla su Supla Cloud o ripristinare il dispositivo alle impostazioni di fabbrica.";
 "add_wizard_manual_reconnect_message" = "La connessione a internet non è riuscita.\n\nVai alle impostazioni di sistema e seleziona una rete Wi-Fi con una connessione a internet. Poi torna all'app e continua premendo **Avanti**.";
+"add_device_manual_popup_title" = "Aggiunta dispositivo non riuscita";
+"add_device_manual_popup_message" = "Il tentativo di aggiungere un dispositivo in automatico è fallito. Se il problema persiste, si consiglia di aggiungere il dispositivo manualmente.";
+"add_device_manual_popup_resign" = "Rimani in modalità automatica";
+"add_device_manual_popup_continue" = "Riprova in modalità manuale";
+"add_wizard_internal_error_message" = "";
