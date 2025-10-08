@@ -31,8 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)macAddressString;
 -(NSNumber *)batteryLevel;
 -(NSString *)batteryLevelString;
--(NSNumber *)isBatteryPowered;
--(NSString *)isBatteryPoweredString;
+-(nullable NSNumber *)isBatteryPowered;
 -(NSNumber *)wiFiSignalStrength;
 -(NSString *)wiFiSignalStrengthString;
 -(NSNumber *)wiFiRSSI;
