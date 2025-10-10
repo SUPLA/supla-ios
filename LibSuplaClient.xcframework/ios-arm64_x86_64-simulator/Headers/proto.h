@@ -360,6 +360,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_RESULTCODE_RESTART_REQUESTED 42                     // ver. >= 25
 #define SUPLA_RESULTCODE_IDENTIFY_REQUESTED 43                    // ver. >= 25
 #define SUPLA_RESULTCODE_MALFORMED_EMAIL 44                       // ver. >= ?
+#define SUPLA_RESULTCODE_RESET_TO_FACTORY_SETTINGS 45             // ver. >= 28
 
 #define SUPLA_OAUTH_RESULTCODE_ERROR 0         // ver. >= 10
 #define SUPLA_OAUTH_RESULTCODE_SUCCESS 1       // ver. >= 10
@@ -502,6 +503,8 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNELFNC_WATER_TANK 982                    // ver. >= 26
 #define SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR 990        // ver. >= 26
 #define SUPLA_CHANNELFNC_FLOOD_SENSOR 1000                 // ver. >= 27
+#define SUPLA_CHANNELFNC_MOTION_SENSOR 1010                // ver. >= 27
+#define SUPLA_CHANNELFNC_BINARY_SENSOR 1020                // ver. >= 27
 
 #define SUPLA_BIT_FUNC_CONTROLLINGTHEGATEWAYLOCK 0x00000001
 #define SUPLA_BIT_FUNC_CONTROLLINGTHEGATE 0x00000002
@@ -593,7 +596,12 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_DEVICE_FLAG_CALCFG_RESTART_DEVICE 0x0800          // ver. >= 25
 #define SUPLA_DEVICE_FLAG_ALWAYS_ALLOW_CHANNEL_DELETION 0x1000  // ver. >= 25
 #define SUPLA_DEVICE_FLAG_BLOCK_ADDING_CHANNELS_AFTER_DELETION \
-  0x2000  // ver. >= 25
+  0x2000                                                         // ver. >= 25
+#define SUPLA_DEVICE_FLAG_CALCFG_FACTORY_RESET_SUPPORTED 0x4000  // ver. >= 28
+#define SUPLA_DEVICE_FLAG_AUTOMATIC_FIRMWARE_UPDATE_SUPPORTED \
+  0x8000  // ver. >= 28
+#define SUPLA_DEVICE_FLAG_CALCFG_SET_CFG_MODE_PASSWORD_SUPPORTED \
+  0x10000  // ver. >= 28
 
 // BIT map definition for TDS_SuplaRegisterDevice_F::ConfigFields (64 bit)
 // type: TDeviceConfig_StatusLed
@@ -618,6 +626,8 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_DEVICE_CONFIG_FIELD_POWER_STATUS_LED (1ULL << 8)  // v. >= 25
 // type: TDeviceConfig_Modbus
 #define SUPLA_DEVICE_CONFIG_FIELD_MODBUS (1ULL << 9)  // v. >= 27
+// type: TDeviceConfig_FirmwareUpdate
+#define SUPLA_DEVICE_CONFIG_FIELD_FIRMWARE_UPDATE (1ULL << 10)  // v. >= 28
 
 // BIT map definition for TDS_SuplaDeviceChannel_C::Flags (32 bit)
 // BIT map definition for TDS_SuplaDeviceChannel_D::Flags (64 bit)
@@ -628,11 +638,11 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNEL_FLAG_OCR 0x0008           // ver. >= 26
 #define SUPLA_CHANNEL_FLAG_FLOOD_SENSORS_SUPPORTED 0x0010  // ver. >= 27
 #define SUPLA_CHANNEL_FLAG_FILL_LEVEL_REPORTING_IN_FULL_RANGE \
-  0x0020  // ver. >= 27
-#define SUPLA_CHANNEL_FLAG_VALVE_MOTOR_ALARM_SUPPORTED 0x0040  // ver. >= 27
-#define SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS 0x0080  // ver. >= 17
-#define SUPLA_CHANNEL_FLAG_RGBW_COMMANDS_SUPPORTED 0x0100  // ver. >= 21
-#define SUPLA_CHANNEL_FLAG_ALWAYS_ALLOW_CHANNEL_DELETION  0x0200   // ver. >= 27
+  0x0020                                                         // ver. >= 27
+#define SUPLA_CHANNEL_FLAG_VALVE_MOTOR_ALARM_SUPPORTED 0x0040    // ver. >= 27
+#define SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS 0x0080        // ver. >= 17
+#define SUPLA_CHANNEL_FLAG_RGBW_COMMANDS_SUPPORTED 0x0100        // ver. >= 21
+#define SUPLA_CHANNEL_FLAG_ALWAYS_ALLOW_CHANNEL_DELETION 0x0200  // ver. >= 27
 // Free bits for future use: 0x0400, 0x0800
 #define SUPLA_CHANNEL_FLAG_RS_AUTO_CALIBRATION 0x1000              // ver. >= 15
 #define SUPLA_CHANNEL_FLAG_CALCFG_RESET_COUNTERS 0x2000            // ver. >= 15
@@ -1849,12 +1859,12 @@ typedef struct {
   unsigned _supla_int16_t freq;        // * 0.01 Hz
   unsigned _supla_int16_t voltage[3];  // * 0.01 V
   unsigned _supla_int16_t
-      current[3];  // * 0.001A (0.01A WHEN EM_VAR_CURRENT_OVER_65A)
+      current[3];  // * 0.001 A (0.01 A WHEN EM_VAR_CURRENT_OVER_65A)
   _supla_int_t
-      power_active[3];  // * 0.00001W (0.01kW WHEN EM_VAR_POWER_ACTIVE_KW)
-  _supla_int_t power_reactive[3];  // * 0.00001var (0.01kvar WHEN
+      power_active[3];  // * 0.00001 W (0.00001 kW WHEN EM_VAR_POWER_ACTIVE_KW)
+  _supla_int_t power_reactive[3];  // * 0.00001 var (0.00001 kvar WHEN
                                    // EM_VAR_POWER_REACTIVE_KVAR)
-  _supla_int_t power_apparent[3];  // * 0.00001VA (0.01kVA WHEN
+  _supla_int_t power_apparent[3];  // * 0.00001 VA (0.00001 kVA WHEN
                                    // EM_VAR_POWER_APPARENT_KVA)
   _supla_int16_t power_factor[3];  // * 0.001
   _supla_int16_t phase_angle[3];   // * 0.1 degree
@@ -2132,6 +2142,11 @@ typedef struct {
 #define SUPLA_CALCFG_CMD_RESET_COUNTERS 7000              // v. >= 15
 #define SUPLA_CALCFG_CMD_RECALIBRATE 8000                 // v. >= 15
 #define SUPLA_CALCFG_CMD_ENTER_CFG_MODE 9000              // v. >= 17
+#define SUPLA_CALCFG_CMD_RESET_TO_FACTORY_SETTINGS 9010   // v. >= 28
+#define SUPLA_CALCFG_CMD_CHECK_FIRMWARE_UPDATE 9020       // v. >= 28
+#define SUPLA_CALCFG_CMD_START_FIRMWARE_UPDATE 9030       // v. >= 28
+#define SUPLA_CALCFG_CMD_START_SECURITY_UPDATE 9040       // v. >= 28
+#define SUPLA_CALCFG_CMD_SET_CFG_MODE_PASSWORD 9050       // v. >= 28
 #define SUPLA_CALCFG_CMD_SET_TIME 9100                    // v. >= 21
 #define SUPLA_CALCFG_CMD_START_SUBDEVICE_PAIRING 9200     // v. >= 25
 #define SUPLA_CALCFG_CMD_IDENTIFY_DEVICE 9300             // v. >= 25
@@ -2270,6 +2285,29 @@ typedef struct {
   _supla_int_t FullClosingTimeMS;
 } TCalCfg_RollerShutterSettings;
 
+#define SUPLA_FIRMWARE_CHECK_RESULT_UPDATE_NOT_AVAILABLE 0
+#define SUPLA_FIRMWARE_CHECK_RESULT_UPDATE_AVAILABLE 1
+#define SUPLA_FIRMWARE_CHECK_RESULT_ERROR 2
+
+typedef struct {
+  unsigned char Result;  // SUPLA_FIRMWARE_CHECK_RESULT_
+  char SoftVer[SUPLA_SOFTVER_MAXSIZE];
+  char ChangelogUrl[SUPLA_URL_PATH_MAXSIZE];
+} TCalCfg_FirmwareCheckResult;  // v. >= 28
+
+// SetCfgModePassword result is send in TDS_DeviceCalCfgResult. Possible values:
+// SUPLA_CALCFG_RESULT_TRUE - password successfully changed
+// SUPLA_CALCFG_RESULT_UNAUTHORIZED - unauthorized
+// SUPLA_CALCFG_RESULT_NOT_SUPPORTED - not supported
+// SUPLA_CALCFG_RESULT_FALSE - password change failed (i.e. don't meet security
+// requirements)
+
+typedef struct {
+  // New password should be at least 8 characters long, at least one uppercase
+  // letter, one lowercase letter and one number
+  char NewPassword[SUPLA_PASSWORD_MAXSIZE];
+} TCalCfg_SetCfgModePassword;  // v. >= 28
+
 #define RGBW_BRIGHTNESS_ONOFF 0x1
 #define RGBW_COLOR_ONOFF 0x2
 
@@ -2391,12 +2429,12 @@ typedef struct {
   char HourValue[24];
 } TThermostatValueGroup;  // v. >= 11
 
-// Used in Heatpol thermostat
+// Used in Heatpol ESP8266 based thermostat
 typedef struct {
   TThermostatValueGroup Group[4];
 } TThermostat_ScheduleCfg;  // v. >= 11
 
-// Temperature definitions for Heatpol thermostat
+// Temperature definitions for Heatpol ESP8266 based thermostat
 // TThermostatTemperatureCfg
 #define TEMPERATURE_INDEX1 0x0001
 #define TEMPERATURE_INDEX2 0x0002
@@ -2410,7 +2448,7 @@ typedef struct {
 #define TEMPERATURE_INDEX10 0x0200
 // TThermostatTemperatureCfg has only 10 fields
 
-// Used in Heatpol thermostat
+// Used in Heatpol ESP8266 based thermostat
 typedef struct {
   _supla_int16_t Index;  // BIT0 Temperature[0], BIT1 Temperature[1] etc...
   unsigned _supla_int16_t Temperature[10];
@@ -2475,7 +2513,7 @@ typedef struct {
   _supla_int16_t Temperature[24];
 } THVACTemperatureCfg;
 
-// Heatpol: Thermostat configuration commands - ver. >= 11
+// Heatpol ESP8266 based: Thermostat configuration commands - ver. >= 11
 #define SUPLA_THERMOSTAT_CMD_TURNON 1
 #define SUPLA_THERMOSTAT_CMD_SET_MODE_AUTO 2
 #define SUPLA_THERMOSTAT_CMD_SET_MODE_COOL 3
@@ -2490,7 +2528,7 @@ typedef struct {
 #define SUPLA_THERMOSTAT_CMD_SET_TIME 12
 #define SUPLA_THERMOSTAT_CMD_SET_TEMPERATURE 13
 
-// Heatpol: Thermostat value flags - ver. >= 11
+// Heatpol ESP8266 based: Thermostat value flags - ver. >= 11
 #define SUPLA_THERMOSTAT_VALUE_FLAG_ON 0x0001
 #define SUPLA_THERMOSTAT_VALUE_FLAG_AUTO_MODE 0x0002
 #define SUPLA_THERMOSTAT_VALUE_FLAG_COOL_MODE 0x0004
@@ -2500,7 +2538,7 @@ typedef struct {
 #define SUPLA_THERMOSTAT_VALUE_FLAG_FANONLY_MODE 0x0040
 #define SUPLA_THERMOSTAT_VALUE_FLAG_PURIFIER_MODE 0x0080
 
-// Heatpol: Thermostat fields - ver. >= 11
+// Heatpol ESP8266 based: Thermostat fields - ver. >= 11
 #define THERMOSTAT_FIELD_MeasuredTemperatures 0x01
 #define THERMOSTAT_FIELD_PresetTemperatures 0x02
 #define THERMOSTAT_FIELD_Flags 0x04
@@ -2508,7 +2546,7 @@ typedef struct {
 #define THERMOSTAT_FIELD_Time 0x10
 #define THERMOSTAT_FIELD_Schedule 0x20
 
-// Used in Heatpol only
+// Used in Heatpol ESP8266 based only
 typedef struct {
   unsigned char Fields;
   _supla_int16_t MeasuredTemperature[10];  // * 0.01
@@ -2519,7 +2557,7 @@ typedef struct {
   TThermostat_Schedule Schedule;  // 7 days x 24h (4bit/hour)
 } TThermostat_ExtendedValue;      // v. >= 11
 
-// Used in Heatpol only
+// Used in Heatpol ESP8266 based only
 typedef struct {
   unsigned char IsOn;
   unsigned char Flags;
@@ -2560,14 +2598,19 @@ typedef struct {
 #define SUPLA_CHANNELSTATE_FIELD_BATTERYHEALTH 0x0200
 #define SUPLA_CHANNELSTATE_FIELD_BRIDGENODEONLINE 0x0400
 #define SUPLA_CHANNELSTATE_FIELD_LASTCONNECTIONRESETCAUSE 0x0800
-// LIGHTSOURCELIFESPAN, LIGHTSOURCEOPERATINGTIME, and OPERATINGTIME are
-// mutually exclusive. Use only one of them.
+// When LIGHTSOURCELIFESPAN is set then LightSourceLifespan field is used.
+// Additionally when LIGHTSOURCEOPERATINGTIME and OPERATINGTIME are NOT set,
+// then LightSourceLifespanLeft is also used.
 #define SUPLA_CHANNELSTATE_FIELD_LIGHTSOURCELIFESPAN 0x1000
+// LIGHTSOURCEOPERATINGTIME, and OPERATINGTIME are mutually exclusive. Use only
+// one of them.
 #define SUPLA_CHANNELSTATE_FIELD_LIGHTSOURCEOPERATINGTIME 0x2000
+// OPERATINGTIME is not implemented in apps
 #define SUPLA_CHANNELSTATE_FIELD_OPERATINGTIME 0x4000
-// SWITCHCYCLECOUNT and defualtIconField are is mutually exclusive. Use only one
+// SWITCHCYCLECOUNT and defualtIconField are mutually exclusive. Use only one
 // of them.
 #define SUPLA_CHANNELSTATE_FIELD_SWITCHCYCLECOUNT 0x8000
+#define SUPLA_CHANNELSTATE_FIELD_DEVICE_BATTERYLEVEL 0x10000
 
 #define SUPLA_LASTCONNECTIONRESETCAUSE_UNKNOWN 0
 #define SUPLA_LASTCONNECTIONRESETCAUSE_ACTIVITY_TIMEOUT 1
@@ -2600,9 +2643,11 @@ typedef struct {
   unsigned char LastConnectionResetCause;  // SUPLA_LASTCONNECTIONRESETCAUSE_*
   unsigned _supla_int16_t LightSourceLifespan;  // 0 - 65535 hours
   union {
-    _supla_int16_t LightSourceLifespanLeft;  // -327,67 - 100.00%
-                                             // LightSourceLifespan * 0.01
+    _supla_int16_t LightSourceLifespanLeft;  // valid range: -32767 - 10000,
+                                             // unit 0.01%, so 10000 = 100%
+                                             // -32767 = -327.67%
     _supla_int_t LightSourceOperatingTime;   // -3932100sec. - 3932100sec.
+    // OperatingTime is not implemented in apps
     unsigned _supla_int_t OperatingTime;     // time in seconds
   };
   char EOL;            // End Of List // v. >= 26
@@ -2873,8 +2918,8 @@ typedef struct {
 #define MODBUS_SERIAL_STOP_BITS_TWO 2
 
 typedef struct {
-  unsigned char Mode;  // MODBUS_SERIAL_MODE_*
-  _supla_int_t Baudrate;  // 19200 (default and mandatory by modbus)
+  unsigned char Mode;      // MODBUS_SERIAL_MODE_*
+  _supla_int_t Baudrate;   // 19200 (default and mandatory by modbus)
   unsigned char StopBits;  // MODBUS_SERIAL_STOP_BITS_*
   unsigned char Reserved[20];
 } ModbusSerialConfig;
@@ -2885,7 +2930,7 @@ typedef struct {
 
 typedef struct {
   unsigned char Mode;  // MODBUS_NETWORK_MODE_*
-  unsigned int Port;  // Default: 502
+  unsigned int Port;   // Default: 502
   unsigned char Reserved[20];
 } ModbusNetworkConfig;
 
@@ -2893,30 +2938,30 @@ typedef struct {
 // available
 typedef struct {
   struct {
-    unsigned char Master: 1;
-    unsigned char Slave: 1;
-    unsigned char Rtu: 1;
-    unsigned char Ascii: 1;
-    unsigned char Tcp: 1;
-    unsigned char Udp: 1;
-    unsigned char Reserved: 2;
-    unsigned char Reserved2: 8;
+    unsigned char Master : 1;
+    unsigned char Slave : 1;
+    unsigned char Rtu : 1;
+    unsigned char Ascii : 1;
+    unsigned char Tcp : 1;
+    unsigned char Udp : 1;
+    unsigned char Reserved : 2;
+    unsigned char Reserved2 : 8;
   } Protocol;
   struct {
-    unsigned char B4800: 1;
-    unsigned char B9600: 1;  // modbus mandatory
-    unsigned char B19200: 1;  // modbus mandatory
-    unsigned char B38400: 1;
-    unsigned char B57600: 1;
-    unsigned char B115200: 1;
-    unsigned char Reserved: 2;
-    unsigned char Reserved2: 8;
+    unsigned char B4800 : 1;
+    unsigned char B9600 : 1;   // modbus mandatory
+    unsigned char B19200 : 1;  // modbus mandatory
+    unsigned char B38400 : 1;
+    unsigned char B57600 : 1;
+    unsigned char B115200 : 1;
+    unsigned char Reserved : 2;
+    unsigned char Reserved2 : 8;
   } Baudrate;
   struct {
-    unsigned char One: 1;
-    unsigned char OneAndHalf: 1;
-    unsigned char Two: 1;
-    unsigned char Reserved: 5;
+    unsigned char One : 1;
+    unsigned char OneAndHalf : 1;
+    unsigned char Two : 1;
+    unsigned char Reserved : 5;
   } StopBits;
   unsigned char Reserved[20];
 } ModbusConfigProperties;
@@ -2926,14 +2971,30 @@ typedef struct {
 #define MODBUS_ROLE_SLAVE 2
 
 typedef struct {
-  unsigned char Role;  // MODBUS_ROLE_*
-  unsigned char ModbusAddress;  // only for slave
+  unsigned char Role;                    // MODBUS_ROLE_*
+  unsigned char ModbusAddress;           // only for slave
   unsigned _supla_int_t SlaveTimeoutMs;  // only for master
-  ModbusSerialConfig Serial;
-  ModbusNetworkConfig Network;
+  ModbusSerialConfig SerialConfig;
+  ModbusNetworkConfig NetworkConfig;
   ModbusConfigProperties Properties;
   unsigned char Reserved[20];
 } TDeviceConfig_Modbus;
+
+// type: TDeviceConfig_FirmwareUpdate
+// Forced off - firmware update is disabled by user on device (via local web
+// interface) and can't be changed remotely
+// Disabled - firmware update is disabled by user and can be changed remotely
+// Security only - firmware update is enabled only for security updates
+// All enabled - firmware update is enabled for all updates
+#define SUPLA_FIRMWARE_UPDATE_POLICY_FORCED_OFF 0
+#define SUPLA_FIRMWARE_UPDATE_POLICY_DISABLED 1
+#define SUPLA_FIRMWARE_UPDATE_POLICY_SECURITY_ONLY 2  // default
+#define SUPLA_FIRMWARE_UPDATE_POLICY_ALL_ENABLED 3
+
+typedef struct {
+  unsigned char Policy;  // SUPLA_FIRMWARE_UPDATE_POLICY_
+  unsigned char Reserved[20];
+} TDeviceConfig_FirmwareUpdate;
 
 /********************************************
  * CHANNEL CONFIG STRUCTURES
@@ -3119,14 +3180,29 @@ typedef struct {
 // Device doesn't apply this inverted logic on communication towards server.
 // It is used only for interanal purposes and for other external interfaces
 // like MQTT
+//
 // FilteringTimeMs is used to configure how long device should wait for stable
 // input signal before changing it's state. If value is set to 0, then field
 // is not used by device and server should ignore it. Device may impose minimum
 // and maximum values for this field.
+//
+// Timeout is used to configure how long device should wait since last "1"
+// detection before it sets "0". If value is set to 0, then field is not used
+//
+// Sensitivity is used to configure how sensitive device should be.
+// Sensitivity 1 % (value == 2) is the lowest possible sensitivity.
+// Sensitivity 100 % (value == 101) is the highest possible sensitivity.
+// If value is set to 0, then field is not used
+// Value 1 (0 %) means "OFF"
 typedef struct {
   unsigned char InvertedLogic;              // 0 - not inverted, 1 - inverted
   unsigned _supla_int16_t FilteringTimeMs;  // 0 - not used, > 0 - time in ms
-  unsigned char Reserved[29];
+  unsigned _supla_int16_t
+      Timeout;                // 0 - not used, > 0 - time in 0.1 s, max 36000
+  unsigned char Sensitivity;  // 0 - not used, 1..101 - sensitivity 0..100 %
+                              // value 1 (0 %) means "OFF"
+  unsigned char
+      Reserved[29 - sizeof(unsigned char) - sizeof(unsigned _supla_int16_t)];
 } TChannelConfig_BinarySensor;  // v. >= 21
 
 // Not set is set when there is no thermometer for "AUX" available
@@ -3585,7 +3661,6 @@ typedef struct {
   };
 } TValve_SensorInfo;  // v. >= 27
 
-
 #define SUPLA_VALVE_CLOSE_ON_FLOOD_TYPE_NONE 0
 #define SUPLA_VALVE_CLOSE_ON_FLOOD_TYPE_ALWAYS 1
 #define SUPLA_VALVE_CLOSE_ON_FLOOD_TYPE_ON_CHANGE 2
@@ -3639,7 +3714,7 @@ typedef struct {
 
 typedef TChannelConfig_PowerSwitch TChannelConfig_LightSwitch;
 
-// Staircase timer ext use SUPLA_CONFIG_TYPE_DEFAULT_EXT
+// Staircase timer ext use SUPLA_CONFIG_TYPE_EXTENDED
 typedef TChannelConfig_PowerSwitch TChannelConfig_StaircaseTimer_Ext;
 
 typedef struct {
