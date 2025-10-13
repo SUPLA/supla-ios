@@ -19,14 +19,12 @@
 final class HumidityValueStringProvider: ChannelValueStringProvider {
     @Singleton<HumidityValueProvider> private var humidityValueProvider
     
-    let formatter = HumidityValueFormatter()
-    
     func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_HUMIDITY
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        formatter.format(
+        HumidityValueFormatter.shared.format(
             value: humidityValueProvider.value(channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )

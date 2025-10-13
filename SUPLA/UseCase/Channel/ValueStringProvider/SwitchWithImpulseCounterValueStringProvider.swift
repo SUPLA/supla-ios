@@ -19,24 +19,16 @@
 class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
     @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
     
+    let formatter = ImpulseCounterValueFormatter()
+    
     func handle(_ channel: SAChannel) -> Bool {
         switchWithImpulseCounterValueProvider.handle(channel)
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        guard let value = switchWithImpulseCounterValueProvider.value(channel, valueType: valueType) as? Double else {
-            return NO_VALUE_TEXT
-        }
-        
-        if (value == ImpulseCounterValueProviderImpl.UNKNOWN_VALUE) {
-            return NO_VALUE_TEXT
-        }
-        
-        if (withUnit) {
-            let unit = channel.unit()
-            return "\(value.toString(precision: 2)) \(unit)"
-        } else {
-            return value.toString(precision: 2)
-        }
+        formatter.format(
+            value: switchWithImpulseCounterValueProvider.value(channel, valueType: valueType),
+            format: ValueFormat(withUnit: withUnit, customUnit: channel.unit())
+        )
     }
 }

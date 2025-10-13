@@ -27,13 +27,10 @@ class ContainerValueStringProvider: ChannelValueStringProvider {
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        let value = containerValueProvider.value(channel, valueType: valueType) as! ContainerValue
-        
-        return if (value.levelKnown) {
-            "\(value.level)%"
-        } else {
-            NO_VALUE_TEXT
-        }
+        ContainerValueFormatter.shared.format(
+            value: containerValueProvider.value(channel, valueType: valueType),
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
     }
     
     

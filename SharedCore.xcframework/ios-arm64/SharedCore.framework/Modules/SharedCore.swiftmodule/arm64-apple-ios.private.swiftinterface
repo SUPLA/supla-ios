@@ -2178,7 +2178,10 @@ public var RainPrecision: Swift.Int32 {
 public var VoltagePrecision: Swift.Int32 {
   get
 }
-public var WeightPrecision: Swift.Int32 {
+public var WeightDefaultPrecision: Swift.Int32 {
+  get
+}
+public var WeightKiloPrecision: Swift.Int32 {
   get
 }
 public func exactPrecision(value: Swift.Int32) -> Swift.Int32

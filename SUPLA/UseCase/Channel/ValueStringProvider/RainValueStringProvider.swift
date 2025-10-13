@@ -24,13 +24,10 @@ final class RainValueStringProvider: ChannelValueStringProvider {
     }
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        if let value = rainValueProvider.value(channel, valueType: valueType) as? Double,
-           value > RainValueProviderImpl.UNKNOWN_VALUE
-        {
-            let stringValue = (value / 1000.0).toString(minPrecision: 1, maxPrecision: 2)
-            return withUnit ? "\(stringValue) mm" : stringValue
-        } else {
-            return NO_VALUE_TEXT
-        }
+        guard let value = rainValueProvider.value(channel, valueType: valueType) as? Double else { return NO_VALUE_TEXT }
+        return RainValueFormatter.shared.format(
+            value: value / 1000,
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
     }
 }

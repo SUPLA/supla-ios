@@ -58273,8 +58273,8 @@
       },
       {
         "kind": "Var",
-        "name": "WeightPrecision",
-        "printedName": "WeightPrecision",
+        "name": "WeightDefaultPrecision",
+        "printedName": "WeightDefaultPrecision",
         "children": [
           {
             "kind": "TypeNominal",
@@ -58284,8 +58284,8 @@
           }
         ],
         "declKind": "Var",
-        "usr": "s:10SharedCore15WeightPrecisions5Int32Vvp",
-        "mangledName": "$s10SharedCore15WeightPrecisions5Int32Vvp",
+        "usr": "s:10SharedCore22WeightDefaultPrecisions5Int32Vvp",
+        "mangledName": "$s10SharedCore22WeightDefaultPrecisions5Int32Vvp",
         "moduleName": "SharedCore",
         "declAttributes": [
           "AccessControl"
@@ -58304,8 +58304,48 @@
               }
             ],
             "declKind": "Accessor",
-            "usr": "s:10SharedCore15WeightPrecisions5Int32Vvg",
-            "mangledName": "$s10SharedCore15WeightPrecisions5Int32Vvg",
+            "usr": "s:10SharedCore22WeightDefaultPrecisions5Int32Vvg",
+            "mangledName": "$s10SharedCore22WeightDefaultPrecisions5Int32Vvg",
+            "moduleName": "SharedCore",
+            "accessorKind": "get"
+          }
+        ]
+      },
+      {
+        "kind": "Var",
+        "name": "WeightKiloPrecision",
+        "printedName": "WeightKiloPrecision",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          }
+        ],
+        "declKind": "Var",
+        "usr": "s:10SharedCore19WeightKiloPrecisions5Int32Vvp",
+        "mangledName": "$s10SharedCore19WeightKiloPrecisions5Int32Vvp",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "accessors": [
+          {
+            "kind": "Accessor",
+            "name": "Get",
+            "printedName": "Get()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Accessor",
+            "usr": "s:10SharedCore19WeightKiloPrecisions5Int32Vvg",
+            "mangledName": "$s10SharedCore19WeightKiloPrecisions5Int32Vvg",
             "moduleName": "SharedCore",
             "accessorKind": "get"
           }
