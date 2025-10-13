@@ -23,16 +23,9 @@ final class PressureValueStringProvider: ChannelValueStringProvider {
     }
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        if let value = pressureValueProvider.value(channel, valueType: valueType) as? Double,
-           value > PressureValueProviderImpl.UNKNOWN_VALUE
-        {
-            return if (withUnit) {
-                "\(value.toString()) hPa"
-            } else {
-                "\(value.toString())"
-            }
-        } else {
-            return NO_VALUE_TEXT
-        }
+        PressureValueFormatter.shared.format(
+            value: pressureValueProvider.value(channel, valueType: valueType),
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
     }
 }

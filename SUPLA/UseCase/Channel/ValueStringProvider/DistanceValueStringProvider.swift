@@ -16,20 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class DistanceValueStringProvider: BaseDistanceValueStringProvider {
-    
+final class DistanceValueStringProvider: ChannelValueStringProvider {
     @Singleton<DistanceValueProvider> private var distanceValueProvider
     
-    override var valueProvider: ChannelValueProvider {
-        distanceValueProvider
-    }
-    
-    override var unknownValue: Double {
-        DistanceValueProviderImpl.UNKNOWN_VALUE
-    }
-    
-    override func handle(_ channel: SAChannel) -> Bool {
+    func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_DISTANCESENSOR
     }
     
+    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+        DistanceValueFormatter.shared.format(
+            value: distanceValueProvider.value(channel, valueType: valueType),
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
+    }
 }

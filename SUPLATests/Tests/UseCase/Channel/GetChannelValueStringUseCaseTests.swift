@@ -173,13 +173,13 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
             value: SAChannelValue.mock(status: .online)
         )
-        depthValueProvider.valueReturns = 0.0025
+        depthValueProvider.valueReturns = 0.002
         
         // when
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "2.5 mm")
+        XCTAssertEqual(valueText, "2 mm")
     }
     
     func test_shouldGetDepthValueStringInMilimetersWithoutUnit() {
@@ -188,13 +188,13 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
             value: SAChannelValue.mock(status: .online)
         )
-        depthValueProvider.valueReturns = 0.0025
+        depthValueProvider.valueReturns = 0.002
         
         // when
         let valueText = useCase.invoke(channel, withUnit: false)
         
         // then
-        XCTAssertEqual(valueText, "2.5")
+        XCTAssertEqual(valueText, "2")
     }
     
     func test_shouldGetDistanceValueStringInMeters() {

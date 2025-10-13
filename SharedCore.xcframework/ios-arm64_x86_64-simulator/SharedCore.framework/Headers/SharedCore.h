@@ -4164,7 +4164,8 @@ __attribute__((swift_name("ValuePrecisionKt")))
 @property (class, readonly) int32_t PressurePrecision __attribute__((swift_name("PressurePrecision")));
 @property (class, readonly) int32_t RainPrecision __attribute__((swift_name("RainPrecision")));
 @property (class, readonly) int32_t VoltagePrecision __attribute__((swift_name("VoltagePrecision")));
-@property (class, readonly) int32_t WeightPrecision __attribute__((swift_name("WeightPrecision")));
+@property (class, readonly) int32_t WeightDefaultPrecision __attribute__((swift_name("WeightDefaultPrecision")));
+@property (class, readonly) int32_t WeightKiloPrecision __attribute__((swift_name("WeightKiloPrecision")));
 + (int32_t)exactPrecisionValue:(int32_t)value __attribute__((swift_name("exactPrecision(value:)")));
 @end
 

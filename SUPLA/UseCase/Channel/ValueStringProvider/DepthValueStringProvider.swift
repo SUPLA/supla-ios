@@ -16,20 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class DepthValueStringProvider: BaseDistanceValueStringProvider {
-    
+final class DepthValueStringProvider: ChannelValueStringProvider {
     @Singleton<DepthValueProvider> private var depthValueProvider
     
-    override var valueProvider: ChannelValueProvider {
-        depthValueProvider
-    }
-    
-    override var unknownValue: Double {
-        DepthValueProviderImpl.UNKNOWN_VALUE
-    }
-    
-    override func handle(_ channel: SAChannel) -> Bool {
+    func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_DEPTHSENSOR
     }
     
+    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+        DistanceValueFormatter.shared.format(
+            value: depthValueProvider.value(channel, valueType: valueType),
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
+    }
 }
