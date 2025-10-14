@@ -94,6 +94,16 @@ extension String {
     
 }
 
+extension String? {
+    func ifEmptyOrNil(_ elseValue: String) -> String {
+        if let self, !self.isEmpty {
+            self
+        } else {
+            elseValue
+        }
+    }
+}
+
 @objc extension NSString {
     @objc func utf8StringToBuffer(_ buffer: UnsafeMutablePointer<CChar>, withSize size: Int) {
         let str = self as String

@@ -63,6 +63,8 @@ extension String {
         static let soundOn = "icon_sound_on"
         static let soundOff = "icon_sound_off"
         static let update = "icon_update"
+        static let profileActive = "icon_profile_active"
+        static let profileInactive = "icon_profile_inactive"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
