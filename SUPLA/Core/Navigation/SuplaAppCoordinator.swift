@@ -138,9 +138,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToProfiles() {
-        let profiles = ProfilesVC()
-        profiles.bind(viewModel: ProfilesVM(profileManager: SAApp.profileManager()))
-        navigateTo(profiles)
+        navigateTo(ProfilesListFeature.ViewController.create())
     }
     
     func navigateToAddWizard() {

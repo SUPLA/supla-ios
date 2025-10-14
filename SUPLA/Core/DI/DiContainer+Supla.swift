@@ -225,6 +225,7 @@ extension DiContainer {
         register(DeleteProfileUseCase.self, DeleteProfileUseCaseImpl())
         register(ActivateProfileUseCase.self, ActivateProfileUseCaseImpl())
         register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
+        register(UpdateProfilesOrder.UseCase.self, UpdateProfilesOrder.Implementation())
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
