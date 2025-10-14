@@ -25,8 +25,8 @@ class ProfileItemCell: UITableViewCell {
     private let _userAvatar = UIImageView()
     private let _profileNameLabel = UILabel()
 
-    private let _avatarActiveImg = UIImage(named: "ProfileItemActive")
-    private let _avatarInactiveImg = UIImage(named: "ProfileItemInactive")
+    private let _avatarActiveImg = UIImage(named: .Icons.profileActive)
+    private let _avatarInactiveImg = UIImage(named: .Icons.profileInactive)
 
 
     override init(style: UITableViewCell.CellStyle,
@@ -41,13 +41,13 @@ class ProfileItemCell: UITableViewCell {
     }
 
     func setProfileItem(_ item: ProfileListItem) {
-        guard case let .profileItem(data) = item else {
+        guard case let .profileItem(_, name, isActive) = item else {
             fatalError("this shouldn't happen")
         }
 
-        _profileNameLabel.text = data.name
+        _profileNameLabel.text = name
 
-        if data.isActive {
+        if isActive {
             _userAvatar.image = _avatarActiveImg
         } else {
             _userAvatar.image = _avatarInactiveImg

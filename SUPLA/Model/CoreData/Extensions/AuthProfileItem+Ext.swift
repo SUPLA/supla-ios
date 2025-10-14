@@ -111,6 +111,21 @@ extension AuthProfileItem {
         )
     }
     
+    var asDto: ProfileDto {
+        ProfileDto(
+            id: id,
+            name: name.ifEmptyOrNil(Strings.Profiles.defaultProfileName),
+            isActive: isActive,
+            authorizationType: authorizationType,
+            advancedSetup: advancedSetup,
+            serverAutoDetect: serverAutoDetect,
+            email: email,
+            accessId: accessId,
+            accessIdPassword: accessIdPassword,
+            serverAddress: server?.address
+        )
+    }
+    
     @objc
     var authDetails: TCS_ClientAuthorizationDetails {
         authorizationEntity.authDetails

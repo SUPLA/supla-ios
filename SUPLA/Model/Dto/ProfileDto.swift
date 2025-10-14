@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct ProfileDto: Equatable {
+struct ProfileDto: Equatable, Identifiable {
     let id: Int32?
     let name: String
     let isActive: Bool

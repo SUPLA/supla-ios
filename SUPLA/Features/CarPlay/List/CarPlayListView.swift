@@ -63,23 +63,9 @@ extension CarPlayListFeature {
                 }
             }
             .overlay(
-                PlusButton(action: onNewItem),
+                FloatingPlusButton(action: onNewItem),
                 alignment: .bottomTrailing
             )
-        }
-    }
-
-    struct PlusButton: SwiftUI.View {
-        var action: () -> Void
-
-        var body: some SwiftUI.View {
-            IconButton(
-                name: .Icons.plus,
-                color: .Supla.onPrimary,
-                action: action
-            )
-            .buttonStyle(FilledIconStyle())
-            .padding(Distance.default)
         }
     }
 

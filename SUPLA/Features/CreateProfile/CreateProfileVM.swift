@@ -84,7 +84,7 @@ extension CreateProfileFeature {
                         if (result.restartNeeded || result.reauthNeeded) {
                             self?.coordinator.popToStatus()
                         } else {
-                            self?.coordinator.popToViewController(ofClass: ProfilesVC.self)
+                            self?.coordinator.popToViewController(ofClass: ProfilesListFeature.ViewController.self)
                         }
                     },
                     onError: { [weak self] error in
@@ -106,7 +106,7 @@ extension CreateProfileFeature {
                     onNext: { [weak self] result in
                         self?.state.loading = false
                         
-                        self?.coordinator.popToViewController(ofClass: ProfilesVC.self)
+                        self?.coordinator.popToViewController(ofClass: ProfilesListFeature.ViewController.self)
                         self?.coordinator.navigateToRemoveAccountWeb(needsRestart: result.restartNeeded, serverAddress: result.serverAddress)
                     },
                     onError: { [weak self] error in
@@ -138,7 +138,7 @@ extension CreateProfileFeature {
                                 SAApp.revokeOAuthToken()
                                 self?.coordinator.popToStatus()
                             } else {
-                                self?.coordinator.popToViewController(ofClass: ProfilesVC.self)
+                                self?.coordinator.popToViewController(ofClass: ProfilesListFeature.ViewController.self)
                             }
                         } else {
                             self?.state.presentRequiredDataMissing = true

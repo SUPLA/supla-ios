@@ -45,6 +45,7 @@ final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepositor
     
     func getAllProfiles() -> Observable<[AuthProfileItem]> {
         let request = AuthProfileItem.fetchRequest()
+            .ordered(by: "position")
             .ordered(by: "name")
         
         return query(request)
