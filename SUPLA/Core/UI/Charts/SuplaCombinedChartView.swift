@@ -19,6 +19,7 @@
 import DGCharts
 import RxRelay
 import RxSwift
+import SharedCore
 
 class SuplaCombinedChartView: UIView {
     var parametersObservable: Observable<ChartParameters> { parametersRelay.asObservable() }
@@ -272,13 +273,22 @@ private class AxisXFormatter: NSObject, AxisValueFormatter {
 }
 
 private class AxisYFormatter: NSObject, AxisValueFormatter {
-    private let formatter: ChannelValueFormatter
+    private let formatter: SharedCore.ValueFormatter
     
-    init(formatter: ChannelValueFormatter) {
+    init(formatter: SharedCore.ValueFormatter) {
         self.formatter = formatter
     }
     
     func stringForValue(_ value: Double, axis: DGCharts.AxisBase?) -> String {
-        formatter.formatChartLabel(value, precision: axis?.decimals ?? 1, withUnit: formatter is HumidityValueFormatter)
+        formatter.format(
+            value: value,
+            format: ValueFormat(
+                withUnit: formatter is SharedCore.HumidityValueFormatter,
+                precision: ValueFormatPrecisionCustom(valuePrecision: Int32(axis?.decimals ?? 1)),
+                customUnit: nil,
+                predecessor: nil,
+                showNoValueText: false
+            )
+        )
     }
 }

@@ -44,7 +44,7 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
         }
         
         for child in children {
-            result.append(child.channel.toTemperatureValue(result.count, getChannelBaseIconUseCase, getChannelBatteryIconUseCase, formatter))
+            result.append(child.channel.toTemperatureValue(result.count, getChannelBaseIconUseCase, getChannelBatteryIconUseCase))
             if (child.channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
                 result.append(child.channel.toHumidityValue(result.count, getChannelBaseIconUseCase, getChannelBatteryIconUseCase, formatter))
             }
@@ -57,13 +57,12 @@ fileprivate extension SAChannel {
     func toTemperatureValue(
         _ id: Int,
         _ getChannelBaseIconUseCase: GetChannelBaseIconUseCase,
-        _ getChannelBatteryIconUseCase: GetChannelBatteryIconUseCase,
-        _ valuesFormatter: ValuesFormatter
+        _ getChannelBatteryIconUseCase: GetChannelBatteryIconUseCase
     ) -> MeasurementValue {
         MeasurementValue(
             id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self),
-            value: status().online ? valuesFormatter.temperatureToString(temperatureValue(), withUnit: false) : NO_VALUE_TEXT,
+            value: status().online ? temperatureValue().toTemperatureString(ValueFormat.companion.WithoutUnit) : NO_VALUE_TEXT,
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }

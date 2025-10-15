@@ -144,9 +144,6 @@
 "Default settings" = "Paramètres par défaut";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "MODIFIER LE RÉGLAGE DE LA DURÉE DE VIE DE LA SOURCE LUMINEUSE";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La durée de vie de l\'illuminateur uv est de %.02f%%. Planifiez son remplacement.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La durée de vie de l\'illuminateur uv est de %.02f%%. Remplacez le radiateur.";
-"The lifespan of the light source is %.02f%%." = "La durée de vie de la source lumineuse est de %.02f%%.";
 "Please enter your Supla Cloud login details." = "Entrez vos informations de connexion cloud.supla.org.";
 "Enter superuser credentials" = "Entrez les informations d\'identification du superutilisateur";
 "Dimmer settings" = "Réglages du gradateur";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Pour continuer, appuyez sur Continuer.";
 "Press START to start configuration." = "Appuyez sur DÉMARRER pour commencer la configuration.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assurez-vous que l\'application a la permission de trouver des appareils sur le réseau local et de s\'y connecter. Cela signifie que la permission « iOS->Paramètres->SUPLA->Réseau local » doit être activée pour que l\'assistant fonctionne correctement.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Des sections du verre sont exposées pendant plus de 20 heures, ce qui peut affecter leur durée de vie. Il est conseillé de couvrir toutes les sections pendant un minimum de 4 heures pour la régénération.";
-"Planned regeneration is in progress." = "Régénération programmée en cours.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Régénération initiée après 20h de fonctionnement en cours.";
 "Back" = "Retour";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Le pont z-wave ne répond pas. Vérifiez si le pont est connecté au serveur.";
 "Exit" = "Sortie";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Température et humidité";
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
+"channel_uv_warning" = "La durée de vie de l'illuminateur uv est de %.01f%%. Planifiez son remplacement.";
+"channel_uv_error" = "La durée de vie de l'illuminateur uv est de %.01f%%. Remplacez le radiateur.";
+"channel_lightsource_warning" = "La durée de vie de la source lumineuse est de %.01f%%.";
+"dgf_too_long_operation_warning" = "Des sections du verre sont exposées pendant plus de 20 heures, ce qui peut affecter leur durée de vie. Il est conseillé de couvrir toutes les sections pendant un minimum de 4 heures pour la régénération.";
+"dgf_planned_regeneration_in_progress" = "Régénération programmée en cours.";
+"dgf_regeneration_after20h" = "Régénération initiée après 20h de fonctionnement en cours.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Nous avons supprimé le geste de glissement pour voir les détails. Il suffit de taper sur la chaîne sélectionnée pour les consulter.";
@@ -348,6 +348,7 @@
 "settings_show_bottom_menu" = "Afficher le menu du bas";
 "settings_show_labels" = "Afficher les étiquettes dans le menu inférieur";
 "settings_dark_mode" = "Mode nuit";
+"app_settings_temperature_precision" = "Précision de la température";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Générale";
@@ -418,6 +419,8 @@
 "schedule_detail_program_dialog_header" = "Paramètres du programme %d";
 "hvac_mode_temperature_heating" = "Température de chauffage";
 "hvac_mode_temperature_cooling" = "Température de refroidissement";
+"thermostat_detail_antifreeze_active" = "Protection antigel active";
+"thermostat_detail_overheat_active" = "Protection contre la surchauffe active";
 
 /* Combined Chart */
 "history_range_label" = "Plage";
@@ -442,6 +445,8 @@
 "history_wait_for_download_completed" = "Veuillez patienter, le téléchargement est en cours...";
 "chart_marker_opening" = "Ouverture";
 "chart_marker_closing" = "Fermeture";
+"temperature_measured" = "Mesuré";
+"temperature_preset" = "Préréglé";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Supprimer les documents datant de plus de 30 jours";
@@ -557,7 +562,9 @@
 /* State */
 "state_channel_id" = "Id du canal";
 "state_battery_level" = "Niveau de batterie";
-"state_battery_powered" = "Alimenté par pile";
+"state_power_supply" = "Alimentation";
+"channel_state_battery_powered" = "par pile";
+"channel_state_main_powered" = "sur secteur";
 "state_wifi_signal_strength" = "Force du signal Wi-Fi";
 "state_bridge_node_online" = "Nœud de pont - en ligne";
 "state_bridge_node_signal" = "Nœud de pont - puissance du signal";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Action: %@";
 "car_play_display_name" = "Nom";
+"car_play_label" = "Actions pour Widgets/CarPlay";
+"car_play_voice_messages" = "Lire les messages";
+"car_play_execution_error" = "Échec de l'exécution (code d'erreur : %d)";
+"car_play_executing" = "Exécution en cours...";
+"car_play_delete_title" = "Suppression de l'élément";
+"car_play_delete_message" = "Voulez-vous continuer?";
+"car_play_confirm_delete" = "Supprimer";
+"car_play_empty" = "CarPlay n'est pas configuré. Allez dans l'App Supla -> Réglages -> Actions pour Widgets/CarPlay et préparez la configuration.";
+
+/* Widgets */
+"widgets_label" = "Actions pour widgets";
+"widget_empty_hint" = "Aucune action courante définie. Allez dans l'APP Supla -> Réglages -> Actions pour widgets et définissez vos actions.";
+"widget_with_carplay_empty_hint" = "Aucune action courante définie. Allez dans l'APP Supla -> Réglages -> Actions pour Widgets/CarPlay et définissez vos actions.";
+"widget_control_hint" = "Exécuter l'action";
+"widgets_actions_name" = "Actions";
+"widgets_actions_description" = "Simplifie l'accès aux actions les plus courantes.";
+"widgets_unknown_action" = "Action inconnue!";
+"widgets_value_title" = "Aperçu Rapide";
+"widgets_value_description" = "Widget qui affiche un aperçu rapide de la valeur actuelle du canal.";
+"widget_configuration_error" = "Le widget n'est pas correctement configuré";
+"widgets_single_action_title" = "Action Simple";
+"widgets_single_action_description" = "Simplifie l'accès à une seule action.";
+"widgets_double_action_title" = "Double Action";
+"widgets_double_action_description" = "Simplifie l'accès à deux actions.";
+"widgets_first_action" = "Première Action";
+"widgets_second_action" = "Deuxième Action";
+"widgets_control_title" = "Bouton de Commande";
+"widgets_control_description" = "Bouton qui permet d'exécuter une seule action prédéfinie.";
+"widgets_selected_action" = "Action Sélectionnée";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Le délai d'attente pour des informations sur la disponibilité d'enregistrement des dispositifs est dépassé !";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Mot de passe de l'appareil";
 "add_wizard_password_instruction" = "Veuillez utiliser le mot de passe utilisé pour l'accès à la page web de configuration locale.\n\nMot de passe oublié ? Vous pouvez le modifier sur Supla Cloud ou réinitialiser l'appareil aux paramètres d'usine.";
 "add_wizard_manual_reconnect_message" = "La connexion Internet a échoué.\n\nAccédez aux paramètres système et sélectionnez un réseau Wi-Fi disposant d'une connexion Internet. Revenez ensuite à l'application et continuez en appuyant sur **Suivant**.";
+"add_device_manual_popup_title" = "Échec de l'ajout de l'appareil";
+"add_device_manual_popup_message" = "La tentative d'ajouter un appareil automatiquement a échoué. Si le problème persiste, nous vous recommandons d'ajouter l'appareil manuellement.";
+"add_device_manual_popup_resign" = "Rester en mode automatique";
+"add_device_manual_popup_continue" = "Réessayer en mode manuel";
+"add_wizard_internal_error_message" = "";

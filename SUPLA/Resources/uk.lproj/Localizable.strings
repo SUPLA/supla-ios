@@ -143,9 +143,6 @@
 "Are you sure you want to restore the default settings?" = "Ви впевнені, що хочете відновити налаштування за замовчуванням ?";
 "Default settings" = "Налаштування за замовчуванням";
 
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Термін служби УФ-випромінювача становить %,02f%%. Заплануйте його заміну.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Термін служби УФ-випромінювача становить %,02f%%. Замінити випромінювач.";
-"The lifespan of the light source is %.02f%%." = "Термін служби джерела світла становить %,02f%%.";
 "Please enter your Supla Cloud login details." = "Введіть дані для входу в Supla Cloud.";
 "Enter superuser credentials" = "Введіть облікові дані основного користувача";
 "Dimmer settings" = "Налаштування регулятора освітленості";
@@ -159,9 +156,6 @@
 "Press Next to continue." = "Натисніть Далі, щоб продовжити.";
 "Press START to start configuration." = "Натисніть кнопку СТАРТ, щоб почати налаштування.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Переконайтеся, що програма має дозвіл на пошук пристроїв у вашій локальній мережі та підключення до них. Це означає, що для належної роботи майстра має бути ввімкнено дозвіл \"iOS->Налаштування->SUPLA->Локальна мережа\".";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Скляні секції експонуються більше 20 годин, що може негативно вплинути на термін їх служби. Рекомендується накрити всі секції мінімум на 4 години для їх регенерації.";
-"Planned regeneration is in progress." = "Виконується планова регенерація.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Триває регенерація, розпочата після 20 годин роботи.";
 "Back" = "Назад";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
 "Exit" = "Вихід";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Температура і вологість";
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї (%d - %@): %d%%";
+"channel_uv_warning" = "Термін служби УФ-випромінювача становить %.01f%%. Заплануйте його заміну.";
+"channel_uv_error" = "Термін служби УФ-випромінювача становить %.01f%%. Замінити випромінювач.";
+"channel_lightsource_warning" = "Термін служби джерела світла становить %.01f%%.";
+"dgf_too_long_operation_warning" = "Скляні секції експонуються більше 20 годин, що може негативно вплинути на термін їх служби. Рекомендується накрити всі секції мінімум на 4 години для їх регенерації.";
+"dgf_planned_regeneration_in_progress" = "Виконується планова регенерація.";
+"dgf_regeneration_after20h" = "Триває регенерація, розпочата після 20 годин роботи.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Ми прибрали жест прогортування, який відкриває деталі, торкніться вибраного каналу, щоб побачити їх.";
@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Додаток";
 "settings_lock_screen_none" = "Немає";
 "settings_show_bottom_menu" = "Показати нижнє меню";
+"app_settings_temperature_precision" = "Точність температури";
 
 
 /* Standard Detail */
@@ -419,6 +420,8 @@
 "thermostat_detail_main_thermostat" = "Головний термостат";
 "thermostat_detail_other_thermostats" = "Залежні термостати";
 "thermostat_battery_cover_open" = "Кришка акумулятора відкрита";
+"thermostat_detail_antifreeze_active" = "Активний захист від замерзання";
+"thermostat_detail_overheat_active" = "Активний захист від перегріву";
 
 /* Combined Chart */
 "history_range_last_day" = "Останні 24 години";
@@ -443,6 +446,8 @@
 "history_wait_for_download_completed" = "Будь ласка, зачекайте, завантажується...";
 "chart_marker_opening" = "Відкриття";
 "chart_marker_closing" = "Закриття";
+"temperature_measured" = "Виміряна";
+"temperature_preset" = "Заданий";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Видалити старіші за 30 днів";
@@ -558,7 +563,9 @@
 /* State */
 "state_channel_id" = "Ідентифікатор каналу";
 "state_battery_level" = "Рівень заряду батареї";
-"state_battery_powered" = "Працює від батареї";
+"state_power_supply" = "Живлення";
+"channel_state_battery_powered" = "від батареї";
+"channel_state_main_powered" = "від мережі";
 "state_wifi_signal_strength" = "Потужність сигналу Wi-Fi";
 "state_bridge_node_online" = "Мостовий вузол - онлайн";
 "state_bridge_node_signal" = "Мостовий вузол  - потужність сигналу";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Подія: %@";
 "car_play_display_name" = "Назва";
+"car_play_label" = "Дії для Віджетів/CarPlay";
+"car_play_voice_messages" = "Відтворити повідомлення";
+"car_play_execution_error" = "Виконання не вдалося (код помилки: %d)";
+"car_play_executing" = "Виконується...";
+"car_play_delete_title" = "Видалення елемента";
+"car_play_delete_message" = "Бажаєте продовжити?";
+"car_play_confirm_delete" = "Видалити";
+"car_play_empty" = "CarPlay не налаштовано. Перейдіть до Supla App -> Налаштування -> Дії для Віджетів/CarPlay та підготуйте конфігурацію.";
+
+/* Widgets */
+"widgets_label" = "Дії для Віджетів";
+"widget_empty_hint" = "Не визначено жодної спільної дії. Перейдіть до Supla APP -> Налаштування -> Дії для Віджетів та визначте свої дії.";
+"widget_with_carplay_empty_hint" = "Не визначено жодної спільної дії. Перейдіть до Supla APP -> Налаштування -> Дії для Віджетів/CarPlay та визначте свої дії.";
+"widget_control_hint" = "Виконати дію";
+"widgets_actions_name" = "Дії";
+"widgets_actions_description" = "Спрощує доступ до найпоширеніших дій.";
+"widgets_unknown_action" = "Невідома дія!";
+"widgets_value_title" = "Швидкий перегляд";
+"widgets_value_description" = "Віджет, який служить для швидкого попереднього перегляду поточного значення каналу.";
+"widget_configuration_error" = "Віджет налаштовано неправильно";
+"widgets_single_action_title" = "Одна дія";
+"widgets_single_action_description" = "Спрощує доступ до однієї дії.";
+"widgets_double_action_title" = "Подвійна дія";
+"widgets_double_action_description" = "Спрощує доступ до двох дій.";
+"widgets_first_action" = "Перша дія";
+"widgets_second_action" = "Друга дія";
+"widgets_control_title" = "Кнопка керування";
+"widgets_control_description" = "Кнопка, яка дозволяє виконати попередньо визначену одну дію.";
+"widgets_selected_action" = "Вибрана дія";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Минув час очікування інформації про наявність реєстрації пристрою!";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Пароль пристрою";
 "add_wizard_password_instruction" = "Будь ласка, використовуйте пароль, який використовувався для доступу до локальної веб-сторінки конфігурації.\n\nЗабули пароль? Ви можете змінити його в Supla Cloud або скинути пристрій до заводських налаштувань.";
 "add_wizard_manual_reconnect_message" = "Не вдалося підключитися до інтернету.\n\nПерейдіть до системних налаштувань і виберіть мережу Wi-Fi, яка має підключення до інтернету. Потім поверніться в програму та продовжуйте, натиснувши **Далі**.";
+"add_device_manual_popup_title" = "Не вдалося додати пристрій";
+"add_device_manual_popup_message" = "Спроба автоматичного додавання пристрою не вдалася. Якщо проблема не зникає, рекомендуємо додати пристрій вручну.";
+"add_device_manual_popup_resign" = "Залишитися в автоматичному режимі";
+"add_device_manual_popup_continue" = "Спробувати знову в ручному режимі";
+"add_wizard_internal_error_message" = "";

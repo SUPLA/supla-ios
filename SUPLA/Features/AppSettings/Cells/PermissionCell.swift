@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import UIKit
+
 final class PermissionCell: BaseSettingsCell<UIImageView> {
     
     static let id = "PermissionCell"
@@ -54,7 +56,7 @@ final class PermissionCell: BaseSettingsCell<UIImageView> {
             actionView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         
-        contentView.addGestureRecognizer(NSUITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTapped)))
     }
     
     @objc

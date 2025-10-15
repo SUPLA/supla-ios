@@ -138,6 +138,8 @@ extension LocalizedStringId {
         case .addWizardStateFinishing: Strings.AddWizard.stateFinishing
             
         case .channelStateUptime: Strings.State.uptimeValue
+        case .channelStateBatteryPowered: Strings.State.batteryPowered
+        case .channelStateMainsPowered: Strings.State.mainPowered
         case .lastConnectionResetCauseUnknown: Strings.State.connectionResetCauseUnknown
         case .lastConnectionResetCauseActivityTimeout: Strings.State.connectionResetCauseActivityTimeout
         case .lastConnectionResetCauseWifiConnectionLost: Strings.State.connectionResetCauseWifiConnectionLost
@@ -153,6 +155,13 @@ extension LocalizedStringId {
         case .resultCodeIncorrectEmailOrPassword: Strings.Status.errorInvalidData
         case .resultCodeBadCredentials: Strings.Status.errorBadCredentials
         case .resultCodeUnknownError: Strings.Status.errorUnknown
+            
+        case .lifespanWarningReplace: Strings.General.Channel.uvError
+        case .lifespanWarningSchedule: Strings.General.Channel.uvWarning
+        case .lifespanWarning: Strings.General.Channel.lightSourceWarning
+        case .digiglassPlannedRegeneration: Strings.General.Channel.digiglassPlannedRegeneration
+        case .digiglassRegenerationAfter20H: Strings.General.Channel.digiglassRegeneration
+        case .digiglassToLongOperation: Strings.General.Channel.digiglassTooLongOperating
         }
     }
 }

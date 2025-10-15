@@ -100,6 +100,8 @@ extension String {
         static let replay = "icon_replay"
         static let wifiSettings = "icon_wifi_settings"
         static let locationProblem = "icon_location_problem"
+        static let antifreeze = "icon_antifreeze"
+        static let overheat = "icon_overheat"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"

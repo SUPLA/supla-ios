@@ -32,7 +32,7 @@ final class GeneralPurposeMeasurementMeasurementsProviderImpl: GeneralPurposeMea
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         let entryType: ChartEntryType = .generalPurposeMeasurement
         let color = colorProvider?(entryType) ?? TemperatureColors.standard
 
@@ -44,15 +44,17 @@ final class GeneralPurposeMeasurementMeasurementsProviderImpl: GeneralPurposeMea
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingGeneralPurposeMeasurement(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channelWithChildren.channel, .generalPurposeMeasurement, color, spec.aggregation, $0)] }
+            .map { [self.historyDataSet(channelWithChildren, .generalPurposeMeasurement, color, spec.aggregation, $0)] }
             .map {
-                ChannelChartSets(
-                    remoteId: channelWithChildren.channel.remote_id,
-                    function: channelWithChildren.channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: $0
-                )
+                [
+                    ChannelChartSets(
+                        remoteId: channelWithChildren.channel.remote_id,
+                        function: channelWithChildren.channel.func,
+                        name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
+                        aggregation: spec.aggregation,
+                        dataSets: $0
+                    )
+                ]
             }
     }
 

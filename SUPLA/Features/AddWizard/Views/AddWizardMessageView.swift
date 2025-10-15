@@ -41,7 +41,7 @@ extension AddWizardFeature {
 
                 if let action {
                     switch (action) {
-                    case .repeat:
+                    case .repeatSuccess, .repeatError:
                         AddWizardFeature.RepeatButton(
                             title: Strings.AddWizard.tryAgain,
                             action: { onAction(action) }
@@ -57,7 +57,7 @@ extension AddWizardFeature {
     }
 
     enum MessageAction {
-        case `repeat`, location
+        case repeatSuccess, repeatError, location
     }
 }
 
@@ -91,7 +91,7 @@ private struct LocationButton: SwiftUI.View {
     BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
         AddWizardFeature.AddWizardMessageView(
             messages: [LocalizedStringId.addWizardConfigureTimeout.value],
-            action: .repeat,
+            action: .repeatSuccess,
             onCancel: {},
             onBack: {},
             onNext: {},

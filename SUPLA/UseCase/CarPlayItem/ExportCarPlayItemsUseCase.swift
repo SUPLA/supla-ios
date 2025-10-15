@@ -224,7 +224,7 @@ private extension SAChannelBase {
 private extension SAChannel {
     var widgetSupported: Bool {
         switch (self.func.suplaFuntion) {
-        case .thermometer, .humidityAndTemperature, .humidity: true
+        case .thermometer, .humidityAndTemperature, .humidity, .container, .waterTank, .septicTank: true
         default: false
         }
     }

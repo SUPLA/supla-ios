@@ -146,9 +146,6 @@
 "Default settings" = "Numatytieji nustatymai";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "PAKEISTI ŠVIESOS ŠALTINIO GYVAVIMO TRUKMĖS NUSTATYMUS";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "UV spinduolio tarnavimo laikas tai %.02f%%. Suplanuoti jo pakeitimą.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "UV spinduolio tarnavimo laikas tai %.02f%%. Pakeisti spinduolį.";
-"The lifespan of the light source is %.02f%%." = "Šviesos šaltinio tarnavimo laikas tai %.02f%%.";
 "Please enter your Supla Cloud login details." = "Įveskite savo prisijungimo prie cloud.supla.org duomenis.";
 "Enter superuser credentials" = "Įveskite pagrindinio vartotojo kredencialus";
 "Dimmer settings" = "Šviesos srauto nustatymai";
@@ -162,9 +159,6 @@
 "Press Next to continue." = "Spustelėkite Pirmyn, jei norite tęsti";
 "Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Įsitikinkite, kad programoje yra leidimas aptikti įrenginius vietiniame tinkle ir prisijungti prie jų. Tai reiškia kad tam, kad vedlys veiktų tinkamai leidimas \“iOS->Nustatymai->SUPLA->Vietinis tinklas\“ turi būti įjungtas.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
-"Planned regeneration is in progress." = "Vyksta suplanuotas regeneravimas.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
 "Back" = "Atgal";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
 "Exit" = "Išėjimas";
@@ -319,6 +313,12 @@
 "channel_caption_humidityandtemperature" = "Temperatūra ir drėgmė";
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
+"channel_uv_warning" = "UV spinduolio tarnavimo laikas tai %.01f%%. Suplanuoti jo pakeitimą.";
+"channel_uv_error" = "UV spinduolio tarnavimo laikas tai %.01f%%. Pakeisti spinduolį.";
+"channel_lightsource_warning" = "Šviesos šaltinio tarnavimo laikas tai %.01f%%.";
+"dgf_too_long_operation_warning" = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
+"dgf_planned_regeneration_in_progress" = "Vyksta suplanuotas regeneravimas.";
+"dgf_regeneration_after20h" = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";
@@ -350,6 +350,7 @@
 "settings_lock_screen_app" = "Programėlė";
 "settings_lock_screen_none" = "Nėra";
 "settings_show_bottom_menu" = "Rodyti apatinį meniu";
+"app_settings_temperature_precision" = "Temperatūros tikslumas";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Bendrieji";
@@ -420,6 +421,8 @@
 "thermostat_detail_main_thermostat" = "Pagrindinis termostatas";
 "thermostat_detail_other_thermostats" = "Priklausomi termostatai";
 "thermostat_battery_cover_open" = "Baterijos dangtelis atidarytas";
+"thermostat_detail_antifreeze_active" = "Aktyvi apsauga nuo užšalimo";
+"thermostat_detail_overheat_active" = "Aktyvi apsauga nuo perkaitimo";
 
 /* Combined Chart */
 "history_range_last_day" = "Pastarosios 24 valandos";
@@ -444,6 +447,8 @@
 "history_wait_for_download_completed" = "Prašome laukti, atsisiunčiu…";
 "chart_marker_opening" = "Atidarymas";
 "chart_marker_closing" = "Uždarymas";
+"temperature_measured" = "Išmatuotas";
+"temperature_preset" = "Iš anksto nustatytas";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Pašalinti senesnius nei 30 dienų";
@@ -559,7 +564,9 @@
 /* State */
 "state_channel_id" = "Kanalo ID";
 "state_battery_level" = "Baterijos lygis";
-"state_battery_powered" = "Maitinimas baterija";
+"state_power_supply" = "Maitinimas";
+"channel_state_battery_powered" = "iš baterijų";
+"channel_state_main_powered" = "iš tinklo";
 "state_wifi_signal_strength" = "Wi-Fi signalo stiprumas";
 "state_bridge_node_online" = "Tilto mazgas – online";
 "state_bridge_node_signal" = "Tilto mazgas – signalo stiprumas";
@@ -584,6 +591,35 @@
 /* Car play */
 "car_play_action" = "Veiksmas: %@";
 "car_play_display_name" = "Pavadinimas";
+"car_play_label" = "Veiksmai valdikliams/CarPlay";
+"car_play_voice_messages" = "Leisti pranešimus";
+"car_play_execution_error" = "Nepavyko įvykdyti (klaidos kodas: %d)";
+"car_play_executing" = "Vykdoma...";
+"car_play_delete_title" = "Šalinamas elementas";
+"car_play_delete_message" = "Ar norite tęsti?";
+"car_play_confirm_delete" = "Ištrinti";
+"car_play_empty" = "CarPlay nėra sukonfigūruotas. Eikite į „Supla App“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir paruoškite konfigūraciją.";
+
+/* Widgets */
+"widgets_label" = "Veiksmai valdikliams";
+"widget_empty_hint" = "Nenurodytas joks bendras veiksmas. Eikite į „Supla APP“ -> Nustatymai -> Veiksmai valdikliams ir nurodykite savo veiksmus.";
+"widget_with_carplay_empty_hint" = "Nenurodytas joks bendras veiksmas. Eikite į „Supla APP“ -> Nustatymai -> Veiksmai valdikliams/CarPlay ir nurodykite savo veiksmus.";
+"widget_control_hint" = "Atlikti veiksmą";
+"widgets_actions_name" = "Veiksmai";
+"widgets_actions_description" = "Supaprastina prieigą prie dažniausiai naudojamų veiksmų.";
+"widgets_unknown_action" = "Nežinomas veiksmas!";
+"widgets_value_title" = "Greitas Peržiūras";
+"widgets_value_description" = "Valdiklis, kuris rodo greitą dabartinės kanalo vertės peržiūrą.";
+"widget_configuration_error" = "Valdiklis nėra tinkamai sukonfigūruotas";
+"widgets_single_action_title" = "Vienas Veiksmas";
+"widgets_single_action_description" = "Supaprastina prieigą prie vieno veiksmo.";
+"widgets_double_action_title" = "Dvigubas Veiksmas";
+"widgets_double_action_description" = "Supaprastina prieigą prie dviejų veiksmų.";
+"widgets_first_action" = "Pirmas Veiksmas";
+"widgets_second_action" = "Antras Veiksmas";
+"widgets_control_title" = "Valdymo Mygtukas";
+"widgets_control_description" = "Mygtukas, leidžiantis atlikti iš anksto nustatytą vieną veiksmą.";
+"widgets_selected_action" = "Pasirinktas Veiksmas";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Viršytas informacijos apie įrenginių registracijos prieinamumą laukimo laikas!";
@@ -635,3 +671,8 @@
 "add_wizard_password_enter_title" = "Įrenginio slaptažodis";
 "add_wizard_password_instruction" = "Prašome naudoti slaptažodį, kuris buvo naudojamas vietinės konfigūracijos tinklalapio prieigai.\n\nPamiršote slaptažodį? Galite jį pakeisti Supla Cloud sistemoje arba atkurti gamyklinius įrenginio nustatymus.";
 "add_wizard_manual_reconnect_message" = "Nepavyko prisijungti prie interneto.\n\nEikite į sistemos nustatymus ir pasirinkite „Wi-Fi“ tinklą, kuris turi interneto ryšį. Tada grįžkite į programėlę ir tęskite paspausdami **Toliau**.";
+"add_device_manual_popup_title" = "Nepavyko pridėti įrenginio";
+"add_device_manual_popup_message" = "Bandymas automatiškai pridėti įrenginį nepavyko. Jei problema kartojasi, rekomenduojame įrenginį pridėti rankiniu būdu.";
+"add_device_manual_popup_resign" = "Likti automatiniame režime";
+"add_device_manual_popup_continue" = "Bandyti dar kartą rankiniu būdu";
+"add_wizard_internal_error_message" = "";

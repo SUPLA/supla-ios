@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import DGCharts
+
 final class BarChartData: CombinedChartData {
     override func combinedData() -> DGCharts.CombinedChartData? {
         var barDataSets: [BarChartDataSet] = []

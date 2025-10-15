@@ -27,6 +27,9 @@ extension AddWizardFeature {
         func onWifiSettings()
         func onFollowupPopupClose()
         func onFollowupPopupOpen()
+        func onManualPopupContinueManual()
+        func onManualPopupContinueAuto()
+        func onManualPopupClose()
     }
     
     struct View: SwiftUI.View {
@@ -71,12 +74,11 @@ extension AddWizardFeature {
                         onCancel: { delegate?.onCancel(screen) },
                         onBack: { delegate?.onBack(screen) },
                         onNext: { delegate?.onNext(screen) },
-                        onAgain: { delegate?.onMessageAction(.repeat) }
+                        onAgain: { delegate?.onMessageAction(.repeatSuccess) }
                     )
-                    if let dialogState = state.followupPopupState {
-                        SuplaCore.AlertDialog(
-                            state: dialogState,
-                            onDismiss: {},
+                        
+                    if (state.showCloudFollowupPopup) {
+                        CloudFollowupPopup(
                             onPositiveButtonClick: delegate?.onFollowupPopupOpen,
                             onNegativeButtonClick: delegate?.onFollowupPopupClose
                         )
@@ -90,6 +92,14 @@ extension AddWizardFeature {
                         onNext: { delegate?.onNext(screen) },
                         onAction: { delegate?.onMessageAction($0) }
                     )
+                    
+                    if (state.showManualModePopup) {
+                        ManualModePopup(
+                            onContinueManual: delegate?.onManualPopupContinueManual,
+                            onContinueAuto: delegate?.onManualPopupContinueAuto,
+                            onClose: delegate?.onManualPopupClose
+                        )
+                    }
                 case .manualConfiguration:
                     AddWizardFeature.AddWizardManualInstruction(
                         processing: state.processing,
@@ -113,14 +123,14 @@ extension AddWizardFeature {
                 }
                 
                 if let dialogState = state.providePasswordDialogState {
-                    ProvidePasswordDialog(
+                    AddWizardFeature.ProvidePasswordDialog(
                         state: dialogState,
                         delegate: delegate
                     )
                 }
                 
                 if let dialogState = state.setPasswordDialogState {
-                    SetPasswordDialog(
+                    AddWizardFeature.SetPasswordDialog(
                         state: dialogState,
                         delegate: delegate
                     )
@@ -130,8 +140,93 @@ extension AddWizardFeature {
     }
 }
 
+struct CloudFollowupPopup: View {
+    var onPositiveButtonClick: (() -> Void)?
+    var onNegativeButtonClick: (() -> Void)?
+    
+    init(
+        onPositiveButtonClick: (() -> Void)? = nil,
+        onNegativeButtonClick: (() -> Void)? = nil
+    ) {
+        self.onPositiveButtonClick = onPositiveButtonClick
+        self.onNegativeButtonClick = onNegativeButtonClick
+    }
+    
+    var body: some View {
+        SuplaCore.Dialog.Base(onDismiss: {}) {
+            SuplaCore.Dialog.Header(title: Strings.AddWizard.cloudFollowupTitle)
+                
+            SwiftUI.Text(Strings.AddWizard.cloudFollowupMessage)
+                .fontBodyMedium()
+                .multilineTextAlignment(.center)
+                .padding([.leading, .trailing], Distance.default)
+                
+            SuplaCore.Dialog.VerticalButtons(
+                onNegativeClick: onNegativeButtonClick ?? {},
+                onPositiveClick: onPositiveButtonClick ?? {},
+                negativeText: Strings.AddWizard.cloudFollowupClose,
+                positiveText: Strings.AddWizard.cloudFollowupGoToCloud
+            )
+        }
+    }
+}
+
+struct ManualModePopup: View {
+    var onContinueManual: (() -> Void)?
+    var onContinueAuto: (() -> Void)?
+    var onClose: (() -> Void)?
+    
+    init(
+        onContinueManual: (() -> Void)? = nil,
+        onContinueAuto: (() -> Void)? = nil,
+        onClose: (() -> Void)? = nil
+    ) {
+        self.onContinueManual = onContinueManual
+        self.onContinueAuto = onContinueAuto
+        self.onClose = onClose
+    }
+    
+    var body: some View {
+        SuplaCore.Dialog.Base(onDismiss: onClose ?? {}) {
+            SuplaCore.Dialog.Header(title: Strings.AddWizard.manualModePopupTitle)
+                
+            SwiftUI.Text(Strings.AddWizard.manualModePopupMessage)
+                .fontBodyMedium()
+                .multilineTextAlignment(.center)
+                .padding([.leading, .trailing], Distance.default)
+                
+            SuplaCore.Dialog.VerticalButtons(
+                onNegativeClick: onContinueAuto ?? {},
+                onPositiveClick: onContinueManual ?? {},
+                negativeText: Strings.AddWizard.manualModePopupResign,
+                positiveText: Strings.AddWizard.manualModePopupContinue
+            )
+        }
+    }
+}
+
 #Preview {
     AddWizardFeature.View(
         state: AddWizardFeature.ViewState()
+    )
+}
+
+#Preview("Cloud followup popup") {
+    let state = AddWizardFeature.ViewState()
+    state.showCloudFollowupPopup = true
+    state.screens = state.screens.just(.success)
+    
+    return AddWizardFeature.View(
+        state: state
+    )
+}
+
+#Preview("Cloud manual mode popup") {
+    let state = AddWizardFeature.ViewState()
+    state.showManualModePopup = true
+    state.screens = state.screens.just(.message(text: [""], action: .repeatError))
+    
+    return AddWizardFeature.View(
+        state: state
     )
 }

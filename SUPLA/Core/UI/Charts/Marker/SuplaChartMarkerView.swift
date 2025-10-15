@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Charts
+import DGCharts
 
 @objc class SuplaChartMarkerView: BaseChartMarkerView {
     @Singleton<ValuesFormatter> private var formatter
@@ -160,9 +160,9 @@ import Charts
                details.type == .generalPurposeMeasurement
             {
                 firstRowTitle.text = Strings.Charts.markerOpening
-                firstRowValue.text = details.valueFormatter.format(open, withUnit: false)
+                firstRowValue.text = details.valueFormatter.format(value: open, format: ValueFormat.companion.WithoutUnit)
                 secondRowTitle.text = Strings.Charts.markerClosing
-                secondRowValue.text = details.valueFormatter.format(close, withUnit: false)
+                secondRowValue.text = details.valueFormatter.format(value: close, format: ValueFormat.companion.WithoutUnit)
             } else {
                 firstRowTitle.text = ""
                 firstRowValue.text = ""
@@ -194,14 +194,14 @@ import Charts
     
     private func getValueString(_ details: ChartEntryDetails, _ value: Double, precision: Int = 1) -> String {
         switch (details.type) {
-        case .temperature:
-            details.valueFormatter.format(value, withUnit: false, precision: precision)
+        case .temperature, .presetTemperature:
+            details.valueFormatter.format(value: value, format: ValueFormat.companion.WithoutUnit)
         case .humidity, .humidityOnly:
-            details.valueFormatter.format(value, withUnit: true, precision: precision)
+            details.valueFormatter.format(value: value, format: ValueFormat.companion.WithUnit)
         case .generalPurposeMeasurement:
-            details.valueFormatter.format(value, withUnit: false)
+            details.valueFormatter.format(value: value)
         case .generalPurposeMeter, .electricity, .impulseCounter, .voltage, .current, .powerActive:
-            details.valueFormatter.format(value, withUnit: true)
+            details.valueFormatter.format(value: value, format: ValueFormat.companion.WithUnit)
         }
     }
     

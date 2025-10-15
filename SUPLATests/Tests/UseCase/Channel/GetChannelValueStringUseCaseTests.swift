@@ -108,7 +108,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, NO_VALUE_TEXT)
+        XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
     }
     
     func test_shouldGetNoValueTest_whenNoProviderFound() {
@@ -119,7 +119,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, NO_VALUE_TEXT)
+        XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
     }
     
     func test_shouldGetDepthValueStringInMeters() {
@@ -173,13 +173,13 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
             value: SAChannelValue.mock(status: .online)
         )
-        depthValueProvider.valueReturns = 0.0025
+        depthValueProvider.valueReturns = 0.002
         
         // when
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "2.5 mm")
+        XCTAssertEqual(valueText, "2 mm")
     }
     
     func test_shouldGetDepthValueStringInMilimetersWithoutUnit() {
@@ -188,13 +188,13 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DEPTHSENSOR,
             value: SAChannelValue.mock(status: .online)
         )
-        depthValueProvider.valueReturns = 0.0025
+        depthValueProvider.valueReturns = 0.002
         
         // when
         let valueText = useCase.invoke(channel, withUnit: false)
         
         // then
-        XCTAssertEqual(valueText, "2.5")
+        XCTAssertEqual(valueText, "2")
     }
     
     func test_shouldGetDistanceValueStringInMeters() {
@@ -218,7 +218,8 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             valuePrecision: 2,
             unitBeforValue: "$",
             unitAfterValue: "k",
-            noSpaceBeforeValue: true
+            noSpaceBeforeValue: true,
+            noSpaceAfterValue: false
         )
         let channel = SAChannel.mock(
             function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
@@ -246,7 +247,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, NO_VALUE_TEXT)
+        XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
     }
     
     func test_shouldGetGpmValueString_whenNoConfigFound() {
@@ -316,6 +317,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
             value: SAChannelValue.mock(status: .online)
         )
         groupSharedSettings.temperatureUnitMock.returns = .many([.celsius, .celsius])
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
         // when

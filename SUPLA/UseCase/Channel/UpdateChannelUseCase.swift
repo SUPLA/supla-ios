@@ -38,11 +38,16 @@ final class UpdateChannelUseCaseImpl: UpdateChannelUseCase {
                     .flatMapFirst { location in
                         self.channelRepository
                             .getChannel(for: profile, with: suplaChannel.Id)
-                            .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id))
+                            .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id, location))
                             .map { (location, $0) }
                     }
-                    .map { (location, channel) in
-                        self.updateChannel(channel: channel, suplaChannel: suplaChannel, location: location)
+                    .flatMapFirst { (location, channel) in
+                        self.channelRepository
+                            .findMaxPositionInLocation(location.location_id?.int32Value ?? 0)
+                            .map { (location, channel, $0) }
+                    }
+                    .map { (location, channel, position) in
+                        self.update(channel: channel, suplaChannel, location, position)
                     }
                     .flatMapFirst { (changed, channel) in
                         if (changed) {
@@ -65,7 +70,7 @@ final class UpdateChannelUseCaseImpl: UpdateChannelUseCase {
             )
     }
 
-    private func createChannel(remoteId: Int32) -> Observable<SAChannel> {
+    private func createChannel(remoteId: Int32, _ location: _SALocation) -> Observable<SAChannel> {
         return channelRepository.create()
             .flatMapFirst { channel in
                 self.profileRepository.getActiveProfile()
@@ -76,9 +81,22 @@ final class UpdateChannelUseCaseImpl: UpdateChannelUseCase {
                         return channel
                     }
             }
+            .flatMapFirst { channel in
+                self.channelRepository
+                    .findMaxPositionInLocation(location.location_id?.int32Value ?? 0)
+                    .map { position in
+                        self.updatePosition(channel, location, position)
+                        return channel
+                    }
+            }
     }
 
-    private func updateChannel(channel: SAChannel, suplaChannel: TSC_SuplaChannel_E, location: _SALocation) -> (Bool, SAChannel) {
+    private func update(
+        channel: SAChannel,
+        _ suplaChannel: TSC_SuplaChannel_E,
+        _ location: _SALocation,
+        _ position: Int32
+    ) -> (Bool, SAChannel) {
         var changed = false
 
         let caption = String.fromC(suplaChannel.Caption)
@@ -87,6 +105,7 @@ final class UpdateChannelUseCaseImpl: UpdateChannelUseCase {
             changed = true
         }
         if (channel.setChannelLocation(location)) {
+            updatePosition(channel, location, position)
             changed = true
         }
         if (channel.setChannelFunction(suplaChannel.Func)) {
@@ -127,5 +146,13 @@ final class UpdateChannelUseCaseImpl: UpdateChannelUseCase {
         }
 
         return (changed, channel)
+    }
+
+    private func updatePosition(_ channel: SAChannel, _ location: _SALocation, _ position: Int32) {
+        if (position > 0 && channel.location_id != location.location_id?.int32Value) {
+            channel.position = position + 1
+        } else if (position <= 1 && channel.position != 0) {
+            channel.position = 0
+        }
     }
 }

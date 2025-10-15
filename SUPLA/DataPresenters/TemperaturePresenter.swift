@@ -19,46 +19,15 @@
 import Foundation
 
 class TemperaturePresenter: NSObject {
-    
-    private let _unit: TemperatureUnit
-    private let _formatter: NumberFormatter
-    private let _displayUnit: Bool
-    
-    
-    init(temperatureUnit: TemperatureUnit, locale: Locale = Locale.current,
-         shouldDisplayUnit: Bool = true) {
-        _unit = temperatureUnit
-        _displayUnit = shouldDisplayUnit
-        _formatter = NumberFormatter()
-        _formatter.decimalSeparator = locale.decimalSeparator
-        _formatter.minimumFractionDigits = 1
-        _formatter.maximumFractionDigits = 1
-        super.init()
-    }
-    
-    /**
-        return temperature value converted from Celsius to target temperature unit.
-     */
-    @objc
-    func converted(_ value: Float) -> Float {
-        switch _unit {
-        case .celsius: return value
-        case .fahrenheit: return (value * 9.0/5.0) + 32.0
-        }
-    }
+    @Singleton<GroupShared.Settings> private var settings
     
     @objc
     func stringRepresentation(_ value: Float) -> String {
-        let cnv = NSNumber(value: converted(value))
-        var out = (_formatter.string(from: cnv) ?? "")
-        if _displayUnit {
-            out += " " + _unit.symbol
-        } else {
-            out += "°"
-        }
-        return out
+        value.toTemperatureString(ValueFormat.companion.WithUnit)
     }
 
     @objc
-    var unitString: String { return _unit.symbol }
+    var unitString: String {
+        settings.temperatureUnit.valueUnit.getString()
+    }
 }

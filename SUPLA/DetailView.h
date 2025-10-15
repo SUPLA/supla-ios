@@ -18,7 +18,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SAChannel+CoreDataClass.h"
-#import "SARestApiClientTask.h"
 
 @interface SADetailView : UIView 
 

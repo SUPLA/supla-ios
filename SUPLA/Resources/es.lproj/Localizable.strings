@@ -145,9 +145,6 @@
 "Default settings" = "Configuración por defecto";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La vida útil de la lámpara ultravioleta es% .02f %%. Planee su reemplazo.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La vida útil de la lámpara ultravioleta es% .02f %%. Reemplácela.";
-"The lifespan of the light source is %.02f%%." = "La vida útil de la fuente de luz es% .02f %%.";
 "Please enter your Supla Cloud login details." = "Ingrese sus datos de inicio de sesión en cloud.supla.org.";
 "Enter superuser credentials" = "Ingrese las credenciales de superusuario";
 "Dimmer settings" = "Ajustes de atenuación";
@@ -161,9 +158,6 @@
 "Press Next to continue." = "Para continuar presiona Siguiente.";
 "Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
-"Planned regeneration is in progress." = "La regeneración planificada está en curso.";
-"Regeneration initiated after 20 hours of operation is in progress." = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
 "Back" = "Atrás";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifica si el puente está conectado con al servidor.";
 "Exit" = "Salir";
@@ -318,6 +312,12 @@
 "channel_caption_humidityandtemperature" = "Temperatura y humedad";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería (%d - %@): %d%%";
+"channel_uv_warning" = "La vida útil de la lámpara ultravioleta es %.01f %%. Planee su reemplazo.";
+"channel_uv_error" = "La vida útil de la lámpara ultravioleta es %.01f %%. Reemplácela.";
+"channel_lightsource_warning" = "La vida útil de la fuente de luz es %.01f %%.";
+"dgf_too_long_operation_warning" = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
+"dgf_planned_regeneration_in_progress" = "La regeneración planificada está en curso.";
+"dgf_regeneration_after20h" = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Hemos eliminado el gesto de deslizar para abrir los detalles, pulsa sobre el canal seleccionado para verlos.";
@@ -349,6 +349,7 @@
 "settings_lock_screen_none" = "No hay";
 "settings_dark_mode" = "Modo nocturno";
 "settings_show_bottom_menu" = "Mostrar menú inferior";
+"app_settings_temperature_precision" = "Precisión de temperatura";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -418,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Termostato principal";
 "thermostat_detail_other_thermostats" = "Termostatos dependientes";
 "thermostat_battery_cover_open" = "Tapa de la batería abierta";
+"thermostat_detail_antifreeze_active" = "Protección anticongelante activa";
+"thermostat_detail_overheat_active" = "Protección contra sobrecalentamiento activa";
 
 /* Combined Chart */
 "history_range_last_day" = "Últimas 24 horas";
@@ -442,6 +445,8 @@
 "history_wait_for_download_completed" = "Por favor espera, estoy descargando...";
 "chart_marker_opening" = "Apertura";
 "chart_marker_closing" = "Cierre";
+"temperature_measured" = "Medido";
+"temperature_preset" = "Preestablecido";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Eliminar mediciones de más de 30 días";
@@ -557,7 +562,9 @@
 /* State */
 "state_channel_id" = "ID del Canal";
 "state_battery_level" = "Nivel de batería";
-"state_battery_powered" = "Alimentación por batería";
+"state_power_supply" = "Alimentación";
+"channel_state_battery_powered" = "a pilas";
+"channel_state_main_powered" = "de red";
 "state_wifi_signal_strength" = "Intensidad de señal Wi-Fi";
 "state_bridge_node_online" = "Nodo del puente – en línea";
 "state_bridge_node_signal" = "Nodo puente: intensidad de la señal";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Acción: %@";
 "car_play_display_name" = "Nombre";
+"car_play_label" = "Acciones para Widgets/CarPlay";
+"car_play_voice_messages" = "Reproducir mensajes";
+"car_play_execution_error" = "Falló la ejecución (código de error: %d)";
+"car_play_executing" = "Ejecutando...";
+"car_play_delete_title" = "Eliminando elemento";
+"car_play_delete_message" = "¿Desea continuar?";
+"car_play_confirm_delete" = "Eliminar";
+"car_play_empty" = "CarPlay no está configurado. Vaya a la App Supla -> Ajustes -> Acciones para Widgets/CarPlay y prepare la configuración.";
+
+/* Widgets */
+"widgets_label" = "Acciones para widgets";
+"widget_empty_hint" = "No hay acción común definida. Vaya a la APP Supla -> Ajustes -> Acciones para widgets y defina sus acciones.";
+"widget_with_carplay_empty_hint" = "No hay acción común definida. Vaya a la APP Supla -> Ajustes -> Acciones para Widgets/CarPlay y defina sus acciones.";
+"widget_control_hint" = "Realizar acción";
+"widgets_actions_name" = "Acciones";
+"widgets_actions_description" = "Simplifica el acceso a las acciones más comunes.";
+"widgets_unknown_action" = "¡Acción desconocida!";
+"widgets_value_title" = "Vista Rápida";
+"widgets_value_description" = "Widget que muestra una vista previa rápida del valor actual del canal.";
+"widget_configuration_error" = "El widget no está configurado correctamente";
+"widgets_single_action_title" = "Acción Única";
+"widgets_single_action_description" = "Simplifica el acceso a una acción única.";
+"widgets_double_action_title" = "Doble Acción";
+"widgets_double_action_description" = "Simplifica el acceso a dos actions.";
+"widgets_first_action" = "Primera Acción";
+"widgets_second_action" = "Segunda Acción";
+"widgets_control_title" = "Botón de Control";
+"widgets_control_description" = "Botón que permite realizar una única acción predefinida.";
+"widgets_selected_action" = "Acción Seleccionada";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "¡Se ha superado el tiempo de espera para la información sobre la disponibilidad de registro de dispositivos!";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Contraseña del dispositivo";
 "add_wizard_password_instruction" = "Por favor, use la contraseña utilizada para el acceso a la página web de configuración local.\n\n¿Olvidaste tu contraseña? Puedes cambiarla en Supla Cloud o restablecer el dispositivo a la configuración de fábrica.";
 "add_wizard_manual_reconnect_message" = "La conexión a Internet falló.\n\nVe a la configuración del sistema y selecciona una red Wi-Fi que tenga conexión a Internet. Luego, vuelve a la aplicación y continúa presionando **Siguiente**.";
+"add_device_manual_popup_title" = "Fallo al añadir dispositivo";
+"add_device_manual_popup_message" = "El intento de añadir un dispositivo automáticamente ha fallado. Si el problema persiste, recomendamos añadir el dispositivo de forma manual";
+"add_device_manual_popup_resign" = "Permanecer en modo automático";
+"add_device_manual_popup_continue" = "Intentar de nuevo en modo manual";
+"add_wizard_internal_error_message" = "";

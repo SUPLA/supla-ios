@@ -35,7 +35,7 @@ final class ElectricityMeterMeasurementsProviderImpl: ElectricityMeterMeasuremen
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         let type = (spec.customFilters as? ElectricityChartFilters)?.type ?? ElectricityMeterChartType.forwardActiveEnergy
         
         return switch (type) {

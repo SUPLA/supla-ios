@@ -144,9 +144,6 @@
 "Default settings" = "Προεπιλογές";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Προγραμματίστε την αντικατάστασή του.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.02f%%. Αντικαταστήστε το θερμαντικό σώμα.";
-"The lifespan of the light source is %.02f%%." = "Η διάρκεια ζωής της πηγής φωτός είναι %.02f%%.";
 "Please enter your Supla Cloud login details." = "Εισαγάγετε τα στοιχεία σύνδεσής σας στο cloud.supla.org.";
 "Enter superuser credentials" = "Καταχωρίστε τα διαπιστευτήρια superuser";
 "Dimmer settings" = "Ρυθμίσεις ροοστάτη";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Βεβαιωθείτε ότι η εφαρμογή έχει άδεια εντοπισμού και σύνδεσης σε συσκευές στο τοπικό σας δίκτυο. Αυτό σημαίνει ότι το δικαίωμα \"iOS->Ρυθμίσεις->SUPLA->Τοπικό δίκτυο\" πρέπει να είναι ενεργοποιημένο για να λειτουργήσει σωστά ο οδηγός. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
-"Planned regeneration is in progress." = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
 "Back" = "Επιστροφή";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
 "Exit" = "Εξοδος";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Θερμοκρασία και υγρασία";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
+"channel_uv_warning" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Προγραμματίστε την αντικατάστασή του.";
+"channel_uv_error" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Αντικαταστήστε το θερμαντικό σώμα.";
+"channel_lightsource_warning" = "Η διάρκεια ζωής της πηγής φωτός είναι %.01f%%.";
+"dgf_too_long_operation_warning" = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
+"dgf_planned_regeneration_in_progress" = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
+"dgf_regeneration_after20h" = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Αφαιρέσαμε τη συρόμενη κίνηση που ανοίγει τις λεπτομέρειες, πατήστε στο επιλεγμένο κανάλι για να τις δείτε.";
@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Εφαρμογή";
 "settings_lock_screen_none" = "Δεν υπάρχει";
 "settings_show_bottom_menu" = "Εμφάνιση κάτω μενού";
+"app_settings_temperature_precision" = "Ακρίβεια θερμοκρασίας";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Γενικά";
@@ -418,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Κύριος θερμοστάτης";
 "thermostat_detail_other_thermostats" = "Εξαρτώμενοι θερμοστάτες";
 "thermostat_battery_cover_open" = "Το κάλυμμα της μπαταρίας είναι ανοιχτό";
+"thermostat_detail_antifreeze_active" = "Ενεργή αντιπαγωτική προστασία";
+"thermostat_detail_overheat_active" = "Ενεργή προστασία από υπερθέρμανση";
 
 /* Combined Chart */
 "history_range_last_day" = "Οι τελευταίες 24 ώρες";
@@ -442,6 +445,8 @@
 "history_wait_for_download_completed" = "Παρακαλώ περιμένετε, γίνετια λήψη...";
 "chart_marker_opening" = "Άνοιγμα";
 "chart_marker_closing" = "Κλείσιμο";
+"temperature_measured" = "Μετρημένος";
+"temperature_preset" = "Προκαθορισμένος";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Απομακρύνετε παλαιότερα από 30 ημέρες";
@@ -557,7 +562,9 @@
 /* State */
 "state_channel_id" = "Αναγνωριστικό καναλιού";
 "state_battery_level" = "Επίπεδο μπαταρίας";
-"state_battery_powered" = "Τροφοδοσία μπαταρίας";
+"state_power_supply" = "Τροφοδοσία";
+"channel_state_battery_powered" = "μπαταρίας";
+"channel_state_main_powered" = "ρεύματος";
 "state_wifi_signal_strength" = "Ισχύς σήματος Wi-Fi";
 "state_bridge_node_online" = "Κόμβος γέφυρας - online";
 "state_bridge_node_signal" = "Κόμβος γέφυρας - ισχύς σήματος";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Ενέργεια: %@";
 "car_play_display_name" = "Όνομα";
+"car_play_label" = "Ενέργειες για Γραφικά Στοιχεία/CarPlay";
+"car_play_voice_messages" = "Αναπαραγωγή μηνυμάτων";
+"car_play_execution_error" = "Αποτυχία εκτέλεσης (κωδικός σφάλματος: %d)";
+"car_play_executing" = "Εκτελείται...";
+"car_play_delete_title" = "Διαγραφή στοιχείου";
+"car_play_delete_message" = "Θέλετε να συνεχίσετε;";
+"car_play_confirm_delete" = "Διαγραφή";
+"car_play_empty" = "Το CarPlay δεν έχει ρυθμιστεί. Μεταβείτε στην εφαρμογή Supla App -> Ρυθμίσεις -> Ενέργειες για Γραφικά Στοιχεία/CarPlay και προετοιμάστε τη ρύθμιση.";
+
+/* Widgets */
+"widgets_label" = "Ενέργειες για Γραφικά Στοιχεία";
+"widget_empty_hint" = "Δεν έχει οριστεί κοινή ενέργεια. Μεταβείτε στην εφαρμογή Supla APP -> Ρυθμίσεις -> Ενέργειες για Γραφικά Στοιχεία και ορίστε τις ενέργειές σας.";
+"widget_with_carplay_empty_hint" = "Δεν έχει οριστεί κοινή ενέργεια. Μεταβείτε στην εφαρμογή Supla APP -> Ρυθμίσεις -> Ενέργειες για Γραφικά Στοιχεία/CarPlay και ορίστε τις ενέργειές σας.";
+"widget_control_hint" = "Εκτέλεση ενέργειας";
+"widgets_actions_name" = "Ενέργειες";
+"widgets_actions_description" = "Απλοποιεί την πρόσβαση στις πιο κοινές ενέργειες.";
+"widgets_unknown_action" = "Άγνωστη ενέργεια!";
+"widgets_value_title" = "Γρήγορη Προβολή";
+"widgets_value_description" = "Γραφικό στοιχείο που παρέχει μια γρήγορη προεπισκόπηση της τρέχουσας τιμής καναλιού.";
+"widget_configuration_error" = "Το γραφικό στοιχείο δεν έχει ρυθμιστεί σωστά";
+"widgets_single_action_title" = "Μονή Ενέργεια";
+"widgets_single_action_description" = "Απλοποιεί την πρόσβαση σε μονή ενέργεια.";
+"widgets_double_action_title" = "Διπλή Ενέργεια";
+"widgets_double_action_description" = "Απλοποιεί την πρόσβαση σε δύο ενέργειες.";
+"widgets_first_action" = "Πρώτη Ενέργεια";
+"widgets_second_action" = "Δεύτερη Ενέργεια";
+"widgets_control_title" = "Κουμπί Ελέγχου";
+"widgets_control_description" = "Κουμπί που επιτρέπει την εκτέλεση μιας προκαθορισμένης μονής ενέργειας.";
+"widgets_selected_action" = "Επιλεγμένη Ενέργεια";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Υπέρβαση χρόνου αναμονής για τις πληροφορίες σχετικά με τη διαθεσιμότητα εγγραφής των συσκευών!";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Κωδικός πρόσβασης συσκευής";
 "add_wizard_password_instruction" = "Παρακαλώ χρησιμοποιήστε τον κωδικό πρόσβασης που χρησιμοποιήθηκε για την πρόσβαση στην τοπική ιστοσελίδα διαμόρφωσης.\n\nΞεχάσατε τον κωδικό πρόσβασης; Μπορείτε να τον αλλάξετε στο Supla Cloud ή να επαναφέρετε τη συσκευή στις εργοστασιακές ρυθμίσεις.";
 "add_wizard_manual_reconnect_message" = "Η σύνδεση στο διαδίκτυο απέτυχε.\n\nΠηγαίνετε στις ρυθμίσεις συστήματος και επιλέξτε ένα δίκτυο Wi-Fi που έχει σύνδεση στο διαδίκτυο. Στη συνέχεια, επιστρέψτε στην εφαρμογή και συνεχίστε πατώντας **Επόμενο**.";
+"add_device_manual_popup_title" = "Αποτυχία προσθήκης συσκευής";
+"add_device_manual_popup_message" = "Η προσπάθεια αυτόματης προσθήκης συσκευής απέτυχε. Εάν το πρόβλημα επιμένει, συνιστούμε να προσθέσετε τη συσκευή χειροκίνητα.";
+"add_device_manual_popup_resign" = "Παραμονή στην αυτόματη λειτουργία";
+"add_device_manual_popup_continue" = "Δοκιμάστε ξανά στη χειροκίνητη λειτουργία";
+"add_wizard_internal_error_message" = "";

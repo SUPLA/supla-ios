@@ -16,9 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import Charts
+import DGCharts
 import RxSwift
 import RxRelay
+import SharedCore
 
 @objc class ImpulseCounterChartMarkerView: BaseRowsChartMarkerView {
     
@@ -61,9 +62,9 @@ import RxRelay
     private func showValueWithPrice(
         _ entry: ChartDataEntry,
         _ customData: ImpulseCounterMarkerCustomData,
-        _ formatter: ChannelValueFormatter
+        _ formatter: SharedCore.ValueFormatter
     ) {
-        rows[0].setData(value: formatter.format(entry.y), color: .chartGpm)
+        rows[0].setData(value: formatter.format(value: entry.y), color: .chartGpm)
         rows[0].bold()
         
         if (customData.price != nil && customData.currency != nil) {
@@ -76,7 +77,7 @@ import RxRelay
         _ aggregation: ChartDataAggregation,
         _ customData: ImpulseCounterMarkerCustomData,
         _ idx: Double?,
-        _ formatter: ChannelValueFormatter
+        _ formatter: SharedCore.ValueFormatter
     ) {
         var color: UIColor? = nil
         
@@ -92,7 +93,7 @@ import RxRelay
             }
         }
         
-        rows[0].setData(value: formatter.format(pieEntry.value), color: color)
+        rows[0].setData(value: formatter.format(value: pieEntry.value), color: color)
         rows[0].bold()
         
         if (customData.price != nil && customData.currency != nil) {

@@ -145,7 +145,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
--(NSNumber *)isBatteryPowered {
+-(nullable NSNumber *)isBatteryPowered {
     if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED) {
         return [NSNumber numberWithBool:_csev.BatteryPowered > 0];
     }
@@ -154,13 +154,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(BOOL) hasBattery {
     return (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED) || (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_BATTERYLEVEL);
-}
-
--(NSString *)isBatteryPoweredString {
-    if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED) {
-        return _csev.BatteryPowered > 0 ? @"YES" : @"NO";
-    }
-    return nil;
 }
 
 -(NSNumber *)wiFiSignalStrength {

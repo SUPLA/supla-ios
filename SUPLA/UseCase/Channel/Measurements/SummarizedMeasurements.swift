@@ -23,7 +23,7 @@ struct ElectricityMeasurements: SummarizedMeasurements {
     let reverseActiveEnergy: Double
 
     func toForwardEnergy(
-        formatter: ListElectricityMeterValueFormatter,
+        formatter: SharedCore.ValueFormatter,
         value: SAElectricityMeterExtendedValue? = nil
     ) -> SummaryCardData? {
         if let value {
@@ -36,18 +36,18 @@ struct ElectricityMeasurements: SummarizedMeasurements {
                 )
             }
         } else {
-            SummaryCardData(energy: formatter.format(forwardActiveEnergy))
+            SummaryCardData(energy: formatter.format(value: forwardActiveEnergy))
         }
     }
 
     func toReverseEnergy(
-        formatter: ListElectricityMeterValueFormatter,
+        formatter: SharedCore.ValueFormatter,
         value: SAElectricityMeterExtendedValue? = nil
     ) -> SummaryCardData? {
         if let value {
-            value.hasReverseEnergy.ifTrue { SummaryCardData(energy: formatter.format(reverseActiveEnergy)) }
+            value.hasReverseEnergy.ifTrue { SummaryCardData(energy: formatter.format(value: reverseActiveEnergy)) }
         } else {
-            SummaryCardData(energy: formatter.format(reverseActiveEnergy))
+            SummaryCardData(energy: formatter.format(value: reverseActiveEnergy))
         }
     }
 }
@@ -56,13 +56,13 @@ struct ImpulseCounterMeasurements: SummarizedMeasurements {
     let counter: Double
     
     func toSummaryCardData(
-        formatter: ImpulseCounterChartValueFormatter,
+        formatter: SharedCore.ValueFormatter,
         value: SAImpulseCounterExtendedValue? = nil
     ) -> SummaryCardData {
         if let value {
             SummaryCardData(formatter: formatter, energy: counter, pricePerUnit: value.pricePerUnit(), currency: value.currency())
         } else {
-            SummaryCardData(energy: formatter.format(counter))
+            SummaryCardData(energy: formatter.format(value: counter))
         }
     }
 }

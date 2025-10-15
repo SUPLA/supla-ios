@@ -60,4 +60,9 @@ final class ChannelRelationRepositoryMock: BaseRepositoryMock<SAChannelRelation>
     
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
     }
+    
+    let findParentsOfMock: FunctionMock<Int32, Observable<[SAChannelRelation]>> = .init()
+    func findParentsOf(childId: Int32) -> Observable<[SAChannelRelation]> {
+        findParentsOfMock.handle(childId)
+    }
 }

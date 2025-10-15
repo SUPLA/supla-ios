@@ -143,9 +143,6 @@
 "Are you sure you want to restore the default settings?" = "Sind Sie sicher, dass Sie die Voreinstellungen wiederherstellen möchten?";
 "Default settings" = "Standardeinstellungen";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "EINSTELLUNGEN FÜR DIE LEBENSDAUER DER LICHTQUELLE ÄNDERN";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Planen Sie den Austausch.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Lebensdauer des UV-Strahlers beträgt %.02f%%. Den Strahler austauschen.";
-"The lifespan of the light source is %.02f%%." = "Lebensdauer der Lichtquelle beträgt %.02f%%.";
 "Please enter your Supla Cloud login details." = "Geben Sie Ihre Anmeldedaten für cloud.supla.org ein.";
 "Enter superuser credentials" = "Geben Sie die Superuser-Anmeldeinformationen ein";
 "Dimmer settings" = "Einstellungen des Helligkeitsreglers";
@@ -159,9 +156,6 @@
 "Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
 "Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Versichern Sie sich, dass die App Befugnisse zur Erkennung der Geräte im lokalen Netzwerk und Verbindung mit ihnen hat. Es bedeutet, dass zur korrekten Funktion des Assistenten die Befugnis \„iOS->Einstellungen->SUPLA->Lokales Netzwerk\“ eingeschaltet sein muss.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
-"Planned regeneration is in progress." = "Geplante Regeneration läuft.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Es läuft die nach 20 Betriebsstunden begonnene Regeneration.";
 "Back" = "Zurück";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
 "Exit" = "Beenden";
@@ -308,6 +302,12 @@
 "channel_not_found" = "Kanal nicht gefunden";
 "scene_inactive" = "Szene ist nicht active";
 "channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
+"channel_uv_warning" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Planen Sie den Austausch.";
+"channel_uv_error" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Den Strahler austauschen.";
+"channel_lightsource_warning" = "Lebensdauer der Lichtquelle beträgt %.01f%%.";
+"dgf_too_long_operation_warning" = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
+"dgf_planned_regeneration_in_progress" = "Geplante Regeneration läuft.";
+"dgf_regeneration_after20h" = "Es läuft die nach 20 Betriebsstunden begonnene Regeneration.";
 /* General - Channel status */
 "channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
 "channel_status_awaiting" = "Dieses Gerät kann nicht per Fernzugriff aktiviert werden. Wir warten auf eine Kommunikation mit dem Gerät…";
@@ -341,6 +341,7 @@
 "settings_lock_screen_app" = "Anwendung";
 "settings_lock_screen_accounts" = "Konten";
 "settings_battery_level_warnign" = "Batteriestandswarnung";
+"app_settings_temperature_precision" = "Temperaturpräzision";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -421,6 +422,8 @@
 "thermostat_detail_list" = "Liste";
 "thermostat_detail_main_thermostat" = "Hauptthermostat";
 "thermostat_detail_other_thermostats" = "Andere Thermostate";
+"thermostat_detail_antifreeze_active" = "Frostschutz aktiv";
+"thermostat_detail_overheat_active" = "Überhitzungsschutz aktiv";
 
 /* Combined Chart */
 "history_range_label" = "Bereich";
@@ -444,6 +447,8 @@
 "history_disabled" = "Der Verlauf ist für diesen Kanal deaktiviert.";
 "history_delete_data" = "Historie löschen und neuladen";
 "history_wait_for_download_completed" = "Bitte warten, herunterladen...";
+"temperature_measured" = "Gemessen";
+"temperature_preset" = "Voreingestellt";
 
 /* Notifications */
 "notifications_log_profile" = "Konto:";
@@ -597,7 +602,9 @@
 /* State */
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batteriefüllstand";
-"state_battery_powered" = "Batteriebetrieb";
+"state_power_supply" = "Stromversorgung";
+"channel_state_battery_powered" = "Batterie";
+"channel_state_main_powered" = "Netz";
 "state_wifi_signal_strength" = "WLAN-Signalstärke";
 "state_bridge_node_online" = "Brückenknoten - online";
 "state_bridge_node_signal" = "Brückenknoten - Signalstärke";
@@ -643,7 +650,9 @@
 "car_play_empty" = "CarPlay ist nicht konfiguriert. Öffnen Sie bitte Supla App -> Einstelllungen -> Aktionen für Widgets/CarPlay und konfiguriere dort.";
 
 /* Widgets */
-"widget_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets/CarPlay und definieren Sie die Aktionen.";
+"widgets_label" = "Aktionen für Widgets";
+"widget_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets und definieren Sie die Aktionen.";
+"widget_with_carplay_empty_hint" = "Keine häufig benutzten Aktionen definiert. Gehen Sie zu Supla -> Einstellungen -> Aktionen für Widgets/CarPlay und definieren Sie die Aktionen.";
 "widgets_control_title" = "Steuertaste";
 "widgets_control_description" = "Eine Schaltfläche, mit der Sie eine einzelne vordefinierte Aktion auslösen können";
 "widgets_selected_action" = "Ausgewählte Aktion";
@@ -656,8 +665,8 @@
 "widget_configuration_error" = "Die Widget-Konfiguration ist ungültig.";
 "widgets_single_action_title" = "Einzelne Aktion";
 "widgets_single_action_description" = "Erleichtert den Zugriff auf die einzelne Aktivität.";
-"widgets_single_action_title" = "Doppelaktion";
-"widgets_single_action_description" = "Vereinfacht den Zugriff auf zwei Aktionen.";
+"widgets_double_action_title" = "Doppelaktion";
+"widgets_double_action_description" = "Vereinfacht den Zugriff auf zwei Aktionen.";
 "widgets_first_action" = "Erste Aktion";
 "widgets_second_action" = "Zweite Aktion";
 
@@ -710,3 +719,8 @@
 "add_wizard_password_enter_title" = "Gerätepasswort";
 "add_wizard_password_instruction" = "Bitte verwenden Sie das Passwort, das für den Zugriff auf die lokale Konfigurationswebseite verwendet wurde.\n\nPasswort vergessen? Sie können es in der Supla Cloud ändern oder das Gerät auf die Werkseinstellungen zurücksetzen.";
 "add_wizard_manual_reconnect_message" = "Die Internetverbindung ist fehlgeschlagen.\n\nGehen Sie bitte zu den Systemeinstellungen und wählen ein WLAN-Netzwerk mit Internetverbindung aus. Kehren Sie dann zur App zurück und fahren fort, indem Sie **Weiter** drücken.";
+"add_device_manual_popup_title" = "Gerät konnte nicht hinzugefügt werden";
+"add_device_manual_popup_message" = "Der Versuch, ein Gerät automatisch hinzuzufügen, ist fehlgeschlagen. Falls das Problem weiterhin besteht, empfehlen wir, das Gerät manuell hinzuzufügen.";
+"add_device_manual_popup_resign" = "Im automatischen Modus bleiben";
+"add_device_manual_popup_continue" = "Im manuellen Modus versuchen";
+"add_wizard_internal_error_message" = "";

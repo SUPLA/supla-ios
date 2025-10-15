@@ -70,7 +70,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
     
     SASuplaClient* _SuplaClient;
     SADatabase *_DB;
-    NSMutableArray *_RestApiClientTasks;
     SAOAuthToken *_OAuthToken;
 }
 
@@ -82,8 +81,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
         _current_server = nil;
         
         signal(SIGPIPE, SIG_IGN);
-        
-        _RestApiClientTasks = [[NSMutableArray alloc] init];
         
         [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(onOAuthTokenRequestResult:)
@@ -397,29 +394,9 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 
 -(void)onOAuthTokenRequestResult:(NSNotification *)notification {
     SAOAuthToken *token = [SAOAuthToken notificationToToken:notification];
-    
     @synchronized (self) {
-        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
-        SARestApiClientTask *cli;
         _OAuthToken = token;
-        while (cli = [e nextObject]) {
-            cli.token = token;
-        }
     }
-}
-
--(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)task {
-    SAOAuthToken *result = nil;
-    
-    @synchronized (self) {
-        if ( _OAuthToken != nil && [_OAuthToken isAlive]) {
-            result = _OAuthToken;
-        }
-        
-        [_RestApiClientTasks addObject:task];
-    }
-    
-    return result;
 }
 
 - (void) revokeOAuthToken {
@@ -430,22 +407,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 
 + (void) revokeOAuthToken {
     [[self instance] revokeOAuthToken];
-}
-
-- (void) unregisterRestApiClientTask:(SARestApiClientTask *)task {
-    @synchronized (self) {
-        [_RestApiClientTasks removeObject:task];
-    }
-}
-
--(void) cancelAllRestApiClientTasks {
-    @synchronized (self) {
-        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
-        SARestApiClientTask *cli;
-        while (cli = [e nextObject]) {
-            [cli cancel];
-        }
-    }
 }
 
 +(void) abstractMethodException:(NSString *)methodName {

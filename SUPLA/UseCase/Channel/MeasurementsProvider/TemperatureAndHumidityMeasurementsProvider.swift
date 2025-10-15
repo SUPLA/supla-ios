@@ -32,7 +32,7 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         tempHumidityMeasurementItemRepository
             .findMeasurements(
                 remoteId: channelWithChildren.remoteId,
@@ -43,14 +43,14 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
             .map { measurements in
                 [
                     self.historyDataSet(
-                        channelWithChildren.channel,
+                        channelWithChildren,
                         .temperature,
                         colorProvider?(.temperature) ?? TemperatureColors.standard,
                         spec.aggregation,
                         self.aggregatingTemperature(measurements, spec.aggregation)
                     ),
                     self.historyDataSet(
-                        channelWithChildren.channel,
+                        channelWithChildren,
                         .humidity,
                         colorProvider?(.humidity) ?? HumidityColors.standard,
                         spec.aggregation,
@@ -58,6 +58,6 @@ final class TemperatureAndHumidityMeasurementsProviderImpl: TemperatureAndHumidi
                     )
                 ]
             }
-            .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
+            .map { [self.channelChartSets(channelWithChildren.channel, spec, $0)] }
     }
 }

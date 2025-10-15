@@ -38,15 +38,6 @@ class ValuesFormatterTests: XCTestCase {
         formatter = nil
     }
     
-    func test_shouldReturnNoValueWhenValueIsNull() {
-        // when
-        let value: Double? = nil
-        let result = formatter.temperatureToString(value)
-        
-        // then
-        XCTAssertEqual(result, "---")
-    }
-    
     func test_shouldFormatMinutesToString() {
         // given
         let minutes = 18

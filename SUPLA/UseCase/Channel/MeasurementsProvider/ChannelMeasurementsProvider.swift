@@ -27,12 +27,12 @@ protocol ChannelMeasurementsProvider: MeasurementsProvider {
 }
 
 extension ChannelMeasurementsProvider {
-    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> Observable<ChannelChartSets> {
+    func provide(_ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> Observable<[ChannelChartSets]> {
         provide(channelWithChildren, spec, nil)
     }
     
     func historyDataSet(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ type: ChartEntryType,
         _ color: UIColor,
         _ aggregation: ChartDataAggregation,
@@ -42,19 +42,19 @@ extension ChannelMeasurementsProvider {
         @Singleton<GetChannelValueStringUseCase> var getChannelValueStringUseCase
         
         let icon = switch (type) {
-        case .humidity: getChannelBaseIconUseCase.invoke(channel: channel, type: .second)
-        default: getChannelBaseIconUseCase.invoke(channel: channel)
+        case .humidity: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel, type: .second)
+        default: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel)
         }
         
         let value = switch (type) {
-        case .humidity: getChannelValueStringUseCase.invoke(channel, valueType: .second)
-        default: getChannelValueStringUseCase.invoke(channel)
+        case .humidity: getChannelValueStringUseCase.invoke(channelWithChildren.channel, valueType: .second)
+        default: getChannelValueStringUseCase.invoke(channelWithChildren.channel)
         }
         
         return HistoryDataSet(
             type: type,
             label: singleLabel(icon, value, color),
-            valueFormatter: getValueFormatter(type, channel),
+            valueFormatter: getValueFormatter(type, channelWithChildren),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )
@@ -62,26 +62,32 @@ extension ChannelMeasurementsProvider {
     
     func aggregatingTemperature<T: BaseTemperatureEntity>(
         _ measurements: [T],
-        _ aggregation: ChartDataAggregation
+        _ aggregation: ChartDataAggregation,
+        _ extractor: (T) -> NSDecimalNumber? = { $0.temperature }
     ) -> [AggregatedEntity] {
         if (aggregation == .minutes) {
             return measurements
-                .filter { $0.temperature != nil }
-                .map { $0.toAggregatedEntity(aggregation) }
+                .filter { extractor($0) != nil }
+                .map {
+                    AggregatedEntity(
+                        date: $0.date!.timeIntervalSince1970,
+                        value: .single(value: extractor($0)!.toDouble(), min: nil, max: nil, open: nil, close: nil)
+                    )
+                }
         }
         
         return measurements
-            .filter { $0.temperature != nil }
+            .filter { extractor($0) != nil }
             .reduce([TimeInterval: LinkedList<T>]()) { aggregation.reductor($0, $1) }
             .map { group in
                 AggregatedEntity(
                     date: aggregation.groupTimeProvider(date: group.value.head!.value.date!),
                     value: .single(
-                        value: group.value.avg { $0.temperature!.toDouble() },
-                        min: group.value.min { $0.temperature!.toDouble() },
-                        max: group.value.max { $0.temperature!.toDouble() },
-                        open: group.value.head!.value.temperature!.toDouble(),
-                        close: group.value.tail!.value.temperature!.toDouble()
+                        value: group.value.avg { extractor($0)!.toDouble() },
+                        min: group.value.min { extractor($0)!.toDouble() },
+                        max: group.value.max { extractor($0)!.toDouble() },
+                        open: extractor(group.value.head!.value)!.toDouble(),
+                        close: extractor(group.value.tail!.value)!.toDouble()
                     )
                 )
             }
@@ -134,22 +140,22 @@ protocol MeasurementsProvider {
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets>
+    ) -> Observable<[ChannelChartSets]>
 }
 
 extension MeasurementsProvider {
-    func getValueFormatter(_ type: ChartEntryType, _ channel: SAChannel) -> ChannelValueFormatter {
+    func getValueFormatter(_ type: ChartEntryType, _ channelWithChildren: ChannelWithChildren) -> SharedCore.ValueFormatter {
         switch (type) {
-        case .humidity, .humidityOnly: HumidityValueFormatter()
-        case .temperature: ThermometerValueFormatter()
+        case .humidity, .humidityOnly: SharedCore.HumidityValueFormatter.shared
+        case .temperature, .presetTemperature: thermometerValueFormatter()
         case .generalPurposeMeasurement,
              .generalPurposeMeter:
-            GpmValueFormatter(config: channel.config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
-        case .electricity: ChartAxisElectricityMeterValueFormatter()
-        case .impulseCounter: ImpulseCounterChartValueFormatter(unit: channel.ev?.impulseCounter().unit())
-        case .voltage: VoltageValueFormatter()
-        case .current: CurrentValueFormatter()
-        case .powerActive: PowerActiveValueFormatter()
+            SharedCore.GpmValueFormatter.staticFormatter(channelWithChildren.channel.config?.configAsSuplaConfig())
+        case .electricity: ElectricityMeterValueFormatter()
+        case .impulseCounter: SharedCore.ImpulseCounterValueFormatter.staticFormatter(channelWithChildren)
+        case .voltage: SharedCore.VoltageValueFormatter.shared
+        case .current: SharedCore.CurrentValueFormatter.shared
+        case .powerActive: SharedCore.PowerActiveValueFormatter.shared
         }
     }
     
@@ -175,6 +181,11 @@ extension MeasurementsProvider {
         }
         
         return result
+    }
+    
+    private func thermometerValueFormatter() -> SharedCore.ValueFormatter {
+        @Singleton<SharedCore.ThermometerValueFormatter> var formatter
+        return formatter
     }
 }
 

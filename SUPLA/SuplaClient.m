@@ -18,7 +18,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "SARestApiClientTask.h"
 #import "SAChannelStateExtendedValue.h"
 #import "SAVersionError.h"
 #import "SARegResult.h"
@@ -626,7 +625,6 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
                 usleep(2000000);
             } else {
                 @try {
-                    // TODO: Add network check
                     if ( [self isCancelled] == NO && supla_client_connect(_sclient, CONNECTION_TIMEOUT_MS) == 1 ) {
                         while ( [self isCancelled] == NO
                                && supla_client_iterate(_sclient, 100000) == 1) {

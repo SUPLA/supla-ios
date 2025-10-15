@@ -17,6 +17,16 @@
  */
     
 extension SAChannelState {
+    var lightSourceOperatingTimePercent: Float? {
+        guard let lightSourceLifespan, let lightSourceOperatingTime else { return nil }
+        return lightSourceOperatingTime.floatValue / 36 / lightSourceLifespan.floatValue
+    }
+    
+    var lightSourceOperatingTimePercentLeft: Float? {
+        guard let lightSourceOperatingTimePercent else { return nil }
+        return 100 - lightSourceOperatingTimePercent
+    }
+    
     func update(_ state: TDSC_ChannelState) {
         
         ipv4 = state.hasField(SUPLA_CHANNELSTATE_FIELD_IPV4).ifTrue {

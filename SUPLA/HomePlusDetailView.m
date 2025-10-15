@@ -20,8 +20,6 @@
 #import "SAThermostatHPExtendedValue.h"
 #import "SAThermostatScheduleCfg.h"
 #import "SuplaApp.h"
-#import "SADownloadThermostatMeasurements.h"
-#import "SAThermostatChartHelper.h"
 #import "HomePlusDetailViewGroupCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SUPLA-Swift.h"
@@ -118,8 +116,6 @@ typedef enum {
 @implementation SAHomePlusDetailView {
     NSTimeInterval _refreshLock;
     NSMutableArray *_cfgItems;
-    SADownloadThermostatMeasurements *_task;
-    SAThermostatChartHelper *_chartHelper;
     NSFetchedResultsController *_frc;
     UINib *_cell_nib;
     double _presetTempMin;
@@ -128,32 +124,12 @@ typedef enum {
     HomePlusDetailRefreshHelper *_refreshHelper;
 }
 
-- (void)initChartFilters {
-    self.tfChartTypeFilter.hidden = true;
-    self.tfChartTypeFilter.excludeAllHistory = false;
-    self.ftDateRangeFilter.excludeAllHistory = false;
-    self.ftDateRangeFilter.ff_delegate = self;
-    self.ftDateRangeFilter.chartHelper = self->_chartHelper;
-    self.ftDateRangeFilter.filterType = DateRangeFilter;
-    
-    self.tfChartTypeFilter.chartHelper = self->_chartHelper;
-    self.tfChartTypeFilter.dateRangeFilterField = self.ftDateRangeFilter;
-    [self.tfChartTypeFilter excludeAllFrom: Bar_Comparsion_MinMin];
-    self.tfChartTypeFilter.ff_delegate = self;
-    self.ftDateRangeFilter.ff_delegate = self;
-}
-
-
 -(void)detailViewInit {
     if (!self.initialized) {
         self.vCalendar.program0Label = NSLocalizedString(@"ECO", nil);
         self.vCalendar.program1Label = NSLocalizedString(@"Comfort", nil);
         self.vCalendar.firstDay = 2;
         self.vCalendar.delegate = self;
-        
-        _chartHelper = [[SAThermostatChartHelper alloc] init];
-        _chartHelper.combinedChart = self.combinedChart;
-        _chartHelper.unit = @"";
         
         _cell_nib = [UINib nibWithNibName:@"HomePlusDetailViewGroupCell" bundle:nil];
         
@@ -213,8 +189,6 @@ typedef enum {
                               valueDefault:19
                               cfgId:CFGID_TEMP_ECO
                               delegate:self]];
-        
-        [self initChartFilters];
     }
     
     _refreshHelper = [[HomePlusDetailRefreshHelper alloc] init];
@@ -224,10 +198,6 @@ typedef enum {
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     [_refreshHelper emit];
-    
-    if (_chartHelper) {
-        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
-    }
     [super setChannelBaseWithoutUpdate:channelBase];
 }
 
@@ -310,32 +280,21 @@ typedef enum {
     [self updateView];
 }
 
-- (void)applyChartFilter {
-    self->_chartHelper.chartType = Bar_Minutes;
-    self->_chartHelper.dateFrom = _ftDateRangeFilter.dateFrom;
-}
-
 -(void)detailWillShow {
     _frc = nil;
     [self showMainView];
     [self showErrorMessage:nil];
-    self.lPreloader.hidden = YES;
     
     [self setBtnsOffWithExclude:nil];
 
     if ([self isGroup]) {
         self.tvChannels.hidden = NO;
-        self.vCharts.hidden = YES;
         self.btnSettings.hidden = YES;
         self.btnSchedule.hidden = YES;
     } else {
         self.tvChannels.hidden = YES;
-        self.vCharts.hidden = NO;
         self.btnSettings.hidden = NO;
         self.btnSchedule.hidden = NO;
-        [self runDownloadTask];
-        [self applyChartFilter];
-        [_chartHelper load];
     }
 
     [self updateView];
@@ -347,11 +306,6 @@ typedef enum {
 
 -(void)detailWillHide {
     [self showMainView];
-    
-    if (_task) {
-        [_task cancel];
-        _task.delegate = nil;
-    }
     _frc = nil;
     [_refreshHelper dispose];
 };
@@ -606,43 +560,6 @@ typedef enum {
     [self performSelector:selector withObject:nil afterDelay:2];
 }
 
--(void) runDownloadTask {
-    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
-        [_task cancel];
-        _task = nil;
-    }
-    
-    if (!_task) {
-        _task = [[SADownloadThermostatMeasurements alloc] init];
-        _task.channelId = self.channelBase.remote_id;
-        _task.delegate = self;
-        [_task start];
-    }
-}
-
--(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
-    //NSLog(@"onRestApiTaskStarted");
-    [self.lPreloader animateWithTimeInterval:0.05];
-    _chartHelper.downloadProgress = 0;
-}
-
--(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
-    //NSLog(@"onRestApiTaskFinished");
-    if (_task != nil && task == _task) {
-        _task.delegate = nil;
-        _task = nil;
-    }
-
-    self.lPreloader.hidden = YES;
-    [self updateView];
-    _chartHelper.downloadProgress = nil;
-    [_chartHelper load];
-}
-
--(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
-    _chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
-}
-
 - (NSFetchedResultsController*)fetchedResultsController {
     if ( _frc == nil ) {
         _frc = [SAApp.DB getHomePlusGroupFrcWithGroupId:self.channelBase.remote_id];
@@ -783,19 +700,6 @@ typedef enum {
     
     if (value == 1 && sender != self.btnOnOff) {
         [self setBtnsOffWithExclude:@[sender, self.btnOnOff]];
-    }
-}
-
-- (void)onFilterChanged:(nonnull SAChartFilterField *)filterField { 
-    _chartHelper.chartType = _tfChartTypeFilter.chartType;
-    _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
-    
-    [self->_chartHelper load];
-    
-    if (_ftDateRangeFilter.dateRange == AllAvailableHistory) {
-        [self->_chartHelper moveToEnd];
-    } else {
-        [self.combinedChart fitScreen];
     }
 }
 

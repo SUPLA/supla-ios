@@ -20,17 +20,19 @@ import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class SuplaWeeklyScheduleProgramTests: XCTestCase {
-    private lazy var valuesFormatter: ValuesFormatterMock! = {
-        ValuesFormatterMock()
-    }()
+    private lazy var valuesFormatter: ValuesFormatterMock! = ValuesFormatterMock()
+    private lazy var groupSharedSettingsMock: GroupShared.SettingsMock! = GroupShared.SettingsMock()
     
     override func setUp() {
         DiContainer.shared.register(type: ValuesFormatter.self, valuesFormatter!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettingsMock!)
     }
     
     override func tearDown() {
         valuesFormatter = nil
+        groupSharedSettingsMock = nil
     }
     
     func test_shouldGetDescription_whenProgramIsOff() {
@@ -47,44 +49,52 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     func test_shouldGetDescription_whenModeIsHeat() {
         // given
         let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 1200, setpointTemperatureCool: nil)
+        groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
         // when
         let result = program.description
         
         // then
-        XCTAssertEqual(result, "12.0")
+        XCTAssertEqual(result, "12.0°")
     }
     
     func test_shouldGetDescription_whenModeIsCool() {
         // given
         let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2300)
+        groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
         // when
         let result = program.description
         
         // then
-        XCTAssertEqual(result, "23.0")
+        XCTAssertEqual(result, "23.0°")
     }
     
     func test_shouldGetDescription_whenModeIsAuto() {
         // given
         let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .heatCool, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
+        groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
         // when
         let result = program.description
         
         // then
-        XCTAssertEqual(result, "18.0 - 21.0")
+        XCTAssertEqual(result, "18.0° - 21.0°")
     }
     
     func test_shouldGetDescriptionNoValue_whenModeIsDry() {
         // given
         let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .dry, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
+        groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
         // when
         let result = program.description
         
         // then
-        XCTAssertEqual(result, NO_VALUE_TEXT)
+        XCTAssertEqual(result, ValueFormatterKt.NO_VALUE_TEXT)
     }
 }

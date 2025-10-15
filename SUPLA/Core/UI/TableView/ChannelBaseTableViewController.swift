@@ -25,13 +25,15 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
     let cellIdForDoubleIconValue = "DoubleIconValueCell"
     let cellIdForIcon = "IconCell"
     let cellIdForHomePlus = "HomePlusCell"
+    let cellIdForHomePlusGroup = "HomePlusCellGroup"
     let cellIdForHvacThermostat = "HvacThermostatCell"
     
     var cellConstraintalues: [String: CGFloat] = [:]
     
     override func setupTableView() {
         register(nib: Nibs.channelCell, for: cellIdForChannel)
-        register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
+        register(nib: Nibs.homePlusCell, for: cellIdForHomePlusGroup)
+        tableView.register(HeatpolThermostatCell.self, forCellReuseIdentifier: cellIdForHomePlus)
         tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
         tableView.register(IconValueCell.self, forCellReuseIdentifier: cellIdForIconValue)
         tableView.register(IconCell.self, forCellReuseIdentifier: cellIdForIcon)
@@ -48,7 +50,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
         case cellIdForHvacThermostat,
              cellIdForIconValue,
              cellIdForIcon,
-             cellIdForDoubleIconValue:
+             cellIdForDoubleIconValue,
+             cellIdForHomePlus:
             return setupBaseCell(cell, channelBase: channelBase, children: children)
         default:
             return setupLegacyCell(cell, cellId: cellId, channelBase: channelBase, indexPath: indexPath)
@@ -145,82 +148,86 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
     
     private func getCellId(_ channelBase: SAChannelBase) -> String {
         if (channelBase is SAChannelGroup) {
-            return cellIdForChannel
+            if (channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
+                return cellIdForHomePlusGroup
+            } else {
+                return cellIdForChannel
+            }
         }
         
-        switch (channelBase.func) {
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER:
-            if let channel = channelBase as? SAChannel,
-               let channelValue = channel.value
-            {
-                if (channelValue.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS
-                    || channelValue.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
-                {
-                    return cellIdForIconValue
-                }
-            }
-            return cellIdForIcon
-        case SUPLA_CHANNELFNC_DEPTHSENSOR,
-             SUPLA_CHANNELFNC_WINDSENSOR,
-             SUPLA_CHANNELFNC_WEIGHTSENSOR,
-             SUPLA_CHANNELFNC_PRESSURESENSOR,
-             SUPLA_CHANNELFNC_RAINSENSOR,
-             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
-             SUPLA_CHANNELFNC_HUMIDITY,
-             SUPLA_CHANNELFNC_DISTANCESENSOR,
-             SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_THERMOMETER,
-            
-             SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
-             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
-             SUPLA_CHANNELFNC_PUMPSWITCH,
-             SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
-             SUPLA_CHANNELFNC_MAILSENSOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
-             SUPLA_CHANNELFNC_HOTELCARDSENSOR,
-             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_IC_GAS_METER,
-             SUPLA_CHANNELFNC_IC_WATER_METER,
-             SUPLA_CHANNELFNC_IC_HEAT_METER,
-             SUPLA_CHANNELFNC_CONTAINER,
-             SUPLA_CHANNELFNC_SEPTIC_TANK,
-             SUPLA_CHANNELFNC_WATER_TANK,
-             SUPLA_CHANNELFNC_FLOOD_SENSOR,
-             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR:
-            return cellIdForIconValue
-        case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+        let function = SuplaFunction.companion.from(value: channelBase.func)
+        switch (function) {
+        case .hvacThermostat,
+             .hvacThermostatHeatCool,
+             .hvacDomesticHotWater:
             return cellIdForHvacThermostat
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
-             SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
-            return cellIdForIcon
-        // Old
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+        case .thermostatHeatpolHomeplus:
             return cellIdForHomePlus
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+        case .humidityAndTemperature:
             return cellIdForDoubleIconValue
-        default:
-            return cellIdForChannel
+            
+        case .unknown,
+             .none,
+             .thermometer,
+             .humidity,
+             .controllingTheGatewayLock,
+             .controllingTheGate,
+             .controllingTheGarageDoor,
+             .openSensorGateway,
+             .openSensorGate,
+             .openSensorGarageDoor,
+             .noLiquidSensor,
+             .controllingTheDoorLock,
+             .openSensorDoor,
+             .controllingTheRollerShutter,
+             .controllingTheRoofWindow,
+             .openSensorRollerShutter,
+             .openSensorRoofWindow,
+             .powerSwitch,
+             .lightswitch,
+             .ring,
+             .alarm,
+             .notification,
+             .dimmer,
+             .rgbLighting,
+             .dimmerAndRgbLighting,
+             .depthSensor,
+             .distanceSensor,
+             .openingSensorWindow,
+             .hotelCardSensor,
+             .alarmArmamentSensor,
+             .mailSensor,
+             .windSensor,
+             .pressureSensor,
+             .rainSensor,
+             .weightSensor,
+             .weatherStation,
+             .staircaseTimer,
+             .electricityMeter,
+             .icElectricityMeter,
+             .icGasMeter,
+             .icWaterMeter,
+             .icHeatMeter,
+             .valveOpenClose,
+             .valvePercentage,
+             .generalPurposeMeasurement,
+             .generalPurposeMeter,
+             .digiglassHorizontal,
+             .digiglassVertical,
+             .controllingTheFacadeBlind,
+             .terraceAwning,
+             .projectorScreen,
+             .curtain,
+             .verticalBlind,
+             .rollerGarageDoor,
+             .pumpSwitch,
+             .heatOrColdSourceSwitch,
+             .container,
+             .septicTank,
+             .waterTank,
+             .containerLevelSensor,
+             .floodSensor:
+            return cellIdForIconValue
         }
     }
     

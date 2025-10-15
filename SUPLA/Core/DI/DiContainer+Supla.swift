@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import SharedCore
+
 extension DiContainer {
     @objc static func start() {
         // MARK: General
@@ -42,6 +44,7 @@ extension DiContainer {
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(BuildInfo.self, BuildInfoImpl())
         register(SecureSettings.Interface.self, SecureSettings.Implementation())
+        register(SharedCore.ThermometerValueFormatter.self, SharedCore.ThermometerValueFormatter(preferences: globalSettings))
         
         register(GroupShared.Settings.self, GroupShared.Implementation())
         if #available(iOS 17.0, *) {
@@ -70,7 +73,8 @@ extension DiContainer {
         register((any ElectricityMeasurementItemRepository).self, electricityMeasurementItemRepository)
         let impulseCounterMeasurementItemRepository = ImpulseCounterMeasurementItemRepositoryImpl()
         register((any ImpulseCounterMeasurementItemRepository).self, impulseCounterMeasurementItemRepository)
-        register((any ThermostatMeasurementItemRepository).self, ThermostatMeasurementItemRepositoryImpl())
+        let thermostatMeasurementItemRepository = ThermostatMeasurementItemRepositoryImpl()
+        register((any ThermostatMeasurementItemRepository).self, thermostatMeasurementItemRepository)
         register((any SuplaCloudClientRepository).self, SuplaCloudClientRepositoryImpl())
         register((any ChannelRelationRepository).self, ChannelRelationRepositoryImpl())
         register((any ChannelConfigRepository).self, ChannelConfigRepositoryImpl())
@@ -105,7 +109,6 @@ extension DiContainer {
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
         register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
         register(ReadChannelWithChildrenTreeUseCase.self, ReadChannelWithChildrenTreeUseCaseImpl())
-        register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
         register(DownloadChannelMeasurementsUseCase.self, DownloadChannelMeasurementsUseCaseImpl())
         register(DownloadTemperatureLogUseCase.self,
                  DownloadTemperatureLogUseCaseImpl(temperatureMeasurementItemRepository))
@@ -127,6 +130,8 @@ extension DiContainer {
                  DownloadVoltageLogUseCaseImpl(voltageMeasurementItemRepository))
         register(DownloadPowerActiveLogUseCase.self,
                  DownloadPowerActiveLogUseCaseImpl(powerActiveMeasurementItemRepository))
+        register(DownloadThermostatHeatpolLogUseCase.self,
+                 DownloadThermostatHeatpolLogUseCaseImpl(thermostatMeasurementItemRepository))
         register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
         register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
@@ -154,6 +159,7 @@ extension DiContainer {
         register(ImpulseCounterValueProvider.self, ImpulseCounterValueProviderImpl())
         register(SwitchWithImpulseCounterValueProvider.self, SwitchWithImpulseCounterValueProviderImpl())
         register(ContainerValueProvider.self, ContainerValueProviderImpl())
+        register(HomePlusThermostatValueProvider.self, HomePlusThermostatValueProviderImpl())
         register(RemoveHiddenChannelsUseCase.self, RemoveHiddenChannelsUseCaseImpl())
         // Usecases - Channel - MeasurementProvider
         register(TemperatureMeasurementsProvider.self, TemperatureMeasurementsProviderImpl())
@@ -167,6 +173,7 @@ extension DiContainer {
         register(PowerActiveMeasurementsProvider.self, PowerActiveMeasurementsProviderImpl())
         register(HumidityMeasurementsProvider.self, HumidityMeasurementsProviderImpl())
         register(ImpulseCounterMeasurementsProvider.self, ImpulseCounterMeasurementsProviderImpl())
+        register(ThermostatHeatpolMeasurementsProvider.self, ThermostatHeatpolMeasurementsProviderImpl())
         // Usecases - ChannelBase
         register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
         register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())
@@ -256,6 +263,9 @@ extension DiContainer {
         let suplaClientSharedProvider = SuplaClientSharedApiProvider()
         register(EnableRegistration.UseCase.self, SharedCore.EnableRegistrationUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
         register(CheckRegistrationEnabled.UseCase.self, SharedCore.CheckRegistrationEnabledUseCase(suplaClientMessageHandler: suplaClientMessageHandler, suplaClientProvider: suplaClientSharedProvider))
+        // UseCase - Thermostat
+        register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
+        register(CheckIsSlaveThermostat.UseCase.self, CheckIsSlaveThermostat.Implementation())
         
         // MARK: Features
         
@@ -340,15 +350,6 @@ extension DiContainer {
         // MARK: Not singletons
 
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
-    }
-    
-    static func register<Component>(_ type: Component.Type, _ component: Any) {
-        DiContainer.shared.register(type: type, component)
-    }
-    
-    static func registerAndGet<Component, Instance>(_ type: Component.Type, _ component: Instance) -> Instance {
-        DiContainer.shared.register(type: type, component)
-        return component
     }
     
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {

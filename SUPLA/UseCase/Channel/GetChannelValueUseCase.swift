@@ -42,23 +42,25 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
     @Singleton<ImpulseCounterValueProvider> private var impulseCounterValueProvider
     @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
     @Singleton<ContainerValueProvider> private var containerValueProvider
+    @Singleton<HomePlusThermostatValueProvider> private var homePlusThermostatValueProvider
 
     private lazy var providers: [ChannelValueProvider] = [
         depthValueProvider,
-        distanceValueProvider,
         gpmValueProvider,
-        humidityValueProvider,
-        pressureValueProvider,
-        rainValueProvider,
         thermometerAndHumidityValueProvider,
         thermometerValueProvider,
+        distanceValueProvider,
+        electricityMeterValueProvider,
+        impulseCounterValueProvider,
+        switchWithElectricityMeterValueProvider,
+        switchWithImpulseCounterValueProvider,
+        pressureValueProvider,
+        rainValueProvider,
+        containerValueProvider,
         weightValueProvider,
         windValueProvider,
-        electricityMeterValueProvider,
-        switchWithElectricityMeterValueProvider,
-        impulseCounterValueProvider,
-        switchWithImpulseCounterValueProvider,
-        containerValueProvider
+        humidityValueProvider,
+        homePlusThermostatValueProvider
     ]
 
     func invoke<T>(_ channel: SAChannel, valueType: ValueType = .first) -> T {
@@ -68,7 +70,12 @@ final class GetChannelValueUseCaseImpl: GetChannelValueUseCase {
             }
         }
 
+#if DEBUG
         fatalError("No value provider for channel function `\(channel.func)`")
+#else
+        SALog.error("No value provider for channel function `\(channel.func)`")
+        return 0.0 as! T
+#endif
     }
 }
 

@@ -33,7 +33,7 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         impulseCounterMeasurementItemRepository
             .findMeasurements(
                 remoteId: channelWithChildren.remoteId,
@@ -44,17 +44,19 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
             .map { entities in self.aggregating(entities, spec) }
             .map { [self.historyDataSet($0, channelWithChildren, spec)] }
             .map {
-                ChannelChartSets(
-                    remoteId: channelWithChildren.remoteId,
-                    function: channelWithChildren.function,
-                    name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: $0,
-                    customData: ImpulseCounterMarkerCustomData(
-                        price: channelWithChildren.channel.ev?.impulseCounter().pricePerUnit(),
-                        currency: channelWithChildren.channel.ev?.impulseCounter().currency()
+                [
+                    ChannelChartSets(
+                        remoteId: channelWithChildren.remoteId,
+                        function: channelWithChildren.function,
+                        name: self.getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
+                        aggregation: spec.aggregation,
+                        dataSets: $0,
+                        customData: ImpulseCounterMarkerCustomData(
+                            price: channelWithChildren.channel.ev?.impulseCounter().pricePerUnit(),
+                            currency: channelWithChildren.channel.ev?.impulseCounter().currency()
+                        )
                     )
-                )
+                ]
             }
     }
 
@@ -99,14 +101,12 @@ final class ImpulseCounterMeasurementsProviderImpl: ImpulseCounterMeasurementsPr
 
     private func historyDataSet(_ result: AggregationResult, _ channelWithChildren: ChannelWithChildren, _ spec: ChartDataSpec) -> HistoryDataSet {
         var result = result
-        let unit = channelWithChildren.channel.isImpulseCounter() ? channelWithChildren.channel.ev?.impulseCounter().unit() :
-            channelWithChildren.children.first { $0.relationType == .meter }?.channel.ev?.impulseCounter().unit()
-        let formatter = ImpulseCounterChartValueFormatter(unit: unit)
+        let formatter = SharedCore.ImpulseCounterValueFormatter.staticFormatter(channelWithChildren)
 
         let label = HistoryDataSet.Label.single(
             HistoryDataSet.LabelData(
                 icon: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel),
-                value: formatter.format(result.nextSum()),
+                value: formatter.format(value: result.nextSum()),
                 color: .chartGpm
             )
         )

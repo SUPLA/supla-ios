@@ -21,7 +21,9 @@ protocol ThermometerValueProvider: ChannelValueProvider {
 
 final class ThermometerValueProviderImpl: DefaultDoubleValueProvider, ThermometerValueProvider {
     
-    override var unknownValue: Double { ThermometerValueProviderImpl.UNKNOWN_VALUE }
+    override var unknownValue: Double {
+        ThermometerValueProviderImpl.UNKNOWN_VALUE
+    }
     
     override func handle(_ channel: SAChannel) -> Bool {
         channel.func == SUPLA_CHANNELFNC_THERMOMETER

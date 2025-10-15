@@ -49,6 +49,7 @@ struct Strings {
     }
     
     struct AppSettings {
+        static let temperaturePrecision = "app_settings_temperature_precision".toLocalized()
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
@@ -142,6 +143,9 @@ struct Strings {
         
         static let markerOpening = "chart_marker_opening".toLocalized()
         static let markerClosing = "chart_marker_closing".toLocalized()
+        
+        static let temperatureMeasured = "temperature_measured".toLocalized()
+        static let temperaturePreset = "temperature_preset".toLocalized()
         
         struct Electricity {
             static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
@@ -264,6 +268,9 @@ struct Strings {
         static let list = "thermostat_detail_list".toLocalized()
         static let mainThermostat = "thermostat_detail_main_thermostat".toLocalized()
         static let otherThermostats = "thermostat_detail_other_thermostats".toLocalized()
+        
+        static let antifreezeActive = "thermostat_detail_antifreeze_active".toLocalized()
+        static let overheatActive = "thermostat_detail_overheat_active".toLocalized()
     }
     
     struct Notifications {
@@ -367,6 +374,14 @@ struct Strings {
             static let statusAwaiting = "channel_status_awaiting".toLocalized()
             static let statusUpdating = "channel_status_updating".toLocalized()
             static let statusNotAvailable = "channel_status_not_available".toLocalized()
+            
+            static let lightSourceWarning = "channel_lightsource_warning".toLocalized()
+            static let uvWarning = "channel_uv_warning".toLocalized()
+            static let uvError = "channel_uv_error".toLocalized()
+            
+            static let digiglassTooLongOperating = "dgf_too_long_operation_warning".toLocalized()
+            static let digiglassPlannedRegeneration = "dgf_planned_regeneration_in_progress".toLocalized()
+            static let digiglassRegeneration = "dgf_regeneration_after20h".toLocalized()
         }
     }
     
@@ -542,7 +557,6 @@ struct Strings {
         static let ipAddress = "state_ip_address".toLocalized()
         static let macAddress = "state_mac_address".toLocalized()
         static let batteryLevel = "state_battery_level".toLocalized()
-        static let batteryPowered = "state_battery_powered".toLocalized()
         static let wifiRssi = "state_wifi_rssi".toLocalized()
         static let wifiSignalStrength = "state_wifi_signal_strength".toLocalized()
         static let bridgeNodeOnline = "state_bridge_node_online".toLocalized()
@@ -557,6 +571,9 @@ struct Strings {
         static let lightsourceSettings = "state_dialog_lightsource_settings".toLocalized()
         static let switchCycleCount = "state_switch_cycle_count".toLocalized()
         static let uptimeValue = "channel_state_uptime".toLocalized()
+        static let powerSupply = "state_power_supply".toLocalized()
+        static let batteryPowered = "channel_state_battery_powered".toLocalized()
+        static let mainPowered = "channel_state_main_powered".toLocalized()
         static let connectionResetCauseUnknown = "lastconnectionresetcause_unknown".toLocalized()
         static let connectionResetCauseActivityTimeout = "lastconnectionresetcause_activity_timeout".toLocalized()
         static let connectionResetCauseWifiConnectionLost = "lastconnectionresetcause_wifi_connection_lost".toLocalized()
@@ -593,7 +610,9 @@ struct Strings {
     }
     
     struct Widget {
+        static let label = "widgets_label".toLocalized()
         static let emptyHint = "widget_empty_hint".toLocalized()
+        static let emptyHintWithCarplay = "widget_with_carplay_empty_hint".toLocalized()
         static let controlHint = "widget_control_hint".toLocalized()
         static var actionsName = "widgets_actions_name".toLocalized()
         static let actionsDescription = "widgets_actions_description".toLocalized()
@@ -659,6 +678,11 @@ struct Strings {
         static let passwordNewLabel = "add_wizard_password_new_label".toLocalized()
         static let passwordRepeatLabel = "add_wizard_password_repeat_label".toLocalized()
         static let passwordInstruction = "add_wizard_password_instruction".toLocalized()
+        static let manualModePopupTitle = "add_device_manual_popup_title".toLocalized()
+        static let manualModePopupMessage = "add_device_manual_popup_message".toLocalized()
+        static let manualModePopupResign = "add_device_manual_popup_resign".toLocalized()
+        static let manualModePopupContinue = "add_device_manual_popup_continue".toLocalized()
+        static let internalErrorMessage = "add_wizard_internal_error_message".toLocalized()
     }
 }
 

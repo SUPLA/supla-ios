@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SharedCore
+
 final class WeigthValueStringProvider: ChannelValueStringProvider {
     @Singleton<WeightValueProvider> private var weightValueProvider
 
@@ -24,28 +26,9 @@ final class WeigthValueStringProvider: ChannelValueStringProvider {
     }
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        if let value = weightValueProvider.value(channel, valueType: valueType) as? Double,
-           value > WeightValueProviderImpl.UNKNOWN_VALUE
-        {
-            if (value > 2000) {
-                return formatWeightKg(value / 1000, withUnit)
-            }
-
-            return if (withUnit) {
-                "\(value.toString()) g"
-            } else {
-                value.toString()
-            }
-        } else {
-            return NO_VALUE_TEXT
-        }
-    }
-
-    private func formatWeightKg(_ value: Double, _ withUnit: Bool) -> String {
-        return if (withUnit) {
-            "\(value.toString(minPrecision: 1, maxPrecision: 2)) kg"
-        } else {
-            value.toString(minPrecision: 1, maxPrecision: 2)
-        }
+        WeightValueFormatter.shared.format(
+            value: weightValueProvider.value(channel, valueType: valueType),
+            format: ValueFormatKt.withUnit(withUnit: withUnit)
+        )
     }
 }

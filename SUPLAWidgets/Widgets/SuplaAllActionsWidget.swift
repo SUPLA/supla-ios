@@ -46,7 +46,7 @@ extension SuplaAllActionsWidget {
             VStack(spacing: Distance.small) {
                 Text(Strings.Widget.actionsName).fontBodyLarge()
                 if (entry.actions.isEmpty) {
-                    Text(Strings.Widget.emptyHint)
+                    Text(BrandingConfiguration.widgetEmptyHint)
                         .multilineTextAlignment(.center)
                         .fontBodyMedium()
                 } else {

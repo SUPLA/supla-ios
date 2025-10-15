@@ -144,9 +144,6 @@
 "Default settings" = "Privzete nastavitve";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%. Načrtujte njeno menjavo.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%. Menjajte grelno žarnico.";
-"The lifespan of the light source is %.02f%%." = "Življenska doba infrardeče IR grelne žarnice znaša %.02f%%.";
 "Please enter your Supla Cloud login details." = "Vnesite svoje prijavne podatke za cloud.supla.org.";
 "Enter superuser credentials" = "Vnesite poverilnice podupravitelja";
 "Dimmer settings" = "Nastavitve zatemnitve";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Prepričajte se, da ima aplikacija dovoljenja za iskanje naprav v lokalnem omrežju in povezovanje z njimi. To pomeni, da mora biti dovoljenje\"iOS-> Nastavitve-> SUPLA-> Lokalno omrežje\" vključeno za pravilno delovanje čarovnika.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stekleni deli so izpostavljeni več kot 20 ur, kar lahko negativno vpliva na njihovo življenjsko dobo. Priporočljivo je, da vse dele prekrijete za najmanj 4 ure, da se obnovijo.";
-"Planned regeneration is in progress." = "Načrtovana obnova je v teku.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Obnova je v teku po 20 urah dela.";
 "Back" = "Nazaj";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
 "Exit" = "Izhod";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Temperatura in vlažnost";
 "channel_offline" = "Kanal je brez povezave";
 "channel_battery_level" = "Raven baterije (%d - %@): %d%%";
+"channel_uv_warning" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%. Načrtujte njeno menjavo.";
+"channel_uv_error" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%. Menjajte grelno žarnico.";
+"channel_lightsource_warning" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%.";
+"dgf_too_long_operation_warning" = "Stekleni deli so izpostavljeni več kot 20 ur, kar lahko negativno vpliva na njihovo življenjsko dobo. Priporočljivo je, da vse dele prekrijete za najmanj 4 ure, da se obnovijo.";
+"dgf_planned_regeneration_in_progress" = "Načrtovana obnova je v teku.";
+"dgf_regeneration_after20h" = "Obnova je v teku po 20 urah dela.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili smo gesto za premikanje, s katero se odprejo podrobnosti, za ogled podrobnosti tapnite izbrani kanal.";
@@ -348,6 +348,7 @@
 "settings_show_bottom_menu" = "Prikaži spodnji meni";
 "settings_show_labels" = "Prikaži oznake v spodnjem meniju";
 "settings_dark_mode" = "Nočni pogled";
+"app_settings_temperature_precision" = "Natančnost temperature";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Splošno";
@@ -418,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Glavni termostat";
 "thermostat_detail_other_thermostats" = "Odvisni termostati";
 "thermostat_battery_cover_open" = "Odprt pokrov baterije";
+"thermostat_detail_antifreeze_active" = "Aktivna zaščita pred zmrzaljo";
+"thermostat_detail_overheat_active" = "Aktivna zaščita pred pregrevanjem";
 
 /* Combined Chart */
 "history_range_last_day" = "Zadnjih 24 ur";
@@ -442,6 +445,8 @@
 "history_disabled" = "Zgodovina je za ta kanal onemogočena";
 "chart_marker_opening" = "Odpiranje";
 "chart_marker_closing" = "Zapiranje";
+"temperature_measured" = "Izmerjena";
+"temperature_preset" = "Prednastavljeno";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Odstrani starejše od 30 dni";
@@ -557,7 +562,9 @@
 /* State */
 "state_channel_id" = "Identifikator kanala";
 "state_battery_level" = "Raven baterije";
-"state_battery_powered" = "Baterija";
+"state_power_supply" = "Napajanje";
+"channel_state_battery_powered" = "baterijsko";
+"channel_state_main_powered" = "omrežno";
 "state_wifi_signal_strength" = "Moč Wi-Fi signala";
 "state_bridge_node_online" = "Vozlišče mosta - online";
 "state_bridge_node_signal" = "Vozlišče mosta - moč signala";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Dejanje: %@";
 "car_play_display_name" = "Ime";
+"car_play_label" = "Dejanja za Pripomočke/CarPlay";
+"car_play_voice_messages" = "Predvajaj sporočila";
+"car_play_execution_error" = "Izvedba ni uspela (koda napake: %d)";
+"car_play_executing" = "Izvajanje...";
+"car_play_delete_title" = "Brisanje predmeta";
+"car_play_delete_message" = "Želite nadaljevati?";
+"car_play_confirm_delete" = "Izbriši";
+"car_play_empty" = "CarPlay ni konfiguriran. Pojdite v aplikacijo Supla App -> Nastavitve -> Dejanja za Pripomočke/CarPlay in pripravite konfiguracijo.";
+
+/* Widgets */
+"widgets_label" = "Dejanja za pripomočke";
+"widget_empty_hint" = "Ni določeno nobeno skupno dejanje. Pojdite v aplikacijo Supla APP -> Nastavitve -> Dejanja za pripomočke in določite svoja dejanja.";
+"widget_with_carplay_empty_hint" = "Ni določeno nobeno skupno dejanje. Pojdite v aplikacijo Supla APP -> Nastavitve -> Dejanja za Pripomočke/CarPlay in določite svoja dejanja.";
+"widget_control_hint" = "Izvedi dejanje";
+"widgets_actions_name" = "Dejanja";
+"widgets_actions_description" = "Poenostavi dostop do najpogostejših dejanj.";
+"widgets_unknown_action" = "Neznano dejanje!";
+"widgets_value_title" = "Hiter Pregled";
+"widgets_value_description" = "Pripomoček, ki služi za hiter predogled trenutne vrednosti kanala.";
+"widget_configuration_error" = "Pripomoček ni pravilno konfiguriran";
+"widgets_single_action_title" = "Eno Dejanje";
+"widgets_single_action_description" = "Poenostavi dostop do enega dejanja.";
+"widgets_double_action_title" = "Dvojno Dejanje";
+"widgets_double_action_description" = "Poenostavi dostop do dveh dejanj.";
+"widgets_first_action" = "Prvo Dejanje";
+"widgets_second_action" = "Drugo Dejanje";
+"widgets_control_title" = "Kontrolni Gumb";
+"widgets_control_description" = "Gumb, ki omogoča izvedbo vnaprej določenega posameznega dejanja.";
+"widgets_selected_action" = "Izbrano Dejanje";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Čakalna doba za pridobitev informacije o razpoložljivosti registracije naprav je prekoračena!";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Geslo naprave";
 "add_wizard_password_instruction" = "Prosimo, uporabite geslo, ki je bilo uporabljeno za dostop do spletne strani lokalne konfiguracije.\n\nSte pozabili geslo? Lahko ga spremenite na Supla Cloud ali ponastavite napravo na tovarniške nastavitve.";
 "add_wizard_manual_reconnect_message" = "Povezava z internetom ni uspela.\n\nPojdite v sistemske nastavitve in izberite omrežje Wi-Fi, ki ima internetno povezavo. Nato se vrnite v aplikacijo in nadaljujte s pritiskom na **Naprej**.";
+"add_device_manual_popup_title" = "Naprave ni bilo mogoče dodati";
+"add_device_manual_popup_message" = "Poskus samodejnega dodajanja naprave ni uspel. Če težava ostaja, priporočamo, da napravo dodate ročno.";
+"add_device_manual_popup_resign" = "Ostani v samodejnem načinu";
+"add_device_manual_popup_continue" = "Poskusi znova v ročnem načinu";
+"add_wizard_internal_error_message" = "";

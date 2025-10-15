@@ -16,42 +16,36 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
 import SharedCore
+import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
+    private lazy var viewModel: ThermostatGeneralVM! = ThermostatGeneralVM()
     
-    private lazy var viewModel: ThermostatGeneralVM! = { ThermostatGeneralVM() }()
+    private lazy var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCaseMock! = ReadChannelWithChildrenTreeUseCaseMock()
+
+    private lazy var createTemperaturesListUseCase: CreateTemperaturesListUseCaseMock! = CreateTemperaturesListUseCaseMock()
+
+    private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = ChannelConfigEventsManagerMock()
+
+    private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = DeviceConfigEventsManagerMock()
+
+    private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = GetChannelConfigUseCaseMock()
+
+    private lazy var delayedThermostatActionSubject: DelayedThermostatActionSubjectMock! = DelayedThermostatActionSubjectMock()
+
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
+
+    private lazy var loadingTimeoutManager: LoadingTimeoutManagerMock! = LoadingTimeoutManagerMock()
     
-    private lazy var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCaseMock! = {
-        ReadChannelWithChildrenTreeUseCaseMock()
-    }()
-    private lazy var createTemperaturesListUseCase: CreateTemperaturesListUseCaseMock! = {
-        CreateTemperaturesListUseCaseMock()
-    }()
-    private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = {
-        ChannelConfigEventsManagerMock()
-    }()
-    private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = {
-        DeviceConfigEventsManagerMock()
-    }()
-    private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = {
-        GetChannelConfigUseCaseMock()
-    }()
-    private lazy var delayedThermostatActionSubject: DelayedThermostatActionSubjectMock! = {
-        DelayedThermostatActionSubjectMock()
-    }()
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
-    private lazy var loadingTimeoutManager: LoadingTimeoutManagerMock! = {
-        LoadingTimeoutManagerMock()
-    }()
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
     
+    private lazy var checkIsSlaveThermostatUseCase: CheckIsSlaveThermostatUseCaseMock! = CheckIsSlaveThermostatUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelWithChildrenTreeUseCase.self, readChannelWithChildrenTreeUseCase!)
@@ -64,6 +58,11 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { self.loadingTimeoutManager! })
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseMock())
+        DiContainer.shared.register(type: CheckIsSlaveThermostat.UseCase.self, checkIsSlaveThermostatUseCase!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, self.groupSharedSettings!)
+        
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
     }
     
     override func tearDown() {
@@ -77,6 +76,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         delayedThermostatActionSubject = nil
         dateProvider = nil
         loadingTimeoutManager = nil
+        groupSharedSettings = nil
         
         super.tearDown()
     }
@@ -98,7 +98,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         let measurements: [MeasurementValue] = [
             MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "12.2"),
-            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
+            MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2°")
         ]
         
         readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))
@@ -111,6 +111,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             result: .resultTrue,
             config: SuplaDeviceConfig.mock())
         )
+        checkIsSlaveThermostatUseCase.mock.returns = .single(Observable.just(false))
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -137,6 +138,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .heat)
                 .changing(path: \.offline, to: false)
+                .changing(path: \.controlButtonsEnabled, to: true)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
@@ -148,7 +150,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.coolingIndicatorActive, to: false)
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0, 0])
-                .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: .suplaIcon(name: ""), message: Strings.ThermostatDetail.offByCard))
+                .changing(path: \.sensorIssue, to: SensorIssue(icon: .suplaIcon(name: ""), message: Strings.ThermostatDetail.offByCard))
                 .changing(path: \.subfunction, to: .heat)
                 .changing(path: \.currentPower, to: nil)
         ])
@@ -157,7 +159,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
 
         assertState(1) {
             XCTAssertEqual($0.off, false)
-            XCTAssertEqual($0.setpointText, "21.2")
+            XCTAssertEqual($0.setpointText, "21.2°")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
             XCTAssertEqual($0.operationalMode, .standby)
@@ -199,6 +201,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 fields: [SuplaAutomaticTimeSyncField(enabled: false)]
             )
         ))
+        checkIsSlaveThermostatUseCase.mock.returns = .single(Observable.just(false))
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -224,6 +227,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .cool)
                 .changing(path: \.offline, to: false)
+                .changing(path: \.controlButtonsEnabled, to: true)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
@@ -247,7 +251,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         assertState(1) {
             XCTAssertEqual($0.off, false)
-            XCTAssertEqual($0.setpointText, "23.0")
+            XCTAssertEqual($0.setpointText, "23.0°")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
             XCTAssertEqual($0.powerIconColor, .primary)
@@ -284,6 +288,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             result: .resultTrue,
             config: SuplaDeviceConfig.mock())
         )
+        checkIsSlaveThermostatUseCase.mock.returns = .single(Observable.just(false))
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -309,6 +314,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .off)
                 .changing(path: \.offline, to: false)
+                .changing(path: \.controlButtonsEnabled, to: true)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
@@ -361,6 +367,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             result: .resultTrue,
             config: SuplaDeviceConfig.mock())
         )
+        checkIsSlaveThermostatUseCase.mock.returns = .single(Observable.just(false))
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -429,6 +436,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             result: .resultTrue,
             config: SuplaDeviceConfig.mock())
         )
+        checkIsSlaveThermostatUseCase.mock.returns = .single(Observable.just(false))
         
         let initialState = ThermostatGeneralViewState(changing: true)
         viewModel.updateView { _ in initialState }
@@ -474,9 +482,11 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         ]
         deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
             result: .resultTrue,
-            config: SuplaDeviceConfig.mock())
+            config: SuplaDeviceConfig.mock()
+        )
         )
         dateProvider.currentTimestampReturns = .single(1001)
+        checkIsSlaveThermostatUseCase.mock.returns = .single(Observable.just(false))
         
         let initialState = ThermostatGeneralViewState(lastInteractionTime: 1000)
         viewModel.updateView { _ in initialState }
@@ -504,7 +514,6 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         ])
     }
     
-    
     // MARK: - Setpoint position changing
     
     func test_shouldChangeHeatSetpointPosition() {
@@ -514,6 +523,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.configMax, to: 40)
             .changing(path: \.remoteId, to: 1233)
             .changing(path: \.manualActive, to: true)
+            .changing(path: \.controlButtonsEnabled, to: true)
         
         viewModel.updateView { _ in initialState }
         
@@ -544,6 +554,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.configMax, to: 40)
             .changing(path: \.remoteId, to: 1233)
             .changing(path: \.manualActive, to: true)
+            .changing(path: \.controlButtonsEnabled, to: true)
         
         viewModel.updateView { _ in initialState }
         
@@ -571,6 +582,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         // given
         let initialState = ThermostatGeneralViewState()
             .changing(path: \.changing, to: true)
+            .changing(path: \.controlButtonsEnabled, to: true)
         
         viewModel.updateView { _ in initialState }
         
@@ -908,7 +920,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     // MARK: - Mock functions
     
     private func mockMainTemperatureChild() -> SUPLA.ChannelChild {
-        var temperature: Double = 19.8
+        var temperature = 19.8
         
         let channelValue = SAChannelValue(testContext: nil)
         channelValue.value = NSData(bytes: &temperature, length: MemoryLayout<Double>.size)

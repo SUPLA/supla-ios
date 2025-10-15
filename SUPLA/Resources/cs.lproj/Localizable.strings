@@ -144,9 +144,6 @@
 "Default settings" = "Výchozí nastavení";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMĚNIT NASTAVENÍ ŽIVOTNOSTI SVĚTELNÉHO ZDROJE";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Životnost UV zářiče je %,02f%%. Naplánovat jeho výměnu.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Životnost UV zářiče je %,02f%%. Vyměnit zářič";
-"The lifespan of the light source is %.02f%%." = "Životnost světelného zdroje je %.02f%%.";
 "Please enter your Supla Cloud login details." = "Zadejte své přihlašovací údaje cloud.supla.org.";
 "Enter superuser credentials" = "Zadejte pověření superuživatele";
 "Dimmer settings" = "Nastavení stmívače";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Chcete-li pokračovat, stiskněte tlačítko Další.";
 "Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zkontrolujte, zda má aplikace oprávnění vyhledávat zařízení v místní síti a připojovat se k nim. To znamená, že pro správnou funkci průvodce musí být povoleno oprávnění \"iOS->Nastavení->SUPLA->Místní síť\"i. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
-"Planned regeneration is in progress." = "Probíhá plánovaná obnova.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Obnova byla zahájena po 20h provozní činnosti.";
 "Back" = "Zpět";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave můstek neodpovídá. Zkontrolujte zda je můstek připojen k serveru.";
 "Exit" = "Výstup";
@@ -316,6 +310,12 @@
 "channel_caption_humidityandtemperature" = "Teplota a vlhkost";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie (%d - %@): %d%%";
+"channel_uv_warning" = "Životnost UV zářiče je %.01f%%. Naplánovat jeho výměnu.";
+"channel_uv_error" = "Životnost UV zářiče je %.01f%%. Vyměnit zářič.";
+"channel_lightsource_warning" = "Životnost světelného zdroje je %.01f%%.";
+"dgf_too_long_operation_warning" = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
+"dgf_planned_regeneration_in_progress" = "Probíhá plánovaná obnova.";
+"dgf_regeneration_after20h" = "Obnova byla zahájena po 20h provozní činnosti.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";
@@ -347,6 +347,7 @@
 "settings_lock_screen_app" = "Aplikace";
 "settings_lock_screen_none" = "Netýká se";
 "settings_show_bottom_menu" = "Zobrazit dolní nabídku";
+"app_settings_temperature_precision" = "Přesnost teploty";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Obecné";
@@ -416,6 +417,8 @@
 "thermostat_detail_main_thermostat" = "Hlavní termostat";
 "thermostat_detail_other_thermostats" = "Závislé termostaty";
 "thermostat_battery_cover_open" = "Otevřený kryt baterie";
+"thermostat_detail_antifreeze_active" = "Aktivní protimrazová ochrana";
+"thermostat_detail_overheat_active" = "Aktivní ochrana proti přehřátí";
 
 /* Combined Chart */
 "history_range_last_day" = "Posledních 24 hodin";
@@ -440,6 +443,8 @@
 "history_wait_for_download_completed" = "Čekejte prosím, stahuji...";
 "chart_marker_opening" = "Otevření";
 "chart_marker_closing" = "Uzavření";
+"temperature_measured" = "Naměřený";
+"temperature_preset" = "Přednastavený";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Usuń starsze niż 30 dni";
@@ -557,7 +562,9 @@
 /* State */
 "state_channel_id" = "Id kanálu";
 "state_battery_level" = "Stav baterie";
-"state_battery_powered" = "Napájení baterie";
+"state_power_supply" = "Napájení";
+"channel_state_battery_powered" = "bateriové";
+"channel_state_main_powered" = "síťové";
 "state_wifi_signal_strength" = "Síla signálu Wi-Fi";
 "state_bridge_node_online" = "Uzel můstku - online";
 "state_bridge_node_signal" = "Uzel můstku - síla signálu";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Akce: %@";
 "car_play_display_name" = "Název";
+"car_play_label" = "Akce pro Widgety/CarPlay";
+"car_play_voice_messages" = "Přehrát zprávy";
+"car_play_execution_error" = "Selhání provedení (kód chyby: %d)";
+"car_play_executing" = "Provádění...";
+"car_play_delete_title" = "Odstraňování položky";
+"car_play_delete_message" = "Chcete pokračovat?";
+"car_play_confirm_delete" = "Smazat";
+"car_play_empty" = "CarPlay není nakonfigurován. Přejděte do App Supla -> Nastavení -> Akce pro Widgety/CarPlay a připravte konfiguraci.";
+
+/* Widgets */
+"widgets_label" = "Akce pro widgety";
+"widget_empty_hint" = "Není definována žádná běžná akce. Přejděte do APP Supla -> Nastavení -> Akce pro widgety a definujte své akce.";
+"widget_with_carplay_empty_hint" = "Není definována žádná běžná akce. Přejděte do APP Supla -> Nastavení -> Akce pro Widgety/CarPlay a definujte své akce.";
+"widget_control_hint" = "Provedení akce";
+"widgets_actions_name" = "Akce";
+"widgets_actions_description" = "Zjednodušuje přístup k nejběžnějším akcím.";
+"widgets_unknown_action" = "Neznámá akce!";
+"widgets_value_title" = "Rychlý náhled";
+"widgets_value_description" = "Widget, který slouží k rychlému náhledu aktuální hodnoty kanálu.";
+"widget_configuration_error" = "Widget není správně nakonfigurován";
+"widgets_single_action_title" = "Jedna akce";
+"widgets_single_action_description" = "Zjednodušuje přístup k jedné akci.";
+"widgets_double_action_title" = "Dvojitá akce";
+"widgets_double_action_description" = "Zjednodušuje přístup ke dvěma akcím.";
+"widgets_first_action" = "První akce";
+"widgets_second_action" = "Druhá akce";
+"widgets_control_title" = "Ovládací tlačítko";
+"widgets_control_description" = "Tlačítko, které umožňuje provést předdefinovanou jedinou akci.";
+"widgets_selected_action" = "Vybraná akce";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Doba čekání na informace o dostupnosti registrace zařízení byla překročena!";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Heslo zařízení";
 "add_wizard_password_instruction" = "Použijte heslo, které bylo použito pro přístup k webové stránce místní konfigurace.\n\nZapomněli jste heslo? Můžete ho změnit na Supla Cloud nebo resetovat zařízení na tovární nastavení.";
 "add_wizard_manual_reconnect_message" = "Připojení k internetu se nezdařilo.\n\nPřejděte do nastavení systému a vyberte síť Wi-Fi, která má připojení k internetu. Poté se vraťte do aplikace a pokračujte stisknutím **Další**.";
+"add_device_manual_popup_title" = "Nepodařilo se přidat zařízení";
+"add_device_manual_popup_message" = "Pokus o automatické přidání zařízení se nezdařil. Pokud problém přetrvává, doporučujeme zařízení přidat ručně.";
+"add_device_manual_popup_resign" = "Zůstat v automatickém režimu";
+"add_device_manual_popup_continue" = "Zkusit znovu v ručním režimu";
+"add_wizard_internal_error_message" = "";

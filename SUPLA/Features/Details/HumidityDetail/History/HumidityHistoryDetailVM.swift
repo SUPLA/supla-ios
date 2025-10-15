@@ -34,7 +34,7 @@ final class HumidityHistoryDetailVM: BaseHistoryDetailVM {
         Observable.zip(
             loadChannelMeasurementsUseCase.invoke(remoteId: remoteId, spec: spec),
             loadChannelMeasurementsDateRangeUseCase.invoke(remoteId: remoteId)
-        ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [$0]), $1) }
+        ) { (LineChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, $0), $1) }
     }
     
     override func handleData(channel: ChannelWithChildren, channelDto: ChannelDto, chartState: ChartState?) {

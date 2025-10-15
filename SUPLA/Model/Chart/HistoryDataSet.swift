@@ -23,7 +23,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
 
     let type: ChartEntryType
     let label: Label
-    let valueFormatter: ChannelValueFormatter
+    let valueFormatter: SharedCore.ValueFormatter
     var entries: [[AggregatedEntity]]
     var active: Bool
 
@@ -99,6 +99,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
         let useColor: Bool
         let justColor: Bool
         let iconSize: CGFloat?
+        let description: String?
 
         init(
             icon: IconResult?,
@@ -107,7 +108,8 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
             presentColor: Bool = true,
             useColor: Bool = true,
             justColor: Bool = false,
-            iconSize: CGFloat? = nil
+            iconSize: CGFloat? = nil,
+            description: String? = nil
         ) {
             self.icon = icon
             self.value = value
@@ -116,6 +118,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
             self.useColor = useColor
             self.justColor = justColor
             self.iconSize = iconSize
+            self.description = description
         }
 
         init(color: UIColor) {
@@ -126,6 +129,7 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
             self.useColor = true
             self.justColor = true
             self.iconSize = nil
+            self.description = nil
         }
 
         func getIconSize() -> CGFloat { iconSize ?? Dimens.iconSizeBig }
@@ -135,7 +139,8 @@ struct HistoryDataSet: Equatable, Changeable, Identifiable {
 func singleLabel(
     _ image: IconResult?,
     _ value: String,
-    _ color: UIColor
+    _ color: UIColor,
+    _ description: String? = nil
 ) -> HistoryDataSet.Label {
-    .single(HistoryDataSet.LabelData(icon: image, value: value, color: color))
+    .single(HistoryDataSet.LabelData(icon: image, value: value, color: color, description: description))
 }

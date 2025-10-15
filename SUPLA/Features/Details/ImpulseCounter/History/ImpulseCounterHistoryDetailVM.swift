@@ -76,10 +76,10 @@ final class ImpulseCounterHistoryDetailVM: BaseHistoryDetailVM {
     }
 }
 
-private func getChartData(_ spec: ChartDataSpec, _ chartRange: ChartRange, _ sets: ChannelChartSets) -> ChartData {
+private func getChartData(_ spec: ChartDataSpec, _ chartRange: ChartRange, _ sets: [ChannelChartSets]) -> ChartData {
     if (spec.aggregation.isRank) {
-        PieChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
+        PieChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, sets)
     } else {
-        BarChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, [sets])
+        BarChartData(DaysRange(start: spec.startDate, end: spec.endDate), chartRange, spec.aggregation, sets)
     }
 }

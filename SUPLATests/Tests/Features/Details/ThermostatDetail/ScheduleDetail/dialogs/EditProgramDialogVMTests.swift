@@ -16,14 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
+@available(iOS 17.0, *)
 final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, EditProgramDialogViewEvent> {
-    
     private let initialState = EditProgramDialogViewState(
         program: .off,
         mode: .heat,
@@ -33,16 +33,21 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         configMax: 0
     )
     
-    private lazy var viewModel: EditProgramDialogVM! = {
-        EditProgramDialogVM(initialState: initialState)
-    }()
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
+    
+    private lazy var viewModel: EditProgramDialogVM! = EditProgramDialogVM(initialState: initialState)
     
     override func setUp() {
         DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
+        DiContainer.shared.register(type: GroupShared.Settings.self, self.groupSharedSettings!)
+        
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
     }
     
     override func tearDown() {
         viewModel = nil
+        groupSharedSettings = nil
         super.tearDown()
     }
     

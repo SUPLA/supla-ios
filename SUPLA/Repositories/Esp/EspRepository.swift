@@ -155,10 +155,10 @@ private func responseToResult(response: AFDataResponse<String>) -> Esp.RequestRe
     } else {
         switch response.result {
         case .success(let value):
-            return .success(value)
+            return .success(code, value)
         case .failure(let error):
             SALog.error("GET request failed with error \(error)")
-            return .failure(error)
+            return .failure(code, error)
         }
     }
 }
@@ -170,16 +170,16 @@ private func loginToResult(response: AFDataResponse<String>) -> Esp.RequestResul
     if (code == 301 && response.locationHeader?.starts(with: "https://") ?? false) {
         return .secureConnectionNeeded
     } else if (code == 303 && response.locationHeader == "/") {
-        return .success("")
+        return .success(code, "")
     } else if (code == 403) {
         return .temporarilyLocked
     } else {
         switch response.result {
         case .success:
-            return .failure(InvalidCredentialsError())
+            return .failure(code, InvalidCredentialsError())
         case .failure(let error):
             SALog.error("GET request failed with error \(error)")
-            return .failure(error)
+            return .failure(code, error)
         }
     }
 }

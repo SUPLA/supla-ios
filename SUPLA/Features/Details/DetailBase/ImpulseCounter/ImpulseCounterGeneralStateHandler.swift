@@ -39,11 +39,12 @@ final class ImpulseCounterGeneralStateHandlerImpl: ImpulseCounterGeneralStateHan
             return
         }
         
+        let formatter = SharedCore.ImpulseCounterValueFormatter.staticFormatter(channel)
+        
         guard let extendedValue = channel.channel.ev?.impulseCounter() else {
-            handleNoExtendedValue(state, channel, measurements)
+            handleNoExtendedValue(state, channel, measurements, formatter)
             return
         }
-        let formatter = ImpulseCounterChartValueFormatter(unit: extendedValue.unit())
         
         state.online = channel.channel.status().online
         state.totalData = SummaryCardData(
@@ -58,13 +59,13 @@ final class ImpulseCounterGeneralStateHandlerImpl: ImpulseCounterGeneralStateHan
     private func handleNoExtendedValue(
         _ state: ImpulseCounterGeneralState,
         _ channel: ChannelWithChildren,
-        _ measurements: ImpulseCounterMeasurements?
+        _ measurements: ImpulseCounterMeasurements?,
+        _ formatter: SharedCore.ValueFormatter
     ) {
         let value: Double = getChannelValueUseCase.invoke(channel.channel)
-        let formatter = ImpulseCounterChartValueFormatter()
             
         state.online = channel.channel.status().online
-        state.totalData = SummaryCardData(energy: formatter.format(value))
+        state.totalData = SummaryCardData(energy: formatter.format(value: value))
         state.currentMonthData = measurements?.toSummaryCardData(formatter: formatter)
     }
 }

@@ -18,8 +18,8 @@
 
 final class ThermometerAndHumidityValueStringProvider: ChannelValueStringProvider {
     @Singleton<ThermometerAndHumidityValueProvider> private var thermometerAndHumidityValueProvider
+    @Singleton<ThermometerValueFormatter> private var temperatureFormatter
     
-    private let temperatureFormatter = ThermometerValueFormatter()
     private let humidityFormatter = HumidityValueFormatter()
     
     func handle(_ channel: SAChannel) -> Bool {
@@ -29,8 +29,8 @@ final class ThermometerAndHumidityValueStringProvider: ChannelValueStringProvide
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         let value = thermometerAndHumidityValueProvider.value(channel, valueType: valueType)
         return switch(valueType) {
-        case .first: temperatureFormatter.format(value, withUnit: withUnit)
-        case .second: humidityFormatter.format(value, withUnit: withUnit)
+        case .first: temperatureFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
+        case .second: humidityFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
         }
     }
 }

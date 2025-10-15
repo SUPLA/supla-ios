@@ -19,6 +19,7 @@
 import RxRelay
 import RxSwift
 import SwiftUI
+import SharedCore
 
 final class DataSetsViewState: ObservableObject {
     @Published var channelsSets: [ChannelChartSets] = []
@@ -100,6 +101,7 @@ struct DataSetContainer: View {
 private struct DataSetItem: View {
     var labelData: HistoryDataSet.LabelData
     var active: Bool
+    var description: String?
 
     var body: some View {
         HStack {
@@ -126,6 +128,13 @@ private struct DataSetItem: View {
                             .frame(width: 50, height: 4)
                     }
                 }
+                
+                if let description = labelData.description {
+                    Text(description).fontLabelSmall()
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .padding([.top], 4)
+                }
             }
         }
     }
@@ -147,7 +156,7 @@ private struct DataSetItem: View {
                         value: "301,7",
                         color: .chartPhase1
                     )),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 )
@@ -176,7 +185,7 @@ private struct DataSetItem: View {
                             )
                         ]
                     ),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 )
@@ -201,7 +210,7 @@ private struct DataSetItem: View {
                         value: "301,7",
                         color: .chartPhase1
                     )),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 ),
@@ -212,12 +221,44 @@ private struct DataSetItem: View {
                         value: "298,7",
                         color: .chartPhase2
                     )),
-                    valueFormatter: ListElectricityMeterValueFormatter(),
+                    valueFormatter: SharedCore.ElectricityMeterValueFormatter(),
                     entries: [],
                     active: true
                 )
             ],
             typeName: "Voltage"
+        ),
+        ChannelChartSets(
+            remoteId: 124,
+            function: 123,
+            name: "Reverse active energy",
+            aggregation: .minutes,
+            dataSets: [
+                HistoryDataSet(
+                    type: .temperature,
+                    label: .single(HistoryDataSet.LabelData(
+                        icon: .suplaIcon(name: "thermometer"),
+                        value: "21.2",
+                        color: .chartTemperature1,
+                        description: "measured"
+                    )),
+                    valueFormatter: SharedCore.DefaultValueFormatter.shared,
+                    entries: [],
+                    active: true
+                ),
+                HistoryDataSet(
+                    type: .presetTemperature,
+                    label: .single(HistoryDataSet.LabelData(
+                        icon: nil,
+                        value: "21.0",
+                        color: .chartHumidity1,
+                        description: "preset"
+                    )),
+                    valueFormatter: SharedCore.DefaultValueFormatter.shared,
+                    entries: [],
+                    active: true
+                )
+            ]
         )
     ]
 

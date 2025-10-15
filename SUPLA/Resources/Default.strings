@@ -108,6 +108,12 @@
 "channel_not_found" = "Channel not found";
 "scene_inactive" = "Scene is inactive";
 "channel_battery_level" = "Battery level (%d - %@): %d%%";
+"channel_uv_warning" = "The lifespan of the uv radiator is %.01f%%. Schedule its replacement.";
+"channel_uv_error" = "The lifespan of the uv radiator is %.01f%%. Replace the radiator.";
+"channel_lightsource_warning" = "The lifespan of the light source is %.01f%%.";
+"dgf_too_long_operation_warning" = "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them.";
+"dgf_planned_regeneration_in_progress" = "Planned regeneration is in progress.";
+"dgf_regeneration_after20h" = "Regeneration initiated after 20 hours of operation is in progress.";
 /* General - Channel status */
 "channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
 "channel_status_awaiting" = "This device cannot be remotely awakened. We are awaiting communication from the device…";
@@ -145,6 +151,7 @@
 "settings_lock_screen_app" = "App";
 "settings_lock_screen_accounts" = "Accounts";
 "settings_battery_level_warnign" = "Low battery alert";
+"app_settings_temperature_precision" = "Temperature precision";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -230,6 +237,8 @@
 "thermostat_detail_list" = "List";
 "thermostat_detail_main_thermostat" = "Main thermostat";
 "thermostat_detail_other_thermostats" = "Ohter thermostats";
+"thermostat_detail_antifreeze_active" = "Antifreeze protection active";
+"thermostat_detail_overheat_active" = "Overheat protection active";
 
 /* Combined Chart */
 "history_range_label" = "Range";
@@ -260,6 +269,8 @@
 "Days" = "Days";
 "Months" = "Months";
 "Years" = "Years";
+"temperature_measured" = "Measured";
+"temperature_preset" = "Preset";
 
 /* Notifications */
 "notifications_log_profile" = "Profile:";
@@ -417,7 +428,9 @@
 "state_ip_address" = "IP";
 "state_mac_address" = "MAC";
 "state_battery_level" = "Battery level";
-"state_battery_powered" = "Battery powered";
+"state_power_supply" = "Power supply";
+"channel_state_battery_powered" = "battery";
+"channel_state_main_powered" = "mains";
 "state_wifi_rssi" = "Wi-Fi RSSI";
 "state_wifi_signal_strength" = "Wi-Fi signal strength";
 "state_bridge_node_online" = "Bridge node online";
@@ -452,19 +465,21 @@
 "container_sound_alarm" = "Sound alarm active";
 
 /* apple car play */
-"car_play_label" = "Actions for Widgets/CarPlay";
-"car_play_voice_messages" = "Play messages";
 "car_play_action" = "Action: %@";
 "car_play_display_name" = "Display name";
+"car_play_label" = "Actions for Widgets/CarPlay";
+"car_play_voice_messages" = "Play messages";
 "car_play_execution_error" = "Execution failed (error code: %d)";
 "car_play_executing" = "Executing...";
 "car_play_delete_title" = "Deleting item";
-"car_play_delete_message" = "Do you want to continue";
+"car_play_delete_message" = "Do you want to continue?";
 "car_play_confirm_delete" = "Delete";
 "car_play_empty" = "CarPlay is not configured. Go to Supla App -> Settings -> Actions for Widgets/CarPlay and prepare configuration.";
 
 /* Widget */
-"widget_empty_hint" = "No common action defined. Go to Supla APP -> Settings -> Actions for Widgets/CarPlay and define your actions.";
+"widgets_label" = "Actions for widgets";
+"widget_empty_hint" = "No common action defined. Go to Supla APP -> Settings -> Actions for widgets and define your actions.";
+"widget_with_carplay_empty_hint" = "No common action defined. Go to Supla APP -> Settings -> Actions for Widgets/CarPlay and define your actions.";
 "widget_control_hint" = "Perform action";
 "widgets_actions_name" = "Actions";
 "widgets_actions_description" = "Simplifies access to the most common actions.";
@@ -529,3 +544,8 @@
 "add_wizard_password_enter_title" = "Device Password";
 "add_wizard_password_instruction" = "Please use the password used for local configuration web page access.\n\nForgot your password? You can change it on Supla Cloud or reset the device to factory settings.";
 "add_wizard_manual_reconnect_message" = "Internet connection failed.\n\n Go to system settings and select a Wi-Fi network that has an internet connection. Then return to the app and continue by pressing **Next**.";
+"add_device_manual_popup_title" = "Failed to add device";
+"add_device_manual_popup_message" = "An attempt to add a device automatically failed. If the problem persists, we recommend adding the device manually.";
+"add_device_manual_popup_resign" = "Stay in automatic mode";
+"add_device_manual_popup_continue" = "Try again in manual mode";
+"add_wizard_internal_error_message" = "The iOS system service reported an internal error during network scanning, which is beyond our control. Please try adding the device using manual mode, or restart your phone/tablet.";

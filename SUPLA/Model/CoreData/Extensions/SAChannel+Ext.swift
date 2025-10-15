@@ -20,7 +20,7 @@ import SharedCore
 
 extension SAChannel {
     var onlineState: ListOnlineState { status().onlineState }
-    
+
     var phases: [Phase] {
         Phase.allCases.filter { $0.disabledFlag & flags == 0 }
     }
@@ -55,10 +55,10 @@ extension SAChannel {
             default: false
         }
     }
-    
+
     var batteryInfo: BatteryInfo? {
         guard let state else { return nil }
-        
+
         if state.batteryPowered != nil || state.batteryLevel != nil {
             return BatteryInfo(
                 batteryPowered: KotlinBoolean.from(state.batteryPowered?.boolValue),
@@ -66,23 +66,35 @@ extension SAChannel {
                 health: KotlinInt.from(state.batteryHealth)
             )
         }
-        
+
         return nil
     }
-    
+
     var shareable: SharedCore.Channel {
-        SharedCore.Channel(
+        let channelState: SharedCore.ChannelState? =
+            if let state {
+                SharedCore.ChannelState(
+                    lightSourceLifespan: .from(state.lightSourceLifespan),
+                    lightSourceLifespanLeft: .from(state.lightSourceLifespanLeft),
+                    lightSourceOperatingTimePercentLeft: .from(state.lightSourceOperatingTimePercentLeft)
+                )
+            } else {
+                nil
+            }
+
+        return SharedCore.Channel(
             remoteId: remote_id,
             caption: caption ?? "",
             status: status(),
             function: self.func.suplaFuntion,
-            batteryInfo: batteryInfo,
+            altIcon: alticon,
+            batteryInfo: self.batteryInfo,
+            channelState: channelState,
             value: KotlinByteArray.from(nullable: value?.dataValue())
         )
     }
-    
+
     var temperatureControlType: SuplaTemperatureControlType? {
         (config?.configAsSuplaConfig() as? SuplaChannelHvacConfig)?.temperatureControlType
     }
 }
-

@@ -19,10 +19,15 @@
 import AppIntents
 import SwiftUI
 import WidgetKit
+import SharedCore
 
 @available(iOS 17.0, *)
 struct SuplaValueWidget: Widget {
     let kind: String = "com.acsoftware.ios.supla.SuplaValueWidget"
+    
+    init() {
+        DiContainer.start()
+    }
 
     var body: some WidgetConfiguration {
         let configuration = AppIntentConfiguration(kind: kind, intent: ValueIntent.self, provider: Provider()) { entry in
@@ -190,13 +195,14 @@ extension SuplaValueWidget {
 
         static func from(_ result: SingleCallResult) -> FormattedValue {
             switch (result) {
-            case .temperature(let value): .single(formatter.temperatureToString(value: Float(value)))
+            case .temperature(let value): .single(value.toTemperatureString(ValueFormat.companion.WithUnit))
             case .humidity(let value): .single(formatter.humidityToString(value))
             case .temperatureAndHumidity(let temperature, let humidity):
                 .double(
-                    first: formatter.temperatureToString(value: Float(temperature)),
+                    first: temperature.toTemperatureString(ValueFormat.companion.WithUnit),
                     second: formatter.humidityToString(humidity)
                 )
+            case .container(let value): .single(ContainerValueFormatter.shared.format(value: value))
             case .error(let errorCode): .error(errorCode)
             case .offline: .offline
             }

@@ -92,19 +92,18 @@ struct SuplaWeeklyScheduleProgram: Equatable {
     
     var description: String {
         get {
-            @Singleton<ValuesFormatter> var valuesFormatter
             let heatTemperature = setpointTemperatureHeat?.fromSuplaTemperature()
             let coolTemperature = setpointTemperatureCool?.fromSuplaTemperature()
             
             if (program == .off) {
                 return Strings.General.turnOff
             } else if (mode == .heat) {
-                return valuesFormatter.temperatureToString(heatTemperature, withUnit: false)
+                return heatTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
             } else if (mode == .cool) {
-                return valuesFormatter.temperatureToString(coolTemperature, withUnit: false)
+                return coolTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
             } else if (mode == .heatCool) {
-                let min = valuesFormatter.temperatureToString(heatTemperature, withUnit: false)
-                let max = valuesFormatter.temperatureToString(coolTemperature, withUnit: false)
+                let min = heatTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
+                let max = coolTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
                 return "\(min) - \(max)"
             } else {
                 return NO_VALUE_TEXT

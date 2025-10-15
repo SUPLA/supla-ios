@@ -275,10 +275,7 @@ struct ThermostatTimerDetailViewState: ViewState {
     var loadingState: LoadingState = LoadingState()
     
     var currentTemperatureText: String {
-        get {
-            @Singleton<ValuesFormatter> var formatter
-            return formatter.temperatureToString(currentTemperature, withUnit: false)
-        }
+        get { currentTemperature.toTemperatureString() }
     }
     
     var timerInfoText: String {

@@ -144,9 +144,6 @@
 "Default settings" = "Standaard instellingen";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "DE INSTELLING VOOR DE LEVENSDUUR VAN DE LICHTBRON WIJZIGEN";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "De levensduur van de uv-straal is %.02f%%. Plan zijn vervanging.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "De levensduur van het uv-belichtingstoestel bedraagt %,02f%%. Vervang de stralingsbuis.";
-"The lifespan of the light source is %.02f%%." = "De levensduur van de lichtbron is %.02f%%.";
 "Please enter your Supla Cloud login details." = "Voer uw inloggegevens voor cloud.supla.org in.";
 "Enter superuser credentials" = "Voer de inloggegevens van de superuser in";
 "Dimmer settings" = "Dimmer instellingen";
@@ -160,9 +157,6 @@
 "Press Next to continue." = "Druk op Volgende om door te gaan.";
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zorg ervoor dat de app toestemming heeft om apparaten op het lokale netwerk te vinden en er verbinding mee te maken. Dit betekent dat de \"iOS->Instellingen->SUPLA->Lokaal netwerk\" toestemming moet zijn ingeschakeld om de wizard correct te laten werken. ";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
-"Planned regeneration is in progress." = "Geplande regeneratie is aan de gang.";
-"Regeneration initiated after 20 hours of operation is in progress." = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
 "Back" = "Terug";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave brug reageert niet. Controleer of de brug met de server is verbonden.";
 "Exit" = "Uitgang";
@@ -317,6 +311,12 @@
 "channel_caption_humidityandtemperature" = "Temperatuur en luchtvochtigheid";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
+"channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
+"channel_uv_error" = "De levensduur van het uv-belichtingstoestel bedraagt %.01f%%. Vervang de stralingsbuis.";
+"channel_lightsource_warning" = "De levensduur van de lichtbron is %.01f%%.";
+"dgf_too_long_operation_warning" = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
+"dgf_planned_regeneration_in_progress" = "Geplande regeneratie is aan de gang.";
+"dgf_regeneration_after20h" = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";
@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Toepassing";
 "settings_lock_screen_none" = "Geen";
 "settings_show_bottom_menu" = "Menu onderaan tonen";
+"app_settings_temperature_precision" = "Temperatuurnauwkeurigheid";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Algemeen";
@@ -418,6 +419,8 @@
 "thermostat_detail_main_thermostat" = "Hoofdthermostaat";
 "thermostat_detail_other_thermostats" = "Afhankelijke thermostaten";
 "thermostat_battery_cover_open" = "Batterijklep openen";
+"thermostat_detail_antifreeze_active" = "Vorstbeveiliging actief";
+"thermostat_detail_overheat_active" = "Oververhittingsbeveiliging actief";
 
 /* Combined Chart */
 "history_range_last_day" = "De laatste 24 uur";
@@ -442,6 +445,8 @@
 "history_wait_for_download_completed" = "Even geduld, ik ben aan het downloaden...";
 "chart_marker_opening" = "Opening";
 "chart_marker_closing" = "Afsluiting";
+"temperature_measured" = "Gemeten";
+"temperature_preset" = "Vooraf ingesteld";
 
 /* Notifications */
 "notification_delete_button_delete_older_than_month" = "Verwijder ouder dan 30 dagen";
@@ -557,7 +562,9 @@
 /* State */
 "state_channel_id" = "Kanaal id";
 "state_battery_level" = "Batterijniveau";
-"state_battery_powered" = "Batterijstroomvoorziening";
+"state_power_supply" = "Voeding";
+"channel_state_battery_powered" = "batterij";
+"channel_state_main_powered" = "netstroom";
 "state_wifi_signal_strength" = "WiFi-signaalsterkte";
 "state_bridge_node_online" = "Brugknooppunt - online";
 "state_bridge_node_signal" = "Brug knooppunt - signaalsterkte";
@@ -582,6 +589,35 @@
 /* Car play */
 "car_play_action" = "Actie: %@";
 "car_play_display_name" = "Naam";
+"car_play_label" = "Acties voor Widgets/CarPlay";
+"car_play_voice_messages" = "Berichten afspelen";
+"car_play_execution_error" = "Uitvoering mislukt (foutcode: %d)";
+"car_play_executing" = "Bezig met uitvoeren...";
+"car_play_delete_title" = "Item verwijderen";
+"car_play_delete_message" = "Wilt u doorgaan?";
+"car_play_confirm_delete" = "Verwijderen";
+"car_play_empty" = "CarPlay is niet geconfigureerd. Ga naar Supla App -> Instellingen -> Acties voor Widgets/CarPlay en bereid de configuratie voor.";
+
+/* Widgets */
+"widgets_label" = "Acties voor widgets";
+"widget_empty_hint" = "Geen gemeenschappelijke actie gedefinieerd. Ga naar Supla APP -> Instellingen -> Acties voor widgets en definieer uw acties.";
+"widget_with_carplay_empty_hint" = "Geen gemeenschappelijke actie gedefinieerd. Ga naar Supla APP -> Instellingen -> Acties voor Widgets/CarPlay en definieer uw acties.";
+"widget_control_hint" = "Voer actie uit";
+"widgets_actions_name" = "Acties";
+"widgets_actions_description" = "Vereenvoudigt de toegang tot de meest voorkomende acties.";
+"widgets_unknown_action" = "Onbekende actie!";
+"widgets_value_title" = "Snel Overzicht";
+"widgets_value_description" = "Widget die dient als een snel overzicht van de huidige kanaalwaarde.";
+"widget_configuration_error" = "Widget is niet correct geconfigureerd";
+"widgets_single_action_title" = "Enkele Actie";
+"widgets_single_action_description" = "Vereenvoudigt de toegang tot een enkele actie.";
+"widgets_double_action_title" = "Dubbele Actie";
+"widgets_double_action_description" = "Vereenvoudigt de toegang tot twee acties.";
+"widgets_first_action" = "Eerste Actie";
+"widgets_second_action" = "Tweede Actie";
+"widgets_control_title" = "Bedieningsknop";
+"widgets_control_description" = "Knop die het uitvoeren van een vooraf gedefinieerde enkele actie mogelijk maakt.";
+"widgets_selected_action" = "Geselecteerde Actie";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Wachttijd voor informatie over de beschikbaarheid van apparaatregistratie is overschreden!";
@@ -633,3 +669,8 @@
 "add_wizard_password_enter_title" = "Apparaatwachtwoord";
 "add_wizard_password_instruction" = "Gebruik het wachtwoord dat is gebruikt voor toegang tot de lokale configuratie webpagina.\n\nWachtwoord vergeten? Je kunt het wijzigen op Supla Cloud of het apparaat terugzetten naar de fabrieksinstellingen.";
 "add_wizard_manual_reconnect_message" = "Internetverbinding mislukt.\n\nGa naar de systeeminstellingen en selecteer een Wi-Fi-netwerk met een internetverbinding. Keer vervolgens terug naar de app en ga verder door op **Volgende** te drukken.";
+"add_device_manual_popup_title" = "Toevoegen van apparaat mislukt";
+"add_device_manual_popup_message" = "De poging om een apparaat automatisch toe te voegen is mislukt. Als het probleem aanhoudt, raden we aan het apparaat handmatig toe te voegen.";
+"add_device_manual_popup_resign" = "Blijf in automatische modus";
+"add_device_manual_popup_continue" = "Probeer het opnieuw in handmatige modus";
+"add_wizard_internal_error_message" = "";

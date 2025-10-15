@@ -173,9 +173,6 @@
 "Roof window" = "Lucernario";
 "Roof window operation" = "Funzionamento Lucernario";
 "opened / closed the roof window" = "apri / chiudi lucernario";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
-"Planned regeneration is in progress." = "Rigenerazione pianificata in corso.";
-"Regeneration initiated after 20 hours of operation is in progress." = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assicurati che l'applicazione abbia i permessi per cercare e connettersi ai dispositivi nella rete locale. Controlla che in \"Impostazioni -> SUPLA -> Rete locale\" il permesso sia abilitato per funzionare correttamente";
 "Close" = "Chiudi";
 "Yes" = "Si";
@@ -201,9 +198,6 @@
 "Opening" = "Apertura";
 "Closing" = "Chiusura";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "L'uscita è stata spenta a causa del superamento della soglia di corrente impostata.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La durata di vita della lampada UV è %.02f%%. Sostituire la lampada.";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La durata di vita della lampada UV è %.02f%%. Programmare la sua sostituzione.";
-"The lifespan of the light source is %.02f%%." = "La durata di vita della sorgente luminosta è %.02f%%.";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIA LE IMPOSTAZIONI DELLA DURATA DI VITA DELLA SORGENTE LUMINOSA";
 "Arithmetic balance - Minutes" = "Bilanciamento aritmetico - Minuti";
 "Arithmetic balance - Hours" = "Bilanciamento aritmetico - Ore";
@@ -334,6 +328,12 @@
 "channel_caption_humidityandtemperature" = "Temperatura e umidità";
 "channel_offline" = "Il canale è offline";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
+"channel_uv_warning" = "La durata di vita della lampada UV è %.01f%%. Sostituire la lampada.";
+"channel_uv_error" = "La durata di vita della lampada UV è %.01f%%. Programmare la sua sostituzione.";
+"channel_lightsource_warning" = "La durata di vita della sorgente luminosta è %.01f%%.";
+"dgf_too_long_operation_warning" = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
+"dgf_planned_regeneration_in_progress" = "Rigenerazione pianificata in corso.";
+"dgf_regeneration_after20h" = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Abbiamo eliminato il gesto di scorrimento che apre i dettagli, per vederli devi toccare il canale selezionato.";
@@ -366,6 +366,7 @@
 "settings_lock_screen_none" = "Nessuno";
 "settings_lock_screen_app" = "Applicazione";
 "settings_lock_screen_accounts" = "Account";
+"app_settings_temperature_precision" = "Precisione della temperatura";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generali";
@@ -445,6 +446,8 @@
 "thermostat_detail_list" = "Elenco";
 "thermostat_detail_main_thermostat" = "Termostato principale";
 "thermostat_detail_other_thermostats" = "Termostati dipendenti";
+"thermostat_detail_antifreeze_active" = "Protezione antigelo attiva";
+"thermostat_detail_overheat_active" = "Protezione contro il surriscaldamento attiva";
 
 /* Combined Chart */
 "history_range_label" = "Intervallo";
@@ -470,6 +473,8 @@
 "history_wait_for_download_completed" = "Attendere prego, caricamento in corso...";
 "chart_marker_opening" = "Apertura";
 "chart_marker_closing" = "Chiusura";
+"temperature_measured" = "Misurato";
+"temperature_preset" = "Preimpostato";
 
 /* Notification */
 "notifications_log_profile" = "Profilo:";
@@ -591,7 +596,9 @@
 /* State */
 "state_channel_id" = "Id canale";
 "state_battery_level" = "Livello batteria";
-"state_battery_powered" = "Alimentazione a batteria";
+"state_power_supply" = "Alimentazione";
+"channel_state_battery_powered" = "a batteria";
+"channel_state_main_powered" = "a rete";
 "state_wifi_rssi" = "Wi-fi RSSI";
 "state_wifi_signal_strength" = "Potenza del segnale Wi-Fi";
 "state_bridge_node_online" = "Nodo ponte – online";
@@ -617,6 +624,35 @@
 /* Car play */
 "car_play_action" = "Azione: %@";
 "car_play_display_name" = "Nome";
+"car_play_label" = "Azioni per Widget/CarPlay";
+"car_play_voice_messages" = "Riproduci messaggi";
+"car_play_execution_error" = "Esecuzione fallita (codice di errore: %d)";
+"car_play_executing" = "Esecuzione in corso...";
+"car_play_delete_title" = "Eliminazione elemento";
+"car_play_delete_message" = "Vuoi continuare?";
+"car_play_confirm_delete" = "Elimina";
+"car_play_empty" = "CarPlay non è configurato. Vai su App Supla -> Impostazioni -> Azioni per Widget/CarPlay e prepara la configurazione.";
+
+/* Widgets */
+"widgets_label" = "Azioni per Widget";
+"widget_empty_hint" = "Nessuna azione comune definita. Vai su APP Supla -> Impostazioni -> Azioni per widget e definisci le tue azioni.";
+"widget_with_carplay_empty_hint" = "Nessuna azione comune definita. Vai su APP Supla -> Impostazioni -> Azioni per Widget/CarPlay e definisci le tue azioni.";
+"widget_control_hint" = "Esegui azione";
+"widgets_actions_name" = "Azioni";
+"widgets_actions_description" = "Semplifica l'accesso alle azioni più comuni.";
+"widgets_unknown_action" = "Azione sconosciuta!";
+"widgets_value_title" = "Anteprima Rapida";
+"widgets_value_description" = "Widget che fornisce una rapida anteprima del valore attuale del canale.";
+"widget_configuration_error" = "Il widget non è configurato correttamente";
+"widgets_single_action_title" = "Azione Singola";
+"widgets_single_action_description" = "Semplifica l'accesso a una singola azione.";
+"widgets_double_action_title" = "Doppia Azione";
+"widgets_double_action_description" = "Semplifica l'accesso a due azioni.";
+"widgets_control_title" = "Prima Azione";
+"widgets_control_description" = "Seconda Azione";
+"widgets_selected_action" = "Pulsante di Controllo";
+"widgets_first_action" = "Pulsante che permette di eseguire una singola azione predefinita.";
+"widgets_second_action" = "Azione Selezionata";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Le délai d'attente pour des informations sur la disponibilité d'enregistrement des dispositifs est dépassé!";
@@ -668,3 +704,8 @@
 "add_wizard_password_enter_title" = "Password del dispositivo";
 "add_wizard_password_instruction" = "Si prega di utilizzare la password usata per l'accesso alla pagina web di configurazione locale.\n\nHai dimenticato la password? Puoi cambiarla su Supla Cloud o ripristinare il dispositivo alle impostazioni di fabbrica.";
 "add_wizard_manual_reconnect_message" = "La connessione a internet non è riuscita.\n\nVai alle impostazioni di sistema e seleziona una rete Wi-Fi con una connessione a internet. Poi torna all'app e continua premendo **Avanti**.";
+"add_device_manual_popup_title" = "Aggiunta dispositivo non riuscita";
+"add_device_manual_popup_message" = "Il tentativo di aggiungere un dispositivo in automatico è fallito. Se il problema persiste, si consiglia di aggiungere il dispositivo manualmente.";
+"add_device_manual_popup_resign" = "Rimani in modalità automatica";
+"add_device_manual_popup_continue" = "Riprova in modalità manuale";
+"add_wizard_internal_error_message" = "";

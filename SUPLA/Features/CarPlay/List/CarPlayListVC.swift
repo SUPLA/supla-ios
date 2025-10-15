@@ -31,7 +31,7 @@ extension CarPlayListFeature {
                 onMoved: viewModel.onMoved
             )
             
-            title = Strings.CarPlay.label
+            title = BrandingConfiguration.actionsLabel
         }
         
         static func create() -> UIViewController {

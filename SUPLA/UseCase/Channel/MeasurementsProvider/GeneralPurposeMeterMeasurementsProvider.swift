@@ -32,7 +32,7 @@ class GeneralPurposeMeterMeasurementsProviderImpl: GeneralPurposeMeterMeasuremen
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         generalPurposeMeterItemRepository
             .findMeasurements(
                 remoteId: channelWithChildren.remoteId,
@@ -41,8 +41,8 @@ class GeneralPurposeMeterMeasurementsProviderImpl: GeneralPurposeMeterMeasuremen
                 endDate: spec.endDate
             )
             .map { entities in self.aggregatingGeneralPurposeMeter(entities, spec.aggregation) }
-            .map { [self.historyDataSet(channelWithChildren.channel, .generalPurposeMeter, .chartGpm, spec.aggregation, $0)] }
-            .map { self.channelChartSets(channelWithChildren.channel, spec, $0) }
+            .map { [self.historyDataSet(channelWithChildren, .generalPurposeMeter, .chartGpm, spec.aggregation, $0)] }
+            .map { [self.channelChartSets(channelWithChildren.channel, spec, $0)] }
     }
 
     func aggregatingGeneralPurposeMeter(

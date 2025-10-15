@@ -149,7 +149,11 @@ final class SuplaCloudServiceMock: SuplaCloudService {
         .empty()
     }
     
-    func getUserIcons(_ remoteIds: [Int32]) -> RxSwift.Observable<[SUPLA.SuplaCloudClient.UserIcon]> {
+    func getUserIcons(_ remoteIds: [Int32]) -> Observable<[SUPLA.SuplaCloudClient.UserIcon]> {
+        .empty()
+    }
+    
+    func getThermostatMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SUPLA.SuplaCloudClient.ThermostatMeasurement]> {
         .empty()
     }
 }

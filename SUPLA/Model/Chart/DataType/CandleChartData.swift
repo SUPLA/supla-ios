@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import DGCharts
+
 final class CandleChartData: CombinedChartData {
     override var divider: Double { aggregation?.timeInSec ?? 1.0 }
 

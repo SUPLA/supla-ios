@@ -28,3 +28,10 @@ final class CreateTemperaturesListUseCaseMock: CreateTemperaturesListUseCase {
         return returns
     }
 }
+
+final class CheckIsSlaveThermostatUseCaseMock: CheckIsSlaveThermostat.UseCase {
+    let mock: FunctionMock<Int32, Observable<Bool>> = .init()
+    func invoke(remoteId: Int32) -> Observable<Bool> {
+        mock.handle(remoteId)
+    }
+}

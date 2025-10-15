@@ -17,8 +17,8 @@
  */
 
 enum ChartEntryDetails: Equatable {
-    case `default`(aggregation: ChartDataAggregation, type: ChartEntryType, date: Date, min: Double?, max: Double?, open: Double?, close: Double?, valueFormatter: ChannelValueFormatter, customData: (any Equatable)?)
-    case withPhase(aggregation: ChartDataAggregation, type: ChartEntryType, date: Date, min: Double?, max: Double?, valueFormatter: ChannelValueFormatter, phase: Phase)
+    case `default`(aggregation: ChartDataAggregation, type: ChartEntryType, date: Date, min: Double?, max: Double?, open: Double?, close: Double?, valueFormatter: SharedCore.ValueFormatter, customData: (any Equatable)?)
+    case withPhase(aggregation: ChartDataAggregation, type: ChartEntryType, date: Date, min: Double?, max: Double?, valueFormatter: SharedCore.ValueFormatter, phase: Phase)
 
     var aggregation: ChartDataAggregation {
         switch self {
@@ -76,7 +76,7 @@ enum ChartEntryDetails: Equatable {
         }
     }
 
-    var valueFormatter: ChannelValueFormatter {
+    var valueFormatter: SharedCore.ValueFormatter {
         switch self {
         case let .default(_, _, _, _, _, _, _, valueFormatter, _): valueFormatter
         case let .withPhase(_, _, _, _, _, valueFormatter, _): valueFormatter
@@ -85,7 +85,7 @@ enum ChartEntryDetails: Equatable {
 
     static func == (lhs: ChartEntryDetails, rhs: ChartEntryDetails) -> Bool {
         switch (lhs, rhs) {
-        case let (.default(lAggregation, lType, lDate, lMin, lMax, lOpen, lClose, lValueFormatter, lCustomData), .default(rAggregation, rType, rDate, rMin, rMax, rOpen, rClose, rValueFormatter, rCustomData)):
+        case let (.default(lAggregation, lType, lDate, lMin, lMax, lOpen, lClose, _, lCustomData), .default(rAggregation, rType, rDate, rMin, rMax, rOpen, rClose, _, rCustomData)):
             lAggregation == rAggregation
                 && lType == rType
                 && lDate == rDate
@@ -94,7 +94,7 @@ enum ChartEntryDetails: Equatable {
                 && lOpen == rOpen
                 && lClose == rClose
                 && lCustomData?.isEqualTo(rCustomData) == true
-        case let (.withPhase(lAggregation, lType, lDate, lMin, lMax, lValueFormatter, lPhase), .withPhase(rAggregation, rType, rDate, rMin, rMax, rValueFormatter, rPhase)):
+        case let (.withPhase(lAggregation, lType, lDate, lMin, lMax, _, lPhase), .withPhase(rAggregation, rType, rDate, rMin, rMax, _, rPhase)):
             lAggregation == rAggregation
                 && lType == rType
                 && lDate == rDate

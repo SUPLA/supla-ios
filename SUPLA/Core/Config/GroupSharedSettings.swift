@@ -17,6 +17,7 @@
  */
 
 import AppIntents
+import SharedCore
 
 struct GroupShared {
     enum Groups {
@@ -30,7 +31,8 @@ struct GroupShared {
         @available(iOS 17.0, *)
         var channels: [WidgetChannel] { get set }
         
-        var temperatureUnit: TemperatureUnit { get set }
+        var temperatureUnit: SharedCore.TemperatureUnit { get set }
+        var temperaturePrecision: Int { get set }
     }
     
     final class Implementation: Settings {
@@ -59,9 +61,18 @@ struct GroupShared {
         }
         
         private let temperatureUnitKey = "GroupShared.temperatureUnit"
-        var temperatureUnit: TemperatureUnit {
-            get { TemperatureUnit(rawValue: userDefaults?.string(forKey: temperatureUnitKey) ?? "") ?? .celsius }
+        var temperatureUnit: SharedCore.TemperatureUnit {
+            get { SharedCore.TemperatureUnit.companion.fromValue(value: userDefaults?.string(forKey: temperatureUnitKey)) }
             set { userDefaults?.set(newValue.rawValue, forKey: temperatureUnitKey) }
+        }
+        
+        private let temperaturePrecisionKey = "GroupShared.temperaturePrecision"
+        var temperaturePrecision: Int {
+            get {
+                guard let precision = userDefaults?.integer(forKey: temperaturePrecisionKey) else { return 1 }
+                return precision < 1 ? 1 : precision
+            }
+            set { userDefaults?.set(newValue, forKey: temperaturePrecisionKey) }
         }
     }
 }

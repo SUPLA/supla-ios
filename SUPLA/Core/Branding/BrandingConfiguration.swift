@@ -28,6 +28,7 @@ import SwiftUI
 
     static let SHOW_LICENCE = true
     static let ASK_FOR_RATE = true
+    static let CARPLAY_SUPPORT = true
 
     public enum About {
         static let LOGO: ImageResource = .logoLight
@@ -41,12 +42,5 @@ import SwiftUI
     
     public enum LockScreen {
         static let LOGO: ImageResource = .logoWithName
-    }
-    
-    public enum ProjectorScreen {
-        static let LOGO: UIImage = .logo!.withTintColor(.primary)
-        static let ALPHA: CGFloat = 0.2
-        static let LOGO_WIDTH: CGFloat = 120
-        static let LOGO_HEIGHT: CGFloat = 137
     }
 }

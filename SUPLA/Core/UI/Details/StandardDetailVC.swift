@@ -116,6 +116,10 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(valveGeneralDetail())
             case .containerGeneral:
                 viewControllers.append(containerGeneralDetail())
+            case .thermostatHeatpolGeneral:
+                viewControllers.append(legacyDetail(type: LegacyDetailType.thermostat_hp))
+            case .thermostatHeatpolHistory:
+                viewControllers.append(heatpolHistoryDetail())
             }
         }
         
@@ -155,9 +159,9 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
     private func legacyDetail(type: LegacyDetailType) -> DetailViewController {
         let vc = DetailViewController(detailViewType: type, remoteId: item.remoteId)
         vc.tabBarItem = UITabBarItem(
-            title: settings.showBottomLabels ? Strings.StandardDetail.tabMetrics : nil,
-            image: .iconMetrics,
-            tag: DetailTabTag.History.rawValue
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.General.rawValue
         )
         return vc
     }
@@ -412,6 +416,16 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.General.rawValue
+        )
+        return vc
+    }
+    
+    private func heatpolHistoryDetail() -> UIViewController {
+        let vc = HeatpolHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
+            image: .iconHistory,
+            tag: DetailTabTag.ThermostatHistory.rawValue
         )
         return vc
     }

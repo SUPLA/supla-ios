@@ -20,10 +20,10 @@ import RxSwift
 
 protocol ElectricityMeasurementsProvider: MeasurementsProvider {
     var getCaptionUseCase: GetCaptionUseCase { get }
-    
+
     func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String
     func findMeasurementsForPhase(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ isFirst: Bool,
         _ phase: Phase
@@ -31,38 +31,39 @@ protocol ElectricityMeasurementsProvider: MeasurementsProvider {
 }
 
 extension ElectricityMeasurementsProvider {
-    
     func provide(
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
         _ colorProvider: ((ChartEntryType) -> UIColor)?
-    ) -> Observable<ChannelChartSets> {
+    ) -> Observable<[ChannelChartSets]> {
         let channel = channelWithChildren.channel
         var observables: [Observable<(Phase, HistoryDataSet)>] = []
-        
+
         spec.customFilters?.ifPhase1 {
-            observables.append(findMeasurementsForPhase(channel, spec, observables.isEmpty, .phase1))
+            observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase1))
         }
         spec.customFilters?.ifPhase2 {
-            observables.append(findMeasurementsForPhase(channel, spec, observables.isEmpty, .phase2))
+            observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase2))
         }
         spec.customFilters?.ifPhase3 {
-            observables.append(findMeasurementsForPhase(channel, spec, observables.isEmpty, .phase3))
+            observables.append(findMeasurementsForPhase(channelWithChildren, spec, observables.isEmpty, .phase3))
         }
-        
+
         return Observable.zip(observables)
             .map { historyDataSets in
-                ChannelChartSets(
-                    remoteId: channel.remote_id,
-                    function: channel.func,
-                    name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
-                    aggregation: spec.aggregation,
-                    dataSets: historyDataSets.map { $0.1 },
-                    typeName: (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
-                )
+                [
+                    ChannelChartSets(
+                        remoteId: channel.remote_id,
+                        function: channel.func,
+                        name: self.getCaptionUseCase.invoke(data: channel.shareable).string,
+                        aggregation: spec.aggregation,
+                        dataSets: historyDataSets.map { $0.1 },
+                        typeName: (spec.customFilters as? ElectricityChartFilters)?.type.dataTypeLabel
+                    )
+                ]
             }
     }
-    
+
     func aggregating<T: BaseHistoryEntity>(
         _ measurements: [T],
         _ aggregation: ChartDataAggregation
@@ -94,7 +95,7 @@ extension ElectricityMeasurementsProvider {
     }
 
     func historyDataSet(
-        _ channel: SAChannel,
+        _ channelWithChildren: ChannelWithChildren,
         _ phase: Phase,
         _ isFirst: Bool,
         _ type: ChartEntryType,
@@ -103,13 +104,13 @@ extension ElectricityMeasurementsProvider {
     ) -> HistoryDataSet {
         HistoryDataSet(
             type: type,
-            label: createLabel(channel: channel, phase: phase, isFirst: isFirst),
-            valueFormatter: getValueFormatter(type, channel),
+            label: createLabel(channel: channelWithChildren.channel, phase: phase, isFirst: isFirst),
+            valueFormatter: getValueFormatter(type, channelWithChildren),
             entries: divideSetToSubsets(measurements, aggregation),
             active: true
         )
     }
-    
+
     private func createLabel(channel: SAChannel, phase: Phase, isFirst: Bool) -> HistoryDataSet.Label {
         @Singleton var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
         let icon = isFirst ? getChannelBaseIconUseCase.invoke(channel: channel) : nil
@@ -126,4 +127,3 @@ extension ElectricityMeasurementsProvider {
         return .single(HistoryDataSet.LabelData(icon: icon, value: NO_VALUE_TEXT, color: .disabled))
     }
 }
-

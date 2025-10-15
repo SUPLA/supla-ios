@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import SharedCore
 
 extension Double {
     var int64: Int64 { Int64(self) }
@@ -47,6 +48,16 @@ extension Double {
     
     func convert<T>(_ transformation: (Double) -> T) -> T {
         return transformation(self)
+    }
+    
+    func toTemperatureString(_ format: SharedCore.ValueFormat? = nil) -> String {
+        @Singleton<SharedCore.ThermometerValueFormatter> var formatter
+        
+        return if let format {
+            formatter.format(value: self, format: format)
+        } else {
+            formatter.format(value: self)
+        }
     }
 }
 
