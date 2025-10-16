@@ -51,6 +51,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToCarPlayList()
     func navigateToCarPlayAdd()
     func navigateToCarPlayEdit(id: NSManagedObjectID)
+    func navigateToDeveloperOptions()
     
     func popToStatus()
     
@@ -250,6 +251,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToCarPlayEdit(id: NSManagedObjectID) {
         navigateTo(CarPlayAddFeature.ViewController.create(id: id))
+    }
+    
+    func navigateToDeveloperOptions() {
+        navigateTo(DeveloperInfoFeature.ViewController.create())
     }
     
     func popToStatus() {

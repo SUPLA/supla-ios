@@ -16,24 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-extension AboutFeature {
+extension DeveloperInfoFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        override var toolbarFont: UIFont { .suplaTitleBarFont }
-        
-        override init(viewModel: AboutFeature.ViewModel) {
+        override init(viewModel: ViewModel) {
             super.init(viewModel: viewModel)
             
             contentView = View(
                 viewState: viewModel.state,
                 delegate: viewModel
             )
-        }
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
             
-            title = Strings.appName
+            title = Strings.DeveloperInfo.title
         }
         
         static func create() -> UIViewController {
@@ -41,8 +34,4 @@ extension AboutFeature {
             return ViewController(viewModel: viewModel)
         }
     }
-}
-
-extension AboutFeature.ViewController: NavigationSubcontroller {
-    func screenTakeoverAllowed() -> Bool { false }
 }

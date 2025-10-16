@@ -26,7 +26,7 @@ enum ToastLenght: Double {
 extension UIViewController {
     
     func showToast(_ message: String, lenght: ToastLenght = .short) {
-        let toastView = ToastView()
+        let toastView = UIToastView()
         toastView.message = message
         
         let constraints: [NSLayoutConstraint] = [
@@ -55,7 +55,7 @@ extension UIViewController {
     }
 }
 
-private class ToastView: UIView {
+private class UIToastView: UIView {
     
     var message: String? {
         get { labelView.text }

@@ -18,10 +18,13 @@
     
 
 extension AboutFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
         @Singleton private var coordinator: SuplaAppCoordinator
         @Singleton private var buildInfo: BuildInfo
         @Singleton private var formatter: ValuesFormatter
+        @Singleton private var settings: GlobalSettings
+        
+        private var buildTimeClickCount = 0
         
         init() {
             super.init(state: ViewState())
@@ -32,8 +35,29 @@ extension AboutFeature {
             state.buildTime = formatter.getFullDateString(date: buildInfo.compileDate())
         }
         
-        func onHomePageClick() {
+        func onHomePageClicked() {
             coordinator.openUrl(url: "https://\(Strings.About.address)")
+        }
+        
+        func onBuildTimeClicked() {
+            if (settings.devModeActive) {
+                // Do nothing, dev mode already activated
+                return
+            }
+            
+            buildTimeClickCount += 1
+            if buildTimeClickCount == 5 {
+                settings.devModeActive = true
+                state.showToast = true
+                
+                Task {
+                    try? await Task.sleep(nanoseconds: 5_000_000_000)
+                    
+                    await MainActor.run {
+                        state.showToast = false
+                    }
+                }
+            }
         }
     }
 }

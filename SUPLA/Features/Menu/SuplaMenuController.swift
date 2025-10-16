@@ -137,6 +137,8 @@ extension SuplaMenuController: SAMenuItemsDelegate {
                 self.coordinator.navigateToNotificationsLog()
             case .deviceCatalog:
                 self.coordinator.navigateToDeviceCatalog()
+            case .developerOptions:
+                self.coordinator.navigateToDeveloperOptions()
             default: break
             }
         }

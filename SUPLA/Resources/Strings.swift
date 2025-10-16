@@ -684,6 +684,13 @@ struct Strings {
         static let manualModePopupContinue = "add_device_manual_popup_continue".toLocalized()
         static let internalErrorMessage = "add_wizard_internal_error_message".toLocalized()
     }
+    
+    struct DeveloperInfo {
+        static let title = "developer_option".toLocalized()
+        static let settings = "developer_info_settings".toLocalized()
+        static let screenOrientation = "developer_info_screen_orientation".toLocalized()
+        static let activated = "developer_info_activated".toLocalized()
+    }
 }
 
 extension String {

@@ -174,4 +174,14 @@ class GlobalSettingsMock: GlobalSettings {
         get { false }
         set { }
     }
+    
+    var devModeActive: Bool {
+        get { false }
+        set { }
+    }
+    
+    var screenRotationEnabled: Bool {
+        get { false }
+        set { }
+    }
 }
