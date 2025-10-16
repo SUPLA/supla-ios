@@ -674,3 +674,9 @@
 "add_device_manual_popup_resign" = "Blijf in automatische modus";
 "add_device_manual_popup_continue" = "Probeer het opnieuw in handmatige modus";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Ontwikkelaarsopties";
+"developer_info_settings" = "Experimentele instellingen";
+"developer_info_screen_orientation" = "Schermrotatie ingeschakeld";
+"developer_info_activated" = "Ontwikkelaarsmodus geactiveerd";

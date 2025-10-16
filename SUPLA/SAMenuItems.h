@@ -28,6 +28,7 @@ typedef NS_OPTIONS(NSUInteger, SAMenuItemIds) {
     SAMenuItemIdHomepage  = 1 << 7,
     SAMenuItemIdNotifications  = 1 << 8,
     SAMenuItemIdDeviceCatalog  = 1 << 9,
+    SAMenuItemIdDeveloperOptions = 1 << 10,
     SAMenuItemIdProfile = 0x1000,
     SAMenuItemIdAll = 0xFFFF
 };
@@ -43,7 +44,7 @@ typedef NS_OPTIONS(NSUInteger, SAMenuItemIds) {
 @property (weak, nonatomic) NSLayoutConstraint *menuBarHeight;
 @property (nonatomic) SAMenuItemIds buttonsAvailable;
 @property (readonly) NSString *homepageUrl;
-@property(weak, nonatomic) id<SAMenuItemsDelegate> delegate;
+@property (weak, nonatomic) id<SAMenuItemsDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

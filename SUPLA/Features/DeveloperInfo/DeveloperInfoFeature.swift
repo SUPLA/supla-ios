@@ -16,12 +16,4 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import SwiftUI
-
-extension AboutFeature {
-    class ViewState: ObservableObject {
-        @Published var version: String = ""
-        @Published var buildTime: String? = nil
-        @Published var showToast: Bool = false
-    }
-}
+struct DeveloperInfoFeature {}

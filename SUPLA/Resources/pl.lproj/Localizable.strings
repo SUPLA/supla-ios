@@ -758,3 +758,9 @@
 "add_device_manual_popup_resign" = "Pozostań w trybie automatycznym";
 "add_device_manual_popup_continue" = "Spróbuj ponownie w trybie ręcznym";
 "add_wizard_internal_error_message" = "Usługa systemowa iOS zgłosiła wewnętrzny błąd przy skanowaniu sieci, na który nie mamy wpływu. Spróbuj dodać urządzenie używając trybu ręcznego, lub uruchom ponownie telefon/tablet";
+
+/* Developer Info */
+"developer_option" = "Opcje programisty";
+"developer_info_settings" = "Ustawienia eksperymentalne";
+"developer_info_screen_orientation" = "Obracanie ekranu";
+"developer_info_activated" = "Tryb programisty aktywowany";

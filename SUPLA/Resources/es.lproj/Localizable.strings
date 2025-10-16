@@ -674,3 +674,9 @@
 "add_device_manual_popup_resign" = "Permanecer en modo automático";
 "add_device_manual_popup_continue" = "Intentar de nuevo en modo manual";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Opciones de desarrollador";
+"developer_info_settings" = "Ajustes experimentales";
+"developer_info_screen_orientation" = "Rotación de pantalla activada";
+"developer_info_activated" = "Modo de desarrollador activado";

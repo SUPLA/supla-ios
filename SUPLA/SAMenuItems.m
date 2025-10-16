@@ -146,6 +146,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self addBtnWithId:SAMenuItemIdHelp imageNamed:@"Menu/icon_help" text:NSLocalizedString(@"Help", nil)];
     }
     [self addBtnWithId:SAMenuItemIdCloud imageNamed:@"Menu/icon_cloud" text:NSLocalizedString(@"Supla Cloud", nil)];
+    if (GlobalSettingsLegacy.devModeActive) {
+        [self addBtnWithId:SAMenuItemIdDeveloperOptions imageNamed:@"Menu/icon_dev_option" text:[LegacyStrings localized:@"developer_option"]];
+    }
   
     CGFloat top = _btnCount * (MENUITEM_HEIGHT+SEPARATOR_HEIGHT);
     CGFloat height = top;

@@ -549,3 +549,9 @@
 "add_device_manual_popup_resign" = "Stay in automatic mode";
 "add_device_manual_popup_continue" = "Try again in manual mode";
 "add_wizard_internal_error_message" = "The iOS system service reported an internal error during network scanning, which is beyond our control. Please try adding the device using manual mode, or restart your phone/tablet.";
+
+/* Developer Info */
+"developer_option" = "Developer options";
+"developer_info_settings" = "Experimental settings";
+"developer_info_screen_orientation" = "Screen rotation enabled";
+"developer_info_activated" = "Developer mode activated";

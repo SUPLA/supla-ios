@@ -674,3 +674,9 @@
 "add_device_manual_popup_resign" = "Παραμονή στην αυτόματη λειτουργία";
 "add_device_manual_popup_continue" = "Δοκιμάστε ξανά στη χειροκίνητη λειτουργία";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Επιλογές προγραμματιστή";
+"developer_info_settings" = "Πειραματικές ρυθμίσεις";
+"developer_info_screen_orientation" = "Ενεργοποιήθηκε η περιστροφή οθόνης";
+"developer_info_activated" = "Λειτουργία προγραμματιστή ενεργοποιήθηκε";

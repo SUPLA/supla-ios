@@ -42,6 +42,8 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var showEmHistoryIntroduction: Bool { get set }
     var carPlayVoiceMessages: Bool { get set }
     var migratedForAppGroups: Bool { get set }
+    var devModeActive: Bool { get set }
+    var screenRotationEnabled: Bool { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -268,6 +270,26 @@ class GlobalSettingsImpl: GlobalSettings {
         }
     }
     
+    private let devModeKey = "GlobalSettings.developer_mode_active"
+    var devModeActive: Bool {
+        get {
+            exists(devModeKey).ifTrue { defaults.bool(forKey: devModeKey) } ?? false
+        }
+        set {
+            defaults.set(newValue, forKey: devModeKey)
+        }
+    }
+    
+    private let screenRotationKey = "GlobalSettings.screen_rotation_enabled"
+    var screenRotationEnabled: Bool {
+        get {
+            exists(screenRotationKey).ifTrue { defaults.bool(forKey: screenRotationKey) } ?? false
+        }
+        set {
+            defaults.set(newValue, forKey: screenRotationKey)
+        }
+    }
+    
     private func exists(_ key: String) -> Bool {
         defaults.object(forKey: key) != nil
     }
@@ -300,5 +322,11 @@ class GlobalSettingsImpl: GlobalSettings {
     @objc
     var darkMode: UIUserInterfaceStyle {
         settings.darkMode.interfaceStyle
+    }
+    
+    @objc
+    static var devModeActive: Bool {
+        @Singleton<GlobalSettings> var settings
+        return settings.devModeActive
     }
 }

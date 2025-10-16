@@ -674,3 +674,9 @@
 "add_device_manual_popup_resign" = "Behold automatisk modus";
 "add_device_manual_popup_continue" = "Prøv igjen i manuell modus";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Utvikleralternativer";
+"developer_info_settings" = "Eksperimentelle innstillinger";
+"developer_info_screen_orientation" = "Skjermrotasjon aktivert";
+"developer_info_activated" = "Utviklermodus aktivert";

@@ -21,46 +21,73 @@ import SwiftUI
 
 extension AboutFeature {
     
+    protocol ViewDelegate {
+        func onHomePageClicked()
+        func onBuildTimeClicked()
+    }
+    
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
-        
-        var onHomePageClicked: () -> Void = {}
+        let delegate: ViewDelegate?
         
         var body: some SwiftUI.View {
             BackgroundStack {
-                VStack(spacing: Dimens.distanceDefault) {
-                    Spacer()
-                    Image(BrandingConfiguration.About.LOGO)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 100)
-                        .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
-                    Text(Strings.appName).fontHeadlineLarge()
-                    Text(Strings.About.version.arguments(viewState.version)).fontBodyMedium()
-                    if (BrandingConfiguration.SHOW_LICENCE) {
-                        Text(Strings.About.license)
-                            .fontLabelSmall()
-                            .multilineTextAlignment(.center)
+                ZStack {
+                    VStack(spacing: Dimens.distanceDefault) {
+                        Spacer()
+                        Image(BrandingConfiguration.About.LOGO)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxHeight: 100)
+                            .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
+                        Text(Strings.appName).fontHeadlineLarge()
+                        Text(Strings.About.version.arguments(viewState.version)).fontBodyMedium()
+                        if (BrandingConfiguration.SHOW_LICENCE) {
+                            Text(Strings.About.license)
+                                .fontLabelSmall()
+                                .multilineTextAlignment(.center)
+                        }
+                        Spacer()
+                        TextButton(
+                            title: Strings.About.address,
+                            normalColor: Color.Supla.onBackground,
+                            action: { delegate?.onHomePageClicked() }
+                        )
+                        if let buildTime = viewState.buildTime {
+                            Text(Strings.About.buildTime.arguments(buildTime))
+                                .fontBodySmall()
+                                .onTapGesture { delegate?.onBuildTimeClicked() }
+                        }
                     }
-                    Spacer()
-                    TextButton(
-                        title: Strings.About.address,
-                        normalColor: Color.Supla.onBackground,
-                        action: onHomePageClicked
-                    )
-                    if let buildTime = viewState.buildTime {
-                        Text(Strings.About.buildTime.arguments(buildTime)).fontBodySmall()
+                    .padding(.all, Dimens.distanceDefault)
+                    
+                    if (viewState.showToast) {
+                        ToastView(message: Strings.DeveloperInfo.activated)
+                            .padding(.bottom, Distance.default)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
                     }
                 }
-                .padding(.all, Dimens.distanceDefault)
             }
         }
     }
 }
 
+struct ToastView: View {
+    let message: String
+    var body: some View {
+        Text(message)
+            .padding()
+            .background(Color.black.opacity(0.7))
+            .foregroundColor(.white)
+            .cornerRadius(Dimens.radiusDefault)
+            .transition(.opacity)
+    }
+}
+
+
 #Preview {
     let viewState = AboutFeature.ViewState()
     viewState.version = "24.06"
     viewState.buildTime = "08.07.2024 12:16"
-    return AboutFeature.View(viewState: viewState)
+    return AboutFeature.View(viewState: viewState, delegate: nil)
 }

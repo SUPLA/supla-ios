@@ -674,3 +674,9 @@
 "add_device_manual_popup_resign" = "Залишитися в автоматичному режимі";
 "add_device_manual_popup_continue" = "Спробувати знову в ручному режимі";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Параметри розробника";
+"developer_info_settings" = "Експериментальні налаштування";
+"developer_info_screen_orientation" = "Обертання екрана ввімкнено";
+"developer_info_activated" = "Режим розробника активовано";

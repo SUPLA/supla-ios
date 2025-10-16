@@ -674,3 +674,9 @@
 "add_device_manual_popup_resign" = "Ostani v samodejnem načinu";
 "add_device_manual_popup_continue" = "Poskusi znova v ročnem načinu";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Možnosti za razvijalce";
+"developer_info_settings" = "Eksperimentalne nastavitve";
+"developer_info_screen_orientation" = "Omogočeno vrtenje zaslona";
+"developer_info_activated" = "Razvijalski način aktiviran";
