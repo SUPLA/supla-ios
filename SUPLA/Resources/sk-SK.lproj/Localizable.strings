@@ -672,3 +672,9 @@
 "add_device_manual_popup_resign" = "Zostať v automatickom režime";
 "add_device_manual_popup_continue" = "Skúsiť znova v manuálnom režime";
 "add_wizard_internal_error_message" = "";
+
+/* Developer Info */
+"developer_option" = "Možnosti pre vývojárov";
+"developer_info_settings" = "Experimentálne nastavenia";
+"developer_info_screen_orientation" = "Otočenie obrazovky povolené";
+"developer_info_activated" = "Režim pre vývojárov aktivovaný";

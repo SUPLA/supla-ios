@@ -16,12 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import SwiftUI
-
-extension AboutFeature {
-    class ViewState: ObservableObject {
-        @Published var version: String = ""
-        @Published var buildTime: String? = nil
-        @Published var showToast: Bool = false
+extension DeveloperInfoFeature {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+        @Singleton var settings: GlobalSettings
+        
+        init() {
+            super.init(state: ViewState())
+        }
+        
+        override func onViewWillAppear() {
+            state.screenRotationEnabled = settings.screenRotationEnabled
+            state.developerInfoEnabled = settings.devModeActive
+        }
+        
+        func onOrientationChange(_ enabled: Bool) {
+            settings.screenRotationEnabled = enabled
+        }
+        
+        func onDevInfoChange(_ enabled: Bool) {
+            settings.devModeActive = enabled
+        }
     }
 }

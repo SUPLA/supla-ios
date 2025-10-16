@@ -168,6 +168,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func verifyPopViewController(_ parameters: [Bool]) {
         XCTAssertEqual(navigationControllerMock.popViewControllerParameters, parameters)
     }
+    
+    func navigateToDeveloperOptions() {
+    }
 }
 
 final class NavigationControllerMock: UINavigationController {
