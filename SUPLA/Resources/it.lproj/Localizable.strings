@@ -334,6 +334,9 @@
 "dgf_too_long_operation_warning" = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
 "dgf_planned_regeneration_in_progress" = "Rigenerazione pianificata in corso.";
 "dgf_regeneration_after20h" = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
+/* General - Buttons & States */
+"state_partially_opened" = "parzialmente aperto";
+"channel_brn_step_by_step" = "Apri/Chiudi (passo dopo passo)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Abbiamo eliminato il gesto di scorrimento che apre i dettagli, per vederli devi toccare il canale selezionato.";
@@ -715,3 +718,6 @@
 "developer_info_settings" = "Impostazioni sperimentali";
 "developer_info_screen_orientation" = "Rotazione schermo abilitata";
 "developer_info_activated" = "Modalità sviluppatore attivata";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Non tutti i cancelli hanno un sensore di apertura configurato: i pulsanti \"Apri\" e \"Chiudi\" potrebbero non funzionare correttamente.";

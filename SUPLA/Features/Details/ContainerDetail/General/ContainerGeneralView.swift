@@ -26,8 +26,8 @@ extension ContainerGeneralFeature {
         @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
 
         let onMuteClick: () -> Void
-        let onInfoClick: (SensorItemData) -> Void
-        let onCaptionLongPress: (SensorItemData) -> Void
+        let onInfoClick: (RelatedChannelData) -> Void
+        let onCaptionLongPress: (RelatedChannelData) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack(alignment: .top) {
@@ -116,7 +116,7 @@ extension ContainerGeneralFeature {
         )
     ]
     state.sensors = [
-        SensorItemData(
+        RelatedChannelData(
             channelId: 1,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_container_level_sensor-on"),

@@ -15,29 +15,28 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import SwiftUI
     
-struct SensorItemsView: SwiftUI.View {
-    let sensors: [RelatedChannelData]
+import SwiftUI
+
+struct RelatedChannelsView: SwiftUI.View {
+    let channels: [RelatedChannelData]
     let onInfoClick: (RelatedChannelData) -> Void
     let onCaptionLongPress: (RelatedChannelData) -> Void
     
     var body: some SwiftUI.View {
-        if (!sensors.isEmpty) {
-            VStack(alignment: .leading, spacing: 1) {
-                Text(Strings.Valve.detailSensors.uppercased())
-                    .fontBodyMedium()
-                    .padding([.leading, .trailing], Distance.default)
-                    .padding(.bottom, Distance.tiny)
-                ForEach(sensors) { sensor in
-                    RelatedChannelItemView(
-                        data: sensor,
-                        onInfoClick: onInfoClick,
-                        onCaptionLongPress: onCaptionLongPress
-                    )
+        if (!channels.isEmpty) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 1) {
+                    ForEach(channels) { channel in
+                        RelatedChannelItemView(
+                            data: channel,
+                            onInfoClick: onInfoClick,
+                            onCaptionLongPress: onCaptionLongPress
+                        )
+                    }
                 }
             }
         }
     }
 }
+

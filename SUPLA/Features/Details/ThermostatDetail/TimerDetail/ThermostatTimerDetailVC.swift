@@ -23,8 +23,8 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
     private let remoteId: Int32
     private var timer: Timer? = nil
     
-    private lazy var deviceStateView: DeviceStateView = {
-        DeviceStateView(iconSize: 16)
+    private lazy var deviceStateView: DeviceStateUIView = {
+        DeviceStateUIView(iconSize: 16)
     }()
     
     private lazy var timerProgressGuide: UILayoutGuide = {

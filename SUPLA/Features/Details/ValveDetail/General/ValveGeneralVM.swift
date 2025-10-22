@@ -95,8 +95,8 @@ extension ValveGeneralFeature {
             state.isClosed = value?.isClosed() ?? true
         }
         
-        private func toSensor(_ child: ChannelChild) -> SensorItemData {
-            SensorItemData(
+        private func toSensor(_ child: ChannelChild) -> RelatedChannelData {
+            RelatedChannelData(
                 channelId: child.channel.remote_id,
                 onlineState: child.channel.onlineState,
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),

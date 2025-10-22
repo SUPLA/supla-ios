@@ -318,6 +318,9 @@
 "dgf_too_long_operation_warning" = "Glasspartiene er eksponert i mer enn 20 timer, noe som kan ha negativ innvirkning på levetiden. Det anbefales å dekke alle seksjoner i minimum 4 timer for å regenerere dem.";
 "dgf_planned_regeneration_in_progress" = "Planlagt regenerering pågår.";
 "dgf_regeneration_after20h" = "Regenerering pågår, startet etter 20 timers drift.";
+/* General - Buttons & States */
+"state_partially_opened" = "delvis åpen";
+"channel_brn_step_by_step" = "Åpne/Steng (steg for steg)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";
@@ -680,3 +683,6 @@
 "developer_info_settings" = "Eksperimentelle innstillinger";
 "developer_info_screen_orientation" = "Skjermrotasjon aktivert";
 "developer_info_activated" = "Utviklermodus aktivert";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Ikke alle porter har en åpningssensor konfigurert – «Åpne»- og «Lukk»-knappene fungerer kanskje ikke riktig.";

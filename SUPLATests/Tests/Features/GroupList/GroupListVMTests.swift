@@ -173,7 +173,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .naviagetToRollerShutterDetail(item: itemBundle, pages: pages))
+            .next(0, .navigateToRollerShutterDetail(item: itemBundle, pages: pages))
         ])
     }
     
@@ -200,7 +200,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .naviagetToRollerShutterDetail(item: itemBundle, pages: pages))
+            .next(0, .navigateToRollerShutterDetail(item: itemBundle, pages: pages))
         ])
     }
     

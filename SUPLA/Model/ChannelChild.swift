@@ -72,12 +72,12 @@ extension ChannelChild {
         )
     }
     
-    func toSensorItem() -> SensorItemData {
+    func toSensorItem() -> RelatedChannelData {
         @Singleton<GetChannelBatteryIconUseCase> var getChannelBatteryIconUseCase
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         @Singleton<GetCaptionUseCase> var getCaptionUseCase
         
-        return SensorItemData(
+        return RelatedChannelData(
             channelId: channel.remote_id,
             onlineState: channel.onlineState,
             icon: getChannelBaseIconUseCase.invoke(channel: channel),

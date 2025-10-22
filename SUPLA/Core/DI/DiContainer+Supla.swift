@@ -209,6 +209,7 @@ extension DiContainer {
         register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
         register(GetGroupActivePercentageUseCase.self, GetGroupActivePercentageUseCaseImpl())
         register(ReadGroupTiltingDetailsUseCase.self, ReadGroupTiltingDetailsUseCaseImpl())
+        register(ReadGroupWithChannels.UseCase.self, ReadGroupWithChannels.Implementation())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         register(UserIcons.UseCase.self, UserIcons.Implementation())

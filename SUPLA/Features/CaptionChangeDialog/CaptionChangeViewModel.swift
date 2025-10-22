@@ -84,7 +84,7 @@ extension CaptionChangeDialogFeature {
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, sensorData: SensorItemData) {
+        func show(_ viewController: UIViewController?, sensorData: RelatedChannelData) {
             show(viewController, remoteId: sensorData.channelId, caption: sensorData.userCaption, captionType: .channel)
         }
         

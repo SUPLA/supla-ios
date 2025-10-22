@@ -18,30 +18,7 @@
 
 import SharedCore
 
-enum DeviceState {
-    static func endDateText(_ timerEndDate: Date?) -> String {
-        guard let date = timerEndDate else { return "" }
-        
-        @Singleton<ValuesFormatter> var formatter
-        let dateString = formatter.getFullDateString(date: date) ?? ""
-        return Strings.TimerDetail.stateLabelForTimerDays.arguments(dateString)
-    }
-    
-    static func currentStateIcon(_ mode: SuplaHvacMode?) -> String? { mode?.icon }
-    
-    static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor { mode?.iconColor ?? .disabled }
-    
-    static func currentStateValue(_ mode: SuplaHvacMode?, heatSetpoint: Float?, coolSetpoint: Float?) -> String {
-        return switch (mode) {
-        case .off: "OFF"
-        case .heat: heatSetpoint.toTemperatureString()
-        case .cool: coolSetpoint.toTemperatureString()
-        default: ""
-        }
-    }
-}
-
-final class DeviceStateView: UIStackView {
+final class DeviceStateUIView: UIStackView {
     var label: String? = nil {
         didSet { labelView.text = label?.uppercased() }
     }

@@ -288,6 +288,7 @@ struct Strings {
         static let close = NSLocalizedString("Close", comment: "")
         static let open = NSLocalizedString("Open", comment: "")
         static let openClose = NSLocalizedString("Open Close", comment: "")
+        static let stepByStep = "channel_btn_step_by_step".toLocalized()
         static let shut = "general_shut".toLocalized()
         static let reveal = "general_reveal".toLocalized()
         static let collapse = "general_collapse".toLocalized()
@@ -382,6 +383,10 @@ struct Strings {
             static let digiglassTooLongOperating = "dgf_too_long_operation_warning".toLocalized()
             static let digiglassPlannedRegeneration = "dgf_planned_regeneration_in_progress".toLocalized()
             static let digiglassRegeneration = "dgf_regeneration_after20h".toLocalized()
+        }
+        
+        struct State {
+            static let partiallyOpened = "state_partially_opened".toLocalized()
         }
     }
     
@@ -690,6 +695,10 @@ struct Strings {
         static let settings = "developer_info_settings".toLocalized()
         static let screenOrientation = "developer_info_screen_orientation".toLocalized()
         static let activated = "developer_info_activated".toLocalized()
+    }
+    
+    struct GateDetail {
+        static let openAndCloseWarning = "gate_general_open_and_close_warning".toLocalized()
     }
 }
 

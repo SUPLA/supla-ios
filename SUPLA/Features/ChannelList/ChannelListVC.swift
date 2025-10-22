@@ -87,6 +87,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
             coordinator.navigateToValveDetail(item: item, pages: pages)
         case .navigateToContainerDetail(let item, let pages):
             coordinator.navigateToContainerDetail(item: item, pages: pages)
+        case .navigateToGateDetail(let item, let pages):
+            coordinator.navigateToGateDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
         }

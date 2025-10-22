@@ -64,7 +64,7 @@ extension SwitchGeneralFeature {
                             currentMonthDownloading: $icState.currentMonthDownloading
                         )
                     } else {
-                        DeviceState(
+                        DeviceStateView(
                             stateLabel: viewState.stateLabel,
                             icon: viewState.stateIcon,
                             stateValue: viewState.stateValue
@@ -73,16 +73,15 @@ extension SwitchGeneralFeature {
                         Spacer()
                     }
                     
-                    if (viewState.showButtons) {
+                    if let leftButton = viewState.offButtonState,
+                       let rightButton = viewState.onButtonState
+                    {
                         SwitchButtons(
-                            isOn: viewState.on,
+                            leftButton: leftButton,
+                            rightButton: rightButton,
                             enabled: viewState.online,
-                            positiveText: Strings.General.turnOn,
-                            negativeText: Strings.General.turnOff,
-                            positiveIcon: viewState.iconTurnOn,
-                            negativeIcon: viewState.iconTurnOff,
-                            onPositiveClick: onTurnOn,
-                            onNegativeClick: onTurnOff
+                            onLeftButtonClick: onTurnOff,
+                            onRightButtonClick: onTurnOn
                         )
                     }
                 }
@@ -98,32 +97,6 @@ extension SwitchGeneralFeature {
             }
         }
     }
-
-    private struct DeviceState: SwiftUI.View {
-        let stateLabel: String
-        let icon: IconResult?
-        let stateValue: String
-
-        var body: some SwiftUI.View {
-            HStack(spacing: Distance.tiny) {
-                Spacer()
-                Text(stateLabel.uppercased())
-                    .fontBodyMedium()
-                    .textColor(Color.Supla.onSurfaceVariant)
-
-                if let icon {
-                    icon.image
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                }
-
-                Text(stateValue)
-                    .font(.Supla.bodyMedium.bold())
-                Spacer()
-            }
-            .padding([.leading, .trailing, .top], Distance.default)
-        }
-    }
 }
 
 #Preview {
@@ -131,7 +104,18 @@ extension SwitchGeneralFeature {
     viewState.stateIcon = .suplaIcon(name: .Icons.fncThermostatHeat)
     viewState.stateLabel = Strings.SwitchDetail.stateLabel
     viewState.stateValue = Strings.SwitchDetail.stateOff
-    viewState.showButtons = true
+    viewState.offButtonState = .init(
+        icon: .suplaIcon(name: "fnc-power_off"),
+        label: Strings.General.turnOff,
+        active: true,
+        type: .negative
+    )
+    viewState.onButtonState = .init(
+        icon: .suplaIcon(name: "fnc-power_on"),
+        label: Strings.General.turnOn,
+        active: false,
+        type: .positive
+    )
     viewState.issues = [
         SharedCore.ChannelIssueItem.Error(
             string: localizedString(id: LocalizedStringId.overcurrentWarning)

@@ -131,11 +131,20 @@ extension SwitchGeneralFeature {
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channel.shareable)
             state.stateLabel = createStateLabel(channel.channel)
             state.stateIcon = getChannelBaseIconUseCase.invoke(channel: channel.channel)
-            state.showButtons = channel.channel.switchWithButtons()
             state.showElectricityState = showElectricityState
             state.showImpulseCounterState = showImpulseCounterState
-            state.iconTurnOn = getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .on))
-            state.iconTurnOff = getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .off))
+            state.offButtonState = .init(
+                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .off)),
+                label: Strings.General.turnOff,
+                active: !on,
+                type: .negative
+            )
+            state.onButtonState = .init(
+                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .on)),
+                label: Strings.General.turnOn,
+                active: on,
+                type: .positive
+            )
         }
         
         private func createStateLabel(_ channel: SAChannel) -> String {

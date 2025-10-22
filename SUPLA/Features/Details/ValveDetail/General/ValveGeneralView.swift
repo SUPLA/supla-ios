@@ -25,8 +25,8 @@ extension ValveGeneralFeature {
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
         @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
         
-        let onInfoClick: (SensorItemData) -> Void
-        let onCaptionLongPress: (SensorItemData) -> Void
+        let onInfoClick: (RelatedChannelData) -> Void
+        let onCaptionLongPress: (RelatedChannelData) -> Void
         
         let onOpenClick: () -> Void
         let onCloseClick: () -> Void
@@ -50,14 +50,21 @@ extension ValveGeneralFeature {
                     }
                     
                     SwitchButtons(
-                        isOn: !viewState.isClosed,
+                        leftButton: SwitchButtonState(
+                            icon: .suplaIcon(name: "valve-closed"),
+                            label: Strings.General.close,
+                            active: viewState.isClosed,
+                            type: .negative
+                        ),
+                        rightButton: SwitchButtonState(
+                            icon: .suplaIcon(name: "valve-open"),
+                            label: Strings.General.open,
+                            active: !viewState.isClosed,
+                            type: .positive
+                        ),
                         enabled: !viewState.offline,
-                        positiveText: Strings.General.open,
-                        negativeText: Strings.General.close,
-                        positiveIcon: .suplaIcon(name: "valve-open"),
-                        negativeIcon: .suplaIcon(name: "valve-closed"),
-                        onPositiveClick: onOpenClick,
-                        onNegativeClick: onCloseClick
+                        onLeftButtonClick: onCloseClick,
+                        onRightButtonClick: onOpenClick
                     )
                 }
                 
@@ -139,7 +146,7 @@ extension ValveGeneralFeature {
         ])
     ]
     state.sensors = [
-        SensorItemData(
+        RelatedChannelData(
             channelId: 1,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-on"),
@@ -148,7 +155,7 @@ extension ValveGeneralFeature {
             batteryIcon: IssueIcon.Battery25(),
             showChannelStateIcon: true
         ),
-        SensorItemData(
+        RelatedChannelData(
             channelId: 2,
             onlineState: .offline,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),
@@ -157,7 +164,7 @@ extension ValveGeneralFeature {
             batteryIcon: IssueIcon.Battery50(),
             showChannelStateIcon: false
         ),
-        SensorItemData(
+        RelatedChannelData(
             channelId: 4,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),

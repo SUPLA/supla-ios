@@ -23,7 +23,7 @@ extension ValveGeneralFeature {
         @Published var icon: IconResult? = nil
         @Published var stateString: String? = nil
         @Published var issues: [ChannelIssueItem] = []
-        @Published var sensors: [SensorItemData] = []
+        @Published var sensors: [RelatedChannelData] = []
         @Published var offline: Bool = false
         @Published var isClosed: Bool = false
         

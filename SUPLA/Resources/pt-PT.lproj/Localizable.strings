@@ -317,6 +317,9 @@
 "dgf_too_long_operation_warning" = "As secções do vidro são expostas por mais de 20 horas, o que pode afetar negativamente a sua vida útil. Recomenda-se cobrir todas as secções durante um mínimo de 4 horas para as regenerar.";
 "dgf_planned_regeneration_in_progress" = "A regeneração planeada está em curso.";
 "dgf_regeneration_after20h" = "A regeneração iniciará  após 20 horas de trabalho.";
+/* General - Buttons & States */
+"state_partially_opened" = "parcialmente aberto";
+"channel_brn_step_by_step" = "Abrir/Fechar (passo a passo)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Removemos o gesto de deslizar que abre os detalhes; para os ver, toque no canal selecionado.";
@@ -682,3 +685,6 @@
 "developer_info_settings" = "Configurações experimentais";
 "developer_info_screen_orientation" = "Rotação da tela ativada";
 "developer_info_activated" = "Modo de desenvolvedor ativado";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nem todos os portões têm um sensor de abertura configurado – os botões \"Abrir\" e \"Fechar\" podem não funcionar corretamente.";

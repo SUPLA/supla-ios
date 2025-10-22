@@ -26,8 +26,8 @@ class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, Swit
     private var timer: Timer? = nil
     private let current = Date()
     
-    private lazy var deviceStateView: DeviceStateView = {
-        return DeviceStateView()
+    private lazy var deviceStateView: DeviceStateUIView = {
+        return DeviceStateUIView()
     }()
     
     private lazy var timerProgressGuide: UILayoutGuide = {

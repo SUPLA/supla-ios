@@ -338,6 +338,9 @@
 "channel_status_not_available" = "Kanał nie jest dostępny ze względu na konfigurację. Zalecamy ukrycie kanału, aby nie był widoczny w aplikacji.";
 "channel_status_awaiting" = "Tego urządzenia nie można zdalnie wybudzić. Oczekujemy na komunikację ze strony urządzenia…";
 "channel_status_updating" = "Trwa aktualizacja oprogramowania…";
+/* General - Buttons & States */
+"state_partially_opened" = "częściowo otwarty";
+"channel_brn_step_by_step" = "Otwórz/Zamknij (krok po kroku)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -764,3 +767,6 @@
 "developer_info_settings" = "Ustawienia eksperymentalne";
 "developer_info_screen_orientation" = "Obracanie ekranu";
 "developer_info_activated" = "Tryb programisty aktywowany";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nie wszystkie bramy mają skonfigurowany czujnik otwarcia — przyciski „Otwórz” i „Zamknij” mogą nie działać prawidłowo.";

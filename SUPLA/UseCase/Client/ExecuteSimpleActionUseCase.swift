@@ -29,6 +29,7 @@ final class ExecuteSimpleActionUseCaseImpl: ExecuteSimpleActionUseCase {
     
     func invoke(action: Action, type: SubjectType, remoteId: Int32) -> Observable<Void> {
         Observable.create { observer in
+            SALog.debug("Executing action \(action) for \(type) with remoteId \(remoteId)")
             
             let suplaClient = self.suplaClientProvider.provide()
             let result = suplaClient?.executeAction(

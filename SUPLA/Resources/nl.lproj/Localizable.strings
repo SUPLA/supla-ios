@@ -317,6 +317,9 @@
 "dgf_too_long_operation_warning" = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
 "dgf_planned_regeneration_in_progress" = "Geplande regeneratie is aan de gang.";
 "dgf_regeneration_after20h" = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
+/* General - Buttons & States */
+"state_partially_opened" = "gedeeltelijk open";
+"channel_brn_step_by_step" = "Openen/Sluiten (stap voor stap)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";
@@ -680,3 +683,6 @@
 "developer_info_settings" = "Experimentele instellingen";
 "developer_info_screen_orientation" = "Schermrotatie ingeschakeld";
 "developer_info_activated" = "Ontwikkelaarsmodus geactiveerd";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Niet alle poorten hebben een openingssensor geconfigureerd – de knoppen \"Openen\" en \"Sluiten\" werken mogelijk niet correct.";

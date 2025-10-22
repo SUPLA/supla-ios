@@ -641,11 +641,11 @@ struct ThermostatGeneralViewState: ViewState {
         sensorIssue != nil || timerEndDate == nil || timerEndDate!.timeIntervalSince1970 < Date().timeIntervalSince1970
     }
 
-    var endDateText: String { DeviceState.endDateText(timerEndDate) }
-    var currentStateIcon: UIImage? { DeviceState.currentStateIcon(mode)?.uiImage }
-    var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(mode) }
+    var endDateText: String { ThermostatStateHelper.endDateText(timerEndDate) }
+    var currentStateIcon: UIImage? { ThermostatStateHelper.currentStateIcon(mode)?.uiImage }
+    var currentStateIconColor: UIColor { ThermostatStateHelper.currentStateIconColor(mode) }
     var currentStateValue: String {
-        DeviceState.currentStateValue(
+        ThermostatStateHelper.currentStateValue(
             mode,
             heatSetpoint: setpointHeat,
             coolSetpoint: setpointCool
