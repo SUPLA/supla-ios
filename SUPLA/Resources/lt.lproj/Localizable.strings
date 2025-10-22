@@ -319,6 +319,9 @@
 "dgf_too_long_operation_warning" = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
 "dgf_planned_regeneration_in_progress" = "Vyksta suplanuotas regeneravimas.";
 "dgf_regeneration_after20h" = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
+/* General - Buttons & States */
+"state_partially_opened" = "iš dalies atidaryta";
+"channel_brn_step_by_step" = "Atidaryti/Uždaryti (žingsnis po žingsnio)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";
@@ -682,3 +685,6 @@
 "developer_info_settings" = "Eksperimentiniai nustatymai";
 "developer_info_screen_orientation" = "Ekrano pasukimas įjungtas";
 "developer_info_activated" = "Kūrėjo režimas aktyvuotas";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Ne visi vartai turi sukonfigūruotą atidarymo jutiklį – mygtukai „Atidaryti“ ir „Uždaryti“ gali neveikti tinkamai.";

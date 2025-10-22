@@ -300,6 +300,19 @@
 		A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */; };
 		A50E5D7E2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */; };
 		A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */; };
+		A51474562EA65C8C0044DEF2 /* GateDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474552EA65C850044DEF2 /* GateDetailVM.swift */; };
+		A51474582EA65CE40044DEF2 /* GateDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474572EA65CDD0044DEF2 /* GateDetailVC.swift */; };
+		A514745B2EA65D520044DEF2 /* GateGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514745A2EA65D4D0044DEF2 /* GateGeneralFeature.swift */; };
+		A514745D2EA65FF40044DEF2 /* GateGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514745C2EA65FEA0044DEF2 /* GateGeneralViewState.swift */; };
+		A514745F2EA660AC0044DEF2 /* DeviceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514745E2EA660A90044DEF2 /* DeviceState.swift */; };
+		A51474622EA662F20044DEF2 /* ThermostatStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474612EA662EC0044DEF2 /* ThermostatStateHelper.swift */; };
+		A51474642EA66B5E0044DEF2 /* RelatedChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474632EA66B540044DEF2 /* RelatedChannelItemView.swift */; };
+		A51474662EA66C230044DEF2 /* RelatedChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */; };
+		A51474682EA771740044DEF2 /* GateGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474672EA771700044DEF2 /* GateGeneralView.swift */; };
+		A514746A2EA7741B0044DEF2 /* GateGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474692EA774180044DEF2 /* GateGeneralVM.swift */; };
+		A514746C2EA785EB0044DEF2 /* GateGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746B2EA785E70044DEF2 /* GateGeneralVC.swift */; };
+		A514746E2EA7AE620044DEF2 /* OrientationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */; };
+		A51474702EA8DA080044DEF2 /* ReadGroupWithChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */; };
 		A517DFED2CFD9C2300D6148C /* SAProfileServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */; };
 		A517DFEF2CFDA4AD00D6148C /* ChannelStateRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */; };
 		A517DFF12D009DC500D6148C /* GetChannelIssuesForSlavesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */; };
@@ -761,7 +774,7 @@
 		A585421D2D7F7B2900D314A2 /* ControlLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A585421C2D7F7B2400D314A2 /* ControlLevel.swift */; };
 		A585421F2D80664300D314A2 /* LogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A585421E2D80663C00D314A2 /* LogWrapper.swift */; };
 		A58542222D806E4700D314A2 /* SensorItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58542212D806E3800D314A2 /* SensorItemsView.swift */; };
-		A58542242D806FB800D314A2 /* SensorItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58542232D806FAF00D314A2 /* SensorItemData.swift */; };
+		A58542242D806FB800D314A2 /* RelatedChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58542232D806FAF00D314A2 /* RelatedChannelData.swift */; };
 		A58542272D8074D600D314A2 /* ChannelIssuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58542262D8074D300D314A2 /* ChannelIssuesView.swift */; };
 		A58542292D80D02B00D314A2 /* SuplaChannelContainerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58542282D80D02400D314A2 /* SuplaChannelContainerConfig.swift */; };
 		A585422C2D81687200D314A2 /* SuplaChannelContainerConfigTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A585422B2D81686800D314A2 /* SuplaChannelContainerConfigTest.swift */; };
@@ -1979,6 +1992,19 @@
 		A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
 		A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupActivePercentageUseCaseTests.swift; sourceTree = "<group>"; };
+		A51474552EA65C850044DEF2 /* GateDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateDetailVM.swift; sourceTree = "<group>"; };
+		A51474572EA65CDD0044DEF2 /* GateDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateDetailVC.swift; sourceTree = "<group>"; };
+		A514745A2EA65D4D0044DEF2 /* GateGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralFeature.swift; sourceTree = "<group>"; };
+		A514745C2EA65FEA0044DEF2 /* GateGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralViewState.swift; sourceTree = "<group>"; };
+		A514745E2EA660A90044DEF2 /* DeviceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceState.swift; sourceTree = "<group>"; };
+		A51474612EA662EC0044DEF2 /* ThermostatStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatStateHelper.swift; sourceTree = "<group>"; };
+		A51474632EA66B540044DEF2 /* RelatedChannelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedChannelItemView.swift; sourceTree = "<group>"; };
+		A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedChannelsView.swift; sourceTree = "<group>"; };
+		A51474672EA771700044DEF2 /* GateGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralView.swift; sourceTree = "<group>"; };
+		A51474692EA774180044DEF2 /* GateGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralVM.swift; sourceTree = "<group>"; };
+		A514746B2EA785E70044DEF2 /* GateGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralVC.swift; sourceTree = "<group>"; };
+		A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObserver.swift; sourceTree = "<group>"; };
+		A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGroupWithChannelsUseCase.swift; sourceTree = "<group>"; };
 		A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAProfileServer+Mock.swift"; sourceTree = "<group>"; };
 		A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStateRepositoryMock.swift; sourceTree = "<group>"; };
 		A517DFF02D009DC000D6148C /* GetChannelIssuesForSlavesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelIssuesForSlavesUseCase.swift; sourceTree = "<group>"; };
@@ -2442,7 +2468,7 @@
 		A585421C2D7F7B2400D314A2 /* ControlLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlLevel.swift; sourceTree = "<group>"; };
 		A585421E2D80663C00D314A2 /* LogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWrapper.swift; sourceTree = "<group>"; };
 		A58542212D806E3800D314A2 /* SensorItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorItemsView.swift; sourceTree = "<group>"; };
-		A58542232D806FAF00D314A2 /* SensorItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorItemData.swift; sourceTree = "<group>"; };
+		A58542232D806FAF00D314A2 /* RelatedChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedChannelData.swift; sourceTree = "<group>"; };
 		A58542262D8074D300D314A2 /* ChannelIssuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelIssuesView.swift; sourceTree = "<group>"; };
 		A58542282D80D02400D314A2 /* SuplaChannelContainerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelContainerConfig.swift; sourceTree = "<group>"; };
 		A585422B2D81686800D314A2 /* SuplaChannelContainerConfigTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelContainerConfigTest.swift; sourceTree = "<group>"; };
@@ -4026,6 +4052,28 @@
 			path = ChannelState;
 			sourceTree = "<group>";
 		};
+		A51474542EA65C5C0044DEF2 /* GateDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A51474592EA65D400044DEF2 /* General */,
+				A51474572EA65CDD0044DEF2 /* GateDetailVC.swift */,
+				A51474552EA65C850044DEF2 /* GateDetailVM.swift */,
+			);
+			path = GateDetail;
+			sourceTree = "<group>";
+		};
+		A51474592EA65D400044DEF2 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A514746B2EA785E70044DEF2 /* GateGeneralVC.swift */,
+				A51474692EA774180044DEF2 /* GateGeneralVM.swift */,
+				A51474672EA771700044DEF2 /* GateGeneralView.swift */,
+				A514745C2EA65FEA0044DEF2 /* GateGeneralViewState.swift */,
+				A514745A2EA65D4D0044DEF2 /* GateGeneralFeature.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		A519CCB32D38576300F858A4 /* Measurements */ = {
 			isa = PBXGroup;
 			children = (
@@ -4049,6 +4097,7 @@
 		A51BE8E92AA70D9600718F2F /* ThermostatDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A51474612EA662EC0044DEF2 /* ThermostatStateHelper.swift */,
 				A5A3251E2E817CA100E60812 /* HeatpolHistoryDetail */,
 				A594ADCA2C9C3FD100780EF3 /* SlavesDetail */,
 				A52BFEDA2B0F8EFC00A2F64C /* TimerDetail */,
@@ -4232,6 +4281,7 @@
 		A530EDEE2A53F79900F8DAEE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A514745E2EA660A90044DEF2 /* DeviceState.swift */,
 				A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */,
 				A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */,
 			);
@@ -4441,6 +4491,7 @@
 		A54149242B6302B100B44BD6 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				A51474542EA65C5C0044DEF2 /* GateDetail */,
 				A5DDF91C2D79A4940056B539 /* ContainerDetail */,
 				A539C26A2D67772900D9DD47 /* ValveDetail */,
 				A5E160A82D313943003A7C71 /* HumidityDetail */,
@@ -5332,7 +5383,9 @@
 		A58542202D806DF400D314A2 /* SensorData */ = {
 			isa = PBXGroup;
 			children = (
-				A58542232D806FAF00D314A2 /* SensorItemData.swift */,
+				A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */,
+				A51474632EA66B540044DEF2 /* RelatedChannelItemView.swift */,
+				A58542232D806FAF00D314A2 /* RelatedChannelData.swift */,
 				A58542212D806E3800D314A2 /* SensorItemsView.swift */,
 			);
 			path = SensorData;
@@ -6664,6 +6717,7 @@
 		A5E4904E2A3C7987006801FE /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */,
 				A5BCA9602E27A27500A5054A /* SuplaClientMessage */,
 				A5E0DF6F2CEB79BB00362451 /* CacheFileAccessProxy.swift */,
 				A598CACC2CC2997900A784FA /* DoubleFormatter.swift */,
@@ -6820,10 +6874,10 @@
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A585421E2D80663C00D314A2 /* LogWrapper.swift */,
 				A5F14B7829DED9F000682FA6 /* BaseViewController.swift */,
 				A5F14B7329DED41000682FA6 /* BaseViewModel.swift */,
 				A57C4AB62AAF4F7600D9C695 /* FilteredTapGestureDelegate.swift */,
+				A585421E2D80663C00D314A2 /* LogWrapper.swift */,
 				A5D7126D2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift */,
 				A5F29B8C2A20AD8100ED700A /* Nibs.swift */,
 				A52BFEB02B06163B00A2F64C /* SADateTimePicker.swift */,
@@ -7109,6 +7163,7 @@
 		A5F29B9B2A20D2DD00ED700A /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */,
 				A50B5D462BFCB9A500918D18 /* ActivePercentage */,
 				A5074BEF2BDA721A0081B6B1 /* TotalValue */,
 				A5F29B9C2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift */,
@@ -7629,12 +7684,14 @@
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
+				A51474582EA65CE40044DEF2 /* GateDetailVC.swift in Sources */,
 				A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */,
 				A5AE6D6D2E1D4BC800BC2B67 /* AddWizardVC.swift in Sources */,
 				A54737592D89B89A00B2E227 /* RemoveHiddenChannelsUseCase.swift in Sources */,
 				A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */,
 				A5F29BC02A24DDB100ED700A /* UpdateChannelGroupRelationUseCase.swift in Sources */,
 				A5F29B802A1E489300ED700A /* ProfileRepository.swift in Sources */,
+				A514746E2EA7AE620044DEF2 /* OrientationObserver.swift in Sources */,
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
 				A594ADD02C9C402B00780EF3 /* ThermostatSlavesView.swift in Sources */,
 				A52F03D52DB8F1AC00472ED1 /* CarPlayListViewState.swift in Sources */,
@@ -7643,6 +7700,7 @@
 				A505EC4E2CFA618100E69BDB /* Migration17to19ModelMapping.xcmappingmodel in Sources */,
 				A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */,
 				A5C5F6F92D9428C600E303B8 /* SceneListView.swift in Sources */,
+				A514745D2EA65FF40044DEF2 /* GateGeneralViewState.swift in Sources */,
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */,
@@ -7663,6 +7721,7 @@
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
 				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
+				A51474642EA66B5E0044DEF2 /* RelatedChannelItemView.swift in Sources */,
 				A522DB452D0CD7F700163BA2 /* PasswordTextField.swift in Sources */,
 				A5074BCF2BCE72250081B6B1 /* FacadeBlindsVM.swift in Sources */,
 				A530EE0F2A56E52000F8DAEE /* GetDefaultIconNameUseCase.swift in Sources */,
@@ -7670,6 +7729,7 @@
 				A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */,
 				A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */,
 				A54637BF2D38007F00D746F5 /* ImpulseCounterGeneralBaseView.swift in Sources */,
+				A51474562EA65C8C0044DEF2 /* GateDetailVM.swift in Sources */,
 				A56F8D132DA9357200F097CE /* ChannelListViewState.swift in Sources */,
 				A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
@@ -7678,6 +7738,7 @@
 				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
 				A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */,
 				A57668F32AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift in Sources */,
+				A514745B2EA65D520044DEF2 /* GateGeneralFeature.swift in Sources */,
 				A56504E72E422FE3008DAE3D /* SetPasswordDialog.swift in Sources */,
 				A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
@@ -7866,7 +7927,7 @@
 				A55A8D822BA9B6B400C540D4 /* WindowColors.swift in Sources */,
 				A5A15FE62C256F850049AA73 /* AppDelegate.swift in Sources */,
 				A5074BD12BCE72400081B6B1 /* FacadeBlindsVC.swift in Sources */,
-				A58542242D806FB800D314A2 /* SensorItemData.swift in Sources */,
+				A58542242D806FB800D314A2 /* RelatedChannelData.swift in Sources */,
 				A56EC9312CEF1DAF00A6E2CB /* SAChannelState+Ext.swift in Sources */,
 				A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */,
 				A5B3CC022B627ADC00F95AC3 /* HumidityValueStringProvider.swift in Sources */,
@@ -7874,6 +7935,7 @@
 				A51BE8ED2AA713A500718F2F /* ThermostatDetailVM.swift in Sources */,
 				A5DB3ACF2E9E415B007DAD9B /* ProfilesListView.swift in Sources */,
 				A5B3CBDF2B62504D00F95AC3 /* GetChannelValueUseCase.swift in Sources */,
+				A51474662EA66C230044DEF2 /* RelatedChannelsView.swift in Sources */,
 				A5A15FED2C298A6A0049AA73 /* StatusVC.swift in Sources */,
 				A58A9C072AA1D64A00D28848 /* ChannelRelationRepository.swift in Sources */,
 				A517DFF32D03241D00D6148C /* KotlinBoolean+iOS.swift in Sources */,
@@ -7958,6 +8020,7 @@
 				A550F2872D521ADF0011463B /* VoltageMeasurementItemRepository.swift in Sources */,
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
+				A514746C2EA785EB0044DEF2 /* GateGeneralVC.swift in Sources */,
 				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
 				A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
@@ -8014,6 +8077,7 @@
 				A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */,
 				A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */,
 				A5F5C3F22C3682390058E255 /* PinSetupFeature.swift in Sources */,
+				A51474622EA662F20044DEF2 /* ThermostatStateHelper.swift in Sources */,
 				A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */,
 				A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
@@ -8130,6 +8194,7 @@
 				A5C5F6FB2D94294600E303B8 /* ReadSceneByRemoteIdUseCase.swift in Sources */,
 				A52BFEB32B063EAC00A2F64C /* RangeValueType.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
+				A51474702EA8DA080044DEF2 /* ReadGroupWithChannelsUseCase.swift in Sources */,
 				A5A15FE32C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift in Sources */,
 				A54E2A5B2E436320003F2926 /* EspRequestResult.swift in Sources */,
 				A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */,
@@ -8182,6 +8247,7 @@
 				A55A8D9F2BAC263000C540D4 /* ExecuteRollerShutterActionUseCase.swift in Sources */,
 				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
 				A52D13B12C8F0F3000134961 /* SuplaClient+Ext.swift in Sources */,
+				A514746A2EA7741B0044DEF2 /* GateGeneralVM.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				A5074BDB2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift in Sources */,
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
@@ -8445,6 +8511,7 @@
 				A5B8A4812CBD0A09002FA7B2 /* ElectricityDataSelectionFeature.swift in Sources */,
 				A5AE6D7F2E1FD68E00BC2B67 /* AddWizardSuccessView.swift in Sources */,
 				A5F29B932A20B56500ED700A /* CreateProfileScenesListUseCase.swift in Sources */,
+				A51474682EA771740044DEF2 /* GateGeneralView.swift in Sources */,
 				A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */,
 				A5A15FF12C298B700049AA73 /* StatusView.swift in Sources */,
 				A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */,
@@ -8617,6 +8684,7 @@
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				A54637AA2D37B0DE00D746F5 /* MarkerRowView.swift in Sources */,
 				A5AD70292C04691100A36318 /* MoveTimeView.swift in Sources */,
+				A514745F2EA660AC0044DEF2 /* DeviceState.swift in Sources */,
 				A5E0DF7C2CEC82AE00362451 /* DownloadOcrPhotoUseCase.swift in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
 				A56851BE2D6DA65F00942F8B /* CaptionChangeUseCase.swift in Sources */,

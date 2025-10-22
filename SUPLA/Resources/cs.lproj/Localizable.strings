@@ -316,6 +316,9 @@
 "dgf_too_long_operation_warning" = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
 "dgf_planned_regeneration_in_progress" = "Probíhá plánovaná obnova.";
 "dgf_regeneration_after20h" = "Obnova byla zahájena po 20h provozní činnosti.";
+/* General - Buttons & States */
+"state_partially_opened" = "částečně otevřeno";
+"channel_brn_step_by_step" = "Otevřít/Zavřít (krok za krokem)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";
@@ -680,3 +683,6 @@
 "developer_info_settings" = "Experimentální nastavení";
 "developer_info_screen_orientation" = "Otočení obrazovky povoleno";
 "developer_info_activated" = "Režim pro vývojáře aktivován";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Ne všechna vrata mají nakonfigurovaný senzor otevření – tlačítka „Otevřít“ a „Zavřít“ nemusí fungovat správně.";

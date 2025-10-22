@@ -15,17 +15,19 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
 
 import SharedCore
-    
-struct SensorItemData: Identifiable {
-    var id: Int32 { channelId }
-    
-    let channelId: Int32
-    let onlineState: ListOnlineState
-    let icon: IconResult?
-    let caption: String
-    let userCaption: String
-    let batteryIcon: IssueIcon?
-    let showChannelStateIcon: Bool
+
+extension GateGeneralFeature {
+    class ViewState: ObservableObject {
+        @Published var deviceStateData: DeviceStateData? = nil
+        @Published var relatedChannelsData: [RelatedChannelData]? = nil
+        @Published var issues: [ChannelIssueItem] = []
+        @Published var mainButtonLabel: String = Strings.General.stepByStep
+        @Published var closeButtonState: SwitchButtonState? = nil
+        @Published var openButtonState: SwitchButtonState? = nil
+        @Published var showOpenAndCloseWarning: Bool = false
+        @Published var offline: Bool = false
+    }
 }

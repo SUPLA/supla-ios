@@ -55,7 +55,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
-    private lazy var deviceStateView: DeviceStateView = .init(iconSize: 16)
+    private lazy var deviceStateView: DeviceStateUIView = .init(iconSize: 16)
     
     private lazy var thermostatControlView: ThermostatControlView = {
         let view = ThermostatControlView()

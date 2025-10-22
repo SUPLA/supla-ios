@@ -18,38 +18,71 @@
     
 import SwiftUI
 
-struct SwitchButtons: View {
-    let isOn: Bool
-    let enabled: Bool
-    let positiveText: String
-    let negativeText: String
-    let positiveIcon: IconResult?
-    let negativeIcon: IconResult?
+struct SwitchButtonState {
+    let icon: IconResult?
+    let label: String
+    let active: Bool
+    let type: BaseControlButtonView.ButtonType
+}
 
-    let onPositiveClick: () -> Void
-    let onNegativeClick: () -> Void
+struct SwitchButtons: View {
+    let leftButton: SwitchButtonState?
+    let rightButton: SwitchButtonState?
+    
+    let enabled: Bool
+
+    let onRightButtonClick: () -> Void
+    let onLeftButtonClick: () -> Void
+    
+    init(
+        leftButton: SwitchButtonState?,
+        rightButton: SwitchButtonState?,
+        enabled: Bool = false,
+        onLeftButtonClick: @escaping () -> Void = {},
+        onRightButtonClick: @escaping () -> Void = {}
+    ) {
+        self.leftButton = leftButton
+        self.rightButton = rightButton
+        self.enabled = enabled
+        self.onLeftButtonClick = onLeftButtonClick
+        self.onRightButtonClick = onRightButtonClick
+    }
 
     var body: some View {
         HStack(spacing: Distance.default) {
-            RoundedControlButtonWrapperView(
-                type: .negative,
-                text: negativeText,
-                icon: negativeIcon,
-                active: enabled && !isOn,
-                isEnabled: enabled,
-                onTap: onNegativeClick
-            )
-            .frame(height: Dimens.buttonHeight)
-            RoundedControlButtonWrapperView(
-                type: .positive,
-                text: positiveText,
-                icon: positiveIcon,
-                active: enabled && isOn,
-                isEnabled: enabled,
-                onTap: onPositiveClick
-            )
-            .frame(height: Dimens.buttonHeight)
+            if let leftButton {
+                SwitchButton(
+                    state: leftButton,
+                    enabled: enabled,
+                    onClick: onLeftButtonClick
+                )
+            }
+            if let rightButton {
+                SwitchButton(
+                    state: rightButton,
+                    enabled: enabled,
+                    onClick: onRightButtonClick
+                )
+            }
         }
         .padding(Distance.default)
+    }
+}
+
+struct SwitchButton: View {
+    let state: SwitchButtonState
+    let enabled: Bool
+    let onClick: () -> Void
+    
+    var body: some View {
+        RoundedControlButtonWrapperView(
+            type: state.type,
+            text: state.label,
+            icon: state.icon,
+            active: enabled && state.active,
+            isEnabled: enabled,
+            onTap: onClick
+        )
+        .frame(height: Dimens.buttonHeight)
     }
 }
