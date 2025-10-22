@@ -312,6 +312,9 @@
 "channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
 "channel_status_awaiting" = "Dieses Gerät kann nicht per Fernzugriff aktiviert werden. Wir warten auf eine Kommunikation mit dem Gerät…";
 "channel_status_updating" = "Software-Update läuft…";
+/* General - Buttons & States */
+"state_partially_opened" = "teilweise offen";
+"channel_brn_step_by_step" = "Öffnen/Schließen (schritt für schritt)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -730,3 +733,6 @@
 "developer_info_settings" = "Experimentelle Einstellungen";
 "developer_info_screen_orientation" = "Bildschirmdrehung aktiviert";
 "developer_info_activated" = "Entwicklermodus aktiviert";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nicht alle Tore haben ein Öffnungssensor konfiguriert – die Schaltflächen „Öffnen“ und „Schließen“ können falsch funktionieren.";

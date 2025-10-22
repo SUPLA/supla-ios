@@ -47,7 +47,7 @@ extension ContainerGeneralFeature {
         }
         
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
-            loadData(channelWithChildren.channel.remote_id)
+            loadData(channelWithChildren.remoteId)
         }
         
         func onMuteClick(_ viewController: UIViewController?) {
@@ -90,7 +90,7 @@ extension ContainerGeneralFeature {
             state.muteAuthorizationNeeded = config?.muteAlarmSoundWithoutAdditionalAuth == false
         }
         
-        private func toSensorItem(_ child: ChannelChild, _ channelToLevelMap: [Int32: Int32]?) -> SensorItemData {
+        private func toSensorItem(_ child: ChannelChild, _ channelToLevelMap: [Int32: Int32]?) -> RelatedChannelData {
             let caption = getCaptionUseCase.invoke(data: child.channel.shareable).string
             let captionWithPercentage =
                 if let level = channelToLevelMap?[child.channel.remote_id] {
@@ -99,7 +99,7 @@ extension ContainerGeneralFeature {
                     caption
                 }
             
-            return SensorItemData(
+            return RelatedChannelData(
                 channelId: child.channel.remote_id,
                 onlineState: child.channel.onlineState,
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),

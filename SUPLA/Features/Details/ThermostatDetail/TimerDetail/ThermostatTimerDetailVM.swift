@@ -336,14 +336,14 @@ struct ThermostatTimerDetailViewState: ViewState {
         }
     }
     
-    var endDateText: String { DeviceState.endDateText(timerEndDate) }
+    var endDateText: String { ThermostatStateHelper.endDateText(timerEndDate) }
     
-    var currentStateIcon: String? { DeviceState.currentStateIcon(currentMode) }
+    var currentStateIcon: String? { ThermostatStateHelper.currentStateIcon(currentMode) }
     
-    var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(currentMode) }
+    var currentStateIconColor: UIColor { ThermostatStateHelper.currentStateIconColor(currentMode) }
     
     var currentStateValue: String {
-        DeviceState.currentStateValue(
+        ThermostatStateHelper.currentStateValue(
             currentMode,
             heatSetpoint: currentTemperature,
             coolSetpoint: currentTemperature

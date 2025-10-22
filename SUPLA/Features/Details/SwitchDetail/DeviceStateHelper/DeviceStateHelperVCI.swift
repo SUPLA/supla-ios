@@ -19,7 +19,7 @@
 protocol DeviceStateHelperVCI {}
 
 extension DeviceStateHelperVCI {
-    func updateDeviceStateView(_ view: DeviceStateView, with state: DeviceStateViewState) {
+    func updateDeviceStateView(_ view: DeviceStateUIView, with state: DeviceStateViewState) {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         
         if (!state.isOnline) {

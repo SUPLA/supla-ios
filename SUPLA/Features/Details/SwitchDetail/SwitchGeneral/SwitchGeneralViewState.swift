@@ -23,14 +23,13 @@ extension SwitchGeneralFeature {
         @Published var issues: [ChannelIssueItem] = []
         @Published var online: Bool = false
         @Published var on: Bool = false
-        @Published var showButtons: Bool = false
         
         @Published var stateLabel: String = ""
         @Published var stateValue: String = ""
         @Published var stateIcon: IconResult? = nil
         
-        @Published var iconTurnOn: IconResult? = nil
-        @Published var iconTurnOff: IconResult? = nil
+        @Published var offButtonState: SwitchButtonState? = nil
+        @Published var onButtonState: SwitchButtonState? = nil
         
         @Published var showElectricityState: Bool = false
         @Published var showImpulseCounterState: Bool = false

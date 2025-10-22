@@ -76,6 +76,13 @@ class BaseDetailTypeProviderUseCase {
             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
             return .gpmDetail(pages: [.gpmHistory])
+            
+        case
+            SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+            SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+            SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+            SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            return .gateDetail(pages: [.gateGeneral])
         default:
             return nil
         }
@@ -94,6 +101,7 @@ enum DetailType: Equatable {
     case humidityDetail(pages: [DetailPage])
     case valveDetail(pages: [DetailPage])
     case containerDetail(pages: [DetailPage])
+    case gateDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
@@ -148,4 +156,7 @@ enum DetailPage {
     
     // Container
     case containerGeneral
+    
+    // Gate
+    case gateGeneral
 }

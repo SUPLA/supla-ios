@@ -25,18 +25,37 @@ struct ChannelIssuesView: SwiftUI.View {
     var body: some SwiftUI.View {
         ForEach(0 ..< issues.count, id: \.self) { issueIdx in
             ForEach(0 ..< issues[issueIdx].messages.count, id: \.self) { messageIdx in
-                HStack(alignment: .top, spacing: Distance.tiny) {
-                    if let icon = issues[issueIdx].icon.resource {
-                        Image(uiImage: icon)
-                            .resizable()
-                            .frame(width: Dimens.iconSize, height: Dimens.iconSize)
-                    }
-                    Text(issues[issueIdx].messages[messageIdx].string)
-                        .fontBodyMedium()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                .padding([.leading, .trailing], Distance.default)
+                ChannelIssueView(
+                    icon: issues[issueIdx].icon,
+                    message: issues[issueIdx].messages[messageIdx].string
+                )
             }
         }
+    }
+}
+
+struct ChannelIssueView: SwiftUI.View {
+    let icon: IssueIcon?
+    let message: String
+    let alignment: VerticalAlignment
+    
+    init(icon: IssueIcon?, message: String, alignment: VerticalAlignment = .top) {
+        self.icon = icon
+        self.message = message
+        self.alignment = alignment
+    }
+    
+    var body: some SwiftUI.View {
+        HStack(alignment: alignment, spacing: Distance.tiny) {
+            if let iconResource = icon?.resource {
+                Image(uiImage: iconResource)
+                    .resizable()
+                    .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+            }
+            Text(message)
+                .fontBodyMedium()
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding([.leading, .trailing], Distance.default)
     }
 }

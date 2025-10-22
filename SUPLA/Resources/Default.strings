@@ -118,6 +118,9 @@
 "channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
 "channel_status_awaiting" = "This device cannot be remotely awakened. We are awaiting communication from the device…";
 "channel_status_updating" = "Software update in progress…";
+/* General - Buttons & States */
+"state_partially_opened" = "Partially opened";
+"channel_btn_step_by_step" = "Open/Close (step by step)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -555,3 +558,6 @@
 "developer_info_settings" = "Experimental settings";
 "developer_info_screen_orientation" = "Screen rotation enabled";
 "developer_info_activated" = "Developer mode activated";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Not all gates have an opening sensor configured - the \"Open\" and \"Close\" buttons may not function correctly.";

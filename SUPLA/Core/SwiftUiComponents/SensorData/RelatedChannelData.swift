@@ -15,20 +15,17 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-import SharedCore
 
-extension ContainerGeneralFeature {
-    class ViewState: ObservableObject {
-        @Published var fluidLevel: CGFloat? = nil
-        @Published var fluidLevelString: String = ""
-        @Published var containerType: ContainerType = .default
-        @Published var controlLevels: [ControlLevel] = []
-        @Published var sensors: [RelatedChannelData] = []
-        @Published var issues: [ChannelIssueItem] = []
-        @Published var soundOn: Bool = false
-        
-        var channelId: Int32 = 0
-        var muteAuthorizationNeeded: Bool = false
-    }
+import SharedCore
+    
+struct RelatedChannelData: Identifiable {
+    var id: Int32 { channelId }
+    
+    let channelId: Int32
+    let onlineState: ListOnlineState
+    let icon: IconResult?
+    let caption: String
+    let userCaption: String
+    let batteryIcon: IssueIcon?
+    let showChannelStateIcon: Bool
 }

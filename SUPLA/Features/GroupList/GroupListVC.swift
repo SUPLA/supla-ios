@@ -46,8 +46,10 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
         switch (event) {
         case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
             coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
-        case let .naviagetToRollerShutterDetail(item, pages):
+        case let .navigateToRollerShutterDetail(item, pages):
             coordinator.navigateToWindowDetail(item: item, pages: pages)
+        case let .navigateToGateDetail(item, pages):
+            coordinator.navigateToGateDetail(item: item, pages: pages)
         case let .open(url):
             coordinator.openUrl(url: url)
         }

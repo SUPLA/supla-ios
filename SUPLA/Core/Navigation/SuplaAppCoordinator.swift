@@ -48,6 +48,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToGateDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToCarPlayList()
     func navigateToCarPlayAdd()
     func navigateToCarPlayEdit(id: NSManagedObjectID)
@@ -227,6 +228,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage]) {
         navigateTo(ContainerDetailVC(item: item, pages: pages))
+    }
+    
+    func navigateToGateDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(GateDetailVC(item: item, pages: pages))
     }
     
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
