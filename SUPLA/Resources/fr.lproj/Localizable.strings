@@ -676,7 +676,11 @@
 "add_device_manual_popup_message" = "La tentative d'ajouter un appareil automatiquement a échoué. Si le problème persiste, nous vous recommandons d'ajouter l'appareil manuellement.";
 "add_device_manual_popup_resign" = "Rester en mode automatique";
 "add_device_manual_popup_continue" = "Réessayer en mode manuel";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Le service système iOS a signalé une erreur interne lors de l'analyse du réseau, indépendante de notre volonté. Veuillez essayer d'ajouter l'appareil en mode manuel ou redémarrer votre téléphone/tablette.";
+"add_wizard_spaces_accept" = "Conserver";
+"add_wizard_spaces_modify" = "Supprimer les espaces";
+"add_wizard_spaces_title" = "Espace dans le nom du réseau ?";
+"add_wizard_spaces_message" = "Le nom de réseau saisi « %@ » contient des espaces ou des caractères blancs (espaces ou tabulations) au début ou à la fin. Si le nom de votre réseau ne doit pas inclure ces caractères, votre appareil ne pourra pas s’y connecter. Voulez-vous conserver ou supprimer ces espaces ou caractères blancs au début ou à la fin ?";
 
 /* Developer Info */
 "developer_option" = "Options pour les développeurs";
@@ -685,4 +689,4 @@
 "developer_info_activated" = "Mode développeur activé";
 
 /* Gate Detail */
-"gate_general_open_and_close_warning" = "Toutes les portes ne sont pas dotées d\'un capteur d\'ouverture configuré – les boutons « Ouvrir » et « Fermer » pourraient ne pas fonctionner correctement.";
+"gate_general_open_and_close_warning" = "Toutes les portes ne sont pas dotées d'un capteur d'ouverture configuré – les boutons « Ouvrir » et « Fermer » pourraient ne pas fonctionner correctement.";

@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension AddWizardFeature {
-    protocol ViewDelegate: AnyObject, ProvidePasswordDialogDelegate, SetPasswordDialogDelegate {
+    protocol ViewDelegate: AnyObject, ProvidePasswordDialogDelegate, SetPasswordDialogDelegate, SpacesAlertDialogDelegate {
         func onCancel(_ screen: Screen)
         func onBack(_ screen: Screen)
         func onNext(_ screen: Screen)
@@ -132,6 +132,13 @@ extension AddWizardFeature {
                 if let dialogState = state.setPasswordDialogState {
                     AddWizardFeature.SetPasswordDialog(
                         state: dialogState,
+                        delegate: delegate
+                    )
+                }
+                
+                if (state.showSpacesPopup) {
+                    AddWizardFeature.SpacesAlertDialog(
+                        networkName: state.networkSsid,
                         delegate: delegate
                     )
                 }

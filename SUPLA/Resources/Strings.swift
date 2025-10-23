@@ -688,6 +688,10 @@ struct Strings {
         static let manualModePopupResign = "add_device_manual_popup_resign".toLocalized()
         static let manualModePopupContinue = "add_device_manual_popup_continue".toLocalized()
         static let internalErrorMessage = "add_wizard_internal_error_message".toLocalized()
+        static let spacesAccept = "add_wizard_spaces_accept".toLocalized()
+        static let spacesModify = "add_wizard_spaces_modify".toLocalized()
+        static let spacesTitle = "add_wizard_spaces_title".toLocalized()
+        static let spacesMessage = "add_wizard_spaces_message".toLocalized()
     }
     
     struct DeveloperInfo {

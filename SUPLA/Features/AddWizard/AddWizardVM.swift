@@ -286,6 +286,17 @@ extension AddWizardFeature {
                     .changing(path: \.error, to: true)
             }
         }
+        
+        func onKeepUnchanged() {
+            networkSelectionNextStep()
+            state.showSpacesPopup = false
+        }
+        
+        func onRemoveWhiteCharacters() {
+            state.showSpacesPopup = false
+            state.networkSsid = state.networkSsid.trimmingCharacters(in: .whitespacesAndNewlines)
+            networkSelectionNextStep()
+        }
 
         // MARK: - EspConfigurationController methods
         
@@ -484,7 +495,7 @@ extension AddWizardFeature {
         func showError(error: EspConfigurationError) {
             state.processing = false
             state.canceling = false
-            let errorText = switch(error) {
+            let errorText = switch (error) {
             case _ as EspConfigurationError.InternalError: [Strings.AddWizard.internalErrorMessage]
             default: error.messages.map { $0.string }
             }
@@ -552,7 +563,11 @@ extension AddWizardFeature {
         private func networkSelectionNextStep() {
             state.networkConfigurationError = state.networkSsid.isEmpty || state.networkPassword.isEmpty
             
-            if (!state.networkSsid.isEmpty && !state.networkPassword.isEmpty) {
+            if (state.networkSsid.isEmpty || state.networkPassword.isEmpty) {
+                // just return, error message is set above
+            } else if (shouldInformAboutWhiteCharsInNetworkName()) {
+                state.showSpacesPopup = true
+            } else {
                 secureSettings.wizardWifiName = state.networkSsid
                 if (state.rememberPassword) {
                     secureSettings.wizardWifiPassword = state.networkPassword
@@ -562,6 +577,23 @@ extension AddWizardFeature {
                 
                 state.screens = state.screens.push(.configuration)
             }
+        }
+        
+        private func shouldInformAboutWhiteCharsInNetworkName() -> Bool {
+            let stateNetworkSsid = state.networkSsid
+            if (stateNetworkSsid.isEmpty) {
+                return false
+            }
+            if (stateNetworkSsid == secureSettings.wizardWifiName) {
+                // Network name is the same as last time, show the user already know about white characters
+                return false
+            }
+            if (state.showSpacesPopup) {
+                // The popup about white characters is presented to the user. User decided to keep name as it is.
+                return false
+            }
+            
+            return stateNetworkSsid != stateNetworkSsid.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 }
