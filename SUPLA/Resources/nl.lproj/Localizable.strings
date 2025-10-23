@@ -676,7 +676,11 @@
 "add_device_manual_popup_message" = "De poging om een apparaat automatisch toe te voegen is mislukt. Als het probleem aanhoudt, raden we aan het apparaat handmatig toe te voegen.";
 "add_device_manual_popup_resign" = "Blijf in automatische modus";
 "add_device_manual_popup_continue" = "Probeer het opnieuw in handmatige modus";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "De iOS-systeemservice heeft een interne fout gemeld tijdens het scannen van het netwerk, waar wij geen controle over hebben. Probeer het apparaat handmatig toe te voegen of start uw telefoon/tablet opnieuw op.";
+"add_wizard_spaces_accept" = "Onveranderd laten";
+"add_wizard_spaces_modify" = "Spaties verwijderen";
+"add_wizard_spaces_title" = "Spatie in netwerknaam?";
+"add_wizard_spaces_message" = "De ingevoerde netwerknaam \"%@\" bevat inleidende of afsluitende witruimtetekens (spaties of tabs). Als uw netwerknaam deze tekens niet mag bevatten, kan uw apparaat geen verbinding maken met het netwerk. Wilt u de inleidende of afsluitende witruimtetekens behouden of verwijderen?";
 
 /* Developer Info */
 "developer_option" = "Ontwikkelaarsopties";

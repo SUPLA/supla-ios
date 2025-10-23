@@ -726,7 +726,11 @@
 "add_device_manual_popup_message" = "Der Versuch, ein Gerät automatisch hinzuzufügen, ist fehlgeschlagen. Falls das Problem weiterhin besteht, empfehlen wir, das Gerät manuell hinzuzufügen.";
 "add_device_manual_popup_resign" = "Im automatischen Modus bleiben";
 "add_device_manual_popup_continue" = "Im manuellen Modus versuchen";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Der iOS-Systemdienst hat während des Netzwerkscans einen internen Fehler gemeldet, auf den wir keinen Einfluss haben. Bitte versuchen Sie, das Gerät manuell hinzuzufügen, oder starten Sie Ihr Telefon/Tablet neu.";
+"add_wizard_spaces_accept" = "Unverändert lassen";
+"add_wizard_spaces_modify" = "Leerzeichen entfernen";
+"add_wizard_spaces_title" = "Leerzeichen im Netzwerknamen?";
+"add_wizard_spaces_message" = "Der eingegebene Netzwerkname „%@“ enthält führende oder nachgestellte Leerzeichen oder Tabulatoren. Wenn Ihr Netzwerkname diese Zeichen nicht enthalten soll, kann Ihr Gerät keine Verbindung mit dem Netzwerk herstellen. Möchten Sie die führenden oder nachgestellten Leerzeichen beibehalten oder entfernen?";
 
 /* Developer Info */
 "developer_option" = "Entwickleroptionen";

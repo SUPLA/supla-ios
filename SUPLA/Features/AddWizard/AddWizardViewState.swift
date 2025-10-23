@@ -35,6 +35,7 @@ extension AddWizardFeature {
         @Published var showManualModePopup: Bool = false
         @Published var providePasswordDialogState: ProvidePasswordDialogState? = nil
         @Published var setPasswordDialogState: SetPasswordDialogState? = nil
+        @Published var showSpacesPopup: Bool = false
 
         var registrationActivationTime: TimeInterval? = nil
     }

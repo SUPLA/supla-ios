@@ -678,7 +678,11 @@
 "add_device_manual_popup_message" = "A tentativa de adicionar um dispositivo automaticamente falhou. Se o problema persistir, recomendamos adicionar o dispositivo manualmente.";
 "add_device_manual_popup_resign" = "Permanecer no modo automático";
 "add_device_manual_popup_continue" = "Tentar novamente no modo manual";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "O serviço do sistema iOS reportou um erro interno durante a verificação da rede, que está fora do nosso controlo. Experimente adicionar o dispositivo utilizando o modo manual ou reinicie o seu telemóvel/tablet.";
+"add_wizard_spaces_accept" = "Manter inalterado";
+"add_wizard_spaces_modify" = "Remover espaços";
+"add_wizard_spaces_title" = "Espaço no nome da rede?";
+"add_wizard_spaces_message" = "O nome de rede introduzido \"%@\" contém espaços em branco iniciais ou finais (espaços ou tabuladores). Se o nome da rede não incluir esses carateres, o seu dispositivo não conseguirá ligar-se à rede. Quer manter ou remover os espaços em branco iniciais ou finais?";
 
 /* Developer Info */
 "developer_option" = "Opções do desenvolvedor";

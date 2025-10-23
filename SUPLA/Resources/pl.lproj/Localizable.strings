@@ -761,6 +761,10 @@
 "add_device_manual_popup_resign" = "Pozostań w trybie automatycznym";
 "add_device_manual_popup_continue" = "Spróbuj ponownie w trybie ręcznym";
 "add_wizard_internal_error_message" = "Usługa systemowa iOS zgłosiła wewnętrzny błąd przy skanowaniu sieci, na który nie mamy wpływu. Spróbuj dodać urządzenie używając trybu ręcznego, lub uruchom ponownie telefon/tablet";
+"add_wizard_spaces_accept" = "Zachowaj bez zmian";
+"add_wizard_spaces_modify" = "Usuń spacje";
+"add_wizard_spaces_title" = "Spacja w nazwie sieci?";
+"add_wizard_spaces_message" = "Wprowadzona nazwa sieci \"%@\" zawiera wiodące lub końcowe białe znaki (spacje lub tabulatory). Jeśli nazwa sieci nie powinna zawierać tych znaków, urządzenie nie będzie w stanie połączyć się z siecią. Czy chcesz zachować, czy usunąć wiodące lub końcowe białe znaki?";
 
 /* Developer Info */
 "developer_option" = "Opcje programisty";

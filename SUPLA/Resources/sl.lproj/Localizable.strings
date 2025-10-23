@@ -676,7 +676,11 @@
 "add_device_manual_popup_message" = "Poskus samodejnega dodajanja naprave ni uspel. Če težava ostaja, priporočamo, da napravo dodate ročno.";
 "add_device_manual_popup_resign" = "Ostani v samodejnem načinu";
 "add_device_manual_popup_continue" = "Poskusi znova v ročnem načinu";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Sistemska storitev iOS je med skeniranjem omrežja sporočila notranjo napako, na katero nimamo vpliva. Poskusite napravo dodati ročno ali pa znova zaženite telefon/tablični računalnik.";
+"add_wizard_spaces_accept" = "Ohrani nespremenjeno";
+"add_wizard_spaces_modify" = "Odstrani presledke";
+"add_wizard_spaces_title" = "Presledek v imenu omrežja?";
+"add_wizard_spaces_message" = "Vneseno ime omrežja »%@« vsebuje vodilne ali končne bele znake (presledke ali tabulatorje). Če ime omrežja ne bi smelo vsebovati teh znakov, se vaša naprava ne bo mogla povezati z omrežjem. Ali želite obdržati ali odstraniti vodilne ali končne bele znake?";
 
 /* Developer Info */
 "developer_option" = "Možnosti za razvijalce";
