@@ -44,7 +44,7 @@ extension ValveGeneralFeature {
                 onForceAction: { viewModel.forceAction(channelId, action: $0) }
             )
             
-            viewModel.observe(remoteId: Int(channelId))
+            viewModel.observeChannel(remoteId: Int(channelId))
         }
         
         override func viewDidLoad() {

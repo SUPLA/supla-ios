@@ -17,9 +17,10 @@
  */
     
 extension GateGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
         @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
         @Singleton private var readGroupWithChannelsUseCase: ReadGroupWithChannels.UseCase
+        @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
         @Singleton private var getChannelBaseStateUseCase: GetChannelBaseStateUseCase
         @Singleton private var executeSimpleActionUseCase: ExecuteSimpleActionUseCase
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
@@ -58,6 +59,10 @@ extension GateGeneralFeature {
             loadChannel(channelWithChildren.remoteId)
         }
         
+        func onGroupUpdate(_ groupId: Int32) {
+            loadGroup(groupId)
+        }
+        
         private func loadChannel(_ remoteId: Int32) {
             readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
                 .asDriverWithoutError()
@@ -80,6 +85,7 @@ extension GateGeneralFeature {
                 icon: getChannelBaseIconUseCase.invoke(channel: channel),
                 value: getDeviceStateValue(channel.status(), channelState)
             )
+            state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channelWithChildren.shareable)
             state.mainButtonLabel = mainButtonLabel(channel.func.suplaFuntion)
             if (showOpenAndClose) {
                 state.openButtonState = .init(

@@ -42,7 +42,7 @@ extension ContainerGeneralFeature {
                 onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, sensorData: $0) }
             )
             
-            viewModel.observe(remoteId: Int(channelId))
+            viewModel.observeChannel(remoteId: Int(channelId))
         }
         
         override func viewDidLoad() {

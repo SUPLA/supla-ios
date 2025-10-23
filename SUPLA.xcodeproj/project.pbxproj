@@ -1042,6 +1042,7 @@
 		A5BCA9B62E2A482200A5054A /* EspPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCA9B52E2A481E00A5054A /* EspPostData.swift */; };
 		A5BCA9B82E2A488800A5054A /* EspDeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCA9B72E2A488300A5054A /* EspDeviceProtocol.swift */; };
 		A5BCA9BA2E2A606100A5054A /* Esp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCA9B92E2A605F00A5054A /* Esp.swift */; };
+		A5C2D94F2EAA0B96007BAA0B /* GroupUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */; };
 		A5C5F6E22D91760700E303B8 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E12D91760400E303B8 /* IconButton.swift */; };
 		A5C5F6E42D91F1B200E303B8 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E32D91F1AD00E303B8 /* View+If.swift */; };
 		A5C5F6E82D92B0B700E303B8 /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */; };
@@ -2738,6 +2739,7 @@
 		A5BCA9B52E2A481E00A5054A /* EspPostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspPostData.swift; sourceTree = "<group>"; };
 		A5BCA9B72E2A488300A5054A /* EspDeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspDeviceProtocol.swift; sourceTree = "<group>"; };
 		A5BCA9B92E2A605F00A5054A /* Esp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Esp.swift; sourceTree = "<group>"; };
+		A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUpdatesObserver.swift; sourceTree = "<group>"; };
 		A5C5F6E12D91760400E303B8 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		A5C5F6E32D91F1AD00E303B8 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
 		A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
@@ -7184,6 +7186,7 @@
 		A5F29BA42A248EC100ED700A /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */,
 				A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */,
 				A5F29BA52A248ED800ED700A /* ListsEventsManager.swift */,
 				A57C4AAD2AAB21F700D9C695 /* ChannelConfigEventsManager.swift */,
@@ -7734,6 +7737,7 @@
 				A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
+				A5C2D94F2EAA0B96007BAA0B /* GroupUpdatesObserver.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
 				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
 				A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */,

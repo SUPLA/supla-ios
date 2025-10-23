@@ -41,8 +41,8 @@ extension GateGeneralFeature {
             )
             
             switch (itemBundle.subjectType) {
-            case .channel: viewModel.observe(remoteId: Int(itemBundle.remoteId))
-            case .group: break
+            case .channel: viewModel.observeChannel(remoteId: Int(itemBundle.remoteId))
+            case .group: viewModel.observeGroup(remoteId: itemBundle.remoteId)
             case .scene: break
             }
         }

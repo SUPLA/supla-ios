@@ -50,6 +50,8 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
             coordinator.navigateToWindowDetail(item: item, pages: pages)
         case let .navigateToGateDetail(item, pages):
             coordinator.navigateToGateDetail(item: item, pages: pages)
+        case let .navigateToSwitchDetail(item, pages):
+            coordinator.navigateToSwitchDetail(item: item, pages: pages)
         case let .open(url):
             coordinator.openUrl(url: url)
         }

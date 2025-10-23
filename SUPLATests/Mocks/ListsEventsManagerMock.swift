@@ -43,6 +43,11 @@ final class UpdateEventsManagerMock: UpdateEventsManager {
         return observeGroupObservable
     }
     
+    var observeGroupWithChannelsMock: FunctionMock<Int32, Observable<Int32>> = .init()
+    func observeGroupWithChannels(remoteId: Int32) -> Observable<Int32> {
+        observeGroupWithChannelsMock.handle(remoteId)
+    }
+    
     var observeChannelWithChildrenParameters: [Int] = []
     var observeChannelWithChildrenReturns: Observable<SUPLA.ChannelWithChildren> = Observable.empty()
     func observeChannelWithChildren(remoteId: Int) -> Observable<SUPLA.ChannelWithChildren> {

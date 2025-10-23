@@ -33,6 +33,7 @@ protocol UpdateEventsManager: UpdateEventsManagerEmitter {
     func observeScene(sceneId: Int) -> Observable<SAScene>
     func observeChannel(remoteId: Int) -> Observable<SAChannel>
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup>
+    func observeGroupWithChannels(remoteId: Int32) -> Observable<Int32>
     func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren>
     func observeChannelWithChildrenTree(remoteId: Int) -> Observable<ChannelWithChildren>
     func observeChannelsUpdate() -> Observable<Void>
@@ -55,6 +56,7 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
+    @Singleton<ChannelGroupRelationRepository> private var channelGroupRelationRepository
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     @Singleton<ReadChannelWithChildrenTreeUseCase> private var readChannelWithChildrenTreeUseCase
@@ -116,6 +118,17 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
                 self.profileRepository.getActiveProfile()
                     .flatMapFirst { self.groupRepository.getGroup(for: $0, with: Int32(remoteId)) }
             }
+    }
+    
+    func observeGroupWithChannels(remoteId: Int32) -> Observable<Int32> {
+        return channelGroupRelationRepository.getRelations(forGroup: remoteId)
+            .flatMapFirst { relations in
+                var observables = relations.map { self.getSubjectForChannel(channelId: Int($0.channel_id)) }
+                observables.append(self.getSubjectForGroup(groupId: Int(remoteId)))
+                
+                return Observable.combineLatest(observables)
+            }
+            .map { _ in remoteId }
     }
     
     func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {

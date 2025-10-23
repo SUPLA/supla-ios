@@ -33,6 +33,7 @@ extension SwitchGeneralFeature {
         
         @Published var showElectricityState: Bool = false
         @Published var showImpulseCounterState: Bool = false
+        @Published var relatedChannelsData: [RelatedChannelData]? = nil
         
         @Published var alertDialogState: SuplaCore.AlertDialogState? = nil
     }

@@ -43,6 +43,13 @@ class BaseDetailTypeProviderUseCase {
         case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return .windowDetail(pages: [.garageDoor])
         case
+            SUPLA_CHANNELFNC_LIGHTSWITCH,
+            SUPLA_CHANNELFNC_POWERSWITCH,
+            SUPLA_CHANNELFNC_STAIRCASETIMER,
+            SUPLA_CHANNELFNC_PUMPSWITCH,
+            SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH:
+            return .switchDetail(pages: [.switchGeneral])
+        case
             SUPLA_CHANNELFNC_ELECTRICITY_METER:
             return .electricityMeterDetail(pages: [
                 .electricityMeterGeneral,

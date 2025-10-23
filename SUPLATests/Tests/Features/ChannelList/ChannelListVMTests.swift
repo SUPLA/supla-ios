@@ -164,7 +164,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
     func test_shouldNotOpenLegacyDetail_whenChannelIsOffline() {
         // given
         let channel = SAChannel(testContext: nil)
-        channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
+        channel.func = SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .legacy(type: .ic)
