@@ -56,4 +56,9 @@ final class ChannelGroupRelationRepositoryMock: BaseRepositoryMock<SAChannelGrou
         getRelationsForGroupParameters.append(id)
         return getRelationsForGroupReturns
     }
+    
+    var getRelationsForChannelMock: FunctionMock<Int32, Observable<SAChannelGroupRelation>> = FunctionMock()
+    func getRelations(forChannel id: Int32) -> Observable<SAChannelGroupRelation> {
+        getRelationsForChannelMock.handle(id)
+    }
 }

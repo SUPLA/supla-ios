@@ -73,23 +73,11 @@ class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-            SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            return true
-        case
+            SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
             SUPLA_CHANNELFNC_STAIRCASETIMER:
-            if (children?.first(where: { $0.relationType == .meter }) != nil) {
-                return true
-            } else {
-                switch (Int32((channel as? SAChannel)?.value?.sub_value_type ?? 0)) {
-                case SUBV_TYPE_IC_MEASUREMENTS,
-                     SUBV_TYPE_ELECTRICITY_MEASUREMENTS:
-                    return true
-                default:
-                    return false
-                }
-            }
+            return true
         default:
             return false
         }

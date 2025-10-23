@@ -15,22 +15,22 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
+    
 import RxSwift
 
-protocol ChannelUpdatesObserver: AnyObject {
+protocol GroupUpdatesObserver: AnyObject {
     func handle(_ disposable: Disposable)
-    func onChannelUpdate(_ channelWithChildren: ChannelWithChildren)
+    func onGroupUpdate(_ groupId: Int32)
 }
 
-extension ChannelUpdatesObserver {
-    func observeChannel(remoteId: Int) {
+extension GroupUpdatesObserver {
+    func observeGroup(remoteId: Int32) {
         @Singleton<UpdateEventsManager> var updateEventsManager
 
         handle(
-            updateEventsManager.observeChannelWithChildrenTree(remoteId: remoteId)
+            updateEventsManager.observeGroupWithChannels(remoteId: remoteId)
                 .asDriverWithoutError()
-                .drive(onNext: { [weak self] in self?.onChannelUpdate($0) })
+                .drive(onNext: { [weak self] in self?.onGroupUpdate($0) })
         )
     }
 }
