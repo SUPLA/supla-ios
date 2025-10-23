@@ -674,7 +674,11 @@
 "add_device_manual_popup_message" = "Pokus o automatické pridanie zariadenia zlyhal. Ak problém pretrváva, odporúčame pridať zariadenie manuálne.";
 "add_device_manual_popup_resign" = "Zostať v automatickom režime";
 "add_device_manual_popup_continue" = "Skúsiť znova v manuálnom režime";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Systémová služba iOS nahlásila počas skenovania siete internú chybu, ktorú nemôžeme ovplyvniť. Skúste zariadenie pridať manuálne alebo reštartujte telefón/tablet.";
+"add_wizard_spaces_accept" = "Ponechať nezmenené";
+"add_wizard_spaces_modify" = "Odstrániť medzery";
+"add_wizard_spaces_title" = "Medzera v názve siete?";
+"add_wizard_spaces_message" = "Zadaný názov siete „%@“ obsahuje úvodné alebo koncové prázdne znaky (medzery alebo tabulátory). Ak názov siete nemá obsahovať tieto znaky, vaše zariadenie sa nebude môcť pripojiť k sieti. Chcete ponechať alebo odstrániť úvodné alebo koncové prázdne znaky?";
 
 /* Developer Info */
 "developer_option" = "Možnosti pre vývojárov";
