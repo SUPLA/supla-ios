@@ -138,7 +138,7 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
     }
     
     private func switchGeneral() -> UIViewController {
-        let vc = SwitchGeneralFeature.ViewController.create(channelId: item.remoteId)
+        let vc = SwitchGeneralFeature.ViewController.create(itemBundle: item)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,

@@ -92,7 +92,7 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         getChannelBaseIconUseCase.returns = iconResult
         
         // when
-        viewModel.loadChannel(remoteId: 123)
+        viewModel.loadData(remoteId: 123, type: .channel)
         
         // then
         XCTAssertEqual(viewModel.state.issues, [])
@@ -140,7 +140,7 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
-        viewModel.loadChannel(remoteId: 123)
+        viewModel.loadData(remoteId: 123, type: .channel)
         
         // then
         XCTAssertEqual(viewModel.state.issues, [])
@@ -157,31 +157,5 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
-    }
-    
-    func test_shouldInvokeTurnOn() {
-        // given
-        let remoteId: Int32 = 123
-        
-        // when
-        viewModel.turnOn(remoteId: remoteId)
-        
-        // then
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOn, SUPLA.SubjectType.channel, remoteId)
-        ])
-    }
-    
-    func test_shouldInvokeTurnOff() {
-        // given
-        let remoteId: Int32 = 123
-        
-        // when
-        viewModel.turnOff(remoteId: remoteId)
-        
-        // then
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOff, SUPLA.SubjectType.channel, remoteId)
-        ])
     }
 }
