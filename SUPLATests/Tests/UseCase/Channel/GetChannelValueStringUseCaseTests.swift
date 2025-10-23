@@ -134,7 +134,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "25.0 m")
+        XCTAssertEqual(valueText, "25.00 m")
     }
     
     func test_shouldGetDepthValueStringInKilometers() {
@@ -149,7 +149,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "25.0 km")
+        XCTAssertEqual(valueText, "25.00 km")
     }
     
     func test_shouldGetDepthValueStringInCentimeters() {
@@ -209,7 +209,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "25.0 m")
+        XCTAssertEqual(valueText, "25.00 m")
     }
     
     func test_shouldGetGpmValueString() {
