@@ -18,7 +18,7 @@
 
 import SharedCore
 
-extension LocalizedString {
+public extension LocalizedString {
     var string: String {
         switch onEnum(of: self) {
         case .constant(let item): item.text
@@ -33,34 +33,33 @@ extension LocalizedString {
 
 private extension LocalizedStringWithId {
     func toString() -> String {
-        var text = id.value
-        for argument in arguments {
-            text = format(text, argument)
+        switch (arguments.count) {
+        case 1: return id.value.arguments(toArgument(arguments[0]))
+        case 2: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]))
+        case 3: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]))
+        case 4: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]))
+        case 5: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]), toArgument(arguments[4]))
+        case 6: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]), toArgument(arguments[4]), toArgument(arguments[5]))
+        default: return id.value
         }
-        return text
     }
     
-    private func format(_ text: String, _ argument: Any) -> String {
+    private func toArgument(_ argument: Any) -> CVarArg {
         if let localizedString = argument as? LocalizedString {
             return localizedString.string
         } else if let string = argument as? String {
-            return text.arguments(string)
+            return string
         } else if let number = argument as? NSNumber {
             return switch (number.type) {
-            case .sInt8Type, .charType: text.arguments(number.int8Value)
-            case .sInt16Type, .shortType: text.arguments(number.int16Value)
-            case .sInt32Type: text.arguments(number.int32Value)
-            case .sInt64Type, .longType, .longLongType: text.arguments(number.int64Value)
-            case .intType, .nsIntegerType:
-                text.arguments(number.intValue)
-            case .doubleType:
-                text.arguments(number.doubleValue)
-            case .floatType, .float32Type, .float64Type, .cgFloatType:
-                text.arguments(number.floatValue)
-            case .cfIndexType:
-                fatalError("Unsupported argument type: \(type(of: argument))")
-            @unknown default:
-                fatalError("Unsupported argument type: \(type(of: argument))")
+            case .sInt8Type, .charType: number.int8Value
+            case .sInt16Type, .shortType: number.int16Value
+            case .sInt32Type: number.int32Value
+            case .sInt64Type, .longType, .longLongType: number.int64Value
+            case .intType, .nsIntegerType: number.intValue
+            case .doubleType: number.doubleValue
+            case .floatType, .float32Type, .float64Type, .cgFloatType: number.floatValue
+            case .cfIndexType: fatalError("Unsupported argument type: \(type(of: argument))")
+            @unknown default: fatalError("Unsupported argument type: \(type(of: argument))")
             }
         } else {
             fatalError("Unsupported argument type: \(type(of: argument))")

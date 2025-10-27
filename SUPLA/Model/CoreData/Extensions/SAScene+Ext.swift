@@ -35,5 +35,5 @@ extension SAScene {
 }
 
 extension SAScene: BaseCellData {
-    var infoSupported: Bool { false }
+    var showInfoIcon: Bool { false }
 }

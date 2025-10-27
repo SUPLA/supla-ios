@@ -583,6 +583,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: žádná odpověď serveru";
 "lastconnectionresetcause_wifi_connection_lost" = "2: ztráta Wi-Fi připojení";
 "lastconnectionresetcause_server_connection_lost" = "3: restart připojení k serveru";
+"state_dialog_last_known_state" = "Offline – poslední známý stav:";
 
 /* Change caption */
 "change_caption_channel_name" = "Název kanálu";

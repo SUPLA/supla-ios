@@ -625,6 +625,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: keine Serverantwort";
 "lastconnectionresetcause_wifi_connection_lost" = "2: Unterbrechung der WiFi-Verbindung";
 "lastconnectionresetcause_server_connection_lost" = "3: Zurücksetzung der Verbindung mit dem Server";
+"state_dialog_last_known_state" = "Offline – letzter bekannter Status:";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";

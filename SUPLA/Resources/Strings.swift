@@ -583,6 +583,7 @@ struct Strings {
         static let connectionResetCauseActivityTimeout = "lastconnectionresetcause_activity_timeout".toLocalized()
         static let connectionResetCauseWifiConnectionLost = "lastconnectionresetcause_wifi_connection_lost".toLocalized()
         static let connectionResetCauseServerConnectionLost = "lastconnectionresetcause_server_connection_lost".toLocalized()
+        static let lastKnownState = "state_dialog_last_known_state".toLocalized()
     }
     
     struct ChangeCaption {

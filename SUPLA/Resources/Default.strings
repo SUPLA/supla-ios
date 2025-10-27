@@ -452,6 +452,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: server timeout";
 "lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi connection lost";
 "lastconnectionresetcause_server_connection_lost" = "3: server connection lost";
+"state_dialog_last_known_state" = "Offline - last known state:";
 
 /* Change caption */
 "change_caption_header" = "Caption Change";

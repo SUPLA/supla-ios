@@ -618,6 +618,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: server timeout";
 "lastconnectionresetcause_wifi_connection_lost" = "2: connessione Wi-Fi persa";
 "lastconnectionresetcause_server_connection_lost" = "3: connessione Server persa";
+"state_dialog_last_known_state" = "Offline – ultimo stato noto:";
 
 /* Change caption */
 "change_caption_channel_name" = "Nome Canale";

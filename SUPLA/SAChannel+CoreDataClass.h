@@ -38,11 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setChannelType:(int)type;
 - (double) totalForwardActiveEnergy;
 - (double) totalForwardActiveEnergyFromSubValue;
-- (NSNumber *) lightSourceLifespanLeft;
-- (int) warningLevel;
 - (UIImage *) stateIcon;
-- (UIImage *) warningIcon;
-- (NSString *) warningMessage;
 - (SAChannelStateExtendedValue *)channelState;
 @end
 

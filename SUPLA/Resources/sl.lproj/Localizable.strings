@@ -583,6 +583,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: ni odgovora strežnika";
 "lastconnectionresetcause_wifi_connection_lost" = "2: izguba Wi-Fi povezave";
 "lastconnectionresetcause_server_connection_lost" = "3: ponovni zagon povezave s strežnikom";
+"state_dialog_last_known_state" = "Brez povezave – zadnje znano stanje:";
 
 /* Change caption */
 "change_caption_channel_name" = "Ime kanala";

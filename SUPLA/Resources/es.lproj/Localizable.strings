@@ -583,6 +583,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: sin respuesta del servidor";
 "lastconnectionresetcause_wifi_connection_lost" = "2: Conexión Wi-Fi perdida";
 "lastconnectionresetcause_server_connection_lost" = "3: restablecimiento de la conexión del servidor";
+"state_dialog_last_known_state" = "Sin conexión – último estado conocido:";
 
 /* Change caption */
 "change_caption_channel_name" = "Nombre del canal";

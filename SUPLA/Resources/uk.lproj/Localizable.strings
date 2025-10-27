@@ -584,6 +584,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: немає відповіді сервера";
 "lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi з’єднання втрачено";
 "lastconnectionresetcause_server_connection_lost" = "3: скидання підключення до сервера";
+"state_dialog_last_known_state" = "Офлайн – останній відомий стан:";
 
 /* Change caption */
 "change_caption_channel_name" = "Назва каналу";

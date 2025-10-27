@@ -1079,9 +1079,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) onChannelState:(SAChannelStateExtendedValue*)state {
-    NSLog(@"Channel state update for: %d", state.channelId.intValue);
+    NSLog(@"Channel state update for: %d", state.channelId);
     [UseCaseLegacyWrapper updateChannelState:state.state channelId:state.state.ChannelID];
-    [self onChannelValueChanged: state.channelId.intValue isGroup:NO];
+    [self onChannelValueChanged: state.channelId isGroup:NO];
     [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
 }
 

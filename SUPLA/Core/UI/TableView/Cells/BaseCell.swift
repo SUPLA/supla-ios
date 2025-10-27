@@ -21,7 +21,7 @@ import RxSwift
 import SharedCore
 
 protocol BaseCellData {
-    var infoSupported: Bool { get }
+    var showInfoIcon: Bool { get }
 }
 
 class BaseCell<T: BaseCellData>: MGSwipeTableCell {
@@ -68,7 +68,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
                 infoView.isHidden = !showChannelInfo
                 return
             }
-            infoView.isHidden = !showChannelInfo || !data.infoSupported || !online()
+            infoView.isHidden = !showChannelInfo || !data.showInfoIcon
         }
     }
     
@@ -246,7 +246,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
             )
         }
         
-        infoView.isHidden = !showChannelInfo || !data.infoSupported || !online()
+        infoView.isHidden = !showChannelInfo || !data.showInfoIcon
     }
     
     func timerEndDate() -> Date? { nil }
