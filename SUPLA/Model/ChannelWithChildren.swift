@@ -78,8 +78,9 @@ extension ChannelWithChildren {
 }
 
 extension ChannelWithChildren: BaseCellData {
-    var infoSupported: Bool {
-        channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0
+    var showInfoIcon: Bool {
+        (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.value?.status.online == true)
+            || channel.state != nil
     }
 }
 

@@ -17,46 +17,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAExtendedValue.h"
+#import "SharedCore/SharedCore.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelStateExtendedValue : SAExtendedValue
 -(TDSC_ChannelState)state;
--(NSNumber *)channelId;
--(NSString *)channelIdString;
--(NSString *)switchCycleCount;
--(NSNumber *)ipv4;
--(NSString *)ipv4String;
--(NSData *)macAddress;
--(NSString *)macAddressString;
--(NSNumber *)batteryLevel;
--(NSString *)batteryLevelString;
--(nullable NSNumber *)isBatteryPowered;
--(NSNumber *)wiFiSignalStrength;
--(NSString *)wiFiSignalStrengthString;
--(NSNumber *)wiFiRSSI;
--(NSString *)wiFiRSSIString;
--(NSNumber *)bridgeNodeSignalStrength;
--(NSString *)bridgeNodeSignalStrengthString;
--(NSNumber *)uptime;
--(NSString *)uptimeString;
--(NSNumber *)connectionUptime;
--(NSString *)connectionUptimeString;
--(NSNumber *)isBridgeNodeOnline;
--(NSString *)isBridgeNodeOnlineString;
--(NSNumber *)batteryHealth;
--(NSString *)batteryHealthString;
--(NSNumber *)lastConnectionResetCause;
--(NSString *)lastConnectionResetCauseString;
--(NSNumber *)lightSourceLifespan;
--(NSString *)lightSourceLifespanString;
--(NSNumber *)lightSourceLifespanLeft;
--(NSNumber *)lightSourceOperatingTime;
--(NSNumber *)lightSourceOperatingTimePercent;
--(NSNumber *)lightSourceOperatingTimePercentLeft;
--(NSString *)lightSourceOperatingTimeString;
--(BOOL) hasBattery;
-
 -(id)initWithChannelState:(TDSC_ChannelState *)state;
 @end
 

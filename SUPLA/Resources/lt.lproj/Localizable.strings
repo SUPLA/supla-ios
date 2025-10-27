@@ -585,6 +585,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: serveris neatsako";
 "lastconnectionresetcause_wifi_connection_lost" = "2: prarastas Wi-Fi ryšys";
 "lastconnectionresetcause_server_connection_lost" = "3: ryšys su serveriu nustatomas iš nauja";
+"state_dialog_last_known_state" = "Neprisijungęs – paskutinė žinoma būsena:";
 
 /* Change caption */
 "change_caption_channel_name" = "Kanalo pavadinimas";

@@ -28,6 +28,11 @@ extension StateDialogFeature {
 
                 ZStack {
                     VStack(spacing: 0) {
+                        if (!viewModel.online) {
+                            OfflineView()
+                        } else {
+                            Spacer().frame(height: Distance.default)
+                        }
                         StateDialogValueRow(Strings.General.function, viewModel.function)
                         ForEach(Array(viewModel.values.keys).sorted { $0.rawValue < $1.rawValue }) { key in
                             StateDialogValueRow(key.label, viewModel.values[key] ?? "")
@@ -36,8 +41,6 @@ extension StateDialogFeature {
 
                     if (viewModel.loading) {
                         LoadingView()
-                    } else if (!viewModel.online) {
-                        OfflineView()
                     }
                 }.fixedSize(horizontal: false, vertical: true)
 
@@ -95,7 +98,6 @@ private struct StateDialogHeader: SwiftUI.View {
             SuplaCore.Dialog.Divider()
                 .padding(.top, Distance.small)
         }
-        .padding([.bottom], Distance.default)
     }
 }
 
@@ -147,12 +149,14 @@ private struct OfflineView: View {
                 .renderingMode(.template)
                 .frame(width: Dimens.iconSize, height: Dimens.iconSize)
                 .foregroundColor(.Supla.gray)
-            Text("offline")
+            Text(Strings.State.lastKnownState)
                 .fontBodyMedium()
                 .textColor(.Supla.gray)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.Supla.surface)
+        .padding([.leading, .trailing], Distance.default)
+        .padding([.top, .bottom], Distance.small)
     }
 }
 

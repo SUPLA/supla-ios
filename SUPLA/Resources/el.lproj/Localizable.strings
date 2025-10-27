@@ -583,6 +583,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: δεν υπάρχει απόκριση διακομιστή";
 "lastconnectionresetcause_wifi_connection_lost" = "2: απώλεια σύνδεσης Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3: επαναφέρετε τη σύνδεση με τον διακομιστή";
+"state_dialog_last_known_state" = "Εκτός σύνδεσης – τελευταία γνωστή κατάσταση:";
 
 /* Change caption */
 "change_caption_channel_name" = "Όνομα καναλιού";

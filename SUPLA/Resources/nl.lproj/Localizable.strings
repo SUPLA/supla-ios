@@ -583,6 +583,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: geen antwoord van de server";
 "lastconnectionresetcause_wifi_connection_lost" = "2: verlies van Wi-Fi verbinding";
 "lastconnectionresetcause_server_connection_lost" = "3: Reset de verbinding met de server";
+"state_dialog_last_known_state" = "Offline - laatst bekende status:";
 
 /* Change caption */
 "change_caption_channel_name" = "Naam kanaal";

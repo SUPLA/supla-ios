@@ -2112,6 +2112,50 @@ extension SharedCore.Skie.KotlinxSerializationCore.StructureKind {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreStructureKind
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreStructureKind
+extension SharedCore.SuplaChannelStatePrintable {
+  public var batteryHealthString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var batteryLevelString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var batteryPoweredString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var bridgeNodeOnlineString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var bridgeNodeSignalStrengthString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var channelIdString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var connectionUptimeString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var lastConnectionResetCauseString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var lightSourceOperatingTimePercent: SharedCore.KotlinFloat? {
+    get
+  }
+  public var lightSourceOperatingTimePercentLeft: SharedCore.KotlinFloat? {
+    get
+  }
+  public var switchCycleCountString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var uptimeString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var wifiRssiString: (any SharedCore.LocalizedString)? {
+    get
+  }
+  public var wifiSignalStrengthString: (any SharedCore.LocalizedString)? {
+    get
+  }
+}
 extension Swift.Bool {
   public var localizedString: any SharedCore.LocalizedString {
     get

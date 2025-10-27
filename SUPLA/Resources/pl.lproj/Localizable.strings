@@ -659,6 +659,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: brak odpowiedzi serwera";
 "lastconnectionresetcause_wifi_connection_lost" = "2: utrata połączenia Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3: reset połączenia z serwerem";
+"state_dialog_last_known_state" = "Offline – ostatni znany stan:";
 
 /* Change caption */
 "change_caption_header" = "Zmiana nazwy";

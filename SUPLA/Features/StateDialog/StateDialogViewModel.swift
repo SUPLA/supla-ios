@@ -18,6 +18,7 @@
     
 import RxSwift
 import SwiftUI
+import SharedCore
 
 private let REFRESH_INTERVAL_S = 4.0
 
@@ -135,6 +136,8 @@ extension StateDialogFeature {
             
             if (!channels[currentIdx].infoSupported) {
                 values = [StateDialogItem.channelId: String(channels[currentIdx].remoteId)]
+            } else if let state = channels[currentIdx].lastKnownState {
+                values = StateDialogFeature.StateDialogItem.values(state)
             }
             
             if (!online || !channels[currentIdx].infoSupported) {
@@ -179,32 +182,14 @@ extension StateDialogFeature {
             let remoteId = channels[currentIdx].remoteId
             if let userInfo = notification.userInfo,
                let channelState = userInfo["state"] as? SAChannelStateExtendedValue,
-               remoteId == channelState.channelId().int32Value
+               remoteId == channelState.channelId
             {
-                lightSourceLifespan = channelState.lightSourceLifespanInt()
+                lightSourceLifespan = channelState.lightSourceLifespanForPrintable?.int32Value ?? 0
+                channels[currentIdx].lastKnownState = channelState
                 
-                let values = StateDialogFeature.StateDialogItem.allCases
-                    .reduce(into: [StateDialogFeature.StateDialogItem: String?]()) {
-                        $0[$1] = $1.extract(from: channelState)
-                    }
-                    .filter { $0.value != nil && $0.value?.isEmpty == false }
-                    .mapValues { $0! }
-
-                self.values = values
+                values = StateDialogFeature.StateDialogItem.values(channelState)
                 loading = false
             }
-        }
-    }
-}
-
-extension SAChannelStateExtendedValue {
-    func lightSourceLifespanInt() -> Int32 {
-        let lifespan: NSNumber? = lightSourceLifespan()
-        
-        if let lifespan {
-            return lifespan.int32Value
-        } else {
-            return 0
         }
     }
 }
@@ -241,6 +226,7 @@ private extension SAChannel {
             caption: getCaptionUseCase.invoke(data: shareable).string,
             showLifespanSettingsButton: (flags & Int64(SUPLA_CHANNEL_FLAG_LIGHTSOURCELIFESPAN_SETTABLE)) > 0,
             infoSupported: (flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) > 0,
+            lastKnownState: state,
             online: status().online
         )
     }
@@ -252,5 +238,6 @@ private struct ChannelData {
     let caption: String
     let showLifespanSettingsButton: Bool
     let infoSupported: Bool
+    var lastKnownState: SharedCore.SuplaChannelStatePrintable?
     var online: Bool
 }

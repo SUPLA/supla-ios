@@ -57232,6 +57232,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Function",
         "name": "ifTrue",
         "printedName": "ifTrue(value:callback:)",
@@ -61074,6 +61084,880 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SuplaChannelStatePrintable",
+        "printedName": "SuplaChannelStatePrintable",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "batteryHealthString",
+            "printedName": "batteryHealthString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "batteryLevelString",
+            "printedName": "batteryLevelString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "batteryPoweredString",
+            "printedName": "batteryPoweredString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "bridgeNodeOnlineString",
+            "printedName": "bridgeNodeOnlineString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "bridgeNodeSignalStrengthString",
+            "printedName": "bridgeNodeSignalStrengthString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "channelIdString",
+            "printedName": "channelIdString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "connectionUptimeString",
+            "printedName": "connectionUptimeString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lastConnectionResetCauseString",
+            "printedName": "lastConnectionResetCauseString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lightSourceOperatingTimePercent",
+            "printedName": "lightSourceOperatingTimePercent",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.KotlinFloat?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "KotlinFloat",
+                    "printedName": "SharedCore.KotlinFloat",
+                    "usr": "c:objc(cs)SharedCoreFloat"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "SharedCore.KotlinFloat?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "KotlinFloat",
+                        "printedName": "SharedCore.KotlinFloat",
+                        "usr": "c:objc(cs)SharedCoreFloat"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lightSourceOperatingTimePercentLeft",
+            "printedName": "lightSourceOperatingTimePercentLeft",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.KotlinFloat?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "KotlinFloat",
+                    "printedName": "SharedCore.KotlinFloat",
+                    "usr": "c:objc(cs)SharedCoreFloat"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "SharedCore.KotlinFloat?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "KotlinFloat",
+                        "printedName": "SharedCore.KotlinFloat",
+                        "usr": "c:objc(cs)SharedCoreFloat"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "switchCycleCountString",
+            "printedName": "switchCycleCountString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "uptimeString",
+            "printedName": "uptimeString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "wifiRssiString",
+            "printedName": "wifiRssiString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "wifiSignalStrengthString",
+            "printedName": "wifiSignalStrengthString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "c:objc(pl)SharedCoreSuplaChannelStatePrintable",
+        "moduleName": "SharedCore",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "objc_name": "SharedCoreSuplaChannelStatePrintable",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           }
         ]
       },
