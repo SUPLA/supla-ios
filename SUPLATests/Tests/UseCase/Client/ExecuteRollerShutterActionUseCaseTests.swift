@@ -46,7 +46,7 @@ final class ExecuteRollerShutterActionUseCaseTests: CompletableTestCase {
         let action: Action = .reveal
         let type: SubjectType = .channel
         let remoteId: Int32 = 123
-        let percentage: CGFloat = 33
+        let percentage: Int = 33
         
         suplaClientProvider.suplaClientMock.executeActionReturns = true
         
@@ -75,7 +75,7 @@ final class ExecuteRollerShutterActionUseCaseTests: CompletableTestCase {
         let action: Action = .reveal
         let type: SubjectType = .group
         let remoteId: Int32 = 123
-        let percentage: CGFloat = 33
+        let percentage: Int = 33
         
         // when
         useCase.invoke(action: action, type: type, remoteId: remoteId, percentage: percentage)

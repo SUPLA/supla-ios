@@ -84,4 +84,8 @@ extension CGFloat: ScopeFunctions {
     func roundToTenths() -> CGFloat {
         (self * 10).rounded() / 10
     }
+    
+    func roundToInt() -> Int {
+        Int(rounded())
+    }
 }
