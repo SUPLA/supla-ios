@@ -216,7 +216,9 @@ private extension SAChannelBase {
              .septicTank,
              .waterTank,
              .containerLevelSensor,
-             .floodSensor: nil
+             .floodSensor,
+             .binarySensor,
+             .motionSensor: nil
         }
     }
 }

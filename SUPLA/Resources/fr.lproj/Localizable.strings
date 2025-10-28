@@ -309,6 +309,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Interrupteur pour la source de chaleur ou de froid";
 "channel_caption_humidity" = "Humidité";
 "channel_caption_humidityandtemperature" = "Température et humidité";
+"channel_caption_water_tank" = "Réservoir d'eau";
+"channel_caption_container_level_sensor" = "Capteur de niveau de conteneur";
+"channel_caption_flood_sensor" = "Détecteur d'inondation";
+"channel_caption_motion_sensor" = "Détecteur de mouvement";
+"channel_caption_binary_sensor" = "Capteur binaire";
+"channel_caption_container" = "Conteneur";
+"channel_caption_septic_tank" = "Fosse septique";
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria (%d - %@): %d%%";
 "channel_uv_warning" = "La durée de vie de l'illuminateur uv est de %.01f%%. Planifiez son remplacement.";
@@ -561,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement. Êtes-vous sûr de vouloir ouvrir la vanne à partir de l'application?";
 "valve_warning_manually_closed_short" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement.";
+"valve_detail_sensors" = "Capteurs connectés";
+"valve_error_sensor_offline" = "Détecteur d'inondation non disponible – risque d'inondation non détectée.";
 
 /* State */
 "state_channel_id" = "Id du canal";
@@ -589,6 +598,9 @@
 "change_caption_channel_name" = "Nom du canal";
 "change_caption_scene_name" = "Nom de la scène";
 "change_caption_location_name" = "Nom de la localisation";
+
+/* Container */
+"container_invalid_sensor_state" = "État de capteur invalide.";
 
 /* Car play */
 "car_play_action" = "Action: %@";

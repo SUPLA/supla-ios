@@ -72,7 +72,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_PUMPSWITCH,
              SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
              SUPLA_CHANNELFNC_FLOOD_SENSOR,
-             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR: .off
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR,
+             SUPLA_CHANNELFNC_MOTION_SENSOR,
+             SUPLA_CHANNELFNC_BINARY_SENSOR: .off
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .complex([.off, .off])
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .opaque
@@ -125,7 +127,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_PUMPSWITCH,
              SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
              SUPLA_CHANNELFNC_FLOOD_SENSOR,
-             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR:
+             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR,
+             SUPLA_CHANNELFNC_MOTION_SENSOR,
+             SUPLA_CHANNELFNC_BINARY_SENSOR:
             return valueWrapper.isClosed ? .on : .off
         case SUPLA_CHANNELFNC_DIMMER:
             return valueWrapper.brightness > 0 ? .on : .off

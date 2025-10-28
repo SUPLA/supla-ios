@@ -324,6 +324,8 @@
 "channel_caption_septic_tank" = "Szambo";
 "channel_caption_container_level_sensor" = "Czujnik poziomu zbiornika";
 "channel_caption_flood_sensor" = "Czujnik zalania";
+"channel_caption_motion_sensor" = "Czujnik ruchu";
+"channel_caption_binary_sensor" = "Czujnik binarny";
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";
 "scene_inactive" = "Scena jest nieaktywna";

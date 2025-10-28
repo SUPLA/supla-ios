@@ -226,7 +226,9 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              .septicTank,
              .waterTank,
              .containerLevelSensor,
-             .floodSensor:
+             .floodSensor,
+             .motionSensor,
+             .binarySensor:
             return cellIdForIconValue
         }
     }

@@ -295,9 +295,11 @@
 "channel_caption_humidityandtemperature" = "Temperatur- und Feuchtigkeitssensor";
 "channel_caption_container" = "Behälter";
 "channel_caption_water_tank" = "Wassertank";
-"channel_caption_septic_tank" = "Septischer Tank";
+"channel_caption_septic_tank" = "Sickergrube";
 "channel_caption_container_level_sensor" = "Behälterfüllstandssensor";
 "channel_caption_flood_sensor" = "Flutsensor";
+"channel_caption_motion_sensor" = "Bewegungssensor";
+"channel_caption_binary_sensor" = "Binärsensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_not_found" = "Kanal nicht gefunden";
 "scene_inactive" = "Szene ist nicht active";

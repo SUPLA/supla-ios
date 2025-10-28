@@ -420,7 +420,9 @@ private extension SharedCore.SuplaFunction {
              .floodSensor,
              .pumpSwitch,
              .heatOrColdSourceSwitch,
-             .none: []
+             .none,
+             .motionSensor,
+             .binarySensor: []
 
         case .controllingTheDoorLock,
              .controllingTheGatewayLock: [.open]

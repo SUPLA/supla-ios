@@ -309,6 +309,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Διακόπτης πηγής θερμότητας ή κρύου";
 "channel_caption_humidity" = "Υγρασία";
 "channel_caption_humidityandtemperature" = "Θερμοκρασία και υγρασία";
+"channel_caption_water_tank" = "Δεξαμενή νερού";
+"channel_caption_container_level_sensor" = "Αισθητήρας στάθμης δοχείου";
+"channel_caption_flood_sensor" = "Αισθητήρας πλημμύρας";
+"channel_caption_motion_sensor" = "Αισθητήρας κίνησης";
+"channel_caption_binary_sensor" = "Δυαδικός αισθητήρας";
+"channel_caption_container" = "Δοχείο";
+"channel_caption_septic_tank" = "Βόθρος";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
 "channel_uv_warning" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Προγραμματίστε την αντικατάστασή του.";
@@ -561,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα. Είστε σίγουροι ότι θέλετε να ανοίξετε τη βαλβίδα μέσω της εφαρμογής;!";
 "valve_warning_manually_closed_short" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα.";
+"valve_detail_sensors" = "Συνδεδεμένοι αισθητήρες";
+"valve_error_sensor_offline" = "Ο αισθητήρας πλημμύρας δεν είναι διαθέσιμος – κίνδυνος μη ανίχνευσης πλημμύρας.";
 
 /* State */
 "state_channel_id" = "Αναγνωριστικό καναλιού";
@@ -589,6 +598,9 @@
 "change_caption_channel_name" = "Όνομα καναλιού";
 "change_caption_scene_name" = "Όνομα σκηνής";
 "change_caption_location_name" = "Όνομα τοποθεσίας";
+
+/* Container */
+"container_invalid_sensor_state" = "Μη έγκυρη κατάσταση αισθητήρα.";
 
 /* Car play */
 "car_play_action" = "Ενέργεια: %@";

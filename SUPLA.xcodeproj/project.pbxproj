@@ -819,6 +819,8 @@
 		A58D1B8C2CDD695400B5A019 /* GetChannelDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B8B2CDD694900B5A019 /* GetChannelDefaultCaptionUseCase.swift */; };
 		A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */; };
 		A58E45F42EAFB58D001F241C /* LocalizedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E45F32EAFB589001F241C /* LocalizedStringTests.swift */; };
+		A58E45F62EB11D7A001F241C /* MotionSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E45F52EB11D73001F241C /* MotionSensorIconNameProducer.swift */; };
+		A58E45F82EB11EDA001F241C /* BinarySensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E45F72EB11ED5001F241C /* BinarySensorIconNameProducer.swift */; };
 		A590790A2EAF620500E6725C /* SAChannelStateExtendedValue+Printable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59079092EAF61F800E6725C /* SAChannelStateExtendedValue+Printable.swift */; };
 		A593185F2CD8C11C009C7301 /* ElectricityMeterValueProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */; };
 		A594ADC02C9C07C600780EF3 /* ThermostatIndicatorIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADBF2C9C07C600780EF3 /* ThermostatIndicatorIcon.swift */; };
@@ -2520,6 +2522,8 @@
 		A58D1B8B2CDD694900B5A019 /* GetChannelDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
 		A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A58E45F32EAFB589001F241C /* LocalizedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringTests.swift; sourceTree = "<group>"; };
+		A58E45F52EB11D73001F241C /* MotionSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionSensorIconNameProducer.swift; sourceTree = "<group>"; };
+		A58E45F72EB11ED5001F241C /* BinarySensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySensorIconNameProducer.swift; sourceTree = "<group>"; };
 		A59079092EAF61F800E6725C /* SAChannelStateExtendedValue+Printable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelStateExtendedValue+Printable.swift"; sourceTree = "<group>"; };
 		A593185E2CD8C119009C7301 /* ElectricityMeterValueProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterValueProviderTest.swift; sourceTree = "<group>"; };
 		A594ADBF2C9C07C600780EF3 /* ThermostatIndicatorIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIndicatorIcon.swift; sourceTree = "<group>"; };
@@ -4337,6 +4341,8 @@
 		A530EE122A56F55400F8DAEE /* IconNameProducers */ = {
 			isa = PBXGroup;
 			children = (
+				A58E45F72EB11ED5001F241C /* BinarySensorIconNameProducer.swift */,
+				A58E45F52EB11D73001F241C /* MotionSensorIconNameProducer.swift */,
 				A5DF8A262D63442500C210DA /* WaterTankIconNameProducer.swift */,
 				A5DF8A242D633D0000C210DA /* SepticTankIconNameProducer.swift */,
 				A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */,
@@ -7766,6 +7772,7 @@
 				A56504E72E422FE3008DAE3D /* SetPasswordDialog.swift in Sources */,
 				A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
+				A58E45F82EB11EDA001F241C /* BinarySensorIconNameProducer.swift in Sources */,
 				A58D1B842CDCF28700B5A019 /* Supla+Shareable.swift in Sources */,
 				A5B3CBF12B625DBA00F95AC3 /* PressureValueProvider.swift in Sources */,
 				018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */,
@@ -8737,6 +8744,7 @@
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				A5AD70212C00B6AF00A36318 /* WindowVerticalControls.swift in Sources */,
 				A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */,
+				A58E45F62EB11D7A001F241C /* MotionSensorIconNameProducer.swift in Sources */,
 				A5CF3D6C2DD4BB9200207384 /* UserIcon+Ext.swift in Sources */,
 				A5552EDA2D537A6800A3F6A2 /* Dictonary+Ext.swift in Sources */,
 				A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */,

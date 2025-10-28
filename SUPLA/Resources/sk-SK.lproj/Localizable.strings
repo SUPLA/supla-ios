@@ -309,6 +309,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Prepínač pre zdroj tepla alebo chladu";
 "channel_caption_humidity" = "Vlhkosť";
 "channel_caption_humidityandtemperature" = "Teplota a vlhkosť";
+"channel_caption_water_tank" = "Nádrž na vodu";
+"channel_caption_container_level_sensor" = "Senzor hladiny kontajnera";
+"channel_caption_flood_sensor" = "Senzor zaplavenia";
+"channel_caption_motion_sensor" = "Senzor pohybu";
+"channel_caption_binary_sensor" = "Binárny senzor";
+"channel_caption_container" = "Kontajner";
+"channel_caption_septic_tank" = "Septik";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
 "channel_uv_warning" = "Životnosť UV žiariča je %.01f%%. Naplánujte jeho výmenu.";
@@ -559,6 +566,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne. Naozaj chcete otvoriť ventil pomocou aplikácie?!";
 "valve_warning_manually_closed_short" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne.";
+"valve_detail_sensors" = "Pripojené senzory";
+"valve_error_sensor_offline" = "Senzor zaplavenia nedostupný – riziko nezistenej záplavy.";
 
 /* State */
 "state_channel_id" = "ID kanála";
@@ -587,6 +596,9 @@
 "change_caption_channel_name" = "Názov kanála";
 "change_caption_scene_name" = "Názov scény";
 "change_caption_location_name" = "Názov miesta";
+
+/* Container */
+"container_invalid_sensor_state" = "Neplatný stav senzora.";
 
 /* Car play */
 "car_play_action" = "Činnosť: %@";

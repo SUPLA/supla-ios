@@ -310,6 +310,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Bryter for varme- eller kuldekilde";
 "channel_caption_humidity" = "Fuktighet";
 "channel_caption_humidityandtemperature" = "Temperatur og fuktighet";
+"channel_caption_water_tank" = "Vanntank";
+"channel_caption_container_level_sensor" = "Beholder nivåsensor";
+"channel_caption_flood_sensor" = "Flomsensor";
+"channel_caption_motion_sensor" = "Bevegelsessensor";
+"channel_caption_binary_sensor" = "Binærsensor";
+"channel_caption_container" = "Beholder";
+"channel_caption_septic_tank" = "Septiktank";
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå (%d - %@): %d%%";
 "channel_uv_warning" = "Levetiden til uv-lampen er %.01f%%.";
@@ -561,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Ventilen ble stengt i manuell modus. Før du åpner den, sørg for at den ikke har vært lukket på grunn av flom. For å deaktivere advarselen, åpne ventilen manuelt. Er du sikker på at du vil åpne ventilen fra appen?!";
 "valve_warning_manually_closed_short" = "Ventilen ble stengt i manuell modus. Før du åpner den, sørg for at den ikke har vært lukket på grunn av flom. For å deaktivere advarselen, åpne ventilen manuelt.";
+"valve_detail_sensors" = "Tilkoblede sensorer";
+"valve_error_sensor_offline" = "Flomsensor utilgjengelig – risiko for uoppdaget flom.";
 
 /* State */
 "state_channel_id" = "Kanal-ID";
@@ -589,6 +598,9 @@
 "change_caption_channel_name" = "Kanalnavn";
 "change_caption_scene_name" = "Navn på scenen";
 "change_caption_location_name" = "Stedsnavn";
+
+/* Container */
+"container_invalid_sensor_state" = "Ugyldig sensorstatus.";
 
 /* Car play */
 "car_play_action" = "Handling: %@";

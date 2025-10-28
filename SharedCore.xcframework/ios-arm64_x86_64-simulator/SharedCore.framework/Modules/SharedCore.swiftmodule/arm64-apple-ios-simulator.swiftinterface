@@ -960,6 +960,8 @@ extension SharedCore.__Icon {
   case channelCaptionWaterTank
   case channelCaptionContainerLevelSensor
   case channelCaptionFloodSensor
+  case channelCaptionMotionSensor
+  case channelCaptionBinarySensor
   case channelStatusAwaiting
   case channelStatusUpdating
   case channelStatusNotAvailable
@@ -1290,6 +1292,8 @@ extension SharedCore.__ValueUnit {
   case waterTank
   case containerLevelSensor
   case floodSensor
+  case motionSensor
+  case binarySensor
   public var hasThermostatSubfunction: Swift.Bool {
     get
   }
