@@ -311,6 +311,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Šilumos arba vėsinimo šaltinio perjungiklis";
 "channel_caption_humidity" = "Drėgmė";
 "channel_caption_humidityandtemperature" = "Temperatūra ir drėgmė";
+"channel_caption_water_tank" = "Vandens talpykla";
+"channel_caption_container_level_sensor" = "Konteinerio lygio jutiklis";
+"channel_caption_flood_sensor" = "Potvynio jutiklis";
+"channel_caption_motion_sensor" = "Judesio jutiklis";
+"channel_caption_binary_sensor" = "Dvejetainis jutiklis";
+"channel_caption_container" = "Konteineris";
+"channel_caption_septic_tank" = "Septikas";
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
 "channel_uv_warning" = "UV spinduolio tarnavimo laikas tai %.01f%%. Suplanuoti jo pakeitimą.";
@@ -563,6 +570,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu. Ar tikrai norite atidaryti vožtuvą programoje?!";
 "valve_warning_manually_closed_short" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu.";
+"valve_detail_sensors" = "Prijungti jutikliai";
+"valve_error_sensor_offline" = "Potvynio jutiklis nepasiekiamas – neaptikto potvynio rizika.";
 
 /* State */
 "state_channel_id" = "Kanalo ID";
@@ -591,6 +600,9 @@
 "change_caption_channel_name" = "Kanalo pavadinimas";
 "change_caption_scene_name" = "Scenos pavadinimas";
 "change_caption_location_name" = "Vietos pavadinimas";
+
+/* Container */
+"container_invalid_sensor_state" = "Neteisinga jutiklio būsena.";
 
 /* Car play */
 "car_play_action" = "Veiksmas: %@";

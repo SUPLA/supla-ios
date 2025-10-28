@@ -309,6 +309,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Перемикач джерела тепла або холоду";
 "channel_caption_humidity" = "Вологість";
 "channel_caption_humidityandtemperature" = "Температура і вологість";
+"channel_caption_water_tank" = "Бак для води";
+"channel_caption_container_level_sensor" = "Датчик рівня контейнера";
+"channel_caption_flood_sensor" = "Датчик затоплення";
+"channel_caption_motion_sensor" = "Датчик руху";
+"channel_caption_binary_sensor" = "Бінарний датчик";
+"channel_caption_container" = "Контейнер";
+"channel_caption_septic_tank" = "Септик";
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї (%d - %@): %d%%";
 "channel_uv_warning" = "Термін служби УФ-випромінювача становить %.01f%%. Заплануйте його заміну.";
@@ -562,6 +569,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";
 "valve_warning_manually_closed_short" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну.";
+"valve_detail_sensors" = "Підключені датчики";
+"valve_error_sensor_offline" = "Датчик затоплення недоступний – ризик невиявленого затоплення.";
 
 /* State */
 "state_channel_id" = "Ідентифікатор каналу";
@@ -589,6 +598,9 @@
 /* Change caption */
 "change_caption_channel_name" = "Назва каналу";
 "change_caption_location_name" = "Назва місця";
+
+/* Container */
+"container_invalid_sensor_state" = "Недійсний стан датчика.";
 
 /* Car play */
 "car_play_action" = "Подія: %@";

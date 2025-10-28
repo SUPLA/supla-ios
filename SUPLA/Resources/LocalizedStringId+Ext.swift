@@ -85,6 +85,8 @@ extension LocalizedStringId {
         case .channelCaptionPumpSwitch: Strings.General.Channel.captionPumpSwitch
         case .channelCaptionHeatOrColdSourceSwitch: Strings.General.Channel.captionHeatOrCouldSourceSwitch
         case .channelCaptionContainer: Strings.General.Channel.captionContainer
+        case .channelCaptionMotionSensor: Strings.General.Channel.captionMotionSensor
+        case .channelCaptionBinarySensor: Strings.General.Channel.captionBinarySensor
         case .channelCaptionUnknown: NSLocalizedString("Not supported function", comment: "")
 
         case .channelBatteryLevel: Strings.General.Channel.batteryLevel

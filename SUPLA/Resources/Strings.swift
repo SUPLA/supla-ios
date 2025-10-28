@@ -369,6 +369,8 @@ struct Strings {
             static let captionSepticTank = "channel_caption_septic_tank".toLocalized()
             static let captionContainerLevelSensor = "channel_caption_container_level_sensor".toLocalized()
             static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
+            static let captionMotionSensor = "channel_caption_motion_sensor".toLocalized()
+            static let captionBinarySensor = "channel_caption_binary_sensor".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
             

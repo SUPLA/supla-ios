@@ -308,6 +308,13 @@
 "channel_caption_general_purpose_meter" = "Počítací kanál";
 "channel_caption_humidity" = "Vlhkost";
 "channel_caption_humidityandtemperature" = "Teplota a vlhkost";
+"channel_caption_container" = "Kontejner";
+"channel_caption_septic_tank" = "Septik";
+"channel_caption_water_tank" = "Nádrž na vodu";
+"channel_caption_container_level_sensor" = "Snímač hladiny kontejneru";
+"channel_caption_flood_sensor" = "Povodňový senzor";
+"channel_caption_motion_sensor" = "Pohybový senzor";
+"channel_caption_binary_sensor" = "Binární senzor";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie (%d - %@): %d%%";
 "channel_uv_warning" = "Životnost UV zářiče je %.01f%%. Naplánovat jeho výměnu.";
@@ -561,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";
 "valve_warning_manually_closed_short" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.";
+"valve_detail_sensors" = "Připojené senzory";
+"valve_error_sensor_offline" = "Povodňový senzor nedostupný – riziko nezjištěné povodně.";
 
 /* State */
 "state_channel_id" = "Id kanálu";
@@ -589,6 +598,9 @@
 "change_caption_channel_name" = "Název kanálu";
 "change_caption_scene_name" = "Název scény";
 "change_caption_location_name" = "Název umístění";
+
+/* Container */
+"container_invalid_sensor_state" = "Neplatný stav senzoru.";
 
 /* Car play */
 "car_play_action" = "Akce: %@";

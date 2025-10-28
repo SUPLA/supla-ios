@@ -309,6 +309,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Schakelaar voor warmte- of koudebron";
 "channel_caption_humidity" = "Vochtigheid";
 "channel_caption_humidityandtemperature" = "Temperatuur en luchtvochtigheid";
+"channel_caption_water_tank" = "Watertank";
+"channel_caption_container_level_sensor" = "Niveausensor voor container";
+"channel_caption_flood_sensor" = "Vloedsensor";
+"channel_caption_motion_sensor" = "Bewegingssensor";
+"channel_caption_binary_sensor" = "Binaire sensor";
+"channel_caption_container" = "Container";
+"channel_caption_septic_tank" = "Septic tank";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
 "channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
@@ -561,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig. Weet je zeker dat je de klep wilt openen vanuit de toepassing!";
 "valve_warning_manually_closed_short" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig.";
+"valve_detail_sensors" = "Verbonden sensoren";
+"valve_error_sensor_offline" = "Watermelder niet beschikbaar – risico op onopgemerkte overstroming.";
 
 /* State */
 "state_channel_id" = "Kanaal id";
@@ -589,6 +598,9 @@
 "change_caption_channel_name" = "Naam kanaal";
 "change_caption_scene_name" = "Scènenaam";
 "change_caption_location_name" = "Naam van de plaats";
+
+/* Container */
+"container_invalid_sensor_state" = "Ongeldige sensorstatus.";
 
 /* Car play */
 "car_play_action" = "Actie: %@";

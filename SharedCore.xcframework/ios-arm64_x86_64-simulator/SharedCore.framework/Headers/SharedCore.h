@@ -2109,6 +2109,8 @@ __attribute__((swift_name("SuplaFunction")))
 @property (class, readonly) SharedCoreSuplaFunction *waterTank __attribute__((swift_name("waterTank")));
 @property (class, readonly) SharedCoreSuplaFunction *containerLevelSensor __attribute__((swift_name("containerLevelSensor")));
 @property (class, readonly) SharedCoreSuplaFunction *floodSensor __attribute__((swift_name("floodSensor")));
+@property (class, readonly) SharedCoreSuplaFunction *motionSensor __attribute__((swift_name("motionSensor")));
+@property (class, readonly) SharedCoreSuplaFunction *binarySensor __attribute__((swift_name("binarySensor")));
 @property (class, readonly) NSArray<SharedCoreSuplaFunction *> *entries __attribute__((swift_name("entries")));
 @property (readonly) BOOL hasThermostatSubfunction __attribute__((swift_name("hasThermostatSubfunction")));
 @property (readonly) int32_t value_ __attribute__((swift_name("value_")));
@@ -2802,6 +2804,8 @@ __attribute__((swift_name("LocalizedStringId")))
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionWaterTank __attribute__((swift_name("channelCaptionWaterTank")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionContainerLevelSensor __attribute__((swift_name("channelCaptionContainerLevelSensor")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelCaptionFloodSensor __attribute__((swift_name("channelCaptionFloodSensor")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelCaptionMotionSensor __attribute__((swift_name("channelCaptionMotionSensor")));
+@property (class, readonly) SharedCoreLocalizedStringId *channelCaptionBinarySensor __attribute__((swift_name("channelCaptionBinarySensor")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelStatusAwaiting __attribute__((swift_name("channelStatusAwaiting")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelStatusUpdating __attribute__((swift_name("channelStatusUpdating")));
 @property (class, readonly) SharedCoreLocalizedStringId *channelStatusNotAvailable __attribute__((swift_name("channelStatusNotAvailable")));

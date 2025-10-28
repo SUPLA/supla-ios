@@ -310,6 +310,13 @@
 "channel_caption_heat_or_cold_source_switch" = "Interruptor para fuente de calor o frío";
 "channel_caption_humidity" = "Humedad";
 "channel_caption_humidityandtemperature" = "Temperatura y humedad";
+"channel_caption_container" = "Contenedor";
+"channel_caption_septic_tank" = "Fosa séptica";
+"channel_caption_water_tank" = "Tanque de agua";
+"channel_caption_container_level_sensor" = "Sensor de nivel de contenedor";
+"channel_caption_flood_sensor" = "Sensor de inundación";
+"channel_caption_motion_sensor" = "Sensor de movimiento";
+"channel_caption_binary_sensor" = "Sensor binario";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería (%d - %@): %d%%";
 "channel_uv_warning" = "La vida útil de la lámpara ultravioleta es %.01f %%. Planee su reemplazo.";
@@ -561,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente. ¿Estás seguro de que quieres abrir la válvula desde la aplicación?";
 "valve_warning_manually_closed_short" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente.";
+"valve_detail_sensors" = "Sensores conectados";
+"valve_error_sensor_offline" = "Sensor de inundación no disponible – riesgo de inundación no detectada.";
 
 /* State */
 "state_channel_id" = "ID del Canal";
@@ -589,6 +598,9 @@
 "change_caption_channel_name" = "Nombre del canal";
 "change_caption_scene_name" = "Nombre de la escena";
 "change_caption_location_name" = "Nombre de la localización";
+
+/* Container */
+"container_invalid_sensor_state" = "Estado del sensor no válido.";
 
 /* Car play */
 "car_play_action" = "Acción: %@";
