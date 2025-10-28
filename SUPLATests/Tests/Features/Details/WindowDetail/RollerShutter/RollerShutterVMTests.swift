@@ -227,7 +227,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         ])
         assertEvents(expected: [])
         XCTAssertTuples(executeRollerShutterActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.group, Int32(123), CGFloat(80))
+            (Action.shutPartially, SubjectType.group, Int32(123), 80)
         ])
     }
     

@@ -46,9 +46,9 @@ final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
 }
 
 final class ExecuteRollerShutterActionUseCaseMock: ExecuteRollerShutterActionUseCase {
-    var parameters: [(Action, SUPLA.SubjectType, Int32, CGFloat)] = []
+    var parameters: [(Action, SUPLA.SubjectType, Int32, Int)] = []
     var returns: Completable = .empty()
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, percentage: CGFloat) -> Completable {
+    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, percentage: Int) -> Completable {
         parameters.append((action, type, remoteId, percentage))
         return returns
     }
@@ -64,9 +64,9 @@ final class CallSuplaClientOperationUseCaseMock: CallSuplaClientOperationUseCase
 }
 
 final class ExecuteFacadeBlindActionUseCaseMock: ExecuteFacadeBlindActionUseCase {
-    var parameters: [(Action, SUPLA.SubjectType, Int32, CGFloat, CGFloat)] = []
+    var parameters: [(Action, SUPLA.SubjectType, Int32, Int, Int)] = []
     var returns: Completable = .empty()
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, position: CGFloat, tilt: CGFloat) -> Completable {
+    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, position: Int, tilt: Int) -> Completable {
         parameters.append((action, type, remoteId, position, tilt))
         return returns
     }

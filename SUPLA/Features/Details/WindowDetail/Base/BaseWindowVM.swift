@@ -77,7 +77,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
                     // During calibration the open/close time is not known so it's not possible to open window at expected position
                     return $0
                 } else {
-                    executeRollerShutterActionUseCase.invoke(action: .shutPartially, type: type, remoteId: remoteId, percentage: position).run(self)
+                    executeRollerShutterActionUseCase.invoke(action: .shutPartially, type: type, remoteId: remoteId, percentage: position.roundToInt()).run(self)
                     return $0.changing(path: \.moveStartTime, to: nil)
                         .changing(path: \.manualMoving, to: false)
                         .changing(path: \.touchTime, to: nil)
