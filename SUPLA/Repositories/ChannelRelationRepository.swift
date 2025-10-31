@@ -96,7 +96,7 @@ final class ChannelRelationRepositoryImpl: Repository<SAChannelRelation>, Channe
     
     func findParentsOf(childId: Int32) -> Observable<[SAChannelRelation]> {
         let request = SAChannelRelation.fetchRequest()
-            .filtered(by: NSPredicate(format: "channel_id = %d", childId))
+            .filtered(by: NSPredicate(format: "channel_id = %d AND profile.isActive = 1", childId))
             .ordered(by: "parent_id")
         
         return query(request)
