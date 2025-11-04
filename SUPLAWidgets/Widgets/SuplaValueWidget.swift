@@ -242,6 +242,7 @@ extension SuplaValueWidget {
                 Text(profile)
                     .fontBodySmall()
                     .lineLimit(1)
+                    .textColor(.Supla.onSurfaceVariant)
                 if (value.isOffline) {
                     Text(value.first)
                         .fontBodyMedium()

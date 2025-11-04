@@ -81,6 +81,7 @@ extension SuplaAllActionsWidget {
         var body: some SwiftUI.View {
             Button(intent: TriggerActionIntent(action: item)) {
                 VStack {
+                    SuplaWidget.ProfileName(name: item.profileName)
                     item.icon.Image
                         .resizable()
                         .scaledToFit()
