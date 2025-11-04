@@ -317,7 +317,8 @@
 "channel_caption_motion_sensor" = "Sensor de movimento";
 "channel_caption_binary_sensor" = "Sensor binário";
 "channel_offline" = "O canal está offline";
-"channel_battery_level" = "Nível de bateria (%d - %@): %d%%";
+"channel_battery_level" = "Nível de bateria: %d%%";
+"channel_battery_level_with_info" = "Nível de bateria (%d - %@): %d%%";
 "channel_uv_warning" = "A vida útil do radiador UV é de %.01f%%. Planeia substituí-lo.";
 "channel_uv_error" = "A vida útil do radiador UV é de %.01f%%. Substitua o radiador.";
 "channel_lightsource_warning" = "A vida útil da fonte de luz é de %.01f%%.";
@@ -420,6 +421,7 @@
 "hvac_mode_temperature_cooling" = "Temperatura de arrefecimento";
 "thermostat_thermometer_error" = "Erro de leitura da temperatura";
 "thermostat_clock_error" = "Erro de relógio";
+"thermostat_calibration_error" = "Erro de calibração";
 "thermostat_detail_program_current" = "Atualmente:";
 "thermostat_detail_program_next" = "Em seguida:";
 "thermostat_detail_program_time" = "durante %@";

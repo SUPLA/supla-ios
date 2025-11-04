@@ -318,7 +318,8 @@
 "channel_caption_motion_sensor" = "Sensor de movimiento";
 "channel_caption_binary_sensor" = "Sensor binario";
 "channel_offline" = "El canal está offline";
-"channel_battery_level" = "Nivel de batería (%d - %@): %d%%";
+"channel_battery_level" = "Nivel de batería: %d%%";
+"channel_battery_level_with_info" = "Nivel de batería (%d - %@): %d%%";
 "channel_uv_warning" = "La vida útil de la lámpara ultravioleta es %.01f %%. Planee su reemplazo.";
 "channel_uv_error" = "La vida útil de la lámpara ultravioleta es %.01f %%. Reemplácela.";
 "channel_lightsource_warning" = "La vida útil de la fuente de luz es %.01f %%.";
@@ -416,6 +417,7 @@
 "schedule_detail_program_dialog_header" = "Ajustes programa %d";
 "thermostat_thermometer_error" = "Error de lectura de la temperatura";
 "thermostat_clock_error" = "Error de reloj";
+"thermostat_calibration_error" = "Error de calibración";
 "thermostat_detail_program_current" = "Actual:";
 "thermostat_detail_program_next" = "Siguiente:";
 "thermostat_detail_program_time" = "durante %@";

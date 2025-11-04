@@ -334,7 +334,8 @@
 "channel_caption_container" = "Contenitore";
 "channel_caption_septic_tank" = "Fossa settica";
 "channel_offline" = "Il canale è offline";
-"channel_battery_level" = "Livello batteria (%d - %@): %d%%";
+"channel_battery_level" = "Livello batteria: %d%%";
+"channel_battery_level_with_info" = "Livello batteria (%d - %@): %d%%";
 "channel_uv_warning" = "La durata di vita della lampada UV è %.01f%%. Sostituire la lampada.";
 "channel_uv_error" = "La durata di vita della lampada UV è %.01f%%. Programmare la sua sostituzione.";
 "channel_lightsource_warning" = "La durata di vita della sorgente luminosta è %.01f%%.";
@@ -436,6 +437,7 @@
 /* Thermostat Detail */
 "thermostat_thermometer_error" = "Errore di lettura della temperatura";
 "thermostat_clock_error" = "Errore orologio";
+"thermostat_calibration_error" = "Errore di calibrazione";
 "thermostat_battery_cover_open" = "Coperchio della batteria aperto";
 "thermostat_detail_mode_manual" = "Manuale";
 "thermostat_detail_mode_weekly_schedule" = "Automatico";

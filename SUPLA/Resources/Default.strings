@@ -109,7 +109,8 @@
 "channel_offline" = "Channel is offline";
 "channel_not_found" = "Channel not found";
 "scene_inactive" = "Scene is inactive";
-"channel_battery_level" = "Battery level (%d - %@): %d%%";
+"channel_battery_level" = "Battery level: %d%%";
+"channel_battery_level_with_info" = "Battery level (%d - %@): %d%%";
 "channel_uv_warning" = "The lifespan of the uv radiator is %.01f%%. Schedule its replacement.";
 "channel_uv_error" = "The lifespan of the uv radiator is %.01f%%. Replace the radiator.";
 "channel_lightsource_warning" = "The lifespan of the light source is %.01f%%.";

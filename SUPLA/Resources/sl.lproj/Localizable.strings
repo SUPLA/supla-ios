@@ -317,7 +317,8 @@
 "channel_caption_container" = "Posoda";
 "channel_caption_septic_tank" = "Greznica";
 "channel_offline" = "Kanal je brez povezave";
-"channel_battery_level" = "Raven baterije (%d - %@): %d%%";
+"channel_battery_level" = "Raven baterije: %d%%";
+"channel_battery_level_with_info" = "Raven baterije (%d - %@): %d%%";
 "channel_uv_warning" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%. Načrtujte njeno menjavo.";
 "channel_uv_error" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%. Menjajte grelno žarnico.";
 "channel_lightsource_warning" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%.";
@@ -416,6 +417,7 @@
 "hvac_mode_temperature_cooling" = "Temperatura hlajenja";
 "thermostat_thermometer_error" = "Napaka pri odčitavanju temperature";
 "thermostat_clock_error" = "Napaka ure";
+"thermostat_calibration_error" = "Napaka kalibracije";
 "thermostat_detail_off_by_window" = "Izklopljeno čez odprto okno";
 "thermostat_detail_off_by_card" = "Izključeno zaradi neprisotnosti hotelske kartice";
 "thermostat_detail_off_by_sensor" = "Deaktivirano s senzorjem";

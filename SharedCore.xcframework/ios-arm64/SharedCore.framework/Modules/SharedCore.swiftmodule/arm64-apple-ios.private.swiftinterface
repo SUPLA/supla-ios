@@ -977,6 +977,7 @@ extension SharedCore.__Icon {
   case channelStatusUpdating
   case channelStatusNotAvailable
   case channelBatteryLevel
+  case channelBatteryLevelWithInfo
   case motorProblem
   case calibrationLost
   case calibrationFailed
@@ -1799,9 +1800,8 @@ extension SharedCore.Skie.supla_android__shared_core.LocalizedString {
   @frozen public enum __Sealed : Swift.Hashable {
     case constant(SharedCore.LocalizedStringConstant)
     case empty(SharedCore.LocalizedStringEmpty)
+    case withFormat(SharedCore.LocalizedStringWithFormat)
     case withId(SharedCore.LocalizedStringWithId)
-    case withIdAndString(SharedCore.LocalizedStringWithIdAndString)
-    case withIdIntStringInt(SharedCore.LocalizedStringWithIdIntStringInt)
     case `else`
     public static func == (a: SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed, b: SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
@@ -2185,8 +2185,14 @@ extension Swift.String {
   public func localized() -> any SharedCore.LocalizedString
 }
 public func localizedString(id: SharedCore.LocalizedStringId?) -> any SharedCore.LocalizedString
+public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any) -> any SharedCore.LocalizedString
+public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any) -> any SharedCore.LocalizedString
+public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any, arg3: Any) -> any SharedCore.LocalizedString
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any, arg3: Any, arg4: Any) -> any SharedCore.LocalizedString
-public func localizedString(id: SharedCore.LocalizedStringId, arg1: Swift.Int32, arg2: any SharedCore.LocalizedString, arg3: Swift.Int32) -> any SharedCore.LocalizedString
+public func localizedString(format: Swift.String, arg1: Any) -> any SharedCore.LocalizedString
+public func localizedString(format: Swift.String, arg1: Any, arg2: Any) -> any SharedCore.LocalizedString
+public func localizedString(format: Swift.String, arg1: Any, arg2: Any, arg3: Any) -> any SharedCore.LocalizedString
+public func localizedString(format: Swift.String, arg1: Any, arg2: Any, arg3: Any, arg4: Any) -> any SharedCore.LocalizedString
 public var NO_VALUE_TEXT: Swift.String {
   get
 }

@@ -317,7 +317,8 @@
 "channel_caption_container" = "Контейнер";
 "channel_caption_septic_tank" = "Септик";
 "channel_offline" = "Канал не в мережі";
-"channel_battery_level" = "Рівень заряду батареї (%d - %@): %d%%";
+"channel_battery_level" = "Рівень заряду батареї: %d%%";
+"channel_battery_level_with_info" = "Рівень заряду батареї (%d - %@): %d%%";
 "channel_uv_warning" = "Термін служби УФ-випромінювача становить %.01f%%. Заплануйте його заміну.";
 "channel_uv_error" = "Термін служби УФ-випромінювача становить %.01f%%. Замінити випромінювач.";
 "channel_lightsource_warning" = "Термін служби джерела світла становить %.01f%%.";
@@ -417,6 +418,7 @@
 "hvac_mode_temperature_cooling" = "Температура охолодження";
 "thermostat_thermometer_error" = "Помилка зчитування температури";
 "thermostat_clock_error" = "Помилка годинника";
+"thermostat_calibration_error" = "Помилка калібрування";
 "thermostat_detail_program_current" = "На даний момент:";
 "thermostat_detail_program_next" = "Далі:";
 "thermostat_detail_program_time" = "протягом %@";

@@ -373,6 +373,7 @@ struct Strings {
             static let captionBinarySensor = "channel_caption_binary_sensor".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
+            static let batteryLevelWithInfo = "channel_battery_level_with_info".toLocalized()
             
             static let statusAwaiting = "channel_status_awaiting".toLocalized()
             static let statusUpdating = "channel_status_updating".toLocalized()

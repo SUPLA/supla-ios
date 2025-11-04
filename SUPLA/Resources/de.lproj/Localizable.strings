@@ -303,7 +303,8 @@
 "channel_offline" = "Das Kanal ist offline";
 "channel_not_found" = "Kanal nicht gefunden";
 "scene_inactive" = "Szene ist nicht active";
-"channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
+"channel_battery_level" = "Batteriefüllstand: %d%%";
+"channel_battery_level_with_info" = "Batteriefüllstand (%d - %@): %d%%";
 "channel_uv_warning" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Planen Sie den Austausch.";
 "channel_uv_error" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Den Strahler austauschen.";
 "channel_lightsource_warning" = "Lebensdauer der Lichtquelle beträgt %.01f%%.";

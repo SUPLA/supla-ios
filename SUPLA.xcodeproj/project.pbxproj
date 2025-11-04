@@ -534,6 +534,7 @@
 		A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */; };
 		A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */; };
 		A54A068E2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */; };
+		A54C583D2EB8E4B6003C0444 /* ThermostatIssuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54C583C2EB8E4AF003C0444 /* ThermostatIssuesProvider.swift */; };
 		A54E2A582E435CFB003F2926 /* EspRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2A572E435CEC003F2926 /* EspRepository.swift */; };
 		A54E2A5B2E436320003F2926 /* EspRequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2A5A2E43631D003F2926 /* EspRequestResult.swift */; };
 		A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2A5C2E437021003F2926 /* AuthorizeEspUseCase.swift */; };
@@ -2233,6 +2234,7 @@
 		A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCasesMocks.swift; sourceTree = "<group>"; };
 		A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift; sourceTree = "<group>"; };
 		A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A54C583C2EB8E4AF003C0444 /* ThermostatIssuesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIssuesProvider.swift; sourceTree = "<group>"; };
 		A54E2A572E435CEC003F2926 /* EspRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepository.swift; sourceTree = "<group>"; };
 		A54E2A5A2E43631D003F2926 /* EspRequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRequestResult.swift; sourceTree = "<group>"; };
 		A54E2A5C2E437021003F2926 /* AuthorizeEspUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCase.swift; sourceTree = "<group>"; };
@@ -4773,6 +4775,14 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		A54C583B2EB8E4A8003C0444 /* IssuesProvider */ = {
+			isa = PBXGroup;
+			children = (
+				A54C583C2EB8E4AF003C0444 /* ThermostatIssuesProvider.swift */,
+			);
+			path = IssuesProvider;
+			sourceTree = "<group>";
+		};
 		A54E2A592E436304003F2926 /* Esp */ = {
 			isa = PBXGroup;
 			children = (
@@ -7149,6 +7159,7 @@
 		A5F29B942A20B74B00ED700A /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				A54C583B2EB8E4A8003C0444 /* IssuesProvider */,
 				A54149312B63B02100B44BD6 /* LogDownload */,
 				A519CCB32D38576300F858A4 /* Measurements */,
 				A5E05BA72CB40EF900202583 /* MeasurementsProvider */,
@@ -8700,6 +8711,7 @@
 				A530EE062A5575D700F8DAEE /* DeviceStateView.swift in Sources */,
 				A5AE6D832E1FEA2500BC2B67 /* DeviceParametersTable.swift in Sources */,
 				A5D7126C2C380D7700A8EF52 /* CheckPinUseCase.swift in Sources */,
+				A54C583D2EB8E4B6003C0444 /* ThermostatIssuesProvider.swift in Sources */,
 				A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */,
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
 				A5C5F6F12D93EC3300E303B8 /* SuplaCoreDialogView.swift in Sources */,

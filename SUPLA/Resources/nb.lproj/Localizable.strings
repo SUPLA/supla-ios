@@ -318,7 +318,8 @@
 "channel_caption_container" = "Beholder";
 "channel_caption_septic_tank" = "Septiktank";
 "channel_offline" = "Kanalen er offline";
-"channel_battery_level" = "Batterinivå (%d - %@): %d%%";
+"channel_battery_level" = "Batterinivå: %d%%";
+"channel_battery_level_with_info" = "Batterinivå (%d - %@): %d%%";
 "channel_uv_warning" = "Levetiden til uv-lampen er %.01f%%.";
 "channel_uv_error" = "Levetiden til uv-lampen er %.01f%%. Bytt varmeapparatet ut.";
 "channel_lightsource_warning" = "Levetiden til lyskilden er %.01f%%.";
@@ -417,6 +418,7 @@
 "hvac_mode_temperature_cooling" = "Kjøletemperatur";
 "thermostat_thermometer_error" = "Feil i temperaturavlesningen";
 "thermostat_clock_error" = "Klokkefeil";
+"thermostat_calibration_error" = "Kalibreringsfeil";
 "thermostat_detail_program_current" = "Nåværende:";
 "thermostat_detail_program_next" = "Neste:";
 "thermostat_detail_program_time" = "via %@";

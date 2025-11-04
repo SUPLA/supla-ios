@@ -317,7 +317,8 @@
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
 "channel_offline" = "Het kanaal is offline";
-"channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
+"channel_battery_level" = "Batterijniveau: %d%%";
+"channel_battery_level_with_info" = "Batterijniveau (%d - %@): %d%%";
 "channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
 "channel_uv_error" = "De levensduur van het uv-belichtingstoestel bedraagt %.01f%%. Vervang de stralingsbuis.";
 "channel_lightsource_warning" = "De levensduur van de lichtbron is %.01f%%.";
@@ -416,6 +417,7 @@
 "hvac_mode_temperature_cooling" = "Koeltemperatuur";
 "thermostat_thermometer_error" = "Fout bij het aflezen van de temperatuur";
 "thermostat_clock_error" = "Klokfout";
+"thermostat_calibration_error" = "Kalibratiefout";
 "thermostat_detail_program_current" = "Actueel:";
 "thermostat_detail_program_next" = "Volgende:";
 "thermostat_detail_program_time" = "via %@";
