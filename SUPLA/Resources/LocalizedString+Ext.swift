@@ -23,8 +23,7 @@ public extension LocalizedString {
         switch onEnum(of: self) {
         case .constant(let item): item.text
         case .withId(let item): item.toString()
-        case .withIdIntStringInt(let item): item.id.value.arguments(item.arg1, item.arg2.string, item.arg3)
-        case .withIdAndString(let item): "\(item.id.value) \(item.string)"
+        case .withFormat(let item): item.toString()
         case .empty(_), .else: ""
         }
     }
@@ -41,6 +40,42 @@ private extension LocalizedStringWithId {
         case 5: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]), toArgument(arguments[4]))
         case 6: return id.value.arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]), toArgument(arguments[4]), toArgument(arguments[5]))
         default: return id.value
+        }
+    }
+    
+    private func toArgument(_ argument: Any) -> CVarArg {
+        if let localizedString = argument as? LocalizedString {
+            return localizedString.string
+        } else if let string = argument as? String {
+            return string
+        } else if let number = argument as? NSNumber {
+            return switch (number.type) {
+            case .sInt8Type, .charType: number.int8Value
+            case .sInt16Type, .shortType: number.int16Value
+            case .sInt32Type: number.int32Value
+            case .sInt64Type, .longType, .longLongType: number.int64Value
+            case .intType, .nsIntegerType: number.intValue
+            case .doubleType: number.doubleValue
+            case .floatType, .float32Type, .float64Type, .cgFloatType: number.floatValue
+            case .cfIndexType: fatalError("Unsupported argument type: \(type(of: argument))")
+            @unknown default: fatalError("Unsupported argument type: \(type(of: argument))")
+            }
+        } else {
+            fatalError("Unsupported argument type: \(type(of: argument))")
+        }
+    }
+}
+
+private extension LocalizedStringWithFormat {
+    func toString() -> String {
+        switch (arguments.count) {
+        case 1: return format.replacingOccurrences(of: "%s", with: "%@").arguments(toArgument(arguments[0]))
+        case 2: return format.replacingOccurrences(of: "%s", with: "%@").arguments(toArgument(arguments[0]), toArgument(arguments[1]))
+        case 3: return format.replacingOccurrences(of: "%s", with: "%@").arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]))
+        case 4: return format.replacingOccurrences(of: "%s", with: "%@").arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]))
+        case 5: return format.replacingOccurrences(of: "%s", with: "%@").arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]), toArgument(arguments[4]))
+        case 6: return format.replacingOccurrences(of: "%s", with: "%@").arguments(toArgument(arguments[0]), toArgument(arguments[1]), toArgument(arguments[2]), toArgument(arguments[3]), toArgument(arguments[4]), toArgument(arguments[5]))
+        default: return format
         }
     }
     

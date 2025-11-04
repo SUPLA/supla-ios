@@ -317,7 +317,8 @@
 "channel_caption_container" = "Kontajner";
 "channel_caption_septic_tank" = "Septik";
 "channel_offline" = "Kanál je v režime offline";
-"channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
+"channel_battery_level" = "Úroveň batérie: %d%%";
+"channel_battery_level_with_info" = "Úroveň batérie (%d - %@): %d%%";
 "channel_uv_warning" = "Životnosť UV žiariča je %.01f%%. Naplánujte jeho výmenu.";
 "channel_uv_error" = "Životnosť UV žiariča je %.01f%%. Vymeň žiarič.";
 "channel_lightsource_warning" = "Životnosť svetelného zdroja je %.01f%%.";
@@ -414,6 +415,7 @@
 "hvac_mode_temperature_cooling" = "Teplota chladenia";
 "thermostat_thermometer_error" = "Chyba pri čítaní teploty";
 "thermostat_clock_error" = "Chyba hodín";
+"thermostat_calibration_error" = "Chyba kalibrácie";
 "thermostat_detail_program_current" = "Aktuálne:";
 "thermostat_detail_program_next" = "Následne:";
 "thermostat_detail_program_time" = "na %@";

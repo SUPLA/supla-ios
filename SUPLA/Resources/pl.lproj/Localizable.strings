@@ -329,7 +329,8 @@
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";
 "scene_inactive" = "Scena jest nieaktywna";
-"channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
+"channel_battery_level" = "Poziom baterii: %d%%";
+"channel_battery_level_with_info" = "Poziom baterii (%d - %@): %d%%";
 "channel_uv_warning1" = "Żywotność promiennika uv wynosi %.01f%%. Zaplanuj jego wymianę.";
 "channel_uv_warning2" = "Żywotność promiennika uv wynosi %.01f%%. Wymień promiennik.";
 "channel_lightsource_warning" = "Żywotność źródła światła wynosi %.01f%%.";

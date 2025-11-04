@@ -317,7 +317,8 @@
 "channel_caption_container" = "Δοχείο";
 "channel_caption_septic_tank" = "Βόθρος";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
-"channel_battery_level" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
+"channel_battery_level" = "Επίπεδο μπαταρίας: %d%%";
+"channel_battery_level_with_info" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
 "channel_uv_warning" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Προγραμματίστε την αντικατάστασή του.";
 "channel_uv_error" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Αντικαταστήστε το θερμαντικό σώμα.";
 "channel_lightsource_warning" = "Η διάρκεια ζωής της πηγής φωτός είναι %.01f%%.";
@@ -416,6 +417,7 @@
 "hvac_mode_temperature_cooling" = "Θερμοκρασία ψύξης";
 "thermostat_thermometer_error" = "Σφάλμα ανάγνωσης θερμοκρασίας";
 "thermostat_clock_error" = "Σφάλμα ρολογιού";
+"thermostat_calibration_error" = "Σφάλμα βαθμονόμησης";
 "thermostat_detail_program_current" = "Τρέχον:";
 "thermostat_detail_program_next" = "Επόμενο:";
 "thermostat_detail_program_time" = "μέσω %@";

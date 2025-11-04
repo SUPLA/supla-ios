@@ -90,6 +90,7 @@ extension LocalizedStringId {
         case .channelCaptionUnknown: NSLocalizedString("Not supported function", comment: "")
 
         case .channelBatteryLevel: Strings.General.Channel.batteryLevel
+        case .channelBatteryLevelWithInfo: Strings.General.Channel.batteryLevelWithInfo
 
         case .motorProblem: Strings.RollerShutterDetail.motorProblem
         case .calibrationLost: Strings.RollerShutterDetail.calibrationLost

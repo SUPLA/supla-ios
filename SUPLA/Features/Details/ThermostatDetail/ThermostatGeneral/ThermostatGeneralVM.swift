@@ -30,6 +30,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<ChannelConfigEventsManager> private var channelConfigEventManager
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<DeviceConfigEventsManager> private var deviceConfigEventManager
+    @Singleton<ThermostatIssuesProvider> private var thermostatIssuesProvider
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
@@ -37,7 +38,6 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
-    private let thermostatIssuesProvider = ThermostatIssuesProvider()
     private let updateRelay = PublishRelay<Void>()
     private let channelRelay = PublishRelay<ChannelWithChildren>()
     

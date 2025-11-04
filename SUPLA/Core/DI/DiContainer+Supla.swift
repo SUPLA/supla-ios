@@ -279,6 +279,7 @@ extension DiContainer {
         // MARK: Shared
 
         // level 0
+        register(ThermostatIssuesProvider.self, SharedCore.ThermostatIssuesProvider())
         let ocrImageNamingProvider = registerAndGet(OcrImageNamingProvider.self, SharedCore.OcrImageNamingProvider())
         let cacheFileAccess = registerAndGet(CacheFileAccessProxy.self, CacheFileAccessProxyImpl())
         let storeFileInDirectoryUseCase = SharedCore.StoreFileInDirectoryUseCase(cacheFileAccess: cacheFileAccess)
@@ -295,7 +296,7 @@ extension DiContainer {
             GetChannelSpecificIssuesUseCase.self,
             SharedCore.GetChannelSpecificIssuesUseCase()
         )
-        
+
         // level 1
         let getCaptionUseCase = registerAndGet(
             GetCaptionUseCase.self,
@@ -336,8 +337,9 @@ extension DiContainer {
             GetChannelIssuesForListUseCase.self,
             SharedCore.GetChannelIssuesForListUseCase(
                 getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase,
+                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase,
                 getChannelBatteryIconUseCase: getChannelBatteryIconUseCase,
-                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase
+                getCaptionUseCase: getCaptionUseCase
             )
         )
         register(

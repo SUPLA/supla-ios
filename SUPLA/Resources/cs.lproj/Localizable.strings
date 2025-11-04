@@ -316,7 +316,8 @@
 "channel_caption_motion_sensor" = "Pohybový senzor";
 "channel_caption_binary_sensor" = "Binární senzor";
 "channel_offline" = "Kanál je v režimu offline";
-"channel_battery_level" = "Stav baterie (%d - %@): %d%%";
+"channel_battery_level" = "Stav baterie: %d%%";
+"channel_battery_level_with_info" = "Stav baterie (%d - %@): %d%%";
 "channel_uv_warning" = "Životnost UV zářiče je %.01f%%. Naplánovat jeho výměnu.";
 "channel_uv_error" = "Životnost UV zářiče je %.01f%%. Vyměnit zářič.";
 "channel_lightsource_warning" = "Životnost světelného zdroje je %.01f%%.";
@@ -414,6 +415,7 @@
 "hvac_mode_temperature_cooling" = "Teplota chlazení";
 "thermostat_thermometer_error" = "Chyba odečtu teploty";
 "thermostat_clock_error" = "Chyba hodin";
+"thermostat_calibration_error" = "Chyba kalibrace";
 "thermostat_detail_program_current" = "Současný stav:";
 "thermostat_detail_program_next" = "Další:";
 "thermostat_detail_program_time" = "na %@";

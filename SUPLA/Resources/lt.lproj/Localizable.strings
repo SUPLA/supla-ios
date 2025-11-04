@@ -319,7 +319,8 @@
 "channel_caption_container" = "Konteineris";
 "channel_caption_septic_tank" = "Septikas";
 "channel_offline" = "Kanalas yra offline";
-"channel_battery_level" = "Baterijos lygis (%d - %@): %d%%";
+"channel_battery_level" = "Baterijos lygis: %d%%";
+"channel_battery_level_with_info" = "Baterijos lygis (%d - %@): %d%%";
 "channel_uv_warning" = "UV spinduolio tarnavimo laikas tai %.01f%%. Suplanuoti jo pakeitimą.";
 "channel_uv_error" = "UV spinduolio tarnavimo laikas tai %.01f%%. Pakeisti spinduolį.";
 "channel_lightsource_warning" = "Šviesos šaltinio tarnavimo laikas tai %.01f%%.";
@@ -418,6 +419,7 @@
 "hvac_mode_temperature_cooling" = "Vėsinimo temperatūra";
 "thermostat_thermometer_error" = "Temperatūros nuskaitymo klaida";
 "thermostat_clock_error" = "Laikrodžio klaida";
+"thermostat_calibration_error" = "Kalibravimo klaida";
 "thermostat_detail_program_current" = "Dabar:";
 "thermostat_detail_program_next" = "Vėliau:";
 "thermostat_detail_program_time" = "per %@";

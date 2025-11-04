@@ -1437,95 +1437,35 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreLocalizedStringWithIdAndString"
-  SwiftName: "LocalizedStringWithIdAndString"
+- Name: "SharedCoreLocalizedStringWithFormat"
+  SwiftName: "LocalizedStringWithFormat"
   Properties:
-  - Name: "id"
+  - Name: "arguments"
     PropertyKind: "Instance"
-    SwiftName: "id"
-    Type: "SharedCoreLocalizedStringId * _Nonnull"
-  - Name: "text"
+    SwiftName: "arguments"
+    Type: "NSArray<id> * _Nonnull"
+  - Name: "format"
     PropertyKind: "Instance"
-    SwiftName: "text"
+    SwiftName: "format"
     Type: "NSString * _Nonnull"
   Methods:
-  - Selector: "initWithId:text:"
+  - Selector: "initWithFormat:arguments:"
     MethodKind: "Instance"
-    SwiftName: "init(id:text:)"
+    SwiftName: "init(format:arguments:)"
     Parameters:
     - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-    - Position: 1
       Type: "NSString * _Nonnull"
-  - Selector: "doCopyId:text:"
+    - Position: 1
+      Type: "NSArray<id> * _Nonnull"
+  - Selector: "doCopyFormat:arguments:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(id:text:)"
-    ResultType: "SharedCoreLocalizedStringWithIdAndString * _Nonnull"
+    SwiftName: "doCopy(format:arguments:)"
+    ResultType: "SharedCoreLocalizedStringWithFormat * _Nonnull"
     Parameters:
     - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-    - Position: 1
       Type: "NSString * _Nonnull"
-  - Selector: "isEqual:"
-    MethodKind: "Instance"
-    SwiftName: "isEqual(_:)"
-    ResultType: "BOOL"
-    Parameters:
-    - Position: 0
-      Type: "id _Nullable"
-  - Selector: "hash"
-    MethodKind: "Instance"
-    SwiftName: "hash()"
-    ResultType: "NSUInteger"
-  - Selector: "description"
-    MethodKind: "Instance"
-    SwiftName: "description()"
-    ResultType: "NSString * _Nonnull"
-- Name: "SharedCoreLocalizedStringWithIdIntStringInt"
-  SwiftName: "LocalizedStringWithIdIntStringInt"
-  Properties:
-  - Name: "arg1"
-    PropertyKind: "Instance"
-    SwiftName: "arg1"
-    Type: "int32_t"
-  - Name: "arg2"
-    PropertyKind: "Instance"
-    SwiftName: "arg2"
-    Type: "id<SharedCoreLocalizedString> _Nonnull"
-  - Name: "arg3"
-    PropertyKind: "Instance"
-    SwiftName: "arg3"
-    Type: "int32_t"
-  - Name: "id"
-    PropertyKind: "Instance"
-    SwiftName: "id"
-    Type: "SharedCoreLocalizedStringId * _Nonnull"
-  Methods:
-  - Selector: "initWithId:arg1:arg2:arg3:"
-    MethodKind: "Instance"
-    SwiftName: "init(id:arg1:arg2:arg3:)"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
     - Position: 1
-      Type: "int32_t"
-    - Position: 2
-      Type: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
-    - Position: 3
-      Type: "int32_t"
-  - Selector: "doCopyId:arg1:arg2:arg3:"
-    MethodKind: "Instance"
-    SwiftName: "doCopy(id:arg1:arg2:arg3:)"
-    ResultType: "SharedCoreLocalizedStringWithIdIntStringInt * _Nonnull"
-    Parameters:
-    - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
-    - Position: 1
-      Type: "int32_t"
-    - Position: 2
-      Type: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
-    - Position: 3
-      Type: "int32_t"
+      Type: "NSArray<id> * _Nonnull"
   - Selector: "isEqual:"
     MethodKind: "Instance"
     SwiftName: "isEqual(_:)"
@@ -2300,6 +2240,10 @@ Classes:
   - Name: "channelBatteryLevel"
     PropertyKind: "Class"
     SwiftName: "channelBatteryLevel"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelBatteryLevelWithInfo"
+    PropertyKind: "Class"
+    SwiftName: "channelBatteryLevelWithInfo"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "motorProblem"
     PropertyKind: "Class"
@@ -4537,6 +4481,10 @@ Classes:
 - Name: "SharedCoreChannelWithChildren"
   SwiftName: "ChannelWithChildren"
   Properties:
+  - Name: "allChildrenFlat"
+    PropertyKind: "Instance"
+    SwiftName: "allChildrenFlat"
+    Type: "NSArray<SharedCoreChannelWithChildren *> * _Nonnull"
   - Name: "channel"
     PropertyKind: "Instance"
     SwiftName: "channel"
@@ -4581,6 +4529,10 @@ Classes:
 - Name: "SharedCoreChannelChild"
   SwiftName: "ChannelChild"
   Properties:
+  - Name: "asChannelWithChildren"
+    PropertyKind: "Instance"
+    SwiftName: "asChannelWithChildren"
+    Type: "SharedCoreChannelWithChildren * _Nonnull"
   - Name: "channel"
     PropertyKind: "Instance"
     SwiftName: "channel"
@@ -5041,6 +4993,16 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "priority"
     Type: "int32_t"
+  Methods:
+  - Selector: "extendOnRemoteId:name:"
+    MethodKind: "Instance"
+    SwiftName: "extendOn(remoteId:name:)"
+    ResultType: "SharedCoreChannelIssueItem * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "id<SharedCoreLocalizedString> _Nonnull"
 - Name: "SharedCoreChannelIssueItemCompanion"
   SwiftName: "ChannelIssueItem.Companion"
 - Name: "SharedCoreChannelIssueItemError"
@@ -5487,16 +5449,18 @@ Classes:
 - Name: "SharedCoreGetChannelIssuesForListUseCase"
   SwiftName: "GetChannelIssuesForListUseCase"
   Methods:
-  - Selector: "initWithGetChannelLowBatteryIssueUseCase:getChannelBatteryIconUseCase:getChannelSpecificIssuesUseCase:"
+  - Selector: "initWithGetChannelLowBatteryIssueUseCase:getChannelSpecificIssuesUseCase:getChannelBatteryIconUseCase:getCaptionUseCase:"
     MethodKind: "Instance"
-    SwiftName: "init(getChannelLowBatteryIssueUseCase:getChannelBatteryIconUseCase:getChannelSpecificIssuesUseCase:)"
+    SwiftName: "init(getChannelLowBatteryIssueUseCase:getChannelSpecificIssuesUseCase:getChannelBatteryIconUseCase:getCaptionUseCase:)"
     Parameters:
     - Position: 0
       Type: "SharedCoreGetChannelLowBatteryIssueUseCase * _Nonnull"
     - Position: 1
-      Type: "SharedCoreGetChannelBatteryIconUseCase * _Nonnull"
-    - Position: 2
       Type: "SharedCoreGetChannelSpecificIssuesUseCase * _Nonnull"
+    - Position: 2
+      Type: "SharedCoreGetChannelBatteryIconUseCase * _Nonnull"
+    - Position: 3
+      Type: "SharedCoreGetCaptionUseCase * _Nonnull"
   - Selector: "invokeChannelWithChildren:"
     MethodKind: "Instance"
     SwiftName: "invoke(channelWithChildren:)"
@@ -9601,6 +9565,39 @@ Classes:
     Parameters:
     - Position: 0
       Type: "SharedCoreLocalizedStringId * _Nullable"
+  - Selector: "localizedStringId:arg1:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(id:arg1:)"
+    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "Skie__TypeDef__0__id"
+  - Selector: "localizedStringId:arg1:arg2:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(id:arg1:arg2:)"
+    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "Skie__TypeDef__0__id"
+    - Position: 2
+      Type: "Skie__TypeDef__0__id"
+  - Selector: "localizedStringId:arg1:arg2:arg3:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(id:arg1:arg2:arg3:)"
+    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreLocalizedStringId * _Nonnull"
+    - Position: 1
+      Type: "Skie__TypeDef__0__id"
+    - Position: 2
+      Type: "Skie__TypeDef__0__id"
+    - Position: 3
+      Type: "Skie__TypeDef__0__id"
   - Selector: "localizedStringId:arg1:arg2:arg3:arg4:"
     MethodKind: "Class"
     SwiftName: "localizedString(id:arg1:arg2:arg3:arg4:)"
@@ -9616,19 +9613,54 @@ Classes:
       Type: "Skie__TypeDef__0__id"
     - Position: 4
       Type: "Skie__TypeDef__0__id"
-  - Selector: "localizedStringId:arg1:arg2:arg3:"
+  - Selector: "localizedStringFormat:arg1:"
     MethodKind: "Class"
-    SwiftName: "localizedString(id:arg1:arg2:arg3:)"
-    ResultType: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+    SwiftName: "localizedString(format:arg1:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
     Parameters:
     - Position: 0
-      Type: "SharedCoreLocalizedStringId * _Nonnull"
+      Type: "NSString * _Nonnull"
     - Position: 1
-      Type: "int32_t"
+      Type: "id _Nonnull"
+  - Selector: "localizedStringFormat:arg1:arg2:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(format:arg1:arg2:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "id _Nonnull"
     - Position: 2
-      Type: "Skie__TypeDef__1__id_SharedCoreLocalizedString_"
+      Type: "id _Nonnull"
+  - Selector: "localizedStringFormat:arg1:arg2:arg3:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(format:arg1:arg2:arg3:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "id _Nonnull"
+    - Position: 2
+      Type: "id _Nonnull"
     - Position: 3
-      Type: "int32_t"
+      Type: "id _Nonnull"
+  - Selector: "localizedStringFormat:arg1:arg2:arg3:arg4:"
+    MethodKind: "Class"
+    SwiftName: "localizedString(format:arg1:arg2:arg3:arg4:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "id _Nonnull"
+    - Position: 2
+      Type: "id _Nonnull"
+    - Position: 3
+      Type: "id _Nonnull"
+    - Position: 4
+      Type: "id _Nonnull"
 - Name: "SharedCoreGetChannelIssuesForListUseCaseKt"
   SwiftName: "GetChannelIssuesForListUseCaseKt"
   Methods:
