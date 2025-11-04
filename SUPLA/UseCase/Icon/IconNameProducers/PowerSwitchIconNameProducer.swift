@@ -27,11 +27,14 @@ final class PowerSwitchIconNameProducer: IconNameProducer {
     
     private func switchIcon(_ altIcon: Int32) -> String {
         switch (altIcon) {
-        case 1: return "tv"
-        case 2: return "radio"
-        case 3: return "pc"
-        case 4: return "fan"
-        default: return "fnc_power"
+        case 1: return "fnc_switch_1"
+        case 2: return "fnc_switch_2"
+        case 3: return "fnc_switch_3"
+        case 4: return "fnc_switch_4"
+        case 5: return "fnc_binary_sensor_1"
+        case 6: return "fnc_binary_sensor_2"
+        case 7: return "fnc_switch_5"
+        default: return "fnc_switch"
         }
     }
 }
