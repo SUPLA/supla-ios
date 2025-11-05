@@ -480,7 +480,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "fnc_power-on")
+        XCTAssertEqual(iconName, "fnc_switch-on")
     }
     
     func test_powerSwitchAltIcon1() {
@@ -499,7 +499,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "tv-off")
+        XCTAssertEqual(iconName, "fnc_switch_1-off")
     }
     
     func test_powerSwitchAltIcon2() {
@@ -518,7 +518,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "radio-on")
+        XCTAssertEqual(iconName, "fnc_switch_2-on")
     }
     
     func test_powerSwitchAltIcon3() {
@@ -537,7 +537,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "pc-off")
+        XCTAssertEqual(iconName, "fnc_switch_3-off")
     }
     
     func test_powerSwitchAltIcon4() {
@@ -556,7 +556,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "fan-on")
+        XCTAssertEqual(iconName, "fnc_switch_4-on")
     }
     
     func test_lightSwitchAltIcon0() {
