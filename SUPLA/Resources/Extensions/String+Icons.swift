@@ -63,6 +63,8 @@ extension String {
         static let soundOn = "icon_sound_on"
         static let soundOff = "icon_sound_off"
         static let update = "icon_update"
+        static let profileActive = "icon_profile_active"
+        static let profileInactive = "icon_profile_inactive"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
@@ -211,6 +213,23 @@ extension String {
         static let fncFloodSensor = "fnc_flood_sensor"
         // Container level sensor
         static let fncContainerLevelSensor = "fnc_container_level_sensor"
+        // Motion sensor
+        static let fncMotionSensor = "fnc_motion_sensor"
+        static let fncMotionSensor1 = "fnc_motion_sensor_1"
+        static let fncMotionSensor2 = "fnc_motion_sensor_2"
+        static let fncMotionSensor3 = "fnc_motion_sensor_3"
+        static let fncMotionSensor4 = "fnc_motion_sensor_4"
+        // Binary sensor
+        static let fncBinarySensor = "fnc_binary_sensor"
+        static let fncBinarySensor1 = "fnc_binary_sensor_1"
+        static let fncBinarySensor2 = "fnc_binary_sensor_2"
+        static let fncBinarySensor3 = "fnc_binary_sensor_3"
+        static let fncBinarySensor4 = "fnc_binary_sensor_4"
+        static let fncBinarySensor5 = "fnc_binary_sensor_5"
+        static let fncBinarySensor6 = "fnc_binary_sensor_6"
+        static let fncBinarySensor7 = "fnc_binary_sensor_7"
+        static let fncBinarySensor8 = "fnc_binary_sensor_8"
+        static let fncBinarySensor9 = "fnc_binary_sensor_9"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

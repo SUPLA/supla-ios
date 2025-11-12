@@ -60,6 +60,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
@@ -91,9 +93,9 @@
 			</array>
 		</dict>
 	</dict>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>Location is required to get the SSID of the Wi-Fi you're currently connect to</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Location is required to get the SSID of the Wi-Fi you're currently connect to</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location is required to get the SSID of the Wi-Fi you&apos;re currently connect to</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is required to get the SSID of the Wi-Fi you&apos;re currently connect to</string>
 </dict>
 </plist>

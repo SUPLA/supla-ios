@@ -19,9 +19,9 @@
 import SwiftUI
     
 struct SensorItemsView: SwiftUI.View {
-    let sensors: [SensorItemData]
-    let onInfoClick: (SensorItemData) -> Void
-    let onCaptionLongPress: (SensorItemData) -> Void
+    let sensors: [RelatedChannelData]
+    let onInfoClick: (RelatedChannelData) -> Void
+    let onCaptionLongPress: (RelatedChannelData) -> Void
     
     var body: some SwiftUI.View {
         if (!sensors.isEmpty) {
@@ -31,27 +31,11 @@ struct SensorItemsView: SwiftUI.View {
                     .padding([.leading, .trailing], Distance.default)
                     .padding(.bottom, Distance.tiny)
                 ForEach(sensors) { sensor in
-                    HStack(spacing: 0) {
-                        ListItemIcon(iconResult: sensor.icon)
-                        CellCaption(text: sensor.caption)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, Distance.tiny)
-                            .padding(.trailing, Distance.small)
-                            .onLongPressGesture { onCaptionLongPress(sensor) }
-                        ListItemIssueIcon(icon: sensor.batteryIcon)
-                            .padding(.trailing, Distance.small)
-                        if (sensor.showChannelStateIcon) {
-                            ListItemInfoIcon()
-                                .padding(.trailing, Distance.small)
-                                .onTapGesture { onInfoClick(sensor) }
-                        }
-                        ListItemDot(onlineState: sensor.onlineState)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding([.leading], Distance.small)
-                    .padding([.trailing], Distance.default)
-                    .padding([.top, .bottom], Distance.tiny)
-                    .background(Color.Supla.surface)
+                    RelatedChannelItemView(
+                        data: sensor,
+                        onInfoClick: onInfoClick,
+                        onCaptionLongPress: onCaptionLongPress
+                    )
                 }
             }
         }

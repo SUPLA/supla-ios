@@ -309,14 +309,25 @@
 "channel_caption_heat_or_cold_source_switch" = "Stikalo za vir toplote ali hladu";
 "channel_caption_humidity" = "Vlažnost";
 "channel_caption_humidityandtemperature" = "Temperatura in vlažnost";
+"channel_caption_water_tank" = "Rezervoar za vodo";
+"channel_caption_container_level_sensor" = "Senzor nivoja posode";
+"channel_caption_flood_sensor" = "Senzor poplave";
+"channel_caption_motion_sensor" = "Senzor gibanja";
+"channel_caption_binary_sensor" = "Binarni senzor";
+"channel_caption_container" = "Posoda";
+"channel_caption_septic_tank" = "Greznica";
 "channel_offline" = "Kanal je brez povezave";
-"channel_battery_level" = "Raven baterije (%d - %@): %d%%";
+"channel_battery_level" = "Raven baterije: %d%%";
+"channel_battery_level_with_info" = "Raven baterije (%d - %@): %d%%";
 "channel_uv_warning" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%. Načrtujte njeno menjavo.";
 "channel_uv_error" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%. Menjajte grelno žarnico.";
 "channel_lightsource_warning" = "Življenska doba infrardeče IR grelne žarnice znaša %.01f%%.";
 "dgf_too_long_operation_warning" = "Stekleni deli so izpostavljeni več kot 20 ur, kar lahko negativno vpliva na njihovo življenjsko dobo. Priporočljivo je, da vse dele prekrijete za najmanj 4 ure, da se obnovijo.";
 "dgf_planned_regeneration_in_progress" = "Načrtovana obnova je v teku.";
 "dgf_regeneration_after20h" = "Obnova je v teku po 20 urah dela.";
+/* General - Buttons & States */
+"state_partially_opened" = "delno odprto";
+"channel_brn_step_by_step" = "Odprite/Zaprite (korak za korakom)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili smo gesto za premikanje, s katero se odprejo podrobnosti, za ogled podrobnosti tapnite izbrani kanal.";
@@ -406,6 +417,7 @@
 "hvac_mode_temperature_cooling" = "Temperatura hlajenja";
 "thermostat_thermometer_error" = "Napaka pri odčitavanju temperature";
 "thermostat_clock_error" = "Napaka ure";
+"thermostat_calibration_error" = "Napaka kalibracije";
 "thermostat_detail_off_by_window" = "Izklopljeno čez odprto okno";
 "thermostat_detail_off_by_card" = "Izključeno zaradi neprisotnosti hotelske kartice";
 "thermostat_detail_off_by_sensor" = "Deaktivirano s senzorjem";
@@ -558,6 +570,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";
 "valve_warning_manually_closed_short" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil.";
+"valve_detail_sensors" = "Povezani senzorji";
+"valve_error_sensor_offline" = "Senzor poplave ni na voljo – tveganje za neodkrito poplavo.";
 
 /* State */
 "state_channel_id" = "Identifikator kanala";
@@ -580,11 +594,15 @@
 "lastconnectionresetcause_activity_timeout" = "1: ni odgovora strežnika";
 "lastconnectionresetcause_wifi_connection_lost" = "2: izguba Wi-Fi povezave";
 "lastconnectionresetcause_server_connection_lost" = "3: ponovni zagon povezave s strežnikom";
+"state_dialog_last_known_state" = "Brez povezave – zadnje znano stanje:";
 
 /* Change caption */
 "change_caption_channel_name" = "Ime kanala";
 "change_caption_scene_name" = "Ime prizora";
 "change_caption_location_name" = "Ime lokacije";
+
+/* Container */
+"container_invalid_sensor_state" = "Neveljavno stanje senzorja.";
 
 /* Car play */
 "car_play_action" = "Dejanje: %@";
@@ -673,4 +691,17 @@
 "add_device_manual_popup_message" = "Poskus samodejnega dodajanja naprave ni uspel. Če težava ostaja, priporočamo, da napravo dodate ročno.";
 "add_device_manual_popup_resign" = "Ostani v samodejnem načinu";
 "add_device_manual_popup_continue" = "Poskusi znova v ročnem načinu";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Sistemska storitev iOS je med skeniranjem omrežja sporočila notranjo napako, na katero nimamo vpliva. Poskusite napravo dodati ročno ali pa znova zaženite telefon/tablični računalnik.";
+"add_wizard_spaces_accept" = "Ohrani nespremenjeno";
+"add_wizard_spaces_modify" = "Odstrani presledke";
+"add_wizard_spaces_title" = "Presledek v imenu omrežja?";
+"add_wizard_spaces_message" = "Vneseno ime omrežja »%@« vsebuje vodilne ali končne bele znake (presledke ali tabulatorje). Če ime omrežja ne bi smelo vsebovati teh znakov, se vaša naprava ne bo mogla povezati z omrežjem. Ali želite obdržati ali odstraniti vodilne ali končne bele znake?";
+
+/* Developer Info */
+"developer_option" = "Možnosti za razvijalce";
+"developer_info_settings" = "Eksperimentalne nastavitve";
+"developer_info_screen_orientation" = "Omogočeno vrtenje zaslona";
+"developer_info_activated" = "Razvijalski način aktiviran";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nimajo vsa vrata konfiguriranega senzorja odpiranja – gumba »Odpri« in »Zapri« morda ne bosta delovala pravilno.";

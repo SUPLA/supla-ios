@@ -19,16 +19,25 @@
 import SwiftUI
 
 extension SwitchGeneralFeature {
+    protocol ViewDelegate {
+        func onTurnOff()
+        func onTurnOn()
+        func onIntroductionClose()
+        func onForceTurnOn()
+        func onAlertClose()
+    }
+    
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         @ObservedObject var emState: ElectricityMeterGeneralState
         @ObservedObject var icState: ImpulseCounterGeneralState
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
         
-        let onTurnOff: () -> Void
-        let onTurnOn: () -> Void
-        let onIntroductionClose: () -> Void
-        let onForceTurnOn: () -> Void
-        let onAlertClose: () -> Void
+        var delegate: ViewDelegate?
+        
+        let onInfoClick: (RelatedChannelData) -> Void
+        let onCaptionLongPress: (RelatedChannelData) -> Void
 
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -50,7 +59,7 @@ extension SwitchGeneralFeature {
                             vectorBalancedValues: $emState.vectorBalancedValues,
                             electricGridParameters: $emState.electricGridParameters,
                             showIntroduction: $emState.showIntroduction,
-                            onIntroductionClose: onIntroductionClose
+                            onIntroductionClose: { delegate?.onIntroductionClose() }
                         )
                     } else if (viewState.showImpulseCounterState) {
                         if (!viewState.issues.isEmpty) {
@@ -63,8 +72,21 @@ extension SwitchGeneralFeature {
                             currentMonthData: icState.currentMonthData,
                             currentMonthDownloading: $icState.currentMonthDownloading
                         )
+                    } else if let channels = viewState.relatedChannelsData {
+                        Text(Strings.General.group.uppercased())
+                            .fontBodyMedium()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding([.leading, .trailing, .top], Distance.default)
+                        
+                        RelatedChannelsView(
+                            channels: channels,
+                            onInfoClick: onInfoClick,
+                            onCaptionLongPress: onCaptionLongPress
+                        )
+                        
+                        Spacer()
                     } else {
-                        DeviceState(
+                        DeviceStateView(
                             stateLabel: viewState.stateLabel,
                             icon: viewState.stateIcon,
                             stateValue: viewState.stateValue
@@ -73,16 +95,15 @@ extension SwitchGeneralFeature {
                         Spacer()
                     }
                     
-                    if (viewState.showButtons) {
+                    if let leftButton = viewState.offButtonState,
+                       let rightButton = viewState.onButtonState
+                    {
                         SwitchButtons(
-                            isOn: viewState.on,
+                            leftButton: leftButton,
+                            rightButton: rightButton,
                             enabled: viewState.online,
-                            positiveText: Strings.General.turnOn,
-                            negativeText: Strings.General.turnOff,
-                            positiveIcon: viewState.iconTurnOn,
-                            negativeIcon: viewState.iconTurnOff,
-                            onPositiveClick: onTurnOn,
-                            onNegativeClick: onTurnOff
+                            onLeftButtonClick: { delegate?.onTurnOff() },
+                            onRightButtonClick: { delegate?.onTurnOn() }
                         )
                     }
                 }
@@ -90,38 +111,20 @@ extension SwitchGeneralFeature {
                 if let alertDialogState = viewState.alertDialogState {
                     SuplaCore.AlertDialog(
                         state: alertDialogState,
-                        onDismiss: onAlertClose,
-                        onPositiveButtonClick: onForceTurnOn,
-                        onNegativeButtonClick: onAlertClose
+                        onDismiss: { delegate?.onAlertClose() },
+                        onPositiveButtonClick: { delegate?.onForceTurnOn() },
+                        onNegativeButtonClick: { delegate?.onAlertClose() }
                     )
                 }
-            }
-        }
-    }
-
-    private struct DeviceState: SwiftUI.View {
-        let stateLabel: String
-        let icon: IconResult?
-        let stateValue: String
-
-        var body: some SwiftUI.View {
-            HStack(spacing: Distance.tiny) {
-                Spacer()
-                Text(stateLabel.uppercased())
-                    .fontBodyMedium()
-                    .textColor(Color.Supla.onSurfaceVariant)
-
-                if let icon {
-                    icon.image
-                        .resizable()
-                        .frame(width: 25, height: 25)
+                
+                if (stateDialogViewModel.present) {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
                 }
-
-                Text(stateValue)
-                    .font(.Supla.bodyMedium.bold())
-                Spacer()
+                
+                if (captionChangeDialogViewModel.present) {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+                }
             }
-            .padding([.leading, .trailing, .top], Distance.default)
         }
     }
 }
@@ -131,7 +134,18 @@ extension SwitchGeneralFeature {
     viewState.stateIcon = .suplaIcon(name: .Icons.fncThermostatHeat)
     viewState.stateLabel = Strings.SwitchDetail.stateLabel
     viewState.stateValue = Strings.SwitchDetail.stateOff
-    viewState.showButtons = true
+    viewState.offButtonState = .init(
+        icon: .suplaIcon(name: "fnc-power_off"),
+        label: Strings.General.turnOff,
+        active: true,
+        type: .negative
+    )
+    viewState.onButtonState = .init(
+        icon: .suplaIcon(name: "fnc-power_on"),
+        label: Strings.General.turnOn,
+        active: false,
+        type: .positive
+    )
     viewState.issues = [
         SharedCore.ChannelIssueItem.Error(
             string: localizedString(id: LocalizedStringId.overcurrentWarning)
@@ -142,10 +156,10 @@ extension SwitchGeneralFeature {
         viewState: viewState,
         emState: ElectricityMeterGeneralState(),
         icState: ImpulseCounterGeneralState(),
-        onTurnOff: {},
-        onTurnOn: {},
-        onIntroductionClose: {},
-        onForceTurnOn: {},
-        onAlertClose: {}
+        stateDialogViewModel: StateDialogFeature.ViewModel(title: "", function: ""),
+        captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel(),
+        delegate: nil,
+        onInfoClick: { _ in },
+        onCaptionLongPress: { _ in }
     )
 }

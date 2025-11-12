@@ -309,14 +309,25 @@
 "channel_caption_heat_or_cold_source_switch" = "Interruptor da fonte de calor ou frio";
 "channel_caption_humidity" = "Humidade";
 "channel_caption_humidityandtemperature" = "Temperatura e humidade";
+"channel_caption_container" = "Contêiner";
+"channel_caption_septic_tank" = "Fossa séptica";
+"channel_caption_water_tank" = "Tanque de água";
+"channel_caption_container_level_sensor" = "Sensor de nível de contêiner";
+"channel_caption_flood_sensor" = "Sensor de inundação";
+"channel_caption_motion_sensor" = "Sensor de movimento";
+"channel_caption_binary_sensor" = "Sensor binário";
 "channel_offline" = "O canal está offline";
-"channel_battery_level" = "Nível de bateria (%d - %@): %d%%";
+"channel_battery_level" = "Nível de bateria: %d%%";
+"channel_battery_level_with_info" = "Nível de bateria (%d - %@): %d%%";
 "channel_uv_warning" = "A vida útil do radiador UV é de %.01f%%. Planeia substituí-lo.";
 "channel_uv_error" = "A vida útil do radiador UV é de %.01f%%. Substitua o radiador.";
 "channel_lightsource_warning" = "A vida útil da fonte de luz é de %.01f%%.";
 "dgf_too_long_operation_warning" = "As secções do vidro são expostas por mais de 20 horas, o que pode afetar negativamente a sua vida útil. Recomenda-se cobrir todas as secções durante um mínimo de 4 horas para as regenerar.";
 "dgf_planned_regeneration_in_progress" = "A regeneração planeada está em curso.";
 "dgf_regeneration_after20h" = "A regeneração iniciará  após 20 horas de trabalho.";
+/* General - Buttons & States */
+"state_partially_opened" = "parcialmente aberto";
+"channel_brn_step_by_step" = "Abrir/Fechar (passo a passo)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Removemos o gesto de deslizar que abre os detalhes; para os ver, toque no canal selecionado.";
@@ -410,6 +421,7 @@
 "hvac_mode_temperature_cooling" = "Temperatura de arrefecimento";
 "thermostat_thermometer_error" = "Erro de leitura da temperatura";
 "thermostat_clock_error" = "Erro de relógio";
+"thermostat_calibration_error" = "Erro de calibração";
 "thermostat_detail_program_current" = "Atualmente:";
 "thermostat_detail_program_next" = "Em seguida:";
 "thermostat_detail_program_time" = "durante %@";
@@ -560,6 +572,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula. Tem a certeza que quer abrir a válvula a partir da aplicação!";
 "valve_warning_manually_closed_short" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula.";
+"valve_detail_sensors" = "Sensores conectados";
+"valve_error_sensor_offline" = "Sensor de inundação indisponível – risco de inundação não detetada.";
 
 /* State */
 "state_channel_id" = "ID do Canal";
@@ -582,11 +596,15 @@
 "lastconnectionresetcause_activity_timeout" = "1: sem resposta do servidor";
 "lastconnectionresetcause_wifi_connection_lost" = "2: perda da ligação Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3: Reiniciar a ligação ao servidor";
+"state_dialog_last_known_state" = "Offline – último estado conhecido:";
 
 /* Change caption */
 "change_caption_channel_name" = "Nome do canal";
 "change_caption_scene_name" = "Nome da cena";
 "change_caption_location_name" = "Nome da localização";
+
+/* Container */
+"container_invalid_sensor_state" = "Estado do sensor inválido";
 
 /* Car play */
 "car_play_action" = "Acção: %@";
@@ -675,4 +693,17 @@
 "add_device_manual_popup_message" = "A tentativa de adicionar um dispositivo automaticamente falhou. Se o problema persistir, recomendamos adicionar o dispositivo manualmente.";
 "add_device_manual_popup_resign" = "Permanecer no modo automático";
 "add_device_manual_popup_continue" = "Tentar novamente no modo manual";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "O serviço do sistema iOS reportou um erro interno durante a verificação da rede, que está fora do nosso controlo. Experimente adicionar o dispositivo utilizando o modo manual ou reinicie o seu telemóvel/tablet.";
+"add_wizard_spaces_accept" = "Manter inalterado";
+"add_wizard_spaces_modify" = "Remover espaços";
+"add_wizard_spaces_title" = "Espaço no nome da rede?";
+"add_wizard_spaces_message" = "O nome de rede introduzido \"%@\" contém espaços em branco iniciais ou finais (espaços ou tabuladores). Se o nome da rede não incluir esses carateres, o seu dispositivo não conseguirá ligar-se à rede. Quer manter ou remover os espaços em branco iniciais ou finais?";
+
+/* Developer Info */
+"developer_option" = "Opções do desenvolvedor";
+"developer_info_settings" = "Configurações experimentais";
+"developer_info_screen_orientation" = "Rotação da tela ativada";
+"developer_info_activated" = "Modo de desenvolvedor ativado";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nem todos os portões têm um sensor de abertura configurado – os botões \"Abrir\" e \"Fechar\" podem não funcionar corretamente.";

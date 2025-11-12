@@ -24,7 +24,7 @@ extension ContainerGeneralFeature {
         @Published var fluidLevelString: String = ""
         @Published var containerType: ContainerType = .default
         @Published var controlLevels: [ControlLevel] = []
-        @Published var sensors: [SensorItemData] = []
+        @Published var sensors: [RelatedChannelData] = []
         @Published var issues: [ChannelIssueItem] = []
         @Published var soundOn: Bool = false
         

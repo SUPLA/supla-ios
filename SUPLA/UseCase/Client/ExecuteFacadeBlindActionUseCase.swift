@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol ExecuteFacadeBlindActionUseCase {
-    func invoke(action: Action, type: SubjectType, remoteId: Int32, position: CGFloat, tilt: CGFloat) -> Completable
+    func invoke(action: Action, type: SubjectType, remoteId: Int32, position: Int, tilt: Int) -> Completable
 }
 
 final class ExecuteFacadeBlindActionUseCaseImpl: ExecuteFacadeBlindActionUseCase {
@@ -27,7 +27,7 @@ final class ExecuteFacadeBlindActionUseCaseImpl: ExecuteFacadeBlindActionUseCase
     @Singleton<SuplaClientProvider> private var suplaClientProvider
     @Singleton<VibrationService> private var vibrationService
     
-    func invoke(action: Action, type: SubjectType, remoteId: Int32, position: CGFloat, tilt: CGFloat) -> Completable {
+    func invoke(action: Action, type: SubjectType, remoteId: Int32, position: Int, tilt: Int) -> Completable {
         Completable.create { completable in
             let parameters: ActionParameters = .facadeBlind(
                 action: action,

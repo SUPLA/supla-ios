@@ -324,10 +324,13 @@
 "channel_caption_septic_tank" = "Szambo";
 "channel_caption_container_level_sensor" = "Czujnik poziomu zbiornika";
 "channel_caption_flood_sensor" = "Czujnik zalania";
+"channel_caption_motion_sensor" = "Czujnik ruchu";
+"channel_caption_binary_sensor" = "Czujnik binarny";
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";
 "scene_inactive" = "Scena jest nieaktywna";
-"channel_battery_level" = "Poziom baterii (%d - %@): %d%%";
+"channel_battery_level" = "Poziom baterii: %d%%";
+"channel_battery_level_with_info" = "Poziom baterii (%d - %@): %d%%";
 "channel_uv_warning1" = "Żywotność promiennika uv wynosi %.01f%%. Zaplanuj jego wymianę.";
 "channel_uv_warning2" = "Żywotność promiennika uv wynosi %.01f%%. Wymień promiennik.";
 "channel_lightsource_warning" = "Żywotność źródła światła wynosi %.01f%%.";
@@ -338,6 +341,9 @@
 "channel_status_not_available" = "Kanał nie jest dostępny ze względu na konfigurację. Zalecamy ukrycie kanału, aby nie był widoczny w aplikacji.";
 "channel_status_awaiting" = "Tego urządzenia nie można zdalnie wybudzić. Oczekujemy na komunikację ze strony urządzenia…";
 "channel_status_updating" = "Trwa aktualizacja oprogramowania…";
+/* General - Buttons & States */
+"state_partially_opened" = "częściowo otwarty";
+"channel_brn_step_by_step" = "Otwórz/Zamknij (krok po kroku)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -656,6 +662,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: brak odpowiedzi serwera";
 "lastconnectionresetcause_wifi_connection_lost" = "2: utrata połączenia Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3: reset połączenia z serwerem";
+"state_dialog_last_known_state" = "Offline – ostatni znany stan:";
 
 /* Change caption */
 "change_caption_header" = "Zmiana nazwy";
@@ -758,3 +765,16 @@
 "add_device_manual_popup_resign" = "Pozostań w trybie automatycznym";
 "add_device_manual_popup_continue" = "Spróbuj ponownie w trybie ręcznym";
 "add_wizard_internal_error_message" = "Usługa systemowa iOS zgłosiła wewnętrzny błąd przy skanowaniu sieci, na który nie mamy wpływu. Spróbuj dodać urządzenie używając trybu ręcznego, lub uruchom ponownie telefon/tablet";
+"add_wizard_spaces_accept" = "Zachowaj bez zmian";
+"add_wizard_spaces_modify" = "Usuń spacje";
+"add_wizard_spaces_title" = "Spacja w nazwie sieci?";
+"add_wizard_spaces_message" = "Wprowadzona nazwa sieci \"%@\" zawiera wiodące lub końcowe białe znaki (spacje lub tabulatory). Jeśli nazwa sieci nie powinna zawierać tych znaków, urządzenie nie będzie w stanie połączyć się z siecią. Czy chcesz zachować, czy usunąć wiodące lub końcowe białe znaki?";
+
+/* Developer Info */
+"developer_option" = "Opcje programisty";
+"developer_info_settings" = "Ustawienia eksperymentalne";
+"developer_info_screen_orientation" = "Obracanie ekranu";
+"developer_info_activated" = "Tryb programisty aktywowany";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nie wszystkie bramy mają skonfigurowany czujnik otwarcia — przyciski „Otwórz” i „Zamknij” mogą nie działać prawidłowo.";

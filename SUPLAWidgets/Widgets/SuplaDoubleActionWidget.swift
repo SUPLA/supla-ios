@@ -153,9 +153,7 @@ extension SuplaDoubleActionWidget {
 
         private func CorrectValue(profile: String, name: String, firstAction: GroupShared.WidgetAction, secondAction: GroupShared.WidgetAction) -> some SwiftUI.View {
             VStack(spacing: Distance.tiny) {
-                Text(profile)
-                    .fontBodySmall()
-                    .lineLimit(1)
+                SuplaWidget.ProfileName(name: profile)
                 HStack(spacing: Distance.small) {
                     Button(intent: TriggerActionIntent(action: firstAction)) {
                         firstAction.icon.Image

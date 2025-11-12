@@ -15,6 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
+import SharedCore
     
 extension StateDialogFeature {
     enum StateDialogItem: Int, Identifiable, CaseIterable {
@@ -60,30 +62,54 @@ extension StateDialogFeature {
             }
         }
         
-        func extract(from value: SAChannelStateExtendedValue) -> String? {
+        func extract(from value: SharedCore.SuplaChannelStatePrintable) -> String? {
             switch self {
-            case .channelId: value.channelId().stringValue
-            case .ipAddress: value.ipv4String()
-            case .macAddress: value.macAddressString()
-            case .batteryLevel: value.batteryLevelString()
-            case .powerSupply:
-                if let batteryPowered = value.isBatteryPowered() {
-                    batteryPowered.boolValue ? Strings.State.batteryPowered : Strings.State.mainPowered
-                } else {
-                    nil
-                }
-            case .wifiRssi: value.wiFiRSSIString()
-            case .wifiSignal: value.wiFiSignalStrengthString()
-            case .bridgeNode: value.isBridgeNodeOnlineString()
-            case .bridgeSignal: value.bridgeNodeSignalStrengthString()
-            case .uptime: value.uptimeString()
-            case .connectionTime: value.connectionUptimeString()
-            case .batteryHealth: value.batteryHealthString()
-            case .connectionReset: value.lastConnectionResetCauseString()
-            case .switchCycleCount: value.switchCycleCount()
-            case .lightSourceLifespan: value.lightSourceLifespanString()
-            case .lightSourceOperatingTime: value.lightSourceOperatingTimeString()
+            case .channelId: value.channelIdString?.string
+            case .ipAddress: value.ipV4
+            case .macAddress: value.macAddress
+            case .batteryLevel: value.batteryLevelString?.string
+            case .powerSupply: value.batteryPoweredString?.string
+            case .wifiRssi: value.wifiRssiString?.string
+            case .wifiSignal: value.wifiSignalStrengthString?.string
+            case .bridgeNode: value.bridgeNodeOnlineString?.string
+            case .bridgeSignal: value.bridgeNodeSignalStrengthString?.string
+            case .uptime: value.uptimeString?.string
+            case .connectionTime: value.connectionUptimeString?.string
+            case .batteryHealth: value.batteryHealthString?.string
+            case .connectionReset: value.lastConnectionResetCauseString?.string
+            case .switchCycleCount: value.switchCycleCountString?.string
+            case .lightSourceLifespan: value.lightSourceLifespanString
+            case .lightSourceOperatingTime: value.lightSourceOperatingTimeString
             }
         }
+        
+        static func values(_ printableState: SuplaChannelStatePrintable) -> [StateDialogItem: String] {
+            StateDialogItem.allCases
+                .reduce(into: [StateDialogFeature.StateDialogItem: String?]()) {
+                    $0[$1] = $1.extract(from: printableState)
+                }
+                .filter { $0.value != nil && $0.value?.isEmpty == false }
+                .mapValues { $0! }
+        }
+    }
+}
+
+private extension SuplaChannelStatePrintable {
+    var lightSourceLifespanString: String? {
+        guard let lightSourceLifespan = lightSourceLifespanForPrintable else { return nil }
+        
+            let left = lightSourceLifespanLeftForPrintable ?? lightSourceOperatingTimePercentLeft
+            
+            if let left {
+                return String.init(format: "%dh (%0.2f%%)", lightSourceLifespan, left.intValue)
+            } else {
+                return String.init(format: "%dh", lightSourceLifespan)
+            }
+    }
+    
+    var lightSourceOperatingTimeString: String? {
+        guard let lightSourceOperatingTime = lightSourceOperatingTimeForPrintable else { return nil }
+        let timeInSec = lightSourceOperatingTime.intValue
+        return String.init(format: "%02dh %02d:%02d", timeInSec / 3600, timeInSec % 3600 / 60, timeInSec % 60)
     }
 }

@@ -19,34 +19,45 @@
     
 extension SwitchGeneralFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        private var channelId: Int32
+        private var itemBundle: ItemBundle
+        private lazy var stateViewModel: StateDialogFeature.ViewModel = {
+            let viewModel = StateDialogFeature.ViewModel { [weak self] in
+                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
+            }
+            return viewModel
+        }()
+        private lazy var captionChangeViewModel = CaptionChangeDialogFeature.ViewModel()
         
-        init(channelId: Int32, viewModel: ViewModel) {
-            self.channelId = channelId
+        init(itemBundle: ItemBundle, viewModel: ViewModel) {
+            self.itemBundle = itemBundle
             super.init(viewModel: viewModel)
             
             contentView = View(
                 viewState: viewModel.state,
                 emState: viewModel.electricityState,
                 icState: viewModel.impulseCounterState,
-                onTurnOff: { viewModel.turnOff(remoteId: channelId) },
-                onTurnOn: { viewModel.turnOn(remoteId: channelId) },
-                onIntroductionClose: { viewModel.onIntroductionClose() },
-                onForceTurnOn: { viewModel.forceTurnOnAction(remoteId: channelId) },
-                onAlertClose: viewModel.closeAlertDialog
+                stateDialogViewModel: stateViewModel,
+                captionChangeDialogViewModel: captionChangeViewModel,
+                delegate: viewModel,
+                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.channelId) },
+                onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, sensorData: $0) }
             )
             
-            viewModel.observe(remoteId: Int(channelId))
+            switch (itemBundle.subjectType) {
+            case .channel: viewModel.observeChannel(remoteId: Int(itemBundle.remoteId))
+            case .group: viewModel.observeGroup(remoteId: itemBundle.remoteId)
+            case .scene: break
+            }
         }
         
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            viewModel.loadChannel(remoteId: channelId)
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            viewModel.loadData(remoteId: itemBundle.remoteId, type: itemBundle.subjectType)
         }
         
-        static func create(channelId: Int32) -> UIViewController {
+        static func create(itemBundle: ItemBundle) -> UIViewController {
             let viewModel = ViewModel()
-            return ViewController(channelId: channelId, viewModel: viewModel)
+            return ViewController(itemBundle: itemBundle, viewModel: viewModel)
         }
     }
 }

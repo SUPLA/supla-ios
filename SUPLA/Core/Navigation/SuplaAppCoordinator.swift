@@ -48,9 +48,11 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToGateDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToCarPlayList()
     func navigateToCarPlayAdd()
     func navigateToCarPlayEdit(id: NSManagedObjectID)
+    func navigateToDeveloperOptions()
     
     func popToStatus()
     
@@ -138,9 +140,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToProfiles() {
-        let profiles = ProfilesVC()
-        profiles.bind(viewModel: ProfilesVM(profileManager: SAApp.profileManager()))
-        navigateTo(profiles)
+        navigateTo(ProfilesListFeature.ViewController.create())
     }
     
     func navigateToAddWizard() {
@@ -230,6 +230,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(ContainerDetailVC(item: item, pages: pages))
     }
     
+    func navigateToGateDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(GateDetailVC(item: item, pages: pages))
+    }
+    
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
         navigateTo(PinSetupFeature.ViewController.create(scope: lockScreenScope))
     }
@@ -252,6 +256,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToCarPlayEdit(id: NSManagedObjectID) {
         navigateTo(CarPlayAddFeature.ViewController.create(id: id))
+    }
+    
+    func navigateToDeveloperOptions() {
+        navigateTo(DeveloperInfoFeature.ViewController.create())
     }
     
     func popToStatus() {

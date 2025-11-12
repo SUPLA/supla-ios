@@ -31,16 +31,11 @@ extension CarPlayListFeature {
             BackgroundStack(alignment: .top) {
                 VStack(spacing: 1) {
                     if (BrandingConfiguration.CARPLAY_SUPPORT) {
-                        HStack {
-                            Toggle(isOn: $viewState.playMessages) {
-                                Text(Strings.CarPlay.voiceMessages)
-                                    .fontBodyMedium()
-                            }
-                            .onChange(of: viewState.playMessages) { onPlayMessagesChange($0) }
-                        }
-                        .padding([.leading, .trailing], Distance.default)
-                        .padding([.top, .bottom], Distance.small)
-                        .background(Color.Supla.surface)
+                        SettingsItemWithCheckbox(
+                            label: Strings.CarPlay.voiceMessages,
+                            checked: $viewState.playMessages,
+                            onChange: { onPlayMessagesChange($0) }
+                        )
                     }
 
                     if (viewState.items.isEmpty) {
@@ -63,23 +58,9 @@ extension CarPlayListFeature {
                 }
             }
             .overlay(
-                PlusButton(action: onNewItem),
+                FloatingPlusButton(action: onNewItem),
                 alignment: .bottomTrailing
             )
-        }
-    }
-
-    struct PlusButton: SwiftUI.View {
-        var action: () -> Void
-
-        var body: some SwiftUI.View {
-            IconButton(
-                name: .Icons.plus,
-                color: .Supla.onPrimary,
-                action: action
-            )
-            .buttonStyle(FilledIconStyle())
-            .padding(Distance.default)
         }
     }
 

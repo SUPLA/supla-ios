@@ -120,6 +120,8 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
                 viewControllers.append(legacyDetail(type: LegacyDetailType.thermostat_hp))
             case .thermostatHeatpolHistory:
                 viewControllers.append(heatpolHistoryDetail())
+            case .gateGeneral:
+                viewControllers.append(gateDetail())
             }
         }
         
@@ -136,7 +138,7 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
     }
     
     private func switchGeneral() -> UIViewController {
-        let vc = SwitchGeneralFeature.ViewController.create(channelId: item.remoteId)
+        let vc = SwitchGeneralFeature.ViewController.create(itemBundle: item)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
@@ -426,6 +428,16 @@ class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: 
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.ThermostatHistory.rawValue
+        )
+        return vc
+    }
+    
+    private func gateDetail() -> UIViewController {
+        let vc = GateGeneralFeature.ViewController.create(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.General.rawValue
         )
         return vc
     }

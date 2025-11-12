@@ -43,7 +43,7 @@ extension SuplaAllActionsWidget {
         var entry: Provider.Entry
         
         var body: some SwiftUI.View {
-            VStack(spacing: Distance.small) {
+            VStack(spacing: 4) {
                 Text(Strings.Widget.actionsName).fontBodyLarge()
                 if (entry.actions.isEmpty) {
                     Text(BrandingConfiguration.widgetEmptyHint)
@@ -80,11 +80,12 @@ extension SuplaAllActionsWidget {
         
         var body: some SwiftUI.View {
             Button(intent: TriggerActionIntent(action: item)) {
-                VStack {
+                VStack(spacing: 4) {
+                    SuplaWidget.ProfileName(name: item.profileName)
                     item.icon.Image
                         .resizable()
                         .scaledToFit()
-                        .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
+                        .frame(width: Dimens.iconSizeList, height: Dimens.iconSizeList)
                         .padding(Distance.tiny)
                         .background {
                             RoundedRectangle(cornerRadius: Dimens.buttonRadius).fill(Color.Supla.surface)

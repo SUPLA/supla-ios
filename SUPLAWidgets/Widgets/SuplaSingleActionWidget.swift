@@ -143,9 +143,7 @@ extension SuplaSingleActionWidget {
 
         private func CorrectValue(profile: String, name: String, action: GroupShared.WidgetAction) -> some SwiftUI.View {
             VStack(spacing: Distance.tiny) {
-                Text(profile)
-                    .fontBodySmall()
-                    .lineLimit(1)
+                SuplaWidget.ProfileName(name: profile)
                 Button(intent: TriggerActionIntent(action: action)) {
                     action.icon.Image
                         .resizable()

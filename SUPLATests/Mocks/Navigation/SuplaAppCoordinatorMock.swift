@@ -102,6 +102,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToElectricityMeterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
+    func navigateToGateDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    }
+    
     var navigateToPinSetupMock: FunctionMock<LockScreenScope, Void> = .void()
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
         navigateToPinSetupMock.handle(lockScreenScope)
@@ -167,6 +170,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     
     func verifyPopViewController(_ parameters: [Bool]) {
         XCTAssertEqual(navigationControllerMock.popViewControllerParameters, parameters)
+    }
+    
+    func navigateToDeveloperOptions() {
     }
 }
 

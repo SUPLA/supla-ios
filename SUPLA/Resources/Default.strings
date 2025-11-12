@@ -104,10 +104,13 @@
 "channel_caption_septic_tank" = "Septic tank";
 "channel_caption_container_level_sensor" = "Container level sensor";
 "channel_caption_flood_sensor" = "Flood sensor";
+"channel_caption_motion_sensor" = "Motion sensor";
+"channel_caption_binary_sensor" = "Binary sensor";
 "channel_offline" = "Channel is offline";
 "channel_not_found" = "Channel not found";
 "scene_inactive" = "Scene is inactive";
-"channel_battery_level" = "Battery level (%d - %@): %d%%";
+"channel_battery_level" = "Battery level: %d%%";
+"channel_battery_level_with_info" = "Battery level (%d - %@): %d%%";
 "channel_uv_warning" = "The lifespan of the uv radiator is %.01f%%. Schedule its replacement.";
 "channel_uv_error" = "The lifespan of the uv radiator is %.01f%%. Replace the radiator.";
 "channel_lightsource_warning" = "The lifespan of the light source is %.01f%%.";
@@ -118,6 +121,9 @@
 "channel_status_not_available" = "The channel is not available due to the configuration. We recommend hiding the channel so it is not visible in the app.";
 "channel_status_awaiting" = "This device cannot be remotely awakened. We are awaiting communication from the device…";
 "channel_status_updating" = "Software update in progress…";
+/* General - Buttons & States */
+"state_partially_opened" = "Partially opened";
+"channel_btn_step_by_step" = "Open/Close (step by step)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -449,6 +455,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: server timeout";
 "lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi connection lost";
 "lastconnectionresetcause_server_connection_lost" = "3: server connection lost";
+"state_dialog_last_known_state" = "Offline - last known state:";
 
 /* Change caption */
 "change_caption_header" = "Caption Change";
@@ -549,3 +556,16 @@
 "add_device_manual_popup_resign" = "Stay in automatic mode";
 "add_device_manual_popup_continue" = "Try again in manual mode";
 "add_wizard_internal_error_message" = "The iOS system service reported an internal error during network scanning, which is beyond our control. Please try adding the device using manual mode, or restart your phone/tablet.";
+"add_wizard_spaces_accept" = "Keep unchanged";
+"add_wizard_spaces_modify" = "Remove spaces";
+"add_wizard_spaces_title" = "Space in network name?";
+"add_wizard_spaces_message" = "Entered network name \"%@\" contains leading or trailing white characters (spaces or tabulators). If your network name should not include those characters, your device will not be able to connect to the network. Do you want to keep or remove the leading or trailing white characters?";
+
+/* Developer Info */
+"developer_option" = "Developer options";
+"developer_info_settings" = "Experimental settings";
+"developer_info_screen_orientation" = "Screen rotation enabled";
+"developer_info_activated" = "Developer mode activated";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Not all gates have an opening sensor configured - the \"Open\" and \"Close\" buttons may not function correctly.";

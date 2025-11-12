@@ -309,14 +309,25 @@
 "channel_caption_heat_or_cold_source_switch" = "Schakelaar voor warmte- of koudebron";
 "channel_caption_humidity" = "Vochtigheid";
 "channel_caption_humidityandtemperature" = "Temperatuur en luchtvochtigheid";
+"channel_caption_water_tank" = "Watertank";
+"channel_caption_container_level_sensor" = "Niveausensor voor container";
+"channel_caption_flood_sensor" = "Vloedsensor";
+"channel_caption_motion_sensor" = "Bewegingssensor";
+"channel_caption_binary_sensor" = "Binaire sensor";
+"channel_caption_container" = "Container";
+"channel_caption_septic_tank" = "Septic tank";
 "channel_offline" = "Het kanaal is offline";
-"channel_battery_level" = "Batterijniveau (%d - %@): %d%%";
+"channel_battery_level" = "Batterijniveau: %d%%";
+"channel_battery_level_with_info" = "Batterijniveau (%d - %@): %d%%";
 "channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
 "channel_uv_error" = "De levensduur van het uv-belichtingstoestel bedraagt %.01f%%. Vervang de stralingsbuis.";
 "channel_lightsource_warning" = "De levensduur van de lichtbron is %.01f%%.";
 "dgf_too_long_operation_warning" = "Beglazingssecties worden meer dan 20 uur blootgesteld, wat hun levensduur nadelig kan beïnvloeden. Aanbevolen wordt alle secties minimaal 4 uur af te dekken om ze te laten regenereren.";
 "dgf_planned_regeneration_in_progress" = "Geplande regeneratie is aan de gang.";
 "dgf_regeneration_after20h" = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
+/* General - Buttons & States */
+"state_partially_opened" = "gedeeltelijk open";
+"channel_brn_step_by_step" = "Openen/Sluiten (stap voor stap)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";
@@ -406,6 +417,7 @@
 "hvac_mode_temperature_cooling" = "Koeltemperatuur";
 "thermostat_thermometer_error" = "Fout bij het aflezen van de temperatuur";
 "thermostat_clock_error" = "Klokfout";
+"thermostat_calibration_error" = "Kalibratiefout";
 "thermostat_detail_program_current" = "Actueel:";
 "thermostat_detail_program_next" = "Volgende:";
 "thermostat_detail_program_time" = "via %@";
@@ -558,6 +570,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig. Weet je zeker dat je de klep wilt openen vanuit de toepassing!";
 "valve_warning_manually_closed_short" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig.";
+"valve_detail_sensors" = "Verbonden sensoren";
+"valve_error_sensor_offline" = "Watermelder niet beschikbaar – risico op onopgemerkte overstroming.";
 
 /* State */
 "state_channel_id" = "Kanaal id";
@@ -580,11 +594,15 @@
 "lastconnectionresetcause_activity_timeout" = "1: geen antwoord van de server";
 "lastconnectionresetcause_wifi_connection_lost" = "2: verlies van Wi-Fi verbinding";
 "lastconnectionresetcause_server_connection_lost" = "3: Reset de verbinding met de server";
+"state_dialog_last_known_state" = "Offline - laatst bekende status:";
 
 /* Change caption */
 "change_caption_channel_name" = "Naam kanaal";
 "change_caption_scene_name" = "Scènenaam";
 "change_caption_location_name" = "Naam van de plaats";
+
+/* Container */
+"container_invalid_sensor_state" = "Ongeldige sensorstatus.";
 
 /* Car play */
 "car_play_action" = "Actie: %@";
@@ -673,4 +691,17 @@
 "add_device_manual_popup_message" = "De poging om een apparaat automatisch toe te voegen is mislukt. Als het probleem aanhoudt, raden we aan het apparaat handmatig toe te voegen.";
 "add_device_manual_popup_resign" = "Blijf in automatische modus";
 "add_device_manual_popup_continue" = "Probeer het opnieuw in handmatige modus";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "De iOS-systeemservice heeft een interne fout gemeld tijdens het scannen van het netwerk, waar wij geen controle over hebben. Probeer het apparaat handmatig toe te voegen of start uw telefoon/tablet opnieuw op.";
+"add_wizard_spaces_accept" = "Onveranderd laten";
+"add_wizard_spaces_modify" = "Spaties verwijderen";
+"add_wizard_spaces_title" = "Spatie in netwerknaam?";
+"add_wizard_spaces_message" = "De ingevoerde netwerknaam \"%@\" bevat inleidende of afsluitende witruimtetekens (spaties of tabs). Als uw netwerknaam deze tekens niet mag bevatten, kan uw apparaat geen verbinding maken met het netwerk. Wilt u de inleidende of afsluitende witruimtetekens behouden of verwijderen?";
+
+/* Developer Info */
+"developer_option" = "Ontwikkelaarsopties";
+"developer_info_settings" = "Experimentele instellingen";
+"developer_info_screen_orientation" = "Schermrotatie ingeschakeld";
+"developer_info_activated" = "Ontwikkelaarsmodus geactiveerd";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Niet alle poorten hebben een openingssensor geconfigureerd – de knoppen \"Openen\" en \"Sluiten\" werken mogelijk niet correct.";

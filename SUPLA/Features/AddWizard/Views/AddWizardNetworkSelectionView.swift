@@ -41,6 +41,9 @@ extension AddWizardFeature {
                 TextFieldScaffold(label: Strings.AddWizard.networkName) {
                     TextField("", text: $networkName)
                         .textFieldStyle(StandardTextFieldStyle(error: error))
+                        .autocorrectionDisabled(true)
+                        .textContentType(.none)
+                        .textInputAutocapitalization(.never)
                 }
                 TextFieldScaffold(label: Strings.General.password) {
                     VStack(spacing: Distance.tiny) {

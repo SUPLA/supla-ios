@@ -24,7 +24,7 @@ protocol ChannelUpdatesObserver: AnyObject {
 }
 
 extension ChannelUpdatesObserver {
-    func observe(remoteId: Int) {
+    func observeChannel(remoteId: Int) {
         @Singleton<UpdateEventsManager> var updateEventsManager
 
         handle(

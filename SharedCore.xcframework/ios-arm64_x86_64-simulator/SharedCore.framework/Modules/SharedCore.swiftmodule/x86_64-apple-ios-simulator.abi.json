@@ -1359,6 +1359,57 @@
                       },
                       {
                         "kind": "Var",
+                        "name": "withFormat",
+                        "printedName": "withFormat",
+                        "children": [
+                          {
+                            "kind": "TypeFunc",
+                            "name": "Function",
+                            "printedName": "(SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed.Type) -> (SharedCore.LocalizedStringWithFormat) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
+                            "children": [
+                              {
+                                "kind": "TypeFunc",
+                                "name": "Function",
+                                "printedName": "(SharedCore.LocalizedStringWithFormat) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO"
+                                  },
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "LocalizedStringWithFormat",
+                                    "printedName": "SharedCore.LocalizedStringWithFormat",
+                                    "usr": "c:objc(cs)SharedCoreLocalizedStringWithFormat"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Metatype",
+                                "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed.Type",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "__Sealed",
+                                    "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
+                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "declKind": "EnumElement",
+                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO10withFormatyAISo0abhi4WithL0CcAImF",
+                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO10withFormatyAISo0abhi4WithL0CcAImF",
+                        "moduleName": "SharedCore",
+                        "fixedbinaryorder": 2
+                      },
+                      {
+                        "kind": "Var",
                         "name": "withId",
                         "printedName": "withId",
                         "children": [
@@ -1406,109 +1457,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO6withIdyAISo0abhi4WithL0CcAImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO6withIdyAISo0abhi4WithL0CcAImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 2
-                      },
-                      {
-                        "kind": "Var",
-                        "name": "withIdAndString",
-                        "printedName": "withIdAndString",
-                        "children": [
-                          {
-                            "kind": "TypeFunc",
-                            "name": "Function",
-                            "printedName": "(SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed.Type) -> (SharedCore.LocalizedStringWithIdAndString) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                            "children": [
-                              {
-                                "kind": "TypeFunc",
-                                "name": "Function",
-                                "printedName": "(SharedCore.LocalizedStringWithIdAndString) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                                "children": [
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "__Sealed",
-                                    "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO"
-                                  },
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "LocalizedStringWithIdAndString",
-                                    "printedName": "SharedCore.LocalizedStringWithIdAndString",
-                                    "usr": "c:objc(cs)SharedCoreLocalizedStringWithIdAndString"
-                                  }
-                                ]
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "Metatype",
-                                "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed.Type",
-                                "children": [
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "__Sealed",
-                                    "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ],
-                        "declKind": "EnumElement",
-                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO09withIdAndI0yAISo0abhi4WithlmI0CcAImF",
-                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO09withIdAndI0yAISo0abhi4WithlmI0CcAImF",
-                        "moduleName": "SharedCore",
                         "fixedbinaryorder": 3
-                      },
-                      {
-                        "kind": "Var",
-                        "name": "withIdIntStringInt",
-                        "printedName": "withIdIntStringInt",
-                        "children": [
-                          {
-                            "kind": "TypeFunc",
-                            "name": "Function",
-                            "printedName": "(SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed.Type) -> (SharedCore.LocalizedStringWithIdIntStringInt) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                            "children": [
-                              {
-                                "kind": "TypeFunc",
-                                "name": "Function",
-                                "printedName": "(SharedCore.LocalizedStringWithIdIntStringInt) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                                "children": [
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "__Sealed",
-                                    "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO"
-                                  },
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "LocalizedStringWithIdIntStringInt",
-                                    "printedName": "SharedCore.LocalizedStringWithIdIntStringInt",
-                                    "usr": "c:objc(cs)SharedCoreLocalizedStringWithIdIntStringInt"
-                                  }
-                                ]
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "Metatype",
-                                "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed.Type",
-                                "children": [
-                                  {
-                                    "kind": "TypeNominal",
-                                    "name": "__Sealed",
-                                    "printedName": "SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed",
-                                    "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ],
-                        "declKind": "EnumElement",
-                        "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO09withIdIntiM0yAISo0abhi4WithlmiM0CcAImF",
-                        "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO09withIdIntiM0yAISo0abhi4WithlmiM0CcAImF",
-                        "moduleName": "SharedCore",
-                        "fixedbinaryorder": 4
                       },
                       {
                         "kind": "Var",
@@ -1546,7 +1495,7 @@
                         "usr": "s:10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO4elseyA2ImF",
                         "mangledName": "$s10SharedCore4SkieO26supla_android__shared_coreO15LocalizedStringO8__SealedO4elseyA2ImF",
                         "moduleName": "SharedCore",
-                        "fixedbinaryorder": 5
+                        "fixedbinaryorder": 4
                       },
                       {
                         "kind": "Var",
@@ -36494,6 +36443,82 @@
           },
           {
             "kind": "Var",
+            "name": "channelCaptionMotionSensor",
+            "printedName": "channelCaptionMotionSensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO26channelCaptionMotionSensoryA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO26channelCaptionMotionSensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 67
+          },
+          {
+            "kind": "Var",
+            "name": "channelCaptionBinarySensor",
+            "printedName": "channelCaptionBinarySensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO26channelCaptionBinarySensoryA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO26channelCaptionBinarySensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 68
+          },
+          {
+            "kind": "Var",
             "name": "channelStatusAwaiting",
             "printedName": "channelStatusAwaiting",
             "children": [
@@ -36528,7 +36553,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21channelStatusAwaitingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21channelStatusAwaitingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 67
+            "fixedbinaryorder": 69
           },
           {
             "kind": "Var",
@@ -36566,7 +36591,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21channelStatusUpdatingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21channelStatusUpdatingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 68
+            "fixedbinaryorder": 70
           },
           {
             "kind": "Var",
@@ -36604,7 +36629,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25channelStatusNotAvailableyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25channelStatusNotAvailableyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 69
+            "fixedbinaryorder": 71
           },
           {
             "kind": "Var",
@@ -36642,7 +36667,45 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19channelBatteryLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 70
+            "fixedbinaryorder": 72
+          },
+          {
+            "kind": "Var",
+            "name": "channelBatteryLevelWithInfo",
+            "printedName": "channelBatteryLevelWithInfo",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.LocalizedStringId.Type) -> SharedCore.LocalizedStringId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedStringId",
+                    "printedName": "SharedCore.LocalizedStringId",
+                    "usr": "s:10SharedCore17LocalizedStringIdO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.LocalizedStringId.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedStringId",
+                        "printedName": "SharedCore.LocalizedStringId",
+                        "usr": "s:10SharedCore17LocalizedStringIdO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore17LocalizedStringIdO27channelBatteryLevelWithInfoyA2CmF",
+            "mangledName": "$s10SharedCore17LocalizedStringIdO27channelBatteryLevelWithInfoyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 73
           },
           {
             "kind": "Var",
@@ -36680,7 +36743,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO12motorProblemyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 71
+            "fixedbinaryorder": 74
           },
           {
             "kind": "Var",
@@ -36718,7 +36781,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO15calibrationLostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 72
+            "fixedbinaryorder": 75
           },
           {
             "kind": "Var",
@@ -36756,7 +36819,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17calibrationFailedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 73
+            "fixedbinaryorder": 76
           },
           {
             "kind": "Var",
@@ -36794,7 +36857,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18overcurrentWarningyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18overcurrentWarningyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 74
+            "fixedbinaryorder": 77
           },
           {
             "kind": "Var",
@@ -36832,7 +36895,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26thermostatThermometerErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 75
+            "fixedbinaryorder": 78
           },
           {
             "kind": "Var",
@@ -36870,7 +36933,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25thermostatBatterCoverOpenyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 76
+            "fixedbinaryorder": 79
           },
           {
             "kind": "Var",
@@ -36908,7 +36971,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO20thermostatClockErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 77
+            "fixedbinaryorder": 80
           },
           {
             "kind": "Var",
@@ -36946,7 +37009,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26thermostatCalibrationErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26thermostatCalibrationErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 78
+            "fixedbinaryorder": 81
           },
           {
             "kind": "Var",
@@ -36984,7 +37047,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17floodSensorActiveyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17floodSensorActiveyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 79
+            "fixedbinaryorder": 82
           },
           {
             "kind": "Var",
@@ -37022,7 +37085,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19valveManuallyClosedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19valveManuallyClosedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 80
+            "fixedbinaryorder": 83
           },
           {
             "kind": "Var",
@@ -37060,7 +37123,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO13valveFloodingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO13valveFloodingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 81
+            "fixedbinaryorder": 84
           },
           {
             "kind": "Var",
@@ -37098,7 +37161,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO17valveMotorProblemyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO17valveMotorProblemyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 82
+            "fixedbinaryorder": 85
           },
           {
             "kind": "Var",
@@ -37136,7 +37199,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18valveSensorOfflineyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18valveSensorOfflineyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 83
+            "fixedbinaryorder": 86
           },
           {
             "kind": "Var",
@@ -37174,7 +37237,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19containerAlarmLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19containerAlarmLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 84
+            "fixedbinaryorder": 87
           },
           {
             "kind": "Var",
@@ -37212,7 +37275,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21containerWarningLevelyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21containerWarningLevelyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 85
+            "fixedbinaryorder": 88
           },
           {
             "kind": "Var",
@@ -37250,7 +37313,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO27containerInvalidSensorStateyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO27containerInvalidSensorStateyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 86
+            "fixedbinaryorder": 89
           },
           {
             "kind": "Var",
@@ -37288,7 +37351,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO19containerSoundAlarmyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO19containerSoundAlarmyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 87
+            "fixedbinaryorder": 90
           },
           {
             "kind": "Var",
@@ -37326,7 +37389,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO32deviceRegistrationRequestTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO32deviceRegistrationRequestTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 88
+            "fixedbinaryorder": 91
           },
           {
             "kind": "Var",
@@ -37364,7 +37427,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO27enablingRegistrationTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO27enablingRegistrationTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 89
+            "fixedbinaryorder": 92
           },
           {
             "kind": "Var",
@@ -37402,7 +37465,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO20addWizardScanTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO20addWizardScanTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 90
+            "fixedbinaryorder": 93
           },
           {
             "kind": "Var",
@@ -37440,7 +37503,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO23addWizardDeviceNotFoundyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO23addWizardDeviceNotFoundyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 91
+            "fixedbinaryorder": 94
           },
           {
             "kind": "Var",
@@ -37478,7 +37541,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO23addWizardConnectTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO23addWizardConnectTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 92
+            "fixedbinaryorder": 95
           },
           {
             "kind": "Var",
@@ -37516,7 +37579,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25addWizardConfigureTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25addWizardConfigureTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 93
+            "fixedbinaryorder": 96
           },
           {
             "kind": "Var",
@@ -37554,7 +37617,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18addWizardWifiErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18addWizardWifiErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 94
+            "fixedbinaryorder": 97
           },
           {
             "kind": "Var",
@@ -37592,7 +37655,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28addWizardResultNotCompatibleyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28addWizardResultNotCompatibleyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 95
+            "fixedbinaryorder": 98
           },
           {
             "kind": "Var",
@@ -37630,7 +37693,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO30addWizardResultConnectionErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO30addWizardResultConnectionErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 96
+            "fixedbinaryorder": 99
           },
           {
             "kind": "Var",
@@ -37668,7 +37731,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO21addWizardResultFailedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO21addWizardResultFailedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 97
+            "fixedbinaryorder": 100
           },
           {
             "kind": "Var",
@@ -37706,7 +37769,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25addWizardReconnectTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25addWizardReconnectTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 98
+            "fixedbinaryorder": 101
           },
           {
             "kind": "Var",
@@ -37744,7 +37807,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO32addWizardDeviceTemporarilyLockedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO32addWizardDeviceTemporarilyLockedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 99
+            "fixedbinaryorder": 102
           },
           {
             "kind": "Var",
@@ -37782,7 +37845,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO23addWizardStatePreparingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO23addWizardStatePreparingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 100
+            "fixedbinaryorder": 103
           },
           {
             "kind": "Var",
@@ -37820,7 +37883,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24addWizardStateConnectingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24addWizardStateConnectingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 101
+            "fixedbinaryorder": 104
           },
           {
             "kind": "Var",
@@ -37858,7 +37921,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO25addWizardStateConfiguringyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO25addWizardStateConfiguringyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 102
+            "fixedbinaryorder": 105
           },
           {
             "kind": "Var",
@@ -37896,7 +37959,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO23addWizardStateFinishingyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO23addWizardStateFinishingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 103
+            "fixedbinaryorder": 106
           },
           {
             "kind": "Var",
@@ -37934,7 +37997,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18channelStateUptimeyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18channelStateUptimeyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 104
+            "fixedbinaryorder": 107
           },
           {
             "kind": "Var",
@@ -37972,7 +38035,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO26channelStateBatteryPoweredyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO26channelStateBatteryPoweredyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 105
+            "fixedbinaryorder": 108
           },
           {
             "kind": "Var",
@@ -38010,7 +38073,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24channelStateMainsPoweredyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24channelStateMainsPoweredyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 106
+            "fixedbinaryorder": 109
           },
           {
             "kind": "Var",
@@ -38048,7 +38111,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO31lastConnectionResetCauseUnknownyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO31lastConnectionResetCauseUnknownyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 107
+            "fixedbinaryorder": 110
           },
           {
             "kind": "Var",
@@ -38086,7 +38149,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO39lastConnectionResetCauseActivityTimeoutyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO39lastConnectionResetCauseActivityTimeoutyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 108
+            "fixedbinaryorder": 111
           },
           {
             "kind": "Var",
@@ -38124,7 +38187,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO028lastConnectionResetCauseWifiG4LostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO028lastConnectionResetCauseWifiG4LostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 109
+            "fixedbinaryorder": 112
           },
           {
             "kind": "Var",
@@ -38162,7 +38225,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO030lastConnectionResetCauseServerG4LostyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO030lastConnectionResetCauseServerG4LostyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 110
+            "fixedbinaryorder": 113
           },
           {
             "kind": "Var",
@@ -38200,7 +38263,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO32resultCodeTemporarilyUnavailableyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO32resultCodeTemporarilyUnavailableyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 111
+            "fixedbinaryorder": 114
           },
           {
             "kind": "Var",
@@ -38238,7 +38301,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO29resultCodeClientLimitExceededyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO29resultCodeClientLimitExceededyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 112
+            "fixedbinaryorder": 115
           },
           {
             "kind": "Var",
@@ -38276,7 +38339,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24resultCodeDeviceDisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24resultCodeDeviceDisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 113
+            "fixedbinaryorder": 116
           },
           {
             "kind": "Var",
@@ -38314,7 +38377,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO016resultCodeAccessE8DisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO016resultCodeAccessE8DisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 114
+            "fixedbinaryorder": 117
           },
           {
             "kind": "Var",
@@ -38352,7 +38415,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO30resultCodeRegistrationDisabledyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO30resultCodeRegistrationDisabledyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 115
+            "fixedbinaryorder": 118
           },
           {
             "kind": "Var",
@@ -38390,7 +38453,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO016resultCodeAccessE11NotAssignedyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO016resultCodeAccessE11NotAssignedyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 116
+            "fixedbinaryorder": 119
           },
           {
             "kind": "Var",
@@ -38428,7 +38491,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO18resultCodeInactiveyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO18resultCodeInactiveyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 117
+            "fixedbinaryorder": 120
           },
           {
             "kind": "Var",
@@ -38466,7 +38529,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO34resultCodeIncorrectEmailOrPasswordyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO34resultCodeIncorrectEmailOrPasswordyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 118
+            "fixedbinaryorder": 121
           },
           {
             "kind": "Var",
@@ -38504,7 +38567,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24resultCodeBadCredentialsyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24resultCodeBadCredentialsyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 119
+            "fixedbinaryorder": 122
           },
           {
             "kind": "Var",
@@ -38542,7 +38605,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO22resultCodeUnknownErroryA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO22resultCodeUnknownErroryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 120
+            "fixedbinaryorder": 123
           },
           {
             "kind": "Var",
@@ -38580,7 +38643,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO22lifespanWarningReplaceyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO22lifespanWarningReplaceyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 121
+            "fixedbinaryorder": 124
           },
           {
             "kind": "Var",
@@ -38618,7 +38681,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO23lifespanWarningScheduleyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO23lifespanWarningScheduleyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 122
+            "fixedbinaryorder": 125
           },
           {
             "kind": "Var",
@@ -38656,7 +38719,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO15lifespanWarningyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO15lifespanWarningyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 123
+            "fixedbinaryorder": 126
           },
           {
             "kind": "Var",
@@ -38694,7 +38757,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO28digiglassPlannedRegenerationyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO28digiglassPlannedRegenerationyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 124
+            "fixedbinaryorder": 127
           },
           {
             "kind": "Var",
@@ -38732,7 +38795,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO29digiglassRegenerationAfter20HyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO29digiglassRegenerationAfter20HyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 125
+            "fixedbinaryorder": 128
           },
           {
             "kind": "Var",
@@ -38770,7 +38833,7 @@
             "usr": "s:10SharedCore17LocalizedStringIdO24digiglassToLongOperationyA2CmF",
             "mangledName": "$s10SharedCore17LocalizedStringIdO24digiglassToLongOperationyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 126
+            "fixedbinaryorder": 129
           },
           {
             "kind": "Var",
@@ -46228,6 +46291,82 @@
             "mangledName": "$s10SharedCore13SuplaFunctionO11floodSensoryA2CmF",
             "moduleName": "SharedCore",
             "fixedbinaryorder": 65
+          },
+          {
+            "kind": "Var",
+            "name": "motionSensor",
+            "printedName": "motionSensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO12motionSensoryA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO12motionSensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 66
+          },
+          {
+            "kind": "Var",
+            "name": "binarySensor",
+            "printedName": "binarySensor",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO12binarySensoryA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO12binarySensoryA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 67
           },
           {
             "kind": "Var",
@@ -57232,6 +57371,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Function",
         "name": "ifTrue",
         "printedName": "ifTrue(value:callback:)",
@@ -57512,6 +57661,117 @@
       {
         "kind": "Function",
         "name": "localizedString",
+        "printedName": "localizedString(id:arg1:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedString",
+            "printedName": "any SharedCore.LocalizedString",
+            "usr": "c:objc(pl)SharedCoreLocalizedString"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedStringId",
+            "printedName": "SharedCore.LocalizedStringId",
+            "usr": "s:10SharedCore17LocalizedStringIdO"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore15localizedString2id4arg1So0ab9LocalizedD0_pAA0gD2IdO_yptF",
+        "mangledName": "$s10SharedCore15localizedString2id4arg1So0ab9LocalizedD0_pAA0gD2IdO_yptF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "localizedString",
+        "printedName": "localizedString(id:arg1:arg2:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedString",
+            "printedName": "any SharedCore.LocalizedString",
+            "usr": "c:objc(pl)SharedCoreLocalizedString"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedStringId",
+            "printedName": "SharedCore.LocalizedStringId",
+            "usr": "s:10SharedCore17LocalizedStringIdO"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore15localizedString2id4arg14arg2So0ab9LocalizedD0_pAA0hD2IdO_ypyptF",
+        "mangledName": "$s10SharedCore15localizedString2id4arg14arg2So0ab9LocalizedD0_pAA0hD2IdO_ypyptF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "localizedString",
+        "printedName": "localizedString(id:arg1:arg2:arg3:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedString",
+            "printedName": "any SharedCore.LocalizedString",
+            "usr": "c:objc(pl)SharedCoreLocalizedString"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedStringId",
+            "printedName": "SharedCore.LocalizedStringId",
+            "usr": "s:10SharedCore17LocalizedStringIdO"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore15localizedString2id4arg14arg24arg3So0ab9LocalizedD0_pAA0iD2IdO_ypypyptF",
+        "mangledName": "$s10SharedCore15localizedString2id4arg14arg24arg3So0ab9LocalizedD0_pAA0iD2IdO_ypypyptF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "localizedString",
         "printedName": "localizedString(id:arg1:arg2:arg3:arg4:)",
         "children": [
           {
@@ -57559,7 +57819,7 @@
       {
         "kind": "Function",
         "name": "localizedString",
-        "printedName": "localizedString(id:arg1:arg2:arg3:)",
+        "printedName": "localizedString(format:arg1:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -57569,16 +57829,30 @@
           },
           {
             "kind": "TypeNominal",
-            "name": "LocalizedStringId",
-            "printedName": "SharedCore.LocalizedStringId",
-            "usr": "s:10SharedCore17LocalizedStringIdO"
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
           },
           {
             "kind": "TypeNominal",
-            "name": "Int32",
-            "printedName": "Swift.Int32",
-            "usr": "s:s5Int32V"
-          },
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore15localizedString6format4arg1So0ab9LocalizedD0_pSS_yptF",
+        "mangledName": "$s10SharedCore15localizedString6format4arg1So0ab9LocalizedD0_pSS_yptF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "localizedString",
+        "printedName": "localizedString(format:arg1:arg2:)",
+        "children": [
           {
             "kind": "TypeNominal",
             "name": "LocalizedString",
@@ -57587,14 +57861,113 @@
           },
           {
             "kind": "TypeNominal",
-            "name": "Int32",
-            "printedName": "Swift.Int32",
-            "usr": "s:s5Int32V"
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
           }
         ],
         "declKind": "Func",
-        "usr": "s:10SharedCore15localizedString2id4arg14arg24arg3So0ab9LocalizedD0_pAA0iD2IdO_s5Int32VSoAG_pAKtF",
-        "mangledName": "$s10SharedCore15localizedString2id4arg14arg24arg3So0ab9LocalizedD0_pAA0iD2IdO_s5Int32VSoAG_pAKtF",
+        "usr": "s:10SharedCore15localizedString6format4arg14arg2So0ab9LocalizedD0_pSS_ypyptF",
+        "mangledName": "$s10SharedCore15localizedString6format4arg14arg2So0ab9LocalizedD0_pSS_ypyptF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "localizedString",
+        "printedName": "localizedString(format:arg1:arg2:arg3:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedString",
+            "printedName": "any SharedCore.LocalizedString",
+            "usr": "c:objc(pl)SharedCoreLocalizedString"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore15localizedString6format4arg14arg24arg3So0ab9LocalizedD0_pSS_ypypyptF",
+        "mangledName": "$s10SharedCore15localizedString6format4arg14arg24arg3So0ab9LocalizedD0_pSS_ypypyptF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "localizedString",
+        "printedName": "localizedString(format:arg1:arg2:arg3:arg4:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "LocalizedString",
+            "printedName": "any SharedCore.LocalizedString",
+            "usr": "c:objc(pl)SharedCoreLocalizedString"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "ProtocolComposition",
+            "printedName": "Any"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore15localizedString6format4arg14arg24arg34arg4So0ab9LocalizedD0_pSS_ypypypyptF",
+        "mangledName": "$s10SharedCore15localizedString6format4arg14arg24arg34arg4So0ab9LocalizedD0_pSS_ypypypyptF",
         "moduleName": "SharedCore",
         "declAttributes": [
           "AccessControl"
@@ -61074,6 +61447,880 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SuplaChannelStatePrintable",
+        "printedName": "SuplaChannelStatePrintable",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "batteryHealthString",
+            "printedName": "batteryHealthString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E19batteryHealthStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "batteryLevelString",
+            "printedName": "batteryLevelString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E18batteryLevelStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "batteryPoweredString",
+            "printedName": "batteryPoweredString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E20batteryPoweredStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "bridgeNodeOnlineString",
+            "printedName": "bridgeNodeOnlineString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22bridgeNodeOnlineStringSo0ab9LocalizedJ0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "bridgeNodeSignalStrengthString",
+            "printedName": "bridgeNodeSignalStrengthString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30bridgeNodeSignalStrengthStringSo0ab9LocalizedK0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "channelIdString",
+            "printedName": "channelIdString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E15channelIdStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "connectionUptimeString",
+            "printedName": "connectionUptimeString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22connectionUptimeStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lastConnectionResetCauseString",
+            "printedName": "lastConnectionResetCauseString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E30lastConnectionResetCauseStringSo0ab9LocalizedK0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lightSourceOperatingTimePercent",
+            "printedName": "lightSourceOperatingTimePercent",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.KotlinFloat?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "KotlinFloat",
+                    "printedName": "SharedCore.KotlinFloat",
+                    "usr": "c:objc(cs)SharedCoreFloat"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "SharedCore.KotlinFloat?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "KotlinFloat",
+                        "printedName": "SharedCore.KotlinFloat",
+                        "usr": "c:objc(cs)SharedCoreFloat"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E31lightSourceOperatingTimePercentSo0aB5FloatCSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lightSourceOperatingTimePercentLeft",
+            "printedName": "lightSourceOperatingTimePercentLeft",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "SharedCore.KotlinFloat?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "KotlinFloat",
+                    "printedName": "SharedCore.KotlinFloat",
+                    "usr": "c:objc(cs)SharedCoreFloat"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "SharedCore.KotlinFloat?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "KotlinFloat",
+                        "printedName": "SharedCore.KotlinFloat",
+                        "usr": "c:objc(cs)SharedCoreFloat"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E35lightSourceOperatingTimePercentLeftSo0aB5FloatCSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "switchCycleCountString",
+            "printedName": "switchCycleCountString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E22switchCycleCountStringSo0ab9LocalizedJ0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "uptimeString",
+            "printedName": "uptimeString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E12uptimeStringSo0ab9LocalizedH0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "wifiRssiString",
+            "printedName": "wifiRssiString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E14wifiRssiStringSo0ab9LocalizedI0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "wifiSignalStrengthString",
+            "printedName": "wifiSignalStrengthString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any SharedCore.LocalizedString)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LocalizedString",
+                    "printedName": "any SharedCore.LocalizedString",
+                    "usr": "c:objc(pl)SharedCoreLocalizedString"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvp",
+            "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvp",
+            "moduleName": "SharedCore",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any SharedCore.LocalizedString)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LocalizedString",
+                        "printedName": "any SharedCore.LocalizedString",
+                        "usr": "c:objc(pl)SharedCoreLocalizedString"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvg",
+                "mangledName": "$sSo36SharedCoreSuplaChannelStatePrintableP0aB0E24wifiSignalStrengthStringSo0ab9LocalizedJ0_pSgvg",
+                "moduleName": "SharedCore",
+                "genericSig": "<τ_0_0 where τ_0_0 : SharedCore.SuplaChannelStatePrintable>",
+                "sugared_genericSig": "<Self where Self : SharedCore.SuplaChannelStatePrintable>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "c:objc(pl)SharedCoreSuplaChannelStatePrintable",
+        "moduleName": "SharedCore",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "objc_name": "SharedCoreSuplaChannelStatePrintable",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           }
         ]
       },

@@ -295,13 +295,16 @@
 "channel_caption_humidityandtemperature" = "Temperatur- und Feuchtigkeitssensor";
 "channel_caption_container" = "Behälter";
 "channel_caption_water_tank" = "Wassertank";
-"channel_caption_septic_tank" = "Septischer Tank";
+"channel_caption_septic_tank" = "Sickergrube";
 "channel_caption_container_level_sensor" = "Behälterfüllstandssensor";
 "channel_caption_flood_sensor" = "Flutsensor";
+"channel_caption_motion_sensor" = "Bewegungssensor";
+"channel_caption_binary_sensor" = "Binärsensor";
 "channel_offline" = "Das Kanal ist offline";
 "channel_not_found" = "Kanal nicht gefunden";
 "scene_inactive" = "Szene ist nicht active";
-"channel_battery_level" = "Batteriefüllstand (%d - %@): %d%%";
+"channel_battery_level" = "Batteriefüllstand: %d%%";
+"channel_battery_level_with_info" = "Batteriefüllstand (%d - %@): %d%%";
 "channel_uv_warning" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Planen Sie den Austausch.";
 "channel_uv_error" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Den Strahler austauschen.";
 "channel_lightsource_warning" = "Lebensdauer der Lichtquelle beträgt %.01f%%.";
@@ -312,6 +315,9 @@
 "channel_status_not_available" = "Der Kanal ist aufgrund der Konfiguration nicht verfügbar. Wir empfehlen Ihnen, den Kanal auszublenden, damit er in der App nicht sichtbar ist.";
 "channel_status_awaiting" = "Dieses Gerät kann nicht per Fernzugriff aktiviert werden. Wir warten auf eine Kommunikation mit dem Gerät…";
 "channel_status_updating" = "Software-Update läuft…";
+/* General - Buttons & States */
+"state_partially_opened" = "teilweise offen";
+"channel_brn_step_by_step" = "Öffnen/Schließen (schritt für schritt)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -622,6 +628,7 @@
 "lastconnectionresetcause_activity_timeout" = "1: keine Serverantwort";
 "lastconnectionresetcause_wifi_connection_lost" = "2: Unterbrechung der WiFi-Verbindung";
 "lastconnectionresetcause_server_connection_lost" = "3: Zurücksetzung der Verbindung mit dem Server";
+"state_dialog_last_known_state" = "Offline – letzter bekannter Status:";
 
 /* Change caption */
 "change_caption_header" = "Änderung der Beschriftung";
@@ -723,4 +730,17 @@
 "add_device_manual_popup_message" = "Der Versuch, ein Gerät automatisch hinzuzufügen, ist fehlgeschlagen. Falls das Problem weiterhin besteht, empfehlen wir, das Gerät manuell hinzuzufügen.";
 "add_device_manual_popup_resign" = "Im automatischen Modus bleiben";
 "add_device_manual_popup_continue" = "Im manuellen Modus versuchen";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Der iOS-Systemdienst hat während des Netzwerkscans einen internen Fehler gemeldet, auf den wir keinen Einfluss haben. Bitte versuchen Sie, das Gerät manuell hinzuzufügen, oder starten Sie Ihr Telefon/Tablet neu.";
+"add_wizard_spaces_accept" = "Unverändert lassen";
+"add_wizard_spaces_modify" = "Leerzeichen entfernen";
+"add_wizard_spaces_title" = "Leerzeichen im Netzwerknamen?";
+"add_wizard_spaces_message" = "Der eingegebene Netzwerkname „%@“ enthält führende oder nachgestellte Leerzeichen oder Tabulatoren. Wenn Ihr Netzwerkname diese Zeichen nicht enthalten soll, kann Ihr Gerät keine Verbindung mit dem Netzwerk herstellen. Möchten Sie die führenden oder nachgestellten Leerzeichen beibehalten oder entfernen?";
+
+/* Developer Info */
+"developer_option" = "Entwickleroptionen";
+"developer_info_settings" = "Experimentelle Einstellungen";
+"developer_info_screen_orientation" = "Bildschirmdrehung aktiviert";
+"developer_info_activated" = "Entwicklermodus aktiviert";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nicht alle Tore haben ein Öffnungssensor konfiguriert – die Schaltflächen „Öffnen“ und „Schließen“ können falsch funktionieren.";

@@ -22,5 +22,6 @@ extension AboutFeature {
     class ViewState: ObservableObject {
         @Published var version: String = ""
         @Published var buildTime: String? = nil
+        @Published var showToast: Bool = false
     }
 }

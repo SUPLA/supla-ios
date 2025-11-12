@@ -30,6 +30,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<ChannelConfigEventsManager> private var channelConfigEventManager
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<DeviceConfigEventsManager> private var deviceConfigEventManager
+    @Singleton<ThermostatIssuesProvider> private var thermostatIssuesProvider
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
@@ -37,7 +38,6 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
-    private let thermostatIssuesProvider = ThermostatIssuesProvider()
     private let updateRelay = PublishRelay<Void>()
     private let channelRelay = PublishRelay<ChannelWithChildren>()
     
@@ -641,11 +641,11 @@ struct ThermostatGeneralViewState: ViewState {
         sensorIssue != nil || timerEndDate == nil || timerEndDate!.timeIntervalSince1970 < Date().timeIntervalSince1970
     }
 
-    var endDateText: String { DeviceState.endDateText(timerEndDate) }
-    var currentStateIcon: UIImage? { DeviceState.currentStateIcon(mode)?.uiImage }
-    var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(mode) }
+    var endDateText: String { ThermostatStateHelper.endDateText(timerEndDate) }
+    var currentStateIcon: UIImage? { ThermostatStateHelper.currentStateIcon(mode)?.uiImage }
+    var currentStateIconColor: UIColor { ThermostatStateHelper.currentStateIconColor(mode) }
     var currentStateValue: String {
-        DeviceState.currentStateValue(
+        ThermostatStateHelper.currentStateValue(
             mode,
             heatSetpoint: setpointHeat,
             coolSetpoint: setpointCool

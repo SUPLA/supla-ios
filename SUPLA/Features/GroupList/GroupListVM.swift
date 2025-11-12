@@ -67,7 +67,11 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
         case let .windowDetail(pages):
-            send(event: .naviagetToRollerShutterDetail(item: item.item(), pages: pages))
+            send(event: .navigateToRollerShutterDetail(item: item.item(), pages: pages))
+        case let .gateDetail(pages):
+            send(event: .navigateToGateDetail(item: item.item(), pages: pages))
+        case let .switchDetail(pages):
+            send(event: .navigateToSwitchDetail(item: item.item(), pages: pages))
         default: break
         }
     }
@@ -88,7 +92,9 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
 
 enum GroupListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case naviagetToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToGateDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage])
     case open(url: URL)
 }
 

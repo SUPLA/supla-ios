@@ -92,18 +92,17 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         getChannelBaseIconUseCase.returns = iconResult
         
         // when
-        viewModel.loadChannel(remoteId: 123)
+        viewModel.loadData(remoteId: 123, type: .channel)
         
         // then
         XCTAssertEqual(viewModel.state.issues, [])
         XCTAssertEqual(viewModel.state.online, true)
         XCTAssertEqual(viewModel.state.on, true)
-        XCTAssertEqual(viewModel.state.showButtons, true)
         XCTAssertEqual(viewModel.state.stateLabel, "State until 12:02:02 AM:")
         XCTAssertEqual(viewModel.state.stateValue, "on")
         XCTAssertEqual(viewModel.state.stateIcon, iconResult)
-        XCTAssertEqual(viewModel.state.iconTurnOn, iconResult)
-        XCTAssertEqual(viewModel.state.iconTurnOff, iconResult)
+        XCTAssertEqual(viewModel.state.onButtonState?.icon, iconResult)
+        XCTAssertEqual(viewModel.state.offButtonState?.icon, iconResult)
         XCTAssertEqual(viewModel.state.showElectricityState, false)
         XCTAssertEqual(viewModel.state.showImpulseCounterState, false)
         XCTAssertNil(viewModel.state.alertDialogState)
@@ -141,49 +140,22 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
         // when
-        viewModel.loadChannel(remoteId: 123)
+        viewModel.loadData(remoteId: 123, type: .channel)
         
         // then
         XCTAssertEqual(viewModel.state.issues, [])
         XCTAssertEqual(viewModel.state.online, false)
         XCTAssertEqual(viewModel.state.on, false)
-        XCTAssertEqual(viewModel.state.showButtons, true)
         XCTAssertEqual(viewModel.state.stateLabel, Strings.SwitchDetail.stateLabel)
         XCTAssertEqual(viewModel.state.stateValue, "offline")
         XCTAssertEqual(viewModel.state.stateIcon, .suplaIcon(name: ""))
-        XCTAssertEqual(viewModel.state.iconTurnOn, .suplaIcon(name: ""))
-        XCTAssertEqual(viewModel.state.iconTurnOff, .suplaIcon(name: ""))
+        XCTAssertEqual(viewModel.state.onButtonState?.icon, .suplaIcon(name: ""))
+        XCTAssertEqual(viewModel.state.offButtonState?.icon, .suplaIcon(name: ""))
         XCTAssertEqual(viewModel.state.showElectricityState, false)
         XCTAssertEqual(viewModel.state.showImpulseCounterState, false)
         XCTAssertNil(viewModel.state.alertDialogState)
         
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
-    }
-    
-    func test_shouldInvokeTurnOn() {
-        // given
-        let remoteId: Int32 = 123
-        
-        // when
-        viewModel.turnOn(remoteId: remoteId)
-        
-        // then
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOn, SUPLA.SubjectType.channel, remoteId)
-        ])
-    }
-    
-    func test_shouldInvokeTurnOff() {
-        // given
-        let remoteId: Int32 = 123
-        
-        // when
-        viewModel.turnOff(remoteId: remoteId)
-        
-        // then
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOff, SUPLA.SubjectType.channel, remoteId)
-        ])
     }
 }

@@ -26,7 +26,7 @@ extension AboutFeature {
             
             contentView = View(
                 viewState: viewModel.state,
-                onHomePageClicked: { viewModel.onHomePageClick() }
+                delegate: viewModel
             )
         }
         

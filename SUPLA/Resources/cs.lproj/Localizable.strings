@@ -308,14 +308,25 @@
 "channel_caption_general_purpose_meter" = "Počítací kanál";
 "channel_caption_humidity" = "Vlhkost";
 "channel_caption_humidityandtemperature" = "Teplota a vlhkost";
+"channel_caption_container" = "Kontejner";
+"channel_caption_septic_tank" = "Septik";
+"channel_caption_water_tank" = "Nádrž na vodu";
+"channel_caption_container_level_sensor" = "Snímač hladiny kontejneru";
+"channel_caption_flood_sensor" = "Povodňový senzor";
+"channel_caption_motion_sensor" = "Pohybový senzor";
+"channel_caption_binary_sensor" = "Binární senzor";
 "channel_offline" = "Kanál je v režimu offline";
-"channel_battery_level" = "Stav baterie (%d - %@): %d%%";
+"channel_battery_level" = "Stav baterie: %d%%";
+"channel_battery_level_with_info" = "Stav baterie (%d - %@): %d%%";
 "channel_uv_warning" = "Životnost UV zářiče je %.01f%%. Naplánovat jeho výměnu.";
 "channel_uv_error" = "Životnost UV zářiče je %.01f%%. Vyměnit zářič.";
 "channel_lightsource_warning" = "Životnost světelného zdroje je %.01f%%.";
 "dgf_too_long_operation_warning" = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
 "dgf_planned_regeneration_in_progress" = "Probíhá plánovaná obnova.";
 "dgf_regeneration_after20h" = "Obnova byla zahájena po 20h provozní činnosti.";
+/* General - Buttons & States */
+"state_partially_opened" = "částečně otevřeno";
+"channel_brn_step_by_step" = "Otevřít/Zavřít (krok za krokem)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";
@@ -404,6 +415,7 @@
 "hvac_mode_temperature_cooling" = "Teplota chlazení";
 "thermostat_thermometer_error" = "Chyba odečtu teploty";
 "thermostat_clock_error" = "Chyba hodin";
+"thermostat_calibration_error" = "Chyba kalibrace";
 "thermostat_detail_program_current" = "Současný stav:";
 "thermostat_detail_program_next" = "Další:";
 "thermostat_detail_program_time" = "na %@";
@@ -558,6 +570,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";
 "valve_warning_manually_closed_short" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.";
+"valve_detail_sensors" = "Připojené senzory";
+"valve_error_sensor_offline" = "Povodňový senzor nedostupný – riziko nezjištěné povodně.";
 
 /* State */
 "state_channel_id" = "Id kanálu";
@@ -580,11 +594,15 @@
 "lastconnectionresetcause_activity_timeout" = "1: žádná odpověď serveru";
 "lastconnectionresetcause_wifi_connection_lost" = "2: ztráta Wi-Fi připojení";
 "lastconnectionresetcause_server_connection_lost" = "3: restart připojení k serveru";
+"state_dialog_last_known_state" = "Offline – poslední známý stav:";
 
 /* Change caption */
 "change_caption_channel_name" = "Název kanálu";
 "change_caption_scene_name" = "Název scény";
 "change_caption_location_name" = "Název umístění";
+
+/* Container */
+"container_invalid_sensor_state" = "Neplatný stav senzoru.";
 
 /* Car play */
 "car_play_action" = "Akce: %@";
@@ -673,4 +691,17 @@
 "add_device_manual_popup_message" = "Pokus o automatické přidání zařízení se nezdařil. Pokud problém přetrvává, doporučujeme zařízení přidat ručně.";
 "add_device_manual_popup_resign" = "Zůstat v automatickém režimu";
 "add_device_manual_popup_continue" = "Zkusit znovu v ručním režimu";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Systémová služba iOS nahlásila během skenování sítě interní chybu, kterou nemůžeme ovlivnit. Zkuste zařízení přidat ručně nebo restartujte telefon/tablet.";
+"add_wizard_spaces_accept" = "Ponechat beze změny";
+"add_wizard_spaces_modify" = "Odstranit mezery";
+"add_wizard_spaces_title" = "Mezera v názvu sítě?";
+"add_wizard_spaces_message" = "Zadaný název sítě „%@“ obsahuje úvodní nebo koncové prázdné znaky (mezery nebo tabulátory). Pokud název sítě nemá tyto znaky obsahovat, vaše zařízení se k síti nebude moci připojit. Chcete ponechat, nebo odstranit úvodní nebo koncové prázdné znaky?";
+
+/* Developer Info */
+"developer_option" = "Možnosti pro vývojáře";
+"developer_info_settings" = "Experimentální nastavení";
+"developer_info_screen_orientation" = "Otočení obrazovky povoleno";
+"developer_info_activated" = "Režim pro vývojáře aktivován";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Ne všechna vrata mají nakonfigurovaný senzor otevření – tlačítka „Otevřít“ a „Zavřít“ nemusí fungovat správně.";

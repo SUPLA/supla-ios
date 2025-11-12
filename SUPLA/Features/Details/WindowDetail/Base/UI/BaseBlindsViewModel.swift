@@ -78,7 +78,7 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
                     return $0
                 }
                 executeFacadeBlindActionUseCase
-                    .invoke(action: .shutPartially, type: type, remoteId: remoteId, position: CGFloat(VALUE_IGNORE), tilt: tilt)
+                    .invoke(action: .shutPartially, type: type, remoteId: remoteId, position: VALUE_IGNORE, tilt: tilt.roundToInt())
                     .run(self)
                 
                 return $0.changing(path: \.moveStartTime, to: nil)
@@ -120,7 +120,7 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
                 }
                 
                 executeFacadeBlindActionUseCase
-                    .invoke(action: .shutPartially, type: type, remoteId: remoteId, position: position, tilt: tilt)
+                    .invoke(action: .shutPartially, type: type, remoteId: remoteId, position: position.roundToInt(), tilt: tilt.roundToInt())
                     .run(self)
                 
                 return $0.changing(path: \.moveStartTime, to: nil)

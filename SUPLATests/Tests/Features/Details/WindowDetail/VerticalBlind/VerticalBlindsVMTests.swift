@@ -277,7 +277,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(222), CGFloat(VALUE_IGNORE), 80)
+            (Action.shutPartially, SubjectType.channel, Int32(222), VALUE_IGNORE, 80)
         ])
     }
     
@@ -456,7 +456,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(111), 20, CGFloat(VALUE_IGNORE))
+            (Action.shutPartially, SubjectType.channel, Int32(111), 20, VALUE_IGNORE)
         ])
     }
     
@@ -486,7 +486,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(111), 2.5, 25)
+            (Action.shutPartially, SubjectType.channel, Int32(111), 3, 25)
         ])
     }
     

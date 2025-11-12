@@ -112,6 +112,8 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         FloodSensorIconNameProducer(),
         ContainerLevelSensorIconNameProducer(),
         SepticTankIconNameProducer(),
-        WaterTankIconNameProducer()
+        WaterTankIconNameProducer(),
+        MotionSensorIconNameProducer(),
+        BinarySensorIconNameProducer()
     ]
 }

@@ -66,6 +66,7 @@ struct BorderedButtonStyle: ButtonStyle {
             .font(.Supla.labelLarge)
             .padding(padding)
             .frame(minHeight: 40)
+            .contentShape(Rectangle())
             
         
         if let backgroundColor {

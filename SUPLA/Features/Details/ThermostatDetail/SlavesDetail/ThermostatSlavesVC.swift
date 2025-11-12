@@ -56,7 +56,7 @@ extension ThermostatSlavesFeature {
                 }
             )
             
-            viewModel.observe(remoteId: Int(item.remoteId))
+            viewModel.observeChannel(remoteId: Int(item.remoteId))
         }
         
         override func viewDidLoad() {

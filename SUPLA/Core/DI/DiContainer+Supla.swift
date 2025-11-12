@@ -209,6 +209,7 @@ extension DiContainer {
         register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
         register(GetGroupActivePercentageUseCase.self, GetGroupActivePercentageUseCaseImpl())
         register(ReadGroupTiltingDetailsUseCase.self, ReadGroupTiltingDetailsUseCaseImpl())
+        register(ReadGroupWithChannels.UseCase.self, ReadGroupWithChannels.Implementation())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         register(UserIcons.UseCase.self, UserIcons.Implementation())
@@ -225,6 +226,7 @@ extension DiContainer {
         register(DeleteProfileUseCase.self, DeleteProfileUseCaseImpl())
         register(ActivateProfileUseCase.self, ActivateProfileUseCaseImpl())
         register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
+        register(UpdateProfilesOrder.UseCase.self, UpdateProfilesOrder.Implementation())
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
@@ -277,6 +279,7 @@ extension DiContainer {
         // MARK: Shared
 
         // level 0
+        register(ThermostatIssuesProvider.self, SharedCore.ThermostatIssuesProvider())
         let ocrImageNamingProvider = registerAndGet(OcrImageNamingProvider.self, SharedCore.OcrImageNamingProvider())
         let cacheFileAccess = registerAndGet(CacheFileAccessProxy.self, CacheFileAccessProxyImpl())
         let storeFileInDirectoryUseCase = SharedCore.StoreFileInDirectoryUseCase(cacheFileAccess: cacheFileAccess)
@@ -293,7 +296,7 @@ extension DiContainer {
             GetChannelSpecificIssuesUseCase.self,
             SharedCore.GetChannelSpecificIssuesUseCase()
         )
-        
+
         // level 1
         let getCaptionUseCase = registerAndGet(
             GetCaptionUseCase.self,
@@ -334,8 +337,9 @@ extension DiContainer {
             GetChannelIssuesForListUseCase.self,
             SharedCore.GetChannelIssuesForListUseCase(
                 getChannelLowBatteryIssueUseCase: getChannelLowBatteryIssueUseCase,
+                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase,
                 getChannelBatteryIconUseCase: getChannelBatteryIconUseCase,
-                getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase
+                getCaptionUseCase: getCaptionUseCase
             )
         )
         register(

@@ -288,6 +288,7 @@ struct Strings {
         static let close = NSLocalizedString("Close", comment: "")
         static let open = NSLocalizedString("Open", comment: "")
         static let openClose = NSLocalizedString("Open Close", comment: "")
+        static let stepByStep = "channel_btn_step_by_step".toLocalized()
         static let shut = "general_shut".toLocalized()
         static let reveal = "general_reveal".toLocalized()
         static let collapse = "general_collapse".toLocalized()
@@ -368,8 +369,11 @@ struct Strings {
             static let captionSepticTank = "channel_caption_septic_tank".toLocalized()
             static let captionContainerLevelSensor = "channel_caption_container_level_sensor".toLocalized()
             static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
+            static let captionMotionSensor = "channel_caption_motion_sensor".toLocalized()
+            static let captionBinarySensor = "channel_caption_binary_sensor".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
+            static let batteryLevelWithInfo = "channel_battery_level_with_info".toLocalized()
             
             static let statusAwaiting = "channel_status_awaiting".toLocalized()
             static let statusUpdating = "channel_status_updating".toLocalized()
@@ -382,6 +386,10 @@ struct Strings {
             static let digiglassTooLongOperating = "dgf_too_long_operation_warning".toLocalized()
             static let digiglassPlannedRegeneration = "dgf_planned_regeneration_in_progress".toLocalized()
             static let digiglassRegeneration = "dgf_regeneration_after20h".toLocalized()
+        }
+        
+        struct State {
+            static let partiallyOpened = "state_partially_opened".toLocalized()
         }
     }
     
@@ -578,6 +586,7 @@ struct Strings {
         static let connectionResetCauseActivityTimeout = "lastconnectionresetcause_activity_timeout".toLocalized()
         static let connectionResetCauseWifiConnectionLost = "lastconnectionresetcause_wifi_connection_lost".toLocalized()
         static let connectionResetCauseServerConnectionLost = "lastconnectionresetcause_server_connection_lost".toLocalized()
+        static let lastKnownState = "state_dialog_last_known_state".toLocalized()
     }
     
     struct ChangeCaption {
@@ -683,6 +692,21 @@ struct Strings {
         static let manualModePopupResign = "add_device_manual_popup_resign".toLocalized()
         static let manualModePopupContinue = "add_device_manual_popup_continue".toLocalized()
         static let internalErrorMessage = "add_wizard_internal_error_message".toLocalized()
+        static let spacesAccept = "add_wizard_spaces_accept".toLocalized()
+        static let spacesModify = "add_wizard_spaces_modify".toLocalized()
+        static let spacesTitle = "add_wizard_spaces_title".toLocalized()
+        static let spacesMessage = "add_wizard_spaces_message".toLocalized()
+    }
+    
+    struct DeveloperInfo {
+        static let title = "developer_option".toLocalized()
+        static let settings = "developer_info_settings".toLocalized()
+        static let screenOrientation = "developer_info_screen_orientation".toLocalized()
+        static let activated = "developer_info_activated".toLocalized()
+    }
+    
+    struct GateDetail {
+        static let openAndCloseWarning = "gate_general_open_and_close_warning".toLocalized()
     }
 }
 

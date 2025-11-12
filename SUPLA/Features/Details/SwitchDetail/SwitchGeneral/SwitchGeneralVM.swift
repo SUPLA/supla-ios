@@ -20,17 +20,18 @@ import RxSwift
 import SharedCore
     
 extension SwitchGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, GroupUpdatesObserver, ViewDelegate {
         @Singleton<ElectricityMeterGeneralStateHandler> private var electricityMeterGeneralStateHandler
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<ImpulseCounterGeneralStateHandler> private var impulseCounterGeneralStateHandler
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+        @Singleton<ReadGroupWithChannels.UseCase> private var readGroupWithChannelsUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
         @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+        @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
         @Singleton<DownloadEventsManager> private var downloadEventsManager
         @Singleton<DateProvider> private var dateProvider
         @Singleton<GlobalSettings> private var settings
-        @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
 
         var electricityState = ElectricityMeterGeneralState()
         var impulseCounterState = ImpulseCounterGeneralState()
@@ -38,6 +39,7 @@ extension SwitchGeneralFeature {
         private var remoteId: Int32? = nil
         private var initialDataLoadStarted: Bool = false
         private var flags: [SuplaRelayFlag] = []
+        private var type: SubjectType? = nil
         
         init() {
             super.init(state: ViewState())
@@ -49,16 +51,18 @@ extension SwitchGeneralFeature {
                 .drive(onNext: { [weak self] in self?.handleDownloadEvents(downloadState: $0) })
                 .disposed(by: disposeBag)
         }
-
-        func loadChannel(remoteId: Int32, downloadingFinished: Bool = false) {
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
-                .flatMapFirst { toChannelWithMeasurements($0) }
-                .asDriverWithoutError()
-                .drive(onNext: { [weak self] in self?.handleChannel($0.0, $0.1, downloadingFinished) })
-                .disposed(by: disposeBag)
+        
+        func loadData(remoteId: Int32, type: SubjectType) {
+            self.remoteId = remoteId
+            self.type = type
+            switch (type) {
+            case .channel: loadChannel(remoteId: remoteId)
+            case .group: loadGroup(remoteId)
+            case .scene: break
+            }
         }
 
-        func turnOn(remoteId: Int32) {
+        func onTurnOn() {
             if (flags.contains(.overcurrentRelayOff)) {
                 state.alertDialogState = SuplaCore.AlertDialogState(
                     header: Strings.General.warning,
@@ -67,17 +71,17 @@ extension SwitchGeneralFeature {
                     negativeButtonText: Strings.General.no
                 )
             } else {
-                performAction(action: .turnOn, remoteId: remoteId)
+                performAction(action: .turnOn)
             }
         }
         
-        func forceTurnOnAction(remoteId: Int32) {
+        func onForceTurnOn() {
             state.alertDialogState = nil
-            performAction(action: .turnOn, remoteId: remoteId)
+            performAction(action: .turnOn)
         }
 
-        func turnOff(remoteId: Int32) {
-            performAction(action: .turnOff, remoteId: remoteId)
+        func onTurnOff() {
+            performAction(action: .turnOff)
         }
         
         func onIntroductionClose() {
@@ -85,12 +89,24 @@ extension SwitchGeneralFeature {
             electricityState.showIntroduction = false
         }
         
-        func closeAlertDialog() {
+        func onAlertClose() {
             state.alertDialogState = nil
         }
         
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             loadChannel(remoteId: channelWithChildren.remoteId)
+        }
+        
+        func onGroupUpdate(_ groupId: Int32) {
+            loadGroup(groupId)
+        }
+        
+        private func loadChannel(remoteId: Int32, downloadingFinished: Bool = false) {
+            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+                .flatMapFirst { toChannelWithMeasurements($0) }
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] in self?.handleChannel($0.0, $0.1, downloadingFinished) })
+                .disposed(by: disposeBag)
         }
         
         private func handleChannel(_ channel: ChannelWithChildren, _ measurements: SummarizedMeasurements?, _ downloadingFinished: Bool) {
@@ -116,7 +132,6 @@ extension SwitchGeneralFeature {
             let online = channel.channel.status().online
             let on = channel.channel.value?.hiValue() ?? 0 > 0
             
-            remoteId = channel.remoteId
             flags = channel.channel.value?.asRelayValue().flags ?? []
             state.online = online
             state.on = on
@@ -131,11 +146,20 @@ extension SwitchGeneralFeature {
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channel.shareable)
             state.stateLabel = createStateLabel(channel.channel)
             state.stateIcon = getChannelBaseIconUseCase.invoke(channel: channel.channel)
-            state.showButtons = channel.channel.switchWithButtons()
             state.showElectricityState = showElectricityState
             state.showImpulseCounterState = showImpulseCounterState
-            state.iconTurnOn = getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .on))
-            state.iconTurnOff = getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .off))
+            state.offButtonState = .init(
+                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .off)),
+                label: Strings.General.turnOff,
+                active: !on,
+                type: .negative
+            )
+            state.onButtonState = .init(
+                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .on)),
+                label: Strings.General.turnOn,
+                active: on,
+                type: .positive
+            )
         }
         
         private func createStateLabel(_ channel: SAChannel) -> String {
@@ -153,12 +177,45 @@ extension SwitchGeneralFeature {
             
             return Strings.SwitchDetail.stateLabel
         }
-
-        private func performAction(action: Action, remoteId: Int32) {
-            executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
+        
+        private func loadGroup(_ remoteId: Int32) {
+            readGroupWithChannelsUseCase.invoke(remoteId: remoteId)
                 .asDriverWithoutError()
-                .drive()
+                .drive(onNext: { [weak self] groupWithChannels in
+                    self?.handleGroup(groupWithChannels)
+                })
                 .disposed(by: disposeBag)
+        }
+        
+        private func handleGroup(_ groupWithChannels: ReadGroupWithChannels.GroupWithChannels) {
+            let groupState = groupWithChannels.aggregatedState(activeValue: .on, inactiveValue: .off)
+            
+            state.online = true
+            state.issues = []
+            state.showElectricityState = false
+            state.showImpulseCounterState = false
+            state.relatedChannelsData = groupWithChannels.relatedChannelData
+            state.offButtonState = .init(
+                icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .off),
+                label: Strings.General.turnOff,
+                active: groupState == .off,
+                type: .positive
+            )
+            state.onButtonState = .init(
+                icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .on),
+                label: Strings.General.turnOn,
+                active: groupState == .on,
+                type: .positive
+            )
+        }
+
+        private func performAction(action: Action) {
+            if let remoteId, let type {
+                executeSimpleActionUseCase.invoke(action: action, type: type, remoteId: remoteId)
+                    .asDriverWithoutError()
+                    .drive()
+                    .disposed(by: disposeBag)
+            }
         }
         
         private func handleDownloadEvents(downloadState: DownloadEventsManagerState?) {

@@ -309,14 +309,25 @@
 "channel_caption_heat_or_cold_source_switch" = "Prepínač pre zdroj tepla alebo chladu";
 "channel_caption_humidity" = "Vlhkosť";
 "channel_caption_humidityandtemperature" = "Teplota a vlhkosť";
+"channel_caption_water_tank" = "Nádrž na vodu";
+"channel_caption_container_level_sensor" = "Senzor hladiny kontajnera";
+"channel_caption_flood_sensor" = "Senzor zaplavenia";
+"channel_caption_motion_sensor" = "Senzor pohybu";
+"channel_caption_binary_sensor" = "Binárny senzor";
+"channel_caption_container" = "Kontajner";
+"channel_caption_septic_tank" = "Septik";
 "channel_offline" = "Kanál je v režime offline";
-"channel_battery_level" = "Úroveň batérie (%d - %@): %d%%";
+"channel_battery_level" = "Úroveň batérie: %d%%";
+"channel_battery_level_with_info" = "Úroveň batérie (%d - %@): %d%%";
 "channel_uv_warning" = "Životnosť UV žiariča je %.01f%%. Naplánujte jeho výmenu.";
 "channel_uv_error" = "Životnosť UV žiariča je %.01f%%. Vymeň žiarič.";
 "channel_lightsource_warning" = "Životnosť svetelného zdroja je %.01f%%.";
 "dgf_too_long_operation_warning" = "Zasklenie je odhalené viac ako 20 hodín, čo môže mať negatívny vplyv na jeho životnosť. Odporúča sa všetky úseky pokryť minimálne 4 hodiny, aby sa zregenerovali.";
 "dgf_planned_regeneration_in_progress" = "Prebieha plánovaná regenerácia.";
 "dgf_regeneration_after20h" = "Prebieha regenerácia, ktorá bola spustená po 20 h prevádzky.";
+/* General - Buttons & States */
+"state_partially_opened" = "čiastočne otvorené";
+"channel_brn_step_by_step" = "Otvoriť/Zatvoriť (krok za krokom)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstránili sme gesto potiahnutia, ktoré otvára podrobnosti, zobrazíte ich ťuknutím na vybraný kanál.";
@@ -404,6 +415,7 @@
 "hvac_mode_temperature_cooling" = "Teplota chladenia";
 "thermostat_thermometer_error" = "Chyba pri čítaní teploty";
 "thermostat_clock_error" = "Chyba hodín";
+"thermostat_calibration_error" = "Chyba kalibrácie";
 "thermostat_detail_program_current" = "Aktuálne:";
 "thermostat_detail_program_next" = "Následne:";
 "thermostat_detail_program_time" = "na %@";
@@ -556,6 +568,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne. Naozaj chcete otvoriť ventil pomocou aplikácie?!";
 "valve_warning_manually_closed_short" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne.";
+"valve_detail_sensors" = "Pripojené senzory";
+"valve_error_sensor_offline" = "Senzor zaplavenia nedostupný – riziko nezistenej záplavy.";
 
 /* State */
 "state_channel_id" = "ID kanála";
@@ -578,11 +592,15 @@
 "lastconnectionresetcause_activity_timeout" = "1: žiadna odpoveď zo servera";
 "lastconnectionresetcause_wifi_connection_lost" = "2: stratené Wi-Fi pripojenie";
 "lastconnectionresetcause_server_connection_lost" = "3: obnovenie pripojenia k serveru";
+"state_dialog_last_known_state" = "Offline – posledný známy stav:";
 
 /* Change caption */
 "change_caption_channel_name" = "Názov kanála";
 "change_caption_scene_name" = "Názov scény";
 "change_caption_location_name" = "Názov miesta";
+
+/* Container */
+"container_invalid_sensor_state" = "Neplatný stav senzora.";
 
 /* Car play */
 "car_play_action" = "Činnosť: %@";
@@ -671,4 +689,17 @@
 "add_device_manual_popup_message" = "Pokus o automatické pridanie zariadenia zlyhal. Ak problém pretrváva, odporúčame pridať zariadenie manuálne.";
 "add_device_manual_popup_resign" = "Zostať v automatickom režime";
 "add_device_manual_popup_continue" = "Skúsiť znova v manuálnom režime";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Systémová služba iOS nahlásila počas skenovania siete internú chybu, ktorú nemôžeme ovplyvniť. Skúste zariadenie pridať manuálne alebo reštartujte telefón/tablet.";
+"add_wizard_spaces_accept" = "Ponechať nezmenené";
+"add_wizard_spaces_modify" = "Odstrániť medzery";
+"add_wizard_spaces_title" = "Medzera v názve siete?";
+"add_wizard_spaces_message" = "Zadaný názov siete „%@“ obsahuje úvodné alebo koncové prázdne znaky (medzery alebo tabulátory). Ak názov siete nemá obsahovať tieto znaky, vaše zariadenie sa nebude môcť pripojiť k sieti. Chcete ponechať alebo odstrániť úvodné alebo koncové prázdne znaky?";
+
+/* Developer Info */
+"developer_option" = "Možnosti pre vývojárov";
+"developer_info_settings" = "Experimentálne nastavenia";
+"developer_info_screen_orientation" = "Otočenie obrazovky povolené";
+"developer_info_activated" = "Režim pre vývojárov aktivovaný";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nie všetky brány majú nakonfigurovaný snímač otvárania – tlačidlá „Otvoriť“ a „Zatvoriť“ nemusia fungovať správne.";

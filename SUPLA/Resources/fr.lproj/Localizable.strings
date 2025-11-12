@@ -309,14 +309,25 @@
 "channel_caption_heat_or_cold_source_switch" = "Interrupteur pour la source de chaleur ou de froid";
 "channel_caption_humidity" = "Humidité";
 "channel_caption_humidityandtemperature" = "Température et humidité";
+"channel_caption_water_tank" = "Réservoir d'eau";
+"channel_caption_container_level_sensor" = "Capteur de niveau de conteneur";
+"channel_caption_flood_sensor" = "Détecteur d'inondation";
+"channel_caption_motion_sensor" = "Détecteur de mouvement";
+"channel_caption_binary_sensor" = "Capteur binaire";
+"channel_caption_container" = "Conteneur";
+"channel_caption_septic_tank" = "Fosse septique";
 "channel_offline" = "La chaîne est hors ligne";
-"channel_battery_level" = "Livello batteria (%d - %@): %d%%";
+"channel_battery_level" = "Livello batteria: %d%%";
+"channel_battery_level_with_info" = "Livello batteria (%d - %@): %d%%";
 "channel_uv_warning" = "La durée de vie de l'illuminateur uv est de %.01f%%. Planifiez son remplacement.";
 "channel_uv_error" = "La durée de vie de l'illuminateur uv est de %.01f%%. Remplacez le radiateur.";
 "channel_lightsource_warning" = "La durée de vie de la source lumineuse est de %.01f%%.";
 "dgf_too_long_operation_warning" = "Des sections du verre sont exposées pendant plus de 20 heures, ce qui peut affecter leur durée de vie. Il est conseillé de couvrir toutes les sections pendant un minimum de 4 heures pour la régénération.";
 "dgf_planned_regeneration_in_progress" = "Régénération programmée en cours.";
 "dgf_regeneration_after20h" = "Régénération initiée après 20h de fonctionnement en cours.";
+/* General - Buttons & States */
+"state_partially_opened" = "partiellement ouvert";
+"channel_brn_step_by_step" = "Ouvrir/Fermer (étape par étape)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Nous avons supprimé le geste de glissement pour voir les détails. Il suffit de taper sur la chaîne sélectionnée pour les consulter.";
@@ -401,16 +412,17 @@
 "thermostat_detail_mode_manual" = "Manuellement";
 "thermostat_detail_mode_weekly_schedule" = "Programme";
 "thermostat_thermometer_error" = "Erreur de lecture de la température";
-"thermostat_clock_error" = "Erreur d\'horloge";
+"thermostat_clock_error" = "Erreur d'horloge";
+"thermostat_calibration_error" = "Erreur d’étalonnage";
 "thermostat_detail_program_current" = "Actuellement :";
 "thermostat_detail_program_next" = "Ensuite :";
 "thermostat_detail_program_time" = "pendant %@";
 "thermostat_detail_off_by_window" = "Désactivé par une fenêtre ouverte";
-"thermostat_detail_off_by_card" = "Désactivé en raison de l\'absence de carte d\'hôtel";
+"thermostat_detail_off_by_card" = "Désactivé en raison de l'absence de carte d'hôtel";
 "thermostat_detail_off_by_sensor" = "Désactivé par le capteur";
 "thermostat_detail_program_info" = "Touchez pour activer le programme. Maintenez la touche enfoncée pour modifier le programme.";
-"thermostat_detail_box_info" = "Touchez pour régler le programme sélectionné. Maintenez la touche enfoncée pour régler les quarts d\'heure sélectionnés.";
-"thermostat_detail_arrow_info" = "Le coin noir indique l\'heure et le jour actuels.";
+"thermostat_detail_box_info" = "Touchez pour régler le programme sélectionné. Maintenez la touche enfoncée pour régler les quarts d'heure sélectionnés.";
+"thermostat_detail_arrow_info" = "Le coin noir indique l'heure et le jour actuels.";
 "thermostat_detail_list" = "Liste";
 "thermostat_detail_main_thermostat" = "Thermostat principal";
 "thermostat_detail_other_thermostats" = "Thermostats dépendants";
@@ -558,6 +570,8 @@
 /* Valve */
 "valve_warning_manually_closed" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement. Êtes-vous sûr de vouloir ouvrir la vanne à partir de l'application?";
 "valve_warning_manually_closed_short" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement.";
+"valve_detail_sensors" = "Capteurs connectés";
+"valve_error_sensor_offline" = "Détecteur d'inondation non disponible – risque d'inondation non détectée.";
 
 /* State */
 "state_channel_id" = "Id du canal";
@@ -580,11 +594,15 @@
 "lastconnectionresetcause_activity_timeout" = "1 : aucune réponse du serveur";
 "lastconnectionresetcause_wifi_connection_lost" = "2 : perte de la connexion Wi-Fi";
 "lastconnectionresetcause_server_connection_lost" = "3 : réinitialisation de la connexion avec le serveur";
+"state_dialog_last_known_state" = "Hors ligne – dernier état connu :";
 
 /* Change caption */
 "change_caption_channel_name" = "Nom du canal";
 "change_caption_scene_name" = "Nom de la scène";
 "change_caption_location_name" = "Nom de la localisation";
+
+/* Container */
+"container_invalid_sensor_state" = "État de capteur invalide.";
 
 /* Car play */
 "car_play_action" = "Action: %@";
@@ -673,4 +691,17 @@
 "add_device_manual_popup_message" = "La tentative d'ajouter un appareil automatiquement a échoué. Si le problème persiste, nous vous recommandons d'ajouter l'appareil manuellement.";
 "add_device_manual_popup_resign" = "Rester en mode automatique";
 "add_device_manual_popup_continue" = "Réessayer en mode manuel";
-"add_wizard_internal_error_message" = "";
+"add_wizard_internal_error_message" = "Le service système iOS a signalé une erreur interne lors de l'analyse du réseau, indépendante de notre volonté. Veuillez essayer d'ajouter l'appareil en mode manuel ou redémarrer votre téléphone/tablette.";
+"add_wizard_spaces_accept" = "Conserver";
+"add_wizard_spaces_modify" = "Supprimer les espaces";
+"add_wizard_spaces_title" = "Espace dans le nom du réseau ?";
+"add_wizard_spaces_message" = "Le nom de réseau saisi « %@ » contient des espaces ou des caractères blancs (espaces ou tabulations) au début ou à la fin. Si le nom de votre réseau ne doit pas inclure ces caractères, votre appareil ne pourra pas s’y connecter. Voulez-vous conserver ou supprimer ces espaces ou caractères blancs au début ou à la fin ?";
+
+/* Developer Info */
+"developer_option" = "Options pour les développeurs";
+"developer_info_settings" = "Paramètres expérimentaux";
+"developer_info_screen_orientation" = "Rotation de l'écran activée";
+"developer_info_activated" = "Mode développeur activé";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Toutes les portes ne sont pas dotées d'un capteur d'ouverture configuré – les boutons « Ouvrir » et « Fermer » pourraient ne pas fonctionner correctement.";
