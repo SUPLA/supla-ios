@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Garasjeportåpner sensor";
 "Door opening sensor" = "Døråpner sensor";
 "Roller shutter opening sensor" = "Rullegardineråpner sensor";
-"Incompatible server version" = "Inkompatibel serverversjon";
 "RGB Lighting" = "RGB belysning";
 "Dimmer and RGB lighting" = "Dimmer og RGB belysning";
 "Dimmer" = "Dimmer";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Postsensor";
 "Window opening sensor" = "Vindusåpner sensor";
 "Add I/O device" = "Legg til enhet";
-"Donate" = "Støtt prosjektet";
-"Create an account" = "Opprett konto";
 "Next" = "Videre";
 "Cancel" = "Avbryt";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
-"The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
-"Incorrect input parameters (%@)!" = "wizard_result_param_error (%@)!";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trappeautomat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=nb";
 
 "Retrieving data from the server..." = "Nedlasting av data fra serveren...";
-"No chart data available." = "Manglende data for diagrammet.";
 "Electricity Meter" = "Elektrisitetsmåler";
 "Water Meter" = "Vannmåler";
 "Gas Meter" = "Gassmåler";
@@ -78,7 +71,6 @@
 "Forward active Energy" = "Aktiv strøm mottatt";
 "Reverse active Energy" = "Aktiv strøm returnert";
 "Consumption in the current month" = "Forbruk i gjeldende måned";
-"Production in the current month" = "Produksjon i gjeldende måned";
 "Minutes" = "Minutter";
 "Hours" = "Timer";
 "Days" = "Dager";
