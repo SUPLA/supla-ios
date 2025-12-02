@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Αισθητήρας ανοίγματος της γκαραζόπορτας";
 "Door opening sensor" = "Αισθητήρας ανοίγματος πόρτας";
 "Roller shutter opening sensor" = ">Αισθητήρας ανοίγματος περσίδων";
-"Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
 "RGB Lighting" = "Φωτισμός RGB";
 "Dimmer and RGB lighting" = "Ρεοστάτης και φωτισμός RGB";
 "Dimmer" = "Ρεοστάτης";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Αισθητήρας ταχυδρομείου";
 "Window opening sensor" = "Αισθητήρας ανοίγματος παραθύρου";
 "Add I/O device" = "Προσθήκη συσκευής";
-"Donate" = "Υποστηρίξτε το έργο";
-"Create an account" = "Δημιουργία λογαριασμού";
 "Next" = "Επόμενο";
 "Cancel" = "Ακύρωση";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Η εγγραφή συσκευών εισόδου/εξόδου είναι αυτή τη στιγμή απενεργοποιημένη. Για να συνεχίσετε, μεταβείτε στην ιστοσελίδα %@ και στην καρτέλα \"Η SUPLA μου\" ενεργοποιήστε την προσθήκη συσκευών.";
-"The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
-"Incorrect input parameters (%@)!" = "Μη έγκυρες παράμετροι εισόδου (%@)!";
 "Help" = "Βοήθεια";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Αυτόματη σκάλα";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=el";
 
 "Retrieving data from the server..." = "Λήψη δεδομένων από διακομιστή...";
-"No chart data available." = "Δεν υπάρχουν δεδομένα για το γράφημα.";
 "Electricity Meter" = "Μετρητής ηλεκτρικής ενέργειας";
 "Water Meter" = "Μετρητής νερού";
 "Gas Meter" = "Μετρητής αερίου";
@@ -78,7 +71,6 @@
 "Forward active Energy" = "Ληφθείσα ενεργή ενέργεια";
 "Reverse active Energy" = "Επιστραφείσα ενεργή ενέργεια";
 "Consumption in the current month" = "Κατανάλωση τον τρέχοντα μήνα";
-"Production in the current month" = "Παραγωγή τον τρέχοντα μήνα";
 "Minutes" = "Λεπτά";
 "Hours" = "Ώρες";
 "Days" = "Ημέρες";

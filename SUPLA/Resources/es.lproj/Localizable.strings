@@ -45,7 +45,6 @@
 "Garage door opening sensor" = "Sensor de apertura de la puerta de garaje";
 "Door opening sensor" = "Sensor de apertura de la puerta";
 "Roller shutter opening sensor" = "Sensor de apertura de las persianas";
-"Incompatible server version" = "Versión del servidor incompatible";
 "RGB Lighting" = "Alumbrado RGB";
 "Dimmer and RGB lighting" = "Atenuador y alumbrado RGB";
 "Dimmer" = "Atenuador";
@@ -58,20 +57,14 @@
 "Mail sensor" = "Sensor de correo";
 "Window opening sensor" = "Sensor de apertura de ventanas";
 "Add I/O device" = "Añadir dispositivo";
-"Donate" = "Donar";
-"Create an account" = "Crear cuenta";
 "Next" = "Siguiente";
 "Cancel" = "Cancelar";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos está actualmente deshabilitado. Para continuar vaya a la página %@ y en la pestaña Mi SUPLA active el registro de dispositivos.";
-"The connected Server does not support this function!" = "¡El servidor al que ha conectado no es compatible con esta característica!";
-"Incorrect input parameters (%@)!" = "¡Parámetros de entrada erróneos (%@)!";
 "Help" = "Ayuda";
 
 "Staircase timer" = "Automático de escalera";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=es";
 "https://en-forum.supla.org" = "https://es-forum.supla.org";
 "Retrieving data from the server..." = "Descargando datos del servidor...";
-"No chart data available." = "No hay datos para el gráfico.";
 "Electricity Meter" = "Contador de electricidad";
 "Water Meter" = "Contador de agua";
 "Gas Meter" = "Contador de gas";
@@ -79,7 +72,6 @@
 "Forward active Energy" = "Energía activa recibida";
 "Reverse active Energy" = "Energía activa devuelta";
 "Consumption in the current month" = "Consumo en el mes actual";
-"Production in the current month" = "Producción en el mes actual";
 "Minutes" = "Minutos";
 "Hours" = "Horas";
 "Days" = "Días";

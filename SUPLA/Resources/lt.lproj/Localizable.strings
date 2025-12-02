@@ -46,7 +46,6 @@
 "Garage door opening sensor" = "Garažo vartų atidarymo jutiklis";
 "Door opening sensor" = "Durų atidarymo jutiklis";
 "Roller shutter opening sensor" = "Žaliuzių atidengimo jutiklis";
-"Incompatible server version" = "Nesuderinama serverio versija";
 "RGB Lighting" = "RGB apšvietimas";
 "Dimmer and RGB lighting" = "Šviesos srauto reguliatorius ir RGB apšvietimas";
 "Dimmer" = "Dimmer";
@@ -59,20 +58,14 @@
 "Mail sensor" = "Pašto jutiklis";
 "Window opening sensor" = "Lango atidarymo jutiklis";
 "Add I/O device" = "Pridėti įrenginį";
-"Donate" = "Paremti projektą";
-"Create an account" = "Sukurti paskyrą";
 "Next" = "Toliau";
 "Cancel" = "Atšaukti";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Įv/iš įrenginių registracija dabar yra išjungta. Norėdami tęsti eikite į puslapį %%@ ir žymėje „Mano SUPLA” įjunkite įrenginių pridėjimą.";
-"The connected Server does not support this function!" = "Serveris, prie kurio prisijungta, nepaliko šios funkcijos!";
-"Incorrect input parameters (%@)!" = "Klaidingi įvesties parametrai (%@)!";
 "Help" = "Pagalba";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Laiptų automatas";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=lt";
 
 "Retrieving data from the server..." = "Duomenų atsisiuntimas iš serverio...";
-"No chart data available." = "Nėra duomenų diagramai.";
 "Electricity Meter" = "Elektros energijos skaitiklis";
 "Water Meter" = "Vandens skaitiklis";
 "Gas Meter" = "Dujų skaitiklis";
@@ -80,7 +73,6 @@
 "Forward active Energy" = "Aktyvioji energija parsisiųsta";
 "Reverse active Energy" = "Aktyvioji energija grąžinta";
 "Consumption in the current month" = "Suvartojimas einamąjį mėnesį";
-"Production in the current month" = "Gamyba einamąjį mėnesį";
 "Minutes" = "Minutės";
 "Hours" = "Valandos";
 "Days" = "Dienos";

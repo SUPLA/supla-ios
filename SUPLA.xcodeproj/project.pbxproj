@@ -2364,6 +2364,17 @@
 		A56364382EE1D67400A702C0 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		A563643A2EE2F0BF00A702C0 /* LinearColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearColorSelector.swift; sourceTree = "<group>"; };
 		A563643C2EE2F86600A702C0 /* ColorSelectorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectorPoint.swift; sourceTree = "<group>"; };
+		A56363CE2EDF180A00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		A56363CF2EDF180C00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
+		A56363D02EDF181100A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
+		A56363D12EDF181200A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		A56363D32EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
+		A56363D42EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		A56363D52EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
+		A56363D62EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		A56363D72EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		A56363D82EDF181400A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = az.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordDialog.swift; sourceTree = "<group>"; };
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
@@ -7552,6 +7563,7 @@
 				el,
 				nl,
 				uk,
+				az,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
 			preferredProjectObjectVersion = 77;
@@ -9173,6 +9185,7 @@
 				0107149E2656EC61009C119F /* sl */,
 				010714A02656EC62009C119F /* es */,
 				017D392629244A68005F45FA /* uk */,
+				A56363D22EDF181300A702C0 /* az */,
 			);
 			name = SAZWaveWakeupSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -9195,6 +9208,7 @@
 				010714E42656F6C7009C119F /* sl */,
 				010714E62656F6CA009C119F /* es */,
 				017D392329244A66005F45FA /* uk */,
+				A56363CF2EDF180C00A702C0 /* az */,
 			);
 			name = SAZWaveConfigurationWizardVC.xib;
 			sourceTree = "<group>";
@@ -9217,6 +9231,7 @@
 				01AF443E28FB4FC00073FB88 /* sl */,
 				012FF47628FB5CC900D421FD /* es */,
 				017D393429244AF5005F45FA /* uk */,
+				A56363D52EDF181300A702C0 /* az */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
@@ -9239,6 +9254,7 @@
 				F40AA5D528AEA49C00DE173D /* nl */,
 				F40AA5DE28AEB5F700DE173D /* sl */,
 				017D393129244A6D005F45FA /* uk */,
+				A56363D62EDF181300A702C0 /* az */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -9260,6 +9276,7 @@
 				F40AA5D328AE9AED00DE173D /* nl */,
 				F40AA5DC28AEAD9E00DE173D /* sl */,
 				017D392429244A67005F45FA /* uk */,
+				A56363D02EDF181100A702C0 /* az */,
 			);
 			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -9282,6 +9299,7 @@
 				F40AA5D728AEA4C500DE173D /* nl */,
 				F40AA5E028AEB63300DE173D /* sl */,
 				017D393229244A6D005F45FA /* uk */,
+				A56363D72EDF181300A702C0 /* az */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -9303,6 +9321,7 @@
 				F40AA5D928AEA5CF00DE173D /* nl */,
 				F40AA5E228AEB6F600DE173D /* sl */,
 				017D392529244A67005F45FA /* uk */,
+				A56363D12EDF181200A702C0 /* az */,
 			);
 			name = SASuperuserAuthorizationDialog.xib;
 			sourceTree = "<group>";
@@ -9345,6 +9364,7 @@
 				01BF82E1234756A000C9EE9F /* el */,
 				01BF82EA234756B600C9EE9F /* nl */,
 				017D392229244A66005F45FA /* uk */,
+				A56363CE2EDF180A00A702C0 /* az */,
 			);
 			name = HomePlusDetailViewGroupCell.xib;
 			sourceTree = "<group>";
@@ -9367,6 +9387,7 @@
 				01BF82DE2347569F00C9EE9F /* el */,
 				01BF82E7234756B500C9EE9F /* nl */,
 				017D392C29244A6B005F45FA /* uk */,
+				A56363D42EDF181300A702C0 /* az */,
 			);
 			name = HomePlusDetailView.xib;
 			sourceTree = "<group>";
@@ -9389,6 +9410,7 @@
 				017A08BD249969A100DCF5BD /* sl */,
 				017A08BF249969A200DCF5BD /* es */,
 				017D392929244A6A005F45FA /* uk */,
+				A56363D32EDF181300A702C0 /* az */,
 			);
 			name = RGBWDetail.xib;
 			sourceTree = "<group>";
@@ -9411,6 +9433,7 @@
 				01BF82E2234756A000C9EE9F /* el */,
 				01BF82EB234756B600C9EE9F /* nl */,
 				017D393329244A6D005F45FA /* uk */,
+				A56363D82EDF181400A702C0 /* az */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
