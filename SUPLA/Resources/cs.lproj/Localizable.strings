@@ -315,6 +315,7 @@
 "channel_caption_flood_sensor" = "Povodňový senzor";
 "channel_caption_motion_sensor" = "Pohybový senzor";
 "channel_caption_binary_sensor" = "Binární senzor";
+"channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie: %d%%";
 "channel_battery_level_with_info" = "Stav baterie (%d - %@): %d%%";

@@ -22,11 +22,11 @@ final class GateIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: FetchIconData) -> String {
-        if (iconData.function == SUPLA_CHANNELFNC_CONTROLLINGTHEGATE && iconData.state == .partialyOpened && iconData.altIcon != 2) {
+        if (iconData.function == SUPLA_CHANNELFNC_CONTROLLINGTHEGATE && iconData.state.value == .partialyOpened && iconData.altIcon != 2) {
             return iconData.altIcon == 1 ? "gatealt1-closed-50percent" : "gate-closed-50percent"
         }
         
-        return addStateSuffix(name: gateName(iconData.altIcon), state: iconData.state)
+        return addStateSuffix(name: gateName(iconData.altIcon), state: iconData.state.value)
     }
     
     private func gateName(_ altIcon: Int32) -> String {

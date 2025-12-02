@@ -149,13 +149,13 @@ extension SwitchGeneralFeature {
             state.showElectricityState = showElectricityState
             state.showImpulseCounterState = showImpulseCounterState
             state.offButtonState = .init(
-                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .off)),
+                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .default(value: .off))),
                 label: Strings.General.turnOff,
                 active: !on,
                 type: .negative
             )
             state.onButtonState = .init(
-                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .on)),
+                icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .default(value: .on))),
                 label: Strings.General.turnOn,
                 active: on,
                 type: .positive
@@ -188,7 +188,7 @@ extension SwitchGeneralFeature {
         }
         
         private func handleGroup(_ groupWithChannels: ReadGroupWithChannels.GroupWithChannels) {
-            let groupState = groupWithChannels.aggregatedState(activeValue: .on, inactiveValue: .off)
+            let groupState = groupWithChannels.aggregatedState(policy: .onOff)
             
             state.online = true
             state.issues = []
@@ -196,13 +196,13 @@ extension SwitchGeneralFeature {
             state.showImpulseCounterState = false
             state.relatedChannelsData = groupWithChannels.relatedChannelData
             state.offButtonState = .init(
-                icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .off),
+                icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .off)),
                 label: Strings.General.turnOff,
                 active: groupState == .off,
                 type: .positive
             )
             state.onButtonState = .init(
-                icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .on),
+                icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .on)),
                 label: Strings.General.turnOn,
                 active: groupState == .on,
                 type: .positive

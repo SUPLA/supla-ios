@@ -22,7 +22,7 @@ final class LiquidSensorIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: FetchIconData) -> String {
-        return iconData.state.isActive() ? "liquid" : "noliquid"
+        return iconData.state.isActive ? "liquid" : "noliquid"
     }
 }
 

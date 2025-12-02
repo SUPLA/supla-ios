@@ -20,7 +20,7 @@ struct FetchIconData: Changeable, Equatable {
     let function: Int32
     let altIcon: Int32
     var profileId: Int32
-    var state: ChannelState = .notUsed
+    var state: ChannelState = .default(value: .notUsed)
     var type: IconType = .single
     var userIconId: Int32 = 0
     var subfunction: ThermostatSubfunction? = nil // Thermostat specific parameter

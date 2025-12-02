@@ -333,6 +333,7 @@
 "channel_caption_binary_sensor" = "Sensore binario";
 "channel_caption_container" = "Contenitore";
 "channel_caption_septic_tank" = "Fossa settica";
+"channel_caption_invisible" = "Nascosto";
 "channel_offline" = "Il canale è offline";
 "channel_battery_level" = "Livello batteria: %d%%";
 "channel_battery_level_with_info" = "Livello batteria (%d - %@): %d%%";

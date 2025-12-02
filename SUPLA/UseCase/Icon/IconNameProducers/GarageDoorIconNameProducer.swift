@@ -23,10 +23,10 @@ final class GarageDoorIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: FetchIconData) -> String {
-        if (iconData.state == .partialyOpened) {
+        if (iconData.state.value == .partialyOpened) {
             return "garagedoor-closed-50percent"
         }
         
-        return addStateSuffix(name: "garagedoor", state: iconData.state)
+        return addStateSuffix(name: "garagedoor", state: iconData.state.value)
     }
 }

@@ -146,8 +146,8 @@ extension ValveGeneralFeature {
         ])
     ]
     state.sensors = [
-        RelatedChannelData(
-            channelId: 1,
+        RelatedChannelData.visible(
+            id: 1,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-on"),
             caption: "Flood sensor",
@@ -155,8 +155,8 @@ extension ValveGeneralFeature {
             batteryIcon: IssueIcon.Battery25(),
             showChannelStateIcon: true
         ),
-        RelatedChannelData(
-            channelId: 2,
+        RelatedChannelData.visible(
+            id: 2,
             onlineState: .offline,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
@@ -164,15 +164,16 @@ extension ValveGeneralFeature {
             batteryIcon: IssueIcon.Battery50(),
             showChannelStateIcon: false
         ),
-        RelatedChannelData(
-            channelId: 4,
+        RelatedChannelData.visible(
+            id: 4,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
             userCaption: "",
             batteryIcon: IssueIcon.Battery50(),
             showChannelStateIcon: true
-        )
+        ),
+        RelatedChannelData.invisible(id: 5)
     ]
     let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")
     let captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()

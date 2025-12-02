@@ -38,7 +38,7 @@ extension ContainerGeneralFeature {
                 stateDialogViewModel: stateViewModel,
                 captionChangeDialogViewModel: captionChangeViewModel,
                 onMuteClick: { [weak self] in viewModel.onMuteClick(self) },
-                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.channelId) },
+                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.id) },
                 onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, sensorData: $0) }
             )
             

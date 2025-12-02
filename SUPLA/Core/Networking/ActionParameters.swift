@@ -86,37 +86,37 @@ public enum ActionParameters {
 extension Action {
     func state(_ function: Int32) -> ChannelState {
         switch (self) {
-        case .open: .opened
-        case .close: .closed
-        case .shut: .closed
-        case .reveal: .opened
-        case .revealPartially: .opened
-        case .shutPartially: .closed
+        case .open: .default(value: .opened)
+        case .close: .default(value: .closed)
+        case .shut: .default(value: .closed)
+        case .reveal: .default(value: .opened)
+        case .revealPartially: .default(value: .opened)
+        case .shutPartially: .default(value: .closed)
         case .turnOn:
             if (function == SuplaFunction.dimmerAndRgbLighting.value) {
-                .complex([.on, .on])
+                .rgbAndDimmer(dimmer: .on, rgb: .on)
             } else {
-                .on
+                .default(value: .on)
             }
         case .turnOff:
             if (function == SuplaFunction.dimmerAndRgbLighting.value) {
-                .complex([.off, .off])
+                .rgbAndDimmer(dimmer: .off, rgb: .off)
             } else {
-                .off
+                .default(value: .off)
             }
-        case .setRgbwParameters: .complex([.on, .on])
-        case .openClose: .opened
-        case .stop: .notUsed
-        case .toggle: .on
-        case .upOrStop: .opened
-        case .downOrStop: .closed
-        case .stepByStep: .opened
-        case .up: .opened
-        case .down: .closed
-        case .setHvacParameters: .on
-        case .execute: .notUsed
-        case .interrupt: .notUsed
-        case .interruptAndExecute: .notUsed
+        case .setRgbwParameters: .rgbAndDimmer(dimmer: .on, rgb: .on)
+        case .openClose: .default(value: .opened)
+        case .stop: .default(value: .notUsed)
+        case .toggle: .default(value: .on)
+        case .upOrStop: .default(value: .opened)
+        case .downOrStop: .default(value: .closed)
+        case .stepByStep: .default(value: .opened)
+        case .up: .default(value: .opened)
+        case .down: .default(value: .closed)
+        case .setHvacParameters: .default(value: .on)
+        case .execute: .default(value: .notUsed)
+        case .interrupt: .default(value: .notUsed)
+        case .interruptAndExecute: .default(value: .notUsed)
         }
     }
 }

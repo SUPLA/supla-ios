@@ -116,15 +116,16 @@ extension ContainerGeneralFeature {
         )
     ]
     state.sensors = [
-        RelatedChannelData(
-            channelId: 1,
+        RelatedChannelData.visible(
+            id: 1,
             onlineState: .online,
             icon: .suplaIcon(name: "fnc_container_level_sensor-on"),
             caption: "Container level sensor",
             userCaption: "",
             batteryIcon: IssueIcon.Battery25(),
             showChannelStateIcon: true
-        )
+        ),
+        RelatedChannelData.invisible(id: 2)
     ]
     state.soundOn = true
     let stateDialogViewModel = StateDialogFeature.ViewModel(title: "", function: "")

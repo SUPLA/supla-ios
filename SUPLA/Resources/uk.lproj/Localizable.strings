@@ -316,6 +316,7 @@
 "channel_caption_binary_sensor" = "Бінарний датчик";
 "channel_caption_container" = "Контейнер";
 "channel_caption_septic_tank" = "Септик";
+"channel_caption_invisible" = "Прихований";
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї: %d%%";
 "channel_battery_level_with_info" = "Рівень заряду батареї (%d - %@): %d%%";

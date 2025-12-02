@@ -89,15 +89,15 @@ extension GateGeneralFeature {
             state.mainButtonLabel = mainButtonLabel(channel.func.suplaFuntion)
             if (showOpenAndClose) {
                 state.openButtonState = .init(
-                    icon: getChannelBaseIconUseCase.stateIcon(channel, state: .opened),
+                    icon: getChannelBaseIconUseCase.stateIcon(channel, state: .default(value: .opened)),
                     label: Strings.General.open,
-                    active: channelState == .opened,
+                    active: channelState.value == .opened,
                     type: .positive
                 )
                 state.closeButtonState = .init(
-                    icon: getChannelBaseIconUseCase.stateIcon(channel, state: .closed),
+                    icon: getChannelBaseIconUseCase.stateIcon(channel, state: .default(value: .closed)),
                     label: Strings.General.close,
-                    active: channelState == .closed,
+                    active: channelState.value == .closed,
                     type: .positive
                 )
             }
@@ -108,7 +108,7 @@ extension GateGeneralFeature {
                 return Strings.SwitchDetail.stateOffline
             }
             
-            return switch (state) {
+            return switch (state.value) {
             case .opened: Strings.General.stateOpened
             case .closed: Strings.General.stateClosed
             case .partialyOpened: Strings.General.State.partiallyOpened
@@ -128,7 +128,7 @@ extension GateGeneralFeature {
         private func handleGroup(_ groupWithChannels: ReadGroupWithChannels.GroupWithChannels) {
             let showOpenAndClose = groupWithChannels.channels.contains(where: { $0.hasSensor && supportsOpenAndClose($0.function) })
             let gateWithoutSensor = groupWithChannels.channels.contains(where: { $0.hasSensor == false })
-            let groupState = groupWithChannels.aggregatedState(activeValue: .closed, inactiveValue: .opened)
+            let groupState = groupWithChannels.aggregatedState(policy: .openClosed)
             
             state.offline = false
             state.mainButtonLabel = mainButtonLabel(groupWithChannels.group.func.suplaFuntion)
@@ -137,13 +137,13 @@ extension GateGeneralFeature {
             
             if (showOpenAndClose) {
                 state.openButtonState = .init(
-                    icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .opened),
+                    icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .opened)),
                     label: Strings.General.open,
                     active: groupState == .opened,
                     type: .positive
                 )
                 state.closeButtonState = .init(
-                    icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .closed),
+                    icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .closed)),
                     label: Strings.General.close,
                     active: groupState == .closed,
                     type: .positive
@@ -172,6 +172,15 @@ extension GateGeneralFeature {
                     .drive()
                     .disposed(by: disposeBag)
             }
+        }
+    }
+}
+
+private extension ReadGroupWithChannels.ChannelInGroup {
+    var hasSensor: Bool {
+        switch self {
+        case .invisible(_): false
+        case .visible(let channelWithChildren): channelWithChildren.hasSensor
         }
     }
 }
