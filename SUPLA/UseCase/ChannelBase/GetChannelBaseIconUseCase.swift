@@ -75,20 +75,18 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
         case SUPLA_CHANNELFNC_THERMOMETER: .icon1
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
              SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            if (iconData.state == .closed) {
-                .icon2
-            } else if (iconData.state == .partialyOpened) {
-                .icon3
-            } else {
-                .icon1
+            switch (iconData.state.value) {
+            case .closed: .icon2
+            case .partialyOpened: .icon3
+            default: .icon1
             }
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             iconData.subfunction == .cool ? .icon2 : .icon1
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
             switch (iconData.state) {
-            case .complex(let states):
-                switch (states) {
+            case .rgbAndDimmer(let dimmer, let rgb):
+                switch [dimmer, rgb] {
                 case [.off, .off]:
                         .icon1
                 case [.on, .off]:
@@ -98,13 +96,13 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
                 case [.on, .on]:
                         .icon4
                 default:
-                    iconData.state.isActive() ? .icon2 : .icon1
+                    iconData.state.isActive ? .icon2 : .icon1
                 }
             default:
-                iconData.state.isActive() ? .icon2 : .icon1
+                iconData.state.isActive ? .icon2 : .icon1
             }
         default:
-            iconData.state.isActive() ? .icon2 : .icon1
+            iconData.state.isActive ? .icon2 : .icon1
         }
     }
 }

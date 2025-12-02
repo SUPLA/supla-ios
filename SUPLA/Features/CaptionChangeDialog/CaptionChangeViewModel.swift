@@ -85,7 +85,7 @@ extension CaptionChangeDialogFeature {
         }
         
         func show(_ viewController: UIViewController?, sensorData: RelatedChannelData) {
-            show(viewController, remoteId: sensorData.channelId, caption: sensorData.userCaption, captionType: .channel)
+            show(viewController, remoteId: sensorData.id, caption: sensorData.userCaption, captionType: .channel)
         }
         
         func show(_ viewController: UIViewController?, remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {

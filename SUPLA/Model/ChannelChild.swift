@@ -77,14 +77,14 @@ extension ChannelChild {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         @Singleton<GetCaptionUseCase> var getCaptionUseCase
         
-        return RelatedChannelData(
-            channelId: channel.remote_id,
+        return RelatedChannelData.visible(
+            id: channel.remote_id,
             onlineState: channel.onlineState,
             icon: getChannelBaseIconUseCase.invoke(channel: channel),
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: channel.shareable),
-            showChannelStateIcon: channel.value?.status.online ?? false
+            showChannelStateIcon: (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) != 0 && channel.state != nil
         )
     }
 }

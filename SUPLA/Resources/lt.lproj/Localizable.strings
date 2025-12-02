@@ -318,6 +318,7 @@
 "channel_caption_binary_sensor" = "Dvejetainis jutiklis";
 "channel_caption_container" = "Konteineris";
 "channel_caption_septic_tank" = "Septikas";
+"channel_caption_invisible" = "Paslėptas";
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis: %d%%";
 "channel_battery_level_with_info" = "Baterijos lygis (%d - %@): %d%%";

@@ -300,6 +300,7 @@
 "channel_caption_flood_sensor" = "Flutsensor";
 "channel_caption_motion_sensor" = "Bewegungssensor";
 "channel_caption_binary_sensor" = "Binärsensor";
+"channel_caption_invisible" = "Verborgen";
 "channel_offline" = "Das Kanal ist offline";
 "channel_not_found" = "Kanal nicht gefunden";
 "scene_inactive" = "Szene ist nicht active";

@@ -36,7 +36,7 @@ extension ValveGeneralFeature {
                 viewState: viewModel.state,
                 stateDialogViewModel: stateViewModel,
                 captionChangeDialogViewModel: captionChangeViewModel,
-                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.channelId) },
+                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.id) },
                 onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, sensorData: $0) },
                 onOpenClick: { viewModel.onActionClick(channelId, action: .open) },
                 onCloseClick: { viewModel.onActionClick(channelId, action: .close) },

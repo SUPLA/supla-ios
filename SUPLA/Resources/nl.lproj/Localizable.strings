@@ -316,6 +316,7 @@
 "channel_caption_binary_sensor" = "Binaire sensor";
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
+"channel_caption_invisible" = "Verborgen";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau: %d%%";
 "channel_battery_level_with_info" = "Batterijniveau (%d - %@): %d%%";

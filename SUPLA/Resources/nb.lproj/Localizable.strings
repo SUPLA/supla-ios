@@ -317,6 +317,7 @@
 "channel_caption_binary_sensor" = "Binærsensor";
 "channel_caption_container" = "Beholder";
 "channel_caption_septic_tank" = "Septiktank";
+"channel_caption_invisible" = "Skjult";
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå: %d%%";
 "channel_battery_level_with_info" = "Batterinivå (%d - %@): %d%%";

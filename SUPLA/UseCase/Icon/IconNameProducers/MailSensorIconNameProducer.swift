@@ -22,7 +22,7 @@ final class MailSensorIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: FetchIconData) -> String {
-        if (iconData.state.isActive()) {
+        if (iconData.state.isActive) {
             return "mail"
         } else {
             return "nomail"

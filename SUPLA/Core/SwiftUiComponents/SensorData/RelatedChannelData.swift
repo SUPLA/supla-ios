@@ -17,15 +17,58 @@
  */
 
 import SharedCore
-    
-struct RelatedChannelData: Identifiable {
-    var id: Int32 { channelId }
-    
-    let channelId: Int32
-    let onlineState: ListOnlineState
-    let icon: IconResult?
-    let caption: String
-    let userCaption: String
-    let batteryIcon: IssueIcon?
-    let showChannelStateIcon: Bool
+
+enum RelatedChannelData: Identifiable {
+    var id: Int32 {
+        switch self {
+            case let .invisible(id): id
+        case let .visible(id, _, _, _, _, _, _): id
+        }
+    }
+    var onlineState: ListOnlineState {
+        switch self {
+        case .invisible(_): .unknown
+        case let .visible(_, onlineState, _, _, _, _, _): onlineState
+        }
+    }
+    var icon: IconResult? {
+        switch self {
+        case .invisible(_): .suplaIcon(name: .Icons.fncUnknown)
+        case let .visible(_, _, icon, _, _, _, _): icon
+        }
+    }
+    var caption: String {
+        switch self {
+        case .invisible(_): Strings.General.Channel.captionInvisible
+        case let .visible(_, _, _, caption, _, _, _): caption
+        }
+    }
+    var userCaption: String {
+        switch self {
+        case .invisible(_): ""
+        case let .visible(_, _, _, _, userCaption, _, _): userCaption
+        }
+    }
+    var batteryIcon: IssueIcon? {
+        switch self {
+        case .invisible(_): nil
+        case let .visible(_, _, _, _, _, batteryIcon, _): batteryIcon
+        }
+    }
+    var showChannelStateIcon: Bool {
+        switch self {
+        case .invisible(_): false
+        case let .visible(_, _, _, _, _, _, showChannelStateIcon): showChannelStateIcon
+        }
+    }
+    case invisible(id: Int32)
+    case visible(
+        id: Int32,
+        onlineState: ListOnlineState,
+        icon: IconResult?,
+        caption: String,
+        userCaption: String,
+        batteryIcon: IssueIcon?,
+        showChannelStateIcon: Bool
+    )
 }

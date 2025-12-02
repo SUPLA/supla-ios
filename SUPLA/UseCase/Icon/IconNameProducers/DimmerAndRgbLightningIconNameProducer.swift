@@ -20,22 +20,17 @@ final class DimmerAndRgbLightningIconNameProducer: IconNameProducer {
     func accepts(function: Int32) -> Bool {
         return function == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
     }
-    
+
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.state) {
-        case .complex(let values):
-            if (values.count == 2) {
-                return String.init(
-                    format: "dimmerrgb-%@%@",
-                    values[0] == .on ? "on" : "off",
-                    values[1] == .on ? "on" : "off"
-                )
-            } else {
-                fatalError("Dimmer and RGB function needs complex with two values but got \(values)")
-            }
+        case .rgbAndDimmer(let dimmer, let rgb):
+            String(
+                format: "dimmerrgb-%@%@",
+                dimmer == .on ? "on" : "off",
+                rgb == .on ? "on" : "off"
+            )
         default:
-            fatalError("Dimmer and RGB function needs complex state")
+            "dimmerrgb-offoff"
         }
     }
 }
-
