@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "CSnímač otevření garážových dveří";
 "Door opening sensor" = "Snímač otevření dveří";
 "Roller shutter opening sensor" = "Snímač otevření rolet";
-"Incompatible server version" = "Nekompatibilní verze serveru";
 "RGB Lighting" = "Osvětlení RGB";
 "Dimmer and RGB lighting" = "Reostat a osvětlení RGB";
 "Dimmer" = "Reostat";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Snímač pošty";
 "Window opening sensor" = "Snímač otevření okna";
 "Add I/O device" = "Přidat zařízení";
-"Donate" = "Podporujte projekt";
-"Create an account" = "Vytvořte účet";
 "Next" = "Dále";
 "Cancel" = "Zrušit";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrace I / O zařízení je momentálně zakázána. Chcete-li pokračovat, přejděte na stránku %@ a na kartě Moje SUPLA povolte přidávání zařízení.";
-"The connected Server does not support this function!" = "Server, ke kterému jste se připojili, nepodporuje tuto funkci!";
-"Incorrect input parameters (%@)!" = "Chybné vstupní parametry (%@)!";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=cs";
 "https://en-forum.supla.org" = "https://cz-forum.supla.org";
 "Retrieving data from the server..." = "Stahování dat ze serveru...";
-"No chart data available." = "Žádné údaje o graf.";
 "Electricity Meter" = "Elektroměr";
 "Water Meter" = "Vodoměr";
 "Gas Meter" = "Plynoměr";
@@ -78,7 +71,6 @@
 "Forward active Energy" = "Pobíraná činná energie";
 "Reverse active Energy" = "Zpětná činná energie";
 "Consumption in the current month" = "Spotřeba v tomto měsíci";
-"Production in the current month" = "Produkce v tomto měsíci";
 "Minutes" = "Minuty";
 "Hours" = "Hodiny";
 "Days" = "Dny";

@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Датчик відчинення гаражних воріт";
 "Door opening sensor" = "Датчик відчинення дверей";
 "Roller shutter opening sensor" = "Датчик відчинення ролет";
-"Incompatible server version" = "Несумісна версія сервера";
 "RGB Lighting" = "Освітлення RGB";
 "Dimmer and RGB lighting" = "Регулятор освітленості та освітлення RGB";
 "Dimmer" = "Регулятор освітленості";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Датчик пошти";
 "Window opening sensor" = "Датчик відкриття вікна";
 "Add I/O device" = "Додайте пристрій";
-"Donate" = "Підтримайте проект";
-"Create an account" = "Створити";
 "Next" = "Далі";
 "Cancel" = "Скасувати";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Реєстрацію пристроїв введення/виведення наразі вимкнено. Щоб продовжити, перейдіть на сторінку %@ і на вкладці «Моя SUPLA» увімкніть додавання пристроїв.";
-"The connected Server does not support this function!" = "Сервер, до якого ви підключені, не підтримує цю функцію!";
-"Incorrect input parameters (%@)!" = "Неправильні вхідні параметри (%@)!";
 "Help" = "Довідка";
 
 "Staircase timer" = "Сходовий автомат";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=uk";
 
 "Retrieving data from the server..." = "Завантаження даних із сервера...";
-"No chart data available." = "Немає даних для діаграми.";
 "Electricity Meter" = "Лічильник електроенергії";
 "Water Meter" = "Лічильник води";
 "Gas Meter" = "Лічильник газу";
@@ -78,7 +71,6 @@
 "Forward active Energy" = "Спожита активна енергія";
 "Reverse active Energy" = "Повернуто активну енергію";
 "Consumption in the current month" = "Споживання за поточний місяць";
-"Production in the current month" = "Виробництво поточного місяця";
 "Minutes" = "Хвилини";
 "Hours" = "Години";
 "Days" = "Дні";

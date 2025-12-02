@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Senzor odprtja garažnih vrat";
 "Door opening sensor" = "Senzor odprtja vrat";
 "Roller shutter opening sensor" = "Senzor odprtja rolet";
-"Incompatible server version" = "Nezdružljiva različica strežnika";
 "RGB Lighting" = "RGB osvetlitev";
 "Dimmer and RGB lighting" = "Zatemnilnik in RGB osvetlitev";
 "Dimmer" = "Zatemnilnik";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Senzor pošte";
 "Window opening sensor" = "Senzor odprtja oken";
 "Add I/O device" = "Dodajte napravo";
-"Donate" = "Podprite projekt";
-"Create an account" = "Ustvarite račun";
 "Next" = "Naprej";
 "Cancel" = "Prekličite";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registracija naprav je trenutno izklopljena. Za nadaljevanje pojdite na stran %@ in v zavihku \"Moja SUPLA\" omogočite dodajanje naprav.";
-"The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
-"Incorrect input parameters (%@)!" = "Napačni vhodni parametri (%@)!";
 "Help" = "Pomoč";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Stopniščni avtomat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=sl";
 
 "Retrieving data from the server..." = "Prenos podatkov s strežnika...";
-"No chart data available." = "Za tabelo ni podatkov.";
 "Electricity Meter" = "Števec električne energije";
 "Water Meter" = "Merilnik vode";
 "Gas Meter" = "Merilnik plina";
@@ -78,7 +71,6 @@
 "Forward active Energy" = "Aktivna porabljena energija";
 "Reverse active Energy" = "Aktivna porabljena energija";
 "Consumption in the current month" = "Poraba v tekočem mesecu";
-"Production in the current month" = "Proizvodnja v tekočem mesecu";
 "Minutes" = "Minute";
 "Hours" = "Ure";
 "Days" = "Dni";

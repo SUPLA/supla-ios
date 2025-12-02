@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Garagedeur openingssensor";
 "Door opening sensor" = "Sensor deuropening";
 "Roller shutter opening sensor" = "Rolluiken openen sensor";
-"Incompatible server version" = "Incompatibele serverversie";
 "RGB Lighting" = "RGB-verlichting";
 "Dimmer and RGB lighting" = "Dimmer en RGB-verlichting";
 "Dimmer" = "Dimmer";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Postsensor";
 "Window opening sensor" = "Raamopeningssensor";
 "Add I/O device" = "Apparaat toevoegen";
-"Donate" = "Steun het project";
-"Create an account" = "Account maken";
 "Next" = "Doorgaan";
 "Cancel" = "Annuleren";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "I / O-apparaatregistratie is momenteel uitgeschakeld. Ga door naar pagina %@ en schakel op het tabblad \"Mijn SUPLA\" het toevoegen van apparaten in.";
-"The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
-"Incorrect input parameters (%@)!" = "Ongeldige invoerparameters (%@)!";
 "Help" = "Help";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trap automaat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=nl";
 
 "Retrieving data from the server..." = "Gegevens downloaden van de server ...";
-"No chart data available." = "Er zijn geen gegevens voor de grafiek.";
 "Electricity Meter" = "Kilowattuurmeter";
 "Water Meter" = "Watermeter";
 "Gas Meter" = "Gasmeter";
@@ -78,7 +71,6 @@
 "Forward active Energy" = "Opgenomen actieve energie";
 "Reverse active Energy" = "Actieve energie geretourneerd";
 "Consumption in the current month" = "Verbruik in de lopende maand";
-"Production in the current month" = "Productie in de huidige maand";
 "Minutes" = "Minuten";
 "Hours" = "Uren";
 "Days" = "Dagen";
