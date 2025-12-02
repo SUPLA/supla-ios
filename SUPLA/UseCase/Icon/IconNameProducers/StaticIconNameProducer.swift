@@ -34,7 +34,7 @@ final class StaticIconNameProducer: IconNameProducer {
     
     func produce(iconData: FetchIconData) -> String {
         if (withSuffix) {
-            return addStateSuffix(name: name, state: iconData.state)
+            return addStateSuffix(name: name, state: iconData.state.value)
         } else {
             return name
         }

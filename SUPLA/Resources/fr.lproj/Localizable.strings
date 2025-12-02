@@ -316,6 +316,7 @@
 "channel_caption_binary_sensor" = "Capteur binaire";
 "channel_caption_container" = "Conteneur";
 "channel_caption_septic_tank" = "Fosse septique";
+"channel_caption_invisible" = "Masqué";
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria: %d%%";
 "channel_battery_level_with_info" = "Livello batteria (%d - %@): %d%%";

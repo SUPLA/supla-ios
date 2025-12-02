@@ -316,6 +316,7 @@
 "channel_caption_binary_sensor" = "Binarni senzor";
 "channel_caption_container" = "Posoda";
 "channel_caption_septic_tank" = "Greznica";
+"channel_caption_invisible" = "Skrit";
 "channel_offline" = "Kanal je brez povezave";
 "channel_battery_level" = "Raven baterije: %d%%";
 "channel_battery_level_with_info" = "Raven baterije (%d - %@): %d%%";

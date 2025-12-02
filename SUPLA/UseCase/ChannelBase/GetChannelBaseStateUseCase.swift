@@ -26,7 +26,7 @@ protocol GetChannelBaseStateUseCase {
 final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
     func invoke(channelBase: SAChannelBase) -> ChannelState {
         if let channel = channelBase as? SAChannel {
-            guard let value = channel.value else { return .notUsed }
+            guard let value = channel.value else { return .default(value: .notUsed) }
             return getChannelState(channel.func, ChannelValueStateWrapper(channelValue: value))
         }
         if let group = channelBase as? SAChannelGroup {
@@ -57,8 +57,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_VERTICAL_BLIND,
              SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
-             SUPLA_CHANNELFNC_VALVE_PERCENTAGE: .opened
-        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN: .closed
+            SUPLA_CHANNELFNC_VALVE_PERCENTAGE: .default(value: .opened)
+        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN: .default(value: .closed)
         case SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER,
              SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
@@ -74,14 +74,14 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_FLOOD_SENSOR,
              SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR,
              SUPLA_CHANNELFNC_MOTION_SENSOR,
-             SUPLA_CHANNELFNC_BINARY_SENSOR: .off
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .complex([.off, .off])
+             SUPLA_CHANNELFNC_BINARY_SENSOR: .default(value: .off)
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .rgbAndDimmer(dimmer: .off, rgb: .off)
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
-             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .opaque
+             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .default(value: .opaque)
         case SUPLA_CHANNELFNC_CONTAINER,
              SUPLA_CHANNELFNC_SEPTIC_TANK,
-             SUPLA_CHANNELFNC_WATER_TANK: .empty
-        default: .notUsed
+             SUPLA_CHANNELFNC_WATER_TANK: .default(value: .empty)
+        default: .default(value: .notUsed)
         }
     }
     
@@ -102,10 +102,10 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_CURTAIN,
              SUPLA_CHANNELFNC_VERTICAL_BLIND,
              SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
-            return valueWrapper.rollerShutterClosed ? .closed : .opened
+            return .default(value: valueWrapper.rollerShutterClosed ? .closed : .opened)
         case SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
              SUPLA_CHANNELFNC_TERRACE_AWNING:
-            return valueWrapper.shadingSystemReversedClosed ? .closed : .opened
+            return .default(value: valueWrapper.shadingSystemReversedClosed ? .closed : .opened)
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
              SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
              SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
@@ -115,7 +115,7 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
              SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
-            return valueWrapper.isClosed ? .closed : .opened
+            return .default(value: valueWrapper.isClosed ? .closed : .opened)
         case SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER,
              SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
@@ -130,40 +130,40 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR,
              SUPLA_CHANNELFNC_MOTION_SENSOR,
              SUPLA_CHANNELFNC_BINARY_SENSOR:
-            return valueWrapper.isClosed ? .on : .off
+            return .default(value: valueWrapper.isClosed ? .on : .off)
         case SUPLA_CHANNELFNC_DIMMER:
-            return valueWrapper.brightness > 0 ? .on : .off
+            return .default(value: valueWrapper.brightness > 0 ? .on : .off)
         case SUPLA_CHANNELFNC_RGBLIGHTING:
-            return valueWrapper.colorBrightness > 0 ? .on : .off
+            return .default(value: valueWrapper.colorBrightness > 0 ? .on : .off)
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            let first: ChannelState = valueWrapper.brightness > 0 ? .on : .off
-            let second: ChannelState = valueWrapper.colorBrightness > 0 ? .on : .off
-            return .complex([first, second])
+            let first: ChannelState.Value = valueWrapper.brightness > 0 ? .on : .off
+            let second: ChannelState.Value = valueWrapper.colorBrightness > 0 ? .on : .off
+            return .rgbAndDimmer(dimmer: first, rgb: second)
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
-            return valueWrapper.transparent ? .transparent : .opaque
+            return .default(value: valueWrapper.transparent ? .transparent : .opaque)
         case SUPLA_CHANNELFNC_CONTAINER,
              SUPLA_CHANNELFNC_SEPTIC_TANK,
              SUPLA_CHANNELFNC_WATER_TANK:
             let value = valueWrapper.containerValue
             if (value.level > 80) {
-                return .full
+                return .default(value: .full)
             } else if (value.level > 20) {
-                return .half
+                return .default(value: .half)
             } else {
-                return .empty
+                return .default(value: .empty)
             }
-        default: return .notUsed
+        default: return .default(value: .notUsed)
         }
     }
     
     private func getOpenClose(_ value: Int32) -> ChannelState {
         if ((value & 0x2) == 0x2 && (value & 0x1) == 0) {
-            return .partialyOpened
+            return .default(value: .partialyOpened)
         } else if (value > 0) {
-            return .closed
+            return .default(value: .closed)
         } else {
-            return .opened
+            return .default(value: .opened)
         }
     }
 }

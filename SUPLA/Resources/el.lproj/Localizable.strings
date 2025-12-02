@@ -316,6 +316,7 @@
 "channel_caption_binary_sensor" = "Δυαδικός αισθητήρας";
 "channel_caption_container" = "Δοχείο";
 "channel_caption_septic_tank" = "Βόθρος";
+"channel_caption_invisible" = "Κρυφός";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας: %d%%";
 "channel_battery_level_with_info" = "Επίπεδο μπαταρίας (%d - %@): %d%%";

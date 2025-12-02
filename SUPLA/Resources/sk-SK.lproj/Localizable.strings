@@ -316,6 +316,7 @@
 "channel_caption_binary_sensor" = "Binárny senzor";
 "channel_caption_container" = "Kontajner";
 "channel_caption_septic_tank" = "Septik";
+"channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie: %d%%";
 "channel_battery_level_with_info" = "Úroveň batérie (%d - %@): %d%%";

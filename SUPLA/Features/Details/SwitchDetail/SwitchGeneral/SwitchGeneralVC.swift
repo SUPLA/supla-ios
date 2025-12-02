@@ -39,7 +39,7 @@ extension SwitchGeneralFeature {
                 stateDialogViewModel: stateViewModel,
                 captionChangeDialogViewModel: captionChangeViewModel,
                 delegate: viewModel,
-                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.channelId) },
+                onInfoClick: { [weak self] in self?.stateViewModel.show(remoteId: $0.id) },
                 onCaptionLongPress: { [weak self] in self?.captionChangeViewModel.show(self, sensorData: $0) }
             )
             

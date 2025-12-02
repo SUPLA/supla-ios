@@ -17,26 +17,39 @@
  */
 
 enum ChannelState: Equatable {
-    // active states
-    case opened
-    case on
-    case transparent
-    // inactive states
-    case partialyOpened // currently 50%
-    case closed
-    case off
-    case opaque
-    // container
-    case empty
-    case full
-    case half
-    // others
-    case notUsed
-    indirect case complex([ChannelState])
+    case `default`(value: Value)
+    case rgbAndDimmer(dimmer: Value, rgb: Value)
+    
+    var value: ChannelState.Value {
+        return switch self {
+        case .default(let value): value
+        case .rgbAndDimmer(let dimmer, let rgb): (dimmer == .on && rgb == .on) ? .on : .off
+        }
+    }
+    
+    var isActive: Bool { value.isActive }
+    
+    enum Value {
+        // active states
+        case opened
+        case on
+        case transparent
+        // inactive states
+        case partialyOpened // currently 50%
+        case closed
+        case off
+        case opaque
+        // container
+        case empty
+        case full
+        case half
+        // others
+        case notUsed
+    }
 }
 
-extension ChannelState {
-    func isActive() -> Bool {
+extension ChannelState.Value {
+    var isActive: Bool {
         switch (self) {
         case .closed, .on, .transparent: return true
         default: return false

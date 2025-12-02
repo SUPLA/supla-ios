@@ -316,6 +316,7 @@
 "channel_caption_flood_sensor" = "Sensor de inundação";
 "channel_caption_motion_sensor" = "Sensor de movimento";
 "channel_caption_binary_sensor" = "Sensor binário";
+"channel_caption_invisible" = "Oculto";
 "channel_offline" = "O canal está offline";
 "channel_battery_level" = "Nível de bateria: %d%%";
 "channel_battery_level_with_info" = "Nível de bateria (%d - %@): %d%%";

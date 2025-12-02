@@ -106,6 +106,7 @@
 "channel_caption_flood_sensor" = "Flood sensor";
 "channel_caption_motion_sensor" = "Motion sensor";
 "channel_caption_binary_sensor" = "Binary sensor";
+"channel_caption_invisible" = "Hidden";
 "channel_offline" = "Channel is offline";
 "channel_not_found" = "Channel not found";
 "scene_inactive" = "Scene is inactive";

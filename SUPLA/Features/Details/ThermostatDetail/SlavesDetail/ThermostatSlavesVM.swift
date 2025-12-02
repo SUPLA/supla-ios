@@ -113,7 +113,7 @@ private extension ChannelChild {
             value: value,
             indicatorIcon: thermostatValue?.indicatorIcon ?? .off,
             issues: getChannelIssuesForSlavesUseCase.invoke(channel: channel.shareable),
-            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
+            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.state != nil,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
             sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel)
@@ -167,7 +167,7 @@ private extension ChannelWithChildren {
             value: value,
             indicatorIcon: thermostatValue?.indicatorIcon ?? .off,
             issues: getChannelIssuesForSlavesUseCase.invoke(channelWithChildren: shareable),
-            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
+            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.state != nil,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
             sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel)

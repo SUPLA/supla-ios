@@ -99,14 +99,14 @@ extension ContainerGeneralFeature {
                     caption
                 }
             
-            return RelatedChannelData(
-                channelId: child.channel.remote_id,
+            return RelatedChannelData.visible(
+                id: child.channel.remote_id,
                 onlineState: child.channel.onlineState,
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),
                 caption: captionWithPercentage,
                 userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: child.channel.value?.status.online ?? false
+                showChannelStateIcon: child.channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) != 0 && child.channel.state != nil
             )
         }
         
