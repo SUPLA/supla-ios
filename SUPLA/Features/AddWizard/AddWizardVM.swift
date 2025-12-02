@@ -41,7 +41,7 @@ extension AddWizardFeature {
         @Singleton<DateProvider> private var dateProvider
 
         private lazy var stateHandler: IosEspConfigurationStateHolder = .init(espConfigurationController: self)
-        private var workingTask: Task<Void, Never>? = nil
+        var workingTask: Task<Void, Never>? = nil
         
         private lazy var locationManager: CLLocationManager = {
             let manager = CLLocationManager()
@@ -344,7 +344,7 @@ extension AddWizardFeature {
                 
                 let firstResult = await checkRegistrationEnabledCall()
                 if (firstResult == .timeout) {
-                    let secondResult = try? await checkRegistrationEnabledUseCase.invoke()
+                    let secondResult = await checkRegistrationEnabledCall()
                     
                     await MainActor.run {
                         switch (secondResult) {
@@ -372,8 +372,11 @@ extension AddWizardFeature {
             {
                 return .enabled
             } else {
-                state.registrationActivationTime = currentTimestamp
-                return try? await checkRegistrationEnabledUseCase.invoke()
+                let result = try? await checkRegistrationEnabledUseCase.invoke()
+                if (result == .enabled) {
+                    state.registrationActivationTime = currentTimestamp
+                }
+                return result
             }
         }
 

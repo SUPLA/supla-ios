@@ -653,6 +653,8 @@
 		A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FC2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift */; };
 		A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */; };
 		A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */; };
+		A56362B52EDED2BB00A702C0 /* AddWizardVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */; };
+		A56362B72EDED55D00A702C0 /* AddWizardUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */; };
 		A56504E72E422FE3008DAE3D /* SetPasswordDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */; };
 		A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */; };
 		A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */; };
@@ -2351,6 +2353,8 @@
 		A56233FC2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationRepositoryMock.swift; sourceTree = "<group>"; };
 		A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIconNameProducer.swift; sourceTree = "<group>"; };
 		A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Ext.swift"; sourceTree = "<group>"; };
+		A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVMTests.swift; sourceTree = "<group>"; };
+		A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardUseCasesMocks.swift; sourceTree = "<group>"; };
 		A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordDialog.swift; sourceTree = "<group>"; };
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
@@ -5073,6 +5077,14 @@
 			path = Thermostat;
 			sourceTree = "<group>";
 		};
+		A56362B32EDED2A700A702C0 /* AddWizard */ = {
+			isa = PBXGroup;
+			children = (
+				A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */,
+			);
+			path = AddWizard;
+			sourceTree = "<group>";
+		};
 		A567C75B2DAE5F34006245B5 /* CarPlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -5688,6 +5700,7 @@
 		A59AB89E2A30534F00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */,
 				A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */,
 				A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */,
 				A59AB89F2A30535E00D91F1F /* ChannelUseCasesMocks.swift */,
@@ -6936,6 +6949,7 @@
 		A5F14B7A29DEE4B600682FA6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A56362B32EDED2A700A702C0 /* AddWizard */,
 				A5D712892C3EB58100A8EF52 /* Status */,
 				A5D712862C3EB23500A8EF52 /* PinSetup */,
 				A5D7127F2C3EA2C400A8EF52 /* LockScreen */,
@@ -8956,6 +8970,7 @@
 				A52BFEFA2B18A43000A2F64C /* DeleteProfileUseCaseTests.swift in Sources */,
 				A59AB8A62A305D8700D91F1F /* LocationUseCasesMocks.swift in Sources */,
 				A54A06862AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift in Sources */,
+				A56362B52EDED2BB00A702C0 /* AddWizardVMTests.swift in Sources */,
 				A5A23C2F2ABDAF8E00233542 /* ValuesFormatterTests.swift in Sources */,
 				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				A50B5D1A2BECC7DF00918D18 /* FacadeBlindValue+Test.swift in Sources */,
@@ -8999,6 +9014,7 @@
 				A57C883A2ACB4BDB000B0F10 /* SuplaChannelWeeklyScheduleConfig+Mock.swift in Sources */,
 				A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */,
 				A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */,
+				A56362B72EDED55D00A702C0 /* AddWizardUseCasesMocks.swift in Sources */,
 				A573B0B12A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift in Sources */,
 				A5D712772C3E769300A8EF52 /* SingleTestCase.swift in Sources */,
 				A5F2379B2DDB21EF00E090E9 /* CarPlayItemRepositoryMock.swift in Sources */,
