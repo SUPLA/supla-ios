@@ -161,6 +161,7 @@ class SuplaCombinedChartView: UIView {
         view.noDataFont = .body2
         view.drawMarkers = true
         view.highlightFullBarEnabled = false
+        view.pinchZoomEnabled = ProcessInfo.processInfo.isiOSAppOnMac
         return view
     }()
     
