@@ -80,7 +80,6 @@
 		01A4D4F8269211EA00F3DCD1 /* SAFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */; };
 		01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */; };
 		01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */; };
-		01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */; };
 		01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
 		01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */; };
@@ -129,7 +128,6 @@
 		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
 		01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */; };
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
-		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
@@ -174,7 +172,6 @@
 		40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA7620C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m */; };
 		40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */; };
 		40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */; };
-		40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4FC1F2B841400753796 /* SAColorListPicker.m */; };
 		40CF96D81BC81A470030EFFF /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D41BC81A470030EFFF /* error@2x.png */; };
 		40CF96D91BC81A470030EFFF /* error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D51BC81A470030EFFF /* error@3x.png */; };
 		40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D397AC1FAF547B00BF477D /* retry@3x.png */; };
@@ -1671,7 +1668,6 @@
 		01AB61E725B8E08E00DBEF74 /* SADigiglassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADigiglassController.h; sourceTree = "<group>"; };
 		01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADigiglassController.m; sourceTree = "<group>"; };
 		01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassControllerTests.m; sourceTree = "<group>"; };
-		01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPickerTests.m; sourceTree = "<group>"; };
 		01AF443528FACBE90073FB88 /* nb */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nb; path = Resources/nb.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		01AF443828FACF210073FB88 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAInfoVC.xib"; sourceTree = "<group>"; };
 		01AF443B28FB4D200073FB88 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "sk-SK"; path = "Resources/sk-SK.lproj/SAInfoVC.xib"; sourceTree = "<group>"; };
@@ -1789,8 +1785,6 @@
 		01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeResult.m; sourceTree = "<group>"; };
 		01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNode.h; sourceTree = "<group>"; };
 		01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNode.m; sourceTree = "<group>"; };
-		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
-		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		4017E1291BB9CE2900570AC8 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
@@ -1862,8 +1856,6 @@
 		40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		40C7BA8520C0492500ACEE42 /* SAChannelBase+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelBase+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40C9E4FB1F2B841400753796 /* SAColorListPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorListPicker.h; sourceTree = "<group>"; };
-		40C9E4FC1F2B841400753796 /* SAColorListPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorListPicker.m; sourceTree = "<group>"; };
 		40CF96D41BC81A470030EFFF /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		40CF96D51BC81A470030EFFF /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@3x.png"; sourceTree = "<group>"; };
 		40D2B418207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2348,6 +2340,17 @@
 		A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Ext.swift"; sourceTree = "<group>"; };
 		A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVMTests.swift; sourceTree = "<group>"; };
 		A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardUseCasesMocks.swift; sourceTree = "<group>"; };
+		A56363CE2EDF180A00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		A56363CF2EDF180C00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
+		A56363D02EDF181100A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
+		A56363D12EDF181200A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		A56363D32EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
+		A56363D42EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		A56363D52EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
+		A56363D62EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		A56363D72EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		A56363D82EDF181400A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = az.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A56364082EDF8F8A00A702C0 /* StandardDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
 		A56364092EDF8F8A00A702C0 /* StandardDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A56364112EDF9BF300A702C0 /* RgbDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailFeature.swift; sourceTree = "<group>"; };
@@ -2364,17 +2367,6 @@
 		A56364382EE1D67400A702C0 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		A563643A2EE2F0BF00A702C0 /* LinearColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearColorSelector.swift; sourceTree = "<group>"; };
 		A563643C2EE2F86600A702C0 /* ColorSelectorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectorPoint.swift; sourceTree = "<group>"; };
-		A56363CE2EDF180A00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
-		A56363CF2EDF180C00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
-		A56363D02EDF181100A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
-		A56363D12EDF181200A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
-		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
-		A56363D32EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		A56363D42EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
-		A56363D52EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
-		A56363D62EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
-		A56363D72EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		A56363D82EDF181400A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = az.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A56504E62E422FD8008DAE3D /* SetPasswordDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordDialog.swift; sourceTree = "<group>"; };
 		A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimeoutManager.swift; sourceTree = "<group>"; };
 		A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScrimView.swift; sourceTree = "<group>"; };
@@ -3663,10 +3655,6 @@
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
 				019F4AAD2614B75800065420 /* SAAbstractPickerField.h */,
 				019F4AAE2614B75800065420 /* SAAbstractPickerField.m */,
-				4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */,
-				4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */,
-				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
-				40C9E4FC1F2B841400753796 /* SAColorListPicker.m */,
 				010C8784249A6A92002FE526 /* SADialog.h */,
 				010C8785249A6A92002FE526 /* SADialog.m */,
 				01AB61E725B8E08E00DBEF74 /* SADigiglassController.h */,
@@ -4767,7 +4755,6 @@
 			children = (
 				A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
-				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
 				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
 				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
 				01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */,
@@ -8210,7 +8197,6 @@
 				A51474622EA662F20044DEF2 /* ThermostatStateHelper.swift in Sources */,
 				A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */,
 				A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */,
-				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				A598CAC72CC24EC400A784FA /* ImpulseCounterValueStringProvider.swift in Sources */,
 				A58542292D80D02B00D314A2 /* SuplaChannelContainerConfig.swift in Sources */,
 				A52F03DF2DBA266500472ED1 /* CarPlayAddViewState.swift in Sources */,
@@ -8703,7 +8689,6 @@
 				A57668EF2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */,
-				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				A5B8A4872CBD0B4F002FA7B2 /* ElectricityDataSelectionVM.swift in Sources */,
 				A5A325262E81861300E60812 /* DownloadThermostatHeatpolLogUseCase.swift in Sources */,
 				A5EC52402C0F22F40022F055 /* RequestChannelConfigUseCase.swift in Sources */,
@@ -9032,7 +9017,6 @@
 				A55A8DBD2BB2EC5600C540D4 /* AuthorizeUseCaseTests.swift in Sources */,
 				A517DFEF2CFDA4AD00D6148C /* ChannelStateRepositoryMock.swift in Sources */,
 				A5D7129A2C4123C200A8EF52 /* FunctionMock.swift in Sources */,
-				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
 				A54A066C2AF5290900C03DBC /* DownloadEventsManagerMock.swift in Sources */,
 				A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */,
 				A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */,
