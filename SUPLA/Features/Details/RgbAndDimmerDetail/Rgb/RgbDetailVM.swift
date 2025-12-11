@@ -188,7 +188,22 @@ extension RgbDetailFeature {
         }
         
         func onSaveCurrentColor() {
-            guard let remoteId, let type, let color = state.value.hsv?.fullBrightnessColor, let brightness = state.value.hsv?.valueAsPercentage else { return }
+            guard let remoteId,
+                  let type,
+                  let color = state.value.hsv?.fullBrightnessColor,
+                  let brightness = state.value.hsv?.valueAsPercentage
+            else { return }
+            
+            guard state.savedColors.count < 10 else {
+                state.showLimitReachedToast = true
+                Task {
+                    try? await Task.sleep(nanoseconds: 5_000_000_000)
+                    await MainActor.run {
+                        state.showLimitReachedToast = false
+                    }
+                }
+                return
+            }
 
             // It's needed to enable immediate update
             lastInteractionTime = nil

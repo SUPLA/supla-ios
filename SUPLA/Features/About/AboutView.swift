@@ -15,75 +15,56 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
 import SwiftUI
 
 extension AboutFeature {
-    
     protocol ViewDelegate {
         func onHomePageClicked()
         func onBuildTimeClicked()
     }
-    
+
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         let delegate: ViewDelegate?
-        
+
         var body: some SwiftUI.View {
             BackgroundStack {
-                ZStack {
-                    VStack(spacing: Dimens.distanceDefault) {
-                        Spacer()
-                        Image(BrandingConfiguration.About.LOGO)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxHeight: 100)
-                            .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
-                        Text(Strings.appName).fontHeadlineLarge()
-                        Text(Strings.About.version.arguments(viewState.version)).fontBodyMedium()
-                        if (BrandingConfiguration.SHOW_LICENCE) {
-                            Text(Strings.About.license)
-                                .fontLabelSmall()
-                                .multilineTextAlignment(.center)
-                        }
-                        Spacer()
-                        TextButton(
-                            title: Strings.About.address,
-                            normalColor: Color.Supla.onBackground,
-                            action: { delegate?.onHomePageClicked() }
-                        )
-                        if let buildTime = viewState.buildTime {
-                            Text(Strings.About.buildTime.arguments(buildTime))
-                                .fontBodySmall()
-                                .onTapGesture { delegate?.onBuildTimeClicked() }
-                        }
+                VStack(spacing: Dimens.distanceDefault) {
+                    Spacer()
+                    Image(BrandingConfiguration.About.LOGO)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: 100)
+                        .foregroundColor(BrandingConfiguration.About.COLOR_FILLER)
+                    Text(Strings.appName).fontHeadlineLarge()
+                    Text(Strings.About.version.arguments(viewState.version)).fontBodyMedium()
+                    if (BrandingConfiguration.SHOW_LICENCE) {
+                        Text(Strings.About.license)
+                            .fontLabelSmall()
+                            .multilineTextAlignment(.center)
                     }
-                    .padding(.all, Dimens.distanceDefault)
-                    
-                    if (viewState.showToast) {
-                        ToastView(message: Strings.DeveloperInfo.activated)
-                            .padding(.bottom, Distance.default)
-                            .frame(maxHeight: .infinity, alignment: .bottom)
+                    Spacer()
+                    TextButton(
+                        title: Strings.About.address,
+                        normalColor: Color.Supla.onBackground,
+                        action: { delegate?.onHomePageClicked() }
+                    )
+                    if let buildTime = viewState.buildTime {
+                        Text(Strings.About.buildTime.arguments(buildTime))
+                            .fontBodySmall()
+                            .onTapGesture { delegate?.onBuildTimeClicked() }
                     }
+                }
+                .padding(.all, Dimens.distanceDefault)
+
+                if (viewState.showToast) {
+                    ToastView(message: Strings.DeveloperInfo.activated)
                 }
             }
         }
     }
 }
-
-struct ToastView: View {
-    let message: String
-    var body: some View {
-        Text(message)
-            .padding()
-            .background(Color.black.opacity(0.7))
-            .foregroundColor(.white)
-            .cornerRadius(Dimens.radiusDefault)
-            .transition(.opacity)
-    }
-}
-
 
 #Preview {
     let viewState = AboutFeature.ViewState()

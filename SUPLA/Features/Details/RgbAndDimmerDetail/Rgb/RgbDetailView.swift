@@ -58,6 +58,10 @@ extension RgbDetailFeature {
                 if let color = viewState.hexColorEditorValue {
                     RgbDetailFeature.ColorDialog.View(colorString: color, delegate: delegate)
                 }
+                
+                if (viewState.showLimitReachedToast) {
+                    ToastView(message: Strings.RgbDetail.colorLimit)
+                }
             }
         }
 
