@@ -136,7 +136,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .ic, channelBase: channel))
+            .next(0, .navigateToLegacyDetail(legacy: .ic, channelBase: channel))
         ])
     }
     
@@ -157,7 +157,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .ic, channelBase: channel))
+            .next(0, .navigateToLegacyDetail(legacy: .ic, channelBase: channel))
         ])
     }
     
@@ -218,7 +218,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         
         XCTAssertEqual(provideDetailTypeUseCase.channelBaseArray.count, 1)
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .ic, channelBase: channel))
+            .next(0, .navigateToLegacyDetail(legacy: .ic, channelBase: channel))
         ])
     }
     
@@ -253,7 +253,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.func = function
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .switchDetail(pages: [.switchGeneral])
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: [.switchGeneral])
         
         // when
         observe(viewModel)
@@ -264,7 +264,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToSwitchDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.switchGeneral]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.switchGeneral]))
         ])
     }
     
@@ -281,7 +281,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.func = function
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.thermostatGeneral])
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: [.thermostatGeneral])
         
         // when
         observe(viewModel)
@@ -292,7 +292,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermostatDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermostatGeneral]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermostatGeneral]))
         ])
     }
     
@@ -309,7 +309,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.func = function
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .thermometerDetail(pages: [.thermometerHistory])
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: [.thermometerHistory])
         
         // when
         observe(viewModel)
@@ -320,7 +320,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermometerDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermometerHistory]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermometerHistory]))
         ])
     }
     
@@ -337,7 +337,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.func = function
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .gpmDetail(pages: [.gpmHistory])
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: [.gpmHistory])
         
         // when
         observe(viewModel)
@@ -348,7 +348,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToGpmDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.gpmHistory]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.gpmHistory]))
         ])
     }
     

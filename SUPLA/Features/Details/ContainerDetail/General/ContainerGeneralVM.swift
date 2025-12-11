@@ -28,7 +28,6 @@ extension ContainerGeneralFeature {
         @Singleton<LoadChannelConfigUseCase> private var loadChannelConfigUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
-        @Singleton<ValuesFormatter> private var valuesFormatter
         
         init() {
             super.init(state: ViewState())
@@ -71,7 +70,7 @@ extension ContainerGeneralFeature {
             let levelString = if (value?.status.online == false) {
                 "offline"
             } else if let level {
-                valuesFormatter.percentageToString(Float(level))
+                level.asPercentageString
             } else {
                 "---"
             }
@@ -134,7 +133,7 @@ extension ContainerGeneralFeature {
             let floatLevel = CGFloat(level - 1) / 100
             return .alarm(
                 level: floatLevel,
-                levelString: valuesFormatter.percentageToString(Float(floatLevel)),
+                levelString: floatLevel.asPercentageString,
                 type: type
             )
         }
@@ -143,7 +142,7 @@ extension ContainerGeneralFeature {
             let floatLevel = CGFloat(level - 1) / 100
             return .warning(
                 level: floatLevel,
-                levelString: valuesFormatter.percentageToString(Float(floatLevel)),
+                levelString: floatLevel.asPercentageString,
                 type: type
             )
         }

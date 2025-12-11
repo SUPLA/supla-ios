@@ -708,3 +708,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Nem todos os portões têm um sensor de abertura configurado – os botões \"Abrir\" e \"Fechar\" podem não funcionar corretamente.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Cor:";
+"rgb_detail_brightness" = "Luminosidade:";
+"rgb_detail_select_color" = "Selecionar cor";
+"rgb_detail_colors_limit" = "Limite atingido!";
+"legacy_rgbw_settings_unauthorized_message" = "Autorização necessária para ver a configuração!";
+"legacy_rgbw_settings_authorize_button" = "Autorizar";

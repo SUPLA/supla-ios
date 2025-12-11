@@ -21,6 +21,8 @@ import SharedCore
 
 extension Double {
     var int64: Int64 { Int64(self) }
+    var cgFloat: CGFloat { CGFloat(self) }
+    var asPercentageString: String { getPercentageString(self) }
     
     func minus(_ value: Double) -> Double {
         return self - value

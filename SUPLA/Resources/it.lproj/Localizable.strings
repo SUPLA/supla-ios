@@ -741,3 +741,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Non tutti i cancelli hanno un sensore di apertura configurato: i pulsanti \"Apri\" e \"Chiudi\" potrebbero non funzionare correttamente.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Colore:";
+"rgb_detail_brightness" = "Luminosità:";
+"rgb_detail_select_color" = "Selezionare il colore";
+"legacy_rgbw_settings_unauthorized_message" = "Autorizzazione necessaria per visualizzare la configurazione!";
+"legacy_rgbw_settings_authorize_button" = "Autorizzare";
+"rgb_detail_colors_limit" = "Limite raggiunto!";

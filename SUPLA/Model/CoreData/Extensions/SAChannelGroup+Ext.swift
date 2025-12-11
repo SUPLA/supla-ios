@@ -19,7 +19,6 @@
 import SharedCore
 
 extension SAChannelGroup {
-    
     @objc var positions: [Int] {
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
@@ -41,14 +40,14 @@ extension SAChannelGroup {
     }
     
     @objc var colors: [UIColor] {
-        guard let totalValue = total_value as? GroupTotalValue else { return [] }
-        
         if (self.func != SUPLA_CHANNELFNC_RGBLIGHTING && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
             return []
         }
         
+        guard let totalValue = total_value as? GroupTotalValue else { return [] }
+        
         return totalValue.values
-            .map {
+            .compactMap {
                 if let value = $0 as? RgbLightingGroupValue {
                     return value.color
                 }
@@ -56,7 +55,31 @@ extension SAChannelGroup {
                     return value.color
                 }
                 
-                return UIColor.transparent
+                return nil
+            }
+    }
+    
+    var hsvColors: [HsvColor] {
+        if (self.func != SUPLA_CHANNELFNC_RGBLIGHTING && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
+            return []
+        }
+        
+        guard let totalValue = total_value as? GroupTotalValue else { return [] }
+        
+        return totalValue.values
+            .compactMap {
+                if let value = $0 as? RgbLightingGroupValue,
+                   let hsv = value.color.toHsv(Int32(value.brightness))
+                {
+                    return hsv
+                }
+                if let value = $0 as? DimmerAndRgbLightingGroupValue,
+                   let hsv = value.color.toHsv(Int32(value.colorBrightness))
+                {
+                    return hsv
+                }
+                
+                return nil
             }
     }
     
@@ -81,14 +104,14 @@ extension SAChannelGroup {
     }
     
     @objc var brightness: [Int] {
-        guard let totalValue = total_value as? GroupTotalValue else { return [] }
-        
         if (self.func != SUPLA_CHANNELFNC_DIMMER && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
             return []
         }
         
+        guard let totalValue = total_value as? GroupTotalValue else { return [] }
+        
         return totalValue.values
-            .map {
+            .compactMap {
                 if let value = $0 as? IntegerGroupValue {
                     return value.value
                 }
@@ -96,7 +119,7 @@ extension SAChannelGroup {
                     return value.brightness
                 }
                 
-                return 0
+                return nil
             }
     }
     
@@ -205,7 +228,7 @@ extension SAChannelGroup {
     }
 }
 
-fileprivate extension BaseGroupValue {
+private extension BaseGroupValue {
     func asMeasuredTemperature() -> Double? {
         if let value = self as? HeatpolThermostatGroupValue {
             return Double(value.measuredTemperature)

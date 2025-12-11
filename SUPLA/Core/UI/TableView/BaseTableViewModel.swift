@@ -76,7 +76,10 @@ class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
-            SUPLA_CHANNELFNC_STAIRCASETIMER:
+            SUPLA_CHANNELFNC_STAIRCASETIMER,
+            SUPLA_CHANNELFNC_RGBLIGHTING,
+            SUPLA_CHANNELFNC_DIMMER,
+            SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
             return true
         default:
             return false

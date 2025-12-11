@@ -706,3 +706,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Ikke alle porter har en åpningssensor konfigurert – «Åpne»- og «Lukk»-knappene fungerer kanskje ikke riktig.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Farge:";
+"rgb_detail_brightness" = "Lysstyrke:";
+"rgb_detail_select_color" = "Velg farge";
+"rgb_detail_colors_limit" = "Grensen er nådd!";
+"legacy_rgbw_settings_unauthorized_message" = "Autorisasjon nødvendig for å se konfigurasjonen!";
+"legacy_rgbw_settings_authorize_button" = "Autoriser";

@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-class ImpulseCounterDetailVC: StandardDetailVC<ImpulseCounterDetailViewState, ImpulseCounterDetailViewEvent, ImpulseCounterDetailVM> {
+class ImpulseCounterDetailVC: BaseDetailVC<ImpulseCounterDetailViewState, ImpulseCounterDetailViewEvent, ImpulseCounterDetailVM> {
     @Singleton<SuplaAppCoordinator> var coordinator
     
     init(item: ItemBundle, pages: [DetailPage]) {
@@ -31,7 +31,7 @@ class ImpulseCounterDetailVC: StandardDetailVC<ImpulseCounterDetailViewState, Im
     
     override func handle(event: ImpulseCounterDetailViewEvent) {
         switch (event) {
-        case let .openOcrPhoto(profileId, remoteId):
+        case let .openOcrPhoto(_, remoteId):
             coordinator.navigateToCounterPhoto(channelId: remoteId)
         }
     }

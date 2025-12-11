@@ -79,8 +79,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
         
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
     
     func test_openedState() {
@@ -93,8 +93,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_partialyOpenedState() {
@@ -107,8 +107,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .partialyOpened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .partialyOpened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_partialyOpenedStateNotUsedForOtherGates() {
@@ -121,8 +121,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_onState() {
@@ -135,8 +135,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .on)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .on))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_offState() {
@@ -149,8 +149,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .off)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_transparentState() {
@@ -163,8 +163,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .transparent)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .transparent))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_opaqueState() {
@@ -177,8 +177,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opaque)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opaque))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_dimmerAndRgb_ActiveActive() {
@@ -191,8 +191,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .complex([.on, .on]))
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .rgbAndDimmer(dimmer: .on, rgb: .on))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_dimmerAndRgb_ActiveInactive() {
@@ -205,8 +205,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .complex([.on, .off]))
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .rgbAndDimmer(dimmer: .on, rgb: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_dimmerAndRgb_InactiveActive() {
@@ -219,8 +219,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .complex([.off, .on]))
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .rgbAndDimmer(dimmer: .off, rgb: .on))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_dimmerAndRgb_InactiveInactive() {
@@ -233,8 +233,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .complex([.off, .off]))
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .rgbAndDimmer(dimmer: .off, rgb: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_noneFunction_notUsedState() {
@@ -247,8 +247,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .notUsed)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .notUsed))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_hotelCard_on() {
@@ -261,8 +261,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .on)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .on))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_hotelCard_off() {
@@ -275,8 +275,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .off)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_alarmArmament_on() {
@@ -289,8 +289,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .on)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .on))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_alarmArmament_off() {
@@ -303,8 +303,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .off)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_gate_offline() {
@@ -317,8 +317,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_switch_offline() {
@@ -331,8 +331,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .off)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_dimmerAndRgb_offline() {
@@ -345,8 +345,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .complex([.off, .off]))
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .rgbAndDimmer(dimmer: .off, rgb: .off))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_digiglass_offline() {
@@ -359,8 +359,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opaque)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opaque))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_terraceAwningClosedState() {
@@ -373,8 +373,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_terraceAwningOpenedState() {
@@ -387,8 +387,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_terraceAwningOfflineState() {
@@ -401,8 +401,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
     
     func test_projectorScreenClosedState() {
@@ -415,8 +415,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_projectorScreenOpenedState() {
@@ -429,8 +429,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_projectorScreenOfflineState() {
@@ -443,8 +443,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
     
     func test_curtainScreenClosedState() {
@@ -457,8 +457,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_curtainOpenedState() {
@@ -471,8 +471,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_curtainOfflineState() {
@@ -485,8 +485,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
     
     func test_verticalBlindClosedState() {
@@ -499,8 +499,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_verticalBlindOpenedState() {
@@ -513,8 +513,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_verticalBlindOfflineState() {
@@ -527,8 +527,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
     
     func test_garageDoorClosedState() {
@@ -541,8 +541,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .closed)
-        XCTAssertTrue(state.isActive())
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
 
     func test_garageDoorOpenedState() {
@@ -555,8 +555,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 
     func test_garageDoorOfflineState() {
@@ -569,7 +569,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .opened)
-        XCTAssertFalse(state.isActive())
+        XCTAssertEqual(state, .default(value: .opened))
+        XCTAssertFalse(state.isActive)
     }
 }

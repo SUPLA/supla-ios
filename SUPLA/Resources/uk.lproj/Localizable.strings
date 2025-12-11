@@ -371,6 +371,7 @@
 "standard_detail_list_tab" = "Список";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Налаштування";
+"standard_detail_dimmer_tab" = "Диммер";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Поточний стан:";
@@ -706,3 +707,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Не всі ворота мають налаштований датчик відкриття — кнопки «Відкрити» та «Закрити» можуть працювати неправильно.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Колір:";
+"rgb_detail_brightness" = "Яскравість:";
+"rgb_detail_select_color" = "Виберіть колір";
+"rgb_detail_colors_limit" = "Ліміт досягнуто!";
+"legacy_rgbw_settings_unauthorized_message" = "Необхідна авторизація для перегляду конфігурації!";
+"legacy_rgbw_settings_authorize_button" = "Авторизувати";

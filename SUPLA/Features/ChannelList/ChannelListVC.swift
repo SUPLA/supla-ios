@@ -65,30 +65,12 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
     
     override func handle(event: ChannelListViewEvent) {
         switch (event) {
-        case .navigateToDetail(let legacyDetailType, let channelBase):
+        case .navigateToLegacyDetail(let legacyDetailType, let channelBase):
             coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
-        case .navigateToSwitchDetail(let item, let pages):
-            coordinator.navigateToSwitchDetail(item: item, pages: pages)
-        case .navigateToThermostatDetail(let item, let pages):
-            coordinator.navigateToThermostatDetail(item: item, pages: pages)
-        case .navigateToThermometerDetail(let item, let pages):
-            coordinator.navigateToThermometerDetail(item: item, pages: pages)
-        case .navigateToGpmDetail(let item, let pages):
-            coordinator.navigateToGpmDetail(item: item, pages: pages)
-        case .navigateToRollerShutterDetail(let item, let pages):
-            coordinator.navigateToWindowDetail(item: item, pages: pages)
-        case .navigateToElectricityMeterDetail(let item, let pages):
-            coordinator.navigateToElectricityMeterDetail(item: item, pages: pages)
+        case .navigateToStandardDetail(let item, let pages):
+            coordinator.navigateToStandardDetail(item: item, pages: pages)
         case .navigateToImpulseCounterDetail(let item, let pages):
             coordinator.navigateToImpulseCounterDetail(item: item, pages: pages)
-        case .navigateToHumidityDetail(let item, let pages):
-            coordinator.navigateToHumidityDetail(item: item, pages: pages)
-        case .navigateToValveDetail(let item, let pages):
-            coordinator.navigateToValveDetail(item: item, pages: pages)
-        case .navigateToContainerDetail(let item, let pages):
-            coordinator.navigateToContainerDetail(item: item, pages: pages)
-        case .navigateToGateDetail(let item, let pages):
-            coordinator.navigateToGateDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
         }

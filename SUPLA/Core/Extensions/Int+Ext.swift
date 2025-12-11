@@ -17,7 +17,7 @@
  */
 
 import Foundation
-
+import UIKit
 
 let DAY_IN_SEC = 24 * 60 * 60
 let HOUR_IN_SEC = 60 * 60
@@ -50,6 +50,37 @@ extension Int: ScopeFunctions {
     
     var secondsInMinute: Int {
         self % MINUTE_IN_SEC
+    }
+    
+    var asPercentageString: String {
+        if self > 100 {
+            "100%"
+        } else if self < 0 {
+            "0%"
+        } else {
+            "\(self)%"
+        }
+    }
+    
+    var asPercentageFloat: CGFloat {
+        if self > 100 {
+            1
+        } else if self < 0 {
+            0
+        } else {
+            CGFloat(self) / 100.0
+        }
+    }
+    
+    var asGrayColor: UIColor {
+        if self > 100 {
+            return .white
+        } else if self < 0 {
+            return .black
+        } else {
+            let gray = CGFloat(self) / 100.0
+            return UIColor(red: gray, green: gray, blue: gray, alpha: 1)
+        }
     }
     
     func toHour(withMinutes: Int? = nil) -> String {

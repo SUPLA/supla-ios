@@ -368,6 +368,7 @@
 "standard_detail_metrics_tab" = "Merania";
 "standard_detail_history_tab" = "História";
 "standard_detail_list_tab" = "Zoznam";
+"standard_detail_dimmer_tab" = "Stmievač";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Súčasný stav:";
@@ -704,3 +705,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Nie všetky brány majú nakonfigurovaný snímač otvárania – tlačidlá „Otvoriť“ a „Zatvoriť“ nemusia fungovať správne.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Farba:";
+"rgb_detail_brightness" = "Jas:";
+"rgb_detail_select_color" = "Vyberte farbu";
+"rgb_detail_colors_limit" = "Limit bol dosiahnutý!";
+"legacy_rgbw_settings_unauthorized_message" = "Na zobrazenie konfigurácie je potrebné oprávnenie!";
+"legacy_rgbw_settings_authorize_button" = "Autorizovať";

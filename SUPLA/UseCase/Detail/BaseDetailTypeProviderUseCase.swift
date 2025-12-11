@@ -18,40 +18,44 @@
 
 import Foundation
 
+private let ZAM_PRODID_DIW_01 = 2000
+private let COM_PRODID_WDIM100 = 2000
+
 class BaseDetailTypeProviderUseCase {
     func provide(_ channelBase: SAChannelBase) -> DetailType? {
         switch channelBase.func {
-        case
-            SUPLA_CHANNELFNC_DIMMER,
-            SUPLA_CHANNELFNC_RGBLIGHTING,
-            SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return .legacy(type: .rgbw)
+        case SUPLA_CHANNELFNC_DIMMER:
+            return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.dimmer, .legacyDimmerSettings] : [.dimmer])
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+            return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.rgb, .legacyDimmerSettings] : [.rgb])
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.rgb, .dimmer, .legacyDimmerSettings] : [.rgb, .dimmer])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
-            return .windowDetail(pages: [.roofWindow])
+            return .standardDetail(pages: [.roofWindow])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-            return .windowDetail(pages: [.rollerShutter])
+            return .standardDetail(pages: [.rollerShutter])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
-            return .windowDetail(pages: [.facadeBlind])
+            return .standardDetail(pages: [.facadeBlind])
         case SUPLA_CHANNELFNC_TERRACE_AWNING:
-            return .windowDetail(pages: [.terraceAwning])
+            return .standardDetail(pages: [.terraceAwning])
         case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
-            return .windowDetail(pages: [.projectorScreen])
+            return .standardDetail(pages: [.projectorScreen])
         case SUPLA_CHANNELFNC_CURTAIN:
-            return .windowDetail(pages: [.curtain])
+            return .standardDetail(pages: [.curtain])
         case SUPLA_CHANNELFNC_VERTICAL_BLIND:
-            return .windowDetail(pages: [.verticalBlind])
+            return .standardDetail(pages: [.verticalBlind])
         case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
-            return .windowDetail(pages: [.garageDoor])
+            return .standardDetail(pages: [.garageDoor])
         case
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
             SUPLA_CHANNELFNC_STAIRCASETIMER,
             SUPLA_CHANNELFNC_PUMPSWITCH,
             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH:
-            return .switchDetail(pages: [.switchGeneral])
+            return .standardDetail(pages: [.switchGeneral])
         case
             SUPLA_CHANNELFNC_ELECTRICITY_METER:
-            return .electricityMeterDetail(pages: [
+            return .standardDetail(pages: [
                 .electricityMeterGeneral,
                 .electricityMeterHistory,
                 .electricityMeterSettings
@@ -65,9 +69,9 @@ class BaseDetailTypeProviderUseCase {
         case
             SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return .thermometerDetail(pages: [.thermometerHistory])
+            return .standardDetail(pages: [.thermometerHistory])
         case SUPLA_CHANNELFNC_HUMIDITY:
-            return .humidityDetail(pages: [.humidityHistory])
+            return .standardDetail(pages: [.humidityHistory])
         case
             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return .legacy(type: .thermostat_hp)
@@ -78,37 +82,39 @@ class BaseDetailTypeProviderUseCase {
         case
             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
-            return .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])
+            return .standardDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])
         case
             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
-            return .gpmDetail(pages: [.gpmHistory])
+            return .standardDetail(pages: [.gpmHistory])
             
         case
             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            return .gateDetail(pages: [.gateGeneral])
+            return .standardDetail(pages: [.gateGeneral])
         default:
             return nil
         }
+    }
+    
+    private func shouldShowRgbSettings(_ channelBase: SAChannelBase) -> Bool {
+        guard let channel = channelBase as? SAChannel else { return false }
+        
+        let manufacturerId = channel.manufacturer_id
+        let productId = channel.product_id
+        
+        return manufacturerId == SUPLA_MFR_DOYLETRATT && productId == 1 ||
+            manufacturerId == SUPLA_MFR_ZAMEL && productId == ZAM_PRODID_DIW_01 ||
+            manufacturerId == SUPLA_MFR_COMELIT && productId == COM_PRODID_WDIM100
     }
 }
 
 enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
-    case switchDetail(pages: [DetailPage])
-    case thermostatDetail(pages: [DetailPage])
-    case thermometerDetail(pages: [DetailPage])
-    case gpmDetail(pages: [DetailPage])
-    case windowDetail(pages: [DetailPage])
-    case electricityMeterDetail(pages: [DetailPage])
+    case standardDetail(pages: [DetailPage])
     case impulseCounterDetail(pages: [DetailPage])
-    case humidityDetail(pages: [DetailPage])
-    case valveDetail(pages: [DetailPage])
-    case containerDetail(pages: [DetailPage])
-    case gateDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
@@ -166,4 +172,9 @@ enum DetailPage {
     
     // Gate
     case gateGeneral
+    
+    // RGBW
+    case dimmer
+    case rgb
+    case legacyDimmerSettings
 }

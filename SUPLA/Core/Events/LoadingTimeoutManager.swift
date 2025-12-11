@@ -18,7 +18,7 @@
 
 import RxSwift
 
-fileprivate let TIMEOUT_S: Double = 5
+private let TIMEOUT_S: Double = 5
 
 protocol LoadingTimeoutManager {
     func watch(stateProvider: @escaping () -> LoadingState?, onTimeout: @escaping () -> Void) -> Disposable
@@ -41,17 +41,14 @@ struct LoadingState: Equatable {
 }
 
 final class LoadingTimeoutManagerImpl: LoadingTimeoutManager {
-    
-    @Singleton<DateProvider> private var dateProvider
     @Singleton<SuplaSchedulers> private var schedulers
     
     func watch(stateProvider: @escaping () -> LoadingState?, onTimeout: @escaping () -> Void) -> Disposable {
         return Observable<Int>
             .interval(.milliseconds(100), scheduler: schedulers.background)
             .observe(on: schedulers.main)
-            .subscribe(onNext: { [weak self] _ in
-                guard let state = stateProvider(),
-                      let self = self
+            .subscribe(onNext: { _ in
+                guard let state = stateProvider()
                 else { return }
                 
                 if (state.initialLoading) {
@@ -61,8 +58,10 @@ final class LoadingTimeoutManagerImpl: LoadingTimeoutManager {
                     return
                 }
                 
+                @Singleton<DateProvider> var dateProvider
+                
                 if let startTime = state.lastLoadingStartTimestamp {
-                    if (self.dateProvider.currentTimestamp() > startTime + TIMEOUT_S) {
+                    if (dateProvider.currentTimestamp() > startTime + TIMEOUT_S) {
                         onTimeout()
                     }
                 }

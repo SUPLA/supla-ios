@@ -168,6 +168,8 @@
 "standard_detail_history_tab" = "History";
 "standard_detail_list_tab" = "List";
 "standard_detail_settings_tab" = "Settings";
+"standard_detail_rgb_tab" = "RGB";
+"standard_detail_dimmer_tab" = "Dimmer";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Current state:";
@@ -570,3 +572,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Not all gates have an opening sensor configured - the \"Open\" and \"Close\" buttons may not function correctly.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Color:";
+"rgb_detail_brightness" = "Brightness:";
+"rgb_detail_select_color" = "Select color";
+"rgb_detail_colors_limit" = "Limit reached!";
+"legacy_rgbw_settings_unauthorized_message" = "Authorization needed to see the configuration!";
+"legacy_rgbw_settings_authorize_button" = "Authorize";

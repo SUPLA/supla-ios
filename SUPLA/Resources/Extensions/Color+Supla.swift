@@ -61,4 +61,6 @@ extension Color {
         static let ocrWarning = Color("Colors/Ocr/warning")
         static let ocrProcessing = Color("Colors/Ocr/processing")
     }
+    
+    var uiColor: UIColor { .init(self) }
 }

@@ -35,20 +35,11 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToCreateAccountWeb()
     func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?)
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
-    func navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToPinSetup(lockScreenScope: LockScreenScope)
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
     func navigateToCounterPhoto(channelId: Int32)
-    func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToGateDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToCarPlayList()
     func navigateToCarPlayAdd()
     func navigateToCarPlayEdit(id: NSManagedObjectID)
@@ -190,48 +181,12 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(DetailViewController(detailViewType: detailType, channelBase: channelBase))
     }
     
-    func navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(SwitchDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(ThermostatDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(ThermometerDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(GpmDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(WindowDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(ElectricityMeterDetailVC(item: item, pages: pages))
+    func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(StandardDetailVC(item: item, pages: pages))
     }
     
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage]) {
         navigateTo(ImpulseCounterDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(HumidityDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(ValveDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToContainerDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(ContainerDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToGateDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(GateDetailVC(item: item, pages: pages))
     }
     
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {

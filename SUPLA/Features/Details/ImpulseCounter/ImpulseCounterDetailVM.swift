@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class ImpulseCounterDetailVM: StandardDetailVM<ImpulseCounterDetailViewState, ImpulseCounterDetailViewEvent> {
+class ImpulseCounterDetailVM: BaseDetailVM<ImpulseCounterDetailViewState, ImpulseCounterDetailViewEvent> {
     @Singleton<CheckOcrPhotoExistsUseCase> var checkOcrPhotoExistsUseCase
     @Singleton<DownloadOcrPhotoUseCase> var downloadOcrPhotoUseCase
     @Singleton<SuplaSchedulers> var schedulers

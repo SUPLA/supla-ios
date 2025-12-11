@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
 // swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -module-name SharedCore
-// swift-module-flags-ignorable:  -interface-compiler-version 6.1
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import Foundation
 @_exported import SharedCore
 import Swift
@@ -131,8 +131,10 @@ public enum Skie {
   public typealias org_jetbrains_kotlinx__kotlinx_serialization_core = SharedCore.Skie.KotlinxSerializationCore
 }
 @_hasMissingDesignatedInitializers public class SkieSwiftFlowIterator<T> : _Concurrency.AsyncIteratorProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
   public func next() async -> T?
+  #endif
   @objc deinit
   public typealias Element = T
   @available(iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, macOS 15.0, *)
@@ -143,9 +145,15 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   associatedtype Delegate : SharedCore.Kotlinx_coroutines_coreFlow
 }
 @_hasMissingDesignatedInitializers final public class SkieSwiftFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinFlow<Swift.AnyObject>
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
@@ -157,11 +165,19 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers final public class SkieSwiftOptionalFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  #endif
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
   public typealias Element = T?
   public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalFlow<Swift.AnyObject>
@@ -174,9 +190,15 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   final public var replayCache: [T] {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftSharedFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftSharedFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinSharedFlow<Swift.AnyObject>
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
@@ -188,14 +210,24 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers final public class SkieSwiftOptionalSharedFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var replayCache: [T?] {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalSharedFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalSharedFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  #endif
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
   public typealias Element = T?
   public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalSharedFlow<Swift.AnyObject>
@@ -215,9 +247,15 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   final public func emit(value: T) async throws
   final public func tryEmit(value: T) -> Swift.Bool
   final public func resetReplayCache()
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableSharedFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableSharedFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinMutableSharedFlow<Swift.AnyObject>
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
@@ -232,18 +270,32 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   final public var subscriptionCount: SharedCore.SkieSwiftStateFlow<SharedCore.KotlinInt> {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var replayCache: [T?] {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
   final public func emit(value: T?) async throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func tryEmit(value: T?) -> Swift.Bool
+  #endif
   final public func resetReplayCache()
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableSharedFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableSharedFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  #endif
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
   public typealias Element = T?
   public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalMutableSharedFlow<Swift.AnyObject>
@@ -259,9 +311,15 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   final public var replayCache: [T] {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftStateFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftStateFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinStateFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinStateFlow<Swift.AnyObject>
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
@@ -273,17 +331,29 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers final public class SkieSwiftOptionalStateFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var value: T? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var replayCache: [T?] {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalStateFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalStateFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  #endif
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
   public typealias Element = T?
   public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalStateFlow<Swift.AnyObject>
@@ -308,9 +378,15 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   final public func emit(value: T) async throws
   final public func tryEmit(value: T) -> Swift.Bool
   final public func resetReplayCache()
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableStateFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftMutableStateFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinMutableStateFlow<Swift.AnyObject>
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T>
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T>
@@ -322,26 +398,44 @@ public protocol SkieSwiftFlowProtocol<Element> : _Concurrency.AsyncSequence {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers final public class SkieSwiftOptionalMutableStateFlow<T> : SharedCore.SkieSwiftFlowProtocol, Swift._ObjectiveCBridgeable {
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var value: T? {
     get
     set(value)
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var replayCache: [T?] {
     get
   }
+  #endif
   final public var subscriptionCount: SharedCore.SkieSwiftStateFlow<SharedCore.KotlinInt> {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func compareAndSet(expect: T?, update: T?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
   final public func emit(value: T?) async throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func tryEmit(value: T?) -> Swift.Bool
+  #endif
   final public func resetReplayCache()
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableStateFlow<T>?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>, result: inout SharedCore.SkieSwiftOptionalMutableStateFlow<T>?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>?) -> Self
+  #endif
   final public func _bridgeToObjectiveC() -> SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func makeAsyncIterator() -> SharedCore.SkieSwiftFlowIterator<T?>
+  #endif
   public typealias AsyncIterator = SharedCore.SkieSwiftFlowIterator<T?>
   public typealias Element = T?
   public typealias _ObjectiveCType = SharedCore.SkieKotlinOptionalMutableStateFlow<Swift.AnyObject>
@@ -366,8 +460,10 @@ extension SharedCore.Kotlinx_coroutines_coreFlow {
   public func collect(collector: any SharedCore.Kotlinx_coroutines_coreFlowCollector) async throws
 }
 extension SharedCore.Kotlinx_coroutines_coreFlowCollector {
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
   public func emit(value: Any?) async throws
+  #endif
 }
 extension SharedCore.CheckRegistrationEnabledUseCase {
   @available(iOS 13, macOS 10.15, watchOS 6, tvOS 13, *)
@@ -714,9 +810,15 @@ extension SharedCore.SkieSwiftOptionalMutableStateFlow where T : Swift._Objectiv
   public static var companion: SharedCore.__SuplaEventType.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaEventType, result: inout SharedCore.SuplaEventType?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaEventType, result: inout SharedCore.SuplaEventType?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaEventType?) -> SharedCore.SuplaEventType
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaEventType
   public typealias _ObjectiveCType = SharedCore.__SuplaEventType
   public typealias Companion = SharedCore.__SuplaEventType.Companion
@@ -760,9 +862,15 @@ extension SharedCore.__SuplaEventType {
   public static var companion: SharedCore.__SuplaChannelAvailabilityStatus.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelAvailabilityStatus, result: inout SharedCore.SuplaChannelAvailabilityStatus?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelAvailabilityStatus, result: inout SharedCore.SuplaChannelAvailabilityStatus?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelAvailabilityStatus?) -> SharedCore.SuplaChannelAvailabilityStatus
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaChannelAvailabilityStatus
   public typealias _ObjectiveCType = SharedCore.__SuplaChannelAvailabilityStatus
   public typealias Companion = SharedCore.__SuplaChannelAvailabilityStatus.Companion
@@ -806,9 +914,15 @@ extension SharedCore.__SuplaChannelAvailabilityStatus {
   public static var companion: SharedCore.__SuplaHvacMode.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaHvacMode, result: inout SharedCore.SuplaHvacMode?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHvacMode, result: inout SharedCore.SuplaHvacMode?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHvacMode?) -> SharedCore.SuplaHvacMode
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaHvacMode
   public typealias _ObjectiveCType = SharedCore.__SuplaHvacMode
   public typealias Companion = SharedCore.__SuplaHvacMode.Companion
@@ -841,9 +955,15 @@ extension SharedCore.__SuplaHvacMode {
   public static var companion: SharedCore.__ThermostatSubfunction.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction, result: inout SharedCore.ThermostatSubfunction?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction, result: inout SharedCore.ThermostatSubfunction?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ThermostatSubfunction?) -> SharedCore.ThermostatSubfunction
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__ThermostatSubfunction
   public typealias _ObjectiveCType = SharedCore.__ThermostatSubfunction
   public typealias Companion = SharedCore.__ThermostatSubfunction.Companion
@@ -871,9 +991,15 @@ extension SharedCore.__ThermostatSubfunction {
   public var ordinal: Swift.Int32 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__Icon, result: inout SharedCore.Icon?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__Icon, result: inout SharedCore.Icon?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__Icon?) -> SharedCore.Icon
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__Icon
   public typealias _ObjectiveCType = SharedCore.__Icon
   public static func == (a: SharedCore.Icon, b: SharedCore.Icon) -> Swift.Bool
@@ -1029,9 +1155,15 @@ extension SharedCore.__Icon {
   public var ordinal: Swift.Int32 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__LocalizedStringId, result: inout SharedCore.LocalizedStringId?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__LocalizedStringId, result: inout SharedCore.LocalizedStringId?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__LocalizedStringId?) -> SharedCore.LocalizedStringId
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__LocalizedStringId
   public typealias _ObjectiveCType = SharedCore.__LocalizedStringId
   public static func == (a: SharedCore.LocalizedStringId, b: SharedCore.LocalizedStringId) -> Swift.Bool
@@ -1109,9 +1241,15 @@ extension SharedCore.__LocalizedStringId {
     get
   }
   public func message(isLogin: Swift.Bool) -> any SharedCore.LocalizedString
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaResultCode, result: inout SharedCore.SuplaResultCode?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaResultCode, result: inout SharedCore.SuplaResultCode?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaResultCode?) -> SharedCore.SuplaResultCode
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaResultCode
   public typealias _ObjectiveCType = SharedCore.__SuplaResultCode
   public typealias Companion = SharedCore.__SuplaResultCode.Companion
@@ -1150,9 +1288,15 @@ extension SharedCore.__SuplaResultCode {
     get
   }
   public func position() -> Swift.Int32
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__TemperatureUnit, result: inout SharedCore.TemperatureUnit?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__TemperatureUnit, result: inout SharedCore.TemperatureUnit?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__TemperatureUnit?) -> SharedCore.TemperatureUnit
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__TemperatureUnit
   public typealias _ObjectiveCType = SharedCore.__TemperatureUnit
   public typealias Companion = SharedCore.__TemperatureUnit.Companion
@@ -1205,9 +1349,15 @@ extension SharedCore.__TemperatureUnit {
     get
   }
   public func getString() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ValueUnit, result: inout SharedCore.ValueUnit?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ValueUnit, result: inout SharedCore.ValueUnit?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ValueUnit?) -> SharedCore.ValueUnit
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__ValueUnit
   public typealias _ObjectiveCType = SharedCore.__ValueUnit
   public static func == (a: SharedCore.ValueUnit, b: SharedCore.ValueUnit) -> Swift.Bool
@@ -1310,9 +1460,15 @@ extension SharedCore.__ValueUnit {
   public static var companion: SharedCore.__SuplaFunction.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaFunction, result: inout SharedCore.SuplaFunction?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaFunction, result: inout SharedCore.SuplaFunction?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaFunction?) -> SharedCore.SuplaFunction
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaFunction
   public typealias _ObjectiveCType = SharedCore.__SuplaFunction
   public typealias Companion = SharedCore.__SuplaFunction.Companion
@@ -1351,9 +1507,15 @@ extension SharedCore.CheckRegistrationEnabledUseCase.__Result {
   public var ordinal: Swift.Int32 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.CheckRegistrationEnabledUseCase.__Result, result: inout SharedCore.CheckRegistrationEnabledUseCase.Result?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.CheckRegistrationEnabledUseCase.__Result, result: inout SharedCore.CheckRegistrationEnabledUseCase.Result?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.CheckRegistrationEnabledUseCase.__Result?) -> SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.CheckRegistrationEnabledUseCase.__Result
   public typealias _ObjectiveCType = SharedCore.CheckRegistrationEnabledUseCase.__Result
   public static func == (a: SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result, b: SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result) -> Swift.Bool
@@ -1385,9 +1547,15 @@ extension SharedCore.EnableRegistrationUseCase.__Result {
   public var ordinal: Swift.Int32 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.EnableRegistrationUseCase.__Result, result: inout SharedCore.EnableRegistrationUseCase.Result?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.EnableRegistrationUseCase.__Result, result: inout SharedCore.EnableRegistrationUseCase.Result?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.EnableRegistrationUseCase.__Result?) -> SharedCore.__Bridge__EnableRegistrationUseCase_Result
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.EnableRegistrationUseCase.__Result
   public typealias _ObjectiveCType = SharedCore.EnableRegistrationUseCase.__Result
   public static func == (a: SharedCore.__Bridge__EnableRegistrationUseCase_Result, b: SharedCore.__Bridge__EnableRegistrationUseCase_Result) -> Swift.Bool
@@ -1429,9 +1597,15 @@ extension SharedCore.EnableRegistrationUseCase.__Result {
   public func isAuxThermometer() -> Swift.Bool
   public func isMainThermometer() -> Swift.Bool
   public func isThermometer() -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ChannelRelationType, result: inout SharedCore.ChannelRelationType?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ChannelRelationType, result: inout SharedCore.ChannelRelationType?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ChannelRelationType?) -> SharedCore.ChannelRelationType
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__ChannelRelationType
   public typealias _ObjectiveCType = SharedCore.__ChannelRelationType
   public typealias Companion = SharedCore.__ChannelRelationType.Companion
@@ -1468,9 +1642,15 @@ extension SharedCore.__ChannelRelationType {
   public static var companion: SharedCore.__ContainerFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__ContainerFlag, result: inout SharedCore.ContainerFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__ContainerFlag, result: inout SharedCore.ContainerFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__ContainerFlag?) -> SharedCore.ContainerFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__ContainerFlag
   public typealias _ObjectiveCType = SharedCore.__ContainerFlag
   public typealias Companion = SharedCore.__ContainerFlag.Companion
@@ -1506,9 +1686,15 @@ extension SharedCore.__ContainerFlag {
   public static var companion: SharedCore.__SuplaDigiglassFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaDigiglassFlag, result: inout SharedCore.SuplaDigiglassFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaDigiglassFlag, result: inout SharedCore.SuplaDigiglassFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaDigiglassFlag?) -> SharedCore.SuplaDigiglassFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaDigiglassFlag
   public typealias _ObjectiveCType = SharedCore.__SuplaDigiglassFlag
   public typealias Companion = SharedCore.__SuplaDigiglassFlag.Companion
@@ -1546,11 +1732,19 @@ extension SharedCore.__SuplaDigiglassFlag {
   public static var companion: SharedCore.__SuplaShadingSystemFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func asChannelIssues() -> SharedCore.ChannelIssueItem?
+  #endif
   public func isIssueFlag() -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag, result: inout SharedCore.SuplaShadingSystemFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag, result: inout SharedCore.SuplaShadingSystemFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaShadingSystemFlag?) -> SharedCore.SuplaShadingSystemFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaShadingSystemFlag
   public typealias _ObjectiveCType = SharedCore.__SuplaShadingSystemFlag
   public typealias Companion = SharedCore.__SuplaShadingSystemFlag.Companion
@@ -1584,9 +1778,15 @@ extension SharedCore.__SuplaShadingSystemFlag {
   public static var companion: SharedCore.__SuplaRelayFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayFlag, result: inout SharedCore.SuplaRelayFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayFlag, result: inout SharedCore.SuplaRelayFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayFlag?) -> SharedCore.SuplaRelayFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaRelayFlag
   public typealias _ObjectiveCType = SharedCore.__SuplaRelayFlag
   public typealias Companion = SharedCore.__SuplaRelayFlag.Companion
@@ -1634,9 +1834,15 @@ extension SharedCore.__SuplaRelayFlag {
   public static var companion: SharedCore.__SuplaThermostatFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaThermostatFlag, result: inout SharedCore.SuplaThermostatFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaThermostatFlag, result: inout SharedCore.SuplaThermostatFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaThermostatFlag?) -> SharedCore.SuplaThermostatFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaThermostatFlag
   public typealias _ObjectiveCType = SharedCore.__SuplaThermostatFlag
   public typealias Companion = SharedCore.__SuplaThermostatFlag.Companion
@@ -1672,9 +1878,15 @@ extension SharedCore.__SuplaThermostatFlag {
   public static var companion: SharedCore.__SuplaValveFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag, result: inout SharedCore.SuplaValveFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag, result: inout SharedCore.SuplaValveFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaValveFlag?) -> SharedCore.SuplaValveFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaValveFlag
   public typealias _ObjectiveCType = SharedCore.__SuplaValveFlag
   public typealias Companion = SharedCore.__SuplaValveFlag.Companion
@@ -1707,9 +1919,15 @@ extension SharedCore.__SuplaValveFlag {
   public var value: Swift.Int32 {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaCallConfigCommand, result: inout SharedCore.SuplaCallConfigCommand?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaCallConfigCommand, result: inout SharedCore.SuplaCallConfigCommand?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaCallConfigCommand?) -> SharedCore.SuplaCallConfigCommand
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaCallConfigCommand
   public typealias _ObjectiveCType = SharedCore.__SuplaCallConfigCommand
   public static func == (a: SharedCore.SuplaCallConfigCommand, b: SharedCore.SuplaCallConfigCommand) -> Swift.Bool
@@ -1749,9 +1967,15 @@ extension SharedCore.__SuplaCallConfigCommand {
   public static var companion: SharedCore.__SuplaHeatpolThermostatFlag.Companion {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaHeatpolThermostatFlag, result: inout SharedCore.SuplaHeatpolThermostatFlag?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHeatpolThermostatFlag, result: inout SharedCore.SuplaHeatpolThermostatFlag?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaHeatpolThermostatFlag?) -> SharedCore.SuplaHeatpolThermostatFlag
+  #endif
   public func _bridgeToObjectiveC() -> SharedCore.__SuplaHeatpolThermostatFlag
   public typealias _ObjectiveCType = SharedCore.__SuplaHeatpolThermostatFlag
   public typealias Companion = SharedCore.__SuplaHeatpolThermostatFlag.Companion
@@ -1784,7 +2008,9 @@ extension SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult.__Sealed where __Sealed : SharedCore.Skie_SuspendResult
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.RuntimeKotlin.Skie_SuspendResult.__Sealed? where __Sealed : SharedCore.Skie_SuspendResult
+#endif
 extension SharedCore.Skie.supla_android__shared_core.LocalizedString {
   @frozen public enum __Sealed : Swift.Hashable {
     case constant(SharedCore.LocalizedStringConstant)
@@ -1800,7 +2026,9 @@ extension SharedCore.Skie.supla_android__shared_core.LocalizedString {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed where __Sealed : SharedCore.LocalizedString
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.LocalizedString.__Sealed? where __Sealed : SharedCore.LocalizedString
+#endif
 extension SharedCore.Skie.supla_android__shared_core.SuplaClientMessage {
   @frozen public enum __Sealed : Swift.Hashable {
     case authorizationResult(SharedCore.SuplaClientMessageAuthorizationResult)
@@ -1834,7 +2062,9 @@ extension SharedCore.Skie.supla_android__shared_core.SuplaClientMessage {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.SuplaClientMessage.__Sealed where __Sealed : SharedCore.SuplaClientMessage
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.SuplaClientMessage.__Sealed? where __Sealed : SharedCore.SuplaClientMessage
+#endif
 extension SharedCore.Skie.supla_android__shared_core.BaseData {
   @frozen public enum __Sealed : Swift.Hashable {
     case channel(SharedCore.Channel)
@@ -1848,7 +2078,9 @@ extension SharedCore.Skie.supla_android__shared_core.BaseData {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed where __Sealed : SharedCore.BaseData
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.BaseData.__Sealed? where __Sealed : SharedCore.BaseData
+#endif
 extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
   @frozen public enum __Sealed : Swift.Hashable {
     case error(SharedCore.ChannelIssueItem.Error)
@@ -1863,7 +2095,9 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed where __Sealed : SharedCore.ChannelIssueItem
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed? where __Sealed : SharedCore.ChannelIssueItem
+#endif
 extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
   @frozen public enum __Sealed : Swift.Hashable {
     case battery(SharedCore.IssueIcon.Battery)
@@ -1885,7 +2119,9 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed where __Sealed : SharedCore.IssueIcon
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.IssueIcon.__Sealed? where __Sealed : SharedCore.IssueIcon
+#endif
 extension SharedCore.Skie.supla_android__shared_core.InvalidValue {
   @frozen public enum __Sealed : Swift.Hashable {
     case naN(SharedCore.InvalidValueNaN)
@@ -1900,7 +2136,9 @@ extension SharedCore.Skie.supla_android__shared_core.InvalidValue {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.InvalidValue.__Sealed where __Sealed : SharedCore.InvalidValue
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.InvalidValue.__Sealed? where __Sealed : SharedCore.InvalidValue
+#endif
 extension SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision {
   @frozen public enum __Sealed : Swift.Hashable {
     case custom(SharedCore.ValueFormatPrecisionCustom)
@@ -1913,7 +2151,9 @@ extension SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision.__Sealed where __Sealed : SharedCore.ValueFormatPrecision
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ValueFormat.Precision.__Sealed? where __Sealed : SharedCore.ValueFormatPrecision
+#endif
 extension SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction {
   @frozen public enum __Sealed : Swift.Hashable {
     case back(SharedCore.AddWizardFinalActionBack)
@@ -1929,7 +2169,9 @@ extension SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed where __Sealed : SharedCore.AddWizardFinalAction
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed? where __Sealed : SharedCore.AddWizardFinalAction
+#endif
 extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
   @frozen public enum __Sealed : Swift.Hashable {
     case combined(SharedCore.EspConfigurationError.Combined)
@@ -1954,7 +2196,9 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed where __Sealed : SharedCore.EspConfigurationError
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed? where __Sealed : SharedCore.EspConfigurationError
+#endif
 extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
   @frozen public enum __Sealed : Swift.Hashable {
     case authorized(SharedCore.EspConfigurationEventAuthorized)
@@ -1990,7 +2234,9 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed where __Sealed : SharedCore.EspConfigurationEvent
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent.__Sealed? where __Sealed : SharedCore.EspConfigurationEvent
+#endif
 extension SharedCore.Skie.supla_android__shared_core.EspConfigurationState {
   @frozen public enum __Sealed : Swift.Hashable {
     case activatingRegistration(SharedCore.ActivatingRegistration)
@@ -2015,7 +2261,9 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationState {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed where __Sealed : SharedCore.EspConfigurationState
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationState.__Sealed? where __Sealed : SharedCore.EspConfigurationState
+#endif
 extension SharedCore.Skie.supla_android__shared_core.ChannelDto {
   @frozen public enum __Sealed : Swift.Hashable {
     case defaultChannelDto(SharedCore.DefaultChannelDto)
@@ -2028,7 +2276,9 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelDto {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed where __Sealed : SharedCore.ChannelDto
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.ChannelDto.__Sealed? where __Sealed : SharedCore.ChannelDto
+#endif
 extension SharedCore.Skie.KotlinxSerializationCore.SerialKind {
   @frozen public enum __Sealed : Swift.Hashable {
     case polymorphicKind(SharedCore.Kotlinx_serialization_corePolymorphicKind)
@@ -2044,7 +2294,9 @@ extension SharedCore.Skie.KotlinxSerializationCore.SerialKind {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.SerialKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreSerialKind
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.SerialKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreSerialKind
+#endif
 extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule {
   @frozen public enum __Sealed : Swift.Hashable {
     case `else`
@@ -2056,7 +2308,9 @@ extension SharedCore.Skie.KotlinxSerializationCore.SerializersModule {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreSerializersModule
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.SerializersModule.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreSerializersModule
+#endif
 extension SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind {
   @frozen public enum __Sealed : Swift.Hashable {
     case oPEN(SharedCore.Kotlinx_serialization_corePolymorphicKind.OPEN)
@@ -2069,7 +2323,9 @@ extension SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_corePolymorphicKind
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.PolymorphicKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_corePolymorphicKind
+#endif
 extension SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind {
   @frozen public enum __Sealed : Swift.Hashable {
     case bOOLEAN(SharedCore.Kotlinx_serialization_corePrimitiveKind.BOOLEAN)
@@ -2089,7 +2345,9 @@ extension SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_corePrimitiveKind
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.PrimitiveKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_corePrimitiveKind
+#endif
 extension SharedCore.Skie.KotlinxSerializationCore.StructureKind {
   @frozen public enum __Sealed : Swift.Hashable {
     case cLASS(SharedCore.Kotlinx_serialization_coreStructureKind.CLASS)
@@ -2104,58 +2362,94 @@ extension SharedCore.Skie.KotlinxSerializationCore.StructureKind {
   }
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed where __Sealed : SharedCore.Kotlinx_serialization_coreStructureKind
+#if compiler(>=5.3) && $NonescapableTypes
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.KotlinxSerializationCore.StructureKind.__Sealed? where __Sealed : SharedCore.Kotlinx_serialization_coreStructureKind
+#endif
 extension SharedCore.SuplaChannelStatePrintable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var batteryHealthString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var batteryLevelString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var batteryPoweredString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var bridgeNodeOnlineString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var bridgeNodeSignalStrengthString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var channelIdString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var connectionUptimeString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var lastConnectionResetCauseString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var lightSourceOperatingTimePercent: SharedCore.KotlinFloat? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var lightSourceOperatingTimePercentLeft: SharedCore.KotlinFloat? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var switchCycleCountString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var uptimeString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var wifiRssiString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var wifiSignalStrengthString: (any SharedCore.LocalizedString)? {
     get
   }
+  #endif
 }
 extension Swift.Bool {
   public var localizedString: any SharedCore.LocalizedString {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public func ifFalse(value: Any?) -> Any?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func ifTrue(value: Any?) -> Any?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
+  #endif
 }
 public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
 public func guardLet(elements: SharedCore.KotlinArray<Swift.AnyObject>, closure: @escaping () -> Swift.Void) -> [Any]
@@ -2173,7 +2467,9 @@ extension Swift.Int16 {
 extension Swift.String {
   public func localized() -> any SharedCore.LocalizedString
 }
+#if compiler(>=5.3) && $NonescapableTypes
 public func localizedString(id: SharedCore.LocalizedStringId?) -> any SharedCore.LocalizedString
+#endif
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any) -> any SharedCore.LocalizedString
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any) -> any SharedCore.LocalizedString
 public func localizedString(id: SharedCore.LocalizedStringId, arg1: Any, arg2: Any, arg3: Any) -> any SharedCore.LocalizedString
@@ -2188,9 +2484,13 @@ public var NO_VALUE_TEXT: Swift.String {
 public func custom(precision: Swift.Int32) -> SharedCore.ValueFormatPrecisionCustom
 public func customPrecision(precision: Swift.Int32) -> SharedCore.ValueFormat
 public func customUnit(unit: Swift.String) -> SharedCore.ValueFormat
+#if compiler(>=5.3) && $NonescapableTypes
 public func forChartMarker(unit: Swift.String?) -> SharedCore.ValueFormat
+#endif
 public func withUnit(withUnit: Swift.Bool) -> SharedCore.ValueFormat
+#if compiler(>=5.3) && $NonescapableTypes
 public func withUnit(withUnit: Swift.Bool, unit: Swift.String?, leadingSpace: Swift.Bool) -> SharedCore.ValueFormat
+#endif
 public var DefaultPrecision: Swift.Int32 {
   get
 }

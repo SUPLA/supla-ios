@@ -84,25 +84,7 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
     }
     
-    func navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage]) {
-    }
-    
-    func navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage]) {
-    }
-    
-    func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage]) {
-    }
-    
-    func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage]) {
-    }
-    
-    func navigateToWindowDetail(item: ItemBundle, pages: [DetailPage]) {
-    }
-    
-    func navigateToElectricityMeterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
-    }
-    
-    func navigateToGateDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    func navigateToStandardDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
     var navigateToPinSetupMock: FunctionMock<LockScreenScope, Void> = .void()
@@ -116,15 +98,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     }
     
     func navigateToImpulseCounterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
-    }
-    
-    func navigateToHumidityDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
-    }
-    
-    func navigateToValveDetail(item: ItemBundle, pages: [DetailPage]) {
-    }
-    
-    func navigateToContainerDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
     func navigateToCounterPhoto(channelId: Int32) {
