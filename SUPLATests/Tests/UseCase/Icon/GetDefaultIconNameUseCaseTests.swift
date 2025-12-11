@@ -37,7 +37,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -56,7 +56,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -75,7 +75,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -94,7 +94,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -113,7 +113,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .partialyOpened,
+                state: .default(value: .partialyOpened),
                 type: .single
             )
         )
@@ -132,7 +132,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .partialyOpened,
+                state: .default(value: .partialyOpened),
                 type: .single
             )
         )
@@ -151,7 +151,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 2,
                 profileId: 1,
-                state: .partialyOpened,
+                state: .default(value: .partialyOpened),
                 type: .single
             )
         )
@@ -170,7 +170,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -189,7 +189,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -208,7 +208,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -227,7 +227,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -246,7 +246,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 2,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -265,7 +265,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .partialyOpened,
+                state: .default(value: .partialyOpened),
                 type: .single
             )
         )
@@ -284,7 +284,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -303,7 +303,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -322,7 +322,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -341,7 +341,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -360,7 +360,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -379,7 +379,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -398,7 +398,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -417,7 +417,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -436,7 +436,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -455,7 +455,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -474,7 +474,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -493,7 +493,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -512,7 +512,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 2,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -531,7 +531,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 3,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -550,7 +550,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 4,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -569,7 +569,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -588,7 +588,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -607,7 +607,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 2,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -626,7 +626,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -645,7 +645,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -664,7 +664,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -683,7 +683,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -702,7 +702,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .second
             )
         )
@@ -721,7 +721,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -740,7 +740,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -759,7 +759,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -778,7 +778,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -797,7 +797,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -816,7 +816,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -835,7 +835,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -854,7 +854,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .complex([.on, .on]),
+                state: .rgbAndDimmer(dimmer: .on, rgb: .on),
                 type: .single
             )
         )
@@ -873,7 +873,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .complex([.off, .off]),
+                state: .rgbAndDimmer(dimmer: .off, rgb: .off),
                 type: .single
             )
         )
@@ -892,7 +892,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .complex([.off, .on]),
+                state: .rgbAndDimmer(dimmer: .off, rgb: .on),
                 type: .single
             )
         )
@@ -911,7 +911,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .complex([.on, .off]),
+                state: .rgbAndDimmer(dimmer: .on, rgb: .off),
                 type: .single
             )
         )
@@ -920,40 +920,23 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         XCTAssertEqual(iconName, "dimmerrgb-onoff")
     }
     
-    func test_dimmerAndRgbFail_whenWrongState() {
+    func test_dimmerAndRgbOff_whenWrongState() {
         // given
         let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
         
         // when
-        expectFatalError(expectedMessage: "Dimmer and RGB function needs complex state") {
-            _ = self.useCase.invoke(
-                iconData: FetchIconData(
-                    function: function,
-                    altIcon: 0,
-                    profileId: 1,
-                    state: .notUsed,
-                    type: .single
-                )
+        let iconName = useCase.invoke(
+            iconData: FetchIconData(
+                function: function,
+                altIcon: 0,
+                profileId: 1,
+                state: .default(value: .notUsed),
+                type: .single
             )
-        }
-    }
-    
-    func test_dimmerAndRgbFail_whenWrongValues() {
-        // given
-        let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
+        )
         
-        // when
-        expectFatalError(expectedMessage: "Dimmer and RGB function needs complex with two values but got [SUPLA.ChannelState.on, SUPLA.ChannelState.off, SUPLA.ChannelState.on]") {
-            _ = self.useCase.invoke(
-                iconData: FetchIconData(
-                    function: function,
-                    altIcon: 0,
-                    profileId: 1,
-                    state: .complex([.on, .off, .on]),
-                    type: .single
-                )
-            )
-        }
+        // then
+        XCTAssertEqual(iconName, "dimmerrgb-offoff")
     }
     
     func test_windowOpened() {
@@ -966,7 +949,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -985,7 +968,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -1004,7 +987,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -1023,7 +1006,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -1042,7 +1025,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1061,7 +1044,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1080,7 +1063,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1099,7 +1082,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1118,7 +1101,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1137,7 +1120,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -1156,7 +1139,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -1175,7 +1158,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 2,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -1194,7 +1177,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 3,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single
             )
         )
@@ -1213,7 +1196,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 4,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -1232,7 +1215,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1251,7 +1234,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1270,7 +1253,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1289,7 +1272,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1308,7 +1291,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1327,7 +1310,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1346,7 +1329,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single
             )
         )
@@ -1365,7 +1348,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single
             )
         )
@@ -1384,7 +1367,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opaque,
+                state: .default(value: .opaque),
                 type: .single
             )
         )
@@ -1403,7 +1386,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .transparent,
+                state: .default(value: .transparent),
                 type: .single
             )
         )
@@ -1422,7 +1405,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .transparent,
+                state: .default(value: .transparent),
                 type: .single
             )
         )
@@ -1441,7 +1424,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opaque,
+                state: .default(value: .opaque),
                 type: .single
             )
         )
@@ -1460,7 +1443,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .transparent,
+                state: .default(value: .transparent),
                 type: .single
             )
         )
@@ -1479,7 +1462,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .opaque,
+                state: .default(value: .opaque),
                 type: .single
             )
         )
@@ -1498,7 +1481,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 1,
                 profileId: 1,
-                state: .opaque,
+                state: .default(value: .opaque),
                 type: .single
             )
         )
@@ -1517,7 +1500,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single,
                 subfunction: .heat
             )
@@ -1537,7 +1520,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single,
                 subfunction: .cool
             )
@@ -1557,7 +1540,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single
             )
         )
@@ -1576,7 +1559,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .notUsed,
+                state: .default(value: .notUsed),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1596,7 +1579,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1616,7 +1599,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1636,7 +1619,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1656,7 +1639,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .off,
+                state: .default(value: .off),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1676,7 +1659,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1696,7 +1679,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1716,7 +1699,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1736,7 +1719,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1756,7 +1739,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1776,7 +1759,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1796,7 +1779,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1816,7 +1799,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1836,7 +1819,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .opened,
+                state: .default(value: .opened),
                 type: .single,
                 subfunction: .notSet
             )
@@ -1856,7 +1839,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
                 function: function,
                 altIcon: 0,
                 profileId: 1,
-                state: .closed,
+                state: .default(value: .closed),
                 type: .single,
                 subfunction: .notSet
             )

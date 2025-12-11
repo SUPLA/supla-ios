@@ -24,7 +24,6 @@ private let MIN_TEMPERATURE_VALUE: Double = -273
 protocol ValuesFormatter {
     // Values
     func humidityToString(value: Double?, withPercentage: Bool, precision: Int) -> String
-    func percentageToString(_ value: Float) -> String
     
     // Time
     func minutesToString(minutes: Int) -> String
@@ -49,6 +48,18 @@ extension ValuesFormatter {
     }
     func getTimeString(hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> String {
         getTimeString(hour: hour, minute: minute, second: second)
+    }
+}
+
+func getPercentageString(_ value: Double) -> String {
+    let percentage = Int((value * 100).rounded())
+    
+    if (percentage > 100) {
+        return "100%"
+    } else if (percentage < 0) {
+        return "0%"
+    } else {
+        return "\(percentage)%"
     }
 }
 
@@ -81,11 +92,6 @@ final class ValuesFormatterImpl: ValuesFormatter {
         } else {
             "\(formatted)"
         }
-    }
-    
-    func percentageToString(_ value: Float) -> String {
-        let percentage = Int((value * 100).rounded())
-        return "\(percentage)%"
     }
     
     // MARK: - Time

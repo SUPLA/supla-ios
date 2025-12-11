@@ -181,6 +181,8 @@ struct Strings {
         static let tabHistory = "standard_detail_history_tab".toLocalized()
         static let tabList = "standard_detail_list_tab".toLocalized()
         static let tabSettings = "standard_detail_settings_tab".toLocalized()
+        static let tabRgb = "standard_detail_rgb_tab".toLocalized()
+        static let tabDimmer = "standard_detail_dimmer_tab".toLocalized()
         static let tabOcr = "OCR"
     }
     
@@ -708,6 +710,15 @@ struct Strings {
     
     struct GateDetail {
         static let openAndCloseWarning = "gate_general_open_and_close_warning".toLocalized()
+    }
+    
+    struct RgbDetail {
+        static let color = "rgb_detail_color".toLocalized()
+        static let brightness = "rgb_detail_brightness".toLocalized()
+        static let selectColor = "rgb_detail_select_color".toLocalized()
+        static let colorLimit = "rgb_detail_colors_limit".toLocalized()
+        static let settingUnauthorized = "legacy_rgbw_settings_unauthorized_message".toLocalized()
+        static let authorize = "legacy_rgbw_settings_authorize_button".toLocalized()
     }
 }
 

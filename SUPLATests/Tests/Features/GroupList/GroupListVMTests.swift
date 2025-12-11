@@ -131,7 +131,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .rgbw, channelBase: group))
+            .next(0, .navigateToLegacyDetail(legacy: .rgbw, channelBase: group))
         ])
     }
     
@@ -161,7 +161,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         let pages: [DetailPage] = [.facadeBlind]
         
-        provideDetailTypeUseCase.detailType = .windowDetail(pages: pages)
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: pages)
         
         // when
         observe(viewModel)
@@ -173,7 +173,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToRollerShutterDetail(item: itemBundle, pages: pages))
+            .next(0, .navigateToStandardDetail(item: itemBundle, pages: pages))
         ])
     }
     
@@ -188,7 +188,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         let pages: [DetailPage] = [.facadeBlind]
         
-        provideDetailTypeUseCase.detailType = .windowDetail(pages: pages)
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: pages)
         
         // when
         observe(viewModel)
@@ -200,7 +200,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToRollerShutterDetail(item: itemBundle, pages: pages))
+            .next(0, .navigateToStandardDetail(item: itemBundle, pages: pages))
         ])
     }
     

@@ -706,3 +706,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Niet alle poorten hebben een openingssensor geconfigureerd – de knoppen \"Openen\" en \"Sluiten\" werken mogelijk niet correct.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Kleur:";
+"rgb_detail_brightness" = "Helderheid:";
+"rgb_detail_select_color" = "Kleur selecteren";
+"rgb_detail_colors_limit" = "Limiet bereikt!";
+"legacy_rgbw_settings_unauthorized_message" = "Autorisatie nodig om de configuratie te zien!";
+"legacy_rgbw_settings_authorize_button" = "Autoriseren";

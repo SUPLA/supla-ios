@@ -43,7 +43,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                     function: SUPLA_CHANNELFNC_LIGHTSWITCH,
                     altIcon: 123,
                     profileId: 1,
-                    state: .notUsed,
+                    state: .default(value: .notUsed),
                     type: .first
                 )
             )
@@ -60,7 +60,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 function: SUPLA_CHANNELFNC_LIGHTSWITCH,
                 altIcon: 123,
                 profileId: 1,
-                state: .on,
+                state: .default(value: .on),
                 type: .single
             )
         )
@@ -76,7 +76,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_LIGHTSWITCH,
             altIcon: 123,
             profileId: 1,
-            state: .on,
+            state: .default(value: .on),
             type: .single
         )
         
@@ -94,7 +94,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_LIGHTSWITCH,
             altIcon: 123,
             profileId: 1,
-            state: .off,
+            state: .default(value: .off),
             type: .single
         )
         
@@ -113,7 +113,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
             altIcon: 123,
             profileId: 1,
-            state: .notUsed,
+            state: .default(value: .notUsed),
             type: .first
         )
         
@@ -132,7 +132,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
             altIcon: 123,
             profileId: 1,
-            state: .notUsed,
+            state: .default(value: .notUsed),
             type: .second
         )
         
@@ -151,7 +151,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_THERMOMETER,
             altIcon: 123,
             profileId: 1,
-            state: .notUsed,
+            state: .default(value: .notUsed),
             type: .single
         )
         
@@ -170,7 +170,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             altIcon: 123,
             profileId: 1,
-            state: .opened,
+            state: .default(value: .opened),
             type: .single
         )
         
@@ -189,7 +189,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             altIcon: 123,
             profileId: 1,
-            state: .partialyOpened,
+            state: .default(value: .partialyOpened),
             type: .single
         )
         
@@ -208,7 +208,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             altIcon: 123,
             profileId: 1,
-            state: .closed,
+            state: .default(value: .closed),
             type: .single
         )
         
@@ -227,7 +227,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
             profileId: 1,
-            state: .complex([.off, .off]),
+            state: .rgbAndDimmer(dimmer: .off, rgb: .off),
             type: .single
         )
         
@@ -246,7 +246,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
             profileId: 1,
-            state: .complex([.on, .off]),
+            state: .rgbAndDimmer(dimmer: .on, rgb: .off),
             type: .single
         )
         
@@ -265,7 +265,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
             profileId: 1,
-            state: .complex([.off, .on]),
+            state: .rgbAndDimmer(dimmer: .off, rgb: .on),
             type: .single
         )
         
@@ -284,7 +284,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
             function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
             altIcon: 123,
             profileId: 1,
-            state: .complex([.on, .on]),
+            state: .rgbAndDimmer(dimmer: .on, rgb: .on),
             type: .single
         )
         

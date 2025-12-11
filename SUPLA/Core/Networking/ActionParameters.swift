@@ -47,7 +47,6 @@ public enum Action: Int32, Equatable, CaseIterable, Codable, Sendable {
 public enum ActionParameters {
     case simple(action: Action, subjectType: SubjectType, subjectId: Int32)
     case rgbw(
-        action: Action,
         subjectType: SubjectType,
         subjectId: Int32,
         brightness: Int8,

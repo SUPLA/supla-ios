@@ -27,22 +27,22 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_POWERSWITCH,
                  SUPLA_CHANNELFNC_STAIRCASETIMER,
                  SUPLA_CHANNELFNC_PUMPSWITCH,
-                 SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH: .switchDetail(pages: getSwitchDetailPages(channelWithChildren))
+                 SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH: .standardDetail(pages: getSwitchDetailPages(channelWithChildren))
 
-            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT: .thermostatDetail(pages: getThermostatDetailPages(channelWithChildren))
+            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT: .standardDetail(pages: getThermostatDetailPages(channelWithChildren))
 
             case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
                  SUPLA_CHANNELFNC_IC_GAS_METER,
                  SUPLA_CHANNELFNC_IC_WATER_METER,
                  SUPLA_CHANNELFNC_IC_HEAT_METER: .impulseCounterDetail(pages: getImpulseCounterDetailPages(channelWithChildren))
 
-            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: .valveDetail(pages: [.valveGeneral])
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: .standardDetail(pages: [.valveGeneral])
 
             case SUPLA_CHANNELFNC_CONTAINER,
                  SUPLA_CHANNELFNC_WATER_TANK,
-                 SUPLA_CHANNELFNC_SEPTIC_TANK: .containerDetail(pages: [.containerGeneral])
+                 SUPLA_CHANNELFNC_SEPTIC_TANK: .standardDetail(pages: [.containerGeneral])
 
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: .thermostatDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: .standardDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])
 
             default: provide(channelWithChildren.channel)
         }

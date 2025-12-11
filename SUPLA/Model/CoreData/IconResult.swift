@@ -18,5 +18,6 @@
     
 enum IconResult: Equatable, Hashable, Codable {
     case suplaIcon(name: String)
+    case originalSuplaIcon(name: String)
     case userIcon(profileId: Int32, iconId: Int32, type: UserIcon, defaultName: String)
 }

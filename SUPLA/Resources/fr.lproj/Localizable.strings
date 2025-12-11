@@ -370,6 +370,7 @@
 "standard_detail_list_tab" = "Liste";
 "standard_detail_schedule_tab" = "Semaine";
 "standard_detail_settings_tab" = "Paramètres";
+"standard_detail_dimmer_tab" = "Variateur";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Etat actuel :";
@@ -706,3 +707,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Toutes les portes ne sont pas dotées d'un capteur d'ouverture configuré – les boutons « Ouvrir » et « Fermer » pourraient ne pas fonctionner correctement.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Couleur:";
+"rgb_detail_brightness" = "Luminosité:";
+"rgb_detail_select_color" = "Sélectionner la couleur";
+"rgb_detail_colors_limit" = "Limite atteinte !";
+"legacy_rgbw_settings_unauthorized_message" = "Autorisation nécessaire pour voir la configuration !";
+"legacy_rgbw_settings_authorize_button" = "Autoriser";

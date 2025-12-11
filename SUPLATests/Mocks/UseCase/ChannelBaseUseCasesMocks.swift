@@ -21,14 +21,14 @@ import RxSwift
 
 final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
     var parameters: [SAChannelBase] = []
-    var returns: SUPLA.ChannelState = .notUsed
+    var returns: SUPLA.ChannelState = .default(value: .notUsed)
     func invoke(channelBase: SAChannelBase) -> SUPLA.ChannelState {
         parameters.append(channelBase)
         return returns
     }
     
     func getOfflineState(_ function: Int32) -> SUPLA.ChannelState {
-        .notUsed
+        .default(value: .notUsed)
     }
 }
 

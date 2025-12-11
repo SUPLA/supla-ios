@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import SwiftUI
 import SharedCore
+import SwiftUI
 
 protocol GetChannelBaseIconUseCase {
     func invoke(iconData: FetchIconData) -> IconResult
@@ -58,14 +58,19 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
             // Currently only humidity and temperature may have multiple icons
             fatalError("Wrong icon configuration (iconType: '\(iconData.type)', function: '\(iconData.function)'")
         }
-        
+
         let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
-        
-        if (iconData.userIconId != 0){
+
+        if (iconData.userIconId != 0) {
             return .userIcon(profileId: iconData.profileId, iconId: iconData.userIconId, type: getIcon(iconData), defaultName: name)
         }
 
-        return .suplaIcon(name: name)
+        return switch (iconData.function) {
+        case SuplaFunction.rgbLighting.value,
+             SuplaFunction.dimmer.value,
+             SuplaFunction.dimmerAndRgbLighting.value: .originalSuplaIcon(name: name)
+        default: .suplaIcon(name: name)
+        }
     }
 
     private func getIcon(_ iconData: FetchIconData) -> UserIcon {
@@ -88,13 +93,13 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
             case .rgbAndDimmer(let dimmer, let rgb):
                 switch [dimmer, rgb] {
                 case [.off, .off]:
-                        .icon1
+                    .icon1
                 case [.on, .off]:
-                        .icon2
+                    .icon2
                 case [.off, .on]:
-                        .icon3
+                    .icon3
                 case [.on, .on]:
-                        .icon4
+                    .icon4
                 default:
                     iconData.state.isActive ? .icon2 : .icon1
                 }
@@ -106,4 +111,3 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
         }
     }
 }
-

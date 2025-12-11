@@ -370,6 +370,7 @@
 "standard_detail_history_tab" = "Zgodovina";
 "standard_detail_list_tab" = "Seznam";
 "standard_detail_settings_tab" = "Nastavitve";
+"standard_detail_dimmer_tab" = "Zatemnilnik";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Trenutno stanje:";
@@ -706,3 +707,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Nimajo vsa vrata konfiguriranega senzorja odpiranja – gumba »Odpri« in »Zapri« morda ne bosta delovala pravilno.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Barva:";
+"rgb_detail_brightness" = "Svetlost:";
+"rgb_detail_select_color" = "Izberite barvo";
+"rgb_detail_colors_limit" = "Omejitev dosežena!";
+"legacy_rgbw_settings_unauthorized_message" = "Za ogled konfiguracije je potrebna avtorizacija!";
+"legacy_rgbw_settings_authorize_button" = "Avtoriziraj";

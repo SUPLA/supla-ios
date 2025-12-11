@@ -370,6 +370,7 @@
 "standard_detail_list_tab" = "Λίστα";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Ρυθμίσεις";
+"standard_detail_dimmer_tab" = "Δίμερ";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Τρέχουσα κατάσταση:";
@@ -706,3 +707,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Δεν έχουν όλες οι πύλες ρυθμισμένο αισθητήρα ανοίγματος – τα κουμπιά «Άνοιγμα» και «Κλείσιμο» ενδέχεται να μην λειτουργούν σωστά.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Χρώμα:";
+"rgb_detail_brightness" = "Φωτεινότητα:";
+"rgb_detail_select_color" = "Επιλέξτε χρώμα";
+"rgb_detail_colors_limit" = "Το όριο έφτασε!";
+"legacy_rgbw_settings_unauthorized_message" = "Απαιτείται εξουσιοδότηση για να δείτε τη διαμόρφωση!";
+"legacy_rgbw_settings_authorize_button" = "Εξουσιοδοτήστε";

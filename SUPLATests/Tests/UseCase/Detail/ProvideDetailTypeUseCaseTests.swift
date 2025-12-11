@@ -29,7 +29,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forDimmerFunction() {
-        doTest(expectedResult: .legacy(type: .rgbw)) {
+        doTest(expectedResult: .standardDetail(pages: [.dimmer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_DIMMER
             
@@ -38,7 +38,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forRgbFunction() {
-        doTest(expectedResult: .legacy(type: .rgbw)) {
+        doTest(expectedResult: .standardDetail(pages: [.rgb])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_RGBLIGHTING
             
@@ -47,7 +47,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forDimmerAndRgbFunction() {
-        doTest(expectedResult: .legacy(type: .rgbw)) {
+        doTest(expectedResult: .standardDetail(pages: [.rgb, .dimmer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
             
@@ -55,8 +55,19 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideRgbw_forDimmerWithSettingsFunction() {
+        doTest(expectedResult: .standardDetail(pages: [.dimmer, .legacyDimmerSettings])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_DIMMER
+            channel.manufacturer_id = Int16(SUPLA_MFR_ZAMEL)
+            channel.product_id = 2000
+            
+            return channel
+        }
+    }
+    
     func test_shouldProvideRs_forRollerShutterFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.rollerShutter])) {
+        doTest(expectedResult: .standardDetail(pages: [.rollerShutter])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
             
@@ -65,7 +76,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forRoofWindowFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.roofWindow])) {
+        doTest(expectedResult: .standardDetail(pages: [.roofWindow])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
             
@@ -74,7 +85,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forFacadeBlindFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.facadeBlind])) {
+        doTest(expectedResult: .standardDetail(pages: [.facadeBlind])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
             
@@ -83,7 +94,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forTerraceAwningFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.terraceAwning])) {
+        doTest(expectedResult: .standardDetail(pages: [.terraceAwning])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_TERRACE_AWNING
             
@@ -92,7 +103,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forProjectorScreenFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.projectorScreen])) {
+        doTest(expectedResult: .standardDetail(pages: [.projectorScreen])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
             
@@ -101,7 +112,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forCurtainFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.curtain])) {
+        doTest(expectedResult: .standardDetail(pages: [.curtain])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_CURTAIN
             
@@ -110,7 +121,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forVerticalBlindFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.verticalBlind])) {
+        doTest(expectedResult: .standardDetail(pages: [.verticalBlind])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
             
@@ -119,7 +130,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forGarageDoorFunction() {
-        doTest(expectedResult: .windowDetail(pages: [.garageDoor])) {
+        doTest(expectedResult: .standardDetail(pages: [.garageDoor])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
             
@@ -164,7 +175,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideTemp_forThermometerFunction() {
-        doTest(expectedResult: .thermometerDetail(pages: [.thermometerHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.thermometerHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_THERMOMETER
             
@@ -173,7 +184,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideHumidityAndTemp_forHumidityAndTemperatureFunction() {
-        doTest(expectedResult: .thermometerDetail(pages: [.thermometerHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.thermometerHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
             
@@ -182,7 +193,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideTempHp_forHomeplusThermostatFunction() {
-        doTest(expectedResult: .thermostatDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
             
@@ -218,7 +229,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralPage_forGroupOfSwitches() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
@@ -227,7 +238,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralPage_forChannelWithoutFlags() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
@@ -236,7 +247,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndTimer_forChannelWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral, .switchTimer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             channel.flags = Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED)
@@ -246,7 +257,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralOnly_forStaircaseWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
             channel.flags = Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED)
@@ -256,7 +267,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer, .impulseCounterHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral, .switchTimer, .impulseCounterHistory])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
             
@@ -270,7 +281,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .electricityMeterHistory, .electricityMeterSettings])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral, .electricityMeterHistory, .electricityMeterSettings])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
             
@@ -283,7 +294,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideThermostatDetail() {
-        doTest(expectedResult: .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
             
@@ -292,7 +303,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideGpmHistory_forGeneralPurposeMeter() {
-        doTest(expectedResult: .gpmDetail(pages: [.gpmHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.gpmHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
             
@@ -301,7 +312,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideGpmHistory_forGeneralPurposeMeteasurement() {
-        doTest(expectedResult: .gpmDetail(pages: [.gpmHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.gpmHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
             

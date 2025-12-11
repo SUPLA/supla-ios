@@ -151,7 +151,7 @@ extension UIColor {
 }
 
 extension UIColor {
-    convenience init(alpha: Int, red: Int, green: Int, blue: Int) {
+    convenience init(alpha: Int32, red: Int32, green: Int32, blue: Int32) {
         assert(alpha >= 0 && alpha <= 255, "Invalid red component")
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
@@ -167,10 +167,10 @@ extension UIColor {
     
     convenience init(argb: Int) {
         self.init(
-            alpha: (argb >> 24) & 0xFF,
-            red: (argb >> 16) & 0xFF,
-            green: (argb >> 8) & 0xFF,
-            blue: argb & 0xFF
+            alpha: Int32((argb >> 24) & 0xFF),
+            red: Int32((argb >> 16) & 0xFF),
+            green: Int32((argb >> 8) & 0xFF),
+            blue: Int32(argb & 0xFF)
         )
     }
     
@@ -234,4 +234,28 @@ extension UIColor {
             alpha: CGFloat(alpha.floatValue)
         )
     }
+    
+    func toHexString() -> String? {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+
+        guard getRed(&r, green: &g, blue: &b, alpha: &a) else {
+            return nil
+        }
+
+        let ri = Int((r * 255).rounded()).clamped(to: 0...255)
+        let gi = Int((g * 255).rounded()).clamped(to: 0...255)
+        let bi = Int((b * 255).rounded()).clamped(to: 0...255)
+
+        return String(format: "#%02X%02X%02X", ri, gi, bi)
+    }
 }
+
+private extension Comparable {
+    func clamped(to range: ClosedRange<Self>) -> Self {
+        min(max(self, range.lowerBound), range.upperBound)
+    }
+}
+

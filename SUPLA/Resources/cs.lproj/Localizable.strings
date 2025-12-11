@@ -369,6 +369,7 @@
 "standard_detail_history_tab" = "Historie";
 "standard_detail_list_tab" = "Seznam";
 "standard_detail_settings_tab" = "Nastavení";
+"standard_detail_dimmer_tab" = "Stmívač";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Současný stav:";
@@ -706,3 +707,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Ne všechna vrata mají nakonfigurovaný senzor otevření – tlačítka „Otevřít“ a „Zavřít“ nemusí fungovat správně.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Barva:";
+"rgb_detail_brightness" = "Jas:";
+"rgb_detail_select_color" = "Vyberte barvu";
+"rgb_detail_colors_limit" = "Dosažen limit!";
+"legacy_rgbw_settings_unauthorized_message" = "K zobrazení konfigurace je nutné oprávnění!";
+"legacy_rgbw_settings_authorize_button" = "Autorizovat";

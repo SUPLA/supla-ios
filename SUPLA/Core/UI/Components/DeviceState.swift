@@ -51,6 +51,7 @@ struct DeviceStateView: SwiftUI.View {
             if let icon {
                 icon.image
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 25, height: 25)
             }
 

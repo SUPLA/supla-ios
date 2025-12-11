@@ -65,13 +65,9 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
-            send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-        case let .windowDetail(pages):
-            send(event: .navigateToRollerShutterDetail(item: item.item(), pages: pages))
-        case let .gateDetail(pages):
-            send(event: .navigateToGateDetail(item: item.item(), pages: pages))
-        case let .switchDetail(pages):
-            send(event: .navigateToSwitchDetail(item: item.item(), pages: pages))
+            send(event: .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: item))
+        case let .standardDetail(pages):
+            send(event: .navigateToStandardDetail(item: item.item(), pages: pages))
         default: break
         }
     }
@@ -91,10 +87,8 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
 }
 
 enum GroupListViewEvent: ViewEvent {
-    case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToGateDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToLegacyDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
+    case navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     case open(url: URL)
 }
 

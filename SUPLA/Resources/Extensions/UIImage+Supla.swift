@@ -25,6 +25,10 @@ extension UIImage {
     static let iconSchedule = UIImage(named: .Icons.schedule)
     static let iconHistory = UIImage(named: .Icons.history)
     static let iconSettings = UIImage(named: .Icons.settings)
+    static let iconRgb = UIImage(named: .Icons.rgb)
+    static let iconRgbSelected = UIImage(named: .Icons.rgbSelected)
+    static let iconDimmer = UIImage(named: .Icons.dimmer)
+    static let iconDimmerSelected = UIImage(named: .Icons.dimmerSelected)
     
     // MARK: Icons
     static let pencil = UIImage(named: .Icons.pencil)

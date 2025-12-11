@@ -21,13 +21,13 @@ import RxSwift
 fileprivate let DELAYED_COMMAND_DELAY_S = RxTimeInterval.seconds(2)
 
 class DelayedCommandSubject<T: DelayableData> {
+    @Singleton<SuplaSchedulers> private var schedulers
     
     private let delayedRequestSubject = PublishSubject<T>()
     private let disposeBag = DisposeBag()
     
-    init() {
-        delayedRequestSubject
-            .debounce(DELAYED_COMMAND_DELAY_S, scheduler: ConcurrentDispatchQueueScheduler.init(queue: .global()))
+    init(mode: Mode = .debounce, delay: RxTimeInterval = DELAYED_COMMAND_DELAY_S) {
+        provideSubject(mode, delay)
             .flatMap {
                 if (!$0.sent) {
                     return self.execute(data: $0)
@@ -48,10 +48,26 @@ class DelayedCommandSubject<T: DelayableData> {
         delayedRequestSubject.on(.next(sendState))
         
         return execute(data: sendState)
+            .subscribe(on: schedulers.background)
     }
     
     func execute(data: T) -> Observable<RequestResult> {
         return Observable.just(.failure)
+    }
+    
+    private func provideSubject(_ mode: Mode, _ delay: RxTimeInterval = DELAYED_COMMAND_DELAY_S) -> Observable<T> {
+        switch (mode) {
+        case .debounce:
+            delayedRequestSubject
+                .debounce(delay, scheduler: ConcurrentDispatchQueueScheduler.init(queue: .global()))
+        case .sample:
+            delayedRequestSubject
+                .sample(Observable<Int>.interval(delay, scheduler: ConcurrentDispatchQueueScheduler.init(queue: .global())))
+        }
+    }
+    
+    enum Mode {
+        case debounce, sample
     }
 }
 

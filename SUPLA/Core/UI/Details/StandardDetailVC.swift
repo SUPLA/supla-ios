@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class StandardDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: SuplaTabBarController<S, E, VM>, NavigationItemProvider {
+class BaseDetailVC<S: ViewState, E: ViewEvent, VM: StandardDetailVM<S, E>>: SuplaTabBarController<S, E, VM>, NavigationItemProvider {
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
     

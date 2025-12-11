@@ -9214,6 +9214,254 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "description()"
     ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreDimmerValue"
+  SwiftName: "DimmerValue"
+  Properties:
+  - Name: "brightness"
+    PropertyKind: "Instance"
+    SwiftName: "brightness"
+    Type: "int32_t"
+  - Name: "on"
+    PropertyKind: "Instance"
+    SwiftName: "on"
+    Type: "BOOL"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  Methods:
+  - Selector: "initWithStatus:on:brightness:"
+    MethodKind: "Instance"
+    SwiftName: "init(status:on:brightness:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "doCopyStatus:on:brightness:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(status:on:brightness:)"
+    ResultType: "SharedCoreDimmerValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreDimmerValueCompanion"
+  SwiftName: "DimmerValue.Companion"
+  Methods:
+  - Selector: "fromStatus:bytes:"
+    MethodKind: "Instance"
+    SwiftName: "from(status:bytes:)"
+    ResultType: "SharedCoreDimmerValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreRgbValue"
+  SwiftName: "RgbValue"
+  Properties:
+  - Name: "blue"
+    PropertyKind: "Instance"
+    SwiftName: "blue"
+    Type: "int32_t"
+  - Name: "colorBrightness"
+    PropertyKind: "Instance"
+    SwiftName: "colorBrightness"
+    Type: "int32_t"
+  - Name: "green"
+    PropertyKind: "Instance"
+    SwiftName: "green"
+    Type: "int32_t"
+  - Name: "on"
+    PropertyKind: "Instance"
+    SwiftName: "on"
+    Type: "BOOL"
+  - Name: "red"
+    PropertyKind: "Instance"
+    SwiftName: "red"
+    Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  Methods:
+  - Selector: "initWithStatus:on:colorBrightness:red:green:blue:"
+    MethodKind: "Instance"
+    SwiftName: "init(status:on:colorBrightness:red:green:blue:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "int32_t"
+  - Selector: "doCopyStatus:on:colorBrightness:red:green:blue:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(status:on:colorBrightness:red:green:blue:)"
+    ResultType: "SharedCoreRgbValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreRgbValueCompanion"
+  SwiftName: "RgbValue.Companion"
+  Methods:
+  - Selector: "fromStatus:bytes:"
+    MethodKind: "Instance"
+    SwiftName: "from(status:bytes:)"
+    ResultType: "SharedCoreRgbValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
+- Name: "SharedCoreRgbwValue"
+  SwiftName: "RgbwValue"
+  Properties:
+  - Name: "blue"
+    PropertyKind: "Instance"
+    SwiftName: "blue"
+    Type: "int32_t"
+  - Name: "brightness"
+    PropertyKind: "Instance"
+    SwiftName: "brightness"
+    Type: "int32_t"
+  - Name: "colorBrightness"
+    PropertyKind: "Instance"
+    SwiftName: "colorBrightness"
+    Type: "int32_t"
+  - Name: "green"
+    PropertyKind: "Instance"
+    SwiftName: "green"
+    Type: "int32_t"
+  - Name: "on"
+    PropertyKind: "Instance"
+    SwiftName: "on"
+    Type: "BOOL"
+  - Name: "red"
+    PropertyKind: "Instance"
+    SwiftName: "red"
+    Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+  Methods:
+  - Selector: "initWithStatus:on:brightness:colorBrightness:red:green:blue:"
+    MethodKind: "Instance"
+    SwiftName: "init(status:on:brightness:colorBrightness:red:green:blue:)"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "int32_t"
+    - Position: 6
+      Type: "int32_t"
+  - Selector: "doCopyStatus:on:brightness:colorBrightness:red:green:blue:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(status:on:brightness:colorBrightness:red:green:blue:)"
+    ResultType: "SharedCoreRgbwValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "int32_t"
+    - Position: 4
+      Type: "int32_t"
+    - Position: 5
+      Type: "int32_t"
+    - Position: 6
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreRgbwValueCompanion"
+  SwiftName: "RgbwValue.Companion"
+  Methods:
+  - Selector: "fromStatus:bytes:"
+    MethodKind: "Instance"
+    SwiftName: "from(status:bytes:)"
+    ResultType: "SharedCoreRgbwValue * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+    - Position: 1
+      Type: "SharedCoreKotlinByteArray * _Nonnull"
 - Name: "SharedCoreHomePlusThermostatValue"
   SwiftName: "HomePlusThermostatValue"
   Properties:
@@ -10523,6 +10771,48 @@ Protocols:
     PropertyKind: "Instance"
     SwiftName: "remoteId"
     Type: "int32_t"
+- Name: "SharedCoreDimmerBaseValue"
+  SwiftName: "DimmerBaseValue"
+  Properties:
+  - Name: "brightness"
+    PropertyKind: "Instance"
+    SwiftName: "brightness"
+    Type: "int32_t"
+  - Name: "on"
+    PropertyKind: "Instance"
+    SwiftName: "on"
+    Type: "BOOL"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
+- Name: "SharedCoreRgbBaseValue"
+  SwiftName: "RgbBaseValue"
+  Properties:
+  - Name: "blue"
+    PropertyKind: "Instance"
+    SwiftName: "blue"
+    Type: "int32_t"
+  - Name: "colorBrightness"
+    PropertyKind: "Instance"
+    SwiftName: "colorBrightness"
+    Type: "int32_t"
+  - Name: "green"
+    PropertyKind: "Instance"
+    SwiftName: "green"
+    Type: "int32_t"
+  - Name: "on"
+    PropertyKind: "Instance"
+    SwiftName: "on"
+    Type: "BOOL"
+  - Name: "red"
+    PropertyKind: "Instance"
+    SwiftName: "red"
+    Type: "int32_t"
+  - Name: "status"
+    PropertyKind: "Instance"
+    SwiftName: "status"
+    Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
 - Name: "SharedCoreKotlinx_serialization_coreKSerializer"
   SwiftName: "Kotlinx_serialization_coreKSerializer"
   Properties:

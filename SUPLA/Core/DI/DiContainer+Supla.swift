@@ -35,6 +35,7 @@ extension DiContainer {
         register(ValuesFormatter.self, ValuesFormatterImpl())
         register(DelayedThermostatActionSubject.self, DelayedThermostatActionSubjectImpl())
         register(DelayedWeeklyScheduleConfigSubject.self, DelayedWeeklyScheduleConfigSubjectImpl())
+        register(DelayedRgbwActionSubject.self, DelayedRgbwActionSubjectImpl())
         register(SuplaCloudService.self, SuplaCloudServiceImpl())
         register(SuplaCloudConfigHolder.self, SuplaCloudConfigHolderImpl())
         register(UserStateHolder.self, UserStateHolderImpl())
@@ -99,6 +100,7 @@ extension DiContainer {
         register((any ProfileServerRepository).self, ProfileServerRepositoryImpl())
         register((any CarPlayItemRepository).self, CarPlayItemRepositoryImpl())
         register((any EspRepository).self, EspRepositoryImpl())
+        register((any ColorListItemRepository).self, ColorListItemRepositoryImpl())
         
         // MARK: Usecases
 
@@ -198,6 +200,7 @@ extension DiContainer {
         register(ExecuteFacadeBlindActionUseCase.self, ExecuteFacadeBlindActionUseCaseImpl())
         register(DisconnectUseCase.self, DisconnectUseCaseImpl())
         register(ReconnectUseCase.self, ReconnectUseCaseImpl())
+        register(ExecuteRgbAction.UseCase.self, ExecuteRgbAction.instance())
         // Usecases - Detail
         register(ProvideChannelDetailTypeUseCase.self, ProvideChannelDetailTypeUseCaseImpl())
         register(ProvideGroupDetailTypeUseCase.self, ProvideGroupDetailTypeUseCaseImpl())
@@ -268,6 +271,11 @@ extension DiContainer {
         // UseCase - Thermostat
         register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
         register(CheckIsSlaveThermostat.UseCase.self, CheckIsSlaveThermostat.Implementation())
+        // UseCase - ColorListItem
+        register(InsertColorListItem.UseCase.self, InsertColorListItem.Implementation())
+        register(DeleteColorListItem.UseCase.self, DeleteColorListItem.Implementation())
+        register(UpdateColorListItemOrder.UseCase.self, UpdateColorListItemOrder.Implementation())
+        register(ReorderColorListItems.UseCase.self, ReorderColorListItems.Implementation())
         
         // MARK: Features
         

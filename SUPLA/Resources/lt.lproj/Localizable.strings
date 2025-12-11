@@ -708,3 +708,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Ne visi vartai turi sukonfigūruotą atidarymo jutiklį – mygtukai „Atidaryti“ ir „Uždaryti“ gali neveikti tinkamai.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Spalva:";
+"rgb_detail_brightness" = "Ryškumas:";
+"rgb_detail_select_color" = "Pasirinkti spalvą";
+"rgb_detail_colors_limit" = "Pasiektas limitas!";
+"legacy_rgbw_settings_unauthorized_message" = "Norint peržiūrėti konfigūraciją, reikalingas leidimas!";
+"legacy_rgbw_settings_authorize_button" = "Autorizuoti";

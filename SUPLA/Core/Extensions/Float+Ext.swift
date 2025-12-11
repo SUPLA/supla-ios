@@ -28,9 +28,8 @@ extension Float {
         }
     }
     
-    var cg: CGFloat {
-        get { CGFloat(self) }
-    }
+    var cg: CGFloat { CGFloat(self) }
+    var asPercentageString: String { getPercentageString(Double(self)) }
     
     func plus(_ other: Float) -> Float {
         return self + other
@@ -59,9 +58,8 @@ extension Float? {
 extension CGFloat: ScopeFunctions {
     typealias T = CGFloat
     
-    var float: Float {
-        get { Float(self) }
-    }
+    var float: Float { Float(self) }
+    var asPercentageString: String { getPercentageString(Double(self)) }
     
     func limit(min: CGFloat = 0, max: CGFloat = 1) -> CGFloat {
         if (self > max) {
