@@ -76,24 +76,14 @@
 "Days" = "Dni";
 "Months" = "Meseci";
 "Years" = "Leta";
-"Minute to minute comparison" = "Primerjava iz minute v minuto";
-"Hour to hour comparison" = "Primerjava iz ure v uro";
-"Day to day comparison" = "Primerjava iz dneva v dan";
-"Month to month comparison" = "Primerjava iz meseca v mesec";
-"Year to year comparison" = "Primerjava iz leta v leto";
 "Ranking of hours" = "Razvrstitev ur";
 "Ranking of weekdays" = "Razvrstitev dni v tednu";
 "Ranking of months" = "Razvrstitev mesecev";
-"Consumption according to phases" = "Poraba v skladu s fazami";
-"Production according to phases" = "Izdelava v skladu s fazami";
 "Last 24 hours" = "Zadnjih 24 ur";
 "Last 7 days" = "Zadnjih 7 dni";
 "Last 30 days" = "Zadnjih 30 dni";
 "Last 90 days" = "Zadnjih 90 dni";
 "All available history" = "Vsa zgodovina je na voljo";
-"Phase 1" = "1. faza";
-"Phase 2" = "2. faza";
-"Phase 3" = "3. faza";
 "Home+ Heater" = "Gralec Home+";
 "Comfort" = "Udobje";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Ne";
 
 "Heat meter" = "Merilnik toplote";
-"Arithmetic balance - Minutes" = "Aritmetično ravnotežje - Minute";
-"Arithmetic balance - Hours" = "Aritmetično ravnotežje - Ure";
-"Arithmetic balance - Days" = "Aritmetično ravnotežje - Dnevi";
-"Arithmetic balance - Months" = "Aritmetično ravnotežje - Meseci";
-"Arithmetic balance - Years" = "Aritmetično ravnotežje - Leta";
-"Vector balance - Minutes" = "Vektorsko ravnotežje - Minute";
-"Vector balance - Hours" = "Vektorsko ravnotežje - Ure";
-"Vector balance - Days" = "Vektorsko ravnotežje - Dnevi";
-"Vector balance - Months" = "Vektorsko ravnotežje - Meseci";
-"Vector balance - Years" = "Vektorsko ravnotežje - Leta";
 
 "Time exceeded. Try again." = "Časovna prekoračitev. Poskusite ponovno.";
 "Are you sure you want to restore the default settings?" = "Ali ste prepričani, da želite obnoviti na privzete nastavitve?";
-"Default settings" = "Privzete nastavitve";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
 "Please enter your Supla Cloud login details." = "Vnesite svoje prijavne podatke za cloud.supla.org.";
@@ -148,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Prepričajte se, da ima aplikacija dovoljenja za iskanje naprav v lokalnem omrežju in povezovanje z njimi. To pomeni, da mora biti dovoljenje\"iOS-> Nastavitve-> SUPLA-> Lokalno omrežje\" vključeno za pravilno delovanje čarovnika.";
 "Back" = "Nazaj";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
 "Exit" = "Izhod";
@@ -216,8 +194,6 @@
 "Location order" = "Zaporedje lokacije";
 "Opening" = "Odpiranja";
 "Closing" = "Zapiranja";
-"Percent of opening" = "Odstotek odpiranja";
-"Percent of closing" = "Odstotek zapiranja";
 "Your account" = "Vaš račun";
 "Your accounts" = "Vaši računi";
 "Accounts" = "Računi";

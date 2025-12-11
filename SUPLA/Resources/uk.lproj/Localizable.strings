@@ -76,24 +76,14 @@
 "Days" = "Дні";
 "Months" = "Місяці";
 "Years" = "Роки";
-"Minute to minute comparison" = "Похвилинне порівняння";
-"Hour to hour comparison" = "Погодинне порівняння";
-"Day to day comparison" = "Порівняння за день";
-"Month to month comparison" = "Порівняння за місяць";
-"Year to year comparison" = "Порівняння за рік";
 "Ranking of hours" = "Рейтинг годин";
 "Ranking of weekdays" = "Рейтинг днів тижня";
 "Ranking of months" = "Рейтинг місяців";
-"Consumption according to phases" = "Споживання за фазою";
-"Production according to phases" = "Виробництво за фазою";
 "Last 24 hours" = "Останні 24 години";
 "Last 7 days" = "Останні 7 днів";
 "Last 30 days" = "Останні 30 днів";
 "Last 90 days" = "Останні 90 днів";
 "All available history" = "Вся історія доступна";
-"Phase 1" = "Фаза 1";
-"Phase 2" = "Фаза 2";
-"Phase 3" = "Фаза 3";
 "Home+ Heater" = "Обігрівач Home+";
 "Comfort" = "Комфорт";
 "ECO" = "ЕКО";
@@ -120,20 +110,9 @@
 "No" = "Ні";
 
 "Heat meter" = "Теплолічильник";
-"Arithmetic balance - Minutes" = "Арифметичний баланс - Хвилини";
-"Arithmetic balance - Hours" = "Арифметичний баланс - Години";
-"Arithmetic balance - Days" = "Арифметичний баланс - Дні";
-"Arithmetic balance - Months" = "Арифметичний баланс - Місяці";
-"Arithmetic balance - Years" = "Арифметичний баланс - Роки";
-"Vector balance - Minutes" = "Векторний баланс - Хвилини";
-"Vector balance - Hours" = "Векторний баланс - Години";
-"Vector balance - Days" = "Векторний баланс - Дні";
-"Vector balance - Months" = "Векторний баланс - Місяці";
-"Vector balance - Years" = "Bilans wektorowy - Lata";
 
 "Time exceeded. Try again." = "Час вийшов. Спробуйте знову.";
 "Are you sure you want to restore the default settings?" = "Ви впевнені, що хочете відновити налаштування за замовчуванням ?";
-"Default settings" = "Налаштування за замовчуванням";
 
 "Please enter your Supla Cloud login details." = "Введіть дані для входу в Supla Cloud.";
 "Enter superuser credentials" = "Введіть облікові дані основного користувача";
@@ -147,7 +126,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Якщо пристрій не перебуває в режимі налаштування після ввімкнення живлення, утримуйте кнопку CONFIG принаймні 5 секунд.\n\n%@\n";
 "Press Next to continue." = "Натисніть Далі, щоб продовжити.";
 "Press START to start configuration." = "Натисніть кнопку СТАРТ, щоб почати налаштування.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Переконайтеся, що програма має дозвіл на пошук пристроїв у вашій локальній мережі та підключення до них. Це означає, що для належної роботи майстра має бути ввімкнено дозвіл \"iOS->Налаштування->SUPLA->Локальна мережа\".";
 "Back" = "Назад";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
 "Exit" = "Вихід";
@@ -216,8 +194,6 @@
 "Location order" = "Порядок розташування";
 "Opening" = "Відкриття";
 "Closing" = "Закриття";
-"Percent of opening" = "Відсоток відкриття";
-"Percent of closing" = "Відсоток закриття";
 "Your account" = "Ваш обліковий запис";
 "Your accounts" = "Ваші облікові записи";
 "Accounts" = "Облікові записи";
