@@ -759,4 +759,7 @@ class LegacyStrings: NSObject {
     @objc static let stateConnectionResetCauseActivityTimeout = Strings.State.connectionResetCauseActivityTimeout
     @objc static let stateConnectionResetCauseWifiConnectionLost = Strings.State.connectionResetCauseWifiConnectionLost
     @objc static let stateConnectionResetCauseServerConnectionLost = Strings.State.connectionResetCauseServerConnectionLost
+    
+    @objc static let rgbDetailSettingsUnauthorized = Strings.RgbDetail.settingUnauthorized
+    @objc static let rgbDetailAuthorize = Strings.RgbDetail.authorize
 }
