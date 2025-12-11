@@ -27,6 +27,7 @@ extension RgbDetailFeature {
         @Published var offline: Bool = false
         @Published var loadingState: LoadingState = .init()
         @Published var hexColorEditorValue: String? = nil
+        @Published var showLimitReachedToast: Bool = false
     }
     
     struct SavedColor: Identifiable, Equatable {
