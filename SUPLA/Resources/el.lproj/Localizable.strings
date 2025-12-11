@@ -76,24 +76,14 @@
 "Days" = "Ημέρες";
 "Months" = "Μήνες";
 "Years" = "Χρόνια";
-"Minute to minute comparison" = "Σύγκριση λεπτό προς λεπτό";
-"Hour to hour comparison" = "Σύγκριση ώρα προς ώρα";
-"Day to day comparison" = "Σύγκριση μέρα προς μέρα";
-"Month to month comparison" = "Σύγκριση ώρα προς ώρα";
-"Year to year comparison" = "Σύγκριση έτος προς έτος";
 "Ranking of hours" = "Κατάταξη των ωρών";
 "Ranking of weekdays" = "Κατάταξη των ημερών της εβδομάδας";
 "Ranking of months" = "Κατάταξη των μηνών";
-"Consumption according to phases" = "Κατανάλωση ανάλογα με τις φάσεις";
-"Production according to phases" = "Παραγωγή ανάλογα με τις φάσεις";
 "Last 24 hours" = "Οι τελευταίες 24 ώρες";
 "Last 7 days" = "Οι τελευταίες 7 ημέρες";
 "Last 30 days" = "Οι τελευταίες 30 ημέρες";
 "Last 90 days" = "Οι τελευταίες 90 ημέρες";
 "All available history" = "Όλο το διαθέσιμο ιστορικό";
-"Phase 1" = "Φάση 1";
-"Phase 2" = "Φάση 2";
-"Phase 3" = "Φάση 3";
 "Home+ Heater" = "Θερμαντήρας Home+";
 "Comfort" = "Κομφόρ";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Όχι";
 
 "Heat meter" = "Μετρητής θερμότητας";
-"Arithmetic balance - Minutes" = "Αριθμητικός ισολογισμός - Λεπτά";
-"Arithmetic balance - Hours" = "Αριθμητικός ισολογισμός - Ώρες";
-"Arithmetic balance - Days" = "Αριθμητικός ισολογισμός - Ημέρες";
-"Arithmetic balance - Months" = "Αριθμητικός ισολογισμός - Μήνες";
-"Arithmetic balance - Years" = "Αριθμητικός ισολογισμός - Χρόνια";
-"Vector balance - Minutes" = "Διανυσματικός ισολογισμός - Λεπτά";
-"Vector balance - Hours" = "Διανυσματικός ισολογισμός - Ώρες";
-"Vector balance - Days" = "Διανυσματικός ισολογισμός - Ημέρες";
-"Vector balance - Months" = "Διανυσματικός ισολογισμός - Μήνες";
-"Vector balance - Years" = "Διανυσματικός ισολογισμός - Χρόνια";
 
 "Time exceeded. Try again." = "Τέλος χρόνου. Προσπαθήστε ξανά.";
 "Are you sure you want to restore the default settings?" = "Είστε βέβαιοι ότι θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;";
-"Default settings" = "Προεπιλογές";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
 "Please enter your Supla Cloud login details." = "Εισαγάγετε τα στοιχεία σύνδεσής σας στο cloud.supla.org.";
@@ -148,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Βεβαιωθείτε ότι η εφαρμογή έχει άδεια εντοπισμού και σύνδεσης σε συσκευές στο τοπικό σας δίκτυο. Αυτό σημαίνει ότι το δικαίωμα \"iOS->Ρυθμίσεις->SUPLA->Τοπικό δίκτυο\" πρέπει να είναι ενεργοποιημένο για να λειτουργήσει σωστά ο οδηγός. ";
 "Back" = "Επιστροφή";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
 "Exit" = "Εξοδος";
@@ -216,8 +194,6 @@
 "Location order" = "Σειρά τοποθεσιών";
 "Opening" = "Άνοιγμα";
 "Closing" = "Κλείσιμο";
-"Percent of opening" = "Ποσοστό ανοίγματος";
-"Percent of closing" = "Ποσοστό κλεισίματος";
 "Your account" = "Ο λογαριασμός σας";
 "Your accounts" = "Οι λογαριασμοί σας";
 "Accounts" = "Λογαριασμοί";

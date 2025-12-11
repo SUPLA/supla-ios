@@ -76,24 +76,14 @@
 "Days" = "Dias";
 "Months" = "Meses";
 "Years" = "Anos";
-"Minute to minute comparison" = "Comparação minuto a minuto";
-"Hour to hour comparison" = "Comparação hora a hora";
-"Day to day comparison" = "Comparação dia a dia";
-"Month to month comparison" = "Comparação mês a mês";
-"Year to year comparison" = "Comparação ano a ano";
 "Ranking of hours" = "Ranking de horas";
 "Ranking of weekdays" = "Ranking de dias da semana";
 "Ranking of months" = "Ranking de meses";
-"Consumption according to phases" = "Consumo de acordo com fase";
-"Production according to phases" = "Produção de acordo com fase";
 "Last 24 hours" = "Últimas 24 horas";
 "Last 7 days" = "Últimos 7 dias";
 "Last 30 days" = "Últimos 30 dias";
 "Last 90 days" = "Últimos 90 dias";
 "All available history" = "Todo o histórico disponível";
-"Phase 1" = "Fase 1";
-"Phase 2" = "Fase 2";
-"Phase 3" = "Fase 3";
 "Home+ Heater" = "Aquecedor Home+";
 "Comfort" = "Conforto";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Não";
 
 "Heat meter" = "Medidor de calor";
-"Arithmetic balance - Minutes" = "Equilíbrio aritmético - Minutos";
-"Arithmetic balance - Hours" = "Equilíbrio aritmético - Horas";
-"Arithmetic balance - Days" = "Equilíbrio aritmético - Dias";
-"Arithmetic balance - Months" = "Equilíbrio aritmético - Meses";
-"Arithmetic balance - Years" = "Equilíbrio aritmético - Anos";
-"Vector balance - Minutes" = "Equilíbrio do Vetor - Minutos";
-"Vector balance - Hours" = "Equilíbrio do Vetor - Horas";
-"Vector balance - Days" = "Equilíbrio do Vetor - Dias";
-"Vector balance - Months" = "Equilíbrio do Vetor - Meses";
-"Vector balance - Years" = "Equilíbrio do Vetor - Anos";
 
 "Time exceeded. Try again." = "Tempo Ultrapassado . Tente outra vez";
 "Are you sure you want to restore the default settings?" = "Tem a certeza de que pretende restaurar as definições predefinições?";
-"Default settings" = "Configurações predefinidas";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ALTERAR AS DEFINIÇÕES DE VIDA ÚTIL DA FONTE DE LUZ";
 "Please enter your Supla Cloud login details." = "Introduza os seus dados de login para Supla Cloud.";
@@ -148,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Se um dispositivo não trabalha no modo de configuração depois de o ligar à rede elétrica, mantenha o botão carregado CONFIG por 5 segundos ao mínimo..\n\n%@\n";
 "Press Next to continue." = "Para continuar carregue em Continuar.";
 "Press START to start configuration." = "Carregue no botão START para iniciar uma configuração.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assegurar que a aplicação tem permissão para encontrar dispositivos na rede local e ligar-se a eles. Isto significa que a permissão \"iOS->Settings->SUPLA->Local Network\" deve ser activada para que o assistente possa funcionar correctamente. ";
 "Back" = "Voltar";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "A ponte z-wave não responde. Verifique se a ponte está conectada ao servidor.";
 "Exit" = "Sair";
@@ -216,8 +194,6 @@
 "Location order" = "Ordem de localização";
 "Opening" = "Aberto";
 "Closing" = "Encerramentos";
-"Percent of opening" = "Percentagem de abertura";
-"Percent of closing" = "Percentagem de encerramento";
 "Your account" = "A sua conta";
 "Your accounts" = "As suas contas";
 "Accounts" = "Conta";

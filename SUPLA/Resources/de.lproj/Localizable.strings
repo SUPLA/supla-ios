@@ -76,24 +76,14 @@
 "Days" = "Tage";
 "Months" = "Monate";
 "Years" = "Jahre";
-"Minute to minute comparison" = "Vergleich Minute zu Minute";
-"Hour to hour comparison" = "Vergleich Stunde zu Stunde";
-"Day to day comparison" = "Vergleich Tag zu Tag";
-"Month to month comparison" = "Vergleich Monat zu Monat";
-"Year to year comparison" = "Vergleich Jahr zu Jahr";
 "Ranking of hours" = "Ranking der Stunden";
 "Ranking of weekdays" = "Ranking der Wochentage";
 "Ranking of months" = "Ranking der Monate";
-"Consumption according to phases" = "Verbrauch nach Phase";
-"Production according to phases" = "Produktion nach Phase";
 "Last 24 hours" = "Letzte 24 Stunden";
 "Last 7 days" = "Die letzten 7 Tage";
 "Last 30 days" = "Die letzten 30 Tage";
 "Last 90 days" = "Die letzten 90 Tage";
 "All available history" = "Gesamte verfügbare Geschichte";
-"Phase 1" = "Phase 1";
-"Phase 2" = "Phase 2";
-"Phase 3" = "Phase 3";
 "Home+ Heater" = "Heizelement Home+";
 "Comfort" = "Komfort";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Nein";
 
 "Heat meter" = "Wärmezähler";
-"Arithmetic balance - Minutes" = "arithmetisches Gleichgewicht - Minuten";
-"Arithmetic balance - Hours" = "arithmetisches Gleichgewicht - Stunden";
-"Arithmetic balance - Days" = "arithmetisches Gleichgewicht - Tage";
-"Arithmetic balance - Months" = "arithmetisches Gleichgewicht - Monaten";
-"Arithmetic balance - Years" = "arithmetisches Gleichgewicht - Jahre";
-"Vector balance - Minutes" = "Vektorgleichgewicht - Minuten";
-"Vector balance - Hours" = "Vektorgleichgewicht - Stunden";
-"Vector balance - Days" = "Vektorgleichgewicht - Tage";
-"Vector balance - Months" = "Vektorgleichgewicht - Monaten";
-"Vector balance - Years" = "Vektorgleichgewicht - Jahre";
 
 "Time exceeded. Try again." = "Die Zeit wurde überschritten. Versuchen Sie es noch einmal.";
 "Are you sure you want to restore the default settings?" = "Sind Sie sicher, dass Sie die Voreinstellungen wiederherstellen möchten?";
-"Default settings" = "Standardeinstellungen";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "EINSTELLUNGEN FÜR DIE LEBENSDAUER DER LICHTQUELLE ÄNDERN";
 "Please enter your Supla Cloud login details." = "Geben Sie Ihre Anmeldedaten für cloud.supla.org ein.";
 "Enter superuser credentials" = "Geben Sie die Superuser-Anmeldeinformationen ein";
@@ -147,7 +126,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Wenn das Gerät nach dem Einschalten im Konfigurationsmodus nicht funktioniert, halten Sie die Taste CONFIG für mindestens 5 Sekunden gedrückt.\n\n%@\n";
 "Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
 "Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Versichern Sie sich, dass die App Befugnisse zur Erkennung der Geräte im lokalen Netzwerk und Verbindung mit ihnen hat. Es bedeutet, dass zur korrekten Funktion des Assistenten die Befugnis \„iOS->Einstellungen->SUPLA->Lokales Netzwerk\“ eingeschaltet sein muss.";
 "Back" = "Zurück";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
 "Exit" = "Beenden";
@@ -213,8 +191,6 @@
 "Location order" = "Lokalisierungsreihenfolge"; 
 "Opening" = "Öffnungen";
 "Closing" = "Schließungen";
-"Percent of opening" = "Prozentsatz der Öffnung";
-"Percent of closing" = "Prozentsatz des Schließens";
 "Your account" = "Ihr Konto";
 "Your accounts" = "Ihre Kontos";
 "Accounts" = "Kontos";

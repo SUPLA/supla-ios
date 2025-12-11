@@ -77,24 +77,14 @@
 "Days" = "Günlər";
 "Months" = "Aylar";
 "Years" = "İllər";
-"Minute to minute comparison" = "Porównanie minuta do minuty";
-"Hour to hour comparison" = "Porównanie godzina do godziny";
-"Day to day comparison" = "Porównanie dzień do dnia";
-"Month to month comparison" = "Porównanie miesiąc do miesiąca";
-"Year to year comparison" = "Porównanie rok do roku";
 "Ranking of hours" = "Saat üzrə sıralama";
 "Ranking of weekdays" = "Həftənin günləri üzrə sıralama";
 "Ranking of months" = "Aylar üzrə sıralama";
-"Consumption according to phases" = "Zużycie wg. faz";
-"Production according to phases" = "Produkcja wg. faz";
 "Last 24 hours" = "Son 24 saat";
 "Last 7 days" = "Son 7 gün";
 "Last 30 days" = "Son 30 gün";
 "Last 90 days" = "Son 90 gün";
 "All available history" = "Bütün mövcud tarixçə";
-"Phase 1" = "Faza 1";
-"Phase 2" = "Faza 2";
-"Phase 3" = "Faza 3";
 "Home+ Heater" = "Home+ Qızdırıcı";
 "Comfort" = "Yüksək";
 "ECO" = "ECO";
@@ -105,9 +95,9 @@
 "Water temperature sensor error" = "Su temperatur sensoru xətası";
 "Room temperature sensor error" = "Otaq temperatur sensoru xətası";
 "No network interruptions" = "Şəbəkə fasiləsi yoxdur";
-"Room temperature" = "Temperatura w pomieszczeniu";
-"ON" = "WŁĄCZONY";
-"OFF" = "WYŁĄCZONY";
+"Room temperature" = "Otaq temperaturu";
+"ON" = "YANIR";
+"OFF" = "SÖNÜK";
 "h" = "s";
 "Wind sensor" = "Külək sensoru";
 "Weight sensor" = "Çəki sensoru";
@@ -116,29 +106,18 @@
 
 "Close" = "Bağla";
 "Valve" = "Valf";
-"Warning" = "Ostrzeżenie";
+"Warning" = "Xəbərdarlıq";
 "Yes" = "Bəli";
 "No" = "Xeyr";
 
 "Heat meter" = "İstilik sayğacı";
-"Arithmetic balance - Minutes" = "Bilans arytmetyczny - Minuty";
-"Arithmetic balance - Hours" = "Bilans arytmetyczny - Godziny";
-"Arithmetic balance - Days" = "Bilans arytmetyczny - Dni";
-"Arithmetic balance - Months" = "Bilans arytmetyczny - Miesiące";
-"Arithmetic balance - Years" = "Bilans arytmetyczny - Lata";
-"Vector balance - Minutes" = "Bilans wektorowy - Minuty";
-"Vector balance - Hours" = "Bilans wektorowy - Godziny";
-"Vector balance - Days" = "Bilans wektorowy - Dni";
-"Vector balance - Months" = "Bilans wektorowy - Miesiące";
-"Vector balance - Years" = "Bilans wektorowy - Lata";
 
 "Time exceeded. Try again." = "Vaxt bitdi. Yenidən cəhd edin.";
 "Are you sure you want to restore the default settings?" = "Əminsiniz ki, standart tənzimləmələri bərpa etmək istəyirsiniz?";
-"Default settings" = "Ustawienia domyślne";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "İŞIQ MƏNBƏYININ ÖMRÜ PARAMETRLƏRINI DƏYIŞDIR";
 "Please enter your Supla Cloud login details." = "Zəhmət olmasa Supla Cloud giriş məlumatlarınızı daxil edin.";
 "Enter superuser credentials" = "Superuser məlumatlarını daxil edin";
-"Dimmer settings" = "Ustawienia ściemniacza";
+"Dimmer settings" = "Tənzimləyici parametrləri";
 "Do you want to quit without saving?" = "Saxlamadan çıxmaq istəyirsiniz?";
 "Do you want to save the settings?" = "Parametrləri saxlamaq istəyirsiniz?";
 "Restoring default settings" = "Sabit parametrlər bərpa edilir";
@@ -148,8 +127,7 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Əgər cihaz enerji verildikdən sonra konfiqurasiya rejimində deyilsə, CONFIG düyməsini ən az 5 saniyə basıb saxlayın.\n\n%@\n";
 "Press Next to continue." = "Davama davam etmək üçün Növbəti-yə basın.";
 "Press START to start configuration." = "Konfiqurasiyaya başlamaq üçün BAŞLAT-a basın.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Upewnij się, że aplikacja ma uprawnienia do odnajdywania urządzeń w sieci lokalnej i łączenia się z nimi. Oznacza to, że uprawnienie \"iOS->Ustawienia->SUPLA->Sieć lokalna\" musi być włączone aby kreator działał poprawnie. ";
-"Back" = "Wstecz";
+"Back" = "Geri";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave körpüsü cavab vermir. Körpünün serverə qoşulduğunu yoxlayın.";
 "Exit" = "Çıxış";
 "The waiting time for basic channel configuration data has expired." = "Əsas kanal konfiqurasiya məlumatları üçün gözləmə müddəti bitdi.";
@@ -216,15 +194,13 @@
 "Location order" = "Yer sırası";
 "Opening" = "Açılır";
 "Closing" = "Bağlanır";
-"Percent of opening" = "Procent otwarcia";
-"Percent of closing" = "Procent zamknięcia";
 "Your account" = "Hesabınız";
 "Your accounts" = "Hesablarınız";
 "Accounts" = "Hesablar";
 "NAME" = "AD";
 "Tap the account to log in." = "Daxil olmaq üçün hesaba toxunun.";
-"Add new" = "Dodaj nowe";
-"active" = "aktywne";
+"Add new" = "Yeni əlavə et";
+"active" = "aktiv";
 "Default" = "Əsas hesab";
 "Delete account" = "Usuń konto";
 "Select active account" = "Aktiv hesabı seçin";
@@ -232,7 +208,6 @@
 "Channels" = "Kanallar";
 "Groups" = "Qruplar";
 "Scenes" = "Səhnələr";
-"Thermostat" = "Termostat";
 "Not supported function" = "Dəstəklənməyən funksiya";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=az";
@@ -244,7 +219,7 @@
 "Cfg.removal.title" = "Hesabı silmək istəyirsiniz?";
 "Cfg.removal.action.logout" = "Bu cihazda unut";
 "Cfg.removal.action.remove" = "Cloud-da unut və sil";
-"Cfg.removal.dialog.failed.title" = "Błąd usuwania";
+"Cfg.removal.dialog.failed.title" = "Silinmə uğursuz oldu";
 "Cfg.removal.dialog.failed.message" = "Hesabınızı silmək alınmadı, yenidən cəhd edin";
 "Cfg.removal.dialog.missing_name" = "Hesab adı qeyd edilməyib";
 "Cfg.removal.dialog.duplicated_name" = "Bu adda hesab artıq mövcuddur";
@@ -254,15 +229,15 @@
 
 /* General */
 "general_error" = "Xəta";
-"general_warning" = "Uwaga";
+"general_warning" = "Xəbərdarlıq";
 "save" = "Yadda saxla";
 "next" = "Növbəti";
 "password" = "Şi̇frə";
 "start" = "Başlat";
-"exit" = "Wyjście";
+"exit" = "Çıxış";
 "turn_on" = "Yandır";
 "turn_off" = "Söndür";
-"general_back" = "Wstecz";
+"general_back" = "Geri";
 "general_shut" = "Bağla";
 "general_reveal" = "Aç";
 "general_collapse" = "Sıx";
@@ -415,7 +390,7 @@
 "timer_detail_save" = "Yadda saxla";
 "timer_detail_edit_cancel" = "Redaktəni ləğv et";
 "timer_detail_end_hour" = "-ə qədər %@";
-"timer_detail_wrong_time_title" = "Nieprawidłowy czas";
+"timer_detail_wrong_time_title" = "Etibarsız vaxt";
 "timer_detail_wrong_time_message" = "Vaxt 0-dan böyük olmalıdır";
 "timer_detail_cancel_thermostat" = "Ləğv et və aç:";
 "timer_detail_select_mode" = "Rejimi seç";
@@ -439,7 +414,7 @@
 "hvac_mode_temperature_heating" = "İstilik temperaturu";
 "hvac_mode_temperature_cooling" = "Soyutma temperaturu";
 "schedule_detail_quarters_dialog_header" = "Vaxt %02d:00";
-"schedule_detail_configuration_failure" = "Błąd - nieprawidłowa konfiguracja kanału";
+"schedule_detail_configuration_failure" = "Səhv - etibarsız kanal konfiqurasiyası";
 "thermostat_detail_program_time" = "%@ üçün";
 "thermostat_detail_program_current" = "Hazırda:";
 "thermostat_detail_program_next" = "Növbəti:";
@@ -451,7 +426,7 @@
 "thermostat_detail_arrow_info" = "Qara künc cari gün və saatı göstərir.";
 "thermostat_detail_list" = "Siyahı";
 "thermostat_detail_main_thermostat" = "Əsas termostat";
-"thermostat_detail_other_thermostats" = "Lista pozostałych";
+"thermostat_detail_other_thermostats" = "Digər termostatlar";
 "thermostat_detail_antifreeze_active" = "Antifriz qorunması aktivdir";
 "thermostat_detail_overheat_active" = "Həddindən artıq istilik qorunması aktivdir";
 
@@ -581,7 +556,7 @@
 "details_em_balance_hourly" = "Saatlıq balans";
 "details_em_balance_chart_aggregated" = "Cədvəldə cəmlənmiş balans";
 "details_em_sum" = "Cəm";
-"details_em_select_range" = "Wybierz okres";
+"details_em_select_range" = "Aralığı seçin";
 "details_em_active_energy" = "Aktiv enerji";
 "details_em_forwarded_energy" = "İrəli";
 "details_em_reversed_energy" = "Geri";
@@ -611,7 +586,7 @@
 "details_em_current_month_consumption" = "Cari ayın istehlakı";
 
 /* Counter photo */
-"counter_photo_toolbar" = "Zdjęcia licznika";
+"counter_photo_toolbar" = "Sayğac fotoları";
 "counter_photo_counter_area" = "Sayğac sahəsi";
 "counter_photo_original_photo" = "Orijinal foto";
 "counter_photo_settings" = "Bulud konfiqurasiyası";
@@ -672,7 +647,7 @@
 "container_sound_alarm" = "Səsli alarm aktivdir";
 
 /* Car play */
-"car_play_label" = "Akcje dla widżetów/CarPlay";
+"car_play_label" = "Vidjetlər/CarPlay üçün hərəkətlər";
 "car_play_voice_messages" = "Mesajları oxu";
 "car_play_action" = "Əməliyyat: %@";
 "car_play_display_name" = "Göstərilən ad";
@@ -681,28 +656,28 @@
 "car_play_delete_title" = "Element silinir";
 "car_play_delete_message" = "Davam etmək istəyirsiniz?";
 "car_play_confirm_delete" = "Sil";
-"car_play_empty" = "CarPlay nie jest skonfigurowany. Otwórz aplikację Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i przygotuj swoją konfigurację.";
+"car_play_empty" = "CarPlay konfiqurasiya edilməyib. Supla Tətbiqinə keçin -> Parametrlər -> Vidjetlər/CarPlay üçün hərəkətlər bölməsinə daxil olun və konfiqurasiyanı hazırlayın.";
 
 /* Widgets */
-"widgets_label" = "Akcje dla widżetów";
-"widget_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla widżetów i zdefiniuj wybrane akcje.";
+"widgets_label" = "Vidjetlər üçün hərəkətlər";
+"widget_empty_hint" = "Heç bir ümumi hərəkət təyin edilməyib. Supla Tətbiqinə keçin -> Parametrlər -> Vidjetlər üçün hərəkətlər bölməsinə daxil olun və öz hərəkətlərinizi təyin edin.";
 "widget_with_carplay_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i zdefiniuj wybrane akcje.";
-"widget_control_hint" = "Wykonanie akcji";
-"widgets_actions_name" = "Akcje";
-"widgets_actions_description" = "Ułatwia dostęp do najczęściej wykonywanych czynności";
-"widgets_unknown_action" = "Nieznana akcja!";
-"widgets_value_title" = "Szybki podgląd";
-"widgets_value_description" = "Widżet pozwalający na szybki podgląd aktualnej wartości kanału.";
-"widget_configuration_error" = "Konfiguracja widżetu jest nieprawidłowa";
-"widgets_single_action_title" = "Pojedyncza akcja";
-"widgets_single_action_description" = "Ułatwia dostęp do pojedynczej akcji.";
-"widgets_double_action_title" = "Podwójna akcja";
-"widgets_double_action_description" = "Ułatwia dostęp do podwójnej akcji.";
-"widgets_first_action" = "Pierwsza akcja";
-"widgets_second_action" = "Druga akcja";
-"widgets_control_title" = "Przycisk sterujący";
-"widgets_control_description" = "Przycisk pozwalający na wywołanie pojedynczej predefiniowanej akcji";
-"widgets_selected_action" = "Wybrana akcja";
+"widget_control_hint" = "Hərəkəti yerinə yetir";
+"widgets_actions_name" = "Hərəkətlər";
+"widgets_actions_description" = "Ən çox yayılmış hərəkətlərə çıxışı sadələşdirir.";
+"widgets_unknown_action" = "Naməlum hərəkət!";
+"widgets_value_title" = "Sürətli Baxış";
+"widgets_value_description" = "Cari kanal dəyərinin sürətli önizləməsini təqdim edən vidjet.";
+"widget_configuration_error" = "Vidjet düzgün konfiqurasiya edilməyib";
+"widgets_single_action_title" = "Tək Hərəkət";
+"widgets_single_action_description" = "Tək hərəkətə çıxışı sadələşdirir.";
+"widgets_double_action_title" = "Cüt Hərəkət";
+"widgets_double_action_description" = "İki hərəkətə çıxışı sadələşdirir.";
+"widgets_first_action" = "Birinci hərəkət";
+"widgets_second_action" = "İkinci hərəkət";
+"widgets_control_title" = "İdarəetmə düyməsi";
+"widgets_control_description" = "Əvvəlcədən təyin edilmiş tək bir hərəkəti yerinə yetirməyə imkan verən düymə";
+"widgets_selected_action" = "Seçilmiş hərəkət";
 
 /* Add Wizard */
 "device_reg_request_timeout" = "Cihaz qeydiyyatı mövcudluğu məlumatının vaxt limiti bitdi!";
@@ -717,11 +692,11 @@
 "add_wizard_add_more" = "Daha əlavə et";
 "add_wizard_repeat" = "Yenidən cəhd et";
 "add_wizard_remember_passwd" = "Şifrəni yadda saxla";
-"add_wizard_auto_mode" = "Tryb automatyczny";
-"add_wizard_manual_mode_message" = "Użyj poniższego skrótu do Ustawień systemowych, aby wybrać urządzenie Wi-Fi do konfiguracji, np. SUPLA-A220A63612B1.\n\nNazwa sieci Wi-Fi zazwyczaj zawiera nazwę producenta, np. SUPLA, ZAMEL, NICE, HEATPOL itp.\n\nPo nawiązaniu połączenia wróć do aplikacji i kontynuuj procedurę dodawania, naciskając przycisk **START**.";
-"add_wizard_manual_mode_settings" = "Przejdź do ustawień systemowych";
-"add_wizard_location_service_off" = "Aby Kreator dodawania urządzenia działał poprawnie, usługa lokalizacji musi być włączona na tym urządzeniu. Przejdź do ustawień systemowych i upewnij się, że jest włączona (Ustawienia -> Prywatność i ochrona -> Usługi lokalizacji).";
-"add_wizard_missing_location" = "Aplikacja SUPLA wymaga dostępu do lokalizacji, aby kreator dodawania urządzenia działał poprawnie. Zezwól aplikacji SUPLA na dostęp do lokalizacji w ustawieniach systemowych.";
+"add_wizard_auto_mode" = "Avto rejim";
+"add_wizard_manual_mode_message" = "Zəhmət olmasa, konfiqurasiya üçün I/O Cihazınızın Wi-Fi-ını (məsələn, SUPLA-A220A63612B1 kimi) seçmək üçün aşağıdakı Sistem Parametrləri qısa yolundan istifadə edin.\n\nKonfiqurasiya Wi-Fi adı adətən istehsalçının adını ehtiva edir, məsələn, SUPLA, ZAMEL, NICE, HEATPOL və s.\n\nBağlantı qurulduqda, tətbiqə qayıdın və **BAŞLA** düyməsini basaraq əlavə etmə prosedurunu davam etdirin.";
+"add_wizard_manual_mode_settings" = "Sistem parametrlərinə keçin";
+"add_wizard_location_service_off" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün cihazınızda yer xidmətləri aktivləşdirilməlidir. Sistem parametrlərinizə keçin və onun aktiv olduğundan əmin olun (Parametrlər -> Məxfilik və Təhlükəsizlik -> Yer Xidmətləri).";
+"add_wizard_missing_location" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün SUPLA tətbiqinə yerə giriş lazımdır. Sistem parametrlərinizdə SUPLA tətbiqinin yerinizə daxil olmasına icazə verin.";
 "wizard_scan_timeout" = "Wi-Fi şəbəkə skanlamasının vaxt limiti bitdi!";
 "wizard_iodevice_notfound" = "Heç bir I/O cihazı tapılmadı! Zəhmət olmasa I/O cihazınızın ON və konfiqurasiya rejimində olduğundan əmin olun.";
 "wizard_connect_timeout" = "I/O cihazının qoşulma vaxt limiti bitdi!";
@@ -751,17 +726,17 @@
 "add_wizard_password_new_label" = "Yeni şifrə";
 "add_wizard_password_repeat_label" = "Şifrəni təkrarla";
 "add_wizard_password_enter_title" = "Cihaz şifrəsi";
-"add_wizard_password_instruction" = "Zastosuj hasło dostępu używane do lokalnej strony konfiguracyjnej.\n\nZapomniałeś hasła? Możesz je zmienić w Supla Cloud lub zresetować urządzenie do ustawień fabrycznych.";
-"add_wizard_manual_reconnect_message" = "Nawiązanie połączenie z internetem nie powiodło się.\n\n Przejdź do ustawień systemowych i wybierz sieć Wi-Fi, która posiada połączenie z internetem. Następnie wróć do aplikacji i kontynuuj naciskająć przycisk Dalej";
-"add_device_manual_popup_title" = "Nie udało się dodać urządzenia";
-"add_device_manual_popup_message" = "Próba dodania urządzenia w trybie automatycznym się nie powiodła. Jeśli problem się powtarza, zalecamy dodanie urządzenia w trybie ręcznym.";
-"add_device_manual_popup_resign" = "Pozostań w trybie automatycznym";
-"add_device_manual_popup_continue" = "Spróbuj ponownie w trybie ręcznym";
-"add_wizard_internal_error_message" = "Usługa systemowa iOS zgłosiła wewnętrzny błąd przy skanowaniu sieci, na który nie mamy wpływu. Spróbuj dodać urządzenie używając trybu ręcznego, lub uruchom ponownie telefon/tablet";
+"add_wizard_password_instruction" = "Zəhmət olmasa, yerli konfiqurasiya veb səhifəsinə daxil olmaq üçün istifadə edilən paroldan istifadə edin.\n\nParolunuzu unutmusunuz? Onu Supla Cloud-da dəyişə bilərsiniz və ya cihazı zavod parametrlərinə sıfırlaya bilərsiniz.";
+"add_wizard_manual_reconnect_message" = "İnternet bağlantısı uğursuz oldu.\n\nSistem parametrlərinə keçin və internet bağlantısı olan bir Wi-Fi şəbəkəsi seçin. Sonra tətbiqə qayıdın və **İrəli** düyməsini basaraq davam edin.";
+"add_device_manual_popup_title" = "Cihazı əlavə etmək uğursuz oldu";
+"add_device_manual_popup_message" = "Cihazı avtomatik əlavə etmək cəhdi uğursuz oldu. Problem davam edərsə, cihazı əl ilə əlavə etməyi tövsiyə edirik.";
+"add_device_manual_popup_resign" = "Avtomatik rejimdə qalın";
+"add_device_manual_popup_continue" = "Əl ilə rejimdə yenidən cəhd edin";
+"add_wizard_internal_error_message" = "iOS sistem xidməti şəbəkə skanı zamanı nəzarətimizdən kənar daxili xəta bildirdi. Zəhmət olmasa, cihazı əl ilə rejimdən istifadə edərək əlavə etməyə cəhd edin və ya telefonunuzu/planşetinizi yenidən başladın.";
 "add_wizard_spaces_accept" = "Olduğu kimi saxla";
 "add_wizard_spaces_modify" = "Boşluqları sil";
 "add_wizard_spaces_title" = "Şəbəkə adında boşluq?";
-"add_wizard_spaces_message" = "Wprowadzona nazwa sieci \„%@\” zawiera wiodące lub końcowe białe znaki (spacje lub tabulatory). Jeśli nazwa sieci nie powinna zawierać tych znaków, urządzenie nie będzie w stanie połączyć się z siecią. Czy chcesz zachować, czy usunąć wiodące lub końcowe białe znaki?";
+"add_wizard_spaces_message" = "Daxil edilmiş şəbəkə adı \"%@\" öndə və ya sondakı boşluq (aralıq və ya tabulyasiya) simvollarını ehtiva edir. Əgər şəbəkə adınız bu simvolları ehtiva etməməlidirsə, cihazınız şəbəkəyə qoşula bilməyəcək. Öndəki və ya sondakı boşluq simvollarını saxlamaq, yoxsa silmək istəyirsiniz?";
 
 /* Developer Info */
 "developer_option" = "İnkişafçı seçimləri";

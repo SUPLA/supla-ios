@@ -76,24 +76,14 @@
 "Days" = "Jours";
 "Months" = "Mois";
 "Years" = "Années";
-"Minute to minute comparison" = "Comparaison minute par minute";
-"Hour to hour comparison" = "Comparaison heure par heure";
-"Day to day comparison" = "Comparaison jour par jour";
-"Month to month comparison" = "Comparaison mois par mois";
-"Year to year comparison" = "Comparaison année par année";
 "Ranking of hours" = "Classement des heures";
 "Ranking of weekdays" = "Classement des jours de la semaine";
 "Ranking of months" = "Classement des mois";
-"Consumption according to phases" = "Consommation selon phases";
-"Production according to phases" = "Production selon phases";
 "Last 24 hours" = "Dernières 24 heures";
 "Last 7 days" = "Derniers 7 jours";
 "Last 30 days" = "Derniers 30 jours";
 "Last 90 days" = "Derniers 90 jours";
 "All available history" = "Tout l'historique disponible";
-"Phase 1" = "Phase 1";
-"Phase 2" = "Phase 2";
-"Phase 3" = "Phase 3";
 "Home+ Heater" = "Élément chauffant Home+";
 "Comfort" = "Confort";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Non";
 
 "Heat meter" = "Compteur de chaleur";
-"Arithmetic balance - Minutes" = "Bilan arithmétique - Minutes";
-"Arithmetic balance - Hours" = "Bilan arithmétique - Heures";
-"Arithmetic balance - Days" = "Bilan arithmétique - Jours";
-"Arithmetic balance - Months" = "Bilan arithmétique - Mois";
-"Arithmetic balance - Years" = "Bilan arithmétique - Années";
-"Vector balance - Minutes" = "Bilan vectorielle - Minutes";
-"Vector balance - Hours" = "Bilan vectorielle - Heures";
-"Vector balance - Days" = "Bilan vectorielle - Jours";
-"Vector balance - Months" = "Bilan vectorielle - Mois";
-"Vector balance - Years" = "Bilan vectorielle - Années";
 
 "Time exceeded. Try again." = "Temps expiré. Réessayer.";
 "Are you sure you want to restore the default settings?" = "Voulez-vous vraiment rétablir les paramètres par défaut ?";
-"Default settings" = "Paramètres par défaut";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "MODIFIER LE RÉGLAGE DE LA DURÉE DE VIE DE LA SOURCE LUMINEUSE";
 "Please enter your Supla Cloud login details." = "Entrez vos informations de connexion cloud.supla.org.";
@@ -148,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si le dispositif est allumé mais ne fonctionne pas en mode de configuration, maintenez la touche CONFIG pendant au moins 5 secondes.\n\n%@\n";
 "Press Next to continue." = "Pour continuer, appuyez sur Continuer.";
 "Press START to start configuration." = "Appuyez sur DÉMARRER pour commencer la configuration.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assurez-vous que l\'application a la permission de trouver des appareils sur le réseau local et de s\'y connecter. Cela signifie que la permission « iOS->Paramètres->SUPLA->Réseau local » doit être activée pour que l\'assistant fonctionne correctement.";
 "Back" = "Retour";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Le pont z-wave ne répond pas. Vérifiez si le pont est connecté au serveur.";
 "Exit" = "Sortie";
@@ -216,8 +194,6 @@
 "Location order" = "Ordre de localisation";
 "Opening" = "Ouvertures";
 "Closing" = "Fermetures";
-"Percent of opening" = "Pourcentage d\'ouverture";
-"Percent of closing" = "Pourcentage de clôture";
 "Your account" = "Votre compte";
 "Your accounts" = "Vos comptes";
 "Accounts" = "Comptes";

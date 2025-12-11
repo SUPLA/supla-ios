@@ -76,24 +76,14 @@
 "Days" = "Dager";
 "Months" = "Måneder";
 "Years" = "År";
-"Minute to minute comparison" = "Sammenligning minutt etter minutt";
-"Hour to hour comparison" = "Sammenligning time etter time";
-"Day to day comparison" = "Sammenligning dag etter dag";
-"Month to month comparison" = "Sammenligning måned etter måned";
-"Year to year comparison" = "Sammenligning år etter år";
 "Ranking of hours" = "Time rangering";
 "Ranking of weekdays" = "Ukedager rangering";
 "Ranking of months" = "Måneder rangering";
-"Consumption according to phases" = "Forbruk i forhold til faser";
-"Production according to phases" = "Produksjon i forhold til faser";
 "Last 24 hours" = "Siste 24 timer";
 "Last 7 days" = "Siste 7 dager";
 "Last 30 days" = "Siste 30 dager";
 "Last 90 days" = "Siste 90 dager";
 "All available history" = "Tilgjengelig historie";
-"Phase 1" = "Fase 1";
-"Phase 2" = "Fase 2";
-"Phase 3" = "Fase 3";
 "Home+ Heater" = "Varmeapparat Home+";
 "Comfort" = "Komfort";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Nei";
 
 "Heat meter" = "Varmemåler";
-"Arithmetic balance - Minutes" = "Aritmetisk balanse - Minutter";
-"Arithmetic balance - Hours" = "Aritmetisk balanse - Timer";
-"Arithmetic balance - Days" = "Aritmetisk balanse - Dager";
-"Arithmetic balance - Months" = "Aritmetisk balanse - Måneder";
-"Arithmetic balance - Years" = "Aritmetisk balanse - År";
-"Vector balance - Minutes" = "Vektorbalanse - Minutter";
-"Vector balance - Hours" = "Vektorbalanse - Timer";
-"Vector balance - Days" = "Vektorbalanse - Dager";
-"Vector balance - Months" = "Vektorbalanse - Måneder";
-"Vector balance - Years" = "Vektorbalanse - År";
 
 "Time exceeded. Try again." = "Tiden er utløpt. Prøv igjen.";
 "Are you sure you want to restore the default settings?" = "Er du sikker på at du vil tilbakestille innstillinger?";
-"Default settings" = "Standard instillinger";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ENDRE LIVSKILDEINNSTILLING";
 "Please enter your Supla Cloud login details." = "Skriv inn påloggingsinformasjonen for cloud.supla.org.";
@@ -148,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\n%@\n";
 "Press Next to continue." = "For å fortsette trykk på Videre.";
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Sørg for at applikasjonen har tillatelser til å oppdage og koble til enheter i det lokale nettverket. Dette betyr at tillatelsen \"iOS-> Innstillinger-> SUPLA-> Lokalt nettverk \" må være aktivert for at veiviseren skal fungere skikkelig.";
 "Back" = "Tilbake";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave bro svarer ikke. Kontroller om broen er tilkoblet serveren.";
 "Exit" = "Avslutt";
@@ -216,8 +194,6 @@
 "Location order" = "Rekkefølgen av plassering";
 "Opening" = "Åpning";
 "Closing" = "Nedleggelser";
-"Percent of opening" = "Åpningsprosent";
-"Percent of closing" = "Avslutningsprosent";
 "Your account" = "Kontoen din";
 "Your accounts" = "Dine kontoer";
 "Accounts" = "Kontoer";
@@ -228,7 +204,6 @@
 "Default" = "Standard";
 "Delete account" = "Slett konto";
 "Select active account" = "Velg en aktiv konto";
-"Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
 "Channels" = "Kanaler";
 "Groups" = "Grupper";

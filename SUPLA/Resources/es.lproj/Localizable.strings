@@ -77,24 +77,14 @@
 "Days" = "Días";
 "Months" = "Meses";
 "Years" = "Años";
-"Minute to minute comparison" = "Comparación minuto a minuto";
-"Hour to hour comparison" = "Comparación hora a hora";
-"Day to day comparison" = "Comparación día a día";
-"Month to month comparison" = "Comparación mes a mes";
-"Year to year comparison" = "Comparación año a año";
 "Ranking of hours" = "Ranking de horas";
 "Ranking of weekdays" = "Ranking de días de la semana";
 "Ranking of months" = "Ranking de meses";
-"Consumption according to phases" = "Consumo por fases";
-"Production according to phases" = "Producción por fases";
 "Last 24 hours" = "Últimas 24 horas";
 "Last 7 days" = "Últimos 7 días";
 "Last 30 days" = "Últimos 30 días";
 "Last 90 days" = "Últimos 90 días";
 "All available history" = "Todo el historial disponible";
-"Phase 1" = "Fase 1";
-"Phase 2" = "Fase 2";
-"Phase 3" = "Fase 3";
 "Home+ Heater" = "Calentador Home+";
 "Comfort" = "Confort";
 "ECO" = "ECO";
@@ -121,20 +111,9 @@
 "No" = "No";
 
 "Heat meter" = "Medidor de calor";
-"Arithmetic balance - Minutes" = "Balance aritmético – Minutos";
-"Arithmetic balance - Hours" = "Balance aritmético – Horas";
-"Arithmetic balance - Days" = "Balance aritmético – Días";
-"Arithmetic balance - Months" = "Balance aritmético – Meses";
-"Arithmetic balance - Years" = "Balance aritmético – Años";
-"Vector balance - Minutes" = "Balance vectorial – Minutos";
-"Vector balance - Hours" = "Balance vectorial – Horas";
-"Vector balance - Days" = "Balance vectorial – Días";
-"Vector balance - Months" = "Balance vectorial – Meses";
-"Vector balance - Years" = "Balance vectorial – Años";
 
 "Time exceeded. Try again." = "¡Se ha superado el tiempo! Inténtalo de nuevo.";
 "Are you sure you want to restore the default settings?" = "¿Está seguro de restaurar la configuración predeterminada?";
-"Default settings" = "Configuración por defecto";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
 "Please enter your Supla Cloud login details." = "Ingrese sus datos de inicio de sesión en cloud.supla.org.";
@@ -149,7 +128,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\n%@\n";
 "Press Next to continue." = "Para continuar presiona Siguiente.";
 "Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
 "Back" = "Atrás";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifica si el puente está conectado con al servidor.";
 "Exit" = "Salir";
@@ -217,8 +195,6 @@
 "Location order" = "Orden de las localizaciones";
 "Opening" = "Aperturas";
 "Closing" = "Cierres";
-"Percent of opening" = "Porcentaje de apertura";
-"Percent of closing" = "Porcentaje de cierre";
 "Your account" = "Tu cuenta";
 "Your accounts" = "Tus cuentas";
 "Accounts" = "Cuentas";

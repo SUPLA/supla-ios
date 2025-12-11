@@ -78,24 +78,14 @@
 "Days" = "Dienos";
 "Months" = "Mėnesiai";
 "Years" = "Metai";
-"Minute to minute comparison" = "Palyginimas minutė prie minutės";
-"Hour to hour comparison" = "Palyginimas valanda prie valandos";
-"Day to day comparison" = "Palyginimas diena prie dienos";
-"Month to month comparison" = "Palyginimas mėnuo prie mėnesio";
-"Year to year comparison" = "Palyginimas metai prie metų";
 "Ranking of hours" = "Valandų reitingas";
 "Ranking of weekdays" = "Savaitės dienų reitingas";
 "Ranking of months" = "Mėnesių reitingas";
-"Consumption according to phases" = "Suvartojimas pagal fazes";
-"Production according to phases" = "Gamyba pagal fazes";
 "Last 24 hours" = "Pastarosios 24 valandos";
 "Last 7 days" = "Pastarosios 7 dienos";
 "Last 30 days" = "Pastarosios 30 dienų";
 "Last 90 days" = "Pastarosios 90 dienų";
 "All available history" = "Visa prieinama istorija";
-"Phase 1" = "1 fazė";
-"Phase 2" = "2 fazė";
-"Phase 3" = "3 fazė";
 "Home+ Heater" = "Šildytuvas Home+";
 "Comfort" = "Comfort";
 "ECO" = "ECO";
@@ -122,20 +112,9 @@
 "No" = "Ne";
 
 "Heat meter" = "Šilumos skaitiklis";
-"Arithmetic balance - Minutes" = "Asimetrinis balansas – Minutės";
-"Arithmetic balance - Hours" = "Asimetrinis balansas – Valandos";
-"Arithmetic balance - Days" = "Asimetrinis balansas – Dienos";
-"Arithmetic balance - Months" = "Asimetrinis balansas Mėnesiai";
-"Arithmetic balance - Years" = "Asimetrinis balansas – Metai";
-"Vector balance - Minutes" = "Vektorinis balansas – Minutės";
-"Vector balance - Hours" = "Vektorinis balansas – Valandos";
-"Vector balance - Days" = "Vektorinis balansas – Dienos";
-"Vector balance - Months" = "Vektorinis balansas – Mėnesiai";
-"Vector balance - Years" = "Vektorinis balansas – Metai";
 
 "Time exceeded. Try again." = "Laikas baigėsi. Pabandykite vėl.";
 "Are you sure you want to restore the default settings?" = "Ar tikrai norite atkurti numatytuosius nustatymus?";
-"Default settings" = "Numatytieji nustatymai";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "PAKEISTI ŠVIESOS ŠALTINIO GYVAVIMO TRUKMĖS NUSTATYMUS";
 "Please enter your Supla Cloud login details." = "Įveskite savo prisijungimo prie cloud.supla.org duomenis.";
@@ -150,7 +129,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Jei įrenginys įjungus maitinimą neveikia konfigūracijos režimu, palaikykite paspaustą mygtuką CONFIG bent 5 sekundes.\n\n%@\n";
 "Press Next to continue." = "Spustelėkite Pirmyn, jei norite tęsti";
 "Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Įsitikinkite, kad programoje yra leidimas aptikti įrenginius vietiniame tinkle ir prisijungti prie jų. Tai reiškia kad tam, kad vedlys veiktų tinkamai leidimas \“iOS->Nustatymai->SUPLA->Vietinis tinklas\“ turi būti įjungtas.";
 "Back" = "Atgal";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
 "Exit" = "Išėjimas";
@@ -218,8 +196,6 @@
 "Location order" = "Vietų eiliškumas";
 "Opening" = "Atidarymo";
 "Closing" = "Uždarymo";
-"Percent of opening" = "Atidarymo procentas";
-"Percent of closing" = "Uždarymo procentas";
 "Your account" = "Jūsų paskyra";
 "Your accounts" = "Jūsų paskyros";
 "Accounts" = "Paskyros";

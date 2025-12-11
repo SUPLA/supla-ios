@@ -76,24 +76,14 @@
 "Days" = "Dni";
 "Months" = "Mesiace";
 "Years" = "Roky";
-"Minute to minute comparison" = "Porovnanie minúta po minúte";
-"Hour to hour comparison" = "Porovnanie hodina po hodine";
-"Day to day comparison" = "Porovnanie deň po dni";
-"Month to month comparison" = "Porovnanie mesiac po mesiaci";
-"Year to year comparison" = "Porovnanie rok po rokuu";
 "Ranking of hours" = "Rebríček hodín";
 "Ranking of weekdays" = "Rebríček dní týždňa";
 "Ranking of months" = "Rebríček mesiacov";
-"Consumption according to phases" = "Spotreba podľa fáz";
-"Production according to phases" = "Výroba podľa fáz";
 "Last 24 hours" = "Posledných 24 hodín";
 "Last 7 days" = "Posledných 7 dní";
 "Last 30 days" = "Posledných 30 dní";
 "Last 90 days" = "Posledných 90 dní";
 "All available history" = "Celá dostupná história";
-"Phase 1" = "Fáza 1";
-"Phase 2" = "Fáza 2";
-"Phase 3" = "Fáza 3";
 "Home+ Heater" = "Špirála Home+";
 "Comfort" = "Komfortná";
 "ECO" = "ECO";
@@ -120,20 +110,9 @@
 "No" = "Nie";
 
 "Heat meter" = "Merač tepla";
-"Arithmetic balance - Minutes" = "Aritmetická bilancia - Minúty";
-"Arithmetic balance - Hours" = "Aritmetická bilancia - Hodiny";
-"Arithmetic balance - Days" = "Aritmetická bilancia - Dni";
-"Arithmetic balance - Months" = "Aritmetická bilancia - Mesiace";
-"Arithmetic balance - Years" = "Aritmetická bilancia - Roky";
-"Vector balance - Minutes" = "Vektorová bilancia - Minúty";
-"Vector balance - Hours" = "Vektorové bilancia - Hodiny";
-"Vector balance - Days" = "Vektorová bilancia - Dni";
-"Vector balance - Months" = "Vektorová bilancia - Mesiace";
-"Vector balance - Years" = "Vektorová bilancia - Roky";
 
 "Time exceeded. Try again." = "Došlo k prekročeniu lehoty. Skúste znova.";
 "Are you sure you want to restore the default settings?" = "Naozaj chcete obnoviť predvolené nastavenia?";
-"Default settings" = "Predvolené nastavenia";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMENIŤ NASTAVENIA ŽIVOTNOSTI ZDROJA SVETLA";
 "Please enter your Supla Cloud login details." = "Zadajte svoje prihlasovacie údaje do Supla Cloud.";
@@ -148,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Ak zariadenie po pripojení k el. napätiu nie je spustené v konfiguračnom režime, stlačte a na aspoň 5 sekúnd podržte tlačidlo CONFIG.\n\n%@\n";
 "Press Next to continue." = "Pokračujte stlačením Ďalej.";
 "Press START to start configuration." = "Stlačte tlačidlo ŠTART a začnite konfiguráciu.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Uistite sa, že aplikácia má povolenia na zisťovanie a pripojenie k zariadeniam v lokálnej sieti. To znamená, že pre správne fungovanie sprievodcu musí byť povolené oprávnenie \"iOS->Nastavenia->SUPLA->Lokálna sieť\".";
 "Back" = "Späť";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
 "Exit" = "Výstup";
@@ -216,8 +194,6 @@
 "Location order" = "Poradie miest";
 "Opening" = "Otvorenia";
 "Closing" = "Zatvorenia";
-"Percent of opening" = "Percento otvorenia";
-"Percent of closing" = "Percento zatvorenia";
 "Your account" = "Váš účet";
 "Your accounts" = "Vaše účty";
 "Accounts" = "Účty";
