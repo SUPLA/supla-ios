@@ -93,7 +93,7 @@ extension RgbDetailFeature {
             case .scene: break
             }
             
-            colorListItemRepository.deleteUnusedColors(byRemoteId: remoteId, forType: type)
+            colorListItemRepository.deleteUnusedColors(byRemoteId: remoteId, forSubject: type, andType: .rgb)
                 .subscribe()
                 .disposed(by: disposeBag)
         }
@@ -155,16 +155,16 @@ extension RgbDetailFeature {
             }
         }
         
-        func updateSavedColorsOrder(items: [RgbDetailFeature.SavedColor]) {
+        func updateSavedColorsOrder(items: [SavedColor]) {
             guard let remoteId, let type else { return }
             
             let indexMap = Dictionary(uniqueKeysWithValues: items.enumerated().map { (index, element) in (Int(element.idx), index + 1) })
-            reorderColorListItemsUseCase.invoke(type: type, remoteId: remoteId, indexMap: indexMap)
+            reorderColorListItemsUseCase.invoke(subject: type, remoteId: remoteId, type: .rgb, indexMap: indexMap)
                 .subscribe()
                 .disposed(by: disposeBag)
         }
         
-        func onSavedColorSelected(color: RgbDetailFeature.SavedColor) {
+        func onSavedColorSelected(color: SavedColor) {
             guard !state.offline, let hsvColor = color.color.toHsv(color.brightness) else { return }
             
             lastInteractionTime = nil
@@ -177,11 +177,11 @@ extension RgbDetailFeature {
             }
         }
         
-        func onRemoveColor(color: RgbDetailFeature.SavedColor) {
+        func onRemoveColor(color: SavedColor) {
             guard let remoteId, let type else { return }
             
             lastInteractionTime = nil
-            deleteColorListItemUseCase.invoke(type: type, remoteId: remoteId, idx: color.idx)
+            deleteColorListItemUseCase.invoke(subject: type, remoteId: remoteId, type: .rgb, idx: color.idx)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] _ in self?.reloadData() })
                 .disposed(by: disposeBag)
@@ -207,7 +207,7 @@ extension RgbDetailFeature {
 
             // It's needed to enable immediate update
             lastInteractionTime = nil
-            insertColorListItemUseCase.invoke(type: type, remoteId: remoteId, color: color, brightness: brightness)
+            insertColorListItemUseCase.invoke(subject: type, remoteId: remoteId, type: .rgb, color: color, brightness: brightness)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] _ in self?.reloadData() })
                 .disposed(by: disposeBag)
@@ -276,7 +276,7 @@ extension RgbDetailFeature {
         private func loadChannel(_ remoteId: Int32) {
             Observable.zip(
                 readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
-                colorListItemRepository.find(byRemoteId: remoteId, forType: .channel)
+                colorListItemRepository.find(byRemoteId: remoteId, forSubject: .channel, andType: .rgb)
             ) { channel, colorItems in (channel, colorItems) }
                 .asDriverWithoutError()
                 .drive(
@@ -389,7 +389,7 @@ extension RgbDetailFeature {
         private func loadGroup(_ remoteId: Int32) {
             Observable.zip(
                 readGroupWithChannelsUseCase.invoke(remoteId: remoteId),
-                colorListItemRepository.find(byRemoteId: remoteId, forType: .group)
+                colorListItemRepository.find(byRemoteId: remoteId, forSubject: .group, andType: .rgb)
             ) { channel, colorItems in (channel, colorItems) }
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] group, colors in
@@ -440,18 +440,5 @@ extension RgbDetailFeature {
             state.loadingState = state.loadingState.copy(loading: false)
             state.savedColors = colors.compactMap { $0.savedColor }
         }
-    }
-}
-
-extension SAColorListItem {
-    var savedColor: RgbDetailFeature.SavedColor? {
-        guard let idx = idx?.int32Value,
-              let color = UIColor.fromDictonary(color),
-              let brightness = brightness?.int32Value
-        else {
-            return nil
-        }
-        
-        return RgbDetailFeature.SavedColor(idx: idx, color: color, brightness: brightness)
     }
 }

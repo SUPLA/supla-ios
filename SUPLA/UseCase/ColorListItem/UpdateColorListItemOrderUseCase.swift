@@ -20,14 +20,14 @@ import RxSwift
 
 struct UpdateColorListItemOrder {
     protocol UseCase {
-        func invoke(type: SubjectType, remoteId: Int32) -> Observable<Void>
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType) -> Observable<Void>
     }
     
     class Implementation: UseCase {
         @Singleton<ColorListItemRepository> private var colorListItemRepository
         
-        func invoke(type: SubjectType, remoteId: Int32) -> Observable<Void> {
-            colorListItemRepository.find(byRemoteId: remoteId, forType: type)
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType) -> Observable<Void> {
+            colorListItemRepository.find(byRemoteId: remoteId, forSubject: subject, andType: type)
                 .map {
                     var index = 1
                     for item in $0 {

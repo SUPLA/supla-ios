@@ -23,8 +23,10 @@ extension DimmerDetailFeature {
         @Published var offButtonState: SwitchButtonState? = nil
         @Published var onButtonState: SwitchButtonState? = nil
         @Published var value: DimmerValue = .empty
+        @Published var savedColors: [SavedColor] = []
         @Published var offline: Bool = false
         @Published var loadingState: LoadingState = .init()
+        @Published var showLimitReachedToast: Bool = false
     }
     
     enum DimmerValue {

@@ -191,47 +191,6 @@ extension RgbDetailFeature {
             }
         }
     }
-
-    struct SavedColorAction: SwiftUI.View {
-        let dragging: Bool
-        let over: Bool
-
-        var body: some SwiftUI.View {
-            let color: Color = over ? .Supla.error : .Supla.onSurfaceVariant
-            let iconSize: CGFloat = dragging ? 16 : 12
-            let icon: String = dragging ? .Icons.delete : .Icons.plus
-
-            ZStack {
-                Image(icon)
-                    .renderingMode(.template)
-                    .resizable()
-                    .frame(width: iconSize, height: iconSize)
-                    .tint(color)
-                    .foregroundColor(color)
-            }
-            .frame(width: 42, height: 36)
-            .overlay(
-                RoundedRectangle(cornerRadius: Dimens.radiusSmall)
-                    .stroke(color, lineWidth: 1)
-            )
-            .padding(Distance.tiny)
-        }
-    }
-
-    struct SavedColorBox: SwiftUI.View {
-        let color: UIColor
-
-        var body: some SwiftUI.View {
-            RoundedRectangle(cornerRadius: Dimens.radiusSmall)
-                .fill(Color(color))
-                .frame(width: 42, height: 36)
-                .overlay(
-                    RoundedRectangle(cornerRadius: Dimens.radiusSmall)
-                        .stroke(Color.Supla.onSurfaceVariant, lineWidth: 1)
-                )
-                .padding(Distance.tiny)
-        }
-    }
 }
 
 #Preview {
@@ -255,10 +214,10 @@ extension RgbDetailFeature {
     )
     viewState.value = .single(color: HsvColor(hue: 0, saturation: 1, value: 1))
     viewState.savedColors = [
-        RgbDetailFeature.SavedColor(idx: 1, color: UIColor.white, brightness: 100),
-        RgbDetailFeature.SavedColor(idx: 2, color: UIColor.red, brightness: 100),
-        RgbDetailFeature.SavedColor(idx: 3, color: UIColor(argb: 0xffff00ff), brightness: 100),
-        RgbDetailFeature.SavedColor(idx: 4, color: UIColor(argb: 0xff0000ff), brightness: 100)
+        SavedColor(idx: 1, color: UIColor.white, brightness: 100),
+        SavedColor(idx: 2, color: UIColor.red, brightness: 100),
+        SavedColor(idx: 3, color: UIColor(argb: 0xffff00ff), brightness: 100),
+        SavedColor(idx: 4, color: UIColor(argb: 0xff0000ff), brightness: 100)
     ]
     viewState.loadingState = viewState.loadingState.copy(loading: false)
 

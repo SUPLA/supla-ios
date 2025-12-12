@@ -20,14 +20,14 @@ import RxSwift
 
 enum ReorderColorListItems {
     protocol UseCase {
-        func invoke(type: SubjectType, remoteId: Int32, indexMap: [Int: Int]) -> Observable<Void>
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType, indexMap: [Int: Int]) -> Observable<Void>
     }
 
     class Implementation: UseCase {
         @Singleton<ColorListItemRepository> private var colorListItemRepository
 
-        func invoke(type: SubjectType, remoteId: Int32, indexMap: [Int: Int]) -> Observable<Void> {
-            colorListItemRepository.find(byRemoteId: remoteId, forType: type)
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType, indexMap: [Int: Int]) -> Observable<Void> {
+            colorListItemRepository.find(byRemoteId: remoteId, forSubject: subject, andType: type)
                 .map { items in
                     for idx in 0 ..< items.count {
                         if let oldIndex = items[idx].idx?.intValue,

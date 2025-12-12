@@ -19,23 +19,23 @@
 import RxSwift
 
 protocol ColorListItemRepository: RepositoryProtocol where T == SAColorListItem {
-    func find(byRemoteId remoteId: Int32, forType type: SubjectType) -> Observable<[SAColorListItem]>
-    func delete(byRemoteId remoteId: Int32, andIdx idx: Int32, forType type: SubjectType) -> Observable<Void>
-    func deleteUnusedColors(byRemoteId remoteId: Int32, forType type: SubjectType) -> Observable<Void>
+    func find(byRemoteId remoteId: Int32, forSubject subject: SubjectType, andType type: ColorListItemType) -> Observable<[SAColorListItem]>
+    func delete(byRemoteId remoteId: Int32, andIdx idx: Int32, forSubject subject: SubjectType, andType type: ColorListItemType) -> Observable<Void>
+    func deleteUnusedColors(byRemoteId remoteId: Int32, forSubject subject: SubjectType, andType type: ColorListItemType) -> Observable<Void>
 }
 
 final class ColorListItemRepositoryImpl: Repository<SAColorListItem>, ColorListItemRepository {
-    func find(byRemoteId remoteId: Int32, forType type: SubjectType) -> RxSwift.Observable<[SAColorListItem]> {
-        let group = type == .group ? 1 : 0
+    func find(byRemoteId remoteId: Int32, forSubject subject: SubjectType, andType type: ColorListItemType) -> RxSwift.Observable<[SAColorListItem]> {
+        let group = subject == .group ? 1 : 0
         let request = SAColorListItem.fetchRequest()
-            .filtered(by: NSPredicate(format: "remote_id = %d AND group = %d AND profile.isActive = 1", remoteId, group))
+            .filtered(by: NSPredicate(format: "remote_id = %d AND group = %d AND raw_type = %d AND profile.isActive = 1", remoteId, group, type.rawValue))
             .ordered(by: "idx")
         return query(request)
     }
     
-    func delete(byRemoteId remoteId: Int32, andIdx idx: Int32, forType type: SubjectType) -> Observable<Void> {
-        let group = type == .group ? 1 : 0
-        return queryItem(NSPredicate(format: "remote_id = %d AND group = %d AND idx = %d AND profile.isActive = 1", remoteId, group, idx))
+    func delete(byRemoteId remoteId: Int32, andIdx idx: Int32, forSubject subject: SubjectType, andType type: ColorListItemType) -> Observable<Void> {
+        let group = subject == .group ? 1 : 0
+        return queryItem(NSPredicate(format: "remote_id = %d AND group = %d AND raw_type = %d AND idx = %d AND profile.isActive = 1", remoteId, group, type.rawValue, idx))
             .flatMap {
                 if let item = $0 {
                     self.delete(item)
@@ -46,11 +46,11 @@ final class ColorListItemRepositoryImpl: Repository<SAColorListItem>, ColorListI
             .flatMap { self.save() }
     }
     
-    func deleteUnusedColors(byRemoteId remoteId: Int32, forType type: SubjectType) -> Observable<Void> {
-        let group = type == .group ? 1 : 0
+    func deleteUnusedColors(byRemoteId remoteId: Int32, forSubject subject: SubjectType, andType type: ColorListItemType) -> Observable<Void> {
+        let group = subject == .group ? 1 : 0
         return deleteAll(
             SAColorListItem.fetchRequest()
-                .filtered(by: NSPredicate(format: "remote_id = %d AND group = %d AND profile.isActive = 1 AND color = NULL", remoteId, group))
+                .filtered(by: NSPredicate(format: "remote_id = %d AND group = %d AND raw_type = %d AND profile.isActive = 1 AND color = NULL", remoteId, group, type.rawValue))
         )
     }
 }

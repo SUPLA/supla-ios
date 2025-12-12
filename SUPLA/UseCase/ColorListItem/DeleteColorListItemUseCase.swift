@@ -20,16 +20,16 @@ import RxSwift
 
 enum DeleteColorListItem {
     protocol UseCase {
-        func invoke(type: SubjectType, remoteId: Int32, idx: Int32) -> Observable<Void>
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType, idx: Int32) -> Observable<Void>
     }
 
     class Implementation: UseCase {
         @Singleton<ColorListItemRepository> private var colorListItemRepository
         @Singleton<UpdateColorListItemOrder.UseCase> private var updateColorListItemOrderUseCase
 
-        func invoke(type: SubjectType, remoteId: Int32, idx: Int32) -> Observable<Void> {
-            colorListItemRepository.delete(byRemoteId: remoteId, andIdx: idx, forType: type)
-                .flatMap { self.updateColorListItemOrderUseCase.invoke(type: type, remoteId: remoteId) }
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType, idx: Int32) -> Observable<Void> {
+            colorListItemRepository.delete(byRemoteId: remoteId, andIdx: idx, forSubject: subject, andType: type)
+                .flatMap { self.updateColorListItemOrderUseCase.invoke(subject: subject, remoteId: remoteId, type: type) }
         }
     }
 }
