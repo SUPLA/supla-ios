@@ -71,6 +71,7 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
                         carPlayItem.listItem(
                             error: self?.errorItems[carPlayItem.id],
                             processing: self?.processingItems.contains(carPlayItem.id) ?? false,
+                            carDarkMode: self?.interfaceController?.carTraitCollection.userInterfaceStyle == .dark,
                             handler: { [weak self] _, callback in
                                 self?.listItemClick(item: carPlayItem)
                                 callback()
@@ -142,9 +143,9 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
 }
 
 private extension ReadCarPlayItems.Item {
-    func listItem(error: String?, processing: Bool, handler: @escaping (any CPSelectableListItem, @escaping () -> Void) -> Void) -> CPListItem {
+    func listItem(error: String?, processing: Bool, carDarkMode: Bool, handler: @escaping (any CPSelectableListItem, @escaping () -> Void) -> Void) -> CPListItem {
         let detailText = if let error { error } else { processing ? Strings.CarPlay.executing : subjectType.name }
-        let item = CPListItem(text: caption, detailText: detailText, image: icon.uiImage)
+        let item = CPListItem(text: caption, detailText: detailText, image: icon.carImage(darkMode: carDarkMode))
         item.handler = handler
         return item
     }

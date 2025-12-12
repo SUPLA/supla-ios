@@ -15,7 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 @testable import SUPLA
 
 extension UserIcons {
@@ -24,17 +24,22 @@ extension UserIcons {
         func getIcon(profileId: Int32, iconId: Int32, icon: SUPLA.UserIcon) -> UIImage? {
             getIconMock.handle((profileId, iconId, icon))
         }
-        
+
+        var getIconWithDarkModeMock: FunctionMock<(Int32, Int32, SUPLA.UserIcon, Bool?), UIImage?> = .init()
+        func getIcon(profileId: Int32, iconId: Int32, icon: SUPLA.UserIcon, darkMode: Bool?) -> UIImage? {
+            getIconWithDarkModeMock.handle((profileId, iconId, icon, darkMode))
+        }
+
         var storeIconDataMock: FunctionMock<(Data, Int32, Int32, SUPLA.UserIcons.IconType), Void> = .init()
         func storeIconData(_ data: Data, profileId: Int32, iconId: Int32, type: SUPLA.UserIcons.IconType) {
             storeIconDataMock.set((data, profileId, iconId, type))
         }
-        
+
         var existingIconIdsMock: FunctionMock<Int32, [Int32]> = .init()
         func existingIconIds(profileId: Int32) -> [Int32] {
             existingIconIdsMock.handle(profileId)
         }
-        
+
         var removeProfileIconsMock: FunctionMock<Int32, Void> = .init()
         func removeProfileIcons(_ profileId: Int32) {
             removeProfileIconsMock.set(profileId)
