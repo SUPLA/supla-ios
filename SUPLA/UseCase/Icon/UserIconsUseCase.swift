@@ -23,6 +23,7 @@ enum UserIcons {
     
     protocol UseCase {
         func getIcon(profileId: Int32, iconId: Int32, icon: UserIcon) -> UIImage?
+        func getIcon(profileId: Int32, iconId: Int32, icon: UserIcon, darkMode: Bool?) -> UIImage?
         func storeIconData(_ data: Data, profileId: Int32, iconId: Int32, type: IconType)
         func existingIconIds(profileId: Int32) -> [Int32]
         func removeProfileIcons(_ profileId: Int32)
@@ -32,7 +33,11 @@ enum UserIcons {
         let sharedDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: GroupShared.Groups.iOS)
         
         func getIcon(profileId: Int32, iconId: Int32, icon: UserIcon) -> UIImage? {
-            guard let url = getIconUrl(profileId: profileId, iconId: iconId, type: icon.type) else { return nil }
+            getIcon(profileId: profileId, iconId: iconId, icon: icon, darkMode: nil)
+        }
+        
+        func getIcon(profileId: Int32, iconId: Int32, icon: UserIcon, darkMode: Bool?) -> UIImage? {
+            guard let url = getIconUrl(profileId: profileId, iconId: iconId, type: icon.type(darkMode: darkMode)) else { return nil }
             
             var isDir = ObjCBool(false)
             if (!FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir) || isDir.boolValue) {
