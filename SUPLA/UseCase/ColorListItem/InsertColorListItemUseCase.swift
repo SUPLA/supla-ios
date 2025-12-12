@@ -20,7 +20,7 @@ import RxSwift
 
 enum InsertColorListItem {
     protocol UseCase {
-        func invoke(type: SubjectType, remoteId: Int32, color: UIColor, brightness: Int32) -> Observable<Void>
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType, color: UIColor, brightness: Int32) -> Observable<Void>
     }
 
     class Implementation: UseCase {
@@ -28,21 +28,22 @@ enum InsertColorListItem {
         @Singleton<ColorListItemRepository> private var colorListItemRepository
         @Singleton<ProfileRepository> private var profileRepository
 
-        func invoke(type: SubjectType, remoteId: Int32, color: UIColor, brightness: Int32) -> Observable<Void> {
+        func invoke(subject: SubjectType, remoteId: Int32, type: ColorListItemType, color: UIColor, brightness: Int32) -> Observable<Void> {
             profileRepository.getActiveProfile()
                 .flatMap { profile in
                     self.colorListItemRepository.create()
                         .map { item in
                             item.brightness = NSNumber(value: brightness)
                             item.color = color.toDictonary() as NSObject
-                            item.group = type == .group
+                            item.group = subject == .group
+                            item.raw_type = type.rawValue
                             item.idx = 0
                             item.remote_id = remoteId
                             item.profile = profile
                         }
                 }
                 .flatMap { self.colorListItemRepository.save() }
-                .flatMap { self.updateColorListItemOrderUseCase.invoke(type: type, remoteId: remoteId) }
+                .flatMap { self.updateColorListItemOrderUseCase.invoke(subject: subject, remoteId: remoteId, type: type) }
             
         }
     }

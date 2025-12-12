@@ -23,8 +23,12 @@ private let REFRESH_DELAY_S: Double = 3
 
 extension DimmerDetailFeature {
     class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
+        @Singleton private var updateColorListItemOrderUseCase: UpdateColorListItemOrder.UseCase
         @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
         @Singleton private var readGroupWithChannelsUseCase: ReadGroupWithChannels.UseCase
+        @Singleton private var reorderColorListItemsUseCase: ReorderColorListItems.UseCase
+        @Singleton private var deleteColorListItemUseCase: DeleteColorListItem.UseCase
+        @Singleton private var insertColorListItemUseCase: InsertColorListItem.UseCase
         @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
         @Singleton private var getChannelBaseStateUseCase: GetChannelBaseStateUseCase
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
@@ -32,6 +36,8 @@ extension DimmerDetailFeature {
         @Singleton private var delayedRgbActionSubject: DelayedRgbwActionSubject
         @Singleton private var dateProvider: DateProvider
         @Singleton private var schedulers: SuplaSchedulers
+        
+        @Singleton<ColorListItemRepository> private var colorListItemRepository
         
         @Inject private var loadingTimeoutManager: LoadingTimeoutManager
         
@@ -145,6 +151,63 @@ extension DimmerDetailFeature {
             state.loadingState = state.loadingState.copy(loading: true)
         }
         
+        func updateSavedColorsOrder(items: [SavedColor]) {
+            guard let remoteId, let type else { return }
+            
+            let indexMap = Dictionary(uniqueKeysWithValues: items.enumerated().map { (index, element) in (Int(element.idx), index + 1) })
+            reorderColorListItemsUseCase.invoke(subject: type, remoteId: remoteId, type: .dimmer, indexMap: indexMap)
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        
+        func onSavedColorSelected(color: SavedColor) {
+            guard !state.offline else { return }
+            
+            lastInteractionTime = nil
+            state.value = .single(brightness: Int(color.brightness))
+            
+            if let actionData {
+                delayedRgbActionSubject.sendImmediately(data: actionData)
+                    .subscribe()
+                    .disposed(by: disposeBag)
+            }
+        }
+        
+        func onRemoveColor(color: SavedColor) {
+            guard let remoteId, let type else { return }
+            
+            lastInteractionTime = nil
+            deleteColorListItemUseCase.invoke(subject: type, remoteId: remoteId, type: .dimmer, idx: color.idx)
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] _ in self?.reloadData() })
+                .disposed(by: disposeBag)
+        }
+        
+        func onSaveCurrentColor() {
+            guard let remoteId,
+                  let type,
+                  let brightness = state.value.brightness
+            else { return }
+            
+            guard state.savedColors.count < 10 else {
+                state.showLimitReachedToast = true
+                Task {
+                    try? await Task.sleep(nanoseconds: 5_000_000_000)
+                    await MainActor.run {
+                        state.showLimitReachedToast = false
+                    }
+                }
+                return
+            }
+
+            // It's needed to enable immediate update
+            lastInteractionTime = nil
+            insertColorListItemUseCase.invoke(subject: type, remoteId: remoteId, type: .dimmer, color: brightness.asGrayColor, brightness: Int32(brightness))
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] _ in self?.reloadData() })
+                .disposed(by: disposeBag)
+        }
+        
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             reloadData()
         }
@@ -178,17 +241,20 @@ extension DimmerDetailFeature {
         }
         
         private func loadChannel(_ remoteId: Int32) {
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+            Observable.zip(
+                readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
+                colorListItemRepository.find(byRemoteId: remoteId, forSubject: .channel, andType: .dimmer)
+            ) { channel, colorItems in (channel, colorItems) }
                 .asDriverWithoutError()
                 .drive(
-                    onNext: { [weak self] channel in
-                        self?.handleChannel(channel)
+                    onNext: { [weak self] channel, colorItems in
+                        self?.handleChannel(channel, colorItems)
                     }
                 )
                 .disposed(by: disposeBag)
         }
         
-        private func handleChannel(_ channelWithChildren: ChannelWithChildren) {
+        private func handleChannel(_ channelWithChildren: ChannelWithChildren, _ colorListItems: [SAColorListItem]) {
             if (changing) {
                 SALog.info("Update skipped because of changing")
                 return // Do not change anything, when user makes manual operations
@@ -239,6 +305,7 @@ extension DimmerDetailFeature {
                 type: .negative
             )
             state.loadingState = state.loadingState.copy(loading: false)
+            state.savedColors = colorListItems.compactMap { $0.savedColor }
         }
         
         private func getValue(_ channel: SAChannel) -> DimmerBaseValue? {
@@ -289,15 +356,18 @@ extension DimmerDetailFeature {
         }
         
         private func loadGroup(_ remoteId: Int32) {
-            readGroupWithChannelsUseCase.invoke(remoteId: remoteId)
+            Observable.zip(
+                readGroupWithChannelsUseCase.invoke(remoteId: remoteId),
+                colorListItemRepository.find(byRemoteId: remoteId, forSubject: .group, andType: .dimmer)
+            ) { channel, colorItems in (channel, colorItems) }
                 .asDriverWithoutError()
-                .drive(onNext: { [weak self] groupWithChannels in
-                    self?.handleGroup(groupWithChannels)
+                .drive(onNext: { [weak self] group, colors in
+                    self?.handleGroup(group, colors)
                 })
                 .disposed(by: disposeBag)
         }
         
-        private func handleGroup(_ groupWithChannels: ReadGroupWithChannels.GroupWithChannels) {
+        private func handleGroup(_ groupWithChannels: ReadGroupWithChannels.GroupWithChannels, _ colors: [SAColorListItem]) {
             if (changing) {
                 SALog.info("Update skipped because of changing")
                 return // Do not change anything, when user makes manual operations
@@ -337,6 +407,7 @@ extension DimmerDetailFeature {
             state.value = .multiple(group.brightness)
             state.offline = group.status().offline
             state.loadingState = state.loadingState.copy(loading: false)
+            state.savedColors = colors.compactMap { $0.savedColor }
         }
     }
 }

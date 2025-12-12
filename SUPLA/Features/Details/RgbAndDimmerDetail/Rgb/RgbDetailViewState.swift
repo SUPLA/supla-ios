@@ -30,14 +30,6 @@ extension RgbDetailFeature {
         @Published var showLimitReachedToast: Bool = false
     }
     
-    struct SavedColor: Identifiable, Equatable {
-        var id: Int32 { idx }
-        
-        let idx: Int32
-        let color: UIColor
-        let brightness: Int32
-    }
-    
     enum RgbValue {
         case empty
         case single(color: HsvColor)

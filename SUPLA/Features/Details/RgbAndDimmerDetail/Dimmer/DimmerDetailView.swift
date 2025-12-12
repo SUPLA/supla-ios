@@ -25,6 +25,10 @@ extension DimmerDetailFeature {
         func onBrightnessSelected()
         func turnOn()
         func turnOff()
+        func updateSavedColorsOrder(items: [SavedColor])
+        func onSavedColorSelected(color: SavedColor)
+        func onRemoveColor(color: SavedColor)
+        func onSaveCurrentColor()
     }
 
     struct View: SwiftUI.View {
@@ -60,6 +64,7 @@ extension DimmerDetailFeature {
                 selector()
 
                 Spacer()
+                savedColors()
                 buttons()
             }
         }
@@ -76,6 +81,7 @@ extension DimmerDetailFeature {
                     brightnessBox()
                     Spacer()
                     
+                    savedColors()
                     buttons()
                 }
                 .frame(maxWidth: .infinity)
@@ -117,6 +123,19 @@ extension DimmerDetailFeature {
             )
             .frame(width: 40)
             .frame(maxHeight: 350)
+        }
+        
+        @ViewBuilder
+        private func savedColors() -> some SwiftUI.View {
+            ReorderableHStack(
+                items: $viewState.savedColors,
+                onReorderEnd: { delegate?.updateSavedColorsOrder(items: $0) },
+                onPlaceholderTap: { delegate?.onSaveCurrentColor() },
+                onDelete: { delegate?.onRemoveColor(color: $0) },
+                onItemTap: { delegate?.onSavedColorSelected(color: $0) },
+                placeholder: { SavedColorAction(dragging: $0, over: $1) }
+            ) { SavedColorBox(color: $0.color) }
+                .padding(.horizontal, Distance.small)
         }
 
         @ViewBuilder
