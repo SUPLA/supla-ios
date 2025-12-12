@@ -18,6 +18,16 @@
     
 import SwiftUI
 
+func showToast(length: Int = 5, updater: @escaping (Bool) -> Void) {
+    updater(true)
+    Task {
+        try? await Task.sleep(nanoseconds: UInt64(length) * 1_000_000_000)
+        await MainActor.run {
+            updater(false)
+        }
+    }
+}
+
 struct ToastView: View {
     let message: String
     var body: some View {
