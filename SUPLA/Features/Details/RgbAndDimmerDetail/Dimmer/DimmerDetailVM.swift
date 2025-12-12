@@ -190,13 +190,7 @@ extension DimmerDetailFeature {
             else { return }
             
             guard state.savedColors.count < 10 else {
-                state.showLimitReachedToast = true
-                Task {
-                    try? await Task.sleep(nanoseconds: 5_000_000_000)
-                    await MainActor.run {
-                        state.showLimitReachedToast = false
-                    }
-                }
+                showToast { [weak self ] in self?.state.showLimitReachedToast = $0 }
                 return
             }
 

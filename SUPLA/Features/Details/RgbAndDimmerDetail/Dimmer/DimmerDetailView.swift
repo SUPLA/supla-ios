@@ -48,6 +48,10 @@ extension DimmerDetailFeature {
                 if (viewState.loadingState.loading) {
                     SuplaCore.LoadingScrim()
                 }
+                
+                if (viewState.showLimitReachedToast) {
+                    ToastView(message: Strings.RgbDetail.colorLimit)
+                }
             }
         }
         

@@ -48,15 +48,7 @@ extension AboutFeature {
             buildTimeClickCount += 1
             if buildTimeClickCount == 5 {
                 settings.devModeActive = true
-                state.showToast = true
-                
-                Task {
-                    try? await Task.sleep(nanoseconds: 5_000_000_000)
-                    
-                    await MainActor.run {
-                        state.showToast = false
-                    }
-                }
+                showToast { [weak self] in self?.state.showToast = $0 }
             }
         }
     }
