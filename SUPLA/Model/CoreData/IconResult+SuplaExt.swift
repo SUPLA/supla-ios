@@ -51,7 +51,8 @@ extension IconResult {
         case .suplaIcon(let name), .originalSuplaIcon(let name): return .init(named: name)
         case .userIcon(let profileId, let iconId, let type, let defaultName):
             @Singleton<UserIcons.UseCase> var userIconsUseCase
-            if let uiImage = userIconsUseCase.getIcon(profileId: profileId, iconId: iconId, icon: type, darkMode: darkMode) {
+            if let uiImage = userIconsUseCase.getIcon(profileId: profileId, iconId: iconId, icon: type, darkMode: darkMode
+            ) {
                 return uiImage
             } else {
                 return UIImage(named: defaultName)

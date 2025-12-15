@@ -61,6 +61,16 @@ final class UserStateHolderMock: UserStateHolder {
         setPhotoCreationTimeMock.handle((time, profileId, remoteId))
     }
     
+    var getDimmerSelectorTypeMock: FunctionMock<(Int32, Int32), SUPLA.DimmerDetailFeature.DimmerSelectorType> = .init()
+    func getDimmerSelectorType(profileId: Int32, remoteId: Int32) -> SUPLA.DimmerDetailFeature.DimmerSelectorType {
+        getDimmerSelectorTypeMock.handle((profileId, remoteId))
+    }
+    
+    var setDimmerSelectorTypeMock: FunctionMock<(SUPLA.DimmerDetailFeature.DimmerSelectorType, Int32, Int32), Void> = .init()
+    func setDimmerSelectorType(_ type: SUPLA.DimmerDetailFeature.DimmerSelectorType, profileId: Int32, remoteId: Int32) {
+        setDimmerSelectorTypeMock.set((type, profileId, remoteId))
+    }
+    
     func migrateFrom17To19ModelMappingVersion(_ profileObjectId: NSManagedObjectID, _ profileId: Int32) {
     }
 }

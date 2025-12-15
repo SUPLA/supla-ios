@@ -29,6 +29,7 @@ extension DimmerDetailFeature {
         func onSavedColorSelected(color: SavedColor)
         func onRemoveColor(color: SavedColor)
         func onSaveCurrentColor()
+        func toggleSelectorType()
     }
 
     struct View: SwiftUI.View {
@@ -116,17 +117,44 @@ extension DimmerDetailFeature {
 
         @ViewBuilder
         private func selector() -> some SwiftUI.View {
-            LinearColorSelector(
-                value: viewState.value.brightness?.asPercentageFloat,
-                selectedColor: viewState.value.brightness?.asGrayColor,
-                valueMarkers: viewState.value.markers.map { $0.asPercentageFloat },
-                enabled: !viewState.offline,
-                onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
-                onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
-                onValueChanged: { delegate?.onBrightnessSelected() }
-            )
-            .frame(width: 40)
-            .frame(maxHeight: 350)
+            ZStack(alignment: .top) {
+                switch (viewState.selectorType) {
+                case .linear:
+                    LinearColorSelector(
+                        value: viewState.value.brightness?.asPercentageFloat,
+                        selectedColor: viewState.value.brightness?.asGrayColor,
+                        valueMarkers: viewState.value.markers.map { $0.asPercentageFloat },
+                        enabled: !viewState.offline,
+                        onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
+                        onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
+                        onValueChanged: { delegate?.onBrightnessSelected() }
+                    )
+                    .frame(width: 40)
+                    .frame(maxHeight: 350)
+                case .circular:
+                    CircularColorSelector(
+                        value: viewState.value.brightness?.asPercentageFloat,
+                        selectedColor: viewState.value.brightness?.asGrayColor,
+                        valueMarkers: viewState.value.markers.map { $0.asPercentageFloat },
+                        enabled: !viewState.offline,
+                        onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
+                        onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
+                        onValueChanged: { delegate?.onBrightnessSelected() }
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: 350)
+                    
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .topTrailing) {
+                RoundedControlButtonWrapperView(
+                    type: .neutral,
+                    icon: .suplaIcon(name: viewState.selectorType.swapIcon),
+                    onTap: { delegate?.toggleSelectorType() }
+                )
+                .frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight, alignment: .topTrailing)
+                .padding(.trailing, Distance.default)
+            }
         }
         
         @ViewBuilder
