@@ -29,6 +29,9 @@ protocol UserStateHolder {
     func getPhotoCreationTime(profileId: Int32, remoteId: Int32) -> Date?
     func setPhotoCreationTime(_ time: String, profileId: Int32, remoteId: Int32)
     
+    func getDimmerSelectorType(profileId: Int32, remoteId: Int32) -> DimmerDetailFeature.DimmerSelectorType
+    func setDimmerSelectorType(_ type: DimmerDetailFeature.DimmerSelectorType, profileId: Int32, remoteId: Int32)
+    
     func migrateFrom17To19ModelMappingVersion(_ profileObjectId: NSManagedObjectID, _ profileId: Int32)
 }
 
@@ -117,6 +120,17 @@ final class UserStateHolderImpl: UserStateHolder {
     func setPhotoCreationTime(_ time: String, profileId: Int32, remoteId: Int32) {
         let key = parametrizedKey(key: photoCreationTimeKey, String(profileId), String(remoteId))
         userDefaults.set(time, forKey: key)
+    }
+    
+    private let dimmerSelectorTypeKey = "UserStateHolder.dimmer_selector_type"
+    func getDimmerSelectorType(profileId: Int32, remoteId: Int32) -> DimmerDetailFeature.DimmerSelectorType {
+        let key = parametrizedKey(key: dimmerSelectorTypeKey, String(profileId), String(remoteId))
+        return DimmerDetailFeature.DimmerSelectorType.from(userDefaults.integer(forKey: key))
+    }
+    
+    func setDimmerSelectorType(_ type: DimmerDetailFeature.DimmerSelectorType, profileId: Int32, remoteId: Int32) {
+        let key = parametrizedKey(key: dimmerSelectorTypeKey, String(profileId), String(remoteId))
+        userDefaults.set(type.rawValue, forKey: key)
     }
     
     func migrateFrom17To19ModelMappingVersion(_ profileObjectId: NSManagedObjectID, _ profileId: Int32) {

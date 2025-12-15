@@ -22,8 +22,9 @@ extension DimmerDetailFeature {
         @Published var issues: [ChannelIssueItem] = []
         @Published var offButtonState: SwitchButtonState? = nil
         @Published var onButtonState: SwitchButtonState? = nil
-        @Published var value: DimmerValue = .empty
         @Published var savedColors: [SavedColor] = []
+        @Published var value: DimmerValue = .empty
+        @Published var selectorType: DimmerSelectorType = .linear
         @Published var offline: Bool = false
         @Published var loadingState: LoadingState = .init()
         @Published var showLimitReachedToast: Bool = false
@@ -64,6 +65,28 @@ extension DimmerDetailFeature {
                     return "\(min) - \(max)"
                 }
             }
+        }
+    }
+    
+    enum DimmerSelectorType: Int, CaseIterable {
+        case linear = 0
+        case circular = 1
+        
+        var swapIcon: String {
+            switch self {
+            case .linear: .Icons.dimmerCircularSelector
+            case .circular: .Icons.dimmerLinearSelector
+            }
+        }
+        
+        static func from(_ value: Int?) -> DimmerSelectorType {
+            for type in allCases {
+                if (type.rawValue == value) {
+                    return type
+                }
+            }
+            
+            return .linear
         }
     }
 }

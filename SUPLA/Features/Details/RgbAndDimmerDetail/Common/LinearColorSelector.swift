@@ -18,11 +18,6 @@
     
 import SwiftUI
 
-private let OUTER_SURFACE_WIDTH: CGFloat = 5
-
-// Colors
-private let POINTER_SHADOW_COLOR = Color(.sRGB, red: 0x7E/255, green: 0x80/255, blue: 0x82/255, opacity: 0x64/255)
-
 struct LinearColorSelector: View {
     let value: CGFloat?
     let selectedColor: UIColor?
@@ -167,14 +162,6 @@ private func selectorY(
     let v = value.clamped(to: 0...1)
     let available = max(0, sliderHeight - selectorRadius * 2)
     return outerMargin + selectorRadius + (1 - v) * available
-}
-
-// MARK: - Utils
-
-private extension Comparable {
-    func clamped(to r: ClosedRange<Self>) -> Self {
-        min(max(self, r.lowerBound), r.upperBound)
-    }
 }
 
 // MARK: - Preview

@@ -133,8 +133,8 @@ extension RgbDetailFeature {
         @ViewBuilder
         private func selectors() -> some SwiftUI.View {
             HStack {
-                CircularColorSelector(
-                    currentColor: viewState.value.hsv?.color,
+                ColorPickerView(
+                    currentColor: viewState.value.hsv?.fullBrightnessColor,
                     currentSaturation: viewState.value.hsv?.saturation.cgFloat,
                     currentHue: viewState.value.hsv?.hue.cgFloat,
                     enabled: !viewState.offline,

@@ -34,6 +34,7 @@ extension DimmerDetailFeature {
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
         @Singleton private var executeRgbActionUseCase: ExecuteRgbAction.UseCase
         @Singleton private var delayedRgbActionSubject: DelayedRgbwActionSubject
+        @Singleton private var userStateHolder: UserStateHolder
         @Singleton private var dateProvider: DateProvider
         @Singleton private var schedulers: SuplaSchedulers
         
@@ -202,6 +203,19 @@ extension DimmerDetailFeature {
                 .disposed(by: disposeBag)
         }
         
+        func toggleSelectorType() {
+            switch (state.selectorType) {
+            case .circular:
+                state.selectorType = .linear
+            case .linear:
+                state.selectorType = .circular
+            }
+            
+            if let profileId, let remoteId {
+                userStateHolder.setDimmerSelectorType(state.selectorType, profileId: profileId, remoteId: remoteId)
+            }
+        }
+        
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             reloadData()
         }
@@ -300,6 +314,7 @@ extension DimmerDetailFeature {
             )
             state.loadingState = state.loadingState.copy(loading: false)
             state.savedColors = colorListItems.compactMap { $0.savedColor }
+            state.selectorType = userStateHolder.getDimmerSelectorType(profileId: channel.profile.id, remoteId: channel.remote_id)
         }
         
         private func getValue(_ channel: SAChannel) -> DimmerBaseValue? {
@@ -402,6 +417,7 @@ extension DimmerDetailFeature {
             state.offline = group.status().offline
             state.loadingState = state.loadingState.copy(loading: false)
             state.savedColors = colors.compactMap { $0.savedColor }
+            state.selectorType = userStateHolder.getDimmerSelectorType(profileId: group.profile.id, remoteId: group.remote_id)
         }
     }
 }

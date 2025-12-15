@@ -69,6 +69,8 @@ extension String {
         static let update = "icon_update"
         static let profileActive = "icon_profile_active"
         static let profileInactive = "icon_profile_inactive"
+        static let dimmerCircularSelector = "icon_dimmer_circular_selector"
+        static let dimmerLinearSelector = "icon_dimmer_linear_selector"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"

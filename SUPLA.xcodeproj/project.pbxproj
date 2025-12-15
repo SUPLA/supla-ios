@@ -1061,6 +1061,9 @@
 		A5BCA9BA2E2A606100A5054A /* Esp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BCA9B92E2A605F00A5054A /* Esp.swift */; };
 		A5C2D94F2EAA0B96007BAA0B /* GroupUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */; };
 		A5C2D9512EAA6795007BAA0B /* SpacesAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C2D9502EAA6790007BAA0B /* SpacesAlertDialog.swift */; };
+		A5C31A8B2EF0A8E300E4B4FD /* CircularColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */; };
+		A5C31A8D2EF0BBD000E4B4FD /* Comparable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C31A8C2EF0BBCA00E4B4FD /* Comparable+Ext.swift */; };
+		A5C31A8E2EF0BC4900E4B4FD /* Comparable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C31A8C2EF0BBCA00E4B4FD /* Comparable+Ext.swift */; };
 		A5C347892EAF955400075244 /* SAChannelState+Printable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C347882EAF954A00075244 /* SAChannelState+Printable.swift */; };
 		A5C5F6E22D91760700E303B8 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E12D91760400E303B8 /* IconButton.swift */; };
 		A5C5F6E42D91F1B200E303B8 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6E32D91F1AD00E303B8 /* View+If.swift */; };
@@ -2779,6 +2782,8 @@
 		A5BCA9B92E2A605F00A5054A /* Esp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Esp.swift; sourceTree = "<group>"; };
 		A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUpdatesObserver.swift; sourceTree = "<group>"; };
 		A5C2D9502EAA6790007BAA0B /* SpacesAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesAlertDialog.swift; sourceTree = "<group>"; };
+		A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorSelector.swift; sourceTree = "<group>"; };
+		A5C31A8C2EF0BBCA00E4B4FD /* Comparable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Ext.swift"; sourceTree = "<group>"; };
 		A5C347882EAF954A00075244 /* SAChannelState+Printable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelState+Printable.swift"; sourceTree = "<group>"; };
 		A5C5F6E12D91760400E303B8 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		A5C5F6E32D91F1AD00E303B8 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
@@ -5115,6 +5120,7 @@
 		A563640D2EDF9B4000A702C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */,
 				A55AE8262EEC0443006E0AA9 /* SavedColor.swift */,
 				A5E84F192EE6FC7E002F26F8 /* DelayedRbgwActionSubject.swift */,
 				A563643C2EE2F86600A702C0 /* ColorSelectorPoint.swift */,
@@ -7134,6 +7140,7 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5C31A8C2EF0BBCA00E4B4FD /* Comparable+Ext.swift */,
 				A56364262EE1736400A702C0 /* Color+HSV.swift */,
 				A57668EC2AEA85150025509D /* Array+Ext.swift */,
 				A5B8A4922CBDA09E002FA7B2 /* Binding+onChange.swift */,
@@ -8390,6 +8397,7 @@
 				A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				A5E160CB2D3697ED003A7C71 /* ImpulseCounterValueFormatter+Ext.swift in Sources */,
+				A5C31A8D2EF0BBD000E4B4FD /* Comparable+Ext.swift in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				A51BE9052AA754F200718F2F /* BaseControlButtonView.swift in Sources */,
 				A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */,
@@ -8852,6 +8860,7 @@
 				A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */,
 				A58E45F62EB11D7A001F241C /* MotionSensorIconNameProducer.swift in Sources */,
 				A5CF3D6C2DD4BB9200207384 /* UserIcon+Ext.swift in Sources */,
+				A5C31A8B2EF0A8E300E4B4FD /* CircularColorSelector.swift in Sources */,
 				A5552EDA2D537A6800A3F6A2 /* Dictonary+Ext.swift in Sources */,
 				A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */,
 				A5BCA9572E26829B00A5054A /* ProvideCurrentSsidUseCase.swift in Sources */,
@@ -9131,6 +9140,7 @@
 				A54E2AF42E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */,
 				A5C6903D2DD74FF000194C1B /* ValuesFormatter.swift in Sources */,
 				A5C690372DD7366B00194C1B /* DoubleValueParser.swift in Sources */,
+				A5C31A8E2EF0BC4900E4B4FD /* Comparable+Ext.swift in Sources */,
 				A5C690362DD7366400194C1B /* IntValueParser.swift in Sources */,
 				A5E9C20C2DCCBF710001F263 /* View+ScaleFactor.swift in Sources */,
 				A5CA8AD42E703C34005B55F4 /* DoubleFormatter.swift in Sources */,

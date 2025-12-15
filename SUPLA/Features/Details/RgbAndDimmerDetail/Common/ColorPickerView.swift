@@ -18,9 +18,9 @@
     
 import SwiftUI
 
-private let OUTER_SURFACE_WIDTH: CGFloat = 5
+let OUTER_SURFACE_WIDTH: CGFloat = 5
 
-struct CircularColorSelector: View {
+struct ColorPickerView: View {
     let currentColor: UIColor?
     let currentSaturation: CGFloat?
     let currentHue: CGFloat?
@@ -202,7 +202,7 @@ private extension CGFloat {
 
 #Preview {
     ZStack {
-        CircularColorSelector(
+        ColorPickerView(
             currentColor: UIColor.red,
             currentSaturation: 1,
             currentHue: 0
