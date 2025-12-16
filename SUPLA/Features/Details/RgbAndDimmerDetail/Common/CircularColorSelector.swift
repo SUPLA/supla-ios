@@ -15,9 +15,9 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-import SwiftUI
+
 import CoreGraphics
+import SwiftUI
 
 private let TRACK_WIDTH: CGFloat = 24
 
@@ -35,6 +35,8 @@ struct CircularColorSelector: View {
     @State private var didStartDrag = false
     @State private var gesturePrevValue: CGFloat? = nil
     @State private var isActiveGesture: Bool = false
+    @State private var initialValue: CGFloat? = nil
+    @State private var valueDiff: CGFloat? = nil
 
     init(
         value: CGFloat?,
@@ -71,31 +73,8 @@ struct CircularColorSelector: View {
             Canvas { context, _ in
                 guard ringRadius > 0 else { return }
 
-                let outerRect = CGRect(
-                    x: center.x - ringRadius,
-                    y: center.y - ringRadius,
-                    width: ringRadius * 2,
-                    height: ringRadius * 2
-                )
-                var surfacePath = Circle().path(in: outerRect)
-                surfacePath = surfacePath.strokedPath(.init(lineWidth: TRACK_WIDTH + OUTER_SURFACE_WIDTH * 2, lineCap: .round))
-                context.fill(surfacePath, with: .color(Color(.systemBackground)))
-
-                let ringRect = CGRect(
-                    x: -ringRadius,
-                    y: -ringRadius,
-                    width: ringRadius * 2,
-                    height: ringRadius * 2
-                )
-                var ringPath = Circle().path(in: ringRect)
-                ringPath = ringPath.strokedPath(.init(lineWidth: TRACK_WIDTH, lineCap: .round))
-
-                context.drawLayer { ctx in
-                    ctx.translateBy(x: center.x, y: center.y)
-                    ctx.rotate(by: .degrees(-90))
-                    let gradient = Gradient(colors: [endColor, startColor])
-                    ctx.fill(ringPath, with: .conicGradient(gradient, center: CGPoint(x: 0, y: 0)))
-                }
+                context.drawOuterRing(center, ringRadius)
+                context.drawGradientRing(center, ringRadius, [endColor, startColor])
 
                 for m in valueMarkers {
                     let p = pointOnCircle(center: center, radius: ringRadius, angleDeg: valueToAngle(m))
@@ -110,41 +89,25 @@ struct CircularColorSelector: View {
             .contentShape(Rectangle())
             .gesture(
                 DragGesture(minimumDistance: 0)
-                    .onChanged { g in
+                    .onChanged { gestureValue in
                         guard enabled, ringRadius > 0 else { return }
-
-                        if !didStartDrag {
-                            let ok = isInRing(
-                                touch: g.location,
-                                center: center,
-                                ringRadius: ringRadius,
-                                slop: SELECTOR_RADIUS
-                            )
-                            isActiveGesture = ok
-                            didStartDrag = true
-
-                            if ok {
-                                gesturePrevValue = value?.clamped(to: 0...1)
-                                onValueChangeStarted()
-                            }
-                        }
+                        handleGestureOnStart(gestureValue, center, ringRadius)
 
                         guard isActiveGesture else { return }
-
-                        if let newVal = valueFromTouch(point: g.location, center: center) {
-                            onValueChanging(applySeamLock(newValue: newVal))
-                        }
+                        handleGestureOnDrag(gestureValue, center)
                     }
-                    .onEnded { g in
+                    .onEnded { gestureValue in
                         defer {
                             didStartDrag = false
                             isActiveGesture = false
                             gesturePrevValue = nil
+                            initialValue = nil
+                            valueDiff = nil
                         }
                         guard enabled, isActiveGesture, ringRadius > 0 else { return }
 
-                        if let newVal = valueFromTouch(point: g.location, center: center) {
-                            onValueChanging(applySeamLock(newValue: newVal))
+                        if let newValue = valueFromTouch(point: gestureValue.location, center: center) {
+                            onValueChanging(newValue)
                         }
                         onValueChanged()
                     }
@@ -153,6 +116,70 @@ struct CircularColorSelector: View {
     }
 
     // MARK: - Interaction helpers
+    
+    private func handleGestureOnStart(_ gesture: DragGesture.Value, _ center: CGPoint, _ ringRadius: CGFloat) {
+        if !didStartDrag {
+            let ok = isInRing(
+                touch: gesture.location,
+                center: center,
+                ringRadius: ringRadius,
+                slop: SELECTOR_RADIUS
+            )
+            isActiveGesture = ok
+            didStartDrag = true
+
+            if ok {
+                gesturePrevValue = nil
+                initialValue = nil
+                valueDiff = 0
+                onValueChangeStarted()
+            }
+        }
+    }
+    
+    private func handleGestureOnDrag(_ gesture: DragGesture.Value, _ center: CGPoint) {
+        if let newValue = valueFromTouch(point: gesture.location, center: center) {
+            if (initialValue == nil) {
+                initialValue = newValue
+            }
+
+            if let previous = gesturePrevValue {
+                let currentDiff = previous - newValue
+
+                valueDiff = valueDiff?.also { $0 + calculateCurrentIncrement(currentDiff, previous, newValue) }
+
+                if let currentValue = initialValue?.also({ $0 - (valueDiff ?? 0) }) {
+                    if (currentValue > 1) {
+                        onValueChanging(1)
+                    } else if (currentValue < 0) {
+                        onValueChanging(0)
+                    } else {
+                        onValueChanging(currentValue)
+                    }
+
+                    if (currentValue < -1) {
+                        valueDiff = valueDiff?.also { $0 - 1 }
+                    } else if (currentValue > 2) {
+                        valueDiff = valueDiff?.also { $0 + 1 }
+                    }
+                }
+            }
+
+            gesturePrevValue = newValue
+        }
+    }
+
+    private func calculateCurrentIncrement(_ currentDiff: CGFloat, _ previous: CGFloat, _ current: CGFloat) -> CGFloat {
+        if ((currentDiff > 0 && currentDiff < 0.8) || (currentDiff < 0 && currentDiff > (-0.8))) {
+            return currentDiff
+        } else if (currentDiff > 0) {
+            return previous - 1 - current
+        } else if (currentDiff < 0) {
+            return previous + 1 - current
+        } else {
+            return 0
+        }
+    }
 
     private func valueFromTouch(point: CGPoint, center: CGPoint) -> CGFloat? {
         let dx = point.x - center.x
@@ -173,21 +200,6 @@ struct CircularColorSelector: View {
         let inner = ringRadius - TRACK_WIDTH / 2 - slop
         let outer = ringRadius + TRACK_WIDTH / 2 + slop
         return d >= inner && d <= outer
-    }
-
-    private func applySeamLock(newValue: CGFloat) -> CGFloat {
-        var v = newValue.clamped(to: 0...1)
-        if let prev = gesturePrevValue {
-            let nearHigh = prev > 0.85
-            let nearLow = prev < 0.15
-            let jumpedHighToLow = nearHigh && v < 0.15
-            let jumpedLowToHigh = nearLow && v > 0.85
-
-            if jumpedHighToLow { v = 1 }
-            if jumpedLowToHigh { v = 0 }
-        }
-        gesturePrevValue = v
-        return v
     }
 
     // MARK: - Angle/value mapping (jak w Kotlin)
@@ -211,6 +223,40 @@ struct CircularColorSelector: View {
     private func pointOnCircle(center: CGPoint, radius: CGFloat, angleDeg: CGFloat) -> CGPoint {
         let r = angleDeg * .pi / 180
         return CGPoint(x: center.x + cos(r) * radius, y: center.y + sin(r) * radius)
+    }
+}
+
+// MARK: - Canvas extensions
+
+private extension GraphicsContext {
+    func drawOuterRing(_ center: CGPoint, _ ringRadius: CGFloat) {
+        let outerRect = CGRect(
+            x: center.x - ringRadius,
+            y: center.y - ringRadius,
+            width: ringRadius * 2,
+            height: ringRadius * 2
+        )
+        var surfacePath = Circle().path(in: outerRect)
+        surfacePath = surfacePath.strokedPath(.init(lineWidth: TRACK_WIDTH + OUTER_SURFACE_WIDTH * 2, lineCap: .round))
+        fill(surfacePath, with: .color(Color(.systemBackground)))
+    }
+    
+    func drawGradientRing(_ center: CGPoint, _ ringRadius: CGFloat, _ colors: [Color]) {
+        let ringRect = CGRect(
+            x: -ringRadius,
+            y: -ringRadius,
+            width: ringRadius * 2,
+            height: ringRadius * 2
+        )
+        var ringPath = Circle().path(in: ringRect)
+        ringPath = ringPath.strokedPath(.init(lineWidth: TRACK_WIDTH, lineCap: .round))
+
+        drawLayer { ctx in
+            ctx.translateBy(x: center.x, y: center.y)
+            ctx.rotate(by: .degrees(-90))
+            let gradient = Gradient(colors: colors)
+            ctx.fill(ringPath, with: .conicGradient(gradient, center: CGPoint(x: 0, y: 0)))
+        }
     }
 }
 
