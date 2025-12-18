@@ -110,7 +110,9 @@ extension DimmerDetailFeature {
             }
             
             lastInteractionTime = dateProvider.currentTimestamp()
-            state.value = .single(brightness: brightness)
+            // Setting brightness to 0 is not allowed. If the user wants turn off the dimmer
+            // should click on turn off button
+            state.value = .single(brightness: max(1, brightness))
             
             if let actionData {
                 delayedRgbActionSubject.emit(data: actionData)
@@ -191,7 +193,7 @@ extension DimmerDetailFeature {
             else { return }
             
             guard state.savedColors.count < 10 else {
-                showToast { [weak self ] in self?.state.showLimitReachedToast = $0 }
+                showToast { [weak self] in self?.state.showLimitReachedToast = $0 }
                 return
             }
 
