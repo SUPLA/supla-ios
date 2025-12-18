@@ -154,6 +154,9 @@ extension RgbDetailFeature {
                     startColor: Color(viewState.value.hsv?.fullBrightnessColor ?? UIColor.white),
                     onValueChangeStarted: { delegate?.onColorSelectionStarted() },
                     onValueChanging: { value in
+                        // Setting brightness to 0 is not allowed. If the user wants turn off the dimmer
+                        // should click on turn off button
+                        let value = max(value, 0.01)
                         let color = viewState.value.hsv?.copy(value: value) ?? HsvColor(value: value)
                         delegate?.onColorSelecting(color)
                     },
