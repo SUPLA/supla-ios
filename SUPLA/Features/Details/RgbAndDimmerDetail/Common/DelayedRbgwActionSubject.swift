@@ -35,7 +35,7 @@ final class DelayedRgbwActionSubjectImpl: DelayedCommandSubject<RgbwActionData>,
         SALog.debug("Executing delayed RGBW action with \(data)")
         
         return executeRgbActionUseCase.invoke(
-            type: .channel,
+            type: data.type,
             remoteId: data.remoteId,
             brightness: data.brightness,
             color: data.color,
