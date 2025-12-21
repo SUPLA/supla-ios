@@ -110,7 +110,7 @@ extension SAChannelGroup {
         
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
-        return totalValue.values
+        let result = totalValue.values
             .compactMap {
                 if let value = $0 as? IntegerGroupValue {
                     return value.value
@@ -121,6 +121,8 @@ extension SAChannelGroup {
                 
                 return nil
             }
+        
+        return Array(Set(result))
     }
     
     func item() -> ItemBundle {
