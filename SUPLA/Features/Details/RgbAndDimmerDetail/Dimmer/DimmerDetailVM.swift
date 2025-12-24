@@ -394,7 +394,7 @@ extension DimmerDetailFeature {
             SALog.debug("Updating state with data")
             
             let group = groupWithChannels.group
-            let groupStateValue = groupWithChannels.aggregatedState(policy: .rgb)
+            let groupStateValue = groupWithChannels.aggregatedState(policy: .dimmer)
             
             profileId = group.profile.id
             
