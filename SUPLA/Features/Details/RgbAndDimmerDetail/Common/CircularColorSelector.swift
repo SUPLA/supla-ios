@@ -105,8 +105,8 @@ struct CircularColorSelector: View {
                             valueDiff = nil
                         }
                         guard enabled, isActiveGesture, ringRadius > 0 else { return }
-
-                        if let newValue = valueFromTouch(point: gestureValue.location, center: center) {
+                        let notMoved = gestureValue.startLocation == gestureValue.location
+                        if notMoved, let newValue = valueFromTouch(point: gestureValue.location, center: center) {
                             onValueChanging(newValue)
                         }
                         onValueChanged()
@@ -116,7 +116,7 @@ struct CircularColorSelector: View {
     }
 
     // MARK: - Interaction helpers
-    
+
     private func handleGestureOnStart(_ gesture: DragGesture.Value, _ center: CGPoint, _ ringRadius: CGFloat) {
         if !didStartDrag {
             let ok = isInRing(
@@ -136,7 +136,7 @@ struct CircularColorSelector: View {
             }
         }
     }
-    
+
     private func handleGestureOnDrag(_ gesture: DragGesture.Value, _ center: CGPoint) {
         if let newValue = valueFromTouch(point: gesture.location, center: center) {
             if (initialValue == nil) {
@@ -240,7 +240,7 @@ private extension GraphicsContext {
         surfacePath = surfacePath.strokedPath(.init(lineWidth: TRACK_WIDTH + OUTER_SURFACE_WIDTH * 2, lineCap: .round))
         fill(surfacePath, with: .color(Color(.systemBackground)))
     }
-    
+
     func drawGradientRing(_ center: CGPoint, _ ringRadius: CGFloat, _ colors: [Color]) {
         let ringRect = CGRect(
             x: -ringRadius,
