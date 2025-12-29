@@ -66,7 +66,7 @@ extension SAChannelGroup {
         
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
-        return totalValue.values
+        let result = totalValue.values
             .compactMap {
                 if let value = $0 as? RgbLightingGroupValue,
                    let hsv = value.color.toHsv(Int32(value.brightness))
@@ -81,6 +81,8 @@ extension SAChannelGroup {
                 
                 return nil
             }
+        
+        return Array(Set(result))
     }
     
     @objc var colorBrightness: [Int] {

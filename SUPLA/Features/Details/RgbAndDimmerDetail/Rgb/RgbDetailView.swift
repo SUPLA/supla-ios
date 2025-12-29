@@ -141,7 +141,7 @@ extension RgbDetailFeature {
                     markers: viewState.value.markers,
                     onDragStart: { delegate?.onColorSelectionStarted() },
                     onDrag: { hue, saturation in
-                        let color = viewState.value.hsv?.copy(hue: hue, saturation: saturation) ?? HsvColor(hue: hue, saturation: saturation)
+                        let color = viewState.value.hsv?.copy(hue: hue, saturation: saturation) ?? HsvColor(hue: hue, saturation: saturation, value: 1)
                         delegate?.onColorSelecting(color)
                     },
                     onDragEnd: { delegate?.onColorSelected() }

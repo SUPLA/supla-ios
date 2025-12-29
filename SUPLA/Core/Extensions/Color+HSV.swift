@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct HsvColor: Equatable {
+struct HsvColor: Equatable, Hashable {
     let hue: Double
     let saturation: Double
     let value: Double
