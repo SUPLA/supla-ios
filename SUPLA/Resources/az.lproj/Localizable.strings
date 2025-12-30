@@ -1,0 +1,748 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"Open" = "Aç";
+"Open Close" = "Aç / Bağla";
+"Reveal" = "Aç";
+"Shut" = "Bağla";
+"On" = "yanır";
+"Off" = "sönük";
+"opened the gateway" = "qovşaqlı cihazı açdı";
+"opened / closed the gate" = "qapını açdı / bağladı";
+"opened / closed the gate doors" = "qapı qapılarını açdı / bağladı";
+"opened the door" = "qapını açdı";
+"opened / closed roller shutter" = "jalüzü açdı / bağladı";
+"turned the power ON/OFF" = "gücü ON/OFF vəziyyətinə gətirdi";
+"turned the light ON/OFF" = "işığı ON/OFF vəziyyətinə gətirdi";
+"Settings" = "Tənzimləmələr";
+"About" = "Haqqında";
+"Gateway" = "Qovşaqlı cihaz";
+"Gate" = "Qapı";
+"Garage door" = "Qaraj qapısı";
+"Door" = "Qapı";
+"Roller shutter" = "Jalüz";
+"Power switch" = "Güc açarı";
+"Lighting switch" = "İşıq açarı";
+"Thermometer" = "Termometr";
+"Temperature and humidity" = "Temperatur və rütubət sensoru";
+"No liquid sensor" = "Maye sensoru yoxdur";
+"Gateway opening sensor" = "Qovşaqlı cihaz açılma sensoru";
+"Gate opening sensor" = "Qapı açılma sensoru";
+"Garage door opening sensor" = "Qaraj qapısı açılma sensoru";
+"Door opening sensor" = "Qapı açılma sensoru";
+"Roller shutter opening sensor" = "Jalüz açılma sensoru";
+"RGB Lighting" = "RGB işıqlandırma";
+"Dimmer and RGB lighting" = "Dimmer və RGB işıqlandırma";
+"Dimmer" = "Dimmer";
+"Distance sensor" = "Məsafə sensoru";
+"Depth sensor" = "Dərinlik sensoru";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Bilirdinizmi ki, Supla açıq və pulsuz bir layihədir və icma tərəfindən hazırlanmışdır? Əgər tətbiqi bəyənirsinizsə, onu qiymətləndirməyə bir an ayırın. Dəstəyiniz üçün təşəkkürlər!";
+"Rate Now" = "İndi Qiymətləndir";
+"Later" = "Sonra";
+"No thanks" = "Yox, təşəkkür";
+"Mail sensor" = "Poçt sensoru";
+"Window opening sensor" = "Pəncərə açılma sensoru";
+"Add I/O device" = "I/O cihazı əlavə et";
+"Next" = "Növbəti";
+"Cancel" = "Ləğv et";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Add Wizard yalnız serverə qoşulma e-poçt ünvanına əsasən qurulduqda aktiv olur. (Hesab tənzimləmələrinizdə ətraflı seçimləri deaktiv edin)";
+"Help" = "Kömək";
+"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+"Staircase timer" = "Mərtəbə sayğacı";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=az";
+"https://en-forum.supla.org" = "https://en-forum.supla.org";
+"Retrieving data from the server..." = "Serverdən məlumatlar alınır...";
+"Electricity Meter" = "Elektrik sayğacı";
+"Water Meter" = "Su sayğacı";
+"Gas Meter" = "Qaz sayğacı";
+
+"Forward active Energy" = "İrəli aktiv enerji";
+"Reverse active Energy" = "Geri aktiv enerji";
+"Consumption in the current month" = "Cari ayın istehlakı";
+"Minutes" = "Dəqiqə";
+"Hours" = "Saat";
+"Days" = "Günlər";
+"Months" = "Aylar";
+"Years" = "İllər";
+"Ranking of hours" = "Saat üzrə sıralama";
+"Ranking of weekdays" = "Həftənin günləri üzrə sıralama";
+"Ranking of months" = "Aylar üzrə sıralama";
+"Last 24 hours" = "Son 24 saat";
+"Last 7 days" = "Son 7 gün";
+"Last 30 days" = "Son 30 gün";
+"Last 90 days" = "Son 90 gün";
+"All available history" = "Bütün mövcud tarixçə";
+"Home+ Heater" = "Home+ Qızdırıcı";
+"Comfort" = "Yüksək";
+"ECO" = "ECO";
+"Higher" = "Yüksək";
+"Lower" = "ECO";
+"No water" = "Su yoxdur";
+"Burnt heater" = "Qızdırıcı yanıb";
+"Water temperature sensor error" = "Su temperatur sensoru xətası";
+"Room temperature sensor error" = "Otaq temperatur sensoru xətası";
+"No network interruptions" = "Şəbəkə fasiləsi yoxdur";
+"Room temperature" = "Otaq temperaturu";
+"ON" = "YANIR";
+"OFF" = "SÖNÜK";
+"h" = "s";
+"Wind sensor" = "Külək sensoru";
+"Weight sensor" = "Çəki sensoru";
+"Pressure sensor" = "Təzyiq sensoru";
+"Rain sensor" = "Yağış sensoru";
+
+"Close" = "Bağla";
+"Valve" = "Valf";
+"Warning" = "Xəbərdarlıq";
+"Yes" = "Bəli";
+"No" = "Xeyr";
+
+"Heat meter" = "İstilik sayğacı";
+
+"Time exceeded. Try again." = "Vaxt bitdi. Yenidən cəhd edin.";
+"Are you sure you want to restore the default settings?" = "Əminsiniz ki, standart tənzimləmələri bərpa etmək istəyirsiniz?";
+"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "İŞIQ MƏNBƏYININ ÖMRÜ PARAMETRLƏRINI DƏYIŞDIR";
+"Please enter your Supla Cloud login details." = "Zəhmət olmasa Supla Cloud giriş məlumatlarınızı daxil edin.";
+"Enter superuser credentials" = "Superuser məlumatlarını daxil edin";
+"Dimmer settings" = "Tənzimləyici parametrləri";
+"Do you want to quit without saving?" = "Saxlamadan çıxmaq istəyirsiniz?";
+"Do you want to save the settings?" = "Parametrləri saxlamaq istəyirsiniz?";
+"Restoring default settings" = "Sabit parametrlər bərpa edilir";
+"Mode change in progress" = "Rejim dəyişikliyi davam edir";
+"Roof window" = "Dam pəncərəsi";
+
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Əgər cihaz enerji verildikdən sonra konfiqurasiya rejimində deyilsə, CONFIG düyməsini ən az 5 saniyə basıb saxlayın.\n\n%@\n";
+"Press Next to continue." = "Davama davam etmək üçün Növbəti-yə basın.";
+"Press START to start configuration." = "Konfiqurasiyaya başlamaq üçün BAŞLAT-a basın.";
+"Back" = "Geri";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave körpüsü cavab vermir. Körpünün serverə qoşulduğunu yoxlayın.";
+"Exit" = "Çıxış";
+"The waiting time for basic channel configuration data has expired." = "Əsas kanal konfiqurasiya məlumatları üçün gözləmə müddəti bitdi.";
+"Default" = "Əsas hesab";
+"No function" = "Funksiya yoxdur";
+"Gateway lock operation" = "Qovşaqlı cihaz kilid əməliyyatı";
+"Gate operation" = "Qapı əməliyyatı";
+"Garage door operation" = "Qaraj qapısı əməliyyatı";
+"Humidity sensor" = "Rütubət sensoru";
+"Temperature and humidity sensor" = "Temperatur və rütubət sensoru";
+"Door lock operation" = "Qapı kilidi əməliyyatı";
+"Roller shutter operation" = "Jalüz əməliyyatı";
+"Roof window operation" = "Dam pəncərəsi əməliyyatı";
+"Roof window opening sensor" = "Dam pəncərəsi açılma sensoru";
+"On/Off switch" = "On/Off açarı";
+"Light switch" = "İşıq açarı";
+"Weather Station" = "Hava Stansiyası";
+"Thermostat" = "Termostat";
+"The waiting time for changing the channel caption has expired." = "Kanal başlığını dəyişdirmək üçün gözləmə müddəti bitdi.";
+"The channel caption change failed. Code %i" = "Kanal başlığını dəyişmək mümkün olmadı. Kod %i";
+"You cannot change the function of a channel that belongs to a group." = "Qrupa aid olan kanalın funksiyasını dəyişə bilməzsiniz.";
+"You cannot change the function of a channel that has a schedule." = "Cədvəli olan kanalın funksiyasını dəyişə bilməzsiniz.";
+"You cannot change the function of a channel that is associated with a scene." = "Səhnə ilə əlaqəli olan kanalın funksiyasını dəyişə bilməzsiniz.";
+"The channel function change failed. Code %i" = "Kanal funksiyasını dəyişmək mümkün olmadı. Kod %i";
+"The waiting time for changing the channel function has expired." = "Kanal funksiyasını dəyişdirmək üçün gözləmə müddəti bitdi.";
+"Searching the z-wave network to build a list of devices." = "Cihazların siyahısını yaratmaq üçün z-wave şəbəkəsini axtarır.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "Təyin olunmuş z-wave cihaz ID-si üçün gözləmə müddəti bitdi.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "Cihazın cavabı gözlənilən kimi deyil. Metod: \"%@\" Kod:%i";
+"The waiting time for the list of z-wave devices has expired." = "Z-wave cihazlarının siyahısı üçün gözləmə müddəti bitdi.";
+"Assigned to:" = "Təyin olunmuş:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Z-wave şəbəkəsinin sıfırlanması və tənzimləmələrin təmizlənməsinin təsdiqlənməsini gözləyir.";
+"The waiting time for the z-wave network reset has expired." = "Z-wave şəbəkəsini sıfırlamaq üçün gözləmə müddəti bitdi.";
+"Are you sure you want to reset the settings and z-wave network?" = "Tənzimləmələri və z-wave şəbəkəsini sıfırlamaq istədiyinizə əminsiniz?";
+"This function is not available when the bridge is in slave mode." = "Bu funksiya körpü köməkçi rejimində olduqda mövcud deyil.";
+"Waiting for button press on the z-wave device." = "Z-wave cihazında düymə basılmasını gözləyir.";
+"The waiting time for pressing the button has elapsed." = "Düymə basılması üçün gözləmə müddəti bitdi.";
+"Waiting for the device to be added to the z-wave network." = "Cihazın z-wave şəbəkəsinə əlavə olunmasını gözləyir.";
+"The waiting time for adding the device to the z-wave network has expired." = "Cihazın z-wave şəbəkəsinə əlavə olunması üçün gözləmə müddəti bitdi.";
+"The waiting time to remove the device has expired." = "Cihazı silmək üçün gözləmə müddəti bitdi.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Z-wave cihazının kanala təyin edilməsi üçün gözləmə müddəti bitdi.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Seçilmiş z-wave cihazı artıq başqa kanalla əlaqələndirilib. Bu cihazı bu kanala köçürmək istədiyinizə əminsiniz?";
+"Timeout waiting for z-wave bridge response." = "Z-wave bridge cavabı üçün gözləmə vaxtı bitdi.";
+"Unexpected bridge response. Code: %i" = "Gözlənilməz bridge cavabı. Kod: %i";
+"Z-Wave bridge" = "Z-Wave körpüsü";
+"opened / closed the roof window" = "Dam pəncərəsini açdı / bağladı";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "İcazə verilən cari həddi aşdıqdan sonra enerji söndürüldü.";
+"Your account" = "Hesabınız";
+"App Settings" = "Tətbiq Tənzimləmələri";
+"Channel height" = "Kanal hündürlüyü";
+"Temperature unit" = "Temperatur vahidi";
+"Auto-hide buttons" = "Avtomatik gizlət";
+"The function of the channel associated with the action trigger cannot be changed." = "Əməliyyat trigger-i ilə əlaqəli kanalın funksiyası dəyişdirilə bilməz.";
+"The channel function associated with reactions cannot be changed." = "Reaksiyalarla əlaqəli kanal funksiyası dəyişdirilə bilməz.";
+"The function of the channel associated with the push notification cannot be changed." = "Push bildirişi ilə əlaqəli kanalın funksiyası dəyişdirilə bilməz.";
+"Show ⓘ button" = "ⓘ düyməsini göstər";
+"Advanced settings" = "Ətraflı";
+"Access ID" = "Access ID";
+"ACCESS IDENTIFIER" = "GİRİŞ IDENTİFİKATORU";
+"E-MAIL ADDRESS" = "E-POÇT ÜNVANI";
+"SERVER ADDRESS" = "SERVER ÜNVANI";
+"In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Access ID autentifikasiya rejimində avtomatik \"Add device\" wizard-dan istifadə edə bilməyəcəksiniz. Lakin cihazı əl ilə əlavə edə biləcəksiniz.";
+"Don't have an account in Supla Cloud yet?" = "Hələ Supla Cloud-da hesabınız yoxdur?";
+"Create" = "Yarat";
+"Location order" = "Yer sırası";
+"Opening" = "Açılır";
+"Closing" = "Bağlanır";
+"Your account" = "Hesabınız";
+"Your accounts" = "Hesablarınız";
+"Accounts" = "Hesablar";
+"NAME" = "AD";
+"Tap the account to log in." = "Daxil olmaq üçün hesaba toxunun.";
+"Add new" = "Yeni əlavə et";
+"active" = "aktiv";
+"Default" = "Əsas hesab";
+"Delete account" = "Usuń konto";
+"Select active account" = "Aktiv hesabı seçin";
+"Phase %d" = "Faza %d";
+"Channels" = "Kanallar";
+"Groups" = "Qruplar";
+"Scenes" = "Səhnələr";
+"Not supported function" = "Dəstəklənməyən funksiya";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=az";
+
+"scenes_action_buttons_execute" = "İcra et";
+"scenes_action_buttons_abort" = "Ləğv et";
+"scenes_action_buttons_abort_and_execute" = "Ləğv et və icra et";
+
+"Cfg.removal.title" = "Hesabı silmək istəyirsiniz?";
+"Cfg.removal.action.logout" = "Bu cihazda unut";
+"Cfg.removal.action.remove" = "Cloud-da unut və sil";
+"Cfg.removal.dialog.failed.title" = "Silinmə uğursuz oldu";
+"Cfg.removal.dialog.failed.message" = "Hesabınızı silmək alınmadı, yenidən cəhd edin";
+"Cfg.removal.dialog.missing_name" = "Hesab adı qeyd edilməyib";
+"Cfg.removal.dialog.duplicated_name" = "Bu adda hesab artıq mövcuddur";
+"Cfg.removal.dialog.incomplete" = "Tələb olunan məlumat çatışmır";
+
+"push_notification_limit_exceeded" = "%@ saatlıq push bildiriş limiti aşılmışdır.";
+
+/* General */
+"general_error" = "Xəta";
+"general_warning" = "Xəbərdarlıq";
+"save" = "Yadda saxla";
+"next" = "Növbəti";
+"password" = "Şi̇frə";
+"start" = "Başlat";
+"exit" = "Çıxış";
+"turn_on" = "Yandır";
+"turn_off" = "Söndür";
+"general_back" = "Geri";
+"general_shut" = "Bağla";
+"general_reveal" = "Aç";
+"general_collapse" = "Sıx";
+"general_expand" = "Genişləndir";
+"general_state_opened" = "açıq";
+"general_state_closed" = "bağlı";
+"general_function" = "Funksiya";
+"general_toggle" = "Keçid";
+"general_channel" = "Kanal";
+"general_group" = "Qrup";
+"general_scene" = "Səhnə";
+"general_profile" = "Hesab";
+"general_action" = "Əməliyyat";
+"general_delete" = "Sil";
+"general_select" = "-- Seç --";
+"incorrect_password" = "Şifrə yanlışdır";
+/* General - DayOfWeek */
+"monday" = "Bazar ertəsi";
+"tuesday" = "Çərşənbə axşamı";
+"wednesday" = "Çərşənbə";
+"thursday" = "Cümə axşamı";
+"friday" = "Cümə";
+"saturday" = "Şənbə";
+"sunday" = "Bazar";
+"monday_short" = "B.E.";
+"tuesday_short" = "Ç.A.";
+"wednesday_short" = "Ç.";
+"thursday_short" = "C.A.";
+"friday_short" = "C.";
+"saturday_short" = "Ş.";
+"sunday_short" = "B.";
+"time_just_mintes" = "%d dəq.";
+"time_hours_and_minutes" = "%d saat. %d dəq.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Otel kartı sensoru";
+"channel_caption_alarm_armament" = "Siqnalizasiya sensoru";
+"channel_caption_general_purpose_measurment" = "Ölçmə kanalı";
+"channel_caption_general_purpose_meter" = "Sayğac kanalı";
+"channel_caption_facade_blinds" = "Fasad jalüzləri";
+"channel_caption_terrace_awning" = "Teras tenti";
+"channel_caption_projector_screen" = "Proyektor ekranı";
+"channel_caption_curtain" = "Perde";
+"channel_caption_vertical_blind" = "Şaquli jalüzlər";
+"channel_caption_garage_door" = "Qaraj qapısı";
+"channel_caption_pump_switch" = "Nasos açarı";
+"channel_caption_heat_or_cold_source_switch" = "İstilik və ya soyutma mənbəyi açarı";
+"channel_caption_humidity" = "Rütubət";
+"channel_caption_humidityandtemperature" = "Temperatur və rütubət";
+"channel_caption_container" = "Konteyner";
+"channel_caption_water_tank" = "Su çəni";
+"channel_caption_septic_tank" = "Septik çən";
+"channel_caption_container_level_sensor" = "Konteyner səviyyə sensoru";
+"channel_caption_flood_sensor" = "Daşqın sensoru";
+"channel_caption_motion_sensor" = "Hərəkət sensoru";
+"channel_caption_binary_sensor" = "İkili sensor";
+"channel_caption_invisible" = "Gizli";
+"channel_offline" = "Kanal offline vəziyyətdədir";
+"channel_not_found" = "Kanal tapılmadı";
+"scene_inactive" = "Səhnə aktiv deyil";
+"channel_battery_level" = "Batareya səviyyəsi: %d%%";
+"channel_battery_level_with_info" = "Batareya səviyyəsi (%d - %@): %d%%";
+"channel_uv_warning1" = "UV radiatorunun ömrü %.01f%% təşkil edir. Onun əvəzini planlaşdırın.";
+"channel_uv_warning2" = "UV radiatorunun ömrü %.01f%% təşkil edir. Radiatoru dəyişdirin.";
+"channel_lightsource_warning" = "İşıq mənbəyinin ömrü %.01f%% təşkil edir.";
+"dgf_too_long_operation_warning" = "Şüşə bölmələr 20 saatdan çox işləyib, bu ömrünə mənfi təsir göstərə bilər. Bərpa üçün bütün bölmələri minimum 4 saat örtmək tövsiyə olunur.";
+"dgf_planned_regeneration_in_progress" = "Planlaşdırılmış bərpa davam edir.";
+"dgf_regeneration_after20h" = "20 saatlıq işdən sonra başlanan bərpa davam edir.";
+/* General - Channel status */
+"channel_status_not_available" = "Bu kanal konfiqurasiya səbəbindən mövcud deyil. Tətbiqdə görünməməsi üçün kanalı gizlətməyi tövsiyə edirik.";
+"channel_status_awaiting" = "Bu cihaz uzaqdan oyadıla bilmir. Cihazdan cavab gözləyirik…";
+"channel_status_updating" = "Proqram təminatı yenilənir…";
+/* General - Buttons & States */
+"state_partially_opened" = "Qismən açıq";
+"channel_brn_step_by_step" = "Aç/Bağla (addım-addım)";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Detalları açmaq üçün sürüşdürmə gesta silindi, müəyyən kanala toxunaraq açın.";
+"main_no_entries" = "Boş";
+
+/* Menu */
+"menu_notifications" = "Bildirişlər jurnalı";
+"menu_device_catalog" = "Cihaz kataloqu";
+
+/* Groups */
+"groups_empty_list_button" = "Supla Cloud-da qrup əlavə et";
+
+/* Scenes */
+"scenes_empty_list_button" = "Supla Cloud-da səhnə əlavə et";
+
+/* Create Profile */
+"create_profile_title_create" = "Hesab əlavə et";
+"create_profile_title_modify" = "Hesabı redaktə et";
+"create_profile_basic_warning_title" = "Parametr mövcud deyil";
+"create_profile_basic_warning_message" = "Advanced rejimi söndürmədən əvvəl email autentifikasiyasına keçmək və avtomatik server aşkarlamasını aktivləşdirmək lazımdır.";
+
+/* App Settings */
+"app_settings.permissions_header" = "İcazələr";
+"app_settings.notifications_label" = "Bildirişlər";
+"app_settings.location_label" = "Yerləşdirmə";
+"settings_show_bottom_menu" = "Alt menyunu göstər";
+"settings_show_labels" = "Alt menyu etiketlərini göstər";
+"settings_dark_mode" = "Gecə rejimi";
+"settings_lock_screen" = "Kilid ekranı";
+"settings_lock_screen_none" = "Heç biri";
+"settings_lock_screen_app" = "Tətbiq";
+"settings_lock_screen_accounts" = "Hesablar";
+"settings_battery_level_warnign" = "Aşağı batareya xəbərdarlığı";
+"app_settings_temperature_precision" = "Temperatur dəqiqliyi";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Ümumi";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_metrics_tab" = "Metriklər";
+"standard_detail_schedule_tab" = "Cari həftə";
+"standard_detail_history_tab" = "Tarixçə";
+"standard_detail_list_tab" = "Siyahı";
+"standard_detail_settings_tab" = "Parametrlər";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Cari vəziyyət:";
+"switch_detail_state_label_for_timer" = "%@ qədər vəziyyət:";
+"switch_detail_state_on" = "yanır";
+"switch_detail_state_off" = "sönük";
+"overcurrent_warning" = "İcazə verilən cari həddi aşdıqdan sonra enerji söndürüldü.";
+"overcurrent_question" = "İcazə verilən cari həddi aşdıqdan sonra enerji söndürüldü. Yenidən açmaq istəyirsiniz?";
+
+/* Timer Detail */
+"timer_detail_header" = "Cihaz nə qədər işləməlidir:";
+"timer_detail_edit_header" = "Turn %@ vaxtını redaktə et";
+"timer_detail_edit_header_on" = "açıq";
+"timer_detail_edit_header_off" = "bağlı";
+"timer_detail_turned_on" = "İşə salındı";
+"timer_detail_turned_off" = "Söndürüldü";
+"timer_detail_day_pattern" = "%d gün";
+"timer_detail_days_pattern" = "%d gün";
+"timer_detail_hour_pattern" = "%d saat.";
+"timer_detail_hours_pattern" = "%d saat.";
+"timer_detail_minute_pattern" = "%d dəq.";
+"timer_detail_second_pattern" = "%d san.";
+"timer_detail_info" = "Cihaz %@ müddətinə %@ olacaq, sonra %@ olacaq";
+"timer_detail_info_on" = "açıq";
+"timer_detail_info_off" = "bağlı";
+"timer_detail_info_next_on" = "açıq";
+"timer_detail_info_next_off" = "bağlı";
+"timer_detail_stop" = "Burax %@";
+"timer_detail_cancel" = "ALəğv et və %@ et";
+"timer_detail_cancel_on" = "yanır";
+"timer_detail_cancel_off" = "sönük";
+"timer_detail_edit_time" = "Vaxtı redaktə et";
+"timer_detail_save" = "Yadda saxla";
+"timer_detail_edit_cancel" = "Redaktəni ləğv et";
+"timer_detail_end_hour" = "-ə qədər %@";
+"timer_detail_wrong_time_title" = "Etibarsız vaxt";
+"timer_detail_wrong_time_message" = "Vaxt 0-dan böyük olmalıdır";
+"timer_detail_cancel_thermostat" = "Ləğv et və aç:";
+"timer_detail_select_mode" = "Rejimi seç";
+"timer_detail_manual_mode" = "Əl rejimi";
+"timer_detail_select_time" = "Vaxtı göstərin";
+"timer_detail_counter" = "Sayğac";
+"timer_detail_calendar" = "Təqvim";
+"timer_detail_info_thermostat_off" = "Termostat %@ müddətində söndürülmüş qalacaq";
+"timer_detail_info_thermostat_heating" = "Termostat %@ müddətində isitmə rejimində qalacaq";
+"timer_detail_info_thermostat_cooling" = "Termostat %@ müddətində soyutma rejimində qalacaq";
+"timer_detail_state_label_for_timer_days" = "%@ tarixinə qədər vəziyyət:";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Temperatur oxuma xətası";
+"thermostat_clock_error" = "Saat xətası";
+"thermostat_battery_cover_open" = "Batareya qapağı açıqdır";
+"thermostat_calibration_error" = "Kalibrləmə xətası";
+"thermostat_detail_mode_manual" = "Əl ilə";
+"thermostat_detail_mode_weekly_schedule" = "Proqram";
+"schedule_detail_program_dialog_header" = "Proqram %d parametrləri";
+"hvac_mode_temperature_heating" = "İstilik temperaturu";
+"hvac_mode_temperature_cooling" = "Soyutma temperaturu";
+"schedule_detail_quarters_dialog_header" = "Vaxt %02d:00";
+"schedule_detail_configuration_failure" = "Səhv - etibarsız kanal konfiqurasiyası";
+"thermostat_detail_program_time" = "%@ üçün";
+"thermostat_detail_program_current" = "Hazırda:";
+"thermostat_detail_program_next" = "Növbəti:";
+"thermostat_detail_off_by_window" = "Açıq pəncərə səbəbindən söndürülüb";
+"thermostat_detail_off_by_card" = "Otel kartının olmaması səbəbindən söndürülüb";
+"thermostat_detail_off_by_sensor" = "Sensor tərəfindən söndürülüb";
+"thermostat_detail_program_info" = "Seçmək üçün toxunun. Dəyişdirmək üçün uzun basın.";
+"thermostat_detail_box_info" = "Seçilmiş proqramı təyin etmək üçün toxunun. Rüb təyin etmək üçün uzun basın.";
+"thermostat_detail_arrow_info" = "Qara künc cari gün və saatı göstərir.";
+"thermostat_detail_list" = "Siyahı";
+"thermostat_detail_main_thermostat" = "Əsas termostat";
+"thermostat_detail_other_thermostats" = "Digər termostatlar";
+"thermostat_detail_antifreeze_active" = "Antifriz qorunması aktivdir";
+"thermostat_detail_overheat_active" = "Həddindən artıq istilik qorunması aktivdir";
+
+/* Combined Chart */
+"history_range_label" = "Aralıq";
+"history_data_type" = "Məlumat növü";
+"history_range_last_day" = "Son 24 saat";
+"history_range_last_week" = "Son 7 gün";
+"history_range_last_30_days" = "Son 30 gün";
+"history_range_last_90_days" = "Son 90 gün";
+"history_range_last_365_days" = "Son 365 gün";
+"history_range_current_day" = "Cari gün";
+"history_range_current_week" = "Cari həftə";
+"history_range_current_month" = "Cari ay";
+"history_range_current_quarter" = "Cari rüb";
+"history_range_current_year" = "Cari il";
+"history_range_custom" = "Xüsusi aralıq";
+"history_refreshing" = "Yenilənir…";
+"history_refreshing_failed" = "Yenilənmə uğursuz oldu";
+"history_no_data_selected" = "Heç bir məlumat seçilməyib.";
+"history_no_data_available" = "Hələ heç bir ölçü mövcud deyil";
+"history_no_data_in_selected_period" = "Seçilmiş vaxt intervalında qrafik məlumatı yoxdur.";
+"history_disabled" = "Bu kanal üçün tarix deaktivdir";
+"history_delete_data" = "Tarixi sil və yenidən yüklə";
+"history_wait_for_download_completed" = "Zəhmət olmasa gözləyin, yüklənir…";
+"chart_marker_opening" = "Aç";
+"chart_marker_closing" = "Bağla";
+"temperature_measured" = "Ölçülən";
+"temperature_preset" = "Əvvəlcədən təyin edilmiş";
+
+/* Notifications */
+"notifications_log_profile" = "Profil:";
+"notifications_log_date" = "Tarix:";
+"notification_delete_all_title" = "Qeydləri sil?";
+"notification_delete_all_message" = "Bu geri alınmayacaq";
+"notification_delete_button_delete_all" = "Hamısını sil";
+"notification_delete_button_delete_older_than_month" = "30 gündən köhnələrini sil";
+
+/* Roller shutter detail */
+"rs_display_mode" = "Rollet jalüz, fasad jalüz, pərdə %";
+"roller_shutter_calibration_lost" = "Kalibrləmə uğursuz oldu.";
+"roller_shutter_calibration_failed" = "Kalibrləmə itirildi.";
+"roller_shutter_motor_problem" = "Motor problemi / Gözlənilməz dayandırma.";
+"roller_shutter_calibration" = "Kalibrləmə";
+"roller_shutter_start_calibration_message" = "Kalibrləməyə başlamaq istəyirsiniz?";
+"roller_shutter_closing_percentage" = "Bağla:";
+"roller_shutter_opening_percentage" = "Aç:";
+"roller_shutter_extension_percentage" = "Uzantı:";
+"roller_shutter_calibration_needed" = "Kalibrləmə tələb olunur";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Bucaqlama: ";
+"facade_blinds_no_tilt" = "Konfiqurasiya çatışmır";
+
+/* Status */
+"status_initializing" = "Başlanır…";
+"status_connecting" = "Qoşulur…";
+"status_disconnecting" = "Bağlanır…";
+"status_awaiting_network" = "Şəbəkə gözlənilir…";
+"status_try_again" = "Yenidən cəhd et";
+"status_unknown_error" = "Naməlum xəta";
+"status_temporarily_unavailable" = "Xidmət müvəqqəti əlçatmazdır";
+"status_incorrect_data" = "Email ünvanı və ya şifrə yanlışdır";
+"status_bad_credentials" = "Yanlış giriş məlumatları";
+"status_client_limit_exceeded" = "Müştəri limiti aşılmışdır";
+"status_device_disabled" = "Cihaz deaktivdir. Zəhmət olmasa \"Supla Cloud\"-a daxil olun və vebsaytdakı \“Smartphone\” bölməsində bu cihazı aktiv edin.";
+"status_access_id_disabled" = "Giriş identifikatoru deaktivdir";
+"status_registration_disabled" = "Yeni müştəri qeydiyyatı deaktivdir. Zəhmət olmasa \"Supla Cloud\"-a daxil olun və vebsaytdakı \“Smartphone\” bölməsində “Yeni müştəri qeydiyyatı”nı aktiv edin.";
+"status_access_id_not_assigned" = "Müştəri aktivləşdirməsi tələb olunur. Zəhmət olmasa \"Supla Cloud\"-a daxil olun və bu cihaz üçün vebsaytdakı \“Smartphone\” bölməsində “Access ID” təyin edin.";
+"status_access_id_inactive" = "Access Identifier aktiv deyil";
+"status_host_not_found" = "Host tapılmadı. İnternetə qoşulduğunuzdan və daxil edilmiş e-poçt ünvanı ilə hesab yaradıldığından əmin olun.";
+"status_cant_connect_to_host" = "Hosta qoşulmaq mümkün olmadı";
+
+/* Pin setup */
+"pin_setup_title" = "PIN-i konfiqurasiya et";
+"pin_setup_header" = "PIN kodunuzu təyin edin";
+"pin_setup_repeat" = "PIN-i təkrar edin";
+"pin_setup_entry_different" = "PIN-lər uyğun deyil!";
+"pin_setup_use_biometric" = "Biometrik doğrulama: ";
+"pin_setup_biometric_not_enrolled" = "Biometrik mövcud deyil. Biometrik istifadə etmək istəyirsinizsə, parametrlərə daxil olun və biometrikanızı qeydiyyatdan keçirin.";
+
+/* Lock screen */
+"lock_screen_hello" = "Xoş gəlmisiniz!";
+"lock_screen_enter_pin" = "PIN daxil edin";
+"lock_screen_remove_pin" = "PIN-i silmək";
+"lock_screen_confirm_authorize_range_change" = "Avtorizasiya diapazonunun dəyişdirilməsi";
+"lock_screen_wrong_pin" = "Daxil edilən PIN səhvdir!";
+"lock_screen_forgotten_code" = "PIN kodumu xatırlamıram";
+"lock_screen_forgotten_code_title" = "Giriş kodu";
+"lock_screen_forgotten_code_message" = "Əgər kodu xatırlamırsınızsa, tətbiqi silin və yenidən quraşdırın. Sonra Supla Cloud hesabınızı yenidən konfiqurasiya edin.\n\nYeni hesab yaratmayın. Bütün məlumatlarınız və cihazlarınız Supla Cloud hesabınızda qalacaq.";
+"lock_screen_forgotten_code_button" = "Başa düşdüm";
+"biometric_prompt_subtitle" = "Barmaq izi ilə açın";
+"lock_screen_pin_locked" = "Çox sayda səhv. PIN daxil etmə %@ müddətinə bloklandı.";
+
+/* Device Catalog */
+"device_list_url" = "https://www.supla.org/az/devices";
+
+/* About */
+"about_version" = "versiya %@";
+"about_license" = "Bu proqram pulsuz proqram təminatıdır; onu GNU Ümumi İcazə Sazişi şərtlərinə uyğun olaraq yenidən paylaya və/və ya dəyişdirə bilərsiniz; Free Software Foundation tərəfindən nəşr edilmiş; ya Lisenziyanın 2-ci versiyası, ya da (sizin seçiminizlə) istənilən daha sonrakı versiya.\n\nBu proqram faydalı olacağı ümidilə paylanır, amma HEÇ BİR ZƏMANƏT olmadan; hətta TİCARİLİK və ya MÜƏYYƏN MƏQSƏD ÜÇÜN YARARLI OLMAZLIQ zəmanəti daxil deyil. Daha ətraflı məlumat üçün GNU Ümumi İcazə Sazişinə baxın.\n\nBu proqramla birlikdə GNU Ümumi İcazə Sazişi nüsxəsini almalı idiniz; əgər almamısınızsa, Free Software Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA  02111–1307, ABŞ-a yazın.";
+"about_build_time" = "Günün versiyası: %@";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "İrəli aktiv enerji";
+"details_em_reverse_active_energy" = "Geri aktiv enerji";
+"details_em_forward_reactive_energy" = "İrəli reaktiv enerji";
+"details_em_reverse_reactive_energy" = "Geri reaktiv enerji";
+"details_em_forward_active_energy_short" = "İrəli aktiv";
+"details_em_reverse_active_energy_short" = "Geri aktiv";
+"details_em_forward_reactive_energy_short" = "İrəli reaktiv";
+"details_em_reverse_reactive_energy_short" = "Geri reaktiv";
+"details_em_frequency" = "Tezlik";
+"details_em_voltage" = "Gərginlik";
+"details_em_current" = "Cərəyan";
+"details_em_power_active" = "Aktiv güc";
+"details_em_power_reactive" = "Reaktiv güc";
+"details_em_power_factor" = "Güc faktoru";
+"details_em_phase_angle" = "Faza bucağı";
+"details_em_power_apparent" = "Görünən güc";
+"details_em_phase1" = "Faza 1";
+"details_em_phase2" = "Faza 2";
+"details_em_phase3" = "Faza 3";
+"details_em_balance_arithmetic" = "Aritmetik balans";
+"details_em_balance_vector" = "Vektor balansı";
+"details_em_chart_data_type" = "Məlumat";
+"details_em_phases" = "Fazalar";
+"details_em_balance_hourly" = "Saatlıq balans";
+"details_em_balance_chart_aggregated" = "Cədvəldə cəmlənmiş balans";
+"details_em_sum" = "Cəm";
+"details_em_select_range" = "Aralığı seçin";
+"details_em_active_energy" = "Aktiv enerji";
+"details_em_forwarded_energy" = "İrəli";
+"details_em_reversed_energy" = "Geri";
+"details_em_cost" = "Xərc";
+"details_em_settings_list_item" = "Kanal siyahısında göstərilən göstərici";
+"details_em_settings_title" = "Parametrlər - %@";
+"details_em_total_suffix" = "(ölçü sayğacı oxunuşu)";
+"details_em_current_month_suffix" = "(mövcud ay)";
+"details_em_last_month_balancing" = "Mövcud ay üçün balans növü";
+"details_em_energy_label" = "Enerji";
+"details_em_hour_marker_title" = "%@ saat";
+"em_phase_to_phase_balance" = "Faza-faza vektor balansı";
+"em_electric_grid_parameters" = "Elektrik şəbəkəsi parametrləri";
+"em_chart_all_phases" = "Fazy 1+2+3";
+"details_em_info_swipe" = "Daha çox dəyəri görmək üçün sürüşdürmə hərəkətindən istifadə edin";
+"details_em_info_data_type" = "Burada məlumatların necə qruplaşdırılacağını (saat, gün) və ya reytinqləri göstərə bilərsiniz.";
+"details_em_info_range" = "Burada qrafikdə göstərilən məlumatlar üçün diapazonu seçə bilərsiniz (məsələn, cari ay və ya keçən il).";
+"details_em_info_data_set_single_phase" = "Buraya toxunaraq göstərilən məlumat növünü dəyişə bilərsiniz, məsələn, irəli və ya geri enerji (mövcuddursa).";
+"details_em_info_data_set_multiple_phase" = "Buraya toxunaraq nəyi görmək istədiyinizi seçin, məsələn, saatlıq enerji balansı və ya hansı fazalar.";
+"details_em_voltage_phase_angle_12" = "Gərginlik faza bucağı 1-2";
+"details_em_voltage_phase_angle_13" = "Gərginlik faza bucağı 1-3";
+"details_em_voltage_phase_sequence" = "Gərginlik faza ardıcıllığı";
+"details_em_current_phase_sequence" = "Cərəyan faza ardıcıllığı";
+
+/* Impulse counter */
+"details_em_meter_value" = "Sayğac dəyəri";
+"details_em_current_month_consumption" = "Cari ayın istehlakı";
+
+/* Counter photo */
+"counter_photo_toolbar" = "Sayğac fotoları";
+"counter_photo_counter_area" = "Sayğac sahəsi";
+"counter_photo_original_photo" = "Orijinal foto";
+"counter_photo_settings" = "Bulud konfiqurasiyası";
+"counter_photo_history" = "Foto tarixçəsi";
+"counter_photo_error" = "Xəta";
+"counter_photo_loading_error" = "Yükləmə xətası.";
+
+/* Valve */
+"valve_warning_manually_closed" = "Valf manual və ya radio rejimində bağlanıb. Açmazdan əvvəl, onun daşqın səbəbindən bağlanmadığından əmin olun. Xəbərdarlığı söndürmək üçün valfi manual olaraq açın. Tətbiqdən açmaq istədiyinizə əminsiniz ?!";
+"valve_warning_flooding" = "Aşkar edilmiş daşqın səbəbindən vana bağlanıb. Vananı açmadan əvvəl səbəbin həll olunduğundan əmin olun. Vananı açmaq alarmı ləğv edir. Həqiqətən açmaq istəyirsiniz?";
+"flooding_alarm_message" = "Sensor daşqını bildirir!";
+"valve_warning_manually_closed_short" = "Valf manual və ya radio rejimində bağlanıb. Açmazdan əvvəl, onun daşqın səbəbindən bağlanmadığından əmin olun. Xəbərdarlığı söndürmək üçün valfi manual olaraq açın.";
+"valve_warning_flooding_short" = "Aşkar edilmiş daşqın səbəbindən vana bağlanıb.";
+"valve_warning_motor_problem" = "Motor problemi aşkar edildi. Vanaya heç nə mane olmadığından əmin olun. Vana qismən açıq ola bilər.";
+"valve_warning_motor_problem_opening" = "Motor problemi aşkar edildi. Vanaya heç nə mane olmadığından əmin olun. Vana qismən açıq ola bilər. Həqiqətən açmaq istəyirsiniz?";
+"valve_warning_motor_problem_closing" = "Motor problemi aşkar edildi. Vanaya heç nə mane olmadığından əmin olun. Vana qismən açıq ola bilər. Həqiqətən bağlamaq istəyirsiniz?";
+"valve_detail_sensors" = "Qoşulmuş sensorlar";
+"valve_action_error" = "Kommunikasiya xətası baş verdi. Zəhmət olmasa, sonra yenidən cəhd edin.";
+"valve_error_sensor_offline" = "Daşqın sensoru mövcud deyil - aşkarlanmış daşqın riski var";
+
+/* State */
+"state_channel_id" = "Kanal ID";
+"state_battery_level" = "Batareya səviyyəsi";
+"state_power_supply" = "Enerji təchizatı";
+"channel_state_battery_powered" = "batareya";
+"channel_state_main_powered" = "şəbəkə";
+"state_wifi_signal_strength" = "Wi-Fi siqnal gücü";
+"state_bridge_node_online" = "Bridge node – onlayn";
+"state_bridge_node_signal" = "Radio siqnal gücü";
+"state_uptime" = "İşləmə müddəti";
+"state_connection_time" = "Qoşulma vaxtı";
+"state_battery_health" = "Batareya sağlamlığı";
+"state_connection_reset_cause" = "Qoşulma sıfırlanma səbəbi";
+"state_light_source_lifespan" = "İşıq mənbəyinin ömrü";
+"state_source_operating_time" = "İşıq mənbəyinin işləmə müddəti";
+"state_dialog_index" = "(%d / %d)";
+"state_dialog_lightsource_settings" = "İşıq mənbəyinin ömrü parametrlərini dəyişdir";
+"state_switch_cycle_count" = "Açar dövrləri";
+"channel_state_uptime" = "%d gün %02d:%02d:%02d";
+"lastconnectionresetcause_unknown" = "0: naməlum";
+"lastconnectionresetcause_activity_timeout" = "1: server vaxt aşımı";
+"lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi bağlantısı itdi";
+"lastconnectionresetcause_server_connection_lost" = "3: server bağlantısı itdi";
+"state_dialog_last_known_state" = "Offline – son məlum vəziyyət:";
+
+/* Change caption */
+"change_caption_header" = "Başlıq dəyişdirilməsi";
+"change_caption_channel_name" = "Kanal adı";
+"change_caption_group_name" = "Qrup adı";
+"change_caption_scene_name" = "Səhnə adı";
+"change_caption_location_name" = "Yer adı";
+
+/* Container */
+"container_fill_level" = "Doldurma səviyyəsi";
+"container_warning_level" = "Konteyner səviyyəsi xəbərdarlığı";
+"container_alarm_level" = "Konteyner səviyyəsi alarmı!";
+"container_invalid_sensor_state" = "Yanlış sensor vəziyyəti";
+"container_sound_alarm" = "Səsli alarm aktivdir";
+
+/* Car play */
+"car_play_label" = "Vidjetlər/CarPlay üçün hərəkətlər";
+"car_play_voice_messages" = "Mesajları oxu";
+"car_play_action" = "Əməliyyat: %@";
+"car_play_display_name" = "Göstərilən ad";
+"car_play_execution_error" = "İcra uğursuz oldu (kod: %d)";
+"car_play_executing" = "İcra olunur…";
+"car_play_delete_title" = "Element silinir";
+"car_play_delete_message" = "Davam etmək istəyirsiniz?";
+"car_play_confirm_delete" = "Sil";
+"car_play_empty" = "CarPlay konfiqurasiya edilməyib. Supla Tətbiqinə keçin -> Parametrlər -> Vidjetlər/CarPlay üçün hərəkətlər bölməsinə daxil olun və konfiqurasiyanı hazırlayın.";
+
+/* Widgets */
+"widgets_label" = "Vidjetlər üçün hərəkətlər";
+"widget_empty_hint" = "Heç bir ümumi hərəkət təyin edilməyib. Supla Tətbiqinə keçin -> Parametrlər -> Vidjetlər üçün hərəkətlər bölməsinə daxil olun və öz hərəkətlərinizi təyin edin.";
+"widget_with_carplay_empty_hint" = "Brak zdefiniowanych najczęściej wykonywanych akcji. Przejdź do Supla -> Ustawienia -> Akcje dla Widżetów/CarPlay i zdefiniuj wybrane akcje.";
+"widget_control_hint" = "Hərəkəti yerinə yetir";
+"widgets_actions_name" = "Hərəkətlər";
+"widgets_actions_description" = "Ən çox yayılmış hərəkətlərə çıxışı sadələşdirir.";
+"widgets_unknown_action" = "Naməlum hərəkət!";
+"widgets_value_title" = "Sürətli Baxış";
+"widgets_value_description" = "Cari kanal dəyərinin sürətli önizləməsini təqdim edən vidjet.";
+"widget_configuration_error" = "Vidjet düzgün konfiqurasiya edilməyib";
+"widgets_single_action_title" = "Tək Hərəkət";
+"widgets_single_action_description" = "Tək hərəkətə çıxışı sadələşdirir.";
+"widgets_double_action_title" = "Cüt Hərəkət";
+"widgets_double_action_description" = "İki hərəkətə çıxışı sadələşdirir.";
+"widgets_first_action" = "Birinci hərəkət";
+"widgets_second_action" = "İkinci hərəkət";
+"widgets_control_title" = "İdarəetmə düyməsi";
+"widgets_control_description" = "Əvvəlcədən təyin edilmiş tək bir hərəkəti yerinə yetirməyə imkan verən düymə";
+"widgets_selected_action" = "Seçilmiş hərəkət";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Cihaz qeydiyyatı mövcudluğu məlumatının vaxt limiti bitdi!";
+"enabling_registration_timeout" = "Qeydiyyatın aktivləşdirilməsi üçün vaxt bitdi!";
+"add_wizard_step_1_welcome" = "Yeni I/O cihazını bir neçə sadə addımda sisteminizə əlavə etməyə kömək edəcək Add I/O Device Wizard-a xoş gəlmisiniz.";
+"add_wizard_step_1_continue" = "Davama davam etmək üçün **Növbəti-yə basın**.";
+"add_wizard_step_2_message" = "Yeni I/O cihazı ilə istifadə üçün Wi-Fi şəbəkə adını və şifrəsini daxil edin";
+"add_wizard_network_name" = "Şəbəkə adı";
+"add_wizard_step_3_message_1" = "Cihazınızı enerji mənbəyinə qoşun. Cihaz standart olaraq konfiqurasiya rejimində işləməlidir, vəziyyət LED-i aşağıdakı kimi yanıb-sönəcək.";
+"add_wizard_step_3_message_2" = "Əgər cihaz enerji verildikdən sonra konfiqurasiya rejimində deyilsə, CONFIG düyməsini ən az 5 saniyə basıb saxlayın.";
+"add_wizard_step_3_message_3" = "Konfiqurasiyaya başlamaq üçün BAŞLAT-a basın.";
+"add_wizard_add_more" = "Daha əlavə et";
+"add_wizard_repeat" = "Yenidən cəhd et";
+"add_wizard_remember_passwd" = "Şifrəni yadda saxla";
+"add_wizard_auto_mode" = "Avto rejim";
+"add_wizard_manual_mode_message" = "Zəhmət olmasa, konfiqurasiya üçün I/O Cihazınızın Wi-Fi-ını (məsələn, SUPLA-A220A63612B1 kimi) seçmək üçün aşağıdakı Sistem Parametrləri qısa yolundan istifadə edin.\n\nKonfiqurasiya Wi-Fi adı adətən istehsalçının adını ehtiva edir, məsələn, SUPLA, ZAMEL, NICE, HEATPOL və s.\n\nBağlantı qurulduqda, tətbiqə qayıdın və **BAŞLA** düyməsini basaraq əlavə etmə prosedurunu davam etdirin.";
+"add_wizard_manual_mode_settings" = "Sistem parametrlərinə keçin";
+"add_wizard_location_service_off" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün cihazınızda yer xidmətləri aktivləşdirilməlidir. Sistem parametrlərinizə keçin və onun aktiv olduğundan əmin olun (Parametrlər -> Məxfilik və Təhlükəsizlik -> Yer Xidmətləri).";
+"add_wizard_missing_location" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün SUPLA tətbiqinə yerə giriş lazımdır. Sistem parametrlərinizdə SUPLA tətbiqinin yerinizə daxil olmasına icazə verin.";
+"wizard_scan_timeout" = "Wi-Fi şəbəkə skanlamasının vaxt limiti bitdi!";
+"wizard_iodevice_notfound" = "Heç bir I/O cihazı tapılmadı! Zəhmət olmasa I/O cihazınızın ON və konfiqurasiya rejimində olduğundan əmin olun.";
+"wizard_connect_timeout" = "I/O cihazının qoşulma vaxt limiti bitdi!";
+"wizard_configure_timeout" = "Cihazın konfiqurasiyasının tamamlanması vaxt limiti bitdi!";
+"wizard_wifi_error" = "Wi-Fi şəbəkəsi deaktivdir və ya onun identifikatorunu və ya adını oxumaq mümkün deyil!";
+"wizard_result_compat_error" = "Qoşulmuş cihaz bu Wizard ilə uyğun deyil!";
+"wizard_result_conn_error" = "Cihazla qoşulma qurula bilmir!";
+"wizard_result_failed" = "Konfiqurasiya uğursuz oldu!";
+"wizard_reconnect_timeout" = "Əsas Wi-Fi şəbəkəsinə qayıtma vaxt limiti bitdi!";
+"wizard_done" = "Tənzimləmələr I/O cihazına köçürüldü.";
+"wizard_done_explanations" = "Yeni I/O cihazınız Supla tətbiqində görünmürsə, \“Add I/O Device\” wizard-ını yenidən işə salın və səhifədəki \“Previous State\” məlumatına baxın. \“SSID Not Found\” 2.4 GHz şəbəkənin əhatə dairəsində olmadığını və ya adının düzgün olmadığını göstərir.";
+"wizard_iodev_data" = "Cihaz parametrləri";
+"wizard_iodev_name" = "Ad";
+"wizard_iodev_laststate" = "Əvvəlki vəziyyət";
+"add_device_needs_cloud_title" = "Cihaz quraşdırması";
+"add_device_needs_cloud_message" = "Bu cihazda tətbiqdə görünən heç bir kanal yoxdur. Konfiqurasiyanı bitirmək üçün cloud.supla.org-a keçin";
+"add_device_needs_cloud_close" = "Başa düşdüm";
+"add_device_needs_cloud_go_to_cloud" = "CLOUD-a keç";
+"add_wizard_device_temporarily_locked" = "Uğursuz giriş cəhdlərinin sayı həddi aşdı. Zəhmət olmasa, sonra yenidən cəhd edin…";
+"add_wizard_state_preparing" = "Hazırlıq…";
+"add_wizard_state_connecting" = "Qoşulur…";
+"add_wizard_state_configuring" = "Konfiqurasiya edilir…";
+"add_wizard_state_finishing" = "Bitirilir…";
+"add_wizard_password_clarification" = "Buludda yeni cihazların qeydiyyatı deaktivdir. Bunu əl ilə aktiv edin və ya sehrbazın yeni cihaz qeydiyyatı zamanı avtomatik aktiv etməsi üçün hesab şifrənizi təqdim edin.";
+"add_wizard_password_rules" = "Şifrə ən azı 8 simvol olmalı, ən azı bir böyük hərf, bir kiçik hərf və bir rəqəm içerməlidir.";
+"add_wizard_password_set_title" = "Cihaz şifrəsini təyin et";
+"add_wizard_password_new_label" = "Yeni şifrə";
+"add_wizard_password_repeat_label" = "Şifrəni təkrarla";
+"add_wizard_password_enter_title" = "Cihaz şifrəsi";
+"add_wizard_password_instruction" = "Zəhmət olmasa, yerli konfiqurasiya veb səhifəsinə daxil olmaq üçün istifadə edilən paroldan istifadə edin.\n\nParolunuzu unutmusunuz? Onu Supla Cloud-da dəyişə bilərsiniz və ya cihazı zavod parametrlərinə sıfırlaya bilərsiniz.";
+"add_wizard_manual_reconnect_message" = "İnternet bağlantısı uğursuz oldu.\n\nSistem parametrlərinə keçin və internet bağlantısı olan bir Wi-Fi şəbəkəsi seçin. Sonra tətbiqə qayıdın və **İrəli** düyməsini basaraq davam edin.";
+"add_device_manual_popup_title" = "Cihazı əlavə etmək uğursuz oldu";
+"add_device_manual_popup_message" = "Cihazı avtomatik əlavə etmək cəhdi uğursuz oldu. Problem davam edərsə, cihazı əl ilə əlavə etməyi tövsiyə edirik.";
+"add_device_manual_popup_resign" = "Avtomatik rejimdə qalın";
+"add_device_manual_popup_continue" = "Əl ilə rejimdə yenidən cəhd edin";
+"add_wizard_internal_error_message" = "iOS sistem xidməti şəbəkə skanı zamanı nəzarətimizdən kənar daxili xəta bildirdi. Zəhmət olmasa, cihazı əl ilə rejimdən istifadə edərək əlavə etməyə cəhd edin və ya telefonunuzu/planşetinizi yenidən başladın.";
+"add_wizard_spaces_accept" = "Olduğu kimi saxla";
+"add_wizard_spaces_modify" = "Boşluqları sil";
+"add_wizard_spaces_title" = "Şəbəkə adında boşluq?";
+"add_wizard_spaces_message" = "Daxil edilmiş şəbəkə adı \"%@\" öndə və ya sondakı boşluq (aralıq və ya tabulyasiya) simvollarını ehtiva edir. Əgər şəbəkə adınız bu simvolları ehtiva etməməlidirsə, cihazınız şəbəkəyə qoşula bilməyəcək. Öndəki və ya sondakı boşluq simvollarını saxlamaq, yoxsa silmək istəyirsiniz?";
+
+/* Developer Info */
+"developer_option" = "İnkişafçı seçimləri";
+"developer_info_settings" = "Eksperimental parametrlər";
+"developer_info_screen_orientation" = "Ekran fırlanması aktivdir";
+"developer_info_activated" = "Tərtibatçı rejimi aktiv edildi";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Bütün qapılar üçün açılma sensoru ayarlanmayıb — \“Aç\” və \“Bağla\” düymələri düzgün işləməyə bilər.";

@@ -62,10 +62,6 @@ final class ValuesFormatterMock: ValuesFormatter {
     }
     
     
-    func percentageToString(_ value: Float) -> String {
-        ""
-    }
-    
     func humidityToString(value: Double?, withPercentage: Bool, precision: Int) -> String {
         ""
     }

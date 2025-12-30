@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Датчик відчинення гаражних воріт";
 "Door opening sensor" = "Датчик відчинення дверей";
 "Roller shutter opening sensor" = "Датчик відчинення ролет";
-"Incompatible server version" = "Несумісна версія сервера";
 "RGB Lighting" = "Освітлення RGB";
 "Dimmer and RGB lighting" = "Регулятор освітленості та освітлення RGB";
 "Dimmer" = "Регулятор освітленості";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Датчик пошти";
 "Window opening sensor" = "Датчик відкриття вікна";
 "Add I/O device" = "Додайте пристрій";
-"Donate" = "Підтримайте проект";
-"Create an account" = "Створити";
 "Next" = "Далі";
 "Cancel" = "Скасувати";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Реєстрацію пристроїв введення/виведення наразі вимкнено. Щоб продовжити, перейдіть на сторінку %@ і на вкладці «Моя SUPLA» увімкніть додавання пристроїв.";
-"The connected Server does not support this function!" = "Сервер, до якого ви підключені, не підтримує цю функцію!";
-"Incorrect input parameters (%@)!" = "Неправильні вхідні параметри (%@)!";
 "Help" = "Довідка";
 
 "Staircase timer" = "Сходовий автомат";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=uk";
 
 "Retrieving data from the server..." = "Завантаження даних із сервера...";
-"No chart data available." = "Немає даних для діаграми.";
 "Electricity Meter" = "Лічильник електроенергії";
 "Water Meter" = "Лічильник води";
 "Gas Meter" = "Лічильник газу";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Спожита активна енергія";
 "Reverse active Energy" = "Повернуто активну енергію";
 "Consumption in the current month" = "Споживання за поточний місяць";
-"Production in the current month" = "Виробництво поточного місяця";
 "Minutes" = "Хвилини";
 "Hours" = "Години";
 "Days" = "Дні";
 "Months" = "Місяці";
 "Years" = "Роки";
-"Minute to minute comparison" = "Похвилинне порівняння";
-"Hour to hour comparison" = "Погодинне порівняння";
-"Day to day comparison" = "Порівняння за день";
-"Month to month comparison" = "Порівняння за місяць";
-"Year to year comparison" = "Порівняння за рік";
 "Ranking of hours" = "Рейтинг годин";
 "Ranking of weekdays" = "Рейтинг днів тижня";
 "Ranking of months" = "Рейтинг місяців";
-"Consumption according to phases" = "Споживання за фазою";
-"Production according to phases" = "Виробництво за фазою";
 "Last 24 hours" = "Останні 24 години";
 "Last 7 days" = "Останні 7 днів";
 "Last 30 days" = "Останні 30 днів";
 "Last 90 days" = "Останні 90 днів";
 "All available history" = "Вся історія доступна";
-"Phase 1" = "Фаза 1";
-"Phase 2" = "Фаза 2";
-"Phase 3" = "Фаза 3";
 "Home+ Heater" = "Обігрівач Home+";
 "Comfort" = "Комфорт";
 "ECO" = "ЕКО";
@@ -128,20 +110,9 @@
 "No" = "Ні";
 
 "Heat meter" = "Теплолічильник";
-"Arithmetic balance - Minutes" = "Арифметичний баланс - Хвилини";
-"Arithmetic balance - Hours" = "Арифметичний баланс - Години";
-"Arithmetic balance - Days" = "Арифметичний баланс - Дні";
-"Arithmetic balance - Months" = "Арифметичний баланс - Місяці";
-"Arithmetic balance - Years" = "Арифметичний баланс - Роки";
-"Vector balance - Minutes" = "Векторний баланс - Хвилини";
-"Vector balance - Hours" = "Векторний баланс - Години";
-"Vector balance - Days" = "Векторний баланс - Дні";
-"Vector balance - Months" = "Векторний баланс - Місяці";
-"Vector balance - Years" = "Bilans wektorowy - Lata";
 
 "Time exceeded. Try again." = "Час вийшов. Спробуйте знову.";
 "Are you sure you want to restore the default settings?" = "Ви впевнені, що хочете відновити налаштування за замовчуванням ?";
-"Default settings" = "Налаштування за замовчуванням";
 
 "Please enter your Supla Cloud login details." = "Введіть дані для входу в Supla Cloud.";
 "Enter superuser credentials" = "Введіть облікові дані основного користувача";
@@ -155,7 +126,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Якщо пристрій не перебуває в режимі налаштування після ввімкнення живлення, утримуйте кнопку CONFIG принаймні 5 секунд.\n\n%@\n";
 "Press Next to continue." = "Натисніть Далі, щоб продовжити.";
 "Press START to start configuration." = "Натисніть кнопку СТАРТ, щоб почати налаштування.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Переконайтеся, що програма має дозвіл на пошук пристроїв у вашій локальній мережі та підключення до них. Це означає, що для належної роботи майстра має бути ввімкнено дозвіл \"iOS->Налаштування->SUPLA->Локальна мережа\".";
 "Back" = "Назад";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
 "Exit" = "Вихід";
@@ -224,8 +194,6 @@
 "Location order" = "Порядок розташування";
 "Opening" = "Відкриття";
 "Closing" = "Закриття";
-"Percent of opening" = "Відсоток відкриття";
-"Percent of closing" = "Відсоток закриття";
 "Your account" = "Ваш обліковий запис";
 "Your accounts" = "Ваші облікові записи";
 "Accounts" = "Облікові записи";
@@ -316,6 +284,7 @@
 "channel_caption_binary_sensor" = "Бінарний датчик";
 "channel_caption_container" = "Контейнер";
 "channel_caption_septic_tank" = "Септик";
+"channel_caption_invisible" = "Прихований";
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї: %d%%";
 "channel_battery_level_with_info" = "Рівень заряду батареї (%d - %@): %d%%";
@@ -370,6 +339,7 @@
 "standard_detail_list_tab" = "Список";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Налаштування";
+"standard_detail_dimmer_tab" = "Диммер";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Поточний стан:";
@@ -705,3 +675,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Не всі ворота мають налаштований датчик відкриття — кнопки «Відкрити» та «Закрити» можуть працювати неправильно.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Колір:";
+"rgb_detail_brightness" = "Яскравість:";
+"rgb_detail_select_color" = "Виберіть колір";
+"rgb_detail_colors_limit" = "Ліміт досягнуто!";
+"legacy_rgbw_settings_unauthorized_message" = "Необхідна авторизація для перегляду конфігурації!";
+"legacy_rgbw_settings_authorize_button" = "Авторизувати";

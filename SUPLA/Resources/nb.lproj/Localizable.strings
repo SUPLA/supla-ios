@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Garasjeportåpner sensor";
 "Door opening sensor" = "Døråpner sensor";
 "Roller shutter opening sensor" = "Rullegardineråpner sensor";
-"Incompatible server version" = "Inkompatibel serverversjon";
 "RGB Lighting" = "RGB belysning";
 "Dimmer and RGB lighting" = "Dimmer og RGB belysning";
 "Dimmer" = "Dimmer";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Postsensor";
 "Window opening sensor" = "Vindusåpner sensor";
 "Add I/O device" = "Legg til enhet";
-"Donate" = "Støtt prosjektet";
-"Create an account" = "Opprett konto";
 "Next" = "Videre";
 "Cancel" = "Avbryt";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
-"The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
-"Incorrect input parameters (%@)!" = "wizard_result_param_error (%@)!";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trappeautomat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=nb";
 
 "Retrieving data from the server..." = "Nedlasting av data fra serveren...";
-"No chart data available." = "Manglende data for diagrammet.";
 "Electricity Meter" = "Elektrisitetsmåler";
 "Water Meter" = "Vannmåler";
 "Gas Meter" = "Gassmåler";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Aktiv strøm mottatt";
 "Reverse active Energy" = "Aktiv strøm returnert";
 "Consumption in the current month" = "Forbruk i gjeldende måned";
-"Production in the current month" = "Produksjon i gjeldende måned";
 "Minutes" = "Minutter";
 "Hours" = "Timer";
 "Days" = "Dager";
 "Months" = "Måneder";
 "Years" = "År";
-"Minute to minute comparison" = "Sammenligning minutt etter minutt";
-"Hour to hour comparison" = "Sammenligning time etter time";
-"Day to day comparison" = "Sammenligning dag etter dag";
-"Month to month comparison" = "Sammenligning måned etter måned";
-"Year to year comparison" = "Sammenligning år etter år";
 "Ranking of hours" = "Time rangering";
 "Ranking of weekdays" = "Ukedager rangering";
 "Ranking of months" = "Måneder rangering";
-"Consumption according to phases" = "Forbruk i forhold til faser";
-"Production according to phases" = "Produksjon i forhold til faser";
 "Last 24 hours" = "Siste 24 timer";
 "Last 7 days" = "Siste 7 dager";
 "Last 30 days" = "Siste 30 dager";
 "Last 90 days" = "Siste 90 dager";
 "All available history" = "Tilgjengelig historie";
-"Phase 1" = "Fase 1";
-"Phase 2" = "Fase 2";
-"Phase 3" = "Fase 3";
 "Home+ Heater" = "Varmeapparat Home+";
 "Comfort" = "Komfort";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Nei";
 
 "Heat meter" = "Varmemåler";
-"Arithmetic balance - Minutes" = "Aritmetisk balanse - Minutter";
-"Arithmetic balance - Hours" = "Aritmetisk balanse - Timer";
-"Arithmetic balance - Days" = "Aritmetisk balanse - Dager";
-"Arithmetic balance - Months" = "Aritmetisk balanse - Måneder";
-"Arithmetic balance - Years" = "Aritmetisk balanse - År";
-"Vector balance - Minutes" = "Vektorbalanse - Minutter";
-"Vector balance - Hours" = "Vektorbalanse - Timer";
-"Vector balance - Days" = "Vektorbalanse - Dager";
-"Vector balance - Months" = "Vektorbalanse - Måneder";
-"Vector balance - Years" = "Vektorbalanse - År";
 
 "Time exceeded. Try again." = "Tiden er utløpt. Prøv igjen.";
 "Are you sure you want to restore the default settings?" = "Er du sikker på at du vil tilbakestille innstillinger?";
-"Default settings" = "Standard instillinger";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ENDRE LIVSKILDEINNSTILLING";
 "Please enter your Supla Cloud login details." = "Skriv inn påloggingsinformasjonen for cloud.supla.org.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\n%@\n";
 "Press Next to continue." = "For å fortsette trykk på Videre.";
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Sørg for at applikasjonen har tillatelser til å oppdage og koble til enheter i det lokale nettverket. Dette betyr at tillatelsen \"iOS-> Innstillinger-> SUPLA-> Lokalt nettverk \" må være aktivert for at veiviseren skal fungere skikkelig.";
 "Back" = "Tilbake";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave bro svarer ikke. Kontroller om broen er tilkoblet serveren.";
 "Exit" = "Avslutt";
@@ -224,8 +194,6 @@
 "Location order" = "Rekkefølgen av plassering";
 "Opening" = "Åpning";
 "Closing" = "Nedleggelser";
-"Percent of opening" = "Åpningsprosent";
-"Percent of closing" = "Avslutningsprosent";
 "Your account" = "Kontoen din";
 "Your accounts" = "Dine kontoer";
 "Accounts" = "Kontoer";
@@ -236,7 +204,6 @@
 "Default" = "Standard";
 "Delete account" = "Slett konto";
 "Select active account" = "Velg en aktiv konto";
-"Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
 "Channels" = "Kanaler";
 "Groups" = "Grupper";
@@ -317,6 +284,7 @@
 "channel_caption_binary_sensor" = "Binærsensor";
 "channel_caption_container" = "Beholder";
 "channel_caption_septic_tank" = "Septiktank";
+"channel_caption_invisible" = "Skjult";
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå: %d%%";
 "channel_battery_level_with_info" = "Batterinivå (%d - %@): %d%%";
@@ -705,3 +673,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Ikke alle porter har en åpningssensor konfigurert – «Åpne»- og «Lukk»-knappene fungerer kanskje ikke riktig.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Farge:";
+"rgb_detail_brightness" = "Lysstyrke:";
+"rgb_detail_select_color" = "Velg farge";
+"rgb_detail_colors_limit" = "Grensen er nådd!";
+"legacy_rgbw_settings_unauthorized_message" = "Autorisasjon nødvendig for å se konfigurasjonen!";
+"legacy_rgbw_settings_authorize_button" = "Autoriser";

@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Capteur d'ouverture de porte garage";
 "Door opening sensor" = "Capteur d'ouverture de porte";
 "Roller shutter opening sensor" = "Capteur d'ouverture des volet";
-"Incompatible server version" = "Incompatibilité de la version du serveur";
 "RGB Lighting" = "Éclairage RGB";
 "Dimmer and RGB lighting" = "Variateur de luminosité et éclairage RGB";
 "Dimmer" = "Variateur de luminosité";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Capteur d'ouverture de fenêtre";
 "Window opening sensor" = "Détecteur de courrier";
 "Add I/O device" = "Ajoutez un dispositif";
-"Donate" = "Faire un don";
-"Create an account" = "Créer un compte";
 "Next" = "Continuer";
 "Cancel" = "Annuler";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Enregistrement des dispositifs d'entrée/sortie est actuellement désactivé. Pour continuer, allez à %@ et activez l'ajout de dispositifs dans l'onglet Ma SUPLA.";
-"The connected Server does not support this function!" = "Le serveur auquel vous êtes connecté ne prend pas en charge cette fonctionnalité!";
-"Incorrect input parameters (%@)!" = "Paramètres d'entrée erronés (%@)!";
 "Help" = "Aide";
 
 "Staircase timer" = "Minuterie d'escalier";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=fr";
 
 "Retrieving data from the server..." = "Téléchargement des données du serveur...";
-"No chart data available." = "Manquent les données pour pour le graphique.";
 "Electricity Meter" = "Compteur d'énergie";
 "Water Meter" = "Compteur d'eau";
 "Gas Meter" = "Compteur de gaz";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Energie active importée";
 "Reverse active Energy" = "Energie active rendue";
 "Consumption in the current month" = "Consommation dans le mois courant";
-"Production in the current month" = "Production dans le mois courant";
 "Minutes" = "Minutes";
 "Hours" = "Heures";
 "Days" = "Jours";
 "Months" = "Mois";
 "Years" = "Années";
-"Minute to minute comparison" = "Comparaison minute par minute";
-"Hour to hour comparison" = "Comparaison heure par heure";
-"Day to day comparison" = "Comparaison jour par jour";
-"Month to month comparison" = "Comparaison mois par mois";
-"Year to year comparison" = "Comparaison année par année";
 "Ranking of hours" = "Classement des heures";
 "Ranking of weekdays" = "Classement des jours de la semaine";
 "Ranking of months" = "Classement des mois";
-"Consumption according to phases" = "Consommation selon phases";
-"Production according to phases" = "Production selon phases";
 "Last 24 hours" = "Dernières 24 heures";
 "Last 7 days" = "Derniers 7 jours";
 "Last 30 days" = "Derniers 30 jours";
 "Last 90 days" = "Derniers 90 jours";
 "All available history" = "Tout l'historique disponible";
-"Phase 1" = "Phase 1";
-"Phase 2" = "Phase 2";
-"Phase 3" = "Phase 3";
 "Home+ Heater" = "Élément chauffant Home+";
 "Comfort" = "Confort";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Non";
 
 "Heat meter" = "Compteur de chaleur";
-"Arithmetic balance - Minutes" = "Bilan arithmétique - Minutes";
-"Arithmetic balance - Hours" = "Bilan arithmétique - Heures";
-"Arithmetic balance - Days" = "Bilan arithmétique - Jours";
-"Arithmetic balance - Months" = "Bilan arithmétique - Mois";
-"Arithmetic balance - Years" = "Bilan arithmétique - Années";
-"Vector balance - Minutes" = "Bilan vectorielle - Minutes";
-"Vector balance - Hours" = "Bilan vectorielle - Heures";
-"Vector balance - Days" = "Bilan vectorielle - Jours";
-"Vector balance - Months" = "Bilan vectorielle - Mois";
-"Vector balance - Years" = "Bilan vectorielle - Années";
 
 "Time exceeded. Try again." = "Temps expiré. Réessayer.";
 "Are you sure you want to restore the default settings?" = "Voulez-vous vraiment rétablir les paramètres par défaut ?";
-"Default settings" = "Paramètres par défaut";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "MODIFIER LE RÉGLAGE DE LA DURÉE DE VIE DE LA SOURCE LUMINEUSE";
 "Please enter your Supla Cloud login details." = "Entrez vos informations de connexion cloud.supla.org.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si le dispositif est allumé mais ne fonctionne pas en mode de configuration, maintenez la touche CONFIG pendant au moins 5 secondes.\n\n%@\n";
 "Press Next to continue." = "Pour continuer, appuyez sur Continuer.";
 "Press START to start configuration." = "Appuyez sur DÉMARRER pour commencer la configuration.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assurez-vous que l\'application a la permission de trouver des appareils sur le réseau local et de s\'y connecter. Cela signifie que la permission « iOS->Paramètres->SUPLA->Réseau local » doit être activée pour que l\'assistant fonctionne correctement.";
 "Back" = "Retour";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Le pont z-wave ne répond pas. Vérifiez si le pont est connecté au serveur.";
 "Exit" = "Sortie";
@@ -224,8 +194,6 @@
 "Location order" = "Ordre de localisation";
 "Opening" = "Ouvertures";
 "Closing" = "Fermetures";
-"Percent of opening" = "Pourcentage d\'ouverture";
-"Percent of closing" = "Pourcentage de clôture";
 "Your account" = "Votre compte";
 "Your accounts" = "Vos comptes";
 "Accounts" = "Comptes";
@@ -316,6 +284,7 @@
 "channel_caption_binary_sensor" = "Capteur binaire";
 "channel_caption_container" = "Conteneur";
 "channel_caption_septic_tank" = "Fosse septique";
+"channel_caption_invisible" = "Masqué";
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria: %d%%";
 "channel_battery_level_with_info" = "Livello batteria (%d - %@): %d%%";
@@ -369,6 +338,7 @@
 "standard_detail_list_tab" = "Liste";
 "standard_detail_schedule_tab" = "Semaine";
 "standard_detail_settings_tab" = "Paramètres";
+"standard_detail_dimmer_tab" = "Variateur";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Etat actuel :";
@@ -705,3 +675,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Toutes les portes ne sont pas dotées d'un capteur d'ouverture configuré – les boutons « Ouvrir » et « Fermer » pourraient ne pas fonctionner correctement.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Couleur:";
+"rgb_detail_brightness" = "Luminosité:";
+"rgb_detail_select_color" = "Sélectionner la couleur";
+"rgb_detail_colors_limit" = "Limite atteinte !";
+"legacy_rgbw_settings_unauthorized_message" = "Autorisation nécessaire pour voir la configuration !";
+"legacy_rgbw_settings_authorize_button" = "Autoriser";

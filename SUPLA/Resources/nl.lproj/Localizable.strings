@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Garagedeur openingssensor";
 "Door opening sensor" = "Sensor deuropening";
 "Roller shutter opening sensor" = "Rolluiken openen sensor";
-"Incompatible server version" = "Incompatibele serverversie";
 "RGB Lighting" = "RGB-verlichting";
 "Dimmer and RGB lighting" = "Dimmer en RGB-verlichting";
 "Dimmer" = "Dimmer";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Postsensor";
 "Window opening sensor" = "Raamopeningssensor";
 "Add I/O device" = "Apparaat toevoegen";
-"Donate" = "Steun het project";
-"Create an account" = "Account maken";
 "Next" = "Doorgaan";
 "Cancel" = "Annuleren";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "I / O-apparaatregistratie is momenteel uitgeschakeld. Ga door naar pagina %@ en schakel op het tabblad \"Mijn SUPLA\" het toevoegen van apparaten in.";
-"The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
-"Incorrect input parameters (%@)!" = "Ongeldige invoerparameters (%@)!";
 "Help" = "Help";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trap automaat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=nl";
 
 "Retrieving data from the server..." = "Gegevens downloaden van de server ...";
-"No chart data available." = "Er zijn geen gegevens voor de grafiek.";
 "Electricity Meter" = "Kilowattuurmeter";
 "Water Meter" = "Watermeter";
 "Gas Meter" = "Gasmeter";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Opgenomen actieve energie";
 "Reverse active Energy" = "Actieve energie geretourneerd";
 "Consumption in the current month" = "Verbruik in de lopende maand";
-"Production in the current month" = "Productie in de huidige maand";
 "Minutes" = "Minuten";
 "Hours" = "Uren";
 "Days" = "Dagen";
 "Months" = "Maanden";
 "Years" = "Jaar";
-"Minute to minute comparison" = "Vergelijking van minuut tot minuut";
-"Hour to hour comparison" = "Uur tot uur vergelijking";
-"Day to day comparison" = "Dag tot dag vergelijking";
-"Month to month comparison" = "Maand-tot-maand vergelijking";
-"Year to year comparison" = "Vergelijking jaar tot jaar";
 "Ranking of hours" = "Rangschikking van uren";
 "Ranking of weekdays" = "Rangorde van dagen van de week";
 "Ranking of months" = "Rangorde van maanden";
-"Consumption according to phases" = "Verbruik volgens fase";
-"Production according to phases" = "Productie door fase";
 "Last 24 hours" = "De laatste 24 uur";
 "Last 7 days" = "De laatste 7 dni";
 "Last 30 days" = "De laatste 30 dni";
 "Last 90 days" = "De laatste 90 dni";
 "All available history" = "Volledige geschiedenis beschikbaar";
-"Phase 1" = "Fase 1";
-"Phase 2" = "Fase 2";
-"Phase 3" = "Fase 3";
 "Home+ Heater" = "Verwarming Home +";
 "Comfort" = "Comfort";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Nee";
 
 "Heat meter" = "Warmtemeter";
-"Arithmetic balance - Minutes" = "Rekenkundig saldo - Minuten";
-"Arithmetic balance - Hours" = "Rekenkundig saldo - Uren";
-"Arithmetic balance - Days" = "Rekenkundig saldo - Dagen";
-"Arithmetic balance - Months" = "Rekenkundig saldo - Maanden";
-"Arithmetic balance - Years" = "Rekenkundig saldo - Jaren";
-"Vector balance - Minutes" = "Vector saldo - Minuten";
-"Vector balance - Hours" = "Vector saldo - Uren";
-"Vector balance - Days" = "Vector saldo - Dagen";
-"Vector balance - Months" = "Vector saldo - Maanden";
-"Vector balance - Years" = "Vector saldo - Jaren";
 
 "Time exceeded. Try again." = "De tijd is om. Probeer het nog eens.";
 "Are you sure you want to restore the default settings?" = "Weet u zeker dat u de standaardinstellingen wilt herstellen?";
-"Default settings" = "Standaard instellingen";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "DE INSTELLING VOOR DE LEVENSDUUR VAN DE LICHTBRON WIJZIGEN";
 "Please enter your Supla Cloud login details." = "Voer uw inloggegevens voor cloud.supla.org in.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Als het apparaat niet werkt in de configuratiemodus na het inschakelen van de stroom, houdt u de knop CONFIG minimaal 5 seconden ingedrukt.\n\n%@\n";
 "Press Next to continue." = "Druk op Volgende om door te gaan.";
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zorg ervoor dat de app toestemming heeft om apparaten op het lokale netwerk te vinden en er verbinding mee te maken. Dit betekent dat de \"iOS->Instellingen->SUPLA->Lokaal netwerk\" toestemming moet zijn ingeschakeld om de wizard correct te laten werken. ";
 "Back" = "Terug";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave brug reageert niet. Controleer of de brug met de server is verbonden.";
 "Exit" = "Uitgang";
@@ -224,8 +194,6 @@
 "Location order" = "Volgorde van plaats";
 "Opening" = "Openingen";
 "Closing" = "Sluitingen";
-"Percent of opening" = "Openingspercentage";
-"Percent of closing" = "Sluitingspercentage";
 "Your account" = "Uw rekening";
 "Your accounts" = "Uw rekeningen";
 "Accounts" = "Rekeningen";
@@ -316,6 +284,7 @@
 "channel_caption_binary_sensor" = "Binaire sensor";
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
+"channel_caption_invisible" = "Verborgen";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau: %d%%";
 "channel_battery_level_with_info" = "Batterijniveau (%d - %@): %d%%";
@@ -705,3 +674,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Niet alle poorten hebben een openingssensor geconfigureerd – de knoppen \"Openen\" en \"Sluiten\" werken mogelijk niet correct.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Kleur:";
+"rgb_detail_brightness" = "Helderheid:";
+"rgb_detail_select_color" = "Kleur selecteren";
+"rgb_detail_colors_limit" = "Limiet bereikt!";
+"legacy_rgbw_settings_unauthorized_message" = "Autorisatie nodig om de configuratie te zien!";
+"legacy_rgbw_settings_authorize_button" = "Autoriseren";

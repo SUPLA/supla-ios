@@ -135,29 +135,11 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListView
         
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
-            send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: channel))
-        case let .switchDetail(pages):
-            send(event: .navigateToSwitchDetail(item: channel.item(), pages: pages))
-        case let .thermostatDetail(pages):
-            send(event: .navigateToThermostatDetail(item: channel.item(), pages: pages))
-        case let .thermometerDetail(pages):
-            send(event: .navigateToThermometerDetail(item: channel.item(), pages: pages))
-        case let .gpmDetail(pages):
-            send(event: .navigateToGpmDetail(item: channel.item(), pages: pages))
-        case let .windowDetail(pages):
-            send(event: .navigateToRollerShutterDetail(item: channel.item(), pages: pages))
-        case let .electricityMeterDetail(pages):
-            send(event: .navigateToElectricityMeterDetail(item: channel.item(), pages: pages))
+            send(event: .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: channel))
+        case let .standardDetail(pages):
+            send(event: .navigateToStandardDetail(item: channel.item(), pages: pages))
         case let .impulseCounterDetail(pages):
             send(event: .navigateToImpulseCounterDetail(item: channel.item(), pages: pages))
-        case let .humidityDetail(pages):
-            send(event: .navigateToHumidityDetail(item: channel.item(), pages: pages))
-        case let .valveDetail(pages):
-            send(event: .navigateToValveDetail(item: channel.item(), pages: pages))
-        case let .containerDetail(pages):
-            send(event: .navigateToContainerDetail(item: channel.item(), pages: pages))
-        case let .gateDetail(pages):
-            send(event: .navigateToGateDetail(item: channel.item(), pages: pages))
         }
     }
     
@@ -181,18 +163,9 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListView
 }
 
 enum ChannelListViewEvent: ViewEvent {
-    case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToElectricityMeterDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToLegacyDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
+    case navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToHumidityDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToValveDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToContainerDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToGateDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
 }
 

@@ -28,7 +28,6 @@ extension ContainerGeneralFeature {
         @Singleton<LoadChannelConfigUseCase> private var loadChannelConfigUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
-        @Singleton<ValuesFormatter> private var valuesFormatter
         
         init() {
             super.init(state: ViewState())
@@ -71,7 +70,7 @@ extension ContainerGeneralFeature {
             let levelString = if (value?.status.online == false) {
                 "offline"
             } else if let level {
-                valuesFormatter.percentageToString(Float(level))
+                level.asPercentageString
             } else {
                 "---"
             }
@@ -99,14 +98,14 @@ extension ContainerGeneralFeature {
                     caption
                 }
             
-            return RelatedChannelData(
-                channelId: child.channel.remote_id,
+            return RelatedChannelData.visible(
+                id: child.channel.remote_id,
                 onlineState: child.channel.onlineState,
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),
                 caption: captionWithPercentage,
                 userCaption: child.channel.caption ?? "",
                 batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: child.channel.value?.status.online ?? false
+                showChannelStateIcon: child.channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) != 0 && child.channel.state != nil
             )
         }
         
@@ -134,7 +133,7 @@ extension ContainerGeneralFeature {
             let floatLevel = CGFloat(level - 1) / 100
             return .alarm(
                 level: floatLevel,
-                levelString: valuesFormatter.percentageToString(Float(floatLevel)),
+                levelString: floatLevel.asPercentageString,
                 type: type
             )
         }
@@ -143,7 +142,7 @@ extension ContainerGeneralFeature {
             let floatLevel = CGFloat(level - 1) / 100
             return .warning(
                 level: floatLevel,
-                levelString: valuesFormatter.percentageToString(Float(floatLevel)),
+                levelString: floatLevel.asPercentageString,
                 type: type
             )
         }

@@ -21,7 +21,7 @@ import SwiftUI
 extension IconResult {
     var Image: Image {
         switch (self) {
-        case .suplaIcon(let name):
+        case .suplaIcon(let name), .originalSuplaIcon(let name):
             return SwiftUI.Image(name)
         case .userIcon(let profileId, let iconId, let type, let defaultName):
             return if let icon = UserIcons.Implementation().getIcon(profileId: profileId, iconId: iconId, icon: type) {

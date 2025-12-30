@@ -24,10 +24,10 @@ final class ContainerIconNameProducer: IconNameProducer {
 
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
-        case 1: addStateSuffix(name: .Icons.fncContainer1, state: iconData.state)
-        case 2: addStateSuffix(name: .Icons.fncContainer2, state: iconData.state)
-        case 3: addStateSuffix(name: .Icons.fncContainer3, state: iconData.state)
-        default: addStateSuffix(name: .Icons.fncContainer, state: iconData.state)
+        case 1: addStateSuffix(name: .Icons.fncContainer1, state: iconData.state.value)
+        case 2: addStateSuffix(name: .Icons.fncContainer2, state: iconData.state.value)
+        case 3: addStateSuffix(name: .Icons.fncContainer3, state: iconData.state.value)
+        default: addStateSuffix(name: .Icons.fncContainer, state: iconData.state.value)
         }
     }
 }

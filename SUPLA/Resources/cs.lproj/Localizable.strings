@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "CSnímač otevření garážových dveří";
 "Door opening sensor" = "Snímač otevření dveří";
 "Roller shutter opening sensor" = "Snímač otevření rolet";
-"Incompatible server version" = "Nekompatibilní verze serveru";
 "RGB Lighting" = "Osvětlení RGB";
 "Dimmer and RGB lighting" = "Reostat a osvětlení RGB";
 "Dimmer" = "Reostat";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Snímač pošty";
 "Window opening sensor" = "Snímač otevření okna";
 "Add I/O device" = "Přidat zařízení";
-"Donate" = "Podporujte projekt";
-"Create an account" = "Vytvořte účet";
 "Next" = "Dále";
 "Cancel" = "Zrušit";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrace I / O zařízení je momentálně zakázána. Chcete-li pokračovat, přejděte na stránku %@ a na kartě Moje SUPLA povolte přidávání zařízení.";
-"The connected Server does not support this function!" = "Server, ke kterému jste se připojili, nepodporuje tuto funkci!";
-"Incorrect input parameters (%@)!" = "Chybné vstupní parametry (%@)!";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=cs";
 "https://en-forum.supla.org" = "https://cz-forum.supla.org";
 "Retrieving data from the server..." = "Stahování dat ze serveru...";
-"No chart data available." = "Žádné údaje o graf.";
 "Electricity Meter" = "Elektroměr";
 "Water Meter" = "Vodoměr";
 "Gas Meter" = "Plynoměr";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Pobíraná činná energie";
 "Reverse active Energy" = "Zpětná činná energie";
 "Consumption in the current month" = "Spotřeba v tomto měsíci";
-"Production in the current month" = "Produkce v tomto měsíci";
 "Minutes" = "Minuty";
 "Hours" = "Hodiny";
 "Days" = "Dny";
 "Months" = "Měsíce";
 "Years" = "Roky";
-"Minute to minute comparison" = "Srovnání minuty do minuty";
-"Hour to hour comparison" = "Mezihodinové srovnání";
-"Day to day comparison" = "Mezidenní srovnání";
-"Month to month comparison" = "Meziměsíční srovnání";
-"Year to year comparison" = "Meziroční srovnání";
 "Ranking of hours" = "Pořadí hodin";
 "Ranking of weekdays" = "Pořadí dnů v týdnu";
 "Ranking of months" = "Pořadí měsíců";
-"Consumption according to phases" = "Spotřeba podle fáze";
-"Production according to phases" = "Produkce podle fáze";
 "Last 24 hours" = "Posledních 24 hodin";
 "Last 7 days" = "Posledních 7 dní";
 "Last 30 days" = "Posledních 30 dní";
 "Last 90 days" = "Posledních 90 dní";
 "All available history" = "Kompletní dostupná historie";
-"Phase 1" = "Fáze 1";
-"Phase 2" = "Fáze 2";
-"Phase 3" = "Fáze 3";
 "Home+ Heater" = "Topení Home+";
 "Comfort" = "Ideální teplota";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Ne";
 
 "Heat meter" = "Měřič tepla";
-"Arithmetic balance - Minutes" = "Fázová rovnováha - Minuty";
-"Arithmetic balance - Hours" = "Aritmetická rovnováha - Hodiny";
-"Arithmetic balance - Days" = "Aritmetická zová rovnováha - Dny";
-"Arithmetic balance - Months" = "Aritmetická rovnováha - Měsíce";
-"Arithmetic balance - Years" = "Aritmetická rovnováha - Roky";
-"Vector balance - Minutes" = "Vektorová rovnováha - Minuty";
-"Vector balance - Hours" = "Vektorová rovnováha - Hodiny";
-"Vector balance - Days" = "Vektorová rovnováha - Dny";
-"Vector balance - Months" = "Vektorová rovnováha - Měsíce";
-"Vector balance - Years" = "Vektorová rovnováha - Roky";
 
 "Time exceeded. Try again." = "Časový limit překročen. Zkuste to znovu.";
 "Are you sure you want to restore the default settings?" = "Chcete opravdu obnovit výchozí nastavení?";
-"Default settings" = "Výchozí nastavení";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMĚNIT NASTAVENÍ ŽIVOTNOSTI SVĚTELNÉHO ZDROJE";
 "Please enter your Supla Cloud login details." = "Zadejte své přihlašovací údaje cloud.supla.org.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Pokud zařízení nepracuje v konfiguračním režimu po zapnutí, držte stisknuté tlačítko CONFIG minimálně po dobu 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Chcete-li pokračovat, stiskněte tlačítko Další.";
 "Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Zkontrolujte, zda má aplikace oprávnění vyhledávat zařízení v místní síti a připojovat se k nim. To znamená, že pro správnou funkci průvodce musí být povoleno oprávnění \"iOS->Nastavení->SUPLA->Místní síť\"i. ";
 "Back" = "Zpět";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave můstek neodpovídá. Zkontrolujte zda je můstek připojen k serveru.";
 "Exit" = "Výstup";
@@ -224,8 +194,6 @@
 "Location order" = "Pořadí dle umístění";
 "Opening" = "Otevření";
 "Closing" = "Zavření";
-"Percent of opening" = "Procento otevření";
-"Percent of closing" = "Procento zavření";
 "Your account" = "Váš účet";
 "Your accounts" = "Vaše účty";
 "Accounts" = "Účty";
@@ -236,7 +204,6 @@
 "Default" = "Výchozí";
 "Delete account" = "Odstranit účet";
 "Select active account" = "Vybrat aktivní účet";
-"Phase 1+2+3" = "Fáze 1+2+3";
 "Phase %d" = "Fáze %d";
 "Channels" = "Kanály";
 "Groups" = "Skupiny";
@@ -315,6 +282,7 @@
 "channel_caption_flood_sensor" = "Povodňový senzor";
 "channel_caption_motion_sensor" = "Pohybový senzor";
 "channel_caption_binary_sensor" = "Binární senzor";
+"channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie: %d%%";
 "channel_battery_level_with_info" = "Stav baterie (%d - %@): %d%%";
@@ -368,6 +336,7 @@
 "standard_detail_history_tab" = "Historie";
 "standard_detail_list_tab" = "Seznam";
 "standard_detail_settings_tab" = "Nastavení";
+"standard_detail_dimmer_tab" = "Stmívač";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Současný stav:";
@@ -705,3 +674,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Ne všechna vrata mají nakonfigurovaný senzor otevření – tlačítka „Otevřít“ a „Zavřít“ nemusí fungovat správně.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Barva:";
+"rgb_detail_brightness" = "Jas:";
+"rgb_detail_select_color" = "Vyberte barvu";
+"rgb_detail_colors_limit" = "Dosažen limit!";
+"legacy_rgbw_settings_unauthorized_message" = "K zobrazení konfigurace je nutné oprávnění!";
+"legacy_rgbw_settings_authorize_button" = "Autorizovat";

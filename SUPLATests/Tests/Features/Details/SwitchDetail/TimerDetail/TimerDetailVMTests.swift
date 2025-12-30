@@ -87,7 +87,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         channel.ev = extendedValue
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        getChannelBaseStateUseCase.returns = ChannelState.opened
+        getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(0)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
@@ -103,7 +103,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         assertState(1, withPath: \.deviceState?.timerEndDate?.timeIntervalSince1970, equalTo: 122)
         assertState(1, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
         assertState(1, withPath: \.deviceState?.iconData.function, equalTo: function)
-        assertState(1, withPath: \.deviceState?.iconData.state, equalTo: .opened)
+        assertState(1, withPath: \.deviceState?.iconData.state, equalTo: .default(value: .opened))
         assertState(1, withPath: \.editMode, equalTo: false)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
@@ -138,7 +138,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         channel.ev = extendedValue
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        getChannelBaseStateUseCase.returns = ChannelState.opened
+        getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(0)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         
@@ -156,7 +156,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         assertState(2, withPath: \.deviceState?.timerEndDate?.timeIntervalSince1970, equalTo: 122)
         assertState(2, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
         assertState(2, withPath: \.deviceState?.iconData.function, equalTo: function)
-        assertState(2, withPath: \.deviceState?.iconData.state, equalTo: .opened)
+        assertState(2, withPath: \.deviceState?.iconData.state, equalTo: .default(value: .opened))
         assertState(2, withPath: \.editMode, equalTo: false)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)

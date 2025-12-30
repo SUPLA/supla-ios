@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Αισθητήρας ανοίγματος της γκαραζόπορτας";
 "Door opening sensor" = "Αισθητήρας ανοίγματος πόρτας";
 "Roller shutter opening sensor" = ">Αισθητήρας ανοίγματος περσίδων";
-"Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
 "RGB Lighting" = "Φωτισμός RGB";
 "Dimmer and RGB lighting" = "Ρεοστάτης και φωτισμός RGB";
 "Dimmer" = "Ρεοστάτης";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Αισθητήρας ταχυδρομείου";
 "Window opening sensor" = "Αισθητήρας ανοίγματος παραθύρου";
 "Add I/O device" = "Προσθήκη συσκευής";
-"Donate" = "Υποστηρίξτε το έργο";
-"Create an account" = "Δημιουργία λογαριασμού";
 "Next" = "Επόμενο";
 "Cancel" = "Ακύρωση";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Η εγγραφή συσκευών εισόδου/εξόδου είναι αυτή τη στιγμή απενεργοποιημένη. Για να συνεχίσετε, μεταβείτε στην ιστοσελίδα %@ και στην καρτέλα \"Η SUPLA μου\" ενεργοποιήστε την προσθήκη συσκευών.";
-"The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
-"Incorrect input parameters (%@)!" = "Μη έγκυρες παράμετροι εισόδου (%@)!";
 "Help" = "Βοήθεια";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Αυτόματη σκάλα";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=el";
 
 "Retrieving data from the server..." = "Λήψη δεδομένων από διακομιστή...";
-"No chart data available." = "Δεν υπάρχουν δεδομένα για το γράφημα.";
 "Electricity Meter" = "Μετρητής ηλεκτρικής ενέργειας";
 "Water Meter" = "Μετρητής νερού";
 "Gas Meter" = "Μετρητής αερίου";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Ληφθείσα ενεργή ενέργεια";
 "Reverse active Energy" = "Επιστραφείσα ενεργή ενέργεια";
 "Consumption in the current month" = "Κατανάλωση τον τρέχοντα μήνα";
-"Production in the current month" = "Παραγωγή τον τρέχοντα μήνα";
 "Minutes" = "Λεπτά";
 "Hours" = "Ώρες";
 "Days" = "Ημέρες";
 "Months" = "Μήνες";
 "Years" = "Χρόνια";
-"Minute to minute comparison" = "Σύγκριση λεπτό προς λεπτό";
-"Hour to hour comparison" = "Σύγκριση ώρα προς ώρα";
-"Day to day comparison" = "Σύγκριση μέρα προς μέρα";
-"Month to month comparison" = "Σύγκριση ώρα προς ώρα";
-"Year to year comparison" = "Σύγκριση έτος προς έτος";
 "Ranking of hours" = "Κατάταξη των ωρών";
 "Ranking of weekdays" = "Κατάταξη των ημερών της εβδομάδας";
 "Ranking of months" = "Κατάταξη των μηνών";
-"Consumption according to phases" = "Κατανάλωση ανάλογα με τις φάσεις";
-"Production according to phases" = "Παραγωγή ανάλογα με τις φάσεις";
 "Last 24 hours" = "Οι τελευταίες 24 ώρες";
 "Last 7 days" = "Οι τελευταίες 7 ημέρες";
 "Last 30 days" = "Οι τελευταίες 30 ημέρες";
 "Last 90 days" = "Οι τελευταίες 90 ημέρες";
 "All available history" = "Όλο το διαθέσιμο ιστορικό";
-"Phase 1" = "Φάση 1";
-"Phase 2" = "Φάση 2";
-"Phase 3" = "Φάση 3";
 "Home+ Heater" = "Θερμαντήρας Home+";
 "Comfort" = "Κομφόρ";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Όχι";
 
 "Heat meter" = "Μετρητής θερμότητας";
-"Arithmetic balance - Minutes" = "Αριθμητικός ισολογισμός - Λεπτά";
-"Arithmetic balance - Hours" = "Αριθμητικός ισολογισμός - Ώρες";
-"Arithmetic balance - Days" = "Αριθμητικός ισολογισμός - Ημέρες";
-"Arithmetic balance - Months" = "Αριθμητικός ισολογισμός - Μήνες";
-"Arithmetic balance - Years" = "Αριθμητικός ισολογισμός - Χρόνια";
-"Vector balance - Minutes" = "Διανυσματικός ισολογισμός - Λεπτά";
-"Vector balance - Hours" = "Διανυσματικός ισολογισμός - Ώρες";
-"Vector balance - Days" = "Διανυσματικός ισολογισμός - Ημέρες";
-"Vector balance - Months" = "Διανυσματικός ισολογισμός - Μήνες";
-"Vector balance - Years" = "Διανυσματικός ισολογισμός - Χρόνια";
 
 "Time exceeded. Try again." = "Τέλος χρόνου. Προσπαθήστε ξανά.";
 "Are you sure you want to restore the default settings?" = "Είστε βέβαιοι ότι θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;";
-"Default settings" = "Προεπιλογές";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ΑΛΛΑΓΗ ΡΥΘΜΙΣΕΩΝ ΔΙΑΡΚΕΙΑΣ ΖΩΗΣ ΤΗΣ ΠΗΓΗΣ ΦΩΤΟΣ";
 "Please enter your Supla Cloud login details." = "Εισαγάγετε τα στοιχεία σύνδεσής σας στο cloud.supla.org.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Βεβαιωθείτε ότι η εφαρμογή έχει άδεια εντοπισμού και σύνδεσης σε συσκευές στο τοπικό σας δίκτυο. Αυτό σημαίνει ότι το δικαίωμα \"iOS->Ρυθμίσεις->SUPLA->Τοπικό δίκτυο\" πρέπει να είναι ενεργοποιημένο για να λειτουργήσει σωστά ο οδηγός. ";
 "Back" = "Επιστροφή";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
 "Exit" = "Εξοδος";
@@ -224,8 +194,6 @@
 "Location order" = "Σειρά τοποθεσιών";
 "Opening" = "Άνοιγμα";
 "Closing" = "Κλείσιμο";
-"Percent of opening" = "Ποσοστό ανοίγματος";
-"Percent of closing" = "Ποσοστό κλεισίματος";
 "Your account" = "Ο λογαριασμός σας";
 "Your accounts" = "Οι λογαριασμοί σας";
 "Accounts" = "Λογαριασμοί";
@@ -316,6 +284,7 @@
 "channel_caption_binary_sensor" = "Δυαδικός αισθητήρας";
 "channel_caption_container" = "Δοχείο";
 "channel_caption_septic_tank" = "Βόθρος";
+"channel_caption_invisible" = "Κρυφός";
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας: %d%%";
 "channel_battery_level_with_info" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
@@ -369,6 +338,7 @@
 "standard_detail_list_tab" = "Λίστα";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Ρυθμίσεις";
+"standard_detail_dimmer_tab" = "Δίμερ";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Τρέχουσα κατάσταση:";
@@ -705,3 +675,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Δεν έχουν όλες οι πύλες ρυθμισμένο αισθητήρα ανοίγματος – τα κουμπιά «Άνοιγμα» και «Κλείσιμο» ενδέχεται να μην λειτουργούν σωστά.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Χρώμα:";
+"rgb_detail_brightness" = "Φωτεινότητα:";
+"rgb_detail_select_color" = "Επιλέξτε χρώμα";
+"rgb_detail_colors_limit" = "Το όριο έφτασε!";
+"legacy_rgbw_settings_unauthorized_message" = "Απαιτείται εξουσιοδότηση για να δείτε τη διαμόρφωση!";
+"legacy_rgbw_settings_authorize_button" = "Εξουσιοδοτήστε";

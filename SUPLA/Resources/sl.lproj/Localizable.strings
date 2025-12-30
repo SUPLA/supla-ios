@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Senzor odprtja garažnih vrat";
 "Door opening sensor" = "Senzor odprtja vrat";
 "Roller shutter opening sensor" = "Senzor odprtja rolet";
-"Incompatible server version" = "Nezdružljiva različica strežnika";
 "RGB Lighting" = "RGB osvetlitev";
 "Dimmer and RGB lighting" = "Zatemnilnik in RGB osvetlitev";
 "Dimmer" = "Zatemnilnik";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Senzor pošte";
 "Window opening sensor" = "Senzor odprtja oken";
 "Add I/O device" = "Dodajte napravo";
-"Donate" = "Podprite projekt";
-"Create an account" = "Ustvarite račun";
 "Next" = "Naprej";
 "Cancel" = "Prekličite";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registracija naprav je trenutno izklopljena. Za nadaljevanje pojdite na stran %@ in v zavihku \"Moja SUPLA\" omogočite dodajanje naprav.";
-"The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
-"Incorrect input parameters (%@)!" = "Napačni vhodni parametri (%@)!";
 "Help" = "Pomoč";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Stopniščni avtomat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=sl";
 
 "Retrieving data from the server..." = "Prenos podatkov s strežnika...";
-"No chart data available." = "Za tabelo ni podatkov.";
 "Electricity Meter" = "Števec električne energije";
 "Water Meter" = "Merilnik vode";
 "Gas Meter" = "Merilnik plina";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Aktivna porabljena energija";
 "Reverse active Energy" = "Aktivna porabljena energija";
 "Consumption in the current month" = "Poraba v tekočem mesecu";
-"Production in the current month" = "Proizvodnja v tekočem mesecu";
 "Minutes" = "Minute";
 "Hours" = "Ure";
 "Days" = "Dni";
 "Months" = "Meseci";
 "Years" = "Leta";
-"Minute to minute comparison" = "Primerjava iz minute v minuto";
-"Hour to hour comparison" = "Primerjava iz ure v uro";
-"Day to day comparison" = "Primerjava iz dneva v dan";
-"Month to month comparison" = "Primerjava iz meseca v mesec";
-"Year to year comparison" = "Primerjava iz leta v leto";
 "Ranking of hours" = "Razvrstitev ur";
 "Ranking of weekdays" = "Razvrstitev dni v tednu";
 "Ranking of months" = "Razvrstitev mesecev";
-"Consumption according to phases" = "Poraba v skladu s fazami";
-"Production according to phases" = "Izdelava v skladu s fazami";
 "Last 24 hours" = "Zadnjih 24 ur";
 "Last 7 days" = "Zadnjih 7 dni";
 "Last 30 days" = "Zadnjih 30 dni";
 "Last 90 days" = "Zadnjih 90 dni";
 "All available history" = "Vsa zgodovina je na voljo";
-"Phase 1" = "1. faza";
-"Phase 2" = "2. faza";
-"Phase 3" = "3. faza";
 "Home+ Heater" = "Gralec Home+";
 "Comfort" = "Udobje";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Ne";
 
 "Heat meter" = "Merilnik toplote";
-"Arithmetic balance - Minutes" = "Aritmetično ravnotežje - Minute";
-"Arithmetic balance - Hours" = "Aritmetično ravnotežje - Ure";
-"Arithmetic balance - Days" = "Aritmetično ravnotežje - Dnevi";
-"Arithmetic balance - Months" = "Aritmetično ravnotežje - Meseci";
-"Arithmetic balance - Years" = "Aritmetično ravnotežje - Leta";
-"Vector balance - Minutes" = "Vektorsko ravnotežje - Minute";
-"Vector balance - Hours" = "Vektorsko ravnotežje - Ure";
-"Vector balance - Days" = "Vektorsko ravnotežje - Dnevi";
-"Vector balance - Months" = "Vektorsko ravnotežje - Meseci";
-"Vector balance - Years" = "Vektorsko ravnotežje - Leta";
 
 "Time exceeded. Try again." = "Časovna prekoračitev. Poskusite ponovno.";
 "Are you sure you want to restore the default settings?" = "Ali ste prepričani, da želite obnoviti na privzete nastavitve?";
-"Default settings" = "Privzete nastavitve";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "SPREMENITE NASTAVITVE ŽIVLJENSKE DOBE SVETLOBNEGA VIRA";
 "Please enter your Supla Cloud login details." = "Vnesite svoje prijavne podatke za cloud.supla.org.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Prepričajte se, da ima aplikacija dovoljenja za iskanje naprav v lokalnem omrežju in povezovanje z njimi. To pomeni, da mora biti dovoljenje\"iOS-> Nastavitve-> SUPLA-> Lokalno omrežje\" vključeno za pravilno delovanje čarovnika.";
 "Back" = "Nazaj";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
 "Exit" = "Izhod";
@@ -224,8 +194,6 @@
 "Location order" = "Zaporedje lokacije";
 "Opening" = "Odpiranja";
 "Closing" = "Zapiranja";
-"Percent of opening" = "Odstotek odpiranja";
-"Percent of closing" = "Odstotek zapiranja";
 "Your account" = "Vaš račun";
 "Your accounts" = "Vaši računi";
 "Accounts" = "Računi";
@@ -316,6 +284,7 @@
 "channel_caption_binary_sensor" = "Binarni senzor";
 "channel_caption_container" = "Posoda";
 "channel_caption_septic_tank" = "Greznica";
+"channel_caption_invisible" = "Skrit";
 "channel_offline" = "Kanal je brez povezave";
 "channel_battery_level" = "Raven baterije: %d%%";
 "channel_battery_level_with_info" = "Raven baterije (%d - %@): %d%%";
@@ -369,6 +338,7 @@
 "standard_detail_history_tab" = "Zgodovina";
 "standard_detail_list_tab" = "Seznam";
 "standard_detail_settings_tab" = "Nastavitve";
+"standard_detail_dimmer_tab" = "Zatemnilnik";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Trenutno stanje:";
@@ -705,3 +675,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Nimajo vsa vrata konfiguriranega senzorja odpiranja – gumba »Odpri« in »Zapri« morda ne bosta delovala pravilno.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Barva:";
+"rgb_detail_brightness" = "Svetlost:";
+"rgb_detail_select_color" = "Izberite barvo";
+"rgb_detail_colors_limit" = "Omejitev dosežena!";
+"legacy_rgbw_settings_unauthorized_message" = "Za ogled konfiguracije je potrebna avtorizacija!";
+"legacy_rgbw_settings_authorize_button" = "Avtoriziraj";

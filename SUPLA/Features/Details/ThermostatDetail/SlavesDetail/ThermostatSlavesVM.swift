@@ -92,7 +92,6 @@ private extension ChannelChild {
         @Singleton var getChannelValueStringUseCase: GetChannelValueStringUseCase
         @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
         @Singleton var getCaptionUseCase: GetCaptionUseCase
-        @Singleton var valuesFormatter: ValuesFormatter
         
         let thermostatValue = channel.value?.asThermostatValue()
         let mainThermometer = children.first(where: { $0.relationType == .mainThermometer })
@@ -109,11 +108,11 @@ private extension ChannelChild {
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),
-            currentPower: thermostatValue?.state.power?.floatValue.also { valuesFormatter.percentageToString($0/100) },
+            currentPower: thermostatValue?.state.power?.floatValue.asPercentageString,
             value: value,
             indicatorIcon: thermostatValue?.indicatorIcon ?? .off,
             issues: getChannelIssuesForSlavesUseCase.invoke(channel: channel.shareable),
-            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
+            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.state != nil,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
             sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel)
@@ -146,7 +145,6 @@ private extension ChannelWithChildren {
         @Singleton var getChannelValueStringUseCase: GetChannelValueStringUseCase
         @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
         @Singleton var getCaptionUseCase: GetCaptionUseCase
-        @Singleton var valuesFormatter: ValuesFormatter
         
         let thermostatValue = channel.value?.asThermostatValue()
         let mainThermometer = children.first(where: { $0.relationType == .mainThermometer })
@@ -163,11 +161,11 @@ private extension ChannelWithChildren {
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
             icon: getChannelIcon(channel),
-            currentPower: thermostatValue?.state.power?.floatValue.also { valuesFormatter.percentageToString($0/100) },
+            currentPower: thermostatValue?.state.power?.floatValue.asPercentageString,
             value: value,
             indicatorIcon: thermostatValue?.indicatorIcon ?? .off,
             issues: getChannelIssuesForSlavesUseCase.invoke(channelWithChildren: shareable),
-            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0,
+            showChannelStateIcon: channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.state != nil,
             subValue: thermostatValue?.setpointText,
             pumpSwitchIcon: getChannelIcon(pumpSwitchChild?.channel),
             sourceSwitchIcon: getChannelIcon(sourceSwitchChild?.channel)

@@ -42,16 +42,15 @@ struct ReadGroupWithChannels {
                     )
                 }
                 .map { group, channels, parentsMap, relations in
-                    let channels: [ChannelWithChildren] = relations
+                    let channels: [ChannelInGroup] = relations
                         .map { relation in
-                            if let channel = channels.first(where: { $0.remote_id == relation.channel_id }) {
-                                let childrenRelations = parentsMap[relation.channel_id] ?? []
-                                return self.createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, relations: childrenRelations)
+                            guard let channel = channels.first(where: { $0.remote_id == relation.channel_id }) else {
+                                return ChannelInGroup.invisible(remoteId: relation.channel_id)
                             }
-                            
-                            return nil
+                            let childrenRelations = parentsMap[relation.channel_id] ?? []
+                            let channelWithChildren = self.createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, relations: childrenRelations)
+                            return ChannelInGroup.visible(channel: channelWithChildren)
                         }
-                        .compactMap { $0 }
                     
                     return GroupWithChannels(group: group, channels: channels)
                 }
@@ -60,7 +59,7 @@ struct ReadGroupWithChannels {
     
     struct GroupWithChannels {
         let group: SAChannelGroup
-        let channels: [ChannelWithChildren]
+        let channels: [ChannelInGroup]
         
         var relatedChannelData: [RelatedChannelData] {
             @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
@@ -68,45 +67,83 @@ struct ReadGroupWithChannels {
             
             return channels
                 .map {
-                    RelatedChannelData(
-                        channelId: $0.remoteId,
-                        onlineState: $0.onlineState,
-                        icon: getChannelBaseIconUseCase.invoke(channel: $0.channel),
-                        caption: getCaptionUseCase.invoke(data: $0.channel.shareable).string,
-                        userCaption: $0.channel.caption ?? "",
-                        batteryIcon: nil,
-                        showChannelStateIcon: $0.onlineState.online && $0.channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0
-                    )
+                    switch $0 {
+                    case let .invisible(remoteId): RelatedChannelData.invisible(id: remoteId)
+                    case let .visible(channelWithChildren): RelatedChannelData.visible(
+                            id: channelWithChildren.remoteId,
+                            onlineState: channelWithChildren.onlineState,
+                            icon: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel),
+                            caption: getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
+                            userCaption: channelWithChildren.channel.caption ?? "",
+                            batteryIcon: nil,
+                            showChannelStateIcon: channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) != 0 &&
+                                channelWithChildren.channel.state != nil
+                        )
+                    }
                 }
         }
         
-        func aggregatedState(activeValue: ChannelState, inactiveValue: ChannelState) -> ChannelState? {
+        func aggregatedState(policy: Policy = .onOff) -> ChannelState.Value? {
             guard let groupTotalValue = group.total_value as? GroupTotalValue else { return nil }
             
             return groupTotalValue.values
-                .map { ($0 as? BoolGroupValue)?.value }
-                .map {
-                    switch $0 {
-                    case .none:
-                        ChannelState.notUsed
-                    case .some(let active):
-                        active ? activeValue : inactiveValue
-                    }
-                }
+                .map { policy.map($0) }
                 .reduce(ChannelStateHolder(state: nil)) { result, value in
                     if (result.state == nil) {
                         ChannelStateHolder(state: value)
                     } else if (result.state == value) {
                         ChannelStateHolder(state: result.state)
                     } else {
-                        ChannelStateHolder(state: ChannelState.notUsed)
+                        ChannelStateHolder(state: .notUsed)
                     }
                 }
                 .state
+        }
+        
+        enum Policy {
+            case onOff
+            case openClosed
+            case dimmer
+            case rgb
+            
+            func map(_ value: BaseGroupValue) -> ChannelState.Value {
+                switch self {
+                case .onOff: (value as? BoolGroupValue)?.value == true ? .off : .on
+                case .openClosed: (value as? BoolGroupValue)?.value == true ? .closed : .opened
+                case .dimmer:
+                    if let integerGroupValue = value as? IntegerGroupValue {
+                        (integerGroupValue.value > 0) ? .on : .off
+                    } else if let dimmerAndRgbValue = value as? DimmerAndRgbLightingGroupValue {
+                        (dimmerAndRgbValue.brightness > 0) ? .on : .off
+                    } else {
+                        .off
+                    }
+                case .rgb:
+                    if let rgbValue = value as? RgbLightingGroupValue {
+                        (rgbValue.brightness > 0) ? .on : .off
+                    } else if let dimmerAndRgbValue = value as? DimmerAndRgbLightingGroupValue {
+                        (dimmerAndRgbValue.colorBrightness > 0) ? .on : .off
+                    } else {
+                        .off
+                    }
+                }
+            }
+        }
+    }
+    
+    enum ChannelInGroup {
+        case invisible(remoteId: Int32)
+        case visible(channel: ChannelWithChildren)
+        
+        var function: Int32 {
+            switch self {
+            case .invisible: SuplaFunction.unknown.value
+            case let .visible(channelWithChildren): channelWithChildren.function
+            }
         }
     }
 }
 
 private struct ChannelStateHolder {
-    let state: ChannelState?
+    let state: ChannelState.Value?
 }

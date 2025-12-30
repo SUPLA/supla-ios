@@ -23,16 +23,16 @@ final class BinarySensorIconNameProducer: IconNameProducer {
 
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
-        case 1: addStateSuffix(name: .Icons.fncBinarySensor1, state: iconData.state)
-        case 2: addStateSuffix(name: .Icons.fncBinarySensor2, state: iconData.state)
-        case 3: addStateSuffix(name: .Icons.fncBinarySensor3, state: iconData.state)
-        case 4: addStateSuffix(name: .Icons.fncBinarySensor4, state: iconData.state)
-        case 5: addStateSuffix(name: .Icons.fncBinarySensor5, state: iconData.state)
-        case 6: addStateSuffix(name: .Icons.fncBinarySensor6, state: iconData.state)
-        case 7: addStateSuffix(name: .Icons.fncBinarySensor7, state: iconData.state)
-        case 8: addStateSuffix(name: .Icons.fncBinarySensor8, state: iconData.state)
-        case 9: addStateSuffix(name: .Icons.fncBinarySensor9, state: iconData.state)
-        default: addStateSuffix(name: .Icons.fncBinarySensor, state: iconData.state)
+        case 1: addStateSuffix(name: .Icons.fncBinarySensor1, state: iconData.state.value)
+        case 2: addStateSuffix(name: .Icons.fncBinarySensor2, state: iconData.state.value)
+        case 3: addStateSuffix(name: .Icons.fncBinarySensor3, state: iconData.state.value)
+        case 4: addStateSuffix(name: .Icons.fncBinarySensor4, state: iconData.state.value)
+        case 5: addStateSuffix(name: .Icons.fncBinarySensor5, state: iconData.state.value)
+        case 6: addStateSuffix(name: .Icons.fncBinarySensor6, state: iconData.state.value)
+        case 7: addStateSuffix(name: .Icons.fncBinarySensor7, state: iconData.state.value)
+        case 8: addStateSuffix(name: .Icons.fncBinarySensor8, state: iconData.state.value)
+        case 9: addStateSuffix(name: .Icons.fncBinarySensor9, state: iconData.state.value)
+        default: addStateSuffix(name: .Icons.fncBinarySensor, state: iconData.state.value)
         }
     }
 }

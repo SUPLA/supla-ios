@@ -30,6 +30,10 @@ extension String {
         static let schedule = "icon_schedule"
         static let history = "icon_history"
         static let settings = "icon_settings"
+        static let rgb = "icon_rgb"
+        static let rgbSelected = "icon_rgb_selected"
+        static let dimmer = "icon_dimmer"
+        static let dimmerSelected = "icon_dimmer_selected"
         
         // MARK: Icons
         static let pencil = "pencil"
@@ -65,6 +69,8 @@ extension String {
         static let update = "icon_update"
         static let profileActive = "icon_profile_active"
         static let profileInactive = "icon_profile_inactive"
+        static let dimmerCircularSelector = "icon_dimmer_circular_selector"
+        static let dimmerLinearSelector = "icon_dimmer_linear_selector"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
@@ -230,6 +236,11 @@ extension String {
         static let fncBinarySensor7 = "fnc_binary_sensor_7"
         static let fncBinarySensor8 = "fnc_binary_sensor_8"
         static let fncBinarySensor9 = "fnc_binary_sensor_9"
+        // RGB and dimmer
+        static let fncRgbOn = "rgb-on"
+        static let fncRgbOff = "rgb-off"
+        static let fncDimmerOn = "dimmer-on"
+        static let fncDimmerOff = "dimmer-off"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

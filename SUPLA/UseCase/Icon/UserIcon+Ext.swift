@@ -17,19 +17,19 @@
  */
 
 extension UserIcon {
-    var darkMode: Bool {
+    private var localDarkMode: Bool {
         @Singleton<GlobalSettings> var settings
 
         return settings.darkMode == .always
             || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
     }
 
-    var type: UserIcons.IconType {
+    func type(darkMode: Bool? = nil) -> UserIcons.IconType {
         switch (self) {
-        case .icon1: darkMode ? .night0 : .light0
-        case .icon2: darkMode ? .night1 : .light1
-        case .icon3: darkMode ? .night2 : .light2
-        case .icon4: darkMode ? .night3 : .light3
+        case .icon1: darkMode ?? localDarkMode ? .night0 : .light0
+        case .icon2: darkMode ?? localDarkMode ? .night1 : .light1
+        case .icon3: darkMode ?? localDarkMode ? .night2 : .light2
+        case .icon4: darkMode ?? localDarkMode ? .night3 : .light3
         }
     }
 }

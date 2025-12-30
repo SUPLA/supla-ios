@@ -116,13 +116,17 @@
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
 }
 
--(void)dismiss {
+-(void)acceptChanges {
     [self onDismiss];
     [self closePreloaderPopup];
     
     if (_configStartedAtTime) {
         _configStartedAtTime = nil;
     }
+}
+
+-(void)dismiss {
+    [self acceptChanges];
     
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -140,7 +144,7 @@
 -(BOOL)onMenubarBackButtonPressed {
     
     if (!_settingsChanged) {
-        [self dismiss];
+        [self acceptChanges];
         return NO;
     }
     
@@ -153,7 +157,7 @@
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-        [self dismiss];
+        [self acceptChanges];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
@@ -207,7 +211,7 @@
 - (IBAction)btnOKTouch:(id)sender {
     
     if (!_settingsChanged) {
-        [self dismiss];
+        [self acceptChanges];
         return;
     }
     
@@ -222,14 +226,14 @@
                              handler:^(UIAlertAction * action) {
         self->_configStartedAtTime = nil;
         [self saveChanges];
-        [self dismiss];
+        [self acceptChanges];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
                             actionWithTitle:NSLocalizedString(@"No", nil)
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
-        [self dismiss];
+        [self acceptChanges];
     }];
     
     UIAlertAction* cancelBtn = [UIAlertAction

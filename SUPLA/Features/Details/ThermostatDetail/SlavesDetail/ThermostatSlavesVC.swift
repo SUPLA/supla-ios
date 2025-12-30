@@ -49,7 +49,7 @@ extension ThermostatSlavesFeature {
                         subjectType: .channel,
                         function: data.function
                     )
-                    self?.coordinator.navigateToThermostatDetail(
+                    self?.coordinator.navigateToStandardDetail(
                         item: bundle,
                         pages: [.thermostatGeneral, .thermostatHistory]
                     )

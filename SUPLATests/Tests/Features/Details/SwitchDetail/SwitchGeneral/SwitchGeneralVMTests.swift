@@ -86,7 +86,7 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         channel.ev = extendedValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        getChannelBaseStateUseCase.returns = ChannelState.opened
+        getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(0)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         getChannelBaseIconUseCase.returns = iconResult
@@ -135,7 +135,7 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
         channel.ev = extendedValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        getChannelBaseStateUseCase.returns = ChannelState.opened
+        getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(124)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
         

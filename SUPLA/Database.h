@@ -64,8 +64,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(SAChannel*) fetchChannelById:(int)channel_id;
 -(NSUInteger) getChannelCount;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
--(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
--(void) updateColorListItem:(SAColorListItem *)item;
 
 -(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;
 -(BOOL) zwaveBridgeChannelAvailable;

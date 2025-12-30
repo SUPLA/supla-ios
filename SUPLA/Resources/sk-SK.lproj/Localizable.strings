@@ -44,7 +44,6 @@
 "Garage door opening sensor" = "Snímač otvorenia garážovej brány";
 "Door opening sensor" = "Snímač otvorenia dverí";
 "Roller shutter opening sensor" = "Snímač otvorenia roliet";
-"Incompatible server version" = "Nekompatibilná verzia servera";
 "RGB Lighting" = "RGB osvetlenie";
 "Dimmer and RGB lighting" = "Stmievač a RGB osvetlenie";
 "Dimmer" = "Stmievač";
@@ -57,20 +56,14 @@
 "Mail sensor" = "Snímač pošty";
 "Window opening sensor" = "Snímač otvorenia okna";
 "Add I/O device" = "Pridať zariadenie";
-"Donate" = "Podporiť projekt";
-"Create an account" = "Vytvoriť účet";
 "Next" = "Ďalej";
 "Cancel" = "Zrušiť";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrácia I / O zariadení je momentálne vypnutá. Ak chcete pokračovať, prejdite na stránku %@ a v záložke \"Moja SUPLA\" zapnite pridávanie zariadení.";
-"The connected Server does not support this function!" = "Server, s ktorým bolo nadviazané spojenie, túto funkciu nepodporuje!";
-"Incorrect input parameters (%@)!" = "Nesprávne vstupné parametre (%@)!";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodiskový automat";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=sk";
 
 "Retrieving data from the server..." = "Údaje sa načítavajú zo servera...";
-"No chart data available." = "Žiadne údaje pre graf.";
 "Electricity Meter" = "Elektromer";
 "Water Meter" = "Vodomer";
 "Gas Meter" = "Plynomer";
@@ -78,30 +71,19 @@
 "Forward active Energy" = "Činná energia prijatá";
 "Reverse active Energy" = "Činná energia odovzdaná";
 "Consumption in the current month" = "Spotreba v aktuálnom mesiaci";
-"Production in the current month" = "Výroba v aktuálnom mesiaci";
 "Minutes" = "Minúty";
 "Hours" = "Hodiny";
 "Days" = "Dni";
 "Months" = "Mesiace";
 "Years" = "Roky";
-"Minute to minute comparison" = "Porovnanie minúta po minúte";
-"Hour to hour comparison" = "Porovnanie hodina po hodine";
-"Day to day comparison" = "Porovnanie deň po dni";
-"Month to month comparison" = "Porovnanie mesiac po mesiaci";
-"Year to year comparison" = "Porovnanie rok po rokuu";
 "Ranking of hours" = "Rebríček hodín";
 "Ranking of weekdays" = "Rebríček dní týždňa";
 "Ranking of months" = "Rebríček mesiacov";
-"Consumption according to phases" = "Spotreba podľa fáz";
-"Production according to phases" = "Výroba podľa fáz";
 "Last 24 hours" = "Posledných 24 hodín";
 "Last 7 days" = "Posledných 7 dní";
 "Last 30 days" = "Posledných 30 dní";
 "Last 90 days" = "Posledných 90 dní";
 "All available history" = "Celá dostupná história";
-"Phase 1" = "Fáza 1";
-"Phase 2" = "Fáza 2";
-"Phase 3" = "Fáza 3";
 "Home+ Heater" = "Špirála Home+";
 "Comfort" = "Komfortná";
 "ECO" = "ECO";
@@ -128,20 +110,9 @@
 "No" = "Nie";
 
 "Heat meter" = "Merač tepla";
-"Arithmetic balance - Minutes" = "Aritmetická bilancia - Minúty";
-"Arithmetic balance - Hours" = "Aritmetická bilancia - Hodiny";
-"Arithmetic balance - Days" = "Aritmetická bilancia - Dni";
-"Arithmetic balance - Months" = "Aritmetická bilancia - Mesiace";
-"Arithmetic balance - Years" = "Aritmetická bilancia - Roky";
-"Vector balance - Minutes" = "Vektorová bilancia - Minúty";
-"Vector balance - Hours" = "Vektorové bilancia - Hodiny";
-"Vector balance - Days" = "Vektorová bilancia - Dni";
-"Vector balance - Months" = "Vektorová bilancia - Mesiace";
-"Vector balance - Years" = "Vektorová bilancia - Roky";
 
 "Time exceeded. Try again." = "Došlo k prekročeniu lehoty. Skúste znova.";
 "Are you sure you want to restore the default settings?" = "Naozaj chcete obnoviť predvolené nastavenia?";
-"Default settings" = "Predvolené nastavenia";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMENIŤ NASTAVENIA ŽIVOTNOSTI ZDROJA SVETLA";
 "Please enter your Supla Cloud login details." = "Zadajte svoje prihlasovacie údaje do Supla Cloud.";
@@ -156,7 +127,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Ak zariadenie po pripojení k el. napätiu nie je spustené v konfiguračnom režime, stlačte a na aspoň 5 sekúnd podržte tlačidlo CONFIG.\n\n%@\n";
 "Press Next to continue." = "Pokračujte stlačením Ďalej.";
 "Press START to start configuration." = "Stlačte tlačidlo ŠTART a začnite konfiguráciu.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Uistite sa, že aplikácia má povolenia na zisťovanie a pripojenie k zariadeniam v lokálnej sieti. To znamená, že pre správne fungovanie sprievodcu musí byť povolené oprávnenie \"iOS->Nastavenia->SUPLA->Lokálna sieť\".";
 "Back" = "Späť";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
 "Exit" = "Výstup";
@@ -224,8 +194,6 @@
 "Location order" = "Poradie miest";
 "Opening" = "Otvorenia";
 "Closing" = "Zatvorenia";
-"Percent of opening" = "Percento otvorenia";
-"Percent of closing" = "Percento zatvorenia";
 "Your account" = "Váš účet";
 "Your accounts" = "Vaše účty";
 "Accounts" = "Účty";
@@ -316,6 +284,7 @@
 "channel_caption_binary_sensor" = "Binárny senzor";
 "channel_caption_container" = "Kontajner";
 "channel_caption_septic_tank" = "Septik";
+"channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie: %d%%";
 "channel_battery_level_with_info" = "Úroveň batérie (%d - %@): %d%%";
@@ -367,6 +336,7 @@
 "standard_detail_metrics_tab" = "Merania";
 "standard_detail_history_tab" = "História";
 "standard_detail_list_tab" = "Zoznam";
+"standard_detail_dimmer_tab" = "Stmievač";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Súčasný stav:";
@@ -703,3 +673,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Nie všetky brány majú nakonfigurovaný snímač otvárania – tlačidlá „Otvoriť“ a „Zatvoriť“ nemusia fungovať správne.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Farba:";
+"rgb_detail_brightness" = "Jas:";
+"rgb_detail_select_color" = "Vyberte farbu";
+"rgb_detail_colors_limit" = "Limit bol dosiahnutý!";
+"legacy_rgbw_settings_unauthorized_message" = "Na zobrazenie konfigurácie je potrebné oprávnenie!";
+"legacy_rgbw_settings_authorize_button" = "Autorizovať";

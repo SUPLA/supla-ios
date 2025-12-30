@@ -17,34 +17,11 @@
  */
 
 #import "DetailView.h"
-#import "SAColorBrightnessPicker.h"
-#import "SAColorListPicker.h"
 #import "SAUIChannelStatus.h"
 
-@interface SARGBWDetailView : SADetailView <SAColorBrightnessPickerDelegate, SAColorListPickerDelegate>
-@property (weak, nonatomic) IBOutlet SAColorBrightnessPicker *cbPicker;
-@property (weak, nonatomic) IBOutlet SAColorListPicker *clPicker;
-@property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cbPickerTopMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cbPickerBottomMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *clPickerBottomMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vTabsWheelSliderBottomMargin;
-@property (weak, nonatomic) IBOutlet UIView *vExtraButtons;
-@property (weak, nonatomic) IBOutlet UIButton *btnPowerOnOff;
-@property (weak, nonatomic) IBOutlet UIButton *btnSettings;
-@property (weak, nonatomic) IBOutlet UIButton *btnInfo;
-@property (weak, nonatomic) IBOutlet UIView *vTabsRgbDimmer;
-@property (weak, nonatomic) IBOutlet UIView *vTabsWheelSlider;
-- (IBAction)onRgbTabTouch:(id)sender;
-- (IBAction)onDimmerTabTouch:(id)sender;
-- (IBAction)onPickerTypeTabTouch:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *tabRGB;
-@property (weak, nonatomic) IBOutlet UIButton *tabDimmer;
-@property (weak, nonatomic) IBOutlet UIButton *tabWheel;
-@property (weak, nonatomic) IBOutlet UIButton *tabSlider;
-@property (weak, nonatomic) IBOutlet UITextField *percentageValue;
-- (IBAction)onPowerBtnTouch:(id)sender;
-- (IBAction)rgbInfoTouch:(id)sender;
-- (IBAction)onSettingsTouch:(id)sender;
+@interface SARGBWDetailView : SADetailView
+
+@property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 
 @end

@@ -44,14 +44,10 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
     
     override func handle(event: GroupListViewEvent) {
         switch (event) {
-        case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
+        case let .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: channelBase):
             coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
-        case let .navigateToRollerShutterDetail(item, pages):
-            coordinator.navigateToWindowDetail(item: item, pages: pages)
-        case let .navigateToGateDetail(item, pages):
-            coordinator.navigateToGateDetail(item: item, pages: pages)
-        case let .navigateToSwitchDetail(item, pages):
-            coordinator.navigateToSwitchDetail(item: item, pages: pages)
+        case let .navigateToStandardDetail(item, pages):
+            coordinator.navigateToStandardDetail(item: item, pages: pages)
         case let .open(url):
             coordinator.openUrl(url: url)
         }

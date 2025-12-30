@@ -22,7 +22,7 @@ final class StaircaseTimerIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: FetchIconData) -> String {
-        addStateSuffix(name: switchIcon(iconData.altIcon), state: iconData.state)
+        addStateSuffix(name: switchIcon(iconData.altIcon), state: iconData.state.value)
     }
     
     private func switchIcon(_ altIcon: Int32) -> String {

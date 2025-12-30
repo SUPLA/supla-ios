@@ -184,8 +184,8 @@ extension GateGeneralFeature {
 #Preview("Group") {
     let viewState = GateGeneralFeature.ViewState()
     viewState.relatedChannelsData = [
-        RelatedChannelData(
-            channelId: 1,
+        RelatedChannelData.visible(
+            id: 1,
             onlineState: .online,
             icon: .suplaIcon(name: "gate-open"),
             caption: "Gate",
@@ -193,15 +193,16 @@ extension GateGeneralFeature {
             batteryIcon: nil,
             showChannelStateIcon: true
         ),
-        RelatedChannelData(
-            channelId: 2,
+        RelatedChannelData.visible(
+            id: 2,
             onlineState: .offline,
             icon: .suplaIcon(name: "gate-closed"),
             caption: "Gate",
             userCaption: "",
             batteryIcon: nil,
             showChannelStateIcon: false
-        )
+        ),
+        RelatedChannelData.invisible(id: 3)
     ]
     viewState.showOpenAndCloseWarning = true
     viewState.openButtonState = .init(

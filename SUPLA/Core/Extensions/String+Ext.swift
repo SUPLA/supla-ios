@@ -18,6 +18,7 @@
 
 import CommonCrypto
 import Foundation
+import SwiftUI
 
 extension String {
     func substringIndexed(to: Int) -> String {
@@ -60,29 +61,63 @@ extension String {
     }
     
     func utf8StringToBuffer(_ buffer: UnsafeMutablePointer<CChar>, withSize size: Int) {
-         memset(buffer, 0, size)
+        memset(buffer, 0, size)
          
-         var len = self.count
-         if len > size - 1 {
-             len = size - 1
-         }
+        var len = self.count
+        if len > size - 1 {
+            len = size - 1
+        }
          
-         while len > 0 {
-             let substring = String(self.prefix(len))
-             guard let cstring = substring.cString(using: .utf8) else {
-                 len = 0
-                 continue
-             }
+        while len > 0 {
+            let substring = String(self.prefix(len))
+            guard let cstring = substring.cString(using: .utf8) else {
+                len = 0
+                continue
+            }
              
-             let cstringLength = strnlen(cstring, size)
-             if cstringLength < size {
-                 memcpy(buffer, cstring, cstringLength)
-                 len = 0
-             } else {
-                 len -= 1
-             }
-         }
-     }
+            let cstringLength = strnlen(cstring, size)
+            if cstringLength < size {
+                memcpy(buffer, cstring, cstringLength)
+                len = 0
+            } else {
+                len -= 1
+            }
+        }
+    }
+    
+    func toColorOrNull() -> UIColor? {
+        var hex = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        if hex.hasPrefix("#") {
+            hex.removeFirst()
+        }
+            
+        if hex.count == 6 {
+            guard
+                let r = Int(String(hex.prefix(2)), radix: 16),
+                let g = Int(String(hex.dropFirst(2).prefix(2)), radix: 16),
+                let b = Int(String(hex.dropFirst(4).prefix(2)), radix: 16)
+            else {
+                return nil
+            }
+                
+            return UIColor(red: Double(r) / 255.0, green: Double(g) / 255.0, blue: Double(b) / 255.0, alpha: 1)
+        }
+            
+        if hex.count == 3 {
+            let chars = Array(hex)
+            guard
+                let r = Int(String(repeating: chars[0], count: 2), radix: 16),
+                let g = Int(String(repeating: chars[1], count: 2), radix: 16),
+                let b = Int(String(repeating: chars[2], count: 2), radix: 16)
+            else {
+                return nil
+            }
+                
+            return UIColor(red: Double(r) / 255.0, green: Double(g) / 255.0, blue: Double(b) / 255.0, alpha: 1)
+        }
+            
+        return nil
+    }
     
     static func fromC<T>(_ address: T) -> String {
         return withUnsafePointer(to: address) {
@@ -91,7 +126,6 @@ extension String {
             }
         }
     }
-    
 }
 
 extension String? {
@@ -105,7 +139,7 @@ extension String? {
 }
 
 @objc extension NSString {
-    @objc func utf8StringToBuffer(_ buffer: UnsafeMutablePointer<CChar>, withSize size: Int) {
+    func utf8StringToBuffer(_ buffer: UnsafeMutablePointer<CChar>, withSize size: Int) {
         let str = self as String
         str.utf8StringToBuffer(buffer, withSize: size)
     }

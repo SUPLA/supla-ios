@@ -28,7 +28,7 @@ protocol IconNameProducer {
 }
 
 extension IconNameProducer {
-    func addStateSuffix(name: String, state: ChannelState) -> String {
+    func addStateSuffix(name: String, state: ChannelState.Value) -> String {
         switch (state) {
         case .opened: return String(format: "%@-%@", name, "open")
         case .partialyOpened, .closed: return String(format: "%@-%@", name, "closed")

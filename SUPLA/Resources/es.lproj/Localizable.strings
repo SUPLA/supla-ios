@@ -45,7 +45,6 @@
 "Garage door opening sensor" = "Sensor de apertura de la puerta de garaje";
 "Door opening sensor" = "Sensor de apertura de la puerta";
 "Roller shutter opening sensor" = "Sensor de apertura de las persianas";
-"Incompatible server version" = "Versión del servidor incompatible";
 "RGB Lighting" = "Alumbrado RGB";
 "Dimmer and RGB lighting" = "Atenuador y alumbrado RGB";
 "Dimmer" = "Atenuador";
@@ -58,20 +57,14 @@
 "Mail sensor" = "Sensor de correo";
 "Window opening sensor" = "Sensor de apertura de ventanas";
 "Add I/O device" = "Añadir dispositivo";
-"Donate" = "Donar";
-"Create an account" = "Crear cuenta";
 "Next" = "Siguiente";
 "Cancel" = "Cancelar";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos está actualmente deshabilitado. Para continuar vaya a la página %@ y en la pestaña Mi SUPLA active el registro de dispositivos.";
-"The connected Server does not support this function!" = "¡El servidor al que ha conectado no es compatible con esta característica!";
-"Incorrect input parameters (%@)!" = "¡Parámetros de entrada erróneos (%@)!";
 "Help" = "Ayuda";
 
 "Staircase timer" = "Automático de escalera";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=es";
 "https://en-forum.supla.org" = "https://es-forum.supla.org";
 "Retrieving data from the server..." = "Descargando datos del servidor...";
-"No chart data available." = "No hay datos para el gráfico.";
 "Electricity Meter" = "Contador de electricidad";
 "Water Meter" = "Contador de agua";
 "Gas Meter" = "Contador de gas";
@@ -79,30 +72,19 @@
 "Forward active Energy" = "Energía activa recibida";
 "Reverse active Energy" = "Energía activa devuelta";
 "Consumption in the current month" = "Consumo en el mes actual";
-"Production in the current month" = "Producción en el mes actual";
 "Minutes" = "Minutos";
 "Hours" = "Horas";
 "Days" = "Días";
 "Months" = "Meses";
 "Years" = "Años";
-"Minute to minute comparison" = "Comparación minuto a minuto";
-"Hour to hour comparison" = "Comparación hora a hora";
-"Day to day comparison" = "Comparación día a día";
-"Month to month comparison" = "Comparación mes a mes";
-"Year to year comparison" = "Comparación año a año";
 "Ranking of hours" = "Ranking de horas";
 "Ranking of weekdays" = "Ranking de días de la semana";
 "Ranking of months" = "Ranking de meses";
-"Consumption according to phases" = "Consumo por fases";
-"Production according to phases" = "Producción por fases";
 "Last 24 hours" = "Últimas 24 horas";
 "Last 7 days" = "Últimos 7 días";
 "Last 30 days" = "Últimos 30 días";
 "Last 90 days" = "Últimos 90 días";
 "All available history" = "Todo el historial disponible";
-"Phase 1" = "Fase 1";
-"Phase 2" = "Fase 2";
-"Phase 3" = "Fase 3";
 "Home+ Heater" = "Calentador Home+";
 "Comfort" = "Confort";
 "ECO" = "ECO";
@@ -129,20 +111,9 @@
 "No" = "No";
 
 "Heat meter" = "Medidor de calor";
-"Arithmetic balance - Minutes" = "Balance aritmético – Minutos";
-"Arithmetic balance - Hours" = "Balance aritmético – Horas";
-"Arithmetic balance - Days" = "Balance aritmético – Días";
-"Arithmetic balance - Months" = "Balance aritmético – Meses";
-"Arithmetic balance - Years" = "Balance aritmético – Años";
-"Vector balance - Minutes" = "Balance vectorial – Minutos";
-"Vector balance - Hours" = "Balance vectorial – Horas";
-"Vector balance - Days" = "Balance vectorial – Días";
-"Vector balance - Months" = "Balance vectorial – Meses";
-"Vector balance - Years" = "Balance vectorial – Años";
 
 "Time exceeded. Try again." = "¡Se ha superado el tiempo! Inténtalo de nuevo.";
 "Are you sure you want to restore the default settings?" = "¿Está seguro de restaurar la configuración predeterminada?";
-"Default settings" = "Configuración por defecto";
 
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
 "Please enter your Supla Cloud login details." = "Ingrese sus datos de inicio de sesión en cloud.supla.org.";
@@ -157,7 +128,6 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\n%@\n";
 "Press Next to continue." = "Para continuar presiona Siguiente.";
 "Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
 "Back" = "Atrás";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifica si el puente está conectado con al servidor.";
 "Exit" = "Salir";
@@ -225,8 +195,6 @@
 "Location order" = "Orden de las localizaciones";
 "Opening" = "Aperturas";
 "Closing" = "Cierres";
-"Percent of opening" = "Porcentaje de apertura";
-"Percent of closing" = "Porcentaje de cierre";
 "Your account" = "Tu cuenta";
 "Your accounts" = "Tus cuentas";
 "Accounts" = "Cuentas";
@@ -317,6 +285,7 @@
 "channel_caption_flood_sensor" = "Sensor de inundación";
 "channel_caption_motion_sensor" = "Sensor de movimiento";
 "channel_caption_binary_sensor" = "Sensor binario";
+"channel_caption_invisible" = "Oculto";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería: %d%%";
 "channel_battery_level_with_info" = "Nivel de batería (%d - %@): %d%%";
@@ -706,3 +675,11 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "No todas las puertas tienen un sensor de apertura configurado; es posible que los botones \"Abrir\" y \"Cerrar\" no funcionen correctamente.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Color:";
+"rgb_detail_brightness" = "Luminosidad:";
+"rgb_detail_select_color" = "Seleccionar color";
+"rgb_detail_colors_limit" = "¡Límite alcanzado!";
+"legacy_rgbw_settings_unauthorized_message" = "¡Se necesita autorización para ver la configuración!";
+"legacy_rgbw_settings_authorize_button" = "Autorizar";

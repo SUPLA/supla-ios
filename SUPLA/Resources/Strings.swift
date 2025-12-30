@@ -181,6 +181,8 @@ struct Strings {
         static let tabHistory = "standard_detail_history_tab".toLocalized()
         static let tabList = "standard_detail_list_tab".toLocalized()
         static let tabSettings = "standard_detail_settings_tab".toLocalized()
+        static let tabRgb = "standard_detail_rgb_tab".toLocalized()
+        static let tabDimmer = "standard_detail_dimmer_tab".toLocalized()
         static let tabOcr = "OCR"
     }
     
@@ -371,6 +373,7 @@ struct Strings {
             static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
             static let captionMotionSensor = "channel_caption_motion_sensor".toLocalized()
             static let captionBinarySensor = "channel_caption_binary_sensor".toLocalized()
+            static let captionInvisible = "channel_caption_invisible".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
             static let batteryLevelWithInfo = "channel_battery_level_with_info".toLocalized()
@@ -708,6 +711,15 @@ struct Strings {
     struct GateDetail {
         static let openAndCloseWarning = "gate_general_open_and_close_warning".toLocalized()
     }
+    
+    struct RgbDetail {
+        static let color = "rgb_detail_color".toLocalized()
+        static let brightness = "rgb_detail_brightness".toLocalized()
+        static let selectColor = "rgb_detail_select_color".toLocalized()
+        static let colorLimit = "rgb_detail_colors_limit".toLocalized()
+        static let settingUnauthorized = "legacy_rgbw_settings_unauthorized_message".toLocalized()
+        static let authorize = "legacy_rgbw_settings_authorize_button".toLocalized()
+    }
 }
 
 extension String {
@@ -747,4 +759,7 @@ class LegacyStrings: NSObject {
     @objc static let stateConnectionResetCauseActivityTimeout = Strings.State.connectionResetCauseActivityTimeout
     @objc static let stateConnectionResetCauseWifiConnectionLost = Strings.State.connectionResetCauseWifiConnectionLost
     @objc static let stateConnectionResetCauseServerConnectionLost = Strings.State.connectionResetCauseServerConnectionLost
+    
+    @objc static let rgbDetailSettingsUnauthorized = Strings.RgbDetail.settingUnauthorized
+    @objc static let rgbDetailAuthorize = Strings.RgbDetail.authorize
 }

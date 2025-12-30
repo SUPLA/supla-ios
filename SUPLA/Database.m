@@ -23,7 +23,6 @@
 #import "_SALocation+CoreDataClass.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
-#import "SAColorListItem+CoreDataClass.h"
 #import "SUPLA-Swift.h"
 
 @interface SADatabase ()
@@ -288,34 +287,6 @@ again:
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id {
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAChannelGroup"];
 };
-
-#pragma mark Color List
-
--(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group {
- 
-    SAColorListItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND group = %@ AND idx = %i", remote_id, [NSNumber numberWithBool:group], idx] entityName:@"SAColorListItem"];
-    
-    if ( item == nil ) {
-        
-        item = [[SAColorListItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAColorListItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
-    
-        item.remote_id = remote_id;
-        item.group = group;
-        item.idx = [NSNumber numberWithInt:idx];
-        item.profile = self.currentProfile;
-        
-        
-        [self.managedObjectContext insertObject:item];
-        [self saveContext];
-    }
-    
-    return item;
-}
-
--(void) updateColorListItem:(SAColorListItem *)item {
-    
-    [self saveContext];
-}
 
 #pragma mark HomePlus groups
 
