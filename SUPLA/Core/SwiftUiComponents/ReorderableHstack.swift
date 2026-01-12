@@ -19,8 +19,15 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+private let PLACEHOLDER_ID: Int = -1
+private let SPACE_NAME = "ReorderableHStackSpace"
+
+protocol ReorderableHStackItem: Identifiable, Equatable {
+    var id: Int { get }
+}
+
 struct ReorderableHStack<
-    Item: Identifiable & Equatable,
+    Item: ReorderableHStackItem,
     ItemView: View,
     PlaceholderView: View
 >: View {
@@ -37,145 +44,148 @@ struct ReorderableHStack<
     @ViewBuilder let placeholder: (_ isDragging: Bool, _ isOver: Bool) -> PlaceholderView
     @ViewBuilder let itemView: (Item) -> ItemView
 
-    @State private var draggingItem: Item? = nil
-    @State private var hasReorderedDuringDrag: Bool = false
-    @State private var isOverPlaceholder: Bool = false
+    @State private var draggingId: Int? = nil
+    @State private var pressingId: Int? = nil
+    @State private var dragX: CGFloat = 0
+    @State private var overItemId: Int? = nil
+
+    @State private var itemCorrections: [Int: CGFloat] = [:]
+    @State private var itemFrames: [Int: CGRect] = [:]
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: spacing) {
-                placeholder(draggingItem != nil, isOverPlaceholder)
+        HStack(spacing: spacing) {
+            placeholder(draggingId != nil, overItemId == PLACEHOLDER_ID)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    guard enabled, draggingId == nil else { return }
+                    onPlaceholderTap()
+                }
+                .overlay(
+                    GeometryReader { geo in
+                        Color.clear
+                            .onAppear { itemFrames[PLACEHOLDER_ID] = geo.frame(in: .named(SPACE_NAME)) }
+                    }
+                )
+
+            ForEach(items) { item in
+                let isDragging = (draggingId == item.id)
+                let isPressing = (pressingId == item.id)
+
+                itemView(item)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        guard enabled, draggingItem == nil else { return }
-                        onPlaceholderTap()
+                        guard draggingId == nil else { return }
+                        onItemTap(item)
                     }
-                    .onDrop(
-                        of: [UTType.text],
-                        delegate: PlaceholderDropDelegate(
-                            items: $items,
-                            draggingItem: $draggingItem,
-                            isOver: $isOverPlaceholder,
-                            onDelete: onDelete,
-                            onReorderEnd: onReorderEnd
-                        )
+                    .onLongPressGesture(
+                        minimumDuration: 0.15,
+                        pressing: {
+                            pressingId = $0 ? item.id : nil
+                        },
+                        perform: {}
                     )
-                    .animation(.spring(response: 0.25, dampingFraction: 0.9), value: isOverPlaceholder)
-
-                ForEach(items) { item in
-                    itemView(item)
-                        .onTapGesture {
-                            guard draggingItem == nil else { return }
-                            onItemTap(item)
-                        }
-                        .onDrag {
-                            draggingItem = item
-                            hasReorderedDuringDrag = false
-                            isOverPlaceholder = false
-                            let provider = ItemProvider(object: String(describing: item.id) as NSString)
-                            provider.didEnd = {
-                                Task {
-                                    try? await Task.sleep(nanoseconds: 100_000_000)
-                                    self.draggingItem = nil
+                    .simultaneousGesture(enabled ? dragGesture(for: item) : nil)
+                    .offset(x: isDragging ? dragX : itemCorrections[item.id] ?? 0, y: 0)
+                    .zIndex(isDragging ? 1 : 0)
+                    .opacity(isPressing || isDragging ? 0.8 : 1.0)
+                    .scaleEffect(isPressing || isDragging ? 1.2 : 1)
+                    .shadow(radius: isPressing || isDragging ? 8 : 0)
+                    .overlay(
+                        GeometryReader { geo in
+                            Color.clear
+                                .onAppear {
+                                    itemFrames[item.id] = geo.frame(in: .named(SPACE_NAME))
                                 }
-                            }
-                            return provider
                         }
-                        .onDrop(
-                            of: [UTType.text],
-                            delegate: ReorderDropDelegate(
-                                item: item,
-                                items: $items,
-                                draggingItem: $draggingItem,
-                                hasReorderedDuringDrag: $hasReorderedDuringDrag,
-                                onReorderEnd: onReorderEnd
-                            )
-                        )
+                    )
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .topLeading)
+        .coordinateSpace(name: SPACE_NAME)
+        .onChange(of: items) { _ in
+            dragX = 0
+            for (id, _) in itemFrames {
+                itemCorrections[id] = 0
+            }
+        }
+    }
+
+    private func dragGesture(for item: Item) -> some Gesture {
+        DragGesture(coordinateSpace: .named(SPACE_NAME))
+            .onChanged { value in
+                if draggingId == nil {
+                    draggingId = item.id
+                }
+                guard draggingId == item.id else { return }
+
+                dragX = value.translation.width
+
+                guard let draggingItemFrame = itemFrames[item.id] else { return }
+
+                for (id, frame) in itemFrames {
+                    if (value.location.x > frame.minX && value.location.x < frame.maxX) {
+                        overItemId = id
+                    }
+                }
+
+                guard let overItemId else { return }
+
+                withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
+                    for (id, _) in itemFrames {
+                        if (id < item.id && id >= overItemId) {
+                            itemCorrections[id] = draggingItemFrame.width
+                        } else if (id > item.id && id <= overItemId) {
+                            itemCorrections[id] = -draggingItemFrame.width
+                        } else {
+                            itemCorrections[id] = 0
+                        }
+                    }
                 }
             }
-        }
-        .onChange(of: draggingItem) { newValue in
-            if newValue == nil, hasReorderedDuringDrag {
-                onReorderEnd(items)
-                hasReorderedDuringDrag = false
+            .onEnded { _ in
+                if (overItemId == PLACEHOLDER_ID) {
+                    onDelete(item)
+                    draggingId = nil
+                    overItemId = nil
+
+                    return
+                }
+
+                guard let fromIndex = items.firstIndex(of: item),
+                      let overId = overItemId,
+                      let toItem = items.first(where: { $0.id == overId }),
+                      let toIndex = items.firstIndex(of: toItem)
+                else {
+                    draggingId = nil
+                    overItemId = nil
+                    return
+                }
+
+                var itemsCopy = items
+                itemsCopy.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
+
+                onReorderEnd(itemsCopy)
+
+                draggingId = nil
+                overItemId = nil
             }
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func compatibleScrollBounce(dragging: Bool) -> some View {
+        if #available(iOS 16.4, *) {
+            self.scrollBounceBehavior(dragging ? .basedOnSize : .always)
+        } else if #available(iOS 16.0, *) {
+            self.scrollDisabled(dragging ? true : false)
+        } else {
+            self
         }
     }
 }
 
-private class ItemProvider: NSItemProvider {
-    var didEnd: (() -> Void)?
-    deinit {
-        didEnd?()
-    }
-}
-
-// MARK: - Reorder delegate
-
-private struct ReorderDropDelegate<Item: Identifiable & Equatable>: DropDelegate {
-    let item: Item
-    @Binding var items: [Item]
-    @Binding var draggingItem: Item?
-    @Binding var hasReorderedDuringDrag: Bool
-    let onReorderEnd: ([Item]) -> Void
-
-    func dropEntered(info: DropInfo) {
-        guard let draggingItem,
-              draggingItem != item,
-              let fromIndex = items.firstIndex(of: draggingItem),
-              let toIndex = items.firstIndex(of: item)
-        else { return }
-
-        hasReorderedDuringDrag = true
-
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
-            items.move(
-                fromOffsets: IndexSet(integer: fromIndex),
-                toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex
-            )
-        }
-    }
-
-    func performDrop(info: DropInfo) -> Bool {
-        onReorderEnd(items)
-        return true
-    }
-
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        DropProposal(operation: .move)
-    }
-}
-
-// MARK: - Placeholder delegate (delete target)
-
-private struct PlaceholderDropDelegate<Item: Identifiable & Equatable>: DropDelegate {
-    @Binding var items: [Item]
-    @Binding var draggingItem: Item?
-    @Binding var isOver: Bool
-
-    let onDelete: (Item) -> Void
-    let onReorderEnd: ([Item]) -> Void
-
-    func dropEntered(info: DropInfo) { isOver = true }
-    func dropExited(info: DropInfo) { isOver = false }
-
-    func performDrop(info: DropInfo) -> Bool {
-        isOver = false
-
-        if let draggingItem,
-           let idx = items.firstIndex(of: draggingItem)
-        {
-            onDelete(items[idx])
-        }
-        return true
-    }
-
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        DropProposal(operation: .move)
-    }
-}
-
-private struct PreviewItem: Identifiable, Equatable {
+private struct PreviewItem: ReorderableHStackItem {
     let id: Int
     var text: String
 }
