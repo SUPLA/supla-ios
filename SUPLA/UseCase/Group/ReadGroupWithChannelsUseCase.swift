@@ -108,7 +108,7 @@ struct ReadGroupWithChannels {
             
             func map(_ value: BaseGroupValue) -> ChannelState.Value {
                 switch self {
-                case .onOff: (value as? BoolGroupValue)?.value == true ? .off : .on
+                case .onOff: (value as? BoolGroupValue)?.value == true ? .on : .off
                 case .openClosed: (value as? BoolGroupValue)?.value == true ? .closed : .opened
                 case .dimmer:
                     if let integerGroupValue = value as? IntegerGroupValue {
