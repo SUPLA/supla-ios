@@ -18,8 +18,8 @@
     
 import SwiftUI
 
-struct SavedColor: Identifiable, Equatable {
-    var id: Int32 { idx }
+struct SavedColor: ReorderableHStackItem {
+    var id: Int { Int(idx) }
     
     let idx: Int32
     let color: UIColor

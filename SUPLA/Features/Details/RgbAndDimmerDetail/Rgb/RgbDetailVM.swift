@@ -160,7 +160,12 @@ extension RgbDetailFeature {
             
             let indexMap = Dictionary(uniqueKeysWithValues: items.enumerated().map { (index, element) in (Int(element.idx), index + 1) })
             reorderColorListItemsUseCase.invoke(subject: type, remoteId: remoteId, type: .rgb, indexMap: indexMap)
-                .subscribe()
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { [weak self] items in
+                        self?.state.savedColors = items.compactMap { $0.savedColor }
+                    }
+                )
                 .disposed(by: disposeBag)
         }
         
