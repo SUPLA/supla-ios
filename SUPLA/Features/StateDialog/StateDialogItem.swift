@@ -98,18 +98,18 @@ private extension SuplaChannelStatePrintable {
     var lightSourceLifespanString: String? {
         guard let lightSourceLifespan = lightSourceLifespanForPrintable else { return nil }
         
-            let left = lightSourceLifespanLeftForPrintable ?? lightSourceOperatingTimePercentLeft
+        let left = lightSourceLifespanLeftForPrintable ?? lightSourceOperatingTimePercentLeft
             
-            if let left {
-                return String.init(format: "%dh (%0.2f%%)", lightSourceLifespan, left.intValue)
-            } else {
-                return String.init(format: "%dh", lightSourceLifespan)
-            }
+        if let left {
+            return String(format: "%dh (%0.2f%%)", lightSourceLifespan.intValue, left.intValue)
+        } else {
+            return String(format: "%dh", lightSourceLifespan.intValue)
+        }
     }
     
     var lightSourceOperatingTimeString: String? {
         guard let lightSourceOperatingTime = lightSourceOperatingTimeForPrintable else { return nil }
         let timeInSec = lightSourceOperatingTime.intValue
-        return String.init(format: "%02dh %02d:%02d", timeInSec / 3600, timeInSec % 3600 / 60, timeInSec % 60)
+        return String(format: "%02dh %02d:%02d", timeInSec / 3600, timeInSec % 3600 / 60, timeInSec % 60)
     }
 }
