@@ -106,10 +106,30 @@ extension SuplaValueWidget {
         }
 
         func snapshot(for configuration: ValueIntent, in context: Context) async -> Entry {
-            Entry(
-                date: .now,
-                content: configuration.content(value: getValue(configuration.channel))
-            )
+            let profile = configuration.profile
+            let channel = configuration.channel
+            
+            return if let profile, let channel {
+                Entry(
+                    date: .now,
+                    content: .correct(
+                        profile: profile.name,
+                        name: channel.name,
+                        icon: channel.icon,
+                        value: getValue(channel)
+                    )
+                )
+            } else {
+                Entry(
+                    date: .now,
+                    content: .correct(
+                        profile: Strings.Profiles.defaultProfileName,
+                        name: Strings.General.Channel.captionHumidity,
+                        icon: .single(.suplaIcon(name: .Icons.fncHumidity)),
+                        value: .single("75,4")
+                    )
+                )
+            }
         }
 
         func timeline(for configuration: ValueIntent, in context: Context) async -> Timeline<Entry> {

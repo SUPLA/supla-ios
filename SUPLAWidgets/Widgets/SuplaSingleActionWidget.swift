@@ -87,10 +87,16 @@ extension SuplaSingleActionWidget {
         }
 
         func snapshot(for configuration: SingleIntent, in context: Context) async -> Entry {
-            Entry(
-                date: .now,
-                content: configuration.content
-            )
+            switch configuration.content {
+            case .correct:
+                Entry(
+                    date: .now,
+                    content: configuration.content
+                )
+            case .incorrect, .previewNoAction:
+                Entry(date: .now, content: .previewNoAction)
+            }
+            
         }
 
         func timeline(for configuration: SingleIntent, in context: Context) async -> Timeline<Entry> {
@@ -115,6 +121,7 @@ extension SuplaSingleActionWidget {
     enum WidgetContent {
         case correct(profile: String, name: String, action: GroupShared.WidgetAction)
         case incorrect
+        case previewNoAction
     }
 }
 
@@ -132,12 +139,19 @@ extension SuplaSingleActionWidget {
             case .correct(let profile, let name, let action):
                 CorrectValue(profile: profile, name: name, action: action)
             case .incorrect: IncorrectValue()
+            case .previewNoAction: PreviewNoAction()
             }
         }
 
         private func IncorrectValue() -> some SwiftUI.View {
             Text(Strings.Widget.configurationError)
                 .fontBodyMedium()
+                .multilineTextAlignment(.center)
+        }
+        
+        private func PreviewNoAction() -> some SwiftUI.View {
+            Text(BrandingConfiguration.widgetEmptyHint)
+                .fontBodySmall()
                 .multilineTextAlignment(.center)
         }
 
