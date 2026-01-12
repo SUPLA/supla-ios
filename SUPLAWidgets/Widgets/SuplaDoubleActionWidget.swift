@@ -56,8 +56,8 @@ extension SuplaDoubleActionWidget {
         var caption: String?
 
         var content: WidgetContent {
-            if let firstAction, let secondAction, let caption {
-                .correct(profile: firstAction.profileName, name: caption, firstAction: firstAction, secondAction: secondAction)
+            if let firstAction, let secondAction {
+                .correct(profile: firstAction.profileName, name: caption ?? firstAction.caption, firstAction: firstAction, secondAction: secondAction)
             } else {
                 .incorrect
             }
@@ -97,10 +97,15 @@ extension SuplaDoubleActionWidget {
         }
 
         func snapshot(for configuration: DoubleIntent, in context: Context) async -> Entry {
-            Entry(
-                date: .now,
-                content: configuration.content
-            )
+            switch configuration.content {
+            case .correct:
+                Entry(
+                    date: .now,
+                    content: configuration.content
+                )
+            case .incorrect, .previewNoAction:
+                Entry(date: .now, content: .previewNoAction)
+            }
         }
 
         func timeline(for configuration: DoubleIntent, in context: Context) async -> Timeline<Entry> {
@@ -125,6 +130,7 @@ extension SuplaDoubleActionWidget {
     enum WidgetContent {
         case correct(profile: String, name: String, firstAction: GroupShared.WidgetAction, secondAction: GroupShared.WidgetAction)
         case incorrect
+        case previewNoAction
     }
 }
 
@@ -142,12 +148,19 @@ extension SuplaDoubleActionWidget {
             case .correct(let profile, let name, let firstAction, let secondAction):
                 CorrectValue(profile: profile, name: name, firstAction: firstAction, secondAction: secondAction)
             case .incorrect: IncorrectValue()
+            case .previewNoAction: PreviewNoAction()
             }
         }
 
         private func IncorrectValue() -> some SwiftUI.View {
             Text(Strings.Widget.configurationError)
                 .fontBodyMedium()
+                .multilineTextAlignment(.center)
+        }
+        
+        private func PreviewNoAction() -> some SwiftUI.View {
+            Text(BrandingConfiguration.widgetEmptyHint)
+                .fontBodySmall()
                 .multilineTextAlignment(.center)
         }
 
