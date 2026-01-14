@@ -720,3 +720,4 @@
 "rgb_detail_move_right" = "Sposta a destra";
 "rgb_detail_move_start" = "Sposta all'inizio";
 "rgb_detail_move_end" = "Sposta alla fine";
+"dimmer_detail_temperature" = "Colore:";

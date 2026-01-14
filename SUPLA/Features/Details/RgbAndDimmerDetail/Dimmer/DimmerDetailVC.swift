@@ -17,7 +17,7 @@
  */
     
 extension DimmerDetailFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
+    class ViewController: SuplaCore.BaseViewController<DimmerDetailBase.ViewState, View, ViewModel> {
         private let itemBundle: ItemBundle
         
         init(itemBundle: ItemBundle, viewModel: ViewModel) {

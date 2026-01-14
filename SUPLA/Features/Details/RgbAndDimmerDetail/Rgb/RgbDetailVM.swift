@@ -45,6 +45,7 @@ extension RgbDetailFeature {
         private var type: SubjectType? = nil
         private var profileId: Int32? = nil
         private var dimmerBrightness: Int = 0
+        private var dimmerCct: Int = 0
         private var changing: Bool = false
         private var lastInteractionTime: TimeInterval? = nil
         
@@ -57,7 +58,8 @@ extension RgbDetailFeature {
                 remoteId: remoteId,
                 type: type,
                 brightness: dimmerBrightness,
-                color: color
+                color: color,
+                dimmerCct: dimmerCct
             )
         }
         
@@ -172,7 +174,7 @@ extension RgbDetailFeature {
         }
         
         func onSavedColorSelected(color: SavedColor) {
-            guard !state.offline, let hsvColor = color.color.toHsv(color.brightness) else { return }
+            guard !state.offline, let hsvColor = UIColor(argb: color.color).toHsv(color.brightness) else { return }
             
             lastInteractionTime = nil
             state.value = .single(color: hsvColor)
@@ -258,7 +260,8 @@ extension RgbDetailFeature {
                 remoteId: remoteId,
                 brightness: dimmerBrightness,
                 color: color,
-                onOff: true
+                onOff: true,
+                dimmerCct: dimmerCct
             )
             .subscribe()
             .disposed(by: disposeBag)
@@ -305,7 +308,7 @@ extension RgbDetailFeature {
             
             let channel = channelWithChildren.channel
             let channelState = getChannelBaseStateUseCase.invoke(channelBase: channel)
-            let value = getValue(channel)
+            let value = channel.value?.asRgbwwValue()
             let rgbValue: RgbValue =
                 if let hsvColor = value?.color.toHsv(value?.colorBrightness) {
                     .single(color: hsvColor)
@@ -313,7 +316,8 @@ extension RgbDetailFeature {
                     .empty
                 }
             
-            dimmerBrightness = getDimmerBrightness(channel)
+            dimmerBrightness = Int(value?.brightness ?? 0)
+            dimmerCct = Int(value?.cct ?? 0)
             profileId = channel.profile.id
             
             state.offline = channel.status().offline
@@ -325,27 +329,19 @@ extension RgbDetailFeature {
             )
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channelWithChildren.shareable)
             state.onButtonState = .init(
-                icon: getButtonIcon(channel, getChannelState(channel, .on)),
+                icon: getButtonIcon(channel, .on),
                 label: Strings.General.turnOn,
                 active: value?.colorBrightness ?? 0 > 0,
                 type: .positive
             )
             state.offButtonState = .init(
-                icon: getButtonIcon(channel, getChannelState(channel, .off)),
+                icon: getButtonIcon(channel, .off),
                 label: Strings.General.turnOff,
                 active: value?.colorBrightness ?? 0 == 0,
                 type: .negative
             )
             state.loadingState = state.loadingState.copy(loading: false)
             state.savedColors = colorListItems.compactMap { $0.savedColor }
-        }
-        
-        private func getValue(_ channel: SAChannel) -> RgbBaseValue? {
-            switch (channel.func) {
-            case SuplaFunction.rgbLighting.value: channel.value?.asRgbValue()
-            case SuplaFunction.dimmerAndRgbLighting.value: channel.value?.asRgbwValue()
-            default: fatalError("Unsupported function: \(channel.func)")
-            }
         }
         
         private func getDeviceStateValue(_ status: SuplaChannelAvailabilityStatus, _ state: ChannelState) -> String {
@@ -365,25 +361,11 @@ extension RgbDetailFeature {
             }
         }
         
-        private func getButtonIcon(_ channel: SAChannelBase, _ state: ChannelState) -> IconResult {
-            return switch (state) {
-            case .default: getChannelBaseIconUseCase.stateIcon(channel, state: state)
-            case .rgbAndDimmer(_, let rgb): .originalSuplaIcon(name: rgb == .on ? .Icons.fncRgbOn : .Icons.fncRgbOff)
-            }
-        }
-        
-        private func getChannelState(_ channel: SAChannelBase, _ value: ChannelState.Value) -> ChannelState {
-            if (channel.func == SuplaFunction.dimmerAndRgbLighting.value) {
-                .rgbAndDimmer(dimmer: .notUsed, rgb: value)
-            } else {
-                .default(value: value)
-            }
-        }
-        
-        private func getDimmerBrightness(_ channel: SAChannel) -> Int {
-            switch (channel.func) {
-            case SuplaFunction.dimmerAndRgbLighting.value: Int(channel.value?.asRgbwValue().brightness ?? 0)
-            default: 0
+        private func getButtonIcon(_ channel: SAChannelBase, _ value: ChannelState.Value) -> IconResult {
+            switch (channel.func.suplaFuntion) {
+            case .dimmerAndRgbLighting,
+                 .dimmerCctAndRgb: .originalSuplaIcon(name: value == .on ? .Icons.fncRgbOn : .Icons.fncRgbOff)
+            default: getChannelBaseIconUseCase.stateIcon(channel, state: .default(value: value))
             }
         }
         
@@ -420,13 +402,13 @@ extension RgbDetailFeature {
             profileId = group.profile.id
             
             state.onButtonState = .init(
-                icon: getButtonIcon(group, getChannelState(group, .on)),
+                icon: getButtonIcon(group, .on),
                 label: Strings.General.turnOn,
                 active: groupStateValue == .on,
                 type: .positive
             )
             state.offButtonState = .init(
-                icon: getButtonIcon(group, getChannelState(group, .off)),
+                icon: getButtonIcon(group, .off),
                 label: Strings.General.turnOff,
                 active: groupStateValue == .off,
                 type: .negative

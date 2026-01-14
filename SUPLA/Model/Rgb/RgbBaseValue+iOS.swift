@@ -19,7 +19,7 @@
 import SharedCore
 import SwiftUI
 
-extension RgbBaseValue {
+extension RgbwwValue {
     var color: UIColor {
         UIColor(alpha: 0, red: red, green: green, blue: blue)
     }

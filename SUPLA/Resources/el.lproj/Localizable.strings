@@ -687,3 +687,4 @@
 "rgb_detail_move_right" = "Μετακίνηση δεξιά";
 "rgb_detail_move_start" = "Μετακίνηση στην αρχή";
 "rgb_detail_move_end" = "Μετακίνηση στο τέλος";
+"dimmer_detail_temperature" = "Χρωματικότητα:";

@@ -113,6 +113,24 @@ final class GroupActivePercentageUseCaseTests: XCTestCase {
         XCTAssertEqual(activePercentage, 75)
     }
     
+    func test_shouldGetActivePercentageForDimmerCct() {
+        // given
+        let group = SAChannelGroup(testContext: nil)
+        group.func = SUPLA_CHANNELFNC_DIMMER_CCT
+        group.total_value = GroupTotalValue(values: [
+            DimmerCctGroupValue(brightness: 100, cct: 10),
+            DimmerCctGroupValue(brightness: 30, cct: 0),
+            DimmerCctGroupValue(brightness: 0, cct: 0),
+            DimmerCctGroupValue(brightness: 90, cct: 0)
+        ])
+        
+        // when
+        let activePercentage = useCase.invoke(group)
+        
+        // then
+        XCTAssertEqual(activePercentage, 75)
+    }
+    
     func test_shouldGetActivePercentageForRgb() {
         // given
         let group = SAChannelGroup(testContext: nil)
@@ -187,6 +205,24 @@ final class GroupActivePercentageUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(activePercentage, 33)
+    }
+    
+    func test_shouldGetActivePercentageForDimmerCctAndRgb() {
+        // given
+        let group = SAChannelGroup(testContext: nil)
+        group.func = SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB
+        group.total_value = GroupTotalValue(values: [
+            DimmerCctAndRgbGroupValue(color: .suplaGreen, colorBrightness: 10, brightness: 25, cct: 0),
+            DimmerCctAndRgbGroupValue(color: .suplaGreen, colorBrightness: 0, brightness: 30, cct: 0),
+            DimmerCctAndRgbGroupValue(color: .suplaGreen, colorBrightness: 0, brightness: 0, cct: 0),
+            DimmerCctAndRgbGroupValue(color: .suplaGreen, colorBrightness: 10, brightness: 0, cct: 0)
+        ])
+        
+        // when
+        let activePercentage = useCase.invoke(group)
+        
+        // then
+        XCTAssertEqual(activePercentage, 50)
     }
     
     func test_shouldGetActivePercentageForHeatpolThermostat() {

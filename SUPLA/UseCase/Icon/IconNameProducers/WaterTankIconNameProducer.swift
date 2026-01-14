@@ -23,10 +23,10 @@ final class WaterTankIconNameProducer: IconNameProducer {
 
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
-        case 1: addStateSuffix(name: .Icons.fncWaterTank1, state: iconData.state.value)
-        case 2: addStateSuffix(name: .Icons.fncWaterTank2, state: iconData.state.value)
-        case 3: addStateSuffix(name: .Icons.fncWaterTank3, state: iconData.state.value)
-        default: addStateSuffix(name: .Icons.fncWaterTank, state: iconData.state.value)
+        case 1: addStateSuffix(name: .Icons.fncWaterTank1, value: iconData.state.value)
+        case 2: addStateSuffix(name: .Icons.fncWaterTank2, value: iconData.state.value)
+        case 3: addStateSuffix(name: .Icons.fncWaterTank3, value: iconData.state.value)
+        default: addStateSuffix(name: .Icons.fncWaterTank, value: iconData.state.value)
         }
     }
 }

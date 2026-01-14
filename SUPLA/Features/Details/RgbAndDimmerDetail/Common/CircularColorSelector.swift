@@ -19,15 +19,14 @@
 import CoreGraphics
 import SwiftUI
 
-private let TRACK_WIDTH: CGFloat = 24
+private let TRACK_WIDTH: CGFloat = 30
 
 struct CircularColorSelector: View {
     let value: CGFloat?
     let selectedColor: UIColor?
     let valueMarkers: [CGFloat]
     let enabled: Bool
-    let startColor: Color
-    let endColor: Color
+    let colors: [Gradient.Stop]
     let onValueChangeStarted: () -> Void
     let onValueChanging: (CGFloat) -> Void
     let onValueChanged: () -> Void
@@ -43,8 +42,7 @@ struct CircularColorSelector: View {
         selectedColor: UIColor?,
         valueMarkers: [CGFloat] = [],
         enabled: Bool = true,
-        startColor: Color = .white,
-        endColor: Color = .black,
+        colors: [Gradient.Stop] = [Gradient.Stop(color: .white, location: 0), Gradient.Stop(color: .black, location: 1)],
         onValueChangeStarted: @escaping () -> Void = {},
         onValueChanging: @escaping (CGFloat) -> Void = { _ in },
         onValueChanged: @escaping () -> Void = {}
@@ -53,8 +51,27 @@ struct CircularColorSelector: View {
         self.selectedColor = selectedColor
         self.valueMarkers = valueMarkers
         self.enabled = enabled
-        self.startColor = startColor
-        self.endColor = endColor
+        self.colors = colors
+        self.onValueChangeStarted = onValueChangeStarted
+        self.onValueChanging = onValueChanging
+        self.onValueChanged = onValueChanged
+    }
+    
+    init(
+        value: CGFloat?,
+        selectedColor: UIColor?,
+        valueMarkers: [CGFloat] = [],
+        enabled: Bool = true,
+        startColor: Color = .white,
+        onValueChangeStarted: @escaping () -> Void = {},
+        onValueChanging: @escaping (CGFloat) -> Void = { _ in },
+        onValueChanged: @escaping () -> Void = {}
+    ) {
+        self.value = value
+        self.selectedColor = selectedColor
+        self.valueMarkers = valueMarkers
+        self.enabled = enabled
+        self.colors = [Gradient.Stop(color: startColor, location: 0), Gradient.Stop(color: .black, location: 1)]
         self.onValueChangeStarted = onValueChangeStarted
         self.onValueChanging = onValueChanging
         self.onValueChanged = onValueChanged
@@ -74,7 +91,7 @@ struct CircularColorSelector: View {
                 guard ringRadius > 0 else { return }
 
                 context.drawOuterRing(center, ringRadius)
-                context.drawGradientRing(center, ringRadius, [endColor, startColor])
+                context.drawGradientRing(center, ringRadius, colors)
 
                 for m in valueMarkers {
                     let p = pointOnCircle(center: center, radius: ringRadius, angleDeg: valueToAngle(m))
@@ -86,7 +103,7 @@ struct CircularColorSelector: View {
                     drawSelectorPoint(context: &context, position: p, color: Color(c))
                 }
             }
-            .contentShape(Rectangle())
+            .contentShape(Circle())
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { gestureValue in
@@ -241,7 +258,7 @@ private extension GraphicsContext {
         fill(surfacePath, with: .color(Color(.systemBackground)))
     }
 
-    func drawGradientRing(_ center: CGPoint, _ ringRadius: CGFloat, _ colors: [Color]) {
+    func drawGradientRing(_ center: CGPoint, _ ringRadius: CGFloat, _ colors: [Gradient.Stop]) {
         let ringRect = CGRect(
             x: -ringRadius,
             y: -ringRadius,
@@ -254,7 +271,7 @@ private extension GraphicsContext {
         drawLayer { ctx in
             ctx.translateBy(x: center.x, y: center.y)
             ctx.rotate(by: .degrees(-90))
-            let gradient = Gradient(colors: colors)
+            let gradient = Gradient(stops: colors)
             ctx.fill(ringPath, with: .conicGradient(gradient, center: CGPoint(x: 0, y: 0)))
         }
     }
@@ -265,7 +282,9 @@ private extension GraphicsContext {
 #Preview {
     ZStack {
         CircularColorSelector(
-            value: 0.2, selectedColor: UIColor.red
+            value: 0.2,
+            selectedColor: UIColor.red,
+            startColor: .white
         )
         .frame(width: 300, height: 300)
     }

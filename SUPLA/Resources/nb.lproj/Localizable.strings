@@ -685,3 +685,4 @@
 "rgb_detail_move_right" = "Flytt til høyre";
 "rgb_detail_move_start" = "Flytt til starten";
 "rgb_detail_move_end" = "Flytt til slutten";
+"dimmer_detail_temperature" = "Fargetemp:";

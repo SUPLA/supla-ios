@@ -686,3 +686,4 @@
 "rgb_detail_move_right" = "Posunout doprava";
 "rgb_detail_move_start" = "Přesunout na začátek";
 "rgb_detail_move_end" = "Přesunout na konec";
+"dimmer_detail_temperature" = "Barevnost:";

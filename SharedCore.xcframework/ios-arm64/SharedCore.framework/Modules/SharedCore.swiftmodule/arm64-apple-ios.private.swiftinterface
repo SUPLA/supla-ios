@@ -1412,8 +1412,10 @@ extension SharedCore.__ValueUnit {
   case alarm
   case notification
   case dimmer
+  case dimmerCct
   case rgbLighting
   case dimmerAndRgbLighting
+  case dimmerCctAndRgb
   case depthSensor
   case distanceSensor
   case openingSensorWindow

@@ -243,6 +243,8 @@ extension String {
         static let fncRgbOff = "rgb-off"
         static let fncDimmerOn = "dimmer-on"
         static let fncDimmerOff = "dimmer-off"
+        static let fncDimmerCctOn = "fnc_dimmer_cct-on"
+        static let fncDimmerCctOff = "fnc_dimmer_cct-off"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

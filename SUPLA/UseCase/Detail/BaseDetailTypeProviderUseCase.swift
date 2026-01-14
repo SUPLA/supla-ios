@@ -26,10 +26,14 @@ class BaseDetailTypeProviderUseCase {
         switch channelBase.func {
         case SUPLA_CHANNELFNC_DIMMER:
             return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.dimmer, .legacyDimmerSettings] : [.dimmer])
+        case SUPLA_CHANNELFNC_DIMMER_CCT:
+            return .standardDetail(pages: [.dimmerCct])
         case SUPLA_CHANNELFNC_RGBLIGHTING:
             return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.rgb, .legacyDimmerSettings] : [.rgb])
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
             return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.rgb, .dimmer, .legacyDimmerSettings] : [.rgb, .dimmer])
+        case SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB:
+            return .standardDetail(pages: [.rgb, .dimmerCct])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
             return .standardDetail(pages: [.roofWindow])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
@@ -174,7 +178,8 @@ enum DetailPage {
     case gateGeneral
     
     // RGBW
-    case dimmer
     case rgb
+    case dimmer
+    case dimmerCct
     case legacyDimmerSettings
 }

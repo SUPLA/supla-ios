@@ -40,7 +40,8 @@ final class DelayedRgbwActionSubjectImpl: DelayedCommandSubject<RgbwActionData>,
             brightness: data.brightness,
             color: data.color,
             onOff: false,
-            vibrate: false
+            vibrate: false,
+            dimmerCct: data.dimmerCct
         )
     }
     
@@ -51,6 +52,7 @@ struct RgbwActionData: DelayableData, Equatable {
     let type: SubjectType
     let brightness: Int
     let color: HsvColor
+    let dimmerCct: Int
     var sent: Bool = false
     
     

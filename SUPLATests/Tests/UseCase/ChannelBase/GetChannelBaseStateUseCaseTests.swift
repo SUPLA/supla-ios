@@ -401,8 +401,8 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let state = useCase.invoke(channelBase: channel)
 
         // then
-        XCTAssertEqual(state, .default(value: .opened))
-        XCTAssertFalse(state.isActive)
+        XCTAssertEqual(state, .default(value: .closed))
+        XCTAssertTrue(state.isActive)
     }
     
     func test_projectorScreenClosedState() {

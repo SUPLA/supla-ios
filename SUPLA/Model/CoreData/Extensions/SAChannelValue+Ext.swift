@@ -52,16 +52,8 @@ extension SAChannelValue {
         RelayValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
     }
     
-    func asRgbValue() -> RgbValue {
-        RgbValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
-    }
-    
-    func asRgbwValue() -> RgbwValue {
-        RgbwValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
-    }
-    
-    func asDimmerValue() -> DimmerValue {
-        DimmerValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
+    func asRgbwwValue() -> RgbwwValue {
+        RgbwwValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
     }
     
     @objc func isThermostatSubfunctionHeat() -> Bool {

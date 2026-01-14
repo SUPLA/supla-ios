@@ -746,6 +746,7 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Bütün qapılar üçün açılma sensoru ayarlanmayıb — \“Aç\” və \“Bağla\” düymələri düzgün işləməyə bilər.";
+"dimmer_detail_temperature" = "Rəngtemperaturu:";
 
 /* RGB and Dimmer Detail */
 "rgb_detail_color" = "Rəng:";

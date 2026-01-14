@@ -723,6 +723,7 @@ struct Strings {
         static let moveRight = "rgb_detail_move_right".toLocalized()
         static let moveStart = "rgb_detail_move_start".toLocalized()
         static let moveEnd = "rgb_detail_move_end".toLocalized()
+        static let dimmerDetailTemperature = "dimmer_detail_temperature".toLocalized()
     }
 }
 

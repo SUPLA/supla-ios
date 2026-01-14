@@ -142,7 +142,7 @@ private extension SAChannelBase {
             action == .close ? "SFChannel/roof-window-closed" : "SFChannel/roof-window-open"
         case .powerSwitch:
             action == .turnOn ? "SFChannel/switch-on" : "SFChannel/switch-off"
-        case .lightswitch, .dimmer, .rgbLighting, .dimmerAndRgbLighting:
+        case .lightswitch, .dimmer, .rgbLighting, .dimmerAndRgbLighting, .dimmerCct, .dimmerCctAndRgb:
             action == .turnOn ? "SFChannel/light-switch-on" : "SFChannel/light-switch-off"
         case .staircaseTimer:
             action == .turnOn ? "SFChannel/staircase-timer-on" : "SFChannel/staircase-timer-off"

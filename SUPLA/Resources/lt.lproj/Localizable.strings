@@ -688,3 +688,4 @@
 "rgb_detail_move_right" = "Perkelti į dešinę";
 "rgb_detail_move_start" = "Perkelti į pradžią";
 "rgb_detail_move_end" = "Perkelti į pabaigą";
+"dimmer_detail_temperature" = "Spalvotė:";
