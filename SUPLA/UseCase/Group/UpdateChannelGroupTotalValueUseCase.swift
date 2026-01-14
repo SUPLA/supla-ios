@@ -138,7 +138,8 @@ private extension SAChannelGroup {
                     tilt: Int(facadeBlindValue.tilt)
                 )
             case SUPLA_CHANNELFNC_DIMMER:
-                return IntegerGroupValue(value: Int(value.brightnessValue()))
+            let dimmerValue = value.asRgbwwValue()
+                return IntegerGroupValue(value: Int(dimmerValue.brightness))
             case SUPLA_CHANNELFNC_DIMMER_CCT:
                 let dimmerValue = value.asRgbwwValue()
                 return DimmerCctGroupValue(brightness: Int(dimmerValue.brightness), cct: Int(dimmerValue.cct))
