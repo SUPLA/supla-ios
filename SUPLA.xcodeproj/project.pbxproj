@@ -414,7 +414,6 @@
 		A530EE202A56FE4F00F8DAEE /* IconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE1F2A56FE4F00F8DAEE /* IconType.swift */; };
 		A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE212A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift */; };
 		A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE232A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift */; };
-		A530EE262A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE252A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift */; };
 		A530EE282A57E02C00F8DAEE /* MailSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE272A57E02C00F8DAEE /* MailSensorIconNameProducer.swift */; };
 		A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE292A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift */; };
 		A530EE2C2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE2B2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift */; };
@@ -658,7 +657,6 @@
 		A563642B2EE191D000A702C0 /* RgbDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563642A2EE191C800A702C0 /* RgbDetailVM.swift */; };
 		A563642D2EE192A800A702C0 /* RgbDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563642C2EE192A300A702C0 /* RgbDetailVC.swift */; };
 		A563642F2EE1935C00A702C0 /* DimmerDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563642E2EE1935700A702C0 /* DimmerDetailFeature.swift */; };
-		A56364312EE1937000A702C0 /* DimmerDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364302EE1936900A702C0 /* DimmerDetailViewState.swift */; };
 		A56364332EE1A0D900A702C0 /* DimmerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364322EE1A0D300A702C0 /* DimmerDetailView.swift */; };
 		A56364352EE1A14900A702C0 /* DimmerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364342EE1A14500A702C0 /* DimmerDetailVM.swift */; };
 		A56364372EE1A21700A702C0 /* DimmerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364362EE1A21200A702C0 /* DimmerDetailVC.swift */; };
@@ -958,6 +956,9 @@
 		A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */; };
 		A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */; };
 		A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */; };
+		A5A87A642F165FA10047233B /* DimmerDetailBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A87A632F165F5E0047233B /* DimmerDetailBase.swift */; };
+		A5A87A662F165FBC0047233B /* DimmerDetailBase+Scaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A87A652F165FB10047233B /* DimmerDetailBase+Scaffold.swift */; };
+		A5A87A682F1660B10047233B /* DimmerDetailBase+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A87A672F1660A70047233B /* DimmerDetailBase+State.swift */; };
 		A5A9CA9E2EE83F1C009C0030 /* ReorderableHstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9CA9D2EE83F16009C0030 /* ReorderableHstack.swift */; };
 		A5A9CAA02EE845E3009C0030 /* ColorListItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A9CA9F2EE845DD009C0030 /* ColorListItemRepository.swift */; };
 		A5ABE5B52ABC271100FFA50B /* ScheduleDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5B42ABC271100FFA50B /* ScheduleDetailVMTests.swift */; };
@@ -1033,6 +1034,13 @@
 		A5B3CC0A2B6282B800F95AC3 /* WindValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC092B6282B800F95AC3 /* WindValueStringProvider.swift */; };
 		A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC0B2B6291FF00F95AC3 /* GpmValueStringProvider.swift */; };
 		A5B3CC0E2B62934D00F95AC3 /* SAChannelConfig+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC0D2B62934D00F95AC3 /* SAChannelConfig+Ext.swift */; };
+		A5B593792F1788C80054E6F9 /* DimmerDetailBase+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593782F1788C10054E6F9 /* DimmerDetailBase+ViewModel.swift */; };
+		A5B5937B2F1793140054E6F9 /* DimmerCctDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5937A2F1793080054E6F9 /* DimmerCctDetailFeature.swift */; };
+		A5B5937D2F17932D0054E6F9 /* DimmerCctDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5937C2F1793270054E6F9 /* DimmerCctDetailView.swift */; };
+		A5B5937F2F1793A60054E6F9 /* DimmerCctDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5937E2F17939E0054E6F9 /* DimmerCctDetailVM.swift */; };
+		A5B593812F1793D40054E6F9 /* DimmerCctDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593802F1793CB0054E6F9 /* DimmerCctDetailVC.swift */; };
+		A5B593832F179EE50054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593822F179ED70054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift */; };
+		A5B593852F179F3F0054E6F9 /* DimmerCctGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593842F179F360054E6F9 /* DimmerCctGroupActivePercentageProvider.swift */; };
 		A5B8A4782CB869E8002FA7B2 /* ElectricityChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */; };
 		A5B8A47A2CB86AF7002FA7B2 /* ChartStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4792CB86AF4002FA7B2 /* ChartStyle.swift */; };
 		A5B8A47C2CB9BB8A002FA7B2 /* DataSetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A47B2CB9BB79002FA7B2 /* DataSetsRow.swift */; };
@@ -2119,7 +2127,6 @@
 		A530EE1F2A56FE4F00F8DAEE /* IconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconType.swift; sourceTree = "<group>"; };
 		A530EE212A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityAndThermometerIconNameProducer.swift; sourceTree = "<group>"; };
 		A530EE232A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidSensorIconNameProducer.swift; sourceTree = "<group>"; };
-		A530EE252A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerAndRgbLightningIconNameProducer.swift; sourceTree = "<group>"; };
 		A530EE272A57E02C00F8DAEE /* MailSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSensorIconNameProducer.swift; sourceTree = "<group>"; };
 		A530EE292A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElelectricityMeterIconNameProducer.swift; sourceTree = "<group>"; };
 		A530EE2B2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHomeplusIconNameProducer.swift; sourceTree = "<group>"; };
@@ -2373,7 +2380,6 @@
 		A563642A2EE191C800A702C0 /* RgbDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailVM.swift; sourceTree = "<group>"; };
 		A563642C2EE192A300A702C0 /* RgbDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailVC.swift; sourceTree = "<group>"; };
 		A563642E2EE1935700A702C0 /* DimmerDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailFeature.swift; sourceTree = "<group>"; };
-		A56364302EE1936900A702C0 /* DimmerDetailViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailViewState.swift; sourceTree = "<group>"; };
 		A56364322EE1A0D300A702C0 /* DimmerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailView.swift; sourceTree = "<group>"; };
 		A56364342EE1A14500A702C0 /* DimmerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailVM.swift; sourceTree = "<group>"; };
 		A56364362EE1A21200A702C0 /* DimmerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailVC.swift; sourceTree = "<group>"; };
@@ -2678,6 +2684,9 @@
 		A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationAsRemovableUseCaseTest.swift; sourceTree = "<group>"; };
 		A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteThermostatActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClientConfigUseCaseTests.swift; sourceTree = "<group>"; };
+		A5A87A632F165F5E0047233B /* DimmerDetailBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailBase.swift; sourceTree = "<group>"; };
+		A5A87A652F165FB10047233B /* DimmerDetailBase+Scaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimmerDetailBase+Scaffold.swift"; sourceTree = "<group>"; };
+		A5A87A672F1660A70047233B /* DimmerDetailBase+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimmerDetailBase+State.swift"; sourceTree = "<group>"; };
 		A5A9CA9D2EE83F16009C0030 /* ReorderableHstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderableHstack.swift; sourceTree = "<group>"; };
 		A5A9CA9F2EE845DD009C0030 /* ColorListItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorListItemRepository.swift; sourceTree = "<group>"; };
 		A5ABE5B42ABC271100FFA50B /* ScheduleDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVMTests.swift; sourceTree = "<group>"; };
@@ -2753,6 +2762,13 @@
 		A5B3CC092B6282B800F95AC3 /* WindValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CC0B2B6291FF00F95AC3 /* GpmValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CC0D2B62934D00F95AC3 /* SAChannelConfig+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelConfig+Ext.swift"; sourceTree = "<group>"; };
+		A5B593782F1788C10054E6F9 /* DimmerDetailBase+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DimmerDetailBase+ViewModel.swift"; sourceTree = "<group>"; };
+		A5B5937A2F1793080054E6F9 /* DimmerCctDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailFeature.swift; sourceTree = "<group>"; };
+		A5B5937C2F1793270054E6F9 /* DimmerCctDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailView.swift; sourceTree = "<group>"; };
+		A5B5937E2F17939E0054E6F9 /* DimmerCctDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailVM.swift; sourceTree = "<group>"; };
+		A5B593802F1793CB0054E6F9 /* DimmerCctDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailVC.swift; sourceTree = "<group>"; };
+		A5B593822F179ED70054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctAndRgbGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A5B593842F179F360054E6F9 /* DimmerCctGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
 		A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityChartMarkerView.swift; sourceTree = "<group>"; };
 		A5B8A4792CB86AF4002FA7B2 /* ChartStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStyle.swift; sourceTree = "<group>"; };
 		A5B8A47B2CB9BB79002FA7B2 /* DataSetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSetsRow.swift; sourceTree = "<group>"; };
@@ -4042,6 +4058,8 @@
 		A50B5D462BFCB9A500918D18 /* ActivePercentage */ = {
 			isa = PBXGroup;
 			children = (
+				A5B593842F179F360054E6F9 /* DimmerCctGroupActivePercentageProvider.swift */,
+				A5B593822F179ED70054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift */,
 				A50B5D472BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift */,
 				A50B5D492BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift */,
 				A50B5D4B2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift */,
@@ -4368,7 +4386,6 @@
 				A530EE1D2A56FD4300F8DAEE /* StaircaseTimerIconNameProducer.swift */,
 				A530EE212A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift */,
 				A530EE232A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift */,
-				A530EE252A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift */,
 				A530EE272A57E02C00F8DAEE /* MailSensorIconNameProducer.swift */,
 				A530EE292A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift */,
 				A530EE2B2A57E15000F8DAEE /* HeatpolHomeplusIconNameProducer.swift */,
@@ -5110,6 +5127,7 @@
 		A563640C2EDF9B1000A702C0 /* RgbAndDimmerDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A5A87A612F1650490047233B /* DimmerCct */,
 				A563640D2EDF9B4000A702C0 /* Common */,
 				A56364102EDF9BCF00A702C0 /* Rgb */,
 				A563640E2EDF9B4B00A702C0 /* Dimmer */,
@@ -5120,6 +5138,7 @@
 		A563640D2EDF9B4000A702C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A5A87A622F165F540047233B /* Dimmer */,
 				A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */,
 				A55AE8262EEC0443006E0AA9 /* SavedColor.swift */,
 				A5E84F192EE6FC7E002F26F8 /* DelayedRbgwActionSubject.swift */,
@@ -5136,7 +5155,6 @@
 				A56364362EE1A21200A702C0 /* DimmerDetailVC.swift */,
 				A56364342EE1A14500A702C0 /* DimmerDetailVM.swift */,
 				A56364322EE1A0D300A702C0 /* DimmerDetailView.swift */,
-				A56364302EE1936900A702C0 /* DimmerDetailViewState.swift */,
 				A563642E2EE1935700A702C0 /* DimmerDetailFeature.swift */,
 			);
 			path = Dimmer;
@@ -6150,6 +6168,28 @@
 				A5A3251F2E817CD700E60812 /* HeatpolHistoryDetailVM.swift */,
 			);
 			path = HeatpolHistoryDetail;
+			sourceTree = "<group>";
+		};
+		A5A87A612F1650490047233B /* DimmerCct */ = {
+			isa = PBXGroup;
+			children = (
+				A5B593802F1793CB0054E6F9 /* DimmerCctDetailVC.swift */,
+				A5B5937E2F17939E0054E6F9 /* DimmerCctDetailVM.swift */,
+				A5B5937C2F1793270054E6F9 /* DimmerCctDetailView.swift */,
+				A5B5937A2F1793080054E6F9 /* DimmerCctDetailFeature.swift */,
+			);
+			path = DimmerCct;
+			sourceTree = "<group>";
+		};
+		A5A87A622F165F540047233B /* Dimmer */ = {
+			isa = PBXGroup;
+			children = (
+				A5B593782F1788C10054E6F9 /* DimmerDetailBase+ViewModel.swift */,
+				A5A87A672F1660A70047233B /* DimmerDetailBase+State.swift */,
+				A5A87A652F165FB10047233B /* DimmerDetailBase+Scaffold.swift */,
+				A5A87A632F165F5E0047233B /* DimmerDetailBase.swift */,
+			);
+			path = Dimmer;
 			sourceTree = "<group>";
 		};
 		A5ABE5B22ABC26B000FFA50B /* ThermostatDetail */ = {
@@ -7871,6 +7911,7 @@
 				A5C2D94F2EAA0B96007BAA0B /* GroupUpdatesObserver.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
 				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
+				A5B593852F179F3F0054E6F9 /* DimmerCctGroupActivePercentageProvider.swift in Sources */,
 				A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */,
 				A57668F32AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift in Sources */,
 				A514745B2EA65D520044DEF2 /* GateGeneralFeature.swift in Sources */,
@@ -7887,6 +7928,7 @@
 				A530EE362A57F65F00F8DAEE /* GetChannelBaseStateUseCase.swift in Sources */,
 				A5BCA9B82E2A488800A5054A /* EspDeviceProtocol.swift in Sources */,
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
+				A5A87A662F165FBC0047233B /* DimmerDetailBase+Scaffold.swift in Sources */,
 				A55AE5F32EE97969006E0AA9 /* DeleteColorListItemUseCase.swift in Sources */,
 				A5AE6D812E1FDB2100BC2B67 /* AddWizardRepeatButton.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
@@ -7945,6 +7987,7 @@
 				A530EE182A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift in Sources */,
 				A503ABAF2B6A9944008CDA1F /* DownloadGeneralPurposeMeterLogUseCase.swift in Sources */,
 				A5FE67612A65CC9900147D1F /* SuplaCloudClient.swift in Sources */,
+				A5B5937F2F1793A60054E6F9 /* DimmerCctDetailVM.swift in Sources */,
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
 				A54637C12D38041A00D746F5 /* ChannelOfflineView.swift in Sources */,
 				A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */,
@@ -7972,6 +8015,7 @@
 				A58472062C2EC7E500713D36 /* DisconnectUseCase.swift in Sources */,
 				A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */,
 				A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */,
+				A5B593812F1793D40054E6F9 /* DimmerCctDetailVC.swift in Sources */,
 				A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */,
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
 				A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */,
@@ -8026,6 +8070,7 @@
 				A5E039E52CA16C020018CEB7 /* HeatOrColdSourceSwitchIconNameProducer.swift in Sources */,
 				A5074BD32BCE98760081B6B1 /* SlatTiltSlider.swift in Sources */,
 				A52BFEC62B07904E00A2F64C /* SuplaButtonVolumeField.swift in Sources */,
+				A5A87A682F1660B10047233B /* DimmerDetailBase+State.swift in Sources */,
 				A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */,
 				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
 				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
@@ -8036,7 +8081,9 @@
 				A5F29BEB2A27787600ED700A /* BaseDetailTypeProviderUseCase.swift in Sources */,
 				A5E84F1A2EE6FC8A002F26F8 /* DelayedRbgwActionSubject.swift in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
+				A5A87A642F165FA10047233B /* DimmerDetailBase.swift in Sources */,
 				A584E1FF2CAAC88900232A98 /* ElectricityMeterSettings.swift in Sources */,
+				A5B593792F1788C80054E6F9 /* DimmerDetailBase+ViewModel.swift in Sources */,
 				A594ADC92C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift in Sources */,
 				A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */,
 				A54E2AF32E44B586003F2926 /* TaskTimeoutHelper.swift in Sources */,
@@ -8202,6 +8249,7 @@
 				A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
+				A5B5937D2F17932D0054E6F9 /* DimmerCctDetailView.swift in Sources */,
 				A539C2772D67798E00D9DD47 /* ValveGeneralVM.swift in Sources */,
 				A5FE675C2A65CA1700147D1F /* SuplaCloudClientRepository.swift in Sources */,
 				A5EDE21E2CA56A5900BEDAE4 /* ElectricityMeterGeneralViewState.swift in Sources */,
@@ -8246,7 +8294,6 @@
 				A50B5D042BEA4CDA00918D18 /* RoofWindowState.swift in Sources */,
 				A56364332EE1A0D900A702C0 /* DimmerDetailView.swift in Sources */,
 				A530EE402A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift in Sources */,
-				A530EE262A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift in Sources */,
 				A5A1600D2C2AC17F0049AA73 /* SuplaAppState.swift in Sources */,
 				A590790A2EAF620500E6725C /* SAChannelStateExtendedValue+Printable.swift in Sources */,
 				A5F29B832A1F8D9B00ED700A /* SALocation+Ext.swift in Sources */,
@@ -8267,6 +8314,7 @@
 				A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */,
 				A5F29B762A1E33D500ED700A /* FetchedResultsControllerEntityObserver.swift in Sources */,
 				A5BCA95D2E2781B900A5054A /* EnableRegistrationUseCase.swift in Sources */,
+				A5B593832F179EE50054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift in Sources */,
 				A530EE452A58AAD800F8DAEE /* DeviceStateHelperVMI.swift in Sources */,
 				A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */,
 				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
@@ -8439,7 +8487,6 @@
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
 				A51BE90B2AAAF29D00718F2F /* SetpointType.swift in Sources */,
 				A52F03E52DBA668C00472ED1 /* EmptyListView.swift in Sources */,
-				A56364312EE1937000A702C0 /* DimmerDetailViewState.swift in Sources */,
 				A550F2922D52539C0011463B /* ElectricityMeterMeasurementsProvider.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
 				A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */,
@@ -8821,6 +8868,7 @@
 				A5DEE9692E9FAD1B000811C7 /* DeveloperInfoFeature.swift in Sources */,
 				A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */,
 				A5E84F182EE6EB84002F26F8 /* RgbBaseValue+iOS.swift in Sources */,
+				A5B5937B2F1793140054E6F9 /* DimmerCctDetailFeature.swift in Sources */,
 				A550F2962D535B900011463B /* BaseHistoryEntity.swift in Sources */,
 				A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */,
 				A5BCA9502E262DA800A5054A /* AddWizardManualInstruction.swift in Sources */,

@@ -19,84 +19,26 @@
 import SwiftUI
 
 extension DimmerDetailFeature {
-    protocol ViewDelegate {
+    protocol ViewDelegate : DimmerDetailBase.ViewDelegate {
         func onBrightnessSelectionStarted()
         func onBrightnessSelecting(_ brightness: Int)
         func onBrightnessSelected()
-        func turnOn()
-        func turnOff()
-        func updateSavedColorsOrder(items: [SavedColor])
-        func onSavedColorSelected(color: SavedColor)
-        func onRemoveColor(color: SavedColor)
-        func onSaveCurrentColor()
-        func toggleSelectorType()
     }
 
     struct View: SwiftUI.View {
-        @ObservedObject var viewState: ViewState
+        @ObservedObject var viewState: DimmerDetailBase.ViewState
         var delegate: ViewDelegate?
 
         @StateObject private var orientationObserver = OrientationObserver()
 
         var body: some SwiftUI.View {
-            BackgroundStack(alignment: .top) {
-                if (orientationObserver.orientation.isLandscape) {
-                    landscape()
-                } else {
-                    portrait()
-                }
-
-                if (viewState.loadingState.loading) {
-                    SuplaCore.LoadingScrim()
-                }
-                
-                if (viewState.showLimitReachedToast) {
-                    ToastView(message: Strings.RgbDetail.colorLimit)
-                }
-            }
-        }
-        
-        @ViewBuilder
-        private func portrait() -> some SwiftUI.View {
-            VStack(spacing: 0) {
-                if let stateData = viewState.deviceStateData {
-                    DeviceStateView(data: stateData)
-                }
-                ChannelIssuesView(issues: viewState.issues)
-
-                Spacer()
-                brightnessBox()
-                selector()
-
-                Spacer()
-                savedColors()
-                buttons()
-            }
-        }
-        
-        @ViewBuilder
-        private func landscape() -> some SwiftUI.View {
-            HStack(spacing: 0) {
-                VStack(spacing: 0) {
-                    if let stateData = viewState.deviceStateData {
-                        DeviceStateView(data: stateData)
-                    }
-                    ChannelIssuesView(issues: viewState.issues)
-                    
-                    brightnessBox()
-                    Spacer()
-                    
-                    savedColors()
-                    buttons()
-                }
-                .frame(maxWidth: .infinity)
-                
-                VStack(alignment: .center, spacing: 0) {
-                    selector()
-                        .padding(Distance.default)
-                }
-                .frame(maxWidth: .infinity)
-            }
+            DimmerDetailBase.Scaffold(
+                delegate: delegate,
+                brightnessBox: { brightnessBox() },
+                brightnessControl: { brightnessControl() },
+                savedColorItemContent: { SavedColorBox(color: UIColor(argb: $0.color)) }
+            )
+            .environmentObject(viewState)
         }
 
         @ViewBuilder
@@ -116,80 +58,40 @@ extension DimmerDetailFeature {
         }
 
         @ViewBuilder
-        private func selector() -> some SwiftUI.View {
-            ZStack(alignment: .top) {
-                switch (viewState.selectorType) {
-                case .linear:
-                    LinearColorSelector(
-                        value: viewState.value.brightness?.asPercentageFloat,
-                        selectedColor: viewState.value.brightness?.asGrayColor,
-                        valueMarkers: viewState.value.markers.map { $0.asPercentageFloat },
-                        enabled: !viewState.offline,
-                        onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
-                        onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
-                        onValueChanged: { delegate?.onBrightnessSelected() }
-                    )
-                    .frame(width: 40)
-                    .frame(maxHeight: 350)
-                case .circular:
-                    CircularColorSelector(
-                        value: viewState.value.brightness?.asPercentageFloat,
-                        selectedColor: viewState.value.brightness?.asGrayColor,
-                        valueMarkers: viewState.value.markers.map { $0.asPercentageFloat },
-                        enabled: !viewState.offline,
-                        onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
-                        onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
-                        onValueChanged: { delegate?.onBrightnessSelected() }
-                    )
-                    .frame(maxWidth: .infinity, maxHeight: 350)
-                    
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .overlay(alignment: .topTrailing) {
-                RoundedControlButtonWrapperView(
-                    type: .neutral,
-                    icon: .suplaIcon(name: viewState.selectorType.swapIcon),
-                    onTap: { delegate?.toggleSelectorType() }
-                )
-                .frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight, alignment: .topTrailing)
-                .padding(.trailing, Distance.default)
-            }
-        }
-        
-        @ViewBuilder
-        private func savedColors() -> some SwiftUI.View {
-            ReorderableHStack(
-                items: $viewState.savedColors,
-                enabled: !viewState.offline,
-                onReorderEnd: { delegate?.updateSavedColorsOrder(items: $0) },
-                onPlaceholderTap: { delegate?.onSaveCurrentColor() },
-                onDelete: { delegate?.onRemoveColor(color: $0) },
-                onItemTap: { delegate?.onSavedColorSelected(color: $0) },
-                placeholder: { SavedColorAction(dragging: false, over: false) }
-            ) { SavedColorBox(color: $0.color) }
-                .padding(.horizontal, Distance.small)
-        }
-
-        @ViewBuilder
-        private func buttons() -> some SwiftUI.View {
-            if let onButtonState = viewState.onButtonState,
-               let offButtonState = viewState.offButtonState
-            {
-                SwitchButtons(
-                    leftButton: offButtonState,
-                    rightButton: onButtonState,
+        private func brightnessControl() -> some SwiftUI.View {
+            switch (viewState.selectorType) {
+            case .linear:
+                LinearColorSelector(
+                    value: viewState.value.brightness?.asPercentageFloat,
+                    selectedColor: viewState.value.brightness?.asGrayColor,
+                    valueMarkers: viewState.value.brightnessMarkers.map { $0.asPercentageFloat },
                     enabled: !viewState.offline,
-                    onLeftButtonClick: { delegate?.turnOff() },
-                    onRightButtonClick: { delegate?.turnOn() }
+                    startColor: .white,
+                    onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
+                    onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
+                    onValueChanged: { delegate?.onBrightnessSelected() }
                 )
+                .frame(width: 40)
+                .frame(maxHeight: 350)
+            case .circular:
+                CircularColorSelector(
+                    value: viewState.value.brightness?.asPercentageFloat,
+                    selectedColor: viewState.value.brightness?.asGrayColor,
+                    valueMarkers: viewState.value.brightnessMarkers.map { $0.asPercentageFloat },
+                    enabled: !viewState.offline,
+                    startColor: .white,
+                    onValueChangeStarted: { delegate?.onBrightnessSelectionStarted() },
+                    onValueChanging: { delegate?.onBrightnessSelecting(Int($0 * 100)) },
+                    onValueChanged: { delegate?.onBrightnessSelected() }
+                )
+                .frame(maxWidth: .infinity, maxHeight: 350)
             }
         }
     }
 }
 
 #Preview {
-    let viewState = DimmerDetailFeature.ViewState()
+    let viewState = DimmerDetailBase.ViewState()
     viewState.deviceStateData = DeviceStateData(
         label: Strings.SwitchDetail.stateLabel,
         icon: .suplaIcon(name: "dimmer-on"),
@@ -207,7 +109,7 @@ extension DimmerDetailFeature {
         active: false,
         type: .positive
     )
-    viewState.value = .single(brightness: 50)
+    viewState.value = .single(brightness: 50, cct: 25)
     viewState.loadingState = viewState.loadingState.copy(loading: false)
 
     return DimmerDetailFeature.View(

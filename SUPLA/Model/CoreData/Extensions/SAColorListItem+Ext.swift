@@ -25,7 +25,7 @@ extension SAColorListItem {
             return nil
         }
         
-        return SavedColor(idx: idx, color: color, brightness: brightness)
+        return SavedColor(idx: idx, color: color.argbInt, brightness: brightness)
     }
     
     var type: ColorListItemType { ColorListItemType.from(raw_type) }

@@ -44698,6 +44698,44 @@
           },
           {
             "kind": "Var",
+            "name": "dimmerCct",
+            "printedName": "dimmerCct",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO9dimmerCctyA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO9dimmerCctyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 24
+          },
+          {
+            "kind": "Var",
             "name": "rgbLighting",
             "printedName": "rgbLighting",
             "children": [
@@ -44732,7 +44770,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO11rgbLightingyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO11rgbLightingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 24
+            "fixedbinaryorder": 25
           },
           {
             "kind": "Var",
@@ -44770,7 +44808,45 @@
             "usr": "s:10SharedCore13SuplaFunctionO20dimmerAndRgbLightingyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO20dimmerAndRgbLightingyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 25
+            "fixedbinaryorder": 26
+          },
+          {
+            "kind": "Var",
+            "name": "dimmerCctAndRgb",
+            "printedName": "dimmerCctAndRgb",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(SharedCore.SuplaFunction.Type) -> SharedCore.SuplaFunction",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SuplaFunction",
+                    "printedName": "SharedCore.SuplaFunction",
+                    "usr": "s:10SharedCore13SuplaFunctionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "SharedCore.SuplaFunction.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "SuplaFunction",
+                        "printedName": "SharedCore.SuplaFunction",
+                        "usr": "s:10SharedCore13SuplaFunctionO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10SharedCore13SuplaFunctionO15dimmerCctAndRgbyA2CmF",
+            "mangledName": "$s10SharedCore13SuplaFunctionO15dimmerCctAndRgbyA2CmF",
+            "moduleName": "SharedCore",
+            "fixedbinaryorder": 27
           },
           {
             "kind": "Var",
@@ -44808,7 +44884,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO11depthSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO11depthSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 26
+            "fixedbinaryorder": 28
           },
           {
             "kind": "Var",
@@ -44846,7 +44922,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO14distanceSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO14distanceSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 27
+            "fixedbinaryorder": 29
           },
           {
             "kind": "Var",
@@ -44884,7 +44960,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO19openingSensorWindowyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO19openingSensorWindowyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 28
+            "fixedbinaryorder": 30
           },
           {
             "kind": "Var",
@@ -44922,7 +44998,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO15hotelCardSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO15hotelCardSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 29
+            "fixedbinaryorder": 31
           },
           {
             "kind": "Var",
@@ -44960,7 +45036,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO19alarmArmamentSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO19alarmArmamentSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 30
+            "fixedbinaryorder": 32
           },
           {
             "kind": "Var",
@@ -44998,7 +45074,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO10mailSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO10mailSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 31
+            "fixedbinaryorder": 33
           },
           {
             "kind": "Var",
@@ -45036,7 +45112,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO10windSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO10windSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 32
+            "fixedbinaryorder": 34
           },
           {
             "kind": "Var",
@@ -45074,7 +45150,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO14pressureSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO14pressureSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 33
+            "fixedbinaryorder": 35
           },
           {
             "kind": "Var",
@@ -45112,7 +45188,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO10rainSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO10rainSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 34
+            "fixedbinaryorder": 36
           },
           {
             "kind": "Var",
@@ -45150,7 +45226,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO12weightSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO12weightSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 35
+            "fixedbinaryorder": 37
           },
           {
             "kind": "Var",
@@ -45188,7 +45264,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO14weatherStationyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO14weatherStationyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 36
+            "fixedbinaryorder": 38
           },
           {
             "kind": "Var",
@@ -45226,7 +45302,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO14staircaseTimeryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO14staircaseTimeryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 37
+            "fixedbinaryorder": 39
           },
           {
             "kind": "Var",
@@ -45264,7 +45340,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO16electricityMeteryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO16electricityMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 38
+            "fixedbinaryorder": 40
           },
           {
             "kind": "Var",
@@ -45302,7 +45378,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO18icElectricityMeteryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO18icElectricityMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 39
+            "fixedbinaryorder": 41
           },
           {
             "kind": "Var",
@@ -45340,7 +45416,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO10icGasMeteryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO10icGasMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 40
+            "fixedbinaryorder": 42
           },
           {
             "kind": "Var",
@@ -45378,7 +45454,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO12icWaterMeteryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO12icWaterMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 41
+            "fixedbinaryorder": 43
           },
           {
             "kind": "Var",
@@ -45416,7 +45492,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO11icHeatMeteryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO11icHeatMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 42
+            "fixedbinaryorder": 44
           },
           {
             "kind": "Var",
@@ -45454,7 +45530,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO25thermostatHeatpolHomeplusyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO25thermostatHeatpolHomeplusyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 43
+            "fixedbinaryorder": 45
           },
           {
             "kind": "Var",
@@ -45492,7 +45568,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO14hvacThermostatyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO14hvacThermostatyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 44
+            "fixedbinaryorder": 46
           },
           {
             "kind": "Var",
@@ -45530,7 +45606,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO22hvacThermostatHeatCoolyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO22hvacThermostatHeatCoolyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 45
+            "fixedbinaryorder": 47
           },
           {
             "kind": "Var",
@@ -45568,7 +45644,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO20hvacDomesticHotWateryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO20hvacDomesticHotWateryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 46
+            "fixedbinaryorder": 48
           },
           {
             "kind": "Var",
@@ -45606,7 +45682,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO14valveOpenCloseyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO14valveOpenCloseyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 47
+            "fixedbinaryorder": 49
           },
           {
             "kind": "Var",
@@ -45644,7 +45720,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO15valvePercentageyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO15valvePercentageyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 48
+            "fixedbinaryorder": 50
           },
           {
             "kind": "Var",
@@ -45682,7 +45758,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO25generalPurposeMeasurementyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO25generalPurposeMeasurementyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 49
+            "fixedbinaryorder": 51
           },
           {
             "kind": "Var",
@@ -45720,7 +45796,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO19generalPurposeMeteryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO19generalPurposeMeteryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 50
+            "fixedbinaryorder": 52
           },
           {
             "kind": "Var",
@@ -45758,7 +45834,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO19digiglassHorizontalyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO19digiglassHorizontalyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 51
+            "fixedbinaryorder": 53
           },
           {
             "kind": "Var",
@@ -45796,7 +45872,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO17digiglassVerticalyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO17digiglassVerticalyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 52
+            "fixedbinaryorder": 54
           },
           {
             "kind": "Var",
@@ -45834,7 +45910,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO25controllingTheFacadeBlindyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO25controllingTheFacadeBlindyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 53
+            "fixedbinaryorder": 55
           },
           {
             "kind": "Var",
@@ -45872,7 +45948,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO13terraceAwningyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO13terraceAwningyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 54
+            "fixedbinaryorder": 56
           },
           {
             "kind": "Var",
@@ -45910,7 +45986,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO15projectorScreenyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO15projectorScreenyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 55
+            "fixedbinaryorder": 57
           },
           {
             "kind": "Var",
@@ -45948,7 +46024,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO7curtainyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO7curtainyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 56
+            "fixedbinaryorder": 58
           },
           {
             "kind": "Var",
@@ -45986,7 +46062,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO13verticalBlindyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO13verticalBlindyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 57
+            "fixedbinaryorder": 59
           },
           {
             "kind": "Var",
@@ -46024,7 +46100,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO16rollerGarageDooryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO16rollerGarageDooryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 58
+            "fixedbinaryorder": 60
           },
           {
             "kind": "Var",
@@ -46062,7 +46138,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO10pumpSwitchyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO10pumpSwitchyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 59
+            "fixedbinaryorder": 61
           },
           {
             "kind": "Var",
@@ -46100,7 +46176,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO22heatOrColdSourceSwitchyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO22heatOrColdSourceSwitchyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 60
+            "fixedbinaryorder": 62
           },
           {
             "kind": "Var",
@@ -46138,7 +46214,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO9containeryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO9containeryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 61
+            "fixedbinaryorder": 63
           },
           {
             "kind": "Var",
@@ -46176,7 +46252,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO10septicTankyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO10septicTankyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 62
+            "fixedbinaryorder": 64
           },
           {
             "kind": "Var",
@@ -46214,7 +46290,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO9waterTankyA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO9waterTankyA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 63
+            "fixedbinaryorder": 65
           },
           {
             "kind": "Var",
@@ -46252,7 +46328,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO20containerLevelSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO20containerLevelSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 64
+            "fixedbinaryorder": 66
           },
           {
             "kind": "Var",
@@ -46290,7 +46366,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO11floodSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO11floodSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 65
+            "fixedbinaryorder": 67
           },
           {
             "kind": "Var",
@@ -46328,7 +46404,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO12motionSensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO12motionSensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 66
+            "fixedbinaryorder": 68
           },
           {
             "kind": "Var",
@@ -46366,7 +46442,7 @@
             "usr": "s:10SharedCore13SuplaFunctionO12binarySensoryA2CmF",
             "mangledName": "$s10SharedCore13SuplaFunctionO12binarySensoryA2CmF",
             "moduleName": "SharedCore",
-            "fixedbinaryorder": 67
+            "fixedbinaryorder": 69
           },
           {
             "kind": "Var",

@@ -584,3 +584,4 @@
 "rgb_detail_move_right" = "Move right";
 "rgb_detail_move_start" = "Move to begining";
 "rgb_detail_move_end" = "Move to end";
+"dimmer_detail_temperature" = "Color:";

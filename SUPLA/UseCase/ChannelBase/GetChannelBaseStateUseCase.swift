@@ -20,131 +20,157 @@ import SharedCore
 
 protocol GetChannelBaseStateUseCase {
     func invoke(channelBase: SAChannelBase) -> ChannelState
-    func getOfflineState(_ function: Int32) -> ChannelState
+    func getOfflineState(_ function: SuplaFunction) -> ChannelState
 }
 
 final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
     func invoke(channelBase: SAChannelBase) -> ChannelState {
         if let channel = channelBase as? SAChannel {
             guard let value = channel.value else { return .default(value: .notUsed) }
-            return getChannelState(channel.func, ChannelValueStateWrapper(channelValue: value))
+            return getChannelState(channel.func.suplaFuntion, ChannelValueStateWrapper(channelValue: value))
         }
         if let group = channelBase as? SAChannelGroup {
-            return getChannelState(group.func, ChannelGroupStateWrapper(channelGroup: group))
+            return getChannelState(group.func.suplaFuntion, ChannelGroupStateWrapper(channelGroup: group))
         }
         
         fatalError("Channel base is extended by unknown class!")
     }
     
-    func getOfflineState(_ function: Int32) -> ChannelState {
+    func getOfflineState(_ function: SuplaFunction) -> ChannelState {
         switch (function) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
-             SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
-            SUPLA_CHANNELFNC_VALVE_PERCENTAGE: .default(value: .opened)
-        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN: .default(value: .closed)
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER,
-             SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
-             SUPLA_CHANNELFNC_MAILSENSOR,
-             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS,
-             SUPLA_CHANNELFNC_HOTELCARDSENSOR,
-             SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_DIMMER,
-             SUPLA_CHANNELFNC_RGBLIGHTING,
-             SUPLA_CHANNELFNC_PUMPSWITCH,
-             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
-             SUPLA_CHANNELFNC_FLOOD_SENSOR,
-             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR,
-             SUPLA_CHANNELFNC_MOTION_SENSOR,
-             SUPLA_CHANNELFNC_BINARY_SENSOR: .default(value: .off)
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .rgbAndDimmer(dimmer: .off, rgb: .off)
-        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
-             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .default(value: .opaque)
-        case SUPLA_CHANNELFNC_CONTAINER,
-             SUPLA_CHANNELFNC_SEPTIC_TANK,
-             SUPLA_CHANNELFNC_WATER_TANK: .default(value: .empty)
-        default: .default(value: .notUsed)
+        case .controllingTheGatewayLock,
+             .controllingTheGate,
+             .controllingTheGarageDoor,
+             .controllingTheDoorLock,
+             .controllingTheRollerShutter,
+             .controllingTheRoofWindow,
+             .controllingTheFacadeBlind,
+             .openSensorGateway,
+             .openSensorGate,
+             .openSensorGarageDoor,
+             .openSensorDoor,
+             .openSensorRollerShutter,
+             .openSensorRoofWindow,
+             .curtain,
+             .verticalBlind,
+             .rollerGarageDoor,
+             .valveOpenClose,
+             .valvePercentage: .default(value: .opened)
+        case .projectorScreen,
+             .terraceAwning: .default(value: .closed)
+        case .powerSwitch,
+             .staircaseTimer,
+             .noLiquidSensor,
+             .mailSensor,
+             .thermostatHeatpolHomeplus,
+             .hotelCardSensor,
+             .alarmArmamentSensor,
+             .lightswitch,
+             .dimmer,
+             .dimmerCct,
+             .rgbLighting,
+             .pumpSwitch,
+             .heatOrColdSourceSwitch,
+             .floodSensor,
+             .containerLevelSensor,
+             .motionSensor,
+             .binarySensor: .default(value: .off)
+        case .dimmerAndRgbLighting,
+             .dimmerCctAndRgb: .rgbAndDimmer(dimmer: .off, rgb: .off)
+        case .digiglassVertical,
+             .digiglassHorizontal: .default(value: .opaque)
+        case .container,
+             .septicTank,
+             .waterTank: .default(value: .empty)
+        case .unknown,
+             .none,
+             .thermometer,
+             .humidity,
+             .humidityAndTemperature,
+             .ring,
+             .alarm,
+             .notification,
+             .depthSensor,
+             .distanceSensor,
+             .openingSensorWindow,
+             .windSensor,
+             .pressureSensor,
+             .rainSensor,
+             .weightSensor,
+             .weatherStation,
+             .electricityMeter,
+             .icElectricityMeter,
+             .icGasMeter,
+             .icWaterMeter,
+             .icHeatMeter,
+             .hvacThermostat,
+             .hvacThermostatHeatCool,
+             .hvacDomesticHotWater,
+             .generalPurposeMeasurement,
+             .generalPurposeMeter: .default(value: .notUsed)
         }
     }
     
-    private func getChannelState(_ function: Int32, _ valueWrapper: ValueStateWrapper) -> ChannelState {
+    private func getChannelState(_ function: SuplaFunction, _ valueWrapper: ValueStateWrapper) -> ChannelState {
         if (!valueWrapper.online) {
             return getOfflineState(function)
         }
         
         switch (function) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+        case .controllingTheGatewayLock,
+             .controllingTheGate,
+             .controllingTheGarageDoor,
+             .controllingTheDoorLock:
             return getOpenClose(valueWrapper.subValueHi)
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND,
-             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
+        case .controllingTheRollerShutter,
+             .controllingTheRoofWindow,
+             .controllingTheFacadeBlind,
+             .curtain,
+             .verticalBlind,
+             .rollerGarageDoor:
             return .default(value: valueWrapper.rollerShutterClosed ? .closed : .opened)
-        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_TERRACE_AWNING:
+        case .projectorScreen,
+             .terraceAwning:
             return .default(value: valueWrapper.shadingSystemReversedClosed ? .closed : .opened)
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
-             SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
-             SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+        case .openSensorGateway,
+             .openSensorGate,
+             .openSensorGarageDoor,
+             .openSensorDoor,
+             .openSensorRollerShutter,
+             .openingSensorWindow,
+             .openSensorRoofWindow,
+             .valveOpenClose,
+             .valvePercentage:
             return .default(value: valueWrapper.isClosed ? .closed : .opened)
-        case SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER,
-             SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
-             SUPLA_CHANNELFNC_MAILSENSOR,
-             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS,
-             SUPLA_CHANNELFNC_HOTELCARDSENSOR,
-             SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_PUMPSWITCH,
-             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
-             SUPLA_CHANNELFNC_FLOOD_SENSOR,
-             SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR,
-             SUPLA_CHANNELFNC_MOTION_SENSOR,
-             SUPLA_CHANNELFNC_BINARY_SENSOR:
+        case .powerSwitch,
+             .staircaseTimer,
+             .noLiquidSensor,
+             .mailSensor,
+             .thermostatHeatpolHomeplus,
+             .hotelCardSensor,
+             .alarmArmamentSensor,
+             .lightswitch,
+             .pumpSwitch,
+             .heatOrColdSourceSwitch,
+             .floodSensor,
+             .containerLevelSensor,
+             .motionSensor,
+             .binarySensor:
             return .default(value: valueWrapper.isClosed ? .on : .off)
-        case SUPLA_CHANNELFNC_DIMMER:
+        case .dimmer, .dimmerCct:
             return .default(value: valueWrapper.brightness > 0 ? .on : .off)
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case .rgbLighting:
             return .default(value: valueWrapper.colorBrightness > 0 ? .on : .off)
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        case .dimmerAndRgbLighting, .dimmerCctAndRgb:
             let first: ChannelState.Value = valueWrapper.brightness > 0 ? .on : .off
             let second: ChannelState.Value = valueWrapper.colorBrightness > 0 ? .on : .off
             return .rgbAndDimmer(dimmer: first, rgb: second)
-        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
-             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+        case .digiglassHorizontal,
+             .digiglassVertical:
             return .default(value: valueWrapper.transparent ? .transparent : .opaque)
-        case SUPLA_CHANNELFNC_CONTAINER,
-             SUPLA_CHANNELFNC_SEPTIC_TANK,
-             SUPLA_CHANNELFNC_WATER_TANK:
+        case .container,
+             .septicTank,
+             .waterTank:
             let value = valueWrapper.containerValue
             if (value.level > 80) {
                 return .default(value: .full)
@@ -153,7 +179,31 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
             } else {
                 return .default(value: .empty)
             }
-        default: return .default(value: .notUsed)
+        case .unknown,
+             .none,
+             .thermometer,
+             .humidity,
+             .humidityAndTemperature,
+             .ring,
+             .alarm,
+             .notification,
+             .depthSensor,
+             .distanceSensor,
+             .windSensor,
+             .pressureSensor,
+             .rainSensor,
+             .weightSensor,
+             .weatherStation,
+             .electricityMeter,
+             .icElectricityMeter,
+             .icGasMeter,
+             .icWaterMeter,
+             .icHeatMeter,
+             .hvacThermostat,
+             .hvacThermostatHeatCool,
+             .hvacDomesticHotWater,
+             .generalPurposeMeasurement,
+             .generalPurposeMeter: return .default(value: .notUsed)
         }
     }
     

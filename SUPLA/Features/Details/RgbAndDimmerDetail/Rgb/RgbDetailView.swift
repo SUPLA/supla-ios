@@ -175,8 +175,8 @@ extension RgbDetailFeature {
                 onPlaceholderTap: { delegate?.onSaveCurrentColor() },
                 onDelete: { delegate?.onRemoveColor(color: $0) },
                 onItemTap: { delegate?.onSavedColorSelected(color: $0) },
-                placeholder: { SavedColorAction(dragging: false, over: false) }
-            ) { SavedColorBox(color: $0.uiColor) }
+                placeholder: { SavedColorAction() }
+            ) { SavedColorBox(color: UIColor(argb: $0.color)) }
                 .padding(.horizontal, Distance.small)
         }
 
@@ -218,10 +218,10 @@ extension RgbDetailFeature {
     )
     viewState.value = .single(color: HsvColor(hue: 0, saturation: 1, value: 1))
     viewState.savedColors = [
-        SavedColor(idx: 1, color: UIColor.white, brightness: 100),
-        SavedColor(idx: 2, color: UIColor.red, brightness: 100),
-        SavedColor(idx: 3, color: UIColor(argb: 0xffff00ff), brightness: 100),
-        SavedColor(idx: 4, color: UIColor(argb: 0xff0000ff), brightness: 100)
+        SavedColor(idx: 1, color: 0xffffffff, brightness: 100),
+        SavedColor(idx: 2, color: 0xffff0000, brightness: 100),
+        SavedColor(idx: 3, color: 0xffff00ff, brightness: 100),
+        SavedColor(idx: 4, color: 0xff0000ff, brightness: 100)
     ]
     viewState.loadingState = viewState.loadingState.copy(loading: false)
 

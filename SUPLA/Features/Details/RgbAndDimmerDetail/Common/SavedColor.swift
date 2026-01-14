@@ -22,28 +22,18 @@ struct SavedColor: ReorderableHStackItem {
     var id: Int { Int(idx) }
 
     let idx: Int32
-    let color: UIColor
+    let color: Int
     let brightness: Int32
-
-    var uiColor: UIColor {
-        return color.toHsv(brightness)?.color ?? color
-    }
 }
 
 struct SavedColorAction: SwiftUI.View {
-    let dragging: Bool
-    let over: Bool
-
     var body: some SwiftUI.View {
-        let color: Color = over ? .Supla.error : .Supla.onSurfaceVariant
-        let iconSize: CGFloat = dragging ? 16 : 12
-        let icon: String = dragging ? .Icons.delete : .Icons.plus
-
+        let color: Color = .Supla.onSurfaceVariant
         ZStack {
-            Image(icon)
+            Image(.Icons.plus)
                 .renderingMode(.template)
                 .resizable()
-                .frame(width: iconSize, height: iconSize)
+                .frame(width: 12, height: 12)
                 .tint(color)
                 .foregroundColor(color)
         }

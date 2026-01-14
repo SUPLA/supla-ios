@@ -43,13 +43,14 @@ extension SuplaClientProtocol {
                 parameters: nil,
                 length: 0
             )
-        case let .rgbw(subjectType, subjectId, brightness, colorBrightness, color, colorRandom, onOff):
+        case let .rgbw(subjectType, subjectId, brightness, colorBrightness, color, colorRandom, onOff, dimmerCct):
             var parameters = TAction_RGBW_Parameters()
             parameters.Brightness = brightness
             parameters.ColorBrightness = colorBrightness
             parameters.Color = color
             parameters.ColorRandom = colorRandom ? 1 : 0
             parameters.OnOff = onOff ? 1 : 0
+            parameters.DimmerCct = dimmerCct
             
             return executeAction(
                 Action.setRgbwParameters.rawValue,

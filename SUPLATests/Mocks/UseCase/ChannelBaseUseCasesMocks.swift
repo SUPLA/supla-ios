@@ -27,7 +27,7 @@ final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
         return returns
     }
     
-    func getOfflineState(_ function: Int32) -> SUPLA.ChannelState {
+    func getOfflineState(_ function: SuplaFunction) -> SUPLA.ChannelState {
         .default(value: .notUsed)
     }
 }

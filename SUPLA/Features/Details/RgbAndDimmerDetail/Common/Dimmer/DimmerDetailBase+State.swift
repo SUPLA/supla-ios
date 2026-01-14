@@ -15,8 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-extension DimmerDetailFeature {
+    
+extension DimmerDetailBase {
     class ViewState: ObservableObject {
         @Published var deviceStateData: DeviceStateData? = nil
         @Published var issues: [ChannelIssueItem] = []
@@ -32,29 +32,29 @@ extension DimmerDetailFeature {
     
     enum DimmerValue {
         case empty
-        case single(brightness: Int)
-        case multiple([Int])
+        case single(brightness: Int, cct: Int)
+        case multiple([Int], [Int])
         
         var brightness: Int? {
             switch self {
             case .empty: nil
-            case .single(let brightness): brightness
-            case .multiple(let brightnesses): brightnesses.count == 1 ? brightnesses.first : nil
+            case .single(let brightness, _): brightness
+            case .multiple(let brightnesses, _): brightnesses.count == 1 ? brightnesses.first : nil
             }
         }
         
-        var markers: [Int] {
+        var brightnessMarkers: [Int] {
             switch self {
-            case .empty, .single(_): []
-            case .multiple(let brightnesses): brightnesses.count == 1 ? [] : brightnesses
+            case .empty, .single(_, _): []
+            case .multiple(let brightnesses, _): brightnesses.count == 1 ? [] : brightnesses
             }
         }
         
         var brightnessString: String {
             switch self {
             case .empty: return "?"
-            case .single(let brightness): return brightness.asPercentageString
-            case .multiple(let brightness):
+            case .single(let brightness, _): return brightness.asPercentageString
+            case .multiple(let brightness, _):
                 if (brightness.isEmpty) {
                     return "?"
                 } else if (brightness.count == 1) {
@@ -64,6 +64,21 @@ extension DimmerDetailFeature {
                     let max = brightness.max()?.asPercentageString ?? "?"
                     return "\(min) - \(max)"
                 }
+            }
+        }
+        
+        var cct: Int? {
+            switch self {
+            case .empty: nil
+            case .single(_, let cct): cct
+            case .multiple(_, let ccts): ccts.count == 1 ? ccts.first : nil
+            }
+        }
+        
+        var cctMarkers: [Int] {
+            switch self {
+            case .empty, .single(_, _): []
+            case .multiple(_, let ccts): ccts.count == 1 ? [] : ccts
             }
         }
     }

@@ -687,3 +687,4 @@
 "rgb_detail_move_right" = "Premakni desno";
 "rgb_detail_move_start" = "Premakni na začetek";
 "rgb_detail_move_end" = "Premakni na konec";
+"dimmer_detail_temperature" = "Barva:";

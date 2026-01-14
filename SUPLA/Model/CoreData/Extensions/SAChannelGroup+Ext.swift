@@ -19,6 +19,25 @@
 import SharedCore
 
 extension SAChannelGroup {
+    var hasBrightness: Bool {
+        switch (self.func) {
+            case SUPLA_CHANNELFNC_DIMMER,
+                 SUPLA_CHANNELFNC_DIMMER_CCT,
+                 SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+                 SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB: true
+            default: false
+        }
+    }
+    
+    var hasColor: Bool {
+        switch (self.func) {
+            case SUPLA_CHANNELFNC_RGBLIGHTING,
+                 SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+                 SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB: true
+            default: false
+        }
+    }
+
     @objc var positions: [Int] {
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
@@ -40,7 +59,7 @@ extension SAChannelGroup {
     }
     
     @objc var colors: [UIColor] {
-        if (self.func != SUPLA_CHANNELFNC_RGBLIGHTING && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
+        if (!hasColor) {
             return []
         }
         
@@ -54,13 +73,16 @@ extension SAChannelGroup {
                 if let value = $0 as? DimmerAndRgbLightingGroupValue {
                     return value.color
                 }
+                if let value = $0 as? DimmerCctAndRgbGroupValue {
+                    return value.color
+                }
                 
                 return nil
             }
     }
     
     var hsvColors: [HsvColor] {
-        if (self.func != SUPLA_CHANNELFNC_RGBLIGHTING && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
+        if (!hasColor) {
             return []
         }
         
@@ -78,6 +100,11 @@ extension SAChannelGroup {
                 {
                     return hsv
                 }
+                if let value = $0 as? DimmerCctAndRgbGroupValue,
+                   let hsv = value.color.toHsv(Int32(value.colorBrightness))
+                {
+                    return hsv
+                }
                 
                 return nil
             }
@@ -86,11 +113,11 @@ extension SAChannelGroup {
     }
     
     @objc var colorBrightness: [Int] {
-        guard let totalValue = total_value as? GroupTotalValue else { return [] }
-        
-        if (self.func != SUPLA_CHANNELFNC_RGBLIGHTING && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
+        if (!hasColor) {
             return []
         }
+        
+        guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
         return totalValue.values
             .map {
@@ -100,13 +127,16 @@ extension SAChannelGroup {
                 if let value = $0 as? DimmerAndRgbLightingGroupValue {
                     return value.colorBrightness
                 }
+                if let value = $0 as? DimmerCctAndRgbGroupValue {
+                    return value.colorBrightness
+                }
                 
                 return 0
             }
     }
     
     @objc var brightness: [Int] {
-        if (self.func != SUPLA_CHANNELFNC_DIMMER && self.func != SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
+        if (!hasBrightness) {
             return []
         }
         
@@ -117,8 +147,36 @@ extension SAChannelGroup {
                 if let value = $0 as? IntegerGroupValue {
                     return value.value
                 }
+                if let value = $0 as? DimmerCctGroupValue {
+                    return value.brightness
+                }
                 if let value = $0 as? DimmerAndRgbLightingGroupValue {
                     return value.brightness
+                }
+                if let value = $0 as? DimmerCctAndRgbGroupValue {
+                    return value.brightness
+                }
+                
+                return nil
+            }
+        
+        return Array(Set(result))
+    }
+    
+    @objc var cct: [Int] {
+        if (self.func != SUPLA_CHANNELFNC_DIMMER_CCT && self.func != SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB) {
+            return []
+        }
+        
+        guard let totalValue = total_value as? GroupTotalValue else { return [] }
+        
+        let result = totalValue.values
+            .compactMap {
+                if let value = $0 as? DimmerCctGroupValue {
+                    return value.cct
+                }
+                if let value = $0 as? DimmerCctAndRgbGroupValue {
+                    return value.cct
                 }
                 
                 return nil

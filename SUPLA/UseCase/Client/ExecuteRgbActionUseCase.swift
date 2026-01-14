@@ -27,7 +27,8 @@ struct ExecuteRgbAction {
             brightness: Int,
             color: HsvColor,
             onOff: Bool,
-            vibrate: Bool
+            vibrate: Bool,
+            dimmerCct: Int
         ) -> Observable<RequestResult>
     }
 
@@ -43,7 +44,8 @@ struct ExecuteRgbAction {
             brightness: Int,
             color: HsvColor,
             onOff: Bool,
-            vibrate: Bool
+            vibrate: Bool,
+            dimmerCct: Int
         ) -> Observable<RequestResult> {
             Observable.create { observable in
                 let result = self.suplaClientProvider.provide()?.executeAction(
@@ -54,7 +56,8 @@ struct ExecuteRgbAction {
                         colorBrightness: Int8(color.valueAsPercentage),
                         color: UInt32(color.fullBrightnessColor.argbInt & 0xFFFFFF),
                         colorRandom: false,
-                        onOff: onOff
+                        onOff: onOff,
+                        dimmerCct: Int8(dimmerCct)
                     )
                 )
 
@@ -80,8 +83,17 @@ extension ExecuteRgbAction.UseCase {
         remoteId: Int32,
         brightness: Int,
         color: HsvColor,
-        onOff: Bool
+        onOff: Bool,
+        dimmerCct: Int
     ) -> Observable<RequestResult> {
-        invoke(type: type, remoteId: remoteId, brightness: brightness, color: color, onOff: onOff, vibrate: true)
+        invoke(
+            type: type,
+            remoteId: remoteId,
+            brightness: brightness,
+            color: color,
+            onOff: onOff,
+            vibrate: true,
+            dimmerCct: dimmerCct
+        )
     }
 }

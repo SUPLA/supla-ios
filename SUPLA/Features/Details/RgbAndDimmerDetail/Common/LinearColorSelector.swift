@@ -23,8 +23,7 @@ struct LinearColorSelector: View {
     let selectedColor: UIColor?
     let valueMarkers: [CGFloat]
     let enabled: Bool
-    let startColor: Color
-    let endColor: Color
+    let colors: [Gradient.Stop]
     let onValueChangeStarted: () -> Void
     let onValueChanging: (CGFloat) -> Void
     let onValueChanged: () -> Void
@@ -36,8 +35,7 @@ struct LinearColorSelector: View {
         selectedColor: UIColor?,
         valueMarkers: [CGFloat] = [],
         enabled: Bool = true,
-        startColor: Color = .white,
-        endColor: Color = .black,
+        colors: [Gradient.Stop] = [Gradient.Stop(color: .white, location: 0), Gradient.Stop(color: .black, location: 1)],
         onValueChangeStarted: @escaping () -> Void = {},
         onValueChanging: @escaping (CGFloat) -> Void = { _ in },
         onValueChanged: @escaping () -> Void = {}
@@ -46,8 +44,27 @@ struct LinearColorSelector: View {
         self.selectedColor = selectedColor
         self.valueMarkers = valueMarkers
         self.enabled = enabled
-        self.startColor = startColor
-        self.endColor = endColor
+        self.colors = colors
+        self.onValueChangeStarted = onValueChangeStarted
+        self.onValueChanging = onValueChanging
+        self.onValueChanged = onValueChanged
+    }
+    
+    init(
+        value: CGFloat?,
+        selectedColor: UIColor?,
+        valueMarkers: [CGFloat] = [],
+        enabled: Bool = true,
+        startColor: Color = .white,
+        onValueChangeStarted: @escaping () -> Void = {},
+        onValueChanging: @escaping (CGFloat) -> Void = { _ in },
+        onValueChanged: @escaping () -> Void = {}
+    ) {
+        self.value = value
+        self.selectedColor = selectedColor
+        self.valueMarkers = valueMarkers
+        self.enabled = enabled
+        self.colors = [Gradient.Stop(color: startColor, location: 0), Gradient.Stop(color: .black, location: 1)]
         self.onValueChangeStarted = onValueChangeStarted
         self.onValueChanging = onValueChanging
         self.onValueChanged = onValueChanged
@@ -77,7 +94,7 @@ struct LinearColorSelector: View {
                 let surfacePath = RoundedRectangle(cornerRadius: 9).path(in: outerRect)
                 context.fill(surfacePath, with: .color(Color(.systemBackground)))
 
-                let gradient = Gradient(colors: [startColor, endColor])
+                let gradient = Gradient(stops: colors)
                 let shading = GraphicsContext.Shading.linearGradient(
                     gradient,
                     startPoint: CGPoint(x: innerRect.midX, y: innerRect.minY),
@@ -169,7 +186,9 @@ private func selectorY(
 #Preview {
     ZStack {
         LinearColorSelector(
-            value: 1, selectedColor: UIColor.red
+            value: 1,
+            selectedColor: UIColor.red,
+            startColor: .white
         )
         .frame(width: 40, height: 300)
     }

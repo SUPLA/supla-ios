@@ -687,3 +687,4 @@
 "rgb_detail_move_right" = "Déplacer vers la droite";
 "rgb_detail_move_start" = "Déplacer au début";
 "rgb_detail_move_end" = "Déplacer à la fin";
+"dimmer_detail_temperature" = "Chromaticité:";

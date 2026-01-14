@@ -759,3 +759,4 @@
 "rgb_detail_move_right" = "Przesuń w prawo";
 "rgb_detail_move_start" = "Przenieś na początek";
 "rgb_detail_move_end" = "Przenieś na koniec";
+"dimmer_detail_temperature" = "Barwa:";

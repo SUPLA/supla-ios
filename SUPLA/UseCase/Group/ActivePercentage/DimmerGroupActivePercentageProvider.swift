@@ -28,6 +28,4 @@ final class DimmerGroupActivePercentageProvider: GroupActivePercentageProvider {
                 value.value > 0 ? result + 1 : result
             } * 100 / totalValue.values.count
     }
-    
-    
 }

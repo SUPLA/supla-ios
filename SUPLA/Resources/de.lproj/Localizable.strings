@@ -725,3 +725,4 @@
 "rgb_detail_move_right" = "Rechts verschieben";
 "rgb_detail_move_start" = "Zum Anfang verschieben";
 "rgb_detail_move_end" = "Zum Ende verschieben";
+"dimmer_detail_temperature" = "Farbtemperatur:";

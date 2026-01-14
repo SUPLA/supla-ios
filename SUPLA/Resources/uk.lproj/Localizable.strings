@@ -687,3 +687,4 @@
 "rgb_detail_move_right" = "Перемістити праворуч";
 "rgb_detail_move_start" = "Перемістити на початок";
 "rgb_detail_move_end" = "Перемістити в кінець";
+"dimmer_detail_temperature" = "Температура:";

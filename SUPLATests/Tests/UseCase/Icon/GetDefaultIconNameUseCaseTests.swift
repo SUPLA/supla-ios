@@ -920,25 +920,6 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         XCTAssertEqual(iconName, "dimmerrgb-onoff")
     }
     
-    func test_dimmerAndRgbOff_whenWrongState() {
-        // given
-        let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
-        
-        // when
-        let iconName = useCase.invoke(
-            iconData: FetchIconData(
-                function: function,
-                altIcon: 0,
-                profileId: 1,
-                state: .default(value: .notUsed),
-                type: .single
-            )
-        )
-        
-        // then
-        XCTAssertEqual(iconName, "dimmerrgb-offoff")
-    }
-    
     func test_windowOpened() {
         // given
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW

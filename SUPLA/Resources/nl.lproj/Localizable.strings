@@ -686,3 +686,4 @@
 "rgb_detail_move_right" = "Naar rechts verplaatsen";
 "rgb_detail_move_start" = "Naar het begin verplaatsen";
 "rgb_detail_move_end" = "Naar het einde verplaatsen";
+"dimmer_detail_temperature" = "Kleurtemperatuur:";

@@ -113,8 +113,12 @@ struct ReadGroupWithChannels {
                 case .dimmer:
                     if let integerGroupValue = value as? IntegerGroupValue {
                         (integerGroupValue.value > 0) ? .on : .off
+                    } else if let dimmerCct = value as? DimmerCctGroupValue {
+                        (dimmerCct.brightness > 0) ? .on : .off
                     } else if let dimmerAndRgbValue = value as? DimmerAndRgbLightingGroupValue {
                         (dimmerAndRgbValue.brightness > 0) ? .on : .off
+                    } else if let dimmerCctAndRgbValue = value as? DimmerCctAndRgbGroupValue {
+                        (dimmerCctAndRgbValue.brightness > 0) ? .on : .off
                     } else {
                         .off
                     }
@@ -123,6 +127,8 @@ struct ReadGroupWithChannels {
                         (rgbValue.brightness > 0) ? .on : .off
                     } else if let dimmerAndRgbValue = value as? DimmerAndRgbLightingGroupValue {
                         (dimmerAndRgbValue.colorBrightness > 0) ? .on : .off
+                    } else if let dimmerCctAndRgbValue = value as? DimmerCctAndRgbGroupValue {
+                        (dimmerCctAndRgbValue.colorBrightness > 0) ? .on : .off
                     } else {
                         .off
                     }

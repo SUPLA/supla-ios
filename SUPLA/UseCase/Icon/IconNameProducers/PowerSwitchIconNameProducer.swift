@@ -22,7 +22,7 @@ final class PowerSwitchIconNameProducer: IconNameProducer {
     }
     
     func produce(iconData: FetchIconData) -> String {
-        addStateSuffix(name: switchIcon(iconData.altIcon), state: iconData.state.value)
+        addStateSuffix(name: switchIcon(iconData.altIcon), value: iconData.state.value)
     }
     
     private func switchIcon(_ altIcon: Int32) -> String {
