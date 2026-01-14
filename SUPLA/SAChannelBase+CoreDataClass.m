@@ -303,18 +303,6 @@
     return result;
 }
 
-- (int) brightnessValue {
-    return 0;
-}
-
-- (int) colorBrightnessValue {
-    return 0;
-}
-
-- (UIColor *) colorValue {
-    return [UIColor clearColor];
-}
-
 - (double) totalForwardActiveEnergy {
     return 0;
 }
@@ -323,31 +311,11 @@
     return 0;
 }
 
-- (BOOL) isManuallyClosed {
-    return false;
-}
-
-- (BOOL) flooding {
-    return false;
-}
-
 - (SADigiglassValue *) digiglassValue {
     return [[SADigiglassValue alloc] init];
 }
 
 - (BOOL) overcurrentRelayOff {
-    return false;
-}
-
-- (BOOL) calibrationFailed{
-    return false;
-}
-
-- (BOOL) calibrationLost{
-    return false;
-}
-
-- (BOOL) motorProblem{
     return false;
 }
 
