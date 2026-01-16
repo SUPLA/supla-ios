@@ -49,6 +49,12 @@ extension DimmerDetailFeature {
         private var changing: Bool = false
         private var lastInteractionTime: TimeInterval? = nil
         
+        private var totalWidth: CGFloat = 0
+        private var itemWidth: CGFloat = 0
+        private var maxNumberOfItems: Int {
+            Int(floor(totalWidth / itemWidth).rounded(.down)) - 1
+        }
+        
         private var actionData: RgbwActionData? {
             guard let remoteId, let type, let brightness = state.value.brightness else { return nil }
             
@@ -192,7 +198,7 @@ extension DimmerDetailFeature {
                   let brightness = state.value.brightness
             else { return }
             
-            guard state.savedColors.count < 10 else {
+            guard state.savedColors.count < maxNumberOfItems else {
                 showToast { [weak self] in self?.state.showLimitReachedToast = $0 }
                 return
             }
@@ -203,6 +209,11 @@ extension DimmerDetailFeature {
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] _ in self?.reloadData() })
                 .disposed(by: disposeBag)
+        }
+        
+        func calculateAvailableColorsCount(_ totalWidth: CGFloat, _ itemWidth: CGFloat) {
+            self.totalWidth = totalWidth
+            self.itemWidth = itemWidth
         }
         
         func toggleSelectorType() {

@@ -40,6 +40,7 @@ struct ReorderableHStack<
     let onPlaceholderTap: () -> Void
     let onDelete: (Item) -> Void
     let onItemTap: (Item) -> Void
+    let onItemsDrawn: (CGFloat, CGFloat) -> Void
 
     @ViewBuilder let placeholder: (_ isDragging: Bool, _ isOver: Bool) -> PlaceholderView
     @ViewBuilder let itemView: (Item) -> ItemView
@@ -51,6 +52,7 @@ struct ReorderableHStack<
 
     @State private var itemCorrections: [Int: CGFloat] = [:]
     @State private var itemFrames: [Int: CGRect] = [:]
+    @State private var totalWidth: CGFloat = 0
 
     var body: some View {
         HStack(spacing: spacing) {
@@ -63,7 +65,11 @@ struct ReorderableHStack<
                 .overlay(
                     GeometryReader { geo in
                         Color.clear
-                            .onAppear { itemFrames[PLACEHOLDER_ID] = geo.frame(in: .named(SPACE_NAME)) }
+                            .onAppear {
+                                let frame = geo.frame(in: .named(SPACE_NAME))
+                                itemFrames[PLACEHOLDER_ID] = frame
+                                onItemsDrawn(totalWidth, frame.width)
+                            }
                     }
                 )
 
@@ -78,11 +84,8 @@ struct ReorderableHStack<
                         onItemTap(item)
                     }
                     .onLongPressGesture(
-                        minimumDuration: 0.15,
-                        pressing: {
-                            pressingId = $0 ? item.id : nil
-                        },
-                        perform: {}
+                        perform: { pressingId = item.id },
+                        onPressingChanged: { _ in pressingId = nil }
                     )
                     .simultaneousGesture(enabled ? dragGesture(for: item) : nil)
                     .offset(x: isDragging ? dragX : itemCorrections[item.id] ?? 0, y: 0)
@@ -92,10 +95,7 @@ struct ReorderableHStack<
                     .shadow(radius: isPressing || isDragging ? 8 : 0)
                     .overlay(
                         GeometryReader { geo in
-                            Color.clear
-                                .onAppear {
-                                    itemFrames[item.id] = geo.frame(in: .named(SPACE_NAME))
-                                }
+                            Color.clear.onAppear { itemFrames[item.id] = geo.frame(in: .named(SPACE_NAME)) }
                         }
                     )
             }
@@ -108,11 +108,19 @@ struct ReorderableHStack<
                 itemCorrections[id] = 0
             }
         }
+        .overlay(
+            GeometryReader { geo in
+                Color.clear
+                    .onAppear { totalWidth = geo.frame(in: .local).width }
+            }
+        )
     }
 
     private func dragGesture(for item: Item) -> some Gesture {
         DragGesture(coordinateSpace: .named(SPACE_NAME))
             .onChanged { value in
+                guard pressingId != nil else { return } // Stop gesture until long press finished
+                
                 if draggingId == nil {
                     draggingId = item.id
                 }
@@ -211,6 +219,9 @@ private struct DemoView: View {
             },
             onItemTap: { _ in
                 SALog.debug("onItemTap")
+            },
+            onItemsDrawn: { _, _ in
+                SALog.debug("onItemsDrawn")
             },
             placeholder: { _, _ in
                 Image(systemName: "plus.circle.fill")
