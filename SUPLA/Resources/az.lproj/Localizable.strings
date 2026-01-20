@@ -746,3 +746,15 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Bütün qapılar üçün açılma sensoru ayarlanmayıb — \“Aç\” və \“Bağla\” düymələri düzgün işləməyə bilər.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Rəng:";
+"rgb_detail_brightness" = "Parlaqlıq:";
+"rgb_detail_select_color" = "Rəngi seçin";
+"rgb_detail_colors_limit" = "Limitə çatıldı!";
+"legacy_rgbw_settings_unauthorized_message" = "Konfiqurasiyanı görmək üçün icazə tələb olunur!";
+"legacy_rgbw_settings_authorize_button" = "İcazə ver";
+"rgb_detail_move_left" = "Sola köçür";
+"rgb_detail_move_right" = "Sağa köçür";
+"rgb_detail_move_start" = "Əvvələ köçür";
+"rgb_detail_move_end" = "Sona köçür";

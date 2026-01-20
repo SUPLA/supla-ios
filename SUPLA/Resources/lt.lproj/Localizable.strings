@@ -684,3 +684,7 @@
 "rgb_detail_colors_limit" = "Pasiektas limitas!";
 "legacy_rgbw_settings_unauthorized_message" = "Norint peržiūrėti konfigūraciją, reikalingas leidimas!";
 "legacy_rgbw_settings_authorize_button" = "Autorizuoti";
+"rgb_detail_move_left" = "Perkelti į kairę";
+"rgb_detail_move_right" = "Perkelti į dešinę";
+"rgb_detail_move_start" = "Perkelti į pradžią";
+"rgb_detail_move_end" = "Perkelti į pabaigą";

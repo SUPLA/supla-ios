@@ -29,7 +29,6 @@ extension RgbDetailFeature {
         func onSavedColorSelected(color: SavedColor)
         func onRemoveColor(color: SavedColor)
         func onSaveCurrentColor()
-        func calculateAvailableColorsCount(_ totalWidth: CGFloat, _ itemWidth: CGFloat)
         func openColorEditorDialog()
     }
 
@@ -175,8 +174,7 @@ extension RgbDetailFeature {
                 onPlaceholderTap: { delegate?.onSaveCurrentColor() },
                 onDelete: { delegate?.onRemoveColor(color: $0) },
                 onItemTap: { delegate?.onSavedColorSelected(color: $0) },
-                onItemsDrawn: { totalWidth, itemWidth in delegate?.calculateAvailableColorsCount(totalWidth, itemWidth) },
-                placeholder: { SavedColorAction(dragging: $0, over: $1) }
+                placeholder: { SavedColorAction(dragging: false, over: false) }
             ) { SavedColorBox(color: $0.uiColor) }
                 .padding(.horizontal, Distance.small)
         }

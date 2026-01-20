@@ -22,20 +22,23 @@ import SwiftUI
 struct IconButton: View {
     let name: String
     let color: Color
+    let role: ButtonRole?
     let action: () -> Void
     
     init(
         name: String,
         color: Color = .Supla.primary,
+        role: ButtonRole? = nil,
         action: @escaping () -> Void
     ) {
         self.name = name
         self.color = color
+        self.role = role
         self.action = action
     }
 
     var body: some View {
-        Button(action: action) {
+        Button(role: role, action: action) {
             Image(name)
                 .renderingMode(.template)
                 .foregroundColor(color)

@@ -87,6 +87,8 @@ extension String {
         static let arrowCoverHold = "icon_arrow_cover_hold"
         static let arrowRevealTap = "icon_arrow_reveal_tap"
         static let arrowRevealHold = "icon_arrow_reveal_hold"
+        static let arrowStart = "icon_arrow_start"
+        static let arrowEnd = "icon_arrow_end"
         
         static let checkboxEmpty = "icon_checkbox_empty"
         static let checkboxChecked = "icon_checkbox_checked"

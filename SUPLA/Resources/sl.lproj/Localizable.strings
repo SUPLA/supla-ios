@@ -683,3 +683,7 @@
 "rgb_detail_colors_limit" = "Omejitev dosežena!";
 "legacy_rgbw_settings_unauthorized_message" = "Za ogled konfiguracije je potrebna avtorizacija!";
 "legacy_rgbw_settings_authorize_button" = "Avtoriziraj";
+"rgb_detail_move_left" = "Premakni levo";
+"rgb_detail_move_right" = "Premakni desno";
+"rgb_detail_move_start" = "Premakni na začetek";
+"rgb_detail_move_end" = "Premakni na konec";

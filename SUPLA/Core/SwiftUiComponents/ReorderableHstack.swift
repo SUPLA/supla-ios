@@ -40,156 +40,90 @@ struct ReorderableHStack<
     let onPlaceholderTap: () -> Void
     let onDelete: (Item) -> Void
     let onItemTap: (Item) -> Void
-    let onItemsDrawn: (CGFloat, CGFloat) -> Void
 
-    @ViewBuilder let placeholder: (_ isDragging: Bool, _ isOver: Bool) -> PlaceholderView
+    @ViewBuilder let placeholder: () -> PlaceholderView
     @ViewBuilder let itemView: (Item) -> ItemView
-
-    @State private var draggingId: Int? = nil
-    @State private var pressingId: Int? = nil
-    @State private var dragX: CGFloat = 0
-    @State private var overItemId: Int? = nil
-
-    @State private var itemCorrections: [Int: CGFloat] = [:]
-    @State private var itemFrames: [Int: CGRect] = [:]
-    @State private var totalWidth: CGFloat = 0
 
     var body: some View {
         HStack(spacing: spacing) {
-            placeholder(draggingId != nil, overItemId == PLACEHOLDER_ID)
+            placeholder()
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    guard enabled, draggingId == nil else { return }
+                    guard enabled else { return }
                     onPlaceholderTap()
                 }
-                .overlay(
-                    GeometryReader { geo in
-                        Color.clear
-                            .onAppear {
-                                let frame = geo.frame(in: .named(SPACE_NAME))
-                                itemFrames[PLACEHOLDER_ID] = frame
-                                onItemsDrawn(totalWidth, frame.width)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: spacing) {
+                    ForEach(items) { item in
+                        itemView(item)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                guard enabled else { return }
+                                onItemTap(item)
+                            }
+                            .contextMenu {
+                                if (items.count > 1) {
+                                    if (item != items.first) {
+                                        if (items.count > 2) {
+                                            contextButton(label: Strings.RgbDetail.moveStart, icon: String.Icons.arrowStart) { move(item, position: .start) }
+                                        }
+                                        contextButton(label: Strings.RgbDetail.moveLeft, icon: String.Icons.arrowLeft) { move(item, position: .left) }
+                                    }
+                                    if (item != items.last) {
+                                        contextButton(label: Strings.RgbDetail.moveRight, icon: String.Icons.arrowRight) { move(item, position: .right) }
+                                        if (items.count > 2) {
+                                            contextButton(label: Strings.RgbDetail.moveEnd, icon: String.Icons.arrowEnd) { move(item, position: .end) }
+                                        }
+                                    }
+                                }
+                                contextButton(label: Strings.General.delete, icon: String.Icons.delete, role: .destructive) { onDelete(item) }
                             }
                     }
+                }
+            }
+        }
+    }
+
+    private func move(_ item: Item, position: Position) {
+        guard let fromIndex = items.firstIndex(of: item)
+        else {
+            return
+        }
+
+        let toIndex = switch (position) {
+        case .left: fromIndex - 1
+        case .right: fromIndex + 1
+        case .start: 0
+        case .end: items.count - 1
+        }
+
+        var itemsCopy = items
+        itemsCopy.remove(at: fromIndex)
+        itemsCopy.insert(item, at: toIndex)
+
+        onReorderEnd(itemsCopy)
+    }
+
+    private enum Position {
+        case left
+        case right
+        case start
+        case end
+    }
+
+    @ViewBuilder
+    private func contextButton(label: String, icon: String, role: ButtonRole? = nil, action: @escaping () -> Void) -> some View {
+        Button(
+            role: role,
+            action: action,
+            label: {
+                Label(
+                    title: { Text(label).fontBodySmall() },
+                    icon: { Image(icon).renderingMode(.template) }
                 )
-
-            ForEach(items) { item in
-                let isDragging = (draggingId == item.id)
-                let isPressing = (pressingId == item.id)
-
-                itemView(item)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        guard draggingId == nil else { return }
-                        onItemTap(item)
-                    }
-                    .onLongPressGesture(
-                        perform: { pressingId = item.id },
-                        onPressingChanged: { _ in pressingId = nil }
-                    )
-                    .simultaneousGesture(enabled ? dragGesture(for: item) : nil)
-                    .offset(x: isDragging ? dragX : itemCorrections[item.id] ?? 0, y: 0)
-                    .zIndex(isDragging ? 1 : 0)
-                    .opacity(isPressing || isDragging ? 0.8 : 1.0)
-                    .scaleEffect(isPressing || isDragging ? 1.2 : 1)
-                    .shadow(radius: isPressing || isDragging ? 8 : 0)
-                    .overlay(
-                        GeometryReader { geo in
-                            Color.clear.onAppear { itemFrames[item.id] = geo.frame(in: .named(SPACE_NAME)) }
-                        }
-                    )
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .topLeading)
-        .coordinateSpace(name: SPACE_NAME)
-        .onChange(of: items) { _ in
-            dragX = 0
-            for (id, _) in itemFrames {
-                itemCorrections[id] = 0
-            }
-        }
-        .overlay(
-            GeometryReader { geo in
-                Color.clear
-                    .onAppear { totalWidth = geo.frame(in: .local).width }
             }
         )
-    }
-
-    private func dragGesture(for item: Item) -> some Gesture {
-        DragGesture(coordinateSpace: .named(SPACE_NAME))
-            .onChanged { value in
-                guard pressingId != nil else { return } // Stop gesture until long press finished
-                
-                if draggingId == nil {
-                    draggingId = item.id
-                }
-                guard draggingId == item.id else { return }
-
-                dragX = value.translation.width
-
-                guard let draggingItemFrame = itemFrames[item.id] else { return }
-
-                for (id, frame) in itemFrames {
-                    if (value.location.x > frame.minX && value.location.x < frame.maxX) {
-                        overItemId = id
-                    }
-                }
-
-                guard let overItemId else { return }
-
-                withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
-                    for (id, _) in itemFrames {
-                        if (id < item.id && id >= overItemId) {
-                            itemCorrections[id] = draggingItemFrame.width
-                        } else if (id > item.id && id <= overItemId) {
-                            itemCorrections[id] = -draggingItemFrame.width
-                        } else {
-                            itemCorrections[id] = 0
-                        }
-                    }
-                }
-            }
-            .onEnded { _ in
-                if (overItemId == PLACEHOLDER_ID) {
-                    onDelete(item)
-                    draggingId = nil
-                    overItemId = nil
-
-                    return
-                }
-
-                guard let fromIndex = items.firstIndex(of: item),
-                      let overId = overItemId,
-                      let toItem = items.first(where: { $0.id == overId }),
-                      let toIndex = items.firstIndex(of: toItem)
-                else {
-                    draggingId = nil
-                    overItemId = nil
-                    return
-                }
-
-                var itemsCopy = items
-                itemsCopy.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex)
-
-                onReorderEnd(itemsCopy)
-
-                draggingId = nil
-                overItemId = nil
-            }
-    }
-}
-
-private extension View {
-    @ViewBuilder
-    func compatibleScrollBounce(dragging: Bool) -> some View {
-        if #available(iOS 16.4, *) {
-            self.scrollBounceBehavior(dragging ? .basedOnSize : .always)
-        } else if #available(iOS 16.0, *) {
-            self.scrollDisabled(dragging ? true : false)
-        } else {
-            self
-        }
     }
 }
 
@@ -220,10 +154,7 @@ private struct DemoView: View {
             onItemTap: { _ in
                 SALog.debug("onItemTap")
             },
-            onItemsDrawn: { _, _ in
-                SALog.debug("onItemsDrawn")
-            },
-            placeholder: { _, _ in
+            placeholder: {
                 Image(systemName: "plus.circle.fill")
                     .font(.system(size: 28))
             },

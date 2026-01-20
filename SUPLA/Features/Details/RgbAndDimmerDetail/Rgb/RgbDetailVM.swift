@@ -48,11 +48,7 @@ extension RgbDetailFeature {
         private var changing: Bool = false
         private var lastInteractionTime: TimeInterval? = nil
         
-        private var totalWidth: CGFloat = 0
-        private var itemWidth: CGFloat = 0
-        private var maxNumberOfItems: Int {
-            Int(floor(totalWidth / itemWidth).rounded(.down)) - 1
-        }
+        private var maxNumberOfItems: Int { 10 }
         
         private var actionData: RgbwActionData? {
             guard let remoteId, let type, let color = state.value.hsv else { return nil }
@@ -216,11 +212,6 @@ extension RgbDetailFeature {
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] _ in self?.reloadData() })
                 .disposed(by: disposeBag)
-        }
-        
-        func calculateAvailableColorsCount(_ totalWidth: CGFloat, _ itemWidth: CGFloat) {
-            self.totalWidth = totalWidth
-            self.itemWidth = itemWidth
         }
         
         func openColorEditorDialog() {

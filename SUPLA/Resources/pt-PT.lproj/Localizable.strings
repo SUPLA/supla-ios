@@ -684,3 +684,7 @@
 "rgb_detail_colors_limit" = "Limite atingido!";
 "legacy_rgbw_settings_unauthorized_message" = "Autorização necessária para ver a configuração!";
 "legacy_rgbw_settings_authorize_button" = "Autorizar";
+"rgb_detail_move_left" = "Mover para a esquerda";
+"rgb_detail_move_right" = "Mover para a direita";
+"rgb_detail_move_start" = "Mover para o início";
+"rgb_detail_move_end" = "Mover para o fim";
