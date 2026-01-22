@@ -359,9 +359,9 @@ extension RgbDetailFeature {
             }
             
             if (isOn) {
-                return Strings.General.on
+                return Strings.TimerDetail.infoOn
             } else {
-                return Strings.General.off
+                return Strings.TimerDetail.infoOff
             }
         }
         

@@ -161,6 +161,7 @@ extension DimmerDetailFeature {
         private func savedColors() -> some SwiftUI.View {
             ReorderableHStack(
                 items: $viewState.savedColors,
+                enabled: !viewState.offline,
                 onReorderEnd: { delegate?.updateSavedColorsOrder(items: $0) },
                 onPlaceholderTap: { delegate?.onSaveCurrentColor() },
                 onDelete: { delegate?.onRemoveColor(color: $0) },

@@ -46,12 +46,14 @@ struct ReorderableHStack<
 
     var body: some View {
         HStack(spacing: spacing) {
-            placeholder()
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    guard enabled else { return }
-                    onPlaceholderTap()
-                }
+            if (enabled) {
+                placeholder()
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        guard enabled else { return }
+                        onPlaceholderTap()
+                    }
+            }
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: spacing) {
