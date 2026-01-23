@@ -719,6 +719,10 @@ struct Strings {
         static let colorLimit = "rgb_detail_colors_limit".toLocalized()
         static let settingUnauthorized = "legacy_rgbw_settings_unauthorized_message".toLocalized()
         static let authorize = "legacy_rgbw_settings_authorize_button".toLocalized()
+        static let moveLeft = "rgb_detail_move_left".toLocalized()
+        static let moveRight = "rgb_detail_move_right".toLocalized()
+        static let moveStart = "rgb_detail_move_start".toLocalized()
+        static let moveEnd = "rgb_detail_move_end".toLocalized()
     }
 }
 

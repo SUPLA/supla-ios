@@ -683,3 +683,7 @@
 "rgb_detail_colors_limit" = "Το όριο έφτασε!";
 "legacy_rgbw_settings_unauthorized_message" = "Απαιτείται εξουσιοδότηση για να δείτε τη διαμόρφωση!";
 "legacy_rgbw_settings_authorize_button" = "Εξουσιοδοτήστε";
+"rgb_detail_move_left" = "Μετακίνηση αριστερά";
+"rgb_detail_move_right" = "Μετακίνηση δεξιά";
+"rgb_detail_move_start" = "Μετακίνηση στην αρχή";
+"rgb_detail_move_end" = "Μετακίνηση στο τέλος";

@@ -19,8 +19,15 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+private let PLACEHOLDER_ID: Int = -1
+private let SPACE_NAME = "ReorderableHStackSpace"
+
+protocol ReorderableHStackItem: Identifiable, Equatable {
+    var id: Int { get }
+}
+
 struct ReorderableHStack<
-    Item: Identifiable & Equatable,
+    Item: ReorderableHStackItem,
     ItemView: View,
     PlaceholderView: View
 >: View {
@@ -34,148 +41,95 @@ struct ReorderableHStack<
     let onDelete: (Item) -> Void
     let onItemTap: (Item) -> Void
 
-    @ViewBuilder let placeholder: (_ isDragging: Bool, _ isOver: Bool) -> PlaceholderView
+    @ViewBuilder let placeholder: () -> PlaceholderView
     @ViewBuilder let itemView: (Item) -> ItemView
 
-    @State private var draggingItem: Item? = nil
-    @State private var hasReorderedDuringDrag: Bool = false
-    @State private var isOverPlaceholder: Bool = false
-
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: spacing) {
-                placeholder(draggingItem != nil, isOverPlaceholder)
+        HStack(spacing: spacing) {
+            if (enabled) {
+                placeholder()
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        guard enabled, draggingItem == nil else { return }
+                        guard enabled else { return }
                         onPlaceholderTap()
                     }
-                    .onDrop(
-                        of: [UTType.text],
-                        delegate: PlaceholderDropDelegate(
-                            items: $items,
-                            draggingItem: $draggingItem,
-                            isOver: $isOverPlaceholder,
-                            onDelete: onDelete,
-                            onReorderEnd: onReorderEnd
-                        )
-                    )
-                    .animation(.spring(response: 0.25, dampingFraction: 0.9), value: isOverPlaceholder)
+            }
 
-                ForEach(items) { item in
-                    itemView(item)
-                        .onTapGesture {
-                            guard draggingItem == nil else { return }
-                            onItemTap(item)
-                        }
-                        .onDrag {
-                            draggingItem = item
-                            hasReorderedDuringDrag = false
-                            isOverPlaceholder = false
-                            let provider = ItemProvider(object: String(describing: item.id) as NSString)
-                            provider.didEnd = {
-                                Task {
-                                    try? await Task.sleep(nanoseconds: 100_000_000)
-                                    self.draggingItem = nil
-                                }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: spacing) {
+                    ForEach(items) { item in
+                        itemView(item)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                guard enabled else { return }
+                                onItemTap(item)
                             }
-                            return provider
-                        }
-                        .onDrop(
-                            of: [UTType.text],
-                            delegate: ReorderDropDelegate(
-                                item: item,
-                                items: $items,
-                                draggingItem: $draggingItem,
-                                hasReorderedDuringDrag: $hasReorderedDuringDrag,
-                                onReorderEnd: onReorderEnd
-                            )
-                        )
+                            .contextMenu {
+                                if (items.count > 1) {
+                                    if (item != items.first) {
+                                        if (items.count > 2) {
+                                            contextButton(label: Strings.RgbDetail.moveStart, icon: String.Icons.arrowStart) { move(item, position: .start) }
+                                        }
+                                        contextButton(label: Strings.RgbDetail.moveLeft, icon: String.Icons.arrowLeft) { move(item, position: .left) }
+                                    }
+                                    if (item != items.last) {
+                                        contextButton(label: Strings.RgbDetail.moveRight, icon: String.Icons.arrowRight) { move(item, position: .right) }
+                                        if (items.count > 2) {
+                                            contextButton(label: Strings.RgbDetail.moveEnd, icon: String.Icons.arrowEnd) { move(item, position: .end) }
+                                        }
+                                    }
+                                }
+                                contextButton(label: Strings.General.delete, icon: String.Icons.delete, role: .destructive) { onDelete(item) }
+                            }
+                    }
                 }
             }
         }
-        .onChange(of: draggingItem) { newValue in
-            if newValue == nil, hasReorderedDuringDrag {
-                onReorderEnd(items)
-                hasReorderedDuringDrag = false
+    }
+
+    private func move(_ item: Item, position: Position) {
+        guard let fromIndex = items.firstIndex(of: item)
+        else {
+            return
+        }
+
+        let toIndex = switch (position) {
+        case .left: fromIndex - 1
+        case .right: fromIndex + 1
+        case .start: 0
+        case .end: items.count - 1
+        }
+
+        var itemsCopy = items
+        itemsCopy.remove(at: fromIndex)
+        itemsCopy.insert(item, at: toIndex)
+
+        onReorderEnd(itemsCopy)
+    }
+
+    private enum Position {
+        case left
+        case right
+        case start
+        case end
+    }
+
+    @ViewBuilder
+    private func contextButton(label: String, icon: String, role: ButtonRole? = nil, action: @escaping () -> Void) -> some View {
+        Button(
+            role: role,
+            action: action,
+            label: {
+                Label(
+                    title: { Text(label).fontBodySmall() },
+                    icon: { Image(icon).renderingMode(.template) }
+                )
             }
-        }
+        )
     }
 }
 
-private class ItemProvider: NSItemProvider {
-    var didEnd: (() -> Void)?
-    deinit {
-        didEnd?()
-    }
-}
-
-// MARK: - Reorder delegate
-
-private struct ReorderDropDelegate<Item: Identifiable & Equatable>: DropDelegate {
-    let item: Item
-    @Binding var items: [Item]
-    @Binding var draggingItem: Item?
-    @Binding var hasReorderedDuringDrag: Bool
-    let onReorderEnd: ([Item]) -> Void
-
-    func dropEntered(info: DropInfo) {
-        guard let draggingItem,
-              draggingItem != item,
-              let fromIndex = items.firstIndex(of: draggingItem),
-              let toIndex = items.firstIndex(of: item)
-        else { return }
-
-        hasReorderedDuringDrag = true
-
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
-            items.move(
-                fromOffsets: IndexSet(integer: fromIndex),
-                toOffset: toIndex > fromIndex ? toIndex + 1 : toIndex
-            )
-        }
-    }
-
-    func performDrop(info: DropInfo) -> Bool {
-        onReorderEnd(items)
-        return true
-    }
-
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        DropProposal(operation: .move)
-    }
-}
-
-// MARK: - Placeholder delegate (delete target)
-
-private struct PlaceholderDropDelegate<Item: Identifiable & Equatable>: DropDelegate {
-    @Binding var items: [Item]
-    @Binding var draggingItem: Item?
-    @Binding var isOver: Bool
-
-    let onDelete: (Item) -> Void
-    let onReorderEnd: ([Item]) -> Void
-
-    func dropEntered(info: DropInfo) { isOver = true }
-    func dropExited(info: DropInfo) { isOver = false }
-
-    func performDrop(info: DropInfo) -> Bool {
-        isOver = false
-
-        if let draggingItem,
-           let idx = items.firstIndex(of: draggingItem)
-        {
-            onDelete(items[idx])
-        }
-        return true
-    }
-
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        DropProposal(operation: .move)
-    }
-}
-
-private struct PreviewItem: Identifiable, Equatable {
+private struct PreviewItem: ReorderableHStackItem {
     let id: Int
     var text: String
 }
@@ -202,7 +156,7 @@ private struct DemoView: View {
             onItemTap: { _ in
                 SALog.debug("onItemTap")
             },
-            placeholder: { _, _ in
+            placeholder: {
                 Image(systemName: "plus.circle.fill")
                     .font(.system(size: 28))
             },

@@ -683,3 +683,7 @@
 "rgb_detail_colors_limit" = "Ліміт досягнуто!";
 "legacy_rgbw_settings_unauthorized_message" = "Необхідна авторизація для перегляду конфігурації!";
 "legacy_rgbw_settings_authorize_button" = "Авторизувати";
+"rgb_detail_move_left" = "Перемістити ліворуч";
+"rgb_detail_move_right" = "Перемістити праворуч";
+"rgb_detail_move_start" = "Перемістити на початок";
+"rgb_detail_move_end" = "Перемістити в кінець";

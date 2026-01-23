@@ -682,3 +682,7 @@
 "rgb_detail_colors_limit" = "Dosažen limit!";
 "legacy_rgbw_settings_unauthorized_message" = "K zobrazení konfigurace je nutné oprávnění!";
 "legacy_rgbw_settings_authorize_button" = "Autorizovat";
+"rgb_detail_move_left" = "Posunout doleva";
+"rgb_detail_move_right" = "Posunout doprava";
+"rgb_detail_move_start" = "Přesunout na začátek";
+"rgb_detail_move_end" = "Přesunout na konec";

@@ -681,3 +681,7 @@
 "rgb_detail_colors_limit" = "Grensen er nådd!";
 "legacy_rgbw_settings_unauthorized_message" = "Autorisasjon nødvendig for å se konfigurasjonen!";
 "legacy_rgbw_settings_authorize_button" = "Autoriser";
+"rgb_detail_move_left" = "Flytt til venstre";
+"rgb_detail_move_right" = "Flytt til høyre";
+"rgb_detail_move_start" = "Flytt til starten";
+"rgb_detail_move_end" = "Flytt til slutten";

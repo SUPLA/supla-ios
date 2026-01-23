@@ -682,3 +682,7 @@
 "rgb_detail_colors_limit" = "Limiet bereikt!";
 "legacy_rgbw_settings_unauthorized_message" = "Autorisatie nodig om de configuratie te zien!";
 "legacy_rgbw_settings_authorize_button" = "Autoriseren";
+"rgb_detail_move_left" = "Naar links verplaatsen";
+"rgb_detail_move_right" = "Naar rechts verplaatsen";
+"rgb_detail_move_start" = "Naar het begin verplaatsen";
+"rgb_detail_move_end" = "Naar het einde verplaatsen";

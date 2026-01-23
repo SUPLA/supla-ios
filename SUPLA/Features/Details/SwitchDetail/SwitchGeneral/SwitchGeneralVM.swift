@@ -199,7 +199,7 @@ extension SwitchGeneralFeature {
                 icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .off)),
                 label: Strings.General.turnOff,
                 active: groupState == .off,
-                type: .positive
+                type: .negative
             )
             state.onButtonState = .init(
                 icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .on)),

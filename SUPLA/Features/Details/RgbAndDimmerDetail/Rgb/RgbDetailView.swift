@@ -170,12 +170,13 @@ extension RgbDetailFeature {
         private func savedColors() -> some SwiftUI.View {
             ReorderableHStack(
                 items: $viewState.savedColors,
+                enabled: !viewState.offline,
                 onReorderEnd: { delegate?.updateSavedColorsOrder(items: $0) },
                 onPlaceholderTap: { delegate?.onSaveCurrentColor() },
                 onDelete: { delegate?.onRemoveColor(color: $0) },
                 onItemTap: { delegate?.onSavedColorSelected(color: $0) },
-                placeholder: { SavedColorAction(dragging: $0, over: $1) }
-            ) { SavedColorBox(color: $0.color) }
+                placeholder: { SavedColorAction(dragging: false, over: false) }
+            ) { SavedColorBox(color: $0.uiColor) }
                 .padding(.horizontal, Distance.small)
         }
 

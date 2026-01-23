@@ -15,15 +15,19 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
-struct SavedColor: Identifiable, Equatable {
-    var id: Int32 { idx }
-    
+struct SavedColor: ReorderableHStackItem {
+    var id: Int { Int(idx) }
+
     let idx: Int32
     let color: UIColor
     let brightness: Int32
+
+    var uiColor: UIColor {
+        return color.toHsv(brightness)?.color ?? color
+    }
 }
 
 struct SavedColorAction: SwiftUI.View {

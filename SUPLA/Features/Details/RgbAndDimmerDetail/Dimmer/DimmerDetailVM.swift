@@ -49,6 +49,8 @@ extension DimmerDetailFeature {
         private var changing: Bool = false
         private var lastInteractionTime: TimeInterval? = nil
         
+        private var maxNumberOfItems: Int { 10 }
+        
         private var actionData: RgbwActionData? {
             guard let remoteId, let type, let brightness = state.value.brightness else { return nil }
             
@@ -159,7 +161,12 @@ extension DimmerDetailFeature {
             
             let indexMap = Dictionary(uniqueKeysWithValues: items.enumerated().map { (index, element) in (Int(element.idx), index + 1) })
             reorderColorListItemsUseCase.invoke(subject: type, remoteId: remoteId, type: .dimmer, indexMap: indexMap)
-                .subscribe()
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { [weak self] items in
+                        self?.state.savedColors = items.compactMap { $0.savedColor }
+                    }
+                )
                 .disposed(by: disposeBag)
         }
         
@@ -192,7 +199,7 @@ extension DimmerDetailFeature {
                   let brightness = state.value.brightness
             else { return }
             
-            guard state.savedColors.count < 10 else {
+            guard state.savedColors.count < maxNumberOfItems else {
                 showToast { [weak self] in self?.state.showLimitReachedToast = $0 }
                 return
             }
@@ -338,9 +345,9 @@ extension DimmerDetailFeature {
             }
             
             if (isOn) {
-                return Strings.General.on
+                return Strings.TimerDetail.infoOn
             } else {
-                return Strings.General.off
+                return Strings.TimerDetail.infoOff
             }
         }
         
