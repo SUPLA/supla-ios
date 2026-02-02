@@ -32,5 +32,14 @@ class StandardDetailVC: BaseDetailVC<StandardDetailViewState, StandardDetailView
     
     override func handle(event: StandardDetailViewEvent) {
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 26.0, *) {
+            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = false
+        } else {
+            navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        }
+    }
 }
 
