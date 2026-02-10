@@ -197,7 +197,7 @@
 "Your account" = "Váš účet";
 "Your accounts" = "Vaše účty";
 "Accounts" = "Účty";
-"NAME" = "NÁZEV";;
+"NAME" = "NÁZEV";
 "Tap the account to log in." = "Pro přihlášení klikněte na účet";
 "Add new" = "Přidat nové";
 "active" = "aktivní";
@@ -294,7 +294,7 @@
 "dgf_regeneration_after20h" = "Obnova byla zahájena po 20h provozní činnosti.";
 /* General - Buttons & States */
 "state_partially_opened" = "částečně otevřeno";
-"channel_brn_step_by_step" = "Otevřít/Zavřít (krok za krokem)";
+"channel_btn_step_by_step" = "Otevřít/Zavřít (krok za krokem)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Odstranili jsme posuvné gesto, které otevírá podrobnosti, pro zobrazení klepněte na vybraný kanál.";

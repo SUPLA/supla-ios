@@ -296,7 +296,7 @@
 "dgf_regeneration_after20h" = "De regeneratie die na 20h in werking is gesteld, is aan de gang.";
 /* General - Buttons & States */
 "state_partially_opened" = "gedeeltelijk open";
-"channel_brn_step_by_step" = "Openen/Sluiten (stap voor stap)";
+"channel_btn_step_by_step" = "Openen/Sluiten (stap voor stap)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "We hebben het schuifgebaar verwijderd waarmee de details worden geopend. Tik op het geselecteerde kanaal om ze te bekijken.";

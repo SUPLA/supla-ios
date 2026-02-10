@@ -296,7 +296,7 @@
 "dgf_regeneration_after20h" = "Regenerering pågår, startet etter 20 timers drift.";
 /* General - Buttons & States */
 "state_partially_opened" = "delvis åpen";
-"channel_brn_step_by_step" = "Åpne/Steng (steg for steg)";
+"channel_btn_step_by_step" = "Åpne/Steng (steg for steg)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Vi har fjernet glidebevegelsen som åpner detaljene, trykk på den valgte kanalen for å se dem.";

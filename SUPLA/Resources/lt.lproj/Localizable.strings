@@ -298,7 +298,7 @@
 "dgf_regeneration_after20h" = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
 /* General - Buttons & States */
 "state_partially_opened" = "iš dalies atidaryta";
-"channel_brn_step_by_step" = "Atidaryti/Uždaryti (žingsnis po žingsnio)";
+"channel_btn_step_by_step" = "Atidaryti/Uždaryti (žingsnis po žingsnio)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Pašalinome perbraukimo gestą, kuris atidarė išsamią informaciją, norėdami ją peržiūrėti, palieskite pasirinktą kanalą.";

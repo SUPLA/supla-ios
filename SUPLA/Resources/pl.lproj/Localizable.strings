@@ -311,7 +311,7 @@
 "channel_status_updating" = "Trwa aktualizacja oprogramowania…";
 /* General - Buttons & States */
 "state_partially_opened" = "częściowo otwarty";
-"channel_brn_step_by_step" = "Otwórz/Zamknij (krok po kroku)";
+"channel_btn_step_by_step" = "Otwórz/Zamknij (krok po kroku)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";

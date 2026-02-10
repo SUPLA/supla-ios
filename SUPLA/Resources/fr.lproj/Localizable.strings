@@ -296,7 +296,7 @@
 "dgf_regeneration_after20h" = "Régénération initiée après 20h de fonctionnement en cours.";
 /* General - Buttons & States */
 "state_partially_opened" = "partiellement ouvert";
-"channel_brn_step_by_step" = "Ouvrir/Fermer (étape par étape)";
+"channel_btn_step_by_step" = "Ouvrir/Fermer (étape par étape)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Nous avons supprimé le geste de glissement pour voir les détails. Il suffit de taper sur la chaîne sélectionnée pour les consulter.";

@@ -286,7 +286,7 @@
 "channel_status_updating" = "Software-Update läuft…";
 /* General - Buttons & States */
 "state_partially_opened" = "teilweise offen";
-"channel_brn_step_by_step" = "Öffnen/Schließen (schritt für schritt)";
+"channel_btn_step_by_step" = "Öffnen/Schließen (schritt für schritt)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";

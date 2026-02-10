@@ -296,7 +296,7 @@
 "dgf_regeneration_after20h" = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
 /* General - Buttons & States */
 "state_partially_opened" = "μερικώς ανοιχτό";
-"channel_brn_step_by_step" = "Άνοιγμα/Κλείσιμο (βήμα προς βήμα)";
+"channel_btn_step_by_step" = "Άνοιγμα/Κλείσιμο (βήμα προς βήμα)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Αφαιρέσαμε τη συρόμενη κίνηση που ανοίγει τις λεπτομέρειες, πατήστε στο επιλεγμένο κανάλι για να τις δείτε.";

@@ -297,7 +297,7 @@
 "dgf_regeneration_after20h" = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
 /* General - Buttons & States */
 "state_partially_opened" = "parcialmente abierto";
-"channel_brn_step_by_step" = "Abrir/Cerrar (paso a paso)";
+"channel_btn_step_by_step" = "Abrir/Cerrar (paso a paso)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Hemos eliminado el gesto de deslizar para abrir los detalles, pulsa sobre el canal seleccionado para verlos.";
