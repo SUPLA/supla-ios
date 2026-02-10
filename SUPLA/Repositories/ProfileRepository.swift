@@ -24,6 +24,8 @@ protocol ProfileRepository: RepositoryProtocol where T == AuthProfileItem {
     func getActiveProfile() -> Observable<AuthProfileItem>
     func getAllProfiles() -> Observable<[AuthProfileItem]>
     func getProfile(withId id: Int32) -> Observable<AuthProfileItem?>
+    
+    func getProfile(withId id: Int32) async -> AuthProfileItem?
 }
 
 final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepository {
@@ -53,5 +55,21 @@ final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepositor
     
     func getProfile(withId id: Int32) -> Observable<AuthProfileItem?> {
         return queryItem(NSPredicate(format: "id = %d", id))
+    }
+    
+    func getProfile(withId id: Int32) async -> AuthProfileItem? {
+        let context = context
+        
+        return await context.perform {
+            let query = AuthProfileItem.fetchRequest()
+                .filtered(by: NSPredicate(format: "id = %d", id))
+                .ordered(by: "id")
+            
+            if let profile = try? context.fetch(query).first {
+                return profile
+            }
+            
+            return nil
+        }
     }
 }

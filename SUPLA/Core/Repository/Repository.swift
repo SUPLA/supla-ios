@@ -31,6 +31,9 @@ protocol RepositoryProtocol {
     func save() -> Observable<Void>
     func delete(_ entity: T) -> Observable<Void>
     func create() -> Observable<T>
+    
+    func save() async throws -> Void
+    func create() async -> T
 }
 
 class Repository<T: NSManagedObject>: RepositoryProtocol {
@@ -81,6 +84,24 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     func create() -> Observable<T> {
         return context.rx.create()
             .subscribe(on: scheduler)
+    }
+
+    func save() async throws -> Void {
+        let context = context
+        
+        return try await context.perform {
+            if (context.hasChanges) {
+                try context.save()
+            }
+        }
+    }
+    
+    func create() async -> T {
+        let context = context
+        
+        return await context.perform {
+            context.create()
+        }
     }
     
 }

@@ -16,5 +16,22 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-extension CarPlayAction: PickerItem {
+import SwiftUI
+
+extension Icon {
+    struct Error: View {
+        let size: CGFloat
+        
+        init(size: CGFloat = Dimens.iconSizeSmall) {
+            self.size = size
+        }
+        
+        var body: some View {
+            Image(.Icons.error)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: size, height: size)
+        }
+    }
 }
+

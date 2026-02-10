@@ -46,11 +46,9 @@ extension RgbDetailFeature {
                     }
                     
                     SuplaCore.Dialog.DoubleButtons(
-                        onNegativeClick: { delegate?.onColorDialogDismiss() },
-                        onPositiveClick: { delegate?.onColorDialogConfirm(color) },
-                        positiveDisabled: color == nil,
-                        negativeText: Strings.General.cancel,
-                        positiveText: Strings.General.ok
+                        onSecondaryClick: { delegate?.onColorDialogDismiss() },
+                        onPrimaryClick: { delegate?.onColorDialogConfirm(color) },
+                        primaryDisabled: color == nil
                     )
                     .onChange(of: colorFieldValue) { color = $0.toColorOrNull() }
                 }

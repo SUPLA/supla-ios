@@ -44,6 +44,8 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var migratedForAppGroups: Bool { get set }
     var devModeActive: Bool { get set }
     var screenRotationEnabled: Bool { get set }
+    var firstNfcScan: Bool { get }
+    var nextNfcId: Int { get }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -287,6 +289,32 @@ class GlobalSettingsImpl: GlobalSettings {
         }
         set {
             defaults.set(newValue, forKey: screenRotationKey)
+        }
+    }
+    
+    private let firstNfcScanKey = "GlobalSettings.first_nfc_scan"
+    var firstNfcScan: Bool {
+        get {
+            if (exists(firstNfcScanKey)) {
+                return defaults.bool(forKey: firstNfcScanKey)
+            } else {
+                defaults.set(false, forKey: firstNfcScanKey)
+                return true
+            }
+        }
+    }
+    
+    private let nextNfcIdKey = "GlobalSettings.next_nfc_id"
+    var nextNfcId: Int {
+        get {
+            if (exists(firstNfcScanKey)) {
+                let nextId = defaults.integer(forKey: firstNfcScanKey) + 1
+                defaults.set(nextId, forKey: firstNfcScanKey)
+                return nextId
+            } else {
+                defaults.set(1, forKey: firstNfcScanKey)
+                return 1
+            }
         }
     }
     

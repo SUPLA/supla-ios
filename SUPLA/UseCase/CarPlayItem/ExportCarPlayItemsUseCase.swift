@@ -99,7 +99,7 @@ private extension SACarPlayItem {
             subjectId: subjectId,
             caption: caption ?? getCaptionUseCase.invoke(data: channelBase.shareableBase).string,
             action: action,
-            icon: getChannelBaseIconUseCase.stateIcon(channelBase, state: action.action.state(channelBase.func)),
+            icon: getChannelBaseIconUseCase.stateIcon(channelBase, state: action.state(channelBase.func)),
             sfIcon: channelBase.sfIconName(action, thermostatSubfunction),
             authorizationEntity: profile?.authorizationEntity
         )
@@ -126,7 +126,7 @@ private extension SACarPlayItem {
 }
 
 private extension SAChannelBase {
-    func sfIconName(_ action: CarPlayAction, _ thermostatSubfunction: ThermostatSubfunction? = nil) -> String? {
+    func sfIconName(_ action: ActionId, _ thermostatSubfunction: ThermostatSubfunction? = nil) -> String? {
         return switch (self.func.suplaFuntion) {
         case .controllingTheGatewayLock:
             action == .close ? "SFChannel/gateway-closed" : "SFChannel/gateway-open"

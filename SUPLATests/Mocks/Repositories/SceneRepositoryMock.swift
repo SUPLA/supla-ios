@@ -46,6 +46,11 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
         sceneObservable
     }
     
+    var sceneByIdMock: FunctionMock<Int32, Observable<SAScene>> = .init()
+    func getScene(_ sceneId: Int32) -> Observable<SAScene> {
+        sceneByIdMock.handle(sceneId)
+    }
+    
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {

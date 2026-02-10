@@ -17,31 +17,35 @@
  */
     
 import SwiftUI
-extension SuplaCore {
-    struct SegmentedPicker<T: Hashable>: View {
-        var selected: Binding<T>
-        let items: [T]
+
+extension Icon {
+    struct Lock: View {
+        let size: CGFloat
+        let color: Color
         
-        init(selected: Binding<T>, items: [T]) {
-            self.selected = selected
-            self.items = items
-        }
-        
-        init(_ selectableList: SelectableList<T>, onChange: @escaping (T) -> Void) {
-            self.selected = Binding<T>(
-                get: { selectableList.selected },
-                set: { onChange($0) }
-            )
-            self.items = selectableList.items
+        init(
+            size: CGFloat = Dimens.iconSizeSmall,
+            color: Color = .Supla.onSurfaceVariant
+        ) {
+            self.size = size
+            self.color = color
         }
         
         var body: some View {
-            SwiftUI.Picker(selection: selected) {
-                ForEach(SubjectType.allCases) { item in
-                    Text(item.name).fontBodyMedium().tag(item)
-                }
-            } label: {}
-                .pickerStyle(.segmented)
+            Image(.Icons.lock)
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: size, height: size)
+                .foregroundColor(color)
         }
+    }
+}
+
+#Preview {
+    HStack {
+        Icon.Lock(color: .Supla.primary)
+        Icon.Lock(color: .Supla.onSurfaceVariant)
+        Icon.Lock(color: .Supla.onBackground)
     }
 }

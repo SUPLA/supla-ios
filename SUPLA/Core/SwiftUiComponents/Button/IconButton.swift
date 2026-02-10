@@ -15,7 +15,6 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
 import SwiftUI
 
@@ -24,7 +23,7 @@ struct IconButton: View {
     let color: Color
     let role: ButtonRole?
     let action: () -> Void
-    
+
     init(
         name: String,
         color: Color = .Supla.primary,
@@ -59,13 +58,26 @@ struct BorderedIconStyle: ButtonStyle {
 }
 
 struct FilledIconStyle: ButtonStyle {
+    let color: Color?
+
+    init(color: Color? = nil) {
+        self.color = color
+    }
+
     func makeBody(configuration: Configuration) -> some View {
-        let color = configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
         configuration.label
             .foregroundColor(.Supla.onPrimary)
             .font(.Supla.labelLarge)
-            .background(color)
+            .background(backgroundColor(configuration))
             .cornerRadius(Dimens.buttonRadius)
+    }
+    
+    private func backgroundColor(_ configuration: Configuration) -> Color {
+        if let color {
+            color
+        } else {
+            configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
+        }
     }
 }
 

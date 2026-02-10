@@ -27,12 +27,12 @@ struct ChannelListAlertDialogState {
     let positiveButtonText: String?
     let negativeButtonText: String?
     let remoteId: Int32?
-    let action: Action?
+    let action: ActionId?
     
     init(
         message: String,
         remoteId: Int32? = nil,
-        action: Action? = nil,
+        action: ActionId? = nil,
         positiveButtonText: String? = Strings.General.yes,
         negativeButtonText: String? = Strings.General.no
     ) {

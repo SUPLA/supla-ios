@@ -746,7 +746,6 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Bütün qapılar üçün açılma sensoru ayarlanmayıb — \“Aç\” və \“Bağla\” düymələri düzgün işləməyə bilər.";
-"dimmer_detail_temperature" = "Rəngtemperaturu:";
 
 /* RGB and Dimmer Detail */
 "rgb_detail_color" = "Rəng:";
@@ -759,3 +758,61 @@
 "rgb_detail_move_right" = "Sağa köçür";
 "rgb_detail_move_start" = "Əvvələ köçür";
 "rgb_detail_move_end" = "Sona köçür";
+"dimmer_detail_temperature" = "Rəngtemperaturu:";
+
+/* NFC */
+"settings_nfc_label" = "NFC";
+"nfc_list_title" = "Sizin NFC teqləriniz";
+"nfc_list_not_supported" = "Mobil cihazınız NFC-ni dəstəkləmir. Bu funksiyadan istifadə üçün NFC dəstəyi olan cihaz lazımdır.";
+"nfc_list_missing_action" = "Əməliyyat təyin edilməyib";
+"nfc_detail_tag_data" = "Teq məlumatı";
+"edit_nfc_tag_name" = "Teq adı";
+"nfc_detail_tag_lock" = "Teqi kilidlə";
+"nfc_detail_tag_locked" = "KİLİDLƏNİB";
+"nfc_detail_last_readings" = "Son oxunuşlar";
+"time_just_now" = "indi";
+"nfc_detail_action_completed" = "Əməliyyat icra olundu";
+"nfc_detail_action_failure_other" = "Əməliyyat uğursuz oldu";
+"nfc_detail_action_failure_missing" = "Əməliyyat təyin edilməyib";
+"edit_nfc_tag_title" = "Teqi redaktə et";
+"nfc_detail_delete_dialog_title" = "Teqi cihazdan silmək istəyirsiniz?";
+"nfc_detail_delete_dialog_message" = "Fiziki teq yenidən əlavə edilərsə işləməyə davam edəcək.";
+"nfc_detail_delete_locked_dialog_title" = "Kilidlənmiş teqi cihazdan silmək istəyirsiniz?";
+"nfc_detail_delete_locked_dialog_title" = "Kilidlənmiş teqi cihazdan silmək istəyirsiniz?";
+"nfc_detail_info_dialog_title" = "Qoruma fiziki NFC teqinə tətbiq olunur.";
+"nfc_detail_info_dialog_message" = "Kilidlənmiş teq yenidən yazıla və ya SUPLA-dan başqa tətbiqlərlə istifadə edilə bilməz.\n\nTeq hələ də skan edilə və digər telefonlarda SUPLA-ya əlavə edilə bilər.\n\nTeq ictimai yerdə yerləşdirilibsə (məsələn, darvazada və ya girişdə), onun yenidən proqramlaşdırılmasının qarşısını almaq üçün kilidləmə tövsiyə olunur.\n\nTətbiqdəki ayarlar (ad və təyin edilmiş əməliyyat) kilidlənmiş teq üçün yenə də dəyişdirilə bilər.";
+"add_nfc_too_many_tags" = "Birdən çox NFC teqi aşkar edildi. Zəhmət olmasa əlavə teqləri uzaqlaşdırın və yenidən cəhd edin.";
+"add_nfc_scanning_hint" = "Quraşdırmaq üçün teqi telefonunuzun arxa hissəsinə yaxınlaşdırın.";
+"nfc_tag_error_write_failed" = "Məlumat teqə yazılarkən xəta baş verdi. Yenidən cəhd edin.";
+"nfc_tag_error_unsupported" = "Bu NFC teq növü SUPLA ilə istifadə edilə bilməz. Zəhmət olmasa uyğun teqdən istifadə edin.";
+"nfc_tag_error_write_protected" = "Bu teq yazmaya qarşı kilidləndiyi üçün proqramlaşdırıla bilməz.";
+"nfc_tag_error_not_enough_memory" = "Bu teq tələb olunan məlumatı saxlamaq üçün kifayət qədər yaddaşa malik deyil";
+"nfc_successfully_added" = "Teq uğurla proqramlaşdırıldı. Onu konfiqurasiya edin və saxlayın.";
+"nfc_duplicate_dialog_title" = "Teq artıq əlavə edilib!";
+"nfc_duplicate_dialog_message" = "Bu teq siyahınızda bu adla mövcuddur: %@.";
+"nfc_duplicate_open_tag" = "Teqi aç";
+"nfc_tag_error_protection_failed" = "Teq kilidlənə bilmədi. Yenidən skan etməyə çalışın və teqi sabit saxlayın.";
+"nfc_tag_error_wrong" = "\"%@\" üçün qorumanı aktivləşdirmək üçün düzgün teqi skan edin.";
+"nfc_detail_delete_locked_dialog_message" = "Teq kilidlənib və yenidən proqramlaşdırıla bilməz. Onu silmək yalnız bu cihazdan ayıracaq. Fiziki teq yenidən əlavə edilərsə işləməyə davam edəcək.";
+"nfc_lock_tag_success_title" = "Teq uğurla kilidləndi";
+"nfc_lock_tag_error_title" = "Xəta baş verdi";
+"nfc_lock_tag_title" = "Onu kilidləmək üçün \"%@\" teqini skan edin.";
+"app_sentence" = "nəhayət evdə!";
+"general_processing" = "Emal edilir";
+"call_nfc_action_success" = "Əməliyyat tamamlandı";
+"call_nfc_action_failure_not_found_title" = "Teq bu cihazda əlavə edilməyib";
+"call_nfc_action_not_configured_title" = "Əməliyyat təyin edilməyib";
+"call_nfc_action_call_failed_title" = "Əməliyyat uğursuz oldu";
+"call_nfc_action_channel_not_found_title" = "Cihaz tapılmadı";
+"call_nfc_action_channel_offline_title" = "Cihaz oflayndır";
+"call_nfc_action_failure_not_found_message" = "Bu teq etibarlıdır, lakin bu telefona hələ əlavə edilməyib.";
+"call_nfc_action_not_configured_message" = "Bu teq əlavə edilib, lakin əməliyyat təyin edilməyib. Siz əməliyyat təyin edənə qədər heç nə etməyəcək.";
+"call_nfc_action_call_failed_message" = "Teq aşkar edildi, lakin əməliyyat tamamlanmadı. Zəhmət olmasa yenidən cəhd edin.";
+"call_nfc_action_channel_not_found_message" = "Bu teqə bağlı cihaz artıq mövcud deyil. Zəhmət olmasa teqin əməliyyatını yeniləyin.";
+"call_nfc_action_channel_offline_message" = "Bağlı cihaz hazırda oflayndır və cavab verə bilmir.";
+"nfc_tag_name" = "Teq \"%@\"";
+"nfc_add_tag" = "Teq əlavə et";
+"nfc_assign_action" = "Əməliyyat təyin et";
+"nfc_update_action" = "Əməliyyatı yenilə";
+"call_nfc_action_failure_unknown_url_title" = "Dəstəklənməyən teq məzmunu";
+"call_nfc_action_failure_unknown_url_message" = "Bu teq etibarlı SUPLA məlumatı daşımır və istifadə edilə bilməz.";

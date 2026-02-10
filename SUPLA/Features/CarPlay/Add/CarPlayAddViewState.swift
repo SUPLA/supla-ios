@@ -17,43 +17,19 @@
  */
     
 extension CarPlayAddFeature {
-    class ViewState: ObservableObject {
-        @Published var profiles: SelectableList<ProfileItem>? = nil {
-            didSet { updateSaveDisabled() }
-        }
-        @Published var subjectType: SubjectType = .channel
-        @Published var subjects: SelectableList<SubjectItem>? = nil {
-            didSet { updateSaveDisabled() }
-        }
+    class ViewState: ActionSelection.ViewState {
         @Published var caption: String = "" {
-            didSet { updateSaveDisabled() }
-        }
-        @Published var actions: SelectableList<CarPlayAction>? = nil {
             didSet { updateSaveDisabled() }
         }
         
         @Published private(set) var saveDisabled: Bool = true
         @Published var showDelete: Bool = false
         
-        private func updateSaveDisabled() {
+        override func updateSaveDisabled() {
             saveDisabled = profiles?.selected == nil ||
             subjects?.selected == nil ||
             caption.isEmpty ||
             actions?.selected == nil
         }
-    }
-    
-    struct ProfileItem: PickerItem {
-        var id: Int32
-        var label: String
-    }
-    
-    struct SubjectItem: SubjectPickerItem {
-        var id: String
-        var remoteId: Int32
-        var label: String
-        var actions: [CarPlayAction]
-        var icon: IconResult?
-        var isLocation: Bool
     }
 }

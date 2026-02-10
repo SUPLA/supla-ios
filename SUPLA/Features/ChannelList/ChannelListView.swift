@@ -24,7 +24,7 @@ struct ChannelListView: View {
     @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
     @ObservedObject var channelListViewState: ChannelListViewState
     
-    let onAlertConfirmed: (Int32?, Action?) -> Void
+    let onAlertConfirmed: (Int32?, ActionId?) -> Void
     let onAlertDismissed: () -> Void
     
     var body: some View {
@@ -39,10 +39,10 @@ struct ChannelListView: View {
                 header: Strings.General.warning,
                 message: alertDialogState.message,
                 onDismiss: {},
-                positiveButtonText: alertDialogState.positiveButtonText,
-                negativeButtonText: alertDialogState.negativeButtonText,
-                onPositiveButtonClick: { onAlertConfirmed(alertDialogState.remoteId, alertDialogState.action) },
-                onNegativeButtonClick: onAlertDismissed
+                primaryButtonSpec: .optional(alertDialogState.positiveButtonText),
+                secondaryButtonText: alertDialogState.negativeButtonText,
+                onPrimaryButtonClick: { onAlertConfirmed(alertDialogState.remoteId, alertDialogState.action) },
+                onSecondaryButtonClick: onAlertDismissed
             )
         }
     }

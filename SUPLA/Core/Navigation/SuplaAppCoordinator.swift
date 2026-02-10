@@ -44,6 +44,10 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToCarPlayAdd()
     func navigateToCarPlayEdit(id: NSManagedObjectID)
     func navigateToDeveloperOptions()
+    func navigateToCallNfcAction(url: URL)
+    func navigateToNfcTagsList()
+    func navigateToEditNfcTag(uuid: String, readOnly: Bool?)
+    func navigateToNfcTagDetail(uuid: String)
     
     func popToStatus()
     
@@ -54,6 +58,10 @@ protocol SuplaAppCoordinator: Coordinator {
     func openCloud()
     func openUrl(url: String)
     func openUrl(url: URL)
+}
+
+extension SuplaAppCoordinator {
+    func navigateToEditNfcTag(uuid: String) { navigateToEditNfcTag(uuid: uuid, readOnly: nil) }
 }
 
 protocol NavigationSubcontroller {
@@ -88,7 +96,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
                     case .initialization, .connecting(_), .finished:
                         self.navigateToStatusView()
                     case .locked:
-                        self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
+                        self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: animated)
                         if (!(self.navigationController.viewControllers.last is StatusFeature.ViewController)) {
                             self.popToViewController(ofClass: StatusFeature.ViewController.self)
                         }
@@ -215,6 +223,34 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToDeveloperOptions() {
         navigateTo(DeveloperInfoFeature.ViewController.create())
+    }
+    
+    func navigateToCallNfcAction(url: URL) {
+        guard stateHolder.currentState() != .finished(reason: .addWizardStarted) else {
+            SALog.warning("Handling url is not possible when add wizard started")
+            return
+        }
+        if let presentedView = navigationController.viewControllers.last?.presentedViewController {
+            SALog.warning("There is another modal view presented `\(presentedView). It will be dismissed.")
+            presentedView.dismiss(animated: false)
+        }
+        
+        let avc = CallNfcActionFeature.ViewController.create(url: url)
+        avc.modalPresentationStyle = .fullScreen
+        avc.modalTransitionStyle = .crossDissolve
+        present(avc, animated: true)
+    }
+    
+    func navigateToNfcTagsList() {
+        navigateTo(NfcTagsListFeature.ViewController.create())
+    }
+    
+    func navigateToEditNfcTag(uuid: String, readOnly: Bool?) {
+        navigateTo(EditTagFeature.ViewController.create(uuid: uuid, readOnly: readOnly))
+    }
+    
+    func navigateToNfcTagDetail(uuid: String) {
+        navigateTo(NfcTagDetailFeature.ViewController.create(uuid: uuid))
     }
     
     func popToStatus() {

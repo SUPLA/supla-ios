@@ -27,7 +27,7 @@ extension SwitchGeneralFeature {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<ReadGroupWithChannels.UseCase> private var readGroupWithChannelsUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
-        @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+        @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
         @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
         @Singleton<DownloadEventsManager> private var downloadEventsManager
         @Singleton<DateProvider> private var dateProvider
@@ -209,7 +209,7 @@ extension SwitchGeneralFeature {
             )
         }
 
-        private func performAction(action: Action) {
+        private func performAction(action: ActionId) {
             if let remoteId, let type {
                 executeSimpleActionUseCase.invoke(action: action, type: type, remoteId: remoteId)
                     .asDriverWithoutError()

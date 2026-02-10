@@ -48,6 +48,11 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
         groupObservable
     }
     
+    var groupByIdMock: FunctionMock<Int32, Observable<SAChannelGroup>> = .init()
+    func getGroup(_ remoteId: Int32) -> Observable<SAChannelGroup> {
+        groupByIdMock.handle(remoteId)
+    }
+    
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {

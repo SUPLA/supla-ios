@@ -33,7 +33,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
 
     private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
 
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleAction.Mock! = ExecuteSimpleAction.Mock()
     
     private lazy var loadActiveProfileUrlUseCase: LoadActiveProfileUrlUseCaseMock! = LoadActiveProfileUrlUseCaseMock()
     
@@ -42,7 +42,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, swapScenePositionsUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: LoadActiveProfileUrlUseCase.self, loadActiveProfileUrlUseCase!)
     }
     
@@ -146,7 +146,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         XCTAssertEqual(eventObserver.events.count, 0)
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.interrupt, SUPLA.SubjectType.scene, sceneId)
+            (ActionId.interrupt, SUPLA.SubjectType.scene, sceneId)
         ])
     }
     
@@ -163,7 +163,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         XCTAssertEqual(eventObserver.events.count, 0)
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.execute, SUPLA.SubjectType.scene, sceneId)
+            (ActionId.execute, SUPLA.SubjectType.scene, sceneId)
         ])
     }
     

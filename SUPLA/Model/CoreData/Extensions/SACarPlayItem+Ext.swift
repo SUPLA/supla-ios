@@ -22,8 +22,8 @@ extension SACarPlayItem {
         set { subjectTypeRaw = newValue.rawValue }
     }
     
-    var action: CarPlayAction {
-        get { CarPlayAction.from(id: actionRaw) }
-        set { actionRaw = newValue.id }
+    var action: ActionId {
+        get { ActionId.from(carPlayId: actionRaw) }
+        set { actionRaw = newValue.value }
     }
 }

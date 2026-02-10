@@ -101,6 +101,7 @@ extension DiContainer {
         register((any CarPlayItemRepository).self, CarPlayItemRepositoryImpl())
         register((any EspRepository).self, EspRepositoryImpl())
         register((any ColorListItemRepository).self, ColorListItemRepositoryImpl())
+        register((any NfcTagItemRepository).self, NfcTagItemRepositoryImpl())
         
         // MARK: Usecases
 
@@ -187,7 +188,7 @@ extension DiContainer {
         register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())
         register(RequestChannelConfigUseCase.self, RequestChannelConfigUseCaseImpl())
         // Usecases - Client
-        register(ExecuteSimpleActionUseCase.self, ExecuteSimpleActionUseCaseImpl())
+        register(ExecuteSimpleAction.UseCase.self, ExecuteSimpleAction.Implementation())
         register(StartTimerUseCase.self, StartTimerUseCaseImpl())
         register(GetChannelConfigUseCase.self, GetChannelConfigUseCaseImpl())
         register(SetChannelConfigUseCase.self, SetChannelConfigUseCaseImpl())
@@ -276,6 +277,11 @@ extension DiContainer {
         register(DeleteColorListItem.UseCase.self, DeleteColorListItem.Implementation())
         register(UpdateColorListItemOrder.UseCase.self, UpdateColorListItemOrder.Implementation())
         register(ReorderColorListItems.UseCase.self, ReorderColorListItems.Implementation())
+        // UseCase - NFC
+        register(PrepareNfcTag.UseCase.self, PrepareNfcTag._Implementation())
+        register(ReadNfcItems.UseCase.self, ReadNfcItems.Implementation())
+        register(ReadNfcItem.UseCase.self, ReadNfcItem.Implementation())
+        register(LockNfcTag.UseCase.self, LockNfcTag.Implementation())
         
         // MARK: Features
         
