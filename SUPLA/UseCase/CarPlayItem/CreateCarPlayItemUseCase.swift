@@ -24,7 +24,7 @@ protocol CreateCarPlayItemUseCase {
         subjectType: SubjectType,
         subjectId: Int32,
         caption: String,
-        action: CarPlayAction
+        action: ActionId
     ) -> Observable<Void>
 }
 
@@ -37,7 +37,7 @@ final class CreateCarPlayItemUseCaseImpl: CreateCarPlayItemUseCase {
         subjectType: SubjectType,
         subjectId: Int32,
         caption: String,
-        action: CarPlayAction
+        action: ActionId
     ) -> Observable<Void> {
         profileRepository.getProfile(withId: profileId)
             .flatMapFirst { profile in
@@ -49,7 +49,7 @@ final class CreateCarPlayItemUseCaseImpl: CreateCarPlayItemUseCase {
                     carPlayItem.subjectTypeRaw = subjectType.rawValue
                     carPlayItem.subjectId = subjectId
                     carPlayItem.caption = caption
-                    carPlayItem.actionRaw = action.id
+                    carPlayItem.actionRaw = action.carPlayId
                     carPlayItem.order = order + 1
                     return carPlayItem
                 }

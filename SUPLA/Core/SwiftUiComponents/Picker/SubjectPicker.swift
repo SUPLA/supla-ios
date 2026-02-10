@@ -26,19 +26,19 @@ protocol SubjectPickerItem: Hashable, Identifiable {
 
 extension SuplaCore {
     struct SubjectPicker<T: SubjectPickerItem>: View {
-        @Binding var selected: T
+        @Binding var selected: T?
         let items: [T]
 
         @State private var showPicker: Bool = false
         @Environment(\.isEnabled) private var isEnabled
 
-        init(selected: Binding<T>, items: [T]) {
+        init(selected: Binding<T?>, items: [T]) {
             self._selected = selected
             self.items = items
         }
 
-        init(_ selectableList: SelectableList<T>, onChange: @escaping (T) -> Void) {
-            self._selected = Binding<T>(
+        init(_ selectableList: SelectableList<T>, onChange: @escaping (T?) -> Void) {
+            self._selected = Binding<T?>(
                 get: { selectableList.selected },
                 set: { onChange($0) }
             )
@@ -47,7 +47,7 @@ extension SuplaCore {
 
         var body: some View {
             HStack {
-                Text(selected.label)
+                Text(selected?.label ?? "---")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fontBodyMedium()
                     .textColor(isEnabled ? Color.Supla.onBackground : Color.Supla.disabled)

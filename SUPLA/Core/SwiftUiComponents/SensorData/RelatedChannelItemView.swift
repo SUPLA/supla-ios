@@ -24,7 +24,7 @@ struct RelatedChannelItemView: View {
     let onCaptionLongPress: (RelatedChannelData) -> Void
     
     var body: some View {
-        HStack(spacing: 0) {
+        ListItemRow {
             ListItemIcon(iconResult: data.icon)
             CellCaption(text: data.caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -40,10 +40,5 @@ struct RelatedChannelItemView: View {
             }
             ListItemDot(onlineState: data.onlineState)
         }
-        .frame(maxWidth: .infinity)
-        .padding([.leading], Distance.small)
-        .padding([.trailing], Distance.default)
-        .padding([.top, .bottom], Distance.tiny)
-        .background(Color.Supla.surface)
     }
 }

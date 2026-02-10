@@ -30,7 +30,7 @@ extension Font {
         static let headlineMedium: Font = .custom("OpenSans", size: 24)
         static let headlineSmall: Font = .custom("OpenSans", size: 17)
 
-        static let titleLarge: Font = .custom("OpenSans", size: 22)
+        static let titleLarge: Font = .custom("OpenSans-SemiBold", size: 20)
         static let titleMedium: Font = .custom("OpenSans-SemiBold", size: 16)
         static let titleSmall: Font = .custom("OpenSans-SemiBold", size: 14)
 

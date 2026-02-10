@@ -23,7 +23,7 @@ extension ValveGeneralFeature {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
-        @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+        @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
         @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
         @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
@@ -70,7 +70,7 @@ extension ValveGeneralFeature {
             state.alertDialog = nil
         }
         
-        func forceAction(_ remoteId: Int32, action: Action) {
+        func forceAction(_ remoteId: Int32, action: ActionId) {
             state.alertDialog = nil
             executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
                 .asDriverWithoutError()

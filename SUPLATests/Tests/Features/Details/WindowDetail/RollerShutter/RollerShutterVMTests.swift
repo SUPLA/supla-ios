@@ -30,7 +30,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
     
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleAction.Mock! = ExecuteSimpleAction.Mock()
     
     private lazy var callSuplaClientOperationUseCase: CallSuplaClientOperationUseCaseMock! = CallSuplaClientOperationUseCaseMock()
     
@@ -42,7 +42,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         DiContainer.register(ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
         DiContainer.register(ReadGroupByRemoteIdUseCase.self, readGroupByRemoteIdUseCase!)
         DiContainer.register(GetGroupOnlineSummaryUseCase.self, getGroupOnlineSummaryUseCase!)
-        DiContainer.register(ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.register(ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
         DiContainer.register(CallSuplaClientOperationUseCase.self, callSuplaClientOperationUseCase!)
         DiContainer.register(ExecuteRollerShutterActionUseCase.self, executeRollerShutterActionUseCase!)
         DiContainer.register(GlobalSettings.self, settings!)
@@ -147,7 +147,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         ])
         assertEvents(expected: [])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.reveal, SubjectType.channel, Int32(123))
+            (ActionId.reveal, SubjectType.channel, Int32(123))
         ])
     }
     
@@ -163,7 +163,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         ])
         assertEvents(expected: [])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.shut, SubjectType.channel, Int32(123))
+            (ActionId.shut, SubjectType.channel, Int32(123))
         ])
     }
     
@@ -211,7 +211,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         ])
         assertEvents(expected: [])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.stop, SubjectType.group, Int32(123))
+            (ActionId.stop, SubjectType.group, Int32(123))
         ])
     }
     
@@ -227,7 +227,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         ])
         assertEvents(expected: [])
         XCTAssertTuples(executeRollerShutterActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.group, Int32(123), 80)
+            (ActionId.shutPartially, SubjectType.group, Int32(123), 80)
         ])
     }
     

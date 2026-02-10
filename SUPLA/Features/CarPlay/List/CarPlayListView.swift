@@ -68,36 +68,24 @@ extension CarPlayListFeature {
         let data: ReadCarPlayItems.Item
 
         var body: some SwiftUI.View {
-            HStack {
+            ListItemRow {
                 ListItemIcon(iconResult: data.icon)
                 VStack(alignment: .leading, spacing: 6) {
                     CellCaption(text: data.caption)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     if let action = data.action {
-                        Text(Strings.CarPlay.action.arguments(action.name))
+                        Text(Strings.CarPlay.action.arguments(action.name ?? "nil"))
                             .fontBodySmall()
                             .textColor(.Supla.onSurfaceVariant)
                     }
                 }
                 VStack(alignment: .trailing, spacing: 6) {
-                    HStack(spacing: 4) {
-                        Text(Strings.Notifications.profile)
-                            .fontBodySmall()
-                            .textColor(.Supla.onSurfaceVariant)
-                        Text(data.profileName)
-                            .fontBodySmall()
-                    }
+                    ListItemProfile(name: data.profileName)
                     Text(data.subjectType.name)
                         .fontBodySmall()
                         .textColor(.Supla.onSurfaceVariant)
                 }
             }
-            .padding([.leading], Distance.default)
-            .padding([.trailing], Distance.default)
-            .padding([.top, .bottom], Distance.small)
-            .background(Color.Supla.surface)
-            .padding(.bottom, 1)
-            .background(Color.Supla.background)
         }
     }
 }

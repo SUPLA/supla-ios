@@ -26,7 +26,7 @@ extension AppIntent {
         if let subjectType = action?.subjectType,
            let subjectId = action?.subjectId,
            let authorizationEntity = action?.authorizationEntity,
-           let action = action?.action?.action
+           let action = action?.action
         {
             let singleCall = SingleCallImpl()
             

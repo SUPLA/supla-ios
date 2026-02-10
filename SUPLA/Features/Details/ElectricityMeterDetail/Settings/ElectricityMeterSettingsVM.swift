@@ -35,11 +35,12 @@ extension ElectricityMeterSettingsFeature {
                 .disposed(by: disposeBag)
         }
 
-        func onShowOnChannelsListChange(_ item: SuplaElectricityMeasurementType) {
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: state.profileId, remoteId: state.remoteId)
-            userStateHolder.setElectricityMeterSettings(settings.copy(showOnList: item), profileId: state.profileId, remoteId: state.remoteId)
-
-            state.showOnChannelsList.selected = item
+        func onShowOnChannelsListChange(_ item: SuplaElectricityMeasurementType?) {
+            if let item {
+                let settings = userStateHolder.getElectricityMeterSettings(profileId: state.profileId, remoteId: state.remoteId)
+                userStateHolder.setElectricityMeterSettings(settings.copy(showOnList: item), profileId: state.profileId, remoteId: state.remoteId)
+                state.showOnChannelsList.selected = item
+            }
         }
 
         func onBalanceValueChange(_ item: ElectricityMeterBalanceType?) {

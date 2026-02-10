@@ -23,6 +23,7 @@ import SwiftUI
 extension Color {
     struct Supla {
         static let primary = Color(UIColor.primary)
+        static let primaryVariant = Color("Colors/primary_variant")
         static let secondary = Color(UIColor.secondary)
         static let tertiary = Color(UIColor.tertiary)
         
@@ -32,6 +33,8 @@ extension Color {
         
         static let primaryContainer = Color(UIColor.primaryContainer)
         static let secondaryContainer = Color(UIColor.secondaryContainer)
+        static let tertiaryContainer = Color("Colors/tertiary_container")
+        static let errorContainer = Color("Colors/error_container")
         
         static let onBackground = Color(UIColor.onBackground)
         static let onPrimary = Color(UIColor.onPrimary)
@@ -44,6 +47,7 @@ extension Color {
         static let blue = Color(UIColor.blue)
         static let disabled = Color(UIColor.disabled)
         static let error = Color(UIColor.error)
+        static let errorVariant = Color("Colors/error_variant")
         static let buttonPressed = Color(UIColor.buttonPressed)
         
         static let chartPhase1 = Color(UIColor.chartPhase1)

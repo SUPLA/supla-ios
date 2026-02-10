@@ -124,3 +124,14 @@ struct CellSubValue: View {
             .foregroundColor(Color.Supla.onBackground)
     }
 }
+
+struct LabelText: View {
+    let text: String
+
+    var body: some View {
+        Text(text)
+            .textCase(.uppercase)
+            .fontBodySmall()
+            .textColor(.Supla.onSurfaceVariant)
+    }
+}

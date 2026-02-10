@@ -184,4 +184,12 @@ class GlobalSettingsMock: GlobalSettings {
         get { false }
         set { }
     }
+    
+    var firstNfcScan: Bool {
+        false
+    }
+    
+    var nextNfcId: Int {
+        0
+    }
 }

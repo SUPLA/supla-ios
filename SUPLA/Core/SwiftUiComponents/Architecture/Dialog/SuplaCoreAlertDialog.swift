@@ -30,42 +30,42 @@ extension SuplaCore {
         var header: String
         var message: String
         var onDismiss: () -> Void
-        var positiveButtonText: String?
-        var negativeButtonText: String?
-        var onPositiveButtonClick: (() -> Void)?
-        var onNegativeButtonClick: (() -> Void)?
+        var primaryButtonSpec: FilledButton.ButtonSpec?
+        var secondaryButtonText: String?
+        var onPrimaryButtonClick: (() -> Void)?
+        var onSecondaryButtonClick: (() -> Void)?
         
         init(
             header: String,
             message: String,
             onDismiss: @escaping () -> Void,
-            positiveButtonText: String? = nil,
-            negativeButtonText: String? = nil,
-            onPositiveButtonClick: (() -> Void)? = nil,
-            onNegativeButtonClick: (() -> Void)? = nil
+            primaryButtonSpec: FilledButton.ButtonSpec? = nil,
+            secondaryButtonText: String? = nil,
+            onPrimaryButtonClick: (() -> Void)? = nil,
+            onSecondaryButtonClick: (() -> Void)? = nil
         ) {
             self.header = header
             self.message = message
             self.onDismiss = onDismiss
-            self.positiveButtonText = positiveButtonText
-            self.negativeButtonText = negativeButtonText
-            self.onPositiveButtonClick = onPositiveButtonClick
-            self.onNegativeButtonClick = onNegativeButtonClick
+            self.primaryButtonSpec = primaryButtonSpec
+            self.secondaryButtonText = secondaryButtonText
+            self.onPrimaryButtonClick = onPrimaryButtonClick
+            self.onSecondaryButtonClick = onSecondaryButtonClick
         }
         
         init(
             state: AlertDialogState,
             onDismiss: @escaping () -> Void,
-            onPositiveButtonClick: (() -> Void)? = nil,
-            onNegativeButtonClick: (() -> Void)? = nil
+            onPrimaryButtonClick: (() -> Void)? = nil,
+            onSecondaryButtonClick: (() -> Void)? = nil
         ) {
             self.header = state.header
             self.message = state.message
-            self.positiveButtonText = state.positiveButtonText
-            self.negativeButtonText = state.negativeButtonText
+            self.primaryButtonSpec = .optional(state.positiveButtonText)
+            self.secondaryButtonText = state.negativeButtonText
             self.onDismiss = onDismiss
-            self.onPositiveButtonClick = onPositiveButtonClick
-            self.onNegativeButtonClick = onNegativeButtonClick
+            self.onPrimaryButtonClick = onPrimaryButtonClick
+            self.onSecondaryButtonClick = onSecondaryButtonClick
         }
         
         var body: some View {
@@ -74,31 +74,28 @@ extension SuplaCore {
                     
                 SwiftUI.Text(message)
                     .fontBodyMedium()
+                    .textColor(.Supla.onSurfaceVariant)
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], Distance.default)
                     
-                if let positiveButtonText, let negativeButtonText {
+                if let primaryButtonSpec, let secondaryButtonText {
                     SuplaCore.Dialog.DoubleButtons(
-                        onNegativeClick: onNegativeButtonClick ?? {},
-                        onPositiveClick: onPositiveButtonClick ?? {},
-                        negativeText: negativeButtonText,
-                        positiveText: positiveButtonText
+                        onSecondaryClick: onSecondaryButtonClick ?? {},
+                        onPrimaryClick: onPrimaryButtonClick ?? {},
+                        secondaryText: secondaryButtonText,
+                        primaryButtonSpec: primaryButtonSpec
                     )
-                } else if let positiveButtonText {
-                    SuplaCore.Dialog.Divider()
-                        .padding([.top], Distance.default)
-                    FilledButton(title: positiveButtonText, fullWidth: true) {
-                        if let onPositiveButtonClick {
-                            onPositiveButtonClick()
+                } else if let primaryButtonSpec {
+                    FilledButton(title: primaryButtonSpec.text, fullWidth: true) {
+                        if let onPrimaryButtonClick {
+                            onPrimaryButtonClick()
                         }
                     }
                     .padding(Distance.default)
-                } else if let negativeButtonText {
-                    SuplaCore.Dialog.Divider()
-                        .padding([.top], Distance.default)
-                    BorderedButton(title: negativeButtonText, fullWidth: true) {
-                        if let onNegativeButtonClick {
-                            onNegativeButtonClick()
+                } else if let secondaryButtonText {
+                    BorderedButton(title: secondaryButtonText, fullWidth: true) {
+                        if let onSecondaryButtonClick {
+                            onSecondaryButtonClick()
                         }
                     }
                     .padding(Distance.default)
@@ -113,10 +110,8 @@ extension SuplaCore {
         header: Strings.CarPlay.deleteTitle,
         message: Strings.CarPlay.deleteMessage,
         onDismiss: {},
-        positiveButtonText: Strings.CarPlay.confirmDelete,
-        negativeButtonText: Strings.General.cancel,
-        onPositiveButtonClick: {},
-        onNegativeButtonClick: {}
+        primaryButtonSpec: .default(Strings.CarPlay.confirmDelete),
+        secondaryButtonText: Strings.General.cancel
     )
 }
 
@@ -125,8 +120,7 @@ extension SuplaCore {
         header: Strings.CarPlay.deleteTitle,
         message: Strings.CarPlay.deleteMessage,
         onDismiss: {},
-        positiveButtonText: Strings.CarPlay.confirmDelete,
-        onPositiveButtonClick: {},
+        primaryButtonSpec: .default(Strings.CarPlay.confirmDelete)
     )
 }
 
@@ -135,7 +129,6 @@ extension SuplaCore {
         header: Strings.CarPlay.deleteTitle,
         message: Strings.CarPlay.deleteMessage,
         onDismiss: {},
-        negativeButtonText: Strings.General.cancel,
-        onNegativeButtonClick: {}
+        secondaryButtonText: Strings.General.cancel
     )
 }

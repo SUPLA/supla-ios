@@ -98,7 +98,7 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             @Singleton<SingleCall> var singleCall
 
-            if let action = item.action?.action,
+            if let action = item.action,
                let profile = item.profile
             {
                 do {

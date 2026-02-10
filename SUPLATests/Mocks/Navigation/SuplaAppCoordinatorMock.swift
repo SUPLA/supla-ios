@@ -112,6 +112,18 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToCarPlayEdit(id: NSManagedObjectID) {
     }
     
+    func navigateToCallNfcAction(url: URL) {
+    }
+    
+    func navigateToNfcTagsList() {
+    }
+
+    func navigateToEditNfcTag(uuid: String, readOnly: Bool?) {
+    }
+
+    func navigateToNfcTagDetail(uuid: String) {
+    }
+    
     func popToStatus() {
     }
     

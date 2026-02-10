@@ -22,7 +22,7 @@ extension ElectricityDataSelectionFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
 
-        var onTypeChange: (ElectricityMeterChartType) -> Void
+        var onTypeChange: (ElectricityMeterChartType?) -> Void
         var onOk: () -> Void
         var onCancel: () -> Void
 
@@ -39,7 +39,7 @@ extension ElectricityDataSelectionFeature {
                         items: viewState.availableTypes
                     )
 
-                    if (viewState.selectedType.needsPhases) {
+                    if (viewState.selectedType?.needsPhases == true) {
                         Text(Strings.ElectricityMeter.phases)
                             .fontPickerLabel()
                             .padding(.leading, Distance.default)

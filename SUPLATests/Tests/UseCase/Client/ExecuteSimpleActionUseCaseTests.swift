@@ -21,7 +21,7 @@ import XCTest
 
 final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
     
-    private lazy var useCase: ExecuteSimpleActionUseCase! = { ExecuteSimpleActionUseCaseImpl() }()
+    private lazy var useCase: ExecuteSimpleAction.UseCase! = { ExecuteSimpleAction.Implementation() }()
     
     private lazy var suplaClientProvider: SuplaClientProviderMock! = {
         SuplaClientProviderMock()
@@ -45,7 +45,7 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
     
     func test_execute_positive() {
         // given
-        let action: Action = .turnOn
+        let action: ActionId = .turnOn
         let type: SubjectType = .channel
         let remoteId: Int32 = 3234
         
@@ -60,13 +60,13 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(observer.events.count, 2) // next & complete
         XCTAssertEqual(vibrationService.vibrateCalls, 1)
         XCTAssertTuples(suplaClientProvider.suplaClientMock.executeActionParameters, [
-            (action.rawValue, type.rawValue, remoteId, nil, 0)
+            (action.value, type.rawValue, remoteId, nil, 0)
         ])
     }
     
     func test_execute_negative() {
         // given
-        let action: Action = .turnOn
+        let action: ActionId = .turnOn
         let type: SubjectType = .channel
         let remoteId: Int32 = 3234
         
@@ -81,7 +81,7 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(observer.events.count, 2) // next & complete
         XCTAssertEqual(vibrationService.vibrateCalls, 0)
         XCTAssertTuples(suplaClientProvider.suplaClientMock.executeActionParameters, [
-            (action.rawValue, type.rawValue, remoteId, nil, 0)
+            (action.value, type.rawValue, remoteId, nil, 0)
         ])
     }
 }

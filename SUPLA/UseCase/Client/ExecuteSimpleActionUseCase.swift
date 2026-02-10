@@ -18,32 +18,33 @@
 
 import RxSwift
 
-protocol ExecuteSimpleActionUseCase {
-    func invoke(action: Action, type: SubjectType, remoteId: Int32) -> Observable<Void>
-}
+struct ExecuteSimpleAction {
+    protocol UseCase {
+        func invoke(action: ActionId, type: SubjectType, remoteId: Int32) -> Observable<Void>
+    }
 
-final class ExecuteSimpleActionUseCaseImpl: ExecuteSimpleActionUseCase {
-    
-    @Singleton<SuplaClientProvider> private var suplaClientProvider
-    @Singleton<VibrationService> private var vibrationService
-    
-    func invoke(action: Action, type: SubjectType, remoteId: Int32) -> Observable<Void> {
-        Observable.create { observer in
-            SALog.debug("Executing action \(action) for \(type) with remoteId \(remoteId)")
-            
-            let suplaClient = self.suplaClientProvider.provide()
-            let result = suplaClient?.executeAction(
-                parameters: .simple(action: action, subjectType: type, subjectId: remoteId)
-            )
-            
-            if (result == true) {
-                self.vibrationService.vibrate()
+    final class Implementation: UseCase {
+        @Singleton<SuplaClientProvider> private var suplaClientProvider
+        @Singleton<VibrationService> private var vibrationService
+
+        func invoke(action: ActionId, type: SubjectType, remoteId: Int32) -> Observable<Void> {
+            Observable.create { observer in
+                SALog.debug("Executing action \(action) for \(type) with remoteId \(remoteId)")
+
+                let suplaClient = self.suplaClientProvider.provide()
+                let result = suplaClient?.executeAction(
+                    parameters: .simple(action: action, subjectType: type, subjectId: remoteId)
+                )
+
+                if (result == true) {
+                    self.vibrationService.vibrate()
+                }
+
+                observer.onNext(())
+                observer.onCompleted()
+
+                return Disposables.create()
             }
-            
-            observer.onNext(())
-            observer.onCompleted()
-            
-            return Disposables.create()
         }
     }
 }

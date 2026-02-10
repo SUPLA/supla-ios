@@ -15,6 +15,17 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension CarPlayAction: PickerItem {
+
+struct NfcCallItemDto {
+    let date: Date
+    let result: NfcCallResult
+}
+
+extension SANfcCallItem {
+    var dto: NfcCallItemDto {
+        .init(
+            date: Date(timeIntervalSince1970: date),
+            result: result
+        )
+    }
 }
