@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol ExecuteRollerShutterActionUseCase {
-    func invoke(action: Action, type: SubjectType, remoteId: Int32, percentage: Int) -> Completable
+    func invoke(action: ActionId, type: SubjectType, remoteId: Int32, percentage: Int) -> Completable
 }
 
 final class ExecuteRollerShutterActionUseCaseImpl: ExecuteRollerShutterActionUseCase {
@@ -27,7 +27,7 @@ final class ExecuteRollerShutterActionUseCaseImpl: ExecuteRollerShutterActionUse
     @Singleton<SuplaClientProvider> private var suplaClientProvider
     @Singleton<VibrationService> private var vibrationService
     
-    func invoke(action: Action, type: SubjectType, remoteId: Int32, percentage: Int) -> Completable {
+    func invoke(action: ActionId, type: SubjectType, remoteId: Int32, percentage: Int) -> Completable {
         Completable.create { completable in
             SALog.debug("roller shutter action: \(Int8(percentage))")
             let parameters: ActionParameters = .rollerShutter(

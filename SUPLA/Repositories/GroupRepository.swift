@@ -25,6 +25,7 @@ protocol GroupRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater w
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]>
     func getAllGroups() -> Observable<[SAChannelGroup]>
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
+    func getGroup(for profileId: Int32, with remoteId: Int32) -> Observable<SAChannelGroup?>
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
@@ -78,6 +79,10 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllGroups() -> Observable<[SAChannelGroup]> {
         return query(SAChannelGroup.fetchRequest().ordered(by: "remote_id"))
+    }
+    
+    func getGroup(for profileId: Int32, with remoteId: Int32) -> Observable<SAChannelGroup?> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile.id = %d", remoteId, profileId))
     }
     
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {

@@ -91,3 +91,7 @@ extension Int: ScopeFunctions {
         }
     }
 }
+
+extension Int32: ScopeFunctions {
+    typealias T = Int32
+}

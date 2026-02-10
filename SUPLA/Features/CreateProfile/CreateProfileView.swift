@@ -218,8 +218,8 @@ private struct BasicModeUnavailableDialog: SwiftUI.View {
             header: Strings.CreateProfile.basicWarningTitle,
             message: Strings.CreateProfile.basicWarningMessage,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -232,8 +232,8 @@ private struct RemovalFailureDialog: SwiftUI.View {
             header: Strings.Cfg.Dialogs.Failed.title,
             message: Strings.Cfg.Dialogs.Failed.message,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -246,8 +246,8 @@ private struct EmptyNameDialog: SwiftUI.View {
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.missing_name,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -260,8 +260,8 @@ private struct DuplicatedNameDialog: SwiftUI.View {
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.duplicated_name,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -274,8 +274,8 @@ private struct RequiredDataMissingDialog: SwiftUI.View {
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.incomplete,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }

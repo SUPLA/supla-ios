@@ -35,8 +35,8 @@ extension CaptionChangeDialogFeature {
                 }
                 
                 SuplaCore.Dialog.DoubleButtons(
-                    onNegativeClick: { viewModel.hide() },
-                    onPositiveClick: { viewModel.onApply() }
+                    onSecondaryClick: { viewModel.hide() },
+                    onPrimaryClick: { viewModel.onApply() }
                 )
             }
         }

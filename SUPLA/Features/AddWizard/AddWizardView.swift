@@ -165,14 +165,15 @@ struct CloudFollowupPopup: View {
                 
             SwiftUI.Text(Strings.AddWizard.cloudFollowupMessage)
                 .fontBodyMedium()
+                .textColor(.Supla.onSurfaceVariant)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], Distance.default)
                 
-            SuplaCore.Dialog.VerticalButtons(
-                onNegativeClick: onNegativeButtonClick ?? {},
-                onPositiveClick: onPositiveButtonClick ?? {},
-                negativeText: Strings.AddWizard.cloudFollowupClose,
-                positiveText: Strings.AddWizard.cloudFollowupGoToCloud
+            SuplaCore.Dialog.DoubleButtons(
+                onSecondaryClick: onNegativeButtonClick ?? {},
+                onPrimaryClick: onPositiveButtonClick ?? {},
+                secondaryText: Strings.AddWizard.cloudFollowupClose,
+                primaryButtonSpec: .default(Strings.AddWizard.cloudFollowupGoToCloud)
             )
         }
     }
@@ -199,14 +200,15 @@ struct ManualModePopup: View {
                 
             SwiftUI.Text(Strings.AddWizard.manualModePopupMessage)
                 .fontBodyMedium()
+                .textColor(.Supla.onSurfaceVariant)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], Distance.default)
                 
-            SuplaCore.Dialog.VerticalButtons(
-                onNegativeClick: onContinueAuto ?? {},
-                onPositiveClick: onContinueManual ?? {},
-                negativeText: Strings.AddWizard.manualModePopupResign,
-                positiveText: Strings.AddWizard.manualModePopupContinue
+            SuplaCore.Dialog.DoubleButtons(
+                onSecondaryClick: onContinueAuto ?? {},
+                onPrimaryClick: onContinueManual ?? {},
+                secondaryText: Strings.AddWizard.manualModePopupResign,
+                primaryButtonSpec: .default(Strings.AddWizard.manualModePopupContinue)
             )
         }
     }

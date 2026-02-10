@@ -20,32 +20,8 @@ import SharedCore
 
 let VALUE_IGNORE = -1
 
-public enum Action: Int32, Equatable, CaseIterable, Codable, Sendable {
-    case open = 10
-    case close = 20
-    case shut = 30
-    case reveal = 40
-    case revealPartially = 50
-    case shutPartially = 51
-    case turnOn = 60
-    case turnOff = 70
-    case setRgbwParameters = 80
-    case openClose = 90
-    case stop = 100
-    case toggle = 110
-    case upOrStop = 140
-    case downOrStop = 150
-    case stepByStep = 160
-    case up = 170
-    case down = 180
-    case setHvacParameters = 230
-    case execute = 3000
-    case interrupt = 3001
-    case interruptAndExecute = 3002
-}
-
 public enum ActionParameters {
-    case simple(action: Action, subjectType: SubjectType, subjectId: Int32)
+    case simple(action: ActionId, subjectType: SubjectType, subjectId: Int32)
     case rgbw(
         subjectType: SubjectType,
         subjectId: Int32,
@@ -57,14 +33,14 @@ public enum ActionParameters {
         dimmerCct: Int8
     )
     case rollerShutter(
-        action: Action,
+        action: ActionId,
         subjectType: SubjectType,
         subjectId: Int32,
         percentage: Int8,
         delta: Bool
     )
     case facadeBlind(
-        action: Action,
+        action: ActionId,
         subjectType: SubjectType,
         subjectId: Int32,
         percentage: Int8,
@@ -80,43 +56,4 @@ public enum ActionParameters {
         setpointTemperatureHeat: Float?,
         setpointTemperatureCool: Float?
     )
-}
-
-
-extension Action {
-    func state(_ function: Int32) -> ChannelState {
-        switch (self) {
-        case .open: .default(value: .opened)
-        case .close: .default(value: .closed)
-        case .shut: .default(value: .closed)
-        case .reveal: .default(value: .opened)
-        case .revealPartially: .default(value: .opened)
-        case .shutPartially: .default(value: .closed)
-        case .turnOn:
-            if (function == SuplaFunction.dimmerAndRgbLighting.value) {
-                .rgbAndDimmer(dimmer: .on, rgb: .on)
-            } else {
-                .default(value: .on)
-            }
-        case .turnOff:
-            if (function == SuplaFunction.dimmerAndRgbLighting.value) {
-                .rgbAndDimmer(dimmer: .off, rgb: .off)
-            } else {
-                .default(value: .off)
-            }
-        case .setRgbwParameters: .rgbAndDimmer(dimmer: .on, rgb: .on)
-        case .openClose: .default(value: .opened)
-        case .stop: .default(value: .notUsed)
-        case .toggle: .default(value: .on)
-        case .upOrStop: .default(value: .opened)
-        case .downOrStop: .default(value: .closed)
-        case .stepByStep: .default(value: .opened)
-        case .up: .default(value: .opened)
-        case .down: .default(value: .closed)
-        case .setHvacParameters: .default(value: .on)
-        case .execute: .default(value: .notUsed)
-        case .interrupt: .default(value: .notUsed)
-        case .interruptAndExecute: .default(value: .notUsed)
-        }
-    }
 }

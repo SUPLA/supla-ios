@@ -33,7 +33,7 @@ enum ChannelBaseActionResult {
 }
 
 final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
     @Singleton<ChannelRepository> private var channelRepository
     
     func invoke(_ remoteId: Int32, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
@@ -77,33 +77,33 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
         return Observable.just(.success)
     }
 
-    private func getAction(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Action? {
+    private func getAction(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> ActionId? {
         if (isDownOrUp(channelBase)) {
             if (channelBase.flags & Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS) > 0) {
                 return switch (buttonType) {
-                case .leftButton: Action.downOrStop
-                case .rightButton: Action.upOrStop
+                case .leftButton: .downOrStop
+                case .rightButton: .upOrStop
                 }
             } else {
                 return switch (buttonType) {
-                case .leftButton: Action.shut
-                case .rightButton: Action.reveal
+                case .leftButton: .shut
+                case .rightButton: .reveal
                 }
             }
         }
         if (channelBase.isThermostat() || channelBase.isSwitch()) {
             return switch (buttonType) {
-            case .leftButton: Action.turnOff
-            case .rightButton: Action.turnOn
+            case .leftButton: .turnOff
+            case .rightButton: .turnOn
             }
         }
         if (channelBase.isOpenClose() && buttonType == .rightButton) {
-            return Action.openClose
+            return .openClose
         }
         if (channelBase.isOpenOrClose()) {
             return switch (buttonType) {
-            case .leftButton: Action.close
-            case .rightButton: Action.open
+            case .leftButton: .close
+            case .rightButton: .open
             }
         }
         if (channelBase.isRGBW()) {

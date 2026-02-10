@@ -32,7 +32,7 @@ extension ValveGeneralFeature {
         let onCloseClick: () -> Void
         
         let onWarningDialogDismiss: () -> Void
-        let onForceAction: (Action) -> Void
+        let onForceAction: (ActionId) -> Void
         
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -81,10 +81,10 @@ extension ValveGeneralFeature {
                         header: Strings.General.warning,
                         message: alertDialog.message,
                         onDismiss: onWarningDialogDismiss,
-                        positiveButtonText: alertDialog.positiveButtonText,
-                        negativeButtonText: alertDialog.negativeButtonText,
-                        onPositiveButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
-                        onNegativeButtonClick: onWarningDialogDismiss
+                        primaryButtonSpec: .optional(alertDialog.positiveButtonText),
+                        secondaryButtonText: alertDialog.negativeButtonText,
+                        onPrimaryButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
+                        onSecondaryButtonClick: onWarningDialogDismiss
                     )
                 }
             }

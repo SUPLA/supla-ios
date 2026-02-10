@@ -19,19 +19,43 @@
 import SwiftUI
 
 struct EmptyListView: View {
+    let size: SizeClass
+    
+    init(size: SizeClass = .normal) {
+        self.size = size
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             Image(String.Icons.empty)
                 .resizable(resizingMode: .stretch)
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 64, height: 64)
+                .frame(width: size.iconSize, height: size.iconSize)
                 .foregroundColor(Color.Supla.onSurfaceVariant)
             Text(Strings.Main.noEntries)
-                .fontHeadlineLarge()
+                .if(size == .normal) { $0.fontHeadlineLarge() }
+                .if(size == .small) { $0.fontTitleLarge() }
+        }
+    }
+    
+    enum SizeClass {
+        case normal
+        case small
+    }
+}
+
+private extension EmptyListView.SizeClass {
+    var iconSize: CGFloat {
+        switch (self) {
+        case .normal: 64
+        case .small: 32
         }
     }
 }
 
 #Preview {
-    EmptyListView()
+    VStack {
+        EmptyListView()
+        EmptyListView(size: .small)
+    }
 }

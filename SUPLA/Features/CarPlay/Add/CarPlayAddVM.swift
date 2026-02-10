@@ -20,7 +20,7 @@ import RxSwift
 import SharedCore
 
 extension CarPlayAddFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, Delegate {
         @Singleton<UpdateCarPlayItem.UseCase> private var updateCarPlayItemUseCase
         @Singleton<CreateCarPlayItemUseCase> private var createCarPlayItemUseCase
         @Singleton<CarPlayRefresh.UseCase> private var carPlayRefreshUseCase
@@ -30,7 +30,7 @@ extension CarPlayAddFeature {
         @Singleton<SuplaAppCoordinator> private var coordinator
 
         private let id: NSManagedObjectID?
-        private var selections: [Selection] = []
+        private var selections: [ActionSelection.Selection] = []
 
         init(id: NSManagedObjectID?) {
             self.id = id
@@ -45,21 +45,22 @@ extension CarPlayAddFeature {
             }
         }
 
-        func onProfileChanged(_ profile: ProfileItem) {
-            let subjectType = lastSubjectType(profile.id) ?? state.subjectType
+        func onProfileChanged(_ profile: ActionSelection.ProfileItem?) {
+            guard let profile else { return }
+            let subjectType = selections.lastSubjectType(profile.id) ?? state.subjectType
 
-            let lastSubjectId = self.lastSubjectId(profile.id, subjectType)
-            let lastCaption = self.lastCaption(profile.id, subjectType, lastSubjectId)
-            let lastAction = self.lastAction(profile.id, subjectType, lastSubjectId)
+            let lastSubjectId = selections.lastSubjectId(profile.id, subjectType)
+            let lastCaption = selections.lastCaption(profile.id, subjectType, lastSubjectId)
+            let lastAction = selections.lastAction(profile.id, subjectType, lastSubjectId)
 
-            getSubjectsSource(profile.id, subjectType)
+            ActionSelection.getSubjectsSource(profile.id, subjectType)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] subjects in
                         self?.state.profiles = self?.state.profiles?.changing(path: \.selected, to: profile)
                         self?.state.subjects = subjects.asSelectableList(selectedId: lastSubjectId)
-                        self?.state.caption = lastCaption ?? self?.state.subjects?.selected.label ?? ""
-                        self?.state.actions = self?.state.subjects?.selected.actions.asSelectableList(selectedAction: lastAction)
+                        self?.state.caption = lastCaption ?? self?.state.subjects?.selected?.label ?? ""
+                        self?.state.actions = self?.state.subjects?.selected?.actions.asSelectableList(selectedAction: lastAction)
                     }
                 )
                 .disposed(by: disposeBag)
@@ -68,28 +69,27 @@ extension CarPlayAddFeature {
         func onSubjectTypeChanged(_ subjectType: SubjectType) {
             guard let profile = state.profiles?.selected else { return }
 
-            let lastSubjectId = self.lastSubjectId(profile.id, subjectType)
-            let lastCaption = self.lastCaption(profile.id, subjectType, lastSubjectId)
-            let lastAction = self.lastAction(profile.id, subjectType, lastSubjectId)
+            let lastSubjectId = selections.lastSubjectId(profile.id, subjectType)
+            let lastCaption = selections.lastCaption(profile.id, subjectType, lastSubjectId)
+            let lastAction = selections.lastAction(profile.id, subjectType, lastSubjectId)
 
-            getSubjectsSource(profile.id, subjectType)
+            ActionSelection.getSubjectsSource(profile.id, subjectType)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] subjects in
-                        self?.state.profiles = self?.state.profiles?.changing(path: \.selected, to: profile)
                         self?.state.subjects = subjects.asSelectableList(selectedId: lastSubjectId)
-                        self?.state.caption = lastCaption ?? self?.state.subjects?.selected.label ?? ""
-                        self?.state.actions = self?.state.subjects?.selected.actions.asSelectableList(selectedAction: lastAction)
+                        self?.state.caption = lastCaption ?? self?.state.subjects?.selected?.label ?? ""
+                        self?.state.actions = self?.state.subjects?.selected?.actions.asSelectableList(selectedAction: lastAction)
                     }
                 )
                 .disposed(by: disposeBag)
         }
 
-        func onSubjectChanged(_ subject: SubjectItem) {
-            guard let profile = state.profiles?.selected else { return }
+        func onSubjectChanged(_ subject: ActionSelection.SubjectItem?) {
+            guard let subject, let profile = state.profiles?.selected else { return }
             let subjectType = state.subjectType
-            let lastCaption = self.lastCaption(profile.id, subjectType, subject.remoteId)
-            let lastAction = self.lastAction(profile.id, subjectType, subject.remoteId)
+            let lastCaption = selections.lastCaption(profile.id, subjectType, subject.remoteId)
+            let lastAction = selections.lastAction(profile.id, subjectType, subject.remoteId)
 
             state.subjects = state.subjects?.changing(path: \.selected, to: subject)
             state.caption = lastCaption ?? subject.label
@@ -97,11 +97,11 @@ extension CarPlayAddFeature {
         }
 
         func onCaptionChanged(_ caption: String) {
-            if let profileId = state.profiles?.selected.id,
-               let subjectId = state.subjects?.selected.remoteId,
+            if let profileId = state.profiles?.selected?.id,
+               let subjectId = state.subjects?.selected?.remoteId,
                let action = state.actions?.selected
             {
-                let selection = Selection(
+                let selection = ActionSelection.Selection(
                     profileId: profileId,
                     subjectType: state.subjectType,
                     subjectId: subjectId,
@@ -114,13 +114,14 @@ extension CarPlayAddFeature {
             }
         }
 
-        func onActionChanged(_ action: CarPlayAction) {
+        func onActionChanged(_ action: ActionId?) {
             state.actions = state.actions?.changing(path: \.selected, to: action)
 
-            if let profileId = state.profiles?.selected.id,
-               let subjectId = state.subjects?.selected.remoteId
+            if let action,
+               let profileId = state.profiles?.selected?.id,
+               let subjectId = state.subjects?.selected?.remoteId
             {
-                let selection = Selection(
+                let selection = ActionSelection.Selection(
                     profileId: profileId,
                     subjectType: state.subjectType,
                     subjectId: subjectId,
@@ -151,8 +152,8 @@ extension CarPlayAddFeature {
             if let id {
                 return updateCarPlayItemUseCase.invoke(id: id, caption: state.caption, action: action)
             } else {
-                guard let profileId = state.profiles?.selected.id,
-                      let subjectId = state.subjects?.selected.remoteId else { return Observable.just(()) }
+                guard let profileId = state.profiles?.selected?.id,
+                      let subjectId = state.subjects?.selected?.remoteId else { return Observable.just(()) }
 
                 return createCarPlayItemUseCase.invoke(
                     profileId: profileId,
@@ -186,7 +187,7 @@ extension CarPlayAddFeature {
                 profileRepository.getAllProfiles()
             ) { item, profiles in (item, profiles) }
                 .flatMapFirst { (item, profiles) in
-                    getSubjectsSource(item.profile!.id, item.subjectType).map { (item, profiles, $0) }
+                    ActionSelection.getSubjectsSource(item.profile!.id, item.subjectType).map { (item, profiles, $0) }
                 }
                 .asDriverWithoutError()
                 .drive(
@@ -197,17 +198,14 @@ extension CarPlayAddFeature {
                 .disposed(by: disposeBag)
         }
 
-        private func handleEditItem(_ item: SACarPlayItem, _ profiles: [AuthProfileItem], _ subjects: [CarPlayAddFeature.SubjectItem]) {
+        private func handleEditItem(_ item: SACarPlayItem, _ profiles: [AuthProfileItem], _ subjects: [ActionSelection.SubjectItem]) {
             guard let profile = item.profile else { return }
-
-            let selectedItem = ProfileItem(id: profile.id, label: profile.displayName)
-            let profileItems = profiles.map { ProfileItem(id: $0.id, label: $0.displayName) }
-            state.profiles = SelectableList(selected: selectedItem, items: profileItems)
+            state.profiles = profiles.toActionSelectionItems(profile)
 
             if let selectableSubjects = subjects.asSelectableList(selectedId: item.subjectId) {
                 state.subjects = selectableSubjects
                 state.caption = item.caption ?? ""
-                state.actions = selectableSubjects.selected.actions.asSelectableList(selectedAction: item.action)
+                state.actions = selectableSubjects.selected?.actions.asSelectableList(selectedAction: item.action)
             }
 
             state.showDelete = true
@@ -216,268 +214,21 @@ extension CarPlayAddFeature {
         private func loadForAdd() {
             profileRepository.getAllProfiles()
                 .flatMapFirst { [weak self] profiles in
-                    getSubjectsSource(profiles.first { $0.isActive }?.id ?? profiles[0].id, self?.state.subjectType ?? .channel).map { (profiles, $0) }
+                    ActionSelection.getSubjectsSource(profiles.first { $0.isActive }?.id ?? profiles[0].id, self?.state.subjectType ?? .channel).map { (profiles, $0) }
                 }
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] profiles, subjects in
-                        let selected = profiles.first { $0.isActive } ?? profiles[0]
-                        let selectedItem = ProfileItem(id: selected.id, label: selected.displayName)
-                        let profileItems = profiles.map { ProfileItem(id: $0.id, label: $0.displayName) }
-                        self?.state.profiles = SelectableList(selected: selectedItem, items: profileItems)
-
+                        self?.state.profiles = profiles.toActionSelectionItems()
+                        
                         if let selectableSubjects = subjects.asSelectableList() {
                             self?.state.subjects = selectableSubjects
-                            self?.state.caption = selectableSubjects.selected.label
-                            self?.state.actions = selectableSubjects.selected.actions.asSelectableList()
+                            self?.state.caption = selectableSubjects.selected?.label ?? ""
+                            self?.state.actions = selectableSubjects.selected?.actions.asSelectableList()
                         }
                     }
                 )
                 .disposed(by: disposeBag)
         }
-
-        private func lastSubjectType(_ profileId: Int32) -> SubjectType? {
-            selections.last { $0.profileId == profileId }?.subjectType
-        }
-
-        private func lastSubjectId(_ profileId: Int32, _ subjectType: SubjectType) -> Int32? {
-            selections.last { $0.profileId == profileId && $0.subjectType == subjectType }?.subjectId
-        }
-
-        private func lastCaption(_ profileId: Int32, _ subjectType: SubjectType, _ subjectId: Int32?) -> String? {
-            selections.last { $0.profileId == profileId && $0.subjectType == subjectType && $0.subjectId == subjectId }?.caption
-        }
-
-        private func lastAction(_ profileId: Int32, _ subjectType: SubjectType, _ subjectId: Int32?) -> CarPlayAction? {
-            selections.last { $0.profileId == profileId && $0.subjectType == subjectType && $0.subjectId == subjectId }?.action
-        }
-    }
-}
-
-private struct Selection: Hashable {
-    let profileId: Int32
-    let subjectType: SubjectType
-    let subjectId: Int32
-    let caption: String
-    let action: CarPlayAction
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(profileId)
-        hasher.combine(subjectType)
-        hasher.combine(subjectId)
-    }
-}
-
-private func getSubjectsSource(_ profileId: Int32, _ subjectType: SubjectType) -> Observable<[CarPlayAddFeature.SubjectItem]> {
-    switch (subjectType) {
-    case .channel:
-        @Singleton<ChannelRepository> var channelRepository
-        return channelRepository.getAllVisibleChannels(forProfileId: profileId)
-            .map { items in getSubjectItems(items.filter { $0.hasActions }, { $0.location }, { $0.subjectItem }) }
-    case .group:
-        @Singleton<GroupRepository> var groupRepository
-        return groupRepository.getAllVisibleGroups(forProfileId: profileId)
-            .map { items in getSubjectItems(items.filter { $0.hasActions }, { $0.location }, { $0.subjectItem }) }
-    case .scene:
-        @Singleton<SceneRepository> var sceneRepository
-        return sceneRepository.getAllVisibleScenes(forProfileId: profileId)
-            .map { items in getSubjectItems(items, { $0.location }, { $0.subjectItem }) }
-    }
-}
-
-private func getSubjectItems<T>(_ items: [T], _ locationExporter: (T) -> _SALocation?, _ itemConverter: (T) -> CarPlayAddFeature.SubjectItem) -> [CarPlayAddFeature.SubjectItem] {
-    var result: [CarPlayAddFeature.SubjectItem] = []
-    if (items.isEmpty) {
-        return result
-    }
-
-    let location = locationExporter(items[0])
-    var locationId = location?.location_id?.int32Value ?? 0
-
-    if let location {
-        result.append(location.subjectItem)
-    }
-    for item in items {
-        if let location = locationExporter(item), location.location_id?.int32Value != locationId {
-            result.append(location.subjectItem)
-            locationId = location.location_id?.int32Value ?? 0
-        }
-        result.append(itemConverter(item))
-    }
-
-    return result
-}
-
-private extension SAChannelBase {
-    var hasActions: Bool {
-        SharedCore.SuplaFunction.companion.from(value: self.func).actions.isEmpty == false
-    }
-}
-
-private extension SAChannel {
-    var subjectItem: CarPlayAddFeature.SubjectItem {
-        @Singleton<GetCaptionUseCase> var getCaptionUseCase
-        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
-        @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
-        let suplaFunction = self.func.suplaFuntion
-
-        return CarPlayAddFeature.SubjectItem(
-            id: "C\(remote_id)",
-            remoteId: remote_id,
-            label: getCaptionUseCase.invoke(data: shareable).string,
-            actions: suplaFunction.actions,
-            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(suplaFunction)),
-            isLocation: false
-        )
-    }
-}
-
-private extension SAChannelGroup {
-    var subjectItem: CarPlayAddFeature.SubjectItem {
-        @Singleton<GetCaptionUseCase> var getCaptionUseCase
-        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
-        @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
-        let suplaFunction = self.func.suplaFuntion
-
-        return CarPlayAddFeature.SubjectItem(
-            id: "G\(remote_id)",
-            remoteId: remote_id,
-            label: getCaptionUseCase.invoke(data: shareable).string,
-            actions: suplaFunction.actions,
-            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(suplaFunction)),
-            isLocation: false
-        )
-    }
-}
-
-private extension SAScene {
-    var subjectItem: CarPlayAddFeature.SubjectItem {
-        @Singleton<GetSceneIconUseCase> var getSceneIconUseCase
-
-        return CarPlayAddFeature.SubjectItem(
-            id: "S\(sceneId)",
-            remoteId: sceneId,
-            label: caption ?? "",
-            actions: [.execute, .interrupt, .interruptAndExecute],
-            icon: getSceneIconUseCase.invoke(self),
-            isLocation: false
-        )
-    }
-}
-
-private extension _SALocation {
-    var subjectItem: CarPlayAddFeature.SubjectItem {
-        CarPlayAddFeature.SubjectItem(
-            id: "L\(location_id ?? 0)",
-            remoteId: location_id?.int32Value ?? 0,
-            label: caption ?? "",
-            actions: [],
-            icon: nil,
-            isLocation: true
-        )
-    }
-}
-
-private extension SharedCore.SuplaFunction {
-    var actions: [CarPlayAction] {
-        switch self {
-        case .openSensorGateway,
-             .openSensorGate,
-             .openSensorGarageDoor,
-             .openSensorDoor,
-             .noLiquidSensor,
-             .depthSensor,
-             .distanceSensor,
-             .openingSensorWindow,
-             .hotelCardSensor,
-             .alarmArmamentSensor,
-             .mailSensor,
-             .windSensor,
-             .pressureSensor,
-             .rainSensor,
-             .weightSensor,
-             .weatherStation,
-             .thermometer,
-             .humidity,
-             .humidityAndTemperature,
-             .unknown,
-             .openSensorRollerShutter,
-             .openSensorRoofWindow,
-             .ring,
-             .alarm,
-             .notification,
-             .electricityMeter,
-             .icElectricityMeter,
-             .icGasMeter,
-             .icWaterMeter,
-             .icHeatMeter,
-             .generalPurposeMeasurement,
-             .generalPurposeMeter,
-             .digiglassHorizontal,
-             .digiglassVertical,
-             .container,
-             .septicTank,
-             .waterTank,
-             .containerLevelSensor,
-             .floodSensor,
-             .pumpSwitch,
-             .heatOrColdSourceSwitch,
-             .none,
-             .motionSensor,
-             .binarySensor: []
-
-        case .controllingTheDoorLock,
-             .controllingTheGatewayLock: [.open]
-
-        case .controllingTheGate,
-             .controllingTheGarageDoor: [.openClose, .open, .close]
-
-        case .controllingTheRollerShutter,
-             .controllingTheRoofWindow,
-             .controllingTheFacadeBlind,
-             .verticalBlind,
-             .rollerGarageDoor: [.shut, .reveal]
-
-        case .powerSwitch,
-             .lightswitch,
-             .staircaseTimer,
-             .dimmer,
-             .dimmerCct,
-             .rgbLighting,
-             .dimmerCctAndRgb,
-             .dimmerAndRgbLighting,
-             .thermostatHeatpolHomeplus,
-             .hvacThermostat,
-             .hvacThermostatHeatCool,
-             .hvacDomesticHotWater: [.turnOn, .turnOff, .toggle]
-
-        case .valveOpenClose, .valvePercentage: [.open, .close]
-
-        case .terraceAwning,
-             .projectorScreen,
-             .curtain: [.expand, .collapse]
-        }
-    }
-}
-
-private extension Array where Element == CarPlayAddFeature.SubjectItem {
-    func asSelectableList(selectedId: Int32? = nil) -> SelectableList<CarPlayAddFeature.SubjectItem>? {
-        if (isEmpty) {
-            return nil
-        }
-
-        let selected = first { $0.remoteId == selectedId } ?? first { !$0.isLocation }!
-        return SelectableList(selected: selected, items: self)
-    }
-}
-
-private extension Array where Element == CarPlayAction {
-    func asSelectableList(selectedAction: CarPlayAction? = nil) -> SelectableList<CarPlayAction>? {
-        if (isEmpty) {
-            return nil
-        }
-
-        let selected = first { $0 == selectedAction } ?? first!
-        return SelectableList(selected: selected, items: self)
     }
 }

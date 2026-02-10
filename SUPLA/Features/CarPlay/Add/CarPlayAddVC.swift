@@ -24,13 +24,7 @@ extension CarPlayAddFeature {
             
             contentView = View(
                 viewState: viewModel.state,
-                onProfileChanged: viewModel.onProfileChanged,
-                onSubjectTypeChanged: viewModel.onSubjectTypeChanged,
-                onSubjectChanged: viewModel.onSubjectChanged,
-                onCaptionChanged: viewModel.onCaptionChanged,
-                onActionChanged: viewModel.onActionChanged,
-                onSave: viewModel.onSave,
-                onDelete: viewModel.onDelete
+                delegate: viewModel
             )
             
             title = BrandingConfiguration.actionsLabel
