@@ -69,7 +69,7 @@ extension DimmerCctDetailFeature {
         }
         
         override func getOriginalButtonIcon(_ value: ChannelState.Value) -> IconResult {
-            .originalSuplaIcon(name: value == .on ? .Icons.fncDimmerCctOn : .Icons.fncDimmerCctOn)
+            .originalSuplaIcon(name: value == .on ? .Icons.fncDimmerCctOn : .Icons.fncDimmerCctOff)
         }
         
         func onCctSelectionStarted() {

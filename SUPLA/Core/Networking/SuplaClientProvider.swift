@@ -50,7 +50,7 @@ extension SuplaClientProtocol {
             parameters.Color = color
             parameters.ColorRandom = colorRandom ? 1 : 0
             parameters.OnOff = onOff ? 1 : 0
-            parameters.DimmerCct = dimmerCct
+            parameters.WhiteTemperature = dimmerCct
             
             return executeAction(
                 Action.setRgbwParameters.rawValue,
