@@ -1,87 +1,87 @@
 
 /* Class = "UILabel"; text = "This feature helps LED lamps switch on at low brightness settings by providing an initial boost. Move the dark grey slider around the wheel to increase the boost level at switch-on, indicated by the green line. After the boost the brightness will return to the previously set level."; ObjectID = "0xu-kG-dd0"; */
-"0xu-kG-dd0.text" = "Bu funksiya LED lampaların aşağı parlaqlıqda açılmasını ilkin boost təmin edərək asanlaşdırır. Təkərin ətrafında qaranlıq boz slayderi hərəkət etdirərək açılma zamanı boost səviyyəsini artırın (yaşıl xətt ilə göstərilir). Boost-dan sonra parlaqlıq əvvəlki səviyyəyə qayıdacaq.";
+"0xu-kG-dd0.text" = "Ez a funkció elősegíti a LED-világítás bekapcsolását memorizált alacsony fényerő mellett, indítást biztosítva a fényerő növeléséhez (erősítéséhez). A sötétszürke csúszkát a kerék körül mozgatva növelheti vagy csökkentheti az erősítés szintjét, amelyet zöld vonallal jelölnek. A világítás bekapcsolásakor a fényerő szintje az előre beállított értékre növekszik (fokozódik), majd visszatér a memória szintjére, mielőtt a világítást kikapcsolná.";
 
 /* Class = "UILabel"; text = "Mode 3: Alternative Trailing-Edge Dimming"; ObjectID = "2DG-ft-MTM"; */
-"2DG-ft-MTM.text" = "Rejim 3: Alternative Trailing-Edge Dimming";
+"2DG-ft-MTM.text" = "3. mód: Tompítás leeső éllel (Alternatív)";
 
 /* Class = "UILabel"; text = "Boost"; ObjectID = "2bB-RD-kAw"; */
-"2bB-RD-kAw.text" = "Boost";
+"2bB-RD-kAw.text" = "Erősítés";
 
 /* Class = "UILabel"; text = "Dimmer control"; ObjectID = "4OO-1Q-8uX"; */
 "4OO-1Q-8uX.text" = "Dimmer control";
 
 /* Class = "UILabel"; text = "The LED is always off, unless the device is in wifi configuration mode (AP Mode)."; ObjectID = "6dw-or-dvd"; */
-"6dw-or-dvd.text" = "LED həmişə sönükdür, cihaz Wi-Fi konfiqurasiya rejimində olmadığı halda (AP Mode).";
+"6dw-or-dvd.text" = "A LED mindig ki van kapcsolva, kivéve, ha az eszköz Wi-Fi konfigurációs módban dolgozik (AP mód) van.";
 
 /* Class = "UILabel"; text = "The LED is on if there is a connection to the server."; ObjectID = "7JR-5s-b4L"; */
-"7JR-5s-b4L.text" = "LED server ilə əlaqə varsa yanır.";
+"7JR-5s-b4L.text" = "A LED világít, ha létrejött a kapcsolat a szerverrel.";
 
 /* Class = "UILabel"; text = "Input options"; ObjectID = "7Pp-Da-Sq6"; */
-"7Pp-Da-Sq6.text" = "Giriş seçimləri";
+"7Pp-Da-Sq6.text" = "Belépési lehetőségek";
 
 /* Class = "UILabel"; text = "Control the dimmer by moving the control button on the brightness slider / wheel."; ObjectID = "7Ve-N3-qrQ"; */
-"7Ve-N3-qrQ.text" = "Control the dimmer by moving the control button on the brightness slider / wheel.";
+"7Ve-N3-qrQ.text" = "A dimmer vezérléséhez húzza a vezérlőgombot a fényerő csúszkán / tárcsán.";
 
 /* Class = "UIButton"; normalTitle = "https://www.varilight.co.uk/vps001"; ObjectID = "7fk-lS-lub"; */
 "7fk-lS-lub.normalTitle" = "https://www.varilight.co.uk/vps001";
 
 /* Class = "UILabel"; text = "More information on can be found at"; ObjectID = "A9M-mh-nPk"; */
-"A9M-mh-nPk.text" = "Ətraflı məlumatı burada tapa bilərsiniz";
+"A9M-mh-nPk.text" = "A fényerő-szabályozóval kapcsolatban további információk találhatók a ... címen";
 
 /* Class = "UILabel"; text = "The LED is always off, unless the device is in wifi configuration mode (AP Mode)."; ObjectID = "H16-6M-1bj"; */
-"H16-6M-1bj.text" = "LED həmişə sönükdür, cihaz Wi-Fi konfiqurasiya rejimində olmadığı halda (AP Mode).";
+"H16-6M-1bj.text" = "A LED mindig ki van kapcsolva, kivéve, ha az eszköz Wi-Fi konfigurációs módban dolgozik (AP mód) van.";
 
 /* Class = "UILabel"; text = "Information"; ObjectID = "Jyz-3V-0h0"; */
-"Jyz-3V-0h0.text" = "Məlumat";
+"Jyz-3V-0h0.text" = "Információ";
 
 /* Class = "UILabel"; text = "Dimming Mode / Operating Range"; ObjectID = "LXk-or-azu"; */
-"LXk-or-azu.text" = "Dimmer rejimi / İşləmə diapazonu";
+"LXk-or-azu.text" = "Tompítási mód/Működési hatótáv";
 
 /* Class = "UILabel"; text = "The option changes the behavior of the dimmer when the lighting is turned on by using the bistable button. If the option is enabled, the dimmer will set the full brightness level right after turning on the lighting. If the option is disabled, the dimmer will set the brightness level saved before turning off the lighting."; ObjectID = "NGz-cs-cov"; */
-"NGz-cs-cov.text" = "Bu seçim bistable düymə ilə işıqlandırma açıldıqda dimmerin davranışını dəyişir. Seçim aktivdirsə, işıqlandırma açıldıqdan sonra dimmer tam parlaqlıq səviyyəsini təyin edir. Deaktivdirsə, dimmer əvvəlki yadda saxlanmış parlaqlıq səviyyəsini təyin edir.";
+"NGz-cs-cov.text" = "Ez az opció megváltoztatja a sötétítő viselkedését, ha a világítás be van kapcsolva a bistabilis gombbal. Ha az opció be van kapcsolva, a sötétítő rögtön beállítja a maximális fényerőt a világítás bekapcsolásakor. Ha a beállítás ki van kapcsolva, a sötétítő beállítja a kikapcsolás előtt elmentett fényerő szintjét.";
 
 /* Class = "UILabel"; text = "Change the operating range by moving the dark grey sliders around the wheel to adjust the minimum and maximum brightness levels."; ObjectID = "TPI-HM-L6F"; */
-"TPI-HM-L6F.text" = "Minimum və maksimum parlaqlığı tənzimləmək üçün tünd boz slayderləri fırlanan çarx ətrafında hərəkət etdirin.";
+"TPI-HM-L6F.text" = "Állítsa be a sötétítő teljesítménytartományát a minimális és maximális fényerővel. A minimális és maximális értékeket a kerék mindkét oldalán elhelyezett csúszkák mozgatásával állíthatja be.";
 
 /* Class = "UILabel"; text = "Operating Range"; ObjectID = "WQT-if-7jN"; */
-"WQT-if-7jN.text" = "İşləmə diapazonu";
+"WQT-if-7jN.text" = "Működési hatótáv";
 
 /* Class = "UILabel"; text = "Information"; ObjectID = "XIr-wJ-ncG"; */
-"XIr-wJ-ncG.text" = "Məlumat";
+"XIr-wJ-ncG.text" = "Információ";
 
 /* Class = "UILabel"; text = "The LED is off if there is a connection to the server."; ObjectID = "Xe0-nk-NzR"; */
-"Xe0-nk-NzR.text" = "LED server ilə əlaqə varsa sönükdür.";
+"Xe0-nk-NzR.text" = "A LED nem világít, ha létrejött a kapcsolat a szerverrel.";
 
 /* Class = "UILabel"; text = "The LED is on if there is a connection to the server."; ObjectID = "Z2E-W9-Fly"; */
-"Z2E-W9-Fly.text" = "LED server ilə əlaqə varsa yanır.";
+"Z2E-W9-Fly.text" = "A LED világít, ha létrejött a kapcsolat a szerverrel.";
 
 /* Class = "UILabel"; text = "Status LED"; ObjectID = "eA6-IA-uy5"; */
-"eA6-IA-uy5.text" = "LED vəziyyəti";
+"eA6-IA-uy5.text" = "LED állapot";
 
 /* Class = "UILabel"; text = "Information"; ObjectID = "fMA-es-G9m"; */
-"fMA-es-G9m.text" = "Məlumat";
+"fMA-es-G9m.text" = "Információ";
 
 /* Class = "UILabel"; text = "The LED is off if there is a connection to the server."; ObjectID = "hEW-P7-NJd"; */
-"hEW-P7-NJd.text" = "LED server ilə əlaqə varsa sönükdür.";
+"hEW-P7-NJd.text" = "A LED nem világít, ha létrejött a kapcsolat a szerverrel.";
 
 /* Class = "UILabel"; text = "Fine tune the performance of your LED lights by selecting a different dimming mode or change the operating range by moving the dark grey sliders around the wheel to adjust the minimum and maximum brightness levels."; ObjectID = "hjF-xx-wmR"; */
-"hjF-xx-wmR.text" = "LED lampalarınızın performansını fərqli dimmer rejimi seçərək və ya təkərin ətrafında qaranlıq boz slayderləri hərəkət etdirərək minimum və maksimum parlaqlığı tənzimləyərək incə tənzimləyin.";
+"hjF-xx-wmR.text" = "A megfelelő mód kiválasztásával állítsa be a LED-es világítás tompítási teljesítményét. Állítsa be a fényerő-szabályozó munkaterületét is a minimális és a maximális fényerő szintjének beállításával. A minimális és maximális érték a kerék mindkét oldalán található csúszkák mozgatásával állítható be.";
 
 /* Class = "UILabel"; text = "Status LED"; ObjectID = "i9I-y3-jJD"; */
-"i9I-y3-jJD.text" = "LED vəziyyəti";
+"i9I-y3-jJD.text" = "LED állapot";
 
 /* Class = "UILabel"; text = "Switch on and off by tapping the on/off button. The dimmer will remember the previous brightness setting."; ObjectID = "tLa-FJ-5go"; */
-"tLa-FJ-5go.text" = "Switch on and off by tapping the on/off button. The dimmer will remember the previous brightness setting.";
+"tLa-FJ-5go.text" = "Kapcsold be és ki a be/ki gomb megérintésével. A dimmer megjegyzi az előző fényerő-beállítást.";
 
 /* Class = "UILabel"; text = "Tap the config icon to adjust dimming settings."; ObjectID = "udP-oX-Wat"; */
-"udP-oX-Wat.text" = "Tap the config icon to adjust dimming settings.";
+"udP-oX-Wat.text" = "Érintse meg a beállítások ikont a fényerő-szabályozási beállítások módosításához.";
 
 /* Class = "UILabel"; text = "Mode 1: V-Pro Trailing-Edge Dimming"; ObjectID = "v5A-Vl-lQN"; */
-"v5A-Vl-lQN.text" = "Rejim 1: V-Pro Trailing-Edge Dimming";
+"v5A-Vl-lQN.text" = "1. mód: Tompítás leeső éllel (V-Pro)";
 
 /* Class = "UILabel"; text = "Mode 2: Leading-Edge Dimming"; ObjectID = "vr4-XF-HzG"; */
-"vr4-XF-HzG.text" = "Rejim 2: Leading-Edge Dimming";
+"vr4-XF-HzG.text" = "2. mód: Tompítás emelkedő éllel";
 
 /* Class = "UILabel"; text = "This option changes the behavior of the input to which the monostable button is connected. In case the option is disabled, the dimmer stops brightening the light when the full brightness level is reached and in case of dimming, at the lowest brightness level. Enabling this option will switch to the minimum level as soon as the maximum brightness is reached, and in the case of dimming to the maximum value, as soon as the minimum is reached. Brightening / dimming will continue as long as the button is pressed."; ObjectID = "yBd-Ha-yfd"; */
-"yBd-Ha-yfd.text" = "Bu seçim monostable düyməyə qoşulmuş girişin davranışını dəyişir. Seçim deaktivdirsə, dimmer tam parlaqlığa çatdıqda işıqlandırmanı artırmayı dayandırır, ən aşağı parlaqlıqda isə dimming edir. Seçim aktivdirsə, maksimum parlaqlığa çatanda minimum səviyyəyə keçilir və dimming zamanı minimuma çatanda maksimum səviyyəyə qayıdır. İşıqlandırma / dimming düymə basılı olduğu müddətcə davam edir.";
+"yBd-Ha-yfd.text" = "Ez az opció megváltoztatja a bemenet viselkedését, amelyhez a monostabil gomb csatlakozik. Ha az opciót kikapcsolták, a sötétítő leállítja a világítási folyamatot, amikor a maximális fényerő szintet érjük el, és sötétítés esetén, amikor a minimális szintet érjük el. Ennek a beállításnak a bekapcsolása a maximális fényerő elérésekor a minimálisra, sötétedés esetén pedig a maximálisra vált, miután elérte a minimum értéket. A világítás/sötétedés addig tart, amíg megnyomja a gombot.";
