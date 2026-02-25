@@ -3,7 +3,7 @@
 "1SC-7w-YLd.text" = "0.00";
 
 /* Class = "UILabel"; text = "Duration of the TURBO mode"; ObjectID = "5iX-rc-Viy"; */
-"5iX-rc-Viy.text" = "TURBO rejiminin müddəti";
+"5iX-rc-Viy.text" = "A TURBÓ üzemmód időtartama";
 
 /* Class = "UILabel"; text = "3 h"; ObjectID = "9Sg-3R-fXZ"; */
 "9Sg-3R-fXZ.text" = "3 h";
@@ -15,7 +15,7 @@
 "QMU-9W-tRX.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "MANUAL"; ObjectID = "RXJ-hp-AST"; */
-"RXJ-hp-AST.normalTitle" = "MANUAL";
+"RXJ-hp-AST.normalTitle" = "NORMÁLIS";
 
 /* Class = "UILabel"; text = "5°"; ObjectID = "RkN-Zh-C5c"; */
 "RkN-Zh-C5c.text" = "5°";
@@ -30,22 +30,22 @@
 "dn7-Mf-fO1.text" = "17°";
 
 /* Class = "UIButton"; normalTitle = "ON"; ObjectID = "mxn-xd-sgq"; */
-"mxn-xd-sgq.normalTitle" = "ON";
+"mxn-xd-sgq.normalTitle" = "BEKAPCSOLVA";
 
 /* Class = "UILabel"; text = "Higher temperature in AUTO mode"; ObjectID = "oUh-5I-hqg"; */
-"oUh-5I-hqg.text" = "AUTO rejimində daha yüksək temperatur";
+"oUh-5I-hqg.text" = "Kényelmi hőmérséklet AUTO módban";
 
 /* Class = "UIButton"; normalTitle = "AUTO"; ObjectID = "pbd-am-y6L"; */
 "pbd-am-y6L.normalTitle" = "AUTO";
 
 /* Class = "UILabel"; text = "Maximum water temperature"; ObjectID = "q66-xm-DaZ"; */
-"q66-xm-DaZ.text" = "Maksimum su temperaturu";
+"q66-xm-DaZ.text" = "A víz maximális hőmérséklete";
 
 /* Class = "UILabel"; text = "Lower temperature in AUTO mode"; ObjectID = "sCn-Z8-huV"; */
-"sCn-Z8-huV.text" = "AUTO rejimində daha aşağı temperatur";
+"sCn-Z8-huV.text" = "A víz maximális hőmérséklete";
 
 /* Class = "UIButton"; normalTitle = "TURBO"; ObjectID = "u97-J1-5hH"; */
-"u97-J1-5hH.normalTitle" = "TURBO";
+"u97-J1-5hH.normalTitle" = "TURBÓ";
 
 /* Class = "UILabel"; text = "Temperature reduction in ECO mode"; ObjectID = "wzO-cl-uG7"; */
-"wzO-cl-uG7.text" = "ECO rejimində temperatur azaldılması";
+"wzO-cl-uG7.text" = "Hőmérséklet csökkentése ECO módban";

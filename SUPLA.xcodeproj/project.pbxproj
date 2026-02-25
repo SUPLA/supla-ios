@@ -1631,25 +1631,11 @@
 		017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hp_plus@3x.png"; sourceTree = "<group>"; };
 		017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hp_minus@3x.png"; sourceTree = "<group>"; };
 		0178248D28426C8F004313C2 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
-		017A08A52499699600DCF5BD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08A72499699800DCF5BD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08A92499699900DCF5BD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08AB2499699A00DCF5BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08AD2499699A00DCF5BD /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08AF2499699B00DCF5BD /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Resources/it.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08B12499699C00DCF5BD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08B32499699D00DCF5BD /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08B52499699D00DCF5BD /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08B72499699E00DCF5BD /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/RGBWDetail.strings"; sourceTree = "<group>"; };
-		017A08BB249969A000DCF5BD /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/RGBWDetail.strings"; sourceTree = "<group>"; };
-		017A08BD249969A100DCF5BD /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A08BF249969A200DCF5BD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017D392229244A66005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		017D392329244A66005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
 		017D392429244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		017D392529244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		017D392629244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
-		017D392929244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017D392C29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		017D393129244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		017D393229244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
@@ -2245,6 +2231,16 @@
 		A54E2AFC2E4612A5003F2926 /* AddWizardManualReconnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardManualReconnect.swift; sourceTree = "<group>"; };
 		A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
+		A54EFE482F449FD5001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		A54EFE492F449FE4001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
+		A54EFE4A2F449FE5001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
+		A54EFE4B2F449FE7001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		A54EFE4C2F449FE8001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		A54EFE4E2F449FEF001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		A54EFE4F2F449FEF001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
+		A54EFE502F449FF0001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		A54EFE512F449FF0001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		A54EFE522F449FF1001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A550F2802D52014A0011463B /* SUPLA 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 21.xcdatamodel"; sourceTree = "<group>"; };
 		A550F2812D520F6C0011463B /* HistoryMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMeasurement.swift; sourceTree = "<group>"; };
 		A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMeasurementItemRepository.swift; sourceTree = "<group>"; };
@@ -2365,7 +2361,6 @@
 		A56363D02EDF181100A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		A56363D12EDF181200A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
-		A56363D32EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		A56363D42EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		A56363D52EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
 		A56363D62EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
@@ -7612,6 +7607,7 @@
 				nl,
 				uk,
 				az,
+				hu,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
 			preferredProjectObjectVersion = 77;
@@ -9247,6 +9243,7 @@
 				010714A02656EC62009C119F /* es */,
 				017D392629244A68005F45FA /* uk */,
 				A56363D22EDF181300A702C0 /* az */,
+				A54EFE4C2F449FE8001C9BA8 /* hu */,
 			);
 			name = SAZWaveWakeupSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -9270,6 +9267,7 @@
 				010714E62656F6CA009C119F /* es */,
 				017D392329244A66005F45FA /* uk */,
 				A56363CF2EDF180C00A702C0 /* az */,
+				A54EFE492F449FE4001C9BA8 /* hu */,
 			);
 			name = SAZWaveConfigurationWizardVC.xib;
 			sourceTree = "<group>";
@@ -9293,6 +9291,7 @@
 				012FF47628FB5CC900D421FD /* es */,
 				017D393429244AF5005F45FA /* uk */,
 				A56363D52EDF181300A702C0 /* az */,
+				A54EFE4F2F449FEF001C9BA8 /* hu */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
@@ -9316,6 +9315,7 @@
 				F40AA5DE28AEB5F700DE173D /* sl */,
 				017D393129244A6D005F45FA /* uk */,
 				A56363D62EDF181300A702C0 /* az */,
+				A54EFE502F449FF0001C9BA8 /* hu */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -9338,6 +9338,7 @@
 				F40AA5DC28AEAD9E00DE173D /* sl */,
 				017D392429244A67005F45FA /* uk */,
 				A56363D02EDF181100A702C0 /* az */,
+				A54EFE4A2F449FE5001C9BA8 /* hu */,
 			);
 			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -9361,6 +9362,7 @@
 				F40AA5E028AEB63300DE173D /* sl */,
 				017D393229244A6D005F45FA /* uk */,
 				A56363D72EDF181300A702C0 /* az */,
+				A54EFE512F449FF0001C9BA8 /* hu */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -9383,6 +9385,7 @@
 				F40AA5E228AEB6F600DE173D /* sl */,
 				017D392529244A67005F45FA /* uk */,
 				A56363D12EDF181200A702C0 /* az */,
+				A54EFE4B2F449FE7001C9BA8 /* hu */,
 			);
 			name = SASuperuserAuthorizationDialog.xib;
 			sourceTree = "<group>";
@@ -9426,6 +9429,7 @@
 				01BF82EA234756B600C9EE9F /* nl */,
 				017D392229244A66005F45FA /* uk */,
 				A56363CE2EDF180A00A702C0 /* az */,
+				A54EFE482F449FD5001C9BA8 /* hu */,
 			);
 			name = HomePlusDetailViewGroupCell.xib;
 			sourceTree = "<group>";
@@ -9449,6 +9453,7 @@
 				01BF82E7234756B500C9EE9F /* nl */,
 				017D392C29244A6B005F45FA /* uk */,
 				A56363D42EDF181300A702C0 /* az */,
+				A54EFE4E2F449FEF001C9BA8 /* hu */,
 			);
 			name = HomePlusDetailView.xib;
 			sourceTree = "<group>";
@@ -9457,21 +9462,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				40DB209A1DC904BF00FAFAB0 /* Base */,
-				017A08A52499699600DCF5BD /* cs */,
-				017A08A72499699800DCF5BD /* nl */,
-				017A08A92499699900DCF5BD /* fr */,
-				017A08AB2499699A00DCF5BD /* de */,
-				017A08AD2499699A00DCF5BD /* el */,
-				017A08AF2499699B00DCF5BD /* it */,
-				017A08B12499699C00DCF5BD /* lt */,
-				017A08B32499699D00DCF5BD /* nb */,
-				017A08B52499699D00DCF5BD /* pl */,
-				017A08B72499699E00DCF5BD /* pt-PT */,
-				017A08BB249969A000DCF5BD /* sk-SK */,
-				017A08BD249969A100DCF5BD /* sl */,
-				017A08BF249969A200DCF5BD /* es */,
-				017D392929244A6A005F45FA /* uk */,
-				A56363D32EDF181300A702C0 /* az */,
 			);
 			name = RGBWDetail.xib;
 			sourceTree = "<group>";
@@ -9495,6 +9485,7 @@
 				01BF82EB234756B600C9EE9F /* nl */,
 				017D393329244A6D005F45FA /* uk */,
 				A56363D82EDF181400A702C0 /* az */,
+				A54EFE522F449FF1001C9BA8 /* hu */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

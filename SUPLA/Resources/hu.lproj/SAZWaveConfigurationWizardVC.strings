@@ -1,84 +1,84 @@
 
 /* Class = "UILabel"; text = "Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function."; ObjectID = "107-YY-mJ9"; */
-"107-YY-mJ9.text" = "Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function.";
+"107-YY-mJ9.text" = "Az alábbiakban a kiválasztott csatorna részleteit találja. Határozza meg a csatorna célját a megfelelő funkció kiválasztásával.";
 
 /* Class = "UILabel"; text = "Device"; ObjectID = "56E-9V-mlp"; */
-"56E-9V-mlp.text" = "Cihaz";
+"56E-9V-mlp.text" = "Eszköz";
 
 /* Class = "UIButton"; normalTitle = "DELETE DEVICE"; ObjectID = "6df-IH-8y9"; */
-"6df-IH-8y9.normalTitle" = "Cihazı sil";
+"6df-IH-8y9.normalTitle" = "Eszköz eltávolítása";
 
 /* Class = "UIButton"; normalTitle = "ADD DEVICE"; ObjectID = "BTs-3M-6Pr"; */
-"BTs-3M-6Pr.normalTitle" = "Cihaz əlavə et";
+"BTs-3M-6Pr.normalTitle" = "Eszköz hozzáadása";
 
 /* Class = "UILabel"; text = "Function"; ObjectID = "CrA-tu-0Ln"; */
-"CrA-tu-0Ln.text" = "Funksiya";
+"CrA-tu-0Ln.text" = "Funkció";
 
 /* Class = "UILabel"; text = "It will take a while"; ObjectID = "F61-xF-s7k"; */
-"F61-xF-s7k.text" = "Bir az vaxt aparacaq";
+"F61-xF-s7k.text" = "Ez eltart egy ideig";
 
 /* Class = "UILabel"; text = "Channel id"; ObjectID = "FAh-Cm-D3c"; */
-"FAh-Cm-D3c.text" = "Kanal ID";
+"FAh-Cm-D3c.text" = "Csatorna azonosító";
 
 /* Class = "UILabel"; text = "Device id"; ObjectID = "HEE-CO-WJl"; */
-"HEE-CO-WJl.text" = "Cihaz ID";
+"HEE-CO-WJl.text" = "Eszköz azonosító";
 
 /* Class = "UILabel"; text = "Channel number"; ObjectID = "INT-0e-b9R"; */
-"INT-0e-b9R.text" = "Kanal nömrəsi";
+"INT-0e-b9R.text" = "Csatorna száma";
 
 /* Class = "UILabel"; text = "Press back to return to the previous step or \"Exit\" to finish."; ObjectID = "OTk-BD-soD"; */
-"OTk-BD-soD.text" = "Əvvəlki mərhələyə qayıtmaq üçün geri düyməsini, ya da bitirmək üçün \"Exit\" düyməsini basın.";
+"OTk-BD-soD.text" = "Nyomja meg a \"Vissza\" gombot az előző lépéshez való visszatéréshez, vagy a \"Kilépés\" gombot a befejezéshez.";
 
 /* Class = "UILabel"; text = "You can also change the wake-up settings by pressing the icon below."; ObjectID = "Os0-or-7MN"; */
-"Os0-or-7MN.text" = "Aşağıdakı ikonaya toxunaraq oyanma parametrlərini dəyişə bilərsiniz.";
+"Os0-or-7MN.text" = "Az ébresztési beállításokat az alábbi ikon megnyomásával is megváltoztathatja.";
 
 /* Class = "UILabel"; text = "Z-Wave wizard"; ObjectID = "TtI-D6-hIQ"; */
-"TtI-D6-hIQ.text" = "Z-Wave sihirbazı";
+"TtI-D6-hIQ.text" = "Z-wave varázsló";
 
 /* Class = "UILabel"; text = "Caption"; ObjectID = "VR4-Zp-AZ8"; */
-"VR4-Zp-AZ8.text" = "Başlıq";
+"VR4-Zp-AZ8.text" = "Aláírás";
 
 /* Class = "UILabel"; text = "Z-Wave device"; ObjectID = "Ymn-D1-eWm"; */
-"Ymn-D1-eWm.text" = "Z-Wave cihazı";
+"Ymn-D1-eWm.text" = "Z-wave eszköz";
 
 /* Class = "UILabel"; text = "Z-wave network"; ObjectID = "a7s-5S-iHt"; */
-"a7s-5S-iHt.text" = "Z-wave şəbəkəsi";
+"a7s-5S-iHt.text" = "Z-wave hálózat";
 
 /* Class = "UIButton"; normalTitle = "RESET NETWORK AND SETTINGS"; ObjectID = "amT-2P-EgB"; */
-"amT-2P-EgB.normalTitle" = "Şəbəkəni və tənzimləmələri sıfırla";
+"amT-2P-EgB.normalTitle" = "A hálózat és a beállítások visszaállítása";
 
 /* Class = "UILabel"; text = "Done! Now you can finish the configuration process by pressing \"OK\" or you can press back to configure the next channel or change existing settings."; ObjectID = "cGP-Ha-UqZ"; */
-"cGP-Ha-UqZ.text" = "Tamamlandı! İndi konfiqurasiya prosesini \"OK\" düyməsini basaraq bitirə bilərsiniz və ya növbəti kanalı konfiqurasiya etmək və ya mövcud tənzimləmələri dəyişdirmək üçün geri düyməsini basa bilərsiniz.";
+"cGP-Ha-UqZ.text" = "Befejezett! Most befejezheti a konfigurációs folyamatot az \"ok\" gomb megnyomásával, vagy visszaléphet egy másik csatorna konfigurálásához vagy az aktuális beállítások módosításához.";
 
 /* Class = "UILabel"; text = "Device name"; ObjectID = "egA-F9-6fa"; */
-"egA-F9-6fa.text" = "Cihaz adı";
+"egA-F9-6fa.text" = "Eszköz neve";
 
 /* Class = "UILabel"; text = "Software version"; ObjectID = "hcP-PE-jBL"; */
-"hcP-PE-jBL.text" = "Proqram təminatı versiyası";
+"hcP-PE-jBL.text" = "Szoftver verzió";
 
 /* Class = "UILabel"; text = "Function"; ObjectID = "kWy-QX-AJU"; */
-"kWy-QX-AJU.text" = "Funksiya";
+"kWy-QX-AJU.text" = "Funkció";
 
 /* Class = "UILabel"; text = "Select the z-wave device that will be associated with the Supla channel."; ObjectID = "kc9-9O-Tmh"; */
-"kc9-9O-Tmh.text" = "Supla kanalı ilə əlaqələndiriləcək z-wave cihazını seçin.";
+"kc9-9O-Tmh.text" = "Válassza ki a z-wave eszközt, amely a Supla oldalon a csatornához lesz kötve.";
 
 /* Class = "UILabel"; text = "Select the z-wave bridge and then the channel you want to configure."; ObjectID = "kif-QE-f8n"; */
-"kif-QE-f8n.text" = "Z-wave körpüsünü seçin, sonra konfiqurasiya etmək istədiyiniz kanalı seçin.";
+"kif-QE-f8n.text" = "Válassza ki a z-wave hidat, majd a konfigurálni kívánt csatornát.";
 
 /* Class = "UILabel"; text = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes."; ObjectID = "l1n-Id-vnO"; */
-"l1n-Id-vnO.text" = "Davam etməzdən əvvəl, bütün z-wave cihazlarınızın onlayn olduğundan əmin olun. \"Next\" düyməsini basmaq z-wave şəbəkənizi axtaracaq, bu bir neçə saniyədən bir neçə dəqiqəyə qədər çəkə bilər.";
+"l1n-Id-vnO.text" = "A folytatás előtt ellenőrizze, hogy minden z-wave-készüléke online-e. A \"Tovább\" megnyomásával átvizsgálja a z-wave hálózatát, amely néhány másodperctől néhány percig eltarthat.";
 
 /* Class = "UILabel"; text = "Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap \"Next\" to continue."; ObjectID = "nNP-Gd-gOi"; */
-"nNP-Gd-gOi.text" = "Z-wave körpü konfiqurasiya sihirbazına xoş gəlmisiniz. Bu, z-wave cihazlarınızı Supla ilə qoşmağa imkan verəcək. Davam etmək üçün \"Next\" düyməsinə toxunun.";
+"nNP-Gd-gOi.text" = "Üdvözöljük a z-wave híd telepítővarázslójában, ami lehetővé teszi a z-wave eszközök csatlakoztatását a Supla-hoz. Kattintson a \"Tovább\" gombra a folytatáshoz.";
 
 /* Class = "UILabel"; text = "Channel"; ObjectID = "sNr-Xz-EUe"; */
-"sNr-Xz-EUe.text" = "Kanal";
+"sNr-Xz-EUe.text" = "Csatorna";
 
 /* Class = "UILabel"; text = "Channel"; ObjectID = "sY5-XC-gcM"; */
-"sY5-XC-gcM.text" = "Kanal";
+"sY5-XC-gcM.text" = "Csatorna";
 
 /* Class = "UILabel"; text = "Bridge"; ObjectID = "ul5-ub-qWP"; */
-"ul5-ub-qWP.text" = "Körpü";
+"ul5-ub-qWP.text" = "Híd";
 
 /* Class = "UILabel"; text = "Channel"; ObjectID = "z0I-kO-IcX"; */
-"z0I-kO-IcX.text" = "Kanal";
+"z0I-kO-IcX.text" = "Csatorna";
