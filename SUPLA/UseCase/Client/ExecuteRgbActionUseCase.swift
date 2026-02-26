@@ -48,6 +48,7 @@ struct ExecuteRgbAction {
             dimmerCct: Int
         ) -> Observable<RequestResult> {
             Observable.create { observable in
+                SALog.debug("Executing RGBW action (subjectType: \(type), subjectId: \(remoteId), brightness: \(brightness), color: \(color.color.toHexString() ?? "<nil>"), onOff: \(onOff), vibrate: \(vibrate), dimmerCct: \(dimmerCct)")
                 let result = self.suplaClientProvider.provide()?.executeAction(
                     parameters: .rgbw(
                         subjectType: type,
