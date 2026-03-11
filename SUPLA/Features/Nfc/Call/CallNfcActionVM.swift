@@ -50,7 +50,7 @@ extension CallNfcActionFeature {
                 }
                 
                 guard let profileId = tag.profileId,
-                      let profile = await profileRepository.getProfile(withId: profileId),
+                      let authorizationEntity = await profileRepository.getAuthorizationEntity(forProfileId: profileId),
                       let subjectType = tag.subjectType,
                       let subjectId = tag.subjectId,
                       let actionId = tag.action else {
@@ -64,7 +64,7 @@ extension CallNfcActionFeature {
                         actionId,
                         subjectType: subjectType,
                         subjectId: subjectId,
-                        authorizationEntity: profile.authorizationEntity
+                        authorizationEntity: authorizationEntity
                     )
                     await nfcTagItemRepository.addCallItem(toTagWithUuid: tag.uuid, result: .success)
                     
