@@ -23,11 +23,11 @@ final class MotionSensorIconNameProducer: IconNameProducer {
 
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
-        case 1: addStateSuffix(name: .Icons.fncMotionSensor1, state: iconData.state.value)
-        case 2: addStateSuffix(name: .Icons.fncMotionSensor2, state: iconData.state.value)
-        case 3: addStateSuffix(name: .Icons.fncMotionSensor3, state: iconData.state.value)
-        case 4: addStateSuffix(name: .Icons.fncMotionSensor4, state: iconData.state.value)
-        default: addStateSuffix(name: .Icons.fncMotionSensor, state: iconData.state.value)
+        case 1: addStateSuffix(name: .Icons.fncMotionSensor1, value: iconData.state.value)
+        case 2: addStateSuffix(name: .Icons.fncMotionSensor2, value: iconData.state.value)
+        case 3: addStateSuffix(name: .Icons.fncMotionSensor3, value: iconData.state.value)
+        case 4: addStateSuffix(name: .Icons.fncMotionSensor4, value: iconData.state.value)
+        default: addStateSuffix(name: .Icons.fncMotionSensor, value: iconData.state.value)
         }
     }
 }

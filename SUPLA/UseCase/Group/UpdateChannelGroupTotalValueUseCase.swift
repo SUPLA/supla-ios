@@ -138,7 +138,11 @@ private extension SAChannelGroup {
                     tilt: Int(facadeBlindValue.tilt)
                 )
             case SUPLA_CHANNELFNC_DIMMER:
-                return IntegerGroupValue(value: Int(value.brightnessValue()))
+            let dimmerValue = value.asRgbwwValue()
+                return IntegerGroupValue(value: Int(dimmerValue.brightness))
+            case SUPLA_CHANNELFNC_DIMMER_CCT:
+                let dimmerValue = value.asRgbwwValue()
+                return DimmerCctGroupValue(brightness: Int(dimmerValue.brightness), cct: Int(dimmerValue.cct))
             case SUPLA_CHANNELFNC_RGBLIGHTING:
                 return RgbLightingGroupValue(
                     color: value.colorValue(),
@@ -149,6 +153,14 @@ private extension SAChannelGroup {
                     color: value.colorValue(),
                     colorBrightness: Int(value.colorBrightnessValue()),
                     brightness: Int(value.brightnessValue())
+                )
+            case SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB:
+                let dimmerAndRgbValue = value.asRgbwwValue()
+                return DimmerCctAndRgbGroupValue(
+                    color: dimmerAndRgbValue.color,
+                    colorBrightness: Int(dimmerAndRgbValue.colorBrightness),
+                    brightness: Int(dimmerAndRgbValue.brightness),
+                    cct: Int(dimmerAndRgbValue.cct)
                 )
             case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                 let thermostatValue = value.asHeatpolThermostatValue()

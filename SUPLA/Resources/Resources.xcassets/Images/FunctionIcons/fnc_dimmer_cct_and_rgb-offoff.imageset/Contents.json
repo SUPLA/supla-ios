@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "dimmer-and-rgb-offoff.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dimmer-and-rgb-offoff 1.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -296,7 +296,7 @@
 "dgf_regeneration_after20h" = "A regeneração iniciará  após 20 horas de trabalho.";
 /* General - Buttons & States */
 "state_partially_opened" = "parcialmente aberto";
-"channel_brn_step_by_step" = "Abrir/Fechar (passo a passo)";
+"channel_btn_step_by_step" = "Abrir/Fechar (passo a passo)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Removemos o gesto de deslizar que abre os detalhes; para os ver, toque no canal selecionado.";
@@ -688,3 +688,4 @@
 "rgb_detail_move_right" = "Mover para a direita";
 "rgb_detail_move_start" = "Mover para o início";
 "rgb_detail_move_end" = "Mover para o fim";
+"dimmer_detail_temperature" = "Cor:";

@@ -15,22 +15,6 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-final class DimmerAndRgbLightningIconNameProducer: IconNameProducer {
-    func accepts(function: Int32) -> Bool {
-        return function == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
-    }
-
-    func produce(iconData: FetchIconData) -> String {
-        switch (iconData.state) {
-        case .rgbAndDimmer(let dimmer, let rgb):
-            String(
-                format: "dimmerrgb-%@%@",
-                dimmer == .on ? "on" : "off",
-                rgb == .on ? "on" : "off"
-            )
-        default:
-            "dimmerrgb-offoff"
-        }
-    }
+    
+struct DimmerDetailBase {
 }

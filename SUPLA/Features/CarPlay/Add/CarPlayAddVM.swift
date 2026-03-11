@@ -319,13 +319,14 @@ private extension SAChannel {
         @Singleton<GetCaptionUseCase> var getCaptionUseCase
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
+        let suplaFunction = self.func.suplaFuntion
 
         return CarPlayAddFeature.SubjectItem(
             id: "C\(remote_id)",
             remoteId: remote_id,
             label: getCaptionUseCase.invoke(data: shareable).string,
-            actions: SharedCore.SuplaFunction.companion.from(value: self.func).actions,
-            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(self.func)),
+            actions: suplaFunction.actions,
+            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(suplaFunction)),
             isLocation: false
         )
     }
@@ -336,13 +337,14 @@ private extension SAChannelGroup {
         @Singleton<GetCaptionUseCase> var getCaptionUseCase
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
+        let suplaFunction = self.func.suplaFuntion
 
         return CarPlayAddFeature.SubjectItem(
             id: "G\(remote_id)",
             remoteId: remote_id,
             label: getCaptionUseCase.invoke(data: shareable).string,
-            actions: SharedCore.SuplaFunction.companion.from(value: self.func).actions,
-            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(self.func)),
+            actions: suplaFunction.actions,
+            icon: getChannelBaseIconUseCase.stateIcon(self, state: getChannelBaseStateUseCase.getOfflineState(suplaFunction)),
             isLocation: false
         )
     }
@@ -440,7 +442,9 @@ private extension SharedCore.SuplaFunction {
              .lightswitch,
              .staircaseTimer,
              .dimmer,
+             .dimmerCct,
              .rgbLighting,
+             .dimmerCctAndRgb,
              .dimmerAndRgbLighting,
              .thermostatHeatpolHomeplus,
              .hvacThermostat,

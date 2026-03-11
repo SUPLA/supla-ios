@@ -1,9 +1,9 @@
 
 /* Class = "UILabel"; text = "Status LED"; ObjectID = "5I7-oA-HK8"; */
-"5I7-oA-HK8.text" = "Status LED";
+"5I7-oA-HK8.text" = "LED vəziyyəti";
 
 /* Class = "UILabel"; text = "Operating range"; ObjectID = "BLx-gK-IQD"; */
-"BLx-gK-IQD.text" = "Operating range";
+"BLx-gK-IQD.text" = "İşləmə diapazonu";
 
 /* Class = "UIButton"; normalTitle = "BISTABLE"; ObjectID = "Hbe-vz-NMH"; */
 "Hbe-vz-NMH.normalTitle" = "BISTABLE";

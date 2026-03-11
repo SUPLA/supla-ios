@@ -28,17 +28,39 @@ protocol IconNameProducer {
 }
 
 extension IconNameProducer {
-    func addStateSuffix(name: String, state: ChannelState.Value) -> String {
+    func addStateSuffix(name: String, state: ChannelState) -> String {
         switch (state) {
-        case .opened: return String(format: "%@-%@", name, "open")
-        case .partialyOpened, .closed: return String(format: "%@-%@", name, "closed")
-        case .on: return String(format: "%@-%@", name, "on")
-        case .off: return String(format: "%@-%@", name, "off")
-        case .transparent: return String(format: "%@-%@", name, "transparent")
-        case .empty: return String(format: "%@-%@", name, "empty")
-        case .full: return String(format: "%@-%@", name, "full")
-        case .half: return String(format: "%@-%@", name, "half")
-        default: return name
+        case .default(let value): addStateSuffix(name: name, value: value)
+        case .rgbAndDimmer(let dimmer, let rgb):
+            if let dimmerSuffix = getSuffixForValue(dimmer), let rgbSuffix = getSuffixForValue(rgb) {
+                String(format: "%@-%@%@", name, dimmerSuffix, rgbSuffix)
+            } else {
+                name
+            }
+        }
+    }
+    
+    func addStateSuffix(name: String, value: ChannelState.Value) -> String {
+        if let suffix = getSuffixForValue(value) {
+            String(format: "%@-%@", name, suffix)
+        } else {
+            name
+        }
+    }
+    
+    private func getSuffixForValue(_ value: ChannelState.Value) -> String? {
+        switch (value) {
+        case .opened: "open"
+        case .partialyOpened, .closed: "closed"
+        case .on: "on"
+        case .off: "off"
+        case .transparent: "transparent"
+        case .empty: "empty"
+        case .full: "full"
+        case .half: "half"
+            
+        case .opaque: nil
+        case .notUsed: nil
         }
     }
 }
@@ -82,8 +104,10 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_HUMIDITY, name: "humidity", withSuffix: false),
         LiquidSensorIconNameProducer(),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_DIMMER, name: "dimmer"),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_DIMMER_CCT, name: "fnc_dimmer_cct"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_RGBLIGHTING, name: "rgb"),
-        DimmerAndRgbLightningIconNameProducer(),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING, name: "dimmerrgb"),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB, name: "fnc_dimmer_cct_and_rgb"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, name: "window"),
         MailSensorIconNameProducer(),
         ElelectricityMeterIconNameProducer(),

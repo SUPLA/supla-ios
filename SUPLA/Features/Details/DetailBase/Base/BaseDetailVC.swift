@@ -126,6 +126,8 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
                 viewControllers.append(rgbDetail())
             case .dimmer:
                 viewControllers.append(dimmerDetail())
+            case .dimmerCct:
+                viewControllers.append(dimmerCctDetail())
             case .legacyDimmerSettings:
                 viewControllers.append(legacyDimmerSettingsDetail())
             }
@@ -461,6 +463,17 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
     
     private func dimmerDetail() -> UIViewController {
         let vc = DimmerDetailFeature.ViewController.create(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabDimmer : nil,
+            image: .iconDimmer,
+            tag: DetailTabTag.Dimmer.rawValue
+        )
+        vc.tabBarItem.selectedImage = .iconDimmerSelected
+        return vc
+    }
+    
+    private func dimmerCctDetail() -> UIViewController {
+        let vc = DimmerCctDetailFeature.ViewController.create(itemBundle: item)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabDimmer : nil,
             image: .iconDimmer,

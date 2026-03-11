@@ -40,8 +40,9 @@ final class GetGroupActivePercentageUseCaseImpl: GetGroupActivePercentageUseCase
         OpenedClosedGroupActivePercentageProvider(),
         PercentageChannelActivePercentageProvider(),
         RgbGroupActivePercentageProvider(),
-        ShadingSystemGroupActivePercentageProvider()
-        
+        ShadingSystemGroupActivePercentageProvider(),
+        DimmerCctAndRgbGroupActivePercentageProvider(),
+        DimmerCctGroupActivePercentageProvider()
     ]
 
     func invoke(_ channelGroup: SAChannelGroup, valueIndex: Int) -> Int {

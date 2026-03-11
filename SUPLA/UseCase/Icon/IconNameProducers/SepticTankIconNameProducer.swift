@@ -23,8 +23,8 @@ final class SepticTankIconNameProducer: IconNameProducer {
 
     func produce(iconData: FetchIconData) -> String {
         switch (iconData.altIcon) {
-        case 1: addStateSuffix(name: .Icons.fncSepticTank1, state: iconData.state.value)
-        default: addStateSuffix(name: .Icons.fncSepticTank, state: iconData.state.value)
+        case 1: addStateSuffix(name: .Icons.fncSepticTank1, value: iconData.state.value)
+        default: addStateSuffix(name: .Icons.fncSepticTank, value: iconData.state.value)
         }
     }
 }

@@ -53,7 +53,8 @@ public enum ActionParameters {
         colorBrightness: Int8,
         color: UInt32,
         colorRandom: Bool,
-        onOff: Bool
+        onOff: Bool,
+        dimmerCct: Int8
     )
     case rollerShutter(
         action: Action,

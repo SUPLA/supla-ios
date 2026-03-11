@@ -130,30 +130,6 @@
     return self.value == nil ? 0.0 : [self.value impulseCounterCalculatedValueFromSubValue];
 }
 
-- (int) percentValue {
-     return self.value == nil ? [super percentValue] : [self.value percentValue];
-}
-
-- (int) brightnessValue {
-    return self.value == nil ? [super brightnessValue] : [self.value brightnessValue];
-}
-
-- (int) colorBrightnessValue {
-    return self.value == nil ? [super colorBrightnessValue] : [self.value colorBrightnessValue];
-}
-
-- (UIColor *) colorValue {
-    return self.value == nil ? [super colorValue] : [self.value colorValue];
-}
-
-- (BOOL) isManuallyClosed {
-    return self.value == nil ? [super isManuallyClosed] : [self.value isManuallyClosed];
-}
-
-- (BOOL) flooding{
-    return self.value == nil ? [super flooding] : [self.value flooding];
-}
-
 - (SADigiglassValue *) digiglassValue {
     return self.value == nil ? [super digiglassValue] : [self.value digiglassValue];
 }
@@ -164,18 +140,6 @@
 
 - (TDSC_RollerShutterValue) rollerShutterValue {
     return self.value == nil ? [super rollerShutterValue] : [self.value rollerShutterValue];
-}
-
-- (BOOL) calibrationFailed{
-    return self.value == nil ? [super calibrationFailed] : [self.value calibrationFailed];
-}
-
-- (BOOL) calibrationLost{
-    return self.value == nil ? [super calibrationLost] : [self.value calibrationLost];
-}
-
-- (BOOL) motorProblem{
-    return self.value == nil ? [super motorProblem] : [self.value motorProblem];
 }
 
 - (NSString *) unit {

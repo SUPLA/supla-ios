@@ -311,7 +311,7 @@
 "channel_status_updating" = "Proqram təminatı yenilənir…";
 /* General - Buttons & States */
 "state_partially_opened" = "Qismən açıq";
-"channel_brn_step_by_step" = "Aç/Bağla (addım-addım)";
+"channel_btn_step_by_step" = "Aç/Bağla (addım-addım)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Detalları açmaq üçün sürüşdürmə gesta silindi, müəyyən kanala toxunaraq açın.";
@@ -746,6 +746,7 @@
 
 /* Gate Detail */
 "gate_general_open_and_close_warning" = "Bütün qapılar üçün açılma sensoru ayarlanmayıb — \“Aç\” və \“Bağla\” düymələri düzgün işləməyə bilər.";
+"dimmer_detail_temperature" = "Rəngtemperaturu:";
 
 /* RGB and Dimmer Detail */
 "rgb_detail_color" = "Rəng:";

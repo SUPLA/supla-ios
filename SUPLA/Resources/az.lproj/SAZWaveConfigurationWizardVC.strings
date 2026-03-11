@@ -3,82 +3,82 @@
 "107-YY-mJ9.text" = "Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function.";
 
 /* Class = "UILabel"; text = "Device"; ObjectID = "56E-9V-mlp"; */
-"56E-9V-mlp.text" = "Device";
+"56E-9V-mlp.text" = "Cihaz";
 
 /* Class = "UIButton"; normalTitle = "DELETE DEVICE"; ObjectID = "6df-IH-8y9"; */
-"6df-IH-8y9.normalTitle" = "DELETE DEVICE";
+"6df-IH-8y9.normalTitle" = "Cihazı sil";
 
 /* Class = "UIButton"; normalTitle = "ADD DEVICE"; ObjectID = "BTs-3M-6Pr"; */
-"BTs-3M-6Pr.normalTitle" = "ADD DEVICE";
+"BTs-3M-6Pr.normalTitle" = "Cihaz əlavə et";
 
 /* Class = "UILabel"; text = "Function"; ObjectID = "CrA-tu-0Ln"; */
-"CrA-tu-0Ln.text" = "Function";
+"CrA-tu-0Ln.text" = "Funksiya";
 
 /* Class = "UILabel"; text = "It will take a while"; ObjectID = "F61-xF-s7k"; */
-"F61-xF-s7k.text" = "It will take a while";
+"F61-xF-s7k.text" = "Bir az vaxt aparacaq";
 
 /* Class = "UILabel"; text = "Channel id"; ObjectID = "FAh-Cm-D3c"; */
-"FAh-Cm-D3c.text" = "Channel id";
+"FAh-Cm-D3c.text" = "Kanal ID";
 
 /* Class = "UILabel"; text = "Device id"; ObjectID = "HEE-CO-WJl"; */
-"HEE-CO-WJl.text" = "Device id";
+"HEE-CO-WJl.text" = "Cihaz ID";
 
 /* Class = "UILabel"; text = "Channel number"; ObjectID = "INT-0e-b9R"; */
-"INT-0e-b9R.text" = "Channel number";
+"INT-0e-b9R.text" = "Kanal nömrəsi";
 
 /* Class = "UILabel"; text = "Press back to return to the previous step or \"Exit\" to finish."; ObjectID = "OTk-BD-soD"; */
-"OTk-BD-soD.text" = "Press back to return to the previous step or \"Exit\" to finish.";
+"OTk-BD-soD.text" = "Əvvəlki mərhələyə qayıtmaq üçün geri düyməsini, ya da bitirmək üçün \"Exit\" düyməsini basın.";
 
 /* Class = "UILabel"; text = "You can also change the wake-up settings by pressing the icon below."; ObjectID = "Os0-or-7MN"; */
-"Os0-or-7MN.text" = "You can also change the wake-up settings by pressing the icon below.";
+"Os0-or-7MN.text" = "Aşağıdakı ikonaya toxunaraq oyanma parametrlərini dəyişə bilərsiniz.";
 
 /* Class = "UILabel"; text = "Z-Wave wizard"; ObjectID = "TtI-D6-hIQ"; */
-"TtI-D6-hIQ.text" = "Z-Wave wizard";
+"TtI-D6-hIQ.text" = "Z-Wave sihirbazı";
 
 /* Class = "UILabel"; text = "Caption"; ObjectID = "VR4-Zp-AZ8"; */
-"VR4-Zp-AZ8.text" = "Caption";
+"VR4-Zp-AZ8.text" = "Başlıq";
 
 /* Class = "UILabel"; text = "Z-Wave device"; ObjectID = "Ymn-D1-eWm"; */
-"Ymn-D1-eWm.text" = "Z-Wave device";
+"Ymn-D1-eWm.text" = "Z-Wave cihazı";
 
 /* Class = "UILabel"; text = "Z-wave network"; ObjectID = "a7s-5S-iHt"; */
-"a7s-5S-iHt.text" = "Z-wave network";
+"a7s-5S-iHt.text" = "Z-wave şəbəkəsi";
 
 /* Class = "UIButton"; normalTitle = "RESET NETWORK AND SETTINGS"; ObjectID = "amT-2P-EgB"; */
-"amT-2P-EgB.normalTitle" = "RESET NETWORK AND SETTINGS";
+"amT-2P-EgB.normalTitle" = "Şəbəkəni və tənzimləmələri sıfırla";
 
 /* Class = "UILabel"; text = "Done! Now you can finish the configuration process by pressing \"OK\" or you can press back to configure the next channel or change existing settings."; ObjectID = "cGP-Ha-UqZ"; */
-"cGP-Ha-UqZ.text" = "Done! Now you can finish the configuration process by pressing \"OK\" or you can press back to configure the next channel or change existing settings.";
+"cGP-Ha-UqZ.text" = "Tamamlandı! İndi konfiqurasiya prosesini \"OK\" düyməsini basaraq bitirə bilərsiniz və ya növbəti kanalı konfiqurasiya etmək və ya mövcud tənzimləmələri dəyişdirmək üçün geri düyməsini basa bilərsiniz.";
 
 /* Class = "UILabel"; text = "Device name"; ObjectID = "egA-F9-6fa"; */
-"egA-F9-6fa.text" = "Device name";
+"egA-F9-6fa.text" = "Cihaz adı";
 
 /* Class = "UILabel"; text = "Software version"; ObjectID = "hcP-PE-jBL"; */
-"hcP-PE-jBL.text" = "Software version";
+"hcP-PE-jBL.text" = "Proqram təminatı versiyası";
 
 /* Class = "UILabel"; text = "Function"; ObjectID = "kWy-QX-AJU"; */
-"kWy-QX-AJU.text" = "Function";
+"kWy-QX-AJU.text" = "Funksiya";
 
 /* Class = "UILabel"; text = "Select the z-wave device that will be associated with the Supla channel."; ObjectID = "kc9-9O-Tmh"; */
-"kc9-9O-Tmh.text" = "Select the z-wave device that will be associated with the Supla channel.";
+"kc9-9O-Tmh.text" = "Supla kanalı ilə əlaqələndiriləcək z-wave cihazını seçin.";
 
 /* Class = "UILabel"; text = "Select the z-wave bridge and then the channel you want to configure."; ObjectID = "kif-QE-f8n"; */
-"kif-QE-f8n.text" = "Select the z-wave bridge and then the channel you want to configure.";
+"kif-QE-f8n.text" = "Z-wave körpüsünü seçin, sonra konfiqurasiya etmək istədiyiniz kanalı seçin.";
 
 /* Class = "UILabel"; text = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes."; ObjectID = "l1n-Id-vnO"; */
-"l1n-Id-vnO.text" = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes.";
+"l1n-Id-vnO.text" = "Davam etməzdən əvvəl, bütün z-wave cihazlarınızın onlayn olduğundan əmin olun. \"Next\" düyməsini basmaq z-wave şəbəkənizi axtaracaq, bu bir neçə saniyədən bir neçə dəqiqəyə qədər çəkə bilər.";
 
 /* Class = "UILabel"; text = "Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap \"Next\" to continue."; ObjectID = "nNP-Gd-gOi"; */
-"nNP-Gd-gOi.text" = "Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap \"Next\" to continue.";
+"nNP-Gd-gOi.text" = "Z-wave körpü konfiqurasiya sihirbazına xoş gəlmisiniz. Bu, z-wave cihazlarınızı Supla ilə qoşmağa imkan verəcək. Davam etmək üçün \"Next\" düyməsinə toxunun.";
 
 /* Class = "UILabel"; text = "Channel"; ObjectID = "sNr-Xz-EUe"; */
-"sNr-Xz-EUe.text" = "Channel";
+"sNr-Xz-EUe.text" = "Kanal";
 
 /* Class = "UILabel"; text = "Channel"; ObjectID = "sY5-XC-gcM"; */
-"sY5-XC-gcM.text" = "Channel";
+"sY5-XC-gcM.text" = "Kanal";
 
 /* Class = "UILabel"; text = "Bridge"; ObjectID = "ul5-ub-qWP"; */
-"ul5-ub-qWP.text" = "Bridge";
+"ul5-ub-qWP.text" = "Körpü";
 
 /* Class = "UILabel"; text = "Channel"; ObjectID = "z0I-kO-IcX"; */
-"z0I-kO-IcX.text" = "Channel";
+"z0I-kO-IcX.text" = "Kanal";

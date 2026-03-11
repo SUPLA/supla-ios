@@ -1,0 +1,585 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"AccountCreation.title" = "Fiók módosítása";
+"AccountCreation.modificationTitle" = "Fiók hozzáadása";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=hu";
+
+"scenes_action_buttons_execute" = "Végrehajtás";
+"scenes_action_buttons_abort" = "Megszakítás";
+"scenes_action_buttons_abort_and_execute" = "Megszakít és végrehajt";
+
+
+"Cfg.removal.title" = "Távolítsa el a fiókot?";
+"Cfg.removal.action.logout" = "Eltávolítás ezen a készüléken";
+"Cfg.removal.action.remove" = "Eltávolítás és törlés a kiszolgálón";
+"Cfg.removal.dialog.failed.title" = "Eltávolítás sikertelen";
+"Cfg.removal.dialog.failed.message" = "A fiók eltávolítása sikertelen, kérjük, próbáld újra.";
+"Cfg.removal.dialog.missing_name" = "Adja meg a fiók nevet";
+"Cfg.removal.dialog.duplicated_name" = "Már létezik egy fiók ezzel a névvel";
+"Cfg.removal.dialog.incomplete" = "Egészítse ki a szükséges adatokat";
+
+"push_notification_limit_exceeded" = "Túllépte az %1$@ óránkénti PUSH ÉRTESÍTÉSI határértéket.";
+
+/* General */
+"general_error" = "Hiba";
+"general_hour_format" = "HH:mm:ss";
+"general_ok" = "Elfogadom";
+"general_warning" = "Figyelmeztetés";
+"general_state_opened" = "nyitva";
+"general_state_closed" = "zárva";
+"turn_on" = "Bekapcsolás";
+"turn_off" = "Kikapcsolás";
+"save" = "Mentés";
+"next" = "Tovább";
+"password" = "JELSZÓ";
+"start" = "START";
+"exit" = "Kilépés";
+"general_back" = "Vissza";
+"general_shut" = "Bezár";
+"general_reveal" = "Kinyit";
+"general_collapse" = "Összecsuk";
+"general_expand" = "Kinyit";
+"general_function" = "Funkció";
+"general_stop" = "Állj";
+"general_toggle" = "Átkapcsolás";
+"general_channel" = "Csatorna";
+"general_group" = "Csoporthoz";
+"general_scene" = "Jelenethez";
+"general_profile" = "Profil";
+"general_action" = "Akció";
+"general_delete" = "Törlés";
+"general_select" = "-- válassz --";
+"incorrect_password" = "Helytelen jelszó";
+/* General - DayOfWeek */
+"monday" = "Hétfő";
+"tuesday" = "Kedd";
+"wednesday" = "Szerda";
+"thursday" = "Csütörtök";
+"friday" = "Péntek";
+"saturday" = "Szombat";
+"sunday" = "Vasárnap";
+"monday_short" = "H";
+"tuesday_short" = "K";
+"wednesday_short" = "SZE";
+"thursday_short" = "CS";
+"friday_short" = "P";
+"saturday_short" = "SZO";
+"sunday_short" = "V";
+"time_just_mintes" = "%1$d min.";
+"time_hours_and_minutes" = "%1$d óra %2$d min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Szállodai kártyaolvasó";
+"channel_caption_alarm_armament" = "Riasztás aktiváló érzékelő";
+"channel_caption_general_purpose_measurment" = "Mérési csatorna";
+"channel_caption_general_purpose_meter" = "Mérőóra csatorna";
+"channel_caption_facade_blinds" = "Homlokzati zsaluzia";
+"channel_caption_terrace_awning" = "Terasz árnyékoló";
+"channel_caption_projector_screen" = "Vetítővászon";
+"channel_caption_curtain" = "Függöny";
+"channel_caption_vertical_blind" = "Függőleges redőny";
+"channel_caption_garage_door" = "Garázs kapu";
+"channel_caption_pump_switch" = "Szivattyú kapcsoló";
+"channel_caption_heat_or_cold_source_switch" = "Hő- vagy hidegforrás kapcsoló";
+"channel_caption_humidity" = "Nedvességtartalom";
+"channel_caption_humidityandtemperature" = "Hőmérséklet és páratartalom";
+"channel_caption_container" = "Konténer";
+"channel_caption_water_tank" = "Víztartály";
+"channel_caption_septic_tank" = "Szeptikus tartály";
+"channel_caption_container_level_sensor" = "Konténer szintérzékelő";
+"channel_caption_flood_sensor" = "Árvízérzékelő";
+"channel_caption_motion_sensor" = "Mozgásérzékelő";
+"channel_caption_binary_sensor" = "Bináris érzékelő";
+"channel_caption_invisible" = "Rejtett";
+"channel_offline" = "A csatorna offline állapotban van";
+"channel_not_found" = "Csatorna nem található";
+"scene_inactive" = "A jelenet inaktív";
+"channel_battery_level" = "Az akkumulátor töltöttségi szintje: %d%%";
+"channel_battery_level_with_info" = "Az akkumulátor töltöttségi szintje (%d - %@): %d%%";
+"channel_uv_warning" = "Az uv fűtőtest élettartama %.01f%%. Ütemezze a cseréjét.";
+"channel_uv_error" = "Az uv fűtőtest élettartama %.01f%%. Cserélje ki a fűtőtestet.";
+"channel_lightsource_warning" = "A fényforrás élettartama %.01f%%";
+"dgf_too_long_operation_warning" = "Az üvegszekciók több mint 20 órán át lefedetlenek, ez negatívan befolyásolhatja az élettartamukat. Javasoljuk, hogy az összes szekciót legalább 4 órán át takarja el a helyreállítás érdekében.";
+"dgf_planned_regeneration_in_progress" = "Tervezett helyreállítás folyamatban.";
+"dgf_regeneration_after20h" = "20 üzemóra után kezdődő helyreállítás folyamatban.";
+/* General - Channel status */
+"channel_status_not_available" = "A csatorna a konfiguráció miatt nem érhető el. Javasoljuk a csatorna elrejtését, hogy ne legyen látható az alkalmazásban.";
+"channel_status_awaiting" = "Ezt az eszközt nem lehet távolról felébreszteni. Várjuk az eszköz jelentkezését…";
+"channel_status_updating" = "Szoftverfrissítés folyamatban…";
+/* General - Buttons & States */
+"state_partially_opened" = "részben nyitva";
+"channel_btn_step_by_step" = "Nyitás/Bezárás (lépésről lépésre)";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Eltávolítottuk a részletek megtekintése navigációs gesztust, a kiválasztott csatornára koppintva láthatja azokat.";
+"main_no_entries" = "Üres";
+
+/* Menu */
+"menu_notifications" = "Értesítési előzmények";
+"menu_device_catalog" = "Eszköz katalógus";
+
+/* Groups */
+"groups_empty_list_button" = "Csoport hozzáadása a Supla Cloud-on";
+
+/* Scenes */
+"scenes_empty_list_button" = "Jelenet hozzáadása a Supla Cloud-on";
+
+/* Create Profile */
+"create_profile_title_create" = "Fiók hozzáadása";
+"create_profile_title_modify" = "Fiók módosítása";
+"create_profile_basic_warning_title" = "Ez a mód elérhetetlen";
+"create_profile_basic_warning_message" = "A haladó üzemmód kikapcsolódása előtt válassza az email hitelesítést automatikus szerver felderítéssel";
+
+/* App Settings */
+"app_settings.permissions_header" = "Jogosultságok";
+"app_settings.notifications_label" = "Értesítések";
+"app_settings.location_label" = "Hely";
+"settings_show_bottom_menu" = "Alsó menü megjelenítése";
+"settings_show_labels" = "Címkék megjelenítése az alsó menüben";
+"settings_dark_mode" = "Sötét mód";
+"settings_lock_screen" = "Képernyő zárolás";
+"settings_lock_screen_none" = "Hiány";
+"settings_lock_screen_app" = "Alkalmazás";
+"settings_lock_screen_accounts" = "Számlái";
+"settings_battery_level_warnign" = "Alacsony töltöttség figyelmeztetés";
+"app_settings_temperature_precision" = "Hőmérséklet-pontosság";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Általános";
+"standard_detail_timer_tab" = "Időzítő";
+"standard_detail_metrics_tab" = "Mérési adatok";
+"standard_detail_schedule_tab" = "Hét";
+"standard_detail_history_tab" = "Előzmények";
+"standard_detail_list_tab" = "Lista";
+"standard_detail_settings_tab" = "Beállítások";
+"standard_detail_rgb_tab" = "RGB";
+"standard_detail_dimmer_tab" = "Fényerőszabályzó";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Aktuális állapot:";
+"switch_detail_state_label_for_timer" = "%@ óráig vizsgált állapot:";
+"switch_detail_state_on" = "bekapcsolt";
+"switch_detail_state_off" = "kikapcsolt";
+"switch_detail_state_offline" = "offline";
+"overcurrent_warning" = "Az áramellátás a megengedett áramerősség beállított küszöbértékének túllépése után kikapcsolt.";
+"overcurrent_question" = "Az áramellátás a megengedett áramerősség beállított küszöbértékének túllépése után kikapcsolt. Biztos benne, hogy be akarja kapcsolni az áramellátást?";
+
+/* Timer Detail */
+"timer_detail_header" = "Add meg, mennyi ideig maradjon az eszköz ebben az állapotban:";
+"timer_detail_edit_header" = "Módosítsa az időpontot, amikor a készülék %1$@ állapotban van";
+"timer_detail_edit_header_on" = "bekapcsolt";
+"timer_detail_edit_header_off" = "kikapcsolt";
+"timer_detail_turned_on" = "Bekapcsolva";
+"timer_detail_turned_off" = "Bekapcsolva";
+"timer_detail_day_pattern" = "%d nap";
+"timer_detail_days_pattern" = "%d nap";
+"timer_detail_hour_pattern" = "%d óra";
+"timer_detail_hours_pattern" = "%d óra";
+"timer_detail_minute_pattern" = "%d perc";
+"timer_detail_second_pattern" = "%d mp";
+"timer_detail_info" = "Az eszköz %@ lesz %@ ideig, majd %@-ra kapcsol.";
+"timer_detail_info_on" = "bekapcsolt";
+"timer_detail_info_off" = "kikapcsolt";
+"timer_detail_info_next_on" = "bekapcsolt";
+"timer_detail_info_next_off" = "kikapcsolt";
+"timer_detail_stop" = "Kilépés %1$@";
+"timer_detail_cancel" = "Mégse, és %@-ra kapcsol";
+"timer_detail_cancel_on" = "bekapcsolt";
+"timer_detail_cancel_off" = "kikapcsolt";
+"timer_detail_edit_time" = "Idő módosítás";
+"timer_detail_save" = "Mentés";
+"timer_detail_edit_cancel" = "Módosítás törlése";
+"timer_detail_end_hour" = "%1$@ óráig";
+"timer_detail_format" = "%02d:%02d:%02d";
+"timer_detail_wrong_time_title" = "Érvénytelen idő";
+"timer_detail_wrong_time_message" = "Az időnek 0-nál nagyobbnak kell lennie";
+"timer_detail_cancel_thermostat" = "Állítsa meg az időzítőt, és kapcsolja be az üzemmódot:";
+"timer_detail_select_mode" = "Válassza ki az üzemmódot";
+"timer_detail_manual_mode" = "Kézi üzemmód";
+"timer_detail_min_temp" = "Hőm. min.";
+"timer_detail_max_temp" = "Hőm. max.";
+"timer_detail_select_time" = "Adja meg az időtartamot";
+"timer_detail_counter" = "Mérőóra";
+"timer_detail_calendar" = "Naptár";
+"timer_detail_info_thermostat_off" = "A termosztátot kikapcsol a\n%1$@ időpontok között";
+"timer_detail_info_thermostat_heating" = "A termosztát fűtési üzemmódban lesz\n%1$@ időpontok között";
+"timer_detail_info_thermostat_cooling" = "A termosztát hűtési üzemmódban lesz\n%1$@ időpontok között";
+"timer_detail_state_label_for_timer_days" = "%@ óráig vizsgált állapot:";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Hőmérséklet leolvasási hiba";
+"thermostat_clock_error" = "Óra hiba";
+"thermostat_battery_cover_open" = "Elemfedél nyitva";
+"thermostat_calibration_error" = "Kalibrációs hiba";
+"thermostat_detail_mode_manual" = "Kézi";
+"thermostat_detail_mode_weekly_schedule" = "Program";
+"schedule_detail_program_dialog_header" = "Programbeállítások %1$d";
+"hvac_mode_temperature_heating" = "Fűtési hőmérséklet";
+"hvac_mode_temperature_cooling" = "Hűtési hőmérséklet";
+"schedule_detail_quarters_dialog_header" = "Idő  %1$02d:00";
+"schedule_detail_configuration_failure" = "Hiba – érvénytelen csatornakonfiguráció";
+"thermostat_detail_program_time" = "%1$@ keresztül";
+"thermostat_detail_program_current" = "Aktuális:";
+"thermostat_detail_program_next" = "Következő:";
+"thermostat_detail_off_by_window" = "Nyitott ablaknál kikapcsol";
+"thermostat_detail_off_by_card" = "Szállodai kártya hiányában kikapcsol";
+"thermostat_detail_off_by_sensor" = "Érzékelő által kikapcsolva";
+"thermostat_detail_program_info" = "Érintse meg a program aktiválásához. Tartsa lenyomva a gombot a program módosításához.";
+"thermostat_detail_box_info" = "Érintse meg a kijelölni kívánt program beállításához. Tartsa lenyomva a kijelölni kívánt negyedórák beállításához.";
+"thermostat_detail_arrow_info" = "A fekete nyíl jelzi az aktuális időt és napot.";
+"thermostat_detail_list" = "Lista";
+"thermostat_detail_main_thermostat" = "Fő termosztát";
+"thermostat_detail_other_thermostats" = "Mellék termosztátok";
+"thermostat_detail_antifreeze_active" = "Fagyvédelem aktív";
+"thermostat_detail_overheat_active" = "Túlmelegedés elleni védelem aktív";
+
+/* Combined Chart */
+"history_range_label" = "Időtartam";
+"history_data_type" = "Adattípus";
+"history_range_last_day" = "Az elmúlt 24 óra";
+"history_range_last_week" = "Az elmúlt 7 nap";
+"history_range_last_30_days" = "Az elmúlt 30 nap";
+"history_range_last_90_days" = "Az elmúlt 90 nap";
+"history_range_last_365_days" = "Az elmúlt 365 nap";
+"history_range_current_day" = "Nap";
+"history_range_current_week" = "Hét";
+"history_range_current_month" = "Hónap";
+"history_range_current_quarter" = "Negyed";
+"history_range_current_year" = "Év";
+"history_range_custom" = "Más időtartam";
+"history_refreshing" = "Frissítés…";
+"history_refreshing_failed" = "A frissítés sikertelen";
+"history_no_data_selected" = "Nincs megjelenítendő adat kiválasztva.";
+"history_no_data_available" = "Nincsenek mérési adatok";
+"history_no_data_in_selected_period" = "A diagramhoz nincs adat.";
+"history_disabled" = "Az előzmények le vannak tiltva ezen a csatornán";
+"history_delete_data" = "Törölje az előzményeket és töltse le újra";
+"history_wait_for_download_completed" = "Kérem várjon, a letöltés folyamatban…";
+"chart_marker_opening" = "Megnyitás";
+"chart_marker_closing" = "Bezárás";
+"Minutes" = "Perc";
+"Hours" = "Órák";
+"Days" = "Napok";
+"Months" = "Hónapok";
+"Years" = "Évek";
+"temperature_measured" = "Mért";
+"temperature_preset" = "Előre beállított";
+
+/* Notifications */
+"notifications_log_profile" = "Profil:";
+"notifications_log_date" = "Dátum:";
+"notification_delete_all_title" = "Eltávolítás?";
+"notification_delete_all_message" = "Az értesítések törlése visszafordíthatatlan, folytatja?";
+"notification_delete_button_delete_all" = "Mindent töröl";
+"notification_delete_button_delete_older_than_month" = "30 napnál régebbiek eltávolítása";
+
+/* Roller shutter detail */
+"rs_display_mode" = "Redőnyök, zsalu, függönyök %";
+"roller_shutter_motor_problem" = "Motorhiba / Váratlan leállás.";
+"roller_shutter_calibration_lost" = "Kalibrálás elveszett.";
+"roller_shutter_calibration_failed" = "Kalibrálás sikertelen.";
+"roller_shutter_calibration" = "Kalibrálás";
+"roller_shutter_start_calibration_message" = "Biztosan el akarja kezdeni a kalibrálást?";
+"roller_shutter_closing_percentage" = "Zárás:";
+"roller_shutter_opening_percentage" = "Nyitás:";
+"roller_shutter_extension_percentage" = "Hosszabbítás:";
+"roller_shutter_calibration_needed" = "Kalibrálás szükséges";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Dőlésszög:";
+"facade_blinds_no_tilt" = "Nincs konfigurálva";
+
+/* Status */
+"status_initializing" = "Indítás…";
+"status_connecting" = "Csatlakozás...";
+"status_disconnecting" = "A kapcsolat bontása…";
+"status_awaiting_network" = "Várakozás a hálózatra…";
+"status_try_again" = "Próbálja újra";
+"status_unknown_error" = "Ismeretlen hiba";
+"status_temporarily_unavailable" = "A szolgáltatás ideiglenesen nem érhető el";
+"status_incorrect_data" = "Hibás email cím vagy jelszó";
+"status_bad_credentials" = "Helytelen hitelesítési adatok";
+"status_client_limit_exceeded" = "Az ügyfélalkalmazás mennyiség korlátja túllépett";
+"status_device_disabled" = "Az eszköz ki van kapcsolva";
+"status_access_id_disabled" = "A hozzáférési azonosító le van tiltva";
+"status_registration_disabled" = "A regisztráció jelenleg ki van kapcsolva. Bakapcsoláshoz ugorjon az \\ \"Okostelefonok \" fülre a(z) \"Supla Cloud\" oldalon";
+"status_access_id_not_assigned" = "Ehhez az eszközhöz nincs hozzárendelve hozzáférési azonosító. Lépjen az \"Supla Cloud\" webhelyre, és  az \"Okostelefonok \" fülben rendelje hozzá a megfelelő azonosítót.";
+"status_access_id_inactive" = "Az azonosító inaktív.";
+"status_host_not_found" = "A szerver címe nem található";
+"status_cant_connect_to_host" = "Nem sikerült csatlakozni a megadott szerverhez";
+
+/* Pin setup */
+"pin_setup_title" = "PIN konfiguráció";
+"pin_setup_header" = "Erősítse meg a PIN kódját";
+"pin_setup_repeat" = "Ismételje meg a PIN kódot";
+"pin_setup_entry_different" = "A megadott kódok eltérőek!";
+"pin_setup_use_biometric" = "Biometrikus hitelesítés:";
+"pin_setup_biometric_not_enrolled" = "A biometrikus hitelesítés nincs konfigurálva. Ha biometrikus adatokat szeretne használni, először konfigurálja azt a rendszerbeállításokban.";
+
+/* Lock screen */
+"lock_screen_hello" = "Üdvözöljük újra!";
+"lock_screen_enter_pin" = "Adja meg a PIN kódot";
+"lock_screen_remove_pin" = "PIN törlése";
+"lock_screen_confirm_authorize_range_change" = "Az engedély hatályának módosítása";
+"lock_screen_wrong_pin" = "Helytelen PIN kódot adott meg!";
+"lock_screen_forgotten_code" = "Nem emlékszem a hozzáférési kódra";
+"lock_screen_forgotten_code_title" = "Hozzáférési kód";
+"lock_screen_forgotten_code_message" = "Ha nem emlékszik a hozzáférési kódra, távolítsa el az alkalmazást a telefonjáról, majd telepítse újra. Az újratelepítést követően adja hozzá a fiókkonfigurációt a Supla Cloudból.\n\nNe hozzon létre új fiókot. Az előzményadatok és az eszközök nem  vesznek el.";
+"lock_screen_forgotten_code_button" = "Elfogadom";
+"biometric_prompt_subtitle" = "Feloldás ujjlenyomattal";
+"lock_screen_pin_locked" = "Túl sok sikertelen próbálkozás. A PIN zárolva lett %1$@.";
+
+/* Device Catalog */
+"device_list_url" = "https://www.supla.org/en/devices";
+
+/* About */
+"about_version" = "verzió %@";
+"about_license" = "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA";
+"about_address" = "www.supla.org";
+"about_build_time" = "Napi változat:";
+
+/* Electricity meter detail */
+"details_em_forward_active_energy" = "Fogyasztott aktív energia";
+"details_em_reverse_active_energy" = "A visszatérített aktív energia";
+"details_em_forward_reactive_energy" = "Letöltött passzív energia";
+"details_em_reverse_reactive_energy" = "A visszatérített passzív energia";
+"details_em_forward_active_energy_short" = "Fogyasztott aktív";
+"details_em_reverse_active_energy_short" = "A visszatérített aktív";
+"details_em_forward_reactive_energy_short" = "Letöltött passzív";
+"details_em_reverse_reactive_energy_short" = "A visszatérített passzív";
+"details_em_frequency" = "Frekvencia";
+"details_em_voltage" = "Feszültség";
+"details_em_current" = "Áramerősség";
+"details_em_power_active" = "Hatásos teljesítmény";
+"details_em_power_reactive" = "Meddő teljesítmény";
+"details_em_power_factor" = "Teljesítménytényező";
+"details_em_phase_angle" = "Fázisszög";
+"details_em_power_apparent" = "Látszolágos teljesítmény";
+"details_em_phase1" = "1. sz. Fázis";
+"details_em_phase2" = "2. sz. Fázis";
+"details_em_phase3" = "3. sz. Fázis";
+"details_em_balance_arithmetic" = "Számtani egyensúly";
+"details_em_balance_vector" = "Vektoregyensúly";
+"details_em_chart_data_type" = "Adatok";
+"details_em_phases" = "Fázis";
+"details_em_balance_hourly" = "Óránkénti mérleg";
+"details_em_balance_chart_aggregated" = "Diagram alapján összesített mérleg";
+"details_em_sum" = "Összeg";
+"details_em_select_range" = "Tartomány kiválasztása";
+"details_em_active_energy" = "Energia";
+"details_em_forwarded_energy" = "Fogyasztott";
+"details_em_reversed_energy" = "Visszatérő";
+"details_em_cost" = "Költség";
+"details_em_settings_list_item" = "A csatornalistában megjelenő érték";
+"details_em_settings_title" = "Beállítások - %1$@";
+"details_em_total_suffix" = "(mérőóra állapota)";
+"details_em_current_month_suffix" = "(folyó hó)";
+"details_em_last_month_balancing" = "Az aktuális hónap mérlege";
+"details_em_energy_label" = "Energia";
+"details_em_hour_marker_title" = "%@ óra";
+"em_phase_to_phase_balance" = "Fázisegyensúly";
+"em_electric_grid_parameters" = "Villamos hálózati paraméterek";
+"em_chart_all_phases" = "Fázis 1+2+3";
+"details_em_info_swipe" = "Húzd el az ujjad a további értékek megtekintéséhez";
+"details_em_info_data_type" = "Itt kiválaszthatod, hogyan legyenek csoportosítva az adatok (órák, napok), vagy megjelenítheted a rangsort.";
+"details_em_info_range" = "Itt kiválaszthatod a grafikonon megjelenített adatok tartományát (pl. aktuális hónap vagy előző év).";
+"details_em_info_data_set_single_phase" = "Koppints ide a megjelenített adatok típusának megváltoztatásához (pl. előre vagy vissza energia – ha elérhető).";
+"details_em_info_data_set_multiple_phase" = "Koppints ide, hogy kiválaszd, mit szeretnél látni (pl. óránkénti energiamérleg vagy mely fázisok).";
+"details_em_voltage_phase_angle_12" = "Feszültség fázisszög 1–2";
+"details_em_voltage_phase_angle_13" = "Feszültség fázisszög 1–3";
+"details_em_voltage_phase_sequence" = "Feszültség fázissorrend";
+"details_em_current_phase_sequence" = "Áram fázissorrend";
+
+/* Impulse counter */
+"details_em_meter_value" = "Mérőóra leolvasás";
+"details_em_current_month_consumption" = "Fogyasztás a folyó hónapban";
+
+/* Counter photo */
+"counter_photo_toolbar" = "Mérőfotók";
+"counter_photo_counter_area" = "Mérő területe";
+"counter_photo_original_photo" = "Eredeti fotó";
+"counter_photo_settings" = "Felhő beállításai";
+"counter_photo_history" = "Fotóelőzmények";
+"counter_photo_error" = "Hiba";
+"counter_photo_loading_error" = "Betöltés sikertelen.";
+
+/* Valve */
+"valve_warning_manually_closed" = "A szelepet kézzel vagy rádióval zárták be. Mielőtt kinyitná, győződjön meg arról, hogy az áradás miatt nem volt bezárva. A figyelmeztetés kikapcsolásához kézzel nyissa ki a szelepet. Biztosan meg szeretné nyitni a szelepet az alkalmazásból?!";
+"valve_warning_flooding" = "A szelep az észlelt elárasztás miatt lezárásra került. A szelep kinyitása előtt győződj meg róla, hogy az ok megszűnt. A szelep kinyitása törli a riasztást. Biztosan ki akarod nyitni?";
+"flooding_alarm_message" = "Az érzékelő elárasztást jelez!";
+"valve_warning_manually_closed_short" = "A szelep kézi módban lett lezárva. Mielőtt kinyitod, győződj meg róla, hogy nem elárasztás miatt zárták le. A figyelmeztetés kikapcsolásához nyisd ki a szelepet kézzel.";
+"valve_warning_flooding_short" = "A szelep az észlelt elárasztás miatt lezárásra került.";
+"valve_warning_motor_problem" = "Motorhiba észlelhető. Ellenőrizd, hogy semmi nem akadályozza a szelepet. Előfordulhat, hogy a szelep részben nyitva van.";
+"valve_warning_motor_problem_opening" = "Motorhiba észlelhető. Ellenőrizd, hogy semmi nem akadályozza a szelepet. Előfordulhat, hogy a szelep részben nyitva van. Biztosan ki akarod nyitni?";
+"valve_warning_motor_problem_closing" = "Motorhiba észlelhető. Ellenőrizd, hogy semmi nem akadályozza a szelepet. Előfordulhat, hogy a szelep részben nyitva van. Biztosan be akarod zárni?";
+"valve_detail_sensors" = "Csatlakoztatott érzékelők";
+"valve_action_error" = "Kommunikációs hiba történt. Kérjük, próbáld újra később.";
+"valve_error_sensor_offline" = "Árvízérzékelő nem elérhető – észrevétlen áradás veszélye.";
+
+/* State */
+"state_channel_id" = "Csatorna azonosító";
+"state_ip_address" = "IP";
+"state_mac_address" = "MAC";
+"state_battery_level" = "Az akkumulátor töltöttségi szintje";
+"state_power_supply" = "Tápellátás";
+"channel_state_battery_powered" = "elemes";
+"channel_state_main_powered" = "hálózati";
+"state_wifi_rssi" = "Wi-Fi RSSI";
+"state_wifi_signal_strength" = "Wi-Fi jelerősség";
+"state_bridge_node_online" = "Bridge csomópont online";
+"state_bridge_node_signal" = "Bridge jelerősség";
+"state_uptime" = "Munkaidő";
+"state_connection_time" = "Kapcsolat ideje";
+"state_battery_health" = "Az akkumulátor élettartama";
+"state_connection_reset_cause" = "A kapcsolat újraindításának oka";
+"state_light_source_lifespan" = "A fényforrás élettartama";
+"state_source_operating_time" = "A fényforrás munkaideje";
+"state_dialog_index" = "(%d / %d)";
+"state_dialog_lightsource_settings" = "Módosítsa a fényforrás élettartamát";
+"state_switch_cycle_count" = "Kapcsolási ciklusok";
+"channel_state_uptime" = "%1$d napok %2$02d:%3$02d:%4$02d";
+"lastconnectionresetcause_unknown" = "0: ismeretlen";
+"lastconnectionresetcause_activity_timeout" = "1: szerver válasz hiánya";
+"lastconnectionresetcause_wifi_connection_lost" = "2: Wi-Fi kapcsolat elvesztése";
+"lastconnectionresetcause_server_connection_lost" = "3: szerver kapcsolat visszaállítása";
+"state_dialog_last_known_state" = "Offline – utolsó ismert állapot:";
+
+/* Change caption */
+"change_caption_header" = "Felirat módosítása";
+"change_caption_channel_name" = "Csatorna neve";
+"change_caption_group_name" = "Csoport neve";
+"change_caption_scene_name" = "Jelenet neve";
+"change_caption_location_name" = "Helyszín neve";
+
+/* Container */
+"container_fill_level" = "Töltöttségi szint";
+"container_warning_level" = "Tartályszint figyelmeztetés";
+"container_alarm_level" = "Tartályszint riasztás!";
+"container_invalid_sensor_state" = "Érvénytelen érzékelő állapot.";
+"container_sound_alarm" = "Hangriasztás aktív";
+
+/* apple car play */
+"car_play_action" = "Akció: %1$@";
+"car_play_display_name" = "Név";
+"car_play_label" = "Műveletek widgetekhez/CarPlay-hez";
+"car_play_voice_messages" = "Üzenetek lejátszása";
+"car_play_execution_error" = "Végrehajtás sikertelen (hibakód: %d)";
+"car_play_executing" = "Végrehajtás…";
+"car_play_delete_title" = "Elem törlése";
+"car_play_delete_message" = "Szeretnéd folytatni?";
+"car_play_confirm_delete" = "Törlés";
+"car_play_empty" = "A CarPlay nincs beállítva. Menj a Supla alkalmazás -> Beállítások -> Műveletek widgetekhez/CarPlay-hez menübe, és készítsd el a konfigurációt.";
+
+/* Widget */
+"widgets_label" = "Műveletek widgetekhez";
+"widget_empty_hint" = "Nincs közös művelet definiálva. Menj a Supla alkalmazás -> Beállítások -> Műveletek widgetekhez menübe, és definiáld a műveleteidet.";
+"widget_with_carplay_empty_hint" = "Nincs közös művelet definiálva. Menj a Supla alkalmazás -> Beállítások -> Műveletek widgetekhez/CarPlay-hez menübe, és definiáld a műveleteidet.";
+"widget_control_hint" = "Művelet végrehajtása";
+"widgets_actions_name" = "Műveletek";
+"widgets_actions_description" = "Megkönnyíti a hozzáférést a leggyakoribb műveletekhez.";
+"widgets_unknown_action" = "Ismeretlen művelet!";
+"widgets_value_title" = "Gyors nézet";
+"widgets_value_description" = "Widget, amely gyors előnézetet ad a csatorna aktuális értékéről.";
+"widget_configuration_error" = "A widget nincs megfelelően beállítva";
+"widgets_single_action_title" = "Egyetlen művelet";
+"widgets_single_action_description" = "Megkönnyíti a hozzáférést egyetlen művelethez.";
+"widgets_double_action_title" = "Kettős művelet";
+"widgets_double_action_description" = "Megkönnyíti a hozzáférést két művelethez.";
+
+/* Add Wizard */
+"device_reg_request_timeout" = "Az eszköz regisztráció elérhetőségére vonatkozó információk várakozási ideje túllépve!";
+"enabling_registration_timeout" = "A regisztráció engedélyezésének várakozási ideje lejárt!";
+"add_wizard_step_1_welcome" = "Üdvözöljük az eszköz hozzáadása varázslóban, amely segít új eszköz gyors és egyszerű hozzáadásával a rendszerhez.";
+"add_wizard_step_1_continue" = "A folytatáshoz nyomja meg a <b> Következő </b> gombot.";
+"add_wizard_step_2_message" = "Írja be annak otthoni vagy vállalati Wi-Fi hálózatának nevét és jelszavát, amelyen keresztül a végrehajtó eszköz képes kapcsolatot létesíteni a szerverrel.";
+"add_wizard_network_name" = "Hálózat neve";
+"add_wizard_step_3_message_1" = "Csatlakoztassa eszközét a tápegységhez. Az eszköznek alapértelmezés szerint konfigurációs módban kell működnie, amit az állapotjelző LED alábbi villogása jelez.";
+"add_wizard_step_3_message_2" = "Ha a készülék bekapcsolás után nincs konfigurációs módban, nyomja meg és tartsa lenyomva a CONFIG gombot legalább 5 másodpercig.";
+"add_wizard_step_3_message_3" = "A konfiguráció elindításához nyomja meg a <b> START </b> gombot.";
+"add_wizard_add_more" = "Többet hozzáad";
+"add_wizard_repeat" = "Próbáld újra";
+"add_wizard_is_not_available" = "A Hozzáadás varázsló csak akkor érhető el, ha a megadott e-mail cím alapján létrejött a kapcsolat a szerverrel! (A speciális beállítások letiltása a fiókkonfigurációban)";
+"add_wizard_remember_passwd" = "Emlékezzen a jelszavamra";
+"add_wizard_auto_mode" = "Automatikus mód";
+"add_wizard_manual_mode_message" = "Kérjük, használd az alábbi Rendszerbeállítások parancsikont, és válaszd ki az I/O eszköz Wi-Fi hálózatát a konfiguráláshoz, például: SUPLA-A220A63612B1.\n\nA konfigurációs Wi-Fi név általában tartalmazza a gyártó nevét, pl. SUPLA, ZAMEL, NICE, HEATPOL stb.\n\nMiután a kapcsolat létrejött, térj vissza az alkalmazásba, és folytasd a hozzáadási folyamatot a **START** gomb megnyomásával.";
+"add_wizard_manual_mode_settings" = "Ugrás a rendszerbeállításokhoz";
+"add_wizard_location_service_off" = "Az Eszköz hozzáadása varázsló megfelelő működéséhez a helymeghatározási szolgáltatásokat engedélyezni kell az eszközön. Menj a rendszerbeállításokba, és győződj meg róla, hogy be van kapcsolva (Beállítások -> Adatvédelem és biztonság -> Helymeghatározás).";
+"add_wizard_missing_location" = "A SUPLA alkalmazásnak helyhozzáférésre van szüksége az Eszköz hozzáadása varázsló megfelelő működéséhez. Engedélyezd a SUPLA alkalmazás számára a helyhozzáférést a rendszerbeállításokban.";
+"wizard_scan_timeout" = "A Wi-Fi halózat keresése a várakozási időt túllépte!";
+"wizard_iodevice_notfound" = "Semmilyen eszköz sem található! Ellenőrizze, hogy a konfigurálni kívánt eszköz konfigurációs módban van-e, majd próbálja újra. FONTOS - Az Android néhány verziója megköveteli a GPS engedélyezését, hogy az alkalmazások lehetővé tegyék a Wi-Fi hálózaton keresztüli keresést, ezért ellenőrizze, hogy a GPS is engedélyezve van-e.";
+"wizard_connect_timeout" = "A végrehajtó eszközzel való kapcsolat létrehozásának várakozási ideje túllépve!";
+"wizard_wifi_error" = "A Wi-Fi hálózat ki van kapcsolva, vagy az azonosítója vagy a neve nem olvasható!";
+"wizard_result_compat_error" = "A csatlakoztatott eszköz nem kompatibilis ezzel a varázslóval!";
+"wizard_result_conn_error" = "Nem lehet csatlakozni az eszközhöz!";
+"wizard_result_failed" = "Az újrakonfigurálás nem sikerült";
+"wizard_reconnect_timeout" = "Az elsődleges Wi-Fi hálózathoz való visszatérés várakozási ideje túllépve!";
+"wizard_configure_timeout" = "Az eszközkonfiguráció befejezésének várakozási ideje túllépve!";
+"wizard_done" = "Az eszköz konfigurálása sikeres :)";
+"wizard_done_explanations" = "Ha a készülék nem jelenik meg az alkalmazásban, ismételje meg ezt az eljárást, és olvassa el a fenti „Előző állapotot”. Ez azt jelzi, hogy a készülék miért nem csatlakozott a szerverhez. Az \"SSID not found\" üzenet azt jelenti, hogy a megadott 2,4 GHz-es Wi-Fi nevet nem találták meg, vagy a hálózat nem érhető el.";
+"wizard_iodev_data" = "Eszköz adatok";
+"wizard_iodev_name" = "Megnevezés";
+"wizard_iodev_firmware" = "Firmware";
+"wizard_iodev_mac" = "MAC";
+"wizard_iodev_laststate" = "Előző állapot";
+"add_device_needs_cloud_title" = "Eszköz konfigurálás";
+"add_device_needs_cloud_message" = "Ennek az eszköznek egyetlen csatornája sem látható az alkalmazásban. A konfiguráció befejezéséhez lépjen a cloud.supla.org oldalra";
+"add_device_needs_cloud_close" = "Értem";
+"add_device_needs_cloud_go_to_cloud" = "Tovább a CLOUD-ra";
+"add_wizard_device_temporarily_locked" = "Túllépte a sikertelen bejelentkezési kísérletek számát. Kérjük, próbálja meg később…";
+"add_wizard_state_preparing" = "A folyamat előkészítése…";
+"add_wizard_state_connecting" = "Csatlakozás...";
+"add_wizard_state_configuring" = "Az eszköz konfigurálása…";
+"add_wizard_state_finishing" = "Befejezés…";
+"add_wizard_password_clarification" = "Az új eszközök regisztrációja a felhőben le van tiltva. Engedélyezze manuálisan, vagy adja meg fiókja jelszavát, hogy a varázsló automatikusan engedélyezze az új eszközök regisztrációjának idejére.";
+"add_wizard_password_rules" = "A jelszónak legalább 8 karakter hosszúnak kell lennie, és tartalmaznia kell legalább egy nagybetűt, egy kisbetűt és egy számot.";
+"add_wizard_password_set_title" = "Eszközjelszó beállítása";
+"add_wizard_password_new_label" = "Új jelszó";
+"add_wizard_password_repeat_label" = "Jelszó ismétlése";
+"add_wizard_password_enter_title" = "Eszközjelszó";
+"add_wizard_password_instruction" = "Kérjük, használja a helyi konfigurációs weboldal hozzáféréséhez használt jelszót.\n\nElfelejtetted a jelszavad? Megváltoztathatod a Supla Cloudon, vagy visszaállíthatod az eszközt gyári beállításokra.";
+"add_wizard_manual_reconnect_message" = "Internetkapcsolat sikertelen.\n\nLépj a rendszerbeállításokba, és válassz egy olyan Wi-Fi hálózatot, amely rendelkezik internetkapcsolattal. Ezután térj vissza az alkalmazásba, és folytasd a műveletet a **Tovább** gomb megnyomásával.";
+"add_device_manual_popup_title" = "Az eszköz hozzáadása sikertelen";
+"add_device_manual_popup_message" = "Az eszköz automatikus hozzáadása sikertelen volt. Ha a probléma továbbra is fennáll, javasoljuk az eszköz kézi hozzáadását.";
+"add_device_manual_popup_resign" = "Maradás automatikus módban";
+"add_device_manual_popup_continue" = "Próbáld meg újra kézi módban";
+"add_wizard_internal_error_message" = "Az iOS rendszer szolgáltatása belső hibát jelentett a hálózatkeresés során, ami kívül esik az irányításunkon. Kérjük, próbáld meg kézi módban hozzáadni az eszközt, vagy indítsd újra a telefonod/tableted.";
+"add_wizard_spaces_accept" = "Tartsa változatlanul";
+"add_wizard_spaces_modify" = "Szóközök eltávolítása";
+"add_wizard_spaces_title" = "Szóköz van a hálózatnévben?";
+"add_wizard_spaces_message" = "A megadott hálózatnév \"%1$@\" kezdő vagy záró szóközöket (szóköz vagy tabulátor) tartalmaz. Ha a hálózatnév nem tartalmazhat ilyen karaktereket, az eszköze nem fog tudni csatlakozni a hálózathoz. Meg szeretné tartani vagy el szeretné távolítani a kezdő vagy záró szóközöket?";
+
+/* Developer Info */
+"developer_option" = "Fejlesztői lehetőségek";
+"developer_info_settings" = "Kísérleti beállítások";
+"developer_info_screen_orientation" = "Képernyőforgatás engedélyezve";
+"developer_info_activated" = "Fejlesztői mód aktiválva";
+
+/* Gate Detail */
+"gate_general_open_and_close_warning" = "Nem minden kapuhoz van beállítva nyitásérzékelő – előfordulhat, hogy az „Nyitás” és „Zárás” gombok nem működnek megfelelően.";
+
+/* RGB and Dimmer Detail */
+"rgb_detail_color" = "Szín:";
+"rgb_detail_brightness" = "Fényerő:";
+"rgb_detail_select_color" = "Szín kiválasztása";
+"rgb_detail_colors_limit" = "Elérte a korlátot!";
+"legacy_rgbw_settings_unauthorized_message" = "Engedély szükséges a konfiguráció megtekintéséhez!";
+"legacy_rgbw_settings_authorize_button" = "Engedélyezés";
+"rgb_detail_move_left" = "Mozgatás balra";
+"rgb_detail_move_right" = "Mozgatás jobbra";
+"rgb_detail_move_start" = "Mozgatás az elejére";
+"rgb_detail_move_end" = "Mozgatás a végére";
+"dimmer_detail_temperature" = "Színhőmérséklet:";

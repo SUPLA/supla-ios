@@ -296,7 +296,7 @@
 "dgf_regeneration_after20h" = "Триває регенерація, розпочата після 20 годин роботи.";
 /* General - Buttons & States */
 "state_partially_opened" = "частково відкрито";
-"channel_brn_step_by_step" = "Відчинити/Зачинити (крок за кроком)";
+"channel_btn_step_by_step" = "Відчинити/Зачинити (крок за кроком)";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Ми прибрали жест прогортування, який відкриває деталі, торкніться вибраного каналу, щоб побачити їх.";
@@ -687,3 +687,4 @@
 "rgb_detail_move_right" = "Перемістити праворуч";
 "rgb_detail_move_start" = "Перемістити на початок";
 "rgb_detail_move_end" = "Перемістити в кінець";
+"dimmer_detail_temperature" = "Температура:";

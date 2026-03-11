@@ -1219,7 +1219,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     return result;
 }
 
-- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff {
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff dimmerCct:(int) dimmerCct {
     
     BOOL result = NO;
     
@@ -1244,7 +1244,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             if ( color_brightness < 0 || color_brightness > 100 )
                 color_brightness = 0;
             
-            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness, turnOnOff ? 1 : 0);
+            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness, turnOnOff ? 1 : 0, dimmerCct);
         }
     }
     
@@ -1265,16 +1265,8 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     [self cg:ChannelID Open:open group:NO];
 }
 
-- (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-    return [self cg:ChannelID setRGB:color colorBrightness:color_brightness brightness:brightness group:NO turnOnOff:NO];
-}
-
 - (void) group:(int)GroupID Open:(char)open {
     [self cg:GroupID Open:open group:YES];
-}
-
-- (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-    return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES turnOnOff:NO];
 }
 
 - (BOOL) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request {

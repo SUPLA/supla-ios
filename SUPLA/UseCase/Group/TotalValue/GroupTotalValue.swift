@@ -41,7 +41,9 @@ class GroupTotalValue: NSObject, NSSecureCoding {
                 BoolGroupValue.self,
                 RgbLightingGroupValue.self,
                 DimmerAndRgbLightingGroupValue.self,
-                HeatpolThermostatGroupValue.self
+                HeatpolThermostatGroupValue.self,
+                DimmerCctGroupValue.self,
+                DimmerCctAndRgbGroupValue.self
             ],
             forKey: Key.values.rawValue
         ) as? [BaseGroupValue] ?? []
@@ -185,6 +187,39 @@ class GroupTotalValue: NSObject, NSSecureCoding {
     }
 }
 
+@objc class DimmerCctGroupValue: BaseGroupValue, NSSecureCoding {
+    static var supportsSecureCoding: Bool = true
+    
+    @objc let brightness: Int
+    @objc let cct: Int
+    
+    init(brightness: Int, cct: Int) {
+        self.brightness = brightness
+        self.cct = cct
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        cct = coder.decodeInteger(forKey: Keys.cct.rawValue)
+        brightness = coder.decodeInteger(forKey: Keys.brightness.rawValue)
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(cct, forKey: Keys.cct.rawValue)
+        coder.encode(brightness, forKey: Keys.brightness.rawValue)
+    }
+    
+    override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? DimmerCctGroupValue else { return false }
+        return other.cct == cct && other.brightness == brightness
+    }
+    
+    enum Keys: String, CodingKey {
+        case brightness
+        case cct
+    }
+}
+
 @objc class RgbLightingGroupValue: BaseGroupValue, NSSecureCoding {
     static var supportsSecureCoding: Bool = true
     
@@ -253,6 +288,52 @@ class GroupTotalValue: NSObject, NSSecureCoding {
         case color
         case colorBrightness
         case brightness
+    }
+}
+
+@objc class DimmerCctAndRgbGroupValue: BaseGroupValue, NSSecureCoding {
+    static var supportsSecureCoding: Bool = true
+    
+    @objc let color: UIColor
+    @objc let colorBrightness: Int
+    @objc let brightness: Int
+    @objc let cct: Int
+    
+    init(color: UIColor, colorBrightness: Int, brightness: Int, cct: Int) {
+        self.color = color
+        self.colorBrightness = colorBrightness
+        self.brightness = brightness
+        self.cct = cct
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        color = UIColor(argb: coder.decodeInteger(forKey: Keys.color.rawValue))
+        colorBrightness = coder.decodeInteger(forKey: Keys.colorBrightness.rawValue)
+        brightness = coder.decodeInteger(forKey: Keys.brightness.rawValue)
+        cct = coder.decodeInteger(forKey: Keys.cct.rawValue)
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(color.argbInt, forKey: Keys.color.rawValue)
+        coder.encode(colorBrightness, forKey: Keys.colorBrightness.rawValue)
+        coder.encode(brightness, forKey: Keys.brightness.rawValue)
+        coder.encode(cct, forKey: Keys.cct.rawValue)
+    }
+    
+    override func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? DimmerCctAndRgbGroupValue else { return false }
+        return other.color.argbInt == color.argbInt
+            && other.colorBrightness == colorBrightness
+            && other.brightness == brightness
+            && other.cct == cct
+    }
+    
+    enum Keys: String, CodingKey {
+        case color
+        case colorBrightness
+        case brightness
+        case cct
     }
 }
 

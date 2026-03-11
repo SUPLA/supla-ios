@@ -33,19 +33,19 @@
 "mxn-xd-sgq.normalTitle" = "ON";
 
 /* Class = "UILabel"; text = "Higher temperature in AUTO mode"; ObjectID = "oUh-5I-hqg"; */
-"oUh-5I-hqg.text" = "Higher temperature in AUTO mode";
+"oUh-5I-hqg.text" = "AUTO rejimində daha yüksək temperatur";
 
 /* Class = "UIButton"; normalTitle = "AUTO"; ObjectID = "pbd-am-y6L"; */
 "pbd-am-y6L.normalTitle" = "AUTO";
 
 /* Class = "UILabel"; text = "Maximum water temperature"; ObjectID = "q66-xm-DaZ"; */
-"q66-xm-DaZ.text" = "Maximum water temperature";
+"q66-xm-DaZ.text" = "Maksimum su temperaturu";
 
 /* Class = "UILabel"; text = "Lower temperature in AUTO mode"; ObjectID = "sCn-Z8-huV"; */
-"sCn-Z8-huV.text" = "Lower temperature in AUTO mode";
+"sCn-Z8-huV.text" = "AUTO rejimində daha aşağı temperatur";
 
 /* Class = "UIButton"; normalTitle = "TURBO"; ObjectID = "u97-J1-5hH"; */
 "u97-J1-5hH.normalTitle" = "TURBO";
 
 /* Class = "UILabel"; text = "Temperature reduction in ECO mode"; ObjectID = "wzO-cl-uG7"; */
-"wzO-cl-uG7.text" = "Temperature reduction in ECO mode";
+"wzO-cl-uG7.text" = "ECO rejimində temperatur azaldılması";
