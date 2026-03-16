@@ -712,7 +712,7 @@
 "nfc_detail_info_dialog_title" = "De bescherming is van toepassing op de fysieke NFC-tag.";
 "nfc_detail_info_dialog_message" = "Een vergrendelde tag kan niet opnieuw worden beschreven of gebruikt met een andere applicatie dan SUPLA.\n\nDe tag kan nog steeds worden gescand en op andere telefoons aan SUPLA worden toegevoegd.\n\nVergrendelen wordt aanbevolen als de tag zich op een openbare locatie bevindt (bijv. bij een poort of ingang) om herprogrammering te voorkomen.\n\nDe instellingen in de app (naam en toegewezen actie) kunnen nog steeds worden gewijzigd voor een vergrendelde tag.";
 "add_nfc_too_many_tags" = "Er zijn meerdere NFC-tags gedetecteerd. Verwijder de extra tags en probeer het opnieuw.";
-"add_nfc_scanning_hint" = "Houd de tag tegen de achterkant van je telefoon om deze in te stellen.";
+"add_nfc_scanning_hint" = "Houd de tag bij de telefoon om deze te configureren.";
 "nfc_tag_error_write_failed" = "Er is iets misgegaan bij het schrijven van gegevens naar de tag. Probeer opnieuw.";
 "nfc_tag_error_unsupported" = "Dit type NFC-tag kan niet met SUPLA worden gebruikt. Gebruik een compatibele tag.";
 "nfc_tag_error_write_protected" = "Deze tag kan niet worden geprogrammeerd omdat deze tegen schrijven is vergrendeld.";
@@ -745,3 +745,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Niet-ondersteunde taginhoud";
 "call_nfc_action_failure_unknown_url_message" = "Deze tag bevat geen geldige SUPLA-gegevens en kan niet worden gebruikt.";
 "nfc_detail_action_added" = "Toegevoegd aan de app";
+"nfc_timeout_dialog_title" = "Tijd verstreken!";
+"nfc_timeout_dialog_message" = "De tag kon niet met het apparaat worden gekoppeld. Wil je het opnieuw proberen?";

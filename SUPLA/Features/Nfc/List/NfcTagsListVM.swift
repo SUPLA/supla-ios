@@ -63,6 +63,9 @@ extension NfcTagsListFeature {
                     }
                 } catch {
                     SALog.debug("Got error: \(error)")
+                    if let nfcError = error as? NfcError, nfcError == .timeout {
+                        await MainActor.run { state.dialog = .timeout }
+                    }
                 }
             }
         }

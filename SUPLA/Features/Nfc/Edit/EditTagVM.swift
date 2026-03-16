@@ -145,6 +145,7 @@ extension EditTagFeature {
                 self.state.uuid = uuid
                 self.state.tagName = tagName
                 self.state.profiles = profiles.changing(path: \.selected, to: profiles.items.first(where: { $0.id == profileId }))
+                self.state.subjectType = tag.subjectType ?? .channel
                 
                 if let selectableSubjects = subjects?.asSelectableList(selectedId: subjectId) {
                     self.state.subjects = selectableSubjects

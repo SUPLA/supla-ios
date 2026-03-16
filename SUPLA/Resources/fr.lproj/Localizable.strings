@@ -713,7 +713,7 @@
 "nfc_detail_info_dialog_title" = "La protection s’applique à l’étiquette NFC physique.";
 "nfc_detail_info_dialog_message" = "Une étiquette verrouillée ne peut pas être réécrite ni utilisée avec une autre application que SUPLA.\n\nL’étiquette peut toujours être scannée et ajoutée à SUPLA sur d’autres téléphones.\n\nLe verrouillage est recommandé si l’étiquette est placée dans un lieu public (par exemple à une porte ou une entrée) afin d’empêcher toute reprogrammation.\n\nLes paramètres dans l’application (nom et action attribuée) peuvent toujours être modifiés pour une étiquette verrouillée.";
 "add_nfc_too_many_tags" = "Plus d’une étiquette NFC détectée. Veuillez retirer les étiquettes supplémentaires et réessayer.";
-"add_nfc_scanning_hint" = "Approchez l’étiquette de l’arrière de votre téléphone pour la configurer.";
+"add_nfc_scanning_hint" = "Approchez l’étiquette pour la configurer.";
 "nfc_tag_error_write_failed" = "Une erreur s’est produite lors de l’écriture des données sur l’étiquette. Veuillez réessayer.";
 "nfc_tag_error_unsupported" = "Ce type d’étiquette NFC ne peut pas être utilisé avec SUPLA. Veuillez utiliser une étiquette compatible.";
 "nfc_tag_error_write_protected" = "Cette étiquette ne peut pas être programmée car elle est protégée en écriture.";
@@ -746,3 +746,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Contenu d’étiquette non pris en charge";
 "call_nfc_action_failure_unknown_url_message" = "Cette étiquette ne contient pas de données SUPLA valides et ne peut pas être utilisée.";
 "nfc_detail_action_added" = "Ajouté à l’application";
+"nfc_timeout_dialog_title" = "Temps écoulé !";
+"nfc_timeout_dialog_message" = "Impossible d’associer l’étiquette à l’appareil. Voulez-vous réessayer ?";

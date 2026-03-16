@@ -73,6 +73,7 @@ extension CallNfcActionFeature {
             case .processing: ProcessingStepContent()
             case .success:
                 Text(Strings.Nfc.Call.actionSuccess)
+                    .multilineTextAlignment(.center)
                     .fontTitleLarge()
             case .failure(let type): FailureInfo(type)
             }
@@ -81,6 +82,7 @@ extension CallNfcActionFeature {
         @ViewBuilder
         private func ProcessingStepContent() -> some SwiftUI.View {
             Text(Strings.General.processing)
+                .multilineTextAlignment(.center)
                 .fontTitleLarge()
                 .padding(.bottom, Distance.small)
             DotsLoadingIndicator()
@@ -89,6 +91,7 @@ extension CallNfcActionFeature {
         @ViewBuilder
         private func FailureInfo(_ type: CallNfcActionFeature.FailureType) -> some SwiftUI.View {
             Text(type.title)
+                .multilineTextAlignment(.center)
                 .fontTitleLarge()
             Text(type.message)
                 .multilineTextAlignment(.center)
@@ -98,10 +101,12 @@ extension CallNfcActionFeature {
         @ViewBuilder
         private func TagData(_ data: CallNfcActionFeature.TagData) -> some SwiftUI.View {
             Text(Strings.Nfc.Call.tagName.arguments(data.name))
+                .multilineTextAlignment(.center)
                 .fontTitleLarge()
                 .lineLimit(1)
             if let action = data.action?.name {
                 Text("\(action) - \(data.subjectName)")
+                    .multilineTextAlignment(.center)
                     .fontBodyLarge()
                     .lineLimit(1)
             }

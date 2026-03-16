@@ -711,7 +711,7 @@
 "nfc_detail_info_dialog_title" = "Beskyttelsen gjelder den fysiske NFC-taggen.";
 "nfc_detail_info_dialog_message" = "En låst tagg kan ikke overskrives eller brukes med andre apper enn SUPLA.\n\nTaggen kan fortsatt skannes og legges til i SUPLA på andre telefoner.\n\nLåsing anbefales hvis taggen er plassert på et offentlig sted (f.eks. ved en port eller inngang) for å forhindre omprogrammering.\n\nInnstillingene i appen (navn og tilordnet handling) kan fortsatt endres for en låst tagg.";
 "add_nfc_too_many_tags" = "Mer enn én NFC-tagg ble oppdaget. Fjern de ekstra taggene og prøv igjen.";
-"add_nfc_scanning_hint" = "Hold taggen mot baksiden av telefonen for å konfigurere den.";
+"add_nfc_scanning_hint" = "Hold taggen mot telefonen for å konfigurere den.";
 "nfc_tag_error_write_failed" = "Noe gikk galt under skriving av data til taggen. Prøv igjen.";
 "nfc_tag_error_unsupported" = "Denne typen NFC-tagg kan ikke brukes med SUPLA. Bruk en kompatibel tagg.";
 "nfc_tag_error_write_protected" = "Denne taggen kan ikke programmeres fordi den er skrivebeskyttet.";
@@ -744,3 +744,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Ikke støttet tagginnhold";
 "call_nfc_action_failure_unknown_url_message" = "Denne taggen inneholder ikke gyldige SUPLA-data og kan ikke brukes.";
 "nfc_detail_action_added" = "Lagt til i appen";
+"nfc_timeout_dialog_title" = "Tiden er ute!";
+"nfc_timeout_dialog_message" = "Kunne ikke koble taggen til enheten. Vil du prøve igjen?";

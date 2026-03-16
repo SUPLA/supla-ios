@@ -63,6 +63,7 @@ extension NfcTagsListFeature {
                 if let dialog = viewState.dialog {
                     switch (dialog) {
                         case .duplicate(let uuid, let name): DuplicateDialog(uuid, name: name)
+                        case .timeout: TimeoutDialog()
                     }
                 }
             }
@@ -91,13 +92,16 @@ extension NfcTagsListFeature {
         @ViewBuilder
         private func TimeoutDialog() -> some SwiftUI.View {
             SuplaCore.DialogWithIcon(
-                header: Strings.Nfc.List.duplicateDialogTitle,
-                message: Strings.Nfc.List.duplicateDialogMessage,
-                iconType: .warning,
+                header: Strings.Nfc.List.timeoutDialogTitle,
+                message: Strings.Nfc.List.timeoutDialogMessage,
+                iconType: .timeout,
                 onDismiss: {},
-                primaryButtonSpec: .default(Strings.Nfc.List.duplicateDialogOpenTag),
-                secondaryButtonText: Strings.General.cancel,
-                onPrimaryButtonClick: { },
+                primaryButtonSpec: .default(Strings.Status.tryAgain),
+                secondaryButtonText: Strings.General.exit,
+                onPrimaryButtonClick: {
+                    delegate?.hideDialog()
+                    delegate?.onNewItem()
+                },
                 onSecondaryButtonClick: { delegate?.hideDialog() }
             )
         }

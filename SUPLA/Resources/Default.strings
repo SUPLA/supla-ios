@@ -610,7 +610,7 @@
 "nfc_detail_delete_locked_dialog_title" = "Remove the locked tag from the device?";
 "nfc_detail_info_dialog_title" = "Protection applies to the physical NFC tag.";
 "nfc_detail_info_dialog_message" = "A locked tag cannot be rewritten or used with any application other than SUPLA.\n\nThe tag can still be scanned and added to SUPLA on other phones.\n\nLocking is recommended if the tag is placed in a public location (e.g., at a gate or entrance) to prevent anyone from reprogramming it.\n\nThe settings in the app (name and assigned action) can still be changed for a locked tag.";
-"add_nfc_scanning_hint" = "Hold the tag near the back of your phone to set it up.";
+"add_nfc_scanning_hint" = "Hold the tag to set it up.";
 "nfc_tag_error_write_failed" = "Something went wrong while writing data to the tag. Try again.";
 "nfc_tag_error_unsupported" = "This NFC tag type cannot be used with SUPLA. Please use compatible tag.";
 "nfc_tag_error_write_protected" = "This tag cannot be programmed because it is locked against writing.";
@@ -643,3 +643,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Unsupported tag content";
 "call_nfc_action_failure_unknown_url_message" = "This tag doesn’t contain valid SUPLA data and can’t be used.";
 "nfc_detail_action_added" = "Added to application";
+"nfc_timeout_dialog_title" = "Time is up!";
+"nfc_timeout_dialog_message" = "Could not link the tag with the device. Try again?";

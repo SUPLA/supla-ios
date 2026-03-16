@@ -712,7 +712,7 @@
 "nfc_detail_info_dialog_title" = "Ochrana se vztahuje na fyzický NFC tag.";
 "nfc_detail_info_dialog_message" = "Uzamčený tag nelze přepsat ani použít s jinou aplikací než SUPLA.\n\nTag lze stále naskenovat a přidat do SUPLA na jiných telefonech.\n\nUzamčení se doporučuje, pokud je tag umístěn na veřejném místě (např. u brány nebo vchodu), aby se zabránilo jeho přeprogramování.\n\nNastavení v aplikaci (název a přiřazená akce) lze u uzamčeného tagu stále měnit.";
 "add_nfc_too_many_tags" = "Bylo zjištěno více než jeden NFC tag. Odstraňte prosím přebytečné tagy a zkuste to znovu.";
-"add_nfc_scanning_hint" = "Podržte tag u zadní části telefonu pro jeho nastavení.";
+"add_nfc_scanning_hint" = "Přiložte tag pro jeho nastavení.";
 "nfc_tag_error_write_failed" = "Při zápisu dat na tag došlo k chybě. Zkuste to znovu.";
 "nfc_tag_error_unsupported" = "Tento typ NFC tagu nelze použít se SUPLA. Použijte prosím kompatibilní tag.";
 "nfc_tag_error_write_protected" = "Tento tag nelze naprogramovat, protože je uzamčen proti zápisu.";
@@ -745,3 +745,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Nepodporovaný obsah tagu";
 "call_nfc_action_failure_unknown_url_message" = "Tento tag neobsahuje platná data SUPLA a nelze jej použít.";
 "nfc_detail_action_added" = "Přidáno do aplikace";
+"nfc_timeout_dialog_title" = "Čas vypršel!";
+"nfc_timeout_dialog_message" = "Nepodařilo se propojit tag se zařízením. Chcete to zkusit znovu?";

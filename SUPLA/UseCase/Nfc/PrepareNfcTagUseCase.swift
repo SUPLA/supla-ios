@@ -21,6 +21,7 @@ import CoreNFC
 struct PrepareNfcTag {
     private static let retryInterval = DispatchTimeInterval.milliseconds(500)
     private static let androidMimeType = Data("application/vnd.org.supla.tag".utf8)
+    private static let androidPackage = Data("org.supla.android".utf8)
     
     protocol UseCase {
         func invoke() async throws -> NfcResult
@@ -47,8 +48,9 @@ struct PrepareNfcTag {
         }
         
         private func finish(_ session: NFCNDEFReaderSession, with result: Result<NfcResult, Error>) {
+            SALog.debug("Finishing with result: \(result)")
             switch (result) {
-            case .success(_):
+            case .success:
                 session.alertMessage = Strings.Nfc.Add.success
                 session.invalidate()
             case .failure(let error):
@@ -118,6 +120,7 @@ extension PrepareNfcTag._Implementation: NFCNDEFReaderSessionDelegate {
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: any Error) {
+        SALog.debug("Got NFC reader session invalidation error: \(String(describing: error))")
         if let nfcError = error as? NFCReaderError {
             switch (nfcError.code) {
             case .readerSessionInvalidationErrorUserCanceled:
@@ -195,9 +198,7 @@ extension PrepareNfcTag._Implementation {
     
     private func prepareMessage(_ uuid: String) -> NFCNDEFMessage? {
         guard let urlRecord = NFCNDEFPayload.wellKnownTypeURIPayload(string: "https://supla.org/tag/\(uuid)") else { return nil }
-        let androidMimeRecord = prepareAndroidMimeRecord(uuid)
-        
-        return NFCNDEFMessage(records: [androidMimeRecord, urlRecord])
+        return NFCNDEFMessage(records: [urlRecord, prepareAndroidApplicationRecord()])
     }
     
     private func prepareAndroidMimeRecord(_ uuid: String) -> NFCNDEFPayload {
@@ -206,6 +207,15 @@ extension PrepareNfcTag._Implementation {
             type: PrepareNfcTag.androidMimeType,
             identifier: Data(),
             payload: Data(uuid.utf8)
+        )
+    }
+    
+    private func prepareAndroidApplicationRecord() -> NFCNDEFPayload {
+        NFCNDEFPayload(
+            format: .nfcExternal,
+            type: Data("android.com:pkg".utf8),
+            identifier: Data(),
+            payload: PrepareNfcTag.androidPackage
         )
     }
 }

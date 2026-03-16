@@ -784,7 +784,7 @@
 "nfc_detail_info_dialog_title" = "Qoruma fiziki NFC teqinə tətbiq olunur.";
 "nfc_detail_info_dialog_message" = "Kilidlənmiş teq yenidən yazıla və ya SUPLA-dan başqa tətbiqlərlə istifadə edilə bilməz.\n\nTeq hələ də skan edilə və digər telefonlarda SUPLA-ya əlavə edilə bilər.\n\nTeq ictimai yerdə yerləşdirilibsə (məsələn, darvazada və ya girişdə), onun yenidən proqramlaşdırılmasının qarşısını almaq üçün kilidləmə tövsiyə olunur.\n\nTətbiqdəki ayarlar (ad və təyin edilmiş əməliyyat) kilidlənmiş teq üçün yenə də dəyişdirilə bilər.";
 "add_nfc_too_many_tags" = "Birdən çox NFC teqi aşkar edildi. Zəhmət olmasa əlavə teqləri uzaqlaşdırın və yenidən cəhd edin.";
-"add_nfc_scanning_hint" = "Quraşdırmaq üçün teqi telefonunuzun arxa hissəsinə yaxınlaşdırın.";
+"add_nfc_scanning_hint" = "Konfiqurasiya etmək üçün teqi telefona yaxınlaşdırın.";
 "nfc_tag_error_write_failed" = "Məlumat teqə yazılarkən xəta baş verdi. Yenidən cəhd edin.";
 "nfc_tag_error_unsupported" = "Bu NFC teq növü SUPLA ilə istifadə edilə bilməz. Zəhmət olmasa uyğun teqdən istifadə edin.";
 "nfc_tag_error_write_protected" = "Bu teq yazmaya qarşı kilidləndiyi üçün proqramlaşdırıla bilməz.";
@@ -817,3 +817,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Dəstəklənməyən teq məzmunu";
 "call_nfc_action_failure_unknown_url_message" = "Bu teq etibarlı SUPLA məlumatı daşımır və istifadə edilə bilməz.";
 "nfc_detail_action_added" = "Tətbiqə əlavə edildi";
+"nfc_timeout_dialog_title" = "Vaxt bitdi!";
+"nfc_timeout_dialog_message" = "Teqi cihazla əlaqələndirmək mümkün olmadı. Yenidən cəhd etmək istəyirsiniz?";

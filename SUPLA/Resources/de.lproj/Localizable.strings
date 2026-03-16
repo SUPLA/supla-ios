@@ -751,7 +751,7 @@
 "nfc_detail_info_dialog_title" = "Der Schutz gilt für den physischen NFC-Tag.";
 "nfc_detail_info_dialog_message" = "Ein gesperrter Tag kann nicht überschrieben oder mit einer anderen Anwendung als SUPLA verwendet werden.\n\nDer Tag kann weiterhin gescannt und auf anderen Telefonen zu SUPLA hinzugefügt werden.\n\nDas Sperren wird empfohlen, wenn der Tag an einem öffentlichen Ort angebracht ist (z. B. an einem Tor oder Eingang), um eine Neuprogrammierung zu verhindern.\n\nDie Einstellungen in der App (Name und zugewiesene Aktion) können auch bei einem gesperrten Tag weiterhin geändert werden.";
 "add_nfc_too_many_tags" = "Es wurde mehr als ein NFC-Tag erkannt. Bitte entfernen Sie die zusätzlichen Tags und versuchen Sie es erneut.";
-"add_nfc_scanning_hint" = "Halten Sie den Tag an die Rückseite Ihres Telefons, um ihn einzurichten.";
+"add_nfc_scanning_hint" = "Halten Sie den Tag an das Telefon, um ihn zu konfigurieren.";
 "nfc_tag_error_write_failed" = "Beim Schreiben der Daten auf den Tag ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.";
 "nfc_tag_error_unsupported" = "Dieser NFC-Tag-Typ kann nicht mit SUPLA verwendet werden. Bitte verwenden Sie einen kompatiblen Tag.";
 "nfc_tag_error_write_protected" = "Dieser Tag kann nicht programmiert werden, da er schreibgeschützt ist.";
@@ -783,3 +783,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Nicht unterstützter Tag-Inhalt";
 "call_nfc_action_failure_unknown_url_message" = "Dieser Tag enthält keine gültigen SUPLA-Daten und kann nicht verwendet werden.";
 "nfc_detail_action_added" = "Zur App hinzugefügt";
+"nfc_timeout_dialog_title" = "Zeit abgelaufen!";
+"nfc_timeout_dialog_message" = "Der Tag konnte nicht mit dem Gerät verknüpft werden. Möchten Sie es erneut versuchen?";

@@ -740,6 +740,8 @@ struct Strings {
             static let duplicateDialogTitle = "nfc_duplicate_dialog_title".toLocalized()
             static let duplicateDialogMessage = "nfc_duplicate_dialog_message".toLocalized()
             static let duplicateDialogOpenTag = "nfc_duplicate_open_tag".toLocalized()
+            static let timeoutDialogTitle = "nfc_timeout_dialog_title".toLocalized()
+            static let timeoutDialogMessage = "nfc_timeout_dialog_message".toLocalized()
         }
         
         struct Add {
@@ -749,6 +751,7 @@ struct Strings {
             static let errorUnsupported = "nfc_tag_error_unsupported".toLocalized()
             static let errorWriteProtected = "nfc_tag_error_write_protected".toLocalized()
             static let errorNotEnoughMemory = "nfc_tag_error_not_enough_memory".toLocalized()
+            static let errorNoTagDetected = "nfc_tag_error_no_tag_detected".toLocalized()
             static let success = "nfc_successfully_added".toLocalized()
         }
         

@@ -33,6 +33,7 @@ extension NfcTagsListFeature {
     
     enum Dialog {
         case duplicate(uuid: String, name: String)
+        case timeout
     }
 }
 
