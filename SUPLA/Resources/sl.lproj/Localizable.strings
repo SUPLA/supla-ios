@@ -713,7 +713,7 @@
 "nfc_detail_info_dialog_title" = "Zaščita velja za fizično NFC oznako.";
 "nfc_detail_info_dialog_message" = "Zaklenjene oznake ni mogoče prepisati ali uporabljati z drugo aplikacijo kot SUPLA.\n\nOznako je še vedno mogoče skenirati in dodati v SUPLA na drugih telefonih.\n\nZaklepanje je priporočeno, če je oznaka nameščena na javnem mestu (npr. pri vratih ali vhodu), da se prepreči ponovno programiranje.\n\nNastavitve v aplikaciji (ime in dodeljeno dejanje) je mogoče spremeniti tudi za zaklenjeno oznako.";
 "add_nfc_too_many_tags" = "Zaznana je bila več kot ena NFC oznaka. Odstranite dodatne oznake in poskusite znova.";
-"add_nfc_scanning_hint" = "Držite oznako ob zadnji strani telefona, da jo nastavite.";
+"add_nfc_scanning_hint" = "Približajte oznako za nastavitev.";
 "nfc_tag_error_write_failed" = "Pri zapisovanju podatkov na oznako je prišlo do napake. Poskusite znova.";
 "nfc_tag_error_unsupported" = "Ta vrsta NFC oznake ni združljiva s SUPLA. Uporabite združljivo oznako.";
 "nfc_tag_error_write_protected" = "Te oznake ni mogoče programirati, ker je zaščitena pred pisanjem.";
@@ -746,3 +746,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Nepodprta vsebina oznake";
 "call_nfc_action_failure_unknown_url_message" = "Ta oznaka ne vsebuje veljavnih SUPLA podatkov in je ni mogoče uporabiti.";
 "nfc_detail_action_added" = "Dodano v aplikacijo";
+"nfc_timeout_dialog_title" = "Čas je potekel!";
+"nfc_timeout_dialog_message" = "Oznake ni bilo mogoče povezati z napravo. Ali želite poskusiti znova?";

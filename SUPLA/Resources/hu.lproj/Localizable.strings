@@ -603,7 +603,7 @@
 "nfc_detail_info_dialog_title" = "A védelem a fizikai NFC-címkére vonatkozik.";
 "nfc_detail_info_dialog_message" = "A zárolt címke nem írható újra, és nem használható más alkalmazással a SUPLA-n kívül.\n\nA címke továbbra is beolvasható és hozzáadható a SUPLA-hoz más telefonokon.\n\nA zárolás ajánlott, ha a címke nyilvános helyen van elhelyezve (pl. kapunál vagy bejáratnál), hogy megakadályozza az újraprogramozást.\n\nAz alkalmazásban lévő beállítások (név és hozzárendelt művelet) zárolt címke esetén is módosíthatók.";
 "add_nfc_too_many_tags" = "Egynél több NFC-címke lett észlelve. Távolítsa el a felesleges címkéket, majd próbálja újra.";
-"add_nfc_scanning_hint" = "Tartsa a címkét a telefon hátoldalához a beállításhoz.";
+"add_nfc_scanning_hint" = "Tartsa a címkét a telefonhoz a beállításhoz.";
 "nfc_tag_error_write_failed" = "Hiba történt az adatok címkére írása közben. Próbálja újra.";
 "nfc_tag_error_unsupported" = "Ez az NFC-címketípus nem használható a SUPLA-val. Kérjük, használjon kompatibilis címkét.";
 "nfc_tag_error_write_protected" = "Ez a címke nem programozható, mert írásvédett.";
@@ -636,3 +636,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Nem támogatott címketartalom";
 "call_nfc_action_failure_unknown_url_message" = "Ez a címke nem tartalmaz érvényes SUPLA-adatokat, és nem használható.";
 "nfc_detail_action_added" = "Hozzáadva az alkalmazáshoz";
+"nfc_timeout_dialog_title" = "Lejárt az idő!";
+"nfc_timeout_dialog_message" = "Nem sikerült a címkét az eszközhöz társítani. Szeretné újra megpróbálni?";

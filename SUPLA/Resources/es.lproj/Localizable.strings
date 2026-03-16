@@ -713,7 +713,7 @@
 "nfc_detail_info_dialog_title" = "La protección se aplica a la etiqueta NFC física.";
 "nfc_detail_info_dialog_message" = "Una etiqueta bloqueada no puede reescribirse ni utilizarse con ninguna aplicación que no sea SUPLA.\n\nLa etiqueta aún puede escanearse y añadirse a SUPLA en otros teléfonos.\n\nSe recomienda bloquearla si la etiqueta está ubicada en un lugar público (por ejemplo, en una puerta o entrada) para evitar que alguien la reprograme.\n\nLa configuración en la aplicación (nombre y acción asignada) aún puede modificarse para una etiqueta bloqueada.";
 "add_nfc_too_many_tags" = "È stato rilevato più di un tag NFC. Rimuovi i tag aggiuntivi e riprova.";
-"add_nfc_scanning_hint" = "Acerque la etiqueta a la parte trasera de su teléfono para configurarla.";
+"add_nfc_scanning_hint" = "Acerque la etiqueta para configurarla.";
 "nfc_tag_error_write_failed" = "Se produjo un error al escribir los datos en la etiqueta. Inténtelo de nuevo.";
 "nfc_tag_error_unsupported" = "Este tipo de etiqueta NFC no puede utilizarse con SUPLA. Utilice una etiqueta compatible.";
 "nfc_tag_error_write_protected" = "Esta etiqueta no puede programarse porque está protegida contra escritura.";
@@ -746,3 +746,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Contenido de etiqueta no compatible";
 "call_nfc_action_failure_unknown_url_message" = "Esta etiqueta no contiene datos válidos de SUPLA y no puede utilizarse.";
 "nfc_detail_action_added" = "Añadido a la aplicación";
+"nfc_timeout_dialog_title" = "¡Tiempo agotado!";
+"nfc_timeout_dialog_message" = "No se pudo vincular la etiqueta con el dispositivo. ¿Quieres intentarlo de nuevo?";

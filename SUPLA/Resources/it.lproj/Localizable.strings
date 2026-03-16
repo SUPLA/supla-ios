@@ -746,7 +746,7 @@
 "nfc_detail_info_dialog_title" = "La protezione si applica al tag NFC fisico.";
 "nfc_detail_info_dialog_message" = "Un tag bloccato non può essere riscritto né utilizzato con applicazioni diverse da SUPLA.\n\nIl tag può comunque essere scansionato e aggiunto a SUPLA su altri telefoni.\n\nIl blocco è consigliato se il tag si trova in un luogo pubblico (ad esempio presso un cancello o un ingresso) per impedirne la riprogrammazione.\n\nLe impostazioni nell’app (nome e azione assegnata) possono ancora essere modificate anche per un tag bloccato.";
 "add_nfc_too_many_tags" = "È stato rilevato più di un tag NFC. Rimuovi i tag aggiuntivi e riprova.";
-"add_nfc_scanning_hint" = "Avvicina il tag alla parte posteriore del telefono per configurarlo.";
+"add_nfc_scanning_hint" = "Avvicina il tag per configurarlo.";
 "nfc_tag_error_write_failed" = "Si è verificato un errore durante la scrittura dei dati sul tag. Riprova.";
 "nfc_tag_error_unsupported" = "Questo tipo di tag NFC non può essere utilizzato con SUPLA. Utilizzare un tag compatibile.";
 "nfc_tag_error_write_protected" = "Questo tag non può essere programmato perché è protetto dalla scrittura.";
@@ -779,3 +779,5 @@
 "call_nfc_action_failure_unknown_url_title" = "Contenuto del tag non supportato";
 "call_nfc_action_failure_unknown_url_message" = "Questo tag non contiene dati SUPLA validi e non può essere utilizzato.";
 "nfc_detail_action_added" = "Aggiunto all’app";
+"nfc_timeout_dialog_title" = "Tempo scaduto!";
+"nfc_timeout_dialog_message" = "Impossibile associare il tag al dispositivo. Vuoi riprovare?";
