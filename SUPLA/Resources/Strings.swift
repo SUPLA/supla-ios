@@ -283,6 +283,7 @@ struct Strings {
         static let deleteAllMessage = "notification_delete_all_message".toLocalized()
         static let buttonDeleteAll = "notification_delete_button_delete_all".toLocalized()
         static let buttonDeleteOlderThanMonth = "notification_delete_button_delete_older_than_month".toLocalized()
+        static let searchPrompt = "toolbar_search_hint".toLocalized()
     }
     
     struct General {

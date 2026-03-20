@@ -19,25 +19,66 @@
 import RxSwift
 
 protocol NotificationRepository: RepositoryProtocol where T == SANotification {
-    func getAll() -> Observable<[SANotification]>
-    func deleteAll() -> Observable<Void>
-    func deleteOlderThanMonth() -> Observable<Void>
+    func getAll(filter: String?) async -> [NotificationDto]
+    func delete(_ notification: NotificationDto) async
+    func deleteAll() async
+    func deleteOlderThanMonth() async
+}
+
+extension NotificationRepository {
+    func getAll() async -> [NotificationDto] { await getAll(filter: nil) }
 }
 
 class NotificationRepositoryImpl: Repository<SANotification>, NotificationRepository {
-    
-    func getAll() -> Observable<[SANotification]> {
-        query(SANotification.fetchRequest().ordered(by: "date", ascending: false))
+    func getAll(filter: String? = nil) async -> [NotificationDto] {
+        let context = context
+        return await context.perform {
+            var request = SANotification.fetchRequest()
+                .ordered(by: "date", ascending: false)
+            
+            if let filter {
+                let pattern = "*\(filter)*"
+
+                let predicates = [
+                    NSPredicate(format: "title LIKE[c] %@", pattern),
+                    NSPredicate(format: "message LIKE[c] %@", pattern),
+                    NSPredicate(format: "profileName LIKE[c] %@", pattern)
+                ]
+                
+                request = request.filtered(by: NSCompoundPredicate(orPredicateWithSubpredicates: predicates))
+            }
+            
+            return try? context.fetch(request).map { $0.dto }
+        } ?? []
     }
-    
-    func deleteAll() -> Observable<Void> {
-        deleteAll(SANotification.fetchRequest())
+
+    func delete(_ notification: NotificationDto) async {
+        guard let id = context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: notification.id) else { return }
+
+        let context = context
+        await context.perform {
+            guard let object = try? context.existingObject(with: id) else { return }
+            context.delete(object)
+            try? context.save()
+        }
     }
-    
-    func deleteOlderThanMonth() -> Observable<Void> {
-        deleteAll(
-            SANotification.fetchRequest()
+
+    func deleteAll() async {
+        let context = context
+        await context.perform {
+            try? context.fetch(SANotification.fetchRequest()).forEach { context.delete($0) }
+            try? context.save()
+        }
+    }
+
+    func deleteOlderThanMonth() async {
+        let context = context
+        await context.perform {
+            let request = SANotification.fetchRequest()
                 .filtered(by: NSPredicate(format: "date < %@", Date().shift(days: -30) as NSDate))
-        )
+            
+            try? context.fetch(request).forEach { context.delete($0) }
+            try? context.save()
+        }
     }
 }
