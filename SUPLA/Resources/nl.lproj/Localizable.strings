@@ -747,3 +747,4 @@
 "nfc_detail_action_added" = "Toegevoegd aan de app";
 "nfc_timeout_dialog_title" = "Tijd verstreken!";
 "nfc_timeout_dialog_message" = "De tag kon niet met het apparaat worden gekoppeld. Wil je het opnieuw proberen?";
+"toolbar_search_hint" = "Voer minimaal 2 tekens in...";

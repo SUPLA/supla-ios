@@ -81,6 +81,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         #endif
+        
+        let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if (isPreview) {
+            return
+        }
 
         if wasInBackground && settings.lockScreenSettings.pinForAppRequired,
            let backgroundEntryTime = settings.backgroundEntryTime,
@@ -96,6 +101,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         SALog.debug("Application did enter background")
+        let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if (isPreview) {
+            return
+        }
+        
         wasInBackground = true
 
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
