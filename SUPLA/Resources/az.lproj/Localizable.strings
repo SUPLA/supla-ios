@@ -819,3 +819,4 @@
 "nfc_detail_action_added" = "Tətbiqə əlavə edildi";
 "nfc_timeout_dialog_title" = "Vaxt bitdi!";
 "nfc_timeout_dialog_message" = "Teqi cihazla əlaqələndirmək mümkün olmadı. Yenidən cəhd etmək istəyirsiniz?";
+"toolbar_search_hint" = "Ən azı 2 simvol daxil edin...";

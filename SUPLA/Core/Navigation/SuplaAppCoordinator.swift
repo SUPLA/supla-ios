@@ -154,7 +154,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToNotificationsLog() {
-        navigateTo(NotificationsLogVC())
+        navigateTo(NotificationsLogFeature.ViewController.create())
     }
     
     func navigateToDeviceCatalog() {

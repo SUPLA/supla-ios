@@ -453,6 +453,8 @@
 		A539C27E2D686AB400D9DD47 /* ListItemInfoIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */; };
 		A539C2802D686AD300D9DD47 /* ListItemIssueIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */; };
 		A539C2822D686B1400D9DD47 /* ListItemDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2812D686B1100D9DD47 /* ListItemDot.swift */; };
+		A53E416C2F6C0E3E00C90914 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */; };
+		A53E416E2F6D3E9D00C90914 /* ToolbarSearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */; };
 		A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54058192CE34B4500EC98C8 /* EditTextCell.swift */; };
 		A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */; };
 		A54149302B63059200B44BD6 /* GpmHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492F2B63059200B44BD6 /* GpmHistoryDetailVC.swift */; };
@@ -462,6 +464,10 @@
 		A541493A2B63D81000B44BD6 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149392B63D81000B44BD6 /* ChartData.swift */; };
 		A541493C2B63E0D300B44BD6 /* LineChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541493B2B63E0D300B44BD6 /* LineChartData.swift */; };
 		A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541493D2B63E42900B44BD6 /* EmptyChartData.swift */; };
+		A5425F952F6A880C00794C9D /* NotificationsLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F942F6A880100794C9D /* NotificationsLogView.swift */; };
+		A5425F972F6A881A00794C9D /* NotificationsLogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F962F6A881000794C9D /* NotificationsLogFeature.swift */; };
+		A5425F992F6A886800794C9D /* NotificationsLogViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F982F6A884000794C9D /* NotificationsLogViewState.swift */; };
+		A5425F9B2F6A88B600794C9D /* NotificationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F9A2F6A88B100794C9D /* NotificationDto.swift */; };
 		A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */; };
 		A54260272CE769C300BE74FE /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */; };
 		A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */; };
@@ -1303,7 +1309,6 @@
 		A5E2D70C2DCB922000EBDADB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67662A666F2200147D1F /* String+Ext.swift */; };
 		A5E2D70D2DCBEC9300EBDADB /* Color+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A15FF82C299D230049AA73 /* Color+Supla.swift */; };
 		A5E2D70E2DCBEC9C00EBDADB /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
-		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
 		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */; };
 		A5E40B512B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B502B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift */; };
@@ -2201,6 +2206,8 @@
 		A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemInfoIcon.swift; sourceTree = "<group>"; };
 		A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIssueIcon.swift; sourceTree = "<group>"; };
 		A539C2812D686B1100D9DD47 /* ListItemDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDot.swift; sourceTree = "<group>"; };
+		A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
+		A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarSearchHandler.swift; sourceTree = "<group>"; };
 		A54058192CE34B4500EC98C8 /* EditTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
 		A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A541492F2B63059200B44BD6 /* GpmHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVC.swift; sourceTree = "<group>"; };
@@ -2210,6 +2217,10 @@
 		A54149392B63D81000B44BD6 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		A541493B2B63E0D300B44BD6 /* LineChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartData.swift; sourceTree = "<group>"; };
 		A541493D2B63E42900B44BD6 /* EmptyChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChartData.swift; sourceTree = "<group>"; };
+		A5425F942F6A880100794C9D /* NotificationsLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogView.swift; sourceTree = "<group>"; };
+		A5425F962F6A881000794C9D /* NotificationsLogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogFeature.swift; sourceTree = "<group>"; };
+		A5425F982F6A884000794C9D /* NotificationsLogViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogViewState.swift; sourceTree = "<group>"; };
+		A5425F9A2F6A88B100794C9D /* NotificationDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDto.swift; sourceTree = "<group>"; };
 		A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemIssues+iOS.swift"; sourceTree = "<group>"; };
 		A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
 		A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleIconValueCell.swift; sourceTree = "<group>"; };
@@ -3042,7 +3053,6 @@
 		A5E2D6B02DCA238B00EBDADB /* LocalizedStringResource+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedStringResource+Ext.swift"; sourceTree = "<group>"; };
 		A5E2D6B62DCA2B3B00EBDADB /* DeleteCarPlayItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCarPlayItemUseCase.swift; sourceTree = "<group>"; };
 		A5E2D7012DCB64A700EBDADB /* SAKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAKeychain.swift; sourceTree = "<group>"; };
-		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E40B4E2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeterLogUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B502B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterItemRepositoryMock.swift; sourceTree = "<group>"; };
@@ -5010,9 +5020,11 @@
 		A55501F12B83828100FD3296 /* NotificationsLog */ = {
 			isa = PBXGroup;
 			children = (
+				A5425F982F6A884000794C9D /* NotificationsLogViewState.swift */,
+				A5425F962F6A881000794C9D /* NotificationsLogFeature.swift */,
+				A5425F942F6A880100794C9D /* NotificationsLogView.swift */,
 				A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */,
 				A55501F42B83842000FD3296 /* NotificationsLogVC.swift */,
-				A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */,
 			);
 			path = NotificationsLog;
 			sourceTree = "<group>";
@@ -6202,6 +6214,7 @@
 				A5B8A47D2CBD07FE002FA7B2 /* SuplaCore+Dialog.swift */,
 				A5A160062C2AB3ED0049AA73 /* SuplaCore+BaseViewModel.swift */,
 				A5A160082C2AB42F0049AA73 /* SuplaCore+BaseViewController.swift */,
+				A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -7169,6 +7182,7 @@
 		A5EDC4C02F61592A000A43BF /* Dto */ = {
 			isa = PBXGroup;
 			children = (
+				A5425F9A2F6A88B100794C9D /* NotificationDto.swift */,
 				A5EDC4C52F615FB5000A43BF /* NfcCallItemDto.swift */,
 				A5EDC4C32F615F4F000A43BF /* NfcTagItemDataDto.swift */,
 				A5EDC4C12F615933000A43BF /* NfcTagItemDto.swift */,
@@ -7387,6 +7401,7 @@
 		A5F29B812A1F8D7A00ED700A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */,
 				A5BF4F862F3E141B00F5DE81 /* URL+NfcTag.swift */,
 				A5C31A8C2EF0BBCA00E4B4FD /* Comparable+Ext.swift */,
 				A56364262EE1736400A702C0 /* Color+HSV.swift */,
@@ -8235,6 +8250,7 @@
 				A5C5F6F32D93ED2900E303B8 /* SuplaCoreAlertDialog.swift in Sources */,
 				A50B5D292BF49F2700918D18 /* TerraceAwningVM.swift in Sources */,
 				A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */,
+				A5425F992F6A886800794C9D /* NotificationsLogViewState.swift in Sources */,
 				A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */,
 				A5E05B9F2CB3C94900202583 /* ElectricityMeterChartType.swift in Sources */,
 				A5A15FE82C2985780049AA73 /* Coordinator.swift in Sources */,
@@ -8380,8 +8396,10 @@
 				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
 				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
+				A5425F952F6A880C00794C9D /* NotificationsLogView.swift in Sources */,
 				A5BF4F682F3CB36F00F5DE81 /* ListItemRow.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
+				A5425F9B2F6A88B600794C9D /* NotificationDto.swift in Sources */,
 				A55A8DA82BAC50B100C540D4 /* NotificationCenterWrapper.swift in Sources */,
 				A539C2692D676E7700D9DD47 /* GetChannelSpecificIssuesUseCase.swift in Sources */,
 				A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */,
@@ -8410,7 +8428,6 @@
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				A5BF4F812F3CC32900F5DE81 /* EditTagVC.swift in Sources */,
 				A5C5F6E82D92B0B700E303B8 /* ChannelListView.swift in Sources */,
-				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
 				A5862C092CEF2F5F00DFFD55 /* ChannelStateRepository.swift in Sources */,
 				A58D1B7E2CDCB11B00B5A019 /* IssueIcon+iOS.swift in Sources */,
@@ -9126,6 +9143,7 @@
 				A530EE062A5575D700F8DAEE /* DeviceStateView.swift in Sources */,
 				A5AE6D832E1FEA2500BC2B67 /* DeviceParametersTable.swift in Sources */,
 				A5D7126C2C380D7700A8EF52 /* CheckPinUseCase.swift in Sources */,
+				A5425F972F6A881A00794C9D /* NotificationsLogFeature.swift in Sources */,
 				A54C583D2EB8E4B6003C0444 /* ThermostatIssuesProvider.swift in Sources */,
 				A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */,
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
@@ -9135,6 +9153,7 @@
 				A5AE6D7D2E1FA6B900BC2B67 /* AddWizardMessageView.swift in Sources */,
 				A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */,
 				A5DEE9692E9FAD1B000811C7 /* DeveloperInfoFeature.swift in Sources */,
+				A53E416E2F6D3E9D00C90914 /* ToolbarSearchHandler.swift in Sources */,
 				A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */,
 				A5E84F182EE6EB84002F26F8 /* RgbBaseValue+iOS.swift in Sources */,
 				A5B5937B2F1793140054E6F9 /* DimmerCctDetailFeature.swift in Sources */,
@@ -9171,6 +9190,7 @@
 				A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
 				A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */,
+				A53E416C2F6C0E3E00C90914 /* UIBarButtonItem+Ext.swift in Sources */,
 				A5E05B9D2CB00EEE00202583 /* DownloadElectricityMeterLogUseCase.swift in Sources */,
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,

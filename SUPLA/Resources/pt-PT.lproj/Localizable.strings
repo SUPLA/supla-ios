@@ -749,3 +749,4 @@
 "nfc_detail_action_added" = "Adicionado à aplicação";
 "nfc_timeout_dialog_title" = "Tempo esgotado!";
 "nfc_timeout_dialog_message" = "Não foi possível associar a etiqueta ao dispositivo. Deseja tentar novamente?";
+"toolbar_search_hint" = "Introduza pelo menos 2 caracteres...";

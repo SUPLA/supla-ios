@@ -37,6 +37,7 @@ extension Font {
         static let bodyLarge: Font = .custom("OpenSans", size: 16)
         static let bodyMedium: Font = .custom("OpenSans", size: 14)
         static let bodySmall: Font = .custom("OpenSans", size: 12)
+        static let bodySmallSemiBold: Font = .custom("OpenSans-SemiBold", size: 12)
 
         static let labelLarge: Font = .custom("OpenSans-Medium", size: 17)
         static let labelMedium: Font = .custom("OpenSans-SemiBold", size: 14)

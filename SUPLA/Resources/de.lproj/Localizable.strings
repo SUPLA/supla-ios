@@ -785,3 +785,4 @@
 "nfc_detail_action_added" = "Zur App hinzugefügt";
 "nfc_timeout_dialog_title" = "Zeit abgelaufen!";
 "nfc_timeout_dialog_message" = "Der Tag konnte nicht mit dem Gerät verknüpft werden. Möchten Sie es erneut versuchen?";
+"toolbar_search_hint" = "Geben Sie mindestens 2 Zeichen ein...";

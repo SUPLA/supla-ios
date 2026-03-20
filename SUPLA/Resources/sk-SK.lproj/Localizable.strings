@@ -746,3 +746,4 @@
 "nfc_detail_action_added" = "Pridané do aplikácie";
 "nfc_timeout_dialog_title" = "Čas vypršal!";
 "nfc_timeout_dialog_message" = "Nepodarilo sa prepojiť tag so zariadením. Chcete to skúsiť znova?";
+"toolbar_search_hint" = "Zadajte aspoň 2 znaky...";

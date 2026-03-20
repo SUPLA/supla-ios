@@ -820,3 +820,4 @@
 "nfc_detail_action_added" = "Dodano do aplikacji";
 "nfc_timeout_dialog_title" = "Czas upłynął!";
 "nfc_timeout_dialog_message" = "Nie udało się powiązać taga z urządzeniem. Czy chcesz spróbować ponownie?";
+"toolbar_search_hint" = "Wpisz 2 znaki, aby wyszukać...";
