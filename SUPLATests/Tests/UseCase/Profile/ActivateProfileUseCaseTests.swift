@@ -96,16 +96,13 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
     
     func test_shouldActivateOtherProfile() {
         // given
-        let activeProfile = AuthProfileItem(testContext: nil)
-        activeProfile.id = 3
-        activeProfile.isActive = true
+        let notActiveProfile = ProfileDto(id: 2)
         
-        let notActiveProfile = AuthProfileItem(testContext: nil)
-        notActiveProfile.id = 2
+        let notActiveProfileEntity = AuthProfileItem(testContext: nil)
+        notActiveProfileEntity.id = 2
         
-        profileRepository.getProfileWithIdMock.returns = .single(.just(notActiveProfile))
-        profileRepository.allProfilesObservable = .just([activeProfile, notActiveProfile])
-        profileRepository.saveObservable = .just(())
+        profileRepository.getProfileWithIdMock.returns = .single(.just(notActiveProfileEntity))
+        profileRepository.markProfileActiveMock.returns = .single(.just(()))
         reconnectUseCase.returns = .complete()
         
         // when
@@ -115,19 +112,19 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         
         // then
         assertEvents(contains: [ .completed ])
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [notActiveProfile.objectID])
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [notActiveProfileEntity.objectID])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 1)
     }
     
     func test_shouldActivateActiveProfileWhenForceTrue() {
         // given
-        let activeProfile = AuthProfileItem(testContext: nil)
-        activeProfile.id = 32
-        activeProfile.isActive = true
+        let activeProfile = ProfileDto(id: 32, isActive: true)
+        let activeProfileEntity = AuthProfileItem(testContext: nil)
+        activeProfileEntity.id = 32
+        activeProfileEntity.isActive = true
         
-        profileRepository.getProfileWithIdMock.returns = .single(.just(activeProfile))
-        profileRepository.allProfilesObservable = .just([activeProfile])
-        profileRepository.saveObservable = .just(())
+        profileRepository.getProfileWithIdMock.returns = .single(.just(activeProfileEntity))
+        profileRepository.markProfileActiveMock.returns = .single(.just(()))
         reconnectUseCase.returns = .complete()
         
         // when
@@ -137,7 +134,7 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         
         // then
         assertEvents(contains: [ .completed ])
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [activeProfile.objectID])
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [activeProfileEntity.objectID])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 1)
     }
 }

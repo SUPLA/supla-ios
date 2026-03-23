@@ -22,11 +22,11 @@
 #ifndef SingleCallWrapper_h
 #define SingleCallWrapper_h
 
-@class AuthProfileItem;
+@class ProfileDtoProxy;
 
 @interface SingleCallWrapper : NSObject { }
 
-+ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token;
++ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (ProfileDtoProxy*) profile with: (NSData*) token;
 @end
 
 #endif /* SingleCallWrapper_h */

@@ -29,11 +29,15 @@ final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileR
         return activeProfileObservable
     }
     
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
+    var allProfilesObservable: Observable<[ProfileDto]> = Observable.empty()
     var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
+    func getAllProfiles() -> Observable<[ProfileDto]> {
         allProfilesCalls += 1
         return allProfilesObservable
+    }
+    
+    func getAllProfiles() async -> [ProfileDto] {
+        []
     }
     
     var getProfileWithIdMock: FunctionMock<Int32, Observable<AuthProfileItem?>> = FunctionMock()
@@ -46,7 +50,22 @@ final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileR
         getAuthorizationEntityMock.handle(id)
     }
     
+    var getProfileCountMock: FunctionMock<Void, Int> = FunctionMock()
     func getProfileCount() async -> Int {
-        0
+        getProfileCountMock.handle(())
+    }
+    
+    let allProfilesInternMock: FunctionMock<Void, Observable<[AuthProfileItem]>> = FunctionMock()
+    func getAllProfilesIntern() -> Observable<[AuthProfileItem]> {
+        allProfilesInternMock.handle(())
+    }
+    
+    func updateProfilePositions(_ positions: [Int32 : Int32]) -> Observable<Void> {
+        .empty()
+    }
+    
+    let markProfileActiveMock: FunctionMock<ProfileID, Observable<Void>> = .init()
+    func markProfileActive(_ id: ProfileID) -> Observable<Void> {
+        markProfileActiveMock.handle(id)
     }
 }

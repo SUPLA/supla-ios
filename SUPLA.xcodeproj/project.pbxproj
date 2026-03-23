@@ -455,6 +455,13 @@
 		A539C2822D686B1400D9DD47 /* ListItemDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2812D686B1100D9DD47 /* ListItemDot.swift */; };
 		A53E416C2F6C0E3E00C90914 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */; };
 		A53E416E2F6D3E9D00C90914 /* ToolbarSearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */; };
+		A53E41742F6D79C000C90914 /* ProfileChooserFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41732F6D79B900C90914 /* ProfileChooserFeature.swift */; };
+		A53E41762F6D79DB00C90914 /* ProfileChooserViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41752F6D79D300C90914 /* ProfileChooserViewState.swift */; };
+		A53E41782F6D7A1F00C90914 /* ProfileChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41772F6D7A1B00C90914 /* ProfileChooserView.swift */; };
+		A53E417A2F6D7AB100C90914 /* ProfileChooserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41792F6D7AAD00C90914 /* ProfileChooserVM.swift */; };
+		A53E417C2F6D7B0600C90914 /* ProfileChooserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E417B2F6D7B0200C90914 /* ProfileChooserVC.swift */; };
+		A53E417E2F715F4400C90914 /* RestoreProfileFromDefaultsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E417D2F715F3600C90914 /* RestoreProfileFromDefaultsUseCase.swift */; };
+		A53E41802F7164E000C90914 /* ProfileDtoProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E417F2F7164DB00C90914 /* ProfileDtoProxy.swift */; };
 		A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54058192CE34B4500EC98C8 /* EditTextCell.swift */; };
 		A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */; };
 		A54149302B63059200B44BD6 /* GpmHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492F2B63059200B44BD6 /* GpmHistoryDetailVC.swift */; };
@@ -525,7 +532,6 @@
 		A54A06822AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06812AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift */; };
 		A54A06842AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06832AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift */; };
 		A54A06862AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06852AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift */; };
-		A54A06882AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */; };
 		A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */; };
 		A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */; };
 		A54A068E2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */; };
@@ -725,7 +731,6 @@
 		A574E5022F5B16D40066B4EA /* IconOnCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574E5012F5B16CF0066B4EA /* IconOnCircle.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
 		A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */; };
-		A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */; };
 		A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */; };
 		A57668C12AE7996D0025509D /* HistoryDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668C02AE7996D0025509D /* HistoryDataSet.swift */; };
 		A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668C22AE799AC0025509D /* ChartEntryType.swift */; };
@@ -1492,7 +1497,6 @@
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
-		AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */; };
 		AE74528F2827F09400A3AFAD /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528E2827F09400A3AFAD /* Dimens.swift */; };
 		AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CAAFC275BF87D0024095F /* BaseViewController.m */; };
 		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
@@ -1500,8 +1504,6 @@
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEA2711CB67001A9714 /* AuthInfo.swift */; };
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
-		AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */; };
-		AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */; };
 		AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */; };
 		AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1F9B927726D56008E441A /* DetailViewController.swift */; };
 		AEF6A5D028BBD1EC0019684A /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */; };
@@ -2208,6 +2210,13 @@
 		A539C2812D686B1100D9DD47 /* ListItemDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDot.swift; sourceTree = "<group>"; };
 		A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
 		A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarSearchHandler.swift; sourceTree = "<group>"; };
+		A53E41732F6D79B900C90914 /* ProfileChooserFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserFeature.swift; sourceTree = "<group>"; };
+		A53E41752F6D79D300C90914 /* ProfileChooserViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserViewState.swift; sourceTree = "<group>"; };
+		A53E41772F6D7A1B00C90914 /* ProfileChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserView.swift; sourceTree = "<group>"; };
+		A53E41792F6D7AAD00C90914 /* ProfileChooserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserVM.swift; sourceTree = "<group>"; };
+		A53E417B2F6D7B0200C90914 /* ProfileChooserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserVC.swift; sourceTree = "<group>"; };
+		A53E417D2F715F3600C90914 /* RestoreProfileFromDefaultsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreProfileFromDefaultsUseCase.swift; sourceTree = "<group>"; };
+		A53E417F2F7164DB00C90914 /* ProfileDtoProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDtoProxy.swift; sourceTree = "<group>"; };
 		A54058192CE34B4500EC98C8 /* EditTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
 		A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A541492F2B63059200B44BD6 /* GpmHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVC.swift; sourceTree = "<group>"; };
@@ -2279,7 +2288,6 @@
 		A54A06812AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
 		A54A06832AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SATemperatureMeasurementItem+Mock.swift"; sourceTree = "<group>"; };
 		A54A06852AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SATempHumidityMeasurementItem+Mock.swift"; sourceTree = "<group>"; };
-		A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiAccountProfileManagerTests.swift; sourceTree = "<group>"; };
 		A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCasesMocks.swift; sourceTree = "<group>"; };
 		A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift; sourceTree = "<group>"; };
 		A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2500,7 +2508,6 @@
 		A574E5012F5B16CF0066B4EA /* IconOnCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconOnCircle.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
 		A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
-		A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerMock.swift; sourceTree = "<group>"; };
 		A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettingsMock.swift; sourceTree = "<group>"; };
 		A57668C02AE7996D0025509D /* HistoryDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataSet.swift; sourceTree = "<group>"; };
 		A57668C22AE799AC0025509D /* ChartEntryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryType.swift; sourceTree = "<group>"; };
@@ -3227,7 +3234,6 @@
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
-		AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooser.swift; sourceTree = "<group>"; };
 		AE74528E2827F09400A3AFAD /* Dimens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
 		AE7CAAFB275BF87D0024095F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = UI/BaseViewController.h; sourceTree = "<group>"; };
 		AE7CAAFC275BF87D0024095F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = UI/BaseViewController.m; sourceTree = "<group>"; };
@@ -3237,9 +3243,7 @@
 		AECB1BEA2711CB67001A9714 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
 		AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 12.xcdatamodel"; sourceTree = "<group>"; };
-		AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 11.xcdatamodel"; sourceTree = "<group>"; };
-		AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiAccountProfileManager.swift; sourceTree = "<group>"; };
 		AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVM.swift; sourceTree = "<group>"; };
 		AEF1F9B927726D56008E441A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
@@ -3467,7 +3471,6 @@
 				A5F29B7C2A1E36B300ED700A /* Repositories */,
 				A573B39029DEB24400EBAFC4 /* Core */,
 				A5756F7F29DC0FE900C32A1B /* Features */,
-				AEED1FCF2737F39100DE6289 /* profile */,
 				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
 				AEBCD8FA26E4D212001904F3 /* DataPresenters */,
 				01CEAC1B25B99D47009C3BFD /* Value */,
@@ -3858,14 +3861,6 @@
 				A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift */,
 			);
 			path = ValueFormatter;
-			sourceTree = "<group>";
-		};
-		A505EC342CF71BC300E69BDB /* Dto */ = {
-			isa = PBXGroup;
-			children = (
-				A505EC352CF71BD100E69BDB /* ProfileDto.swift */,
-			);
-			path = Dto;
 			sourceTree = "<group>";
 		};
 		A505EC372CF71E3300E69BDB /* CreateProfile */ = {
@@ -4655,6 +4650,18 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		A53E41722F6D79AF00C90914 /* ProfileChooser */ = {
+			isa = PBXGroup;
+			children = (
+				A53E417B2F6D7B0200C90914 /* ProfileChooserVC.swift */,
+				A53E41792F6D7AAD00C90914 /* ProfileChooserVM.swift */,
+				A53E41772F6D7A1B00C90914 /* ProfileChooserView.swift */,
+				A53E41752F6D79D300C90914 /* ProfileChooserViewState.swift */,
+				A53E41732F6D79B900C90914 /* ProfileChooserFeature.swift */,
+			);
+			path = ProfileChooser;
+			sourceTree = "<group>";
+		};
 		A54149242B6302B100B44BD6 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -4908,7 +4915,6 @@
 		A54A06922AFB740900C03DBC /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
 				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
 				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
@@ -5103,7 +5109,6 @@
 			isa = PBXGroup;
 			children = (
 				A5E84F162EE6EB71002F26F8 /* Rgb */,
-				A505EC342CF71BC300E69BDB /* Dto */,
 				A5862C0A2CEF813300DFFD55 /* ChannelState */,
 				A584E1FD2CAAC87900232A98 /* ElectricityMeter */,
 				A51BE8FD2AA73A3E00718F2F /* Thermostat */,
@@ -5457,6 +5462,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A53E41722F6D79AF00C90914 /* ProfileChooser */,
 				A574E4F62F59B6EA0066B4EA /* ActionSelection */,
 				A5BF4F5B2F3C857900F5DE81 /* Nfc */,
 				A5D7128C2C41079500A8EF52 /* About */,
@@ -5525,7 +5531,6 @@
 				A573B0A32A5FF185001E19D0 /* Infrastructure */,
 				A59AB8B92A307FAD00D91F1F /* Repositories */,
 				A59AB89E2A30534F00D91F1F /* UseCase */,
-				A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */,
 				A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */,
 				A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */,
 				A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */,
@@ -7182,6 +7187,8 @@
 		A5EDC4C02F61592A000A43BF /* Dto */ = {
 			isa = PBXGroup;
 			children = (
+				A53E417F2F7164DB00C90914 /* ProfileDtoProxy.swift */,
+				A505EC352CF71BD100E69BDB /* ProfileDto.swift */,
 				A5425F9A2F6A88B100794C9D /* NotificationDto.swift */,
 				A5EDC4C52F615FB5000A43BF /* NfcCallItemDto.swift */,
 				A5EDC4C32F615F4F000A43BF /* NfcTagItemDataDto.swift */,
@@ -7606,6 +7613,7 @@
 		A5F29BCA2A2622A900ED700A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				A53E417D2F715F3600C90914 /* RestoreProfileFromDefaultsUseCase.swift */,
 				A5DEE9362E9E7A7D000811C7 /* UpdateProfilesOrderUseCase.swift */,
 				A5F29BCB2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift */,
 				A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */,
@@ -7725,16 +7733,6 @@
 				AE348E65277F348700F363A3 /* SAMoveTableView.m */,
 			);
 			path = Controls;
-			sourceTree = "<group>";
-		};
-		AEED1FCF2737F39100DE6289 /* profile */ = {
-			isa = PBXGroup;
-			children = (
-				AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */,
-				AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */,
-				AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */,
-			);
-			path = profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -8203,6 +8201,7 @@
 				A530EE1A2A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A50716D32D6892400060FA0D /* StateDialogView.swift in Sources */,
+				A53E41742F6D79C000C90914 /* ProfileChooserFeature.swift in Sources */,
 				A5C5F6ED2D93EBB000E303B8 /* SuplaCoreDialog.swift in Sources */,
 				A5EC524E2C10799B0022F055 /* BaseWindowViewDimens.swift in Sources */,
 				A56F8D072DA84DA300F097CE /* SwitchGeneralView.swift in Sources */,
@@ -8364,6 +8363,7 @@
 				A563640B2EDF8F8A00A702C0 /* StandardDetailVC.swift in Sources */,
 				A5A15FE62C256F850049AA73 /* AppDelegate.swift in Sources */,
 				A5074BD12BCE72400081B6B1 /* FacadeBlindsVC.swift in Sources */,
+				A53E41782F6D7A1F00C90914 /* ProfileChooserView.swift in Sources */,
 				A58542242D806FB800D314A2 /* RelatedChannelData.swift in Sources */,
 				A56EC9312CEF1DAF00A6E2CB /* SAChannelState+Ext.swift in Sources */,
 				A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */,
@@ -8475,6 +8475,7 @@
 				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
 				A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */,
+				A53E417E2F715F4400C90914 /* RestoreProfileFromDefaultsUseCase.swift in Sources */,
 				A505EC362CF71BD500E69BDB /* ProfileDto.swift in Sources */,
 				A55A8DA22BAC2A9800C540D4 /* SAAlertDialogVC.swift in Sources */,
 				A5EC524A2C10432D0022F055 /* BaseBlindsViewModel.swift in Sources */,
@@ -8493,6 +8494,7 @@
 				A58D1B8C2CDD695400B5A019 /* GetChannelDefaultCaptionUseCase.swift in Sources */,
 				A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */,
 				A5A15FEF2C298AAD0049AA73 /* StatusVM.swift in Sources */,
+				A53E417C2F6D7B0600C90914 /* ProfileChooserVC.swift in Sources */,
 				A5B3CC062B62802600F95AC3 /* RainValueStringProvider.swift in Sources */,
 				A598CADA2CC7977700A784FA /* SuplaPieChartView.swift in Sources */,
 				A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */,
@@ -8517,7 +8519,6 @@
 				A519BFE12DD205C90045EB77 /* ExportCarPlayItemsUseCase.swift in Sources */,
 				A5D712962C41198A00A8EF52 /* AboutVC.swift in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
-				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
 				A5BCA95A2E277BDB00A5054A /* IosEspConfigurationStateHolder.swift in Sources */,
 				A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */,
 				A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */,
@@ -8734,6 +8735,7 @@
 				A5E160A72D3108F3003A7C71 /* ContainerValueStringProvider.swift in Sources */,
 				A5BCA9B32E2A3A3D00A5054A /* ConfigureEspUseCase.swift in Sources */,
 				A5E0DF6C2CEB652600362451 /* ImpulseCounterDetailVM.swift in Sources */,
+				A53E41762F6D79DB00C90914 /* ProfileChooserViewState.swift in Sources */,
 				A57668D32AE941630025509D /* DownloadChannelMeasurementsUseCase.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				A5E13B722DBC2E0D00C6DE14 /* GetSceneIconUseCase.swift in Sources */,
@@ -8745,7 +8747,6 @@
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				A550F2892D522BE80011463B /* PowerActiveMeasurementItemRepository.swift in Sources */,
 				A598CAD82CC77D3F00A784FA /* PieChartData.swift in Sources */,
-				AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */,
 				A5DEE9702E9FB809000811C7 /* DeveloperInfoVM.swift in Sources */,
 				A5C5F6E42D91F1B200E303B8 /* View+If.swift in Sources */,
 				A50B5D242BEE4CE600918D18 /* UIViewController+Toast.swift in Sources */,
@@ -8798,6 +8799,7 @@
 				A55AE82D2EEC0F16006E0AA9 /* ColorListItemType.swift in Sources */,
 				A5DB3ACD2E9E3FDB007DAD9B /* ProfilesListFeature.swift in Sources */,
 				A539C2672D67662F00D9DD47 /* GetAllChannelIssuesUseCase.swift in Sources */,
+				A53E41802F7164E000C90914 /* ProfileDtoProxy.swift in Sources */,
 				A5A15FF42C2994BF0049AA73 /* BorderedButton.swift in Sources */,
 				A55A8D9D2BAC191800C540D4 /* CallSuplaClientOperationUseCase.swift in Sources */,
 				A5B3A4B52BB558B70001D006 /* RoofWindowView.swift in Sources */,
@@ -9008,6 +9010,7 @@
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				A5882ECF2DBF5F9300F1FC4A /* SACarPlayItem+Ext.swift in Sources */,
 				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
+				A53E417A2F6D7AB100C90914 /* ProfileChooserVM.swift in Sources */,
 				A5E2D6B22DCA239A00EBDADB /* LocalizedStringResource+Ext.swift in Sources */,
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
@@ -9029,7 +9032,6 @@
 				A5E05BA12CB3D12400202583 /* ChartDataSpec.swift in Sources */,
 				A5E160C52D35B1B3003A7C71 /* ImpulseCounterMeasurement.swift in Sources */,
 				A5F5C3F42C3682500058E255 /* PinSetupVM.swift in Sources */,
-				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
 				A598CABF2CC1340C00A784FA /* SwitchWithElectricityMeterValueProvider.swift in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
@@ -9319,7 +9321,6 @@
 				A58A63132C09B56000A9D02D /* VerticalBlindsVMTests.swift in Sources */,
 				A59AB8D12A3091EE00D91F1F /* SceneRepositoryMock.swift in Sources */,
 				A59AB8B32A3078FB00D91F1F /* SceneListVMTests.swift in Sources */,
-				A54A06882AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift in Sources */,
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
 				A52BFED42B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift in Sources */,
 				A5EC52482C0FA1B40022F055 /* ReadGroupTiltingDetailsUseCaseTests.swift in Sources */,
@@ -9372,7 +9373,6 @@
 				A55A8DCB2BB4349600C540D4 /* GetGroupOnlineSummaryUseCaseTests.swift in Sources */,
 				A52BFEF42B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift in Sources */,
 				A5519B382B6D35DF00811747 /* PressureValueProviderTest.swift in Sources */,
-				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				A54A06732AF8D31D00C03DBC /* HideableValueTests.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
 				A52BFEBF2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift in Sources */,

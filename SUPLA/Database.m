@@ -146,35 +146,11 @@ again:
             @"SAColorListItem", nil
     ];
     
-    NSSet *entitiesWithServerId = [
-        NSSet setWithObjects:
-            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
-            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
-            @"SAThermostatMeasurementItem", nil
-    ];
-    
     NSMutableArray *predicateArray = [NSMutableArray array];
     [predicateArray addObject:predicate];
     
     if ([entitiesWithProfile containsObject: en]) {
-        AuthProfileItem *profile = self.currentProfile;
-        if (profile == nil) {
-            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile.isActive = true"]];
-        } else {
-            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
-        }
-    }
-    
-    if ([entitiesWithServerId containsObject: en]) {
-        AuthProfileItem *profile = self.currentProfile;
-        if (profile == nil) {
-            return nil;
-        }
-        SAProfileServer * server = profile.server;
-        if (server == nil) {
-            return nil;
-        }
-        [predicateArray addObject:[NSPredicate predicateWithFormat:@"server_id = %d", server.id]];
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile.isActive = true"]];
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -215,72 +191,11 @@ again:
     return [self fetchItemByPredicate:predicate entityName:en sortDescriptors:nil];
 }
 
--(NSUInteger) getCountByPredicate:(NSPredicate *)predicate entityName:(NSString *)en {
-    NSSet *entitiesWithProfile = [
-        NSSet setWithObjects:
-            @"SALocation", @"SAChannel", @"SAChannelValue",
-            @"SAChannelExtendedValue", @"SAChannelGroup",
-            @"SAScene", @"SAChannelGroupRelation",
-            @"SAColorListItem", nil
-    ];
-    
-    NSSet *entitiesWithServerId = [
-        NSSet setWithObjects:
-            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
-            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
-            @"SAThermostatMeasurementItem", nil
-    ];
-    
-    
-    NSMutableArray *predicateArray = [NSMutableArray array];
-    [predicateArray addObject:predicate];
-    
-    if ([entitiesWithProfile containsObject: en]) {
-        AuthProfileItem *profile = self.currentProfile;
-        if (profile == nil) {
-            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile.isActive = true"]];
-        } else {
-            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
-        }
-    }
-    
-    if ([entitiesWithServerId containsObject: en]) {
-        AuthProfileItem *profile = self.currentProfile;
-        if (profile == nil) {
-            return 0;
-        }
-        SAProfileServer * server = profile.server;
-        if (server == nil) {
-            return 0;
-        }
-        [predicateArray addObject:[NSPredicate predicateWithFormat:@"server_id = %d", server.id]];
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates: predicateArray];
-    
-    [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
-    [fetchRequest setIncludesSubentities:NO];
-    
-    NSError *fetchError = nil;
-    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
-    
-    if(count == NSNotFound || fetchError != nil ) {
-        count = 0;
-    }
-    
-    return count;
-}
-
 #pragma mark Channels
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
 };
-
--(NSUInteger) getChannelCount {
-    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"] entityName:@"SAChannel"];
-}
 
 #pragma mark Channel Groups
 
@@ -303,12 +218,7 @@ again:
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    AuthProfileItem *profile = self.currentProfile;
-    if (profile == nil) {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@ AND profile.isActive = true", ids];
-    } else {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@ AND profile = %@", ids, profile];
-    }
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@ AND profile.isActive = true", ids];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
     
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:
@@ -345,12 +255,6 @@ again:
 
 - (void)deleteObject:(NSManagedObject *)object {
     [self.managedObjectContext deleteObject:object];
-}
-
-#pragma mark Profile
-- (AuthProfileItem *)currentProfile {
-    id<ProfileManager> pm = [[MultiAccountProfileManager alloc] init];
-    return [pm getCurrentProfileWithContext: self.managedObjectContext];
 }
 
 @end

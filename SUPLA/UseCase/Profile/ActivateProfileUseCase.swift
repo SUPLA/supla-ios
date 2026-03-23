@@ -45,14 +45,7 @@ final class ActivateProfileUseCaseImpl: ActivateProfileUseCase {
     }
     
     private func activateProfile(_ profile: AuthProfileItem) -> Completable {
-        profileRepository.getAllProfiles()
-            .map { profiles in
-                profiles.forEach { $0.isActive = $0.objectID == profile.objectID }
-                return profiles
-            }
-            .flatMapFirst { _ in
-                self.profileRepository.save()
-            }
+        profileRepository.markProfileActive(profile.objectID)
             .flatMapCompletable { _ in
                 var config = self.runtimeConfig
                 config.activeProfileId = profile.objectID

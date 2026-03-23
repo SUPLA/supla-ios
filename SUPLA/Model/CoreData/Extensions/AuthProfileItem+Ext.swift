@@ -28,49 +28,6 @@ extension AuthProfileItem {
         set { rawAuthorizationType = newValue.rawValue }
     }
     
-    @objc
-    var serverUrlString: String {
-        get { "https://\(server?.address ?? "")" }
-    }
-    
-    @objc
-    var clientGUID: Data {
-        get {
-            return AuthProfileItemKeychainHelper.getSecureRandom(
-                size: Int(SUPLA_GUID_SIZE),
-                key: AuthProfileItemKeychainHelper.guidKey,
-                id: id
-            )
-        }
-        
-        set {
-            AuthProfileItemKeychainHelper.setSecureRandom(
-                newValue,
-                key: AuthProfileItemKeychainHelper.guidKey,
-                id: id
-            )
-        }
-    }
-    
-    @objc
-    var authKey: Data {
-        get {
-            return AuthProfileItemKeychainHelper.getSecureRandom(
-                size: Int(SUPLA_AUTHKEY_SIZE),
-                key: AuthProfileItemKeychainHelper.authKey,
-                id: id
-            )
-        }
-        
-        set {
-            AuthProfileItemKeychainHelper.setSecureRandom(
-                newValue,
-                key: AuthProfileItemKeychainHelper.authKey,
-                id: id
-            )
-        }
-    }
-    
     var displayName: String {
         let rawName = name ?? ""
         if rawName.count == 0 {
@@ -111,28 +68,12 @@ extension AuthProfileItem {
         )
     }
     
-    var asDto: ProfileDto {
-        ProfileDto(
-            id: id,
-            name: name.ifEmptyOrNil(Strings.Profiles.defaultProfileName),
-            isActive: isActive,
-            authorizationType: authorizationType,
-            advancedSetup: advancedSetup,
-            serverAutoDetect: serverAutoDetect,
-            email: email,
-            accessId: accessId,
-            accessIdPassword: accessIdPassword,
-            serverAddress: server?.address
-        )
-    }
-    
-    @objc
-    var authDetails: TCS_ClientAuthorizationDetails {
-        authorizationEntity.authDetails
-    }
-    
     @objc
     func token(_ tokenData: Data?) -> TCS_PnClientToken {
+        Self.token(tokenData, name: displayName)
+    }
+    
+    static func token(_ tokenData: Data?, name: String) -> TCS_PnClientToken {
         var token = TCS_PnClientToken()
         token.AppId = SINGLE_CALL_APP_ID
         token.Platform = PLATFORM_IOS
@@ -145,7 +86,7 @@ extension AuthProfileItem {
                 tokenString.utf8StringToBuffer(ptr, withSize: Int(SUPLA_PN_CLIENT_TOKEN_MAXSIZE))
             }
             withUnsafeMutablePointer(to: &token.ProfileName.0) { ptr in
-                displayName.utf8StringToBuffer(ptr, withSize: Int(SUPLA_PN_PROFILE_NAME_MAXSIZE))
+                name.utf8StringToBuffer(ptr, withSize: Int(SUPLA_PN_PROFILE_NAME_MAXSIZE))
             }
             
             // One more because of \0 character at string end

@@ -22,7 +22,6 @@ import XCTest
 @testable import SUPLA
 
 final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
-    
     private let navigationControllerMock = NavigationControllerMock()
     
     var navigationController: UINavigationController {
@@ -65,13 +64,13 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToDeviceCatalog() {
     }
     
-    var navigateToProfileMock: FunctionMock<Int32?, Void> = .void()
-    func navigateToProfile(profileId: Int32?) {
+    var navigateToProfileMock: FunctionMock<Int32, Void> = .void()
+    func navigateToProfile(profileId: Int32) {
         navigateToProfileMock.handle(profileId)
     }
     
-    var navigateToProfileWithLockCheckMock: FunctionMock<(Int32?, Bool), Void> = .void()
-    func navigateToProfile(profileId: Int32?, withLockCheck: Bool) {
+    var navigateToProfileWithLockCheckMock: FunctionMock<(Int32, Bool), Void> = .void()
+    func navigateToProfile(profileId: Int32, withLockCheck: Bool) {
         navigateToProfileWithLockCheckMock.handle((profileId, withLockCheck))
     }
     
@@ -131,6 +130,9 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     }
     
     func showAuthorization() {
+    }
+    
+    func showProfileChooser() {
     }
     
     var showLoginMock: FunctionMock<Void, Void> = .void()

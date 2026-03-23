@@ -17,7 +17,7 @@
  */
 
 struct ProfileDto: Equatable, Identifiable {
-    let id: Int32?
+    let id: Int32
     let name: String
     let isActive: Bool
     let authorizationType: AuthorizationType
@@ -28,17 +28,19 @@ struct ProfileDto: Equatable, Identifiable {
     let accessId: Int32?
     let accessIdPassword: String?
     let serverAddress: String?
-    
+
+    let preferredProtocolVersion: Int32
+
     var isAuthDataComplete: Bool {
-        if(authorizationType == .email) {
+        if (authorizationType == .email) {
             return email?.isEmpty == false && (serverAutoDetect || serverAddress?.isEmpty == false)
         } else {
             return serverAddress?.isEmpty == false && (accessId ?? 0) > 0 && accessIdPassword?.isEmpty == false
         }
     }
-    
+
     init(
-        id: Int32? = nil,
+        id: Int32 = 0,
         name: String = "",
         isActive: Bool = false,
         authorizationType: AuthorizationType = .email,
@@ -47,7 +49,8 @@ struct ProfileDto: Equatable, Identifiable {
         email: String? = nil,
         accessId: Int32? = nil,
         accessIdPassword: String? = nil,
-        serverAddress: String? = nil
+        serverAddress: String? = nil,
+        preferredProtocolVersion: Int32 = 0
     ) {
         self.id = id
         self.name = name
@@ -59,5 +62,44 @@ struct ProfileDto: Equatable, Identifiable {
         self.accessId = accessId
         self.accessIdPassword = accessIdPassword
         self.serverAddress = serverAddress
+        self.preferredProtocolVersion = preferredProtocolVersion
+    }
+    
+    var authorizationEntity: SingleCallAuthorizationEntity {
+        let authorizationData: SingleCallAuthorizationData = switch (authorizationType) {
+        case .email: .email(email: email ?? "")
+        case .accessId: .accessId(id: accessId ?? 0, password: accessIdPassword ?? "")
+        }
+        
+        return SingleCallAuthorizationEntity(
+            profileId: id,
+            data: authorizationData,
+            serverAddress: serverAddress ?? "",
+            preferredProtocolVersion: preferredProtocolVersion
+        )
+    }
+    
+    func token(_ tokenData: Data?) -> TCS_PnClientToken {
+        AuthProfileItem.token(tokenData, name: name)
+    }
+    
+    static let INVALID_ID: Int32 = -1
+}
+
+extension AuthProfileItem {
+    var dto: ProfileDto {
+        ProfileDto(
+            id: id,
+            name: name.ifEmptyOrNil(Strings.Profiles.defaultProfileName),
+            isActive: isActive,
+            authorizationType: authorizationType,
+            advancedSetup: advancedSetup,
+            serverAutoDetect: serverAutoDetect,
+            email: email,
+            accessId: accessId,
+            accessIdPassword: accessIdPassword,
+            serverAddress: server?.address,
+            preferredProtocolVersion: preferredProtocolVersion
+        )
     }
 }
