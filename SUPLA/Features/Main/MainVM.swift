@@ -32,23 +32,22 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     }
     
     func onViewAppear() {
-        profileRepository.getAllProfiles()
-            .map { profiles in profiles.count }
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] count in
-                    self?.updateView { state in
-                        state.changing(path: \.showProfilesIcon, to: count > 1)
-                    }
-                }
-            )
-            .disposed(by: self)
+        Task { await showProfilesIcon() }
         
         NotificationCenter.default.addObserver(self, selector: #selector(onNotificationEvent), name: NSNotification.Name.saEvent, object: nil)
     }
     
     func onViewDisappear() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func showProfilesIcon() async {
+        let count = await profileRepository.getProfileCount()
+        await MainActor.run {
+            updateView { state in
+                state.changing(path: \.showProfilesIcon, to: count > 1)
+            }
+        }
     }
     
     @objc

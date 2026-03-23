@@ -49,7 +49,7 @@ class UpdateTokenTask: NSObject {
             
             var allProfilesUpdated = true
             profiles?.forEach { profile in
-                let name = profile.name ?? "<<>>"
+                let name = profile.name
                 
                 SALog.info("Updating token for profile `\(name)`")
                 if (!updateToken(token: token, forProfile: profile)) {
@@ -65,8 +65,8 @@ class UpdateTokenTask: NSObject {
         }
     }
     
-    private func updateToken(token: Data, forProfile profile: AuthProfileItem) -> Bool {
-        let name = profile.name ?? "<<>>"
+    private func updateToken(token: Data, forProfile profile: ProfileDto) -> Bool {
+        let name = profile.name
         do {
             let tokenDetails = profile.token(token)
             

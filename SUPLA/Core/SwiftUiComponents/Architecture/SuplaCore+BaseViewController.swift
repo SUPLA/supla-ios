@@ -35,6 +35,7 @@ extension SuplaCore {
         private lazy var hostingController: UIHostingController! = {
             let controller = UIHostingController(rootView: contentView)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
+            controller.view.backgroundColor = .clear
             return controller
         }()
         

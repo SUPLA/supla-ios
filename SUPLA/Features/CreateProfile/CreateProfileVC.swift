@@ -21,9 +21,9 @@ extension CreateProfileFeature {
         
         @Singleton<GlobalSettings> var settings
         
-        private let profileId: Int32?
+        private let profileId: Int32
 
-        init(viewModel: ViewModel, profileId: Int32?) {
+        init(viewModel: ViewModel, profileId: Int32) {
             self.profileId = profileId
             super.init(viewModel: viewModel)
 
@@ -50,14 +50,14 @@ extension CreateProfileFeature {
         private func getTitle() -> String {
             if (!settings.anyAccountRegistered) {
                 return Strings.appName
-            } else if (profileId != nil) {
+            } else if (profileId != ProfileDto.INVALID_ID) {
                 return Strings.CreateProfile.modificationTitle
             } else {
                 return Strings.CreateProfile.creationTitle
             }
         }
         
-        static func create(profileId: Int32?) -> UIViewController {
+        static func create(profileId: Int32) -> UIViewController {
             let viewModel = ViewModel()
             return ViewController(viewModel: viewModel, profileId: profileId)
         }

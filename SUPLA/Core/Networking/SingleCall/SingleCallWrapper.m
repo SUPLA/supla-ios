@@ -22,10 +22,9 @@
 
 #define APP_ID 1
 
-
 @implementation SingleCallWrapper
 
-+ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token {
++ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (ProfileDtoProxy*) profile with: (NSData*) token {
     TCS_RegisterPnClientToken reg = {};
     reg.Token = [profile token:token];
     reg.Auth = profile.authDetails;

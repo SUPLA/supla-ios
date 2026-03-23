@@ -69,16 +69,14 @@ class MainVMTests: ViewModelTest<MainViewState, MainViewEvent> {
         XCTAssertEqual(eventObserver.events, [.next(0, .loadIcons)])
     }
     
-    func test_shouldShowProfileIcon_whenThereIsMoreThanOneProfile() {
+    func test_shouldShowProfileIcon_whenThereIsMoreThanOneProfile() async throws {
         // given
-        profileRepository.allProfilesObservable = Observable.just([
-            AuthProfileItem(testContext: nil), AuthProfileItem(testContext: nil)
-        ])
+        profileRepository.getProfileCountMock.returns = .single(2)
         
         // when
         observe(viewModel)
-        scheduler.advanceTo(1)
-        viewModel.onViewAppear()
+        await MainActor.run { scheduler.advanceTo(1) }
+        await viewModel.showProfilesIcon()
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
@@ -91,16 +89,14 @@ class MainVMTests: ViewModelTest<MainViewState, MainViewEvent> {
         ])
     }
     
-    func test_shouldHideProfileIcon_whenThereIsOnlyOneProfile() {
+    func test_shouldHideProfileIcon_whenThereIsOnlyOneProfile() async throws {
         // given
-        profileRepository.allProfilesObservable = Observable.just([
-            AuthProfileItem(testContext: nil)
-        ])
+        profileRepository.getProfileCountMock.returns = .single(1)
         
         // when
         observe(viewModel)
-        scheduler.advanceTo(1)
-        viewModel.onViewAppear()
+        await MainActor.run { scheduler.advanceTo(1) }
+        await viewModel.showProfilesIcon()
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)

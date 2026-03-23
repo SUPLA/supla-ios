@@ -97,7 +97,7 @@ extension LockScreenFeature {
                         case .unlocked:
                             switch (unlockAction) {
                             case .authorizeAccountsCreate:
-                                self?.coordinator.navigateToProfile(profileId: nil, withLockCheck: false)
+                                self?.coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID, withLockCheck: false)
                             case .authorizeAccountsEdit(let profileId):
                                 self?.coordinator.navigateToProfile(profileId: profileId, withLockCheck: false)
                             default: 
@@ -106,7 +106,7 @@ extension LockScreenFeature {
                         case .unlockedNoAccount:
                             switch (unlockAction) {
                             case .authorizeAccountsCreate:
-                                self?.coordinator.navigateToProfile(profileId: nil, withLockCheck: false)
+                                self?.coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID, withLockCheck: false)
                             case .authorizeApplication:
                                 self?.coordinator.popViewController()
                             default: break

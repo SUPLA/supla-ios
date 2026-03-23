@@ -75,7 +75,7 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
-        XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [(nil, false)])
+        XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [(ProfileDto.INVALID_ID, false)])
         coordinator.verifyPopViewController([])
     }
     

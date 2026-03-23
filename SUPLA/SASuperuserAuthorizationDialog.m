@@ -61,12 +61,9 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSString *serverName = @"";
-    AuthProfileItem * profile = [SAApp.profileManager getCurrentProfile];
-    if (profile != nil) {
-        SAProfileServer *server = profile.server;
-        if (server != nil) {
-            serverName = server.address;
-        }
+    ProfileDtoProxy * profile = [ProfileRepositoryProxy currentProfile];
+    if (profile != nil && profile.serverAddress != nil) {
+        serverName = profile.serverAddress;
     }
     self.tvInfo.text = NSLocalizedString(
                     [serverName containsString:@"supla.org"] ?
@@ -176,13 +173,14 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
             return;
         }
     }
+    ProfileDtoProxy* profile = [ProfileRepositoryProxy currentProfile];
     
     _delegate = delegate;
     _success = NO;
     [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
-    _edEmail.text = [SAApp.profileManager getCurrentProfile].email;
+    _edEmail.text = profile.email;
     _edEmail.enabled = [SAApp isClientRegistered];
     _edPassword.text = @"";
     _edPassword.enabled = YES;

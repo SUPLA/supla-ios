@@ -177,10 +177,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
    return [[self instance] getRandom:auth_key size:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
 }
 
-+ (id<ProfileManager>)profileManager {
-    return [[MultiAccountProfileManager alloc] init];
-}
-
 -(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
     @synchronized(self) {
        [[NSUserDefaults standardUserDefaults] setBool:slider forKey:@"pref_brightness_picker_type_slider"];
@@ -370,17 +366,12 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 }
 
 -(NSString*)getMsgHostName {
-    AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
+    ProfileDtoProxy *profile = [ProfileRepositoryProxy currentProfile];
     if (profile == nil) {
         return @"";
     }
     
-    SAProfileServer *server = profile.server;
-    if (server == nil) {
-        return @"";
-    }
-    
-    NSString *hostname = server.address;
+    NSString *hostname = profile.serverAddress;
     if (hostname == nil) {
         return @"";
     }

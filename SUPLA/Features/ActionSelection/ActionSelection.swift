@@ -86,15 +86,15 @@ enum ActionSelection {
     }
 }
 
-extension Array where Element == AuthProfileItem {
-    func toActionSelectionItems(_ preselected: AuthProfileItem? = nil) -> SelectableList<ActionSelection.ProfileItem> {
+extension Array where Element == ProfileDto {
+    func toActionSelectionItems(_ preselected: ProfileDto? = nil) -> SelectableList<ActionSelection.ProfileItem> {
         guard let selected = preselected ?? first(where: { $0.isActive }) ?? first
         else {
             return SelectableList(selected: nil, items: [])
         }
 
-        let selectedItem = ActionSelection.ProfileItem(id: selected.id, label: selected.displayName)
-        let profileItems = map { ActionSelection.ProfileItem(id: $0.id, label: $0.displayName) }
+        let selectedItem = ActionSelection.ProfileItem(id: selected.id, label: selected.name)
+        let profileItems = map { ActionSelection.ProfileItem(id: $0.id, label: $0.name) }
         return SelectableList(selected: selectedItem, items: profileItems)
     }
 }

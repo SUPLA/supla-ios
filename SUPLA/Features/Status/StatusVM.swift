@@ -36,7 +36,7 @@ extension StatusFeature {
                     
                     switch (state) {
                     case .connected: self?.coordinator.navigateToMain()
-                    case .firstProfileCreation: self?.coordinator.navigateToProfile(profileId: nil)
+                    case .firstProfileCreation: self?.coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID)
                     case .finished(let reason): self?.handleErrorState(reason)
                     case .initialization:
                         self?.state.viewType = .connecting
