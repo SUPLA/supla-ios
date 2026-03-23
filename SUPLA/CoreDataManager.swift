@@ -22,6 +22,7 @@ import Foundation
 @objc
 class CoreDataManager: NSObject {
     @Singleton<GlobalSettings> private var settings
+    @Singleton<RestoreProfileFromDefaults.UseCase> private var restoreProfileFromDefaultsUseCase
     
     let migrator: CoreDataMigrator
     private let storeType: String
@@ -92,7 +93,7 @@ class CoreDataManager: NSObject {
                 
                 if (self.tryRecreateAccount) {
                     DispatchQueue.global(qos: .userInitiated).async {
-                        if (SAApp.profileManager().restoreProfileFromDefaults()) {
+                        if (self.restoreProfileFromDefaultsUseCase.invoke()) {
                             self.settings.anyAccountRegistered = true
                         }
                         DispatchQueue.main.async {

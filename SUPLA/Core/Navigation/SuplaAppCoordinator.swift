@@ -30,8 +30,8 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToAbout()
     func navigateToNotificationsLog()
     func navigateToDeviceCatalog()
-    func navigateToProfile(profileId: Int32?)
-    func navigateToProfile(profileId: Int32?, withLockCheck: Bool)
+    func navigateToProfile(profileId: Int32)
+    func navigateToProfile(profileId: Int32, withLockCheck: Bool)
     func navigateToCreateAccountWeb()
     func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?)
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
@@ -53,6 +53,7 @@ protocol SuplaAppCoordinator: Coordinator {
     
     func showMenu()
     func showLogin()
+    func showProfileChooser()
     
     func openForum()
     func openCloud()
@@ -161,13 +162,13 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(DeviceCatalogVC())
     }
     
-    func navigateToProfile(profileId: Int32?) {
+    func navigateToProfile(profileId: Int32) {
         navigateToProfile(profileId: profileId, withLockCheck: true)
     }
     
-    func navigateToProfile(profileId: Int32?, withLockCheck: Bool) {
+    func navigateToProfile(profileId: Int32, withLockCheck: Bool) {
         if (withLockCheck && settings.lockScreenSettings.pinForAccountsRequired) {
-            if let profileId = profileId {
+            if (profileId != ProfileDto.INVALID_ID) {
                 navigateToLockScreen(unlockAction: .authorizeAccountsEdit(profileId: profileId))
             } else {
                 navigateToLockScreen(unlockAction: .authorizeAccountsCreate)
@@ -263,6 +264,12 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func showLogin() {
         present(SALoginDialogVC {})
+    }
+    
+    func showProfileChooser() {
+        let vc = ProfileChooserFeature.ViewController.create()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     func openForum() {

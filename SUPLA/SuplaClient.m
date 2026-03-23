@@ -478,18 +478,16 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (char*) getServerHostName {
-    id<ProfileManager> pm = SAApp.profileManager;
-    AuthProfileItem *profile = [pm getCurrentProfile];
+    ProfileDtoProxy *profile = [ProfileRepositoryProxy currentProfile];
     if (profile == nil) {
         return "";
     }
     
-    SAProfileServer *server = profile.server;
-    if (server == nil || ([server.address isEqualToString:@""] && profile.rawAuthorizationType == AuthorizationTypeEmail && ![profile.email isEqualToString:@""] )) {
+    if (profile.serverAddress == nil || ([profile.serverAddress isEqualToString:@""] && profile.authorizationType == AuthorizationTypeEmail && ![profile.email isEqualToString:@""] )) {
         return (char*) [[UseCaseLegacyWrapper loadServerHostName] UTF8String];
     }
     
-    return (char*)[server.address UTF8String];
+    return (char*)[profile.serverAddress UTF8String];
     
 }
 
@@ -497,8 +495,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
     TSuplaClientCfg scc;
     supla_client_cfginit(&scc);
-    id<ProfileManager> pm = SAApp.profileManager;
-    AuthProfileItem *profile = [pm getCurrentProfile];
+    ProfileDtoProxy *profile = [ProfileRepositoryProxy currentProfile];
     
     if (profile != nil) {
         [profile.clientGUID getBytes: scc.clientGUID
@@ -514,7 +511,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             [self onConnError:SUPLA_RESULT_HOST_NOT_FOUND];
         }
         
-        if ( profile.rawAuthorizationType == AuthorizationTypeAccessId ) {
+        if ( profile.authorizationType == AuthorizationTypeAccessId ) {
             scc.AccessID = profile.accessId;
             [profile.accessIdPassword utf8StringToBuffer:scc.AccessIDpwd withSize:sizeof(scc.AccessIDpwd)];
             if ( _regTryCounter >= 2 ) {
@@ -673,10 +670,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) onVersionError:(SAVersionError*)ve {
     
     _regTryCounter = 0;
-    id<ProfileManager> pm = SAApp.profileManager;
-    AuthProfileItem *profile = [pm getCurrentProfile];
+    ProfileDtoProxy *profile = [ProfileRepositoryProxy currentProfile];
     
-    if ( profile != nil && (profile.rawAuthorizationType == AuthorizationTypeAccessId || ve.remoteVersion >= 7)
+    if ( profile != nil && (profile.authorizationType == AuthorizationTypeAccessId || ve.remoteVersion >= 7)
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
         && profile.preferredProtocolVersion != ve.remoteVersion ) {
@@ -751,8 +747,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) onRegistered:(SARegResult*)result {
     
     _regTryCounter = 0;
-    id<ProfileManager> pm = [SAApp profileManager];
-    AuthProfileItem *profile = [pm getCurrentProfile];
+    ProfileDtoProxy *profile = [ProfileRepositoryProxy currentProfile];
     
     long maxVersionSupportedByLibrary = SUPLA_PROTO_VERSION;
     long storedVersion = profile.preferredProtocolVersion;
@@ -1692,7 +1687,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     return supla_client_timer_arm(_sclient, remoteId, on ? 1 : 0, milis);
 }
 
-- (void) registerPushNotificationClientToken:(NSData *)token forProfile: (AuthProfileItem*) profile {
+- (void) registerPushNotificationClientToken:(NSData *)token forProfile: (ProfileDtoProxy*) profile {
     @synchronized(self) {
         if ( _sclient ) {
             TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: profile with: token];

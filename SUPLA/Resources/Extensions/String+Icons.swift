@@ -81,6 +81,7 @@ extension String {
         static let statusError = "icon_status_error"
         static let hourglass = "icon_hourglass"
         static let checkFilled = "icon_check_filled"
+        static let check = "check"
         
         static let arrowRight = "icon_arrow_right"
         static let arrowLeft = "icon_arrow_left"

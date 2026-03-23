@@ -111,7 +111,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         settings.pushTokenReturns = token
         dateProvider.currentTimestampReturns = .single(0)
         
-        let profile = AuthProfileItem(testContext: nil)
+        let profile = ProfileDto()
         profileRepository.allProfilesObservable = Observable.just([profile])
         let expectation = XCTestExpectation(description: "Update task finished")
         
@@ -133,12 +133,12 @@ final class UpdateTokenTaskTests: XCTestCase {
         settings.pushTokenReturns = token
         dateProvider.currentTimestampReturns = .single(12.0)
         
-        let profile = AuthProfileItem(testContext: nil)
-        profile.authorizationType = .email
-        profile.serverAutoDetect = true
-        profile.email = "test@supla.org"
-        profile.server = SAProfileServer(testContext: nil)
-        profile.server?.address = "supla.org"
+        let profile = ProfileDto(
+            authorizationType: .email,
+            serverAutoDetect: true,
+            email: "test@supla.org",
+            serverAddress: "supla.org"
+        )
         
         profileRepository.allProfilesObservable = Observable.just([profile])
         let expectation = XCTestExpectation(description: "Update task finished")
@@ -162,8 +162,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         settings.pushTokenReturns = token
         dateProvider.currentTimestampReturns = .single(0)
         
-        let profile = AuthProfileItem(testContext: nil)
-        profile.isActive = true
+        let profile = ProfileDto(isActive: true)
         profileRepository.allProfilesObservable = Observable.just([profile])
         let expectation = XCTestExpectation(description: "Update task finished")
         

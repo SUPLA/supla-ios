@@ -16,24 +16,4 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-import RxSwift
-
-struct UpdateProfilesOrder {
-    protocol UseCase {
-        func invoke(items: [Item]) -> Observable<Void>
-    }
-    
-    final class Implementation: UseCase {
-        @Singleton<ProfileRepository> private var profileRepository
-        
-        func invoke(items: [Item]) -> Observable<Void> {
-            let map = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0.position) })
-            return profileRepository.updateProfilePositions(map)
-        }
-    }
-    
-    struct Item {
-        let id: Int32
-        let position: Int32
-    }
-}
+struct ProfileChooserFeature {}

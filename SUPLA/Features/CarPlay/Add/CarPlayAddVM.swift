@@ -198,8 +198,8 @@ extension CarPlayAddFeature {
                 .disposed(by: disposeBag)
         }
 
-        private func handleEditItem(_ item: SACarPlayItem, _ profiles: [AuthProfileItem], _ subjects: [ActionSelection.SubjectItem]) {
-            guard let profile = item.profile else { return }
+        private func handleEditItem(_ item: SACarPlayItem, _ profiles: [ProfileDto], _ subjects: [ActionSelection.SubjectItem]) {
+            guard let profile = item.profile?.dto else { return }
             state.profiles = profiles.toActionSelectionItems(profile)
 
             if let selectableSubjects = subjects.asSelectableList(selectedId: item.subjectId) {

@@ -117,7 +117,7 @@ extension CreateProfileFeature {
                 .disposed(by: disposeBag)
         }
         
-        func save(profileId: Int32?) {
+        func save(profileId: Int32) {
             let name = state.profileName.trimmingCharacters(in: .whitespacesAndNewlines)
             if (state.profileNameVisible && name.isEmpty) {
                 state.presentEmptyName = true
@@ -179,7 +179,7 @@ extension CreateProfileFeature {
 }
 
 fileprivate extension CreateProfileFeature.ViewState {
-    func toProfileDto(profileId: Int32?) -> ProfileDto {
+    func toProfileDto(profileId: Int32) -> ProfileDto {
         ProfileDto(
             id: profileId,
             name: profileName,

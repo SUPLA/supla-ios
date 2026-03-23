@@ -30,7 +30,7 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
     @Singleton<ReadOrCreateProfileServerUseCase> private var readOrCreateProfileServerUseCase
     
     func invoke(profileDto: ProfileDto) -> Observable<SaveOrCreateProfileResult> {
-        self.profileRepository.getAllProfiles()
+        self.profileRepository.getAllProfilesIntern()
             .map { try self.validateAndFindProfile(profiles: $0, profile: profileDto) }
             .flatMap { self.notNullOrCreate($0) }
             .flatMap { self.setServerRelation($0, profileDto.serverAddress) }

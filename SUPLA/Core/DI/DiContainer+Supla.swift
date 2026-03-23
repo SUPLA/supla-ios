@@ -234,6 +234,7 @@ extension DiContainer {
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
+        register(RestoreProfileFromDefaults.UseCase.self, RestoreProfileFromDefaults.Implementation())
         // Usecases - Notification
         register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
         register(NotificationCenterWrapper.self, NotificationCenterWrapperImpl())
