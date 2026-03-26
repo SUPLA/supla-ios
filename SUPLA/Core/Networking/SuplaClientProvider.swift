@@ -37,7 +37,7 @@ extension SuplaClientProtocol {
         switch parameters {
         case let .simple(action, subjectType, subjectId):
             return executeAction(
-                action.rawValue,
+                action.value,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: nil,
@@ -53,7 +53,7 @@ extension SuplaClientProtocol {
             parameters.WhiteTemperature = dimmerCct
             
             return executeAction(
-                Action.setRgbwParameters.rawValue,
+                ActionId.setRgbwParameters.value,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: &parameters,
@@ -68,7 +68,7 @@ extension SuplaClientProtocol {
             }
             
             return executeAction(
-                action.rawValue,
+                action.value,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: &parameters,
@@ -86,7 +86,7 @@ extension SuplaClientProtocol {
             }
             
             return executeAction(
-                action.rawValue,
+                action.value,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: &parameters,
@@ -110,7 +110,7 @@ extension SuplaClientProtocol {
             }
             
             return executeAction(
-                Action.setHvacParameters.rawValue,
+                ActionId.setHvacParameters.value,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: &parameters,

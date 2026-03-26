@@ -112,8 +112,8 @@ extension SwitchGeneralFeature {
                     SuplaCore.AlertDialog(
                         state: alertDialogState,
                         onDismiss: { delegate?.onAlertClose() },
-                        onPositiveButtonClick: { delegate?.onForceTurnOn() },
-                        onNegativeButtonClick: { delegate?.onAlertClose() }
+                        onPrimaryButtonClick: { delegate?.onForceTurnOn() },
+                        onSecondaryButtonClick: { delegate?.onAlertClose() }
                     )
                 }
                 

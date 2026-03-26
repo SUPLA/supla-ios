@@ -47,7 +47,7 @@ extension ElectricityMeterHistoryFeature {
             
             let dialog = ElectricityDataSelectionFeature.ViewController.create(name: channelSets.name, filters: filters)
             dialog.onFinishCallback = { [weak self] type, phases in
-                if let viewModel = self?.viewModel as? ElectricityMeterHistoryFeature.ViewModel {
+                if let type, let viewModel = self?.viewModel as? ElectricityMeterHistoryFeature.ViewModel {
                     viewModel.onDataSelectionChange(type: type, phases: phases)
                 }
             }

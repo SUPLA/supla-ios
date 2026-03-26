@@ -26,6 +26,8 @@
 #import "SAChannelState+CoreDataClass.h"
 #import "SAProfileServer+CoreDataClass.h"
 #import "SACarPlayItem+CoreDataClass.h"
+#import "SANfcTagItem+CoreDataClass.h"
+#import "SANfcCallItem+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
 #import "SAEvent.h"
 #import "SARateApp.h"

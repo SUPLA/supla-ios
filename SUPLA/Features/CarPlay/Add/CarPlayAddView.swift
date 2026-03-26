@@ -19,16 +19,19 @@
 import SwiftUI
 
 extension CarPlayAddFeature {
-    struct View: SwiftUI.View {
-        @ObservedObject var viewState: ViewState
+    protocol Delegate {
+        func onProfileChanged(_ item: ActionSelection.ProfileItem?)
+        func onSubjectTypeChanged(_ type: SubjectType)
+        func onSubjectChanged(_ item: ActionSelection.SubjectItem?)
+        func onCaptionChanged(_ caption: String)
+        func onActionChanged(_ action: ActionId?)
+        func onSave()
+        func onDelete()
+    }
 
-        var onProfileChanged: (ProfileItem) -> Void
-        var onSubjectTypeChanged: (SubjectType) -> Void
-        var onSubjectChanged: (SubjectItem) -> Void
-        var onCaptionChanged: (String) -> Void
-        var onActionChanged: (CarPlayAction) -> Void
-        var onSave: () -> Void
-        var onDelete: () -> Void
+    struct View: SwiftUI.View {
+        @StateObject var viewState: ViewState
+        let delegate: Delegate?
 
         @State private var showDeleteConfirmation = false
 
@@ -36,18 +39,33 @@ extension CarPlayAddFeature {
             BackgroundStack(alignment: .top) {
                 VStack(spacing: Distance.small) {
                     if let profiles = viewState.profiles {
-                        ProfilePicker(profiles)
+                        if (profiles.items.count > 1) {
+                            ActionSelection.ProfilePicker(
+                                profiles: profiles,
+                                disabled: viewState.showDelete,
+                                onProfileChanged: delegate?.onProfileChanged
+                            )
+                        }
                         SuplaCore.SegmentedPicker(selected: $viewState.subjectType, items: SubjectType.allCases)
-                            .onChange(of: viewState.subjectType) { onSubjectTypeChanged($0) }
+                            .onChange(of: viewState.subjectType) { delegate?.onSubjectTypeChanged($0) }
                             .disabled(viewState.showDelete)
                     }
 
                     if let subjects = viewState.subjects {
-                        SubjectsPicker(subjects)
+                        ActionSelection.SubjectsPicker(
+                            subjectType: viewState.subjectType,
+                            subjects: subjects,
+                            disabled: viewState.showDelete,
+                            onSubjectChanged: delegate?.onSubjectChanged
+                        )
                         CaptionTextField()
 
                         if let actions = viewState.actions {
-                            ActionsPicker(actions)
+                            ActionSelection.ActionsPicker(
+                                actions: actions,
+                                disabled: viewState.showDelete,
+                                onActionChanged: delegate?.onActionChanged
+                            )
                         }
                     } else {
                         Spacer().frame(height: Distance.default)
@@ -68,41 +86,18 @@ extension CarPlayAddFeature {
                 }
             }
         }
-
-        private func ProfilePicker(_ profiles: SelectableList<ProfileItem>) -> some SwiftUI.View {
-            VStack(alignment: .leading, spacing: 4) {
-                LabelText(text: Strings.General.profile)
-                SuplaCore.Picker(profiles, onChange: onProfileChanged)
-                    .style(.dialog)
-                    .disabled(viewState.showDelete)
-            }
-        }
         
-        private func SubjectsPicker(_ subjects: SelectableList<SubjectItem>) -> some SwiftUI.View {
-            VStack(alignment: .leading, spacing: 4) {
-                LabelText(text: viewState.subjectType.name)
-                SuplaCore.SubjectPicker(subjects, onChange: onSubjectChanged)
-                    .disabled(viewState.showDelete)
-            }
-        }
-        
+        @ViewBuilder
         private func CaptionTextField() -> some SwiftUI.View {
             VStack(alignment: .leading, spacing: 4) {
                 LabelText(text: Strings.CarPlay.displayName)
+                    .padding(.leading, Distance.small)
                 TextField("", text: $viewState.caption)
                     .fontBodyMedium()
                     .padding(Distance.small)
                     .background(Color.Supla.surface)
                     .cornerRadius(Dimens.buttonRadius)
-                    .onChange(of: viewState.caption) { onCaptionChanged($0) }
-            }
-        }
-        
-        private func ActionsPicker(_ actions: SelectableList<CarPlayAction>) -> some SwiftUI.View {
-            VStack(alignment: .leading, spacing: 4) {
-                LabelText(text: Strings.General.action)
-                SuplaCore.Picker(actions, onChange: onActionChanged)
-                    .style(.dialog)
+                    .onChange(of: viewState.caption) { delegate?.onCaptionChanged($0) }
             }
         }
 
@@ -113,12 +108,12 @@ extension CarPlayAddFeature {
                 action: { showDeleteConfirmation = true }
             )
         }
-        
+
         private func SaveButton() -> some SwiftUI.View {
             FilledButton(
                 title: Strings.General.save,
                 fullWidth: true,
-                action: onSave
+                action: { delegate?.onSave() }
             )
             .disabled(viewState.saveDisabled)
         }
@@ -128,31 +123,19 @@ extension CarPlayAddFeature {
                 header: Strings.CarPlay.deleteTitle,
                 message: Strings.CarPlay.deleteMessage,
                 onDismiss: { showDeleteConfirmation = false },
-                positiveButtonText: Strings.CarPlay.confirmDelete,
-                negativeButtonText: Strings.General.cancel,
-                onPositiveButtonClick: onDelete,
-                onNegativeButtonClick: { showDeleteConfirmation = false }
+                primaryButtonSpec: .default(Strings.CarPlay.confirmDelete),
+                secondaryButtonText: Strings.General.cancel,
+                onPrimaryButtonClick: { delegate?.onDelete() },
+                onSecondaryButtonClick: { showDeleteConfirmation = false }
             )
-        }
-    }
-
-    private struct LabelText: SwiftUI.View {
-        let text: String
-
-        var body: some SwiftUI.View {
-            Text(text)
-                .textCase(.uppercase)
-                .fontBodySmall()
-                .textColor(.Supla.onSurfaceVariant)
-                .padding(.leading, Distance.small)
         }
     }
 }
 
 #Preview("All components") {
-    let profile = CarPlayAddFeature.ProfileItem(id: 1, label: "Test")
-    let location = CarPlayAddFeature.SubjectItem(id: "1", remoteId: 1, label: "Room", actions: [], icon: nil, isLocation: true)
-    let subject = CarPlayAddFeature.SubjectItem(id: "2", remoteId: 2, label: "Thermostat", actions: [], icon: .suplaIcon(name: .Icons.fncThermostatDhw), isLocation: false)
+    let profile = ActionSelection.ProfileItem(id: 1, label: "Test")
+    let location = ActionSelection.SubjectItem(id: "1", remoteId: 1, label: "Room", actions: [], icon: nil, isLocation: true)
+    let subject = ActionSelection.SubjectItem(id: "2", remoteId: 2, label: "Thermostat", actions: [], icon: .suplaIcon(name: .Icons.fncThermostatDhw), isLocation: false)
 
     let state = CarPlayAddFeature.ViewState()
     state.profiles = SelectableList(selected: profile, items: [profile])
@@ -160,36 +143,24 @@ extension CarPlayAddFeature {
     state.actions = SelectableList(selected: .open, items: [.open])
     return CarPlayAddFeature.View(
         viewState: state,
-        onProfileChanged: { _ in },
-        onSubjectTypeChanged: { _ in },
-        onSubjectChanged: { _ in },
-        onCaptionChanged: { _ in },
-        onActionChanged: { _ in },
-        onSave: {},
-        onDelete: {}
+        delegate: nil
     )
 }
 
 #Preview("No subjects") {
-    let profile = CarPlayAddFeature.ProfileItem(id: 1, label: "Test")
+    let profile = ActionSelection.ProfileItem(id: 1, label: "Test")
 
     let state = CarPlayAddFeature.ViewState()
     state.profiles = SelectableList(selected: profile, items: [profile])
     return CarPlayAddFeature.View(
         viewState: state,
-        onProfileChanged: { _ in },
-        onSubjectTypeChanged: { _ in },
-        onSubjectChanged: { _ in },
-        onCaptionChanged: { _ in },
-        onActionChanged: { _ in },
-        onSave: {},
-        onDelete: {}
+        delegate: nil
     )
 }
 
 #Preview("Edit") {
-    let profile = CarPlayAddFeature.ProfileItem(id: 1, label: "Test")
-    let subject = CarPlayAddFeature.SubjectItem(id: "1", remoteId: 1, label: "Thermostat", actions: [], icon: nil, isLocation: false)
+    let profile = ActionSelection.ProfileItem(id: 1, label: "Test")
+    let subject = ActionSelection.SubjectItem(id: "1", remoteId: 1, label: "Thermostat", actions: [], icon: nil, isLocation: false)
 
     let state = CarPlayAddFeature.ViewState()
     state.profiles = SelectableList(selected: profile, items: [profile])
@@ -198,12 +169,6 @@ extension CarPlayAddFeature {
     state.showDelete = true
     return CarPlayAddFeature.View(
         viewState: state,
-        onProfileChanged: { _ in },
-        onSubjectTypeChanged: { _ in },
-        onSubjectChanged: { _ in },
-        onCaptionChanged: { _ in },
-        onActionChanged: { _ in },
-        onSave: {},
-        onDelete: {}
+        delegate: nil
     )
 }

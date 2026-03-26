@@ -24,6 +24,9 @@ protocol ProfileRepository: RepositoryProtocol where T == AuthProfileItem {
     func getActiveProfile() -> Observable<AuthProfileItem>
     func getAllProfiles() -> Observable<[AuthProfileItem]>
     func getProfile(withId id: Int32) -> Observable<AuthProfileItem?>
+    
+    func getAuthorizationEntity(forProfileId id: Int32) async -> SingleCallAuthorizationEntity?
+    func getProfileCount() async -> Int
 }
 
 final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepository {
@@ -53,5 +56,30 @@ final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepositor
     
     func getProfile(withId id: Int32) -> Observable<AuthProfileItem?> {
         return queryItem(NSPredicate(format: "id = %d", id))
+    }
+    
+    func getAuthorizationEntity(forProfileId id: Int32) async -> SingleCallAuthorizationEntity? {
+        let context = context
+        
+        return await context.perform {
+            let query = AuthProfileItem.fetchRequest()
+                .filtered(by: NSPredicate(format: "id = %d", id))
+                .ordered(by: "id")
+            
+            if let profile = try? context.fetch(query).first {
+                return profile.authorizationEntity
+            }
+            
+            return nil
+        }
+    }
+    
+    func getProfileCount() async -> Int {
+        let context = context
+        
+        return await context.perform {
+            let query = AuthProfileItem.fetchRequest()
+            return try? context.count(for: query)
+        } ?? 0
     }
 }

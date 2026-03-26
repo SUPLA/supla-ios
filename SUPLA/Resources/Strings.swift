@@ -336,6 +336,7 @@ struct Strings {
         static let saturdayShort = "saturday_short".toLocalized()
         static let sundayShort = "sunday_short".toLocalized()
         
+        static let timeJustNow = "time_just_now".toLocalized()
         static let time_just_minutes = "time_just_mintes".toLocalized()
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
         
@@ -350,6 +351,9 @@ struct Strings {
         static let profile = "general_profile".toLocalized()
         static let action = "general_action".toLocalized()
         static let select = "general_select".toLocalized()
+        
+        static let appSentence = "app_sentence".toLocalized()
+        static let processing = "general_processing".toLocalized()
         
         struct Channel {
             static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
@@ -724,6 +728,80 @@ struct Strings {
         static let moveStart = "rgb_detail_move_start".toLocalized()
         static let moveEnd = "rgb_detail_move_end".toLocalized()
         static let dimmerDetailTemperature = "dimmer_detail_temperature".toLocalized()
+    }
+    
+    struct Nfc {
+        static let label = "settings_nfc_label".toLocalized()
+        
+        struct List {
+            static let title = "nfc_list_title".toLocalized()
+            static let notSupported = "nfc_list_not_supported".toLocalized()
+            static let missingAction = "nfc_list_missing_action".toLocalized()
+            static let duplicateDialogTitle = "nfc_duplicate_dialog_title".toLocalized()
+            static let duplicateDialogMessage = "nfc_duplicate_dialog_message".toLocalized()
+            static let duplicateDialogOpenTag = "nfc_duplicate_open_tag".toLocalized()
+            static let timeoutDialogTitle = "nfc_timeout_dialog_title".toLocalized()
+            static let timeoutDialogMessage = "nfc_timeout_dialog_message".toLocalized()
+        }
+        
+        struct Add {
+            static let scanHint = "add_nfc_scanning_hint".toLocalized()
+            static let tooManyTags = "add_nfc_too_many_tags".toLocalized()
+            static let errorWriteFailed = "nfc_tag_error_write_failed".toLocalized()
+            static let errorUnsupported = "nfc_tag_error_unsupported".toLocalized()
+            static let errorWriteProtected = "nfc_tag_error_write_protected".toLocalized()
+            static let errorNotEnoughMemory = "nfc_tag_error_not_enough_memory".toLocalized()
+            static let errorNoTagDetected = "nfc_tag_error_no_tag_detected".toLocalized()
+            static let success = "nfc_successfully_added".toLocalized()
+        }
+        
+        struct Detail {
+            static let tagData = "nfc_detail_tag_data".toLocalized()
+            static let lockTag = "nfc_detail_tag_lock".toLocalized()
+            static let locked = "nfc_detail_tag_locked".toLocalized()
+            static let lastReadings = "nfc_detail_last_readings".toLocalized()
+            static let actionCompleted = "nfc_detail_action_completed".toLocalized()
+            static let actionFailure = "nfc_detail_action_failure_other".toLocalized()
+            static let actionMissing = "nfc_detail_action_failure_missing".toLocalized()
+            static let actionAdded = "nfc_detail_action_added".toLocalized()
+            static let deleteDialogTitle = "nfc_detail_delete_dialog_title".toLocalized()
+            static let deleteDialogMessage = "nfc_detail_delete_dialog_message".toLocalized()
+            static let deleteLockedDialogTitle = "nfc_detail_delete_locked_dialog_title".toLocalized()
+            static let deleteLockedDialogMessage = "nfc_detail_delete_locked_dialog_message".toLocalized()
+            static let infoDialogTitle = "nfc_detail_info_dialog_title".toLocalized()
+            static let infoDialogMessage = "nfc_detail_info_dialog_message".toLocalized()
+            
+            static let errorWrongTag = "nfc_tag_error_wrong".toLocalized()
+            static let errorProtectionFailed = "nfc_tag_error_protection_failed".toLocalized()
+            static let lockSuccess = "nfc_lock_tag_success_title".toLocalized()
+            static let lockError = "nfc_lock_tag_error_title".toLocalized()
+            static let lockTitle = "nfc_lock_tag_title".toLocalized()
+        }
+        
+        struct Edit {
+            static let tagName = "edit_nfc_tag_name".toLocalized()
+            static let title = "edit_nfc_tag_title".toLocalized()
+        }
+        
+        struct Call {
+            static let actionSuccess = "call_nfc_action_success".toLocalized()
+            static let tagNotFoundTitle = "call_nfc_action_failure_not_found_title".toLocalized()
+            static let tagNotConfiguredTitle = "call_nfc_action_not_configured_title".toLocalized()
+            static let unknownUrlTitle = "call_nfc_action_failure_unknown_url_title".toLocalized()
+            static let actionCallFailedTitle = "call_nfc_action_call_failed_title".toLocalized()
+            static let channelNotFoundTitle = "call_nfc_action_channel_not_found_title".toLocalized()
+            static let channelOfflineTitle = "call_nfc_action_channel_offline_title".toLocalized()
+            static let unknownUrlMessage = "call_nfc_action_failure_unknown_url_message".toLocalized()
+            static let tagNotFoundMessage = "call_nfc_action_failure_not_found_message".toLocalized()
+            static let tagNotConfiguredMessage = "call_nfc_action_not_configured_message".toLocalized()
+            static let actionCallFailedMessage = "call_nfc_action_call_failed_message".toLocalized()
+            static let channelNotFoundMessage = "call_nfc_action_channel_not_found_message".toLocalized()
+            static let channelOfflineMessage = "call_nfc_action_channel_offline_message".toLocalized()
+            static let tagName = "nfc_tag_name".toLocalized()
+            static let addTag = "nfc_add_tag".toLocalized()
+            static let assignAction = "nfc_assign_action".toLocalized()
+            static let updateAction = "ndc_update_action".toLocalized()
+        }
     }
 }
 

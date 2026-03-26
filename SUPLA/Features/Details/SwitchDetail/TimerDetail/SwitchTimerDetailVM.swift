@@ -22,7 +22,7 @@ class SwitchTimerDetailVM: BaseViewModel<SwitchTimerDetailViewState, SwitchTimer
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<StartTimerUseCase> private var startTimerUseCase
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleAxtionUseCase
+    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleAxtionUseCase
     @Singleton<DateProvider> private var dateProvider
     
     override func defaultViewState() -> SwitchTimerDetailViewState { SwitchTimerDetailViewState() }

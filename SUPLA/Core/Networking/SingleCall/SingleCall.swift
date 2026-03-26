@@ -22,7 +22,7 @@ let SINGLE_CALL_APP_ID: Int32 = 1
 
 protocol SingleCall {
     func registerPushToken(_ authorizationEntity: SingleCallAuthorizationEntity, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws
-    func executeAction(_ action: Action, subjectType: SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws
+    func executeAction(_ action: ActionId, subjectType: SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws
     func getValue(channelId: Int32, authorizationEntity: SingleCallAuthorizationEntity) -> SingleCallResult
 }
 
@@ -38,12 +38,12 @@ class SingleCallImpl: SingleCall {
         }
     }
     
-    func executeAction(_ action: Action, subjectType: SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws {
+    func executeAction(_ action: ActionId, subjectType: SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws {
         var authDetails = authorizationEntity.authDetails
         var clientAction = TCS_Action()
         clientAction.SubjectType = UInt8(subjectType.rawValue)
         clientAction.SubjectId = subjectId
-        clientAction.ActionId = action.rawValue
+        clientAction.ActionId = action.value
         
         let result = supla_single_call_execute_action(&authDetails, authorizationEntity.preferredProtocolVersion, 5000, &clientAction)
         

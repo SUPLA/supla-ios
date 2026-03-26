@@ -24,7 +24,7 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
     @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
     @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
     
     override init() {

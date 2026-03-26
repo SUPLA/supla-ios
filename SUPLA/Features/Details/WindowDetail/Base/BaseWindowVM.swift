@@ -24,7 +24,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
     @Singleton<GlobalSettings> var settings
     
     @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
     @Singleton<CallSuplaClientOperationUseCase> private var callSuplaClientOperationUseCase
     @Singleton<ExecuteRollerShutterActionUseCase> private var executeRollerShutterActionUseCase
     @Singleton<GetGroupOnlineSummaryUseCase> private var getGroupOnlineSummaryUseCase

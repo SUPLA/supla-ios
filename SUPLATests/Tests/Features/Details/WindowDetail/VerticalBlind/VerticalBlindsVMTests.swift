@@ -277,7 +277,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(222), VALUE_IGNORE, 80)
+            (ActionId.shutPartially, SubjectType.channel, Int32(222), VALUE_IGNORE, 80)
         ])
     }
     
@@ -430,7 +430,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(111), 20, 90)
+            (ActionId.shutPartially, SubjectType.channel, Int32(111), 20, 90)
         ])
     }
     
@@ -456,7 +456,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(111), 20, VALUE_IGNORE)
+            (ActionId.shutPartially, SubjectType.channel, Int32(111), 20, VALUE_IGNORE)
         ])
     }
     
@@ -486,7 +486,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(111), 3, 25)
+            (ActionId.shutPartially, SubjectType.channel, Int32(111), 3, 25)
         ])
     }
     
@@ -516,7 +516,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             initialState.changing(path: \.manualMoving, to: false)
         ])
         XCTAssertTuples(executeFacadeBlindActionUseCase.parameters, [
-            (Action.shutPartially, SubjectType.channel, Int32(111), 95, 50)
+            (ActionId.shutPartially, SubjectType.channel, Int32(111), 95, 50)
         ])
     }
 }

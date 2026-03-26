@@ -25,7 +25,7 @@ final class SingleCallMock: SingleCall {
         registerPushTokenCalls += 1
     }
     
-    func executeAction(_ action: SUPLA.Action, subjectType: SUPLA.SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws {
+    func executeAction(_ action: SUPLA.ActionId, subjectType: SUPLA.SubjectType, subjectId: Int32, authorizationEntity: SingleCallAuthorizationEntity) throws {
     }
     
     var getValueMock: FunctionMock<(Int32, SUPLA.SingleCallAuthorizationEntity), SUPLA.SingleCallResult> = .init()

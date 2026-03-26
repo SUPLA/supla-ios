@@ -27,6 +27,7 @@ protocol SceneRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater w
     func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]>
     func getAllScenes() -> Observable<[SAScene]>
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
+    func getScene(for profileId: Int32, with sceneId: Int32) -> Observable<SAScene?>
     func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
@@ -76,6 +77,10 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
     
     func getAllScenes() -> Observable<[SAScene]> {
         return self.query(SAScene.fetchRequest().ordered(by: "sceneId"))
+    }
+    
+    func getScene(for profileId: Int32, with sceneId: Int32) -> Observable<SAScene?> {
+        queryItem(NSPredicate(format: "sceneId = %d AND profile.id = %d", sceneId, profileId))
     }
     
     func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene> {

@@ -40,4 +40,13 @@ final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileR
     func getProfile(withId id: Int32) -> Observable<AuthProfileItem?> {
         getProfileWithIdMock.handle(id)
     }
+    
+    var getAuthorizationEntityMock: FunctionMock<Int32, SingleCallAuthorizationEntity?> = FunctionMock()
+    func getAuthorizationEntity(forProfileId id: Int32) async -> SingleCallAuthorizationEntity? {
+        getAuthorizationEntityMock.handle(id)
+    }
+    
+    func getProfileCount() async -> Int {
+        0
+    }
 }
