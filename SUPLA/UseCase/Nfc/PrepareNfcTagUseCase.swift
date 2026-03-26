@@ -159,8 +159,13 @@ extension PrepareNfcTag._Implementation {
     private func handleWritableTag(_ session: NFCNDEFReaderSession, tag: NFCNDEFTag, capacity: Int) {
         tag.readNDEF { [weak self] message, error in
             if let error {
-                SALog.error("[NFC] Tag could not be read: \(error)")
-                self?.finish(session, with: .failure(error))
+                if let nsError = error as NSError?, nsError.domain == "NFCError", nsError.code == 403 {
+                    SALog.info("[NFC] Scanned tag is empty, trying to program it")
+                    self?.writeSuplaToTag(session, tag: tag, capacity: capacity)
+                } else {
+                    SALog.error("[NFC] Tag could not be read: \(error)")
+                    self?.finish(session, with: .failure(error))
+                }
                 return
             }
             
@@ -170,29 +175,33 @@ extension PrepareNfcTag._Implementation {
                 return
             }
             
-            let uuid = UUID().uuidString.lowercased()
-            guard let message = self?.prepareMessage(uuid) else {
-                SALog.error("[NFC] Could not prepare message")
-                self?.finish(session, with: .failure(NfcError.writeFailed))
+            self?.writeSuplaToTag(session, tag: tag, capacity: capacity)
+        }
+    }
+    
+    private func writeSuplaToTag(_ session: NFCNDEFReaderSession, tag: NFCNDEFTag, capacity: Int) {
+        let uuid = UUID().uuidString.lowercased()
+        guard let message = prepareMessage(uuid) else {
+            SALog.error("[NFC] Could not prepare message")
+            finish(session, with: .failure(NfcError.writeFailed))
+            return
+        }
+        
+        if (message.length > capacity) {
+            SALog.error("[NFC] Tag has not enough capacity")
+            finish(session, with: .failure(NfcError.notEnoughSpace))
+            return
+        }
+        
+        tag.writeNDEF(message) { [weak self] error in
+            if let error {
+                SALog.error("[NFC] Tag could not be written: \(error)")
+                self?.finish(session, with: .failure(error))
                 return
             }
             
-            if (message.length > capacity) {
-                SALog.error("[NFC] Tag has not enough capacity")
-                self?.finish(session, with: .failure(NfcError.notEnoughSpace))
-                return
-            }
-            
-            tag.writeNDEF(message) { error in
-                if let error {
-                    SALog.error("[NFC] Tag could not be written: \(error)")
-                    self?.finish(session, with: .failure(error))
-                    return
-                }
-                
-                SALog.info("[NFC] Wrote SUPLA UUID: \(uuid)")
-                self?.finish(session, with: .success(.uuid(uuid: uuid, readOnly: false)))
-            }
+            SALog.info("[NFC] Wrote SUPLA UUID: \(uuid)")
+            self?.finish(session, with: .success(.uuid(uuid: uuid, readOnly: false)))
         }
     }
     
