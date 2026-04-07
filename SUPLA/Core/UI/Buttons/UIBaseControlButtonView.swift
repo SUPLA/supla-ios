@@ -19,7 +19,7 @@
 import RxRelay
 import RxSwift
 
-class BaseControlButtonView: UIView {
+class UIBaseControlButtonView: UIView {
     var tapObservable: Observable<Void> {
         tapRelay.asObservable()
     }
@@ -155,7 +155,7 @@ class BaseControlButtonView: UIView {
         super.touchesBegan(touches, with: event)
 
         if (isEnabled && isClickable) {
-            BaseControlButtonView.setupPressedLayer(layer, type)
+            UIBaseControlButtonView.setupPressedLayer(layer, type)
             textView.textColor = type.textColor
             iconView.tintColor = type.textColor
             innerShadowView.isHidden = false
@@ -169,7 +169,7 @@ class BaseControlButtonView: UIView {
         layer.cornerRadius = height / 2
 
         
-        BaseControlButtonView.setupLayer(layer)
+        UIBaseControlButtonView.setupLayer(layer)
 
         addSubview(innerShadowView)
         addSubview(textView)

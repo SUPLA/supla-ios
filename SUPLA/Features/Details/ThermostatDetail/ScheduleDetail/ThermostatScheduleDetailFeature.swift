@@ -15,24 +15,5 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-import Foundation
-
-extension CGPoint {
-    func insetBy(x: CGFloat, y: CGFloat) -> CGPoint {
-        return CGPoint(x: self.x + x, y: self.y + y)
-    }
     
-    func insetBy(point: CGPoint) -> CGPoint {
-        return CGPoint(x: self.x + point.x, y: self.y + point.y)
-    }
-    
-    func inside(point: CGPoint, radius: CGFloat = 24) -> Bool {
-        let distance = sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
-        return distance < radius
-    }
-    
-    func distance(to other: CGPoint) -> CGFloat {
-        sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
-    }
-}
+struct ThermostatScheduleDetailFeature {}

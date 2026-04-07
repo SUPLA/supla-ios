@@ -18,10 +18,36 @@
  */
     
 import XCTest
+import Combine
+
 @testable import SUPLA
 
 extension SuplaCore {
     class ViewModelTest<S : ObservableObject>: XCTestCase {
+        private var cancellables: Set<AnyCancellable> = []
         
+        func observe<T>(_ value: Published<T>.Publisher, count: Int) -> ObservationState<T> {
+            let state = ObservationState<T>(expectation(description: "ViewModel field changed"))
+            
+            value.dropFirst()
+                .sink { value in
+                    state.receivedValues.append(value)
+                    if (state.receivedValues.count == count) {
+                        state.exp.fulfill()
+                    }
+                }
+                .store(in: &cancellables)
+            
+            return state
+        }
+    }
+}
+
+class ObservationState<T> {
+    let exp: XCTestExpectation
+    var receivedValues: [T] = []
+    
+    init(_ exp: XCTestExpectation) {
+        self.exp = exp
     }
 }

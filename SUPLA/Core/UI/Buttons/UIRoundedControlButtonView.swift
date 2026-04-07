@@ -20,7 +20,7 @@ import RxSwift
 import RxRelay
 import SwiftUI
 
-final class RoundedControlButtonView: BaseControlButtonView {
+final class UIRoundedControlButtonView: UIBaseControlButtonView {
     
     override init(height: CGFloat = Dimens.buttonHeight) {
         super.init(height: height)
@@ -82,7 +82,7 @@ final class RoundedControlButtonView: BaseControlButtonView {
 }
 
 struct RoundedControlButtonWrapperView: UIViewRepresentable {
-    let type: BaseControlButtonView.ButtonType
+    let type: UIBaseControlButtonView.ButtonType
     let text: String?
     let icon: IconResult?
     let iconColor: UIColor
@@ -91,7 +91,7 @@ struct RoundedControlButtonWrapperView: UIViewRepresentable {
     let onTap: () -> Void
     
     init(
-        type: BaseControlButtonView.ButtonType,
+        type: UIBaseControlButtonView.ButtonType,
         text: String? = nil,
         icon: IconResult? = nil,
         iconColor: UIColor = .onBackground,
@@ -110,8 +110,8 @@ struct RoundedControlButtonWrapperView: UIViewRepresentable {
     
     private let disposeBag = DisposeBag()
     
-    func makeUIView(context: Context) -> RoundedControlButtonView {
-        let view = RoundedControlButtonView()
+    func makeUIView(context: Context) -> UIRoundedControlButtonView {
+        let view = UIRoundedControlButtonView()
         view.type = type
         view.text = text
         view.icon = icon
@@ -124,7 +124,7 @@ struct RoundedControlButtonWrapperView: UIViewRepresentable {
         return view
     }
     
-    func updateUIView(_ uiView: RoundedControlButtonView, context: Context) {
+    func updateUIView(_ uiView: UIRoundedControlButtonView, context: Context) {
         uiView.type = type
         uiView.text = text
         uiView.icon = icon
@@ -132,6 +132,6 @@ struct RoundedControlButtonWrapperView: UIViewRepresentable {
         uiView.isEnabled = isEnabled
     }
     
-    func dismantleUIView(_ uiView: RoundedControlButtonView, coordinator: Coordinator) {
+    func dismantleUIView(_ uiView: UIRoundedControlButtonView, coordinator: Coordinator) {
     }
 }

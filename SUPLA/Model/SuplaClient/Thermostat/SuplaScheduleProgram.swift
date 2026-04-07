@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SwiftUI
 
 enum SuplaScheduleProgram: UInt8, CaseIterable {
     case off = 0
@@ -25,13 +25,13 @@ enum SuplaScheduleProgram: UInt8, CaseIterable {
     case program3 = 3
     case program4 = 4
     
-    func color() -> UIColor {
+    var color: Color {
         switch(self) {
-        case .off: return .disabled
-        case .program1: return .lightBlue
-        case .program2: return .lightGreen
-        case .program3: return .lightOrange
-        case .program4: return .lightRed
+        case .off: return .Supla.disabled
+        case .program1: return .Supla.lightBlue
+        case .program2: return .Supla.lightGreen
+        case .program3: return .Supla.lightOrange
+        case .program4: return .Supla.lightRed
         }
     }
     

@@ -66,15 +66,15 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
         return label
     }()
     
-    private lazy var manualButtonView: RoundedControlButtonView = {
-        let view = RoundedControlButtonView()
+    private lazy var manualButtonView: UIRoundedControlButtonView = {
+        let view = UIRoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = Strings.ThermostatDetail.modeManual
         return view
     }()
     
-    private lazy var programButtonView: RoundedControlButtonView = {
-        let view = RoundedControlButtonView()
+    private lazy var programButtonView: UIRoundedControlButtonView = {
+        let view = UIRoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = Strings.ThermostatDetail.modeWeeklySchedule
         return view

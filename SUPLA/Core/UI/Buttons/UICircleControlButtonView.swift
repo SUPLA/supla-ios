@@ -19,11 +19,11 @@
 import RxSwift
 import RxRelay
 
-final class CircleControlButtonView: BaseControlButtonView {
+final class UICircleControlButtonView: UIBaseControlButtonView {
     
     static let SIZE: CGFloat = 120
     
-    init(size: CGFloat = CircleControlButtonView.SIZE) {
+    init(size: CGFloat = UICircleControlButtonView.SIZE) {
         super.init(height: size)
     }
     
