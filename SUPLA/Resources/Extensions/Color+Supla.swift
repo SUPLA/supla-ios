@@ -50,6 +50,11 @@ extension Color {
         static let errorVariant = Color("Colors/error_variant")
         static let buttonPressed = Color(UIColor.buttonPressed)
         
+        static let lightBlue = Color(UIColor.lightBlue)
+        static let lightGreen = Color(UIColor.lightGreen)
+        static let lightOrange = Color(UIColor.lightOrange)
+        static let lightRed = Color(UIColor.lightRed)
+        
         static let chartPhase1 = Color(UIColor.chartPhase1)
         static let chartPhase2 = Color(UIColor.chartPhase2)
         static let chartPhase3 = Color(UIColor.chartPhase3)

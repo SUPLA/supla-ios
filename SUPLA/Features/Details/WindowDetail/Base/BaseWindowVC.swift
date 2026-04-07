@@ -346,8 +346,8 @@ class BlindsTopView: TopView {
         return label
     }()
     
-    fileprivate lazy var calibrateButton: CircleControlButtonView = {
-        let view = CircleControlButtonView(size: calibrateButtonSize)
+    fileprivate lazy var calibrateButton: UICircleControlButtonView = {
+        let view = UICircleControlButtonView(size: calibrateButtonSize)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.type = .positive
         view.icon = .suplaIcon(name: .Icons.calibrate)

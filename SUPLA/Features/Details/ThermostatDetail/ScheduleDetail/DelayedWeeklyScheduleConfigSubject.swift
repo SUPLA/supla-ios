@@ -28,7 +28,7 @@ final class DelayedWeeklyScheduleConfigSubjectImpl: DelayedCommandSubject<Weekly
     @Singleton<SetChannelConfigUseCase> private var setChannelConfigUseCase
     
     override func execute(data: WeeklyScheduleConfigData) -> Observable<RequestResult> {
-        SALog.debug("Executing delayed weekly schedule config with \(data)")
+        SALog.debug("Executing delayed weekly schedule config")
         
         return setChannelConfigUseCase.invoke(
             remoteId: data.remoteId,

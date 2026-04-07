@@ -59,7 +59,9 @@ struct BorderedIconStyle: ButtonStyle {
 
 struct FilledIconStyle: ButtonStyle {
     let color: Color?
-
+    
+    @Environment(\.isEnabled) private var isEnabled
+    
     init(color: Color? = nil) {
         self.color = color
     }
@@ -74,9 +76,15 @@ struct FilledIconStyle: ButtonStyle {
     
     private func backgroundColor(_ configuration: Configuration) -> Color {
         if let color {
-            color
+            isEnabled ? color : .Supla.disabled
         } else {
-            configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
+            if (!isEnabled) {
+                .Supla.disabled
+            } else if (configuration.isPressed) {
+                Color(UIColor.buttonPressed)
+            } else {
+                Color(UIColor.primary)
+            }
         }
     }
 }

@@ -23,17 +23,20 @@ extension SuplaCore.Dialog {
         let onDismiss: () -> Void
         let alignment: SwiftUICore.HorizontalAlignment
         let spacing: CGFloat
+        let width: CGFloat
         let content: Content
         
         init(
             onDismiss: @escaping () -> Void = {},
             alignment: SwiftUICore.HorizontalAlignment = .center,
             spacing: CGFloat = 0,
+            width: CGFloat = UIScreen.main.bounds.size.width - 50,
             @ViewBuilder _ content: () -> Content
         ) {
             self.onDismiss = onDismiss
             self.alignment = alignment
             self.spacing = spacing
+            self.width = width
             self.content = content()
         }
         
@@ -51,7 +54,7 @@ extension SuplaCore.Dialog {
                 VStack(alignment: alignment, spacing: spacing) {
                     content
                 }
-                .frame(maxWidth: UIScreen.main.bounds.size.width - 50)
+                .frame(maxWidth: width)
                 .background(Color.Supla.surface)
                 .cornerRadius(Dimens.radiusDefault)
             }

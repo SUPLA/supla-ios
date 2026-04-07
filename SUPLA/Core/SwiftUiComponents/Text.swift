@@ -46,6 +46,10 @@ extension View {
         font(.Supla.bodySmall)
     }
     
+    func fontBodySmallBold() -> some View {
+        font(.Supla.bodySmallBold)
+    }
+    
     func fontBodySmallSemiBold() -> some View {
         font(.Supla.bodySmallSemiBold)
     }

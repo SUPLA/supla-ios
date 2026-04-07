@@ -22,7 +22,7 @@ struct SwitchButtonState {
     let icon: IconResult?
     let label: String
     let active: Bool
-    let type: BaseControlButtonView.ButtonType
+    let type: UIBaseControlButtonView.ButtonType
 }
 
 struct SwitchButtons: View {
