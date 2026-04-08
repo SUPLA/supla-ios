@@ -150,6 +150,13 @@ extension NotificationsLogFeature {
                     message: "Light in bedroom turned off",
                     profile: "Default",
                     date: Date()
+                ),
+                NotificationDto(
+                    id: URL(fileURLWithPath: "3"),
+                    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum cursus mi a rhoncus. Maecenas condimentum, est in dictum efficitur, nunc enim eleifend felis, ac dapibus massa nibh sed purus.",
+                    message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum cursus mi a rhoncus. Maecenas condimentum, est in dictum efficitur, nunc enim eleifend felis, ac dapibus massa nibh sed purus. In accumsan tempus vulputate. Duis et sollicitudin nunc. Maecenas hendrerit sodales faucibus. Nam in rhoncus ipsum. Donec id eros consequat leo aliquet dapibus. Donec imperdiet fermentum turpis non ullamcorper. Integer quam magna, dictum ac consequat vel, pulvinar in orci. Mauris cursus maximus orci, sed ultrices dui efficitur eu. Maecenas ac hendrerit elit. Ut sodales consectetur ex in finibus.",
+                    profile: "Default",
+                    date: Date()
                 )
             ]
         ),
