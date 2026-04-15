@@ -200,6 +200,7 @@ extension String {
         static let fncThermostatHeat = "fnc_thermostat_heat"
         static let fncThermostatCool = "fnc_thermostat_cool"
         static let fncThermostatDhw = "fnc_thermostat_dhw"
+        static let fncThermostatHeatCool = "fnc_thermostat_heat_cool"
         // ShadingSystems
         static let fncTerraceAwning = "fnc_terrace_awning"
         // Pump switch

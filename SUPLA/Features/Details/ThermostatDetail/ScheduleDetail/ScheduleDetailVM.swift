@@ -84,19 +84,31 @@ extension ThermostatScheduleDetailFeature {
         
         func onShowProgramDialog(_ program: ScheduleDetailProgram) {
             guard let configMin = state.configMin,
-                  let configMax = state.configMax,
-                  let thermostatType = state.thermostatType,
-                  let temperature = state.temperature(program.scheduleProgram)
+                  let configMax = state.configMax
             else { return }
+            
+            let heatTemperature = state.temperature(setpointType: .heat, program.scheduleProgram)
+            let coolTemperature = state.temperature(setpointType: .cool, program.scheduleProgram)
             
             state.editProgramState = EditProgramState(
                 program: program.scheduleProgram.program,
-                thermostatType: thermostatType,
                 temperatureUnit: globalSettings.temperatureUnit,
-                value: state.temperatureString(temperature),
-                plusDisabled: temperature >= configMax,
-                minusDisabled: temperature <= configMin,
-                saveDisabled: temperature < configMin || temperature > configMax
+                heatSetpoint: heatTemperature?.let {
+                    SetpointData(
+                        plusDisabled: $0 >= configMax,
+                        minusDisabled: $0 <= configMin,
+                        valueCorrect: $0 >= configMin && $0 <= configMax,
+                        value: state.temperatureString($0)
+                    )
+                },
+                coolSetpoint: coolTemperature?.let {
+                    SetpointData(
+                        plusDisabled: $0 >= configMax,
+                        minusDisabled: $0 <= configMin,
+                        valueCorrect: $0 >= configMin && $0 <= configMax,
+                        value: state.temperatureString($0)
+                    )
+                }
             )
         }
         
@@ -104,34 +116,37 @@ extension ThermostatScheduleDetailFeature {
             state.editProgramState = nil
         }
         
-        func onProgramDialogChange(_ value: String) {
+        func onProgramDialogChange(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
                   let configMax = state.configMax else { return }
 
             if (value.isEmpty) {
                 state.editProgramState = state.editProgramState?.copy(
+                    setpointType: setpointType,
                     plusDisabled: false,
                     minusDisabled: true,
-                    saveDisabled: true
+                    valueCorrect: false
                 )
             }
             
             if let valueAsFloat = value.toFloat() {
                 state.editProgramState = state.editProgramState?.copy(
+                    setpointType: setpointType,
                     plusDisabled: valueAsFloat >= configMax,
                     minusDisabled: valueAsFloat <= configMin,
-                    saveDisabled: valueAsFloat < configMin || valueAsFloat > configMax
+                    valueCorrect: valueAsFloat >= configMin && valueAsFloat <= configMax
                 )
             } else {
                 state.editProgramState = state.editProgramState?.copy(
+                    setpointType: setpointType,
                     plusDisabled: true,
                     minusDisabled: true,
-                    saveDisabled: true
+                    valueCorrect: false
                 )
             }
         }
         
-        func onProgramDialogPlus(_ value: String) {
+        func onProgramDialogPlus(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
                   let configMax = state.configMax
             else { return }
@@ -139,25 +154,27 @@ extension ThermostatScheduleDetailFeature {
             if (value.isEmpty) {
                 let temperatureString = SharedCore.DefaultValueFormatter.format(configMin)
                 state.editProgramState = state.editProgramState?.copy(
-                    updateValue: temperatureString,
+                    setpointType: setpointType,
                     plusDisabled: configMin >= configMax,
                     minusDisabled: true,
-                    saveDisabled: false
+                    valueCorrect: true,
+                    updateValue: temperatureString
                 )
             } else {
                 let temperature = (value.toFloat() ?? 0) + 0.1
                 let temperatureString = SharedCore.DefaultValueFormatter.format(temperature)
                 
                 state.editProgramState = state.editProgramState?.copy(
-                    updateValue: temperatureString,
+                    setpointType: setpointType,
                     plusDisabled: temperature >= configMax,
                     minusDisabled: temperature <= configMin,
-                    saveDisabled: temperature < configMin || temperature > configMax
+                    valueCorrect: temperature >= configMin && temperature <= configMax,
+                    updateValue: temperatureString
                 )
             }
         }
         
-        func onProgramDialogMinus(_ value: String) {
+        func onProgramDialogMinus(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
                   let configMax = state.configMax else { return }
             
@@ -165,32 +182,44 @@ extension ThermostatScheduleDetailFeature {
             let temperatureString = SharedCore.DefaultValueFormatter.format(temperature)
             
             state.editProgramState = state.editProgramState?.copy(
-                updateValue: temperatureString,
+                setpointType: setpointType,
                 plusDisabled: temperature >= configMax,
                 minusDisabled: temperature <= configMin,
-                saveDisabled: temperature < configMin || temperature > configMax
+                valueCorrect: temperature >= configMin && temperature <= configMax,
+                updateValue: temperatureString
             )
         }
         
-        func onProgramDialogSave(_ value: String) {
+        func onProgramDialogSave(_ heatValue: String, _ coolValue: String) {
             guard let programState = state.editProgramState,
-                  let temperature = value.toFloat(),
                   let program = state.programs.first(where: { $0.scheduleProgram.program == programState.program })
             else { return }
             
-            let updatedProgram =
-                switch (programState.thermostatType) {
+            let updatedProgram: SuplaWeeklyScheduleProgram? =
+                switch (program.scheduleProgram.mode) {
                 case .heat:
-                    program.scheduleProgram.copy(newHeatTemperature: temperature.toSuplaTemperature())
+                    program.scheduleProgram.copy(
+                        newHeatTemperature: heatValue.toFloat()?.toSuplaTemperature(),
+                    )
                 case .cool:
-                    program.scheduleProgram.copy(newCoolTemperature: temperature.toSuplaTemperature())
+                    program.scheduleProgram.copy(
+                        newCoolTemperature: coolValue.toFloat()?.toSuplaTemperature()
+                    )
+                case .heatCool:
+                    program.scheduleProgram.copy(
+                        newHeatTemperature: heatValue.toFloat()?.toSuplaTemperature(),
+                        newCoolTemperature: coolValue.toFloat()?.toSuplaTemperature()
+                    )
+                default: nil
                 }
             
-            state.programs = state.programs.map {
-                if ($0.scheduleProgram.program == programState.program) {
-                    $0.changing(path: \.scheduleProgram, to: updatedProgram)
-                } else {
-                    $0
+            if let updatedProgram {
+                state.programs = state.programs.map {
+                    if ($0.scheduleProgram.program == programState.program) {
+                        $0.changing(path: \.scheduleProgram, to: updatedProgram)
+                    } else {
+                        $0
+                    }
                 }
             }
             state.activeProgram = programState.program

@@ -19,87 +19,118 @@
 import SwiftUI
 
 extension ThermostatScheduleDetailFeature {
-    enum ThermostatType {
-        case heat
-        case cool
+    
+    struct SetpointData: Equatable {
+        let plusDisabled: Bool
+        let minusDisabled: Bool
+        let valueCorrect: Bool
+        let initialValue: String
+        let updateValue: String
         
-        var label: String {
-            switch self {
-            case .heat: Strings.ThermostatDetail.heatingTemperature
-            case .cool: Strings.ThermostatDetail.coolingTemperature
-            }
+        init(plusDisabled: Bool, minusDisabled: Bool, valueCorrect: Bool, initialValue: String, updateValue: String) {
+            self.plusDisabled = plusDisabled
+            self.minusDisabled = minusDisabled
+            self.valueCorrect = valueCorrect
+            self.initialValue = initialValue
+            self.updateValue = updateValue
+        }
+        
+        init(plusDisabled: Bool, minusDisabled: Bool, valueCorrect: Bool, value: String) {
+            self.plusDisabled = plusDisabled
+            self.minusDisabled = minusDisabled
+            self.valueCorrect = valueCorrect
+            self.initialValue = value
+            self.updateValue = value
+        }
+        
+        func copy(
+            plusDisabled: Bool? = nil,
+            minusDisabled: Bool? = nil,
+            valueCorrect: Bool? = nil,
+            initialValue: String? = nil,
+            updateValue: String? = nil
+        ) -> Self {
+            SetpointData(
+                plusDisabled: plusDisabled ?? self.plusDisabled,
+                minusDisabled: minusDisabled ?? self.minusDisabled,
+                valueCorrect: valueCorrect ?? self.valueCorrect,
+                initialValue: initialValue ?? self.initialValue,
+                updateValue: updateValue ?? self.updateValue
+            )
         }
     }
     
     struct EditProgramState: Equatable {
         let program: SuplaScheduleProgram
-        let thermostatType: ThermostatType
         let temperatureUnit: TemperatureUnit
-        let plusDisabled: Bool
-        let minusDisabled: Bool
-        let saveDisabled: Bool
+        let heatSetpoint: SetpointData?
+        let coolSetpoint: SetpointData?
         
-        let initialValue: String
-        let updateValue: String
+        var saveDisabled: Bool {
+            if let heatSetpoint, let coolSetpoint {
+                !heatSetpoint.valueCorrect || !coolSetpoint.valueCorrect
+            } else if let heatSetpoint {
+                !heatSetpoint.valueCorrect
+            } else if let coolSetpoint {
+                !coolSetpoint.valueCorrect
+            } else {
+                 true
+            }
+        }
         
         init(
             program: SuplaScheduleProgram,
-            thermostatType: ThermostatType,
             temperatureUnit: TemperatureUnit,
-            value: String,
-            plusDisabled: Bool,
-            minusDisabled: Bool,
-            saveDisabled: Bool
+            heatSetpoint: SetpointData?,
+            coolSetpoint: SetpointData?
         ) {
             self.program = program
-            self.thermostatType = thermostatType
             self.temperatureUnit = temperatureUnit
-            self.plusDisabled = plusDisabled
-            self.minusDisabled = minusDisabled
-            self.saveDisabled = saveDisabled
-            self.initialValue = value
-            self.updateValue = value
-        }
-        
-        private init(
-            program: SuplaScheduleProgram,
-            thermostatType: ThermostatType,
-            temperatureUnit: TemperatureUnit,
-            plusDisabled: Bool,
-            minusDisabled: Bool,
-            saveDisabled: Bool,
-            initialValue: String,
-            updateValue: String
-        ) {
-            self.program = program
-            self.thermostatType = thermostatType
-            self.temperatureUnit = temperatureUnit
-            self.plusDisabled = plusDisabled
-            self.minusDisabled = minusDisabled
-            self.saveDisabled = saveDisabled
-            self.initialValue = initialValue
-            self.updateValue = updateValue
+            self.heatSetpoint = heatSetpoint
+            self.coolSetpoint = coolSetpoint
         }
         
         func copy(
             program: SuplaScheduleProgram? = nil,
-            thermostatType: ThermostatType? = nil,
             temperatureUnit: TemperatureUnit? = nil,
-            updateValue: String? = nil,
-            plusDisabled: Bool? = nil,
-            minusDisabled: Bool? = nil,
-            saveDisabled: Bool? = nil
+            heatSetpoint: SetpointData? = nil,
+            coolSetpoint: SetpointData? = nil,
         ) -> Self {
             EditProgramState(
                 program: program ?? self.program,
-                thermostatType: thermostatType ?? self.thermostatType,
                 temperatureUnit: temperatureUnit ?? self.temperatureUnit,
-                plusDisabled: plusDisabled ?? self.plusDisabled,
-                minusDisabled: minusDisabled ?? self.minusDisabled,
-                saveDisabled: saveDisabled ?? self.saveDisabled,
-                initialValue: initialValue,
-                updateValue: updateValue ?? self.updateValue
+                heatSetpoint: heatSetpoint ?? self.heatSetpoint,
+                coolSetpoint: coolSetpoint ?? self.coolSetpoint,
             )
+        }
+        
+        func copy(
+            setpointType: SetpointType,
+            plusDisabled: Bool? = nil,
+            minusDisabled: Bool? = nil,
+            valueCorrect: Bool? = nil,
+            updateValue: String? = nil
+        ) -> Self {
+            switch (setpointType) {
+            case .heat:
+                copy(
+                    heatSetpoint: heatSetpoint?.copy(
+                        plusDisabled: plusDisabled,
+                        minusDisabled: minusDisabled,
+                        valueCorrect: valueCorrect,
+                        updateValue: updateValue
+                    )
+                )
+            case .cool:
+                copy(
+                    coolSetpoint: coolSetpoint?.copy(
+                        plusDisabled: plusDisabled,
+                        minusDisabled: minusDisabled,
+                        valueCorrect: valueCorrect,
+                        updateValue: updateValue
+                    )
+                )
+            }
         }
     }
     
@@ -107,18 +138,18 @@ extension ThermostatScheduleDetailFeature {
         let state: EditProgramState
         
         let onDismiss: () -> Void
-        let onChange: (String) -> Void
-        let onPlus: (String) -> Void
-        let onMinus: (String) -> Void
-        let onSave: (String) -> Void
+        let onChange: (SetpointType, String) -> Void
+        let onPlus: (SetpointType, String) -> Void
+        let onMinus: (SetpointType, String) -> Void
+        let onSave: (String, String) -> Void
         
         init(
             state: EditProgramState,
             onDismiss: @escaping () -> Void,
-            onChange: @escaping (String) -> Void,
-            onPlus: @escaping (String) -> Void,
-            onMinus: @escaping (String) -> Void,
-            onSave: @escaping (String) -> Void
+            onChange: @escaping (SetpointType, String) -> Void,
+            onPlus: @escaping (SetpointType, String) -> Void,
+            onMinus: @escaping (SetpointType, String) -> Void,
+            onSave: @escaping (String, String) -> Void
         ) {
             self.state = state
             self.onDismiss = onDismiss
@@ -126,25 +157,33 @@ extension ThermostatScheduleDetailFeature {
             self.onPlus = onPlus
             self.onMinus = onMinus
             self.onSave = onSave
-            self._value = State(initialValue: state.initialValue)
+            self._heatValue = State(initialValue: state.heatSetpoint?.initialValue ?? "")
+            self._coolValue = State(initialValue: state.coolSetpoint?.initialValue ?? "")
         }
         
-        @State private var value: String
+        @State private var heatValue: String
+        @State private var coolValue: String
         
         var body: some SwiftUI.View {
             SuplaCore.Dialog.Base(onDismiss: onDismiss, alignment: .leading, width: 300) {
                 Header()
-                Text(state.thermostatType.label)
-                    .fontBodyLarge()
-                    .textColor(.Supla.onSurfaceVariant)
-                    .padding(.horizontal, Distance.default)
-                TemperatureEdit()
-                    .padding(.vertical, Distance.tiny)
-                    .padding(.horizontal, Distance.default)
+                
+                if let heatSetpoint = state.heatSetpoint {
+                    TemperatureEdit(type: .heat, heatSetpoint, $heatValue)
+                        .padding(.horizontal, Distance.default)
+                        .onChange(of: heatValue) { onChange(.heat, $0) }
+                        .onChange(of: heatSetpoint.updateValue) { heatValue = $0 }
+                }
+                if let coolSetpoint = state.coolSetpoint {
+                    TemperatureEdit(type: .cool, coolSetpoint, $coolValue)
+                        .padding(.horizontal, Distance.default)
+                        .onChange(of: coolValue) { onChange(.cool, $0) }
+                        .onChange(of: coolSetpoint.updateValue) { coolValue = $0 }
+                }
                 
                 SuplaCore.Dialog.DoubleButtons(
                     onSecondaryClick: onDismiss,
-                    onPrimaryClick: { onSave(value) },
+                    onPrimaryClick: { onSave(heatValue, coolValue) },
                     primaryDisabled: state.saveDisabled
                 )
             }
@@ -163,42 +202,57 @@ extension ThermostatScheduleDetailFeature {
             .padding(Distance.default)
         }
         
-        private func TemperatureEdit() -> some SwiftUI.View {
+        @ViewBuilder
+        private func TemperatureEdit(type: SetpointType, _ setpointData: SetpointData, _ value: Binding<String>) -> some SwiftUI.View {
+            Text(type.label)
+                .fontBodyLarge()
+                .textColor(.Supla.onSurfaceVariant)
             HStack(alignment: .center, spacing: Distance.tiny) {
-                IconButton(
-                    name: .Icons.minus,
-                    color: .Supla.onPrimary,
-                    action: { onMinus(value) }
-                )
-                .disabled(state.minusDisabled)
-                .buttonStyle(FilledIconStyle())
-                .clipShape(Circle())
+                MinusButton(.heat, heatValue, setpointData.minusDisabled)
                 AccessoryTextField(
-                    text: $value,
+                    text: value,
                     suffix: { AccessoryText(state.temperatureUnit.valueUnit.text) }
                 )
-                .onChange(of: value) {
-                    onChange($0)
-                }
-                .onChange(of: state.updateValue) {
-                    value = $0
-                }
                 .keyboardType(.decimalPad)
                 .frame(width: 120)
-                IconButton(
-                    name: .Icons.plus,
-                    color: .Supla.onPrimary,
-                    action: { onPlus(value) }
-                )
-                .disabled(state.plusDisabled)
-                .buttonStyle(FilledIconStyle())
-                .clipShape(Circle())
-                Spacer()
+                PlusButton(.heat, heatValue, setpointData.plusDisabled)
             }
+            .padding(.vertical, Distance.tiny)
+        }
+        
+        private func MinusButton(_ type: SetpointType, _ value: String, _ disabled: Bool) -> some SwiftUI.View {
+            IconButton(
+                name: .Icons.minus,
+                color: .Supla.onPrimary,
+                action: { onMinus(type, value) }
+            )
+            .disabled(disabled)
+            .buttonStyle(FilledIconStyle())
+            .clipShape(Circle())
+        }
+        
+        private func PlusButton(_ type: SetpointType, _ value: String, _ disabled: Bool) -> some SwiftUI.View {
+            IconButton(
+                name: .Icons.plus,
+                color: .Supla.onPrimary,
+                action: { onPlus(type, value) }
+            )
+            .disabled(disabled)
+            .buttonStyle(FilledIconStyle())
+            .clipShape(Circle())
         }
         
         private func filterInput(_ text: String) -> String {
             text.filter { $0.isNumber || $0 == "." || $0 == "," }
+        }
+    }
+}
+
+fileprivate extension SetpointType {
+    var label: String {
+        switch (self) {
+        case .heat: Strings.ThermostatDetail.heatingTemperature
+        case .cool: Strings.ThermostatDetail.coolingTemperature
         }
     }
 }
@@ -208,18 +262,25 @@ extension ThermostatScheduleDetailFeature {
         ThermostatScheduleDetailFeature.EditProgramDialog(
             state: ThermostatScheduleDetailFeature.EditProgramState(
                 program: .program1,
-                thermostatType: .heat,
                 temperatureUnit: .celsius,
-                value: "22,0",
-                plusDisabled: false,
-                minusDisabled: false,
-                saveDisabled: false
+                heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(
+                    plusDisabled: false,
+                    minusDisabled: false,
+                    valueCorrect: true,
+                    value: "22,0",
+                ),
+                coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(
+                    plusDisabled: false,
+                    minusDisabled: false,
+                    valueCorrect: true,
+                    value: "23,0"
+                )
             ),
             onDismiss: {},
-            onChange: { _ in },
-            onPlus: { _ in },
-            onMinus: { _ in },
-            onSave: { _ in }
+            onChange: { _, _ in },
+            onPlus: { _, _ in },
+            onMinus: { _, _ in },
+            onSave: { _, _ in }
         )
     }
 }

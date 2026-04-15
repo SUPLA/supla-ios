@@ -935,6 +935,9 @@
 		A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EA2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift */; };
 		A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */; };
 		A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */; };
+		A59E57AB2F8F829300808DBF /* ThermostatTimerDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57AA2F8F828C00808DBF /* ThermostatTimerDetailFeature.swift */; };
+		A59E57AD2F8F82D000808DBF /* ThermostatTimerDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57AC2F8F82C700808DBF /* ThermostatTimerDetailViewState.swift */; };
+		A59E57AF2F8F831100808DBF /* ThermostatTimerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57AE2F8F830600808DBF /* ThermostatTimerDetailView.swift */; };
 		A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A302B60F76A004B1598 /* IconValueCell.swift */; };
 		A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */; };
 		A5A14A3A2B612F1C004B1598 /* ChannelConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */; };
@@ -2719,6 +2722,9 @@
 		A59AB8EA2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileScenesListUseCaseTests.swift; sourceTree = "<group>"; };
 		A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCaseTests.swift; sourceTree = "<group>"; };
 		A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLocationUseCaseTests.swift; sourceTree = "<group>"; };
+		A59E57AA2F8F828C00808DBF /* ThermostatTimerDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailFeature.swift; sourceTree = "<group>"; };
+		A59E57AC2F8F82C700808DBF /* ThermostatTimerDetailViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailViewState.swift; sourceTree = "<group>"; };
+		A59E57AE2F8F830600808DBF /* ThermostatTimerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailView.swift; sourceTree = "<group>"; };
 		A5A14A302B60F76A004B1598 /* IconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueCell.swift; sourceTree = "<group>"; };
 		A5A14A322B61005F004B1598 /* SUPLA 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 16.xcdatamodel"; sourceTree = "<group>"; };
 		A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
@@ -4405,6 +4411,9 @@
 		A52BFEDA2B0F8EFC00A2F64C /* TimerDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A59E57AE2F8F830600808DBF /* ThermostatTimerDetailView.swift */,
+				A59E57AC2F8F82C700808DBF /* ThermostatTimerDetailViewState.swift */,
+				A59E57AA2F8F828C00808DBF /* ThermostatTimerDetailFeature.swift */,
 				A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */,
 				A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */,
 				A52BFEDF2B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift */,
@@ -8222,6 +8231,7 @@
 				A57668E12AE99DB90025509D /* ChartDataAggregation.swift in Sources */,
 				A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */,
 				A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */,
+				A59E57AD2F8F82D000808DBF /* ThermostatTimerDetailViewState.swift in Sources */,
 				A52F03D92DBA196600472ED1 /* CarPlayListVM.swift in Sources */,
 				A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */,
 				A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */,
@@ -8592,6 +8602,7 @@
 				A52BFEF02B1754FD00A2F64C /* DeleteProfileUseCase.swift in Sources */,
 				A50B5D042BEA4CDA00918D18 /* RoofWindowState.swift in Sources */,
 				A56364332EE1A0D900A702C0 /* DimmerDetailView.swift in Sources */,
+				A59E57AF2F8F831100808DBF /* ThermostatTimerDetailView.swift in Sources */,
 				A530EE402A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift in Sources */,
 				A5A1600D2C2AC17F0049AA73 /* SuplaAppState.swift in Sources */,
 				A59AB8BF2F559FF600565952 /* LockIcon.swift in Sources */,
@@ -9033,6 +9044,7 @@
 				A55A8D9B2BAB802B00C540D4 /* RollerShutterAction.swift in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				A563643B2EE2F0C600A702C0 /* LinearColorSelector.swift in Sources */,
+				A59E57AB2F8F829300808DBF /* ThermostatTimerDetailFeature.swift in Sources */,
 				A5B3CBED2B625D6000F95AC3 /* WindValueProvider.swift in Sources */,
 				A5F5C3EA2C3580000058E255 /* LockScreenScope.swift in Sources */,
 				A5F29B902A20B23E00ED700A /* BaseTableViewModel.swift in Sources */,

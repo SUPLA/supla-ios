@@ -47,17 +47,8 @@ extension ThermostatScheduleDetailFeature {
             schedule.flatMap { (key, value) in value.suplaScheduleEntries(key) }
         }
         
-        var thermostatType: ThermostatType? {
-            if (isHeat) {
-                return .heat
-            } else if (isCool) {
-                return .cool
-            } else {
-                return nil
-            }
-        }
-        
         private var isHvacThermostat: Bool { channelFunction == SUPLA_CHANNELFNC_HVAC_THERMOSTAT }
+        private var isHvacHeatCoolThermostat: Bool { channelFunction == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL }
         private var isHotWater: Bool { channelFunction == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER }
         
         private var isHeat: Bool { isHvacThermostat && thermostatSubfunction == .heat || isHotWater }
@@ -77,11 +68,11 @@ extension ThermostatScheduleDetailFeature {
             self.currentHour = currentHour
         }
         
-        func temperature(_ program: SuplaWeeklyScheduleProgram) -> Float? {
-            if (isHeat) {
+        func temperature(setpointType: SetpointType, _ program: SuplaWeeklyScheduleProgram) -> Float? {
+            if (setpointType == .heat && (program.mode == .heat || program.mode == .heatCool)) {
                 let suplaTemperature = program.setpointTemperatureHeat?.fromSuplaTemperature()
                 return alignTemperature(suplaTemperature)
-            } else if (isCool) {
+            } else if (setpointType == .cool && (program.mode == .cool || program.mode == .heatCool)) {
                 let suplaTemperature = program.setpointTemperatureCool?.fromSuplaTemperature()
                 return alignTemperature(suplaTemperature)
             } else {
@@ -93,7 +84,7 @@ extension ThermostatScheduleDetailFeature {
             return SharedCore.DefaultValueFormatter.shared.format(value: value)
         }
         
-        private func alignTemperature(_ temperature: Float?) -> Float {
+        func alignTemperature(_ temperature: Float?) -> Float {
             let defaultTemperature = isHotWater ? DEFAULT_WATER_TEMPERATURE : DEFAULT_HEAT_TEMPERATURE
             let temperatureToAlign = temperature ?? defaultTemperature
             

@@ -27,10 +27,10 @@ extension ThermostatScheduleDetailFeature {
         func onShowQuartersDialog(_ key: ScheduleDetailBoxKey)
         
         func onProgramDialogDismiss()
-        func onProgramDialogChange(_ value: String)
-        func onProgramDialogPlus(_ value: String)
-        func onProgramDialogMinus(_ value: String)
-        func onProgramDialogSave(_ value: String)
+        func onProgramDialogChange(_ setpointType: SetpointType, _ value: String)
+        func onProgramDialogPlus(_ setpointType: SetpointType, _ value: String)
+        func onProgramDialogMinus(_ setpointType: SetpointType, _ value: String)
+        func onProgramDialogSave(_ heatValue: String, _ coolValue: String)
         
         func onQuartersDialogDismiss()
         func onQuartersDialogProgramChange(_ program: SuplaScheduleProgram)
@@ -65,10 +65,10 @@ extension ThermostatScheduleDetailFeature {
                     EditProgramDialog(
                         state: state,
                         onDismiss: { delegate?.onProgramDialogDismiss() },
-                        onChange: { delegate?.onProgramDialogChange($0) },
-                        onPlus: { delegate?.onProgramDialogPlus($0) },
-                        onMinus: { delegate?.onProgramDialogMinus($0) },
-                        onSave: { delegate?.onProgramDialogSave($0) }
+                        onChange: { delegate?.onProgramDialogChange($0, $1) },
+                        onPlus: { delegate?.onProgramDialogPlus($0, $1) },
+                        onMinus: { delegate?.onProgramDialogMinus($0, $1) },
+                        onSave: { delegate?.onProgramDialogSave($0, $1) }
                     )
                 }
                 
@@ -77,7 +77,7 @@ extension ThermostatScheduleDetailFeature {
                         state: state,
                         onDismiss: { delegate?.onQuartersDialogDismiss() },
                         onProgramChange: { delegate?.onQuartersDialogProgramChange($0) },
-                        onQuarterChange: { delegate?.onQuartersDialogQuarterChange($0)},
+                        onQuarterChange: { delegate?.onQuartersDialogQuarterChange($0) },
                         onSave: { delegate?.onQuartersDialogSave() }
                     )
                 }
