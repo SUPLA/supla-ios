@@ -19,14 +19,10 @@
 final class ThermostatIconNameProducer: IconNameProducer {
     
     func accepts(function: Int32) -> Bool {
-        return function == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || function == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+        return function == SUPLA_CHANNELFNC_HVAC_THERMOSTAT
     }
     
     func produce(iconData: FetchIconData) -> String {
-        if (iconData.function == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER) {
-            return .Icons.fncThermostatDhw
-        }
-        
         if let subfunction = iconData.subfunction {
             switch (subfunction) {
             case .heat: return .Icons.fncThermostatHeat

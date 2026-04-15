@@ -29,7 +29,8 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_PUMPSWITCH,
                  SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH: .standardDetail(pages: getSwitchDetailPages(channelWithChildren))
 
-            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT: .standardDetail(pages: getThermostatDetailPages(channelWithChildren))
+            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
+                 SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL: .standardDetail(pages: getThermostatDetailPages(channelWithChildren))
 
             case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
                  SUPLA_CHANNELFNC_IC_GAS_METER,

@@ -105,12 +105,9 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         // then
         XCTAssertEqual(viewModel.state.editProgramState, ThermostatScheduleDetailFeature.EditProgramState(
             program: .program2,
-            thermostatType: .heat,
             temperatureUnit: .celsius,
-            value: "22.0",
-            plusDisabled: false,
-            minusDisabled: false,
-            saveDisabled: false
+            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "22.0"),
+            coolSetpoint: nil
         ))
     }
 
@@ -139,12 +136,9 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         // then
         XCTAssertEqual(viewModel.state.editProgramState, ThermostatScheduleDetailFeature.EditProgramState(
             program: .program3,
-            thermostatType: .cool,
             temperatureUnit: .celsius,
-            value: "21.0",
-            plusDisabled: false,
-            minusDisabled: false,
-            saveDisabled: false
+            heatSetpoint: nil,
+            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0"),
         ))
     }
 

@@ -18,7 +18,9 @@
 
 import Foundation
 
-extension Float {
+extension Float: ScopeFunctions {
+    typealias T = Float
+    
     func toTemperatureString(_ format: ValueFormat? = nil) -> String {
         @Singleton<SharedCore.ThermometerValueFormatter> var formatter
         return if let format {
