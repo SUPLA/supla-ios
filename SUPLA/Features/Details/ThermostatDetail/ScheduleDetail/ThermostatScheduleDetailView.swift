@@ -28,6 +28,7 @@ extension ThermostatScheduleDetailFeature {
         
         func onProgramDialogDismiss()
         func onProgramDialogChange(_ setpointType: SetpointType, _ value: String)
+        func onProgramDialogModeChange(_ mode: SuplaHvacMode)
         func onProgramDialogPlus(_ setpointType: SetpointType, _ value: String)
         func onProgramDialogMinus(_ setpointType: SetpointType, _ value: String)
         func onProgramDialogSave(_ heatValue: String, _ coolValue: String)
@@ -66,6 +67,7 @@ extension ThermostatScheduleDetailFeature {
                         state: state,
                         onDismiss: { delegate?.onProgramDialogDismiss() },
                         onChange: { delegate?.onProgramDialogChange($0, $1) },
+                        onModeChange: { delegate?.onProgramDialogModeChange($0) },
                         onPlus: { delegate?.onProgramDialogPlus($0, $1) },
                         onMinus: { delegate?.onProgramDialogMinus($0, $1) },
                         onSave: { delegate?.onProgramDialogSave($0, $1) }

@@ -47,3 +47,21 @@ extension SuplaHvacMode {
         }
     }
 }
+
+extension SuplaHvacMode: PickerItem {
+    public var id: Int32 {
+        self.value
+    }
+    
+    var label: String {
+        switch (self) {
+        case .heat:
+            Strings.ThermostatDetail.modeHeatingLabel
+        case .cool:
+            Strings.ThermostatDetail.modeCoolingLabel
+        case .heatCool:
+            Strings.ThermostatDetail.modeAutoLabel
+        default: ""
+        }
+    }
+}

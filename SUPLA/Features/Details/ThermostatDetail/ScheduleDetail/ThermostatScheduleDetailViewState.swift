@@ -47,6 +47,24 @@ extension ThermostatScheduleDetailFeature {
             schedule.flatMap { (key, value) in value.suplaScheduleEntries(key) }
         }
         
+        var availableModes: [SuplaHvacMode] {
+            switch (channelFunction) {
+            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT:
+                if let thermostatSubfunction {
+                    switch thermostatSubfunction {
+                    case .notSet: []
+                    case .heat: [.heat]
+                    case .cool: [.cool]
+                    }
+                } else {
+                    []
+                }
+            case SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER: [.heat]
+            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL: [.heat, .cool, .heatCool]
+            default: []
+            }
+        }
+        
         private var isHvacThermostat: Bool { channelFunction == SUPLA_CHANNELFNC_HVAC_THERMOSTAT }
         private var isHvacHeatCoolThermostat: Bool { channelFunction == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL }
         private var isHotWater: Bool { channelFunction == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER }
@@ -69,10 +87,10 @@ extension ThermostatScheduleDetailFeature {
         }
         
         func temperature(setpointType: SetpointType, _ program: SuplaWeeklyScheduleProgram) -> Float? {
-            if (setpointType == .heat && (program.mode == .heat || program.mode == .heatCool)) {
+            if (setpointType == .heat) {
                 let suplaTemperature = program.setpointTemperatureHeat?.fromSuplaTemperature()
                 return alignTemperature(suplaTemperature)
-            } else if (setpointType == .cool && (program.mode == .cool || program.mode == .heatCool)) {
+            } else if (setpointType == .cool) {
                 let suplaTemperature = program.setpointTemperatureCool?.fromSuplaTemperature()
                 return alignTemperature(suplaTemperature)
             } else {

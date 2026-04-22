@@ -111,12 +111,12 @@ struct SuplaWeeklyScheduleProgram: Equatable {
         }
     }
     
-    func copy(newHeatTemperature: Int16? = nil, newCoolTemperature: Int16? = nil) -> SuplaWeeklyScheduleProgram {
+    func copy(mode: SuplaHvacMode? = nil, newHeatTemperature: Int16? = nil, newCoolTemperature: Int16? = nil) -> SuplaWeeklyScheduleProgram {
         return SuplaWeeklyScheduleProgram(
             program: program,
-            mode: mode,
-            setpointTemperatureHeat: newHeatTemperature == nil ? setpointTemperatureHeat : newHeatTemperature,
-            setpointTemperatureCool: newCoolTemperature == nil ? setpointTemperatureCool : newCoolTemperature
+            mode: mode ?? self.mode,
+            setpointTemperatureHeat: newHeatTemperature ?? setpointTemperatureHeat,
+            setpointTemperatureCool: newCoolTemperature ?? setpointTemperatureCool
         )
     }
     
