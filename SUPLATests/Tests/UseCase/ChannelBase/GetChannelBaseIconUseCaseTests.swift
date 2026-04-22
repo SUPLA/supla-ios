@@ -67,7 +67,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(icon, .suplaIcon(name: "uv-on"))
+        XCTAssertEqual(icon, .originalSuplaIcon(name: "uv-on"))
     }
     
     func test_userIcon_activeState() {
