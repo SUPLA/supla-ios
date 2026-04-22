@@ -41,6 +41,15 @@ enum ScheduleProgramButtonState {
             return label
         }
     }
+    
+    var icon: String? {
+        switch self {
+        case .active(_, _, let icon):
+            return icon
+        case .default(_, _, let icon):
+            return icon
+        }
+    }
 
     var isActive: Bool {
         switch self {
@@ -70,6 +79,13 @@ struct ScheduleProgramButton: View {
             action: action,
             label: {
                 HStack {
+                    if let icon = state.icon {
+                        Image(icon)
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: Dimens.iconSizeSmall, height: Dimens.iconSizeSmall)
+                            .foregroundColor(.black)
+                    }
                     Text(state.label)
                         .fontLabelMedium()
                         .textColor(.black)

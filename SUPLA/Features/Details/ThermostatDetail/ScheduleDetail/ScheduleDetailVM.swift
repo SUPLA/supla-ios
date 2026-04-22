@@ -84,7 +84,8 @@ extension ThermostatScheduleDetailFeature {
         
         func onShowProgramDialog(_ program: ScheduleDetailProgram) {
             guard let configMin = state.configMin,
-                  let configMax = state.configMax
+                  let configMax = state.configMax,
+                  program.scheduleProgram.mode != .off
             else { return }
             
             let heatTemperature = state.temperature(setpointType: .heat, program.scheduleProgram)
@@ -92,6 +93,7 @@ extension ThermostatScheduleDetailFeature {
             
             state.editProgramState = EditProgramState(
                 program: program.scheduleProgram.program,
+                modes: SelectableList(selected: program.scheduleProgram.mode, items: state.availableModes),
                 temperatureUnit: globalSettings.temperatureUnit,
                 heatSetpoint: heatTemperature?.let {
                     SetpointData(
@@ -146,6 +148,10 @@ extension ThermostatScheduleDetailFeature {
             }
         }
         
+        func onProgramDialogModeChange(_ mode: SuplaHvacMode) {
+            state.editProgramState = state.editProgramState?.copy(modes: state.editProgramState?.modes.changing(path: \.selected, to: mode))
+        }
+        
         func onProgramDialogPlus(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
                   let configMax = state.configMax
@@ -196,17 +202,20 @@ extension ThermostatScheduleDetailFeature {
             else { return }
             
             let updatedProgram: SuplaWeeklyScheduleProgram? =
-                switch (program.scheduleProgram.mode) {
+                switch (programState.modes.selected) {
                 case .heat:
                     program.scheduleProgram.copy(
+                        mode: .heat,
                         newHeatTemperature: heatValue.toFloat()?.toSuplaTemperature(),
                     )
                 case .cool:
                     program.scheduleProgram.copy(
+                        mode: .cool,
                         newCoolTemperature: coolValue.toFloat()?.toSuplaTemperature()
                     )
                 case .heatCool:
                     program.scheduleProgram.copy(
+                        mode: .heatCool,
                         newHeatTemperature: heatValue.toFloat()?.toSuplaTemperature(),
                         newCoolTemperature: coolValue.toFloat()?.toSuplaTemperature()
                     )

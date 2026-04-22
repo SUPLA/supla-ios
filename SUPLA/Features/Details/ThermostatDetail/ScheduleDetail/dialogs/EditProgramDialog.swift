@@ -62,6 +62,7 @@ extension ThermostatScheduleDetailFeature {
     
     struct EditProgramState: Equatable {
         let program: SuplaScheduleProgram
+        let modes: SelectableList<SuplaHvacMode>
         let temperatureUnit: TemperatureUnit
         let heatSetpoint: SetpointData?
         let coolSetpoint: SetpointData?
@@ -74,17 +75,19 @@ extension ThermostatScheduleDetailFeature {
             } else if let coolSetpoint {
                 !coolSetpoint.valueCorrect
             } else {
-                 true
+                true
             }
         }
         
         init(
             program: SuplaScheduleProgram,
+            modes: SelectableList<SuplaHvacMode>,
             temperatureUnit: TemperatureUnit,
             heatSetpoint: SetpointData?,
             coolSetpoint: SetpointData?
         ) {
             self.program = program
+            self.modes = modes
             self.temperatureUnit = temperatureUnit
             self.heatSetpoint = heatSetpoint
             self.coolSetpoint = coolSetpoint
@@ -92,12 +95,14 @@ extension ThermostatScheduleDetailFeature {
         
         func copy(
             program: SuplaScheduleProgram? = nil,
+            modes: SelectableList<SuplaHvacMode>? = nil,
             temperatureUnit: TemperatureUnit? = nil,
             heatSetpoint: SetpointData? = nil,
             coolSetpoint: SetpointData? = nil,
         ) -> Self {
             EditProgramState(
                 program: program ?? self.program,
+                modes: modes ?? self.modes,
                 temperatureUnit: temperatureUnit ?? self.temperatureUnit,
                 heatSetpoint: heatSetpoint ?? self.heatSetpoint,
                 coolSetpoint: coolSetpoint ?? self.coolSetpoint,
@@ -139,6 +144,7 @@ extension ThermostatScheduleDetailFeature {
         
         let onDismiss: () -> Void
         let onChange: (SetpointType, String) -> Void
+        let onModeChange: (SuplaHvacMode) -> Void
         let onPlus: (SetpointType, String) -> Void
         let onMinus: (SetpointType, String) -> Void
         let onSave: (String, String) -> Void
@@ -147,6 +153,7 @@ extension ThermostatScheduleDetailFeature {
             state: EditProgramState,
             onDismiss: @escaping () -> Void,
             onChange: @escaping (SetpointType, String) -> Void,
+            onModeChange: @escaping (SuplaHvacMode) -> Void,
             onPlus: @escaping (SetpointType, String) -> Void,
             onMinus: @escaping (SetpointType, String) -> Void,
             onSave: @escaping (String, String) -> Void
@@ -154,6 +161,7 @@ extension ThermostatScheduleDetailFeature {
             self.state = state
             self.onDismiss = onDismiss
             self.onChange = onChange
+            self.onModeChange = onModeChange
             self.onPlus = onPlus
             self.onMinus = onMinus
             self.onSave = onSave
@@ -168,13 +176,34 @@ extension ThermostatScheduleDetailFeature {
             SuplaCore.Dialog.Base(onDismiss: onDismiss, alignment: .leading, width: 300) {
                 Header()
                 
-                if let heatSetpoint = state.heatSetpoint {
+                if (state.modes.items.count > 1) {
+                    LabelText(text: Strings.ThermostatDetail.modeWeeklySchedule)
+                        .padding(.horizontal, Distance.default + Distance.small)
+                        .padding(.bottom, Distance.tiny)
+                    SuplaCore.Picker(
+                        state.modes,
+                        onChange: { mode in
+                            if let mode {
+                                onModeChange(mode)
+                            }
+                        }
+                    )
+                    .style(.dialog)
+                    .padding(.horizontal, Distance.default)
+                    .padding(.bottom, Distance.small)
+                }
+                
+                if let heatSetpoint = state.heatSetpoint,
+                   state.modes.selected == .heat || state.modes.selected == .heatCool
+                {
                     TemperatureEdit(type: .heat, heatSetpoint, $heatValue)
                         .padding(.horizontal, Distance.default)
                         .onChange(of: heatValue) { onChange(.heat, $0) }
                         .onChange(of: heatSetpoint.updateValue) { heatValue = $0 }
                 }
-                if let coolSetpoint = state.coolSetpoint {
+                if let coolSetpoint = state.coolSetpoint,
+                   state.modes.selected == .cool || state.modes.selected == .heatCool
+                {
                     TemperatureEdit(type: .cool, coolSetpoint, $coolValue)
                         .padding(.horizontal, Distance.default)
                         .onChange(of: coolValue) { onChange(.cool, $0) }
@@ -246,7 +275,7 @@ extension ThermostatScheduleDetailFeature {
     }
 }
 
-fileprivate extension SetpointType {
+private extension SetpointType {
     var label: String {
         switch (self) {
         case .heat: Strings.ThermostatDetail.heatingTemperature
@@ -260,6 +289,7 @@ fileprivate extension SetpointType {
         ThermostatScheduleDetailFeature.EditProgramDialog(
             state: ThermostatScheduleDetailFeature.EditProgramState(
                 program: .program1,
+                modes: SelectableList(selected: .heat, items: [.heat, .cool, .heatCool]),
                 temperatureUnit: .celsius,
                 heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(
                     plusDisabled: false,
@@ -276,6 +306,7 @@ fileprivate extension SetpointType {
             ),
             onDismiss: {},
             onChange: { _, _ in },
+            onModeChange: { _ in },
             onPlus: { _, _ in },
             onMinus: { _, _ in },
             onSave: { _, _ in }
