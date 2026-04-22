@@ -77,21 +77,30 @@ private struct LocationButton: SwiftUI.View {
                 Text(Strings.AddWizard.goToSettings)
                     .fontLabelLarge()
             }
+            .buttonPaddings(leading: Distance.small)
         }
-        .buttonStyle(
-            BorderedButtonStyle(
-                backgroundColor: .Supla.background,
-                padding: EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 24)
-            )
-        )
+        .borderedButtonStyle(fillColor: .Supla.background)
     }
 }
 
-#Preview {
+#Preview("Timeout") {
     BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
         AddWizardFeature.AddWizardMessageView(
             messages: [LocalizedStringId.addWizardConfigureTimeout.value],
             action: .repeatSuccess,
+            onCancel: {},
+            onBack: {},
+            onNext: {},
+            onAction: { _ in }
+        )
+    }
+}
+
+#Preview("Location") {
+    BackgroundStack(alignment: .top, color: .Supla.primaryContainer) {
+        AddWizardFeature.AddWizardMessageView(
+            messages: [LocalizedStringId.addWizardConfigureTimeout.value],
+            action: .location,
             onCancel: {},
             onBack: {},
             onNext: {},

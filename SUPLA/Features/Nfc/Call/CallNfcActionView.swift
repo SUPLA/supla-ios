@@ -116,7 +116,7 @@ extension CallNfcActionFeature {
         private func Buttons() -> some SwiftUI.View {
             if let failureType = viewState.step.failureType {
                 if let primaryActionText = failureType.primaryActionText {
-                    FilledButton(
+                    TitleButton(
                         title: primaryActionText,
                         fullWidth: true,
                         action: {
@@ -128,14 +128,16 @@ extension CallNfcActionFeature {
                             }
                         }
                     )
+                    .filledButtonStyle()
                     .padding(.bottom, Distance.default)
                 }
                 
-                BorderedButton(
+                TitleButton(
                     title: failureType.secondaryActionText,
                     fullWidth: true,
                     action: { delegate?.onClose() }
                 )
+                .borderedButtonStyle()
             }
         }
     }

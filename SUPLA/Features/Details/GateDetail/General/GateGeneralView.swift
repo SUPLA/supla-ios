@@ -40,7 +40,7 @@ extension GateGeneralFeature {
             BackgroundStack(alignment: .top) {
                 VStack {
                     if let stateData = viewState.deviceStateData {
-                        DeviceStateView(data: stateData)
+                        DeviceState.View(data: stateData)
                         ChannelIssuesView(issues: viewState.issues)
                         Spacer()
                     }
@@ -125,9 +125,9 @@ extension GateGeneralFeature {
                 if let closeButtonState = viewState.closeButtonState {
                     SwitchButton(
                         state: closeButtonState,
-                        enabled: !viewState.offline,
                         onClick: { delegate?.onClose() }
                     )
+                    .disabled(viewState.offline)
                 }
                 
                 RoundedControlButtonWrapperView(
@@ -141,9 +141,9 @@ extension GateGeneralFeature {
                 if let openButtonState = viewState.openButtonState {
                     SwitchButton(
                         state: openButtonState,
-                        enabled: !viewState.offline,
                         onClick: { delegate?.onOpen() }
                     )
+                    .disabled(viewState.offline)
                 }
             }
             .padding([.leading, .trailing, .bottom], Distance.default)
@@ -153,19 +153,19 @@ extension GateGeneralFeature {
 
 #Preview("Single gate") {
     let viewState = GateGeneralFeature.ViewState()
-    viewState.deviceStateData = DeviceStateData(
+    viewState.deviceStateData = DeviceState.Data(
         label: Strings.SwitchDetail.stateLabel,
-        icon: .suplaIcon(name: "gate-open"),
+        icon: .originalSuplaIcon(name: "gate-open"),
         value: Strings.General.open
     )
     viewState.openButtonState = .init(
-        icon: .suplaIcon(name: "gate-open"),
+        icon: .originalSuplaIcon(name: "gate-open"),
         label: Strings.General.open,
         active: true,
         type: .positive
     )
     viewState.closeButtonState = .init(
-        icon: .suplaIcon(name: "gate-closed"),
+        icon: .originalSuplaIcon(name: "gate-closed"),
         label: Strings.General.close,
         active: false,
         type: .positive
@@ -187,7 +187,7 @@ extension GateGeneralFeature {
         RelatedChannelData.visible(
             id: 1,
             onlineState: .online,
-            icon: .suplaIcon(name: "gate-open"),
+            icon: .originalSuplaIcon(name: "gate-open"),
             caption: "Gate",
             userCaption: "",
             batteryIcon: nil,
@@ -196,7 +196,7 @@ extension GateGeneralFeature {
         RelatedChannelData.visible(
             id: 2,
             onlineState: .offline,
-            icon: .suplaIcon(name: "gate-closed"),
+            icon: .originalSuplaIcon(name: "gate-closed"),
             caption: "Gate",
             userCaption: "",
             batteryIcon: nil,
@@ -206,13 +206,13 @@ extension GateGeneralFeature {
     ]
     viewState.showOpenAndCloseWarning = true
     viewState.openButtonState = .init(
-        icon: .suplaIcon(name: "gate-open"),
+        icon: .originalSuplaIcon(name: "gate-open"),
         label: Strings.General.open,
         active: true,
         type: .positive
     )
     viewState.closeButtonState = .init(
-        icon: .suplaIcon(name: "gate-closed"),
+        icon: .originalSuplaIcon(name: "gate-closed"),
         label: Strings.General.close,
         active: false,
         type: .positive

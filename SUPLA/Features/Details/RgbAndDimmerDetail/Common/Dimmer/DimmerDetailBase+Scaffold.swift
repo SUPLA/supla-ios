@@ -65,7 +65,7 @@ extension DimmerDetailBase {
         private func portrait() -> some SwiftUI.View {
             VStack(spacing: 0) {
                 if let stateData = viewState.deviceStateData {
-                    DeviceStateView(data: stateData)
+                    DeviceState.View(data: stateData)
                 }
                 ChannelIssuesView(issues: viewState.issues)
 
@@ -84,7 +84,7 @@ extension DimmerDetailBase {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
                     if let stateData = viewState.deviceStateData {
-                        DeviceStateView(data: stateData)
+                        DeviceState.View(data: stateData)
                     }
                     ChannelIssuesView(issues: viewState.issues)
                     

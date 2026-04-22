@@ -17,8 +17,9 @@
  */
     
 import SwiftUI
+
 extension SuplaCore {
-    struct SegmentedPicker<T: Hashable>: View {
+    struct SegmentedPicker<T: PickerItem>: View {
         var selected: Binding<T>
         let items: [T]
         
@@ -37,8 +38,8 @@ extension SuplaCore {
         
         var body: some View {
             SwiftUI.Picker(selection: selected) {
-                ForEach(SubjectType.allCases) { item in
-                    Text(item.name).fontBodyMedium().tag(item)
+                ForEach(self.items, id: \.self) { item in
+                    Text(item.label).fontBodyMedium().tag(item)
                 }
             } label: {}
                 .pickerStyle(.segmented)

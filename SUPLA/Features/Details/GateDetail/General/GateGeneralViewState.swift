@@ -21,7 +21,7 @@ import SharedCore
 
 extension GateGeneralFeature {
     class ViewState: ObservableObject {
-        @Published var deviceStateData: DeviceStateData? = nil
+        @Published var deviceStateData: DeviceState.Data? = nil
         @Published var relatedChannelsData: [RelatedChannelData]? = nil
         @Published var issues: [ChannelIssueItem] = []
         @Published var mainButtonLabel: String = Strings.General.stepByStep

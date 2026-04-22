@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -19,38 +18,26 @@
 
 import SwiftUI
 
-struct TextButton: View {
-    var title: String
-    
-    var normalColor: Color = .Supla.primary
-    var pressedColor: Color = .Supla.buttonPressed
-    
-    var action: () -> Void
-
-    var body: some View {
-        Button(title, action: action)
-            .buttonStyle(TextButtonStyle(normalColor: normalColor, pressedColor: pressedColor))
+extension View {
+    func filledButtonStyle(colors: ButtonColors = .primary) -> some View {
+        self.buttonStyle(FilledButtonStyle(colors: colors))
     }
 }
 
-#Preview {
-    TextButton(title: "Title") {}
-}
 
-#Preview("Blue") {
-    TextButton(title: "Title", normalColor: .blue) {}
-}
+private struct FilledButtonStyle: ButtonStyle {
+    let colors: ButtonColors
 
-struct TextButtonStyle: ButtonStyle {
-    var normalColor: Color
-    var pressedColor: Color
+    @Environment(\.isEnabled) private var isEnabled
+
+    init(colors: ButtonColors = .primary) {
+        self.colors = colors
+    }
 
     func makeBody(configuration: Configuration) -> some View {
-        let color = configuration.isPressed ? pressedColor : normalColor
         configuration.label
-            .foregroundColor(color)
-            .font(.Supla.labelLarge)
+            .foregroundColor(colors.foreground.value(disabled: !isEnabled, pressed: configuration.isPressed))
+            .background(colors.background.value(disabled: !isEnabled, pressed: configuration.isPressed))
             .cornerRadius(Dimens.buttonRadius)
-            .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
     }
 }

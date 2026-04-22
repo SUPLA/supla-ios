@@ -402,6 +402,7 @@
 "timer_detail_info_thermostat_off" = "Il termostato sarà spento per\n%@";
 "timer_detail_info_thermostat_heating" = "Il termostato sarà in modalità di riscaldamento per\n%@";
 "timer_detail_info_thermostat_cooling" = "Il termostato sarà in modalità di raffreddamento per\n%@";
+"details_timer_info_thermostat_auto" = "Il termostato sarà in modalità automatica per\n%@";
 "timer_detail_state_label_for_timer_days" = "Stato al %@:";
 
 /* Thermostat Detail */
@@ -414,6 +415,9 @@
 "schedule_detail_program_dialog_header" = "Impostazioni del programma %d";
 "hvac_mode_temperature_heating" = "Temperatura di riscaldamento";
 "hvac_mode_temperature_cooling" = "Temperatura di raffreddamento";
+"hvac_mode_heating" = "Riscaldamento";
+"hvac_mode_cooling" = "Raffreddamento";
+"hvac_mode_auto" = "Riscaldamento e raffreddamento";
 "schedule_detail_quarters_dialog_header" = "Ore %02d:00";
 "schedule_detail_configuration_failure" = "Errore - configurazione canale non valida";
 "thermostat_detail_program_time" = "per %@";

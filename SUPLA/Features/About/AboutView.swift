@@ -45,11 +45,11 @@ extension AboutFeature {
                             .multilineTextAlignment(.center)
                     }
                     Spacer()
-                    TextButton(
+                    TitleButton(
                         title: Strings.About.address,
-                        normalColor: Color.Supla.onBackground,
                         action: { delegate?.onHomePageClicked() }
                     )
+                    .textButtonStyle()
                     if let buildTime = viewState.buildTime {
                         Text(Strings.About.buildTime.arguments(buildTime))
                             .fontBodySmall()

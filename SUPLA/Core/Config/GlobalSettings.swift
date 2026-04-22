@@ -19,7 +19,6 @@
 import SharedCore
 
 protocol GlobalSettings: SharedCore.ApplicationPreferences {
-    
     var anyAccountRegistered: Bool { get set }
     var newGestureInfoShown: Bool { get set }
     var shouldShowNewGestureInfo: Bool { get set }
@@ -47,7 +46,6 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
 }
 
 class GlobalSettingsImpl: GlobalSettings {
-    
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GroupShared.Settings> private var groupSharedSettings
     
@@ -210,23 +208,19 @@ class GlobalSettingsImpl: GlobalSettings {
     
     private let nextProfileIdKey = "next_profile_id_key"
     var nextProfileId: Int32 {
-        get {
-            synced(self) {
-                let profileId = exists(nextProfileIdKey) ? Int32(defaults.integer(forKey: nextProfileIdKey)) : 1
-                defaults.set(profileId + 1, forKey: nextProfileIdKey)
-                return profileId
-            }
+        synced(self) {
+            let profileId = exists(nextProfileIdKey) ? Int32(defaults.integer(forKey: nextProfileIdKey)) : 1
+            defaults.set(profileId + 1, forKey: nextProfileIdKey)
+            return profileId
         }
     }
     
     private let nextServerIdKey = "next_server_id_key"
     var nextServerId: Int32 {
-        get {
-            synced(self) {
-                let profileId = exists(nextServerIdKey) ? Int32(defaults.integer(forKey: nextServerIdKey)) : 1
-                defaults.set(profileId + 1, forKey: nextServerIdKey)
-                return profileId
-            }
+        synced(self) {
+            let profileId = exists(nextServerIdKey) ? Int32(defaults.integer(forKey: nextServerIdKey)) : 1
+            defaults.set(profileId + 1, forKey: nextServerIdKey)
+            return profileId
         }
     }
     
@@ -283,7 +277,12 @@ class GlobalSettingsImpl: GlobalSettings {
     private let screenRotationKey = "GlobalSettings.screen_rotation_enabled"
     var screenRotationEnabled: Bool {
         get {
-            exists(screenRotationKey).ifTrue { defaults.bool(forKey: screenRotationKey) } ?? false
+            let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+            if (isPreview) {
+                return true
+            } else {
+                return exists(screenRotationKey).ifTrue { defaults.bool(forKey: screenRotationKey) } ?? false
+            }
         }
         set {
             defaults.set(newValue, forKey: screenRotationKey)
@@ -296,23 +295,16 @@ class GlobalSettingsImpl: GlobalSettings {
 }
 
 @objc class GlobalSettingsLegacy: NSObject {
-    
     @Singleton<GlobalSettings> private var settings
     
     @objc
-    var autohideButtons: Bool {
-        get { settings.autohideButtons }
-    }
+    var autohideButtons: Bool { settings.autohideButtons }
     
     @objc
-    var showOpeningPercent: Bool {
-        get { settings.showOpeningPercent }
-    }
+    var showOpeningPercent: Bool { settings.showOpeningPercent }
     
     @objc
-    var channelHeightFactor: Float {
-        get { settings.channelHeight.factor() }
-    }
+    var channelHeightFactor: Float { settings.channelHeight.factor() }
     
     @objc
     var currentTemperaturePresenter: TemperaturePresenter {

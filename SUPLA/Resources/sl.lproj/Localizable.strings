@@ -371,6 +371,7 @@
 "timer_detail_info_thermostat_off" = "Termostat se izklopi z\n%@";
 "timer_detail_info_thermostat_heating" = "Termostat bo v načinu ogrevanja\n%@";
 "timer_detail_info_thermostat_cooling" = "Termostat bo v načinu hlajenja\n%@";
+"details_timer_info_thermostat_auto" = "Termostat bo v samodejnem načinu\n%@";
 "timer_detail_select_time" = "Določite čas";
 "timer_detail_counter" = "Števec";
 "timer_detail_calendar" = "Koledar";
@@ -387,6 +388,9 @@
 "schedule_detail_program_dialog_header" = "Nastavitve programa %d";
 "hvac_mode_temperature_heating" = "Temperatura ogrevanja";
 "hvac_mode_temperature_cooling" = "Temperatura hlajenja";
+"hvac_mode_heating" = "Ogrevanje";
+"hvac_mode_cooling" = "Hlajenje";
+"hvac_mode_auto" = "Ogrevanje in hlajenje";
 "thermostat_thermometer_error" = "Napaka pri odčitavanju temperature";
 "thermostat_clock_error" = "Napaka ure";
 "thermostat_calibration_error" = "Napaka kalibracije";

@@ -108,24 +108,29 @@ extension NotificationsLogFeature {
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], Distance.default)
                 
-                FilledButton(
-                    buttonSpec: .critical(Strings.Notifications.buttonDeleteAll),
+                TitleButton(
+                    title: Strings.Notifications.buttonDeleteAll,
+                    fullWidth: true,
                     action: { delegate?.deleteAll() }
                 )
+                .filledButtonStyle(colors: .criticalFilled)
                 .padding([.leading, .top, .trailing], Distance.default)
                 
-                FilledButton(
-                    buttonSpec: .critical(Strings.Notifications.buttonDeleteOlderThanMonth),
+                TitleButton(
+                    title: Strings.Notifications.buttonDeleteOlderThanMonth,
+                    fullWidth: true,
                     action: { delegate?.deleteOlderThanMonth() }
                 )
+                .filledButtonStyle(colors: .criticalFilled)
                 .padding([.leading, .trailing], Distance.default)
                 .padding(.top, Distance.small)
                 
-                BorderedButton(
+                TitleButton(
                     title: Strings.General.cancel,
                     fullWidth: true,
                     action: { delegate?.hideDeleteDialog() }
                 )
+                .textButtonStyle()
                 .padding([.leading, .trailing, .bottom], Distance.default)
                 .padding(.top, Distance.small)
             }

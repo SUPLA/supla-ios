@@ -222,6 +222,7 @@
 "timer_detail_info_thermostat_off" = "Thermostat will stay turned off for\n%@";
 "timer_detail_info_thermostat_heating" = "Thermostat will stay in heating mode for\n%@";
 "timer_detail_info_thermostat_cooling" = "Thermostat will stay in cooling mode for\n%@";
+"details_timer_info_thermostat_auto" = "Thermostat will stay in auto mode for\n%@";
 "timer_detail_state_label_for_timer_days" = "State until %@:";
 
 /* Thermostat Detail */
@@ -234,6 +235,9 @@
 "schedule_detail_program_dialog_header" = "Program %d Settings";
 "hvac_mode_temperature_heating" = "Heating temperature";
 "hvac_mode_temperature_cooling" = "Cooling temperature";
+"hvac_mode_heating" = "Heating";
+"hvac_mode_cooling" = "Cooling";
+"hvac_mode_auto" = "Heating and cooling";
 "schedule_detail_quarters_dialog_header" = "Time %02d:00";
 "schedule_detail_configuration_failure" = "Error - invalid channel configuration";
 "thermostat_detail_program_time" = "for %@";

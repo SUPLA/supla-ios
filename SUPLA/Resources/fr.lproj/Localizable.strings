@@ -372,6 +372,7 @@
 "timer_detail_info_thermostat_off" = "Le thermostat sera éteint par\n%@";
 "timer_detail_info_thermostat_heating" = "Le thermostat sera en mode chauffage pendant\n%@";
 "timer_detail_info_thermostat_cooling" = "Le thermostat sera en mode refroidissement pendant\n%@";
+"details_timer_info_thermostat_auto" = "Le thermostat sera en mode automatique pendant\n%@";
 "timer_detail_select_time" = "Spécifier le temps";
 "timer_detail_counter" = "Compteur";
 "timer_detail_calendar" = "Calendrier";
@@ -403,6 +404,9 @@
 "schedule_detail_program_dialog_header" = "Paramètres du programme %d";
 "hvac_mode_temperature_heating" = "Température de chauffage";
 "hvac_mode_temperature_cooling" = "Température de refroidissement";
+"hvac_mode_heating" = "Chauffage";
+"hvac_mode_cooling" = "Refroidissement";
+"hvac_mode_auto" = "Chauffage et refroidissement";
 "thermostat_detail_antifreeze_active" = "Protection antigel active";
 "thermostat_detail_overheat_active" = "Protection contre la surchauffe active";
 

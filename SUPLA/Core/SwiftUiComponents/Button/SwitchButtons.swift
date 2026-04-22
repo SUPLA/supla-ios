@@ -22,7 +22,7 @@ struct SwitchButtonState {
     let icon: IconResult?
     let label: String
     let active: Bool
-    let type: UIBaseControlButtonView.ButtonType
+    let type: RoundedControlButtonType
 }
 
 struct SwitchButtons: View {
@@ -53,16 +53,16 @@ struct SwitchButtons: View {
             if let leftButton {
                 SwitchButton(
                     state: leftButton,
-                    enabled: enabled,
                     onClick: onLeftButtonClick
                 )
+                .disabled(!enabled)
             }
             if let rightButton {
                 SwitchButton(
                     state: rightButton,
-                    enabled: enabled,
                     onClick: onRightButtonClick
                 )
+                .disabled(!enabled)
             }
         }
         .padding(Distance.default)
@@ -70,19 +70,82 @@ struct SwitchButtons: View {
 }
 
 struct SwitchButton: View {
-    let state: SwitchButtonState
-    let enabled: Bool
+    let label: String
+    let icon: IconResult?
+    let type: RoundedControlButtonType
+    let active: Bool
+    let fullWidth: Bool
     let onClick: () -> Void
     
-    var body: some View {
-        RoundedControlButtonWrapperView(
-            type: state.type,
-            text: state.label,
-            icon: state.icon,
-            active: enabled && state.active,
-            isEnabled: enabled,
-            onTap: onClick
-        )
-        .frame(height: Dimens.buttonHeight)
+    init(
+        state: SwitchButtonState,
+        fullWidth: Bool = true,
+        onClick: @escaping () -> Void
+    ) {
+        self.type = state.type
+        self.label = state.label
+        self.icon = state.icon
+        self.active = state.active
+        self.fullWidth = fullWidth
+        self.onClick = onClick
     }
+    
+    init(
+        _ label: String,
+        type: RoundedControlButtonType = .neutral,
+        active: Bool = false,
+        fullWidth: Bool = true,
+        onClick: @escaping () -> Void
+    ) {
+        self.label = label
+        self.icon = nil
+        self.active = active
+        self.type = type
+        self.fullWidth = fullWidth
+        self.onClick = onClick
+    }
+
+    var body: some View {
+        RoundedControlButton(
+            type: type,
+            active: active,
+            fullWidth: fullWidth,
+            action: onClick
+        ) {
+            HStack(spacing: Distance.tiny) {
+                if let icon {
+                    icon.image
+                        .resizable()
+                        .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+                }
+                Text(label)
+                    .fontLabelLarge()
+            }
+        }
+    }
+}
+
+#Preview {
+    VStack(spacing: Distance.small) {
+        SwitchButton("Title only", onClick: {})
+        SwitchButton(
+            state: SwitchButtonState(
+                icon: .originalSuplaIcon(name: .Icons.fncDimmerOff),
+                label: "Title icon",
+                active: false,
+                type: .positive
+            ),
+            onClick: {}
+        )
+        SwitchButton(
+            state: SwitchButtonState(
+                icon: .originalSuplaIcon(name: .Icons.fncDimmerOff),
+                label: "Title icon",
+                active: true,
+                type: .positive
+            ),
+            onClick: {}
+        )
+    }
+    .padding(Distance.default)
 }

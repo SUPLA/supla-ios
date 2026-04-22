@@ -404,6 +404,7 @@
 "timer_detail_info_thermostat_off" = "Termostat będzie wyłączony przez\n%@";
 "timer_detail_info_thermostat_heating" = "Termostat będzie w trybie grzania przez\n%@";
 "timer_detail_info_thermostat_cooling" = "Termostat będzie w trybie chłodzenia przez\n%@";
+"details_timer_info_thermostat_auto" = "Termostat będzie w trybie automatycznym przez\n%@";
 "timer_detail_state_label_for_timer_days" = "Stan do %@:";
 
 /* Thermostat Detail */
@@ -416,6 +417,9 @@
 "schedule_detail_program_dialog_header" = "Ustawienia program %d";
 "hvac_mode_temperature_heating" = "Temperatura grzania";
 "hvac_mode_temperature_cooling" = "Temperatura chłodzenia";
+"hvac_mode_heating" = "Grzanie";
+"hvac_mode_cooling" = "Chłodzenie";
+"hvac_mode_auto" = "Grzanie i chłodzenie";
 "schedule_detail_quarters_dialog_header" = "Godzina %02d:00";
 "schedule_detail_configuration_failure" = "Błąd - nieprawidłowa konfiguracja kanału";
 "thermostat_detail_program_time" = "przez %@";

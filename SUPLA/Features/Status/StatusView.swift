@@ -64,7 +64,8 @@ private struct ConnectionStatusView: View {
         if (showAccountButton) {
             VStack {
                 Spacer()
-                BorderedButton(title: Strings.Profiles.Title.plural, action: onProfilesClick)
+                TitleButton(title: Strings.Profiles.Title.plural, action: onProfilesClick)
+                    .borderedButtonStyle()
             }
             .padding(Dimens.distanceDefault)
         }
@@ -87,19 +88,19 @@ private struct ErrorStatusView: View {
             if let text = errorDescription {
                 Text(text).fontBodyMedium()
             }
-            TextButton(
+            TitleButton(
                 title: Strings.Status.tryAgain,
-                normalColor: .Supla.blue,
-                pressedColor: .Supla.blue,
                 action: onTryAgainClick
             )
+            .textButtonStyle(colors: .link)
             Spacer()
         }
         .padding(Dimens.distanceDefault)
         
         VStack {
             Spacer()
-            FilledButton(title: Strings.Profiles.Title.plural, action: onProfilesClick)
+            TitleButton(title: Strings.Profiles.Title.plural, action: onProfilesClick)
+                .filledButtonStyle()
         }
         .padding(Dimens.distanceDefault)
     }

@@ -70,11 +70,12 @@ extension PinSetupFeature {
                             .textColor(.Supla.error)
                     }
                     Spacer()
-                    FilledButton(
+                    TitleButton(
                         title: Strings.General.save,
                         fullWidth: true,
                         action: onSave
                     )
+                    .filledButtonStyle()
                     .disabled(viewState.saveDisabled)
                 }
                 .padding(.all, Dimens.distanceDefault)

@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class TimerProgressView: UIView {
+class UITimerProgressView: UIView {
     
     private var progress: CGFloat = 0
     var progressPercentage: CGFloat {

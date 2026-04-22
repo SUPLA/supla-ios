@@ -18,10 +18,6 @@
 
 import SwiftUI
 
-protocol PickerItem: Hashable, Identifiable {
-    var label: String { get }
-}
-
 extension SuplaCore {
     enum PickerStyle {
         case text

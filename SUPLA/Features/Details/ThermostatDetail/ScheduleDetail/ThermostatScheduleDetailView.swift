@@ -62,7 +62,7 @@ extension ThermostatScheduleDetailFeature {
                 }
                 
                 if let state = state.editProgramState {
-                    EditProgramDialog(
+                    ThermostatScheduleDetailFeature.EditProgramDialog(
                         state: state,
                         onDismiss: { delegate?.onProgramDialogDismiss() },
                         onChange: { delegate?.onProgramDialogChange($0, $1) },
@@ -73,7 +73,7 @@ extension ThermostatScheduleDetailFeature {
                 }
                 
                 if let state = state.editQuartersState {
-                    EditQuartersDialog(
+                    ThermostatScheduleDetailFeature.EditQuartersDialog(
                         state: state,
                         onDismiss: { delegate?.onQuartersDialogDismiss() },
                         onProgramChange: { delegate?.onQuartersDialogProgramChange($0) },

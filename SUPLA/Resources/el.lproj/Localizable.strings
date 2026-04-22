@@ -372,6 +372,7 @@
 "timer_detail_info_thermostat_off" = "Ο θερμοστάτης θα είναι απενεργοποιημένος για\n%@";
 "timer_detail_info_thermostat_heating" = "Ο θερμοστάτης θα βρίσκεται σε λειτουργία θέρμανσης για\n%@";
 "timer_detail_info_thermostat_cooling" = "Ο θερμοστάτης θα βρίσκεται σε λειτουργία ψύξης για\n%@";
+"details_timer_info_thermostat_auto" = "Ο θερμοστάτης θα είναι σε αυτόματη λειτουργία για\n%@";
 "timer_detail_select_time" = "Καθορίστε την ώρα";
 "timer_detail_counter" = "Μετρητής";
 "timer_detail_calendar" = "Ημερολόγιο";
@@ -387,6 +388,9 @@
 "schedule_detail_program_dialog_header" = "Ρυθμίσεις προγράμματος %d";
 "hvac_mode_temperature_heating" = "Θερμοκρασία θέρμανσης";
 "hvac_mode_temperature_cooling" = "Θερμοκρασία ψύξης";
+"hvac_mode_heating" = "Θέρμανση";
+"hvac_mode_cooling" = "Ψύξη";
+"hvac_mode_auto" = "Θέρμανση και ψύξη";
 "thermostat_thermometer_error" = "Σφάλμα ανάγνωσης θερμοκρασίας";
 "thermostat_clock_error" = "Σφάλμα ρολογιού";
 "thermostat_calibration_error" = "Σφάλμα βαθμονόμησης";

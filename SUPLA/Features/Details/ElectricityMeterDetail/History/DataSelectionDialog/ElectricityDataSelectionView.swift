@@ -61,8 +61,10 @@ extension ElectricityDataSelectionFeature {
                         .padding(.top, Distance.default)
 
                     HStack(spacing: Distance.default) {
-                        BorderedButton(title: Strings.General.cancel, fullWidth: true, action: onCancel)
-                        FilledButton(title: Strings.General.ok, fullWidth: true, action: onOk)
+                        TitleButton(title: Strings.General.cancel, fullWidth: true, action: onCancel)
+                            .borderedButtonStyle()
+                        TitleButton(title: Strings.General.ok, fullWidth: true, action: onOk)
+                            .filledButtonStyle()
                     }
                     .padding(Distance.default)
                 }

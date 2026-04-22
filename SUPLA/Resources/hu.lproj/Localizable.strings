@@ -217,9 +217,10 @@
 "timer_detail_select_time" = "Adja meg az időtartamot";
 "timer_detail_counter" = "Mérőóra";
 "timer_detail_calendar" = "Naptár";
-"timer_detail_info_thermostat_off" = "A termosztátot kikapcsol a\n%1$@ időpontok között";
-"timer_detail_info_thermostat_heating" = "A termosztát fűtési üzemmódban lesz\n%1$@ időpontok között";
-"timer_detail_info_thermostat_cooling" = "A termosztát hűtési üzemmódban lesz\n%1$@ időpontok között";
+"timer_detail_info_thermostat_off" = "A termosztátot kikapcsol a %@ időpontok között";
+"timer_detail_info_thermostat_heating" = "A termosztát fűtési üzemmódban lesz %@ időpontok között";
+"timer_detail_info_thermostat_cooling" = "A termosztát hűtési üzemmódban lesz %@ időpontok között";
+"details_timer_info_thermostat_auto" = "A termosztát %@ ideig automatikus módban lesz";
 "timer_detail_state_label_for_timer_days" = "%@ óráig vizsgált állapot:";
 
 /* Thermostat Detail */
@@ -232,6 +233,9 @@
 "schedule_detail_program_dialog_header" = "Programbeállítások %1$d";
 "hvac_mode_temperature_heating" = "Fűtési hőmérséklet";
 "hvac_mode_temperature_cooling" = "Hűtési hőmérséklet";
+"hvac_mode_heating" = "Fűtés";
+"hvac_mode_cooling" = "Hűtés";
+"hvac_mode_auto" = "Fűtés és hűtés";
 "schedule_detail_quarters_dialog_header" = "Idő  %1$02d:00";
 "schedule_detail_configuration_failure" = "Hiba – érvénytelen csatornakonfiguráció";
 "thermostat_detail_program_time" = "%1$@ keresztül";

@@ -236,6 +236,7 @@ struct Strings {
         static let infoThermostatOff = "timer_detail_info_thermostat_off".toLocalized()
         static let infoThermostatHeating = "timer_detail_info_thermostat_heating".toLocalized()
         static let infoThermostatCooling = "timer_detail_info_thermostat_cooling".toLocalized()
+        static let infoThermostatAuto = "details_timer_info_thermostat_auto".toLocalized()
         static let stateLabelForTimerDays = "timer_detail_state_label_for_timer_days".toLocalized()
     }
     
@@ -251,6 +252,9 @@ struct Strings {
         static let editProgramDialogHeader = "schedule_detail_program_dialog_header".toLocalized()
         static let heatingTemperature = "hvac_mode_temperature_heating".toLocalized()
         static let coolingTemperature = "hvac_mode_temperature_cooling".toLocalized()
+        static let modeHeatingLabel = "hvac_mode_heating".toLocalized()
+        static let modeCoolingLabel = "hvac_mode_cooling".toLocalized()
+        static let modeAutoLabel = "hvac_mode_auto".toLocalized()
         
         static let editQuartersDialogHeader = "schedule_detail_quarters_dialog_header".toLocalized()
         static let configurationFailure = "schedule_detail_configuration_failure".toLocalized()

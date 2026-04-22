@@ -403,6 +403,7 @@
 "timer_detail_info_thermostat_off" = "Termostat %@ müddətində söndürülmüş qalacaq";
 "timer_detail_info_thermostat_heating" = "Termostat %@ müddətində isitmə rejimində qalacaq";
 "timer_detail_info_thermostat_cooling" = "Termostat %@ müddətində soyutma rejimində qalacaq";
+"details_timer_info_thermostat_auto" = "Termostat %@ müddətində avtomatik rejimdə olacaq";
 "timer_detail_state_label_for_timer_days" = "%@ tarixinə qədər vəziyyət:";
 
 /* Thermostat Detail */
@@ -415,6 +416,9 @@
 "schedule_detail_program_dialog_header" = "Proqram %d parametrləri";
 "hvac_mode_temperature_heating" = "İstilik temperaturu";
 "hvac_mode_temperature_cooling" = "Soyutma temperaturu";
+"hvac_mode_heating" = "İstilik";
+"hvac_mode_cooling" = "Soyutma";
+"hvac_mode_auto" = "İstilik və soyutma";
 "schedule_detail_quarters_dialog_header" = "Vaxt %02d:00";
 "schedule_detail_configuration_failure" = "Səhv - etibarsız kanal konfiqurasiyası";
 "thermostat_detail_program_time" = "%@ üçün";
