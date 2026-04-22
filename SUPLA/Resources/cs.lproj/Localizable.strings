@@ -369,6 +369,7 @@
 "timer_detail_info_thermostat_off" = "Termostat se vypne pomocí\n%@";
 "timer_detail_info_thermostat_heating" = "Termostat bude v režimu vytápění po dobu\n%@";
 "timer_detail_info_thermostat_cooling" = "Termostat bude v režimu chlazení po dobu\n%@";
+"details_timer_info_thermostat_auto" = "Termostat bude v automatickém režimu po dobu\n%@";
 "timer_detail_select_time" = "Zadejte čas";
 "timer_detail_counter" = "Počítadlo";
 "timer_detail_calendar" = "Kalendář";
@@ -384,6 +385,9 @@
 "schedule_detail_program_dialog_header" = "Nastavení programu %d";
 "hvac_mode_temperature_heating" = "Teplota ohřevu";
 "hvac_mode_temperature_cooling" = "Teplota chlazení";
+"hvac_mode_heating" = "Vytápění";
+"hvac_mode_cooling" = "Chlazení";
+"hvac_mode_auto" = "Vytápění a chlazení";
 "thermostat_thermometer_error" = "Chyba odečtu teploty";
 "thermostat_clock_error" = "Chyba hodin";
 "thermostat_calibration_error" = "Chyba kalibrace";

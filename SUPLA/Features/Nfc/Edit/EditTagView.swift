@@ -102,11 +102,12 @@ extension EditTagFeature {
         }
 
         private func SaveButton() -> some SwiftUI.View {
-            FilledButton(
+            TitleButton(
                 title: Strings.General.save,
                 fullWidth: true,
                 action: { delegate?.onSave() },
             )
+            .filledButtonStyle()
             .disabled(viewState.saveDisabled)
         }
     }

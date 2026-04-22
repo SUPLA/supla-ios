@@ -54,7 +54,7 @@ class UIIconButton: UIButton {
     }
     
     func setColor(activeSetpointType: SetpointType?) {
-        let color = activeSetpointType?.color ?? .disabled
+        let color = activeSetpointType?.uiColor ?? .disabled
         
         var configuration = config
         configuration.contentColor = color

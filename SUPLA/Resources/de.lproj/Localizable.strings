@@ -373,6 +373,7 @@
 "timer_detail_info_thermostat_off" = "Thermostat bleibt %@ ausgeschaltet";
 "timer_detail_info_thermostat_heating" = "Thermostat bleibt %@ im Heizmodus";
 "timer_detail_info_thermostat_cooling" = "Thermostat bleibt %@ im Kühlmodus";
+"details_timer_info_thermostat_auto" = "Thermostat bleibt %@ im Automatikmodus";
 "timer_detail_state_label_for_timer_days" = "Zustand bis %@:";
 
 /* Thermostat Detail */
@@ -385,6 +386,9 @@
 "schedule_detail_program_dialog_header" = "Program %d Einstellungen";
 "hvac_mode_temperature_heating" = "Heiztemperature";
 "hvac_mode_temperature_cooling" = "Kühltemperature";
+"hvac_mode_heating" = "Heizung";
+"hvac_mode_cooling" = "Kühlung";
+"hvac_mode_auto" = "Heizung und Kühlung";
 "schedule_detail_quarters_dialog_header" = "Zeit %02d:00";
 "schedule_detail_configuration_failure" = "Fehler - ungültige Kanalkonfiguration";
 "thermostat_detail_program_time" = "für %@";

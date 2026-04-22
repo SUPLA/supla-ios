@@ -19,12 +19,13 @@
 import SwiftUI
 
 extension SuplaCore {
+    
     struct DialogWithIcon: View {
         let header: String
         let message: String
         let iconType: Icon.OnCircle.IconType
         let onDismiss: () -> Void
-        let primaryButtonSpec: FilledButton.ButtonSpec?
+        let primaryButtonData: SuplaCore.Dialog.ButtonData?
         let secondaryButtonText: String?
         let onPrimaryButtonClick: (() -> Void)?
         let onSecondaryButtonClick: (() -> Void)?
@@ -34,7 +35,7 @@ extension SuplaCore {
             message: String,
             iconType: Icon.OnCircle.IconType,
             onDismiss: @escaping () -> Void,
-            primaryButtonSpec: FilledButton.ButtonSpec? = nil,
+            primaryButtonData: SuplaCore.Dialog.ButtonData? = nil,
             secondaryButtonText: String? = nil,
             onPrimaryButtonClick: (() -> Void)? = nil,
             onSecondaryButtonClick: (() -> Void)? = nil
@@ -43,7 +44,7 @@ extension SuplaCore {
             self.message = message
             self.iconType = iconType
             self.onDismiss = onDismiss
-            self.primaryButtonSpec = primaryButtonSpec
+            self.primaryButtonData = primaryButtonData
             self.secondaryButtonText = secondaryButtonText
             self.onPrimaryButtonClick = onPrimaryButtonClick
             self.onSecondaryButtonClick = onSecondaryButtonClick
@@ -63,26 +64,28 @@ extension SuplaCore {
                     .multilineTextAlignment(.center)
                     .padding([.leading, .trailing], Distance.default)
                     
-                if let primaryButtonSpec, let secondaryButtonText {
+                if let primaryButtonData, let secondaryButtonText {
                     SuplaCore.Dialog.DoubleButtons(
                         onSecondaryClick: onSecondaryButtonClick ?? {},
                         onPrimaryClick: onPrimaryButtonClick ?? {},
                         secondaryText: secondaryButtonText,
-                        primaryButtonSpec: primaryButtonSpec
+                        primaryButtonData: primaryButtonData
                     )
-                } else if let primaryButtonSpec {
-                    FilledButton(title: primaryButtonSpec.text, fullWidth: true) {
+                } else if let primaryButtonData {
+                    TitleButton(title: primaryButtonData.title, fullWidth: primaryButtonData.fullWidth) {
                         if let onPrimaryButtonClick {
                             onPrimaryButtonClick()
                         }
                     }
+                    .filledButtonStyle(colors: primaryButtonData.colors)
                     .padding(Distance.default)
                 } else if let secondaryButtonText {
-                    BorderedButton(title: secondaryButtonText, fullWidth: true) {
+                    TitleButton(title: secondaryButtonText, fullWidth: true) {
                         if let onSecondaryButtonClick {
                             onSecondaryButtonClick()
                         }
                     }
+                    .borderedButtonStyle()
                     .padding(Distance.default)
                 }
             }
@@ -96,7 +99,7 @@ extension SuplaCore {
         message: Strings.CarPlay.deleteMessage,
         iconType: .info,
         onDismiss: {},
-        primaryButtonSpec: .default(Strings.CarPlay.confirmDelete),
+        primaryButtonData: .default(Strings.CarPlay.confirmDelete),
         secondaryButtonText: Strings.General.cancel
     )
 }
@@ -107,7 +110,7 @@ extension SuplaCore {
         message: Strings.CarPlay.deleteMessage,
         iconType: .warning,
         onDismiss: {},
-        primaryButtonSpec: .default(Strings.CarPlay.confirmDelete),
+        primaryButtonData: .default(Strings.CarPlay.confirmDelete),
         secondaryButtonText: Strings.General.cancel
     )
 }
@@ -119,7 +122,7 @@ extension SuplaCore {
         message: Strings.CarPlay.deleteMessage,
         iconType: .error,
         onDismiss: {},
-        primaryButtonSpec: .default(Strings.CarPlay.confirmDelete),
+        primaryButtonData: .default(Strings.CarPlay.confirmDelete),
         secondaryButtonText: Strings.General.cancel
     )
 }

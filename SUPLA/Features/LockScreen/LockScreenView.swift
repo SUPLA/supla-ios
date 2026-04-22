@@ -59,7 +59,8 @@ extension LockScreenFeature {
                     }
                     
                     Spacer().frame(maxHeight: Dimens.buttonHeight)
-                    TextButton(title: Strings.LockScreen.forgottenCode, action: onPinForgotten)
+                    TitleButton(title: Strings.LockScreen.forgottenCode, action: onPinForgotten)
+                        .textButtonStyle(colors: .primary)
                     Spacer()
 
                     if (viewState.biometricAllowed && lockTimeString == nil) {

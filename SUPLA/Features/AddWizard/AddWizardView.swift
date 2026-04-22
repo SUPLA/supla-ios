@@ -173,7 +173,7 @@ struct CloudFollowupPopup: View {
                 onSecondaryClick: onNegativeButtonClick ?? {},
                 onPrimaryClick: onPositiveButtonClick ?? {},
                 secondaryText: Strings.AddWizard.cloudFollowupClose,
-                primaryButtonSpec: .default(Strings.AddWizard.cloudFollowupGoToCloud)
+                primaryButtonData: .default(Strings.AddWizard.cloudFollowupGoToCloud)
             )
         }
     }
@@ -208,7 +208,7 @@ struct ManualModePopup: View {
                 onSecondaryClick: onContinueAuto ?? {},
                 onPrimaryClick: onContinueManual ?? {},
                 secondaryText: Strings.AddWizard.manualModePopupResign,
-                primaryButtonSpec: .default(Strings.AddWizard.manualModePopupContinue)
+                primaryButtonData: .default(Strings.AddWizard.manualModePopupContinue)
             )
         }
     }

@@ -371,6 +371,7 @@
 "timer_detail_info_thermostat_off" = "El termostato estará apagado durante\n%@";
 "timer_detail_info_thermostat_heating" = "El termostato estará en modo calor durante\n%@";
 "timer_detail_info_thermostat_cooling" = "El termostato estará en modo frío durante\n%@";
+"details_timer_info_thermostat_auto" = "El termostato estará en modo automático durante\n%@";
 "timer_detail_select_time" = "Especificar hora";
 "timer_detail_counter" = "Contador";
 "timer_detail_calendar" = "Calendario";
@@ -384,6 +385,9 @@
 "thermostat_detail_mode_weekly_schedule" = "Programa";
 "hvac_mode_temperature_heating" = "Temperatura de calor";
 "hvac_mode_temperature_cooling" = "Temperatura de frío";
+"hvac_mode_heating" = "Calor";
+"hvac_mode_cooling" = "Frío";
+"hvac_mode_auto" = "Calor y frío";
 "schedule_detail_quarters_dialog_header" = "Hora %02d:00";
 "schedule_detail_program_dialog_header" = "Ajustes programa %d";
 "thermostat_thermometer_error" = "Error de lectura de la temperatura";

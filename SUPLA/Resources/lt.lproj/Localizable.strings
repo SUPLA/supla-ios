@@ -373,6 +373,7 @@
 "timer_detail_info_thermostat_off" = "Termostatas bus išjungtas\n%@";
 "timer_detail_info_thermostat_heating" = "Termostatas bus šildymo režime\n%@";
 "timer_detail_info_thermostat_cooling" = "Termostatas bus vėsinimo režime\n%@";
+"details_timer_info_thermostat_auto" = "Termostatas veiks automatiniu režimu\n%@";
 "timer_detail_select_time" = "Nustatykite laiką";
 "timer_detail_counter" = "Skaitiklis";
 "timer_detail_calendar" = "Kalendorius";
@@ -388,6 +389,9 @@
 "schedule_detail_program_dialog_header" = "Programos nustatymai %d";
 "hvac_mode_temperature_heating" = "Šildymo temperatūra";
 "hvac_mode_temperature_cooling" = "Vėsinimo temperatūra";
+"hvac_mode_heating" = "Šildymas";
+"hvac_mode_cooling" = "Vėsinimas";
+"hvac_mode_auto" = "Šildymas ir vėsinimas";
 "thermostat_thermometer_error" = "Temperatūros nuskaitymo klaida";
 "thermostat_clock_error" = "Laikrodžio klaida";
 "thermostat_calibration_error" = "Kalibravimo klaida";

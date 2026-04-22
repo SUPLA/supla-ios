@@ -24,10 +24,9 @@ struct FloatingPlusButton: SwiftUI.View {
     var body: some SwiftUI.View {
         IconButton(
             name: .Icons.plus,
-            color: .Supla.onPrimary,
             action: action
         )
-        .buttonStyle(FilledIconStyle())
+        .filledButtonStyle()
         .padding(Distance.default)
     }
 }

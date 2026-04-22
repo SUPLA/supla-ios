@@ -63,12 +63,11 @@ extension AddWizardFeature {
 
                 HStack {
                     if let onBack {
-                        TextButton(
+                        TitleButton(
                             title: Strings.General.back,
-                            normalColor: .Supla.onPrimaryContainer,
-                            pressedColor: .Supla.onSurfaceVariant,
                             action: onBack
                         )
+                        .textButtonStyle(colors: .onPrimaryContainer)
                     }
                     Spacer()
                     NextButton(
@@ -92,9 +91,9 @@ private extension AddWizardFeature {
             HStack {
                 IconButton(
                     name: .Icons.arrowLeft,
-                    color: .Supla.onPrimary,
                     action: onBack
                 )
+                .iconButtonStyle(colors: .onPrimary)
                 Text(Strings.appName)
                     .fontLabelLarge()
                     .textColor(.Supla.onPrimary)
@@ -122,6 +121,7 @@ private struct NextButton: SwiftUI.View {
         ) {
             if (processing) {
                 ProcessingText()
+                    .buttonPaddings()
             } else {
                 HStack(alignment: .center, spacing: 4) {
                     Text(title)
@@ -132,14 +132,10 @@ private struct NextButton: SwiftUI.View {
                         .frame(width: Dimens.iconSizeSmall, height: Dimens.iconSizeSmall)
                         .foregroundColor(.Supla.primary)
                 }
+                .buttonPaddings(trailing: Distance.small)
             }
         }
-        .buttonStyle(
-            BorderedButtonStyle(
-                backgroundColor: .Supla.background,
-                padding: processing ? EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 24) : EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 16)
-            )
-        )
+        .borderedButtonStyle(fillColor: .Supla.background)
     }
 }
 

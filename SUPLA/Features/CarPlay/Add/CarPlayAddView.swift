@@ -102,19 +102,21 @@ extension CarPlayAddFeature {
         }
 
         private func DeleteButton() -> some SwiftUI.View {
-            BorderedButton(
+            TitleButton(
                 title: Strings.General.delete,
                 fullWidth: true,
                 action: { showDeleteConfirmation = true }
             )
+            .borderedButtonStyle()
         }
 
         private func SaveButton() -> some SwiftUI.View {
-            FilledButton(
+            TitleButton(
                 title: Strings.General.save,
                 fullWidth: true,
                 action: { delegate?.onSave() }
             )
+            .filledButtonStyle()
             .disabled(viewState.saveDisabled)
         }
 
@@ -123,7 +125,7 @@ extension CarPlayAddFeature {
                 header: Strings.CarPlay.deleteTitle,
                 message: Strings.CarPlay.deleteMessage,
                 onDismiss: { showDeleteConfirmation = false },
-                primaryButtonSpec: .default(Strings.CarPlay.confirmDelete),
+                primaryButtonData: .default(Strings.CarPlay.confirmDelete),
                 secondaryButtonText: Strings.General.cancel,
                 onPrimaryButtonClick: { delegate?.onDelete() },
                 onSecondaryButtonClick: { showDeleteConfirmation = false }

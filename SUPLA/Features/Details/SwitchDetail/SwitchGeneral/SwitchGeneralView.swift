@@ -86,7 +86,7 @@ extension SwitchGeneralFeature {
                         
                         Spacer()
                     } else {
-                        DeviceStateView(
+                        DeviceState.View(
                             stateLabel: viewState.stateLabel,
                             icon: viewState.stateIcon,
                             stateValue: viewState.stateValue
@@ -135,13 +135,13 @@ extension SwitchGeneralFeature {
     viewState.stateLabel = Strings.SwitchDetail.stateLabel
     viewState.stateValue = Strings.SwitchDetail.stateOff
     viewState.offButtonState = .init(
-        icon: .suplaIcon(name: "fnc-power_off"),
+        icon: .originalSuplaIcon(name: "fnc_switch-off"),
         label: Strings.General.turnOff,
         active: true,
         type: .negative
     )
     viewState.onButtonState = .init(
-        icon: .suplaIcon(name: "fnc-power_on"),
+        icon: .suplaIcon(name: "fnc_switch-on"),
         label: Strings.General.turnOn,
         active: false,
         type: .positive

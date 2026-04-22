@@ -171,19 +171,18 @@ private struct Buttons: View {
         HStack(spacing: 0) {
             if (showArrows) {
                 IconButton(name: .Icons.arrowLeft, action: onPrevious)
-                    .buttonStyle(BorderedIconStyle())
+                    .borderedButtonStyle()
             }
             Spacer()
-            Button(action: onDismiss, label: {
-                Text(Strings.General.close)
-                    .font(.Supla.labelLarge)
-                    .frame(height: 32)
-            })
-            .buttonStyle(BorderedButtonStyle())
+            TitleButton(
+                title: Strings.General.close,
+                action: onDismiss
+            )
+            .borderedButtonStyle()
             Spacer()
             if (showArrows) {
                 IconButton(name: .Icons.arrowRight, action: onNext)
-                    .buttonStyle(BorderedIconStyle())
+                    .borderedButtonStyle()
             }
         }
         .padding([.top, .bottom], Distance.small)

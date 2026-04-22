@@ -66,7 +66,7 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         super.tearDown()
     }
 
-    func test_shouldChangeProgramWhenTapped2() {
+    func test_shouldChangeProgramWhenTapped() {
         // given
         let newProgram = ScheduleDetailProgram(scheduleProgram: .OFF)
 

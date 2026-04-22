@@ -51,13 +51,13 @@ extension ValveGeneralFeature {
                     
                     SwitchButtons(
                         leftButton: SwitchButtonState(
-                            icon: .suplaIcon(name: "valve-closed"),
+                            icon: .originalSuplaIcon(name: "valve-closed"),
                             label: Strings.General.close,
                             active: viewState.isClosed,
                             type: .negative
                         ),
                         rightButton: SwitchButtonState(
-                            icon: .suplaIcon(name: "valve-open"),
+                            icon: .originalSuplaIcon(name: "valve-open"),
                             label: Strings.General.open,
                             active: !viewState.isClosed,
                             type: .positive
@@ -81,7 +81,7 @@ extension ValveGeneralFeature {
                         header: Strings.General.warning,
                         message: alertDialog.message,
                         onDismiss: onWarningDialogDismiss,
-                        primaryButtonSpec: .optional(alertDialog.positiveButtonText),
+                        primaryButtonData: .optional(alertDialog.positiveButtonText),
                         secondaryButtonText: alertDialog.negativeButtonText,
                         onPrimaryButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
                         onSecondaryButtonClick: onWarningDialogDismiss
@@ -129,7 +129,7 @@ extension ValveGeneralFeature {
 #Preview {
     let state = ValveGeneralFeature.ViewState()
     state.stateString = "opened"
-    state.icon = .suplaIcon(name: "valve-open")
+    state.icon = .originalSuplaIcon(name: "valve-open")
     state.issues = [
         SharedCore.ChannelIssueItem.Error(
             string: localizedString(id: LocalizedStringId.floodSensorActive)
@@ -149,7 +149,7 @@ extension ValveGeneralFeature {
         RelatedChannelData.visible(
             id: 1,
             onlineState: .online,
-            icon: .suplaIcon(name: "fnc_flood_sensor-on"),
+            icon: .originalSuplaIcon(name: "fnc_flood_sensor-on"),
             caption: "Flood sensor",
             userCaption: "",
             batteryIcon: IssueIcon.Battery25(),
@@ -158,7 +158,7 @@ extension ValveGeneralFeature {
         RelatedChannelData.visible(
             id: 2,
             onlineState: .offline,
-            icon: .suplaIcon(name: "fnc_flood_sensor-off"),
+            icon: .originalSuplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
             userCaption: "",
             batteryIcon: IssueIcon.Battery50(),
@@ -167,7 +167,7 @@ extension ValveGeneralFeature {
         RelatedChannelData.visible(
             id: 4,
             onlineState: .online,
-            icon: .suplaIcon(name: "fnc_flood_sensor-off"),
+            icon: .originalSuplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
             userCaption: "",
             batteryIcon: IssueIcon.Battery50(),

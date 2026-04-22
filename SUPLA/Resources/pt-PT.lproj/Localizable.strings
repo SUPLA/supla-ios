@@ -375,6 +375,7 @@
 "timer_detail_info_thermostat_off" = "O termostato será desligado durante\n%@";
 "timer_detail_info_thermostat_heating" = "O termostato estará em modo de aquecimento durante\n%@";
 "timer_detail_info_thermostat_cooling" = "O termostato estará em modo de arrefecimento durante\n%@";
+"details_timer_info_thermostat_auto" = "O termóstato estará em modo automático durante\n%@";
 "timer_detail_select_time" = "Defina o tempo";
 "timer_detail_counter" = "Contador";
 "timer_detail_calendar" = "Calendário";
@@ -390,6 +391,9 @@
 "schedule_detail_program_dialog_header" = "Configurações do programa %d";
 "hvac_mode_temperature_heating" = "Temperatura de aquecimento";
 "hvac_mode_temperature_cooling" = "Temperatura de arrefecimento";
+"hvac_mode_heating" = "Aquecimento";
+"hvac_mode_cooling" = "Arrefecimento";
+"hvac_mode_auto" = "Aquecimento e arrefecimento";
 "thermostat_thermometer_error" = "Erro de leitura da temperatura";
 "thermostat_clock_error" = "Erro de relógio";
 "thermostat_calibration_error" = "Erro de calibração";

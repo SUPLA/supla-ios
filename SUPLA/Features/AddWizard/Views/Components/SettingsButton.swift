@@ -35,13 +35,9 @@ extension AddWizardFeature {
                     Text(Strings.AddWizard.goToSettings)
                         .fontBodySmall()
                 }
+                .buttonPaddings(leading: Distance.small)
             }
-            .buttonStyle(
-                BorderedButtonStyle(
-                    backgroundColor: .Supla.background,
-                    padding: EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 24)
-                )
-            )
+            .borderedButtonStyle(fillColor: .Supla.background)
         }
     }
 }

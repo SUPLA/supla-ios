@@ -15,35 +15,23 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+import SharedCore
 @testable import SUPLA
 import XCTest
-import SharedCore
 
-final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailViewState, ThermostatTimerDetailViewEvent> {
+final class ThermostatTimerDetailVMTests: SuplaCore.ViewModelTest<ThermostatTimerDetailFeature.ViewState> {
+    private lazy var item: ItemBundle! = .init(remoteId: 1, deviceId: 1, subjectType: .channel, function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
+    private lazy var viewModel: ThermostatTimerDetailFeature.ViewModel! = .init(item: item)
     
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
-    }()
+    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
-    private lazy var channelConfigEventManager: ChannelConfigEventsManagerMock! = {
-        ChannelConfigEventsManagerMock()
-    }()
+    private lazy var channelConfigEventManager: ChannelConfigEventsManagerMock! = ChannelConfigEventsManagerMock()
     
-    private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = {
-        GetChannelConfigUseCaseMock()
-    }()
+    private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = GetChannelConfigUseCaseMock()
     
-    private lazy var executeThermostatActionUseCase: ExecuteThermostatActionUseCaseMock! = {
-        ExecuteThermostatActionUseCaseMock()
-    }()
+    private lazy var executeThermostatActionUseCase: ExecuteThermostatActionUseCaseMock! = ExecuteThermostatActionUseCaseMock()
     
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
-    
-    private lazy var viewModel: ThermostatTimerDetailVM! = {
-        ThermostatTimerDetailVM()
-    }()
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
     override func setUp() {
         super.setUp()
@@ -69,259 +57,184 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
     
     func test_shouldToggleDeviceMode() {
         // given
-        let mode: TimerDetailDeviceMode = .manual
+        let mode: ThermostatTimerDetailFeature.DeviceMode = .heating
         
         // when
-        observe(viewModel)
-        viewModel.toggleDeviceMode(deviceMode: mode)
+        viewModel.onDeviceModeChange(mode)
         
         // then
-        let state = ThermostatTimerDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.selectedMode, to: mode)
-        ])
+        XCTAssertEqual(viewModel.state.setpointInChange, .heat)
     }
     
     func test_shouldToggleSelectorMode() {
         // when
-        observe(viewModel)
-        viewModel.toggleSelectorMode()
+        viewModel.onTimeSelectionModeChange(.calendar)
         
         // then
-        let state = ThermostatTimerDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.showCalendar, to: !state.showCalendar)
-        ])
+        XCTAssertEqual(viewModel.state.timeSelectionMode, .calendar)
     }
     
-    func test_shouldChangeCalendarDate() {
+    func test_shouldChangeCoolTemperatureByValue() {
         // given
-        let date: Date = Date.create(year: 2023, month: 10, day: 12)!
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
         
         // when
-        observe(viewModel)
-        viewModel.onDateChanged(date: date)
+        viewModel.onCoolValueChange(0.5)
         
         // then
-        let state = ThermostatTimerDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.calendarValue, to: date)
-        ])
+        XCTAssertEqual(viewModel.state.coolSetpoint, 25.0)
+        XCTAssertEqual(viewModel.state.setpointInChange, .cool)
     }
     
-    func test_shouldChangeTimerValues() {
+    func test_shouldChangeHeatTemperatureByValue() {
         // given
-        let values = TrippleNumberSelectorView.Value(firstValue: 10, secondValue: 10, thirdValue: 10)
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
         
         // when
-        observe(viewModel)
-        viewModel.onTimerValueChanged(value: values)
+        viewModel.onHeatValueChange(0.5)
         
         // then
-        let state = ThermostatTimerDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.pickerValue, to: values)
-        ])
+        XCTAssertEqual(viewModel.state.heatSetpoint, 25.0)
+        XCTAssertEqual(viewModel.state.setpointInChange, .heat)
     }
     
-    func test_shouldChangeTemperatureByValue() {
+    func test_shouldChangeCoolTemperatureByStep() {
         // given
-        let temperature: Float = 14.3
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
+        viewModel.state.setpointInChange = .cool
+        viewModel.state.coolSetpoint = 25.0
         
         // when
-        observe(viewModel)
-        viewModel.onTemperatureChange(temperature: temperature)
+        viewModel.onSetpointChange(.smallUp)
         
         // then
-        let state = ThermostatTimerDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.currentTemperature, to: temperature)
-        ])
+        XCTAssertEqual(viewModel.state.coolSetpoint, 25.1)
     }
     
-    func test_shouldChangeTemperatureByStep() {
+    func test_shouldChangeHeatTemperatureByStep() {
         // given
-        let state = ThermostatTimerDetailViewState(currentTemperature: 14.2)
-        viewModel.updateView(state: state)
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
+        viewModel.state.setpointInChange = .heat
+        viewModel.state.heatSetpoint = 25.0
         
         // when
-        observe(viewModel)
-        viewModel.onTemperatureChange(step: .smallUp)
+        viewModel.onSetpointChange(.smallDown)
         
         // then
-        assertStates(expected: [
-            state,
-            state.changing(path: \.currentTemperature, to: 14.3)
-        ])
-    }
-    
-    func test_shouldNotStartTimerWhenRemoteIdMissing() {
-        // when
-        observe(viewModel)
-        viewModel.onStartTimer()
-        
-        // then
-        let state = ThermostatTimerDetailViewState()
-        assertStates(expected: [ state ])
-        XCTAssertEqual(executeThermostatActionUseCase.parameters.count, 0)
+        XCTAssertEqual(viewModel.state.heatSetpoint, 24.9)
     }
     
     func test_shouldNotStartTimerWhenDurationMissing() {
         // given
-        let state = ThermostatTimerDetailViewState(remoteId: 123, showCalendar: true)
-        viewModel.updateView(state: state)
+        viewModel.state.timerMinutes = 0.asMinutePickerItem
+        viewModel.state.timerHours = 0.asHourPickerItem
+        viewModel.state.timerDays = 0.asDayPickerItem
         
         // when
-        observe(viewModel)
-        viewModel.onStartTimer()
+        viewModel.onStart()
         
         // then
-        assertStates(expected: [ state ])
         XCTAssertEqual(executeThermostatActionUseCase.parameters.count, 0)
     }
     
     func test_shouldStartTimer_usingTimePicker() {
         // given
-        let remoteId: Int32 = 123
-        let state = ThermostatTimerDetailViewState(remoteId: remoteId, selectedMode: .off)
-        viewModel.updateView(state: state)
+        viewModel.state.timerMinutes = 1.asMinutePickerItem
+        viewModel.state.timerHours = 0.asHourPickerItem
+        viewModel.state.timerDays = 0.asDayPickerItem
+        viewModel.state.timeSelectionMode = .timer
+        viewModel.state.selectedMode = .off
         dateProvider.currentTimestampReturns = .single(0)
         
         // when
-        observe(viewModel)
-        viewModel.onStartTimer()
+        viewModel.onStart()
         
         // then
-        assertStates(expected: [ 
-            state,
-            state.changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
-        ])
+        XCTAssertTrue(viewModel.state.loadingState.loading)
         XCTAssertTuples(executeThermostatActionUseCase.parameters, [
-            (SubjectType.channel, remoteId, SuplaHvacMode.off, nil, nil, 10800)
+            (SubjectType.channel, item.remoteId, SuplaHvacMode.off, nil, nil, 60)
         ])
     }
     
     func test_shouldStartTimer_usingTimeCalendar() {
         // given
-        let remoteId: Int32 = 123
         let currentDate = Date.create(year: 2023, month: 11, day: 3, hour: 12)!
         let endDate = Date.create(year: 2023, month: 11, day: 6, hour: 12)!
         
-        let state = ThermostatTimerDetailViewState(
-            remoteId: remoteId,
-            currentTemperature: 14.5,
-            usingHeatSetpoint: true,
-            selectedMode: .manual,
-            showCalendar: true,
-            calendarValue: endDate
-        )
-        viewModel.updateView(state: state)
+        viewModel.state.timeSelectionMode = .calendar
+        viewModel.state.calendarDate = endDate
+        viewModel.state.selectedMode = .heating
+        viewModel.state.heatSetpoint = 14.5
         dateProvider.currentTimestampReturns = .single(0)
         dateProvider.currentDateReturns = currentDate
         
         // when
-        observe(viewModel)
-        viewModel.onStartTimer()
+        viewModel.onStart()
         
         // then
-        assertStates(expected: [
-            state,
-            state.changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
-        ])
+        XCTAssertTrue(viewModel.state.loadingState.loading)
         XCTAssertTuples(executeThermostatActionUseCase.parameters, [
-            (SubjectType.channel, remoteId, SuplaHvacMode.heat, 14.5, nil, Int32(currentDate.differenceInSeconds(endDate)))
+            (SubjectType.channel, item.remoteId, SuplaHvacMode.heat, 14.5, nil, Int32(currentDate.differenceInSeconds(endDate)))
         ])
     }
     
     func test_shouldStartManualMode() {
         // given
-        let remoteId: Int32 = 123
-        let state = ThermostatTimerDetailViewState(remoteId: remoteId)
-        viewModel.updateView(state: state)
         dateProvider.currentTimestampReturns = .single(0)
         
         // when
-        observe(viewModel)
-        viewModel.cancelTimerStartManual()
+        viewModel.onCancelTimerIntoManualMode()
         
         // then
-        assertStates(expected: [
-            state,
-            state.changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
-        ])
+        XCTAssertTrue(viewModel.state.loadingState.loading)
         XCTAssertTuples(executeThermostatActionUseCase.parameters, [
-            (SubjectType.channel, remoteId, SuplaHvacMode.cmdSwitchToManual, nil, nil, nil)
+            (SubjectType.channel, item.remoteId, SuplaHvacMode.cmdSwitchToManual, nil, nil, nil)
         ])
     }
     
     func test_shouldStartProgramMode() {
         // given
-        let remoteId: Int32 = 123
-        let state = ThermostatTimerDetailViewState(remoteId: remoteId)
-        viewModel.updateView(state: state)
         dateProvider.currentTimestampReturns = .single(0)
         
         // when
-        observe(viewModel)
-        viewModel.cancelTimerStartProgram()
+        viewModel.onCancelTimerIntoProgramMode()
         
         // then
-        assertStates(expected: [
-            state,
-            state.changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
-        ])
+        XCTAssertTrue(viewModel.state.loadingState.loading)
         XCTAssertTuples(executeThermostatActionUseCase.parameters, [
-            (SubjectType.channel, remoteId, SuplaHvacMode.cmdWeeklySchedule, nil, nil, nil)
+            (SubjectType.channel, item.remoteId, SuplaHvacMode.cmdWeeklySchedule, nil, nil, nil)
         ])
     }
     
     func test_shouldStartTimerEdit() {
         // given
-        let remoteId: Int32 = 123
-        let currentDate = Date.create(year: 2023, month: 11, day: 3, hour: 12)!
-        let endDate = Date.create(year: 2023, month: 11, day: 6, hour: 12)!
-        let state = ThermostatTimerDetailViewState(
-            remoteId: remoteId,
-            currentMode: .heat,
-            currentDate: currentDate,
-            timerEndDate: endDate
-        )
-        viewModel.updateView(state: state)
+        viewModel.state.timerEndTime = Date(timeIntervalSince1970: 4722)
+        dateProvider.currentDateReturns = Date(timeIntervalSince1970: 1000)
         
         // when
-        observe(viewModel)
-        viewModel.editTimer()
+        viewModel.onEditTimer()
         
         // then
-        assertStates(expected: [
-            state,
-            state.changing(path: \.editTime, to: true)
-                .changing(path: \.pickerValue, to: .init(valueForDays: currentDate.differenceInSeconds(endDate)))
-                .changing(path: \.calendarValue, to: endDate)
-                .changing(path: \.selectedMode, to: .manual)
-        ])
+        XCTAssertEqual(viewModel.state.isTimerEditing, true)
+        XCTAssertEqual(viewModel.state.timerDays, 0.asDayPickerItem)
+        XCTAssertEqual(viewModel.state.timerHours, 1.asHourPickerItem)
+        XCTAssertEqual(viewModel.state.timerMinutes, 2.asMinutePickerItem)
+        XCTAssertEqual(viewModel.state.timeSelectionMode, .timer)
         XCTAssertEqual(executeThermostatActionUseCase.parameters.count, 0)
     }
     
     func test_shouldCancelTimerEdit() {
         // given
-        let remoteId: Int32 = 123
-        let state = ThermostatTimerDetailViewState(remoteId: remoteId, editTime: true)
-        viewModel.updateView(state: state)
+        viewModel.state.isTimerEditing = true
         
         // when
-        observe(viewModel)
-        viewModel.editTimerCancel()
+        viewModel.onCancelEditMode()
         
         // then
-        assertStates(expected: [
-            state,
-            state.changing(path: \.editTime, to: false)
-        ])
+        XCTAssertEqual(viewModel.state.isTimerEditing, false)
     }
 }

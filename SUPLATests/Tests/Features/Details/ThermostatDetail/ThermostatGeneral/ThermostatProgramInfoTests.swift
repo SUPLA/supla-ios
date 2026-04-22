@@ -162,7 +162,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 type: .current,
                 time: Strings.ThermostatDetail.clockError,
                 icon: SuplaHvacMode.heat.icon,
-                iconColor: SuplaHvacMode.heat.iconColor,
+                iconColor: SuplaHvacMode.heat.uiColor,
                 description: "10.0°",
                 manualActive: false
             )
@@ -230,7 +230,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                     self.valuesFormatter.minutesToString(minutes: 86)
                 ),
                 icon: SuplaHvacMode.heat.icon,
-                iconColor: SuplaHvacMode.heat.iconColor,
+                iconColor: SuplaHvacMode.heat.uiColor,
                 description: "10.0°",
                 manualActive: false
             ),
@@ -238,7 +238,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 type: .next,
                 time: nil,
                 icon: SuplaHvacMode.cool.icon,
-                iconColor: SuplaHvacMode.cool.iconColor,
+                iconColor: SuplaHvacMode.cool.uiColor,
                 description: "12.0°",
                 manualActive: false
             )
@@ -270,7 +270,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                     self.valuesFormatter.minutesToString(minutes: 56)
                 ),
                 icon: SuplaHvacMode.off.icon,
-                iconColor: SuplaHvacMode.off.iconColor,
+                iconColor: SuplaHvacMode.off.uiColor,
                 description: nil,
                 manualActive: true
             ),
@@ -278,7 +278,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 type: .next,
                 time: nil,
                 icon: SuplaHvacMode.cool.icon,
-                iconColor: SuplaHvacMode.cool.iconColor,
+                iconColor: SuplaHvacMode.cool.uiColor,
                 description: "12.0°",
                 manualActive: false
             )
@@ -311,7 +311,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                     self.valuesFormatter.minutesToString(minutes: 86)
                 ),
                 icon: SuplaHvacMode.heat.icon,
-                iconColor: SuplaHvacMode.heat.iconColor,
+                iconColor: SuplaHvacMode.heat.uiColor,
                 description: "10.0°",
                 manualActive: false
             ),
@@ -319,7 +319,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 type: .next,
                 time: nil,
                 icon: SuplaHvacMode.off.icon,
-                iconColor: SuplaHvacMode.off.iconColor,
+                iconColor: SuplaHvacMode.off.uiColor,
                 description: SuplaWeeklyScheduleProgram.OFF.description,
                 manualActive: false
             )

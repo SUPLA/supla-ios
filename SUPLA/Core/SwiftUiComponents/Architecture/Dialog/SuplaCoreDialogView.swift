@@ -141,7 +141,7 @@ extension SuplaCore.Dialog {
         let processing: Bool
         let primaryDisabled: Bool
         let secondaryButtonText: String
-        let primaryButtonSpec: FilledButton.ButtonSpec
+        let primaryButtonData: ButtonData
         
         init(
             onSecondaryClick: @escaping () -> Void,
@@ -149,14 +149,14 @@ extension SuplaCore.Dialog {
             processing: Bool = false,
             primaryDisabled: Bool = false,
             secondaryText: String = Strings.General.cancel,
-            primaryButtonSpec: FilledButton.ButtonSpec = .default(Strings.General.ok)
+            primaryButtonData: ButtonData = .default(Strings.General.ok)
         ) {
             self.onSecondaryClick = onSecondaryClick
             self.onPrimaryClick = onPrimaryClick
             self.processing = processing
             self.primaryDisabled = primaryDisabled
             self.secondaryButtonText = secondaryText
-            self.primaryButtonSpec = primaryButtonSpec
+            self.primaryButtonData = primaryButtonData
         }
         
         var body: some SwiftUI.View {
@@ -167,19 +167,44 @@ extension SuplaCore.Dialog {
                             .progressViewStyle(.circular)
                     }.frame(maxWidth: .infinity)
                 } else {
-                    FilledButton(
-                        buttonSpec: primaryButtonSpec,
+                    TitleButton(
+                        title: primaryButtonData.title,
+                        fullWidth: primaryButtonData.fullWidth,
                         action: onPrimaryClick
-                    ).disabled(primaryDisabled)
+                    )
+                    .filledButtonStyle(colors: primaryButtonData.colors)
+                    .disabled(primaryDisabled)
                 }
-                TextButton(
+                TitleButton(
                     title: secondaryButtonText,
-                    normalColor: .Supla.onBackground,
+                    fullWidth: true,
                     action: onSecondaryClick
                 )
-                .frame(maxWidth: .infinity)
+                .textButtonStyle(colors: .onBackground)
             }
             .padding(Distance.default)
+        }
+    }
+    
+    struct ButtonData {
+        let title: String
+        let fullWidth: Bool
+        let colors: ButtonColors
+        
+        static func `default`(_ title: String, fullWidth: Bool = true) -> ButtonData {
+            ButtonData(title: title, fullWidth: fullWidth, colors: .primary)
+        }
+        
+        static func critical(_ title: String, fullWidth: Bool = true) -> ButtonData {
+            ButtonData(title: title, fullWidth: fullWidth, colors: .criticalFilled)
+        }
+        
+        static func optional(_ title: String?, fullWidth: Bool = true) -> ButtonData? {
+            if let title {
+                ButtonData(title: title, fullWidth: fullWidth, colors: .primary)
+            } else {
+                nil
+            }
         }
     }
     

@@ -90,7 +90,8 @@ extension CounterPhotoFeature {
                     if let url = configurationAddress {
                         HStack {
                             Spacer()
-                            BorderedButton(title: Strings.CounterPhoto.settings) { onUrlClick(url) }
+                            TitleButton(title: Strings.CounterPhoto.settings) { onUrlClick(url) }
+                                .borderedButtonStyle()
                             Spacer()
                         }
                     }
@@ -116,16 +117,16 @@ extension CounterPhotoFeature {
                     .foregroundColor(.Supla.primary)
                 Text(Strings.CounterPhoto.loadingError)
                     .font(.Supla.bodyLarge)
-                TextButton(
+                TitleButton(
                     title: Strings.Status.tryAgain,
-                    normalColor: .Supla.blue,
-                    pressedColor: .Supla.blue,
                     action: onRetry
                 )
+                .textButtonStyle(colors: .link)
                 if let url = configurationAddress {
                     HStack {
                         Spacer()
-                        BorderedButton(title: Strings.CounterPhoto.settings) { onUrlClick(url) }
+                        TitleButton(title: Strings.CounterPhoto.settings) { onUrlClick(url) }
+                            .borderedButtonStyle()
                         Spacer()
                     }
                 }

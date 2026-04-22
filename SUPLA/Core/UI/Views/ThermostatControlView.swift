@@ -748,7 +748,7 @@ private class SetpointLayers: LayerGroup {
                 backgroundShape.fillColor = UIColor.disabled.copy(alpha: 0.6).cgColor
             } else {
                 shadowShape.fillColor = type.color.cgColor
-                backgroundShape.fillColor = type.color.copy(alpha: 0.6).cgColor
+                backgroundShape.fillColor = type.uiColor.copy(alpha: 0.6).cgColor
             }
         }
     }
@@ -761,7 +761,7 @@ private class SetpointLayers: LayerGroup {
     
     private lazy var backgroundShape: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.fillColor = type.color.copy(alpha: 0.6).cgColor
+        layer.fillColor = type.uiColor.copy(alpha: 0.6).cgColor
         return layer
     }()
     

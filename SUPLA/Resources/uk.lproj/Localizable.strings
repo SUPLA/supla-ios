@@ -373,6 +373,7 @@
 "timer_detail_info_thermostat_off" = "Терморегулятор вимкнеться за допомогою\n%@";
 "timer_detail_info_thermostat_heating" = "Термостат працюватиме в режимі нагрівання протягом\n%@";
 "timer_detail_info_thermostat_cooling" = "Термостат працюватиме в режимі охолодження протягом\n%@";
+"details_timer_info_thermostat_auto" = "Термостат буде в автоматичному режимі протягом\n%@";
 "timer_detail_select_time" = "Вкажіть час";
 "timer_detail_counter" = "Лічильник";
 "timer_detail_calendar" = "Календар";
@@ -388,6 +389,9 @@
 "schedule_detail_program_dialog_header" = "Налаштування програми %d";
 "hvac_mode_temperature_heating" = "Температура нагрівання";
 "hvac_mode_temperature_cooling" = "Температура охолодження";
+"hvac_mode_heating" = "Нагрівання";
+"hvac_mode_cooling" = "Охолодження";
+"hvac_mode_auto" = "Нагрівання та охолодження";
 "thermostat_thermometer_error" = "Помилка зчитування температури";
 "thermostat_clock_error" = "Помилка годинника";
 "thermostat_calibration_error" = "Помилка калібрування";

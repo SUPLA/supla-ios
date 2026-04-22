@@ -82,7 +82,7 @@ extension NfcTagsListFeature {
                 message: Strings.Nfc.List.duplicateDialogMessage.arguments(name),
                 iconType: .warning,
                 onDismiss: {},
-                primaryButtonSpec: .default(Strings.Nfc.List.duplicateDialogOpenTag),
+                primaryButtonData: .default(Strings.Nfc.List.duplicateDialogOpenTag),
                 secondaryButtonText: Strings.General.cancel,
                 onPrimaryButtonClick: { delegate?.onItemClick(uuid: uuid) },
                 onSecondaryButtonClick: { delegate?.hideDialog() }
@@ -96,7 +96,7 @@ extension NfcTagsListFeature {
                 message: Strings.Nfc.List.timeoutDialogMessage,
                 iconType: .timeout,
                 onDismiss: {},
-                primaryButtonSpec: .default(Strings.Status.tryAgain),
+                primaryButtonData: .default(Strings.Status.tryAgain),
                 secondaryButtonText: Strings.General.exit,
                 onPrimaryButtonClick: {
                     delegate?.hideDialog()
@@ -205,7 +205,7 @@ extension NfcTagsListFeature {
         NfcTagDataDto(
             uuid: UUID().uuidString,
             name: "Tag 1",
-            icon: .suplaIcon(name: .Icons.fncRgbOn),
+            icon: .originalSuplaIcon(name: .Icons.fncRgbOn),
             profileId: 1,
             profileName: "Default",
             subjectType: .channel,

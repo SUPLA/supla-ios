@@ -39,7 +39,7 @@ struct ChannelListView: View {
                 header: Strings.General.warning,
                 message: alertDialogState.message,
                 onDismiss: {},
-                primaryButtonSpec: .optional(alertDialogState.positiveButtonText),
+                primaryButtonData: .optional(alertDialogState.positiveButtonText),
                 secondaryButtonText: alertDialogState.negativeButtonText,
                 onPrimaryButtonClick: { onAlertConfirmed(alertDialogState.remoteId, alertDialogState.action) },
                 onSecondaryButtonClick: onAlertDismissed

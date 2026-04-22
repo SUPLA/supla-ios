@@ -38,11 +38,12 @@ extension NfcTagDetailFeature {
                         TagDetails()
                         TagReadings()
                     }
-                    FilledButton(
+                    TitleButton(
                         title: Strings.Nfc.Edit.title,
                         fullWidth: true,
                         action: { delegate?.onEditClick() }
                     )
+                    .filledButtonStyle()
                     .padding(Distance.default)
                 }
 
@@ -123,18 +124,16 @@ extension NfcTagDetailFeature {
 
                     IconButton(
                         name: .Icons.infoFilled,
-                        color: .Supla.primary,
                         action: { delegate?.onInfoClick() }
                     )
-                    .buttonStyle(FilledIconStyle(color: .Supla.surfaceVariant))
+                    .filledButtonStyle(colors: .surfaceVariant)
                 } else {
                     LockButton { delegate?.onLockClick() }
                     IconButton(
                         name: .Icons.infoFilled,
-                        color: .Supla.primary,
                         action: { delegate?.onInfoClick() }
                     )
-                    .buttonStyle(FilledIconStyle(color: .Supla.surfaceVariant))
+                    .filledButtonStyle(colors: .surfaceVariant)
                 }
             }
         }
@@ -185,7 +184,7 @@ extension NfcTagDetailFeature {
                 header: Strings.Nfc.Detail.deleteDialogTitle,
                 message: Strings.Nfc.Detail.deleteDialogMessage,
                 onDismiss: { delegate?.onDismissDialogs() },
-                primaryButtonSpec: .critical(Strings.General.delete),
+                primaryButtonData: .critical(Strings.General.delete),
                 secondaryButtonText: Strings.General.cancel,
                 onPrimaryButtonClick: { delegate?.onDeleteClick() },
                 onSecondaryButtonClick: { delegate?.onDismissDialogs() }
@@ -198,7 +197,7 @@ extension NfcTagDetailFeature {
                 header: Strings.Nfc.Detail.deleteLockedDialogTitle,
                 message: Strings.Nfc.Detail.deleteLockedDialogMessage,
                 onDismiss: { delegate?.onDismissDialogs() },
-                primaryButtonSpec: .critical(Strings.General.delete),
+                primaryButtonData: .critical(Strings.General.delete),
                 secondaryButtonText: Strings.General.cancel,
                 onPrimaryButtonClick: { delegate?.onDeleteClick() },
                 onSecondaryButtonClick: { delegate?.onDismissDialogs() }
@@ -223,7 +222,7 @@ extension NfcTagDetailFeature {
                 header: Strings.Nfc.Detail.lockError,
                 message: Strings.Nfc.Detail.errorProtectionFailed,
                 onDismiss: { delegate?.onDismissDialogs() },
-                primaryButtonSpec: .default(Strings.Status.tryAgain),
+                primaryButtonData: .default(Strings.Status.tryAgain),
                 secondaryButtonText: Strings.General.cancel,
                 onPrimaryButtonClick: { delegate?.onLockClick() },
                 onSecondaryButtonClick: { delegate?.onDismissDialogs() }
@@ -238,13 +237,14 @@ private struct LockButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Icon.Lock(color: .Supla.onBackground)
+                Icon.Lock(size: Dimens.iconSize, color: .Supla.onBackground)
                 Text(Strings.Nfc.Detail.lockTag)
                     .fontLabelLarge()
             }
+            .buttonPaddings()
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(BorderedButtonStyle(backgroundColor: .Supla.surface))
+        .borderedButtonStyle(fillColor: .Supla.surface)
     }
 }
 

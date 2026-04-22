@@ -208,14 +208,14 @@ extension ThermostatScheduleDetailFeature {
                 .fontBodyLarge()
                 .textColor(.Supla.onSurfaceVariant)
             HStack(alignment: .center, spacing: Distance.tiny) {
-                MinusButton(.heat, heatValue, setpointData.minusDisabled)
+                MinusButton(type, value.wrappedValue, setpointData.minusDisabled)
                 AccessoryTextField(
                     text: value,
                     suffix: { AccessoryText(state.temperatureUnit.valueUnit.text) }
                 )
                 .keyboardType(.decimalPad)
                 .frame(width: 120)
-                PlusButton(.heat, heatValue, setpointData.plusDisabled)
+                PlusButton(type, value.wrappedValue, setpointData.plusDisabled)
             }
             .padding(.vertical, Distance.tiny)
         }
@@ -223,22 +223,20 @@ extension ThermostatScheduleDetailFeature {
         private func MinusButton(_ type: SetpointType, _ value: String, _ disabled: Bool) -> some SwiftUI.View {
             IconButton(
                 name: .Icons.minus,
-                color: .Supla.onPrimary,
                 action: { onMinus(type, value) }
             )
+            .filledButtonStyle()
             .disabled(disabled)
-            .buttonStyle(FilledIconStyle())
             .clipShape(Circle())
         }
         
         private func PlusButton(_ type: SetpointType, _ value: String, _ disabled: Bool) -> some SwiftUI.View {
             IconButton(
                 name: .Icons.plus,
-                color: .Supla.onPrimary,
                 action: { onPlus(type, value) }
             )
+            .filledButtonStyle()
             .disabled(disabled)
-            .buttonStyle(FilledIconStyle())
             .clipShape(Circle())
         }
         

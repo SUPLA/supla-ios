@@ -371,6 +371,7 @@
 "timer_detail_info_thermostat_off" = "De thermostaat wordt uitgeschakeld door\n%@";
 "timer_detail_info_thermostat_heating" = "De thermostaat staat in de verwarmingsmodus gedurende\n%@";
 "timer_detail_info_thermostat_cooling" = "De thermostaat staat in de koelmodus gedurende\n%@";
+"details_timer_info_thermostat_auto" = "De thermostaat staat in de automatische modus gedurende\n%@";
 "timer_detail_select_time" = "Geef de tijd op";
 "timer_detail_counter" = "Tegen";
 "timer_detail_calendar" = "Caledarz";
@@ -386,6 +387,9 @@
 "schedule_detail_program_dialog_header" = "Programma-instellingen %d";
 "hvac_mode_temperature_heating" = "Verwarmingstemperatuur";
 "hvac_mode_temperature_cooling" = "Koeltemperatuur";
+"hvac_mode_heating" = "Verwarming";
+"hvac_mode_cooling" = "Koeling";
+"hvac_mode_auto" = "Verwarming en koeling";
 "thermostat_thermometer_error" = "Fout bij het aflezen van de temperatuur";
 "thermostat_clock_error" = "Klokfout";
 "thermostat_calibration_error" = "Kalibratiefout";

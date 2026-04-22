@@ -92,7 +92,7 @@ extension DimmerDetailFeature {
 
 #Preview {
     let viewState = DimmerDetailBase.ViewState()
-    viewState.deviceStateData = DeviceStateData(
+    viewState.deviceStateData = DeviceState.Data(
         label: Strings.SwitchDetail.stateLabel,
         icon: .suplaIcon(name: "dimmer-on"),
         value: Strings.General.on

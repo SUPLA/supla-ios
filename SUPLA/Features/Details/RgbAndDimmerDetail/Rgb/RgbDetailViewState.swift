@@ -18,7 +18,7 @@
     
 extension RgbDetailFeature {
     class ViewState: ObservableObject {
-        @Published var deviceStateData: DeviceStateData? = nil
+        @Published var deviceStateData: DeviceState.Data? = nil
         @Published var issues: [ChannelIssueItem] = []
         @Published var offButtonState: SwitchButtonState? = nil
         @Published var onButtonState: SwitchButtonState? = nil

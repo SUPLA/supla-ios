@@ -135,16 +135,17 @@ extension ThermostatScheduleDetailFeature {
         private func Buttons() -> some SwiftUI.View {
             if (orientationObserver.orientation.isLandscape) {
                 HStack(spacing: Distance.tiny) {
-                    TextButton(
+                    TitleButton(
                         title: Strings.General.cancel,
-                        normalColor: .Supla.onBackground,
                         action: onDismiss
                     )
+                    .textButtonStyle()
                     .frame(maxWidth: .infinity)
-                    FilledButton(
-                        buttonSpec: .default(Strings.General.save),
+                    TitleButton(
+                        title: Strings.General.save,
                         action: onSave
                     )
+                    .filledButtonStyle()
                 }
                 .padding(.horizontal, Distance.default)
                 .padding(.vertical, Distance.small)

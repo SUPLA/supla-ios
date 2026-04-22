@@ -27,13 +27,14 @@ enum ThermostatStateHelper {
     
     static func currentStateIcon(_ mode: SuplaHvacMode?) -> String? { mode?.icon }
     
-    static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor { mode?.iconColor ?? .disabled }
+    static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor { mode?.uiColor ?? .disabled }
     
     static func currentStateValue(_ mode: SuplaHvacMode?, heatSetpoint: Float?, coolSetpoint: Float?) -> String {
         return switch (mode) {
         case .off: "OFF"
-        case .heat: heatSetpoint.toTemperatureString()
-        case .cool: coolSetpoint.toTemperatureString()
+        case .heat: heatSetpoint.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
+        case .cool: coolSetpoint.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
+        case .heatCool: "\(heatSetpoint.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)) - \(coolSetpoint.toTemperatureString(ValueFormat.companion.TemperatureWithDegree))"
         default: ""
         }
     }

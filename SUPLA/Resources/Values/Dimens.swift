@@ -27,7 +27,7 @@ struct Dimens {
     static let radiusSmall = CGFloat(4)
     
     static let buttonRadius = radiusDefault
-    static let buttonHeight = CGFloat(48)
+    static let buttonHeight = CGFloat(40)
     static let buttonSmallHeight = CGFloat(32)
     
     static let iconSize = CGFloat(24)

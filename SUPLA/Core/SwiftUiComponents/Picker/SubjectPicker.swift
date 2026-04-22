@@ -18,9 +18,8 @@
 
 import SwiftUI
 
-protocol SubjectPickerItem: Hashable, Identifiable {
+protocol SubjectPickerItem: PickerItem {
     var icon: IconResult? { get }
-    var label: String { get }
     var isLocation: Bool { get }
 }
 

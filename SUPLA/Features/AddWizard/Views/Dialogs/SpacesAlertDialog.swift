@@ -36,19 +36,21 @@ extension AddWizardFeature {
                     SpacesAlertMessage(networkName: networkName)
                 }
                 
-                BorderedButton(
+                TitleButton(
                     title: Strings.AddWizard.spacesAccept,
                     fullWidth: true,
                     action: { delegate?.onKeepUnchanged() }
                 )
+                .borderedButtonStyle()
                 .padding([.leading, .trailing], Distance.default)
                 .padding([.top], Distance.small)
                 
-                FilledButton(
+                TitleButton(
                     title: Strings.AddWizard.spacesModify,
                     fullWidth: true,
                     action: { delegate?.onRemoveWhiteCharacters() }
                 )
+                .filledButtonStyle()
                 .padding([.leading, .trailing, .bottom], Distance.default)
                 .padding([.top], Distance.small)
             }

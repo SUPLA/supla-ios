@@ -69,7 +69,7 @@ extension RgbDetailFeature {
         private func portrait() -> some SwiftUI.View {
             VStack(spacing: 0) {
                 if let stateData = viewState.deviceStateData {
-                    DeviceStateView(data: stateData)
+                    DeviceState.View(data: stateData)
                 }
                 ChannelIssuesView(issues: viewState.issues)
 
@@ -92,7 +92,7 @@ extension RgbDetailFeature {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
                     if let stateData = viewState.deviceStateData {
-                        DeviceStateView(data: stateData)
+                        DeviceState.View(data: stateData)
                     }
                     ChannelIssuesView(issues: viewState.issues)
                     colorAndBrightnessBox()
@@ -199,7 +199,7 @@ extension RgbDetailFeature {
 
 #Preview {
     let viewState = RgbDetailFeature.ViewState()
-    viewState.deviceStateData = DeviceStateData(
+    viewState.deviceStateData = DeviceState.Data(
         label: Strings.SwitchDetail.stateLabel,
         icon: .suplaIcon(name: "rgb-on"),
         value: Strings.General.on

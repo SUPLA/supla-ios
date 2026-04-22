@@ -252,6 +252,9 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 if let setpointHeat = state.setpointHeat, newTemperature > setpointHeat {
                     return resultState.changing(path: \.setpointCool, to: newTemperature)
                         .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                } else if (state.setpointHeat == nil) {
+                    return resultState.changing(path: \.setpointCool, to: newTemperature)
+                        .changing(path: \.mode, to: getModeForOffChanges(state: state))
                 } else {
                     return resultState
                 }
@@ -264,6 +267,9 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                     )
                 )
                 if let setpointCool = state.setpointCool, newTemperature < setpointCool {
+                    return resultState.changing(path: \.setpointHeat, to: newTemperature)
+                        .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                } else if (state.setpointCool == nil) {
                     return resultState.changing(path: \.setpointHeat, to: newTemperature)
                         .changing(path: \.mode, to: getModeForOffChanges(state: state))
                 } else {

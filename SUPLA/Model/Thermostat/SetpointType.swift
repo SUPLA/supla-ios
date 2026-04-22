@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import SwiftUI
+
 enum SetpointEvent {
     case mooving(setpointType: SetpointType, position: CGFloat)
     case finished
@@ -25,13 +27,24 @@ enum SetpointType {
     case heat
     case cool
     
-    var color: UIColor {
+    var uiColor: UIColor {
         get {
             switch (self) {
             case .heat:
                 return .error
             case .cool:
                 return .blue
+            }
+        }
+    }
+    
+    var color: Color {
+        get {
+            switch (self) {
+            case .heat:
+                return .Supla.error
+            case .cool:
+                return .Supla.secondary
             }
         }
     }
