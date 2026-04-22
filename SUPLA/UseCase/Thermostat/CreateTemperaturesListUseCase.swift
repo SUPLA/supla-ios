@@ -40,7 +40,7 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
         
         var result: [MeasurementValue] = []
         if (children.filter({ $0.relationType == .mainThermometer }).isEmpty) {
-            result.append(MeasurementValue(id: result.count, icon: .suplaIcon(name: .Icons.fncUnknown), value: NO_VALUE_TEXT))
+            result.append(MeasurementValue(id: result.count, icon: .originalSuplaIcon(name: .Icons.fncUnknown), value: NO_VALUE_TEXT))
         }
         
         for child in children {

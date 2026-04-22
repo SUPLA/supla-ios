@@ -44,7 +44,7 @@ extension GetChannelBaseIconUseCase {
             return invoke(iconData: group.getIconData(state: state))
         }
 
-        return .suplaIcon(name: .Icons.fncUnknown)
+        return .originalSuplaIcon(name: .Icons.fncUnknown)
     }
 }
 
@@ -69,7 +69,7 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
         case SuplaFunction.rgbLighting.value,
              SuplaFunction.dimmer.value,
              SuplaFunction.dimmerAndRgbLighting.value: .originalSuplaIcon(name: name)
-        default: .suplaIcon(name: name)
+        default: .originalSuplaIcon(name: name)
         }
     }
 

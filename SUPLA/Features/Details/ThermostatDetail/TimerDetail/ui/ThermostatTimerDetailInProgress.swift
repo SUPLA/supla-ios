@@ -100,6 +100,7 @@ extension ThermostatTimerDetailFeature {
                 TimerProgressView(indeterminate: true)
                 Text(timerString)
                     .fontTitleLarge()
+                    .multilineTextAlignment(.center)
                     .onReceive(timer) { _ in
                         timerString = leftTimeString
                     }
@@ -165,6 +166,18 @@ extension ThermostatTimerDetailFeature {
             value: "OFF"
         ),
         timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 154),
+        delegate: nil
+    )
+}
+
+#Preview("with days") {
+    ThermostatTimerDetailFeature.InProgressView(
+        deviceStateData: DeviceState.Data(
+            label: "STATE UNTIL 17.04.2026 00:59:",
+            icon: .suplaIcon(name: .Icons.powerButton),
+            value: "OFF"
+        ),
+        timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 100054),
         delegate: nil
     )
 }
