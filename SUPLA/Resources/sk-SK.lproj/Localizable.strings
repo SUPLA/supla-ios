@@ -331,6 +331,7 @@
 "settings_dark_mode" = "Nočný režim";
 "settings_show_bottom_menu" = "Zobraziť spodnú ponuku";
 "app_settings_temperature_precision" = "Presnosť teploty";
+"settings_show_unavailable_channels" = "Skryť kanály, ktoré nie sú dostupné z dôvodu konfigurácie zariadenia";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Všeobecné";

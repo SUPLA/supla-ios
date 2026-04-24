@@ -104,6 +104,12 @@ class GlobalSettingsMock: GlobalSettings {
         set { showBottomMenuValues.append(newValue) }
     }
     
+    let hideUnavailableChannelsMock: FunctionMock<Bool, Bool> = .init()
+    var hideUnavailableChannels: Bool {
+        get { hideUnavailableChannelsMock.get() }
+        set { hideUnavailableChannelsMock.set(newValue) }
+    }
+    
     var showBottomLabelsReturns: Bool = true
     var showBottomLabelsValues: [Bool] = []
     var showBottomLabels: Bool {

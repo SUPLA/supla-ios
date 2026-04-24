@@ -94,6 +94,11 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 selected: settings.showBottomLabels,
                 callback: { [weak self] in self?.settings.showBottomLabels = $0 }
             ),
+            .switchItem(
+                title: Strings.AppSettings.hideUnavailableChannels,
+                selected: settings.hideUnavailableChannels,
+                callback: { [weak self] in self?.settings.hideUnavailableChannels = $0 }
+            ),
             .rsOpeningPercentageItem(
                 opening: settings.showOpeningPercent,
                 callback: { [weak self] in self?.settings.showOpeningPercent = $0 }

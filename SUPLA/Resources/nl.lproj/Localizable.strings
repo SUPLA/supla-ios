@@ -331,6 +331,7 @@
 "settings_lock_screen_none" = "Geen";
 "settings_show_bottom_menu" = "Menu onderaan tonen";
 "app_settings_temperature_precision" = "Temperatuurnauwkeurigheid";
+"settings_show_unavailable_channels" = "Verberg kanalen die niet beschikbaar zijn vanwege de apparaatconfiguratie";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Algemeen";

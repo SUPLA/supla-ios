@@ -331,6 +331,7 @@
 "settings_show_labels" = "Afficher les étiquettes dans le menu inférieur";
 "settings_dark_mode" = "Mode nuit";
 "app_settings_temperature_precision" = "Précision de la température";
+"settings_show_unavailable_channels" = "Masquer les canaux indisponibles en raison de la configuration de l’appareil";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Générale";

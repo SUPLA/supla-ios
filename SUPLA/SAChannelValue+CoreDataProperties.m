@@ -24,6 +24,7 @@
 	return [NSFetchRequest fetchRequestWithEntityName:@"SAChannelValue"];
 }
 
+@dynamic last_online_state;
 @dynamic online;
 @dynamic sub_value;
 @dynamic sub_value_type;

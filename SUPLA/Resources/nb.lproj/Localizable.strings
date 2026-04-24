@@ -331,6 +331,7 @@
 "settings_lock_screen_none" = "Ingen";
 "settings_show_bottom_menu" = "Vis bunnmeny";
 "app_settings_temperature_precision" = "Temperaturpresisjon";
+"settings_show_unavailable_channels" = "Skjul kanaler som ikke er tilgjengelige på grunn av enhetskonfigurasjonen";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generelt";

@@ -77,6 +77,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showBottomMenu, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: { _ in }),
+                .switchItem(title: Strings.AppSettings.hideUnavailableChannels, selected: false, callback: { _ in }),
                 .rsOpeningPercentageItem(opening: true, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
@@ -125,6 +126,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showBottomMenu, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: { _ in }),
+                .switchItem(title: Strings.AppSettings.hideUnavailableChannels, selected: false, callback: { _ in }),
                 .rsOpeningPercentageItem(opening: false, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
@@ -344,7 +346,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
-    func test_shouldSaveOpeningClosingPercentage() {
+    func test_shouldSaveHideUnavailableChannels() {
         // given
         setupViewData()
         
@@ -359,6 +361,42 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         }
         
         switch (list[0].items[7]) {
+        case .switchItem(_, _, let callback, _):
+            callback(true)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events.count, 0)
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(groupSharedSettings.temperatureUnitMock.parameters.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+        
+        XCTAssertEqual(settings.hideUnavailableChannelsMock.parameters, [true])
+    }
+    
+    func test_shouldSaveOpeningClosingPercentage() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[8]) {
         case .rsOpeningPercentageItem(_, let callback):
             callback(true)
         default:
@@ -392,7 +430,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[8]) {
+        switch (list[0].items[9]) {
         case .darkModeItem(_, let callback):
             callback(.always)
         default:
@@ -427,7 +465,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[9]) {
+        switch (list[0].items[10]) {
         case .lockScreenItem(_, let callback):
             callback(.application)
         default:
@@ -465,7 +503,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[9]) {
+        switch (list[0].items[10]) {
         case .lockScreenItem(_, let callback):
             callback(.accounts)
         default:
@@ -503,7 +541,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[9]) {
+        switch (list[0].items[10]) {
         case .lockScreenItem(_, let callback):
             callback(.none)
         default:
@@ -540,7 +578,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[9]) {
+        switch (list[0].items[10]) {
         case .lockScreenItem(_, let callback):
             callback(.application)
         default:
@@ -577,7 +615,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[10]) {
+        switch (list[0].items[11]) {
         case .batteryLevelWarning(_, let callback):
             callback(20)
         default:
@@ -612,7 +650,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[11]) {
+        switch (list[0].items[12]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:
@@ -684,6 +722,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         settings.autohideButtonsReturns = autoHide
         settings.showChannelInfoReturns = infoButtons
         settings.showOpeningPercentReturns = showOpening
+        settings.hideUnavailableChannelsMock.returns = .single(false)
         let notificationSettings = AppSettingsTestUserNotificationSettings(coder: AppSettingsTestCoder())!
         notificationSettings.status = notificationStatus
         notificationCenter.notificationSettings = notificationSettings

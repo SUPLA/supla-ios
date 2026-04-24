@@ -329,6 +329,7 @@
 "settings_lock_screen_none" = "Netýká se";
 "settings_show_bottom_menu" = "Zobrazit dolní nabídku";
 "app_settings_temperature_precision" = "Přesnost teploty";
+"settings_show_unavailable_channels" = "Skrýt kanály, které nejsou dostupné kvůli konfiguraci zařízení";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Obecné";

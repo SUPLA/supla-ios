@@ -30,6 +30,7 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var showChannelInfo: Bool { get set }
     var showBottomMenu: Bool { get set }
     var showBottomLabels: Bool { get set }
+    var hideUnavailableChannels: Bool { get set }
     var channelHeight: ChannelHeight { get set }
     var showOpeningPercent: Bool { get set }
     var darkMode: DarkModeSetting { get set }
@@ -152,6 +153,20 @@ class GlobalSettingsImpl: GlobalSettings {
             return defaults.bool(forKey: showBottomLabelsKey)
         }
         set { defaults.set(newValue, forKey: showBottomLabelsKey) }
+    }
+    
+    
+    
+    private let hideUnavailableChannelsKey = "supla_config_hide_unavailable_channels"
+    var hideUnavailableChannels: Bool {
+        get {
+            if (defaults.object(forKey: hideUnavailableChannelsKey) == nil) {
+                return false
+            }
+            
+            return defaults.bool(forKey: hideUnavailableChannelsKey)
+        }
+        set { defaults.set(newValue, forKey: hideUnavailableChannelsKey) }
     }
     
     private let channelHeightKey = "supla_config_channel_height"
