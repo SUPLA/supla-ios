@@ -2951,6 +2951,7 @@
 		A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettingsMock.swift; sourceTree = "<group>"; };
 		A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIsSlaveThermostatUseCase.swift; sourceTree = "<group>"; };
 		A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePrecisionCell.swift; sourceTree = "<group>"; };
+		A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 27.xcdatamodel"; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
 		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
@@ -10296,6 +10297,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */,
 				A5BF4F582F3C7C7100F5DE81 /* SUPLA 26.xcdatamodel */,
 				A55AE82A2EEC0E5E006E0AA9 /* SUPLA 25.xcdatamodel */,
 				A5DB3ACA2E9E3DAD007DAD9B /* SUPLA 24.xcdatamodel */,
@@ -10323,7 +10325,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A5BF4F582F3C7C7100F5DE81 /* SUPLA 26.xcdatamodel */;
+			currentVersion = A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

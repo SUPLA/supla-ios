@@ -331,6 +331,7 @@
 "settings_show_labels" = "Prikaži oznake v spodnjem meniju";
 "settings_dark_mode" = "Nočni pogled";
 "app_settings_temperature_precision" = "Natančnost temperature";
+"settings_show_unavailable_channels" = "Skrij kanale, ki niso na voljo zaradi konfiguracije naprave";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Splošno";

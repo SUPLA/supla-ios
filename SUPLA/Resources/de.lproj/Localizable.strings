@@ -319,6 +319,7 @@
 "settings_lock_screen_accounts" = "Konten";
 "settings_battery_level_warnign" = "Batteriestandswarnung";
 "app_settings_temperature_precision" = "Temperaturpräzision";
+"settings_show_unavailable_channels" = "Kanäle ausblenden, die aufgrund der Gerätekonfiguration nicht verfügbar sind";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";

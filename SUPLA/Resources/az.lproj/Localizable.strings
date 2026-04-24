@@ -348,6 +348,7 @@
 "settings_lock_screen_accounts" = "Hesablar";
 "settings_battery_level_warnign" = "Aşağı batareya xəbərdarlığı";
 "app_settings_temperature_precision" = "Temperatur dəqiqliyi";
+"settings_show_unavailable_channels" = "Cihaz konfiqurasiyasına görə əlçatan olmayan kanalları gizlət";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ümumi";

@@ -16,27 +16,22 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
+    private lazy var useCase: CreateProfileChannelsListUseCase! = CreateProfileChannelsListUseCaseImpl()
     
-    private lazy var useCase: CreateProfileChannelsListUseCase! = { CreateProfileChannelsListUseCaseImpl() }()
-    
-    private lazy var channelRepository: ChannelRepositoryMock! = {
-        ChannelRepositoryMock()
-    }()
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = {
-        ChannelRelationRepositoryMock()
-    }()
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
+    private lazy var channelRepository: ChannelRepositoryMock! = ChannelRepositoryMock()
+    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
+    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = ChannelRelationRepositoryMock()
     
     override func setUp() {
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any ChannelRelationRepository).self, channelRelationRepository!)
@@ -44,6 +39,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
     
     override func tearDown() {
         useCase = nil
+        settings = nil
         channelRepository = nil
         profileRepository = nil
         channelRelationRepository = nil
@@ -73,10 +69,11 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel3.remote_id = 3
         channel3.location_id = 2
         
-        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
+        settings.hideUnavailableChannelsMock.returns = .single(false)
+        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
         
         let relation = SAChannelRelation.mock(channelId: 3, type: .default)
-        channelRelationRepository.getParentsMapReturns = Observable.just([1 : [relation]])
+        channelRelationRepository.getParentsMapReturns = Observable.just([1: [relation]])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -95,6 +92,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
             .location(location: location2),
             .channelBase(channelBase: channel2, children: [])
         ])
+        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
     }
     
     func test_shouldNotProvideItems_whenLocationIsCollapsed() {
@@ -116,7 +114,8 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         let channel2 = SAChannel(testContext: nil)
         channel2.location = location2
         
-        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        settings.hideUnavailableChannelsMock.returns = .single(true)
+        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2]))
         channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
@@ -135,6 +134,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
             .location(location: location2),
             .channelBase(channelBase: channel2, children: [])
         ])
+        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, false)])
     }
     
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
@@ -155,7 +155,8 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         let channel2 = SAChannel(testContext: nil)
         channel2.location = location2
         
-        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        settings.hideUnavailableChannelsMock.returns = .single(false)
+        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2]))
         channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
@@ -174,6 +175,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
             .channelBase(channelBase: channel1, children: []),
             .channelBase(channelBase: channel2, children: [])
         ])
+        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
     }
     
     func test_shouldLoadChannelWithChildren() {
@@ -202,7 +204,9 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         
         let relation1 = SAChannelRelation.mock(1, channelId: 2, type: .mainThermometer)
         let relation2 = SAChannelRelation.mock(1, channelId: 3, type: .auxThermometerFloor)
-        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
+        
+        settings.hideUnavailableChannelsMock.returns = .single(false)
+        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
         channelRelationRepository.getParentsMapReturns = Observable.just([
             1: [relation1, relation2]
         ])
@@ -223,8 +227,8 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
             .channelBase(channelBase: channel1, children: [
                 ChannelChild(channel: channel2, relation: relation1),
                 ChannelChild(channel: channel3, relation: relation2)
-            ]),
+            ])
         ])
+        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
     }
 }
-

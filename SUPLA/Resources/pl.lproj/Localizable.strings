@@ -348,6 +348,7 @@
 "settings_lock_screen_accounts" = "Konta";
 "settings_battery_level_warnign" = "Sygnalizacja słabej baterii";
 "app_settings_temperature_precision" = "Precyzja temperatury";
+"settings_show_unavailable_channels" = "Ukryj kanały, które są niedostępne ze względu na konfigurację urządzenia";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";

@@ -331,7 +331,7 @@
 "settings_lock_screen_none" = "Немає";
 "settings_show_bottom_menu" = "Показати нижнє меню";
 "app_settings_temperature_precision" = "Точність температури";
-
+"settings_show_unavailable_channels" = "Приховати канали, які недоступні через конфігурацію пристрою";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Загальні";

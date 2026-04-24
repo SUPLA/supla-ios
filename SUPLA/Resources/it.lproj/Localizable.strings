@@ -348,6 +348,7 @@
 "settings_lock_screen_app" = "Applicazione";
 "settings_lock_screen_accounts" = "Account";
 "app_settings_temperature_precision" = "Precisione della temperatura";
+"settings_show_unavailable_channels" = "Nascondi i canali non disponibili a causa della configurazione del dispositivo";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generali";

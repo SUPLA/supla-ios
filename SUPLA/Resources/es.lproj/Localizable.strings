@@ -332,6 +332,7 @@
 "settings_dark_mode" = "Modo nocturno";
 "settings_show_bottom_menu" = "Mostrar menú inferior";
 "app_settings_temperature_precision" = "Precisión de temperatura";
+"settings_show_unavailable_channels" = "Ocultar los canales que no están disponibles debido a la configuración del dispositivo";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";

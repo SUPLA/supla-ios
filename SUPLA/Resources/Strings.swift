@@ -61,6 +61,7 @@ struct Strings {
         static let lockScreenApp = "settings_lock_screen_app".toLocalized()
         static let lockScreenAccounts = "settings_lock_screen_accounts".toLocalized()
         static let batteryLevelWarning = "settings_battery_level_warnign".toLocalized()
+        static let hideUnavailableChannels = "settings_show_unavailable_channels".toLocalized()
     }
     
     struct CreateProfile {

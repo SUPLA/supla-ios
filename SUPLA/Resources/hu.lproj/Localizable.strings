@@ -159,6 +159,7 @@
 "settings_lock_screen_accounts" = "Számlái";
 "settings_battery_level_warnign" = "Alacsony töltöttség figyelmeztetés";
 "app_settings_temperature_precision" = "Hőmérséklet-pontosság";
+"settings_show_unavailable_channels" = "Az eszköz konfigurációja miatt nem elérhető csatornák elrejtése";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Általános";

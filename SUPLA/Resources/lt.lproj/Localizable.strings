@@ -333,6 +333,7 @@
 "settings_lock_screen_none" = "Nėra";
 "settings_show_bottom_menu" = "Rodyti apatinį meniu";
 "app_settings_temperature_precision" = "Temperatūros tikslumas";
+"settings_show_unavailable_channels" = "Slėpti kanalus, kurie nepasiekiami dėl įrenginio konfigūracijos";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Bendrieji";

@@ -34,8 +34,10 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
         return profileRepository
             .getActiveProfile()
             .flatMapFirst { profile in
-                Observable.zip(
-                    self.channelRepository.getAllVisibleChannels(forProfile: profile),
+                @Singleton<GlobalSettings> var settings
+                
+                return Observable.zip(
+                    self.channelRepository.getAllVisibleChannels(forProfile: profile, withUnavailable: !settings.hideUnavailableChannels),
                     self.channelRelationRepository.getParentsMap(for: profile),
                     resultSelector: { channels, listOfParents in self.toList(channels, listOfParents) }
                 )

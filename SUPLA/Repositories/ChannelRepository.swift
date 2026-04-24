@@ -21,8 +21,8 @@ import Foundation
 import RxSwift
 
 protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannel {
-    func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
-    func getAllVisibleChannels(forProfileId profileId: Int32) -> Observable<[SAChannel]>
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]>
+    func getAllVisibleChannels(forProfileId profileId: Int32, withUnavailable: Bool) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
     func getAllChannels() -> Observable<[SAChannel]>
@@ -37,15 +37,30 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
     func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32>
 }
 
-class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
-    
+extension ChannelRepository {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
-        getAllVisibleChannels(forProfileId: profile.id)
+        getAllVisibleChannels(forProfile: profile, withUnavailable: true)
     }
     
     func getAllVisibleChannels(forProfileId profileId: Int32) -> Observable<[SAChannel]> {
-        let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id = %d", profileId))
+        getAllVisibleChannels(forProfileId: profileId, withUnavailable: true)
+    }
+}
+
+class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]> {
+        getAllVisibleChannels(forProfileId: profile.id, withUnavailable: withUnavailable)
+    }
+    
+    func getAllVisibleChannels(forProfileId profileId: Int32, withUnavailable: Bool) -> Observable<[SAChannel]> {
+        let request =
+            if (withUnavailable) {
+                SAChannel.fetchRequest()
+                    .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id == %d", profileId))
+            } else {
+                SAChannel.fetchRequest()
+                    .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id == %d AND (value.last_online_state == nil OR value.last_online_state != 2)", profileId))
+            }
         
         let localeAwareCompare = #selector(NSString.localizedStandardCompare)
         request.sortDescriptors = [
