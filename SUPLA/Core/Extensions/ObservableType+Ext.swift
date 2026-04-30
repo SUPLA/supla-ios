@@ -37,7 +37,7 @@ extension ObservableType {
     
     func asDriver() -> Driver<DriverResult<Element>> {
         map { DriverResult.success(value: $0) }
-            .asDriver { Driver.just(DriverResult.error(error: $0))}
+            .asDriver { Driver.just(DriverResult.error(error: $0)) }
     }
 }
 
@@ -53,14 +53,35 @@ extension Single {
 }
 
 extension Observable {
-    func subscribeAwait() async throws -> Element? {
-        try? await withUnsafeThrowingContinuation { continuation in
-            _ = subscribe(
-                onNext: { continuation.resume(returning: $0) },
-                onError: { continuation.resume(throwing: $0) }
-            )
+    func awaitFirstElement() async throws -> Element? {
+        let box = DisposableBox()
+        var resumed = false
+
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { cont in
+                box.disposable = self
+                    .take(1)
+                    .subscribe(
+                        onNext: {
+                            resumed = true
+                            cont.resume(returning: $0)
+                        },
+                        onError: {
+                            resumed = true
+                            cont.resume(throwing: $0)
+                        },
+                        onCompleted: {
+                            if (!resumed) {
+                                cont.resume(throwing: RxAsyncError.completedWithoutValue)
+                            }
+                        }
+                    )
+            }
+        } onCancel: {
+            box.disposable?.dispose()
         }
     }
+
     func subscribeSynchronous() throws -> Element? {
         let subscriber = SynchronousSubscriber(observable: self)
         return try subscriber.subscribeAndWait()
@@ -122,4 +143,13 @@ final class SynchronousSubscriber<T> {
         
         return value
     }
+}
+
+enum RxAsyncError: Error {
+    case completedWithoutValue
+}
+
+final class DisposableBox {
+    var disposable: Disposable?
+    deinit { disposable?.dispose() }
 }

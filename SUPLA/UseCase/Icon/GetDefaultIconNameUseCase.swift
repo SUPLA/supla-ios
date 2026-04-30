@@ -126,6 +126,8 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         DigiglassHorizontalIconNameProducer(),
         DigiglassVerticalIconNameProducer(),
         ThermostatIconNameProducer(),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER, name: .Icons.fncThermostatDhw, withSuffix: false),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL, name: .Icons.fncThermostatHeatCool, withSuffix: false),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card"),
         AlarmArmamentIconNameProducer(),
         GeneralPurposeMeasurementIconNameProducer(),

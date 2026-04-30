@@ -79,12 +79,10 @@ extension AddWizardFeature {
                 }
 
                 SuplaCore.Dialog.DoubleButtons(
-                    onNegativeClick: { delegate?.onCloseSetPasswordDialog() },
-                    onPositiveClick: { delegate?.onSetPassword(password, passwordRepeat) },
+                    onSecondaryClick: { delegate?.onCloseSetPasswordDialog() },
+                    onPrimaryClick: { delegate?.onSetPassword(password, passwordRepeat) },
                     processing: state.processing,
-                    positiveDisabled: password.isEmpty,
-                    negativeText: Strings.General.cancel,
-                    positiveText: Strings.General.ok
+                    primaryDisabled: password.isEmpty
                 )
             }
         }

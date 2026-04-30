@@ -28,7 +28,6 @@
 @class SADatabase;
 @class SASettingsVC;
 @class SACreateAccountVC;
-@protocol ProfileManager;
 
 @protocol SuplaAppApi <NSObject>
 
@@ -54,8 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password;
 +(BOOL) isClientRegistered;
 +(SADatabase *) DB;
-+(nonnull id<ProfileManager>)profileManager;
-
 
 +(void) SuplaClientTerminate;
 +(void) SuplaClientWaitForTerminate;

@@ -22,33 +22,3 @@ extension CarPlayListFeature {
         @Published var items: [ReadCarPlayItems.Item] = []
     }
 }
-
-extension Action {
-    func carPlayAction(function: SuplaFunction? = nil) -> CarPlayAction? {
-        switch (self) {
-        case .open: .open
-        case .close: .close
-        case .shut:
-            function == .projectorScreen || function == .rollerGarageDoor ? .collapse : .shut
-        case .reveal:
-            function == .projectorScreen || function == .rollerGarageDoor ? .expand : .reveal
-        case .turnOn: .turnOn
-        case .turnOff: .turnOff
-        case .revealPartially: nil
-        case .shutPartially: nil
-        case .setRgbwParameters: nil
-        case .openClose: .openClose
-        case .stop: .stop
-        case .toggle: .toggle
-        case .upOrStop: nil
-        case .downOrStop: nil
-        case .stepByStep: nil
-        case .up: nil
-        case .down: nil
-        case .setHvacParameters: nil
-        case .execute: .execute
-        case .interrupt: .interrupt
-        case .interruptAndExecute: .interruptAndExecute
-        }
-    }
-}

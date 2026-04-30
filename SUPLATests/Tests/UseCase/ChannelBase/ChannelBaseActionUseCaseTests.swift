@@ -20,12 +20,12 @@
 import XCTest
 
 final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> {
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleAction.Mock! = ExecuteSimpleAction.Mock()
     
     private lazy var useCase: ChannelBaseActionUseCase! = ChannelBaseActionUseCaseImpl()
     
     override func setUp() {
-        DiContainer.register(ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.register(ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
         
         executeSimpleActionUseCase.returns = .just(())
     }
@@ -50,7 +50,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.upOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenRoofWindow_oldFirmware() {
@@ -65,7 +65,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.reveal, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.reveal, SubjectType.channel, remoteId)])
     }
     
     func test_shouldCloseRollerShutter() {
@@ -81,7 +81,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.downOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldCloseRollerShutter_oldFirmware() {
@@ -96,7 +96,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.shut, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.shut, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenFacadeBlind() {
@@ -112,7 +112,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.upOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldCloseProjectorScreen() {
@@ -128,7 +128,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.upOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenGarageDoor() {
@@ -144,7 +144,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.upOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenProjectorScreen() {
@@ -160,7 +160,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.downOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldTurnOnThermostat() {
@@ -175,7 +175,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.turnOn, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.turnOn, SubjectType.channel, remoteId)])
     }
     
     func test_shouldTurnOffDomesticHotWater() {
@@ -190,7 +190,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.turnOff, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.turnOff, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenCloseWindowGroup() {
@@ -206,7 +206,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<ChannelBaseActionResult> 
         
         // then
         assertEvents([.next(.success), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.group, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(ActionId.downOrStop, SubjectType.group, remoteId)])
     }
     
     func test_shouldJustQuitWhenNoActionFound() {

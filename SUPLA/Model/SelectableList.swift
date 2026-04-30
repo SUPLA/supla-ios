@@ -17,6 +17,6 @@
  */
 
 struct SelectableList<T: Equatable>: Equatable, Changeable {
-    var selected: T
+    var selected: T?
     let items: [T]
 }

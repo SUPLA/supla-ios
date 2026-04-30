@@ -27,7 +27,7 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
     
     private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
     private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = GetChannelBaseStateUseCaseMock()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleAction.Mock! = ExecuteSimpleAction.Mock()
     private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     private lazy var suplaClientProvider: SuplaClientProviderMock! = SuplaClientProviderMock()
     private lazy var getChannelBaseIconUseCase: GetChannelBaseIconUseCaseMock! = GetChannelBaseIconUseCaseMock()
@@ -35,7 +35,7 @@ final class SwitchGeneralVMTest: SuplaCore.ViewModelTest<SwitchGeneralFeature.Vi
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
         DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCase!)

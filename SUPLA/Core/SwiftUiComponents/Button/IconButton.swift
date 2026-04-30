@@ -15,56 +15,56 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
 import SwiftUI
 
 struct IconButton: View {
     let name: String
-    let color: Color
-    let role: ButtonRole?
+    let size: ButtonSize
     let action: () -> Void
-    
+
     init(
         name: String,
-        color: Color = .Supla.primary,
-        role: ButtonRole? = nil,
+        size: ButtonSize = .icon,
         action: @escaping () -> Void
     ) {
         self.name = name
-        self.color = color
-        self.role = role
+        self.size = size
         self.action = action
     }
 
     var body: some View {
-        Button(role: role, action: action) {
-            Image(name)
-                .renderingMode(.template)
-                .foregroundColor(color)
-                .padding(12)
+        Button(action: action) {
+            ZStack {
+                Image(name)
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+            }
+            .padding(size.paddings)
+            .frame(width: size.height, height: size.height)
         }
     }
 }
 
-struct BorderedIconStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        let color = configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
-        configuration.label
-            .foregroundColor(.Supla.onBackground)
-            .font(.Supla.labelLarge)
-            .cornerRadius(Dimens.buttonRadius)
-            .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(color, lineWidth: 1))
+extension View {
+    func iconButtonStyle(colors: ButtonLayerColors = .primary) -> some View {
+        self.buttonStyle(IconButtonStyle(colors: colors))
     }
 }
 
-struct FilledIconStyle: ButtonStyle {
+private struct IconButtonStyle: ButtonStyle {
+    let colors: ButtonLayerColors
+
+    @Environment(\.isEnabled) private var isEnabled
+
+    init(colors: ButtonLayerColors = .primary) {
+        self.colors = colors
+    }
+
     func makeBody(configuration: Configuration) -> some View {
-        let color = configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
         configuration.label
-            .foregroundColor(.Supla.onPrimary)
-            .font(.Supla.labelLarge)
-            .background(color)
+            .foregroundColor(colors.value(disabled: !isEnabled, pressed: configuration.isPressed))
             .cornerRadius(Dimens.buttonRadius)
     }
 }
@@ -72,9 +72,12 @@ struct FilledIconStyle: ButtonStyle {
 #Preview {
     VStack {
         IconButton(name: .Icons.arrowClose) {}
+            .buttonStyle(IconButtonStyle())
         IconButton(name: .Icons.arrowRight) {}
-            .buttonStyle(BorderedIconStyle())
-        IconButton(name: .Icons.arrowRight, color: .Supla.onPrimary) {}
-            .buttonStyle(FilledIconStyle())
+            .borderedButtonStyle()
+        IconButton(name: .Icons.arrowRight) {}
+            .filledButtonStyle()
+        IconButton(name: .Icons.minus) {}
+            .borderedButtonStyle(colors: .criticalBordered, radius: Dimens.iconSize)
     }
 }

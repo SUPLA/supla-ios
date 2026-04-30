@@ -79,7 +79,7 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
             case .thermostatList:
                 viewControllers.append(thermostatList())
             case .schedule:
-                viewControllers.append(scheduleDetail())
+                viewControllers.append(thermostatScheduleDetail())
             case .thermostatHistory:
                 viewControllers.append(thermostatHistoryDetail())
             case .thermometerHistory:
@@ -197,14 +197,13 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
         return vc
     }
     
-    private func scheduleDetail() -> ScheduleDetailVC {
-        let vc = ScheduleDetailVC(item: item)
+    private func thermostatScheduleDetail() -> UIViewController {
+        let vc = ThermostatScheduleDetailFeature.ViewController.create(item: item)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabSchedule : nil,
             image: .iconSchedule,
             tag: DetailTabTag.Schedule.rawValue
         )
-        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
@@ -230,14 +229,13 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
         return vc
     }
     
-    private func thermostatTimerDetail() -> ThermostatTimerDetailVC {
-        let vc = ThermostatTimerDetailVC(remoteId: item.remoteId)
+    private func thermostatTimerDetail() -> UIViewController {
+        let vc = ThermostatTimerDetailFeature.ViewController.create(item: item)
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabTimer : nil,
             image: .iconTimer,
             tag: DetailTabTag.Timer.rawValue
         )
-        vc.navigationBarMaintainedByParent = true
         return vc
     }
     

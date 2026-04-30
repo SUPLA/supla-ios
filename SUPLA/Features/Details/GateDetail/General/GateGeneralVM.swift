@@ -22,7 +22,7 @@ extension GateGeneralFeature {
         @Singleton private var readGroupWithChannelsUseCase: ReadGroupWithChannels.UseCase
         @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
         @Singleton private var getChannelBaseStateUseCase: GetChannelBaseStateUseCase
-        @Singleton private var executeSimpleActionUseCase: ExecuteSimpleActionUseCase
+        @Singleton private var executeSimpleActionUseCase: ExecuteSimpleAction.UseCase
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
         
         private var remoteId: Int32? = nil
@@ -165,7 +165,7 @@ extension GateGeneralFeature {
             }
         }
         
-        private func triggerAction(_ action: Action) {
+        private func triggerAction(_ action: ActionId) {
             if let remoteId, let type {
                 executeSimpleActionUseCase.invoke(action: action, type: type, remoteId: remoteId)
                     .asDriverWithoutError()

@@ -18,10 +18,6 @@
 
 import SwiftUI
 
-protocol PickerItem: Hashable, Identifiable {
-    var label: String { get }
-}
-
 extension SuplaCore {
     enum PickerStyle {
         case text
@@ -29,19 +25,19 @@ extension SuplaCore {
     }
 
     struct Picker<T: PickerItem>: View {
-        var selected: Binding<T>
+        var selected: Binding<T?>
         let items: [T]
 
         private var style: PickerStyle = .text
         @Environment(\.isEnabled) private var isEnabled
 
-        init(selected: Binding<T>, items: [T]) {
+        init(selected: Binding<T?>, items: [T]) {
             self.selected = selected
             self.items = items
         }
 
-        init(_ selectableList: SelectableList<T>, onChange: @escaping (T) -> Void) {
-            self.selected = Binding<T>(
+        init(_ selectableList: SelectableList<T>, onChange: @escaping (T?) -> Void) {
+            self.selected = Binding<T?>(
                 get: { selectableList.selected },
                 set: { onChange($0) }
             )
@@ -79,7 +75,7 @@ extension SuplaCore {
 
         private func textStyledPickerLabel() -> some View {
             HStack {
-                Text(selected.wrappedValue.label)
+                Text(selected.wrappedValue?.label ?? "---")
                     .fontBodyMedium()
                     .textColor(isEnabled ? Color.Supla.onBackground : Color.Supla.disabled)
                 Image(.Icons.arrowDown)
@@ -93,7 +89,7 @@ extension SuplaCore {
 
         private func dialogStyledPickerLabel() -> some View {
             HStack {
-                Text(selected.wrappedValue.label)
+                Text(selected.wrappedValue?.label ?? "---")
                     .fontBodyMedium()
                     .textColor(isEnabled ? Color.Supla.onBackground : Color.Supla.disabled)
                 Spacer()

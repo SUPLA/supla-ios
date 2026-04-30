@@ -34,7 +34,10 @@ extension IconResult {
     
     var image: Image {
         switch (self) {
-        case .suplaIcon(let name), .originalSuplaIcon(let name):
+        case .suplaIcon(let name):
+            return Image(name)
+                .renderingMode(.template)
+        case .originalSuplaIcon(let name):
             return Image(name)
         case .userIcon(let profileId, let iconId, let type, let defaultName):
             @Singleton<UserIcons.UseCase> var userIconsUseCase

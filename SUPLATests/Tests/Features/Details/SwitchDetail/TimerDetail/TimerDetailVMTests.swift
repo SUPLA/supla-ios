@@ -31,7 +31,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
 
     private lazy var startTimerUseCase: StartTimerUseCaseMock! = StartTimerUseCaseMock()
 
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleAction.Mock! = ExecuteSimpleAction.Mock()
 
     private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
@@ -41,7 +41,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase!)
         DiContainer.shared.register(type: StartTimerUseCase.self, startTimerUseCase!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
         DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
     }
@@ -258,7 +258,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOn, SUPLA.SubjectType.channel, remoteId)
+            (ActionId.turnOn, SUPLA.SubjectType.channel, remoteId)
         ])
     }
     
@@ -276,7 +276,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOff, SUPLA.SubjectType.channel, remoteId)
+            (ActionId.turnOff, SUPLA.SubjectType.channel, remoteId)
         ])
     }
     
@@ -294,7 +294,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOff, SUPLA.SubjectType.channel, remoteId)
+            (ActionId.turnOff, SUPLA.SubjectType.channel, remoteId)
         ])
     }
     
@@ -312,7 +312,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOn, SUPLA.SubjectType.channel, remoteId)
+            (ActionId.turnOn, SUPLA.SubjectType.channel, remoteId)
         ])
     }
     

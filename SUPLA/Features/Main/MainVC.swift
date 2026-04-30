@@ -29,7 +29,6 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     private var notificationViewHeightConstraint: NSLayoutConstraint? = nil
     
     private var notificationTimer: Timer? = nil
-    private var profileChooser: ProfileChooser? = nil
     
     init() {
         super.init(viewModel: MainViewModel())
@@ -209,13 +208,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     
     @objc
     private func onProfileButton() {
-        if (profileChooser != nil) {
-            return // Chooser already opened
-        }
-        
-        profileChooser = ProfileChooser(profileManager: SAApp.profileManager())
-        profileChooser?.delegate = self
-        profileChooser?.show(from: navigationController!)
+        coordinator.showProfileChooser()
     }
     
     @objc
@@ -238,12 +231,6 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
     
     private func runIconsDownloadTask() {
         downloadUserIconsManager.download()
-    }
-}
-
-extension MainVC: ProfileChooserDelegate {
-    func profileChooserDidDismiss(profileChanged: Bool) {
-        profileChooser = nil
     }
 }
 

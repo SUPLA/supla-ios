@@ -217,7 +217,7 @@ extension ElectricityMeterHistoryFeature {
         ) -> SelectableList<ChartDataAggregation> {
             if filters.type.hideRankings {
                 let items = aggregations.items.filter { !$0.isRank }
-                let selected = aggregations.selected.isRank ? items.first! : aggregations.selected
+                let selected = (aggregations.selected?.isRank ?? false) ? items.first! : aggregations.selected
                 
                 return SelectableList(selected: selected, items: items)
             } else {

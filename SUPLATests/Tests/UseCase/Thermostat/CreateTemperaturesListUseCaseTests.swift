@@ -113,7 +113,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            MeasurementValue(id: 0, icon: .suplaIcon(name: .Icons.fncUnknown), value: "---")
+            MeasurementValue(id: 0, icon: .originalSuplaIcon(name: .Icons.fncUnknown), value: "---")
         ])
     }
 }

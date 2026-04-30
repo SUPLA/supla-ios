@@ -40,7 +40,7 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
         
         var result: [MeasurementValue] = []
         if (children.filter({ $0.relationType == .mainThermometer }).isEmpty) {
-            result.append(MeasurementValue(id: result.count, icon: .suplaIcon(name: .Icons.fncUnknown), value: NO_VALUE_TEXT))
+            result.append(MeasurementValue(id: result.count, icon: .originalSuplaIcon(name: .Icons.fncUnknown), value: NO_VALUE_TEXT))
         }
         
         for child in children {
@@ -62,7 +62,7 @@ fileprivate extension SAChannel {
         MeasurementValue(
             id: id,
             icon: getChannelBaseIconUseCase.invoke(channel: self),
-            value: status().online ? temperatureValue().toTemperatureString(ValueFormat.companion.WithoutUnit) : NO_VALUE_TEXT,
+            value: status().online ? temperatureValue().toTemperatureString(ValueFormat.companion.TemperatureWithDegree) : NO_VALUE_TEXT,
             batteryIcon: getChannelBatteryIconUseCase.invoke(channel: shareable)
         )
     }

@@ -26,7 +26,7 @@ struct RelatedChannelsView: SwiftUI.View {
     var body: some SwiftUI.View {
         if (!channels.isEmpty) {
             ScrollView {
-                VStack(alignment: .leading, spacing: 1) {
+                VStack(alignment: .leading, spacing: 0) {
                     ForEach(channels) { channel in
                         RelatedChannelItemView(
                             data: channel,

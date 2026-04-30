@@ -25,7 +25,7 @@ struct SensorItemsView: SwiftUI.View {
     
     var body: some SwiftUI.View {
         if (!sensors.isEmpty) {
-            VStack(alignment: .leading, spacing: 1) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text(Strings.Valve.detailSensors.uppercased())
                     .fontBodyMedium()
                     .padding([.leading, .trailing], Distance.default)

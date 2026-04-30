@@ -18,39 +18,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SAElectricityMeasurementItem+CoreDataClass.h"
-#import "SAImpulseCounterMeasurementItem+CoreDataClass.h"
-#import "SAThermostatMeasurementItem+CoreDataClass.h"
-#import "SATemperatureMeasurementItem+CoreDataClass.h"
-#import "SATempHumidityMeasurementItem+CoreDataClass.h"
-#import "SAScene+CoreDataClass.h"
 #import "proto.h"
 
-typedef NS_ENUM(NSUInteger, GroupingDepth) {
-    gdNone,
-    gdMinutes,
-    gdHours,
-    gdDays,
-    gdMonths,
-    gdYears
-};
-
-typedef NS_ENUM(NSUInteger, GroupBy) {
-    gbNone,
-    gbMinute,
-    gbHour,
-    gbDay,
-    gbWeekday,
-    gbMonth,
-    gbYear,
-};
-
-@class _SALocation;
 @class SAChannel;
-@class SAChannelValue;
-@class SAColorListItem;
 @class SAChannelGroup;
-@class SAChannelBase;
 @interface SADatabase :NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -62,7 +33,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 - (void)saveContext;
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
--(NSUInteger) getChannelCount;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
 
 -(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;

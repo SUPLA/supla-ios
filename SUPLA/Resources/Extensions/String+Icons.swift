@@ -38,6 +38,7 @@ extension String {
         // MARK: Icons
         static let pencil = "pencil"
         static let info = "icon_info"
+        static let infoFilled = "icon_info_filled"
         static let heating = "icon_heating"
         static let cooling = "icon_cooling"
         static let standby = "icon_standby"
@@ -71,10 +72,16 @@ extension String {
         static let profileInactive = "icon_profile_inactive"
         static let dimmerCircularSelector = "icon_dimmer_circular_selector"
         static let dimmerLinearSelector = "icon_dimmer_linear_selector"
+        static let lock = "icon_lock"
+        static let search = "icon_search"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
+        static let warningTemplate = "icon_warning"
         static let statusError = "icon_status_error"
+        static let hourglass = "icon_hourglass"
+        static let checkFilled = "icon_check_filled"
+        static let check = "check"
         
         static let arrowRight = "icon_arrow_right"
         static let arrowLeft = "icon_arrow_left"
@@ -193,6 +200,7 @@ extension String {
         static let fncThermostatHeat = "fnc_thermostat_heat"
         static let fncThermostatCool = "fnc_thermostat_cool"
         static let fncThermostatDhw = "fnc_thermostat_dhw"
+        static let fncThermostatHeatCool = "fnc_thermostat_heat_cool"
         // ShadingSystems
         static let fncTerraceAwning = "fnc_terrace_awning"
         // Pump switch
@@ -264,6 +272,12 @@ extension String {
             static let success = "add_wizard_success"
             static let error = "add_wizard_error"
             static let settings = "add_wizard_settings"
+        }
+        
+        struct Nfc {
+            static let scanningError = "nfc_scanning_error"
+            static let scanningInProgress = "nfc_scanning_in_progress"
+            static let scanningSuccess = "nfc_scanning_success"
         }
     }
 }

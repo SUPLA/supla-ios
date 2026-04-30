@@ -19,7 +19,7 @@
 extension ElectricityDataSelectionFeature {
     class ViewState: ObservableObject {
         @Published var title: String = ""
-        @Published var selectedType: ElectricityMeterChartType = .forwardActiveEnergy
+        @Published var selectedType: ElectricityMeterChartType? = .forwardActiveEnergy
         @Published var availableTypes: [ElectricityMeterChartType] = []
         @Published var selectablePhases: [SelectableItem<Phase>] = []
     }

@@ -23,9 +23,10 @@ import XCTest
 @testable import SUPLA
 
 @available(iOS 17.0, *)
-final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, ScheduleDetailViewEvent> {
-    private lazy var viewModel: ScheduleDetailVM! = ScheduleDetailVM()
-    
+final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDetailFeature.ViewState> {
+    private lazy var item: ItemBundle! = .init(remoteId: 1, deviceId: 1, subjectType: .channel, function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
+    private lazy var viewModel: ThermostatScheduleDetailFeature.ViewModel! = .init(item: item)
+
     private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = ChannelConfigEventsManagerMock()
 
     private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = DeviceConfigEventsManagerMock()
@@ -35,11 +36,11 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     private lazy var dealyedWeeklyScheduleConfigSubject: DelayedWeeklyScheduleConfigSubjectMock! = DelayedWeeklyScheduleConfigSubjectMock()
 
     private lazy var dateProvider: DateProviderMock! = DateProviderMock()
-    
-    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
+
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
 
     private lazy var readChannelByRemoteIdUseCAse: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
-    
+
     override func setUp() {
         DiContainer.shared.register(type: ChannelConfigEventsManager.self, channelConfigEventsManager!)
         DiContainer.shared.register(type: DeviceConfigEventsManager.self, deviceConfigEventsManager!)
@@ -48,325 +49,193 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
         DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCAse!)
-        DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
     }
-    
+
     override func tearDown() {
         viewModel = nil
-        
+
         channelConfigEventsManager = nil
         deviceConfigEventsManager = nil
         getChannelConfigUseCase = nil
         dealyedWeeklyScheduleConfigSubject = nil
         dateProvider = nil
         readChannelByRemoteIdUseCAse = nil
-        groupSharedSettings = nil
-        
+        settings = nil
+
         super.tearDown()
     }
-    
+
     func test_shouldChangeProgramWhenTapped() {
         // given
-        let newProgram = SuplaScheduleProgram.program2
-        
+        let newProgram = ScheduleDetailProgram(scheduleProgram: .OFF)
+
         // when
-        observe(viewModel)
+        let observer = observe(viewModel.state.$activeProgram, count: 2)
         viewModel.onProgramTap(newProgram) // activate
         viewModel.onProgramTap(newProgram) // deactivate
-        
+
         // then
-        assertObserverItems(statesCount: 3, eventsCount: 0)
-        
-        let state = ScheduleDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.activeProgram, to: newProgram),
-            state
-        ])
+        wait(for: [observer.exp], timeout: 1)
+        XCTAssertEqual(observer.receivedValues, [.off, nil])
     }
-    
+
     func test_shouldOpenProgramEditDialog_forHeat() {
         // given
-        let program = ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil))
-        let state = ScheduleDetailViewState(
-            channelFunction: SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-            thermostatSubfunction: .heat,
-            programs: [program],
-            configMin: 10,
-            configMax: 40
-        )
-        viewModel.updateView { _ in state }
-        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
-        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
-        
-        // when
-        observe(viewModel)
-        viewModel.onProgramLongPress(.program2)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 1)
-        
-        XCTAssertEqual(
-            eventObserver.events[0].value.element,
-            .editProgram(
-                state: EditProgramDialogViewState(
-                    program: program.scheduleProgram.program,
-                    mode: program.scheduleProgram.mode,
-                    setpointTemperatureHeat: 22,
-                    setpointTemperatureCool: 21,
-                    heatTemperatureText: "22.0",
-                    coolTemperatureText: "21.0",
-                    showHeatEdit: true,
-                    showCoolEdit: false,
-                    configMin: 10,
-                    configMax: 40
-                )
+        let program = ScheduleDetailProgram(
+            scheduleProgram: SuplaWeeklyScheduleProgram(
+                program: .program2,
+                mode: .heat,
+                setpointTemperatureHeat: 2200,
+                setpointTemperatureCool: nil
             )
         )
+        viewModel.state.channelFunction = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        viewModel.state.thermostatSubfunction = .heat
+        viewModel.state.programs = [program]
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
+
+        settings.temperatureUnitMock.returns = .single(.celsius)
+        settings.temperaturePrecisionMock.returns = .single(1)
+
+        // when
+        viewModel.onShowProgramDialog(program)
+
+        // then
+        XCTAssertEqual(viewModel.state.editProgramState, ThermostatScheduleDetailFeature.EditProgramState(
+            program: .program2,
+            modes: SelectableList(selected: .heat, items: [.heat]),
+            temperatureUnit: .celsius,
+            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "22.0"),
+            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0")
+        ))
     }
-    
+
     func test_shouldOpenProgramEditDialog_forCool() {
         // given
-        let program = ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2200))
-        viewModel.updateView { _ in
-            ScheduleDetailViewState(
-                channelFunction: SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-                thermostatSubfunction: .cool,
-                programs: [program],
-                configMin: 10,
-                configMax: 40
-            )
-        }
-        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
-        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
-        
-        // when
-        observe(viewModel)
-        viewModel.onProgramLongPress(.program2)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 1)
-        
-        XCTAssertEqual(
-            eventObserver.events[0].value.element,
-            .editProgram(
-                state: EditProgramDialogViewState(
-                    program: program.scheduleProgram.program,
-                    mode: program.scheduleProgram.mode,
-                    setpointTemperatureHeat: 21,
-                    setpointTemperatureCool: 22,
-                    heatTemperatureText: "21.0",
-                    coolTemperatureText: "22.0",
-                    showHeatEdit: false,
-                    showCoolEdit: true,
-                    configMin: 10,
-                    configMax: 40
-                )
+        let program = ScheduleDetailProgram(
+            scheduleProgram: SuplaWeeklyScheduleProgram(
+                program: .program3,
+                mode: .cool,
+                setpointTemperatureHeat: nil,
+                setpointTemperatureCool: 2100
             )
         )
+        viewModel.state.channelFunction = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        viewModel.state.thermostatSubfunction = .cool
+        viewModel.state.programs = [program]
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
+
+        settings.temperatureUnitMock.returns = .single(.celsius)
+        settings.temperaturePrecisionMock.returns = .single(1)
+
+        // when
+        viewModel.onShowProgramDialog(program)
+
+        // then
+        XCTAssertEqual(viewModel.state.editProgramState, ThermostatScheduleDetailFeature.EditProgramState(
+            program: .program3,
+            modes: SelectableList(selected: .cool, items: [.cool]),
+            temperatureUnit: .celsius,
+            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0"),
+            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0"),
+        ))
     }
-    
+
     func test_shouldChangeBoxOnTap() {
         // given
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
-        let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey: ScheduleDetailBoxValue(oneProgram: .program2),
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
+        let schedule: [ScheduleDetailBoxKey: ThermostatScheduleDetailBoxValue] = [
+            firstKey: ThermostatScheduleDetailBoxValue(oneProgram: .program2),
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ThermostatScheduleDetailBoxValue(oneProgram: .program1)
         ]
-        viewModel.updateView { _ in
-            ScheduleDetailViewState(
-                activeProgram: .off,
-                schedule: schedule
-            )
-        }
-        dateProvider.currentTimestampReturns = .single(123)
-        
+        viewModel.state.schedule = schedule
+        viewModel.state.activeProgram = .program3
+
         // when
-        observe(viewModel)
-        viewModel.onBoxEvent(.panning(boxKey: firstKey))
-        viewModel.onBoxEvent(.finished)
-        
+        viewModel.onBoxTap(firstKey)
+
         // then
-        assertObserverItems(statesCount: 3, eventsCount: 0)
-        let state = ScheduleDetailViewState(activeProgram: .off, schedule: schedule)
-        assertStates(expected: [
-            state,
-            state
-                .changing(path: \.schedule, to: [
-                    firstKey: ScheduleDetailBoxValue(oneProgram: .off),
-                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
-                ])
-                .changing(path: \.changing, to: true),
-            state
-                .changing(path: \.schedule, to: [
-                    firstKey: ScheduleDetailBoxValue(oneProgram: .off),
-                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
-                ])
-                .changing(path: \.lastInteractionTime, to: 123)
-        ])
+        XCTAssertEqual(viewModel.state.schedule[firstKey], ThermostatScheduleDetailBoxValue(oneProgram: .program3))
+        XCTAssertEqual(viewModel.state.changing, true)
+        XCTAssertEqual(viewModel.state.lastInteractionTime, nil)
     }
-    
+
     func test_shouldNotChangeBoxWhenNoProgramActive() {
         // given
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
-        let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey: ScheduleDetailBoxValue(oneProgram: .program2),
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
+        let schedule: [ScheduleDetailBoxKey: ThermostatScheduleDetailBoxValue] = [
+            firstKey: ThermostatScheduleDetailBoxValue(oneProgram: .program2),
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ThermostatScheduleDetailBoxValue(oneProgram: .program1)
         ]
-        viewModel.updateView { _ in
-            ScheduleDetailViewState(
-                schedule: schedule
-            )
-        }
-        
+        viewModel.state.schedule = schedule
+
         // when
-        observe(viewModel)
-        viewModel.onBoxEvent(.panning(boxKey: firstKey))
-        viewModel.onBoxEvent(.finished)
-        
+        viewModel.onBoxTap(firstKey)
+
         // then
-        assertObserverItems(statesCount: 1, eventsCount: 0)
-        let state = ScheduleDetailViewState(schedule: schedule)
-        assertStates(expected: [
-            state
-        ])
+        XCTAssertEqual(viewModel.state.schedule[firstKey], ThermostatScheduleDetailBoxValue(oneProgram: .program2))
+        XCTAssertEqual(viewModel.state.changing, false)
+        XCTAssertEqual(viewModel.state.lastInteractionTime, nil)
     }
-    
+
     func test_shouldOpenQuartersEditDialog() {
         // given
         let activeProgram = SuplaScheduleProgram.program4
         let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
-        let firstValue = ScheduleDetailBoxValue(oneProgram: .program2)
-        let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
+        let firstValue = ThermostatScheduleDetailBoxValue(oneProgram: .program2)
+        let schedule: [ScheduleDetailBoxKey: ThermostatScheduleDetailBoxValue] = [
             firstKey: firstValue,
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
+            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ThermostatScheduleDetailBoxValue(oneProgram: .program1)
         ]
-        let programs = [ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil))]
-        viewModel.updateView { _ in
-            ScheduleDetailViewState(
-                activeProgram: activeProgram,
-                schedule: schedule,
-                programs: programs
+        let programs = [
+            ScheduleDetailProgram(
+                scheduleProgram: SuplaWeeklyScheduleProgram(
+                    program: .program2,
+                    mode: .heat,
+                    setpointTemperatureHeat: 2200,
+                    setpointTemperatureCool: nil
+                )
             )
-        }
-        
+        ]
+        viewModel.state.activeProgram = activeProgram
+        viewModel.state.schedule = schedule
+        viewModel.state.programs = programs
+
         // when
-        observe(viewModel)
-        viewModel.onBoxLongPress(firstKey)
-        
+        viewModel.onShowQuartersDialog(firstKey)
+
         // then
-        assertObserverItems(statesCount: 1, eventsCount: 1)
-        assertEvent(0, equalTo: .editScheduleBox(
-            state: EditQuartersDialogViewState(
-                key: firstKey,
-                activeProgram: activeProgram,
-                availablePrograms: programs,
-                quarterPrograms: firstValue
-            )
+        XCTAssertEqual(viewModel.state.editQuartersState, ThermostatScheduleDetailFeature.EditQuartersState(
+            key: firstKey,
+            programs: programs,
+            activeProgram: activeProgram,
+            hourPrograms: firstValue
         ))
     }
-    
-    func test_shouldTakeOverQuarterChanges() {
-        // given
-        let remoteId: Int32 = 123
-        let firstKey = ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 0)
-        let firstValue = ScheduleDetailBoxValue(oneProgram: .program2)
-        let schedule: [ScheduleDetailBoxKey: ScheduleDetailBoxValue] = [
-            firstKey: firstValue,
-            ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
-        ]
-        let initialState = ScheduleDetailViewState(
-            remoteId: remoteId,
-            activeProgram: .program3,
-            schedule: schedule
-        )
-        viewModel.updateView { _ in initialState }
-        dateProvider.currentTimestampReturns = .single(4321)
-        
-        // when
-        observe(viewModel)
-        viewModel.onQuartersChanged(key: firstKey, value: ScheduleDetailBoxValue(oneProgram: .program1), activeProgram: .program1)
-        
-        // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        assertStates(expected: [
-            initialState,
-            initialState
-                .changing(path: \.schedule, to: [
-                    firstKey: ScheduleDetailBoxValue(oneProgram: .program1),
-                    ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1): ScheduleDetailBoxValue(oneProgram: .program1)
-                    
-                ])
-                .changing(path: \.activeProgram, to: .program1)
-                .changing(path: \.lastInteractionTime, to: 4321)
-        ])
-        XCTAssertEqual(dealyedWeeklyScheduleConfigSubject.emitParameters.count, 1)
-        XCTAssertEqual(dealyedWeeklyScheduleConfigSubject.emitParameters[0].remoteId, remoteId)
-        XCTAssertEqual(dealyedWeeklyScheduleConfigSubject.emitParameters[0].programs, [])
-        XCTAssertEqual(dealyedWeeklyScheduleConfigSubject.emitParameters[0].schedule.count, 8)
-    }
-    
-    func test_shouldTakeOverProgramChanges() {
-        // given
-        let newProgram = ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2100))
-        let programs = [
-            ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil)),
-            ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 2400, setpointTemperatureCool: nil))
-        ]
-        let initialState = ScheduleDetailViewState(
-            remoteId: 4321,
-            activeProgram: .program1,
-            programs: programs
-        )
-        viewModel.updateView { _ in initialState }
-        dateProvider.currentTimestampReturns = .single(123)
-        
-        // when
-        observe(viewModel)
-        viewModel.onProgramChanged(newProgram.scheduleProgram)
-        
-        // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        
-        assertStates(expected: [
-            initialState,
-            initialState.changing(path: \.programs, to: [newProgram, programs[1]])
-                .changing(path: \.activeProgram, to: newProgram.scheduleProgram.program)
-                .changing(path: \.lastInteractionTime, to: 123)
-        ])
-        XCTAssertEqual(dealyedWeeklyScheduleConfigSubject.emitParameters, [
-            WeeklyScheduleConfigData(
-                remoteId: 4321,
-                programs: [
-                    SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2100),
-                    SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 2400, setpointTemperatureCool: nil)
-                ],
-                schedule: []
-            )
-        ])
-    }
-    
+
     func test_shouldLoadConfigs() {
         // given
-        let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunction: channelFunction,
             subfunction: .heat,
             configMin: 1000,
             configMax: 4000
         )
-        
+
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
-        
+
         deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
             result: .resultTrue,
             config: SuplaDeviceConfig.mock(
@@ -374,181 +243,174 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 fields: [SuplaAutomaticTimeSyncField(enabled: false)]
             )
         ))
-        
+
         // when
-        observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
-        
+        viewModel.observeConfig()
+
         // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        let state = ScheduleDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.channelFunction, to: channelFunction)
-                .changing(path: \.thermostatSubfunction, to: .heat)
-                .changing(path: \.remoteId, to: remoteId)
-                .changing(path: \.programs, to: [
-                    ScheduleDetailProgram(
-                        scheduleProgram: .OFF,
-                        icon: .Icons.powerButton
-                    )
-                ])
-                .changing(path: \.configMin, to: 10)
-                .changing(path: \.configMax, to: 40)
-                .changing(path: \.showDayIndicator, to: false)
+        XCTAssertEqual(viewModel.state.channelFunction, channelFunction)
+        XCTAssertEqual(viewModel.state.thermostatSubfunction, .heat)
+        XCTAssertEqual(viewModel.state.programs, [
+            ScheduleDetailProgram(
+                scheduleProgram: .OFF,
+                icon: .Icons.powerButton
+            )
         ])
+        XCTAssertEqual(viewModel.state.configMin, 10)
+        XCTAssertEqual(viewModel.state.configMax, 40)
+        XCTAssertEqual(viewModel.state.currentDay, nil)
+        XCTAssertEqual(viewModel.state.currentHour, nil)
     }
-    
-    func test_shouldSkipWhenResultNotTrue() {
+
+    func test_shouldSkipLoadingScheduleWhenChannelConfigNotLoadedCorrectly() {
         // given
-        let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunction: channelFunction,
             subfunction: .heat,
             configMin: 1000,
             configMax: 4000
         )
-        
+
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(ChannelConfigEvent(result: .resultFalse, config: weeklyConfig)),
             Observable.just(ChannelConfigEvent(result: .dataError, config: hvacConfig))
         ]
-        
+
         // when
-        observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
-        
+        viewModel.observeConfig()
+
         // then
-        assertObserverItems(statesCount: 1, eventsCount: 0)
-        let state = ScheduleDetailViewState()
-        assertStates(expected: [
-            state
-        ])
+        XCTAssertEqual(viewModel.state.channelFunction, nil)
+        XCTAssertEqual(viewModel.state.thermostatSubfunction, nil)
+        XCTAssertEqual(viewModel.state.programs, [])
+        XCTAssertEqual(viewModel.state.configMin, nil)
+        XCTAssertEqual(viewModel.state.configMax, nil)
+        XCTAssertEqual(viewModel.state.currentDay, nil)
+        XCTAssertEqual(viewModel.state.currentHour, nil)
     }
-    
-    func test_shouldSkipWhenMinMaxNotSet() {
+
+    func test_shouldSkipLoadingWhenMinMaxNotSet() {
         // given
-        let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunction: channelFunction,
             subfunction: .heat,
             configMin: 1000,
             configMax: nil
         )
-        
+
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
-        
+
         // when
-        observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
-        
+        viewModel.observeConfig()
+
         // then
-        assertObserverItems(statesCount: 1, eventsCount: 0)
-        let state = ScheduleDetailViewState()
-        assertStates(expected: [
-            state
-        ])
+        XCTAssertEqual(viewModel.state.channelFunction, nil)
+        XCTAssertEqual(viewModel.state.thermostatSubfunction, nil)
+        XCTAssertEqual(viewModel.state.programs, [])
+        XCTAssertEqual(viewModel.state.configMin, nil)
+        XCTAssertEqual(viewModel.state.configMax, nil)
+        XCTAssertEqual(viewModel.state.currentDay, nil)
+        XCTAssertEqual(viewModel.state.currentHour, nil)
     }
     
-    func test_shouldSkipWhenChanging() {
+    func test_shouldSkipProcessingDataWhenChanging() {
         // given
-        let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunction: channelFunction,
             subfunction: .heat,
             configMin: 1000,
             configMax: 4000
         )
-        
+
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
-        
+
         deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
             result: .resultTrue,
             config: SuplaDeviceConfig.mock()
         ))
-        
-        let initialState = ScheduleDetailViewState(changing: true)
-        viewModel.updateView { _ in initialState }
-        
+
+        viewModel.state.changing = true
+
         // when
-        observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
-        
+        viewModel.observeConfig()
+
         // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        assertStates(expected: [
-            initialState,
-            initialState
-        ])
+        XCTAssertEqual(viewModel.state.channelFunction, nil)
+        XCTAssertEqual(viewModel.state.thermostatSubfunction, nil)
+        XCTAssertEqual(viewModel.state.programs, [])
+        XCTAssertEqual(viewModel.state.configMin, nil)
+        XCTAssertEqual(viewModel.state.configMax, nil)
+        XCTAssertEqual(viewModel.state.currentDay, nil)
+        XCTAssertEqual(viewModel.state.currentHour, nil)
     }
     
-    func test_shouldSkipWhenDelayAfterManualChangesNotElapsed() {
+    func test_shouldSkipLoadingWhenDelayAfterManualChangesNotElapsed() {
         // given
-        let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
-            remoteId: remoteId,
+            remoteId: item.remoteId,
             channelFunction: channelFunction,
             subfunction: .heat,
             configMin: 1000,
             configMax: 4000
         )
-        
+
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
-        
+
         deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
             result: .resultTrue,
             config: SuplaDeviceConfig.mock()
         ))
-        
+
         dateProvider.currentTimestampReturns = .single(1003)
-        let initialState = ScheduleDetailViewState(lastInteractionTime: 1000)
-        viewModel.updateView { _ in initialState }
-        
+        viewModel.state.lastInteractionTime = 1000
+
         // when
-        observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
-        
+        viewModel.observeConfig()
+
         // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        assertStates(expected: [
-            initialState,
-            initialState
-        ])
+        XCTAssertEqual(viewModel.state.channelFunction, nil)
+        XCTAssertEqual(viewModel.state.thermostatSubfunction, nil)
+        XCTAssertEqual(viewModel.state.programs, [])
+        XCTAssertEqual(viewModel.state.configMin, nil)
+        XCTAssertEqual(viewModel.state.configMax, nil)
+        XCTAssertEqual(viewModel.state.currentDay, nil)
+        XCTAssertEqual(viewModel.state.currentHour, nil)
+        
         XCTAssertTuples(getChannelConfigUseCase.parameters, [
-            (remoteId, .defaultConfig),
-            (remoteId, .weeklyScheduleConfig)
+            (item.remoteId, .defaultConfig),
+            (item.remoteId, .weeklyScheduleConfig)
         ])
     }
     
@@ -567,54 +429,43 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMin: 1000,
             configMax: 4000
         )
-        
+
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
             Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
-        
+
         deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
             result: .resultTrue,
-            config: SuplaDeviceConfig.mock()
+            config: SuplaDeviceConfig.mock(
+                availableFields: [.automaticTimeSync],
+                fields: [SuplaAutomaticTimeSyncField(enabled: true)]
+            )
         ))
-        
+
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         channel.value = .mockThermostat()
         readChannelByRemoteIdUseCAse.returns = Observable.just(channel)
         
+        dateProvider.currentDateReturns = Date(timeIntervalSince1970: 1775634456)
+
         // when
-        observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
-        
+        viewModel.observeConfig()
+
         // then
-        assertObserverItems(statesCount: 3, eventsCount: 0)
-        let state = ScheduleDetailViewState()
-        assertStates(expected: [
-            state,
-            state.changing(path: \.channelFunction, to: channelFunction)
-                .changing(path: \.thermostatSubfunction, to: .notSet)
-                .changing(path: \.remoteId, to: remoteId)
-                .changing(path: \.programs, to: [
-                    ScheduleDetailProgram(
-                        scheduleProgram: .OFF,
-                        icon: .Icons.powerButton
-                    )
-                ])
-                .changing(path: \.configMin, to: 10)
-                .changing(path: \.configMax, to: 40),
-            state.changing(path: \.channelFunction, to: channelFunction)
-                .changing(path: \.thermostatSubfunction, to: .heat)
-                .changing(path: \.remoteId, to: remoteId)
-                .changing(path: \.programs, to: [
-                    ScheduleDetailProgram(
-                        scheduleProgram: .OFF,
-                        icon: .Icons.powerButton
-                    )
-                ])
-                .changing(path: \.configMin, to: 10)
-                .changing(path: \.configMax, to: 40)
+        XCTAssertEqual(viewModel.state.channelFunction, channelFunction)
+        XCTAssertEqual(viewModel.state.thermostatSubfunction, .heat)
+        XCTAssertEqual(viewModel.state.programs, [
+            ScheduleDetailProgram(
+                scheduleProgram: .OFF,
+                icon: .Icons.powerButton
+            )
         ])
+        XCTAssertEqual(viewModel.state.configMin, 10)
+        XCTAssertEqual(viewModel.state.configMax, 40)
+        XCTAssertNotNil(viewModel.state.currentDay)
+        XCTAssertNotNil(viewModel.state.currentHour)
     }
 }

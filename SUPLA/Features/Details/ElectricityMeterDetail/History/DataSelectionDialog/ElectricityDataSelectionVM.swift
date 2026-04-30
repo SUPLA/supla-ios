@@ -41,12 +41,14 @@ extension ElectricityDataSelectionFeature {
             )
         }
         
-        func onTypeChange(_ type: ElectricityMeterChartType) {
-            state.selectablePhases = getPhases(
-                selectedType: type,
-                availablePhases: filters.availablePhases,
-                selectedPhases: state.selectablePhases.filter { $0.selected }.map { $0.item }
-            )
+        func onTypeChange(_ type: ElectricityMeterChartType?) {
+            if let type {
+                state.selectablePhases = getPhases(
+                    selectedType: type,
+                    availablePhases: filters.availablePhases,
+                    selectedPhases: state.selectablePhases.filter { $0.selected }.map { $0.item }
+                )
+            }
         }
         
         private func getPhases(selectedType: ElectricityMeterChartType, availablePhases: [Phase], selectedPhases: [Phase]) -> [SelectableItem<Phase>] {

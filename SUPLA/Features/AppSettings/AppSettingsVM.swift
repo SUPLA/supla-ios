@@ -120,6 +120,10 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             .arrowButtonItem(
                 title: BrandingConfiguration.actionsLabel,
                 callback: { [weak self] in self?.coordinator.navigateToCarPlayList()}
+            ),
+            .arrowButtonItem(
+                title: Strings.Nfc.label,
+                callback: { [weak self] in self?.coordinator.navigateToNfcTagsList()}
             )
         ])
     }

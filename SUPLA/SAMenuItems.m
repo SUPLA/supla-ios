@@ -121,13 +121,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
     _btnCount = 0;
 
-    id<ProfileManager> pm = [SAApp profileManager];
-    NSString *accountLabel;
-    if([[pm getAllProfiles] count] > 1) {
-        accountLabel = @"Your accounts";
-    } else {
-        accountLabel = @"Your account";
-    }
+    NSString *accountLabel = @"Your accounts";
     
     [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"Menu/icon_profile" text:NSLocalizedString(accountLabel, nil)];
     [self addBtnWithId:SAMenuItemIdSettings imageNamed:@"Menu/icon_settings" text:NSLocalizedString(@"Settings", nil)];

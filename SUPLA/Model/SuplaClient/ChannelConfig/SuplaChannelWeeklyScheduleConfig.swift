@@ -98,12 +98,12 @@ struct SuplaWeeklyScheduleProgram: Equatable {
             if (program == .off) {
                 return Strings.General.turnOff
             } else if (mode == .heat) {
-                return heatTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
+                return heatTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
             } else if (mode == .cool) {
-                return coolTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
+                return coolTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
             } else if (mode == .heatCool) {
-                let min = heatTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
-                let max = coolTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
+                let min = heatTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
+                let max = coolTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
                 return "\(min) - \(max)"
             } else {
                 return NO_VALUE_TEXT
@@ -111,12 +111,12 @@ struct SuplaWeeklyScheduleProgram: Equatable {
         }
     }
     
-    func copy(newHeatTemperature: Int16? = nil, newCoolTemperature: Int16? = nil) -> SuplaWeeklyScheduleProgram {
+    func copy(mode: SuplaHvacMode? = nil, newHeatTemperature: Int16? = nil, newCoolTemperature: Int16? = nil) -> SuplaWeeklyScheduleProgram {
         return SuplaWeeklyScheduleProgram(
             program: program,
-            mode: mode,
-            setpointTemperatureHeat: newHeatTemperature == nil ? setpointTemperatureHeat : newHeatTemperature,
-            setpointTemperatureCool: newCoolTemperature == nil ? setpointTemperatureCool : newCoolTemperature
+            mode: mode ?? self.mode,
+            setpointTemperatureHeat: newHeatTemperature ?? setpointTemperatureHeat,
+            setpointTemperatureCool: newCoolTemperature ?? setpointTemperatureCool
         )
     }
     

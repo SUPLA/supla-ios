@@ -20,7 +20,7 @@ import Foundation
 
 let HoursRange = 0...23
 
-enum DayOfWeek: UInt8, CaseIterable {
+enum DayOfWeek: UInt8, CaseIterable, Identifiable {
     case monday = 1
     case tuesday = 2
     case wednesday = 3
@@ -28,6 +28,20 @@ enum DayOfWeek: UInt8, CaseIterable {
     case friday = 5
     case saturday = 6
     case sunday = 0
+    
+    var id: Int { Int(rawValue) }
+
+    var index: Int {
+        switch self {
+        case .monday: 0
+        case .tuesday: 1
+        case .wednesday: 2
+        case .thursday: 3
+        case .friday: 4
+        case .saturday: 5
+        case .sunday: 6
+        }
+    }
     
     static func from(value: UInt8) -> DayOfWeek {
         for result in DayOfWeek.allCases {
@@ -37,6 +51,16 @@ enum DayOfWeek: UInt8, CaseIterable {
         }
         
         fatalError("Could not convert value `\(value)` to DayOfWeek")
+    }
+    
+    static func from(index: Int) -> DayOfWeek {
+        for result in DayOfWeek.allCases {
+            if (result.index == index) {
+                return result
+            }
+        }
+        
+        fatalError("Could not convert value `\(index)` to DayOfWeek")
     }
 }
 

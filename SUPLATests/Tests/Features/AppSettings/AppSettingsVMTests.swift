@@ -82,7 +82,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
                 .batteryLevelWarning(level: 10, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {}),
-                .arrowButtonItem(title: BrandingConfiguration.actionsLabel, callback: {})
+                .arrowButtonItem(title: BrandingConfiguration.actionsLabel, callback: {}),
+                .arrowButtonItem(title: Strings.Nfc.label, callback: {})
             ]),
             .permissions(items: [
                 .permissionItem(title: Strings.AppSettings.notificationsLabel, active: true, callback: {})
@@ -129,7 +130,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
                 .batteryLevelWarning(level: 10, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {}),
-                .arrowButtonItem(title: BrandingConfiguration.actionsLabel, callback: {})
+                .arrowButtonItem(title: BrandingConfiguration.actionsLabel, callback: {}),
+                .arrowButtonItem(title: Strings.Nfc.label, callback: {})
             ]),
             .permissions(items: [
                 .permissionItem(title: Strings.AppSettings.notificationsLabel, active: false, callback: {})

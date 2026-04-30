@@ -31,4 +31,8 @@ extension CGPoint {
         let distance = sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
         return distance < radius
     }
+    
+    func distance(to other: CGPoint) -> CGFloat {
+        sqrt(pow(x - other.x, 2) + pow(y - other.y, 2))
+    }
 }

@@ -39,10 +39,8 @@ extension LockScreenFeature {
             BackgroundStack {
                 VStack(spacing: Dimens.distanceSmall) {
                     if (viewState.unlockAction?.showLogo == true) {
-                        Image(BrandingConfiguration.LockScreen.LOGO)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 144)
+                        LogoWithSentence()
+                            .padding(.bottom, Distance.default)
                     }
                     if let message = viewState.unlockAction?.message {
                         Text(message).fontHeadlineSmall()
@@ -61,7 +59,8 @@ extension LockScreenFeature {
                     }
                     
                     Spacer().frame(maxHeight: Dimens.buttonHeight)
-                    TextButton(title: Strings.LockScreen.forgottenCode, action: onPinForgotten)
+                    TitleButton(title: Strings.LockScreen.forgottenCode, action: onPinForgotten)
+                        .textButtonStyle(colors: .primary)
                     Spacer()
 
                     if (viewState.biometricAllowed && lockTimeString == nil) {

@@ -38,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         #endif
         
+        // Short-circuit starting app if running preview
+        let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if (isPreview) {
+            return true
+        }
+        
         CoreDataManager.shared.setup {
             DispatchQueue.global(qos: .userInitiated).async {
                 InitializationUseCase.invoke()

@@ -31,7 +31,7 @@ extension SAChannelBase {
             subfunction: subfunction
         )
     }
-    
+
     func getIconData(state: ChannelState, type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> FetchIconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
         return FetchIconData(
@@ -51,11 +51,11 @@ extension SAChannelBase {
 
     func isImpulseCounter() -> Bool {
         switch (self.func) {
-            case SUPLA_CHANNELFNC_IC_GAS_METER,
-                 SUPLA_CHANNELFNC_IC_HEAT_METER,
-                 SUPLA_CHANNELFNC_IC_WATER_METER,
-                 SUPLA_CHANNELFNC_IC_ELECTRICITY_METER: true
-            default: false
+        case SUPLA_CHANNELFNC_IC_GAS_METER,
+             SUPLA_CHANNELFNC_IC_HEAT_METER,
+             SUPLA_CHANNELFNC_IC_WATER_METER,
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER: true
+        default: false
         }
     }
 
@@ -69,23 +69,25 @@ extension SAChannelBase {
     }
 
     func isHvacThermostat() -> Bool {
-        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+            || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+            || self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL
     }
-    
+
     func isThermostat() -> Bool {
-        return isHvacThermostat() || self.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
+        return self.isHvacThermostat() || self.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
     }
-    
+
     func isValve() -> Bool {
         return self.func == SUPLA_CHANNELFNC_VALVE_OPENCLOSE || self.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE
     }
 
     func switchWithButtons() -> Bool {
         return switch (self.func) {
-            case SUPLA_CHANNELFNC_POWERSWITCH,
-                 SUPLA_CHANNELFNC_STAIRCASETIMER,
-                 SUPLA_CHANNELFNC_LIGHTSWITCH: true
-            default: false
+        case SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER,
+             SUPLA_CHANNELFNC_LIGHTSWITCH: true
+        default: false
         }
     }
 
@@ -107,7 +109,7 @@ extension SAChannelBase {
     func hasMeasurements() -> Bool {
         return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
-    
+
     var shareableBase: SharedCore.BaseData {
         if let channel = self as? SAChannel {
             return channel.shareable
@@ -115,7 +117,7 @@ extension SAChannelBase {
         if let group = self as? SAChannelGroup {
             return group.shareable
         }
-        
+
         fatalError("Unexpected type: \(self)")
     }
 }

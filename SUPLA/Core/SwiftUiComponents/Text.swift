@@ -46,6 +46,14 @@ extension View {
         font(.Supla.bodySmall)
     }
     
+    func fontBodySmallBold() -> some View {
+        font(.Supla.bodySmallBold)
+    }
+    
+    func fontBodySmallSemiBold() -> some View {
+        font(.Supla.bodySmallSemiBold)
+    }
+    
     func fontBodyMedium() -> some View {
         font(.Supla.bodyMedium)
     }
@@ -122,5 +130,16 @@ struct CellSubValue: View {
         SwiftUI.Text(text)
             .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
             .foregroundColor(Color.Supla.onBackground)
+    }
+}
+
+struct LabelText: View {
+    let text: String
+
+    var body: some View {
+        Text(text)
+            .textCase(.uppercase)
+            .fontBodySmall()
+            .textColor(.Supla.onSurfaceVariant)
     }
 }

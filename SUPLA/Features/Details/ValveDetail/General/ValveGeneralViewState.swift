@@ -31,7 +31,7 @@ extension ValveGeneralFeature {
     }
     
     enum ValveAlertDialog {
-        case confirmation(message: String, action: Action)
+        case confirmation(message: String, action: ActionId)
         case failure
         
         var message: String {
@@ -55,7 +55,7 @@ extension ValveGeneralFeature {
             }
         }
         
-        var action: Action? {
+        var action: ActionId? {
             switch self {
             case .confirmation(_, let action): action
             case .failure: nil

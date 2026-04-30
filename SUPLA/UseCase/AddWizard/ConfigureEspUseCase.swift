@@ -44,7 +44,7 @@ enum ConfigureEsp {
         }
         
         func perform(data: InputData) async -> Result {
-            guard let profile = try? await profileRepository.getActiveProfile().subscribeAwait() else {
+            guard let profile = try? await profileRepository.getActiveProfile().awaitFirstElement() else {
                 return .failed
             }
             let getResult: Esp.RequestResult? = await repeated(GET_REPEATS) { await espRepository.get() }

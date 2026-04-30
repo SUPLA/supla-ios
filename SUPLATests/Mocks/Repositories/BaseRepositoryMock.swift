@@ -21,6 +21,7 @@ import RxSwift
 @testable import SUPLA
 
 class BaseRepositoryMock<T: NSManagedObject>: RepositoryProtocol {
+    
     typealias T = T
     
     var queryObservable: Observable<[T]> = Observable.empty()
@@ -63,5 +64,12 @@ class BaseRepositoryMock<T: NSManagedObject>: RepositoryProtocol {
     func create() -> Observable<T> {
         createCounter += 1
         return createObservable
+    }
+    
+    func save() async throws {
+    }
+    
+    func create() async -> T {
+        fatalError("Not implemented yet")
     }
 }

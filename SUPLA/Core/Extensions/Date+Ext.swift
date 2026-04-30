@@ -25,6 +25,21 @@ private let calendar: Calendar = {
     return calendar
 }()
 
+private let fullStyle: Date.FormatStyle =
+    .dateTime
+        .day(.twoDigits)
+        .month(.twoDigits)
+        .year(.twoDigits)
+        .hour(.twoDigits(amPM: .omitted))
+        .minute(.twoDigits)
+
+private let relativeFormatter: RelativeDateTimeFormatter = {
+    let f = RelativeDateTimeFormatter()
+    f.unitsStyle = .full
+    f.dateTimeStyle = .numeric
+    return f
+}()
+
 extension Date {
     
     var javaTimestamp: Int64 {
@@ -158,6 +173,22 @@ extension Date {
     
     func differenceInSeconds(_ otherDate: Date) -> Int {
         Int(abs(timeIntervalSince1970 - otherDate.timeIntervalSince1970))
+    }
+    
+    func toStringMixedFormat() -> String {
+        let delta = abs(timeIntervalSinceNow)
+        
+        if (delta < 60) {
+            return Strings.General.timeJustNow
+        } else if (delta < 3600) {
+            let components = DateComponents(minute: Int(timeIntervalSinceNow / 60))
+            return relativeFormatter.localizedString(from: components)
+        } else if (delta < 86400) {
+            let components = DateComponents(hour: Int(timeIntervalSinceNow / 3600))
+            return relativeFormatter.localizedString(from: components)
+        } else {
+            return formatted(fullStyle)
+        }
     }
     
     static func create(year: Int, month: Int = 1, day: Int = 1, hour: Int = 0, minute: Int = 0, second: Int = 0) -> Date? {

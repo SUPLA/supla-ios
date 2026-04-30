@@ -22,11 +22,11 @@ extension ElectricityMeterSettingsFeature {
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         
-        var onShowOnChannelsListChange: (SuplaElectricityMeasurementType) -> Void
+        var onShowOnChannelsListChange: (SuplaElectricityMeasurementType?) -> Void
         var onBalancingChange: (ElectricityMeterBalanceType?) -> Void
         
         var body: some SwiftUI.View {
-            let selectedTypeBinding = Binding<SuplaElectricityMeasurementType>(
+            let selectedTypeBinding = Binding<SuplaElectricityMeasurementType?>(
                 get: { viewState.showOnChannelsList.selected },
                 set: { onShowOnChannelsListChange($0) }
             )
@@ -51,7 +51,7 @@ extension ElectricityMeterSettingsFeature {
                             .padding([.leading, .trailing], Distance.default)
                         SuplaCore.Picker(selected: selectedTypeBinding, items: viewState.showOnChannelsList.items)
                         
-                        if let balancingUnwrapped = Binding(selectedBalancingBinding) {
+                        if (viewState.balancing != nil) {
                             SuplaCore.Divider().color(Color.Supla.separator)
                                 .padding([.top, .bottom], Distance.small)
                             
@@ -59,7 +59,7 @@ extension ElectricityMeterSettingsFeature {
                                 .fontBodySmall()
                                 .textColor(Color.Supla.onSurfaceVariant)
                                 .padding([.leading, .trailing], Distance.default)
-                            SuplaCore.Picker(selected: balancingUnwrapped, items: viewState.balancing!.items)
+                            SuplaCore.Picker(selected: selectedBalancingBinding, items: viewState.balancing!.items)
                         }
                         
                         SuplaCore.Divider().color(Color.Supla.separator)

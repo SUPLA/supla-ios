@@ -64,7 +64,7 @@ final class StatusVMTests: XCTestCase {
         viewModel.onViewAppeared()
         
         // then
-        XCTAssertEqual(coordinator.navigateToProfileMock.parameters, [nil])
+        XCTAssertEqual(coordinator.navigateToProfileMock.parameters, [ProfileDto.INVALID_ID])
     }
     
     func test_shouldShowInitialization() {

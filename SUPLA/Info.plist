@@ -99,5 +99,7 @@
 	<string>Location is required to get the SSID of the Wi-Fi you&apos;re currently connect to</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is required to get the SSID of the Wi-Fi you&apos;re currently connect to</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>App uses NFC tags to perform actions. To make a tag usable, specific records are placed there by the app.</string>
 </dict>
 </plist>

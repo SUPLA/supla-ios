@@ -18,54 +18,95 @@
 
 import RxSwift
 
-class NotificationsLogVM: BaseViewModel<NotificationsLogViewState, NotificationsLogViewEvent> {
-    @Singleton<NotificationRepository> private var notificationRepository
-    @Singleton<ApplicationEventsManager> private var applicationEventsManager
-    
-    override func defaultViewState() -> NotificationsLogViewState { NotificationsLogViewState() }
-    
-    override func onViewDidLoad() {
-        notificationRepository.getAll()
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] items in
-                    self?.updateView { $0.changing(path: \.items, to: items) }
-                }
-            )
-            .disposed(by: self)
+extension NotificationsLogFeature {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+        @Singleton<NotificationRepository> private var notificationRepository
+        @Singleton<ApplicationEventsManager> private var applicationEventsManager
         
-        observeAndReloadList { applicationEventsManager.observe(event: .newNotification) }
-    }
-    
-    func delete(_ notification: SANotification) {
-        observeAndReloadList { notificationRepository.delete(notification) }
-    }
-    
-    func deleteAll() {
-        observeAndReloadList { notificationRepository.deleteAll() }
-    }
-    
-    func deleteOlderThanMonth() {
-        observeAndReloadList { notificationRepository.deleteOlderThanMonth() }
-    }
-    
-    private func observeAndReloadList(_ observable: () -> Observable<Void>) {
-        observable()
-            .flatMap { [weak self] _ in
-                self?.notificationRepository.getAll() ?? Observable.just([])
+        private var currentFilter: String? = nil
+        private var previousFilter: String? = nil
+        
+        init() {
+            super.init(state: ViewState())
+        }
+        
+        override func onViewDidLoad() {
+            Task {
+                await reloadList(force: true)
             }
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] items in
-                    self?.updateView { $0.changing(path: \.items, to: items) }
+            
+            applicationEventsManager.observe(event: .newNotification)
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { [weak self] in
+                        Task { await self?.reloadList(force: true) }
+                    }
+                )
+                .disposed(by: disposeBag)
+        }
+        
+        func delete(notification: NotificationDto) {
+            Task {
+                await self.notificationRepository.delete(notification)
+                await self.reloadList(force: true)
+            }
+        }
+        
+        func deleteAll() {
+            hideDeleteDialog()
+            Task {
+                await self.notificationRepository.deleteAll()
+                await self.reloadList(force: true)
+            }
+        }
+        
+        func deleteOlderThanMonth() {
+            hideDeleteDialog()
+            Task {
+                await self.notificationRepository.deleteOlderThanMonth()
+                await self.reloadList(force: true)
+            }
+        }
+        
+        @objc func showDeleteDialog() {
+            state.showDeleteDialog = true
+        }
+        
+        func hideDeleteDialog() {
+            state.showDeleteDialog = false
+        }
+        
+        func onSearchTextChanged(_ text: String) {
+            currentFilter = text
+            Task {
+                await reloadList(force: false)
+            }
+        }
+        
+        private func reloadList(force: Bool) async {
+            let notifications = await getNotifications(force: force)
+            await MainActor.run {
+                self.state.notifications = notifications
+            }
+        }
+        
+        private func getNotifications(force: Bool) async -> [NotificationDto] {
+            let filter = currentFilter?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if let filter, filter.count > 1 {
+                if (force || filter != previousFilter) {
+                    previousFilter = filter
+                    return await notificationRepository.getAll(filter: filter)
+                } else {
+                    previousFilter = filter
+                    return state.notifications
                 }
-            )
-            .disposed(by: self)
+            } else if (force || previousFilter != nil) {
+                previousFilter = nil
+                return await notificationRepository.getAll()
+            }
+            
+            return state.notifications
+        }
     }
-}
-
-enum NotificationsLogViewEvent: ViewEvent {}
-
-struct NotificationsLogViewState: ViewState {
-    var items: [SANotification] = []
 }

@@ -17,6 +17,7 @@
  */
 
 import SharedCore
+import SwiftUI
 
 extension SuplaHvacMode {
     var icon: String? {
@@ -28,12 +29,39 @@ extension SuplaHvacMode {
         }
     }
 
-    var iconColor: UIColor? {
+    var uiColor: UIColor? {
         switch self {
         case .off: return .gray
         case .heat: return .red
         case .cool: return .blue
         default: return nil
+        }
+    }
+    
+    var color: Color? {
+        switch self {
+        case .off: return .Supla.gray
+        case .heat: return .Supla.error
+        case .cool: return .Supla.secondary
+        default: return nil
+        }
+    }
+}
+
+extension SuplaHvacMode: PickerItem {
+    public var id: Int32 {
+        self.value
+    }
+    
+    var label: String {
+        switch (self) {
+        case .heat:
+            Strings.ThermostatDetail.modeHeatingLabel
+        case .cool:
+            Strings.ThermostatDetail.modeCoolingLabel
+        case .heatCool:
+            Strings.ThermostatDetail.modeAutoLabel
+        default: ""
         }
     }
 }

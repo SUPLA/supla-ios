@@ -31,13 +31,13 @@ extension ProfilesListFeature {
             profileRepository.getAllProfiles()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] profiles in
-                    self?.state.items = profiles.map { $0.asDto }
+                    self?.state.items = profiles
                 })
                 .disposed(by: disposeBag)
         }
         
         func onNewProfile() {
-            coordinator.navigateToProfile(profileId: nil)
+            coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID)
         }
         
         func onEditProfile(_ profile: ProfileDto) {
@@ -45,7 +45,7 @@ extension ProfilesListFeature {
         }
         
         func onActivateProfile(_ profile: ProfileDto) {
-            activateProfileUseCase.invoke(profileId: profile.id!, force: true)
+            activateProfileUseCase.invoke(profileId: profile.id, force: true)
                 .asDriverWithoutError()
                 .drive(
                     onCompleted: { [weak self] in
@@ -63,7 +63,7 @@ extension ProfilesListFeature {
             updateProfilesOrderUseCase.invoke(
                 items: items.map {
                     order += 1
-                    return UpdateProfilesOrder.Item(id: $0.id!, position: order)
+                    return UpdateProfilesOrder.Item(id: $0.id, position: order)
                 }
             )
             .asDriverWithoutError()

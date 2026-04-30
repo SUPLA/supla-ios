@@ -21,6 +21,7 @@ import RxRelay
 import RxSwift
 
 private let OUTER_RADIUS = CGFloat(136)
+private let CONTROL_STROKE_WIDTH: CGFloat = 16
 
 final class ThermostatControlView: UIView {
     private let desiredSize = CGFloat(280)
@@ -47,6 +48,7 @@ final class ThermostatControlView: UIView {
         set {
             setpointCool = newValue?.limit()
             setpointCoolPoint.isHidden = newValue == nil
+            updateSetpointRange()
             setNeedsDisplay()
         }
     }
@@ -56,6 +58,7 @@ final class ThermostatControlView: UIView {
         set {
             temperature = newValue?.limit() ?? 0
             currentTemperaturePoint.isHidden = newValue == nil
+            updateSetpointRange()
             setNeedsDisplay()
         }
     }
@@ -148,7 +151,7 @@ final class ThermostatControlView: UIView {
     
     private lazy var temperatureCircleShape: TemperatureCircleLayer = .init()
     
-    private lazy var controlCircleShape: CAShapeLayer = ControlCircleLayer()
+    private lazy var controlCircleShape: ControlCircleLayer = ControlCircleLayer()
     
     private lazy var controlCircleInnerTopShadowShape: CAShapeLayer = ControlCircleInnerTopShadow()
     
@@ -403,6 +406,14 @@ final class ThermostatControlView: UIView {
             return 270 + alpha
         }
     }
+    
+    private func updateSetpointRange() {
+        if let setpointCool, let setpointHeat, setpointHeat < setpointCool {
+            controlCircleShape.setpointRange = setpointHeat...setpointCool
+        } else {
+            controlCircleShape.setpointRange = nil
+        }
+    }
 }
 
 // MARK: - Temperature circle
@@ -519,9 +530,31 @@ private class ControlCircleLayer: CAShapeLayer {
         }
     }
     
+    var setpointRange: ClosedRange<CGFloat>? = nil {
+        didSet {
+            if (setpointRange != nil) {
+                setpointRangeSublayer.strokeColor = UIColor.primary.cgColor
+                updateRangePath()
+            } else {
+                setpointRangeSublayer.strokeColor = UIColor.transparent.cgColor
+            }
+        }
+    }
+    
+    private static let rangeStrokeWidth: CGFloat = 4
+    private lazy var setpointRangeSublayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = ControlCircleLayer.rangeStrokeWidth
+        layer.fillColor = UIColor.transparent.cgColor
+        layer.lineCap = .round
+        return layer
+    }()
+    
     override init() {
         super.init()
         fillColor = UIColor.surface.cgColor
+        
+        addSublayer(setpointRangeSublayer)
     }
     
     @available(*, unavailable)
@@ -541,7 +574,7 @@ private class ControlCircleLayer: CAShapeLayer {
         path.append(
             UIBezierPath(
                 arcCenter: centerPoint,
-                radius: 120,
+                radius: OUTER_RADIUS - CONTROL_STROKE_WIDTH,
                 startAngle: 0,
                 endAngle: 2 * .pi,
                 clockwise: true
@@ -550,6 +583,21 @@ private class ControlCircleLayer: CAShapeLayer {
         
         mask = createMask(centerPoint: centerPoint)
         self.path = path.cgPath
+    }
+    
+    private func updateRangePath() {
+        guard let setpointRange else { return }
+        
+        let radius = OUTER_RADIUS - (CONTROL_STROKE_WIDTH / 2)
+        let path = UIBezierPath(
+            arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2),
+            radius: radius,
+            startAngle: (setpointRange.lowerBound * 4 / 3 * .pi) + (5 / 6.0 * .pi),
+            endAngle: (setpointRange.upperBound * 4 / 3 * .pi) + (5 / 6.0 * .pi),
+            clockwise: true
+        ).cgPath
+        
+        setpointRangeSublayer.path = path
     }
 }
 
@@ -700,7 +748,7 @@ private class SetpointLayers: LayerGroup {
                 backgroundShape.fillColor = UIColor.disabled.copy(alpha: 0.6).cgColor
             } else {
                 shadowShape.fillColor = type.color.cgColor
-                backgroundShape.fillColor = type.color.copy(alpha: 0.6).cgColor
+                backgroundShape.fillColor = type.uiColor.copy(alpha: 0.6).cgColor
             }
         }
     }
@@ -713,7 +761,7 @@ private class SetpointLayers: LayerGroup {
     
     private lazy var backgroundShape: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.fillColor = type.color.copy(alpha: 0.6).cgColor
+        layer.fillColor = type.uiColor.copy(alpha: 0.6).cgColor
         return layer
     }()
     

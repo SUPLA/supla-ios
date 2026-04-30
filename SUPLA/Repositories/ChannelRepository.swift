@@ -27,6 +27,7 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
     func getAllChannels() -> Observable<[SAChannel]>
     func getChannel(_ remoteId: Int32) -> Observable<SAChannel>
+    func getChannel(for profileId: Int32, with remoteId: Int32) -> Observable<SAChannel?>
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func getChannelNullable(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -97,6 +98,10 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     func getChannel(_ remoteId: Int32) -> Observable<SAChannel> {
         queryItem(NSPredicate(format: "remote_id = %d AND profile.isActive = 1", remoteId))
             .compactMap { $0 }
+    }
+    
+    func getChannel(for profileId: Int32, with remoteId: Int32) -> Observable<SAChannel?> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile.id = %d", remoteId, profileId))
     }
     
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel> {

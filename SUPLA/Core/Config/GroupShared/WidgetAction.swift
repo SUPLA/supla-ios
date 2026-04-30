@@ -21,13 +21,13 @@ import AppIntents
 @available(iOS 17.0, *)
 extension GroupShared {
     struct WidgetAction: Codable, AppEntity {
-        var id: String { "\(String(format: "%03d", profileId))\(String(format: "%02d", action?.id ?? 0))\(String(format: "%08d", subjectId))" }
+        var id: String { "\(String(format: "%03d", profileId))\(String(format: "%02d", action?.carPlayId ?? 0))\(String(format: "%08d", subjectId))" }
         let profileId: Int32
         let profileName: String
         let subjectType: SubjectType
         let subjectId: Int32
         let caption: String
-        let action: CarPlayAction?
+        let action: ActionId?
         let icon: IconResult
         let sfIcon: String?
         let authorizationEntity: SingleCallAuthorizationEntity?
@@ -55,7 +55,7 @@ extension GroupShared {
             subjectType: SubjectType,
             subjectId: Int32,
             caption: String,
-            action: CarPlayAction?,
+            action: ActionId?,
             icon: IconResult,
             sfIcon: String?,
             authorizationEntity: SingleCallAuthorizationEntity?
@@ -78,7 +78,7 @@ extension GroupShared {
             subjectType = try container.decode(SubjectType.self, forKey: .subjectType)
             subjectId = try container.decode(Int32.self, forKey: .subjectId)
             caption = try container.decode(String.self, forKey: .caption)
-            action = try container.decode(CarPlayAction.self, forKey: .action)
+            action = try container.decode(ActionId.self, forKey: .action)
             icon = try container.decode(IconResult.self, forKey: .icon)
             sfIcon = try container.decode(String?.self, forKey: .sfIcon)
             authorizationEntity = try container.decode(SingleCallAuthorizationEntity.self, forKey: .authorizationEntity)

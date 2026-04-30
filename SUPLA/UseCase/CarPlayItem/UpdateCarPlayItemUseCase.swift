@@ -20,13 +20,13 @@ import RxSwift
 
 struct UpdateCarPlayItem {
     protocol UseCase {
-        func invoke(id: NSManagedObjectID, caption: String, action: CarPlayAction) -> Observable<Void>
+        func invoke(id: NSManagedObjectID, caption: String, action: ActionId) -> Observable<Void>
     }
     
     final class Implementation: UseCase {
         @Singleton<CarPlayItemRepository> private var carPlayItemRepository
         
-        func invoke(id: NSManagedObjectID, caption: String, action: CarPlayAction) -> Observable<Void> {
+        func invoke(id: NSManagedObjectID, caption: String, action: ActionId) -> Observable<Void> {
             carPlayItemRepository.queryItem(id)
                 .compactMap { $0 }
                 .map {

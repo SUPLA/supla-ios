@@ -18,7 +18,7 @@
 
 extension ElectricityDataSelectionFeature {
     class ViewController: SuplaCore.Dialog.BaseViewController<ViewState, View, ViewModel> {
-        var onFinishCallback: ((ElectricityMeterChartType, [Phase]) -> Void)? = nil
+        var onFinishCallback: ((ElectricityMeterChartType?, [Phase]) -> Void)? = nil
 
         override init(viewModel: ViewModel) {
             super.init(viewModel: viewModel)

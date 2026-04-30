@@ -71,7 +71,7 @@ extension ReadCarPlayItems {
         let id: NSManagedObjectID
         let subjectId: Int32
         let subjectType: SubjectType
-        let action: CarPlayAction?
+        let action: ActionId?
         let icon: IconResult
         let caption: String
         let profileName: String
@@ -82,7 +82,7 @@ extension ReadCarPlayItems {
             id: NSManagedObjectID,
             subjectId: Int32,
             subjectType: SubjectType,
-            action: CarPlayAction?,
+            action: ActionId?,
             icon: IconResult,
             caption: String,
             profileName: String,
@@ -110,7 +110,7 @@ private extension SACarPlayItem {
             subjectId: subjectId,
             subjectType: .channel,
             action: action,
-            icon: getChannelBaseIconUseCase.stateIcon(channel, state: action.action.state(channel.func)),
+            icon: getChannelBaseIconUseCase.stateIcon(channel, state: action.state(channel.func)),
             caption: caption ?? getCaptionUseCase.invoke(data: channel.shareable).string,
             profileName: channel.profile.displayName,
             profile: channel.profile
@@ -126,7 +126,7 @@ private extension SACarPlayItem {
             subjectId: subjectId,
             subjectType: .group,
             action: action,
-            icon: getChannelBaseIconUseCase.stateIcon(group, state: action.action.state(group.func)),
+            icon: getChannelBaseIconUseCase.stateIcon(group, state: action.state(group.func)),
             caption: caption ?? getCaptionUseCase.invoke(data: group.shareable).string,
             profileName: group.profile.displayName,
             profile: group.profile

@@ -23,17 +23,20 @@ extension SuplaCore.Dialog {
         let onDismiss: () -> Void
         let alignment: SwiftUICore.HorizontalAlignment
         let spacing: CGFloat
+        let width: CGFloat
         let content: Content
         
         init(
             onDismiss: @escaping () -> Void = {},
             alignment: SwiftUICore.HorizontalAlignment = .center,
             spacing: CGFloat = 0,
+            width: CGFloat = UIScreen.main.bounds.size.width - 50,
             @ViewBuilder _ content: () -> Content
         ) {
             self.onDismiss = onDismiss
             self.alignment = alignment
             self.spacing = spacing
+            self.width = width
             self.content = content()
         }
         
@@ -51,7 +54,7 @@ extension SuplaCore.Dialog {
                 VStack(alignment: alignment, spacing: spacing) {
                     content
                 }
-                .frame(maxWidth: UIScreen.main.bounds.size.width - 50)
+                .frame(maxWidth: width)
                 .background(Color.Supla.surface)
                 .cornerRadius(Dimens.radiusDefault)
             }
@@ -78,6 +81,7 @@ extension SuplaCore.Dialog {
                 content
             }
             .padding([.leading, .trailing], Distance.default)
+            .padding(.bottom, Distance.small)
         }
     }
     
@@ -87,13 +91,11 @@ extension SuplaCore.Dialog {
         var body: some SwiftUI.View {
             VStack(spacing: 0) {
                 Text(title)
-                    .fontHeadlineSmall()
-                    .lineLimit(1)
+                    .fontTitleLarge()
+                    .lineLimit(2)
                     .multilineTextAlignment(.center)
                     .padding([.leading, .top, .trailing, .bottom], Distance.default)
-                Divider()
             }
-            .padding([.bottom], Distance.default)
         }
     }
     
@@ -134,102 +136,75 @@ extension SuplaCore.Dialog {
     }
     
     struct DoubleButtons: SwiftUI.View {
-        let onNegativeClick: () -> Void
-        let onPositiveClick: () -> Void
+        let onSecondaryClick: () -> Void
+        let onPrimaryClick: () -> Void
         let processing: Bool
-        let positiveDisabled: Bool
-        let negativeText: String
-        let positiveText: String
+        let primaryDisabled: Bool
+        let secondaryButtonText: String
+        let primaryButtonData: ButtonData
         
         init(
-            onNegativeClick: @escaping () -> Void,
-            onPositiveClick: @escaping () -> Void,
+            onSecondaryClick: @escaping () -> Void,
+            onPrimaryClick: @escaping () -> Void,
             processing: Bool = false,
-            positiveDisabled: Bool = false,
-            negativeText: String = Strings.General.cancel,
-            positiveText: String = Strings.General.ok
+            primaryDisabled: Bool = false,
+            secondaryText: String = Strings.General.cancel,
+            primaryButtonData: ButtonData = .default(Strings.General.ok)
         ) {
-            self.onNegativeClick = onNegativeClick
-            self.onPositiveClick = onPositiveClick
+            self.onSecondaryClick = onSecondaryClick
+            self.onPrimaryClick = onPrimaryClick
             self.processing = processing
-            self.positiveDisabled = positiveDisabled
-            self.negativeText = negativeText
-            self.positiveText = positiveText
+            self.primaryDisabled = primaryDisabled
+            self.secondaryButtonText = secondaryText
+            self.primaryButtonData = primaryButtonData
         }
         
         var body: some SwiftUI.View {
-            Divider()
-                .padding(.top, Distance.default)
-            HStack(spacing: Distance.tiny) {
-                BorderedButton(
-                    title: negativeText,
-                    fullWidth: true,
-                    action: onNegativeClick
-                )
+            VStack(spacing: Distance.tiny) {
                 if (processing) {
                     ZStack {
                         ProgressView()
                             .progressViewStyle(.circular)
                     }.frame(maxWidth: .infinity)
                 } else {
-                    FilledButton(
-                        title: positiveText,
-                        fullWidth: true,
-                        action: onPositiveClick
-                    ).disabled(positiveDisabled)
+                    TitleButton(
+                        title: primaryButtonData.title,
+                        fullWidth: primaryButtonData.fullWidth,
+                        action: onPrimaryClick
+                    )
+                    .filledButtonStyle(colors: primaryButtonData.colors)
+                    .disabled(primaryDisabled)
                 }
+                TitleButton(
+                    title: secondaryButtonText,
+                    fullWidth: true,
+                    action: onSecondaryClick
+                )
+                .textButtonStyle(colors: .onBackground)
             }
             .padding(Distance.default)
         }
     }
     
-    struct VerticalButtons: SwiftUI.View {
-        let onNegativeClick: () -> Void
-        let onPositiveClick: () -> Void
-        let processing: Bool
-        let positiveDisabled: Bool
-        let negativeText: String
-        let positiveText: String
+    struct ButtonData {
+        let title: String
+        let fullWidth: Bool
+        let colors: ButtonColors
         
-        init(
-            onNegativeClick: @escaping () -> Void,
-            onPositiveClick: @escaping () -> Void,
-            processing: Bool = false,
-            positiveDisabled: Bool = false,
-            negativeText: String = Strings.General.cancel,
-            positiveText: String = Strings.General.ok
-        ) {
-            self.onNegativeClick = onNegativeClick
-            self.onPositiveClick = onPositiveClick
-            self.processing = processing
-            self.positiveDisabled = positiveDisabled
-            self.negativeText = negativeText
-            self.positiveText = positiveText
+        static func `default`(_ title: String, fullWidth: Bool = true) -> ButtonData {
+            ButtonData(title: title, fullWidth: fullWidth, colors: .primary)
         }
         
-        var body: some SwiftUI.View {
-            Divider()
-                .padding(.top, Distance.default)
-            VStack(spacing: Distance.tiny) {
-                BorderedButton(
-                    title: negativeText,
-                    fullWidth: true,
-                    action: onNegativeClick
-                )
-                if (processing) {
-                    ZStack {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                    }.frame(maxWidth: .infinity)
-                } else {
-                    FilledButton(
-                        title: positiveText,
-                        fullWidth: true,
-                        action: onPositiveClick
-                    ).disabled(positiveDisabled)
-                }
+        static func critical(_ title: String, fullWidth: Bool = true) -> ButtonData {
+            ButtonData(title: title, fullWidth: fullWidth, colors: .criticalFilled)
+        }
+        
+        static func optional(_ title: String?, fullWidth: Bool = true) -> ButtonData? {
+            if let title {
+                ButtonData(title: title, fullWidth: fullWidth, colors: .primary)
+            } else {
+                nil
             }
-            .padding(Distance.default)
         }
     }
     
@@ -263,8 +238,8 @@ extension SuplaCore.Dialog {
             }
             
             SuplaCore.Dialog.DoubleButtons(
-                onNegativeClick: {},
-                onPositiveClick: {}
+                onSecondaryClick: {},
+                onPrimaryClick: {}
             )
         }
     }

@@ -24,4 +24,8 @@ extension ScopeFunctions {
     func run<R>(_ block: (T) -> R) -> R {
         block(self as! T)
     }
+    
+    func `let`<R>(_ conversion: (T) -> R) -> R {
+        return conversion(self as! T)
+    }
 }

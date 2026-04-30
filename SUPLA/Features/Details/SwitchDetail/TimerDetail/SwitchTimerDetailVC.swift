@@ -36,8 +36,8 @@ class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, Swit
         return guide
     }()
     
-    private lazy var timerProgressView: TimerProgressView = {
-        return TimerProgressView()
+    private lazy var timerProgressView: UITimerProgressView = {
+        return UITimerProgressView()
     }()
     
     private lazy var progressTimeLabel: UILabel = {

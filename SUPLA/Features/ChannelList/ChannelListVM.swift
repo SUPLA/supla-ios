@@ -25,7 +25,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListView
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
     
     var channelListViewState = ChannelListViewState()
     var presentationCallback: ((Bool) -> Void)? = nil
@@ -111,7 +111,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListView
         send(event: .showAddWizard)
     }
     
-    func forceAction(_ action: Action?, remoteId: Int32?) {
+    func forceAction(_ action: ActionId?, remoteId: Int32?) {
         dismissAlertDialog()
         if let action, let remoteId {
             executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
@@ -146,7 +146,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListView
     private func showAlertDialog(
         _ message: String,
         _ remoteId: Int32? = nil,
-        _ action: Action? = nil,
+        _ action: ActionId? = nil,
         positiveButtonText: String? = Strings.General.yes,
         negativeButtonText: String? = Strings.General.no
     ) {

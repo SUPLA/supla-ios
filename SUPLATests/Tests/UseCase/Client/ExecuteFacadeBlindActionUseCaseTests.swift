@@ -40,9 +40,9 @@ final class ExecuteFacadeBlindActionUseCaseTests: CompletableTestCase {
         useCase = nil
     }
     
-    func test_shouldExectionAction_withVibration() {
+    func test_shouldExecuteAction_withVibration() {
         // given
-        let action: Action = .reveal
+        let action: ActionId = .reveal
         let type: SubjectType = .channel
         let remoteId: Int32 = 123
         
@@ -59,7 +59,7 @@ final class ExecuteFacadeBlindActionUseCaseTests: CompletableTestCase {
         XCTAssertEqual(vibrationService.vibrateCalls, 1)
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
         let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
-        XCTAssertEqual(parameters.0, action.rawValue)
+        XCTAssertEqual(parameters.0, action.value)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
         XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_ShadingSystem_Parameters>.size))
@@ -69,9 +69,9 @@ final class ExecuteFacadeBlindActionUseCaseTests: CompletableTestCase {
         XCTAssertEqual(nativeParameters.Tilt, 20)
     }
     
-    func test_shouldExectionAction_withoutVibration() {
+    func test_shouldExecuteAction_withoutVibration() {
         // given
-        let action: Action = .reveal
+        let action: ActionId = .reveal
         let type: SubjectType = .group
         let remoteId: Int32 = 123
         
@@ -86,7 +86,7 @@ final class ExecuteFacadeBlindActionUseCaseTests: CompletableTestCase {
         XCTAssertEqual(vibrationService.vibrateCalls, 0)
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
         let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
-        XCTAssertEqual(parameters.0, action.rawValue)
+        XCTAssertEqual(parameters.0, action.value)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
         XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_ShadingSystem_Parameters>.size))

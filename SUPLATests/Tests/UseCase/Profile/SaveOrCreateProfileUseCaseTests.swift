@@ -54,7 +54,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         let existingProfile = AuthProfileItem(testContext: nil)
         existingProfile.name = name
         
-        profileRepository.allProfilesObservable = .just([existingProfile])
+        profileRepository.allProfilesInternMock.returns = .single(.just([existingProfile]))
         
         // when
         useCase.invoke(profileDto: profileDto)
@@ -71,7 +71,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         // given
         let profileDto = ProfileDto(id: 1, name: name)
 
-        profileRepository.allProfilesObservable = .just([])
+        profileRepository.allProfilesInternMock.returns = .single(.just([]))
 
         // when
         useCase.invoke(profileDto: profileDto)
@@ -90,7 +90,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         let profile = AuthProfileItem(testContext: nil)
         let profileDto = ProfileDto(id: 1, name: name, advancedSetup: false, serverAutoDetect: true, email: "some@email.com")
 
-        profileRepository.allProfilesObservable = .just([])
+        profileRepository.allProfilesInternMock.returns = .single(.just([]))
         profileRepository.queryItemByIdObservable = .just(nil)
         profileRepository.createObservable = .just(profile)
         profileRepository.saveObservable = .just(())
@@ -127,7 +127,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         profile.serverAutoDetect = true
         profile.email = "some@email.com"
 
-        profileRepository.allProfilesObservable = .just([profile])
+        profileRepository.allProfilesInternMock.returns = .single(.just([profile]))
         profileRepository.saveObservable = .just(())
         readOrCreateProfileServerUseCase.mock.returns = .single(.just(SAProfileServer(testContext: nil)))
 
@@ -162,7 +162,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         profile.serverAutoDetect = true
         profile.email = "another@email.com"
 
-        profileRepository.allProfilesObservable = .just([profile])
+        profileRepository.allProfilesInternMock.returns = .single(.just([profile]))
         profileRepository.saveObservable = .just(())
 
         // when

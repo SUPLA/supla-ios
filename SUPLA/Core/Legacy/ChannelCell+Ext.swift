@@ -89,7 +89,7 @@ extension SAChannelCell {
         getChannelActionStringUseCase.rightButton(function: channelBase.func.suplaFunction())?.value
     }
     
-    private func executeSimpleAction(channelBase: SAChannelBase, action: Action) {
+    private func executeSimpleAction(channelBase: SAChannelBase, action: ActionId) {
         DiContainer.shared.resolve(type: VibrationService.self)?.vibrate()
         
         if (channelBase is SAChannel) {

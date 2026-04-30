@@ -121,8 +121,8 @@ extension ThermostatProgramInfo.Builder {
                 type: .current,
                 time: Strings.ThermostatDetail.clockError,
                 icon: currentMode?.icon,
-                iconColor: currentMode?.iconColor,
-                description: currentTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit),
+                iconColor: currentMode?.uiColor,
+                description: currentTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree),
                 manualActive: false
             )
         ]
@@ -133,7 +133,7 @@ extension ThermostatProgramInfo.Builder {
         
         let minutesToNextProgram = quartersToNextProgram! * 15 + (15 - (currentMinute! % 15))
         let nextScheduleProgram = getProgram(program: foundNextProgram)
-        let currentTemperatureString = currentTemperature.toTemperatureString(ValueFormat.companion.WithoutUnit)
+        let currentTemperatureString = currentTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
         
         if (deviceConfig?.isAutomaticTimeSyncDisabled() == true) {
             return [
@@ -141,7 +141,7 @@ extension ThermostatProgramInfo.Builder {
                     type: .current,
                     time: nil,
                     icon: currentMode!.icon,
-                    iconColor: currentMode!.iconColor,
+                    iconColor: currentMode!.uiColor,
                     description: currentMode == .off ? nil : currentTemperatureString,
                     manualActive: thermostatFlags!.contains(.weeklyScheduleTemporalOverride)
                 )
@@ -155,7 +155,7 @@ extension ThermostatProgramInfo.Builder {
                     valuesFormatter.minutesToString(minutes: minutesToNextProgram)
                 ),
                 icon: currentMode!.icon,
-                iconColor: currentMode!.iconColor,
+                iconColor: currentMode!.uiColor,
                 description: currentMode == .off ? nil : currentTemperatureString,
                 manualActive: thermostatFlags!.contains(.weeklyScheduleTemporalOverride)
             ),
@@ -163,7 +163,7 @@ extension ThermostatProgramInfo.Builder {
                 type: .next,
                 time: nil,
                 icon: nextScheduleProgram?.mode.icon,
-                iconColor: nextScheduleProgram?.mode.iconColor,
+                iconColor: nextScheduleProgram?.mode.uiColor,
                 description: nextScheduleProgram?.description,
                 manualActive: false
             )

@@ -20,14 +20,17 @@ import RxSwift
 import SharedCore
 @testable import SUPLA
 
-final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
-    var returns: Observable<Void> = Observable.empty()
-    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
-        parameters.append((action, type, remoteId))
-        return returns
+extension ExecuteSimpleAction {
+    final class Mock: ExecuteSimpleAction.UseCase {
+        var returns: Observable<Void> = Observable.empty()
+        var parameters: [(ActionId, SUPLA.SubjectType, Int32)] = []
+        func invoke(action: ActionId, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
+            parameters.append((action, type, remoteId))
+            return returns
+        }
     }
 }
+
 
 final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
     var parameters: [(SUPLA.SubjectType, Int32, SuplaHvacMode?, Float?, Float?, Int32?)] = []
@@ -46,9 +49,9 @@ final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
 }
 
 final class ExecuteRollerShutterActionUseCaseMock: ExecuteRollerShutterActionUseCase {
-    var parameters: [(Action, SUPLA.SubjectType, Int32, Int)] = []
+    var parameters: [(ActionId, SUPLA.SubjectType, Int32, Int)] = []
     var returns: Completable = .empty()
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, percentage: Int) -> Completable {
+    func invoke(action: ActionId, type: SUPLA.SubjectType, remoteId: Int32, percentage: Int) -> Completable {
         parameters.append((action, type, remoteId, percentage))
         return returns
     }
@@ -64,9 +67,9 @@ final class CallSuplaClientOperationUseCaseMock: CallSuplaClientOperationUseCase
 }
 
 final class ExecuteFacadeBlindActionUseCaseMock: ExecuteFacadeBlindActionUseCase {
-    var parameters: [(Action, SUPLA.SubjectType, Int32, Int, Int)] = []
+    var parameters: [(ActionId, SUPLA.SubjectType, Int32, Int, Int)] = []
     var returns: Completable = .empty()
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, position: Int, tilt: Int) -> Completable {
+    func invoke(action: ActionId, type: SUPLA.SubjectType, remoteId: Int32, position: Int, tilt: Int) -> Completable {
         parameters.append((action, type, remoteId, position, tilt))
         return returns
     }

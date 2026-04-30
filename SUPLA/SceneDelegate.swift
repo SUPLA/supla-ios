@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
 
     var window: UIWindow?
-    
+
     private var wasInBackground = true
     private var backgroundUnlockedTime: Double {
         #if DEBUG
@@ -55,17 +55,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator.attachToWindow(window)
             coordinator.start(animated: true)
         }
+
+        if let userActivities = connectionOptions.userActivities.first,
+           userActivities.activityType == NSUserActivityTypeBrowsingWeb,
+           let url = userActivities.webpageURL
+        {
+            coordinator.navigateToCallNfcAction(url: url)
+        }
     }
-    
+
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let url = userActivity.webpageURL
+        else {
+            return
+        }
+        coordinator.navigateToCallNfcAction(url: url)
+    }
+
     func sceneDidBecomeActive(_ scene: UIScene) {
         SALog.debug("Application did become active")
-        
+
         #if DEBUG
         if (ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil) {
             return
         }
         #endif
         
+        let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if (isPreview) {
+            return
+        }
+
         if wasInBackground && settings.lockScreenSettings.pinForAppRequired,
            let backgroundEntryTime = settings.backgroundEntryTime,
            dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
@@ -74,16 +95,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             suplaAppStateHolder.handle(event: .onStart)
         }
-        
+
         wasInBackground = false
     }
-    
+
     func sceneDidEnterBackground(_ scene: UIScene) {
         SALog.debug("Application did enter background")
+        let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        if (isPreview) {
+            return
+        }
+        
         wasInBackground = true
-        
+
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
-        
+
         disconnectUseCase.invokeSynchronous(reason: .appInBackground)
     }
 }

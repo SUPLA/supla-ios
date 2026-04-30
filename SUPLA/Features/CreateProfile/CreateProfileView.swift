@@ -170,15 +170,17 @@ private struct BottomButtonsView: View {
         VStack {
             Spacer()
             
-            FilledButton(title: Strings.General.ok, fullWidth: true) { onSave() }
+            TitleButton(title: Strings.General.ok, fullWidth: true) { onSave() }
+                .filledButtonStyle()
                 .padding([.bottom], Distance.small)
             
             if (deleteButtonVisible) {
-                BorderedButton(
+                TitleButton(
                     title: Strings.Profiles.delete,
                     fullWidth: true,
                     action: { showDeleteOptions = true }
                 )
+                .borderedButtonStyle(fillColor: .Supla.background)
                 .padding([.top], Distance.tiny)
                 .padding([.bottom], Distance.small)
                 .actionSheet(isPresented: $showDeleteOptions) {
@@ -201,8 +203,8 @@ private struct BottomButtonsView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding([.top], Distance.tiny)
                 
-                TextButton(title: Strings.CreateProfile.createAccountButton) { onCreateAccount() }
-                    .frame(maxWidth: .infinity, alignment: .center)
+                TitleButton(title: Strings.CreateProfile.createAccountButton, fullWidth: true) { onCreateAccount() }
+                    .textButtonStyle(colors: .primary)
             }
         }
         .padding([.leading, .top, .trailing], Distance.default)
@@ -218,8 +220,8 @@ private struct BasicModeUnavailableDialog: SwiftUI.View {
             header: Strings.CreateProfile.basicWarningTitle,
             message: Strings.CreateProfile.basicWarningMessage,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -232,8 +234,8 @@ private struct RemovalFailureDialog: SwiftUI.View {
             header: Strings.Cfg.Dialogs.Failed.title,
             message: Strings.Cfg.Dialogs.Failed.message,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -246,8 +248,8 @@ private struct EmptyNameDialog: SwiftUI.View {
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.missing_name,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -260,8 +262,8 @@ private struct DuplicatedNameDialog: SwiftUI.View {
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.duplicated_name,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }
@@ -274,8 +276,8 @@ private struct RequiredDataMissingDialog: SwiftUI.View {
             header: Strings.General.error,
             message: Strings.Cfg.Dialogs.incomplete,
             onDismiss: onDismiss,
-            negativeButtonText: Strings.General.ok,
-            onNegativeButtonClick: onDismiss
+            secondaryButtonText: Strings.General.ok,
+            onSecondaryButtonClick: onDismiss
         )
     }
 }

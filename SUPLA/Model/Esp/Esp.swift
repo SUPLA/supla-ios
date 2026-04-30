@@ -27,6 +27,7 @@ struct Esp {
         "ERGO-",
         "SOMEF-",
         "AURATON-",
-        "HPD-"
+        "HPD-",
+        "WALA-"
     ]
 }

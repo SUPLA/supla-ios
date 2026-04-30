@@ -249,8 +249,15 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                         setpointCool: newTemperature
                     )
                 )
-                return resultState.changing(path: \.setpointCool, to: newTemperature)
-                    .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                if let setpointHeat = state.setpointHeat, newTemperature > setpointHeat {
+                    return resultState.changing(path: \.setpointCool, to: newTemperature)
+                        .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                } else if (state.setpointHeat == nil) {
+                    return resultState.changing(path: \.setpointCool, to: newTemperature)
+                        .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                } else {
+                    return resultState
+                }
             case .heat:
                 delayedThermostatActionSubject.emit(
                     data: ThermostatActionData(
@@ -259,8 +266,15 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                         setpointHeat: newTemperature
                     )
                 )
-                return resultState.changing(path: \.setpointHeat, to: newTemperature)
-                    .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                if let setpointCool = state.setpointCool, newTemperature < setpointCool {
+                    return resultState.changing(path: \.setpointHeat, to: newTemperature)
+                        .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                } else if (state.setpointCool == nil) {
+                    return resultState.changing(path: \.setpointHeat, to: newTemperature)
+                        .changing(path: \.mode, to: getModeForOffChanges(state: state))
+                } else {
+                    return resultState
+                }
             }
         }
     }
@@ -578,9 +592,14 @@ struct ThermostatGeneralViewState: ViewState {
         } else if (off) {
             return "off"
         } else if (mode == .heat) {
-            return setpointHeat.toTemperatureString(ValueFormat.companion.WithoutUnit)
+            return setpointHeat.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
         } else if (mode == .cool) {
-            return setpointCool.toTemperatureString(ValueFormat.companion.WithoutUnit)
+            return setpointCool.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
+        } else if (mode == .heatCool) {
+            let heatTemperature = setpointHeat.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
+            let coolTemperature = setpointCool.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
+            
+            return "\(heatTemperature) - \(coolTemperature)"
         }
             
         return nil

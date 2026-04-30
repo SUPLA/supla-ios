@@ -116,15 +116,16 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     
     func test_shouldRemoveLastActiveProfileAndCleanupSettings() {
         // given
-        let profile = AuthProfileItem(testContext: nil)
-        profile.id = 123
-        profile.isActive = true
-        profile.rawAuthorizationType = AuthorizationType.email.rawValue
-        profile.serverAutoDetect = false
-        profile.email = "some@email.com"
-        profile.server = SAProfileServer.mock(address: "www")
+        let profile = ProfileDto(id: 123, isActive: true, authorizationType: .email, serverAutoDetect: false, email: "some@email.com", serverAddress: "www")
+        let profileEntity = AuthProfileItem(testContext: nil)
+        profileEntity.id = 123
+        profileEntity.isActive = true
+        profileEntity.rawAuthorizationType = AuthorizationType.email.rawValue
+        profileEntity.serverAutoDetect = false
+        profileEntity.email = "some@email.com"
+        profileEntity.server = SAProfileServer.mock(address: "www")
         
-        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profileEntity))
         profileRepository.allProfilesObservable = .just([profile])
         profileRepository.deleteObservable = .just(())
         profileRepository.saveObservable = .just(())
@@ -143,14 +144,17 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         ])
         
         XCTAssertEqual(singleCall.registerPushTokenCalls, 1)
-        XCTAssertEqual(profileRepository.deleteParameters, [profile])
-        XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
+        XCTAssertEqual(profileRepository.deleteParameters, [profileEntity])
+        XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profileEntity])
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [nil])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [false])
     }
     
     func test_shouldRemoveActiveProfileAndActivateOtherOne() {
         // given
+        let profileDto = ProfileDto(id: 123, isActive: true, authorizationType: .accessId, accessId: 10, accessIdPassword: "pwd", serverAddress: "xxx")
+        let otherProfileDto = ProfileDto(id: 124)
+        
         let profile = AuthProfileItem(testContext: nil)
         profile.id = 123
         profile.isActive = true
@@ -159,10 +163,8 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         profile.accessIdPassword = "pwd"
         profile.server = SAProfileServer.mock(address: "xxx")
         
-        let otherProfile = AuthProfileItem(testContext: nil)
-        
         profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
-        profileRepository.allProfilesObservable = .just([profile, otherProfile])
+        profileRepository.allProfilesObservable = .just([profileDto, otherProfileDto])
         profileRepository.deleteObservable = .just(())
         profileRepository.saveObservable = .just(())
         deleteAllProfileDataUseCase.returns = .just(())
@@ -185,7 +187,7 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
-        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.id, true)])
+        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfileDto.id, true)])
     }
     
     func test_shouldNotRemoveActiveAccountWhenActivationOfAnotherOneFailes() {
@@ -199,10 +201,11 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         var profileRemoved: Bool? = nil
         var profileDataRemoved: Bool? = nil
         
-        let otherProfile = AuthProfileItem(testContext: nil)
+        let profileDto = ProfileDto(id: 123, isActive: true, authorizationType: .email, email: "some@email.com")
+        let otherProfileDto = ProfileDto(id: 124)
         
         profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
-        profileRepository.allProfilesObservable = .just([profile, otherProfile])
+        profileRepository.allProfilesObservable = .just([profileDto, otherProfileDto])
         profileRepository.deleteObservable = .mocked { profileRemoved = true }
         deleteAllProfileDataUseCase.returns = .mocked { profileDataRemoved = true }
         activateProfileUseCase.returns = .error(DeleteProfileError.otherProfileNotActivated)
@@ -225,19 +228,20 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertNil(profileDataRemoved)
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
-        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.id, true)])
+        XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfileDto.id, true)])
     }
     
     func test_shouldRemoveAccountWithoutTokenRemovalWhenAuthDataIsNotComplete() {
         // given
         let profile = AuthProfileItem(testContext: nil)
         profile.id = 123
+        let profileDto = ProfileDto(id: 123)
         
         var profileRemoved: Bool? = nil
         var profileDataRemoved: Bool? = nil
         
         profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
-        profileRepository.allProfilesObservable = .just([profile])
+        profileRepository.allProfilesObservable = .just([profileDto])
         profileRepository.saveObservable = .just((()))
         profileRepository.deleteObservable = .mocked { profileRemoved = true }
         deleteAllProfileDataUseCase.returns = .mocked { profileDataRemoved = true }

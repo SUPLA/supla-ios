@@ -16,354 +16,241 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
 import RxRelay
+import RxSwift
 import SharedCore
 
-class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, ThermostatTimerDetailViewEvent> {
-    
-    private let channelRelay = PublishRelay<SAChannel>()
-    
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
-    @Singleton<ChannelConfigEventsManager> private var channelConfigEventManager
-    @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
-    @Singleton<ExecuteThermostatActionUseCase> private var executeThermostatActionUseCase
-    @Singleton<DateProvider> private var dateProvider
-    @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
-    
-    override func defaultViewState() -> ThermostatTimerDetailViewState { ThermostatTimerDetailViewState() }
-    
-    override func onViewDidLoad() {
-        loadingTimeoutManager.watch(
-            stateProvider: { [weak self] in self?.currentState()?.loadingState }
-        ) { [weak self] in
-            self?.updateView { state in
-                if let channelFunction = state.channelFunction {
-                    self?.loadData(remoteId: channelFunction)
+extension ThermostatTimerDetailFeature {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+        @Singleton<ExecuteThermostatActionUseCase> private var executeThermostatActionUseCase
+        @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+        @Singleton<ChannelConfigEventsManager> private var channelConfigEventManager
+        @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
+        @Singleton<DateProvider> private var dateProvider
+        
+        private let item: ItemBundle
+        private let channelRelay = PublishRelay<SAChannel>()
+        private let loadingTimeoutManager: LoadingTimeoutManager
+        
+        init(item: ItemBundle, loadingTimeoutManager: LoadingTimeoutManager = LoadingTimeoutManagerImpl()) {
+            self.item = item
+            self.loadingTimeoutManager = loadingTimeoutManager
+            super.init(state: ViewState())
+        }
+        
+        override func onViewDidLoad() {
+            loadingTimeoutManager.watch(
+                stateProvider: { [weak self] in self?.state.loadingState },
+                onTimeout: { [weak self] in self?.loadData() }
+            )
+            .disposed(by: disposeBag)
+            
+            Observable.combineLatest(
+                channelRelay,
+                channelConfigEventManager.observeConfig(id: item.remoteId)
+                    .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue }
+            ).asDriverWithoutError()
+                .debounce(.milliseconds(100))
+                .drive(onNext: { [weak self] in
+                    self?.handleData($0.0, $0.1.config as! SuplaChannelHvacConfig)
+                })
+                .disposed(by: disposeBag)
+        }
+        
+        func loadData() {
+            readChannelByRemoteIdUseCase.invoke(remoteId: item.remoteId)
+                .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
+                .disposed(by: disposeBag)
+            
+            getChannelConfigUseCase.invoke(remoteId: item.remoteId, type: .defaultConfig)
+                .subscribe()
+                .disposed(by: disposeBag)
+        }
+        
+        func onDeviceModeChange(_ mode: ThermostatTimerDetailFeature.DeviceMode) {
+            switch (mode) {
+            case .auto:
+                state.setpointInChange = .heat
+                // swap values if needed
+                if (state.heatValue > state.coolValue) {
+                    let heatValue = state.heatValue
+                    state.heatValue = state.coolValue
+                    state.coolValue = heatValue
+                    
+                    let heatSetpoint = state.heatSetpoint
+                    state.heatSetpoint = state.coolSetpoint
+                    state.coolSetpoint = heatSetpoint
                 }
-                
-                return state.changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
+            case .heating:
+                state.setpointInChange = .heat
+            case .cooling:
+                state.setpointInChange = .cool
+            default: break // nothing to do
             }
         }
-        .disposed(by: self)
-    }
-    
-    func loadData(remoteId: Int32) {
-        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
-            .disposed(by: self)
-        getChannelConfigUseCase.invoke(remoteId: remoteId, type: .defaultConfig)
-            .subscribe()
-            .disposed(by: self)
-    }
-    
-    func observeData(remoteId: Int32) {
-        Observable.combineLatest(
-            channelRelay,
-            channelConfigEventManager.observeConfig(id: remoteId)
-                .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue}
-        ).asDriverWithoutError()
-            .debounce(.milliseconds(100))
-            .drive(onNext: { [weak self] in
-                self?.handleData($0.0, $0.1.config as! SuplaChannelHvacConfig)
-            })
-            .disposed(by: self)
-    }
-    
-    func toggleDeviceMode(deviceMode: TimerDetailDeviceMode) {
-        updateView {
-            $0.changing(path: \.selectedMode, to: deviceMode)
-        }
-    }
-    
-    func toggleSelectorMode() {
-        updateView {
-            $0.changing(path: \.showCalendar, to: !$0.showCalendar)
-        }
-    }
-    
-    func onDateChanged(date: Date) {
-        updateView {
-            $0.changing(path: \.calendarValue, to: date)
-        }
-    }
-    
-    func onTimerValueChanged(value: TrippleNumberSelectorView.Value) {
-        updateView {
-            $0.changing(path: \.pickerValue, to: value)
-        }
-    }
-    
-    func onTemperatureChange(temperature: Float) {
-        updateView {
-            $0.changing(path: \.currentTemperature, to: temperature)
-        }
-    }
-    
-    func onTemperatureChange(step: TemperatureChangeStep) {
-        updateView {
-            $0.changing(path: \.currentTemperature, to: $0.currentTemperature?.plus(step.rawValue))
-        }
-    }
-    
-    func onStartTimer() {
-        guard let state = currentState(),
-              let remoteId = state.remoteId,
-              let duration = state.getTimerDuration(date: dateProvider.currentDate())
-        else { return }
         
-        updateView {
-            $0.changing(path: \.loadingState, to: $0.loadingState.copy(loading: true))
-                .changing(path: \.editTime, to: false)
-        }
-        
-        let mode: SuplaHvacMode = if (state.selectedMode == .off) {
-            .off
-        } else if (state.usingHeatSetpoint) {
-            .heat
-        } else {
-            .cool
-        }
-        let sendTemperature = state.selectedMode == .manual
-        
-        executeThermostatActionUseCase.invoke(
-            type: .channel,
-            remoteId: remoteId,
-            mode: mode,
-            setpointTemperatureHeat: sendTemperature && state.usingHeatSetpoint ? state.currentTemperature : nil,
-            setpointTemperatureCool: sendTemperature && !state.usingHeatSetpoint ? state.currentTemperature : nil,
-            durationInSec: Int32(duration)
-        ).asDriverWithoutError()
-            .drive()
-            .disposed(by: self)
-    }
-    
-    func cancelTimerStartManual() {
-        guard let remoteId = currentState()?.remoteId else { return }
-        
-        updateView { $0.changing(path: \.loadingState, to: $0.loadingState.copy(loading: true)) }
-        
-        executeThermostatActionUseCase.invoke(
-            type: .channel,
-            remoteId: remoteId,
-            mode: .cmdSwitchToManual,
-            setpointTemperatureHeat: nil,
-            setpointTemperatureCool: nil,
-            durationInSec: nil
-        ).asDriverWithoutError()
-            .drive()
-            .disposed(by: self)
-    }
-    
-    func cancelTimerStartProgram() {
-        guard let remoteId = currentState()?.remoteId else { return }
-        
-        updateView { $0.changing(path: \.loadingState, to: $0.loadingState.copy(loading: true)) }
-        
-        executeThermostatActionUseCase.invoke(
-            type: .channel,
-            remoteId: remoteId,
-            mode: .cmdWeeklySchedule,
-            setpointTemperatureHeat: nil,
-            setpointTemperatureCool: nil,
-            durationInSec: nil
-        ).asDriverWithoutError()
-            .drive()
-            .disposed(by: self)
-    }
-    
-    func editTimer() {
-        updateView {
-            guard let timerEndDate = $0.timerEndDate,
-                  let currentDate = $0.currentDate
-            else {
-                return $0.changing(path: \.editTime, to: true)
-            }
-            let timeDiff = timerEndDate.differenceInSeconds(currentDate)
+        func onHeatValueChange(_ value: CGFloat) {
+            state.setpointInChange = .heat
+            state.heatSetpoint = ((state.configMax - state.configMin) * Float(value) + state.configMin).roundToTenths()
             
-            return $0.changing(path: \.editTime, to: true)
-                .changing(path: \.pickerValue, to: TrippleNumberSelectorView.Value(valueForDays: timeDiff))
-                .changing(path: \.calendarValue, to: timerEndDate)
-                .changing(path: \.selectedMode, to: $0.currentMode == .off ? .off : .manual)
+            state.minusDisabled = state.heatSetpoint <= state.configMin
+            state.plusDisabled = state.heatSetpoint >= state.configMax
         }
-    }
-    
-    func editTimerCancel() {
-        updateView { $0.changing(path: \.editTime, to: false) }
-    }
-    
-    private func handleData(_ channel: SAChannel, _ config: SuplaChannelHvacConfig) {
-        SALog.debug("Handle data")
-        let currentDate = dateProvider.currentDate()
-        let timerEndDate = channel.getTimerEndDate()
-        let isTimerOn = timerEndDate != nil && timerEndDate!.timeIntervalSince1970 > currentDate.timeIntervalSince1970
         
-        guard let minTemperature = config.minTemperature,
-              let maxTemperature = config.maxTemperature,
-              let thermostatValue = channel.value?.asThermostatValue()
-        else { return }
-        
-        updateView {
-            $0.changing(path: \.remoteId, to: channel.remote_id)
-                .changing(path: \.currentMode, to: thermostatValue.mode)
-                .changing(path: \.currentDate, to: currentDate)
-                .changing(path: \.calendarValue, to: currentDate.shift(days: 7))
-                .changing(path: \.isTimerOn, to: isTimerOn)
-                .changing(path: \.isChannelOnline, to: channel.status().online)
-                .changing(path: \.timerEndDate, to: isTimerOn ? timerEndDate : nil)
+        func onCoolValueChange(_ value: CGFloat) {
+            state.setpointInChange = .cool
+            state.coolSetpoint = ((state.configMax - state.configMin) * Float(value) + state.configMin).roundToTenths()
             
-                .changing(path: \.subfunction, to: thermostatValue.subfunction)
-                .changing(path: \.minTemperature, to: minTemperature)
-                .changing(path: \.maxTemperature, to: maxTemperature)
-                .changing(path: \.currentTemperature, to: getSetpointTemperature(channel, thermostatValue))
-                .changing(path: \.usingHeatSetpoint, to: useHeatSetpoint(channel, thermostatValue))
-                .changing(path: \.loadingState, to: $0.loadingState.copy(loading: false))
+            state.minusDisabled = state.coolSetpoint <= state.configMin
+            state.plusDisabled = state.coolSetpoint >= state.configMax
         }
-    }
-    
-    private func getSetpointTemperature(_ channel: SAChannel, _ thermostatValue: ThermostatValue) -> Float? {
-        switch (channel.func) {
-        case SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
-            return thermostatValue.setpointTemperatureHeat
-            
-        case SUPLA_CHANNELFNC_HVAC_THERMOSTAT:
-            switch (thermostatValue.subfunction) {
-            case .heat:
-                return thermostatValue.setpointTemperatureHeat
+        
+        func onSetpointChange(_ step: TemperatureChangeStep) {
+            switch (state.setpointInChange) {
             case .cool:
-                return thermostatValue.setpointTemperatureCool
-            default:
-                return nil
+                state.coolSetpoint += step.rawValue
+                
+                state.minusDisabled = state.coolSetpoint <= state.configMin
+                state.plusDisabled = state.coolSetpoint >= state.configMax
+            case .heat:
+                state.heatSetpoint += step.rawValue
+                
+                state.minusDisabled = state.heatSetpoint <= state.configMin
+                state.plusDisabled = state.heatSetpoint >= state.configMax
             }
-            
-        default:
-            return nil
+            state.updateValues()
         }
-    }
-    
-    private func useHeatSetpoint(_ channel: SAChannel, _ thermostatValue: ThermostatValue) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER ||
-        (channel.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT && thermostatValue.subfunction == .heat)
-    }
-}
+        
+        func onTimeSelectionModeChange(_ mode: ThermostatTimerDetailFeature.TimeSelectionMode) {
+            state.timeSelectionMode = mode
+        }
+        
+        func onEditTimer() {
+            state.isTimerEditing = true
 
-enum ThermostatTimerDetailViewEvent: ViewEvent {
-    
-}
-
-struct ThermostatTimerDetailViewState: ViewState {
-    var remoteId: Int32? = nil
-    var currentMode: SuplaHvacMode? = nil
-    var currentDate: Date? = nil
-    var channelFunction: Int32? = nil
-    var subfunction: ThermostatSubfunction? = nil
-    var minTemperature: Float? = nil
-    var maxTemperature: Float? = nil
-    var currentTemperature: Float? = nil
-    var usingHeatSetpoint: Bool = false
-    
-    var selectedMode: TimerDetailDeviceMode = .off
-    var isTimerOn: Bool = false
-    var isChannelOnline: Bool = false
-    var editTime: Bool = false
-    var showCalendar: Bool = false
-    
-    var calendarValue: Date? = nil
-    var pickerValue: TrippleNumberSelectorView.Value = .init(valueForDays: 3 * HOUR_IN_SEC)
-    var timerEndDate: Date? = nil
-    
-    var loadingState: LoadingState = LoadingState()
-    
-    var currentTemperatureText: String {
-        get { currentTemperature.toTemperatureString() }
-    }
-    
-    var timerInfoText: String {
-        get {
-            guard let timeDiff = getTimerDuration(date: currentDate)
-            else { return "" }
+            guard let endTime = state.timerEndTime else { return }
+            let currentTime = dateProvider.currentDate()
+            let leftTime = endTime.differenceInSeconds(currentTime)
             
-            let days = timeDiff.days
-            let hours = timeDiff.hoursInDay
-            let minutes = timeDiff.minutesInHour
-            
-            let daysString = if (days == 1 ) {
-                Strings.TimerDetail.dayPattern.arguments(days)
-            } else {
-                Strings.TimerDetail.daysPattern.arguments(days)
-            }
-            let hoursString = if (hours == 1 ) {
-                Strings.TimerDetail.hourPattern.arguments(hours)
-            } else {
-                Strings.TimerDetail.hoursPattern.arguments(hours)
-            }
-            let minutesString = Strings.TimerDetail.minutePattern.arguments(minutes)
-            let timeString = "\(daysString) \(hoursString) \(minutesString)"
-            
-            switch (selectedMode) {
-            case .off:
-                return Strings.TimerDetail.infoThermostatOff.arguments(timeString)
-            case .manual:
-                if (channelFunction == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER || subfunction == .heat) {
-                    return Strings.TimerDetail.infoThermostatHeating.arguments(timeString)
-                } else {
-                    return Strings.TimerDetail.infoThermostatCooling.arguments(timeString)
-                }
-            }
+            state.timerDays = leftTime.days.asDayPickerItem
+            state.timerHours = leftTime.hoursInDay.asHourPickerItem
+            state.timerMinutes = leftTime.minutesInHour.asMinutePickerItem
+            state.timeSelectionMode = .timer
         }
-    }
-    
-    var minDate: Date? {
-        currentDate
-    }
-    
-    var maxDate: Date? {
-        if let currentDate = currentDate {
-            return currentDate.shift(days: 365)
-        }
-        return nil
-    }
-    
-    var startEnabled: Bool {
-        isChannelOnline && getTimerDuration(date: Date()) ?? 0 > 0
-    }
-    
-    var setpointType: SetpointType? {
-        if (channelFunction == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER || subfunction == .heat) {
-            return .heat
-        } else {
-            return .cool
-        }
-    }
-    
-    var endDateText: String { ThermostatStateHelper.endDateText(timerEndDate) }
-    
-    var currentStateIcon: String? { ThermostatStateHelper.currentStateIcon(currentMode) }
-    
-    var currentStateIconColor: UIColor { ThermostatStateHelper.currentStateIconColor(currentMode) }
-    
-    var currentStateValue: String {
-        ThermostatStateHelper.currentStateValue(
-            currentMode,
-            heatSetpoint: currentTemperature,
-            coolSetpoint: currentTemperature
-        )
-    }
-    
-    func getTimerDuration(date: Date?) -> Int? {
-        if (showCalendar) {
-            guard let currentDate = date,
-                  let calendarDate = calendarValue
-            else { return nil }
-            
-            if (calendarDate.timeIntervalSince1970 < currentDate.timeIntervalSince1970) {
-                return nil
-            } else {
-                return calendarDate.differenceInSeconds(currentDate)
+        
+        func onStart() {
+            let duration = state.getTimerDuration(dateProvider.currentDate())
+            if (duration <= 0) {
+                return
             }
-        } else {
-            return pickerValue.toDaysInSec()
+            
+            state.loadingState = state.loadingState.copy(loading: true)
+            state.isTimerEditing = false
+            
+            let mode: SuplaHvacMode = state.selectedMode.hvacMode
+            let sendHeat = state.selectedMode == .heating || state.selectedMode == .auto
+            let sendCool = state.selectedMode == .cooling || state.selectedMode == .auto
+            
+            executeThermostatActionUseCase.invoke(
+                type: .channel,
+                remoteId: item.remoteId,
+                mode: mode,
+                setpointTemperatureHeat: sendHeat ? state.heatSetpoint : nil,
+                setpointTemperatureCool: sendCool ? state.coolSetpoint : nil,
+                durationInSec: Int32(duration)
+            )
+            .asDriverWithoutError()
+            .drive()
+            .disposed(by: disposeBag)
+        }
+        
+        func onCancelEditMode() {
+            state.isTimerEditing = false
+        }
+        
+        func onCancelTimerIntoManualMode() {
+            state.loadingState = state.loadingState.copy(loading: true)
+            
+            executeThermostatActionUseCase.invoke(
+                type: .channel,
+                remoteId: item.remoteId,
+                mode: .cmdSwitchToManual,
+                setpointTemperatureHeat: nil,
+                setpointTemperatureCool: nil,
+                durationInSec: nil
+            ).asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+        }
+        
+        func onCancelTimerIntoProgramMode() {
+            state.loadingState = state.loadingState.copy(loading: true)
+            
+            executeThermostatActionUseCase.invoke(
+                type: .channel,
+                remoteId: item.remoteId,
+                mode: .cmdWeeklySchedule,
+                setpointTemperatureHeat: nil,
+                setpointTemperatureCool: nil,
+                durationInSec: nil
+            ).asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+        }
+        
+        private func handleData(_ channel: SAChannel, _ config: SuplaChannelHvacConfig) {
+            SALog.debug("Handle data")
+            let currentDate = dateProvider.currentDate()
+            let timerEndDate = channel.getTimerEndDate()
+            let isTimerOn = timerEndDate != nil && timerEndDate!.timeIntervalSince1970 > currentDate.timeIntervalSince1970
+            
+            guard let minTemperature = config.minTemperature,
+                  let maxTemperature = config.maxTemperature,
+                  let thermostatValue = channel.value?.asThermostatValue()
+            else { return }
+            
+            state.availableModes = DeviceMode.modsFor(channel.func, subfunction: thermostatValue.subfunction)
+            state.selectedMode = state.availableModes.first ?? .off
+            
+            state.calendarDate = currentDate.shift(days: 7)
+            state.isTimerRunning = isTimerOn
+            state.timerEndTime = isTimerOn ? timerEndDate : nil
+            state.offline = channel.status().offline
+            state.minusDisabled = thermostatValue.lowSetpoint <= minTemperature
+            state.plusDisabled = thermostatValue.highSetpoint >= maxTemperature
+            
+            state.loadingState = state.loadingState.copy(loading: false)
+            
+            state.configMin = minTemperature
+            state.configMax = maxTemperature
+            state.heatSetpoint = thermostatValue.setpointTemperatureHeat
+            state.coolSetpoint = thermostatValue.setpointTemperatureCool
+            state.updateValues()
+            
+            state.deviceStateData = DeviceState.Data(
+                label: ThermostatStateHelper.endDateText(timerEndDate),
+                icon: thermostatValue.mode.icon.map { .suplaIcon(name: $0) },
+                value: ThermostatStateHelper.currentStateValue(thermostatValue.mode, heatSetpoint: state.heatSetpoint, coolSetpoint: state.coolSetpoint),
+                iconColor: thermostatValue.mode.color
+            )
         }
     }
 }
 
+private extension ThermostatValue {
+    var lowSetpoint: Float {
+        switch (mode) {
+        case .heat, .heatCool: setpointTemperatureHeat
+        case .cool: setpointTemperatureCool
+        default: 0
+        }
+    }
+    
+    var highSetpoint: Float {
+        switch (mode) {
+        case .heat: setpointTemperatureHeat
+        case .cool, .heatCool: setpointTemperatureCool
+        default: 0
+        }
+    }
+}

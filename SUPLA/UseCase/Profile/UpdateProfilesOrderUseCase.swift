@@ -28,14 +28,7 @@ struct UpdateProfilesOrder {
         
         func invoke(items: [Item]) -> Observable<Void> {
             let map = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0.position) })
-            
-            return profileRepository.getAllProfiles()
-                .map { items in
-                    for item in items {
-                        item.position = map[item.id] ?? 0
-                    }
-                }
-                .flatMap { _ in self.profileRepository.save() }
+            return profileRepository.updateProfilePositions(map)
         }
     }
     

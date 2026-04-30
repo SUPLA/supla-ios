@@ -63,7 +63,7 @@ class WindowControlButton: UIView {
         return view
     }()
     
-    private let type = BaseControlButtonView.ButtonType.positive
+    private let type = UIBaseControlButtonView.ButtonType.positive
     private let controlType: ControlButtonType
     
     fileprivate let tapRelay = PublishRelay<Void>()
@@ -85,7 +85,7 @@ class WindowControlButton: UIView {
         super.touchesBegan(touches, with: event)
         
         if (isEnabled) {
-            BaseControlButtonView.setupPressedLayer(layer, type)
+            UIBaseControlButtonView.setupPressedLayer(layer, type)
             innerShadowView.isHidden = false
             iconView.tintColor = type.textColor
             
@@ -97,7 +97,7 @@ class WindowControlButton: UIView {
         super.touchesEnded(touches, with: event)
         
         if (isEnabled) {
-            BaseControlButtonView.setupLayer(layer)
+            UIBaseControlButtonView.setupLayer(layer)
             innerShadowView.isHidden = true
             iconView.tintColor = .onBackground
             
@@ -114,7 +114,7 @@ class WindowControlButton: UIView {
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        BaseControlButtonView.setupLayer(layer)
+        UIBaseControlButtonView.setupLayer(layer)
         
         layer.cornerRadius = controlType.cornerRadius
         layer.maskedCorners = controlType.maskedCorners

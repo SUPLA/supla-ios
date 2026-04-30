@@ -346,23 +346,23 @@ private class ThermostatGeneralButtons: UIView {
         set { weeklyScheduleModeButtonView.active = newValue }
     }
     
-    private lazy var powerButtonView: RoundedControlButtonView = {
-        let view = RoundedControlButtonView()
+    private lazy var powerButtonView: UIRoundedControlButtonView = {
+        let view = UIRoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.icon = .suplaIcon(name: .Icons.powerButton)
         view.iconColor = .primary
         return view
     }()
     
-    private lazy var manualModeButtonView: RoundedControlButtonView = {
-        let view = RoundedControlButtonView()
+    private lazy var manualModeButtonView: UIRoundedControlButtonView = {
+        let view = UIRoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = Strings.ThermostatDetail.modeManual
         return view
     }()
     
-    private lazy var weeklyScheduleModeButtonView: RoundedControlButtonView = {
-        let view = RoundedControlButtonView()
+    private lazy var weeklyScheduleModeButtonView: UIRoundedControlButtonView = {
+        let view = UIRoundedControlButtonView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = Strings.ThermostatDetail.modeWeeklySchedule
         return view
