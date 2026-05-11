@@ -18,6 +18,7 @@
 
 import CoreData
 import Foundation
+import RxSwift
 
 @objc
 class CoreDataManager: NSObject {
@@ -28,6 +29,10 @@ class CoreDataManager: NSObject {
     private let storeType: String
     
     private var tryRecreateAccount = false
+    
+    private let readinessQueue = DispatchQueue(label: "CoreDataManager.readiness")
+    private var isStoreLoaded = false
+    private var readinessCallbacks: [(Result<Void, Error>) -> Void] = []
     
     @objc
     lazy var persistentContainer: NSPersistentContainer! = {
@@ -83,6 +88,21 @@ class CoreDataManager: NSObject {
             completion()
         }
     }
+    
+    func whenStoreLoaded(_ callback: @escaping (Result<Void, Error>) -> Void) {
+        let result = readinessQueue.sync { () -> Result<Void, Error>? in
+            if isStoreLoaded {
+                return .success(())
+            }
+
+            readinessCallbacks.append(callback)
+            return nil
+        }
+
+        if let result {
+            callback(result)
+        }
+    }
 
     private func loadPersistentStore(completion: @escaping () -> Void) {
         migrateStoreIfNeeded {
@@ -97,10 +117,12 @@ class CoreDataManager: NSObject {
                             self.settings.anyAccountRegistered = true
                         }
                         DispatchQueue.main.async {
+                            self.markStoreLoaded()
                             completion()
                         }
                     }
                 } else {
+                    self.markStoreLoaded()
                     completion()
                 }
             }
@@ -135,6 +157,17 @@ class CoreDataManager: NSObject {
         }
     }
     
+    private func markStoreLoaded() {
+        let callbacks = readinessQueue.sync {
+            isStoreLoaded = true
+            let callbacks = readinessCallbacks
+            readinessCallbacks.removeAll()
+            return callbacks
+        }
+
+        callbacks.forEach { $0(.success(())) }
+    }
+
     private func removeCurrentDatabase() {
         do {
             _ = try removeDatabase(with: "SUPLA_DB14.sqlite")
@@ -164,5 +197,42 @@ class CoreDataManager: NSObject {
         }
         
         return false
+    }
+    
+    enum StoreError: Error {
+        case notLoaded(Error)
+    }
+}
+
+extension CoreDataManager {
+    func rxStoreLoaded() -> Observable<Void> {
+        Observable.create { observer in
+            self.whenStoreLoaded { result in
+                switch result {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+
+            return Disposables.create()
+        }
+    }
+}
+
+extension CoreDataManager {
+    func waitForStoreLoaded() async throws {
+        try await withCheckedThrowingContinuation { continuation in
+            self.whenStoreLoaded { result in
+                switch result {
+                case .success:
+                    continuation.resume()
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
     }
 }

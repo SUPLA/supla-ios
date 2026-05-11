@@ -62,7 +62,8 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     func save(_ entity: T) -> Observable<Void> {
-        return context.rx.save()
+        CoreDataManager.shared.rxStoreLoaded()
+            .flatMap { self.context.rx.save() }
             .subscribe(on: scheduler)
     }
     
@@ -87,6 +88,8 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     }
 
     func save() async throws -> Void {
+        try await CoreDataManager.shared.waitForStoreLoaded()
+        
         let context = context
         
         return try await context.perform {
