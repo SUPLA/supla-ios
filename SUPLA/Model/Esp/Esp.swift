@@ -28,6 +28,7 @@ struct Esp {
         "SOMEF-",
         "AURATON-",
         "HPD-",
-        "WALA-"
+        "WALA-",
+        "VARILIGHT-"
     ]
 }
