@@ -26,7 +26,7 @@ extension SAChannel {
     }
 
     func item() -> ItemBundle {
-        ItemBundle(remoteId: remote_id, deviceId: device_id, subjectType: .channel, function: self.func)
+        ItemBundle(remoteId: remote_id, profileId: profile.id, deviceId: device_id, subjectType: .channel, function: self.func)
     }
 
     func getTimerEndDate() -> Date? {

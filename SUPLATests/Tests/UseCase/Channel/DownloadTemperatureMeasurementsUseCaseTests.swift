@@ -23,10 +23,6 @@ import RxSwift
 
 final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    
     private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = {
         TemperatureMeasurementItemRepositoryMock()
     }()
@@ -38,95 +34,85 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
     }
     
     override func tearDown() {
         useCase = nil
-        profileRepository = nil
         temperatureMeasurementItemRepository = nil
         
         super.tearDown()
     }
     
-    func test_shouldFailWhenCouldNotLoadActiveProfile() {
-        // given
-        let remoteId: Int32 = 213
-        
-        // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load active profile\'s server ID"))
-        ])
-    }
-    
-    func test_shouldFailWhenCouldNotLoadInitialMeasurements() {
+    func test_shouldFailWhenCouldNotLoadInitialMeasurements() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 2)
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(.empty())
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            // then
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Could not load initial measurements"))
+        }
         
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load initial measurements"))
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
     }
     
-    func test_shouldFailWhenInitialMeasurementsReturns400() {
+    func test_shouldFailWhenInitialMeasurementsReturns400() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 2)
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: HTTPURLResponse(url: .init(string: "url")!, statusCode: 400, httpVersion: nil, headerFields: nil)!,
             data: Data()
         )))
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            // then
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Could not load initial measurements"))
+        }
         
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load initial measurements"))
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
     }
     
-    func test_shouldFailWhenInitialMeasurementsHasMissingData() {
+    func test_shouldFailWhenInitialMeasurementsHasMissingData() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 2)
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)!,
             data: Data()
         )))
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            // then
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Could not load initial measurements"))
+        }
         
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load initial measurements"))
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
     }
     
-    func test_shouldCleanDataWhenNoMeasurements() {
+    func test_shouldCleanDataWhenNoMeasurements() async throws {
         // given
         let remoteId: Int32 = 213
         let serverId: Int32 = 1
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: serverId)
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(),
             data: mockedData()
@@ -134,16 +120,14 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, serverId)])
     }
     
-    func test_shouldImportDataWhenDbIsEmpty() {
+    func test_shouldImportDataWhenDbIsEmpty() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -152,7 +136,6 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             date_timestamp: Date(),
             temperature: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
@@ -163,16 +146,17 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         ]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .next(1),
-            .completed
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
+        XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [
+            (remoteId, 0),
+            (remoteId, 0)
         ])
     }
     
-    func test_shouldDoNotImportWhenThereIsNothingMoreOnCloud() {
+    func test_shouldDoNotImportWhenThereIsNothingMoreOnCloud() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -182,7 +166,6 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             date_timestamp: measurementDate,
             temperature: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
@@ -192,16 +175,14 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
     }
     
-    func test_shouldSkipImportWhenDbAndCloudAreSimilar() {
+    func test_shouldSkipImportWhenDbAndCloudAreSimilar() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -211,7 +192,6 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             date_timestamp: measurementDate,
             temperature: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
@@ -220,16 +200,14 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         temperatureMeasurementItemRepository.findCountReturns = .just(1)
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [])
     }
     
-    func test_shouldCleanDbAndImportNewMeasurements() {
+    func test_shouldCleanDbAndImportNewMeasurements() async throws {
         // given
         let remoteId: Int32 = 213
         let serverId: Int32 = 2
@@ -240,7 +218,6 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             date_timestamp: measurementDate,
             temperature: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         temperatureMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1, "x-total-count"),
             data: mockedData(measurements: [measurement])
@@ -251,12 +228,10 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(temperatureMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
         XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, serverId)])
     }

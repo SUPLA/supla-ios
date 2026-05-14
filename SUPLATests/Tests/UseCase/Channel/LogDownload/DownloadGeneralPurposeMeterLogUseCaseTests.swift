@@ -23,10 +23,6 @@ import RxSwift
 
 final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    
     private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = {
         GeneralPurposeMeterItemRepositoryMock()
     }()
@@ -42,30 +38,28 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
         DiContainer.shared.register(type: LoadChannelConfigUseCase.self, loadChannelConfigUseCase!)
     }
     
     override func tearDown() {
         useCase = nil
-        profileRepository = nil
         generalPurposeMeterItemRepository = nil
         loadChannelConfigUseCase = nil
         
         super.tearDown()
     }
     
-    func test_shouldImportDataWhenDbIsEmpty() {
+    func test_shouldImportDataWhenDbIsEmpty() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
         profile.server = SAProfileServer.mock(id: 1)
+        let date = Date()
         let measurement = SuplaCloudClient.GeneralPurposeMeter(
-            date_timestamp: Date(),
+            date_timestamp: date,
             value: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         generalPurposeMeterItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
@@ -77,16 +71,17 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         loadChannelConfigUseCase.returns = .just(SuplaChannelGeneralPurposeMeterConfig.mock())
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .next(1),
-            .completed
+        XCTAssertEqual(generalPurposeMeterItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
+        XCTAssertTuples(generalPurposeMeterItemRepository.getMeasurementsParameters, [
+            (remoteId, 0),
+            (remoteId, 0)
         ])
     }
     
-    func test_shouldDoNotImportWhenThereIsNothingMoreOnCloud() {
+    func test_shouldDoNotImportWhenThereIsNothingMoreOnCloud() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -96,7 +91,6 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
             date_timestamp: measurementDate,
             value: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         generalPurposeMeterItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
@@ -107,16 +101,14 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         generalPurposeMeterItemRepository.findOldestEntityReturns = .just(SAGeneralPurposeMeterItem.mock(date: measurementDate))
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(generalPurposeMeterItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(generalPurposeMeterItemRepository.getMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
     }
     
-    func test_shouldNotImportDataWhenThereIsNoChannelConfig() {
+    func test_shouldNotImportDataWhenThereIsNoChannelConfig() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -125,7 +117,6 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
             date_timestamp: Date(),
             value: 10.0
         )
-        profileRepository.activeProfileObservable = Observable.just(profile)
         generalPurposeMeterItemRepository.getInitialMeasurementsMock.returns = .single(Observable.just((
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
@@ -136,12 +127,14 @@ final class DownloadGeneralPurposeMeterLogUseCaseTests: UseCaseTest<Float> {
         ]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Channel config not found"))
+        }
         
         // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Channel config not found"))
-        ])
         XCTAssertEqual(generalPurposeMeterItemRepository.storeMeasurementsParameters.count, 0)
     }
     

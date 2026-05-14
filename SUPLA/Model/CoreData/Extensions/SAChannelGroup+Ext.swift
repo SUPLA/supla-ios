@@ -186,7 +186,7 @@ extension SAChannelGroup {
     }
     
     func item() -> ItemBundle {
-        ItemBundle(remoteId: remote_id, deviceId: 0, subjectType: .group, function: self.func)
+        ItemBundle(remoteId: remote_id, profileId: profile.id, deviceId: 0, subjectType: .group, function: self.func)
     }
     
     override open func measuredTemperatureMin() -> Double {

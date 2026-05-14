@@ -22,9 +22,9 @@ import RxSwift
 
 final class ChannelExtendedValueRepositorMock: BaseRepositoryMock<SAChannelExtendedValue>, ChannelExtendedValueRepository {
     
-    var channelValueObservable: Observable<SAChannelExtendedValue> = Observable.empty()
+    var getChannelValueMock: FunctionMock<(AuthProfileItem, Int32), Observable<SAChannelExtendedValue>> = .init()
     func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelExtendedValue> {
-        channelValueObservable
+        getChannelValueMock.handle((profile, remoteId))
     }
     
     var deleteAllObservable: Observable<Void> = Observable.empty()

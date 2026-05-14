@@ -444,6 +444,9 @@
 		A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */; };
 		A530EE532A5D437C00F8DAEE /* UITimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */; };
 		A531D3E02E74539700714850 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A531D3DF2E74539700714850 /* clock@3x.png */; };
+		A534D61C2FB30F4D007AAC73 /* ListValueAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */; };
+		A534D61F2FB32DAB007AAC73 /* ImpulseCounterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */; };
+		A534D6222FB33617007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */; };
 		A536364E2DD3239600D470CE /* UserIconsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536364D2DD3239100D470CE /* UserIconsUseCase.swift */; };
 		A53636512DD36CE500D470CE /* SuplaCloud+ChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53636502DD36CD900D470CE /* SuplaCloud+ChannelFunction.swift */; };
 		A53636532DD36E9700D470CE /* SuplaCloud+UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53636522DD36E8F00D470CE /* SuplaCloud+UserIcon.swift */; };
@@ -769,7 +772,7 @@
 		A57668F92AEAB12D0025509D /* HideableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668F82AEAB12D0025509D /* HideableValue.swift */; };
 		A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */; };
 		A57668FF2AEFB96A0025509D /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FE2AEFB96A0025509D /* Double+Ext.swift */; };
-		A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669002AEFD4420025509D /* UsetStateHolder.swift */; };
+		A57669012AEFD4420025509D /* UserStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669002AEFD4420025509D /* UserStateHolder.swift */; };
 		A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CC29E6907C004513E6 /* RuntimeConfig.swift */; };
 		A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */; };
 		A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57777D029E6A319004513E6 /* CreateAccountVC.xib */; };
@@ -1158,6 +1161,7 @@
 		A5C690412DD7516E00194C1B /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DC22AA5BE7A00220B4A /* Int+Ext.swift */; };
 		A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */; };
 		A5C6905F2DD7760C00194C1B /* GroupSharedSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */; };
+		A5C82FC22FB34FF20044C57B /* TriggerLogHistoryDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */; };
 		A5CA8ACA2E6EF353005B55F4 /* CheckIsSlaveThermostatUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */; };
 		A5CA8ACC2E701DEA005B55F4 /* TemperaturePrecisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */; };
 		A5CA8AD42E703C34005B55F4 /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACC2CC2997900A784FA /* DoubleFormatter.swift */; };
@@ -1342,6 +1346,8 @@
 		A5E40B6F2B868DA900DB6ABE /* AuthProfileItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B6E2B868DA900DB6ABE /* AuthProfileItem+Mock.swift */; };
 		A5E40B712B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */; };
 		A5E40B732B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */; };
+		A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */; };
+		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
 		A5E40B772B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
@@ -1530,6 +1536,11 @@
 		AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */; };
 		AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
+		B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */; };
+		B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */; };
+		B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */; };
+		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
+		B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */; };
 		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
 /* End PBXBuildFile section */
 
@@ -2219,6 +2230,10 @@
 		A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlainButton.swift; sourceTree = "<group>"; };
 		A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITimerProgressView.swift; sourceTree = "<group>"; };
 		A531D3DF2E74539700714850 /* clock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@3x.png"; sourceTree = "<group>"; };
+		A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListValueAggregation.swift; sourceTree = "<group>"; };
+		A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 28.xcdatamodel"; sourceTree = "<group>"; };
+		A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettings.swift; sourceTree = "<group>"; };
+		A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshImpulseCounterAggregatedValueUseCase.swift; sourceTree = "<group>"; };
 		A536364D2DD3239100D470CE /* UserIconsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCase.swift; sourceTree = "<group>"; };
 		A53636502DD36CD900D470CE /* SuplaCloud+ChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaCloud+ChannelFunction.swift"; sourceTree = "<group>"; };
 		A53636522DD36E8F00D470CE /* SuplaCloud+UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaCloud+UserIcon.swift"; sourceTree = "<group>"; };
@@ -2566,7 +2581,7 @@
 		A57668F82AEAB12D0025509D /* HideableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableValue.swift; sourceTree = "<group>"; };
 		A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChartMarkerView.swift; sourceTree = "<group>"; };
 		A57668FE2AEFB96A0025509D /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
-		A57669002AEFD4420025509D /* UsetStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsetStateHolder.swift; sourceTree = "<group>"; };
+		A57669002AEFD4420025509D /* UserStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateHolder.swift; sourceTree = "<group>"; };
 		A57777CC29E6907C004513E6 /* RuntimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfig.swift; sourceTree = "<group>"; };
 		A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfigMock.swift; sourceTree = "<group>"; };
 		A57777D029E6A319004513E6 /* CreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
@@ -2949,6 +2964,7 @@
 		A5C690392DD736C100194C1B /* SingleCallResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallResult.swift; sourceTree = "<group>"; };
 		A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int16+Ext.swift"; sourceTree = "<group>"; };
 		A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettingsMock.swift; sourceTree = "<group>"; };
+		A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCase.swift; sourceTree = "<group>"; };
 		A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIsSlaveThermostatUseCase.swift; sourceTree = "<group>"; };
 		A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePrecisionCell.swift; sourceTree = "<group>"; };
 		A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 27.xcdatamodel"; sourceTree = "<group>"; };
@@ -3108,6 +3124,8 @@
 		A5E40B6E2B868DA900DB6ABE /* AuthProfileItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthProfileItem+Mock.swift"; sourceTree = "<group>"; };
 		A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
+		A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshImpulseCounterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeasurement+Mock.swift"; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -3292,6 +3310,11 @@
 		AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVC.swift; sourceTree = "<group>"; };
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
+		B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsFeature.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVC.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVM.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsViewState.swift; sourceTree = "<group>"; };
 		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
 		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
 		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
@@ -4675,6 +4698,25 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A534D61A2FB30F3E007AAC73 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */,
+				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
+				A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A534D6202FB335EE007AAC73 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */,
+				A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		A536364F2DD36B4F00D470CE /* UserIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -5175,6 +5217,7 @@
 		A55A8D932BAB147700C540D4 /* SuplaApp */ = {
 			isa = PBXGroup;
 			children = (
+				A534D61A2FB30F3E007AAC73 /* Settings */,
 				A5E84F162EE6EB71002F26F8 /* Rgb */,
 				A5862C0A2CEF813300DFFD55 /* ChannelState */,
 				A584E1FD2CAAC87900232A98 /* ElectricityMeter */,
@@ -5292,7 +5335,7 @@
 				A57777CC29E6907C004513E6 /* RuntimeConfig.swift */,
 				A5AE6D842E213B7900BC2B67 /* SecureSettings.swift */,
 				A56233E62AB2FE37001CB948 /* Changeable.swift */,
-				A57669002AEFD4420025509D /* UsetStateHolder.swift */,
+				A57669002AEFD4420025509D /* UserStateHolder.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -5696,6 +5739,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A58188D62FB5C4AC0056B401 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */,
+				B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		A58472022C2D9CF400713D36 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -5711,7 +5763,6 @@
 			isa = PBXGroup;
 			children = (
 				A584E2022CAAD48000232A98 /* Phase.swift */,
-				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
 			);
 			path = ElectricityMeter;
 			sourceTree = "<group>";
@@ -6107,6 +6158,7 @@
 		A59AB8C02A308ADA00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A58188D62FB5C4AC0056B401 /* List */,
 				A5D712782C3E8F5100A8EF52 /* App */,
 				A59AB8E42A30A72000D91F1F /* Channel */,
 				A530EE372A57FCA500F8DAEE /* ChannelBase */,
@@ -7042,6 +7094,7 @@
 				A54637AF2D37D5FB00D746F5 /* General */,
 				A5E160BD2D354389003A7C71 /* History */,
 				A5E0DF842CECA1A800362451 /* CounterPhoto */,
+				B1DCC0000000000000000001 /* Settings */,
 				A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */,
 				A5E0DF6B2CEB651D00362451 /* ImpulseCounterDetailVM.swift */,
 			);
@@ -7553,6 +7606,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A534D6202FB335EE007AAC73 /* List */,
 				A5BF4F832F3DCA3C00F5DE81 /* Nfc */,
 				A55AE5ED2EE970E0006E0AA9 /* ColorListItem */,
 				A5BCA95B2E2781A200A5054A /* AddWizard */,
@@ -7832,6 +7886,18 @@
 				AE348E65277F348700F363A3 /* SAMoveTableView.m */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		B1DCC0000000000000000001 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */,
+				B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */,
+				B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */,
+				B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */,
+				B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -8190,6 +8256,7 @@
 				A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */,
 				A5DB3AD32E9E51F9007DAD9B /* FloatingPlusButton.swift in Sources */,
 				A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */,
+				A534D61C2FB30F4D007AAC73 /* ListValueAggregation.swift in Sources */,
 				A52F03EC2DBBA08700472ED1 /* SubjectPicker.swift in Sources */,
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A50A86532F76C7FB00B4A09C /* ThermostatScheduleDetailView.swift in Sources */,
@@ -9020,6 +9087,7 @@
 				A503ABAB2B67A094008CDA1F /* CandleChartData.swift in Sources */,
 				A5F29B8B2A209EC900ED700A /* NSFetchRequest+Ext.swift in Sources */,
 				A54637B62D37E9A600D746F5 /* ImpulseCounterGeneralState.swift in Sources */,
+				A534D61F2FB32DAB007AAC73 /* ImpulseCounterSettings.swift in Sources */,
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
@@ -9180,7 +9248,7 @@
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				A5AE6D692E1D4ACC00BC2B67 /* AddWizardView.swift in Sources */,
 				A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */,
-				A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */,
+				A57669012AEFD4420025509D /* UserStateHolder.swift in Sources */,
 				A598CABB2CC0EE5200A784FA /* View+SuplaCard.swift in Sources */,
 				A5CF3E572DD6880A00207384 /* WidgetIcon.swift in Sources */,
 				A55BE8D32F960FE800362562 /* RangeSlider.swift in Sources */,
@@ -9246,6 +9314,11 @@
 				A585421D2D7F7B2900D314A2 /* ControlLevel.swift in Sources */,
 				A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */,
 				A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */,
+				B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */,
+				B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */,
+				B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */,
+				B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */,
+				B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */,
 				A5C347892EAF955400075244 /* SAChannelState+Printable.swift in Sources */,
 				A54637AC2D37BE2800D746F5 /* BaseRowsChartMarkerView.swift in Sources */,
 				A539C2712D67786500D9DD47 /* ValveGeneralFeature.swift in Sources */,
@@ -9258,9 +9331,11 @@
 				A5D712942C41088D00A8EF52 /* AboutView.swift in Sources */,
 				A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */,
 				A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */,
+				A534D6222FB33617007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift in Sources */,
 				A50B5D3D2BFB6EA200918D18 /* ProjectorScreenView.swift in Sources */,
 				A51BE9112AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift in Sources */,
 				A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */,
+				A5C82FC22FB34FF20044C57B /* TriggerLogHistoryDownloadUseCase.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				A5A9CAA02EE845E3009C0030 /* ColorListItemRepository.swift in Sources */,
 				A530EE062A5575D700F8DAEE /* DeviceStateUIView.swift in Sources */,
@@ -9524,6 +9599,8 @@
 				A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */,
+				A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */,
+				B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */,
 				A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */,
 				A54A06802AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5E40B6F2B868DA900DB6ABE /* AuthProfileItem+Mock.swift in Sources */,
@@ -10297,6 +10374,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */,
 				A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */,
 				A5BF4F582F3C7C7100F5DE81 /* SUPLA 26.xcdatamodel */,
 				A55AE82A2EEC0E5E006E0AA9 /* SUPLA 25.xcdatamodel */,
@@ -10325,7 +10403,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */;
+			currentVersion = A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

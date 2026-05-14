@@ -248,6 +248,11 @@
 "general_processing" = "Wird verarbeitet";
 "incorrect_password" = "Falsches Passwort";
 "app_sentence" = "endlich zuhause!";
+"general_current_hour" = "Aktuelle Stunde";
+"general_current_day" = "Aktueller Tag";
+"general_current_month" = "Aktueller Monat";
+"general_current_week" = "Aktuelle Woche";
+"general_current_year" = "Aktuelles Jahr";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -558,6 +563,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Zählerstand";
 "details_em_current_month_consumption" = "Verbrauch im laufenden Monat";
+"impulse_counter_settings_counter_status" = "Aktueller Zählerstand";
+"details_ic_settings_list_item" = "In der Kanalliste angezeigte Metrik";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Bilder von Zähler";

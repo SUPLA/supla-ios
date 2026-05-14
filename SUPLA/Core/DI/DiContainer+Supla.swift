@@ -283,6 +283,9 @@ extension DiContainer {
         register(ReadNfcItems.UseCase.self, ReadNfcItems.Implementation())
         register(ReadNfcItem.UseCase.self, ReadNfcItem.Implementation())
         register(LockNfcTag.UseCase.self, LockNfcTag.Implementation())
+        // UseCase - List
+        register(TriggerLogHistoryDownload.UseCase.self, TriggerLogHistoryDownload.Implementation())
+        register(RefreshImpulseCounterAggregatedValue.UseCase.self, RefreshImpulseCounterAggregatedValue.Implementation())
         
         // MARK: Features
         

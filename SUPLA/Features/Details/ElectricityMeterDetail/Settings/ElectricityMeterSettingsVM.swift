@@ -61,7 +61,6 @@ extension ElectricityMeterSettingsFeature {
                 }
 
             let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
-            let phases = channel.phases
 
             let balancingItems: [ElectricityMeterBalanceType]? =
                 if ((measuredValues.contains(.forwardActiveEnergy) && measuredValues.contains(.reverseActiveEnergy)) || measuredValues.hasBalance) {

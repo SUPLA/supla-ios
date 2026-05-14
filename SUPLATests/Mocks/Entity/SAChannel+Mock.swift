@@ -24,7 +24,11 @@ extension SAChannel {
         value: SAChannelValue? = nil,
         config: SAChannelConfig? = nil
     ) -> SAChannel {
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = 1
+        
         let channel = SAChannel(testContext: nil)
+        channel.profile = profile
         channel.remote_id = remoteId
         channel.func = function
         channel.caption = caption

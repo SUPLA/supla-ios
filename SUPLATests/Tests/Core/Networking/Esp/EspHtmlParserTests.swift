@@ -108,7 +108,7 @@ class EspHtmlParserTests: XCTestCase {
     func test_shouldLoadDiyDeviceParameters() {
         // given
         let html = String(decoding: fileDataDiy, as: UTF8.self)
-        var inputs = parser.findInputs(document: documentDiy)
+        let inputs = parser.findInputs(document: documentDiy)
         
         // when
         let result = parser.prepareResult(document: html, fieldMap: inputs)

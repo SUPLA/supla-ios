@@ -37,28 +37,19 @@ extension ElectricityMeterSettingsFeature {
             
             return BackgroundStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName).uppercased())
-                        .fontBodyMedium()
-                        .padding([.leading, .trailing], Distance.default)
-                        .padding([.bottom], Distance.small)
+                    SettingsView.Header(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
                     VStack(alignment: .leading, spacing: 0) {
                         SuplaCore.Divider().color(Color.Supla.separator)
                             .padding([.bottom], Distance.small)
                         
-                        Text(Strings.ElectricityMeter.settingsListItem.uppercased())
-                            .fontBodySmall()
-                            .textColor(Color.Supla.onSurfaceVariant)
-                            .padding([.leading, .trailing], Distance.default)
+                        SettingsView.Label(text: Strings.ElectricityMeter.settingsListItem)
                         SuplaCore.Picker(selected: selectedTypeBinding, items: viewState.showOnChannelsList.items)
                         
                         if (viewState.balancing != nil) {
                             SuplaCore.Divider().color(Color.Supla.separator)
                                 .padding([.top, .bottom], Distance.small)
                             
-                            Text(Strings.ElectricityMeter.lastMonthBalancing.uppercased())
-                                .fontBodySmall()
-                                .textColor(Color.Supla.onSurfaceVariant)
-                                .padding([.leading, .trailing], Distance.default)
+                            SettingsView.Label(text: Strings.ElectricityMeter.lastMonthBalancing)
                             SuplaCore.Picker(selected: selectedBalancingBinding, items: viewState.balancing!.items)
                         }
                         

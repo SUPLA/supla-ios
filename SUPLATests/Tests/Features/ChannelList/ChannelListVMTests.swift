@@ -245,10 +245,14 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         let remoteId: Int32 = 322
         let deviceId: Int32 = 433
         let function: Int32 = 110
+        let profileId: Int32 = 1
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
+        channel.profile = profile
         channel.device_id = deviceId
         channel.func = function
         
@@ -264,7 +268,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.switchGeneral]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.switchGeneral]))
         ])
     }
     
@@ -273,7 +277,11 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         let remoteId: Int32 = 322
         let deviceId: Int32 = 433
         let function: Int32 = 110
+        let profileId: Int32 = 1
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
+        channel.profile = profile
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
@@ -292,7 +300,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermostatGeneral]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermostatGeneral]))
         ])
     }
     
@@ -301,7 +309,11 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         let remoteId: Int32 = 322
         let deviceId: Int32 = 433
         let function: Int32 = 110
+        let profileId: Int32 = 1
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
+        channel.profile = profile
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
@@ -320,7 +332,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermometerHistory]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.thermometerHistory]))
         ])
     }
     
@@ -329,7 +341,11 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         let remoteId: Int32 = 322
         let deviceId: Int32 = 433
         let function: Int32 = 110
+        let profileId: Int32 = 1
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let channel = SAChannel(testContext: nil)
+        channel.profile = profile
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         channel.remote_id = remoteId
@@ -348,7 +364,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.gpmHistory]))
+            .next(0, .navigateToStandardDetail(item: ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: deviceId, subjectType: .channel, function: function), pages: [.gpmHistory]))
         ])
     }
     

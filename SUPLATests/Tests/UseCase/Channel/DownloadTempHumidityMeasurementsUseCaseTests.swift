@@ -50,20 +50,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         super.tearDown()
     }
     
-    func test_shouldFailWhenCouldNotLoadActiveProfile() {
-        // given
-        let remoteId: Int32 = 213
-        
-        // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load active profile\'s server ID"))
-        ])
-    }
-    
-    func test_shouldFailWhenCouldNotLoadInitialMeasurements() {
+    func test_shouldFailWhenCouldNotLoadInitialMeasurements() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -72,15 +59,18 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.returns = .single(.empty())
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            // then
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Could not load initial measurements"))
+        }
         
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load initial measurements"))
-        ])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
     }
     
-    func test_shouldFailWhenInitialMeasurementsReturns400() {
+    func test_shouldFailWhenInitialMeasurementsReturns400() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -92,15 +82,17 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         )))
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load initial measurements"))
-        ])
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            // then
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Could not load initial measurements"))
+        }
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
     }
     
-    func test_shouldFailWhenInitialMeasurementsHasMissingData() {
+    func test_shouldFailWhenInitialMeasurementsHasMissingData() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -112,15 +104,17 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         )))
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
-        assertEvents([
-            .error(GeneralError.illegalState(message: "Could not load initial measurements"))
-        ])
+        do {
+            try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
+        } catch {
+            // then
+            guard let generalError = error as? GeneralError else { XCTFail(); return }
+            XCTAssertEqual(generalError, GeneralError.illegalState(message: "Could not load initial measurements"))
+        }
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
     }
     
-    func test_shouldCleanDataWhenNoMeasurements() {
+    func test_shouldCleanDataWhenNoMeasurements() async throws {
         // given
         let remoteId: Int32 = 213
         let serverId: Int32 = 3
@@ -134,16 +128,14 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         tempHumidityMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, serverId)])
     }
     
-    func test_shouldImportDataWhenDbIsEmpty() {
+    func test_shouldImportDataWhenDbIsEmpty() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -165,16 +157,17 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         ]
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .next(1),
-            .completed
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [
+            (remoteId, 0),
+            (remoteId, 0)
         ])
     }
     
-    func test_shouldDoNotImportWhenThereIsNothingMoreOnCloud() {
+    func test_shouldDoNotImportWhenThereIsNothingMoreOnCloud() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -197,16 +190,14 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(measurementDate.timeIntervalSince1970)
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
     }
     
-    func test_shouldSkipImportWhenDbAndCloudAreSimilar() {
+    func test_shouldSkipImportWhenDbAndCloudAreSimilar() async throws {
         // given
         let remoteId: Int32 = 213
         let profile = AuthProfileItem(testContext: nil)
@@ -226,16 +217,14 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         tempHumidityMeasurementItemRepository.findCountReturns = .just(1)
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [])
     }
     
-    func test_shouldCleanDbAndImportNewMeasurements() {
+    func test_shouldCleanDbAndImportNewMeasurements() async throws {
         // given
         let remoteId: Int32 = 213
         let serverId: Int32 = 3
@@ -260,12 +249,10 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         tempHumidityMeasurementItemRepository.findMaxTimestampReturns = .just(oldDate)
         
         // when
-        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        try await useCase.invoke(remoteId: remoteId, profile: profile, observer: { _ in })
         
         // then
-        assertEvents([
-            .completed
-        ])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.getInitialMeasurementsMock.parameters, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, serverId)])
     }

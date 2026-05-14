@@ -256,6 +256,11 @@
 "general_processing" = "Przetwarzanie";
 "incorrect_password" = "Nieprawidłowe hasło";
 "app_sentence" = "nareszcie w domu!";
+"general_current_hour" = "Bieżąca godzina";
+"general_current_day" = "Bieżący dzień";
+"general_current_month" = "Bieżący miesiąc";
+"general_current_week" = "Bieżący tydzień";
+"general_current_year" = "Bieżący rok";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -592,6 +597,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Stan licznika";
 "details_em_current_month_consumption" = "Zużycie w bieżącym miesiącu";
+"impulse_counter_settings_counter_status" = "Aktualny stan licznika";
+"details_ic_settings_list_item" = "Wartość pokazywana na liście kanałów";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Zdjęcia licznika";

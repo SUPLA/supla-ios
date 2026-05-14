@@ -57457,14 +57457,72 @@
         ]
       },
       {
+        "kind": "Var",
+        "name": "ONLINE_BUT_NOT_AVAILABLE",
+        "printedName": "ONLINE_BUT_NOT_AVAILABLE",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int32",
+            "printedName": "Swift.Int32",
+            "usr": "s:s5Int32V"
+          }
+        ],
+        "declKind": "Var",
+        "usr": "s:10SharedCore24ONLINE_BUT_NOT_AVAILABLEs5Int32Vvp",
+        "mangledName": "$s10SharedCore24ONLINE_BUT_NOT_AVAILABLEs5Int32Vvp",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "accessors": [
+          {
+            "kind": "Accessor",
+            "name": "Get",
+            "printedName": "Get()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Accessor",
+            "usr": "s:10SharedCore24ONLINE_BUT_NOT_AVAILABLEs5Int32Vvg",
+            "mangledName": "$s10SharedCore24ONLINE_BUT_NOT_AVAILABLEs5Int32Vvg",
+            "moduleName": "SharedCore",
+            "accessorKind": "get"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Function",
         "name": "ifTrue",
         "printedName": "ifTrue(value:callback:)",
         "children": [
           {
             "kind": "TypeNominal",
-            "name": "Void",
-            "printedName": "()"
+            "name": "Optional",
+            "printedName": "Any?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ProtocolComposition",
+                "printedName": "Any"
+              }
+            ],
+            "usr": "s:Sq"
           },
           {
             "kind": "TypeNominal",
@@ -57475,12 +57533,20 @@
           {
             "kind": "TypeFunc",
             "name": "Function",
-            "printedName": "() -> ()",
+            "printedName": "() -> Any?",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -57491,8 +57557,8 @@
           }
         ],
         "declKind": "Func",
-        "usr": "s:10SharedCore6ifTrue5value8callbackySb_yyctF",
-        "mangledName": "$s10SharedCore6ifTrue5value8callbackySb_yyctF",
+        "usr": "s:10SharedCore6ifTrue5value8callbackypSgSb_AEyctF",
+        "mangledName": "$s10SharedCore6ifTrue5value8callbackypSgSb_AEyctF",
         "moduleName": "SharedCore",
         "declAttributes": [
           "AccessControl"
@@ -58257,6 +58323,61 @@
         "declKind": "Func",
         "usr": "s:10SharedCore8withUnitABSo0aB11ValueFormatCSb_tF",
         "mangledName": "$s10SharedCore8withUnitABSo0aB11ValueFormatCSb_tF",
+        "moduleName": "SharedCore",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "withUnit",
+        "printedName": "withUnit(unit:leadingSpace:showNoValueText:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "ValueFormat",
+            "printedName": "SharedCore.ValueFormat",
+            "usr": "c:objc(cs)SharedCoreValueFormat"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.String?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "SharedCore.KotlinBoolean?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "KotlinBoolean",
+                "printedName": "SharedCore.KotlinBoolean",
+                "usr": "c:objc(cs)SharedCoreBoolean"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:10SharedCore8withUnit4unit12leadingSpace15showNoValueTextSo0abJ6FormatCSSSg_SbSo0aB7BooleanCSgtF",
+        "mangledName": "$s10SharedCore8withUnit4unit12leadingSpace15showNoValueTextSo0abJ6FormatCSSSg_SbSo0aB7BooleanCSgtF",
         "moduleName": "SharedCore",
         "declAttributes": [
           "AccessControl"
@@ -62449,8 +62570,8 @@
           },
           {
             "kind": "Function",
-            "name": "ifFalse",
-            "printedName": "ifFalse(value:)",
+            "name": "forFalse",
+            "printedName": "forFalse(value:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -62480,8 +62601,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:Sb10SharedCoreE7ifFalse5valueypSgAD_tF",
-            "mangledName": "$sSb10SharedCoreE7ifFalse5valueypSgAD_tF",
+            "usr": "s:Sb10SharedCoreE8forFalse5valueypSgAD_tF",
+            "mangledName": "$sSb10SharedCoreE8forFalse5valueypSgAD_tF",
             "moduleName": "SharedCore",
             "declAttributes": [
               "AccessControl"
@@ -62491,8 +62612,8 @@
           },
           {
             "kind": "Function",
-            "name": "ifTrue",
-            "printedName": "ifTrue(value:)",
+            "name": "forTrue",
+            "printedName": "forTrue(value:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -62522,8 +62643,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:Sb10SharedCoreE6ifTrue5valueypSgAD_tF",
-            "mangledName": "$sSb10SharedCoreE6ifTrue5valueypSgAD_tF",
+            "usr": "s:Sb10SharedCoreE7forTrue5valueypSgAD_tF",
+            "mangledName": "$sSb10SharedCoreE7forTrue5valueypSgAD_tF",
             "moduleName": "SharedCore",
             "declAttributes": [
               "AccessControl"
@@ -62533,8 +62654,8 @@
           },
           {
             "kind": "Function",
-            "name": "ifTrue",
-            "printedName": "ifTrue(valueProvider:)",
+            "name": "forTrue",
+            "printedName": "forTrue(valueProvider:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -62576,8 +62697,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:Sb10SharedCoreE6ifTrue13valueProviderypSgADyc_tF",
-            "mangledName": "$sSb10SharedCoreE6ifTrue13valueProviderypSgADyc_tF",
+            "usr": "s:Sb10SharedCoreE7forTrue13valueProviderypSgADyc_tF",
+            "mangledName": "$sSb10SharedCoreE7forTrue13valueProviderypSgADyc_tF",
             "moduleName": "SharedCore",
             "declAttributes": [
               "AccessControl"

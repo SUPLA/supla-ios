@@ -248,6 +248,11 @@
 "general_processing" = "Procesando";
 "incorrect_password" = "Contraseña incorrecta";
 "app_sentence" = "¡por fin en casa!";
+"general_current_hour" = "Hora actual";
+"general_current_day" = "Día actual";
+"general_current_month" = "Mes actual";
+"general_current_week" = "Semana actual";
+"general_current_year" = "Año actual";
 /* General - DayOfWeek */
 "monday" = "Lunes";
 "tuesday" = "Martes";
@@ -542,6 +547,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Lectura del contador";
 "details_em_current_month_consumption" = "Consumo en el mes actual";
+"impulse_counter_settings_counter_status" = "Lectura actual del contador";
+"details_ic_settings_list_item" = "Valor mostrado en la lista de canales";
 
 /* Valve */
 "valve_warning_manually_closed" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente. ¿Estás seguro de que quieres abrir la válvula desde la aplicación?";

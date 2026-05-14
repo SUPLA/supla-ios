@@ -153,8 +153,12 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
     func test_shouldOpenWindowDetail_whenGroupIsOnline() {
         // given
         let remoteId: Int32 = 123
+        let profileId: Int32 = 1
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let group = SAChannelGroup(testContext: nil)
+        group.profile = profile
         group.remote_id = remoteId
         group.func = function
         group.online = 1
@@ -171,7 +175,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
+        let itemBundle = ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: 0, subjectType: .group, function: function)
         XCTAssertEqual(eventObserver.events, [
             .next(0, .navigateToStandardDetail(item: itemBundle, pages: pages))
         ])
@@ -180,8 +184,12 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
     func test_shouldOpenWindowDetail_whenGroupIsOffline() {
         // given
         let remoteId: Int32 = 123
+        let profileId: Int32 = 1
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
         let group = SAChannelGroup(testContext: nil)
+        group.profile = profile
         group.remote_id = remoteId
         group.func = function
         group.online = 0
@@ -198,7 +206,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
+        let itemBundle = ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: 0, subjectType: .group, function: function)
         XCTAssertEqual(eventObserver.events, [
             .next(0, .navigateToStandardDetail(item: itemBundle, pages: pages))
         ])

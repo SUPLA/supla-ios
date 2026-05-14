@@ -22,6 +22,7 @@ import RxSwift
 protocol ChannelValueRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannelValue {
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelValue>
+    func updateAggregatedValue(_ profileId: Int32, _ remoteId: Int32, _ value: String) async
 }
 
 final class ChannelValueRepositoryImpl: Repository<SAChannelValue>, ChannelValueRepository {
@@ -36,12 +37,26 @@ final class ChannelValueRepositoryImpl: Repository<SAChannelValue>, ChannelValue
     }
     
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
-        let context: NSManagedObjectContext = CoreDataManager.shared.backgroundContext
+        let context = context
+        
         context.performAndWait {
             let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SAChannelValue")
             fetch.predicate = NSPredicate(format: "channel_id = %d AND profile.id = %d", remoteId, profile.id)
             let request = NSBatchDeleteRequest(fetchRequest: fetch)
             if (try? context.execute(request)) != nil {
+                try? context.save()
+            }
+        }
+    }
+    
+    func updateAggregatedValue(_ profileId: Int32, _ remoteId: Int32, _ value: String) async {
+        let context = context
+        
+        await context.perform {
+            let request = SAChannelValue.fetchRequest()
+                .filtered(by: NSPredicate(format: "channel_id = %d AND profile.id = %d", remoteId, profileId))
+            if let item = try? context.fetch(request).first {
+                item.aggregated_value = value
                 try? context.save()
             }
         }

@@ -19,7 +19,7 @@
 import RxSwift
     
 protocol DownloadElectricityMeterLogUseCase {
-    func invoke(remoteId: Int32) -> Observable<Float>
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws
 }
 
 final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem>, DownloadElectricityMeterLogUseCase {
@@ -33,9 +33,9 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
         _ serverId: Int32,
-        _ observer: AnyObserver<Float>,
+        _ observer: (Float) -> Void,
         _ disposable: BooleanDisposable
-    ) throws {
+    ) async throws {
         let entriesToImport = totalCount - databaseCount
         let lastEntity = electricityMeasurementItemRepository
             .findOldestEntity(remoteId: remoteId, serverId: serverId)
@@ -67,7 +67,9 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
             afterTimestamp = lastEntry?.date.timeIntervalSince1970 ?? 0
             
             importedEntries += measurements.count
-            observer.onNext(Float(importedEntries) / Float(entriesToImport))
+            
+            let importStatus = Float(importedEntries) / Float(entriesToImport)
+            await MainActor.run { observer(importStatus) }
         }
     }
     

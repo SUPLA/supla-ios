@@ -29,6 +29,8 @@ extension DownloadChannelMeasurementsUseCase {
 }
 
 final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsUseCase {
+    @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<DownloadEventsManager> private var downloadEventsManager
     @Singleton<DownloadTemperatureLogUseCase> private var downloadTemperatureLogUseCase
     @Singleton<DownloadTempHumidityLogUseCase> private var downloadTempHumidityLogUseCase
@@ -46,6 +48,9 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
     private var workingList: [Id] = []
     private let disposeBag = DisposeBag()
+    
+    // used in tests
+    var lastTask: Task<Void, Never>? = nil
     
     func invoke(_ channelWithChildren: ChannelWithChildren, type: DownloadEventsManagerDataType) {
         syncedQueue.sync {
@@ -67,141 +72,133 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     
     private func startDownload(_ channelWithChildren: ChannelWithChildren, _ id: Id) throws {
         let function = channelWithChildren.function
+        let profile = channelWithChildren.channel.profile
         
         if (function == SUPLA_CHANNELFNC_THERMOMETER) {
-            startTemperatureDownload(id)
+            startTemperatureDownload(id, profile)
         } else if (function == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
-            startTemperatureAndHumidityDownload(id)
+            startTemperatureAndHumidityDownload(id, profile)
         } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
-            startGeneralPurposeMeasurementDownload(id)
+            startGeneralPurposeMeasurementDownload(id, profile)
         } else if (function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
-            startGeneralPurposeMeterDownload(id)
+            startGeneralPurposeMeterDownload(id, profile)
         } else if (channelWithChildren.isOrHasElectricityMeter) {
             switch (id.type) {
-            case .default: startElectricityMeasurementsDownload(id)
-            case .electricityCurrent: startCurrentMeasurementsDownload(id)
-            case .electricityVoltage: startVoltageMeasurementsDownload(id)
-            case .electricityPowerActive: startPowerActiveMeasurementsDownload(id)
+            case .default: startElectricityMeasurementsDownload(id, profile)
+            case .electricityCurrent: startCurrentMeasurementsDownload(id, profile)
+            case .electricityVoltage: startVoltageMeasurementsDownload(id, profile)
+            case .electricityPowerActive: startPowerActiveMeasurementsDownload(id, profile)
             }
         } else if (channelWithChildren.isOrHasImpulseCounter) {
-            startImpulseCounterMeasurementsDownload(id)
+            startImpulseCounterMeasurementsDownload(id, profile)
         } else if (function == SUPLA_CHANNELFNC_HUMIDITY) {
-            startHumidityMeasurementsDownload(id)
+            startHumidityMeasurementsDownload(id, profile)
         } else if (function == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
-            startThermostatHeatpolMeasurementsDownload(id)
+            startThermostatHeatpolMeasurementsDownload(id, profile)
         } else {
             throw GeneralError.illegalArgument(message: "Trying to start download for unsupported function \(function)")
         }
     }
     
-    private func startTemperatureDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadTemperatureLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startTemperatureDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadTemperatureLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startTemperatureAndHumidityDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadTempHumidityLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startTemperatureAndHumidityDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadTempHumidityLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startGeneralPurposeMeasurementDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadGeneralPurposeMeasurementLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startGeneralPurposeMeasurementDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadGeneralPurposeMeasurementLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startGeneralPurposeMeterDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadGeneralPurposeMeterLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startGeneralPurposeMeterDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadGeneralPurposeMeterLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startElectricityMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadElectricityMeterLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startElectricityMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadElectricityMeterLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startHumidityMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadHumidityLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startHumidityMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadHumidityLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startImpulseCounterMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadImpulseCounterLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startImpulseCounterMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadImpulseCounterLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startCurrentMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadCurrentLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startCurrentMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadCurrentLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startVoltageMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadVoltageLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startVoltageMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadVoltageLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startPowerActiveMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadPowerActiveLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startPowerActiveMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadPowerActiveLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func startThermostatHeatpolMeasurementsDownload(_ id: Id) {
-        setupObservable(
-            id: id,
-            observable: downloadThermostatHeatpolLogUseCase.invoke(remoteId: id.id)
-        )
+    private func startThermostatHeatpolMeasurementsDownload(_ id: Id, _ profile: AuthProfileItem) {
+        setupTask(id: id) {
+            try await self.downloadThermostatHeatpolLogUseCase.invoke(remoteId: id.id, profile: profile, observer: $0)
+        }
     }
     
-    private func setupObservable(id: Id, observable: Observable<Float>) {
-        observable
-            .subscribe(on: schedulers.background)
-            .observe(on: schedulers.main)
-            .do(onSubscribe: {
+    private func setupTask(id: Id, runner: @escaping ((Float) -> Void) async throws -> Void) {
+        lastTask = Task.detached(priority: .userInitiated) {
+            await MainActor.run {
                 self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .started)
-            })
-            .subscribe(
-                onNext: {
+                self.updateEventsManager.emitChannelUpdate(remoteId: Int(id.id))
+            }
+            
+            do {
+                try await runner { progress in
                     self.downloadEventsManager.emitProgressState(
                         remoteId: id.id,
                         dataType: id.type,
-                        state: .inProgress(progress: $0)
+                        state: .inProgress(progress: progress)
                     )
-                },
-                onError: { error in
-                    self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .failed)
-                    self.removeFromWorkingList(id)
-                    
-                    let errorMessage = String(describing: error)
-                    SALog.error("Measurements download for \(id.id) (type: \(id.type)) failed with \(error.localizedDescription)")
-                    NSLog(errorMessage)
-                },
-                onCompleted: {
-                    self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .finished)
-                    self.removeFromWorkingList(id)
-                    
-                    SALog.info("Measurements download for \(id.id) (type: \(id.type)) finished successfully")
                 }
-            )
-            .disposed(by: disposeBag)
+                
+                await MainActor.run {
+                    self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .finished)
+                }
+                
+                SALog.info("Measurements download for \(id.id) (type: \(id.type)) finished successfully")
+            } catch {
+                await MainActor.run {
+                    self.downloadEventsManager.emitProgressState(remoteId: id.id, dataType: id.type, state: .failed)
+                }
+                
+                let errorMessage = String(describing: error)
+                SALog.error("Measurements download for \(id.id) (type: \(id.type)) failed with \(errorMessage)")
+            }
+            
+            self.updateEventsManager.emitChannelUpdate(remoteId: Int(id.id))
+            self.removeFromWorkingList(id)
+        }
     }
     
     private func removeFromWorkingList(_ id: Id) {

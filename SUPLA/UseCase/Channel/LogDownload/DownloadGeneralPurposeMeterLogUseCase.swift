@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol DownloadGeneralPurposeMeterLogUseCase {
-    func invoke(remoteId: Int32) -> Observable<Float>
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws
 }
 
 final class DownloadGeneralPurposeMeterLogUseCaseImpl:
@@ -35,9 +35,9 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
         _ serverId: Int32,
-        _ observer: AnyObserver<Float>,
+        _ observer: (Float) -> Void,
         _ disposable: BooleanDisposable
-    ) throws {
+    ) async throws {
         let entriesToImport = totalCount - databaseCount
         var importedEntries = 0
         var lastEntity = generalPurposeMeterItemRepository
@@ -73,7 +73,9 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
             afterTimestamp = lastEntity?.date?.timeIntervalSince1970 ?? 0
             
             importedEntries += measurements.count
-            observer.on(.next(Float(importedEntries) / Float(entriesToImport)))
+            
+            let importStatus = Float(importedEntries) / Float(entriesToImport)
+            await MainActor.run { observer(importStatus) }
         }
     }
     

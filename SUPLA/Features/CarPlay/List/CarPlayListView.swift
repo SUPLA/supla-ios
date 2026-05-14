@@ -31,7 +31,7 @@ extension CarPlayListFeature {
             BackgroundStack(alignment: .top) {
                 VStack(spacing: 1) {
                     if (BrandingConfiguration.CARPLAY_SUPPORT) {
-                        SettingsItemWithCheckbox(
+                        SettingsView.ItemWithCheckbox(
                             label: Strings.CarPlay.voiceMessages,
                             checked: $viewState.playMessages,
                             onChange: { onPlayMessagesChange($0) }

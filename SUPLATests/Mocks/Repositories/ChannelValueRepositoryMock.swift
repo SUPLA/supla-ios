@@ -36,4 +36,9 @@ final class ChannelValueRepositoryMock: BaseRepositoryMock<SAChannelValue>, Chan
     
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
     }
+    
+    var updateAggregatedValueMock: FunctionMock<(Int32, Int32, String), Void> = .init()
+    func updateAggregatedValue(_ profileId: Int32, _ remoteId: Int32, _ value: String) async {
+        updateAggregatedValueMock.set((profileId, remoteId, value))
+    }
 }

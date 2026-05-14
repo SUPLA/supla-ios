@@ -19,7 +19,7 @@
 import RxSwift
     
 protocol DownloadThermostatHeatpolLogUseCase {
-    func invoke(remoteId: Int32) -> Observable<Float>
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws
 }
 
 final class DownloadThermostatHeatpolLogUseCaseImpl:

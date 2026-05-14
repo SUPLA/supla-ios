@@ -16,30 +16,34 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-@testable import SUPLA
 import RxSwift
+@testable import SUPLA
 
 final class DownloadEventsManagerMock: DownloadEventsManager {
-    
     var emitProgressStateParameters: [(Int32, DownloadEventsManagerState)] = []
     func emitProgressState(remoteId: Int32, state: DownloadEventsManagerState) {
         emitProgressStateParameters.append((remoteId, state))
     }
-    
+
     var observeProgressParameters: [Int32] = []
     var observeProgressReturns: Observable<DownloadEventsManagerState> = Observable.empty()
     func observeProgress(remoteId: Int32) -> Observable<DownloadEventsManagerState> {
         observeProgressParameters.append(remoteId)
         return observeProgressReturns
     }
-    
+
     var emitProgressStateMock: FunctionMock<(Int32, SUPLA.DownloadEventsManagerDataType, SUPLA.DownloadEventsManagerState), Void> = .init()
     func emitProgressState(remoteId: Int32, dataType: SUPLA.DownloadEventsManagerDataType, state: SUPLA.DownloadEventsManagerState) {
         emitProgressStateMock.set((remoteId, dataType, state))
     }
-    
+
     var observeProgressMock: FunctionMock<(Int32, SUPLA.DownloadEventsManagerDataType), Observable<SUPLA.DownloadEventsManagerState>> = .init()
     func observeProgress(remoteId: Int32, dataType: SUPLA.DownloadEventsManagerDataType) -> Observable<SUPLA.DownloadEventsManagerState> {
         observeProgressMock.handle((remoteId, dataType))
+    }
+
+    var getLastChannelDownloadStateMock: FunctionMock<(Int32, SUPLA.DownloadEventsManagerDataType), SUPLA.DownloadEventsManagerState?> = .init()
+    func getLastChannelDownloadState(remoteId: Int32, dataType: SUPLA.DownloadEventsManagerDataType) -> SUPLA.DownloadEventsManagerState? {
+        getLastChannelDownloadStateMock.handle((remoteId, dataType))
     }
 }

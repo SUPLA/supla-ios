@@ -247,6 +247,11 @@
 "general_processing" = "Behandler";
 "incorrect_password" = "Feil passord";
 "app_sentence" = "endelig hjemme!";
+"general_current_hour" = "Nåværende time";
+"general_current_day" = "Nåværende dag";
+"general_current_month" = "Nåværende måned";
+"general_current_week" = "Nåværende uke";
+"general_current_year" = "Nåværende år";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -541,6 +546,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Meterlesing";
 "details_em_current_month_consumption" = "Forbruk i gjeldende måned";
+"impulse_counter_settings_counter_status" = "Nåværende målerstand";
+"details_ic_settings_list_item" = "Verdien som vises i kanallisten";
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventilen ble stengt i manuell modus. Før du åpner den, sørg for at den ikke har vært lukket på grunn av flom. For å deaktivere advarselen, åpne ventilen manuelt. Er du sikker på at du vil åpne ventilen fra appen?!";

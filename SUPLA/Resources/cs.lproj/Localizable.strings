@@ -247,6 +247,11 @@
 "incorrect_password" = "Nesprávné heslo";
 "general_processing" = "Zpracovávání";
 "app_sentence" = "konečně doma!";
+"general_current_hour" = "Aktuální hodina";
+"general_current_day" = "Aktuální den";
+"general_current_month" = "Aktuální měsíc";
+"general_current_week" = "Aktuální týden";
+"general_current_year" = "Aktuální rok";
 /* General - DayOfWeek */
 "monday" = "Pondělí";
 "tuesday" = "Útery";
@@ -542,6 +547,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Stav měřiče";
 "details_em_current_month_consumption" = "Spotřeba v tomto měsíci";
+"impulse_counter_settings_counter_status" = "Aktuální stav měřidla";
+"details_ic_settings_list_item" = "Hodnota zobrazená v seznamu kanálů";
 
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";

@@ -111,20 +111,16 @@ final class LoadChannelMeasurementsDateRangeUseCaseMock: LoadChannelMeasurements
 }
 
 final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
 final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
@@ -144,20 +140,65 @@ final class GetChannelValueStringUseCaseMock: GetChannelValueStringUseCase {
 }
 
 final class DownloadGeneralPurposeMeasurementLogUseCaseMock: DownloadGeneralPurposeMeasurementLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
 final class DownloadGeneralPurposeMeterLogUseCaseMock: DownloadGeneralPurposeMeterLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadElectricityMeterLogUseCaseMock: DownloadElectricityMeterLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadCurrentLogUseCaseMock: DownloadCurrentLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadVoltageLogUseCaseMock: DownloadVoltageLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadPowerActiveLogUseCaseMock: DownloadPowerActiveLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadImpulseCounterLogUseCaseMock: DownloadImpulseCounterLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadHumidityLogUseCaseMock: DownloadHumidityLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadThermostatHeatpolLogUseCaseMock: DownloadThermostatHeatpolLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 

@@ -26,4 +26,24 @@ extension Completable {
             return Disposables.create()
         }
     }
+    
+    static func fromAsync(
+        _ operation: @escaping () async throws -> Void
+    ) -> Completable {
+        Completable.create { completable in
+
+            let task = Task {
+                do {
+                    try await operation()
+                    completable(.completed)
+                } catch {
+                    completable(.error(error))
+                }
+            }
+
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
 }
