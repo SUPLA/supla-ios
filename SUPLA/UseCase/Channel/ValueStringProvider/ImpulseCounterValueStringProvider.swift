@@ -18,6 +18,7 @@
     
 import SharedCore
 class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
+    @Singleton<UserStateHolder> private var userStateHolder
     @Singleton<ImpulseCounterValueProvider> private var impulseCounterValueProvider
     
     private let impulseCounterFormatter = SharedCore.ImpulseCounterValueFormatter()
@@ -32,17 +33,23 @@ class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
             return NO_VALUE_TEXT
         }
         
-        if (channel.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
-            return electricityMeterFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
-        } else {
-            return impulseCounterFormatter.format(
-                value: value,
-                format: ValueFormatKt.withUnit(
-                    withUnit: withUnit,
-                    unit: channel.ev?.impulseCounter().unit(),
-                    leadingSpace: true
+        let settings = userStateHolder.getImpulseCounterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        
+        if (settings.showOnList == .noAggregation) {
+            if (channel.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
+                return electricityMeterFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
+            } else {
+                return impulseCounterFormatter.format(
+                    value: value,
+                    format: ValueFormatKt.withUnit(
+                        withUnit: withUnit,
+                        unit: channel.ev?.impulseCounter().unit(),
+                        leadingSpace: true
+                    )
                 )
-            )
+            }
+        } else {
+            return channel.value?.aggregated_value ?? NO_VALUE_TEXT
         }
     }
 }

@@ -25,14 +25,23 @@ protocol DownloadEventsManager {
     
     func emitProgressState(remoteId: Int32, dataType: DownloadEventsManagerDataType, state: DownloadEventsManagerState)
     func observeProgress(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> Observable<DownloadEventsManagerState>
+    
+    func getLastChannelDownloadState(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> DownloadEventsManagerState?
+}
+
+extension DownloadEventsManager {
+    func getLastChannelDownloadState(remoteId: Int32) -> DownloadEventsManagerState? {
+        getLastChannelDownloadState(remoteId: remoteId, dataType: .default)
+    }
 }
 
 final class DownloadEventsManagerImpl: DownloadEventsManager {
     private var subjects: [Id: BehaviorRelay<DownloadEventsManagerState>] = [:]
     private let syncedQueue = DispatchQueue(label: "DownloadEventsPrivateQueue", attributes: .concurrent)
+    private var lastEventMap: [Id: DownloadEventsManagerState] = [:]
     
     func emitProgressState(remoteId: Int32, state: DownloadEventsManagerState) {
-        getSubject(remoteId: remoteId, dataType: .default).accept(state)
+        emitProgressState(remoteId: remoteId, dataType: .default, state: state)
     }
 
     func observeProgress(remoteId: Int32) -> Observable<DownloadEventsManagerState> {
@@ -40,11 +49,18 @@ final class DownloadEventsManagerImpl: DownloadEventsManager {
     }
 
     func emitProgressState(remoteId: Int32, dataType: DownloadEventsManagerDataType, state: DownloadEventsManagerState) {
+        let id = Id(id: remoteId, dataType: dataType)
+        lastEventMap[id] = state
+        
         getSubject(remoteId: remoteId, dataType: dataType).accept(state)
     }
 
     func observeProgress(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> Observable<DownloadEventsManagerState> {
         return getSubject(remoteId: remoteId, dataType: dataType).asObservable()
+    }
+    
+    func getLastChannelDownloadState(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> DownloadEventsManagerState? {
+        lastEventMap[Id(id: remoteId, dataType: dataType)]
     }
 
     private func getSubject(remoteId: Int32, dataType: DownloadEventsManagerDataType) -> BehaviorRelay<DownloadEventsManagerState> {
@@ -82,7 +98,7 @@ enum DownloadEventsManagerState: Equatable {
 
     func isInProgress() -> Bool {
         switch (self) {
-        case .inProgress: true
+        case .started, .inProgress: true
         default: false
         }
     }

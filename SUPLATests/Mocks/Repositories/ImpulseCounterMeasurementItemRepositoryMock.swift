@@ -30,16 +30,18 @@ final class ImpulseCounterMeasurementItemRepositoryMock: BaseRepositoryMock<SAIm
         return deleteAllObservable
     }
     
+    var findMeasurementsMock: FunctionMock<(Int32, Int32?, Date, Date), Observable<[SAImpulseCounterMeasurementItem]>> = .init()
     func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAImpulseCounterMeasurementItem]> {
-        .empty()
+        findMeasurementsMock.handle((remoteId, serverId, startDate, endDate))
     }
     
     func storeMeasurements(measurements: [SUPLA.SuplaCloudClient.ImpulseCounterMeasurement], latestItem: SUPLA.SuplaCloudClient.ImpulseCounterMeasurement?, serverId: Int32, remoteId: Int32) throws -> SUPLA.SuplaCloudClient.ImpulseCounterMeasurement? {
         nil
     }
     
+    var findOldestEntityMock: FunctionMock<(Int32, Int32), Observable<SAImpulseCounterMeasurementItem?>> = .init()
     func findOldestEntity(remoteId: Int32, serverId: Int32) -> Observable<SAImpulseCounterMeasurementItem?> {
-        .empty()
+        findOldestEntityMock.handle((remoteId, serverId))
     }
     
     func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {

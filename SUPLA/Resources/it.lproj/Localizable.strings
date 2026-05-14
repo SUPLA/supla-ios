@@ -263,6 +263,11 @@
 "general_processing" = "Elaborazione";
 "incorrect_password" = "Password errata";
 "app_sentence" = "finalmente a casa!";
+"general_current_hour" = "Ora corrente";
+"general_current_day" = "Giorno corrente";
+"general_current_month" = "Mese corrente";
+"general_current_week" = "Settimana corrente";
+"general_current_year" = "Anno corrente";
 /* General - DayOfWeek */
 "monday" = "Lunedì";
 "tuesday" = "Martedì";
@@ -575,6 +580,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Lettura del contatore";
 "details_em_current_month_consumption" = "Consumo del mese corrente";
+"impulse_counter_settings_counter_status" = "Lettura attuale del contatore";
+"details_ic_settings_list_item" = "Valore visualizzato nell\\'elenco dei canali";
 
 /* Valve */
 "valve_warning_manually_closed" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente. Sei sicuro di voler aprire la valvola dall'applicazione?";

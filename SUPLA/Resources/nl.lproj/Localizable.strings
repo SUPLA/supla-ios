@@ -247,6 +247,11 @@
 "general_processing" = "Bezig met verwerken";
 "incorrect_password" = "Onjuist wachtwoord";
 "app_sentence" = "eindelijk thuis!";
+"general_current_hour" = "Huidig uur";
+"general_current_day" = "Huidige dag";
+"general_current_month" = "Huidige maand";
+"general_current_week" = "Huidige week";
+"general_current_year" = "Huidig jaar";
 /* General - DayOfWeek */
 "monday" = "Maandag";
 "tuesday" = "Diensdag";
@@ -542,6 +547,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Meterstand";
 "details_em_current_month_consumption" = "Verbruik in de lopende maand";
+"impulse_counter_settings_counter_status" = "Huidige meterstand";
+"details_ic_settings_list_item" = "Waarde die wordt weergegeven in de kanaallijst";
 
 /* Valve */
 "valve_warning_manually_closed" = "De klep werd in manuele mode gesloten. Voordat u hem opent, moet u controleren of hij niet is afgesloten vanwege een overstroming. Om de waarschuwing uit te schakelen, opent u de klep handmatig. Weet je zeker dat je de klep wilt openen vanuit de toepassing!";

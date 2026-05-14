@@ -18,44 +18,106 @@
     
 import SwiftUI
 
-struct SettingsListView<Content: View>: SwiftUI.View {
-    let content: () -> Content
+struct SettingsView {
     
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-    }
-    
-    var body: some View {
-        VStack(spacing: 1) {
-            content()
+    struct List<Content: View>: SwiftUI.View {
+        let content: () -> Content
+        
+        init(@ViewBuilder content: @escaping () -> Content) {
+            self.content = content
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.Supla.background)
-    }
-}
-
-struct SettingsItemWithCheckbox: SwiftUI.View {
-    let label: String
-    let onChange: ((Bool) -> Void)?
-    
-    @Binding private var checked: Bool
-    
-    init(label: String, checked: Binding<Bool>, onChange: ((Bool) -> Void)? = nil) {
-        self.label = label
-        self._checked = checked
-        self.onChange = onChange
-    }
-    
-    var body: some View {
-        HStack {
-            Toggle(isOn: $checked) {
-                Text(label)
-                    .fontBodyMedium()
+        
+        var body: some View {
+            VStack(spacing: 1) {
+                content()
             }
-            .onChange(of: checked) { onChange?($0) }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.Supla.background)
         }
-        .padding([.leading, .trailing], Distance.default)
-        .padding([.top, .bottom], Distance.small)
-        .background(Color.Supla.surface)
     }
+    
+    struct ItemWithCheckbox: SwiftUI.View {
+        let label: String
+        let onChange: ((Bool) -> Void)?
+        
+        @Binding private var checked: Bool
+        
+        init(label: String, checked: Binding<Bool>, onChange: ((Bool) -> Void)? = nil) {
+            self.label = label
+            self._checked = checked
+            self.onChange = onChange
+        }
+        
+        var body: some View {
+            Row {
+                Toggle(isOn: $checked) {
+                    Text(label)
+                        .fontBodyMedium()
+                }
+                .onChange(of: checked) { onChange?($0) }
+                .padding([.leading, .trailing], Distance.default)
+            }
+        }
+    }
+    
+    struct Row<Content: View>: SwiftUI.View {
+        let content: () -> Content
+        
+        init(@ViewBuilder content: @escaping () -> Content) {
+            self.content = content
+        }
+        
+        var body: some View {
+            HStack {
+                content()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding([.top, .bottom], Distance.small)
+            .background(Color.Supla.surface)
+        }
+    }
+    
+    struct VerticalRow<Content: View>: SwiftUI.View {
+        let alignment: HorizontalAlignment
+        let spacing: CGFloat
+        let content: () -> Content
+        
+        init(alignment: HorizontalAlignment = .leading, spacing: CGFloat = 0, @ViewBuilder content: @escaping () -> Content) {
+            self.alignment = alignment
+            self.spacing = spacing
+            self.content = content
+        }
+        
+        var body: some View {
+            VStack(alignment: alignment, spacing: spacing) {
+                content()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding([.top, .bottom], Distance.small)
+            .background(Color.Supla.surface)
+        }
+    }
+    
+    struct Header: View {
+        let text: String
+        
+        var body: some View {
+            Text(text.uppercased())
+                .fontBodyMedium()
+                .padding([.leading, .trailing], Distance.default)
+                .padding([.bottom], Distance.small)
+        }
+    }
+    
+    struct Label: View {
+        let text: String
+        
+        var body: some View {
+            Text(text.uppercased())
+                .fontBodySmall()
+                .padding([.leading, .trailing], Distance.default)
+                .textColor(Color.Supla.onSurfaceVariant)
+        }
+    }
+    
 }

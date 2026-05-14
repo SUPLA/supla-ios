@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *last_online_state;
 @property (nullable, nonatomic, retain) NSObject *sub_value;
 @property (nonatomic) int16_t sub_value_type;
+@property (nullable, nonatomic, copy) NSString *aggregated_value;
 
 @end
 

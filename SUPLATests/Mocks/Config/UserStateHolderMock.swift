@@ -51,6 +51,16 @@ final class UserStateHolderMock: UserStateHolder {
         setElectricityMeterSettingsParameters.append((settings, profileId, remoteId))
     }
     
+    var getImpulseCounterSettingsMock: FunctionMock<(Int32, Int32), SUPLA.ImpulseCounterSettings> = .init()
+    func getImpulseCounterSettings(profileId: Int32, remoteId: Int32) -> SUPLA.ImpulseCounterSettings {
+        getImpulseCounterSettingsMock.handle((profileId, remoteId))
+    }
+    
+    var setImpulseCounterSettingsMock: FunctionMock<(SUPLA.ImpulseCounterSettings, Int32, Int32), Void> = .init()
+    func setImpulseCounterSettings(_ settings: SUPLA.ImpulseCounterSettings, profileId: Int32, remoteId: Int32) {
+        setImpulseCounterSettingsMock.set((settings, profileId, remoteId))
+    }
+    
     var getPhotoCreationTimeMock: FunctionMock<(Int32, Int32), Date?> = .init()
     func getPhotoCreationTime(profileId: Int32, remoteId: Int32) -> Date? {
         return getPhotoCreationTimeMock.handle((profileId, remoteId))

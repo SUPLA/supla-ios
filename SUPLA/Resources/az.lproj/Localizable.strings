@@ -256,6 +256,11 @@
 "general_processing" = "Emal edilir";
 "incorrect_password" = "Şifrə yanlışdır";
 "app_sentence" = "nəhayət evdə!";
+"general_current_hour" = "Cari saat";
+"general_current_day" = "Cari gün";
+"general_current_month" = "Cari ay";
+"general_current_week" = "Cari həftə";
+"general_current_year" = "Cari il";
 /* General - DayOfWeek */
 "monday" = "Bazar ertəsi";
 "tuesday" = "Çərşənbə axşamı";
@@ -591,6 +596,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Sayğac dəyəri";
 "details_em_current_month_consumption" = "Cari ayın istehlakı";
+"impulse_counter_settings_counter_status" = "Cari sayğac göstəricisi";
+"details_ic_settings_list_item" = "Kanal siyahısında göstərilən göstərici";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Sayğac fotoları";

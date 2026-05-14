@@ -69,6 +69,11 @@
 "general_processing" = "Processing";
 "incorrect_password" = "Incorrect password";
 "app_sentence" = "finally home!";
+"general_current_hour" = "Current hour";
+"general_current_day" = "Current day";
+"general_current_month" = "Current month";
+"general_current_week" = "Current week";
+"general_current_year" = "Current year";
 /* General - DayOfWeek */
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -416,6 +421,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Meter value";
 "details_em_current_month_consumption" = "Consumption in the current month";
+"impulse_counter_settings_counter_status" = "Counter status";
+"details_ic_settings_list_item" = "Metric shown on the channel list";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Counter photos";

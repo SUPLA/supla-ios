@@ -247,6 +247,11 @@
 "general_processing" = "Обробка";
 "incorrect_password" = "Неправильний пароль";
 "app_sentence" = "нарешті вдома!";
+"general_current_hour" = "Поточна година";
+"general_current_day" = "Поточний день";
+"general_current_month" = "Поточний місяць";
+"general_current_week" = "Поточний тиждень";
+"general_current_year" = "Поточний рік";
 /* General - DayOfWeek */
 "monday" = "Понеділок";
 "tuesday" = "Вівторок";
@@ -543,6 +548,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Стан лічильника";
 "details_em_current_month_consumption" = "Споживання за поточний місяць";
+"impulse_counter_settings_counter_status" = "Поточні показники лічильника";
+"details_ic_settings_list_item" = "Значення, показане у списку каналів";
 
 /* Valve */
 "valve_warning_manually_closed" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";

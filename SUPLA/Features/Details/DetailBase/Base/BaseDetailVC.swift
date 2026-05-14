@@ -74,6 +74,8 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
                 viewControllers.append(impulseCounterHistoryDetail())
             case .impulseCounterOcr:
                 viewControllers.append(impulseCounterOcrDetail())
+            case .impulseCounterSettings:
+                viewControllers.append(impulseCounterSettingsDetail())
             case .thermostatGeneral:
                 viewControllers.append(thermostatGeneral())
             case .thermostatList:
@@ -404,6 +406,16 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
             title: settings.showBottomLabels ? Strings.StandardDetail.tabOcr : nil,
             image: .iconOcrPhoto,
             tag: DetailTabTag.Ocr.rawValue
+        )
+        return vc
+    }
+    
+    private func impulseCounterSettingsDetail() -> UIViewController {
+        let vc = ImpulseCounterSettingsFeature.ViewController.create(item: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
+            image: .iconSettings,
+            tag: DetailTabTag.Settings.rawValue
         )
         return vc
     }

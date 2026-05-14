@@ -102,6 +102,7 @@ private extension ChannelChild {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
+            profileId: channel.profile.id,
             deviceId: channel.device_id,
             function: channel.func,
             onlineState: channel.onlineState,
@@ -155,6 +156,7 @@ private extension ChannelWithChildren {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
+            profileId: channel.profile.id,
             deviceId: channel.device_id,
             function: channel.func,
             onlineState: channel.onlineState,

@@ -247,6 +247,11 @@
 "general_processing" = "Obdelava";
 "incorrect_password" = "Napačno geslo";
 "app_sentence" = "končno doma!";
+"general_current_hour" = "Trenutna ura";
+"general_current_day" = "Trenutni dan";
+"general_current_month" = "Trenutni mesec";
+"general_current_week" = "Trenutni teden";
+"general_current_year" = "Trenutno leto";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -543,6 +548,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Stanje števca";
 "details_em_current_month_consumption" = "Poraba v tekočem mesecu";
+"impulse_counter_settings_counter_status" = "Trenutno stanje števca";
+"details_ic_settings_list_item" = "Vrednost, prikazana na seznamu kanalov";
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";

@@ -24,7 +24,7 @@ import XCTest
 
 @available(iOS 17.0, *)
 final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDetailFeature.ViewState> {
-    private lazy var item: ItemBundle! = .init(remoteId: 1, deviceId: 1, subjectType: .channel, function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
+    private lazy var item: ItemBundle! = .init(remoteId: 1, profileId: 1, deviceId: 1, subjectType: .channel, function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
     private lazy var viewModel: ThermostatScheduleDetailFeature.ViewModel! = .init(item: item)
 
     private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = ChannelConfigEventsManagerMock()

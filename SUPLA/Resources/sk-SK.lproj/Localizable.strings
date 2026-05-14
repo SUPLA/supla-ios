@@ -247,6 +247,11 @@
 "general_processing" = "Spracováva sa";
 "incorrect_password" = "Nesprávne heslo";
 "app_sentence" = "konečne doma!";
+"general_current_hour" = "Aktuálna hodina";
+"general_current_day" = "Aktuálny deň";
+"general_current_month" = "Aktuálny mesiac";
+"general_current_week" = "Aktuálny týždeň";
+"general_current_year" = "Aktuálny rok";
 /* General - DayOfWeek */
 "monday" = "Pondelok";
 "tuesday" = "Utorok";
@@ -541,6 +546,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Stav počítadla";
 "details_em_current_month_consumption" = "Spotreba v aktuálnom mesiaci";
+"impulse_counter_settings_counter_status" = "Aktuálny stav merača";
+"details_ic_settings_list_item" = "Hodnota zobrazená v zozname kanálov";
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne. Naozaj chcete otvoriť ventil pomocou aplikácie?!";

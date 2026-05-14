@@ -247,6 +247,11 @@
 "general_processing" = "Traitement en cours";
 "incorrect_password" = "Mot de passe incorrect";
 "app_sentence" = "enfin à la maison !";
+"general_current_hour" = "Heure actuelle";
+"general_current_day" = "Jour actuel";
+"general_current_month" = "Mois actuel";
+"general_current_week" = "Semaine actuelle";
+"general_current_year" = "Année actuelle";
 /* General - DayOfWeek */
 "monday" = "Lundi";
 "tuesday" = "Mardi";
@@ -543,6 +548,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Valeur du compteur";
 "details_em_current_month_consumption" = "Consommation dans le mois courant";
+"impulse_counter_settings_counter_status" = "Relevé actuel du compteur";
+"details_ic_settings_list_item" = "Valeur affichée dans la liste des chaînes";
 
 /* Valve */
 "valve_warning_manually_closed" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement. Êtes-vous sûr de vouloir ouvrir la vanne à partir de l'application?";

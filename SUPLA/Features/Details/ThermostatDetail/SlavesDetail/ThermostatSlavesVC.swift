@@ -45,6 +45,7 @@ extension ThermostatSlavesFeature {
                 onSlaveClick: { [weak self] data in
                     let bundle = ItemBundle(
                         remoteId: data.id,
+                        profileId: data.profileId,
                         deviceId: data.deviceId,
                         subjectType: .channel,
                         function: data.function

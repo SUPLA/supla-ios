@@ -64,9 +64,9 @@ extension XCTestCase {
         }
     }
     
-    func XCTAssertTuple<A: Equatable, B: Equatable>(_ first: (A, B), _ second : (A, B)) {
-        XCTAssertEqual(first.0, second.0)
-        XCTAssertEqual(first.1, second.1)
+    func XCTAssertTuple<A: Equatable, B: Equatable>(_ first: (A, B), _ second : (A, B), _ message: String = "") {
+        XCTAssertEqual(first.0, second.0, message)
+        XCTAssertEqual(first.1, second.1, message)
     }
     
     func XCTAssertTuple<A: Equatable, B: Equatable, C: Equatable>(_ first: (A, B, C), _ second : (A, B, C)) {
@@ -101,8 +101,10 @@ extension XCTestCase {
     
     func XCTAssertTuples<A: Equatable, B: Equatable>(_ first: [(A, B)], _ second: [(A, B)]) {
         XCTAssertEqual(first.count, second.count)
+        if (first.count != second.count) { XCTFail() }
+        
         for i in 0..<first.count {
-            XCTAssertTuple(first[i], second[i])
+            XCTAssertTuple(first[i], second[i], "Failed by comparing \(i)th element.")
         }
     }
     

@@ -342,6 +342,12 @@ struct Strings {
         static let saturdayShort = "saturday_short".toLocalized()
         static let sundayShort = "sunday_short".toLocalized()
         
+        static let currentHour = "general_current_hour".toLocalized()
+        static let currentDay = "general_current_day".toLocalized()
+        static let currentWeek = "general_current_week".toLocalized()
+        static let currentMonth = "general_current_month".toLocalized()
+        static let currentYear = "general_current_year".toLocalized()
+        
         static let timeJustNow = "time_just_now".toLocalized()
         static let time_just_minutes = "time_just_mintes".toLocalized()
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
@@ -547,6 +553,7 @@ struct Strings {
     struct ImpulseCounter {
         static let meterValue = "details_em_meter_value".toLocalized()
         static let currentMonthConsumption = "details_em_current_month_consumption".toLocalized()
+        static let counterStatus = "impulse_counter_settings_counter_status".toLocalized()
     }
     
     struct CounterPhoto {

@@ -216,6 +216,11 @@
 "general_processing" = "Feldolgozás";
 "incorrect_password" = "Helytelen jelszó";
 "app_sentence" = "végre otthon!";
+"general_current_hour" = "Aktuális óra";
+"general_current_day" = "Aktuális nap";
+"general_current_month" = "Aktuális hónap";
+"general_current_week" = "Aktuális hét";
+"general_current_year" = "Aktuális év";
 /* General - DayOfWeek */
 "monday" = "Hétfő";
 "tuesday" = "Kedd";
@@ -563,6 +568,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Mérőóra leolvasás";
 "details_em_current_month_consumption" = "Fogyasztás a folyó hónapban";
+"impulse_counter_settings_counter_status" = "Aktuális mérőállás";
+"details_ic_settings_list_item" = "A csatornalistában megjelenő érték";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Mérőfotók";

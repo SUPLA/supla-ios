@@ -28,5 +28,6 @@
 @dynamic online;
 @dynamic sub_value;
 @dynamic sub_value_type;
+@dynamic aggregated_value;
 
 @end

@@ -23,7 +23,6 @@ final class ChannelWithChildrenTests: XCTestCase {
     
     func test_shouldFlattenAllDescendant() {
         // given
-        let channel = SAChannel.mock()
         let child3 = ChannelChild(channel: SAChannel.mock(3), relation: SAChannelRelation.mock(1))
         let child2 = ChannelChild(channel: SAChannel.mock(2), relation: SAChannelRelation.mock(1), children: [child3])
         let child1 = ChannelChild(channel: SAChannel.mock(1), relation: SAChannelRelation.mock(1))

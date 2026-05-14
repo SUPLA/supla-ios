@@ -68,7 +68,8 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     func save() -> Observable<Void> {
-        return context.rx.save()
+        CoreDataManager.shared.rxStoreLoaded()
+            .flatMap { self.context.rx.save() }
             .subscribe(on: scheduler)
     }
     

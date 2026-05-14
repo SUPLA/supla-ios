@@ -249,6 +249,11 @@
 "general_processing" = "Apdorojama";
 "incorrect_password" = "Neteisingas slaptažodis";
 "app_sentence" = "pagaliau namuose!";
+"general_current_hour" = "Dabartinė valanda";
+"general_current_day" = "Dabartinė diena";
+"general_current_month" = "Dabartinis mėnuo";
+"general_current_week" = "Dabartinė savaitė";
+"general_current_year" = "Dabartiniai metai";
 /* General - DayOfWeek */
 "monday" = "Pirmadienis";
 "tuesday" = "Antradienis";
@@ -544,6 +549,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Skaitiklio būsena";
 "details_em_current_month_consumption" = "Suvartojimas einamąjį mėnesį";
+"impulse_counter_settings_counter_status" = "Dabartinis skaitiklio rodmuo";
+"details_ic_settings_list_item" = "Kanalų sąraše rodoma vertė";
 
 /* Valve */
 "valve_warning_manually_closed" = "Vožtuvas buvo uždarytas rankiniu būdu. Prieš jį atidarydami įsitikinkite, kad jis nebuvo uždarytas dėl užliejimo. Norėdami išjungti įspėjimą, vožtuvą atidarykite rankiniu būdu. Ar tikrai norite atidaryti vožtuvą programoje?!";

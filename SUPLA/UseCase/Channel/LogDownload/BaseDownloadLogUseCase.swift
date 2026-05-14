@@ -18,12 +18,9 @@
 
 import RxSwift
 
-fileprivate let ALLOWED_TIME_DIFFERENCE: Double = 1800
+private let ALLOWED_TIME_DIFFERENCE: Double = 1800
 
 class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementItem> {
-    
-    @Singleton<ProfileRepository> var profileRepository
-    
     let baseMeasurementRepository: any BaseMeasurementRepository<M, E>
     var cleanupHistoryWHenOldestDiffers: Bool { true }
     
@@ -31,41 +28,28 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         self.baseMeasurementRepository = repository
     }
     
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        return Observable.create { observer in
-            let disposable = BooleanDisposable()
-            guard let serverId = self.loadCurrentProfile()?.server?.id else {
-                observer.onError(GeneralError.illegalState(message: "Could not load active profile's server ID"))
-                return disposable
-            }
-            guard let (measurements, totalCount) = self.loadInitialMeasurements(remoteId) else {
-                observer.onError(GeneralError.illegalState(message: "Could not load initial measurements"))
-                return disposable
-            }
-            
-            SALog.info("Found initial remote entries (count: \(measurements.count), total count: \(totalCount))")
-            
-            guard let cleanMeasurements = self.checkCleanNeeded(measurements, remoteId, serverId) else {
-                observer.onError(GeneralError.illegalState(message: "Could not verify if clean needed"))
-                return disposable
-            }
-            
-            do {
-                try self.performImport(totalCount, cleanMeasurements, remoteId, serverId, observer, disposable)
-                observer.on(.completed)
-            } catch {
-                observer.on(.error(error))
-            }
-            return disposable
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        let disposable = BooleanDisposable()
+        guard let serverId = profile.server?.id else {
+            throw GeneralError.illegalState(message: "Could not load active profile's server ID")
         }
+        guard let (measurements, totalCount) = self.loadInitialMeasurements(remoteId) else {
+            throw GeneralError.illegalState(message: "Could not load initial measurements")
+        }
+        
+        SALog.info("Found initial remote entries (count: \(measurements.count), total count: \(totalCount))")
+        
+        guard let cleanMeasurements = self.checkCleanNeeded(measurements, remoteId, serverId) else {
+            throw GeneralError.illegalState(message: "Could not verify if clean needed")
+        }
+        
+        try await self.performImport(totalCount, cleanMeasurements, remoteId, serverId, observer, disposable)
+        
+        await onDownloadFinished(remoteId: remoteId, profileId: profile.id)
     }
     
-    private func loadCurrentProfile() -> AuthProfileItem? {
-        do {
-            return try profileRepository.getActiveProfile().subscribeSynchronous()
-        } catch {
-            return nil
-        }
+    func onDownloadFinished(remoteId: Int32, profileId: Int32) async {
+        // Override when needed
     }
     
     private func loadInitialMeasurements(
@@ -88,7 +72,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
                 let data = firstMeasurements?.data
             else { return nil }
             
-            return (measurements: try baseMeasurementRepository.fromJson(data: data), totalCount: count)
+            return try (measurements: baseMeasurementRepository.fromJson(data: data), totalCount: count)
         } catch {
             SALog.error("Initial measurements load failed: \(error.localizedDescription)")
             SALog.error(String(describing: error))
@@ -144,9 +128,9 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
         _ serverId: Int32,
-        _ observer: AnyObserver<Float>,
+        _ observer: (Float) -> Void,
         _ disposable: BooleanDisposable
-    ) throws {
+    ) async throws {
         SALog.debug("Check for cleaning (cleanMeasurements: `\(cleanMeasurements))`")
         if (cleanMeasurements) {
             try baseMeasurementRepository.deleteAll(remoteId: remoteId, serverId: serverId).subscribeSynchronous()
@@ -162,7 +146,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         }
         
         SALog.info("Measurements import started (db count: \(databaseCount), remote count: \(totalCount))")
-        try iterateAndImport(totalCount, databaseCount, cleanMeasurements, remoteId, serverId, observer, disposable)
+        try await iterateAndImport(totalCount, databaseCount, cleanMeasurements, remoteId, serverId, observer, disposable)
     }
     
     func iterateAndImport(
@@ -171,9 +155,9 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
         _ serverId: Int32,
-        _ observer: AnyObserver<Float>,
+        _ observer: (Float) -> Void,
         _ disposable: BooleanDisposable
-    ) throws {
+    ) async throws {
         let entriesToImport = totalCount - databaseCount
         var importedEntries = 0
         var afterTimestamp = baseMeasurementRepository
@@ -196,7 +180,9 @@ class BaseDownloadLogUseCase<M: SuplaCloudClient.Measurement, E: SAMeasurementIt
             )
             
             importedEntries += measurements.count
-            observer.on(.next(Float(importedEntries) / Float(entriesToImport)))
+            
+            let importStatus = Float(importedEntries) / Float(entriesToImport)
+            await MainActor.run { observer(importStatus) }
         }
     }
     

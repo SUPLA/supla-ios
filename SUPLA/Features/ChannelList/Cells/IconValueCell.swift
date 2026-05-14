@@ -19,8 +19,10 @@
 import RxSwift
 
 final class IconValueCell: BaseCell<ChannelWithChildren> {
-    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<UserStateHolder> private var userStateHolder
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
+    @Singleton<DownloadEventsManager> private var downloadEventsManager
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
     @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
@@ -39,6 +41,12 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         return view
     }()
     
+    private lazy var loaderView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .medium)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: ChannelWithChildren) -> Observable<ChannelWithChildren> {
         updateEventsManager.observeChannelWithChildren(remoteId: Int(forData.channel.remote_id))
     }
@@ -52,7 +60,8 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     override func derivedClassControls() -> [UIView] {
         return [
             iconView,
-            valueView
+            valueView,
+            loaderView
         ]
     }
     
@@ -69,6 +78,7 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         
         container.addSubview(iconView)
         container.addSubview(valueView)
+        container.addSubview(loaderView)
         
         super.setupView()
     }
@@ -82,7 +92,10 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
             
             valueView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: 4),
             valueView.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
-            valueView.rightAnchor.constraint(equalTo: container.rightAnchor)
+            valueView.rightAnchor.constraint(equalTo: container.rightAnchor),
+            
+            loaderView.centerXAnchor.constraint(equalTo: valueView.centerXAnchor),
+            loaderView.centerYAnchor.constraint(equalTo: valueView.centerYAnchor)
         ]
     }
     
@@ -101,6 +114,12 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         valueView.text = getChannelValueStringUseCase.valueOrNil(channel)
         
         issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
+        
+        if (showProgress(data)) {
+            loaderView.startAnimating()
+        } else {
+            loaderView.stopAnimating()
+        }
     }
     
     override func leftButtonSettings() -> CellButtonSettings {
@@ -121,5 +140,16 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
     
     override func timerEndDate() -> Date? {
         data?.channel.getTimerEndDate()
+    }
+    
+    private func showProgress(_ data: ChannelWithChildren) -> Bool {
+        if (data.isOrHasImpulseCounter) {
+            let settings = userStateHolder.getImpulseCounterSettings(profileId: data.channel.profile.id, remoteId: data.remoteId)
+            if (settings.showOnList != .noAggregation) {
+                return downloadEventsManager.getLastChannelDownloadState(remoteId: data.remoteId)?.isInProgress() == true
+            }
+        }
+        
+        return false
     }
 }

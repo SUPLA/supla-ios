@@ -247,6 +247,11 @@
 "general_processing" = "Επεξεργασία";
 "incorrect_password" = "Λανθασμένος κωδικός πρόσβασης";
 "app_sentence" = "επιτέλους στο σπίτι!";
+"general_current_hour" = "Τρέχουσα ώρα";
+"general_current_day" = "Τρέχουσα ημέρα";
+"general_current_month" = "Τρέχων μήνας";
+"general_current_week" = "Τρέχουσα εβδομάδα";
+"general_current_year" = "Τρέχον έτος";
 /* General - DayOfWeek */
 "monday" = "Δευτέρα";
 "tuesday" = "Τρίτη";
@@ -543,6 +548,8 @@
 /* Impulse counter */
 "details_em_meter_value" = "Κατάσταση του μετρητή";
 "details_em_current_month_consumption" = "Κατανάλωση τον τρέχοντα μήνα";
+"impulse_counter_settings_counter_status" = "Τρέχουσα ένδειξη μετρητή";
+"details_ic_settings_list_item" = "Τιμή που εμφανίζεται στη λίστα καναλιών";
 
 /* Valve */
 "valve_warning_manually_closed" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα. Είστε σίγουροι ότι θέλετε να ανοίξετε τη βαλβίδα μέσω της εφαρμογής;!";
