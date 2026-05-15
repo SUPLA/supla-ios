@@ -30,20 +30,18 @@ class ElectricityMeterValueStringProvider: ChannelValueStringProvider {
 
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
         let value = electricityMeterValueProvider.value(channel, valueType: valueType)
-        let type = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id).showOnList
-
-        if (type == .forwardActiveEnergy) {
-            return formatter.format(
-                value: value,
-                format: ValueFormatKt.withUnit(withUnit: withUnit)
-            )
+        let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        let type = settings.metricOnList
+        
+        if (settings.usingAggregatedValue) {
+            return channel.value?.aggregated_value ?? NO_VALUE_TEXT
         } else {
             return formatter.format(
                 value: value,
                 format: ValueFormat(
                     withUnit: withUnit,
-                    customUnit: " \(type.unit)",
-                    showNoValueText: false
+                    customUnit: " \(type.suplaType.unit)",
+                    showNoValueText: type == .forwardActiveEnergy
                 )
             )
         }

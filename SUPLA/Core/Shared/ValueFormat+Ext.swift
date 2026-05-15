@@ -35,3 +35,11 @@ extension ValueFormat {
         )
     }
 }
+
+func withUnit(unit: String?, leadingSpace: Bool = true, showNoValueText: Bool = true) -> ValueFormat {
+    ValueFormatKt.withUnit(
+        unit: unit,
+        leadingSpace: leadingSpace,
+        showNoValueText: KotlinBoolean(value: showNoValueText)
+    )
+}

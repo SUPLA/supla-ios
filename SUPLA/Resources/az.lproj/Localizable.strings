@@ -592,6 +592,11 @@
 "details_em_voltage_phase_angle_13" = "Gərginlik faza bucağı 1-3";
 "details_em_voltage_phase_sequence" = "Gərginlik faza ardıcıllığı";
 "details_em_current_phase_sequence" = "Cərəyan faza ardıcıllığı";
+"details_em_on_list" = "Kanallar siyahısında göstərmə";
+"details_em_settings_list_metric" = "Seçilmiş dəyər";
+"details_em_on_list_balance" = "Enerji balanslama üsulu";
+"details_em_on_list_value" = "Məlumat aralığı";
+"details_em_active_energy_balance" = "Aktiv enerji balansı";
 
 /* Impulse counter */
 "details_em_meter_value" = "Sayğac dəyəri";

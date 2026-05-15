@@ -542,6 +542,11 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(inneværende måned)";
 "details_em_last_month_balancing" = "Balansering av inneværende måned";
+"details_em_on_list" = "Visning i kanallisten";
+"details_em_settings_list_metric" = "Valgt verdi";
+"details_em_on_list_balance" = "Metode for energibalansering";
+"details_em_on_list_value" = "Dataområde";
+"details_em_active_energy_balance" = "Balanse for aktiv energi";
 
 /* Impulse counter */
 "details_em_meter_value" = "Meterlesing";

@@ -150,6 +150,13 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
             }
         }
         
+        if (data.isOrHasElectricityMeter) {
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: data.channel.profile.id, remoteId: data.remoteId)
+            if (settings.usingAggregatedValue) {
+                return downloadEventsManager.getLastChannelDownloadState(remoteId: data.remoteId)?.isInProgress() == true
+            }
+        }
+        
         return false
     }
 }

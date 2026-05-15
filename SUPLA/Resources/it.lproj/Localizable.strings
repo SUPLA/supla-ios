@@ -576,6 +576,11 @@
 "details_em_hour_marker_title" = "%@";
 "em_phase_to_phase_balance" = "Equilibrio interfase vettoriale";
 "em_chart_all_phases" = "Fase 1+2+3";
+"details_em_on_list" = "Visualizzazione nell’elenco dei canali";
+"details_em_settings_list_metric" = "Valore selezionato";
+"details_em_on_list_balance" = "Metodo di bilanciamento energetico";
+"details_em_on_list_value" = "Intervallo dati";
+"details_em_active_energy_balance" = "Bilancio dell’energia attiva";
 
 /* Impulse counter */
 "details_em_meter_value" = "Lettura del contatore";

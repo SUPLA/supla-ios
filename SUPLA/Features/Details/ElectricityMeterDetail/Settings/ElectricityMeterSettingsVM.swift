@@ -17,10 +17,15 @@
  */
 
 extension ElectricityMeterSettingsFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
         @Singleton<UserStateHolder> private var userStateHolder
         @Singleton<GetCaptionUseCase> private var getCaptionsUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+        @Singleton<RefreshElectricityMeterAggregatedValue.UseCase> private var refreshElectricityMeterAggregatedValueUseCase
+
+        private var availableBalancingOptions: [ElectricityMeterBalanceType] = []
+        private var remoteId: Int32 = 0
+        private var profileId: Int32 = 0
 
         init() {
             super.init(state: ViewState())
@@ -35,62 +40,165 @@ extension ElectricityMeterSettingsFeature {
                 .disposed(by: disposeBag)
         }
 
-        func onShowOnChannelsListChange(_ item: SuplaElectricityMeasurementType?) {
-            if let item {
-                let settings = userStateHolder.getElectricityMeterSettings(profileId: state.profileId, remoteId: state.remoteId)
-                userStateHolder.setElectricityMeterSettings(settings.copy(showOnList: item), profileId: state.profileId, remoteId: state.remoteId)
-                state.showOnChannelsList.selected = item
+        func metricOnListChange(_ type: ElectricityMeterMeasurementType?) {
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            guard let type, settings.metricOnList != type else { return }
+
+            let availableAggregations = type.aggregationOptions
+            let selectedAggregation = availableAggregations.selected(item: state.metricOnListAggregation?.selected)
+
+            let availableBalancings = balancingOptions(type, selectedAggregation)
+            let selectedBalancing = availableBalancings.selected(item: state.metricOnListBalancing?.selected)
+
+            let updatedSettings = settings.copy(
+                metricOnList: type,
+                metricOnListBalancing: selectedBalancing,
+                metricOnListAggregation: selectedAggregation
+            )
+            userStateHolder.setElectricityMeterSettings(updatedSettings, profileId: profileId, remoteId: remoteId)
+
+            state.metricOnList = state.metricOnList?.changing(path: \.selected, to: type)
+            state.metricOnListAggregation = availableAggregations.selectableList(selected: selectedAggregation)
+            state.metricOnListBalancing = availableBalancings.selectableList(selected: selectedBalancing)
+
+            Task {
+                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
             }
         }
 
-        func onBalanceValueChange(_ item: ElectricityMeterBalanceType?) {
-            guard let item else { return }
+        func metricOnListAggregationChange(_ aggregation: ListValueAggregation?) {
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            guard let aggregation, settings.metricOnListAggregation != aggregation else { return }
 
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: state.profileId, remoteId: state.remoteId)
-            userStateHolder.setElectricityMeterSettings(settings.copy(balancing: item), profileId: state.profileId, remoteId: state.remoteId)
+            let availableBalancings = balancingOptions(settings.metricOnList, aggregation)
+            let selectedBalancing = availableBalancings.selected(item: state.metricOnListBalancing?.selected)
 
-            state.balancing?.selected = item
+            let updatedSettings = settings.copy(
+                metricOnListBalancing: selectedBalancing,
+                metricOnListAggregation: aggregation
+            )
+            userStateHolder.setElectricityMeterSettings(updatedSettings, profileId: profileId, remoteId: remoteId)
+
+            state.metricOnListAggregation = state.metricOnListAggregation?.changing(path: \.selected, to: aggregation)
+            state.metricOnListBalancing = availableBalancings.selectableList(selected: selectedBalancing)
+
+            Task {
+                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
+            }
+        }
+
+        func metricOnListBalancingChange(_ type: ElectricityMeterBalanceType?) {
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            guard let type, settings.metricOnListBalancing != type else { return }
+
+            userStateHolder.setElectricityMeterSettings(settings.copy(metricOnListBalancing: type), profileId: profileId, remoteId: remoteId)
+
+            state.metricOnListBalancing = state.metricOnListBalancing?.changing(path: \.selected, to: type)
+
+            Task {
+                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
+            }
+        }
+
+        func currentMonthBalancingChange(_ type: ElectricityMeterBalanceType?) {
+            guard let type else { return }
+
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            userStateHolder.setElectricityMeterSettings(settings.copy(currentMonthBalancing: type), profileId: profileId, remoteId: remoteId)
+
+            state.currentMonthBalancing?.selected = type
         }
 
         private func handleChannel(_ channel: SAChannel) {
-            let measuredValues: [SuplaElectricityMeasurementType] =
-                if let types = channel.ev?.electricityMeter().suplaElectricityMeterMeasuredTypes {
-                    types
-                } else {
-                    []
-                }
-
+            let measuredValues = channel.ev?.electricityMeter().suplaElectricityMeterMeasuredTypes ?? []
             let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
 
-            let balancingItems: [ElectricityMeterBalanceType]? =
-                if ((measuredValues.contains(.forwardActiveEnergy) && measuredValues.contains(.reverseActiveEnergy)) || measuredValues.hasBalance) {
-                    ElectricityMeterSettings.balancingAllItems.filter {
-                        switch ($0) {
-                        case .vector: measuredValues.hasBalance
-                        default: true
-                        }
-                    }
-                } else {
-                    nil
+            availableBalancingOptions = ElectricityMeterSettings.balancingAllItems.filter { it in
+                switch it {
+                case .vector: measuredValues.hasBalance
+                case .arithmetic, .hourly: measuredValues.contains(.forwardActiveEnergy) && measuredValues.contains(.reverseActiveEnergy)
+                default: false
                 }
+            }
 
-            let selectedBalance = balancingItems?.first(where: { $0 == settings.balancing }) ?? balancingItems?.first
-            let balancingList: SelectableList<ElectricityMeterBalanceType>? =
-                if let balancingItems, let selectedBalance, balancingItems.count > 1 {
-                    SelectableList(selected: selectedBalance, items: balancingItems)
-                } else {
-                    nil
-                }
+            let availableMetrics = ElectricityMeterMeasurementType.allCases.filter { $0.inside(measuredValues) }
+            let selectedMetric = availableMetrics.select(item: settings.metricOnList)
 
-            state.remoteId = channel.remote_id
-            state.profileId = channel.profile.id
+            let availableAggregations = selectedMetric.aggregationOptions
+            let selectedAggregation = availableAggregations.selected(item: settings.metricOnListAggregation)
+
+            let availableBalancings = balancingOptions(selectedMetric, settings.metricOnListAggregation)
+            let selectedBalancing = availableBalancings.selected(item: settings.metricOnListBalancing)
+
+            remoteId = channel.remote_id
+            profileId = channel.profile.id
 
             state.channelName = getCaptionsUseCase.invoke(data: channel.shareable).string
-            state.showOnChannelsList = SelectableList(
-                selected: settings.showOnListSafe,
-                items: ElectricityMeterSettings.showOnListAllItems.filter { measuredValues.contains($0) }
-            )
-            state.balancing = balancingList
+            state.metricOnList = availableMetrics.selectableList(selected: selectedMetric)
+            state.metricOnListAggregation = availableAggregations.selectableList(selected: selectedAggregation)
+            state.metricOnListBalancing = availableBalancings.selectableList(selected: selectedBalancing)
+            state.currentMonthBalancing = currentMonthBalancingOptions(selected: settings.currentMonthBalancing)
+        }
+
+        private func balancingOptions(_ metric: ElectricityMeterMeasurementType, _ selected: ListValueAggregation?) -> [ElectricityMeterBalanceType] {
+            if (metric.balancingAvailable) {
+                availableBalancingOptions.filter { $0 != .hourly || selected != .noAggregation }
+            } else {
+                []
+            }
+        }
+
+        private func currentMonthBalancingOptions(selected: ElectricityMeterBalanceType) -> SelectableList<ElectricityMeterBalanceType>? {
+            if (availableBalancingOptions.count > 1) {
+                SelectableList(
+                    selected: availableBalancingOptions.first { $0 == selected } ?? availableBalancingOptions.first,
+                    items: availableBalancingOptions
+                )
+            } else {
+                nil
+            }
+        }
+    }
+}
+
+private extension Array where Element == ElectricityMeterMeasurementType {
+    func select(item: ElectricityMeterMeasurementType) -> ElectricityMeterMeasurementType {
+        first { $0 == item } ?? first ?? .forwardActiveEnergy
+    }
+
+    func selectableList(selected: ElectricityMeterMeasurementType) -> SelectableList<ElectricityMeterMeasurementType>? {
+        if (count > 1) {
+            SelectableList(selected: selected, items: self)
+        } else {
+            nil
+        }
+    }
+}
+
+private extension Array where Element == ListValueAggregation {
+    func selected(item: ListValueAggregation?) -> ListValueAggregation {
+        first { $0 == item } ?? first ?? .noAggregation
+    }
+
+    func selectableList(selected: ListValueAggregation) -> SelectableList<ListValueAggregation>? {
+        if (count > 1) {
+            SelectableList(selected: selected, items: self)
+        } else {
+            nil
+        }
+    }
+}
+
+private extension Array where Element == ElectricityMeterBalanceType {
+    func selected(item: ElectricityMeterBalanceType?) -> ElectricityMeterBalanceType {
+        first { $0 == item } ?? first ?? .defaultValue
+    }
+
+    func selectableList(selected: ElectricityMeterBalanceType) -> SelectableList<ElectricityMeterBalanceType>? {
+        if (count > 1) {
+            SelectableList(selected: selected, items: self)
+        } else {
+            nil
         }
     }
 }

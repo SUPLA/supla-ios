@@ -548,6 +548,11 @@ struct Strings {
         static let infoRange = "details_em_info_range".toLocalized()
         static let infoDataSetSinglePhase = "details_em_info_data_set_single_phase".toLocalized()
         static let infoDataSetMultiplePhase = "details_em_info_data_set_multiple_phase".toLocalized()
+        static let onList = "details_em_on_list".toLocalized()
+        static let metricOnList = "details_em_settings_list_metric".toLocalized()
+        static let metricOnListAggregation = "details_em_on_list_value".toLocalized()
+        static let metricOnListBalance = "details_em_on_list_balance".toLocalized()
+        static let activeEnergyBalance = "details_em_active_energy_balance".toLocalized()
     }
     
     struct ImpulseCounter {

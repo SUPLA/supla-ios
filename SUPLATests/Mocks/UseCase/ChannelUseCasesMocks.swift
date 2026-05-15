@@ -211,6 +211,18 @@ final class LoadChannelConfigUseCaseMock: LoadChannelConfigUseCase {
     }
 }
 
+final class LoadElectricityMeterMeasurementsUseCaseMock: LoadElectricityMeterMeasurementsUseCase {
+    var remoteIdMock: FunctionMock<(Int32, Date?, Date?), Observable<ElectricityMeasurements>> = .init()
+    func invoke(remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
+        return remoteIdMock.handle((remoteId, startDate, endDate))
+    }
+
+    var profileMock: FunctionMock<(Int32, Int32, Date?, Date?), Observable<ElectricityMeasurements>> = .init()
+    func invoke(profile: AuthProfileItem, remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
+        return profileMock.handle((profile.id, remoteId, startDate, endDate))
+    }
+}
+
 // MARK: - Channel Values Formatter Mocks -
 
 final class ChannelValueFormatterMock: SharedCore.ValueFormatter {

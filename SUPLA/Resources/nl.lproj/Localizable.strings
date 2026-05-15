@@ -543,6 +543,11 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(lopende maand)";
 "details_em_last_month_balancing" = "Balanceren van de huidige maand";
+"details_em_on_list" = "Weergave in de kanalenlijst";
+"details_em_settings_list_metric" = "Geselecteerde waarde";
+"details_em_on_list_balance" = "Methode voor energiebalancering";
+"details_em_on_list_value" = "Gegevensbereik";
+"details_em_active_energy_balance" = "Balans van actieve energie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Meterstand";

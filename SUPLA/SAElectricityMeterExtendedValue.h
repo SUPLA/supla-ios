@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (double) totalForwardActiveEnergy;
 - (double) totalReverseActiveEnergy;
+- (double) totalForwardReactiveEnergy;
+- (double) totalReverseReactiveEnergy;
 - (double) totalForwardActiveEnergyBalanced;
 - (double) totalReverseActiveEnergyBalanced;
 - (unsigned int) measuredValues;

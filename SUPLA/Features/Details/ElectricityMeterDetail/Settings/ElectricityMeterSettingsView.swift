@@ -19,43 +19,76 @@
 import SwiftUI
 
 extension ElectricityMeterSettingsFeature {
+    protocol ViewDelegate {
+        func metricOnListChange(_ type: ElectricityMeterMeasurementType?)
+        func metricOnListAggregationChange(_ aggregation: ListValueAggregation?)
+        func metricOnListBalancingChange(_ type: ElectricityMeterBalanceType?)
+        func currentMonthBalancingChange(_ type: ElectricityMeterBalanceType?)
+    }
+    
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
-        
-        var onShowOnChannelsListChange: (SuplaElectricityMeasurementType?) -> Void
-        var onBalancingChange: (ElectricityMeterBalanceType?) -> Void
+        var delegate: ViewDelegate?
         
         var body: some SwiftUI.View {
-            let selectedTypeBinding = Binding<SuplaElectricityMeasurementType?>(
-                get: { viewState.showOnChannelsList.selected },
-                set: { onShowOnChannelsListChange($0) }
+            let currentMonthBalancing = Binding<ElectricityMeterBalanceType?>(
+                get: { viewState.currentMonthBalancing?.selected },
+                set: { delegate?.currentMonthBalancingChange($0) }
             )
-            let selectedBalancingBinding = Binding<ElectricityMeterBalanceType?>(
-                get: { viewState.balancing?.selected },
-                set: { onBalancingChange($0) }
+            let metricOnListBinding = Binding<ElectricityMeterMeasurementType?>(
+                get: { viewState.metricOnList?.selected },
+                set: { delegate?.metricOnListChange($0) }
+            )
+            let metricOnListAggregationBinding = Binding<ListValueAggregation?>(
+                get: { viewState.metricOnListAggregation?.selected },
+                set: { delegate?.metricOnListAggregationChange($0) }
+            )
+            let metricOnListBalancingBinding = Binding<ElectricityMeterBalanceType?>(
+                get: { viewState.metricOnListBalancing?.selected },
+                set: { delegate?.metricOnListBalancingChange($0) }
             )
             
             return BackgroundStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 0) {
                     SettingsView.Header(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
-                    VStack(alignment: .leading, spacing: 0) {
-                        SuplaCore.Divider().color(Color.Supla.separator)
-                            .padding([.bottom], Distance.small)
-                        
-                        SettingsView.Label(text: Strings.ElectricityMeter.settingsListItem)
-                        SuplaCore.Picker(selected: selectedTypeBinding, items: viewState.showOnChannelsList.items)
-                        
-                        if (viewState.balancing != nil) {
-                            SuplaCore.Divider().color(Color.Supla.separator)
-                                .padding([.top, .bottom], Distance.small)
-                            
-                            SettingsView.Label(text: Strings.ElectricityMeter.lastMonthBalancing)
-                            SuplaCore.Picker(selected: selectedBalancingBinding, items: viewState.balancing!.items)
+                    
+                    SettingsView.List {
+                        if (viewState.currentMonthBalancing != nil) {
+                            SettingsView.VerticalRow {
+                                SettingsView.Label(text: Strings.ElectricityMeter.lastMonthBalancing)
+                                SuplaCore.Picker(selected: currentMonthBalancing, items: viewState.currentMonthBalancing!.items)
+                            }
                         }
-                        
-                        SuplaCore.Divider().color(Color.Supla.separator)
-                            .padding([.top], Distance.small)
-                    }.background(Color.Supla.surface)
+                    }
+                    
+                    SettingsView.Header(text: Strings.ElectricityMeter.onList)
+                        .padding(.top, Distance.default)
+                    SettingsView.List {
+                        if (viewState.metricOnList != nil) {
+                            SettingsView.VerticalRow {
+                                SettingsView.Label(text: Strings.ElectricityMeter.metricOnList)
+                                SuplaCore.Picker(selected: metricOnListBinding, items: viewState.metricOnList!.items)
+                            }
+                        }
+                        if (viewState.metricOnListAggregation != nil) {
+                            SettingsView.VerticalRow {
+                                SettingsView.Label(text: Strings.ElectricityMeter.metricOnListAggregation)
+                                SuplaCore.Picker(
+                                    selected: metricOnListAggregationBinding,
+                                    items: viewState.metricOnListAggregation!.items
+                                )
+                            }
+                        }
+                        if (viewState.metricOnListBalancing != nil) {
+                            SettingsView.VerticalRow {
+                                SettingsView.Label(text: Strings.ElectricityMeter.metricOnListBalance)
+                                SuplaCore.Picker(
+                                    selected: metricOnListBalancingBinding,
+                                    items: viewState.metricOnListBalancing!.items
+                                )
+                            }
+                        }
+                    }
                 }
                 .padding([.top, .bottom], Distance.default)
             }
@@ -68,8 +101,6 @@ extension ElectricityMeterSettingsFeature {
     state.channelName = "Electricity Meter"
     
     return ElectricityMeterSettingsFeature.View(
-        viewState: state,
-        onShowOnChannelsListChange: { _ in },
-        onBalancingChange: { _ in }
+        viewState: state
     )
 }

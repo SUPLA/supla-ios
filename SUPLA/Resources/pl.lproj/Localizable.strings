@@ -593,6 +593,11 @@
 "details_em_voltage_phase_angle_13" = "Kąt między napięciami faz 1–3";
 "details_em_voltage_phase_sequence" = "Kolejność faz napięcia";
 "details_em_current_phase_sequence" = "Kolejność faz prądu";
+"details_em_on_list" = "Wyświetlanie na liście kanałów";
+"details_em_settings_list_metric" = "Wybrana wartość";
+"details_em_on_list_balance" = "Metoda bilansowania energii";
+"details_em_on_list_value" = "Zakres danych";
+"details_em_active_energy_balance" = "Bilans enegrii czynnej";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stan licznika";

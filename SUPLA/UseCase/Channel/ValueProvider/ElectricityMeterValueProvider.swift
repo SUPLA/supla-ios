@@ -26,9 +26,24 @@ final class ElectricityMeterValueProviderImpl: ElectricityMeterValueProvider, In
     }
     
     func value(_ channel: SAChannel, valueType: ValueType) -> Any {
-        switch (userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id).showOnList) {
+        let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        switch (settings.metricOnList) {
+        case .forwardActiveEnergy:
+            if (settings.metricOnListBalancing == .vector) {
+                return channel.ev?.electricityMeter().totalForwardActiveEnergyBalanced() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
+            } else {
+                return defaultValue(channel)
+            }
         case .reverseActiveEnergy:
-            return channel.ev?.electricityMeter().totalReverseActiveEnergy() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
+            if (settings.metricOnListBalancing == .vector) {
+                return channel.ev?.electricityMeter().totalReverseActiveEnergyBalanced() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
+            } else {
+                return channel.ev?.electricityMeter().totalReverseActiveEnergy() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
+            }
+        case .forwardReactiveEnergy:
+            return channel.ev?.electricityMeter().totalForwardReactiveEnergy() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
+        case .reverseReactiveEnergy:
+            return channel.ev?.electricityMeter().totalReverseReactiveEnergy() ?? ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
         case .powerActive:
             guard let electricityMeterValue = channel.ev?.electricityMeter() else {
                 return ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
@@ -52,12 +67,23 @@ final class ElectricityMeterValueProviderImpl: ElectricityMeterValueProvider, In
                 .filter { $0.disabledFlag & channel.flags == 0 }
                 .map { electricityMeterValue.voltege(forPhase: $0.rawValue) }
                 .avgOrNan()
-        default:
-            if let value = asIntValue(channel.value?.dataValue(), startingFromByte: 1) {
-                return Double(value) / 100
-            } else {
+        case .current:
+            guard let electricityMeterValue = channel.ev?.electricityMeter() else {
                 return ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
             }
+            return Phase.allCases
+                .filter { $0.disabledFlag & channel.flags == 0 }
+                .map { electricityMeterValue.current(forPhase: $0.rawValue) }
+                .sum()
+        default: return defaultValue(channel)
+        }
+    }
+    
+    private func defaultValue(_ channel: SAChannel) -> Double {
+        if let value = asIntValue(channel.value?.dataValue(), startingFromByte: 1) {
+            return Double(value) / 100
+        } else {
+            return ElectricityMeterValueProviderImpl.UNKNOWN_VALUE
         }
     }
     

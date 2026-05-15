@@ -24,8 +24,10 @@ protocol DownloadElectricityMeterLogUseCase {
 
 final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem>, DownloadElectricityMeterLogUseCase {
     
-    @Singleton<SuplaCloudService> var cloudService
+    @Singleton<UserStateHolder> private var userStateHolder
+    @Singleton<SuplaCloudService> private var cloudService
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
+    @Singleton<RefreshElectricityMeterAggregatedValue.UseCase> private var refreshElectricityMeterAggregatedValueUseCase
     
     override func iterateAndImport(
         _ totalCount: Int,
@@ -71,6 +73,16 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
             let importStatus = Float(importedEntries) / Float(entriesToImport)
             await MainActor.run { observer(importStatus) }
         }
+    }
+    
+    override func onDownloadFinished(remoteId: Int32, profileId: Int32) async {
+        let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+        if (!settings.usingAggregatedValue) {
+            SALog.debug("No aggregated value to update")
+            return
+        }
+        
+        await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
     }
     
     private func getLastMeasurement(_ remoteId: Int32, afterTimestamp: Double) throws -> SuplaCloudClient.ElectricityMeasurement? {

@@ -545,6 +545,11 @@
 "details_em_total_suffix" = "(estado do contador)";
 "details_em_current_month_suffix" = "(mês atual)";
 "details_em_last_month_balancing" = "Balanço do mês atual";
+"details_em_on_list" = "Exibição na lista de canais";
+"details_em_settings_list_metric" = "Valor selecionado";
+"details_em_on_list_balance" = "Método de balanceamento de energia";
+"details_em_on_list_value" = "Intervalo de dados";
+"details_em_active_energy_balance" = "Balanço de energia ativa";
 
 /* Impulse counter */
 "details_em_meter_value" = "Status do contador";
