@@ -69,7 +69,7 @@ enum RefreshImpulseCounterAggregatedValue {
             
             let unit = try? await channelExtendedValueRepository.getChannelValue(for: profile, with: remoteId).awaitFirstElement()?.impulseCounter().unit()
             let aggregatedValue = entries.reduce(0.0) { $0 + $1.calculated_value }
-            let formatted = formatter.format(value: aggregatedValue, format: ValueFormatKt.withUnit(unit: unit, leadingSpace: true, showNoValueText: false))
+            let formatted = formatter.format(value: aggregatedValue, format: withUnit(unit: unit, showNoValueText: false))
             
             SALog.debug("Aggregated value set to \(formatted)")
             await channelValueRepository.updateAggregatedValue(profileId, remoteId, formatted)

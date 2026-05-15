@@ -18,11 +18,10 @@
     
 extension ElectricityMeterSettingsFeature {
     class ViewState: ObservableObject {
-        var remoteId: Int32 = 0
-        var profileId: Int32 = 0
-        
         @Published var channelName: String = ""
-        @Published var showOnChannelsList: SelectableList<SuplaElectricityMeasurementType> = .init(selected: .frequency, items: [.frequency])
-        @Published var balancing: SelectableList<ElectricityMeterBalanceType>? = nil
+        @Published var metricOnList: SelectableList<ElectricityMeterMeasurementType>? = nil
+        @Published var metricOnListBalancing: SelectableList<ElectricityMeterBalanceType>? = nil
+        @Published var metricOnListAggregation: SelectableList<ListValueAggregation>? = nil
+        @Published var currentMonthBalancing: SelectableList<ElectricityMeterBalanceType>? = nil
     }
 }

@@ -794,6 +794,8 @@
 		A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CB92BBC2DB500FC5998 /* DarkModeSetting.swift */; };
 		A5812CBC2BBC305200FC5998 /* NightModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CBB2BBC305200FC5998 /* NightModeCell.swift */; };
 		A5812CC22BBC8E4200FC5998 /* UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CC12BBC8E4200FC5998 /* UserIcon.swift */; };
+		A58189062FB5D1980056B401 /* ElectricityMeterMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */; };
+		A58189082FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */; };
 		A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F72B644F75006113F8 /* IntValueParser.swift */; };
 		A58316FA2B64507D006113F8 /* ThermometerValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F92B64507D006113F8 /* ThermometerValueProvider.swift */; };
 		A58316FC2B64510A006113F8 /* ThermometerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316FB2B64510A006113F8 /* ThermometerValueStringProvider.swift */; };
@@ -1347,7 +1349,7 @@
 		A5E40B712B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */; };
 		A5E40B732B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */; };
 		A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */; };
-		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
+		A581890A2FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */; };
 		A5E40B772B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
@@ -1541,6 +1543,7 @@
 		B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */; };
 		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
 		B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */; };
+		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
 		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
 /* End PBXBuildFile section */
 
@@ -2604,6 +2607,8 @@
 		A5812CBB2BBC305200FC5998 /* NightModeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightModeCell.swift; sourceTree = "<group>"; };
 		A5812CBD2BBC8B6200FC5998 /* SUPLA 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 17.xcdatamodel"; sourceTree = "<group>"; };
 		A5812CC12BBC8E4200FC5998 /* UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIcon.swift; sourceTree = "<group>"; };
+		A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterMeasurementType.swift; sourceTree = "<group>"; };
+		A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCase.swift; sourceTree = "<group>"; };
 		A58316F72B644F75006113F8 /* IntValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntValueParser.swift; sourceTree = "<group>"; };
 		A58316F92B64507D006113F8 /* ThermometerValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueProvider.swift; sourceTree = "<group>"; };
 		A58316FB2B64510A006113F8 /* ThermometerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueStringProvider.swift; sourceTree = "<group>"; };
@@ -3125,7 +3130,7 @@
 		A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshImpulseCounterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
-		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
+		A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeasurement+Mock.swift"; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -3315,6 +3320,7 @@
 		B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVM.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsViewState.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
 		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
 		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
 		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
@@ -4701,6 +4707,7 @@
 		A534D61A2FB30F3E007AAC73 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */,
 				A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */,
 				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
 				A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */,
@@ -4711,6 +4718,7 @@
 		A534D6202FB335EE007AAC73 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */,
 				A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */,
 				A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */,
 			);
@@ -5743,6 +5751,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */,
+				A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */,
 				B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */,
 			);
 			path = List;
@@ -8388,6 +8397,7 @@
 				A501625C2F9240C300FB2899 /* ThermostatTimerDetailInProgress.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A58189062FB5D1980056B401 /* ElectricityMeterMeasurementType.swift in Sources */,
 				A5E160BA2D315CA2003A7C71 /* HumidityMeasurementsProvider.swift in Sources */,
 				A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */,
 				A5BF4F8B2F3F283100F5DE81 /* ReadNfcItemsUseCase.swift in Sources */,
@@ -8955,6 +8965,7 @@
 				A5B3CC042B627F3800F95AC3 /* PressureValueStringProvider.swift in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				6E8004D328493463009A917A /* AuthProfileItem+Ext.swift in Sources */,
+				A58189082FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift in Sources */,
 				A55A8D862BAAF52500C540D4 /* IssueView.swift in Sources */,
 				A55AE5FB2EEAB803006E0AA9 /* ColorBox.swift in Sources */,
 				A56EC92F2CEF1CF800A6E2CB /* UpdateChannelStateUseCase.swift in Sources */,
@@ -9600,6 +9611,7 @@
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */,
 				A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */,
+				A581890A2FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift in Sources */,
 				B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */,
 				A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */,
 				A54A06802AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift in Sources */,

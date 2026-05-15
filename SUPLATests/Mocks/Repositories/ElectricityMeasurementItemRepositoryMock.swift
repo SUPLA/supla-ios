@@ -22,24 +22,23 @@ import RxSwift
 
 final class ElectricityMeasurementItemRepositoryMock: BaseRepositoryMock<SAElectricityMeasurementItem>, ElectricityMeasurementItemRepository {
     
-    var deleteAllObservable: Observable<Void> = Observable.empty()
-    var deleteAllCounter = 0
-    
+    var deleteAllMock: FunctionMock<Int32?, Observable<Void>> = .init()
     func deleteAll(for serverId: Int32?) -> Observable<Void> {
-        deleteAllCounter += 1
-        return deleteAllObservable
+        deleteAllMock.handle(serverId)
     }
     
+    var findMeasurementsMock: FunctionMock<(Int32, Int32?, Date, Date), Observable<[SAElectricityMeasurementItem]>> = .init()
     func findMeasurements(remoteId: Int32, serverId: Int32?, startDate: Date, endDate: Date) -> Observable<[SAElectricityMeasurementItem]> {
-        return Observable.empty()
+        return findMeasurementsMock.handle((remoteId, serverId, startDate, endDate))
     }
     
     func storeMeasurements(measurements: [SuplaCloudClient.ElectricityMeasurement], latestItem: DownloadElectricityMeterLogUseCaseImpl.Latest?, serverId: Int32, remoteId: Int32) throws -> DownloadElectricityMeterLogUseCaseImpl.Latest? {
         return nil
     }
     
+    var findOldestEntityMock: FunctionMock<(Int32, Int32?), Observable<SAElectricityMeasurementItem?>> = .init()
     func findOldestEntity(remoteId: Int32, serverId: Int32?) -> Observable<SAElectricityMeasurementItem?> {
-        return Observable.empty()
+        return findOldestEntityMock.handle((remoteId, serverId))
     }
     
     func deleteAll(remoteId: Int32, serverId: Int32?) -> Observable<Void> {

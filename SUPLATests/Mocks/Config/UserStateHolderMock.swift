@@ -19,7 +19,6 @@
 @testable import SUPLA
 
 final class UserStateHolderMock: UserStateHolder {
-    
     var getDefaultCharStateParameters: [(Int32, Int32)] = []
     var getDefaultChartStateReturns: DefaultChartState = .empty()
     func getDefaultChartState(profileId: Int32, remoteId: Int32) -> DefaultChartState {
@@ -39,16 +38,19 @@ final class UserStateHolderMock: UserStateHolder {
         setChartStateParameters.append((state, profileId, remoteId))
     }
     
-    var getElectricityMeterSettingsParameters: [(Int32, Int32)] = []
-    var getElectricityMeterSettingsReturns: ElectricityMeterSettings = .defaultSettings()
+    var getElectricityMeterSettingsMock: FunctionMock<(Int32, Int32), ElectricityMeterSettings> = .init()
     func getElectricityMeterSettings(profileId: Int32, remoteId: Int32) -> ElectricityMeterSettings {
-        getElectricityMeterSettingsParameters.append((profileId, remoteId))
-        return getElectricityMeterSettingsReturns
+        getElectricityMeterSettingsMock.handle((profileId, remoteId))
     }
     
-    var setElectricityMeterSettingsParameters: [(ElectricityMeterSettings, Int32, Int32)] = []
+    var setElectricityMeterSettingsMock: FunctionMock<(ElectricityMeterSettings, Int32, Int32), Void> = .init()
     func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: Int32, remoteId: Int32) {
-        setElectricityMeterSettingsParameters.append((settings, profileId, remoteId))
+        setElectricityMeterSettingsMock.set((settings, profileId, remoteId))
+    }
+    
+    var electricityMeterSettingExistsMock: FunctionMock<(Int32, Int32), Bool> = .init()
+    func electricityMeterSettingExists(profileId: Int32, remoteId: Int32) -> Bool {
+        electricityMeterSettingExistsMock.handle((profileId, remoteId))
     }
     
     var getImpulseCounterSettingsMock: FunctionMock<(Int32, Int32), SUPLA.ImpulseCounterSettings> = .init()
@@ -59,6 +61,11 @@ final class UserStateHolderMock: UserStateHolder {
     var setImpulseCounterSettingsMock: FunctionMock<(SUPLA.ImpulseCounterSettings, Int32, Int32), Void> = .init()
     func setImpulseCounterSettings(_ settings: SUPLA.ImpulseCounterSettings, profileId: Int32, remoteId: Int32) {
         setImpulseCounterSettingsMock.set((settings, profileId, remoteId))
+    }
+    
+    var impulseCounterSettingExistsMock: FunctionMock<(Int32, Int32), Bool> = .init()
+    func impulseCounterSettingExists(profileId: Int32, remoteId: Int32) -> Bool {
+        impulseCounterSettingExistsMock.handle((profileId, remoteId))
     }
     
     var getPhotoCreationTimeMock: FunctionMock<(Int32, Int32), Date?> = .init()

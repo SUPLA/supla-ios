@@ -542,6 +542,11 @@
 "details_em_total_suffix" = "(stav počítadla)";
 "details_em_current_month_suffix" = "(aktuálny mesiac)";
 "details_em_last_month_balancing" = "Bilancovanie aktuálneho mesiaca";
+"details_em_on_list" = "Zobrazenie v zozname kanálov";
+"details_em_settings_list_metric" = "Vybraná hodnota";
+"details_em_on_list_balance" = "Metóda bilancovania energie";
+"details_em_on_list_value" = "Rozsah dát";
+"details_em_active_energy_balance" = "Bilancia činnej energie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stav počítadla";

@@ -38,10 +38,13 @@ class SwitchWithElectricityMeterValueProviderImpl: SwitchWithElectricityMeterVal
             remoteId: channel.remote_id
         )
 
-        return switch (settings.showOnListSafe) {
+        return switch (settings.metricOnList) {
         case .reverseActiveEnergy,
+             .forwardReactiveEnergy,
+             .reverseReactiveEnergy,
              .powerActive,
-             .voltage: electricityMeterValueProvider.value(channel, valueType: valueType)
+             .voltage,
+             .current: electricityMeterValueProvider.value(channel, valueType: valueType)
 
         default:
             if let value = asIntValue(channel.value?.dataSubValue(), startingFromByte: 1) {

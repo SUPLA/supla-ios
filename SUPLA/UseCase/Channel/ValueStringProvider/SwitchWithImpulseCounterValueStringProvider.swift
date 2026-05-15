@@ -17,6 +17,7 @@
  */
     
 class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
+    @Singleton<UserStateHolder> private var userStateHolder
     @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
     
     let formatter = ImpulseCounterValueFormatter()
@@ -26,7 +27,13 @@ class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
     }
     
     func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        formatter.format(
+        let settings = userStateHolder.getImpulseCounterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        
+        if (settings.showOnList != .noAggregation) {
+            return channel.value?.aggregated_value ?? NO_VALUE_TEXT
+        }
+        
+        return formatter.format(
             value: switchWithImpulseCounterValueProvider.value(channel, valueType: valueType),
             format: ValueFormat(withUnit: withUnit, customUnit: channel.unit())
         )

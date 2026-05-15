@@ -27,8 +27,7 @@ extension ElectricityMeterSettingsFeature {
             
             contentView = View(
                 viewState: state,
-                onShowOnChannelsListChange: viewModel.onShowOnChannelsListChange,
-                onBalancingChange: viewModel.onBalanceValueChange
+                delegate: viewModel
             )
         }
         

@@ -543,6 +543,11 @@
 "details_em_last_month_balancing" = "Bilancování aktuálního měsíce";
 "channel_caption_pump_switch" = "Přepínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Přepínač pro zdroj tepla nebo chladu";
+"details_em_on_list" = "Zobrazení v seznamu kanálů";
+"details_em_settings_list_metric" = "Vybraná hodnota";
+"details_em_on_list_balance" = "Metoda bilancování energie";
+"details_em_on_list_value" = "Rozsah dat";
+"details_em_active_energy_balance" = "Bilance činné energie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stav měřiče";

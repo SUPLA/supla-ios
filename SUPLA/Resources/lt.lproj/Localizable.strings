@@ -545,6 +545,11 @@
 "details_em_total_suffix" = "(skaitiklio būsena)";
 "details_em_current_month_suffix" = "(einamasis mėnuo)";
 "details_em_last_month_balancing" = "Einamojo mėnesio balansavimas";
+"details_em_on_list" = "Rodymas kanalų sąraše";
+"details_em_settings_list_metric" = "Pasirinkta reikšmė";
+"details_em_on_list_balance" = "Energijos balansavimo metodas";
+"details_em_on_list_value" = "Duomenų diapazonas";
+"details_em_active_energy_balance" = "Aktyviosios energijos balansas";
 
 /* Impulse counter */
 "details_em_meter_value" = "Skaitiklio būsena";

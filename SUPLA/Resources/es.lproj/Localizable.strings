@@ -543,6 +543,11 @@
 "details_em_total_suffix" = "(estado del contador)";
 "details_em_current_month_suffix" = "(mes en curso)";
 "details_em_last_month_balancing" = "Balance del mes en curso";
+"details_em_on_list" = "Mostrar en la lista de canales";
+"details_em_settings_list_metric" = "Valor seleccionado";
+"details_em_on_list_balance" = "Método de balance energético";
+"details_em_on_list_value" = "Rango de datos";
+"details_em_active_energy_balance" = "Balance de energía activa";
 
 /* Impulse counter */
 "details_em_meter_value" = "Lectura del contador";

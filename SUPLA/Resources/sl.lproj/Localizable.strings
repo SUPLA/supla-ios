@@ -544,6 +544,11 @@
 "details_em_total_suffix" = "(stanje števca)";
 "details_em_current_month_suffix" = "(tekoči mesec)";
 "details_em_last_month_balancing" = "Poravnava tekočega meseca";
+"details_em_on_list" = "Prikaz na seznamu kanalov";
+"details_em_settings_list_metric" = "Izbrana vrednost";
+"details_em_on_list_balance" = "Metoda uravnoteženja energije";
+"details_em_on_list_value" = "Obseg podatkov";
+"details_em_active_energy_balance" = "Bilanca aktivne energije";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stanje števca";

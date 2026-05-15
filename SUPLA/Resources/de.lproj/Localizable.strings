@@ -559,6 +559,11 @@
 "details_em_voltage_phase_angle_13" = "Spannungs-Phasewinkel U13";
 "details_em_voltage_phase_sequence" = "Spannungs-Phasenfolge";
 "details_em_current_phase_sequence" = "Stromphasenfolge";
+"details_em_on_list" = "Anzeige in der Kanalliste";
+"details_em_settings_list_metric" = "Ausgewählter Wert";
+"details_em_on_list_balance" = "Methode zur Energiebilanzierung";
+"details_em_on_list_value" = "Datenbereich";
+"details_em_active_energy_balance" = "Bilanz der Wirkenergie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Zählerstand";

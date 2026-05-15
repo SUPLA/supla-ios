@@ -17,23 +17,36 @@
  */
     
 struct ElectricityMeterSettings: Codable {
-    let showOnList: SuplaElectricityMeasurementType
-    let balancing: ElectricityMeterBalanceType
+    let currentMonthBalancing: ElectricityMeterBalanceType
+    let metricOnList: ElectricityMeterMeasurementType
+    let metricOnListBalancing: ElectricityMeterBalanceType
+    let metricOnListAggregation: ListValueAggregation
     
-    var showOnListSafe: SuplaElectricityMeasurementType {
-        ElectricityMeterSettings.showOnListAllItems.contains(showOnList) ? showOnList : ElectricityMeterSettings.showOnListAllItems.first!
+    var usingAggregatedValue: Bool {
+        metricOnList == .activeEnergyBalance || (metricOnList.aggregationAvailable && metricOnListAggregation != .noAggregation)
     }
     
-    func copy(showOnList: SuplaElectricityMeasurementType? = nil, balancing: ElectricityMeterBalanceType? = nil) -> ElectricityMeterSettings {
-        ElectricityMeterSettings(showOnList: showOnList ?? self.showOnList, balancing: balancing ?? self.balancing)
+    func copy(
+        currentMonthBalancing: ElectricityMeterBalanceType? = nil,
+        metricOnList: ElectricityMeterMeasurementType? = nil,
+        metricOnListBalancing: ElectricityMeterBalanceType? = nil,
+        metricOnListAggregation: ListValueAggregation? = nil
+    ) -> ElectricityMeterSettings {
+        ElectricityMeterSettings(
+            currentMonthBalancing: currentMonthBalancing ?? self.currentMonthBalancing,
+            metricOnList: metricOnList ?? self.metricOnList,
+            metricOnListBalancing: metricOnListBalancing ?? self.metricOnListBalancing,
+            metricOnListAggregation: metricOnListAggregation ?? self.metricOnListAggregation
+        )
     }
     
     static func defaultSettings() -> ElectricityMeterSettings {
-        return .init(showOnList: .forwardActiveEnergy, balancing: .defaultValue)
-    }
-    
-    static var showOnListAllItems: [SuplaElectricityMeasurementType] {
-        [.forwardActiveEnergy, .reverseActiveEnergy, .powerActive, .voltage]
+        ElectricityMeterSettings(
+            currentMonthBalancing: .defaultValue,
+            metricOnList: .forwardActiveEnergy,
+            metricOnListBalancing: .arithmetic,
+            metricOnListAggregation: .noAggregation
+        )
     }
     
     static var balancingAllItems: [ElectricityMeterBalanceType] {
@@ -41,10 +54,24 @@ struct ElectricityMeterSettings: Codable {
     }
 }
 
+struct ElectricityMeterSettingsV1: Codable {
+    let showOnList: SuplaElectricityMeasurementType
+    let balancing: ElectricityMeterBalanceType
+    
+    var settings: ElectricityMeterSettings {
+        ElectricityMeterSettings(
+            currentMonthBalancing: balancing,
+            metricOnList: showOnList.showOnListType,
+            metricOnListBalancing: .arithmetic,
+            metricOnListAggregation: .noAggregation
+        )
+    }
+}
+
 enum ElectricityMeterBalanceType: Int, Codable, PickerItem {
     case defaultValue, vector, arithmetic, hourly
     
-    var id: Int { self.rawValue }
+    var id: Int { rawValue }
     
     var label: String {
         switch self {
@@ -55,3 +82,33 @@ enum ElectricityMeterBalanceType: Int, Codable, PickerItem {
         }
     }
 }
+
+private extension SuplaElectricityMeasurementType {
+    var showOnListType: ElectricityMeterMeasurementType {
+        switch self {
+        case .voltage: .voltage
+        case .current: .current
+        case .powerActive,
+             .powerActiveKw: .powerActive
+        case .reverseActiveEnergy: .reverseActiveEnergy
+        case .forwardReactiveEnergy: .forwardReactiveEnergy
+        case .reverseReactiveEnergy: .reverseReactiveEnergy
+        case .forwardActiveEnergyBanalced: .activeEnergyBalance
+        case .reverseActiveEnergyBalanced: .activeEnergyBalance
+        case .frequency,
+             .powerReactive,
+             .powerApparent,
+             .powerFactor,
+             .phaseAngle,
+             .currentOver65a,
+             .voltagePhaseAngle12,
+             .voltagePhaseAngle13,
+             .voltagePhaseSequence,
+             .currentPhaseSequence,
+             .powerReactiveKvar,
+             .powerApparentKva,
+             .forwardActiveEnergy: .forwardActiveEnergy
+        }
+    }
+}
+

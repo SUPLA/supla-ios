@@ -544,6 +544,11 @@
 "details_em_last_month_balancing" = "Solde du mois en cours";
 "em_phase_to_phase_balance" = "Bilan interphase vectorielle";
 "em_chart_all_phases" = "Phase 1+2+3";
+"details_em_on_list" = "Affichage dans la liste des canaux";
+"details_em_settings_list_metric" = "Valeur sélectionnée";
+"details_em_on_list_balance" = "Méthode d’équilibrage énergétique";
+"details_em_on_list_value" = "Plage de données";
+"details_em_active_energy_balance" = "Bilan de l’énergie active";
 
 /* Impulse counter */
 "details_em_meter_value" = "Valeur du compteur";

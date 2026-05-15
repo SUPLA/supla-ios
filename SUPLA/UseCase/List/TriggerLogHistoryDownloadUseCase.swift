@@ -33,6 +33,11 @@ enum TriggerLogHistoryDownload {
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
         
+        private let handlers: [ChannelHandler] = [
+            TriggerImpulseCounterHistoryDownloadHandler(),
+            TriggerElectricityMeterHistoryDownloadHandler()
+        ]
+        
         func invoke() async {
             guard let activeProfile = try? await profileRepository.getActiveProfile().awaitFirstElement() else { return }
             
@@ -44,63 +49,163 @@ enum TriggerLogHistoryDownload {
             channels.append(contentsOf: await channelRepository.findChannelsBy(activeProfile.id, function: .staircaseTimer))
             channels.append(contentsOf: await channelRepository.findChannelsBy(activeProfile.id, function: .powerSwitch))
             channels.append(contentsOf: await channelRepository.findChannelsBy(activeProfile.id, function: .lightswitch))
+            channels.append(contentsOf: await channelRepository.findChannelsBy(activeProfile.id, function: .electricityMeter))
             
-            for channel in channels {
-                await handle(channel)
+            outer: for channel in channels {
+                for handler in handlers {
+                    if (handler.canHandle(channel: channel)) {
+                        await handler.handle(channel: channel)
+                        continue outer
+                    }
+                }
             }
         }
-        
-        private var entriesLastUpdate: [EntryKey: TimeInterval] = [:]
-        
-        private func handle(_ channel: SAChannel) async {
-            let settings = userStateHolder.getImpulseCounterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
-            guard let serverId = channel.profile.server?.id,
-                  settings.showOnList != .noAggregation
-            else { return }
-            
-            SALog.info("Found channel for aggregated value refresh: \(channel.remote_id) \(settings.showOnList)")
-            
-            let logsInterval = (channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) > 0) ? LOG_OCR_REFREHS_INTERVAL : LOG_NORMAL_REFRESH_INTERVAL
-            
-            let currentDate = dateProvider.currentDate()
-            guard let lastEntry = try? await impulseCounterMeasurementItemRepository.findOldestEntity(remoteId: channel.remote_id, serverId: serverId).awaitFirstElement(),
-                  let lastEntryDate = lastEntry?.date
-            else {
-                let key = EntryKey(profileId: channel.profile.id, remoteId: channel.remote_id)
-                let lastDownloadDate = entriesLastUpdate[key]
-                entriesLastUpdate[key] = currentDate.timeIntervalSince1970
-                
-                if let lastDownloadDate, currentDate.timeIntervalSince1970 - lastDownloadDate <= logsInterval {
-                    SALog.debug("Found channel without entries, download skipped because of interval")
-                    return
-                }
-                
-                SALog.debug("Found channel without entries, triggering download")
-                downloadChannelMeasurementsUseCase.invoke(ChannelWithChildren(channel: channel))
-                return
-            }
-            
-            if (currentDate.timeIntervalSince1970 - lastEntryDate.timeIntervalSince1970 > logsInterval) {
-                let key = EntryKey(profileId: channel.profile.id, remoteId: channel.remote_id)
-                let lastDownloadDate = entriesLastUpdate[key]
-                entriesLastUpdate[key] = currentDate.timeIntervalSince1970
-                
-                if let lastDownloadDate, currentDate.timeIntervalSince1970 - lastDownloadDate <= MAX_REFRESH_INTERVAL {
-                    SALog.debug("Last entry older then refresh interval, but download already scheduled - skipping")
-                    return
-                }
-                
-                SALog.debug("Last entry older then refresh interval, scheduling download")
-                downloadChannelMeasurementsUseCase.invoke(ChannelWithChildren(channel: channel))
-                return
-            }
-            
-            SALog.debug("No action performed for \(channel.remote_id)")
-        }
+    }
+}
+
+private struct EntryKey: Hashable {
+    let profileId: Int32
+    let remoteId: Int32
+}
+
+private protocol ChannelHandler {
+    func canHandle(channel: SAChannel) -> Bool
+    func handle(channel: SAChannel) async
+}
+
+private class TriggerImpulseCounterHistoryDownloadHandler: ChannelHandler {
+    @Singleton<DateProvider> private var dateProvider
+    @Singleton<UserStateHolder> private var userStateHolder
+    @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
+    @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
+    
+    private var entriesLastUpdate: [EntryKey: TimeInterval] = [:]
+    
+    func canHandle(channel: SAChannel) -> Bool {
+        TriggerImpulseCounterHistoryDownloadHandler.acceptableFunctions.contains(channel.func)
+            && userStateHolder.impulseCounterSettingExists(profileId: channel.profile.id, remoteId: channel.remote_id)
     }
     
-    private struct EntryKey: Hashable {
-        let profileId: Int32
-        let remoteId: Int32
+    func handle(channel: SAChannel) async {
+        let settings = userStateHolder.getImpulseCounterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        guard let serverId = channel.profile.server?.id,
+              settings.showOnList != .noAggregation
+        else { return }
+        
+        SALog.info("Found channel for aggregated value refresh: \(channel.remote_id) \(settings.showOnList)")
+        
+        let logsInterval = (channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) > 0) ? LOG_OCR_REFREHS_INTERVAL : LOG_NORMAL_REFRESH_INTERVAL
+        
+        let currentDate = dateProvider.currentDate()
+        guard let lastEntry = try? await impulseCounterMeasurementItemRepository.findOldestEntity(remoteId: channel.remote_id, serverId: serverId).awaitFirstElement(),
+              let lastEntryDate = lastEntry?.date
+        else {
+            let key = EntryKey(profileId: channel.profile.id, remoteId: channel.remote_id)
+            let lastDownloadDate = entriesLastUpdate[key]
+            entriesLastUpdate[key] = currentDate.timeIntervalSince1970
+            
+            if let lastDownloadDate, currentDate.timeIntervalSince1970 - lastDownloadDate <= logsInterval {
+                SALog.debug("Found channel without entries, download skipped because of interval")
+                return
+            }
+            
+            SALog.debug("Found channel without entries, triggering download")
+            downloadChannelMeasurementsUseCase.invoke(ChannelWithChildren(channel: channel))
+            return
+        }
+        
+        if (currentDate.timeIntervalSince1970 - lastEntryDate.timeIntervalSince1970 > logsInterval) {
+            let key = EntryKey(profileId: channel.profile.id, remoteId: channel.remote_id)
+            let lastDownloadDate = entriesLastUpdate[key]
+            entriesLastUpdate[key] = currentDate.timeIntervalSince1970
+            
+            if let lastDownloadDate, currentDate.timeIntervalSince1970 - lastDownloadDate <= MAX_REFRESH_INTERVAL {
+                SALog.debug("Last entry older then refresh interval, but download already scheduled - skipping")
+                return
+            }
+            
+            SALog.debug("Last entry older then refresh interval, scheduling download")
+            downloadChannelMeasurementsUseCase.invoke(ChannelWithChildren(channel: channel))
+            return
+        }
+        
+        SALog.debug("No action performed for \(channel.remote_id)")
     }
+    
+    static let acceptableFunctions: [Int32] = [
+        SuplaFunction.icGasMeter.value,
+        SuplaFunction.icHeatMeter.value,
+        SuplaFunction.icWaterMeter.value,
+        SuplaFunction.icElectricityMeter.value,
+        SuplaFunction.staircaseTimer.value,
+        SuplaFunction.powerSwitch.value,
+        SuplaFunction.lightswitch.value
+    ]
+}
+
+private class TriggerElectricityMeterHistoryDownloadHandler: ChannelHandler {
+    @Singleton<DateProvider> private var dateProvider
+    @Singleton<UserStateHolder> private var userStateHolder
+    @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
+    @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
+    
+    private var entriesLastUpdate: [EntryKey: TimeInterval] = [:]
+    
+    func canHandle(channel: SAChannel) -> Bool {
+        TriggerElectricityMeterHistoryDownloadHandler.acceptableFunctions.contains(channel.func)
+            && userStateHolder.electricityMeterSettingExists(profileId: channel.profile.id, remoteId: channel.remote_id)
+    }
+    
+    func handle(channel: SAChannel) async {
+        let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        guard let serverId = channel.profile.server?.id,
+              settings.usingAggregatedValue
+        else { return }
+        
+        SALog.info("Found channel for aggregated value refresh: \(channel.remote_id)")
+        
+        let logsInterval = (channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) > 0) ? LOG_OCR_REFREHS_INTERVAL : LOG_NORMAL_REFRESH_INTERVAL
+        
+        let currentDate = dateProvider.currentDate()
+        guard let lastEntry = try? await electricityMeasurementItemRepository.findOldestEntity(remoteId: channel.remote_id, serverId: serverId).awaitFirstElement(),
+              let lastEntryDate = lastEntry?.date
+        else {
+            let key = EntryKey(profileId: channel.profile.id, remoteId: channel.remote_id)
+            let lastDownloadDate = entriesLastUpdate[key]
+            entriesLastUpdate[key] = currentDate.timeIntervalSince1970
+            
+            if let lastDownloadDate, currentDate.timeIntervalSince1970 - lastDownloadDate <= logsInterval {
+                SALog.debug("Found channel without entries, download skipped because of interval")
+                return
+            }
+            
+            SALog.debug("Found channel without entries, triggering download")
+            downloadChannelMeasurementsUseCase.invoke(ChannelWithChildren(channel: channel))
+            return
+        }
+        
+        if (currentDate.timeIntervalSince1970 - lastEntryDate.timeIntervalSince1970 > logsInterval) {
+            let key = EntryKey(profileId: channel.profile.id, remoteId: channel.remote_id)
+            let lastDownloadDate = entriesLastUpdate[key]
+            entriesLastUpdate[key] = currentDate.timeIntervalSince1970
+            
+            if let lastDownloadDate, currentDate.timeIntervalSince1970 - lastDownloadDate <= MAX_REFRESH_INTERVAL {
+                SALog.debug("Last entry older then refresh interval, but download already scheduled - skipping")
+                return
+            }
+            
+            SALog.debug("Last entry older then refresh interval, scheduling download")
+            downloadChannelMeasurementsUseCase.invoke(ChannelWithChildren(channel: channel))
+            return
+        }
+        
+        SALog.debug("No action performed for \(channel.remote_id)")
+    }
+    
+    static let acceptableFunctions: [Int32] = [
+        SuplaFunction.electricityMeter.value,
+        SuplaFunction.staircaseTimer.value,
+        SuplaFunction.powerSwitch.value,
+        SuplaFunction.lightswitch.value
+    ]
 }

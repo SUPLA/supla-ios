@@ -286,6 +286,7 @@ extension DiContainer {
         // UseCase - List
         register(TriggerLogHistoryDownload.UseCase.self, TriggerLogHistoryDownload.Implementation())
         register(RefreshImpulseCounterAggregatedValue.UseCase.self, RefreshImpulseCounterAggregatedValue.Implementation())
+        register(RefreshElectricityMeterAggregatedValue.UseCase.self, RefreshElectricityMeterAggregatedValue.Implementation())
         
         // MARK: Features
         

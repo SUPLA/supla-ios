@@ -564,6 +564,11 @@
 "details_em_voltage_phase_angle_13" = "Feszültség fázisszög 1–3";
 "details_em_voltage_phase_sequence" = "Feszültség fázissorrend";
 "details_em_current_phase_sequence" = "Áram fázissorrend";
+"details_em_on_list" = "Megjelenítés a csatornalistában";
+"details_em_settings_list_metric" = "Kiválasztott érték";
+"details_em_on_list_balance" = "Energiamérlegelési módszer";
+"details_em_on_list_value" = "Adattartomány";
+"details_em_active_energy_balance" = "Hatásos energia egyenleg";
 
 /* Impulse counter */
 "details_em_meter_value" = "Mérőóra leolvasás";

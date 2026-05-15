@@ -544,6 +544,11 @@
 "details_em_total_suffix" = "(κατάσταση μετρητή)";
 "details_em_current_month_suffix" = "(τρέχων μήνας)";
 "details_em_last_month_balancing" = "Εξισορρόπηση του τρέχοντος μήνα";
+"details_em_on_list" = "Εμφάνιση στη λίστα καναλιών";
+"details_em_settings_list_metric" = "Επιλεγμένη τιμή";
+"details_em_on_list_balance" = "Μέθοδος εξισορρόπησης ενέργειας";
+"details_em_on_list_value" = "Εύρος δεδομένων";
+"details_em_active_energy_balance" = "Ισοζύγιο ενεργού ενέργειας";
 
 /* Impulse counter */
 "details_em_meter_value" = "Κατάσταση του μετρητή";

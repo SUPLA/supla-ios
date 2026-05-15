@@ -140,6 +140,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return result;
 }
 
+- (double) totalForwardReactiveEnergy {
+    double result = 0;
+    for(short p=1;p<=3;p++) {
+        result+=[self totalForwardReactiveEnergyForPhase:p];
+    }
+    return result;
+}
+
+- (double) totalReverseReactiveEnergy {
+    double result = 0;
+    for(short p=1;p<=3;p++) {
+        result+=[self totalReverseReactiveEnergyForPhase:p];
+    }
+    return result;
+}
+
 - (double) totalForwardActiveEnergyBalanced {
     return _emev.total_forward_active_energy_balanced * 0.00001;
 }

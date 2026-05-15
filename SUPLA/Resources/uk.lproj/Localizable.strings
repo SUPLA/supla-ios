@@ -544,6 +544,11 @@
 "details_em_total_suffix" = "(стан лічильника)";
 "details_em_current_month_suffix" = "(поточний місяць)";
 "details_em_last_month_balancing" = "Балансування поточного місяця";
+"details_em_on_list" = "Відображення у списку каналів";
+"details_em_settings_list_metric" = "Вибране значення";
+"details_em_on_list_balance" = "Метод балансування енергії";
+"details_em_on_list_value" = "Діапазон даних";
+"details_em_active_energy_balance" = "Баланс активної енергії";
 
 /* Impulse counter */
 "details_em_meter_value" = "Стан лічильника";

@@ -37,10 +37,7 @@ final class ElectricityMeterValueProviderTest: XCTestCase {
     
     func test_shouldGetValueFromChannelValue() {
         // given
-        userStateHolder.getElectricityMeterSettingsReturns = ElectricityMeterSettings(
-            showOnList: .forwardActiveEnergy,
-            balancing: .defaultValue
-        )
+        userStateHolder.getElectricityMeterSettingsMock.returns = .single(ElectricityMeterSettings.defaultSettings())
         
         var intValue: Int32 = 3310
         var tmp: UInt8 = 0
