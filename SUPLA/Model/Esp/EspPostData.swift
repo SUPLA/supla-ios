@@ -15,11 +15,13 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
+import Collections
+
 class EspPostData {
-    var fieldMap: [String: String]
+    var fieldMap: OrderedDictionary<String, String>
     
-    init(fieldMap: [String : String]) {
+    init(fieldMap: OrderedDictionary<String, String>) {
         self.fieldMap = fieldMap
     }
     
@@ -71,7 +73,7 @@ class EspPostData {
     static let FIELD_REBOOT = "rbt"
 }
 
-private extension Dictionary where Key == String, Value == String {
+private extension OrderedDictionary where Key == String, Value == String {
     mutating func putOrRemove(_ key: String, _ value: String?) {
         if let value {
             self[key] = value

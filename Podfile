@@ -16,6 +16,7 @@ target 'SUPLA' do
   pod 'SwiftyBeaver'
   pod 'SwiftSoup'
   pod 'Alamofire'
+  pod 'swift-collections'
 
   target 'SUPLATests' do
     inherit! :search_paths

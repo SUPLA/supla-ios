@@ -23,19 +23,24 @@ import XCTest
 class EspHtmlParserTests: XCTestCase {
     private lazy var fileDataThermostat: Data! = {
         let testBundle = Bundle(for: type(of: self))
-        let file = testBundle.url(forResource: "arduino", withExtension: "html")!
+        let file = testBundle.url(forResource: "index_arduino", withExtension: "html")!
         return try! Data(contentsOf: file)
     }()
-    
     private lazy var documentThermostat: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataThermostat, encoding: .utf8)!)
     
     private lazy var fileDataDiy: Data! = {
         let testBundle = Bundle(for: type(of: self))
-        let file = testBundle.url(forResource: "7.8.17", withExtension: "html")!
+        let file = testBundle.url(forResource: "index_7.8.17", withExtension: "html")!
         return try! Data(contentsOf: file)
     }()
-    
     private lazy var documentDiy: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataDiy, encoding: .utf8)!)
+    
+    private lazy var fileDataCsrf: Data! = {
+        let testBundle = Bundle(for: type(of: self))
+        let file = testBundle.url(forResource: "index_csrf", withExtension: "html")!
+        return try! Data(contentsOf: file)
+    }()
+    private lazy var documentCsrf: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataCsrf, encoding: .utf8)!)
     
     private lazy var parser: EspHtmlParser! = EspHtmlParser()
     
@@ -50,7 +55,7 @@ class EspHtmlParserTests: XCTestCase {
         let inputs = parser.findInputs(document: documentThermostat)
         
         // then
-        XCTAssertEqual(inputs.keys.count, 37)
+        XCTAssertEqual(inputs.keys.count, 38)
         for (key, value) in inputsMapThermostat {
             XCTAssertEqual(inputs[key], value, "Failed by key: \(key)")
         }
@@ -69,6 +74,20 @@ class EspHtmlParserTests: XCTestCase {
         // then
         XCTAssertEqual(inputs.keys.count, 7)
         for (key, value) in inputsMapDiy {
+            XCTAssertEqual(inputs[key], value, "Failed by key: \(key)")
+        }
+        // no input without names
+        XCTAssertEqual(inputs.keys.filter { $0.isEmpty }.count, 0)
+    }
+    
+    func test_shouldLoadInputsCsrf() {
+        // when
+        let inputs = parser.findInputs(document: documentCsrf)
+        
+        // then
+        XCTAssertEqual(inputs.keys.count, 24)
+        XCTAssertEqual(inputs.keys.first, "csrf")
+        for (key, value) in inputsMapIndex {
             XCTAssertEqual(inputs[key], value, "Failed by key: \(key)")
         }
         // no input without names
@@ -159,6 +178,33 @@ class EspHtmlParserTests: XCTestCase {
         "0_t_aux_type": "2",
         "0_t_chng_keeps": "on",
         "eml": "krz.lewandowski@gmail.com"
+    ]
+    
+    private let inputsMapIndex: [String: String] = [
+        "csrf": "CB34F7B768F8563E99FA62D618D669F8",
+        "sid": "M&Ms",
+        "wpw": "",
+        "protocol_supla": "1",
+        "svr": "svr40.supla.org",
+        "eml": "michal@polanscy.com.pl",
+        "sec": "0",
+        "custom_ca": "",
+        "protocol_mqtt": "0",
+        "mqttserver": "",
+        "mqtttls": "1",
+        "mqttport": "8883",
+        "mqttauth": "1",
+        "mqttuser": "",
+        "mqttpasswd": "",
+        "mqttprefix": "",
+        "mqttqos": "0",
+        "mqttretain": "0",
+        "led": "0",
+        "0_oc_thr": "0",
+        "cmd": "",
+        "otamode": "2",
+        "upd": "0",
+        "rbt": "0"
     ]
     
     private let inputsMapDiy: [String: String] = [
