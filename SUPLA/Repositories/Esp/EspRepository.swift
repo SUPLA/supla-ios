@@ -17,12 +17,15 @@
  */
 
 import Alamofire
+import Collections
 
 protocol EspRepository {
     func get() async -> Esp.RequestResult
-    func post(_ data: [String: String]) async -> Esp.RequestResult
-    func login(password: String) async -> Esp.RequestResult
-    func setup(password: String) async -> Esp.RequestResult
+    func post(_ data: OrderedDictionary<String, String>) async -> Esp.RequestResult
+    func login() async -> Esp.RequestResult
+    func login(password: String, fieldsMap: inout OrderedDictionary<String, String>) async -> Esp.RequestResult
+    func setup() async -> Esp.RequestResult
+    func setup(password: String, fieldsMap: inout OrderedDictionary<String, String>) async -> Esp.RequestResult
 }
 
 func repeated(_ times: Int, _ body: () async -> Esp.RequestResult) async -> Esp.RequestResult? {
@@ -59,7 +62,7 @@ class EspRepositoryImpl: EspRepository {
         let result = await cancellableRequestBuilder { continuation in
             EspClient.shared.session.request(url)
                 .redirect(using: .doNotFollow)
-                .responseString { continuation.resume(returning: responseToResult(response: $0)) }
+                .responseString { continuation.resume(returning: responseToResult(response: $0, requestType: "GET")) }
         }
 
         switch (result) {
@@ -71,11 +74,16 @@ class EspRepositoryImpl: EspRepository {
         return result
     }
 
-    func post(_ data: [String: String]) async -> Esp.RequestResult {
+    func post(_ data: OrderedDictionary<String, String>) async -> Esp.RequestResult {
+        guard let request = buildRequest(urlString: url, fieldsMap: data) else {
+            SALog.error("Could not create URLRequest")
+            return .failure(nil, RequestBuilderError())
+        }
+        
         let result = await cancellableRequestBuilder { continuation in
-            EspClient.shared.session.request(url, method: .post, parameters: data)
+            return EspClient.shared.session.request(request)
                 .redirect(using: .doNotFollow)
-                .responseString { continuation.resume(returning: responseToResult(response: $0)) }
+                .responseString { continuation.resume(returning: responseToResult(response: $0, requestType: "POST")) }
         }
 
         switch (result) {
@@ -86,29 +94,60 @@ class EspRepositoryImpl: EspRepository {
 
         return result
     }
-
-    func login(password: String) async -> Esp.RequestResult {
+    
+    func login() async -> Esp.RequestResult {
         await cancellableRequestBuilder { continuation in
-            EspClient.shared.session.request("\(self.url)/login", method: .post, parameters: [FIELD_PASSWORD: password])
+            EspClient.shared.session.request("\(self.url)/login", method: .get)
                 .redirect(using: .doNotFollow)
                 .responseString {
                     retrieveCookie($0)
-                    continuation.resume(returning: loginToResult(response: $0))
+                    continuation.resume(returning: getToResult(response: $0))
+                }
+        }
+    }
+
+    func login(password: String, fieldsMap: inout OrderedDictionary<String, String>) async -> Esp.RequestResult {
+        fieldsMap[FIELD_PASSWORD] = password
+        guard let request = buildRequest(urlString: "\(self.url)/login", fieldsMap: fieldsMap) else {
+            SALog.error("Could not create URLRequest")
+            return .failure(nil, RequestBuilderError())
+        }
+        
+        return await cancellableRequestBuilder { continuation in
+            EspClient.shared.session.request(request)
+                .redirect(using: .doNotFollow)
+                .responseString {
+                    retrieveCookie($0)
+                    continuation.resume(returning: postToResult(response: $0))
                 }
         }
     }
     
-    func setup(password: String) async -> Esp.RequestResult {
-        let parameters = [
-            FIELD_PASSWORD: password,
-            FIELD_PASSWORD_REPEAT: password
-        ]
+    func setup() async -> Esp.RequestResult {
         return await cancellableRequestBuilder { continuation in
-            EspClient.shared.session.request("\(self.url)/setup", method: .post, parameters: parameters)
+            EspClient.shared.session.request("\(self.url)/setup", method: .get)
                 .redirect(using: .doNotFollow)
                 .responseString {
                     retrieveCookie($0)
-                    continuation.resume(returning: loginToResult(response: $0))
+                    continuation.resume(returning: getToResult(response: $0))
+                }
+        }
+    }
+    
+    func setup(password: String, fieldsMap: inout OrderedDictionary<String, String>) async -> Esp.RequestResult {
+        fieldsMap[FIELD_PASSWORD] = password
+        fieldsMap[FIELD_PASSWORD_REPEAT] = password
+        guard let request = buildRequest(urlString: "\(self.url)/setup", fieldsMap: fieldsMap) else {
+            SALog.error("Could not create URLRequest")
+            return .failure(nil, RequestBuilderError())
+        }
+        
+        return await cancellableRequestBuilder { continuation in
+            EspClient.shared.session.request(request)
+                .redirect(using: .doNotFollow)
+                .responseString {
+                    retrieveCookie($0)
+                    continuation.resume(returning: postToResult(response: $0))
                 }
         }
     }
@@ -126,11 +165,21 @@ class EspRepositoryImpl: EspRepository {
         }
     }
     
-    private func buildRequest(_ url: String, method: HTTPMethod = .get, parameters: Parameters? = nil) -> URLRequest {
-        var urlRequest = URLRequest(url: URL(string: url)!)
-        urlRequest.httpMethod = method.rawValue
+    private func buildRequest(urlString: String, fieldsMap: OrderedDictionary<String, String>) -> URLRequest? {
+        guard let url = URL(string: urlString) else { return nil }
         
-        return urlRequest
+        let body = fieldsMap
+            .map { key, value in
+                "\(key.formURLEncoded)=\(value.formURLEncoded)"
+            }
+            .joined(separator: "&")
+        
+        var request = URLRequest(url: url)
+        request.method = .post
+        request.httpBody = body.data(using: .utf8)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        return request
     }
 }
 
@@ -140,9 +189,9 @@ private extension AFDataResponse where Success == String {
     }
 }
 
-private func responseToResult(response: AFDataResponse<String>) -> Esp.RequestResult {
+private func responseToResult(response: AFDataResponse<String>, requestType: String) -> Esp.RequestResult {
     let code = response.response?.statusCode
-    SALog.info("GET request finished with status code: \(code ?? 0)")
+    SALog.info("\(requestType) request finished with status code: \(code ?? 0)")
 
     if (code == 301 && response.locationHeader?.starts(with: "https://") ?? false) {
         return .secureConnectionNeeded
@@ -155,6 +204,27 @@ private func responseToResult(response: AFDataResponse<String>) -> Esp.RequestRe
     } else {
         switch response.result {
         case .success(let value):
+            if (code == 400) {
+                return .failure(code, UnknownEspError(code: code, message: value))
+            } else {
+                return .success(code, value)
+            }
+        case .failure(let error):
+            SALog.error("GET request failed with error \(error)")
+            return .failure(code, error)
+        }
+    }
+}
+
+private func getToResult(response: AFDataResponse<String>) -> Esp.RequestResult {
+    let code = response.response?.statusCode
+    SALog.info("Login request finished with status code: \(code ?? 0)")
+
+    if (code == 403) {
+        return .temporarilyLocked
+    } else {
+        switch response.result {
+        case .success(let value):
             return .success(code, value)
         case .failure(let error):
             SALog.error("GET request failed with error \(error)")
@@ -163,7 +233,7 @@ private func responseToResult(response: AFDataResponse<String>) -> Esp.RequestRe
     }
 }
 
-private func loginToResult(response: AFDataResponse<String>) -> Esp.RequestResult {
+private func postToResult(response: AFDataResponse<String>) -> Esp.RequestResult {
     let code = response.response?.statusCode
     SALog.info("Login request finished with status code: \(code ?? 0)")
 
@@ -175,7 +245,7 @@ private func loginToResult(response: AFDataResponse<String>) -> Esp.RequestResul
         return .temporarilyLocked
     } else {
         switch response.result {
-        case .success:
+        case .success(let value):
             return .failure(code, InvalidCredentialsError())
         case .failure(let error):
             SALog.error("GET request failed with error \(error)")
@@ -201,6 +271,16 @@ private func retrieveCookie(_ response: AFDataResponse<String>) {
 }
 
 class InvalidCredentialsError: Error {}
+class RequestBuilderError: Error {}
+class UnknownEspError: Error {
+    let code: Int?
+    let message: String
+    
+    init(code: Int?, message: String) {
+        self.code = code
+        self.message = message
+    }
+}
 
 private extension HTTPCookie {
     func copy() -> HTTPCookie? {
@@ -220,5 +300,13 @@ private extension HTTPCookie {
         }
         
         return HTTPCookie(properties: properties)
+    }
+}
+
+extension String {
+    var formURLEncoded: String {
+        var allowed = CharacterSet.urlQueryAllowed
+        allowed.remove(charactersIn: "&=+")
+        return addingPercentEncoding(withAllowedCharacters: allowed) ?? self
     }
 }

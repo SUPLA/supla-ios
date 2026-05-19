@@ -128,6 +128,7 @@
 		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
 		01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */; };
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
+		26C7E013F5AF9D5366ACDB82 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
@@ -183,12 +184,11 @@
 		40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A281BCCFF8A004CF43B /* settings@2x.png */; };
 		40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A421BCD6F06004CF43B /* Localizable.strings */; };
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
-		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		6878DA9EFD3348F1A08DD4C4 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */; };
 		6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E05868028539E490044786B /* EditableProfileItemCell.swift */; };
 		6E8004D328493463009A917A /* AuthProfileItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */; };
 		6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8756622830E86B00D5A283 /* ProfileItemCell.swift */; };
 		6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9F28C828436EE800142502 /* AddNewProfileCell.swift */; };
-		756E5856FB49A0330E8AF32C /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4324ABB29A960B51570CDD29 /* Pods_SUPLAWidgetsExtension.framework */; };
 		A50162592F921A6400FB2899 /* RoundedControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50162582F921A5A00FB2899 /* RoundedControlButton.swift */; };
 		A501625C2F9240C300FB2899 /* ThermostatTimerDetailInProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501625B2F9240B500FB2899 /* ThermostatTimerDetailInProgress.swift */; };
 		A501625E2F924D5C00FB2899 /* ThermostatTimerDetailConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501625D2F924D5400FB2899 /* ThermostatTimerDetailConfiguration.swift */; };
@@ -327,7 +327,7 @@
 		A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */; };
 		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
 		A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */; };
-		A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* 7.8.17.html */; };
+		A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* index_7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* BaseDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* BaseDetailVC.swift */; };
 		A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */; };
@@ -796,6 +796,7 @@
 		A5812CC22BBC8E4200FC5998 /* UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CC12BBC8E4200FC5998 /* UserIcon.swift */; };
 		A58189062FB5D1980056B401 /* ElectricityMeterMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */; };
 		A58189082FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */; };
+		A581890A2FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */; };
 		A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F72B644F75006113F8 /* IntValueParser.swift */; };
 		A58316FA2B64507D006113F8 /* ThermometerValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F92B64507D006113F8 /* ThermometerValueProvider.swift */; };
 		A58316FC2B64510A006113F8 /* ThermometerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316FB2B64510A006113F8 /* ThermometerValueStringProvider.swift */; };
@@ -1170,7 +1171,7 @@
 		A5CA8AD52E7054CF005B55F4 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FE2AEFB96A0025509D /* Double+Ext.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
-		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
+		A5CE732C2B469C02003F882C /* index_arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* index_arduino.html */; };
 		A5CE732F2B469C36003F882C /* EspHtmlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */; };
 		A5CF3D622DD4869A00207384 /* DownloadUserIconsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D612DD4869400207384 /* DownloadUserIconsManager.swift */; };
 		A5CF3D642DD4A95700207384 /* UserIconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D632DD4A94E00207384 /* UserIconData.swift */; };
@@ -1191,6 +1192,8 @@
 		A5CF3E552DD6870500207384 /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
 		A5CF3E572DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
 		A5CF3E582DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
+		A5D180D52FBB25C70038F5BC /* device_login.html in Resources */ = {isa = PBXBuildFile; fileRef = A5D180D42FBB25C70038F5BC /* device_login.html */; };
+		A5D182492FBB4A820038F5BC /* index_csrf.html in Resources */ = {isa = PBXBuildFile; fileRef = A5D182482FBB4A710038F5BC /* index_csrf.html */; };
 		A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */; };
 		A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */; };
 		A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */; };
@@ -1349,7 +1352,6 @@
 		A5E40B712B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */; };
 		A5E40B732B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */; };
 		A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */; };
-		A581890A2FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */; };
 		A5E40B772B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
@@ -1544,7 +1546,10 @@
 		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
 		B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */; };
 		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
-		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
+		B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000003 /* EspRepositoryMock.swift */; };
+		B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */; };
+		B2A100001111111100000009 /* CreateEspPasswordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */; };
+		D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1877,6 +1882,9 @@
 		01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeResult.m; sourceTree = "<group>"; };
 		01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNode.h; sourceTree = "<group>"; };
 		01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNode.m; sourceTree = "<group>"; };
+		19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
+		2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.release.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.release.xcconfig"; sourceTree = "<group>"; };
+		3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.debug.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		4017E1291BB9CE2900570AC8 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
@@ -1968,16 +1976,14 @@
 		40DE1A441BCD6F09004CF43B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A471BCD7207004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		4324ABB29A960B51570CDD29 /* Pods_SUPLAWidgetsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLAWidgetsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DB3EFD1D1896FEDBCC636FB /* Pods-SUPLAWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.debug.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		5112F349C0AF063E78531836 /* Pods-SUPLAWidgetsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.release.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.release.xcconfig"; sourceTree = "<group>"; };
-		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		6E05868028539E490044786B /* EditableProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableProfileItemCell.swift; sourceTree = "<group>"; };
 		6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthProfileItem+Ext.swift"; sourceTree = "<group>"; };
 		6E8756622830E86B00D5A283 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		6E9F28C828436EE800142502 /* AddNewProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProfileCell.swift; sourceTree = "<group>"; };
-		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
+		904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
+		90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLAWidgetsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50162582F921A5A00FB2899 /* RoundedControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedControlButton.swift; sourceTree = "<group>"; };
 		A501625B2F9240B500FB2899 /* ThermostatTimerDetailInProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailInProgress.swift; sourceTree = "<group>"; };
 		A501625D2F924D5400FB2899 /* ThermostatTimerDetailConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailConfiguration.swift; sourceTree = "<group>"; };
@@ -2115,7 +2121,7 @@
 		A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedMeasurements.swift; sourceTree = "<group>"; };
 		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVC.swift; sourceTree = "<group>"; };
-		A519CCC02D393EE300F858A4 /* 7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 7.8.17.html; sourceTree = "<group>"; };
+		A519CCC02D393EE300F858A4 /* index_7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* BaseDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVM.swift; sourceTree = "<group>"; };
@@ -2609,6 +2615,7 @@
 		A5812CC12BBC8E4200FC5998 /* UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIcon.swift; sourceTree = "<group>"; };
 		A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterMeasurementType.swift; sourceTree = "<group>"; };
 		A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCase.swift; sourceTree = "<group>"; };
+		A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
 		A58316F72B644F75006113F8 /* IntValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntValueParser.swift; sourceTree = "<group>"; };
 		A58316F92B64507D006113F8 /* ThermometerValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueProvider.swift; sourceTree = "<group>"; };
 		A58316FB2B64510A006113F8 /* ThermometerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueStringProvider.swift; sourceTree = "<group>"; };
@@ -2975,7 +2982,7 @@
 		A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 27.xcdatamodel"; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
-		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
+		A5CE732B2B469C02003F882C /* index_arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_arduino.html; sourceTree = "<group>"; };
 		A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParserTests.swift; sourceTree = "<group>"; };
 		A5CF3D612DD4869400207384 /* DownloadUserIconsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadUserIconsManager.swift; sourceTree = "<group>"; };
 		A5CF3D632DD4A94E00207384 /* UserIconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconData.swift; sourceTree = "<group>"; };
@@ -2986,6 +2993,8 @@
 		A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Ext.swift"; sourceTree = "<group>"; };
 		A5CF3DAD2DD5CDBB00207384 /* WidgetChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetChannel.swift; sourceTree = "<group>"; };
 		A5CF3E562DD6880300207384 /* WidgetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetIcon.swift; sourceTree = "<group>"; };
+		A5D180D42FBB25C70038F5BC /* device_login.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = device_login.html; sourceTree = "<group>"; };
+		A5D182482FBB4A710038F5BC /* index_csrf.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_csrf.html; sourceTree = "<group>"; };
 		A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenFeature.swift; sourceTree = "<group>"; };
 		A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewState.swift; sourceTree = "<group>"; };
 		A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVM.swift; sourceTree = "<group>"; };
@@ -3130,7 +3139,6 @@
 		A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshImpulseCounterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
-		A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeasurement+Mock.swift"; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -3293,6 +3301,7 @@
 		A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferredProtocolVersionUseCase.swift; sourceTree = "<group>"; };
 		A5FE67662A666F2200147D1F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A5FE67682A666FF800147D1F /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
+		AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
@@ -3321,9 +3330,9 @@
 		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsViewState.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
-		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
-		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
-		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
+		B2A100001111111100000003 /* EspRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepositoryMock.swift; sourceTree = "<group>"; };
+		B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCaseTests.swift; sourceTree = "<group>"; };
+		B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEspPasswordUseCaseTests.swift; sourceTree = "<group>"; };
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -3380,6 +3389,7 @@
 		F4CD6F8E28ABFBFB006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SALightsourceLifespanSettingsDialog.strings"; sourceTree = "<group>"; };
 		F4CD6F9028ABFD70006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 		F4D3907C29324B570066014D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -3417,7 +3427,7 @@
 				01EF60E829BCA7FA00F691A0 /* LibSuplaClient.xcframework in Frameworks */,
 				40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */,
 				0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */,
-				462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */,
+				6878DA9EFD3348F1A08DD4C4 /* Pods_SUPLA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3425,7 +3435,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */,
+				26C7E013F5AF9D5366ACDB82 /* Pods_SUPLATests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3438,7 +3448,7 @@
 				A5741DAC2DC2513E00ED6C18 /* SwiftUI.framework in Frameworks */,
 				A5A601C72E7AD80700B1BFA6 /* SharedCore.xcframework in Frameworks */,
 				A5741DAB2DC2513E00ED6C18 /* WidgetKit.framework in Frameworks */,
-				756E5856FB49A0330E8AF32C /* Pods_SUPLAWidgetsExtension.framework in Frameworks */,
+				D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3831,11 +3841,11 @@
 				0163D0CC257EE483006C73CB /* NetworkExtension.framework */,
 				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
 				407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */,
-				596D36089B2CE979388A06FF /* Pods_SUPLA.framework */,
-				76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */,
 				A5741D8C2DC24DF800ED6C18 /* WidgetKit.framework */,
 				A5741D8E2DC24DF800ED6C18 /* SwiftUI.framework */,
-				4324ABB29A960B51570CDD29 /* Pods_SUPLAWidgetsExtension.framework */,
+				7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */,
+				F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */,
+				90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3913,12 +3923,12 @@
 		8CB4DD9EB4BBF894FE05F21D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */,
-				F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */,
-				B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */,
-				5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */,
-				4DB3EFD1D1896FEDBCC636FB /* Pods-SUPLAWidgetsExtension.debug.xcconfig */,
-				5112F349C0AF063E78531836 /* Pods-SUPLAWidgetsExtension.release.xcconfig */,
+				8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */,
+				19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */,
+				904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */,
+				AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */,
+				3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */,
+				2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -6128,6 +6138,7 @@
 		A59AB8B92A307FAD00D91F1F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				B2A100001111111100000003 /* EspRepositoryMock.swift */,
 				A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */,
 				A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */,
 				A59AB8BA2A30800F00D91F1F /* ProfileRepositoryMock.swift */,
@@ -6167,6 +6178,7 @@
 		A59AB8C02A308ADA00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B2A100001111111100000005 /* AddWizard */,
 				A58188D62FB5C4AC0056B401 /* List */,
 				A5D712782C3E8F5100A8EF52 /* App */,
 				A59AB8E42A30A72000D91F1F /* Channel */,
@@ -6891,8 +6903,10 @@
 		A5CE732A2B469B5F003F882C /* TestData */ = {
 			isa = PBXGroup;
 			children = (
-				A5CE732B2B469C02003F882C /* arduino.html */,
-				A519CCC02D393EE300F858A4 /* 7.8.17.html */,
+				A5D182482FBB4A710038F5BC /* index_csrf.html */,
+				A5D180D42FBB25C70038F5BC /* device_login.html */,
+				A5CE732B2B469C02003F882C /* index_arduino.html */,
+				A519CCC02D393EE300F858A4 /* index_7.8.17.html */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -7909,6 +7923,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		B2A100001111111100000005 /* AddWizard */ = {
+			isa = PBXGroup;
+			children = (
+				B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */,
+				B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */,
+			);
+			path = AddWizard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7916,13 +7939,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 401CA1DF1BA067DB00117AF4 /* Build configuration list for PBXNativeTarget "SUPLA" */;
 			buildPhases = (
-				7BB9E06954927D1F53A8F4E4 /* [CP] Check Pods Manifest.lock */,
+				7EF45810648B5FA9B9D0EFE9 /* [CP] Check Pods Manifest.lock */,
 				401CA1B51BA067DB00117AF4 /* Sources */,
 				401CA1B61BA067DB00117AF4 /* Frameworks */,
 				401CA1B71BA067DB00117AF4 /* Resources */,
-				66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */,
 				A598CADD2CC7BA5E00A784FA /* Embed Frameworks */,
 				A5741DA12DC24DF900ED6C18 /* Embed Foundation Extensions */,
+				52F6AC4833720B5DA94AF505 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -7938,11 +7961,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 401CA1E21BA067DB00117AF4 /* Build configuration list for PBXNativeTarget "SUPLATests" */;
 			buildPhases = (
-				5D514DA93A433ADCE0FF5DE0 /* [CP] Check Pods Manifest.lock */,
+				70E819C7ACE1A6EE1172A410 /* [CP] Check Pods Manifest.lock */,
 				401CA1D11BA067DB00117AF4 /* Sources */,
 				401CA1D21BA067DB00117AF4 /* Frameworks */,
 				401CA1D31BA067DB00117AF4 /* Resources */,
-				9F6494B08411F1C829CF2976 /* [CP] Embed Pods Frameworks */,
+				10E2782A9B819D74B747FD65 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -7958,7 +7981,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5741DBB2DC2513F00ED6C18 /* Build configuration list for PBXNativeTarget "SUPLAWidgetsExtension" */;
 			buildPhases = (
-				A2BFD80382EEBDA7B1A2F9FB /* [CP] Check Pods Manifest.lock */,
+				B2E752193C527F3BDBE14AA6 /* [CP] Check Pods Manifest.lock */,
 				A5741DA62DC2513E00ED6C18 /* Sources */,
 				A5741DA72DC2513E00ED6C18 /* Frameworks */,
 				A5741DA82DC2513E00ED6C18 /* Resources */,
@@ -8120,8 +8143,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CE732C2B469C02003F882C /* arduino.html in Resources */,
-				A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */,
+				A5CE732C2B469C02003F882C /* index_arduino.html in Resources */,
+				A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */,
+				A5D180D52FBB25C70038F5BC /* device_login.html in Resources */,
+				A5D182492FBB4A820038F5BC /* index_csrf.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8138,7 +8163,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5D514DA93A433ADCE0FF5DE0 /* [CP] Check Pods Manifest.lock */ = {
+		10E2782A9B819D74B747FD65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52F6AC4833720B5DA94AF505 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70E819C7ACE1A6EE1172A410 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8160,28 +8227,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7BB9E06954927D1F53A8F4E4 /* [CP] Check Pods Manifest.lock */ = {
+		7EF45810648B5FA9B9D0EFE9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8203,28 +8249,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F6494B08411F1C829CF2976 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2BFD80382EEBDA7B1A2F9FB /* [CP] Check Pods Manifest.lock */ = {
+		B2E752193C527F3BDBE14AA6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -9443,6 +9468,7 @@
 				A59AB8D32A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift in Sources */,
 				A5D712752C3E708900A8EF52 /* CheckPinUseCaseTests.swift in Sources */,
 				A55A8DBF2BB2EED300C540D4 /* CompletableTestCase.swift in Sources */,
+				B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */,
 				A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */,
 				A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
@@ -9508,6 +9534,8 @@
 				A594ADDA2C9D5E0B00780EF3 /* ChannelWithChildrenTests.swift in Sources */,
 				A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */,
 				A55A8DC32BB2F4E000C540D4 /* NotificationCenterWrapperMock.swift in Sources */,
+				B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */,
+				B2A100001111111100000009 /* CreateEspPasswordUseCaseTests.swift in Sources */,
 				A5E40B6D2B86353600DB6ABE /* ChannelConfigRepositoryMock.swift in Sources */,
 				A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */,
 				A5519B3C2B6D36BD00811747 /* GpmValueProviderTest.swift in Sources */,
@@ -10100,7 +10128,7 @@
 		};
 		401CA1E01BA067DB00117AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */;
+			baseConfigurationReference = 8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -10144,7 +10172,7 @@
 		};
 		401CA1E11BA067DB00117AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */;
+			baseConfigurationReference = 19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -10186,7 +10214,7 @@
 		};
 		401CA1E31BA067DB00117AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */;
+			baseConfigurationReference = 904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -10217,7 +10245,7 @@
 		};
 		401CA1E41BA067DB00117AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */;
+			baseConfigurationReference = AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -10243,7 +10271,7 @@
 		};
 		A5741DBC2DC2513F00ED6C18 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DB3EFD1D1896FEDBCC636FB /* Pods-SUPLAWidgetsExtension.debug.xcconfig */;
+			baseConfigurationReference = 3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -10295,7 +10323,7 @@
 		};
 		A5741DBD2DC2513F00ED6C18 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5112F349C0AF063E78531836 /* Pods-SUPLAWidgetsExtension.release.xcconfig */;
+			baseConfigurationReference = 2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
