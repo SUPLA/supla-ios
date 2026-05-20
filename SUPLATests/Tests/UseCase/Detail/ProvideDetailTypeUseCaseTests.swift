@@ -267,7 +267,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
-        doTest(expectedResult: .standardDetail(pages: [.switchGeneral, .switchTimer, .impulseCounterHistory])) {
+        doTest(expectedResult: .standardDetail(pages: [.switchGeneral, .switchTimer, .impulseCounterHistory, .impulseCounterSettings])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
             

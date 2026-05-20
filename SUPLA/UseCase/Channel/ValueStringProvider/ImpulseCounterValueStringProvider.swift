@@ -24,11 +24,12 @@ class ImpulseCounterValueStringProvider: ChannelValueStringProvider {
     private let impulseCounterFormatter = SharedCore.ImpulseCounterValueFormatter()
     private let electricityMeterFormatter = SharedCore.ElectricityMeterValueFormatter()
     
-    func handle(_ channel: SAChannel) -> Bool {
-        impulseCounterValueProvider.handle(channel)
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        impulseCounterValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        let channel = channelWithChildren.channel
         guard let value = impulseCounterValueProvider.value(channel, valueType: valueType) as? Double else {
             return NO_VALUE_TEXT
         }

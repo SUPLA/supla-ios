@@ -21,7 +21,7 @@ import RxSwift
 protocol ElectricityMeasurementsProvider: MeasurementsProvider {
     var getCaptionUseCase: GetCaptionUseCase { get }
 
-    func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String
+    func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase, _ online: Bool) -> String
     func findMeasurementsForPhase(
         _ channelWithChildren: ChannelWithChildren,
         _ spec: ChartDataSpec,
@@ -119,7 +119,7 @@ extension ElectricityMeasurementsProvider {
 
         if phases.contains(phase) {
             if let electricityValue {
-                let value = formatLabelValue(electricityValue, phase)
+                let value = formatLabelValue(electricityValue, phase, channel.status().online)
                 return .single(HistoryDataSet.LabelData(icon: icon, value: value, color: phase.color!))
             }
         }

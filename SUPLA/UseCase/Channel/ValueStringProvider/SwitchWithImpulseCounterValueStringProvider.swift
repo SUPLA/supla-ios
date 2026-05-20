@@ -20,22 +20,28 @@ class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
     @Singleton<UserStateHolder> private var userStateHolder
     @Singleton<SwitchWithImpulseCounterValueProvider> private var switchWithImpulseCounterValueProvider
     
-    let formatter = ImpulseCounterValueFormatter()
+    let icFormatter = SharedCore.ImpulseCounterValueFormatter()
+    let emFormatter = SharedCore.ElectricityMeterValueFormatter()
     
-    func handle(_ channel: SAChannel) -> Bool {
-        switchWithImpulseCounterValueProvider.handle(channel)
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        switchWithImpulseCounterValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        let channel = channelWithChildren.channel
         let settings = userStateHolder.getImpulseCounterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
         
         if (settings.showOnList != .noAggregation) {
             return channel.value?.aggregated_value ?? NO_VALUE_TEXT
         }
         
-        return formatter.format(
-            value: switchWithImpulseCounterValueProvider.value(channel, valueType: valueType),
-            format: ValueFormat(withUnit: withUnit, customUnit: channel.unit())
-        )
+        let value = switchWithImpulseCounterValueProvider.value(channel, valueType: valueType)
+        if let meterChild = channelWithChildren.children.first(where: { $0.relationType == .meter }),
+           meterChild.channel.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
+        {
+            return emFormatter.format(value: value, format: ValueFormat(withUnit: withUnit, customUnit: " \(channel.unit())"))
+        } else {
+            return icFormatter.format(value: value, format: ValueFormat(withUnit: withUnit, customUnit: " \(channel.unit())"))
+        }
     }
 }

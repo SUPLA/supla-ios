@@ -127,9 +127,9 @@ final class DoubleIconValueCell: BaseCell<ChannelWithChildren> {
         rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: onlineState)
         
         firstIconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
-        firstValueView.text = getChannelValueStringUseCase.valueOrNil(channel)
+        firstValueView.text = getChannelValueStringUseCase.valueOrNil(data)
         secondIconView.image = getChannelBaseIconUseCase.invoke(channel: channel, type: .second).uiImage
-        secondValueView.text = getChannelValueStringUseCase.valueOrNil(channel, valueType: .second, withUnit: false)
+        secondValueView.text = getChannelValueStringUseCase.valueOrNil(data, valueType: .second, withUnit: false)
         
         issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
         

@@ -61,6 +61,7 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
             list.append(.electricityMeterSettings)
         } else if (channelWithChildren.isOrHasImpulseCounter) {
             list.append(.impulseCounterHistory)
+            list.append(.impulseCounterSettings)
         }
 
         return list

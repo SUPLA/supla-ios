@@ -105,7 +105,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let channel = SAChannel.mock(value: SAChannelValue.mock(status: .offline))
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
@@ -116,7 +116,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let channel = SAChannel.mock(function: -1, value: SAChannelValue.mock(status: .online))
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
@@ -131,7 +131,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         depthValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25.00 m")
@@ -146,7 +146,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         depthValueProvider.valueReturns = 25000.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25.00 km")
@@ -161,7 +161,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         depthValueProvider.valueReturns = 0.025
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "2.5 cm")
@@ -176,7 +176,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         depthValueProvider.valueReturns = 0.002
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "2 mm")
@@ -191,7 +191,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         depthValueProvider.valueReturns = 0.002
         
         // when
-        let valueText = useCase.invoke(channel, withUnit: false)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel), withUnit: false)
         
         // then
         XCTAssertEqual(valueText, "2")
@@ -206,7 +206,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         distanceValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25.00 m")
@@ -229,7 +229,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         gpmValueProvider.valueReturns = 12.50
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "$12.50 k")
@@ -244,7 +244,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         gpmValueProvider.valueReturns = Double.nan
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, ValueFormatterKt.NO_VALUE_TEXT)
@@ -259,7 +259,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         gpmValueProvider.valueReturns = 12.443
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "12")
@@ -274,7 +274,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         humidityValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25.0%")
@@ -289,7 +289,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         pressureValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25 hPa")
@@ -304,7 +304,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         rainValueProvider.valueReturns = 250.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "0.25 mm")
@@ -321,7 +321,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25.0 °C")
@@ -336,7 +336,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         thermometerAndHumidityValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel, valueType: .second)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel), valueType: .second)
         
         // then
         XCTAssertEqual(valueText, "25.0%")
@@ -351,7 +351,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         weightValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25 g")
@@ -366,7 +366,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         windValueProvider.valueReturns = 25.0
         
         // when
-        let valueText = useCase.invoke(channel)
+        let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
         XCTAssertEqual(valueText, "25.0 m/s")

@@ -111,7 +111,7 @@ final class IconValueCell: BaseCell<ChannelWithChildren> {
         rightStatusIndicatorView.configure(filled: getRightButtonText(data.channel.func) != nil, onlineState: onlineState)
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel).uiImage
-        valueView.text = getChannelValueStringUseCase.valueOrNil(channel)
+        valueView.text = getChannelValueStringUseCase.valueOrNil(data)
         
         issues = getChannelIssuesForListUseCase.invoke(channelWithChildren: data.shareable)
         

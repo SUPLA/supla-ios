@@ -28,8 +28,12 @@ final class VoltageMeasurementsProviderImpl: VoltageMeasurementsProvider {
     
     private let formatter = SharedCore.VoltageValueFormatter.shared
     
-    func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase) -> String {
-        formatter.format(value: electricityValue.voltege(forPhase: phase.rawValue), format: ValueFormat.companion.WithoutUnit)
+    func formatLabelValue(_ electricityValue: SAElectricityMeterExtendedValue, _ phase: Phase, _ online: Bool) -> String {
+        if (online) {
+            formatter.format(value: electricityValue.voltege(forPhase: phase.rawValue), format: ValueFormat.companion.WithoutUnit)
+        } else {
+            NO_VALUE_TEXT
+        }
     }
     
     func findMeasurementsForPhase(
