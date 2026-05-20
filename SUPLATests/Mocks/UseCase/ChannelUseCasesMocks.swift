@@ -125,16 +125,16 @@ final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityLog
 }
 
 final class GetChannelValueStringUseCaseMock: GetChannelValueStringUseCase {
-    var parameters: [(SAChannel, ValueType, Bool)] = []
+    var parameters: [(SUPLA.ChannelWithChildren, ValueType, Bool)] = []
     var returns: String = ""
-    func invoke(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        parameters.append((channel, valueType, withUnit))
+    func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        parameters.append((channelWithChildren, valueType, withUnit))
         return returns
     }
     
-    var valueOrNilMock: FunctionMock<(SAChannel, SUPLA.ValueType, Bool), String?> = .init()
-    func valueOrNil(_ channel: SAChannel, valueType: SUPLA.ValueType, withUnit: Bool) -> String? {
-        valueOrNilMock.set((channel, valueType, withUnit))
+    var valueOrNilMock: FunctionMock<(SUPLA.ChannelWithChildren, SUPLA.ValueType, Bool), String?> = .init()
+    func valueOrNil(_ channelWithChildren: SUPLA.ChannelWithChildren, valueType: SUPLA.ValueType, withUnit: Bool) -> String? {
+        valueOrNilMock.set((channelWithChildren, valueType, withUnit))
         return valueOrNilMock.get()
     }
 }

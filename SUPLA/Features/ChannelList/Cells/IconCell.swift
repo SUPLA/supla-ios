@@ -21,7 +21,6 @@ import RxSwift
 final class IconCell: BaseCell<ChannelWithChildren> {
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
-    @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
     @Singleton<GetChannelIssuesForListUseCase> private var getChannelIssuesForListUseCase
     
     private lazy var iconView: UIImageView = {

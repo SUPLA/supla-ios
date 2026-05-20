@@ -19,13 +19,13 @@
 final class DepthValueStringProvider: ChannelValueStringProvider {
     @Singleton<DepthValueProvider> private var depthValueProvider
     
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_DEPTHSENSOR
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_DEPTHSENSOR
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
         DistanceValueFormatter.shared.format(
-            value: depthValueProvider.value(channel, valueType: valueType),
+            value: depthValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )
     }

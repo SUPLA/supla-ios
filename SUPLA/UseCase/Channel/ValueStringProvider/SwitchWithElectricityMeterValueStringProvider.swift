@@ -24,11 +24,12 @@ class SwitchWithElectricityMeterValueStringProvider: ChannelValueStringProvider 
     
     private var formatter = SharedCore.ElectricityMeterValueFormatter()
     
-    func handle(_ channel: SAChannel) -> Bool {
-        switchWithElectricityMeterValueProvider.handle(channel)
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        switchWithElectricityMeterValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        let channel = channelWithChildren.channel
         let value = switchWithElectricityMeterValueProvider.value(channel, valueType: valueType)
         let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
         let type = settings.metricOnList

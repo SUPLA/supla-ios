@@ -19,12 +19,12 @@
 final class RainValueStringProvider: ChannelValueStringProvider {
     @Singleton<RainValueProvider> private var rainValueProvider
 
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_RAINSENSOR
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_RAINSENSOR
     }
 
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        guard let value = rainValueProvider.value(channel, valueType: valueType) as? Double else { return NO_VALUE_TEXT }
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        guard let value = rainValueProvider.value(channelWithChildren.channel, valueType: valueType) as? Double else { return NO_VALUE_TEXT }
         return RainValueFormatter.shared.format(
             value: value / 1000,
             format: ValueFormatKt.withUnit(withUnit: withUnit)

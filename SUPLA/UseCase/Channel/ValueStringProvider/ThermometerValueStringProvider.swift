@@ -22,11 +22,11 @@ final class ThermometerValueStringProvider: ChannelValueStringProvider {
     @Singleton<ThermometerValueProvider> private var thermometerValueProvider
     @Singleton<SharedCore.ThermometerValueFormatter> private var formatter
 
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_THERMOMETER
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_THERMOMETER
     }
 
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        return formatter.format(value: thermometerValueProvider.value(channel, valueType: valueType), format: ValueFormatKt.withUnit(withUnit: withUnit))
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        return formatter.format(value: thermometerValueProvider.value(channelWithChildren.channel, valueType: valueType), format: ValueFormatKt.withUnit(withUnit: withUnit))
     }
 }

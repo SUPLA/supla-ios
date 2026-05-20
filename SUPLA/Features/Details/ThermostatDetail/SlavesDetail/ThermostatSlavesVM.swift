@@ -182,3 +182,9 @@ private func getChannelIcon(_ channel: SAChannel?) -> IconResult? {
     let subfunction: ThermostatSubfunction? = channel.isHvacThermostat() ? channel.value?.asThermostatValue().subfunction : nil
     return getChannelIconUseCase.invoke(channel: channel, subfunction: subfunction)
 }
+
+private extension GetChannelValueStringUseCase {
+    func invoke(_ channel: SAChannel) -> String {
+        invoke(ChannelWithChildren(channel: channel))
+    }
+}

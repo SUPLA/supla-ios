@@ -21,13 +21,13 @@ import SharedCore
 final class WeigthValueStringProvider: ChannelValueStringProvider {
     @Singleton<WeightValueProvider> private var weightValueProvider
 
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
     }
 
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
         WeightValueFormatter.shared.format(
-            value: weightValueProvider.value(channel, valueType: valueType),
+            value: weightValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )
     }
