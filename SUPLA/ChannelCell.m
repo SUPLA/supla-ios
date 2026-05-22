@@ -291,7 +291,9 @@
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
         case SUPLA_CHANNELFNC_RGBLIGHTING:
         case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_DIMMER_CCT:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB:
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
