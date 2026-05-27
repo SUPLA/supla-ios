@@ -482,6 +482,7 @@
 "status_access_id_inactive" = "Toegangs ID inactief.";
 "status_host_not_found" = "Serveeradres werd niet gevonden";
 "status_cant_connect_to_host" = "Kon geen verbinding maken met de host";
+"status_migration_message" = "Je gegevens worden gemigreerd, even geduld...";
 
 /* Pin setup */
 "pin_setup_header" = "Uw PIN-code instellen";

@@ -512,6 +512,7 @@
 "status_access_id_inactive" = "Identyfikator dostępu nieaktywny.";
 "status_host_not_found" = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
 "status_cant_connect_to_host" = "Nie można połączyć się z serwerem";
+"status_migration_message" = "Migrujemy Twoje dane, proszę czekać...";
 
 /* Pin setup */
 "pin_setup_title" = "Konfiguracja PIN";

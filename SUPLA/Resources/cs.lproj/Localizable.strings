@@ -480,6 +480,7 @@
 "status_access_id_inactive" = "Identifikátor přístupu není aktivní.";
 "status_host_not_found" = "Adresa serveru nebyla nalezena";
 "status_cant_connect_to_host" = "Nelze se připojit k serveru";
+"status_migration_message" = "Probíhá migrace vašich dat, čekejte prosím...";
 
 /* Pin setup */
 "pin_setup_header" = "Definujte svůj kód PIN";

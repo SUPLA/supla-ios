@@ -483,6 +483,7 @@
 "status_access_id_inactive" = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
 "status_host_not_found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 "status_cant_connect_to_host" = "Αδυναμία σύνδεσης με τον διακομιστή";
+"status_migration_message" = "Τα δεδομένα σας μεταφέρονται, παρακαλώ περιμένετε...";
 
 /* Pin setup */
 "pin_setup_header" = "Ορίστε το PIN σας";

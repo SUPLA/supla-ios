@@ -465,6 +465,7 @@ struct Strings {
         static let errorAccessIdInactive = "status_access_id_inactive".toLocalized()
         static let errorHostNotFound = "status_host_not_found".toLocalized()
         static let errorCantConnectToHost = "status_cant_connect_to_host".toLocalized()
+        static let migrationMessage = "status_migration_message".toLocalized()
     }
     
     struct PinSetup {

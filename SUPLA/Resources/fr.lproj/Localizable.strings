@@ -483,6 +483,7 @@
 "status_access_id_inactive" = "ID d'accès inactif.";
 "status_host_not_found" = "Nous n'avons pas pu trouver cette adresse du serveur";
 "status_cant_connect_to_host" = "Impossible de se connecter au serveur";
+"status_migration_message" = "Migration de vos données en cours, veuillez patienter...";
 
 /* Pin setup */
 "pin_setup_header" = "Définissez votre code PIN";

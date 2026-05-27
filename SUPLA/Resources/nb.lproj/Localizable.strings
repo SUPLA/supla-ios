@@ -482,6 +482,7 @@
 "status_access_id_inactive" = "Tilgangs-ID inaktiv.";
 "status_host_not_found" = "Serveradresse ikke funnet";
 "status_cant_connect_to_host" = "Kan ikke koble til serveren";
+"status_migration_message" = "Dataene dine migreres, vennligst vent...";
 
 /* Pin setup */
 "pin_setup_header" = "Definer PIN-koden din";

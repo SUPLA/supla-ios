@@ -482,6 +482,7 @@
 "status_access_id_inactive" = "Az azonosító inaktív.";
 "status_host_not_found" = "A szerver címe nem található";
 "status_cant_connect_to_host" = "Nem sikerült csatlakozni a megadott szerverhez";
+"status_migration_message" = "Az adatai migrálása folyamatban van, kérjük várjon...";
 
 /* Pin setup */
 "pin_setup_title" = "PIN konfiguráció";

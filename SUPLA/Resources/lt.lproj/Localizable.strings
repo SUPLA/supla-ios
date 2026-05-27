@@ -484,6 +484,7 @@
 "status_access_id_inactive" = "Prieigos identifikatorius neaktyvus.";
 "status_host_not_found" = "Serverio adresas nerastas";
 "status_cant_connect_to_host" = "Negalima prisijunti prie serverio";
+"status_migration_message" = "Migruojami jūsų duomenys, prašome palaukti...";
 
 /* Pin setup */
 "pin_setup_header" = "Nustatykite savo PIN kodą";

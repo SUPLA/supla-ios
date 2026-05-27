@@ -486,6 +486,7 @@
 "status_access_id_inactive" = "Acesso ao identificador  inativo.";
 "status_host_not_found" = "O endereço do servidor não foi encontrado";
 "status_cant_connect_to_host" = "Impossível ligar com o servidor";
+"status_migration_message" = "Os seus dados estão a ser migrados, por favor aguarde...";
 
 /* Pin setup */
 "pin_setup_header" = "Defina o seu código PIN";

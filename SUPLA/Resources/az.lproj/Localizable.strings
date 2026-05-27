@@ -511,6 +511,7 @@
 "status_access_id_inactive" = "Access Identifier aktiv deyil";
 "status_host_not_found" = "Host tapılmadı. İnternetə qoşulduğunuzdan və daxil edilmiş e-poçt ünvanı ilə hesab yaradıldığından əmin olun.";
 "status_cant_connect_to_host" = "Hosta qoşulmaq mümkün olmadı";
+"status_migration_message" = "Məlumatlarınız miqrasiya olunur, zəhmət olmasa gözləyin...";
 
 /* Pin setup */
 "pin_setup_title" = "PIN-i konfiqurasiya et";

@@ -26,6 +26,8 @@ class CoreDataManager: NSObject {
     @Singleton<RestoreProfileFromDefaults.UseCase> private var restoreProfileFromDefaultsUseCase
     
     let migrator: CoreDataMigrator
+    let initializationSubject: BehaviorSubject<CoreDataInitializationStep> = .init(value: .awaiting)
+
     private let storeType: String
     
     private var tryRecreateAccount = false
@@ -84,7 +86,9 @@ class CoreDataManager: NSObject {
             forName: NSValueTransformerName("GroupTotalValueTransformer")
         )
         
+        initializationSubject.on(.next(.initializing))
         loadPersistentStore {
+            self.initializationSubject.on(.next(.initialized))
             completion()
         }
     }
@@ -112,18 +116,18 @@ class CoreDataManager: NSObject {
                 }
                 
                 if (self.tryRecreateAccount) {
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if (self.restoreProfileFromDefaultsUseCase.invoke()) {
-                            self.settings.anyAccountRegistered = true
-                        }
-                        DispatchQueue.main.async {
-                            self.markStoreLoaded()
-                            completion()
-                        }
+                    if (self.restoreProfileFromDefaultsUseCase.invoke()) {
+                        self.settings.anyAccountRegistered = true
+                    }
+                    DispatchQueue.main.async {
+                        self.markStoreLoaded()
+                        completion()
                     }
                 } else {
                     self.markStoreLoaded()
-                    completion()
+                    DispatchQueue.main.async {
+                        completion()
+                    }
                 }
             }
         }
@@ -134,8 +138,9 @@ class CoreDataManager: NSObject {
             fatalError("persistentContainer was not set up properly")
         }
         
-        if migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
-            DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).async {
+            if self.migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
+                self.initializationSubject.on(.next(.migrating))
                 do {
                     try self.migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
                 } catch {
@@ -147,13 +152,11 @@ class CoreDataManager: NSObject {
                     self.removeCurrentDatabase()
 #endif
                 }
-
-                DispatchQueue.main.async {
-                    completion()
-                }
+                
+                completion()
+            } else {
+                completion()
             }
-        } else {
-            completion()
         }
     }
     
