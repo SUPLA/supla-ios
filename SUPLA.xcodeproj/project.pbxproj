@@ -202,6 +202,7 @@
 		A503ABB52B6B7713008CDA1F /* BaseMeasurementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABB42B6B7713008CDA1F /* BaseMeasurementRepository.swift */; };
 		A503ABBA2B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift */; };
 		A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */; };
+		A5040A7B2FC6F6AE00A69936 /* CoreDataInitializationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5040A7A2FC6F6A600A69936 /* CoreDataInitializationStep.swift */; };
 		A505EC262CF5E49400E69BDB /* AuthProfileItem17to18to19MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC252CF5E48200E69BDB /* AuthProfileItem17to18to19MigrationPolicy.swift */; };
 		A505EC332CF70D8D00E69BDB /* AuthorizationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC322CF70D8800E69BDB /* AuthorizationType.swift */; };
 		A505EC362CF71BD500E69BDB /* ProfileDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC352CF71BD100E69BDB /* ProfileDto.swift */; };
@@ -1997,6 +1998,7 @@
 		A503ABB42B6B7713008CDA1F /* BaseMeasurementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMeasurementRepository.swift; sourceTree = "<group>"; };
 		A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GpmValueFormatter+Ext.swift"; sourceTree = "<group>"; };
 		A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryDetails.swift; sourceTree = "<group>"; };
+		A5040A7A2FC6F6A600A69936 /* CoreDataInitializationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInitializationStep.swift; sourceTree = "<group>"; };
 		A505EC252CF5E48200E69BDB /* AuthProfileItem17to18to19MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItem17to18to19MigrationPolicy.swift; sourceTree = "<group>"; };
 		A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 19.xcdatamodel"; sourceTree = "<group>"; };
 		A505EC322CF70D8800E69BDB /* AuthorizationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationType.swift; sourceTree = "<group>"; };
@@ -7832,6 +7834,7 @@
 		A5F29BFA2A2DC15100ED700A /* Migration */ = {
 			isa = PBXGroup;
 			children = (
+				A5040A7A2FC6F6A600A69936 /* CoreDataInitializationStep.swift */,
 				A5A184B22A2DD0A20063FD2B /* Mappings */,
 				A5A184B42A2DD0BE0063FD2B /* Policies */,
 				A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */,
@@ -8970,6 +8973,7 @@
 				A539C27C2D686A7C00D9DD47 /* ListItemIcon.swift in Sources */,
 				A54E7E8C2DE09BC6002FB0DE /* UIApplication+Ext.swift in Sources */,
 				A55A8D8E2BAB101600C540D4 /* ReadGroupByRemoteIdUseCase.swift in Sources */,
+				A5040A7B2FC6F6AE00A69936 /* CoreDataInitializationStep.swift in Sources */,
 				A5B3CBE72B6258F900F95AC3 /* GpmValueProvider.swift in Sources */,
 				A5BCA9B62E2A482200A5054A /* EspPostData.swift in Sources */,
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,

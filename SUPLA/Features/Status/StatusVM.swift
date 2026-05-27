@@ -52,6 +52,18 @@ extension StatusFeature {
                     }
                 })
                 .disposedWhenDisappear(by: self)
+            
+            CoreDataManager.shared.initializationSubject
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { [weak self] step in
+                        self?.state.showMigrationMessage = switch step {
+                        case .awaiting, .initialized: false
+                        case .initializing, .migrating: true
+                        }
+                    }
+                )
+                .disposedWhenDisappear(by: self)
         }
         
         func onTryAgain() {
@@ -86,7 +98,7 @@ extension StatusFeature {
         private func getErrorDescription(_ reason: SuplaAppState.Reason?) -> String? {
             switch (reason) {
             case .connectionError(let code):
-                switch(code) {
+                switch (code) {
                 case SUPLA_RESULT_CANT_CONNECT_TO_HOST: Strings.Status.errorCantConnectToHost
                 case SUPLA_RESULT_HOST_NOT_FOUND: Strings.Status.errorHostNotFound
                 default: nil

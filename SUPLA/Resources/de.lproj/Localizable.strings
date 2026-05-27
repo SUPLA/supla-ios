@@ -479,6 +479,7 @@
 "status_access_id_inactive" = "Zugriffskennung nicht aktiv.";
 "status_host_not_found" = "Host nicht gefunden. Überprüfen Sie bitte ob die Internetverbindung korrekt funktioniert und das Konto korrekt erstellt wurde.";
 "status_cant_connect_to_host" = "Die Verbindung mit dem Server konnte nicht erstellt werden";
+"status_migration_message" = "Ihre Daten werden migriert, bitte warten...";
 
 /* Pin setup */
 "pin_setup_title" = "PIN konfigurieren";
