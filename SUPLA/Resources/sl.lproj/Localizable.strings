@@ -245,6 +245,7 @@
 "general_action" = "Dejanje";
 "general_delete" = "Izbišite";
 "general_processing" = "Obdelava";
+"general_loading" = "Nalaganje...";
 "incorrect_password" = "Napačno geslo";
 "app_sentence" = "končno doma!";
 "general_current_hour" = "Trenutna ura";

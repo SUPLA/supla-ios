@@ -245,6 +245,7 @@
 "general_action" = "Подія";
 "general_delete" = "Видалити";
 "general_processing" = "Обробка";
+"general_loading" = "Завантаження...";
 "incorrect_password" = "Неправильний пароль";
 "app_sentence" = "нарешті вдома!";
 "general_current_hour" = "Поточна година";

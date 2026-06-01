@@ -261,6 +261,7 @@
 "general_action" = "Azione";
 "general_delete" = "Rimuovi";
 "general_processing" = "Elaborazione";
+"general_loading" = "Caricamento...";
 "incorrect_password" = "Password errata";
 "app_sentence" = "finalmente a casa!";
 "general_current_hour" = "Ora corrente";

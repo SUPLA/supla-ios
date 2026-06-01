@@ -254,6 +254,7 @@
 "general_delete" = "Usuń";
 "general_select" = "-- wybierz --";
 "general_processing" = "Przetwarzanie";
+"general_loading" = "Ładowanie...";
 "incorrect_password" = "Nieprawidłowe hasło";
 "app_sentence" = "nareszcie w domu!";
 "general_current_hour" = "Bieżąca godzina";

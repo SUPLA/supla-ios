@@ -245,6 +245,7 @@
 "general_action" = "Ενέργεια";
 "general_delete" = "Αφαιρώ";
 "general_processing" = "Επεξεργασία";
+"general_loading" = "Φόρτωση...";
 "incorrect_password" = "Λανθασμένος κωδικός πρόσβασης";
 "app_sentence" = "επιτέλους στο σπίτι!";
 "general_current_hour" = "Τρέχουσα ώρα";

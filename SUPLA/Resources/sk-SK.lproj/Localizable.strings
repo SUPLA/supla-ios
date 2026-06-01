@@ -245,6 +245,7 @@
 "general_action" = "Činnosť";
 "general_delete" = "Odstrániť";
 "general_processing" = "Spracováva sa";
+"general_loading" = "Načítava sa...";
 "incorrect_password" = "Nesprávne heslo";
 "app_sentence" = "konečne doma!";
 "general_current_hour" = "Aktuálna hodina";

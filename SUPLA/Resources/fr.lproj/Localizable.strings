@@ -245,6 +245,7 @@
 "general_action" = "Action";
 "general_delete" = "Supprimer";
 "general_processing" = "Traitement en cours";
+"general_loading" = "Chargement...";
 "incorrect_password" = "Mot de passe incorrect";
 "app_sentence" = "enfin à la maison !";
 "general_current_hour" = "Heure actuelle";

@@ -17,6 +17,7 @@
  */
 
 import SwiftyBeaver
+import OSLog
 
 let SALog = SwiftyBeaver.self
 
@@ -34,5 +35,49 @@ class SALogWrapper: NSObject {
 
         console.format = "[$L] $C $DHH:mm:ss.SSS$d $c $N.$F - $M"
         SALog.addDestination(console)
+        #if DEBUG
+        SALog.addDestination(OSLogDestination())
+        #endif
+    }
+}
+
+final class OSLogDestination: BaseDestination {
+    private let subsystem: String
+    private let category: String
+    private let oslog: OSLog
+
+    init(
+        subsystem: String = "SUPLA",
+        category: String = "CarPlay"
+    ) {
+        self.subsystem = subsystem
+        self.category = category
+        self.oslog = OSLog(subsystem: subsystem, category: category)
+        super.init()
+    }
+
+    override func send(
+        _ level: SwiftyBeaver.Level,
+        msg: String,
+        thread: String,
+        file: String,
+        function: String,
+        line: Int,
+        context: Any?
+    ) -> String? {
+        let text = "\(level) \(msg) [\(function):\(line)]"
+
+        switch level {
+        case .verbose, .debug:
+            os_log("%{public}@", log: oslog, type: .debug, text)
+        case .info:
+            os_log("%{public}@", log: oslog, type: .info, text)
+        case .warning:
+            os_log("%{public}@", log: oslog, type: .default, text)
+        case .error:
+            os_log("%{public}@", log: oslog, type: .error, text)
+        }
+
+        return text
     }
 }
