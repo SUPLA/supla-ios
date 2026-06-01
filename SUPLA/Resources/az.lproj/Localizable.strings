@@ -254,6 +254,7 @@
 "general_delete" = "Sil";
 "general_select" = "-- Seç --";
 "general_processing" = "Emal edilir";
+"general_loading" = "Yüklənir...";
 "incorrect_password" = "Şifrə yanlışdır";
 "app_sentence" = "nəhayət evdə!";
 "general_current_hour" = "Cari saat";

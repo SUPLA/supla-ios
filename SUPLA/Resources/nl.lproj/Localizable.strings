@@ -245,6 +245,7 @@
 "general_action" = "Actie";
 "general_delete" = "Delete";
 "general_processing" = "Bezig met verwerken";
+"general_loading" = "Laden...";
 "incorrect_password" = "Onjuist wachtwoord";
 "app_sentence" = "eindelijk thuis!";
 "general_current_hour" = "Huidig uur";

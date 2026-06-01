@@ -246,6 +246,7 @@
 "general_delete" = "Odstranit";
 "incorrect_password" = "Nesprávné heslo";
 "general_processing" = "Zpracovávání";
+"general_loading" = "Načítání...";
 "app_sentence" = "konečně doma!";
 "general_current_hour" = "Aktuální hodina";
 "general_current_day" = "Aktuální den";

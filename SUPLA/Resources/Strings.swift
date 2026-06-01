@@ -366,6 +366,7 @@ struct Strings {
         
         static let appSentence = "app_sentence".toLocalized()
         static let processing = "general_processing".toLocalized()
+        static let loading = "general_loading".toLocalized()
         
         struct Channel {
             static let captionHotelCard = "channel_caption_hotelcard".toLocalized()

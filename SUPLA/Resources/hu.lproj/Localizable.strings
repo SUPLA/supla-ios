@@ -214,6 +214,7 @@
 "general_delete" = "Törlés";
 "general_select" = "-- válassz --";
 "general_processing" = "Feldolgozás";
+"general_loading" = "Betöltés...";
 "incorrect_password" = "Helytelen jelszó";
 "app_sentence" = "végre otthon!";
 "general_current_hour" = "Aktuális óra";

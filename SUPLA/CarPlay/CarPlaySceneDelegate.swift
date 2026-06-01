@@ -23,6 +23,8 @@ import RxSwift
 class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
     @Singleton<ReadCarPlayItems.UseCase> private var readCarPlayItemsUseCase
     @Singleton<CarPlayRefresh.UseCase> private var carPlayRefreshUseCase
+    @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<GlobalSettings> private var settings
 
     var interfaceController: CPInterfaceController?
@@ -38,6 +40,7 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
         let list = CPListTemplate(title: Strings.appName, sections: [])
         if #available(iOS 18.4, *) {
             list.showsSpinnerWhileEmpty = true
+            list.emptyViewTitleVariants = [Strings.General.loading]
         }
         interfaceController.setRootTemplate(list, animated: false, completion: { [weak self] success, _ in
             if (success) {
@@ -51,14 +54,17 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
         self.interfaceController = nil
         disposeBag = DisposeBag()
     }
-    
+
     private func observeReload() {
-        carPlayRefreshUseCase.observable()
-            .asDriverWithoutError()
-            .drive(onNext: { [weak self] _ in
-                self?.reloadItems()
-            })
-            .disposed(by: disposeBag)
+        Observable.merge(
+            carPlayRefreshUseCase.observable(),
+            updateEventsManager.observeChannelsUpdate().map { _ in CarPlayRefresh.Event.refresh }
+        )
+        .asDriverWithoutError()
+        .drive(onNext: { [weak self] _ in
+            self?.reloadItems()
+        })
+        .disposed(by: disposeBag)
     }
 
     private func reloadItems() {
@@ -79,12 +85,12 @@ class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
                         )
                     }
                     list?.updateSections([CPListSection(items: sectionItems)])
-                    
-                    if (sectionItems.isEmpty && self?.interfaceController?.presentedTemplate == nil) {
+
+                    if (sectionItems.isEmpty && self?.suplaAppStateHolder.loading == false) {
                         let emptyDialog = CPAlertTemplate(titleVariants: [Strings.CarPlay.empty], actions: [])
-                        self?.interfaceController?.presentTemplate(emptyDialog, animated: true, completion: { _, _ in})
-                    } else if (!sectionItems.isEmpty && self?.interfaceController?.presentedTemplate != nil) {
-                        self?.interfaceController?.dismissTemplate(animated: true, completion: {_, _ in })
+                        self?.interfaceController?.presentTemplate(emptyDialog, animated: true, completion: { _, _ in })
+                    }  else if (!sectionItems.isEmpty && self?.interfaceController?.presentedTemplate != nil) {
+                        self?.interfaceController?.dismissTemplate(animated: true, completion: { _, _ in })
                     }
                 }
             )
@@ -148,5 +154,23 @@ private extension ReadCarPlayItems.Item {
         let item = CPListItem(text: caption, detailText: detailText, image: icon.carImage(darkMode: carDarkMode))
         item.handler = handler
         return item
+    }
+}
+
+private extension SuplaAppStateHolder {
+    var loading: Bool {
+        if let state = currentState() {
+            switch (state) {
+            case .initialization, .connecting: return true
+            case .locked,
+                 .firstProfileCreation,
+                 .connected,
+                 .disconnecting(_),
+                 .locking,
+                 .finished: return false
+            }
+        }
+
+        return false
     }
 }

@@ -247,6 +247,7 @@
 "general_action" = "Veiksmas";
 "general_delete" = "Pašalinti";
 "general_processing" = "Apdorojama";
+"general_loading" = "Įkeliama...";
 "incorrect_password" = "Neteisingas slaptažodis";
 "app_sentence" = "pagaliau namuose!";
 "general_current_hour" = "Dabartinė valanda";

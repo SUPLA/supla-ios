@@ -245,6 +245,7 @@
 "general_action" = "Handling";
 "general_delete" = "Slett";
 "general_processing" = "Behandler";
+"general_loading" = "Laster...";
 "incorrect_password" = "Feil passord";
 "app_sentence" = "endelig hjemme!";
 "general_current_hour" = "Nåværende time";
