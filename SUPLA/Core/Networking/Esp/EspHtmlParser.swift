@@ -18,45 +18,44 @@
 
 import Foundation
 import SwiftSoup
+import Collections
 
 fileprivate let STATE_PATTERN = "\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ ([A-Za-z0-9\\:]*)"
 
 
 class EspHtmlParser {
     
-    func findInputs(document: SwiftSoup.Document) -> [String: String] {
-        var map: [String: String] = [:]
-
-        if let inputs = try? document.select("input") {
-            for input in inputs {
-                guard let name = try? input.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
-                let value = try? input.attr("value")
-
-                if (input.attribute("type", is: "checkbox")) {
-                    if (input.hasAttr("checked")) {
-                        map[name] = value ?? ""
-                    }
-                } else {
-                    map[name] = value ?? ""
-                }
-            }
+    func findInputs(document: SwiftSoup.Document) -> OrderedDictionary<String, String> {
+        var map = OrderedDictionary<String, String>()
+        
+        guard let form = try? document.select("form").first(),
+              let fields = try? form.select("input, select, textarea")
+        else {
+            SALog.warning("No fields found inside formular, returning an empty map")
+            return map
         }
-
-        if let selects = try? document.select("select") {
-            for select in selects {
-                guard let name = try? select.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
-                if let option = try? select.select("option[selected]").first(),
-                   let value = try? option.val()
-                {
+        
+        for field in fields {
+            guard let name = try? field.attr("name").trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { continue }
+            let value = (try? field.attr("value")) ?? ""
+            if (field.attribute("type", is: "checkbox")) {
+                if (field.hasAttr("checked")) {
                     map[name] = value
                 }
+            } else if (field.nodeName() == "select") {
+                if let option = try? field.select("option[selected]").first(),
+                   let value = try? option.val() {
+                    map[name] = value
+                }
+            } else {
+                map[name] = value
             }
         }
 
         return map
     }
     
-    func prepareResult(document: String?, fieldMap: [String: String]) -> EspConfigResult {
+    func prepareResult(document: String?, fieldMap: OrderedDictionary<String, String>) -> EspConfigResult {
         let result = EspConfigResult()
         result.needsCloudConfig = needsCloudConfig(fieldMap: fieldMap)
         
@@ -84,7 +83,7 @@ class EspHtmlParser {
         return result
     }
     
-    private func needsCloudConfig(fieldMap: [String: String]) -> Bool {
+    private func needsCloudConfig(fieldMap: OrderedDictionary<String, String>) -> Bool {
         fieldMap.contains { $0 == "no_visible_channels" && $1 == "1" }
     }
 }

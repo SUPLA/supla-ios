@@ -254,8 +254,14 @@
 "general_delete" = "Sil";
 "general_select" = "-- Seç --";
 "general_processing" = "Emal edilir";
+"general_loading" = "Yüklənir...";
 "incorrect_password" = "Şifrə yanlışdır";
 "app_sentence" = "nəhayət evdə!";
+"general_current_hour" = "Cari saat";
+"general_current_day" = "Cari gün";
+"general_current_month" = "Cari ay";
+"general_current_week" = "Cari həftə";
+"general_current_year" = "Cari il";
 /* General - DayOfWeek */
 "monday" = "Bazar ertəsi";
 "tuesday" = "Çərşənbə axşamı";
@@ -348,6 +354,7 @@
 "settings_lock_screen_accounts" = "Hesablar";
 "settings_battery_level_warnign" = "Aşağı batareya xəbərdarlığı";
 "app_settings_temperature_precision" = "Temperatur dəqiqliyi";
+"settings_show_unavailable_channels" = "Cihaz konfiqurasiyasına görə əlçatan olmayan kanalları gizlət";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ümumi";
@@ -505,6 +512,7 @@
 "status_access_id_inactive" = "Access Identifier aktiv deyil";
 "status_host_not_found" = "Host tapılmadı. İnternetə qoşulduğunuzdan və daxil edilmiş e-poçt ünvanı ilə hesab yaradıldığından əmin olun.";
 "status_cant_connect_to_host" = "Hosta qoşulmaq mümkün olmadı";
+"status_migration_message" = "Məlumatlarınız miqrasiya olunur, zəhmət olmasa gözləyin...";
 
 /* Pin setup */
 "pin_setup_title" = "PIN-i konfiqurasiya et";
@@ -586,10 +594,17 @@
 "details_em_voltage_phase_angle_13" = "Gərginlik faza bucağı 1-3";
 "details_em_voltage_phase_sequence" = "Gərginlik faza ardıcıllığı";
 "details_em_current_phase_sequence" = "Cərəyan faza ardıcıllığı";
+"details_em_on_list" = "Kanallar siyahısında göstərmə";
+"details_em_settings_list_metric" = "Seçilmiş dəyər";
+"details_em_on_list_balance" = "Enerji balanslama üsulu";
+"details_em_on_list_value" = "Məlumat aralığı";
+"details_em_active_energy_balance" = "Aktiv enerji balansı";
 
 /* Impulse counter */
 "details_em_meter_value" = "Sayğac dəyəri";
 "details_em_current_month_consumption" = "Cari ayın istehlakı";
+"impulse_counter_settings_counter_status" = "Cari sayğac göstəricisi";
+"details_ic_settings_list_item" = "Kanal siyahısında göstərilən göstərici";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Sayğac fotoları";

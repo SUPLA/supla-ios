@@ -245,8 +245,14 @@
 "general_action" = "Činnosť";
 "general_delete" = "Odstrániť";
 "general_processing" = "Spracováva sa";
+"general_loading" = "Načítava sa...";
 "incorrect_password" = "Nesprávne heslo";
 "app_sentence" = "konečne doma!";
+"general_current_hour" = "Aktuálna hodina";
+"general_current_day" = "Aktuálny deň";
+"general_current_month" = "Aktuálny mesiac";
+"general_current_week" = "Aktuálny týždeň";
+"general_current_year" = "Aktuálny rok";
 /* General - DayOfWeek */
 "monday" = "Pondelok";
 "tuesday" = "Utorok";
@@ -331,6 +337,7 @@
 "settings_dark_mode" = "Nočný režim";
 "settings_show_bottom_menu" = "Zobraziť spodnú ponuku";
 "app_settings_temperature_precision" = "Presnosť teploty";
+"settings_show_unavailable_channels" = "Skryť kanály, ktoré nie sú dostupné z dôvodu konfigurácie zariadenia";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Všeobecné";
@@ -475,6 +482,7 @@
 "status_access_id_inactive" = "Prístupový identifikátor nie je aktívny.";
 "status_host_not_found" = "Adresa servera nebola nájdená";
 "status_cant_connect_to_host" = "Nedá sa spojiť so serverom";
+"status_migration_message" = "Migrujú sa vaše údaje, čakajte prosím...";
 
 /* Pin setup */
 "pin_setup_header" = "Definovať PIN kód";
@@ -536,10 +544,17 @@
 "details_em_total_suffix" = "(stav počítadla)";
 "details_em_current_month_suffix" = "(aktuálny mesiac)";
 "details_em_last_month_balancing" = "Bilancovanie aktuálneho mesiaca";
+"details_em_on_list" = "Zobrazenie v zozname kanálov";
+"details_em_settings_list_metric" = "Vybraná hodnota";
+"details_em_on_list_balance" = "Metóda bilancovania energie";
+"details_em_on_list_value" = "Rozsah dát";
+"details_em_active_energy_balance" = "Bilancia činnej energie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stav počítadla";
 "details_em_current_month_consumption" = "Spotreba v aktuálnom mesiaci";
+"impulse_counter_settings_counter_status" = "Aktuálny stav merača";
+"details_ic_settings_list_item" = "Hodnota zobrazená v zozname kanálov";
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil bol zatvorený manuálne. Predtým ako ho otvoríte, uistite sa, že nebol zatvorený kvôli zaplaveniu. Pre vypnutie upozornenia zatvorte ventil manuálne. Naozaj chcete otvoriť ventil pomocou aplikácie?!";

@@ -36,13 +36,13 @@ extension DeveloperInfoFeature {
                         .padding([.leading, .trailing, .top], Distance.default)
                         .padding(.bottom, Distance.small)
                     
-                    SettingsListView {
-                        SettingsItemWithCheckbox(
+                    SettingsView.List {
+                        SettingsView.ItemWithCheckbox(
                             label: Strings.DeveloperInfo.screenOrientation,
                             checked: $viewState.screenRotationEnabled,
                             onChange: { delegate?.onOrientationChange($0) }
                         )
-                        SettingsItemWithCheckbox(
+                        SettingsView.ItemWithCheckbox(
                             label: Strings.DeveloperInfo.title,
                             checked: $viewState.developerInfoEnabled,
                             onChange: { delegate?.onDevInfoChange($0) }

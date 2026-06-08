@@ -43,6 +43,10 @@ final class UpdateChannelValueUseCase {
                             if (value.setOnlineState(suplaChannelValue.online)) {
                                 changed = true
                             }
+                            if (suplaChannelValue.online != 0 && suplaChannelValue.online != value.last_online_state?.int8Value) {
+                                value.last_online_state = NSNumber(value: suplaChannelValue.online)
+                                changed = true
+                            }
                             return value
                         }
                         .flatMapFirst { (value: SAChannelValue) in

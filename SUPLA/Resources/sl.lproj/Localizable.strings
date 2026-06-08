@@ -245,8 +245,14 @@
 "general_action" = "Dejanje";
 "general_delete" = "Izbišite";
 "general_processing" = "Obdelava";
+"general_loading" = "Nalaganje...";
 "incorrect_password" = "Napačno geslo";
 "app_sentence" = "končno doma!";
+"general_current_hour" = "Trenutna ura";
+"general_current_day" = "Trenutni dan";
+"general_current_month" = "Trenutni mesec";
+"general_current_week" = "Trenutni teden";
+"general_current_year" = "Trenutno leto";
 /* General - DayOfWeek */
 "monday" = "Ponedeljek";
 "tuesday" = "Torek";
@@ -331,6 +337,7 @@
 "settings_show_labels" = "Prikaži oznake v spodnjem meniju";
 "settings_dark_mode" = "Nočni pogled";
 "app_settings_temperature_precision" = "Natančnost temperature";
+"settings_show_unavailable_channels" = "Skrij kanale, ki niso na voljo zaradi konfiguracije naprave";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Splošno";
@@ -477,6 +484,7 @@
 "status_access_id_inactive" = "Identifikator dostopa ni na voljo.";
 "status_host_not_found" = "Naslova strežnika ni mogoče najti";
 "status_cant_connect_to_host" = "Ni mogoče se povezati s strežnikom";
+"status_migration_message" = "Vaši podatki se prenašajo, prosimo počakajte...";
 
 /* Pin setup */
 "pin_setup_header" = "Opredelite svojo kodo PIN";
@@ -538,10 +546,17 @@
 "details_em_total_suffix" = "(stanje števca)";
 "details_em_current_month_suffix" = "(tekoči mesec)";
 "details_em_last_month_balancing" = "Poravnava tekočega meseca";
+"details_em_on_list" = "Prikaz na seznamu kanalov";
+"details_em_settings_list_metric" = "Izbrana vrednost";
+"details_em_on_list_balance" = "Metoda uravnoteženja energije";
+"details_em_on_list_value" = "Obseg podatkov";
+"details_em_active_energy_balance" = "Bilanca aktivne energije";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stanje števca";
 "details_em_current_month_consumption" = "Poraba v tekočem mesecu";
+"impulse_counter_settings_counter_status" = "Trenutno stanje števca";
+"details_ic_settings_list_item" = "Vrednost, prikazana na seznamu kanalov";
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventil je bil zaprt v ročnem načinu. Preden ga odprete, se prepričajte, da ni bil zaprt zaradi poplave. Če želite onemogočiti opozorilo, ročno odprite ventil. Ali ste prepričani, da želite odpreti ventil z aplikacijo?!";

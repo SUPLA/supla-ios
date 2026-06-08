@@ -20,6 +20,7 @@ import RxSwift
 
 protocol LoadElectricityMeterMeasurementsUseCase {
     func invoke(remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements>
+    func invoke(profile: AuthProfileItem, remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements>
 }
 
 extension LoadElectricityMeterMeasurementsUseCase {
@@ -29,6 +30,10 @@ extension LoadElectricityMeterMeasurementsUseCase {
 
     func invoke(remoteId: Int32, endDate: Date) -> Observable<ElectricityMeasurements> {
         invoke(remoteId: remoteId, startDate: nil, endDate: endDate)
+    }
+    
+    func invoke(profile: AuthProfileItem, remoteId: Int32, startDate: Date?) -> Observable<ElectricityMeasurements> {
+        invoke(profile: profile, remoteId: remoteId, startDate: startDate, endDate: nil)
     }
 }
 
@@ -41,13 +46,15 @@ final class LoadElectricityMeterMeasurementsUseCaseImpl: LoadElectricityMeterMea
 
     func invoke(remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
         profileRepository.getActiveProfile()
-            .flatMapFirst { profile in
-                self.findMeasurements(profile: profile, remoteId: remoteId, startDate: startDate, endDate: endDate)
-            }
+            .flatMapFirst { self.invoke(profile: $0, remoteId: remoteId, startDate: startDate, endDate: endDate) }
+    }
+    
+    func invoke(profile: AuthProfileItem, remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
+        findMeasurements(profile: profile, remoteId: remoteId, startDate: startDate, endDate: endDate)
             .flatMapFirst { measurements in
                 self.readChannelByRemoteIdUseCase.invoke(remoteId: remoteId).map { ($0, measurements) }
             }.map { channel, measurements in
-                switch (self.userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: remoteId).balancing) {
+                switch (self.userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: remoteId).currentMonthBalancing) {
                 case .hourly: self.hourlyBalance(measurements)
                 case .arithmetic: self.arithmeticBalance(measurements)
                 default: self.defaultBalance(channel, measurements)

@@ -60,7 +60,7 @@ final class ReadChannelWithChildrenTreeUseCaseTests: UseCaseTest<SUPLA.ChannelWi
         ]
         
         profileRepository.activeProfileObservable = Observable.just(profile)
-        channelRepository.allVisibleChannelsObservable = Observable.just(channels)
+        channelRepository.allVisibleChannelsMock.returns = .single(Observable.just(channels))
         
         let relation1 = SAChannelRelation.mock(1, channelId: 2, type: .meter)
         let relation2 = SAChannelRelation.mock(1, channelId: 3, type: .masterThermostat)

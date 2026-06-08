@@ -23,6 +23,7 @@ extension StatusFeature {
     class ViewState: ObservableObject {
         @Published var stateText: StateText = .initializing
         @Published var viewType: viewType = .connecting
+        @Published var showMigrationMessage: Bool = false
         @Published var errorDescription: String? = nil
     }
 

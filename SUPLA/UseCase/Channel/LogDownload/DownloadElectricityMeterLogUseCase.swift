@@ -19,13 +19,15 @@
 import RxSwift
     
 protocol DownloadElectricityMeterLogUseCase {
-    func invoke(remoteId: Int32) -> Observable<Float>
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws
 }
 
 final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<SuplaCloudClient.ElectricityMeasurement, SAElectricityMeasurementItem>, DownloadElectricityMeterLogUseCase {
     
-    @Singleton<SuplaCloudService> var cloudService
+    @Singleton<UserStateHolder> private var userStateHolder
+    @Singleton<SuplaCloudService> private var cloudService
     @Singleton<ElectricityMeasurementItemRepository> private var electricityMeasurementItemRepository
+    @Singleton<RefreshElectricityMeterAggregatedValue.UseCase> private var refreshElectricityMeterAggregatedValueUseCase
     
     override func iterateAndImport(
         _ totalCount: Int,
@@ -33,9 +35,9 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
         _ serverId: Int32,
-        _ observer: AnyObserver<Float>,
+        _ observer: (Float) -> Void,
         _ disposable: BooleanDisposable
-    ) throws {
+    ) async throws {
         let entriesToImport = totalCount - databaseCount
         let lastEntity = electricityMeasurementItemRepository
             .findOldestEntity(remoteId: remoteId, serverId: serverId)
@@ -67,8 +69,20 @@ final class DownloadElectricityMeterLogUseCaseImpl: BaseDownloadLogUseCase<Supla
             afterTimestamp = lastEntry?.date.timeIntervalSince1970 ?? 0
             
             importedEntries += measurements.count
-            observer.onNext(Float(importedEntries) / Float(entriesToImport))
+            
+            let importStatus = Float(importedEntries) / Float(entriesToImport)
+            await MainActor.run { observer(importStatus) }
         }
+    }
+    
+    override func onDownloadFinished(remoteId: Int32, profileId: Int32) async {
+        let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+        if (!settings.usingAggregatedValue) {
+            SALog.debug("No aggregated value to update")
+            return
+        }
+        
+        await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
     }
     
     private func getLastMeasurement(_ remoteId: Int32, afterTimestamp: Double) throws -> SuplaCloudClient.ElectricityMeasurement? {

@@ -21,6 +21,8 @@ protocol SummarizedMeasurements {}
 struct ElectricityMeasurements: SummarizedMeasurements {
     let forwardActiveEnergy: Double
     let reverseActiveEnergy: Double
+    
+    var summarized: Double { forwardActiveEnergy - reverseActiveEnergy }
 
     func toForwardEnergy(
         formatter: SharedCore.ValueFormatter,

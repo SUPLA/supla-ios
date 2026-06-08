@@ -18,13 +18,13 @@
 final class PressureValueStringProvider: ChannelValueStringProvider {
     @Singleton<PressureValueProvider> private var pressureValueProvider
 
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_PRESSURESENSOR
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_PRESSURESENSOR
     }
 
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
         PressureValueFormatter.shared.format(
-            value: pressureValueProvider.value(channel, valueType: valueType),
+            value: pressureValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )
     }

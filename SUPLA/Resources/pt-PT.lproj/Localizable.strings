@@ -245,8 +245,14 @@
 "general_action" = "Acção";
 "general_delete" = "Eliminar";
 "general_processing" = "A processar";
+"general_loading" = "A carregar...";
 "incorrect_password" = "Senha incorreta";
 "app_sentence" = "finalmente em casa!";
+"general_current_hour" = "Hora atual";
+"general_current_day" = "Dia atual";
+"general_current_month" = "Mês atual";
+"general_current_week" = "Semana atual";
+"general_current_year" = "Ano atual";
 /* General - DayOfWeek */
 "monday" = "Segunda-feira";
 "tuesday" = "Terça-feira";
@@ -331,6 +337,7 @@
 "settings_show_labels" = "Mostrar etiquetas no menu inferior";
 "settings_dark_mode" = "Modo noturno";
 "app_settings_temperature_precision" = "Precisão da temperatura";
+"settings_show_unavailable_channels" = "Ocultar canais que não estão disponíveis devido à configuração do dispositivo";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Geral";
@@ -480,6 +487,7 @@
 "status_access_id_inactive" = "Acesso ao identificador  inativo.";
 "status_host_not_found" = "O endereço do servidor não foi encontrado";
 "status_cant_connect_to_host" = "Impossível ligar com o servidor";
+"status_migration_message" = "Os seus dados estão a ser migrados, por favor aguarde...";
 
 /* Pin setup */
 "pin_setup_header" = "Defina o seu código PIN";
@@ -539,10 +547,17 @@
 "details_em_total_suffix" = "(estado do contador)";
 "details_em_current_month_suffix" = "(mês atual)";
 "details_em_last_month_balancing" = "Balanço do mês atual";
+"details_em_on_list" = "Exibição na lista de canais";
+"details_em_settings_list_metric" = "Valor selecionado";
+"details_em_on_list_balance" = "Método de balanceamento de energia";
+"details_em_on_list_value" = "Intervalo de dados";
+"details_em_active_energy_balance" = "Balanço de energia ativa";
 
 /* Impulse counter */
 "details_em_meter_value" = "Status do contador";
 "details_em_current_month_consumption" = "Consumo no mês atual";
+"impulse_counter_settings_counter_status" = "Leitura atual do medidor";
+"details_ic_settings_list_item" = "Valor exibido na lista de canais";
 
 /* Valve */
 "valve_warning_manually_closed" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula. Tem a certeza que quer abrir a válvula a partir da aplicação!";

@@ -22,13 +22,13 @@ import SharedCore
 class ContainerValueStringProvider: ChannelValueStringProvider {
     @Singleton<ContainerValueProvider> private var containerValueProvider
     
-    func handle(_ channel: SAChannel) -> Bool {
-        containerValueProvider.handle(channel)
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        containerValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
         ContainerValueFormatter.shared.format(
-            value: containerValueProvider.value(channel, valueType: valueType),
+            value: containerValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )
     }

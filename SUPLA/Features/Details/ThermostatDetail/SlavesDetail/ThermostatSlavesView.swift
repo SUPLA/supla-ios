@@ -173,6 +173,7 @@ extension ThermostatSlavesFeature {
     let viewState = ThermostatSlavesFeature.ViewState()
     viewState.master = ThermostatSlavesFeature.ThermostatData(
         id: 1,
+        profileId: 1,
         deviceId: 1,
         function: 0,
         onlineState: .online,
@@ -191,6 +192,7 @@ extension ThermostatSlavesFeature {
     viewState.slaves = [
         ThermostatSlavesFeature.ThermostatData(
             id: 1,
+            profileId: 1,
             deviceId: 1,
             function: 0,
             onlineState: .online,
@@ -208,6 +210,7 @@ extension ThermostatSlavesFeature {
         ),
         ThermostatSlavesFeature.ThermostatData(
             id: 2,
+            profileId: 1,
             deviceId: 1,
             function: 0,
             onlineState: .online,

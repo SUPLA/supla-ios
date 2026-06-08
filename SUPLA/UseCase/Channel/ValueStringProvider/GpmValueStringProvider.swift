@@ -19,12 +19,13 @@
 class GpmValueStringProvider: ChannelValueStringProvider {
     @Singleton<GpmValueProvider> private var gpmValueProvider
     
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-            || channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+            || channelWithChildren.channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        let channel = channelWithChildren.channel
         guard let value = gpmValueProvider.value(channel, valueType: valueType) as? Double
         else {
             return NO_VALUE_TEXT

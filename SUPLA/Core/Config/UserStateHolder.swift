@@ -25,6 +25,11 @@ protocol UserStateHolder {
     
     func getElectricityMeterSettings(profileId: Int32, remoteId: Int32) -> ElectricityMeterSettings
     func setElectricityMeterSettings(_ settings: ElectricityMeterSettings, profileId: Int32, remoteId: Int32)
+    func electricityMeterSettingExists(profileId: Int32, remoteId: Int32) -> Bool
+    
+    func getImpulseCounterSettings(profileId: Int32, remoteId: Int32) -> ImpulseCounterSettings
+    func setImpulseCounterSettings(_ settings: ImpulseCounterSettings, profileId: Int32, remoteId: Int32)
+    func impulseCounterSettingExists(profileId: Int32, remoteId: Int32) -> Bool
     
     func getPhotoCreationTime(profileId: Int32, remoteId: Int32) -> Date?
     func setPhotoCreationTime(_ time: String, profileId: Int32, remoteId: Int32)
@@ -84,12 +89,20 @@ final class UserStateHolderImpl: UserStateHolder {
     func getElectricityMeterSettings(profileId: Int32, remoteId: Int32) -> ElectricityMeterSettings {
         let key = parametrizedKey(key: electricityMeterSettingsKey, String(profileId), String(remoteId))
         if let data = userDefaults.data(forKey: key) {
+            let decoder = JSONDecoder()
+            
             do {
-                let decoder = JSONDecoder()
                 return try decoder.decode(ElectricityMeterSettings.self, from: data)
             } catch {
                 let errorString = String(describing: error)
                 SALog.error("Could not decode state: \(errorString)")
+            }
+            
+            do {
+                return try decoder.decode(ElectricityMeterSettingsV1.self, from: data).settings
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not decode legacy state: \(errorString)")
             }
         }
         
@@ -105,6 +118,43 @@ final class UserStateHolderImpl: UserStateHolder {
             let errorString = String(describing: error)
             SALog.error("Could not encode state: \(errorString)")
         }
+    }
+    
+    func electricityMeterSettingExists(profileId: Int32, remoteId: Int32) -> Bool {
+        let key = parametrizedKey(key: electricityMeterSettingsKey, String(profileId), String(remoteId))
+        return userDefaults.data(forKey: key) != nil
+    }
+    
+    private let impulseCounterSettingsKey = "UserStateHolder.impulse_counter_settings"
+    func getImpulseCounterSettings(profileId: Int32, remoteId: Int32) -> ImpulseCounterSettings {
+        let key = parametrizedKey(key: impulseCounterSettingsKey, String(profileId), String(remoteId))
+        if let data = userDefaults.data(forKey: key) {
+            do {
+                let decoder = JSONDecoder()
+                return try decoder.decode(ImpulseCounterSettings.self, from: data)
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not decode impulse counter settings \(errorString)")
+            }
+        }
+        
+        return ImpulseCounterSettings.defaultSettings()
+    }
+    
+    func setImpulseCounterSettings(_ settings: ImpulseCounterSettings, profileId: Int32, remoteId: Int32) {
+        let key = parametrizedKey(key: impulseCounterSettingsKey, String(profileId), String(remoteId))
+        do {
+            let encoder = JSONEncoder()
+            userDefaults.set(try encoder.encode(settings), forKey: key)
+        } catch {
+            let errorString = String(describing: error)
+            SALog.error("Could not encode impulse counter settings \(errorString)")
+        }
+    }
+    
+    func impulseCounterSettingExists(profileId: Int32, remoteId: Int32) -> Bool {
+        let key = parametrizedKey(key: impulseCounterSettingsKey, String(profileId), String(remoteId))
+        return userDefaults.data(forKey: key) != nil
     }
     
     private let photoCreationTimeKey = "UserStateHolder.photo_creation_time"

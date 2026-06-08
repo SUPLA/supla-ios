@@ -246,7 +246,13 @@
 "general_delete" = "Odstranit";
 "incorrect_password" = "Nesprávné heslo";
 "general_processing" = "Zpracovávání";
+"general_loading" = "Načítání...";
 "app_sentence" = "konečně doma!";
+"general_current_hour" = "Aktuální hodina";
+"general_current_day" = "Aktuální den";
+"general_current_month" = "Aktuální měsíc";
+"general_current_week" = "Aktuální týden";
+"general_current_year" = "Aktuální rok";
 /* General - DayOfWeek */
 "monday" = "Pondělí";
 "tuesday" = "Útery";
@@ -329,6 +335,7 @@
 "settings_lock_screen_none" = "Netýká se";
 "settings_show_bottom_menu" = "Zobrazit dolní nabídku";
 "app_settings_temperature_precision" = "Přesnost teploty";
+"settings_show_unavailable_channels" = "Skrýt kanály, které nejsou dostupné kvůli konfiguraci zařízení";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Obecné";
@@ -474,6 +481,7 @@
 "status_access_id_inactive" = "Identifikátor přístupu není aktivní.";
 "status_host_not_found" = "Adresa serveru nebyla nalezena";
 "status_cant_connect_to_host" = "Nelze se připojit k serveru";
+"status_migration_message" = "Probíhá migrace vašich dat, čekejte prosím...";
 
 /* Pin setup */
 "pin_setup_header" = "Definujte svůj kód PIN";
@@ -537,10 +545,17 @@
 "details_em_last_month_balancing" = "Bilancování aktuálního měsíce";
 "channel_caption_pump_switch" = "Přepínač čerpadla";
 "channel_caption_heat_or_cold_source_switch" = "Přepínač pro zdroj tepla nebo chladu";
+"details_em_on_list" = "Zobrazení v seznamu kanálů";
+"details_em_settings_list_metric" = "Vybraná hodnota";
+"details_em_on_list_balance" = "Metoda bilancování energie";
+"details_em_on_list_value" = "Rozsah dat";
+"details_em_active_energy_balance" = "Bilance činné energie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stav měřiče";
 "details_em_current_month_consumption" = "Spotřeba v tomto měsíci";
+"impulse_counter_settings_counter_status" = "Aktuální stav měřidla";
+"details_ic_settings_list_item" = "Hodnota zobrazená v seznamu kanálů";
 
 /* Valve */
 "valve_warning_manually_closed" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu. Opravdu chcete ventil otevřít pomocí aplikace?!";

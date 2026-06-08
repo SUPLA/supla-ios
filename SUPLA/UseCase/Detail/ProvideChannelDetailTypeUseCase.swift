@@ -61,6 +61,7 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
             list.append(.electricityMeterSettings)
         } else if (channelWithChildren.isOrHasImpulseCounter) {
             list.append(.impulseCounterHistory)
+            list.append(.impulseCounterSettings)
         }
 
         return list
@@ -82,9 +83,9 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 
     private func getImpulseCounterDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
         if (channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) > 0) {
-            [.impulseCounterGeneral, .impulseCounterHistory, .impulseCounterOcr]
+            [.impulseCounterGeneral, .impulseCounterHistory, .impulseCounterOcr, .impulseCounterSettings]
         } else {
-            [.impulseCounterGeneral, .impulseCounterHistory]
+            [.impulseCounterGeneral, .impulseCounterHistory, .impulseCounterSettings]
         }
     }
 }

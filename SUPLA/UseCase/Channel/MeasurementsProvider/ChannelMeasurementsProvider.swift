@@ -47,8 +47,8 @@ extension ChannelMeasurementsProvider {
         }
         
         let value = switch (type) {
-        case .humidity: getChannelValueStringUseCase.invoke(channelWithChildren.channel, valueType: .second)
-        default: getChannelValueStringUseCase.invoke(channelWithChildren.channel)
+        case .humidity: getChannelValueStringUseCase.invoke(channelWithChildren, valueType: .second)
+        default: getChannelValueStringUseCase.invoke(channelWithChildren)
         }
         
         return HistoryDataSet(

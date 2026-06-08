@@ -2439,21 +2439,26 @@ extension SharedCore.SuplaChannelStatePrintable {
   }
   #endif
 }
+public var ONLINE_BUT_NOT_AVAILABLE: Swift.Int32 {
+  get
+}
 extension Swift.Bool {
   public var localizedString: any SharedCore.LocalizedString {
     get
   }
   #if compiler(>=5.3) && $NonescapableTypes
-  public func ifFalse(value: Any?) -> Any?
+  public func forFalse(value: Any?) -> Any?
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public func ifTrue(value: Any?) -> Any?
+  public func forTrue(value: Any?) -> Any?
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  public func ifTrue(valueProvider: @escaping () -> Any?) -> Any?
+  public func forTrue(valueProvider: @escaping () -> Any?) -> Any?
   #endif
 }
-public func ifTrue(value: Swift.Bool, callback: @escaping () -> Swift.Void)
+#if compiler(>=5.3) && $NonescapableTypes
+public func ifTrue(value: Swift.Bool, callback: @escaping () -> Any?) -> Any?
+#endif
 public func guardLet(elements: SharedCore.KotlinArray<Swift.AnyObject>, closure: @escaping () -> Swift.Void) -> [Any]
 public func ifLet(elements: SharedCore.KotlinArray<Swift.AnyObject>, closure: @escaping ([Any]) -> Swift.Void)
 public func notNull(elements: SharedCore.KotlinArray<Swift.AnyObject>) -> Swift.Bool
@@ -2490,6 +2495,9 @@ public func customUnit(unit: Swift.String) -> SharedCore.ValueFormat
 public func forChartMarker(unit: Swift.String?) -> SharedCore.ValueFormat
 #endif
 public func withUnit(withUnit: Swift.Bool) -> SharedCore.ValueFormat
+#if compiler(>=5.3) && $NonescapableTypes
+public func withUnit(unit: Swift.String?, leadingSpace: Swift.Bool, showNoValueText: SharedCore.KotlinBoolean?) -> SharedCore.ValueFormat
+#endif
 #if compiler(>=5.3) && $NonescapableTypes
 public func withUnit(withUnit: Swift.Bool, unit: Swift.String?, leadingSpace: Swift.Bool) -> SharedCore.ValueFormat
 #endif

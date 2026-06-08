@@ -245,8 +245,14 @@
 "general_action" = "Ενέργεια";
 "general_delete" = "Αφαιρώ";
 "general_processing" = "Επεξεργασία";
+"general_loading" = "Φόρτωση...";
 "incorrect_password" = "Λανθασμένος κωδικός πρόσβασης";
 "app_sentence" = "επιτέλους στο σπίτι!";
+"general_current_hour" = "Τρέχουσα ώρα";
+"general_current_day" = "Τρέχουσα ημέρα";
+"general_current_month" = "Τρέχων μήνας";
+"general_current_week" = "Τρέχουσα εβδομάδα";
+"general_current_year" = "Τρέχον έτος";
 /* General - DayOfWeek */
 "monday" = "Δευτέρα";
 "tuesday" = "Τρίτη";
@@ -331,6 +337,7 @@
 "settings_lock_screen_none" = "Δεν υπάρχει";
 "settings_show_bottom_menu" = "Εμφάνιση κάτω μενού";
 "app_settings_temperature_precision" = "Ακρίβεια θερμοκρασίας";
+"settings_show_unavailable_channels" = "Απόκρυψη καναλιών που δεν είναι διαθέσιμα λόγω της διαμόρφωσης της συσκευής";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Γενικά";
@@ -477,6 +484,7 @@
 "status_access_id_inactive" = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
 "status_host_not_found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 "status_cant_connect_to_host" = "Αδυναμία σύνδεσης με τον διακομιστή";
+"status_migration_message" = "Τα δεδομένα σας μεταφέρονται, παρακαλώ περιμένετε...";
 
 /* Pin setup */
 "pin_setup_header" = "Ορίστε το PIN σας";
@@ -538,10 +546,17 @@
 "details_em_total_suffix" = "(κατάσταση μετρητή)";
 "details_em_current_month_suffix" = "(τρέχων μήνας)";
 "details_em_last_month_balancing" = "Εξισορρόπηση του τρέχοντος μήνα";
+"details_em_on_list" = "Εμφάνιση στη λίστα καναλιών";
+"details_em_settings_list_metric" = "Επιλεγμένη τιμή";
+"details_em_on_list_balance" = "Μέθοδος εξισορρόπησης ενέργειας";
+"details_em_on_list_value" = "Εύρος δεδομένων";
+"details_em_active_energy_balance" = "Ισοζύγιο ενεργού ενέργειας";
 
 /* Impulse counter */
 "details_em_meter_value" = "Κατάσταση του μετρητή";
 "details_em_current_month_consumption" = "Κατανάλωση τον τρέχοντα μήνα";
+"impulse_counter_settings_counter_status" = "Τρέχουσα ένδειξη μετρητή";
+"details_ic_settings_list_item" = "Τιμή που εμφανίζεται στη λίστα καναλιών";
 
 /* Valve */
 "valve_warning_manually_closed" = "Η βαλβίδα έκλεισε σε χειροκίνητη λειτουργία. Πριν την ανοίξετε, βεβαιωθείτε ότι δεν έχει κλείσει λόγω πλημμύρας. Για να απενεργοποιήσετε την προειδοποίηση, ανοίξτε τη βαλβίδα χειροκίνητα. Είστε σίγουροι ότι θέλετε να ανοίξετε τη βαλβίδα μέσω της εφαρμογής;!";

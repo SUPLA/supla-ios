@@ -9567,6 +9567,13 @@ Classes:
     Parameters:
     - Position: 0
       Type: "id<SharedCoreSuplaChannelStatePrintable> _Nonnull"
+- Name: "SharedCoreSuplaChannelAvailabilityStatusKt"
+  SwiftName: "SuplaChannelAvailabilityStatusKt"
+  Properties:
+  - Name: "ONLINE_BUT_NOT_AVAILABLE"
+    PropertyKind: "Class"
+    SwiftName: "ONLINE_BUT_NOT_AVAILABLE"
+    Type: "int32_t"
 - Name: "SharedCoreBooleanExtensionsKt"
   SwiftName: "BooleanExtensionsKt"
   Methods:
@@ -9580,33 +9587,33 @@ Classes:
   - Selector: "ifTrueValue:callback:"
     MethodKind: "Class"
     SwiftName: "ifTrue(value:callback:)"
-    ResultType: "void"
+    ResultType: "id _Nullable"
     Parameters:
     - Position: 0
       Type: "BOOL"
     - Position: 1
-      Type: "void (^ _Nonnull)(void)"
-  - Selector: "ifFalse:value:"
+      Type: "id _Nullable (^ _Nonnull)(void)"
+  - Selector: "forFalse:value:"
     MethodKind: "Class"
-    SwiftName: "ifFalse(_:value:)"
+    SwiftName: "forFalse(_:value:)"
     ResultType: "id _Nullable"
     Parameters:
     - Position: 0
       Type: "BOOL"
     - Position: 1
       Type: "id _Nullable"
-  - Selector: "ifTrue:value:"
+  - Selector: "forTrue:value:"
     MethodKind: "Class"
-    SwiftName: "ifTrue(_:value:)"
+    SwiftName: "forTrue(_:value:)"
     ResultType: "id _Nullable"
     Parameters:
     - Position: 0
       Type: "BOOL"
     - Position: 1
       Type: "id _Nullable"
-  - Selector: "ifTrue:valueProvider:"
+  - Selector: "forTrue:valueProvider:"
     MethodKind: "Class"
-    SwiftName: "ifTrue(_:valueProvider:)"
+    SwiftName: "forTrue(_:valueProvider:)"
     ResultType: "id _Nullable"
     Parameters:
     - Position: 0
@@ -9832,6 +9839,17 @@ Classes:
     Parameters:
     - Position: 0
       Type: "BOOL"
+  - Selector: "withUnitUnit:leadingSpace:showNoValueText:"
+    MethodKind: "Class"
+    SwiftName: "withUnit(unit:leadingSpace:showNoValueText:)"
+    ResultType: "SharedCoreValueFormat * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nullable"
+    - Position: 1
+      Type: "BOOL"
+    - Position: 2
+      Type: "SharedCoreBoolean * _Nullable"
   - Selector: "withUnitWithUnit:unit:leadingSpace:"
     MethodKind: "Class"
     SwiftName: "withUnit(withUnit:unit:leadingSpace:)"

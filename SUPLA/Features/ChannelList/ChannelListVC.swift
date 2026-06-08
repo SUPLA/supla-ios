@@ -21,6 +21,9 @@ import SwiftUI
 
 class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelListViewEvent, ChannelListViewModel> {
     @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<TriggerLogHistoryDownload.UseCase> private var triggerLogHistoryDownloadUseCase
+    
+    private var triggerLogHistoryDownloadTask: Task<Void, Never>? = nil
     
     private lazy var stateViewModel: StateDialogFeature.ViewModel = {
         let viewModel = StateDialogFeature.ViewModel { [weak self] in
@@ -61,6 +64,16 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
     
     override func setOverlayHidden(_ hidden: Bool) {
         overlay.view.isHidden = hidden
+    }
+
+    override func onViewAppeared() {
+        super.onViewAppeared()
+        startTriggerLogHistoryDownload()
+    }
+
+    override func onViewDisappeared() {
+        stopTriggerLogHistoryDownload()
+        super.onViewDisappeared()
     }
     
     override func handle(event: ChannelListViewEvent) {
@@ -105,6 +118,28 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
             .drive(onNext: { [weak self] in self?.coordinator.navigateToDeviceCatalog() })
             .disposed(by: self)
         setupOverlay(overlay)
+    }
+
+    private func startTriggerLogHistoryDownload() {
+        guard triggerLogHistoryDownloadTask == nil else { return }
+
+        let useCase = triggerLogHistoryDownloadUseCase
+        triggerLogHistoryDownloadTask = Task { [useCase] in
+            while !Task.isCancelled {
+                await useCase.invoke()
+
+                do {
+                    try await Task.sleep(nanoseconds: 15 * 1_000_000_000)
+                } catch {
+                    return
+                }
+            }
+        }
+    }
+
+    private func stopTriggerLogHistoryDownload() {
+        triggerLogHistoryDownloadTask?.cancel()
+        triggerLogHistoryDownloadTask = nil
     }
 }
 

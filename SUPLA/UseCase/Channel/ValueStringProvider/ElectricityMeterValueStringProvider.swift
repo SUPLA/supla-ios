@@ -24,26 +24,25 @@ class ElectricityMeterValueStringProvider: ChannelValueStringProvider {
 
     private var formatter = SharedCore.ElectricityMeterValueFormatter()
 
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
     }
 
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        let value = electricityMeterValueProvider.value(channel, valueType: valueType)
-        let type = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id).showOnList
-
-        if (type == .forwardActiveEnergy) {
-            return formatter.format(
-                value: value,
-                format: ValueFormatKt.withUnit(withUnit: withUnit)
-            )
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        let channel = channelWithChildren.channel
+        let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
+        let type = settings.metricOnList
+        
+        if (settings.usingAggregatedValue) {
+            return channel.value?.aggregated_value ?? NO_VALUE_TEXT
         } else {
+            let value = electricityMeterValueProvider.value(channel, valueType: valueType)
             return formatter.format(
                 value: value,
                 format: ValueFormat(
                     withUnit: withUnit,
-                    customUnit: " \(type.unit)",
-                    showNoValueText: false
+                    customUnit: " \(type.suplaType.unit)",
+                    showNoValueText: type == .forwardActiveEnergy
                 )
             )
         }

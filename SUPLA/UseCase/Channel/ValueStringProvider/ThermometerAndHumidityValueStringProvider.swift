@@ -22,12 +22,12 @@ final class ThermometerAndHumidityValueStringProvider: ChannelValueStringProvide
     
     private let humidityFormatter = HumidityValueFormatter()
     
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        let value = thermometerAndHumidityValueProvider.value(channel, valueType: valueType)
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        let value = thermometerAndHumidityValueProvider.value(channelWithChildren.channel, valueType: valueType)
         return switch(valueType) {
         case .first: temperatureFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
         case .second: humidityFormatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))

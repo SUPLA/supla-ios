@@ -245,8 +245,14 @@
 "general_action" = "Handling";
 "general_delete" = "Slett";
 "general_processing" = "Behandler";
+"general_loading" = "Laster...";
 "incorrect_password" = "Feil passord";
 "app_sentence" = "endelig hjemme!";
+"general_current_hour" = "Nåværende time";
+"general_current_day" = "Nåværende dag";
+"general_current_month" = "Nåværende måned";
+"general_current_week" = "Nåværende uke";
+"general_current_year" = "Nåværende år";
 /* General - DayOfWeek */
 "monday" = "Mandag";
 "tuesday" = "Tirsdag";
@@ -331,6 +337,7 @@
 "settings_lock_screen_none" = "Ingen";
 "settings_show_bottom_menu" = "Vis bunnmeny";
 "app_settings_temperature_precision" = "Temperaturpresisjon";
+"settings_show_unavailable_channels" = "Skjul kanaler som ikke er tilgjengelige på grunn av enhetskonfigurasjonen";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generelt";
@@ -476,6 +483,7 @@
 "status_access_id_inactive" = "Tilgangs-ID inaktiv.";
 "status_host_not_found" = "Serveradresse ikke funnet";
 "status_cant_connect_to_host" = "Kan ikke koble til serveren";
+"status_migration_message" = "Dataene dine migreres, vennligst vent...";
 
 /* Pin setup */
 "pin_setup_header" = "Definer PIN-koden din";
@@ -536,10 +544,17 @@
 "details_em_total_suffix" = "(tellerstatus)";
 "details_em_current_month_suffix" = "(inneværende måned)";
 "details_em_last_month_balancing" = "Balansering av inneværende måned";
+"details_em_on_list" = "Visning i kanallisten";
+"details_em_settings_list_metric" = "Valgt verdi";
+"details_em_on_list_balance" = "Metode for energibalansering";
+"details_em_on_list_value" = "Dataområde";
+"details_em_active_energy_balance" = "Balanse for aktiv energi";
 
 /* Impulse counter */
 "details_em_meter_value" = "Meterlesing";
 "details_em_current_month_consumption" = "Forbruk i gjeldende måned";
+"impulse_counter_settings_counter_status" = "Nåværende målerstand";
+"details_ic_settings_list_item" = "Verdien som vises i kanallisten";
 
 /* Valve */
 "valve_warning_manually_closed" = "Ventilen ble stengt i manuell modus. Før du åpner den, sørg for at den ikke har vært lukket på grunn av flom. For å deaktivere advarselen, åpne ventilen manuelt. Er du sikker på at du vil åpne ventilen fra appen?!";

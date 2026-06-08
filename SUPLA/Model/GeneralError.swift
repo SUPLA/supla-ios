@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum GeneralError: Error {
+enum GeneralError: Error, Equatable {
     case illegalState(message: String)
     case illegalArgument(message: String)
 }

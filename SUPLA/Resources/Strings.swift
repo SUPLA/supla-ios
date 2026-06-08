@@ -61,6 +61,7 @@ struct Strings {
         static let lockScreenApp = "settings_lock_screen_app".toLocalized()
         static let lockScreenAccounts = "settings_lock_screen_accounts".toLocalized()
         static let batteryLevelWarning = "settings_battery_level_warnign".toLocalized()
+        static let hideUnavailableChannels = "settings_show_unavailable_channels".toLocalized()
     }
     
     struct CreateProfile {
@@ -341,6 +342,12 @@ struct Strings {
         static let saturdayShort = "saturday_short".toLocalized()
         static let sundayShort = "sunday_short".toLocalized()
         
+        static let currentHour = "general_current_hour".toLocalized()
+        static let currentDay = "general_current_day".toLocalized()
+        static let currentWeek = "general_current_week".toLocalized()
+        static let currentMonth = "general_current_month".toLocalized()
+        static let currentYear = "general_current_year".toLocalized()
+        
         static let timeJustNow = "time_just_now".toLocalized()
         static let time_just_minutes = "time_just_mintes".toLocalized()
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
@@ -359,6 +366,7 @@ struct Strings {
         
         static let appSentence = "app_sentence".toLocalized()
         static let processing = "general_processing".toLocalized()
+        static let loading = "general_loading".toLocalized()
         
         struct Channel {
             static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
@@ -458,6 +466,7 @@ struct Strings {
         static let errorAccessIdInactive = "status_access_id_inactive".toLocalized()
         static let errorHostNotFound = "status_host_not_found".toLocalized()
         static let errorCantConnectToHost = "status_cant_connect_to_host".toLocalized()
+        static let migrationMessage = "status_migration_message".toLocalized()
     }
     
     struct PinSetup {
@@ -541,11 +550,17 @@ struct Strings {
         static let infoRange = "details_em_info_range".toLocalized()
         static let infoDataSetSinglePhase = "details_em_info_data_set_single_phase".toLocalized()
         static let infoDataSetMultiplePhase = "details_em_info_data_set_multiple_phase".toLocalized()
+        static let onList = "details_em_on_list".toLocalized()
+        static let metricOnList = "details_em_settings_list_metric".toLocalized()
+        static let metricOnListAggregation = "details_em_on_list_value".toLocalized()
+        static let metricOnListBalance = "details_em_on_list_balance".toLocalized()
+        static let activeEnergyBalance = "details_em_active_energy_balance".toLocalized()
     }
     
     struct ImpulseCounter {
         static let meterValue = "details_em_meter_value".toLocalized()
         static let currentMonthConsumption = "details_em_current_month_consumption".toLocalized()
+        static let counterStatus = "impulse_counter_settings_counter_status".toLocalized()
     }
     
     struct CounterPhoto {

@@ -128,6 +128,7 @@
 		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
 		01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */; };
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
+		26C7E013F5AF9D5366ACDB82 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
@@ -183,12 +184,11 @@
 		40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A281BCCFF8A004CF43B /* settings@2x.png */; };
 		40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A421BCD6F06004CF43B /* Localizable.strings */; };
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
-		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		6878DA9EFD3348F1A08DD4C4 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */; };
 		6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E05868028539E490044786B /* EditableProfileItemCell.swift */; };
 		6E8004D328493463009A917A /* AuthProfileItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */; };
 		6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8756622830E86B00D5A283 /* ProfileItemCell.swift */; };
 		6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9F28C828436EE800142502 /* AddNewProfileCell.swift */; };
-		756E5856FB49A0330E8AF32C /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4324ABB29A960B51570CDD29 /* Pods_SUPLAWidgetsExtension.framework */; };
 		A50162592F921A6400FB2899 /* RoundedControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50162582F921A5A00FB2899 /* RoundedControlButton.swift */; };
 		A501625C2F9240C300FB2899 /* ThermostatTimerDetailInProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501625B2F9240B500FB2899 /* ThermostatTimerDetailInProgress.swift */; };
 		A501625E2F924D5C00FB2899 /* ThermostatTimerDetailConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501625D2F924D5400FB2899 /* ThermostatTimerDetailConfiguration.swift */; };
@@ -202,6 +202,7 @@
 		A503ABB52B6B7713008CDA1F /* BaseMeasurementRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABB42B6B7713008CDA1F /* BaseMeasurementRepository.swift */; };
 		A503ABBA2B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift */; };
 		A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */; };
+		A5040A7B2FC6F6AE00A69936 /* CoreDataInitializationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5040A7A2FC6F6A600A69936 /* CoreDataInitializationStep.swift */; };
 		A505EC262CF5E49400E69BDB /* AuthProfileItem17to18to19MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC252CF5E48200E69BDB /* AuthProfileItem17to18to19MigrationPolicy.swift */; };
 		A505EC332CF70D8D00E69BDB /* AuthorizationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC322CF70D8800E69BDB /* AuthorizationType.swift */; };
 		A505EC362CF71BD500E69BDB /* ProfileDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A505EC352CF71BD100E69BDB /* ProfileDto.swift */; };
@@ -327,7 +328,7 @@
 		A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */; };
 		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
 		A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */; };
-		A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* 7.8.17.html */; };
+		A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* index_7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* BaseDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* BaseDetailVC.swift */; };
 		A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */; };
@@ -444,6 +445,9 @@
 		A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */; };
 		A530EE532A5D437C00F8DAEE /* UITimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */; };
 		A531D3E02E74539700714850 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A531D3DF2E74539700714850 /* clock@3x.png */; };
+		A534D61C2FB30F4D007AAC73 /* ListValueAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */; };
+		A534D61F2FB32DAB007AAC73 /* ImpulseCounterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */; };
+		A534D6222FB33617007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */; };
 		A536364E2DD3239600D470CE /* UserIconsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A536364D2DD3239100D470CE /* UserIconsUseCase.swift */; };
 		A53636512DD36CE500D470CE /* SuplaCloud+ChannelFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53636502DD36CD900D470CE /* SuplaCloud+ChannelFunction.swift */; };
 		A53636532DD36E9700D470CE /* SuplaCloud+UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53636522DD36E8F00D470CE /* SuplaCloud+UserIcon.swift */; };
@@ -769,7 +773,7 @@
 		A57668F92AEAB12D0025509D /* HideableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668F82AEAB12D0025509D /* HideableValue.swift */; };
 		A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */; };
 		A57668FF2AEFB96A0025509D /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FE2AEFB96A0025509D /* Double+Ext.swift */; };
-		A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669002AEFD4420025509D /* UsetStateHolder.swift */; };
+		A57669012AEFD4420025509D /* UserStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669002AEFD4420025509D /* UserStateHolder.swift */; };
 		A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CC29E6907C004513E6 /* RuntimeConfig.swift */; };
 		A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */; };
 		A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57777D029E6A319004513E6 /* CreateAccountVC.xib */; };
@@ -791,6 +795,9 @@
 		A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CB92BBC2DB500FC5998 /* DarkModeSetting.swift */; };
 		A5812CBC2BBC305200FC5998 /* NightModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CBB2BBC305200FC5998 /* NightModeCell.swift */; };
 		A5812CC22BBC8E4200FC5998 /* UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5812CC12BBC8E4200FC5998 /* UserIcon.swift */; };
+		A58189062FB5D1980056B401 /* ElectricityMeterMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */; };
+		A58189082FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */; };
+		A581890A2FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */; };
 		A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F72B644F75006113F8 /* IntValueParser.swift */; };
 		A58316FA2B64507D006113F8 /* ThermometerValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316F92B64507D006113F8 /* ThermometerValueProvider.swift */; };
 		A58316FC2B64510A006113F8 /* ThermometerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58316FB2B64510A006113F8 /* ThermometerValueStringProvider.swift */; };
@@ -1158,13 +1165,14 @@
 		A5C690412DD7516E00194C1B /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DC22AA5BE7A00220B4A /* Int+Ext.swift */; };
 		A5C690422DD7517F00194C1B /* ScopeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */; };
 		A5C6905F2DD7760C00194C1B /* GroupSharedSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */; };
+		A5C82FC22FB34FF20044C57B /* TriggerLogHistoryDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */; };
 		A5CA8ACA2E6EF353005B55F4 /* CheckIsSlaveThermostatUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */; };
 		A5CA8ACC2E701DEA005B55F4 /* TemperaturePrecisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */; };
 		A5CA8AD42E703C34005B55F4 /* DoubleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A598CACC2CC2997900A784FA /* DoubleFormatter.swift */; };
 		A5CA8AD52E7054CF005B55F4 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FE2AEFB96A0025509D /* Double+Ext.swift */; };
 		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
 		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
-		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
+		A5CE732C2B469C02003F882C /* index_arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* index_arduino.html */; };
 		A5CE732F2B469C36003F882C /* EspHtmlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */; };
 		A5CF3D622DD4869A00207384 /* DownloadUserIconsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D612DD4869400207384 /* DownloadUserIconsManager.swift */; };
 		A5CF3D642DD4A95700207384 /* UserIconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3D632DD4A94E00207384 /* UserIconData.swift */; };
@@ -1185,6 +1193,8 @@
 		A5CF3E552DD6870500207384 /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
 		A5CF3E572DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
 		A5CF3E582DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
+		A5D180D52FBB25C70038F5BC /* device_login.html in Resources */ = {isa = PBXBuildFile; fileRef = A5D180D42FBB25C70038F5BC /* device_login.html */; };
+		A5D182492FBB4A820038F5BC /* index_csrf.html in Resources */ = {isa = PBXBuildFile; fileRef = A5D182482FBB4A710038F5BC /* index_csrf.html */; };
 		A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */; };
 		A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */; };
 		A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */; };
@@ -1342,6 +1352,7 @@
 		A5E40B6F2B868DA900DB6ABE /* AuthProfileItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B6E2B868DA900DB6ABE /* AuthProfileItem+Mock.swift */; };
 		A5E40B712B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */; };
 		A5E40B732B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */; };
+		A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */; };
 		A5E40B772B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
@@ -1530,7 +1541,16 @@
 		AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */; };
 		AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
-		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
+		B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */; };
+		B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */; };
+		B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */; };
+		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
+		B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */; };
+		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
+		B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000003 /* EspRepositoryMock.swift */; };
+		B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */; };
+		B2A100001111111100000009 /* CreateEspPasswordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */; };
+		D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1863,6 +1883,9 @@
 		01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeResult.m; sourceTree = "<group>"; };
 		01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNode.h; sourceTree = "<group>"; };
 		01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNode.m; sourceTree = "<group>"; };
+		19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
+		2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.release.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.release.xcconfig"; sourceTree = "<group>"; };
+		3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.debug.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		4017E1291BB9CE2900570AC8 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
@@ -1954,16 +1977,14 @@
 		40DE1A441BCD6F09004CF43B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A471BCD7207004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		4324ABB29A960B51570CDD29 /* Pods_SUPLAWidgetsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLAWidgetsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DB3EFD1D1896FEDBCC636FB /* Pods-SUPLAWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.debug.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		5112F349C0AF063E78531836 /* Pods-SUPLAWidgetsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.release.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.release.xcconfig"; sourceTree = "<group>"; };
-		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		6E05868028539E490044786B /* EditableProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableProfileItemCell.swift; sourceTree = "<group>"; };
 		6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthProfileItem+Ext.swift"; sourceTree = "<group>"; };
 		6E8756622830E86B00D5A283 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		6E9F28C828436EE800142502 /* AddNewProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProfileCell.swift; sourceTree = "<group>"; };
-		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
+		904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
+		90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLAWidgetsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50162582F921A5A00FB2899 /* RoundedControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedControlButton.swift; sourceTree = "<group>"; };
 		A501625B2F9240B500FB2899 /* ThermostatTimerDetailInProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailInProgress.swift; sourceTree = "<group>"; };
 		A501625D2F924D5400FB2899 /* ThermostatTimerDetailConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailConfiguration.swift; sourceTree = "<group>"; };
@@ -1977,6 +1998,7 @@
 		A503ABB42B6B7713008CDA1F /* BaseMeasurementRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMeasurementRepository.swift; sourceTree = "<group>"; };
 		A503ABB92B6BB0BF008CDA1F /* GpmValueFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GpmValueFormatter+Ext.swift"; sourceTree = "<group>"; };
 		A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryDetails.swift; sourceTree = "<group>"; };
+		A5040A7A2FC6F6A600A69936 /* CoreDataInitializationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInitializationStep.swift; sourceTree = "<group>"; };
 		A505EC252CF5E48200E69BDB /* AuthProfileItem17to18to19MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItem17to18to19MigrationPolicy.swift; sourceTree = "<group>"; };
 		A505EC292CF5EFAF00E69BDB /* SUPLA 19.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 19.xcdatamodel"; sourceTree = "<group>"; };
 		A505EC322CF70D8800E69BDB /* AuthorizationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationType.swift; sourceTree = "<group>"; };
@@ -2101,7 +2123,7 @@
 		A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedMeasurements.swift; sourceTree = "<group>"; };
 		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
 		A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVC.swift; sourceTree = "<group>"; };
-		A519CCC02D393EE300F858A4 /* 7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = 7.8.17.html; sourceTree = "<group>"; };
+		A519CCC02D393EE300F858A4 /* index_7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* BaseDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVM.swift; sourceTree = "<group>"; };
@@ -2219,6 +2241,10 @@
 		A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlainButton.swift; sourceTree = "<group>"; };
 		A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITimerProgressView.swift; sourceTree = "<group>"; };
 		A531D3DF2E74539700714850 /* clock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@3x.png"; sourceTree = "<group>"; };
+		A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListValueAggregation.swift; sourceTree = "<group>"; };
+		A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 28.xcdatamodel"; sourceTree = "<group>"; };
+		A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettings.swift; sourceTree = "<group>"; };
+		A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshImpulseCounterAggregatedValueUseCase.swift; sourceTree = "<group>"; };
 		A536364D2DD3239100D470CE /* UserIconsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCase.swift; sourceTree = "<group>"; };
 		A53636502DD36CD900D470CE /* SuplaCloud+ChannelFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaCloud+ChannelFunction.swift"; sourceTree = "<group>"; };
 		A53636522DD36E8F00D470CE /* SuplaCloud+UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaCloud+UserIcon.swift"; sourceTree = "<group>"; };
@@ -2566,7 +2592,7 @@
 		A57668F82AEAB12D0025509D /* HideableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableValue.swift; sourceTree = "<group>"; };
 		A57668FA2AEB999F0025509D /* SuplaChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChartMarkerView.swift; sourceTree = "<group>"; };
 		A57668FE2AEFB96A0025509D /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
-		A57669002AEFD4420025509D /* UsetStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsetStateHolder.swift; sourceTree = "<group>"; };
+		A57669002AEFD4420025509D /* UserStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateHolder.swift; sourceTree = "<group>"; };
 		A57777CC29E6907C004513E6 /* RuntimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfig.swift; sourceTree = "<group>"; };
 		A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfigMock.swift; sourceTree = "<group>"; };
 		A57777D029E6A319004513E6 /* CreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
@@ -2589,6 +2615,9 @@
 		A5812CBB2BBC305200FC5998 /* NightModeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightModeCell.swift; sourceTree = "<group>"; };
 		A5812CBD2BBC8B6200FC5998 /* SUPLA 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 17.xcdatamodel"; sourceTree = "<group>"; };
 		A5812CC12BBC8E4200FC5998 /* UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIcon.swift; sourceTree = "<group>"; };
+		A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterMeasurementType.swift; sourceTree = "<group>"; };
+		A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCase.swift; sourceTree = "<group>"; };
+		A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshElectricityMeterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
 		A58316F72B644F75006113F8 /* IntValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntValueParser.swift; sourceTree = "<group>"; };
 		A58316F92B64507D006113F8 /* ThermometerValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueProvider.swift; sourceTree = "<group>"; };
 		A58316FB2B64510A006113F8 /* ThermometerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueStringProvider.swift; sourceTree = "<group>"; };
@@ -2949,11 +2978,13 @@
 		A5C690392DD736C100194C1B /* SingleCallResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallResult.swift; sourceTree = "<group>"; };
 		A5C6903F2DD7514F00194C1B /* Int16+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int16+Ext.swift"; sourceTree = "<group>"; };
 		A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettingsMock.swift; sourceTree = "<group>"; };
+		A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCase.swift; sourceTree = "<group>"; };
 		A5CA8AC92E6EF34B005B55F4 /* CheckIsSlaveThermostatUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIsSlaveThermostatUseCase.swift; sourceTree = "<group>"; };
 		A5CA8ACB2E701DE0005B55F4 /* TemperaturePrecisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePrecisionCell.swift; sourceTree = "<group>"; };
+		A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 27.xcdatamodel"; sourceTree = "<group>"; };
 		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
 		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
-		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
+		A5CE732B2B469C02003F882C /* index_arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_arduino.html; sourceTree = "<group>"; };
 		A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParserTests.swift; sourceTree = "<group>"; };
 		A5CF3D612DD4869400207384 /* DownloadUserIconsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadUserIconsManager.swift; sourceTree = "<group>"; };
 		A5CF3D632DD4A94E00207384 /* UserIconData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconData.swift; sourceTree = "<group>"; };
@@ -2964,6 +2995,8 @@
 		A5CF3D882DD4C9CC00207384 /* URL+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Ext.swift"; sourceTree = "<group>"; };
 		A5CF3DAD2DD5CDBB00207384 /* WidgetChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetChannel.swift; sourceTree = "<group>"; };
 		A5CF3E562DD6880300207384 /* WidgetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetIcon.swift; sourceTree = "<group>"; };
+		A5D180D42FBB25C70038F5BC /* device_login.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = device_login.html; sourceTree = "<group>"; };
+		A5D182482FBB4A710038F5BC /* index_csrf.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_csrf.html; sourceTree = "<group>"; };
 		A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenFeature.swift; sourceTree = "<group>"; };
 		A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewState.swift; sourceTree = "<group>"; };
 		A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVM.swift; sourceTree = "<group>"; };
@@ -3107,6 +3140,7 @@
 		A5E40B6E2B868DA900DB6ABE /* AuthProfileItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthProfileItem+Mock.swift"; sourceTree = "<group>"; };
 		A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B722B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
+		A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshImpulseCounterAggregatedValueUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E40B762B873D2100DB6ABE /* SAGeneralPurposeMeasurement+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAGeneralPurposeMeasurement+Mock.swift"; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -3269,6 +3303,7 @@
 		A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferredProtocolVersionUseCase.swift; sourceTree = "<group>"; };
 		A5FE67662A666F2200147D1F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A5FE67682A666FF800147D1F /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
+		AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
@@ -3291,9 +3326,15 @@
 		AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVC.swift; sourceTree = "<group>"; };
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
-		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
-		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
-		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
+		B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsFeature.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVC.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVM.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsViewState.swift; sourceTree = "<group>"; };
+		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
+		B2A100001111111100000003 /* EspRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepositoryMock.swift; sourceTree = "<group>"; };
+		B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCaseTests.swift; sourceTree = "<group>"; };
+		B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEspPasswordUseCaseTests.swift; sourceTree = "<group>"; };
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -3350,6 +3391,7 @@
 		F4CD6F8E28ABFBFB006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SALightsourceLifespanSettingsDialog.strings"; sourceTree = "<group>"; };
 		F4CD6F9028ABFD70006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 		F4D3907C29324B570066014D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -3387,7 +3429,7 @@
 				01EF60E829BCA7FA00F691A0 /* LibSuplaClient.xcframework in Frameworks */,
 				40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */,
 				0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */,
-				462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */,
+				6878DA9EFD3348F1A08DD4C4 /* Pods_SUPLA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3395,7 +3437,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */,
+				26C7E013F5AF9D5366ACDB82 /* Pods_SUPLATests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3408,7 +3450,7 @@
 				A5741DAC2DC2513E00ED6C18 /* SwiftUI.framework in Frameworks */,
 				A5A601C72E7AD80700B1BFA6 /* SharedCore.xcframework in Frameworks */,
 				A5741DAB2DC2513E00ED6C18 /* WidgetKit.framework in Frameworks */,
-				756E5856FB49A0330E8AF32C /* Pods_SUPLAWidgetsExtension.framework in Frameworks */,
+				D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3801,11 +3843,11 @@
 				0163D0CC257EE483006C73CB /* NetworkExtension.framework */,
 				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
 				407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */,
-				596D36089B2CE979388A06FF /* Pods_SUPLA.framework */,
-				76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */,
 				A5741D8C2DC24DF800ED6C18 /* WidgetKit.framework */,
 				A5741D8E2DC24DF800ED6C18 /* SwiftUI.framework */,
-				4324ABB29A960B51570CDD29 /* Pods_SUPLAWidgetsExtension.framework */,
+				7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */,
+				F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */,
+				90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3883,12 +3925,12 @@
 		8CB4DD9EB4BBF894FE05F21D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */,
-				F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */,
-				B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */,
-				5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */,
-				4DB3EFD1D1896FEDBCC636FB /* Pods-SUPLAWidgetsExtension.debug.xcconfig */,
-				5112F349C0AF063E78531836 /* Pods-SUPLAWidgetsExtension.release.xcconfig */,
+				8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */,
+				19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */,
+				904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */,
+				AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */,
+				3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */,
+				2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -4674,6 +4716,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A534D61A2FB30F3E007AAC73 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A58189052FB5D1870056B401 /* ElectricityMeterMeasurementType.swift */,
+				A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */,
+				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
+				A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A534D6202FB335EE007AAC73 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */,
+				A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */,
+				A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		A536364F2DD36B4F00D470CE /* UserIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -5174,6 +5237,7 @@
 		A55A8D932BAB147700C540D4 /* SuplaApp */ = {
 			isa = PBXGroup;
 			children = (
+				A534D61A2FB30F3E007AAC73 /* Settings */,
 				A5E84F162EE6EB71002F26F8 /* Rgb */,
 				A5862C0A2CEF813300DFFD55 /* ChannelState */,
 				A584E1FD2CAAC87900232A98 /* ElectricityMeter */,
@@ -5291,7 +5355,7 @@
 				A57777CC29E6907C004513E6 /* RuntimeConfig.swift */,
 				A5AE6D842E213B7900BC2B67 /* SecureSettings.swift */,
 				A56233E62AB2FE37001CB948 /* Changeable.swift */,
-				A57669002AEFD4420025509D /* UsetStateHolder.swift */,
+				A57669002AEFD4420025509D /* UserStateHolder.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -5695,6 +5759,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A58188D62FB5C4AC0056B401 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */,
+				A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */,
+				B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		A58472022C2D9CF400713D36 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -5710,7 +5784,6 @@
 			isa = PBXGroup;
 			children = (
 				A584E2022CAAD48000232A98 /* Phase.swift */,
-				A584E1FE2CAAC88300232A98 /* ElectricityMeterSettings.swift */,
 			);
 			path = ElectricityMeter;
 			sourceTree = "<group>";
@@ -6067,6 +6140,7 @@
 		A59AB8B92A307FAD00D91F1F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				B2A100001111111100000003 /* EspRepositoryMock.swift */,
 				A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */,
 				A517DFEE2CFDA4A700D6148C /* ChannelStateRepositoryMock.swift */,
 				A59AB8BA2A30800F00D91F1F /* ProfileRepositoryMock.swift */,
@@ -6106,6 +6180,8 @@
 		A59AB8C02A308ADA00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B2A100001111111100000005 /* AddWizard */,
+				A58188D62FB5C4AC0056B401 /* List */,
 				A5D712782C3E8F5100A8EF52 /* App */,
 				A59AB8E42A30A72000D91F1F /* Channel */,
 				A530EE372A57FCA500F8DAEE /* ChannelBase */,
@@ -6829,8 +6905,10 @@
 		A5CE732A2B469B5F003F882C /* TestData */ = {
 			isa = PBXGroup;
 			children = (
-				A5CE732B2B469C02003F882C /* arduino.html */,
-				A519CCC02D393EE300F858A4 /* 7.8.17.html */,
+				A5D182482FBB4A710038F5BC /* index_csrf.html */,
+				A5D180D42FBB25C70038F5BC /* device_login.html */,
+				A5CE732B2B469C02003F882C /* index_arduino.html */,
+				A519CCC02D393EE300F858A4 /* index_7.8.17.html */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -7041,6 +7119,7 @@
 				A54637AF2D37D5FB00D746F5 /* General */,
 				A5E160BD2D354389003A7C71 /* History */,
 				A5E0DF842CECA1A800362451 /* CounterPhoto */,
+				B1DCC0000000000000000001 /* Settings */,
 				A5E0DF6D2CEB66C200362451 /* ImpulseCounterDetailVC.swift */,
 				A5E0DF6B2CEB651D00362451 /* ImpulseCounterDetailVM.swift */,
 			);
@@ -7552,6 +7631,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A534D6202FB335EE007AAC73 /* List */,
 				A5BF4F832F3DCA3C00F5DE81 /* Nfc */,
 				A55AE5ED2EE970E0006E0AA9 /* ColorListItem */,
 				A5BCA95B2E2781A200A5054A /* AddWizard */,
@@ -7754,6 +7834,7 @@
 		A5F29BFA2A2DC15100ED700A /* Migration */ = {
 			isa = PBXGroup;
 			children = (
+				A5040A7A2FC6F6A600A69936 /* CoreDataInitializationStep.swift */,
 				A5A184B22A2DD0A20063FD2B /* Mappings */,
 				A5A184B42A2DD0BE0063FD2B /* Policies */,
 				A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */,
@@ -7833,6 +7914,27 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
+		B1DCC0000000000000000001 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */,
+				B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */,
+				B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */,
+				B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */,
+				B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B2A100001111111100000005 /* AddWizard */ = {
+			isa = PBXGroup;
+			children = (
+				B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */,
+				B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */,
+			);
+			path = AddWizard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7840,13 +7942,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 401CA1DF1BA067DB00117AF4 /* Build configuration list for PBXNativeTarget "SUPLA" */;
 			buildPhases = (
-				7BB9E06954927D1F53A8F4E4 /* [CP] Check Pods Manifest.lock */,
+				7EF45810648B5FA9B9D0EFE9 /* [CP] Check Pods Manifest.lock */,
 				401CA1B51BA067DB00117AF4 /* Sources */,
 				401CA1B61BA067DB00117AF4 /* Frameworks */,
 				401CA1B71BA067DB00117AF4 /* Resources */,
-				66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */,
 				A598CADD2CC7BA5E00A784FA /* Embed Frameworks */,
 				A5741DA12DC24DF900ED6C18 /* Embed Foundation Extensions */,
+				52F6AC4833720B5DA94AF505 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -7862,11 +7964,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 401CA1E21BA067DB00117AF4 /* Build configuration list for PBXNativeTarget "SUPLATests" */;
 			buildPhases = (
-				5D514DA93A433ADCE0FF5DE0 /* [CP] Check Pods Manifest.lock */,
+				70E819C7ACE1A6EE1172A410 /* [CP] Check Pods Manifest.lock */,
 				401CA1D11BA067DB00117AF4 /* Sources */,
 				401CA1D21BA067DB00117AF4 /* Frameworks */,
 				401CA1D31BA067DB00117AF4 /* Resources */,
-				9F6494B08411F1C829CF2976 /* [CP] Embed Pods Frameworks */,
+				10E2782A9B819D74B747FD65 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -7882,7 +7984,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5741DBB2DC2513F00ED6C18 /* Build configuration list for PBXNativeTarget "SUPLAWidgetsExtension" */;
 			buildPhases = (
-				A2BFD80382EEBDA7B1A2F9FB /* [CP] Check Pods Manifest.lock */,
+				B2E752193C527F3BDBE14AA6 /* [CP] Check Pods Manifest.lock */,
 				A5741DA62DC2513E00ED6C18 /* Sources */,
 				A5741DA72DC2513E00ED6C18 /* Frameworks */,
 				A5741DA82DC2513E00ED6C18 /* Resources */,
@@ -8044,8 +8146,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5CE732C2B469C02003F882C /* arduino.html in Resources */,
-				A519CCC12D393EE300F858A4 /* 7.8.17.html in Resources */,
+				A5CE732C2B469C02003F882C /* index_arduino.html in Resources */,
+				A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */,
+				A5D180D52FBB25C70038F5BC /* device_login.html in Resources */,
+				A5D182492FBB4A820038F5BC /* index_csrf.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8062,7 +8166,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5D514DA93A433ADCE0FF5DE0 /* [CP] Check Pods Manifest.lock */ = {
+		10E2782A9B819D74B747FD65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52F6AC4833720B5DA94AF505 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70E819C7ACE1A6EE1172A410 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8084,28 +8230,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7BB9E06954927D1F53A8F4E4 /* [CP] Check Pods Manifest.lock */ = {
+		7EF45810648B5FA9B9D0EFE9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8127,28 +8252,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F6494B08411F1C829CF2976 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2BFD80382EEBDA7B1A2F9FB /* [CP] Check Pods Manifest.lock */ = {
+		B2E752193C527F3BDBE14AA6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8189,6 +8293,7 @@
 				A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */,
 				A5DB3AD32E9E51F9007DAD9B /* FloatingPlusButton.swift in Sources */,
 				A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */,
+				A534D61C2FB30F4D007AAC73 /* ListValueAggregation.swift in Sources */,
 				A52F03EC2DBBA08700472ED1 /* SubjectPicker.swift in Sources */,
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A50A86532F76C7FB00B4A09C /* ThermostatScheduleDetailView.swift in Sources */,
@@ -8320,6 +8425,7 @@
 				A501625C2F9240C300FB2899 /* ThermostatTimerDetailInProgress.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A58189062FB5D1980056B401 /* ElectricityMeterMeasurementType.swift in Sources */,
 				A5E160BA2D315CA2003A7C71 /* HumidityMeasurementsProvider.swift in Sources */,
 				A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */,
 				A5BF4F8B2F3F283100F5DE81 /* ReadNfcItemsUseCase.swift in Sources */,
@@ -8867,6 +8973,7 @@
 				A539C27C2D686A7C00D9DD47 /* ListItemIcon.swift in Sources */,
 				A54E7E8C2DE09BC6002FB0DE /* UIApplication+Ext.swift in Sources */,
 				A55A8D8E2BAB101600C540D4 /* ReadGroupByRemoteIdUseCase.swift in Sources */,
+				A5040A7B2FC6F6AE00A69936 /* CoreDataInitializationStep.swift in Sources */,
 				A5B3CBE72B6258F900F95AC3 /* GpmValueProvider.swift in Sources */,
 				A5BCA9B62E2A482200A5054A /* EspPostData.swift in Sources */,
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
@@ -8887,6 +8994,7 @@
 				A5B3CC042B627F3800F95AC3 /* PressureValueStringProvider.swift in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				6E8004D328493463009A917A /* AuthProfileItem+Ext.swift in Sources */,
+				A58189082FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift in Sources */,
 				A55A8D862BAAF52500C540D4 /* IssueView.swift in Sources */,
 				A55AE5FB2EEAB803006E0AA9 /* ColorBox.swift in Sources */,
 				A56EC92F2CEF1CF800A6E2CB /* UpdateChannelStateUseCase.swift in Sources */,
@@ -9019,6 +9127,7 @@
 				A503ABAB2B67A094008CDA1F /* CandleChartData.swift in Sources */,
 				A5F29B8B2A209EC900ED700A /* NSFetchRequest+Ext.swift in Sources */,
 				A54637B62D37E9A600D746F5 /* ImpulseCounterGeneralState.swift in Sources */,
+				A534D61F2FB32DAB007AAC73 /* ImpulseCounterSettings.swift in Sources */,
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
@@ -9179,7 +9288,7 @@
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				A5AE6D692E1D4ACC00BC2B67 /* AddWizardView.swift in Sources */,
 				A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */,
-				A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */,
+				A57669012AEFD4420025509D /* UserStateHolder.swift in Sources */,
 				A598CABB2CC0EE5200A784FA /* View+SuplaCard.swift in Sources */,
 				A5CF3E572DD6880A00207384 /* WidgetIcon.swift in Sources */,
 				A55BE8D32F960FE800362562 /* RangeSlider.swift in Sources */,
@@ -9245,6 +9354,11 @@
 				A585421D2D7F7B2900D314A2 /* ControlLevel.swift in Sources */,
 				A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */,
 				A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */,
+				B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */,
+				B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */,
+				B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */,
+				B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */,
+				B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */,
 				A5C347892EAF955400075244 /* SAChannelState+Printable.swift in Sources */,
 				A54637AC2D37BE2800D746F5 /* BaseRowsChartMarkerView.swift in Sources */,
 				A539C2712D67786500D9DD47 /* ValveGeneralFeature.swift in Sources */,
@@ -9257,9 +9371,11 @@
 				A5D712942C41088D00A8EF52 /* AboutView.swift in Sources */,
 				A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */,
 				A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */,
+				A534D6222FB33617007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift in Sources */,
 				A50B5D3D2BFB6EA200918D18 /* ProjectorScreenView.swift in Sources */,
 				A51BE9112AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift in Sources */,
 				A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */,
+				A5C82FC22FB34FF20044C57B /* TriggerLogHistoryDownloadUseCase.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				A5A9CAA02EE845E3009C0030 /* ColorListItemRepository.swift in Sources */,
 				A530EE062A5575D700F8DAEE /* DeviceStateUIView.swift in Sources */,
@@ -9356,6 +9472,7 @@
 				A59AB8D32A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift in Sources */,
 				A5D712752C3E708900A8EF52 /* CheckPinUseCaseTests.swift in Sources */,
 				A55A8DBF2BB2EED300C540D4 /* CompletableTestCase.swift in Sources */,
+				B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */,
 				A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */,
 				A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
@@ -9421,6 +9538,8 @@
 				A594ADDA2C9D5E0B00780EF3 /* ChannelWithChildrenTests.swift in Sources */,
 				A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */,
 				A55A8DC32BB2F4E000C540D4 /* NotificationCenterWrapperMock.swift in Sources */,
+				B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */,
+				B2A100001111111100000009 /* CreateEspPasswordUseCaseTests.swift in Sources */,
 				A5E40B6D2B86353600DB6ABE /* ChannelConfigRepositoryMock.swift in Sources */,
 				A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */,
 				A5519B3C2B6D36BD00811747 /* GpmValueProviderTest.swift in Sources */,
@@ -9523,6 +9642,9 @@
 				A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */,
+				A5E40B752B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift in Sources */,
+				A581890A2FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift in Sources */,
+				B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */,
 				A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */,
 				A54A06802AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5E40B6F2B868DA900DB6ABE /* AuthProfileItem+Mock.swift in Sources */,
@@ -10010,7 +10132,7 @@
 		};
 		401CA1E01BA067DB00117AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */;
+			baseConfigurationReference = 8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -10018,7 +10140,7 @@
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 276;
+				CURRENT_PROJECT_VERSION = 280;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10040,7 +10162,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 26.04;
+				MARKETING_VERSION = 26.05;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10054,7 +10176,7 @@
 		};
 		401CA1E11BA067DB00117AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */;
+			baseConfigurationReference = 19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -10062,7 +10184,7 @@
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 276;
+				CURRENT_PROJECT_VERSION = 280;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10084,7 +10206,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 26.04;
+				MARKETING_VERSION = 26.05;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -10096,7 +10218,7 @@
 		};
 		401CA1E31BA067DB00117AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */;
+			baseConfigurationReference = 904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -10127,7 +10249,7 @@
 		};
 		401CA1E41BA067DB00117AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */;
+			baseConfigurationReference = AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -10153,7 +10275,7 @@
 		};
 		A5741DBC2DC2513F00ED6C18 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DB3EFD1D1896FEDBCC636FB /* Pods-SUPLAWidgetsExtension.debug.xcconfig */;
+			baseConfigurationReference = 3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -10205,7 +10327,7 @@
 		};
 		A5741DBD2DC2513F00ED6C18 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5112F349C0AF063E78531836 /* Pods-SUPLAWidgetsExtension.release.xcconfig */;
+			baseConfigurationReference = 2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -10296,6 +10418,8 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */,
+				A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */,
 				A5BF4F582F3C7C7100F5DE81 /* SUPLA 26.xcdatamodel */,
 				A55AE82A2EEC0E5E006E0AA9 /* SUPLA 25.xcdatamodel */,
 				A5DB3ACA2E9E3DAD007DAD9B /* SUPLA 24.xcdatamodel */,
@@ -10323,7 +10447,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A5BF4F582F3C7C7100F5DE81 /* SUPLA 26.xcdatamodel */;
+			currentVersion = A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

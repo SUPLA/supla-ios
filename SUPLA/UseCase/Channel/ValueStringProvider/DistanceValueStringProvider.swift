@@ -19,13 +19,13 @@
 final class DistanceValueStringProvider: ChannelValueStringProvider {
     @Singleton<DistanceValueProvider> private var distanceValueProvider
     
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_DISTANCESENSOR
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_DISTANCESENSOR
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
         DistanceValueFormatter.shared.format(
-            value: distanceValueProvider.value(channel, valueType: valueType),
+            value: distanceValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )
     }

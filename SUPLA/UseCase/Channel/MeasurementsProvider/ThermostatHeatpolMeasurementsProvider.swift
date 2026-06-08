@@ -26,7 +26,6 @@ final class ThermostatHeatpolMeasurementsProviderImpl: ThermostatHeatpolMeasurem
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelValueUseCase> private var getChannelValueUseCase
-    @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
     @Singleton<SharedCore.ThermometerValueFormatter> private var thermometerValueFormatter
 
     func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {

@@ -26,12 +26,12 @@ class BaseDistanceValueStringProvider: ChannelValueStringProvider {
         fatalError("unknownValue has not been implemented")
     }
     
-    func handle(_ channel: SAChannel) -> Bool {
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
         fatalError("handle(function:) has not been implemented")
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        if let value = valueProvider.value(channel, valueType: valueType) as? Double,
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        if let value = valueProvider.value(channelWithChildren.channel, valueType: valueType) as? Double,
            value > unknownValue
         {
             return formatDistance(value, withUnit)

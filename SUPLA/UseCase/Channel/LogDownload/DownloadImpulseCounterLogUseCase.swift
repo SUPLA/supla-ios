@@ -19,15 +19,17 @@
 import RxSwift
 
 protocol DownloadImpulseCounterLogUseCase {
-    func invoke(remoteId: Int32) -> Observable<Float>
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws
 }
 
 final class DownloadImpulseCounterLogUseCaseImpl:
     BaseDownloadLogUseCase<SuplaCloudClient.ImpulseCounterMeasurement, SAImpulseCounterMeasurementItem>,
     DownloadImpulseCounterLogUseCase {
     
-    @Singleton<SuplaCloudService> var cloudService
+    @Singleton<SuplaCloudService> private var cloudService
+    @Singleton<UserStateHolder> private var userStateHolder
     @Singleton<ImpulseCounterMeasurementItemRepository> private var impulseCounterMeasurementItemRepository
+    @Singleton<RefreshImpulseCounterAggregatedValue.UseCase> private var refreshImpulseCounterAggregatedValueUseCase
     
     override func iterateAndImport(
         _ totalCount: Int,
@@ -35,9 +37,9 @@ final class DownloadImpulseCounterLogUseCaseImpl:
         _ cleanMeasurements: Bool,
         _ remoteId: Int32,
         _ serverId: Int32,
-        _ observer: AnyObserver<Float>,
+        _ observer: (Float) -> Void,
         _ disposable: BooleanDisposable
-    ) throws {
+    ) async throws {
         let entriesToImport = totalCount - databaseCount
         let lastEntity = impulseCounterMeasurementItemRepository
             .findOldestEntity(remoteId: remoteId, serverId: serverId)
@@ -68,8 +70,20 @@ final class DownloadImpulseCounterLogUseCaseImpl:
             afterTimestamp = lastEntry?.date_timestamp.timeIntervalSince1970 ?? 0
             
             importedEntries += measurements.count
-            observer.onNext(Float(importedEntries) / Float(entriesToImport))
+            
+            let importStatus = Float(importedEntries) / Float(entriesToImport)
+            await MainActor.run { observer(importStatus) }
         }
+    }
+    
+    override func onDownloadFinished(remoteId: Int32, profileId: Int32) async {
+        let settings = userStateHolder.getImpulseCounterSettings(profileId: profileId, remoteId: remoteId)
+        if (settings.showOnList == .noAggregation) {
+            SALog.debug("No aggregated value to update")
+            return
+        }
+        
+        await refreshImpulseCounterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
     }
     
     private func getLastMeasurement(_ remoteId: Int32, afterTimestamp: Double) throws -> SuplaCloudClient.ImpulseCounterMeasurement? {

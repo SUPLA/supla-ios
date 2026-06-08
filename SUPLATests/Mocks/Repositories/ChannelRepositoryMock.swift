@@ -21,10 +21,9 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelRepository {
-    
-    var allVisibleChannelsObservable: Observable<[SAChannel]> = Observable.empty()
-    func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
-        return allVisibleChannelsObservable
+    var allVisibleChannelsMock: FunctionMock<(AuthProfileItem, Bool), Observable<[SAChannel]>> = .init()
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]> {
+        return allVisibleChannelsMock.handle((profile, withUnavailable))
     }
     
     var allChannelsObservable: Observable<[SAChannel]> = Observable.empty()
@@ -93,7 +92,7 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
     }
     
-    func getAllVisibleChannels(forProfileId profileId: Int32) -> RxSwift.Observable<[SAChannel]> {
+    func getAllVisibleChannels(forProfileId profileId: Int32, withUnavailable: Bool) -> RxSwift.Observable<[SAChannel]> {
         .empty()
     }
     
@@ -103,5 +102,10 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     
     func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32> {
         .empty()
+    }
+    
+    var findChannelsByMock: FunctionMock<(Int32, SharedCore.SuplaFunction), [SAChannel]> = .init()
+    func findChannelsBy(_ profileId: Int32, function: SharedCore.SuplaFunction) async -> [SAChannel] {
+        findChannelsByMock.handle((profileId, function))
     }
 }

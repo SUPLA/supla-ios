@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -31,6 +30,7 @@ struct StatusView: View {
                 ConnectionStatusView(
                     text: viewState.stateText.text,
                     showAccountButton: viewState.stateText.showAccountButton,
+                    showMigrationMessage: viewState.showMigrationMessage,
                     onProfilesClick: onProfilesClick
                 )
             case .error:
@@ -47,6 +47,7 @@ struct StatusView: View {
 private struct ConnectionStatusView: View {
     var text: String
     var showAccountButton: Bool
+    var showMigrationMessage: Bool
     var onProfilesClick: () -> Void = {}
 
     var body: some View {
@@ -58,6 +59,11 @@ private struct ConnectionStatusView: View {
                 .frame(width: 140, height: 140)
                 .foregroundColor(BrandingConfiguration.Status.COLOR_FILLER)
             Text(text).fontBodyMedium()
+            if (showMigrationMessage) {
+                Text(Strings.Status.migrationMessage)
+                    .fontBodySmall()
+                    .textColor(.Supla.onSurfaceVariant)
+            }
             Spacer()
         }
         .padding(Dimens.distanceDefault)
@@ -109,6 +115,14 @@ private struct ErrorStatusView: View {
 #Preview("Connecting") {
     let viewState = StatusFeature.ViewState()
     viewState.stateText = .connecting
+    
+    return StatusView(viewState: viewState)
+}
+
+#Preview("Initializing") {
+    let viewState = StatusFeature.ViewState()
+    viewState.stateText = .initializing
+    viewState.showMigrationMessage = true
     
     return StatusView(viewState: viewState)
 }

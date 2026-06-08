@@ -167,6 +167,7 @@ enum DetailPage {
     case impulseCounterGeneral
     case impulseCounterHistory
     case impulseCounterOcr
+    case impulseCounterSettings
     
     // Valve
     case valveGeneral

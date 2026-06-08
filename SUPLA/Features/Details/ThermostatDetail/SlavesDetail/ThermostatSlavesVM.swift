@@ -102,6 +102,7 @@ private extension ChannelChild {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
+            profileId: channel.profile.id,
             deviceId: channel.device_id,
             function: channel.func,
             onlineState: channel.onlineState,
@@ -155,6 +156,7 @@ private extension ChannelWithChildren {
         
         return ThermostatSlavesFeature.ThermostatData(
             id: channel.remote_id,
+            profileId: channel.profile.id,
             deviceId: channel.device_id,
             function: channel.func,
             onlineState: channel.onlineState,
@@ -179,4 +181,10 @@ private func getChannelIcon(_ channel: SAChannel?) -> IconResult? {
     
     let subfunction: ThermostatSubfunction? = channel.isHvacThermostat() ? channel.value?.asThermostatValue().subfunction : nil
     return getChannelIconUseCase.invoke(channel: channel, subfunction: subfunction)
+}
+
+private extension GetChannelValueStringUseCase {
+    func invoke(_ channel: SAChannel) -> String {
+        invoke(ChannelWithChildren(channel: channel))
+    }
 }

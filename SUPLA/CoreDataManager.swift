@@ -18,6 +18,7 @@
 
 import CoreData
 import Foundation
+import RxSwift
 
 @objc
 class CoreDataManager: NSObject {
@@ -25,9 +26,15 @@ class CoreDataManager: NSObject {
     @Singleton<RestoreProfileFromDefaults.UseCase> private var restoreProfileFromDefaultsUseCase
     
     let migrator: CoreDataMigrator
+    let initializationSubject: BehaviorSubject<CoreDataInitializationStep> = .init(value: .awaiting)
+
     private let storeType: String
     
     private var tryRecreateAccount = false
+    
+    private let readinessQueue = DispatchQueue(label: "CoreDataManager.readiness")
+    private var isStoreLoaded = false
+    private var readinessCallbacks: [(Result<Void, Error>) -> Void] = []
     
     @objc
     lazy var persistentContainer: NSPersistentContainer! = {
@@ -79,8 +86,25 @@ class CoreDataManager: NSObject {
             forName: NSValueTransformerName("GroupTotalValueTransformer")
         )
         
+        initializationSubject.on(.next(.initializing))
         loadPersistentStore {
+            self.initializationSubject.on(.next(.initialized))
             completion()
+        }
+    }
+    
+    func whenStoreLoaded(_ callback: @escaping (Result<Void, Error>) -> Void) {
+        let result = readinessQueue.sync { () -> Result<Void, Error>? in
+            if isStoreLoaded {
+                return .success(())
+            }
+
+            readinessCallbacks.append(callback)
+            return nil
+        }
+
+        if let result {
+            callback(result)
         }
     }
 
@@ -92,16 +116,18 @@ class CoreDataManager: NSObject {
                 }
                 
                 if (self.tryRecreateAccount) {
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if (self.restoreProfileFromDefaultsUseCase.invoke()) {
-                            self.settings.anyAccountRegistered = true
-                        }
-                        DispatchQueue.main.async {
-                            completion()
-                        }
+                    if (self.restoreProfileFromDefaultsUseCase.invoke()) {
+                        self.settings.anyAccountRegistered = true
+                    }
+                    DispatchQueue.main.async {
+                        self.markStoreLoaded()
+                        completion()
                     }
                 } else {
-                    completion()
+                    self.markStoreLoaded()
+                    DispatchQueue.main.async {
+                        completion()
+                    }
                 }
             }
         }
@@ -112,8 +138,9 @@ class CoreDataManager: NSObject {
             fatalError("persistentContainer was not set up properly")
         }
         
-        if migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
-            DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).async {
+            if self.migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
+                self.initializationSubject.on(.next(.migrating))
                 do {
                     try self.migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
                 } catch {
@@ -125,16 +152,25 @@ class CoreDataManager: NSObject {
                     self.removeCurrentDatabase()
 #endif
                 }
-
-                DispatchQueue.main.async {
-                    completion()
-                }
+                
+                completion()
+            } else {
+                completion()
             }
-        } else {
-            completion()
         }
     }
     
+    private func markStoreLoaded() {
+        let callbacks = readinessQueue.sync {
+            isStoreLoaded = true
+            let callbacks = readinessCallbacks
+            readinessCallbacks.removeAll()
+            return callbacks
+        }
+
+        callbacks.forEach { $0(.success(())) }
+    }
+
     private func removeCurrentDatabase() {
         do {
             _ = try removeDatabase(with: "SUPLA_DB14.sqlite")
@@ -164,5 +200,42 @@ class CoreDataManager: NSObject {
         }
         
         return false
+    }
+    
+    enum StoreError: Error {
+        case notLoaded(Error)
+    }
+}
+
+extension CoreDataManager {
+    func rxStoreLoaded() -> Observable<Void> {
+        Observable.create { observer in
+            self.whenStoreLoaded { result in
+                switch result {
+                case .success:
+                    observer.onNext(())
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+
+            return Disposables.create()
+        }
+    }
+}
+
+extension CoreDataManager {
+    func waitForStoreLoaded() async throws {
+        try await withCheckedThrowingContinuation { continuation in
+            self.whenStoreLoaded { result in
+                switch result {
+                case .success:
+                    continuation.resume()
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
     }
 }

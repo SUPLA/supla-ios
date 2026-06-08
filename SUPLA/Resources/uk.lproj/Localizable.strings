@@ -245,8 +245,14 @@
 "general_action" = "Подія";
 "general_delete" = "Видалити";
 "general_processing" = "Обробка";
+"general_loading" = "Завантаження...";
 "incorrect_password" = "Неправильний пароль";
 "app_sentence" = "нарешті вдома!";
+"general_current_hour" = "Поточна година";
+"general_current_day" = "Поточний день";
+"general_current_month" = "Поточний місяць";
+"general_current_week" = "Поточний тиждень";
+"general_current_year" = "Поточний рік";
 /* General - DayOfWeek */
 "monday" = "Понеділок";
 "tuesday" = "Вівторок";
@@ -331,7 +337,7 @@
 "settings_lock_screen_none" = "Немає";
 "settings_show_bottom_menu" = "Показати нижнє меню";
 "app_settings_temperature_precision" = "Точність температури";
-
+"settings_show_unavailable_channels" = "Приховати канали, які недоступні через конфігурацію пристрою";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Загальні";
@@ -478,6 +484,7 @@
 "status_access_id_inactive" = "Ідентифікатор доступу неактивний.";
 "status_host_not_found" = "Адреса сервера не знайдена. Переконайтеся, що у вас є підключення до Інтернету та що створено обліковий запис із введеною адресою електронної пошти.";
 "status_cant_connect_to_host" = "Не вдалося підключитися до сервера";
+"status_migration_message" = "Ваші дані мігруються, будь ласка, зачекайте...";
 
 /* Pin setup */
 "pin_setup_header" = "Встановіть свій PIN-код";
@@ -539,10 +546,17 @@
 "details_em_total_suffix" = "(стан лічильника)";
 "details_em_current_month_suffix" = "(поточний місяць)";
 "details_em_last_month_balancing" = "Балансування поточного місяця";
+"details_em_on_list" = "Відображення у списку каналів";
+"details_em_settings_list_metric" = "Вибране значення";
+"details_em_on_list_balance" = "Метод балансування енергії";
+"details_em_on_list_value" = "Діапазон даних";
+"details_em_active_energy_balance" = "Баланс активної енергії";
 
 /* Impulse counter */
 "details_em_meter_value" = "Стан лічильника";
 "details_em_current_month_consumption" = "Споживання за поточний місяць";
+"impulse_counter_settings_counter_status" = "Поточні показники лічильника";
+"details_ic_settings_list_item" = "Значення, показане у списку каналів";
 
 /* Valve */
 "valve_warning_manually_closed" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";

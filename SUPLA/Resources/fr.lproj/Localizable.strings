@@ -245,8 +245,14 @@
 "general_action" = "Action";
 "general_delete" = "Supprimer";
 "general_processing" = "Traitement en cours";
+"general_loading" = "Chargement...";
 "incorrect_password" = "Mot de passe incorrect";
 "app_sentence" = "enfin à la maison !";
+"general_current_hour" = "Heure actuelle";
+"general_current_day" = "Jour actuel";
+"general_current_month" = "Mois actuel";
+"general_current_week" = "Semaine actuelle";
+"general_current_year" = "Année actuelle";
 /* General - DayOfWeek */
 "monday" = "Lundi";
 "tuesday" = "Mardi";
@@ -331,6 +337,7 @@
 "settings_show_labels" = "Afficher les étiquettes dans le menu inférieur";
 "settings_dark_mode" = "Mode nuit";
 "app_settings_temperature_precision" = "Précision de la température";
+"settings_show_unavailable_channels" = "Masquer les canaux indisponibles en raison de la configuration de l’appareil";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Générale";
@@ -477,6 +484,7 @@
 "status_access_id_inactive" = "ID d'accès inactif.";
 "status_host_not_found" = "Nous n'avons pas pu trouver cette adresse du serveur";
 "status_cant_connect_to_host" = "Impossible de se connecter au serveur";
+"status_migration_message" = "Migration de vos données en cours, veuillez patienter...";
 
 /* Pin setup */
 "pin_setup_header" = "Définissez votre code PIN";
@@ -538,10 +546,17 @@
 "details_em_last_month_balancing" = "Solde du mois en cours";
 "em_phase_to_phase_balance" = "Bilan interphase vectorielle";
 "em_chart_all_phases" = "Phase 1+2+3";
+"details_em_on_list" = "Affichage dans la liste des canaux";
+"details_em_settings_list_metric" = "Valeur sélectionnée";
+"details_em_on_list_balance" = "Méthode d’équilibrage énergétique";
+"details_em_on_list_value" = "Plage de données";
+"details_em_active_energy_balance" = "Bilan de l’énergie active";
 
 /* Impulse counter */
 "details_em_meter_value" = "Valeur du compteur";
 "details_em_current_month_consumption" = "Consommation dans le mois courant";
+"impulse_counter_settings_counter_status" = "Relevé actuel du compteur";
+"details_ic_settings_list_item" = "Valeur affichée dans la liste des chaînes";
 
 /* Valve */
 "valve_warning_manually_closed" = "La vanne a été fermée en mode manuel. Avant de l'ouvrir, assurez-vous qu'elle n'a pas été fermée en raison d'une inondation. Pour désactiver l'avertissement, ouvrez la vanne manuellement. Êtes-vous sûr de vouloir ouvrir la vanne à partir de l'application?";

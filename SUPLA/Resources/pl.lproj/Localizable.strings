@@ -254,8 +254,14 @@
 "general_delete" = "Usuń";
 "general_select" = "-- wybierz --";
 "general_processing" = "Przetwarzanie";
+"general_loading" = "Ładowanie...";
 "incorrect_password" = "Nieprawidłowe hasło";
 "app_sentence" = "nareszcie w domu!";
+"general_current_hour" = "Bieżąca godzina";
+"general_current_day" = "Bieżący dzień";
+"general_current_month" = "Bieżący miesiąc";
+"general_current_week" = "Bieżący tydzień";
+"general_current_year" = "Bieżący rok";
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -348,6 +354,7 @@
 "settings_lock_screen_accounts" = "Konta";
 "settings_battery_level_warnign" = "Sygnalizacja słabej baterii";
 "app_settings_temperature_precision" = "Precyzja temperatury";
+"settings_show_unavailable_channels" = "Ukryj kanały, które są niedostępne ze względu na konfigurację urządzenia";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
@@ -506,6 +513,7 @@
 "status_access_id_inactive" = "Identyfikator dostępu nieaktywny.";
 "status_host_not_found" = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
 "status_cant_connect_to_host" = "Nie można połączyć się z serwerem";
+"status_migration_message" = "Migrujemy Twoje dane, proszę czekać...";
 
 /* Pin setup */
 "pin_setup_title" = "Konfiguracja PIN";
@@ -587,10 +595,17 @@
 "details_em_voltage_phase_angle_13" = "Kąt między napięciami faz 1–3";
 "details_em_voltage_phase_sequence" = "Kolejność faz napięcia";
 "details_em_current_phase_sequence" = "Kolejność faz prądu";
+"details_em_on_list" = "Wyświetlanie na liście kanałów";
+"details_em_settings_list_metric" = "Wybrana wartość";
+"details_em_on_list_balance" = "Metoda bilansowania energii";
+"details_em_on_list_value" = "Zakres danych";
+"details_em_active_energy_balance" = "Bilans enegrii czynnej";
 
 /* Impulse counter */
 "details_em_meter_value" = "Stan licznika";
 "details_em_current_month_consumption" = "Zużycie w bieżącym miesiącu";
+"impulse_counter_settings_counter_status" = "Aktualny stan licznika";
+"details_ic_settings_list_item" = "Wartość pokazywana na liście kanałów";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Zdjęcia licznika";

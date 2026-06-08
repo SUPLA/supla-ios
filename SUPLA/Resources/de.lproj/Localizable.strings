@@ -246,8 +246,14 @@
 "general_action" = "Aktion";
 "general_delete" = "Löschen";
 "general_processing" = "Wird verarbeitet";
+"general_loading" = "Wird geladen...";
 "incorrect_password" = "Falsches Passwort";
 "app_sentence" = "endlich zuhause!";
+"general_current_hour" = "Aktuelle Stunde";
+"general_current_day" = "Aktueller Tag";
+"general_current_month" = "Aktueller Monat";
+"general_current_week" = "Aktuelle Woche";
+"general_current_year" = "Aktuelles Jahr";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
@@ -319,6 +325,7 @@
 "settings_lock_screen_accounts" = "Konten";
 "settings_battery_level_warnign" = "Batteriestandswarnung";
 "app_settings_temperature_precision" = "Temperaturpräzision";
+"settings_show_unavailable_channels" = "Kanäle ausblenden, die aufgrund der Gerätekonfiguration nicht verfügbar sind";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -473,6 +480,7 @@
 "status_access_id_inactive" = "Zugriffskennung nicht aktiv.";
 "status_host_not_found" = "Host nicht gefunden. Überprüfen Sie bitte ob die Internetverbindung korrekt funktioniert und das Konto korrekt erstellt wurde.";
 "status_cant_connect_to_host" = "Die Verbindung mit dem Server konnte nicht erstellt werden";
+"status_migration_message" = "Ihre Daten werden migriert, bitte warten...";
 
 /* Pin setup */
 "pin_setup_title" = "PIN konfigurieren";
@@ -553,10 +561,17 @@
 "details_em_voltage_phase_angle_13" = "Spannungs-Phasewinkel U13";
 "details_em_voltage_phase_sequence" = "Spannungs-Phasenfolge";
 "details_em_current_phase_sequence" = "Stromphasenfolge";
+"details_em_on_list" = "Anzeige in der Kanalliste";
+"details_em_settings_list_metric" = "Ausgewählter Wert";
+"details_em_on_list_balance" = "Methode zur Energiebilanzierung";
+"details_em_on_list_value" = "Datenbereich";
+"details_em_active_energy_balance" = "Bilanz der Wirkenergie";
 
 /* Impulse counter */
 "details_em_meter_value" = "Zählerstand";
 "details_em_current_month_consumption" = "Verbrauch im laufenden Monat";
+"impulse_counter_settings_counter_status" = "Aktueller Zählerstand";
+"details_ic_settings_list_item" = "In der Kanalliste angezeigte Metrik";
 
 /* Counter photo */
 "counter_photo_toolbar" = "Bilder von Zähler";

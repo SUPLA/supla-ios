@@ -19,13 +19,13 @@
 final class WindValueStringProvider: ChannelValueStringProvider {
     @Singleton<WindValueProvider> private var windValueProvider
     
-    func handle(_ channel: SAChannel) -> Bool {
-        channel.func == SUPLA_CHANNELFNC_WINDSENSOR
+    func handle(_ channelWithChildren: ChannelWithChildren) -> Bool {
+        channelWithChildren.channel.func == SUPLA_CHANNELFNC_WINDSENSOR
     }
     
-    func value(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
         WindValueFormatter.shared.format(
-            value: windValueProvider.value(channel, valueType: valueType),
+            value: windValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
         )
     }

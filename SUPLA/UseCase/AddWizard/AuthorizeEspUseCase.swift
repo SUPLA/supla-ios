@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import SwiftSoup
+import Collections
 
 private let TIMEOUT_SECS: UInt64 = 15
 
@@ -36,13 +38,33 @@ enum AuthorizeEsp {
         }
         
         private func perform(password: String) async -> Result {
-            let result = await espRepository.login(password: password)
+            let html = await espRepository.login()
             
+            var fieldsMap: OrderedDictionary<String, String> = [:]
+            if let errorResult = extractFields(response: html, &fieldsMap) {
+                return errorResult
+            }
+            
+            let result = await espRepository.login(password: password, fieldsMap: &fieldsMap)
             return switch result {
             case .success: .success
             case .temporarilyLocked: .temporarilyLocked
-            case .failure(let error): error is InvalidCredentialsError ? .failureWrongPassword : .failureUnknown
+            case .failure(_, let error): error is InvalidCredentialsError ? .failureWrongPassword : .failureUnknown
             default: .failureUnknown
+            }
+        }
+        
+        private func extractFields(response: Esp.RequestResult, _ map: inout OrderedDictionary<String, String>) -> Result? {
+            switch (response) {
+            case .success(_, let html):
+                guard let document = try? SwiftSoup.parse(html) else { return .failureUnknown }
+                let parser = EspHtmlParser()
+                parser.findInputs(document: document).forEach { key, value in
+                    map[key] = value
+                }
+                return nil
+            case .temporarilyLocked: return .temporarilyLocked
+            default: return .failureUnknown
             }
         }
     }

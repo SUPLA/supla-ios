@@ -111,53 +111,94 @@ final class LoadChannelMeasurementsDateRangeUseCaseMock: LoadChannelMeasurements
 }
 
 final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
 final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
 final class GetChannelValueStringUseCaseMock: GetChannelValueStringUseCase {
-    var parameters: [(SAChannel, ValueType, Bool)] = []
+    var parameters: [(SUPLA.ChannelWithChildren, ValueType, Bool)] = []
     var returns: String = ""
-    func invoke(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
-        parameters.append((channel, valueType, withUnit))
+    func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        parameters.append((channelWithChildren, valueType, withUnit))
         return returns
     }
     
-    var valueOrNilMock: FunctionMock<(SAChannel, SUPLA.ValueType, Bool), String?> = .init()
-    func valueOrNil(_ channel: SAChannel, valueType: SUPLA.ValueType, withUnit: Bool) -> String? {
-        valueOrNilMock.set((channel, valueType, withUnit))
+    var valueOrNilMock: FunctionMock<(SUPLA.ChannelWithChildren, SUPLA.ValueType, Bool), String?> = .init()
+    func valueOrNil(_ channelWithChildren: SUPLA.ChannelWithChildren, valueType: SUPLA.ValueType, withUnit: Bool) -> String? {
+        valueOrNilMock.set((channelWithChildren, valueType, withUnit))
         return valueOrNilMock.get()
     }
 }
 
 final class DownloadGeneralPurposeMeasurementLogUseCaseMock: DownloadGeneralPurposeMeasurementLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
 final class DownloadGeneralPurposeMeterLogUseCaseMock: DownloadGeneralPurposeMeterLogUseCase {
-    var parameters: [Int32] = []
-    var returns: Observable<Float> = Observable.empty()
-    func invoke(remoteId: Int32) -> Observable<Float> {
-        parameters.append(remoteId)
-        return returns
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadElectricityMeterLogUseCaseMock: DownloadElectricityMeterLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadCurrentLogUseCaseMock: DownloadCurrentLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadVoltageLogUseCaseMock: DownloadVoltageLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadPowerActiveLogUseCaseMock: DownloadPowerActiveLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadImpulseCounterLogUseCaseMock: DownloadImpulseCounterLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadHumidityLogUseCaseMock: DownloadHumidityLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
+    }
+}
+
+final class DownloadThermostatHeatpolLogUseCaseMock: DownloadThermostatHeatpolLogUseCase {
+    var mock: FunctionMock<(Int32, AuthProfileItem), Void> = .init()
+    func invoke(remoteId: Int32, profile: AuthProfileItem, observer: (Float) -> Void) async throws {
+        mock.set((remoteId, profile))
     }
 }
 
@@ -167,6 +208,18 @@ final class LoadChannelConfigUseCaseMock: LoadChannelConfigUseCase {
     func invoke(remoteId: Int32) -> Observable<SuplaChannelConfig?> {
         parameters.append(remoteId)
         return returns
+    }
+}
+
+final class LoadElectricityMeterMeasurementsUseCaseMock: LoadElectricityMeterMeasurementsUseCase {
+    var remoteIdMock: FunctionMock<(Int32, Date?, Date?), Observable<ElectricityMeasurements>> = .init()
+    func invoke(remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
+        return remoteIdMock.handle((remoteId, startDate, endDate))
+    }
+
+    var profileMock: FunctionMock<(Int32, Int32, Date?, Date?), Observable<ElectricityMeasurements>> = .init()
+    func invoke(profile: AuthProfileItem, remoteId: Int32, startDate: Date?, endDate: Date?) -> Observable<ElectricityMeasurements> {
+        return profileMock.handle((profile.id, remoteId, startDate, endDate))
     }
 }
 

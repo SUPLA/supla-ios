@@ -261,8 +261,14 @@
 "general_action" = "Azione";
 "general_delete" = "Rimuovi";
 "general_processing" = "Elaborazione";
+"general_loading" = "Caricamento...";
 "incorrect_password" = "Password errata";
 "app_sentence" = "finalmente a casa!";
+"general_current_hour" = "Ora corrente";
+"general_current_day" = "Giorno corrente";
+"general_current_month" = "Mese corrente";
+"general_current_week" = "Settimana corrente";
+"general_current_year" = "Anno corrente";
 /* General - DayOfWeek */
 "monday" = "Lunedì";
 "tuesday" = "Martedì";
@@ -348,6 +354,7 @@
 "settings_lock_screen_app" = "Applicazione";
 "settings_lock_screen_accounts" = "Account";
 "app_settings_temperature_precision" = "Precisione della temperatura";
+"settings_show_unavailable_channels" = "Nascondi i canali non disponibili a causa della configurazione del dispositivo";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Generali";
@@ -503,6 +510,7 @@
 "status_access_id_not_assigned" = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina \"Supla Cloud\" e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
 "status_host_not_found" = "L’indirizzo del server non è stato trovato";
 "status_cant_connect_to_host" = "Connessione con il server non riuscita";
+"status_migration_message" = "Migrazione dei dati in corso, attendere prego...";
 
 /* Pin setup */
 "pin_setup_title" = "Configurazione PIN";
@@ -570,10 +578,17 @@
 "details_em_hour_marker_title" = "%@";
 "em_phase_to_phase_balance" = "Equilibrio interfase vettoriale";
 "em_chart_all_phases" = "Fase 1+2+3";
+"details_em_on_list" = "Visualizzazione nell’elenco dei canali";
+"details_em_settings_list_metric" = "Valore selezionato";
+"details_em_on_list_balance" = "Metodo di bilanciamento energetico";
+"details_em_on_list_value" = "Intervallo dati";
+"details_em_active_energy_balance" = "Bilancio dell’energia attiva";
 
 /* Impulse counter */
 "details_em_meter_value" = "Lettura del contatore";
 "details_em_current_month_consumption" = "Consumo del mese corrente";
+"impulse_counter_settings_counter_status" = "Lettura attuale del contatore";
+"details_ic_settings_list_item" = "Valore visualizzato nell\\'elenco dei canali";
 
 /* Valve */
 "valve_warning_manually_closed" = "La valvola è stata chiusa manualmente. Prima di aprirla assicurarsi che non sia stata chiusa a causa di un problema. Per disattivare l'avviso aprire la valvola manualmente. Sei sicuro di voler aprire la valvola dall'applicazione?";

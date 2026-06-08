@@ -87,6 +87,8 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func start(animated: Bool = false) {
+        self.navigateToStatusView()
+        
         stateDisposable = stateHolder.state()
             .subscribe(on: schedulers.background)
             .observe(on: schedulers.main)
