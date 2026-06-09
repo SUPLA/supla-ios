@@ -20,14 +20,7 @@
 import SwiftUI
 
 extension SuplaCore {
-    class BaseViewController<S: ObservableObject, V: View, VM: BaseViewModel<S>>: UIViewController, NavigationBarVisibilityController {
-        @Singleton<GlobalSettings> private var settings
-        
-        override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
-        
-        var navigationBarHidden: Bool { false }
-        var toolbarFont: UIFont { .suplaSubtitleFont }
-        
+    class BaseViewController<S: ObservableObject, V: View, VM: BaseViewModel<S>>: NavigableBaseViewController {
         var viewModel: VM
         var state: S
         var contentView: V!
@@ -52,7 +45,6 @@ extension SuplaCore {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
             viewModel.onViewDidLoad()
             
             addChild(hostingController)
@@ -64,13 +56,62 @@ extension SuplaCore {
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
             viewModel.onViewWillAppear()
         }
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             viewModel.onViewAppeared()
+        }
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            viewModel.onViewWillDisappear()
+        }
+        
+        override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+            viewModel.onViewDisappeared()
+        }
+        
+        private func setupConstraints() {
+            NSLayoutConstraint.activate([
+                hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+                hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+                hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+            ])
+        }
+        
+        #if DEBUG
+            deinit {
+                let className = NSStringFromClass(type(of: self))
+                SALog.debug("[DEINIT] VC:\(className)")
+            }
+        #endif
+    }
+    
+    class NavigableBaseViewController: UIViewController, NavigationBarVisibilityController {
+        @Singleton<GlobalSettings> var settings
+        
+        override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+        
+        var navigationBarHidden: Bool { false }
+        var toolbarFont: UIFont { .suplaSubtitleFont }
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
+        }
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
+        }
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            NotificationCenter.default.removeObserver(self)
         }
         
         override func viewWillLayoutSubviews() {
@@ -81,29 +122,8 @@ extension SuplaCore {
             }
         }
         
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            viewModel.onViewWillDisappear()
-            
-            NotificationCenter.default.removeObserver(self)
-        }
-        
-        override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
-            viewModel.onViewDisappeared()
-        }
-        
         func observeNotification(name: NSNotification.Name?, selector: Selector) {
             NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
-        }
-        
-        private func setupConstraints() {
-            NSLayoutConstraint.activate([
-                hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-                hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-                hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
         }
         
         #if DEBUG

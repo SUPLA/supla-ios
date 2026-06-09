@@ -68,6 +68,8 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
             send(event: .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: item))
         case let .standardDetail(pages):
             send(event: .navigateToStandardDetail(item: item.item(), pages: pages))
+        case let .rgbwDetail(pages):
+            send(event: .navigateToRgbwDetail(item: item.item(), pages: pages))
         default: break
         }
     }
@@ -89,6 +91,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
 enum GroupListViewEvent: ViewEvent {
     case navigateToLegacyDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
     case navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
     case open(url: URL)
 }
 

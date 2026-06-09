@@ -268,7 +268,10 @@ typedef struct {
             }
             [self cfgToUIWithDelay:YES];
             break;
-            
+        case VL_MSG_CONFIG_COMPLETE:
+            [self cleanConfigStartedAtTime];
+            [SuplaAppCoordinatorLegacyWrapper finish];
+            break;
         default:
             break;
     }
@@ -334,6 +337,16 @@ typedef struct {
     self->_restoringDefaults = YES;
     [self startConfigurationAgainWithRetry];
     [self deviceCalCfgCommand:VL_MSG_RESTORE_DEFAULTS charValue:NULL shortValue:NULL];
+}
+
+- (void) onSaveYesButtonTapped {
+    [super onSaveYesButtonTapped];
+    [SuplaAppCoordinatorLegacyWrapper finish];
+}
+
+- (void) onSaveNoButtonTapped {
+    [super onSaveNoButtonTapped];
+    [SuplaAppCoordinatorLegacyWrapper finish];
 }
 
 @end

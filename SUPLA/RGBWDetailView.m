@@ -44,16 +44,6 @@
 -(void)detailViewInit {
     BOOL wasInitialized = self.initialized;
     [super detailViewInit];
-    
-    if (!wasInitialized) {
-        self.settingsLabel.text = LegacyStrings.rgbDetailSettingsUnauthorized;
-        [self.settingsButton setTitle:LegacyStrings.rgbDetailAuthorize forState:UIControlStateNormal];
-        [self.settingsButton addTarget:self action:@selector(authorizeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    }
-}
-
-- (void) authorizeButtonPressed: (UIButton*) button {
-    [self openCalibrationTool];
 }
 
 - (void)layoutSubviews {

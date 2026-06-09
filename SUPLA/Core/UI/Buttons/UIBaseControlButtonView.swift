@@ -113,8 +113,8 @@ class UIBaseControlButtonView: UIView {
         return view
     }()
     
-    private lazy var containerView: UIImageView = {
-        let view = UIImageView()
+    private lazy var containerView: UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -140,6 +140,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListView
             send(event: .navigateToStandardDetail(item: channel.item(), pages: pages))
         case let .impulseCounterDetail(pages):
             send(event: .navigateToImpulseCounterDetail(item: channel.item(), pages: pages))
+        case let .rgbwDetail(pages):
+            send(event: .navigateToRgbwDetail(item: channel.item(), pages: pages))
         }
     }
     
@@ -166,6 +168,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToLegacyDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
     case navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
 }
 

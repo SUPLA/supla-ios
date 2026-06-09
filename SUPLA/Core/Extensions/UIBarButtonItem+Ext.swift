@@ -38,4 +38,13 @@ extension UIBarButtonItem {
             )
         }
     }
+
+    static func back(target: AnyObject?, action: Selector?) -> UIBarButtonItem {
+        UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            style: .plain,
+            target: target,
+            action: action
+        )
+    }
 }

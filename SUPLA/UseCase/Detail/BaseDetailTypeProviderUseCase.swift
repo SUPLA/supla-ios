@@ -18,22 +18,19 @@
 
 import Foundation
 
-private let ZAM_PRODID_DIW_01 = 2000
-private let COM_PRODID_WDIM100 = 2000
-
 class BaseDetailTypeProviderUseCase {
     func provide(_ channelBase: SAChannelBase) -> DetailType? {
         switch channelBase.func {
         case SUPLA_CHANNELFNC_DIMMER:
-            return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.dimmer, .legacyDimmerSettings] : [.dimmer])
+            return .rgbwDetail(pages: [.dimmer])
         case SUPLA_CHANNELFNC_DIMMER_CCT:
-            return .standardDetail(pages: [.dimmerCct])
+            return .rgbwDetail(pages: [.dimmerCct])
         case SUPLA_CHANNELFNC_RGBLIGHTING:
-            return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.rgb, .legacyDimmerSettings] : [.rgb])
+            return .rgbwDetail(pages: [.rgb])
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return .standardDetail(pages: shouldShowRgbSettings(channelBase) ? [.rgb, .dimmer, .legacyDimmerSettings] : [.rgb, .dimmer])
+            return .rgbwDetail(pages: [.rgb, .dimmer])
         case SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB:
-            return .standardDetail(pages: [.rgb, .dimmerCct])
+            return .rgbwDetail(pages: [.rgb, .dimmerCct])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
             return .standardDetail(pages: [.roofWindow])
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
@@ -102,27 +99,17 @@ class BaseDetailTypeProviderUseCase {
             return nil
         }
     }
-    
-    private func shouldShowRgbSettings(_ channelBase: SAChannelBase) -> Bool {
-        guard let channel = channelBase as? SAChannel else { return false }
-        
-        let manufacturerId = channel.manufacturer_id
-        let productId = channel.product_id
-        
-        return manufacturerId == SUPLA_MFR_DOYLETRATT && productId == 1 ||
-            manufacturerId == SUPLA_MFR_ZAMEL && productId == ZAM_PRODID_DIW_01 ||
-            manufacturerId == SUPLA_MFR_COMELIT && productId == COM_PRODID_WDIM100
-    }
 }
 
 enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
     case standardDetail(pages: [DetailPage])
     case impulseCounterDetail(pages: [DetailPage])
+    case rgbwDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
-    case rgbw, ic, thermostat_hp, digiglass
+    case thermostat_hp, digiglass
 }
 
 enum DetailPage {
@@ -182,5 +169,4 @@ enum DetailPage {
     case rgb
     case dimmer
     case dimmerCct
-    case legacyDimmerSettings
 }

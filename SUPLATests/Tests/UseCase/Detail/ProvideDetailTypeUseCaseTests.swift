@@ -56,7 +56,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forDimmerWithSettingsFunction() {
-        doTest(expectedResult: .standardDetail(pages: [.dimmer, .legacyDimmerSettings])) {
+        doTest(expectedResult: .standardDetail(pages: [.dimmer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_DIMMER
             channel.manufacturer_id = Int16(SUPLA_MFR_ZAMEL)

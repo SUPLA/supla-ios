@@ -48,6 +48,8 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
             coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
         case let .navigateToStandardDetail(item, pages):
             coordinator.navigateToStandardDetail(item: item, pages: pages)
+        case let .navigateToRgbwDetail(item, pages):
+            coordinator.navigateToRgbwDetail(item: item, pages: pages)
         case let .open(url):
             coordinator.openUrl(url: url)
         }

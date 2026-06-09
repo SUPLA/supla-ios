@@ -120,7 +120,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         let group = SAChannelGroup(testContext: nil)
         group.online = 1
         
-        provideDetailTypeUseCase.detailType = .legacy(type: .rgbw)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
         
         // when
         observe(viewModel)
@@ -131,7 +131,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToLegacyDetail(legacy: .rgbw, channelBase: group))
+            .next(0, .navigateToLegacyDetail(legacy: .thermostat_hp, channelBase: group))
         ])
     }
     
@@ -139,7 +139,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         // given
         let group = SAChannelGroup(testContext: nil)
         
-        provideDetailTypeUseCase.detailType = .legacy(type: .rgbw)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
         
         // when
         observe(viewModel)

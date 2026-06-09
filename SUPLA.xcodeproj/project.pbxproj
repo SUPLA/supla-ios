@@ -599,6 +599,8 @@
 		A5552EE42D54FF8A00A3F6A2 /* SACurrentMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */; };
 		A5552EE62D55020600A3F6A2 /* PowerActiveMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */; };
 		A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */; };
+		A558E6BD2FD03CA800FE599E /* RgbAndDimmerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A558E6BC2FD03C9800FE599E /* RgbAndDimmerDetailVC.swift */; };
+		A558E6BF2FD03CB600FE599E /* RgbAndDimmerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */; };
 		A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */; };
 		A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D762BA84DCE00C540D4 /* RollerShutterVC.swift */; };
 		A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D782BA850B800C540D4 /* SAChannelGroup+Ext.swift */; };
@@ -1512,6 +1514,7 @@
 		A5F5C3F82C3683270058E255 /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3F72C3683270058E255 /* PinSetupView.swift */; };
 		A5F5C3FA2C36963B0058E255 /* PinTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3F92C36963B0058E255 /* PinTextField.swift */; };
 		A5F5C3FC2C3698040058E255 /* PinSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3FB2C3698040058E255 /* PinSetupVC.swift */; };
+		A5F775BB2FD6B765001003C4 /* LegacyDimmerSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */; };
 		A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */; };
 		A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */; };
 		A5FC78F82F51C69A003BA6B8 /* ActionId.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC78F72F51C68F003BA6B8 /* ActionId.swift */; };
@@ -2407,6 +2410,8 @@
 		A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SACurrentMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActiveMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAPowerActiveMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A558E6BC2FD03C9800FE599E /* RgbAndDimmerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbAndDimmerDetailVC.swift; sourceTree = "<group>"; };
+		A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbAndDimmerDetailVM.swift; sourceTree = "<group>"; };
 		A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVM.swift; sourceTree = "<group>"; };
 		A55A8D762BA84DCE00C540D4 /* RollerShutterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVC.swift; sourceTree = "<group>"; };
 		A55A8D782BA850B800C540D4 /* SAChannelGroup+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelGroup+Ext.swift"; sourceTree = "<group>"; };
@@ -3291,6 +3296,7 @@
 		A5F5C3F72C3683270058E255 /* PinSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupView.swift; sourceTree = "<group>"; };
 		A5F5C3F92C36963B0058E255 /* PinTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTextField.swift; sourceTree = "<group>"; };
 		A5F5C3FB2C3698040058E255 /* PinSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupVC.swift; sourceTree = "<group>"; };
+		A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDimmerSettingsVC.swift; sourceTree = "<group>"; };
 		A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration10to11ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemInitialMigrationPolicy.swift; sourceTree = "<group>"; };
 		A5FC78F72F51C68F003BA6B8 /* ActionId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionId.swift; sourceTree = "<group>"; };
@@ -5399,10 +5405,13 @@
 		A563640C2EDF9B1000A702C0 /* RgbAndDimmerDetail */ = {
 			isa = PBXGroup;
 			children = (
-				A5A87A612F1650490047233B /* DimmerCct */,
+				A5F775B92FD6B36D001003C4 /* LegacySettings */,
 				A563640D2EDF9B4000A702C0 /* Common */,
-				A56364102EDF9BCF00A702C0 /* Rgb */,
 				A563640E2EDF9B4B00A702C0 /* Dimmer */,
+				A5A87A612F1650490047233B /* DimmerCct */,
+				A56364102EDF9BCF00A702C0 /* Rgb */,
+				A558E6BC2FD03C9800FE599E /* RgbAndDimmerDetailVC.swift */,
+				A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */,
 			);
 			path = RgbAndDimmerDetail;
 			sourceTree = "<group>";
@@ -7864,6 +7873,14 @@
 			path = PinSetup;
 			sourceTree = "<group>";
 		};
+		A5F775B92FD6B36D001003C4 /* LegacySettings */ = {
+			isa = PBXGroup;
+			children = (
+				A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */,
+			);
+			path = LegacySettings;
+			sourceTree = "<group>";
+		};
 		A5FC78FD2F557D95003BA6B8 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -8406,6 +8423,7 @@
 				A5741D552E40DC630089DBD0 /* ProvidePasswordDialog.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
 				A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */,
+				A558E6BD2FD03CA800FE599E /* RgbAndDimmerDetailVC.swift in Sources */,
 				A594ADC52C9C19E900780EF3 /* ListOnlineState.swift in Sources */,
 				A50B5D382BFB6D1400918D18 /* ProjectorScreenState.swift in Sources */,
 				A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */,
@@ -9021,6 +9039,7 @@
 				A539C2672D67662F00D9DD47 /* GetAllChannelIssuesUseCase.swift in Sources */,
 				A53E41802F7164E000C90914 /* ProfileDtoProxy.swift in Sources */,
 				A5A15FF42C2994BF0049AA73 /* TitleButton.swift in Sources */,
+				A558E6BF2FD03CB600FE599E /* RgbAndDimmerDetailVM.swift in Sources */,
 				A55A8D9D2BAC191800C540D4 /* CallSuplaClientOperationUseCase.swift in Sources */,
 				A5B3A4B52BB558B70001D006 /* RoofWindowView.swift in Sources */,
 				A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */,
@@ -9313,6 +9332,7 @@
 				A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */,
 				A5843DE42C1088C800DA0784 /* ShadingSystemPositionPresentation.swift in Sources */,
 				A50B5D2D2BF49F7700918D18 /* TerraceAwningWindowState.swift in Sources */,
+				A5F775BB2FD6B765001003C4 /* LegacyDimmerSettingsVC.swift in Sources */,
 				A5FC78FF2F557DB2003BA6B8 /* NfcTagDetailFeature.swift in Sources */,
 				A584E1FC2CAA770800232A98 /* ElectricityMeterGeneralStateHandler.swift in Sources */,
 				A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */,

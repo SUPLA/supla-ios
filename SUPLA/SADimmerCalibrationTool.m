@@ -69,6 +69,7 @@
 
 -(void) superuserAuthorizationCanceled {
     _sueruserAuthoriztionStarted = NO;
+    [SuplaAppCoordinatorLegacyWrapper finish];
 }
 
 
@@ -145,6 +146,7 @@
     
     if (!_settingsChanged) {
         [self acceptChanges];
+        [SuplaAppCoordinatorLegacyWrapper finish];
         return NO;
     }
     
@@ -158,6 +160,7 @@
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
         [self acceptChanges];
+        [SuplaAppCoordinatorLegacyWrapper finish];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
@@ -224,24 +227,20 @@
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-        self->_configStartedAtTime = nil;
-        [self saveChanges];
-        [self acceptChanges];
+        [self onSaveYesButtonTapped];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
                             actionWithTitle:NSLocalizedString(@"No", nil)
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
-        [self acceptChanges];
+        [self onSaveNoButtonTapped];
     }];
     
     UIAlertAction* cancelBtn = [UIAlertAction
                             actionWithTitle:NSLocalizedString(@"Cancel", nil)
                             style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-
-    }];
+                            handler:^(UIAlertAction * action) {}];
     
     [alert addAction:yesBtn];
     [alert addAction:noBtn];
@@ -250,6 +249,16 @@
     UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
     
+}
+
+- (void) onSaveYesButtonTapped {
+    self->_configStartedAtTime = nil;
+    [self saveChanges];
+    [self acceptChanges];
+}
+
+- (void) onSaveNoButtonTapped {
+    [self acceptChanges];
 }
 
 - (void)ledOnTapped:(UITapGestureRecognizer *)tapRecognizer {
@@ -411,6 +420,10 @@
 
 -(BOOL)isConfigurationStarted {
     return _configStartedAtTime != nil;
+}
+
+-(void)cleanConfigStartedAtTime {
+    _configStartedAtTime = nil;
 }
 
 - (void)_setLedCfg:(char)cfg {

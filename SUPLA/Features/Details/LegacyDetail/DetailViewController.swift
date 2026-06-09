@@ -81,19 +81,9 @@ class DetailViewController: BaseViewController {
         _detailView.detailWillShow()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        _detailView.detailDidShow()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         _detailView.detailWillHide()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        _detailView.detailDidHide()
     }
     
     override func shouldUpdateTitleFont() -> Bool { !inNewDetail }
@@ -105,10 +95,6 @@ class DetailViewController: BaseViewController {
     
     private func detailView(forDetailType detailType: LegacyDetailType) -> SADetailView? {
         switch(detailType) {
-        case .ic:
-            return Bundle.main.loadNibNamed("ImpulseCounterDetailView", owner: self, options: nil)?[0] as? SADetailView
-        case .rgbw:
-            return Bundle.main.loadNibNamed("RGBWDetail", owner: self, options: nil)?[0] as? SADetailView
         case .thermostat_hp:
             return Bundle.main.loadNibNamed("HomePlusDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .digiglass:

@@ -89,11 +89,11 @@ extension ContainerGeneralFeature {
                 if (soundOn) {
                     VStack {
                         Spacer()
-                        RoundedControlButtonWrapperView(
+                        RoundedControlButton(
+                            .suplaIcon(name: .Icons.soundOff),
                             type: .neutral,
-                            icon: .suplaIcon(name: .Icons.soundOff),
-                            iconColor: .primary,
-                            onTap: onMuteClick
+                            color: .Supla.primary,
+                            action: onMuteClick
                         ).frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight)
                     }
                 }

@@ -49,7 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isExitLocked;
 -(BOOL)onMenubarBackButtonPressed;
 -(BOOL)isConfigurationStarted;
+-(void)cleanConfigStartedAtTime;
 -(void)showPreloaderWithText:(NSString *)text;
+
+- (void) onSaveYesButtonTapped;
+- (void) onSaveNoButtonTapped;
 
 +(SADimmerCalibrationTool*)newInstance;
 @end

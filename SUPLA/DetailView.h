@@ -25,8 +25,7 @@
 -(void)updateView;
 -(void)detailWillShow;
 -(void)detailWillHide;
--(void)detailDidShow;
--(void)detailDidHide;
+-(BOOL)onMenubarBackButtonPressed;
 -(void)setChannelBase:(SAChannelBase *)channelBase;
 -(void)setChannelBaseWithoutUpdate:(SAChannelBase *)channelBase;
 
