@@ -46,7 +46,7 @@ class EditableProfileItemCell: ProfileItemCell {
     }
 
     override func setProfileItem(_ item: ProfileListItem) {
-        guard case let .profileItem(id, name, active) = item else {
+        guard case let .profileItem(_, _, active) = item else {
             fatalError("this shouldn't happen")
         }
         _activeIndicator.isHidden = !active

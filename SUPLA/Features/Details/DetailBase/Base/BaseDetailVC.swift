@@ -130,6 +130,8 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
                 viewControllers.append(dimmerDetail())
             case .dimmerCct:
                 viewControllers.append(dimmerCctDetail())
+            case .recuperatorGeneral:
+                viewControllers.append(recuperatorDetail())
             }
         }
         
@@ -488,6 +490,16 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
             tag: DetailTabTag.Dimmer.rawValue
         )
         vc.tabBarItem.selectedImage = .iconDimmerSelected
+        return vc
+    }
+    
+    private func recuperatorDetail() -> UIViewController {
+        let vc = RecuperatorGeneralFeature.ViewController.create(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
+            image: .iconSettings,
+            tag: DetailTabTag.General.rawValue
+        )
         return vc
     }
 }

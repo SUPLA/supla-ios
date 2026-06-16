@@ -130,20 +130,23 @@ struct PinTextFieldModifier<Value: Hashable>: ViewModifier {
 
 private enum TestFieldFocus: Hashable {}
 
+@available(iOS 17.0, *)
 #Preview("Empty") {
-    @State var text = ""
+    @Previewable @State var text = ""
     return TextField("", text: $text)
         .modifier(PinTextFieldModifier<TestFieldFocus>($text))
 }
 
+@available(iOS 17.0, *)
 #Preview("One item") {
-    @State var text = "1"
+    @Previewable @State var text = "1"
     return TextField("", text: $text)
         .modifier(PinTextFieldModifier<TestFieldFocus>($text))
 }
 
+@available(iOS 17.0, *)
 #Preview("error") {
-    @State var text = "11"
+    @Previewable @State var text = "11"
     return TextField("", text: $text)
         .modifier(
             PinTextFieldModifier<TestFieldFocus>($text)

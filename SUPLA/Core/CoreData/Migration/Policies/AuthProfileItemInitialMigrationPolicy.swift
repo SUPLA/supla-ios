@@ -64,8 +64,8 @@ final class AuthProfileItemInitialMigrationPolicy: NSEntityMigrationPolicy {
     }
     
     private func setBytes(_ bytes: Data, for key: String) {
-        SAKeychain.deleteObject(withKey: key)
-        SAKeychain.add(bytes, withKey: key)
+        _ = SAKeychain.deleteObject(withKey: key)
+        _ = SAKeychain.add(bytes, withKey: key)
     }
     
     private func keychainKey(key: String, id: NSManagedObjectID) -> String {

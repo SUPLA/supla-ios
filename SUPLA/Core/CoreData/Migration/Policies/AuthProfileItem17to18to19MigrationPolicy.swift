@@ -92,9 +92,7 @@ final class AuthProfileItem17to18to19MigrationPolicy: NSEntityMigrationPolicy {
     }
     
     private func bytes(for key: String, size: Int) -> Data? {
-        if let data = SAKeychain.getObjectWithKey(key) as? Data,
-           data.count == size
-        {
+        if let data = SAKeychain.getObjectWithKey(key), data.count == size {
             return data
         } else {
             return nil
