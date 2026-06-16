@@ -75,8 +75,6 @@
     // Create the coordinator and store
 again:
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                    configuration:nil URL:storeURL
                                                          options:opts error:&error]) {

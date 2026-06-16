@@ -109,7 +109,6 @@
 - (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId;
 - (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
 - (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate;
-- (void) registerPushNotificationClientToken:(NSData *)token;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

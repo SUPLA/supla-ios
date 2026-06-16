@@ -230,7 +230,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              .containerLevelSensor,
              .floodSensor,
              .motionSensor,
-             .binarySensor:
+             .binarySensor,
+             .hvacHrv:
             return cellIdForIconValue
         }
     }

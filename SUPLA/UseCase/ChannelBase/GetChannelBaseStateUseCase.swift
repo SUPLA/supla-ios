@@ -75,7 +75,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              .floodSensor,
              .containerLevelSensor,
              .motionSensor,
-             .binarySensor: .default(value: .off)
+             .binarySensor,
+             .hvacHrv: .default(value: .off)
         case .dimmerAndRgbLighting,
              .dimmerCctAndRgb: .rgbAndDimmer(dimmer: .off, rgb: .off)
         case .digiglassVertical,
@@ -155,7 +156,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              .floodSensor,
              .containerLevelSensor,
              .motionSensor,
-             .binarySensor:
+             .binarySensor,
+             .hvacHrv:
             return .default(value: valueWrapper.isClosed ? .on : .off)
         case .dimmer, .dimmerCct:
             return .default(value: valueWrapper.brightness > 0 ? .on : .off)

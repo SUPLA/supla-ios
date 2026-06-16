@@ -61,4 +61,6 @@ extension EdgeInsets {
         bottom: 4,
         trailing: 4
     )
+    
+    static let zero: EdgeInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
 }

@@ -391,6 +391,7 @@ struct Strings {
             static let captionMotionSensor = "channel_caption_motion_sensor".toLocalized()
             static let captionBinarySensor = "channel_caption_binary_sensor".toLocalized()
             static let captionInvisible = "channel_caption_invisible".toLocalized()
+            static let captionHvacHrv = "channel_caption_hvac_hrv".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
             static let batteryLevelWithInfo = "channel_battery_level_with_info".toLocalized()

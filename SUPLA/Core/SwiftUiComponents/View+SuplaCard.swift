@@ -19,14 +19,17 @@
 import SwiftUI
 
 extension View {
-    func suplaCard() -> some View {
-        frame(maxWidth: .infinity)
+    func suplaCard(
+        alignment: Alignment = .center,
+        padding: EdgeInsets = .init(top: Distance.default, leading: Distance.default, bottom: 0, trailing: Distance.default)
+    ) -> some View {
+        frame(maxWidth: .infinity, alignment: alignment)
             .background(Color.Supla.surface)
             .cornerRadius(Dimens.buttonRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: Dimens.radiusDefault)
                     .stroke(Color.Supla.outline, lineWidth: 1)
             )
-            .padding([.leading, .top, .trailing], Dimens.distanceDefault)
+            .padding(padding)
     }
 }

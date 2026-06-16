@@ -95,6 +95,8 @@ class BaseDetailTypeProviderUseCase {
             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             return .standardDetail(pages: [.gateGeneral])
+        case SUPLA_CHANNELFNC_HVAC_HRV:
+            return .standardDetail(pages: [.recuperatorGeneral])
         default:
             return nil
         }
@@ -164,6 +166,9 @@ enum DetailPage {
     
     // Gate
     case gateGeneral
+    
+    // HRV
+    case recuperatorGeneral
     
     // RGBW
     case rgb

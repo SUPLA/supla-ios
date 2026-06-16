@@ -303,7 +303,8 @@ private extension SharedCore.SuplaFunction {
              .thermostatHeatpolHomeplus,
              .hvacThermostat,
              .hvacThermostatHeatCool,
-             .hvacDomesticHotWater: [.turnOn, .turnOff, .toggle]
+             .hvacDomesticHotWater,
+             .hvacHrv: [.turnOn, .turnOff, .toggle]
 
         case .valveOpenClose, .valvePercentage: [.open, .close]
 

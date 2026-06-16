@@ -2157,6 +2157,10 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "channelCaptionThermostat"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelCaptionHvacHrv"
+    PropertyKind: "Class"
+    SwiftName: "channelCaptionHvacHrv"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "channelCaptionElectricityMeter"
     PropertyKind: "Class"
     SwiftName: "channelCaptionElectricityMeter"
@@ -3823,6 +3827,17 @@ Classes:
     Parameters:
     - Position: 0
       Type: "NSString * _Nullable"
+  - Selector: "serializerTypeParamsSerializers:"
+    MethodKind: "Instance"
+    SwiftName: "serializer(typeParamsSerializers:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> * _Nonnull"
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
 - Name: "SharedCoreValueUnit"
   SwiftBridge: "ValueUnit"
   SwiftName: "__ValueUnit"
@@ -4206,6 +4221,10 @@ Classes:
   - Name: "hvacDomesticHotWater"
     PropertyKind: "Class"
     SwiftName: "hvacDomesticHotWater"
+    Type: "SharedCoreSuplaFunction * _Nonnull"
+  - Name: "hvacHrv"
+    PropertyKind: "Class"
+    SwiftName: "hvacHrv"
     Type: "SharedCoreSuplaFunction * _Nonnull"
   - Name: "valveOpenClose"
     PropertyKind: "Class"
@@ -8952,6 +8971,362 @@ Classes:
     Parameters:
     - Position: 0
       Type: "int32_t"
+- Name: "SharedCoreNightModeSetting"
+  SwiftBridge: "NightModeSetting"
+  SwiftName: "__NightModeSetting"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value_"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "always"
+    PropertyKind: "Class"
+    SwiftName: "always"
+    Type: "SharedCoreNightModeSetting * _Nonnull"
+  - Name: "never"
+    PropertyKind: "Class"
+    SwiftName: "never"
+    Type: "SharedCoreNightModeSetting * _Nonnull"
+  - Name: "auto_"
+    PropertyKind: "Class"
+    SwiftName: "auto"
+    Type: "SharedCoreNightModeSetting * _Nonnull"
+  - Name: "unset"
+    PropertyKind: "Class"
+    SwiftName: "unset"
+    Type: "SharedCoreNightModeSetting * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreNightModeSettingCompanion"
+  SwiftName: "__NightModeSetting.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreNightModeSetting * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "serializerTypeParamsSerializers:"
+    MethodKind: "Instance"
+    SwiftName: "serializer(typeParamsSerializers:)"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "SharedCoreKotlinArray<id<SharedCoreKotlinx_serialization_coreKSerializer>> * _Nonnull"
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+- Name: "SharedCoreSuplaConfigExport"
+  SwiftName: "SuplaConfigExport"
+  Properties:
+  - Name: "profiles"
+    PropertyKind: "Instance"
+    SwiftName: "profiles"
+    Type: "NSArray<SharedCoreSuplaConfigExportProfile *> * _Nonnull"
+  - Name: "settings"
+    PropertyKind: "Instance"
+    SwiftName: "settings"
+    Type: "SharedCoreSuplaConfigExportSettings * _Nonnull"
+  - Name: "version"
+    PropertyKind: "Instance"
+    SwiftName: "version"
+    Type: "int32_t"
+  Methods:
+  - Selector: "initWithVersion:settings:profiles:"
+    MethodKind: "Instance"
+    SwiftName: "init(version:settings:profiles:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreSuplaConfigExportSettings * _Nonnull"
+    - Position: 2
+      Type: "NSArray<SharedCoreSuplaConfigExportProfile *> * _Nonnull"
+  - Selector: "doCopyVersion:settings:profiles:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(version:settings:profiles:)"
+    ResultType: "SharedCoreSuplaConfigExport * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreSuplaConfigExportSettings * _Nonnull"
+    - Position: 2
+      Type: "NSArray<SharedCoreSuplaConfigExportProfile *> * _Nonnull"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaConfigExportProfile"
+  SwiftName: "SuplaConfigExport.Profile"
+  Properties:
+  - Name: "accessId"
+    PropertyKind: "Instance"
+    SwiftName: "accessId"
+    Type: "int32_t"
+  - Name: "active"
+    PropertyKind: "Instance"
+    SwiftName: "active"
+    Type: "BOOL"
+  - Name: "advancedMode"
+    PropertyKind: "Instance"
+    SwiftName: "advancedMode"
+    Type: "BOOL"
+  - Name: "email"
+    PropertyKind: "Instance"
+    SwiftName: "email"
+    Type: "NSString * _Nonnull"
+  - Name: "emailAuth"
+    PropertyKind: "Instance"
+    SwiftName: "emailAuth"
+    Type: "BOOL"
+  - Name: "name"
+    PropertyKind: "Instance"
+    SwiftName: "name"
+    Type: "NSString * _Nonnull"
+  - Name: "position"
+    PropertyKind: "Instance"
+    SwiftName: "position"
+    Type: "int32_t"
+  - Name: "preferredProtocolVersion"
+    PropertyKind: "Instance"
+    SwiftName: "preferredProtocolVersion"
+    Type: "int32_t"
+  - Name: "serverAutoDetect"
+    PropertyKind: "Instance"
+    SwiftName: "serverAutoDetect"
+    Type: "BOOL"
+  - Name: "serverForAccessId"
+    PropertyKind: "Instance"
+    SwiftName: "serverForAccessId"
+    Type: "NSString * _Nonnull"
+  - Name: "serverForEmail"
+    PropertyKind: "Instance"
+    SwiftName: "serverForEmail"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "initWithName:email:serverForAccessId:serverForEmail:serverAutoDetect:emailAuth:accessId:preferredProtocolVersion:active:advancedMode:position:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:email:serverForAccessId:serverForEmail:serverAutoDetect:emailAuth:accessId:preferredProtocolVersion:active:advancedMode:position:)"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+    - Position: 2
+      Type: "NSString * _Nonnull"
+    - Position: 3
+      Type: "NSString * _Nonnull"
+    - Position: 4
+      Type: "BOOL"
+    - Position: 5
+      Type: "BOOL"
+    - Position: 6
+      Type: "int32_t"
+    - Position: 7
+      Type: "int32_t"
+    - Position: 8
+      Type: "BOOL"
+    - Position: 9
+      Type: "BOOL"
+    - Position: 10
+      Type: "int32_t"
+  - Selector: "doCopyName:email:serverForAccessId:serverForEmail:serverAutoDetect:emailAuth:accessId:preferredProtocolVersion:active:advancedMode:position:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(name:email:serverForAccessId:serverForEmail:serverAutoDetect:emailAuth:accessId:preferredProtocolVersion:active:advancedMode:position:)"
+    ResultType: "SharedCoreSuplaConfigExportProfile * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
+    - Position: 1
+      Type: "NSString * _Nonnull"
+    - Position: 2
+      Type: "NSString * _Nonnull"
+    - Position: 3
+      Type: "NSString * _Nonnull"
+    - Position: 4
+      Type: "BOOL"
+    - Position: 5
+      Type: "BOOL"
+    - Position: 6
+      Type: "int32_t"
+    - Position: 7
+      Type: "int32_t"
+    - Position: 8
+      Type: "BOOL"
+    - Position: 9
+      Type: "BOOL"
+    - Position: 10
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaConfigExportProfileCompanion"
+  SwiftName: "SuplaConfigExport.ProfileCompanion"
+  Methods:
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+- Name: "SharedCoreSuplaConfigExportSettings"
+  SwiftName: "SuplaConfigExport.Settings"
+  Properties:
+  - Name: "batteryWarningLevel"
+    PropertyKind: "Instance"
+    SwiftName: "batteryWarningLevel"
+    Type: "int32_t"
+  - Name: "buttonAutohide"
+    PropertyKind: "Instance"
+    SwiftName: "buttonAutohide"
+    Type: "BOOL"
+  - Name: "channelHeight"
+    PropertyKind: "Instance"
+    SwiftName: "channelHeight"
+    Type: "int32_t"
+  - Name: "hideUnavailableChannels"
+    PropertyKind: "Instance"
+    SwiftName: "hideUnavailableChannels"
+    Type: "BOOL"
+  - Name: "nightMode"
+    PropertyKind: "Instance"
+    SwiftName: "nightMode"
+    Type: "SharedCoreNightModeSetting * _Nonnull"
+  - Name: "showBottomLabel"
+    PropertyKind: "Instance"
+    SwiftName: "showBottomLabel"
+    Type: "BOOL"
+  - Name: "showBottomMenu"
+    PropertyKind: "Instance"
+    SwiftName: "showBottomMenu"
+    Type: "BOOL"
+  - Name: "showChannelInfo"
+    PropertyKind: "Instance"
+    SwiftName: "showChannelInfo"
+    Type: "BOOL"
+  - Name: "showOpeningPercent"
+    PropertyKind: "Instance"
+    SwiftName: "showOpeningPercent"
+    Type: "BOOL"
+  - Name: "temperaturePrecision"
+    PropertyKind: "Instance"
+    SwiftName: "temperaturePrecision"
+    Type: "int32_t"
+  - Name: "temperatureUnit"
+    PropertyKind: "Instance"
+    SwiftName: "temperatureUnit"
+    Type: "SharedCoreTemperatureUnit * _Nonnull"
+  Methods:
+  - Selector: "initWithChannelHeight:temperatureUnit:temperaturePrecision:buttonAutohide:showChannelInfo:showBottomLabel:showBottomMenu:showOpeningPercent:hideUnavailableChannels:nightMode:batteryWarningLevel:"
+    MethodKind: "Instance"
+    SwiftName: "init(channelHeight:temperatureUnit:temperaturePrecision:buttonAutohide:showChannelInfo:showBottomLabel:showBottomMenu:showOpeningPercent:hideUnavailableChannels:nightMode:batteryWarningLevel:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreTemperatureUnit * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "BOOL"
+    - Position: 4
+      Type: "BOOL"
+    - Position: 5
+      Type: "BOOL"
+    - Position: 6
+      Type: "BOOL"
+    - Position: 7
+      Type: "BOOL"
+    - Position: 8
+      Type: "BOOL"
+    - Position: 9
+      Type: "SharedCoreNightModeSetting * _Nonnull"
+    - Position: 10
+      Type: "int32_t"
+  - Selector: "doCopyChannelHeight:temperatureUnit:temperaturePrecision:buttonAutohide:showChannelInfo:showBottomLabel:showBottomMenu:showOpeningPercent:hideUnavailableChannels:nightMode:batteryWarningLevel:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(channelHeight:temperatureUnit:temperaturePrecision:buttonAutohide:showChannelInfo:showBottomLabel:showBottomMenu:showOpeningPercent:hideUnavailableChannels:nightMode:batteryWarningLevel:)"
+    ResultType: "SharedCoreSuplaConfigExportSettings * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "SharedCoreTemperatureUnit * _Nonnull"
+    - Position: 2
+      Type: "int32_t"
+    - Position: 3
+      Type: "BOOL"
+    - Position: 4
+      Type: "BOOL"
+    - Position: 5
+      Type: "BOOL"
+    - Position: 6
+      Type: "BOOL"
+    - Position: 7
+      Type: "BOOL"
+    - Position: 8
+      Type: "BOOL"
+    - Position: 9
+      Type: "SharedCoreNightModeSetting * _Nonnull"
+    - Position: 10
+      Type: "int32_t"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
+- Name: "SharedCoreSuplaConfigExportSettingsCompanion"
+  SwiftName: "SuplaConfigExport.SettingsCompanion"
+  Methods:
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+- Name: "SharedCoreSuplaConfigExportCompanion"
+  SwiftName: "SuplaConfigExport.Companion"
+  Methods:
+  - Selector: "serializer"
+    MethodKind: "Instance"
+    SwiftName: "serializer()"
+    ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
 - Name: "SharedCoreGroup"
   SwiftName: "Group"
   Properties:
@@ -9074,6 +9449,80 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "init(name:ordinal:)"
     Availability: "nonswift"
+- Name: "SharedCoreUserIconDto"
+  SwiftName: "UserIconDto"
+  Properties:
+  - Name: "functionId"
+    PropertyKind: "Instance"
+    SwiftName: "functionId"
+    Type: "int32_t"
+  - Name: "id"
+    PropertyKind: "Instance"
+    SwiftName: "id"
+    Type: "int32_t"
+  - Name: "images"
+    PropertyKind: "Instance"
+    SwiftName: "images"
+    Type: "NSArray<NSString *> * _Nonnull"
+  - Name: "imagesDark"
+    PropertyKind: "Instance"
+    SwiftName: "imagesDark"
+    Type: "NSArray<NSString *> * _Nullable"
+  Methods:
+  - Selector: "initWithId:functionId:images:imagesDark:"
+    MethodKind: "Instance"
+    SwiftName: "init(id:functionId:images:imagesDark:)"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "NSArray<NSString *> * _Nonnull"
+    - Position: 3
+      Type: "NSArray<NSString *> * _Nullable"
+  - Selector: "doCopyId:functionId:images:imagesDark:"
+    MethodKind: "Instance"
+    SwiftName: "doCopy(id:functionId:images:imagesDark:)"
+    ResultType: "SharedCoreUserIconDto * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+    - Position: 1
+      Type: "int32_t"
+    - Position: 2
+      Type: "NSArray<NSString *> * _Nonnull"
+    - Position: 3
+      Type: "NSArray<NSString *> * _Nullable"
+  - Selector: "isEqual:"
+    MethodKind: "Instance"
+    SwiftName: "isEqual(_:)"
+    ResultType: "BOOL"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
+  - Selector: "hash"
+    MethodKind: "Instance"
+    SwiftName: "hash()"
+    ResultType: "NSUInteger"
+  - Selector: "imageIndex:"
+    MethodKind: "Instance"
+    SwiftName: "image(index:)"
+    ResultType: "SharedCoreKotlinByteArray * _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "imageDarkIndex:"
+    MethodKind: "Instance"
+    SwiftName: "imageDark(index:)"
+    ResultType: "SharedCoreKotlinByteArray * _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+  - Selector: "description"
+    MethodKind: "Instance"
+    SwiftName: "description()"
+    ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreElectricityChannelDto"
   SwiftName: "ElectricityChannelDto"
   Properties:

@@ -218,7 +218,8 @@ private extension SAChannelBase {
              .containerLevelSensor,
              .floodSensor,
              .binarySensor,
-             .motionSensor: nil
+             .motionSensor,
+             .hvacHrv: nil
         }
     }
 }

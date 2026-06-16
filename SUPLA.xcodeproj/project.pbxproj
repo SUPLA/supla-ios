@@ -1007,6 +1007,7 @@
 		A5A3252A2E82889400E60812 /* SAThermostatMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325292E82888700E60812 /* SAThermostatMeasurementItem+Ext.swift */; };
 		A5A3252C2E869A0A00E60812 /* SensorIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3252B2E869A0600E60812 /* SensorIssue.swift */; };
 		A5A601C72E7AD80700B1BFA6 /* SharedCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5085AE72CC84FE100ACA8C4 /* SharedCore.xcframework */; };
+		A5A67C532FE1334500AD05BB /* SteppedSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A67C522FE1334000AD05BB /* SteppedSlider.swift */; };
 		A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */; };
 		A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */; };
 		A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */; };
@@ -1197,6 +1198,11 @@
 		A5CF3E582DD6880A00207384 /* WidgetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF3E562DD6880300207384 /* WidgetIcon.swift */; };
 		A5D180D52FBB25C70038F5BC /* device_login.html in Resources */ = {isa = PBXBuildFile; fileRef = A5D180D42FBB25C70038F5BC /* device_login.html */; };
 		A5D182492FBB4A820038F5BC /* index_csrf.html in Resources */ = {isa = PBXBuildFile; fileRef = A5D182482FBB4A710038F5BC /* index_csrf.html */; };
+		A5D422792FE022DA00822D0F /* SvgPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D422782FE022CC00822D0F /* SvgPathParser.swift */; };
+		A5D4227B2FE022F600822D0F /* Path+Svg.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D4227A2FE022EF00822D0F /* Path+Svg.swift */; };
+		A5D4227E2FE024ED00822D0F /* Canvas+HousPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D4227D2FE024E700822D0F /* Canvas+HousPath.swift */; };
+		A5D422842FE02C5C00822D0F /* Canvas+CrossLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D422832FE02C5700822D0F /* Canvas+CrossLines.swift */; };
+		A5D422862FE0353400822D0F /* Canvas+TextInRoundRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D422852FE0352900822D0F /* Canvas+TextInRoundRect.swift */; };
 		A5D7125F2C37EA8300A8EF52 /* LockScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */; };
 		A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */; };
 		A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */; };
@@ -1528,6 +1534,11 @@
 		A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */; };
 		A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67662A666F2200147D1F /* String+Ext.swift */; };
 		A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67682A666FF800147D1F /* RequestHelper.swift */; };
+		A6B2D1093E6A4C1800D1BEEF /* RecuperatorGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1013E6A4C1800D1BEEF /* RecuperatorGeneralFeature.swift */; };
+		A6B2D10A3E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */; };
+		A6B2D10C3E6A4C1800D1BEEF /* RecuperatorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */; };
+		A6B2D10D3E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */; };
+		A6B2D10E3E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
@@ -2829,6 +2840,7 @@
 		A5A325272E8284C300E60812 /* ThermostatHeatpolMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHeatpolMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5A325292E82888700E60812 /* SAThermostatMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAThermostatMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5A3252B2E869A0600E60812 /* SensorIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIssue.swift; sourceTree = "<group>"; };
+		A5A67C522FE1334000AD05BB /* SteppedSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedSlider.swift; sourceTree = "<group>"; };
 		A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationAsRemovableUseCaseTest.swift; sourceTree = "<group>"; };
 		A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteThermostatActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClientConfigUseCaseTests.swift; sourceTree = "<group>"; };
@@ -3002,6 +3014,11 @@
 		A5CF3E562DD6880300207384 /* WidgetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetIcon.swift; sourceTree = "<group>"; };
 		A5D180D42FBB25C70038F5BC /* device_login.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = device_login.html; sourceTree = "<group>"; };
 		A5D182482FBB4A710038F5BC /* index_csrf.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_csrf.html; sourceTree = "<group>"; };
+		A5D422782FE022CC00822D0F /* SvgPathParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPathParser.swift; sourceTree = "<group>"; };
+		A5D4227A2FE022EF00822D0F /* Path+Svg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Svg.swift"; sourceTree = "<group>"; };
+		A5D4227D2FE024E700822D0F /* Canvas+HousPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Canvas+HousPath.swift"; sourceTree = "<group>"; };
+		A5D422832FE02C5700822D0F /* Canvas+CrossLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Canvas+CrossLines.swift"; sourceTree = "<group>"; };
+		A5D422852FE0352900822D0F /* Canvas+TextInRoundRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Canvas+TextInRoundRect.swift"; sourceTree = "<group>"; };
 		A5D7125E2C37EA8300A8EF52 /* LockScreenFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenFeature.swift; sourceTree = "<group>"; };
 		A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewState.swift; sourceTree = "<group>"; };
 		A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVM.swift; sourceTree = "<group>"; };
@@ -3309,6 +3326,11 @@
 		A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferredProtocolVersionUseCase.swift; sourceTree = "<group>"; };
 		A5FE67662A666F2200147D1F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A5FE67682A666FF800147D1F /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
+		A6B2D1013E6A4C1800D1BEEF /* RecuperatorGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralFeature.swift; sourceTree = "<group>"; };
+		A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralViewState.swift; sourceTree = "<group>"; };
+		A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralView.swift; sourceTree = "<group>"; };
+		A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralVM.swift; sourceTree = "<group>"; };
+		A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralVC.swift; sourceTree = "<group>"; };
 		AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -4804,6 +4826,7 @@
 				A51474542EA65C5C0044DEF2 /* GateDetail */,
 				A5DDF91C2D79A4940056B539 /* ContainerDetail */,
 				A539C26A2D67772900D9DD47 /* ValveDetail */,
+				A6B2D1063E6A4C1800D1BEEF /* RecuperatorDetail */,
 				A5E160A82D313943003A7C71 /* HumidityDetail */,
 				A5E0DF6A2CEB4DE900362451 /* ImpulseCounter */,
 				A5EDE2152CA55F7C00BEDAE4 /* ElectricityMeterDetail */,
@@ -5571,6 +5594,7 @@
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A5D422772FE022C300822D0F /* Utilities */,
 				A58D1B7C2CDCB10700B5A019 /* Shared */,
 				A5A1600B2C2AC16A0049AA73 /* State */,
 				A5A15FE42C256E320049AA73 /* Navigation */,
@@ -6930,6 +6954,26 @@
 			path = Esp;
 			sourceTree = "<group>";
 		};
+		A5D422772FE022C300822D0F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A5D4227A2FE022EF00822D0F /* Path+Svg.swift */,
+				A5D422782FE022CC00822D0F /* SvgPathParser.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A5D4227C2FE0232500822D0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5A67C522FE1334000AD05BB /* SteppedSlider.swift */,
+				A5D422852FE0352900822D0F /* Canvas+TextInRoundRect.swift */,
+				A5D422832FE02C5700822D0F /* Canvas+CrossLines.swift */,
+				A5D4227D2FE024E700822D0F /* Canvas+HousPath.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A5D7125D2C37EA7200A8EF52 /* LockScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -7906,6 +7950,27 @@
 			path = CloudApi;
 			sourceTree = "<group>";
 		};
+		A6B2D1063E6A4C1800D1BEEF /* RecuperatorDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A6B2D1073E6A4C1800D1BEEF /* General */,
+			);
+			path = RecuperatorDetail;
+			sourceTree = "<group>";
+		};
+		A6B2D1073E6A4C1800D1BEEF /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A5D4227C2FE0232500822D0F /* View */,
+				A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */,
+				A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */,
+				A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */,
+				A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */,
+				A6B2D1013E6A4C1800D1BEEF /* RecuperatorGeneralFeature.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		AEB195DC276E59B60091D314 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -8333,6 +8398,7 @@
 				A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */,
 				A5C5F6F92D9428C600E303B8 /* SceneListView.swift in Sources */,
 				A514745D2EA65FF40044DEF2 /* GateGeneralViewState.swift in Sources */,
+				A6B2D10A3E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift in Sources */,
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */,
@@ -8377,6 +8443,7 @@
 				A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */,
 				A57668F32AEAA2600025509D /* DownloadTempHumidityLogUseCase.swift in Sources */,
 				A514745B2EA65D520044DEF2 /* GateGeneralFeature.swift in Sources */,
+				A6B2D1093E6A4C1800D1BEEF /* RecuperatorGeneralFeature.swift in Sources */,
 				A56504E72E422FE3008DAE3D /* SetPasswordDialog.swift in Sources */,
 				A598CACD2CC2998300A784FA /* DoubleFormatter.swift in Sources */,
 				A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */,
@@ -8544,6 +8611,8 @@
 				A55BE8D12F96071400362562 /* Thumb.swift in Sources */,
 				A5BF4F872F3E142700F5DE81 /* URL+NfcTag.swift in Sources */,
 				A505EC392CF71E4A00E69BDB /* CreateProfileFeature.swift in Sources */,
+				A5D422842FE02C5C00822D0F /* Canvas+CrossLines.swift in Sources */,
+				A5D422792FE022DA00822D0F /* SvgPathParser.swift in Sources */,
 				A530EE302A57E2B900F8DAEE /* DigiglassVerticalIconNameProducer.swift in Sources */,
 				A5A160072C2AB3ED0049AA73 /* SuplaCore+BaseViewModel.swift in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
@@ -8670,6 +8739,7 @@
 				01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */,
 				01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */,
 				A5F29B9F2A20D32B00ED700A /* GroupRepository.swift in Sources */,
+				A5A67C532FE1334500AD05BB /* SteppedSlider.swift in Sources */,
 				A530EE282A57E02C00F8DAEE /* MailSensorIconNameProducer.swift in Sources */,
 				A54637BD2D37FF6300D746F5 /* ImpulseCounterGeneralViewState.swift in Sources */,
 				A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */,
@@ -8697,6 +8767,7 @@
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
 				A514746C2EA785EB0044DEF2 /* GateGeneralVC.swift in Sources */,
+				A6B2D10E3E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift in Sources */,
 				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
 				A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
@@ -8909,6 +8980,7 @@
 				A58D1B882CDCFBDF00B5A019 /* GetChannelLowBatteryIssueUseCase.swift in Sources */,
 				A5E2D6912DC9EC4E00EBDADB /* WidgetAction.swift in Sources */,
 				A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */,
+				A5D4227E2FE024ED00822D0F /* Canvas+HousPath.swift in Sources */,
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
 				A5C5F6EF2D93EBDA00E303B8 /* SuplaCoreDialogViewModel.swift in Sources */,
 				A57668C82AE7CE890025509D /* SuplaCombinedChartView.swift in Sources */,
@@ -8945,6 +9017,7 @@
 				A5EF57D62F5F104600513D3F /* DotsLoadingIndicator.swift in Sources */,
 				A52D13B12C8F0F3000134961 /* SuplaClient+Ext.swift in Sources */,
 				A514746A2EA7741B0044DEF2 /* GateGeneralVM.swift in Sources */,
+				A6B2D10D3E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				A5074BDB2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift in Sources */,
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
@@ -9082,6 +9155,7 @@
 				A55A8D8A2BAB06D600C540D4 /* WindowState.swift in Sources */,
 				A57668E72AEA68A60025509D /* DaysRange.swift in Sources */,
 				A58472012C2D7F3200713D36 /* UIViewController+SuplaNavBar.swift in Sources */,
+				A5D422862FE0353400822D0F /* Canvas+TextInRoundRect.swift in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				A5882EC72DBD732400F1FC4A /* CarPlayItemRepository.swift in Sources */,
 				A54149332B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift in Sources */,
@@ -9226,6 +9300,7 @@
 				A5AE6D7F2E1FD68E00BC2B67 /* AddWizardSuccessView.swift in Sources */,
 				A5F29B932A20B56500ED700A /* CreateProfileScenesListUseCase.swift in Sources */,
 				A51474682EA771740044DEF2 /* GateGeneralView.swift in Sources */,
+				A6B2D10C3E6A4C1800D1BEEF /* RecuperatorGeneralView.swift in Sources */,
 				A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */,
 				A5A15FF12C298B700049AA73 /* StatusView.swift in Sources */,
 				A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */,
@@ -9449,6 +9524,7 @@
 				A55BE8D82F97A9D500362562 /* FilledButtonStyle.swift in Sources */,
 				A53E416C2F6C0E3E00C90914 /* UIBarButtonItem+Ext.swift in Sources */,
 				A5E05B9D2CB00EEE00202583 /* DownloadElectricityMeterLogUseCase.swift in Sources */,
+				A5D4227B2FE022F600822D0F /* Path+Svg.swift in Sources */,
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				A5AD70212C00B6AF00A36318 /* WindowVerticalControls.swift in Sources */,
