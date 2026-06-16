@@ -245,7 +245,7 @@ private func postToResult(response: AFDataResponse<String>) -> Esp.RequestResult
         return .temporarilyLocked
     } else {
         switch response.result {
-        case .success(let value):
+        case .success:
             return .failure(code, InvalidCredentialsError())
         case .failure(let error):
             SALog.error("GET request failed with error \(error)")
