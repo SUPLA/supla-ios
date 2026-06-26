@@ -15,30 +15,30 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 private let ZAM_PRODID_DIW_01 = 2000
 private let COM_PRODID_WDIM100 = 2000
 
 class RgbAndDimmerDetailVM: BaseDetailVM<RgbAndDimmerDetailViewState, RgbAndDimmerDetailViewEvent> {
-    
     var showSettings: Bool { currentState()?.showSettings ?? false }
-    
+
     override func defaultViewState() -> RgbAndDimmerDetailViewState { RgbAndDimmerDetailViewState() }
-    
+
     override func setTitle(_ title: String) {
         updateView { $0.changing(path: \.title, to: title) }
     }
-    
+
     override func handleChannel(_ channel: SAChannel) {
         super.handleChannel(channel)
         updateView { $0.changing(path: \.showSettings, to: shouldShowRgbSettings(channel)) }
     }
-    
+
     private func shouldShowRgbSettings(_ channel: SAChannel) -> Bool {
         let manufacturerId = channel.manufacturer_id
         let productId = channel.product_id
-        
+
         return manufacturerId == SUPLA_MFR_DOYLETRATT && productId == 1 ||
+            manufacturerId == SUPLA_MFR_DOYLETRATT && productId == 10 ||
             manufacturerId == SUPLA_MFR_ZAMEL && productId == ZAM_PRODID_DIW_01 ||
             manufacturerId == SUPLA_MFR_COMELIT && productId == COM_PRODID_WDIM100
     }

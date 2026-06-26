@@ -63,7 +63,7 @@
         if (channelBase != nil
             && [channelBase isKindOfClass:[SAChannel class]] ) {
             if (((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_DOYLETRATT
-                && ((SAChannel*)channelBase).product_id == 1) {
+                && (((SAChannel*)channelBase).product_id == 1 || ((SAChannel*)channelBase).product_id == 10)) {
                 _varilight = YES;
             } else if (((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_ZAMEL) {
                 if (((SAChannel*)channelBase).product_id == ZAM_PRODID_DIW_01) {
