@@ -1066,6 +1066,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) onCalCfgResult:(SACalCfgResult*)result {
+    NSLog(@"onCalCfgResult command %02X value %d", result.command, result.result);
     [self performSelectorOnMainThread:@selector(_onCalCfgResult:) withObject:result waitUntilDone:NO];
 }
 

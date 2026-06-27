@@ -18,12 +18,16 @@
 
 import SwiftUI
 
+let standardPadding = EdgeInsets(top: 0, leading: Distance.default, bottom: 0, trailing: Distance.default)
+let roundedPadding = EdgeInsets(top: 0, leading: Distance.tiny, bottom: 0, trailing: Distance.tiny)
+
 struct RoundedControlButton<Content: View>: View {
     let type: RoundedControlButtonType
     let active: Bool
     let fullWidth: Bool
     let action: () -> Void
     let content: () -> Content
+    let padding: EdgeInsets
     
     @Environment(\.isEnabled) private var isEnabled
 
@@ -31,12 +35,14 @@ struct RoundedControlButton<Content: View>: View {
         type: RoundedControlButtonType = .neutral,
         active: Bool = false,
         fullWidth: Bool = false,
+        padding: EdgeInsets = standardPadding,
         action: @escaping () -> Void,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.type = type
         self.active = active
         self.fullWidth = fullWidth
+        self.padding = padding
         self.action = action
         self.content = content
     }
@@ -46,16 +52,42 @@ struct RoundedControlButton<Content: View>: View {
         type: RoundedControlButtonType = .neutral,
         active: Bool = false,
         fullWidth: Bool = false,
+        padding: EdgeInsets = standardPadding,
         action: @escaping () -> Void,
     ) where Content == AnyView {
         self.type = type
         self.active = active
         self.fullWidth = fullWidth
+        self.padding = padding
         self.action = action
         content = {
             AnyView(
                 Text(label)
                     .fontLabelLarge()
+            )
+        }
+    }
+    
+    init(
+        _ icon: IconResult,
+        type: RoundedControlButtonType = .neutral,
+        active: Bool = false,
+        fullWidth: Bool = false,
+        color: Color? = nil,
+        padding: EdgeInsets = roundedPadding,
+        action: @escaping () -> Void,
+    ) where Content == AnyView {
+        self.type = type
+        self.active = active
+        self.fullWidth = fullWidth
+        self.padding = padding
+        self.action = action
+        content = {
+            AnyView(
+                icon.image
+                    .resizable()
+                    .if(color != nil) { $0.foregroundColor(color!) }
+                    .frame(width: Dimens.iconSize, height: Dimens.iconSize)
             )
         }
     }
@@ -73,7 +105,11 @@ struct RoundedControlButton<Content: View>: View {
                 .if(fullWidth) { $0.frame(maxWidth: .infinity) }
         }
         .buttonStyle(
-            RoundedControlButtonStyle(isSelected: isEnabled && active, type: type)
+            RoundedControlButtonStyle(
+                isSelected: isEnabled && active,
+                type: type,
+                padding: padding
+            )
         )
     }
 }
@@ -109,6 +145,17 @@ enum RoundedControlButtonType {
 private struct RoundedControlButtonStyle: ButtonStyle {
     let isSelected: Bool
     let type: RoundedControlButtonType
+    let padding: EdgeInsets
+    
+    init(
+        isSelected: Bool,
+        type: RoundedControlButtonType,
+        padding: EdgeInsets = standardPadding
+    ) {
+        self.isSelected = isSelected
+        self.type = type
+        self.padding = padding
+    }
 
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed || isSelected
@@ -117,7 +164,7 @@ private struct RoundedControlButtonStyle: ButtonStyle {
         let foregroundColor = pressed ? type.pressedColor : Color.Supla.onBackground
 
         configuration.label
-            .padding(.horizontal, Distance.default)
+            .padding(padding)
             .foregroundColor(foregroundColor)
             .background {
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
@@ -200,6 +247,12 @@ private struct InnerShadowRounded: View {
             type: .neutral,
             active: false,
             fullWidth: true,
+            action: {}
+        )
+        RoundedControlButton(
+            .suplaIcon(name: .Icons.soundOff),
+            type: .positive,
+            color: .Supla.primary,
             action: {}
         )
     }

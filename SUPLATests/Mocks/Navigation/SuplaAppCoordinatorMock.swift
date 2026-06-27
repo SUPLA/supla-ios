@@ -111,6 +111,12 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToCarPlayEdit(id: NSManagedObjectID) {
     }
     
+    func navigateToRgbwDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
+    }
+    
+    func navigateToLegacyDimmerSettings(channelId: Int32) {
+    }
+    
     func navigateToCallNfcAction(url: URL) {
     }
     

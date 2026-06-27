@@ -21,7 +21,6 @@
 
 @interface SARGBWDetailView : SADetailView
 
-@property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
-@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
+-(BOOL)onMenubarBackButtonPressed;
 
 @end

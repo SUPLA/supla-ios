@@ -111,10 +111,10 @@ extension DimmerDetailBase {
             }
             .frame(maxWidth: .infinity)
             .overlay(alignment: .topTrailing) {
-                RoundedControlButtonWrapperView(
+                RoundedControlButton(
+                    .suplaIcon(name: viewState.selectorType.swapIcon),
                     type: .neutral,
-                    icon: .suplaIcon(name: viewState.selectorType.swapIcon),
-                    onTap: { delegate?.toggleSelectorType() }
+                    action: { delegate?.toggleSelectorType() }
                 )
                 .frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight, alignment: .topTrailing)
                 .padding(.trailing, Distance.default)

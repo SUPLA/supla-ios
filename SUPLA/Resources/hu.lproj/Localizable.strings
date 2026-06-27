@@ -342,7 +342,7 @@
 "timer_detail_edit_header_on" = "bekapcsolt";
 "timer_detail_edit_header_off" = "kikapcsolt";
 "timer_detail_turned_on" = "Bekapcsolva";
-"timer_detail_turned_off" = "Bekapcsolva";
+"timer_detail_turned_off" = "Kikapcsolva";
 "timer_detail_day_pattern" = "%d nap";
 "timer_detail_days_pattern" = "%d nap";
 "timer_detail_hour_pattern" = "%d óra";

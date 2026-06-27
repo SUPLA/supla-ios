@@ -19,8 +19,6 @@
 extension CreateProfileFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         
-        @Singleton<GlobalSettings> var settings
-        
         private let profileId: Int32
 
         init(viewModel: ViewModel, profileId: Int32) {

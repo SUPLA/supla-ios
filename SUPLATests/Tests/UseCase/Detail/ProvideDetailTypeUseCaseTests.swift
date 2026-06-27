@@ -29,7 +29,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forDimmerFunction() {
-        doTest(expectedResult: .standardDetail(pages: [.dimmer])) {
+        doTest(expectedResult: .rgbwDetail(pages: [.dimmer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_DIMMER
             
@@ -38,7 +38,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forRgbFunction() {
-        doTest(expectedResult: .standardDetail(pages: [.rgb])) {
+        doTest(expectedResult: .rgbwDetail(pages: [.rgb])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_RGBLIGHTING
             
@@ -47,7 +47,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forDimmerAndRgbFunction() {
-        doTest(expectedResult: .standardDetail(pages: [.rgb, .dimmer])) {
+        doTest(expectedResult: .rgbwDetail(pages: [.rgb, .dimmer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
             
@@ -56,7 +56,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRgbw_forDimmerWithSettingsFunction() {
-        doTest(expectedResult: .standardDetail(pages: [.dimmer, .legacyDimmerSettings])) {
+        doTest(expectedResult: .rgbwDetail(pages: [.dimmer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_DIMMER
             channel.manufacturer_id = Int16(SUPLA_MFR_ZAMEL)

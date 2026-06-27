@@ -20,7 +20,7 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
     
-    private let item: ItemBundle
+    let item: ItemBundle
     private let pages: [DetailPage]
     
     init(viewModel: VM, item: ItemBundle, pages: [DetailPage]) {
@@ -130,8 +130,6 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
                 viewControllers.append(dimmerDetail())
             case .dimmerCct:
                 viewControllers.append(dimmerCctDetail())
-            case .legacyDimmerSettings:
-                viewControllers.append(legacyDimmerSettingsDetail())
             }
         }
         
@@ -490,16 +488,6 @@ class BaseDetailVC<S: ViewState, E: ViewEvent, VM: BaseDetailVM<S, E>>: SuplaTab
             tag: DetailTabTag.Dimmer.rawValue
         )
         vc.tabBarItem.selectedImage = .iconDimmerSelected
-        return vc
-    }
-    
-    private func legacyDimmerSettingsDetail() -> DetailViewController {
-        let vc = DetailViewController(detailViewType: .rgbw, remoteId: item.remoteId)
-        vc.tabBarItem = UITabBarItem(
-            title: settings.showBottomLabels ? Strings.StandardDetail.tabSettings : nil,
-            image: .iconSettings,
-            tag: DetailTabTag.Settings.rawValue
-        )
         return vc
     }
 }

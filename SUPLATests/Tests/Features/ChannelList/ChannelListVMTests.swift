@@ -125,7 +125,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
         
         // when
         observe(viewModel)
@@ -136,7 +136,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToLegacyDetail(legacy: .ic, channelBase: channel))
+            .next(0, .navigateToLegacyDetail(legacy: .thermostat_hp, channelBase: channel))
         ])
     }
     
@@ -146,7 +146,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
         
         // when
         observe(viewModel)
@@ -157,7 +157,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToLegacyDetail(legacy: .ic, channelBase: channel))
+            .next(0, .navigateToLegacyDetail(legacy: .thermostat_hp, channelBase: channel))
         ])
     }
     
@@ -167,7 +167,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.func = SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
         
         // when
         observe(viewModel)
@@ -206,7 +206,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         channel.value?.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
-        provideDetailTypeUseCase.detailType = .legacy(type: .ic)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
         
         // when
         observe(viewModel)
@@ -218,7 +218,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListState, ChannelListViewEvent> 
         
         XCTAssertEqual(provideDetailTypeUseCase.channelBaseArray.count, 1)
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToLegacyDetail(legacy: .ic, channelBase: channel))
+            .next(0, .navigateToLegacyDetail(legacy: .thermostat_hp, channelBase: channel))
         ])
     }
     

@@ -36,6 +36,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?)
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
+    func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToPinSetup(lockScreenScope: LockScreenScope)
     func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
@@ -44,6 +45,7 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToCarPlayAdd()
     func navigateToCarPlayEdit(id: NSManagedObjectID)
     func navigateToDeveloperOptions()
+    func navigateToLegacyDimmerSettings(channelId: Int32)
     func navigateToCallNfcAction(url: URL)
     func navigateToNfcTagsList()
     func navigateToEditNfcTag(uuid: String, readOnly: Bool?)
@@ -200,6 +202,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(ImpulseCounterDetailVC(item: item, pages: pages))
     }
     
+    func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage]) {
+        navigateTo(RgbAndDimmerDetailVC(item: item, pages: pages))
+    }
+    
     func navigateToPinSetup(lockScreenScope: LockScreenScope) {
         navigateTo(PinSetupFeature.ViewController.create(scope: lockScreenScope))
     }
@@ -226,6 +232,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToDeveloperOptions() {
         navigateTo(DeveloperInfoFeature.ViewController.create())
+    }
+    
+    func navigateToLegacyDimmerSettings(channelId: Int32) {
+        navigateTo(LegacyDimmerSettingsVC(remoteId: channelId))
     }
     
     func navigateToCallNfcAction(url: URL) {

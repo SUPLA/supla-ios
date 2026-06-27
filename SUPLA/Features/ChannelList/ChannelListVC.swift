@@ -84,6 +84,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
             coordinator.navigateToStandardDetail(item: item, pages: pages)
         case .navigateToImpulseCounterDetail(let item, let pages):
             coordinator.navigateToImpulseCounterDetail(item: item, pages: pages)
+        case .navigateToRgbwDetail(item: let item, pages: let pages):
+            coordinator.navigateToRgbwDetail(item: item, pages: pages)
         case .showAddWizard:
             coordinator.navigateToAddWizard()
         }

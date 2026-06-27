@@ -78,10 +78,6 @@
 
 -(void)detailWillHide {}
 
--(void)detailDidShow {}
-
--(void)detailDidHide {}
-
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     
     _channelBase = channelBase;

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24765"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,43 +16,17 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2U-Zq-J06">
                     <rect key="frame" x="0.0" y="276" width="393" height="150"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notAuthorizedMessage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cd-D6-4C2">
-                            <rect key="frame" x="24" y="16" width="345" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97f-Xu-75j" customClass="UIFilledButton" customModule="SUPLA" customModuleProvider="target">
-                            <rect key="frame" x="159" y="91" width="75" height="35"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Button">
-                                <backgroundConfiguration key="background" cornerRadius="9">
-                                    <color key="backgroundColor" name="AccentColor"/>
-                                </backgroundConfiguration>
-                            </buttonConfiguration>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="2cd-D6-4C2" secondAttribute="trailing" constant="24" id="ABk-L4-14J"/>
-                        <constraint firstItem="97f-Xu-75j" firstAttribute="centerX" secondItem="H2U-Zq-J06" secondAttribute="centerX" id="JC5-iT-RTB"/>
-                        <constraint firstItem="2cd-D6-4C2" firstAttribute="top" secondItem="H2U-Zq-J06" secondAttribute="top" constant="16" id="MVY-Il-8Fd"/>
                         <constraint firstAttribute="height" constant="150" id="R9S-jX-2b0"/>
-                        <constraint firstItem="2cd-D6-4C2" firstAttribute="leading" secondItem="H2U-Zq-J06" secondAttribute="leading" constant="24" id="gPf-Ju-9rz"/>
                     </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="H2U-Zq-J06" firstAttribute="bottom" secondItem="97f-Xu-75j" secondAttribute="bottom" constant="24" id="2T5-av-E8o"/>
                 <constraint firstAttribute="centerY" secondItem="H2U-Zq-J06" secondAttribute="bottom" id="3xc-j7-qEl"/>
                 <constraint firstAttribute="trailing" secondItem="H2U-Zq-J06" secondAttribute="trailing" id="ec3-BN-XA8"/>
                 <constraint firstItem="H2U-Zq-J06" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hx8-dj-CwI"/>
             </constraints>
-            <connections>
-                <outlet property="settingsButton" destination="97f-Xu-75j" id="B5S-AE-pI4"/>
-                <outlet property="settingsLabel" destination="2cd-D6-4C2" id="Trh-j1-wWe"/>
-            </connections>
             <point key="canvasLocation" x="-800.76335877862596" y="-114.08450704225352"/>
         </view>
         <view contentMode="scaleToFill" id="FzW-UN-VI5">
@@ -64,9 +37,6 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

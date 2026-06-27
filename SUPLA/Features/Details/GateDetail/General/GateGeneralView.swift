@@ -104,13 +104,13 @@ extension GateGeneralFeature {
                     )
                 }
                 
-                RoundedControlButtonWrapperView(
+                RoundedControlButton(
+                    viewState.mainButtonLabel,
                     type: .positive,
-                    text: viewState.mainButtonLabel,
-                    isEnabled: viewState.offline == false,
-                    onTap: { delegate?.onOpenClose() }
+                    action: { delegate?.onOpenClose() }
                 )
                 .frame(height: Dimens.buttonHeight)
+                .disabled(viewState.offline == true)
                 .padding([.leading, .trailing, .bottom], Distance.default)
             }
         }
@@ -130,13 +130,13 @@ extension GateGeneralFeature {
                     .disabled(viewState.offline)
                 }
                 
-                RoundedControlButtonWrapperView(
+                RoundedControlButton(
+                    viewState.mainButtonLabel,
                     type: .positive,
-                    text: viewState.mainButtonLabel,
-                    isEnabled: viewState.offline == false,
-                    onTap: { delegate?.onOpenClose() }
+                    action: { delegate?.onOpenClose() }
                 )
                 .frame(height: Dimens.buttonHeight)
+                .disabled(viewState.offline == true)
                 
                 if let openButtonState = viewState.openButtonState {
                     SwitchButton(
