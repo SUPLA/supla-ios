@@ -114,6 +114,8 @@
     if (_dimmerCalibrationTool && _dimmerCalibrationTool.superview) {
         return [_dimmerCalibrationTool onMenubarBackButtonPressed];
     }
+
+    [SuplaAppCoordinatorLegacyWrapper finish];
     return YES;
 }
 
