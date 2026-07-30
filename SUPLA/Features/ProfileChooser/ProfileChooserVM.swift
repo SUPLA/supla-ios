@@ -17,17 +17,20 @@
  */
     
 extension ProfileChooserFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
-        @Singleton var coordinator: SuplaAppCoordinator
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton var activateProfileUseCase: ActivateProfileUseCase
+        @Singleton<SuplaSchedulers> private var schedulers
         
         @Singleton<ProfileRepository> var profileRepository
+
+        private let onDismissed: () -> Void
         
-        init() {
+        init(onDismissed: @escaping () -> Void) {
+            self.onDismissed = onDismissed
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewAppear() {
             Task {
                 let profiles = await profileRepository.getAllProfiles()
                 await MainActor.run { state.profiles = profiles }
@@ -35,14 +38,16 @@ extension ProfileChooserFeature {
         }
         
         func onDismiss() {
-            coordinator.dismiss(animated: true)
+            onDismissed()
         }
         
         func onProfileSelected(_ profile: ProfileDto) {
             activateProfileUseCase.invoke(profileId: profile.id, force: false)
+                .subscribe(on: schedulers.background)
+                .observe(on: schedulers.main)
                 .asDriverWithoutError()
                 .drive(
-                    onCompleted: { [weak self] in self?.coordinator.dismiss(animated: true) }
+                    onCompleted: { [weak self] in self?.onDismissed() }
                 )
                 .disposed(by: disposeBag)
         }

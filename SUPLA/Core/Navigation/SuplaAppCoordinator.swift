@@ -22,7 +22,6 @@ import RxSwift
 protocol SuplaAppCoordinator: Coordinator {
     func attachToWindow(_ window: UIWindow)
     func currentController() -> UIViewController?
-    func navigateToMain()
     func navigateToSettings()
     func navigateToLocationOrdering()
     func navigateToProfiles()
@@ -50,13 +49,12 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToNfcTagsList()
     func navigateToEditNfcTag(uuid: String, readOnly: Bool?)
     func navigateToNfcTagDetail(uuid: String)
-    
+
     func popToStatus()
     
     func showMenu()
     func showLogin()
-    func showProfileChooser()
-    
+
     func openForum()
     func openCloud()
     func openUrl(url: String)
@@ -82,37 +80,14 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         let controller = SuplaAppNavigationController()
         return controller
     }()
-
+    
     func attachToWindow(_ window: UIWindow) {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
     
     func start(animated: Bool = false) {
-        self.navigateToStatusView()
-        
-        stateDisposable = stateHolder.state()
-            .subscribe(on: schedulers.background)
-            .observe(on: schedulers.main)
-            .subscribe(
-                onNext: {
-                    SALog.debug("Coordinator got state \($0)")
-                    switch ($0) {
-                    case .initialization, .connecting(_), .finished:
-                        self.navigateToStatusView()
-                    case .locked:
-                        self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: animated)
-                        if (!(self.navigationController.viewControllers.last is StatusFeature.ViewController)) {
-                            self.popToViewController(ofClass: StatusFeature.ViewController.self)
-                        }
-                    default:
-                        break
-                    }
-                },
-                onError: {
-                    SALog.error("Failed by handling app state: \(String(describing: $0))")
-                }
-            )
+        // TODO: - remove when unused
     }
     
     func currentController() -> UIViewController? {
@@ -127,10 +102,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
             return getPresentedController(presentedController)
         }
         return controller
-    }
-    
-    func navigateToMain() {
-        navigateTo(MainVC())
     }
     
     func navigateToSettings() {
@@ -267,7 +238,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func popToStatus() {
-        popToViewController(ofClass: StatusFeature.ViewController.self)
+        //        popToViewController(ofClass: StatusFeature.ViewController.self)
     }
     
     func showMenu() {
@@ -277,13 +248,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     func showLogin() {
         present(SALoginDialogVC {})
     }
-    
-    func showProfileChooser() {
-        let vc = ProfileChooserFeature.ViewController.create()
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true)
-    }
-    
+
     func openForum() {
         openUrl(url: NSLocalizedString("https://en-forum.supla.org", comment: ""))
     }
@@ -300,31 +265,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func openUrl(url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-    
-    private func navigateToStatusView() {
-        if (navigationController.viewControllers.isEmpty) {
-            navigateTo(StatusFeature.ViewController.create())
-        } else if (navigationToStatusAllowed()) {
-            navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
-            popToViewController(ofClass: StatusFeature.ViewController.self)
-        }
-    }
-    
-    private func navigationToStatusAllowed() -> Bool {
-        if (navigationController.viewControllers.last is StatusFeature.ViewController) {
-            return false // Already in
-        }
-        
-        if let subcontroller = navigationController.viewControllers.last as? NavigationSubcontroller {
-            return subcontroller.screenTakeoverAllowed()
-        }
-        
-        if let subcontroller = navigationController.viewControllers.last?.presentedViewController as? NavigationSubcontroller {
-            return subcontroller.screenTakeoverAllowed()
-        }
-        
-        return true
     }
 }
 

@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import SwiftUI
 
 private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
 private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
@@ -24,9 +24,10 @@ private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var settings: GlobalSettings
     @Singleton private var dateProvider: DateProvider
-    @Singleton private var coordinator: SuplaAppCoordinator
     @Singleton private var disconnectUseCase: DisconnectUseCase
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
+    @Singleton private var appRouter: AppRouter
+    @Singleton private var authorizationCoordinator: AuthorizationCoordinator
 
     var window: UIWindow?
 
@@ -49,18 +50,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         #endif
 
-        window = UIWindow(windowScene: windowScene)
-        if let window {
-            window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
-            coordinator.attachToWindow(window)
-            coordinator.start(animated: true)
-        }
+        let rootView = AppRootView()
+            .environmentObject(appRouter)
+            .environmentObject(authorizationCoordinator)
+
+        let hostingController = UIHostingController(rootView: rootView)
+        let window = UIWindow(windowScene: windowScene)
+        window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
+        window.rootViewController = hostingController
+        window.makeKeyAndVisible()
+        self.window = window
+        appRouter.start()
 
         if let userActivities = connectionOptions.userActivities.first,
            userActivities.activityType == NSUserActivityTypeBrowsingWeb,
            let url = userActivities.webpageURL
         {
-            coordinator.navigateToCallNfcAction(url: url)
+            handleDeepLink(url)
         }
     }
 
@@ -70,7 +76,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         else {
             return
         }
-        coordinator.navigateToCallNfcAction(url: url)
+        handleDeepLink(url)
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        handleDeepLink(url)
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -81,7 +92,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         #endif
-        
+
         let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         if (isPreview) {
             return
@@ -105,11 +116,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if (isPreview) {
             return
         }
-        
+
         wasInBackground = true
 
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
 
         disconnectUseCase.invokeSynchronous(reason: .appInBackground)
+    }
+
+    private func handleDeepLink(_ url: URL) {
+        appRouter.handleDeepLink(url)
     }
 }

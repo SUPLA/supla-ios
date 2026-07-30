@@ -15,21 +15,35 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension ProfileChooserFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        override init(viewModel: ProfileChooserFeature.ViewModel) {
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                state: viewModel.state,
-                delegate: viewModel
-            )
+
+import SwiftUI
+
+extension SuplaCore {
+    struct ViewModelHost<
+        S: ObservableObject,
+        VM: ViewModel<S>,
+        Content: View
+    >: View {
+        private let viewModel: VM
+
+        private let content: (S) -> Content
+
+        init(
+            _ viewModel: VM,
+            @ViewBuilder content: @escaping (S) -> Content
+        ) {
+            self.viewModel = viewModel
+            self.content = content
         }
-        
-        static func create() -> UIViewController {
-            let viewModel = ViewModel()
-            return ViewController(viewModel: viewModel)
+
+        var body: some View {
+            content(viewModel.state)
+                .onAppear {
+                    viewModel.onViewAppear()
+                }
+                .onDisappear {
+                    viewModel.onViewDisappear()
+                }
         }
     }
 }

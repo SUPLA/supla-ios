@@ -15,20 +15,11 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
-enum LockScreenScope: Int, CaseIterable, Hashable {
-    case none = 0
-    case application = 1
-    case accounts = 2
-    
-    static func from(_ value: Int) -> LockScreenScope {
-        for setting in LockScreenScope.allCases {
-            if (setting.rawValue == value) {
-                return setting
-            }
-        }
-        
-        return .none
+import SwiftUI
+
+extension MainFeature {
+    class ViewState: ObservableObject {
+        @Published var showProfilesIcon = false
     }
 }

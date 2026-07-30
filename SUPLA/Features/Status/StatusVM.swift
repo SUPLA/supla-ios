@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -18,25 +17,26 @@
  */
 
 extension StatusFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
-        @Singleton<SuplaAppStateHolder> private var stateHolder
-        @Singleton<SuplaAppCoordinator> private var coordinator
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
+        @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
         @Singleton<DisconnectUseCase> private var disconnectUseCase
+        @Singleton<SuplaAppStateHolder> private var stateHolder
         @Singleton<SuplaSchedulers> private var schedulers
+        @Singleton<AppRouter> private var router
         
-        init() {
-            super.init(state: ViewState())
+        init(state: ViewState = ViewState()) {
+            super.init(state: state)
         }
         
-        override func onViewAppeared() {
+        override func onViewAppear() {
             stateHolder.state()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] state in
                     SALog.debug("Status got state: \(state)")
                     
                     switch (state) {
-                    case .connected: self?.coordinator.navigateToMain()
-                    case .firstProfileCreation: self?.coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID)
+                    case .connected: self?.router.setRoot(.main)
+                    case .firstProfileCreation: self?.router.navigate(to: .profile(profileId: ProfileDto.INVALID_ID, withLockCheck: true))
                     case .finished(let reason): self?.handleErrorState(reason)
                     case .initialization:
                         self?.state.viewType = .connecting
@@ -48,7 +48,7 @@ extension StatusFeature {
                         self?.state.viewType = .connecting
                         self?.state.stateText = .disconnecting
                     case .locked:
-                        self?.coordinator.navigateToLockScreen(unlockAction: .authorizeApplication)
+                        self?.router.navigate(to: .lockScreen(action: .authorizeApplication))
                     }
                 })
                 .disposedWhenDisappear(by: self)
@@ -69,21 +69,23 @@ extension StatusFeature {
         func onTryAgain() {
             stateHolder.handle(event: .connecting)
         }
-        
+
         func goToProfiles() {
             disconnectUseCase.invoke()
                 .subscribe(on: schedulers.background)
                 .observe(on: schedulers.main)
                 .asDriverWithoutError()
                 .drive(
-                    onCompleted: { [weak self] in self?.coordinator.navigateToProfiles() }
+                    onCompleted: { [weak self] in self?.router.navigate(to: .profiles) }
                 )
                 .disposed(by: disposeBag)
         }
         
         private func handleErrorState(_ reason: SuplaAppState.Reason?) {
             if (reason?.shouldAuthorize == true) {
-                coordinator.showLogin()
+                Task { @MainActor [weak self] in
+                    self?.authorizationCoordinator.authorize()
+                }
             }
             
             if (reason == .appInBackground) {

@@ -1,0 +1,117 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+import Combine
+import Foundation
+import RxSwift
+
+final class AppRouter: ObservableObject {
+    @Singleton<SuplaAppStateHolder> private var stateHolder
+    @Singleton<SuplaSchedulers> private var schedulers
+
+    @Published private(set) var root: AppRoot = .status
+    @Published var path: [AppRoute] = []
+
+    private let deepLinkParser: DeepLinkParser
+    private var stateDisposable: Disposable?
+    private var pendingConnectionTakeover = false
+
+    init(deepLinkParser: DeepLinkParser = DeepLinkParser()) {
+        self.deepLinkParser = deepLinkParser
+    }
+
+    var currentRoute: AppRoute? {
+        path.last
+    }
+
+    var connectionTakeoverPolicy: ConnectionTakeoverPolicy {
+        currentRoute?.connectionTakeoverPolicy ?? root.connectionTakeoverPolicy
+    }
+
+    func start() {
+        guard stateDisposable == nil else { return }
+
+        stateDisposable = stateHolder.state()
+            .subscribe(on: schedulers.background)
+            .observe(on: schedulers.main)
+            .subscribe(
+                onNext: { [weak self] state in
+                    SALog.debug("AppRouter got state \(state)")
+                    self?.handle(appState: state)
+                },
+                onError: {
+                    SALog.error("Failed by handling app state: \(String(describing: $0))")
+                }
+            )
+    }
+
+    func setRoot(_ root: AppRoot) {
+        path.removeAll()
+        self.root = root
+    }
+
+    func navigate(to route: AppRoute) {
+        path.append(route)
+    }
+
+    func back() {
+        guard !path.isEmpty else { return }
+        path.removeLast()
+    }
+
+    func handleDeepLink(_ url: URL) {
+        guard let deepLinkRoute = deepLinkParser.parse(url) else { return }
+        navigate(to: AppRoute(deepLinkRoute))
+    }
+
+    func connectionWasLost() {
+        switch connectionTakeoverPolicy {
+        case .allowed:
+            showConnectionStatus()
+
+        case .deferred:
+            pendingConnectionTakeover = true
+        }
+    }
+
+    func blockingRouteDidFinish() {
+        guard pendingConnectionTakeover else { return }
+        pendingConnectionTakeover = false
+        showConnectionStatus()
+    }
+
+    private func handle(appState: SuplaAppState) {
+        switch appState {
+        case .initialization,
+             .connecting,
+             .finished:
+            connectionWasLost()
+
+        case .locked:
+            showConnectionStatus()
+
+        default:
+            break
+        }
+    }
+
+    private func showConnectionStatus() {
+        path.removeAll()
+        root = .status
+    }
+}

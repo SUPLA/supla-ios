@@ -23,6 +23,8 @@ extension DiContainer {
         // MARK: General
 
         register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
+        register(AppRouter.self, AppRouter())
+        register(AuthorizationCoordinator.self, AuthorizationCoordinator())
         let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())
         register(SuplaClientProvider.self, SuplaClientProviderImpl())
