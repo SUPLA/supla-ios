@@ -110,11 +110,11 @@ enum DetailType: Equatable {
     case rgbwDetail(pages: [DetailPage])
 }
 
-enum LegacyDetailType {
+enum LegacyDetailType: Hashable {
     case thermostat_hp, digiglass
 }
 
-enum DetailPage {
+enum DetailPage: Hashable {
     // Switches
     case switchGeneral
     case switchTimer

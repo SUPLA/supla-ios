@@ -74,6 +74,7 @@ extension String {
         static let dimmerLinearSelector = "icon_dimmer_linear_selector"
         static let lock = "icon_lock"
         static let search = "icon_search"
+        static let menu = "icon_menu"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"

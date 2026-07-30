@@ -48,20 +48,6 @@ class GlobalSettingsMock: GlobalSettings {
         set { anyAccountRegisteredValues.append(newValue) }
     }
     
-    var newGestureInfoShownReturns: Bool = false
-    var newGestureInfoShownValues: [Bool] = []
-    var newGestureInfoShown: Bool {
-        get { newGestureInfoShownReturns }
-        set { newGestureInfoShownValues.append(newValue) }
-    }
-    
-    var shouldShowNewGestureInfoReturns: Bool = false
-    var shouldShowNewGestureInfoValues: [Bool] = []
-    var shouldShowNewGestureInfo: Bool {
-        get { shouldShowNewGestureInfoReturns }
-        set { shouldShowNewGestureInfoValues.append(newValue) }
-    }
-    
     var shouldShowThermostatScheduleInfoReturns: Bool = false
     var shouldShowThermostatScheduleInfoValues: [Bool] = []
     var shouldShowThermostatScheduleInfo: Bool {

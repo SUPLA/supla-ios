@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -19,25 +18,20 @@
 
 import SwiftUI
 
-extension StatusFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, StatusView, ViewModel> {
-        override var navigationBarHidden: Bool { true }
-        override var preferredStatusBarStyle: UIStatusBarStyle {
-            traitCollection.userInterfaceStyle == .dark ? .lightContent : .darkContent
-        }
-        
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            contentView = StatusView(
-                viewState: state,
-                onProfilesClick: { viewModel.goToProfiles() },
-                onTryAgainClick: { viewModel.onTryAgain() }
+extension ProfileChooserFeature {
+    struct Dialog: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(onDismissed: @escaping () -> Void) {
+            self._viewModel = StateObject(
+                wrappedValue: ViewModel(onDismissed: onDismissed)
             )
         }
-        
-        static func create() -> UIViewController {
-            let viewModel = ViewModel()
-            return ViewController(viewModel: viewModel)
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) {
+                View(state: $0, delegate: viewModel)
+            }
         }
     }
 }

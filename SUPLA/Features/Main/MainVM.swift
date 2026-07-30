@@ -16,121 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-import RxSwift
+extension MainFeature {
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
+        @Singleton<ProfileRepository> private var profileRepository
 
-class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
-    
-    @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<UpdateEventsManager> private var updateEventsManager
-    
-    override func defaultViewState() -> MainViewState { MainViewState() }
-    
-    override func onViewDidLoad() {
-        observeChangesForIconsReload()
-    }
-    
-    func onViewAppear() {
-        Task { await showProfilesIcon() }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotificationEvent), name: NSNotification.Name.saEvent, object: nil)
-    }
-    
-    func onViewDisappear() {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    func showProfilesIcon() async {
-        let count = await profileRepository.getProfileCount()
-        await MainActor.run {
-            updateView { state in
-                state.changing(path: \.showProfilesIcon, to: count > 1)
+        init(state: ViewState = ViewState()) {
+            super.init(state: state)
+        }
+
+        override func onViewAppear() {
+            Task { await loadProfilesIconVisibility() }
+        }
+
+        private func loadProfilesIconVisibility() async {
+            let count = await profileRepository.getProfileCount()
+
+            await MainActor.run {
+                state.showProfilesIcon = count > 1
             }
         }
     }
-    
-    @objc
-    private func onNotificationEvent(notification: Notification) {
-        if (notification.userInfo == nil) {
-            return
-        }
-        
-        let event: SAEvent? = SAEvent.notification(toEvent: notification)
-        if (event == nil || event?.owner == true) {
-            return
-        }
-        
-        profileRepository.getActiveProfile()
-            .flatMapFirst { self.channelRepository.getChannel(for: $0, with: event!.channelID) }
-            .flatMapFirst { self.channelToEvent(channel: $0, event: event!) }
-            .asDriverWithoutError()
-            .drive(onNext: { self.send(event: $0)})
-            .disposed(by: self)
-    }
-    
-    private func channelToEvent(channel: SAChannel, event: SAEvent) -> Observable<MainViewEvent> {
-        let icon: UIImage? = channel.getIcon()
-        var message = getMessageForEvent(event)
-            
-        if (icon != nil && message != nil) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm:ss"
-            
-            if (channel.caption != nil && channel.caption!.isEmpty == false) {
-                message = String(format: "%@ %@ %@ %@", formatter.string(from: Date()), event.senderName, message!, channel.caption!)
-            } else {
-                message = String(format: "%@ %@ %@", formatter.string(from: Date()), event.senderName, message!)
-            }
-            return Observable.just(.showNotification(message: message!, icon: icon!))
-        }
-        
-        return Observable.empty()
-    }
-    
-    private func getMessageForEvent(_ event: SAEvent) -> String? {
-        switch(event.event) {
-        case SUPLA_EVENT_CONTROLLINGTHEGATEWAYLOCK:
-            return NSLocalizedString("opened the gateway", comment: "");
-        case SUPLA_EVENT_CONTROLLINGTHEGATE:
-            return NSLocalizedString("opened / closed the gate", comment: "");
-        case SUPLA_EVENT_CONTROLLINGTHEGARAGEDOOR:
-            return NSLocalizedString("opened / closed the gate doors", comment: "");
-        case SUPLA_EVENT_CONTROLLINGTHEDOORLOCK:
-            return NSLocalizedString("opened the door", comment: "");
-        case SUPLA_EVENT_CONTROLLINGTHEROLLERSHUTTER:
-            return NSLocalizedString("opened / closed roller shutter", comment: "");
-        case SUPLA_EVENT_CONTROLLINGTHEROOFWINDOW:
-            return NSLocalizedString("opened / closed the roof window", comment: "");
-        case SUPLA_EVENT_POWERONOFF:
-            return NSLocalizedString("turned the power ON/OFF", comment: "");
-        case SUPLA_EVENT_LIGHTONOFF:
-            return NSLocalizedString("turned the light ON/OFF", comment: "");
-        default:
-            return nil
-        }
-    }
-    
-    private func observeChangesForIconsReload() {
-        Observable.combineLatest(
-            updateEventsManager.observeChannelsUpdate(),
-            updateEventsManager.observeGroupsUpdate(),
-            updateEventsManager.observeScenesUpdate(),
-            resultSelector: { _, _, _ in
-                return ()
-            }
-        ).asDriverWithoutError()
-            .debounce(.seconds(2))
-            .drive(onNext: { self.send(event: .loadIcons) })
-            .disposed(by: self)
-    }
-}
-
-enum MainViewEvent: ViewEvent {
-    case showNotification(message: String, icon: UIImage)
-    case loadIcons
-}
-
-struct MainViewState: ViewState {
-    var showProfilesIcon: Bool = false
 }

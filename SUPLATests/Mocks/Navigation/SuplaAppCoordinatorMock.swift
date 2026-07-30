@@ -34,11 +34,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     
     func currentController() -> UIViewController? { UIViewController() }
     
-    var navigateToMainMock: FunctionMock<Void, Void> = .void()
-    func navigateToMain() {
-        navigateToMainMock.handle(())
-    }
-    
     func navigateToSettings() {
     }
     
@@ -137,10 +132,7 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     
     func showAuthorization() {
     }
-    
-    func showProfileChooser() {
-    }
-    
+
     var showLoginMock: FunctionMock<Void, Void> = .void()
     func showLogin() {
         showLoginMock.handle(())
