@@ -71,7 +71,7 @@ struct CircularColorSelector: View {
         self.selectedColor = selectedColor
         self.valueMarkers = valueMarkers
         self.enabled = enabled
-        self.colors = [Gradient.Stop(color: startColor, location: 0), Gradient.Stop(color: .black, location: 1)]
+        self.colors = [Gradient.Stop(color: .black, location: 0), Gradient.Stop(color: startColor, location: 1)]
         self.onValueChangeStarted = onValueChangeStarted
         self.onValueChanging = onValueChanging
         self.onValueChanged = onValueChanged

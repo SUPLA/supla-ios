@@ -93,7 +93,11 @@ extension SAChannelBase {
 
     @objc
     func isRGBW() -> Bool {
-        return self.func == SUPLA_CHANNELFNC_RGBLIGHTING || self.func == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING || self.func == SUPLA_CHANNELFNC_DIMMER
+        return self.func == SUPLA_CHANNELFNC_RGBLIGHTING ||
+            self.func == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING ||
+            self.func == SUPLA_CHANNELFNC_DIMMER ||
+            self.func == SUPLA_CHANNELFNC_DIMMER_CCT ||
+            self.func == SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB
     }
 
     @objc

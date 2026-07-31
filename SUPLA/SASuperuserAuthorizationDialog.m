@@ -89,15 +89,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
      name:kSARegisterErrorNotification object:nil];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (!_success
-        && _delegate
-        && [_delegate respondsToSelector:@selector(superuserAuthorizationCanceled)] ) {
-        [_delegate superuserAuthorizationCanceled];
-    }
-}
-
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     _delegate = nil;
@@ -107,6 +98,10 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [self timeoutTimerInvalidate];
     [super closeWithAnimation:animation completion:completion];
     
+    if ([_delegate respondsToSelector:@selector(superuserAuthorizationCanceled)]) {
+        NSLog(@"Calling delegated canceled method.");
+        [_delegate superuserAuthorizationCanceled];
+    }
 }
 
 -(void)showError:(NSString*)err {
