@@ -20,9 +20,9 @@ import SharedCore
 import SwiftUI
 
 class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelListViewEvent, ChannelListViewModel> {
-    @Singleton<SuplaAppCoordinator> private var coordinator
     @Singleton<TriggerLogHistoryDownload.UseCase> private var triggerLogHistoryDownloadUseCase
-    
+    @Singleton<AppRouter> private var router
+
     private var triggerLogHistoryDownloadTask: Task<Void, Never>? = nil
     
     private lazy var stateViewModel: StateDialogFeature.ViewModel = {
@@ -79,15 +79,15 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
     override func handle(event: ChannelListViewEvent) {
         switch (event) {
         case .navigateToLegacyDetail(let legacyDetailType, let channelBase):
-            coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
+            router.navigate(to: .legacyDetail(type: legacyDetailType, channelRemoteId: channelBase.remote_id))
         case .navigateToStandardDetail(let item, let pages):
-            coordinator.navigateToStandardDetail(item: item, pages: pages)
+            router.navigate(to: .standardDetail(item: item, pages: pages))
         case .navigateToImpulseCounterDetail(let item, let pages):
-            coordinator.navigateToImpulseCounterDetail(item: item, pages: pages)
+            router.navigate(to: .impulseCounterDetail(item: item, pages: pages))
         case .navigateToRgbwDetail(item: let item, pages: let pages):
-            coordinator.navigateToRgbwDetail(item: item, pages: pages)
+            router.navigate(to: .rgbwDetail(item: item, pages: pages))
         case .showAddWizard:
-            coordinator.navigateToAddWizard()
+            router.navigate(to: .addWizard)
         }
     }
     
@@ -117,7 +117,7 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
         viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
         noContentDevicesButton.rx.tap
             .asDriverWithoutError()
-            .drive(onNext: { [weak self] in self?.coordinator.navigateToDeviceCatalog() })
+            .drive(onNext: { [weak self] in self?.router.navigate(to: .deviceCatalog) })
             .disposed(by: self)
         setupOverlay(overlay)
     }

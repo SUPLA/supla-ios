@@ -1051,7 +1051,7 @@
 		A5AE6D672E1D498500BC2B67 /* AddWizardViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D662E1D497F00BC2B67 /* AddWizardViewState.swift */; };
 		A5AE6D692E1D4ACC00BC2B67 /* AddWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D682E1D4AC600BC2B67 /* AddWizardView.swift */; };
 		A5AE6D6B2E1D4B8D00BC2B67 /* AddWizardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D6A2E1D4B8800BC2B67 /* AddWizardVM.swift */; };
-		A5AE6D6D2E1D4BC800BC2B67 /* AddWizardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D6C2E1D4BC100BC2B67 /* AddWizardVC.swift */; };
+		A5AE6D6D2E1D4BC800BC2B67 /* AddWizardScreenFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D6C2E1D4BC100BC2B67 /* AddWizardScreenFlow.swift */; };
 		A5AE6D702E1DBA6E00BC2B67 /* AddWizardScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D6F2E1DBA6500BC2B67 /* AddWizardScaffold.swift */; };
 		A5AE6D732E1E66AB00BC2B67 /* AddWizardWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D722E1E66A400BC2B67 /* AddWizardWelcomeView.swift */; };
 		A5AE6D752E1E7A4500BC2B67 /* AddWizardContentText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */; };
@@ -2902,7 +2902,7 @@
 		A5AE6D662E1D497F00BC2B67 /* AddWizardViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardViewState.swift; sourceTree = "<group>"; };
 		A5AE6D682E1D4AC600BC2B67 /* AddWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardView.swift; sourceTree = "<group>"; };
 		A5AE6D6A2E1D4B8800BC2B67 /* AddWizardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVM.swift; sourceTree = "<group>"; };
-		A5AE6D6C2E1D4BC100BC2B67 /* AddWizardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVC.swift; sourceTree = "<group>"; };
+		A5AE6D6C2E1D4BC100BC2B67 /* AddWizardScreenFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardScreenFlow.swift; sourceTree = "<group>"; };
 		A5AE6D6F2E1DBA6500BC2B67 /* AddWizardScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardScaffold.swift; sourceTree = "<group>"; };
 		A5AE6D722E1E66A400BC2B67 /* AddWizardWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardWelcomeView.swift; sourceTree = "<group>"; };
 		A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardContentText.swift; sourceTree = "<group>"; };
@@ -6651,7 +6651,7 @@
 				A5BCA9582E277BCD00A5054A /* Configuration */,
 				A5AE6D712E1E669C00BC2B67 /* Views */,
 				A5AE6D6E2E1DB98200BC2B67 /* Components */,
-				A5AE6D6C2E1D4BC100BC2B67 /* AddWizardVC.swift */,
+				A5AE6D6C2E1D4BC100BC2B67 /* AddWizardScreenFlow.swift */,
 				A5AE6D6A2E1D4B8800BC2B67 /* AddWizardVM.swift */,
 				A5AE6D682E1D4AC600BC2B67 /* AddWizardView.swift */,
 				A5AE6D662E1D497F00BC2B67 /* AddWizardViewState.swift */,
@@ -8444,7 +8444,7 @@
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
 				A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */,
-				A5AE6D6D2E1D4BC800BC2B67 /* AddWizardVC.swift in Sources */,
+				A5AE6D6D2E1D4BC800BC2B67 /* AddWizardScreenFlow.swift in Sources */,
 				A54737592D89B89A00B2E227 /* RemoveHiddenChannelsUseCase.swift in Sources */,
 				A541493E2B63E42900B44BD6 /* EmptyChartData.swift in Sources */,
 				A5F29BC02A24DDB100ED700A /* UpdateChannelGroupRelationUseCase.swift in Sources */,

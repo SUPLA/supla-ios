@@ -29,21 +29,7 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
         set {  }
     }
     
-    func attachToWindow(_ window: UIWindow) {
-    }
-    
     func currentController() -> UIViewController? { UIViewController() }
-    
-    func navigateToSettings() {
-    }
-    
-    var navigateToLocationOrderingMock: FunctionMock<Void, Void> = .void()
-    func navigateToLocationOrdering() {
-        navigateToLocationOrderingMock.handle(())
-    }
-    
-    func navigateToAddWizard() {
-    }
     
     func navigateToAbout() {
     }
@@ -52,12 +38,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     }
     
     func navigateToDeviceCatalog() {
-    }
-    
-    func navigateToCreateAccountWeb() {
-    }
-    
-    func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?) {
     }
     
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
@@ -78,20 +58,12 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToLegacyDimmerSettings(channelId: Int32) {
     }
     
-    func popToStatus() {
-    }
-    
     func showMenu() {
     }
     
     func showAuthorization() {
     }
 
-    var showLoginMock: FunctionMock<Void, Void> = .void()
-    func showLogin() {
-        showLoginMock.handle(())
-    }
-    
     func openForum() {
     }
     

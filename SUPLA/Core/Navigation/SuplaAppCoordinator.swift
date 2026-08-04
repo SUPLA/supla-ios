@@ -21,16 +21,10 @@ import RxSwift
 import SwiftUI
 
 protocol SuplaAppCoordinator: Coordinator {
-    func attachToWindow(_ window: UIWindow)
     func currentController() -> UIViewController?
-    func navigateToSettings()
-    func navigateToLocationOrdering()
-    func navigateToAddWizard()
     func navigateToAbout()
     func navigateToNotificationsLog()
     func navigateToDeviceCatalog()
-    func navigateToCreateAccountWeb()
-    func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?)
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
@@ -38,10 +32,6 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToCounterPhoto(channelId: Int32)
     func navigateToDeveloperOptions()
     func navigateToLegacyDimmerSettings(channelId: Int32)
-
-    func popToStatus()
-    
-    func showLogin()
 
     func openForum()
     func openCloud()
@@ -65,11 +55,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         return controller
     }()
     
-    func attachToWindow(_ window: UIWindow) {
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
-    }
-    
     func start(animated: Bool = false) {
         // TODO: - remove when unused
     }
@@ -88,23 +73,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         return controller
     }
     
-    func navigateToSettings() {
-        navigateTo(AppSettingsVC())
-    }
-    
-    func navigateToLocationOrdering() {
-        let viewController = LocationOrderingVC()
-        viewController.bind(viewModel: LocationOrderingVM())
-        navigateTo(viewController)
-    }
-    
-    func navigateToAddWizard() {
-        let avc = AddWizardFeature.ViewController.create()
-        avc.modalPresentationStyle = .fullScreen
-        avc.modalTransitionStyle = .crossDissolve
-        present(avc, animated: true)
-    }
-    
     func navigateToAbout() {
         navigateTo(AboutFeature.ViewController.create())
     }
@@ -115,14 +83,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToDeviceCatalog() {
         navigateTo(DeviceCatalogVC())
-    }
-    
-    func navigateToCreateAccountWeb() {
-        navigateTo(SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil))
-    }
-    
-    func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?) {
-        navigateTo(AccountRemovalVC(needsRestart: needsRestart, serverAddress: serverAddress))
     }
     
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
@@ -153,14 +113,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(LegacyDimmerSettingsVC(remoteId: channelId))
     }
     
-    func popToStatus() {
-        //        popToViewController(ofClass: StatusFeature.ViewController.self)
-    }
-    
-    func showLogin() {
-        present(SALoginDialogVC {})
-    }
-
     func openForum() {
         openUrl(url: NSLocalizedString("https://en-forum.supla.org", comment: ""))
     }
