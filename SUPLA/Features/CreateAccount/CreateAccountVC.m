@@ -24,9 +24,7 @@
 
 @end
 
-@implementation SACreateAccountVC {
-    BOOL _navBarHidden;
-}
+@implementation SACreateAccountVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,30 +32,18 @@
     self.title = @"supla";
 }
 
--(void)onDismiss:sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (BOOL)hidesNavigationBar {
+    return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    _navBarHidden = [self.navigationController isNavigationBarHidden];
-    [self.navigationController setNavigationBarHidden: NO];
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithImage:[UIImage imageNamed: @"settings"]
-                                                                 style:UIBarButtonItemStylePlain target:self
-                                             action:@selector(onDismiss:)];
     
     self.webView.hidden = YES;
     self.activityIndicator.hidden = NO;
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
 };
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:_navBarHidden];
-}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if ( [webView.request.URL.absoluteString isEqualToString:@"about:blank"] ) {

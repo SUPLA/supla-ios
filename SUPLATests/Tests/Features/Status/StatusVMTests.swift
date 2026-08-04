@@ -23,6 +23,7 @@ import XCTest
 
 final class StatusVMTests: XCTestCase {
     private lazy var stateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     private lazy var appRouter: AppRouter! = AppRouter()
     private lazy var authorizationCoordinator: AuthorizationCoordinator! = AuthorizationCoordinator()
     private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
@@ -32,6 +33,7 @@ final class StatusVMTests: XCTestCase {
     
     override func setUp() {
         DiContainer.shared.register(type: SuplaAppStateHolder.self, stateHolder!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: AppRouter.self, appRouter!)
         DiContainer.shared.register(type: AuthorizationCoordinator.self, authorizationCoordinator!)
         DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase!)
@@ -40,6 +42,7 @@ final class StatusVMTests: XCTestCase {
     
     override func tearDown() {
         stateHolder = nil
+        settings = nil
         appRouter = nil
         authorizationCoordinator = nil
         disconnectUseCase = nil
@@ -68,6 +71,18 @@ final class StatusVMTests: XCTestCase {
         
         // then
         XCTAssertEqual(appRouter.path, [.profile(profileId: ProfileDto.INVALID_ID, withLockCheck: true)])
+    }
+
+    func test_shouldNavigateToLockScreen_whenFirstProfileCreationAndAccountsLocked() {
+        // given
+        settings.lockScreenSettingsReturns = LockScreenSettings(scope: .accounts, pinSum: "1234", biometricAllowed: false)
+        stateHolder.stateReturns = .just(.firstProfileCreation)
+
+        // when
+        viewModel.onViewAppear()
+
+        // then
+        XCTAssertEqual(appRouter.path, [.lockScreen(action: .authorizeAccountsCreate)])
     }
     
     func test_shouldShowInitialization() {

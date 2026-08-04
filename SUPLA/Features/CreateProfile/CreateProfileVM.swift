@@ -17,22 +17,29 @@
  */
     
 extension CreateProfileFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton<SaveOrCreateProfileUseCase> private var saveOrCreateProfileUseCase
         @Singleton<ReadProfileByIdUseCase> private var readProfileByIdUseCase
         @Singleton<DeleteProfileUseCase> private var deleteProfileUseCase
-        @Singleton<SuplaAppCoordinator> private var coordinator
         @Singleton<SuplaSchedulers> private var schedulers
+        @Singleton<AppRouter> private var router
         @Singleton<GlobalSettings> var settings
-        
-        init() {
-            super.init(state: ViewState())
+
+        private let profileId: Int32
+
+        init(profileId: Int32, state: ViewState = ViewState()) {
+            self.profileId = profileId
+            super.init(state: state)
             
             state.profileNameVisible = settings.anyAccountRegistered
         }
-        
-        func loadData(profileId: Int32?) {
-            guard let profileId else { return }
+
+        override func onViewAppear() {
+            loadData()
+        }
+
+        func loadData() {
+            guard profileId != ProfileDto.INVALID_ID else { return }
             
             readProfileByIdUseCase.invoke(profileId: profileId)
                 .asDriverWithoutError()
@@ -70,8 +77,8 @@ extension CreateProfileFeature {
             }
         }
         
-        func logoutAccount(profileId: Int32?) {
-            guard let profileId else { return }
+        func logoutAccount() {
+            guard profileId != ProfileDto.INVALID_ID else { return }
             
             state.loading = true
             
@@ -82,9 +89,9 @@ extension CreateProfileFeature {
                         self?.state.loading = false
                         
                         if (result.restartNeeded || result.reauthNeeded) {
-                            self?.coordinator.popToStatus()
+                            self?.router.setRoot(.status)
                         } else {
-                            self?.coordinator.popToViewController(ofClass: ProfilesListFeature.ViewController.self)
+                            self?.router.back()
                         }
                     },
                     onError: { [weak self] error in
@@ -95,8 +102,8 @@ extension CreateProfileFeature {
                 .disposed(by: disposeBag)
         }
         
-        func removeAccount(profileId: Int32?) {
-            guard let profileId else { return }
+        func removeAccount() {
+            guard profileId != ProfileDto.INVALID_ID else { return }
             
             state.loading = true
             
@@ -106,8 +113,12 @@ extension CreateProfileFeature {
                     onNext: { [weak self] result in
                         self?.state.loading = false
                         
-                        self?.coordinator.popToViewController(ofClass: ProfilesListFeature.ViewController.self)
-                        self?.coordinator.navigateToRemoveAccountWeb(needsRestart: result.restartNeeded, serverAddress: result.serverAddress)
+                        self?.router.replaceCurrent(
+                            with: .removeAccountWeb(
+                                needsRestart: result.restartNeeded,
+                                serverAddress: result.serverAddress
+                            )
+                        )
                     },
                     onError: { [weak self] error in
                         self?.state.loading = false
@@ -117,7 +128,7 @@ extension CreateProfileFeature {
                 .disposed(by: disposeBag)
         }
         
-        func save(profileId: Int32) {
+        func save() {
             let name = state.profileName.trimmingCharacters(in: .whitespacesAndNewlines)
             if (state.profileNameVisible && name.isEmpty) {
                 state.presentEmptyName = true
@@ -136,9 +147,9 @@ extension CreateProfileFeature {
                         if (result.saved) {
                             if (result.needsReauth) {
                                 SAApp.revokeOAuthToken()
-                                self?.coordinator.popToStatus()
+                                self?.router.setRoot(.status)
                             } else {
-                                self?.coordinator.popToViewController(ofClass: ProfilesListFeature.ViewController.self)
+                                self?.router.back()
                             }
                         } else {
                             self?.state.presentRequiredDataMissing = true
@@ -163,7 +174,7 @@ extension CreateProfileFeature {
         }
         
         func createNewAccount() {
-            coordinator.navigateToCreateAccountWeb()
+            router.navigate(to: .createAccountWeb)
         }
         
         private func getEmailDomain() -> String {

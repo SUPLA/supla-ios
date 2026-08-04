@@ -179,6 +179,8 @@ extension MainFeature {
                 selectedTab = .groups
             case .scenes:
                 selectedTab = .scenes
+            case .profiles:
+                router.navigate(to: .profiles)
             case .settings:
                 router.navigate(to: .settings)
             default:
