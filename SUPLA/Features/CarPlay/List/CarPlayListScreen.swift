@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-extension ProfilesListFeature {
+extension CarPlayListFeature {
     struct Screen: SwiftUI.View {
         @EnvironmentObject private var router: AppRouter
 
@@ -29,13 +29,16 @@ extension ProfilesListFeature {
                 VStack(spacing: 0) {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
-                        title: Strings.Profiles.Title.short,
+                        title: BrandingConfiguration.actionsLabel,
                         onNavigationIconTap: router.back
                     )
 
                     View(
                         viewState: state,
-                        delegate: viewModel
+                        onNewItem: { router.navigate(to: .carPlayAdd) },
+                        onPlayMessagesChange: viewModel.onVoiceMessagesChanged,
+                        onItemTapped: { router.navigate(to: .carPlayEdit(id: $0)) },
+                        onMoved: viewModel.onMoved
                     )
                 }
             }

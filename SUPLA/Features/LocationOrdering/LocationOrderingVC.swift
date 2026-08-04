@@ -24,6 +24,8 @@ class LocationOrderingVC: BaseViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
+    override func hidesNavigationBar() -> Bool { true }
+
     private let _disposeBag = DisposeBag()
 
     private let _tableView = SAMoveTableView()
@@ -49,11 +51,6 @@ class LocationOrderingVC: BaseViewController {
         _tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         _tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         _tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupToolbar()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

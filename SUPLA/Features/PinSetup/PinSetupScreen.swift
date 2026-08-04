@@ -18,24 +18,27 @@
 
 import SwiftUI
 
-extension ProfilesListFeature {
+extension PinSetupFeature {
     struct Screen: SwiftUI.View {
         @EnvironmentObject private var router: AppRouter
-
         @StateObject private var viewModel = ViewModel()
+
+        let scope: LockScreenScope
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
                 VStack(spacing: 0) {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
-                        title: Strings.Profiles.Title.short,
+                        title: Strings.PinSetup.title,
                         onNavigationIconTap: router.back
                     )
 
                     View(
                         viewState: state,
-                        delegate: viewModel
+                        onPinChange: viewModel.onPinChange,
+                        onSave: { viewModel.onSaveClick(scope) },
+                        onAppear: viewModel.onAppear
                     )
                 }
             }

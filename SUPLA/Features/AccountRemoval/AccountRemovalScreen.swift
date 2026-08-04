@@ -19,9 +19,10 @@
 import SwiftUI
 
 struct AccountRemovalScreen: View {
+    @EnvironmentObject private var router: AppRouter
+
     let needsRestart: Bool
     let serverAddress: String?
-    let onBack: () -> Void
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -32,7 +33,7 @@ struct AccountRemovalScreen: View {
                 SuplaCore.TopBar(
                     navigationIcon: .back,
                     title: "",
-                    onNavigationIconTap: onBack
+                    onNavigationIconTap: router.back
                 )
 
                 SuplaCore.ViewControllerHost {

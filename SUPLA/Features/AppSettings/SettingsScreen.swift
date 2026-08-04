@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-    let onBack: () -> Void
+    @EnvironmentObject private var router: AppRouter
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -30,7 +30,7 @@ struct SettingsScreen: View {
                 SuplaCore.TopBar(
                     navigationIcon: .back,
                     title: Strings.Cfg.appConfigTitle,
-                    onNavigationIconTap: onBack
+                    onNavigationIconTap: router.back
                 )
 
                 SuplaCore.ViewControllerHost {

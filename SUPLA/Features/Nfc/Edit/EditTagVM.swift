@@ -17,14 +17,15 @@
  */
     
 extension EditTagFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<NfcTagItemRepository> private var nfcTagItemRepository
         @Singleton<ProfileRepository> private var profileRepository
-        @Singleton<SuplaAppCoordinator> private var coordinator
+        @Singleton<AppRouter> private var router
         
         private let uuid: String
         private let readOnly: Bool?
         private var selections: [ActionSelection.Selection] = []
+        private var loaded = false
         
         init(uuid: String, readOnly: Bool? = nil) {
             self.uuid = uuid
@@ -32,7 +33,10 @@ extension EditTagFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewAppear() {
+            guard !loaded else { return }
+            loaded = true
+
             Task {
                 dispatchPrecondition(condition: .notOnQueue(.main))
                 guard let profiles = try? await profileRepository.getAllProfiles()
@@ -128,7 +132,7 @@ extension EditTagFeature {
                 
                 await MainActor.run {
                     if (success) {
-                        coordinator.popViewController()
+                        router.back()
                     }
                 }
             }

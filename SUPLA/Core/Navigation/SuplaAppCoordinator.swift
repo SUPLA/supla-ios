@@ -29,26 +29,15 @@ protocol SuplaAppCoordinator: Coordinator {
     func navigateToAbout()
     func navigateToNotificationsLog()
     func navigateToDeviceCatalog()
-    func navigateToProfile(profileId: Int32)
-    func navigateToProfile(profileId: Int32, withLockCheck: Bool)
     func navigateToCreateAccountWeb()
     func navigateToRemoveAccountWeb(needsRestart: Bool, serverAddress: String?)
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToPinSetup(lockScreenScope: LockScreenScope)
-    func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction)
     func navigateToCounterPhoto(channelId: Int32)
-    func navigateToCarPlayList()
-    func navigateToCarPlayAdd()
-    func navigateToCarPlayEdit(id: NSManagedObjectID)
     func navigateToDeveloperOptions()
     func navigateToLegacyDimmerSettings(channelId: Int32)
-    func navigateToCallNfcAction(url: URL)
-    func navigateToNfcTagsList()
-    func navigateToEditNfcTag(uuid: String, readOnly: Bool?)
-    func navigateToNfcTagDetail(uuid: String)
 
     func popToStatus()
     
@@ -58,10 +47,6 @@ protocol SuplaAppCoordinator: Coordinator {
     func openCloud()
     func openUrl(url: String)
     func openUrl(url: URL)
-}
-
-extension SuplaAppCoordinator {
-    func navigateToEditNfcTag(uuid: String) { navigateToEditNfcTag(uuid: uuid, readOnly: nil) }
 }
 
 protocol NavigationSubcontroller {
@@ -132,29 +117,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(DeviceCatalogVC())
     }
     
-    func navigateToProfile(profileId: Int32) {
-        navigateToProfile(profileId: profileId, withLockCheck: true)
-    }
-    
-    func navigateToProfile(profileId: Int32, withLockCheck: Bool) {
-        if (withLockCheck && settings.lockScreenSettings.pinForAccountsRequired) {
-            if (profileId != ProfileDto.INVALID_ID) {
-                navigateToLockScreen(unlockAction: .authorizeAccountsEdit(profileId: profileId))
-            } else {
-                navigateToLockScreen(unlockAction: .authorizeAccountsCreate)
-            }
-        } else {
-            navigateTo(
-                UIHostingController(
-                    rootView: CreateProfileFeature.Screen(
-                        profileId: profileId,
-                        onBack: { [weak self] in self?.popViewController() }
-                    )
-                )
-            )
-        }
-    }
-    
     func navigateToCreateAccountWeb() {
         navigateTo(SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil))
     }
@@ -179,28 +141,8 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(RgbAndDimmerDetailVC(item: item, pages: pages))
     }
     
-    func navigateToPinSetup(lockScreenScope: LockScreenScope) {
-        navigateTo(PinSetupFeature.ViewController.create(scope: lockScreenScope))
-    }
-    
-    func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction) {
-        navigateTo(LockScreenFeature.ViewController.create(unlockAction: unlockAction))
-    }
-    
     func navigateToCounterPhoto(channelId: Int32) {
         navigateTo(CounterPhotoFeature.ViewController.create(channelId: channelId))
-    }
-    
-    func navigateToCarPlayList() {
-        navigateTo(CarPlayListFeature.ViewController.create())
-    }
-    
-    func navigateToCarPlayAdd() {
-        navigateTo(CarPlayAddFeature.ViewController.create())
-    }
-    
-    func navigateToCarPlayEdit(id: NSManagedObjectID) {
-        navigateTo(CarPlayAddFeature.ViewController.create(id: id))
     }
     
     func navigateToDeveloperOptions() {
@@ -209,34 +151,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToLegacyDimmerSettings(channelId: Int32) {
         navigateTo(LegacyDimmerSettingsVC(remoteId: channelId))
-    }
-    
-    func navigateToCallNfcAction(url: URL) {
-        guard stateHolder.currentState() != .finished(reason: .addWizardStarted) else {
-            SALog.warning("Handling url is not possible when add wizard started")
-            return
-        }
-        if let presentedView = navigationController.viewControllers.last?.presentedViewController {
-            SALog.warning("There is another modal view presented `\(presentedView). It will be dismissed.")
-            presentedView.dismiss(animated: false)
-        }
-        
-        let avc = CallNfcActionFeature.ViewController.create(url: url)
-        avc.modalPresentationStyle = .fullScreen
-        avc.modalTransitionStyle = .crossDissolve
-        present(avc, animated: true)
-    }
-    
-    func navigateToNfcTagsList() {
-        navigateTo(NfcTagsListFeature.ViewController.create())
-    }
-    
-    func navigateToEditNfcTag(uuid: String, readOnly: Bool?) {
-        navigateTo(EditTagFeature.ViewController.create(uuid: uuid, readOnly: readOnly))
-    }
-    
-    func navigateToNfcTagDetail(uuid: String) {
-        navigateTo(NfcTagDetailFeature.ViewController.create(uuid: uuid))
     }
     
     func popToStatus() {

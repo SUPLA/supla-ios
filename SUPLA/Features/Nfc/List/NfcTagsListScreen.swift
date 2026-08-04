@@ -15,24 +15,30 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension EditTagFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        override init(viewModel: EditTagFeature.ViewModel) {
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                viewState: viewModel.state,
-                delegate: viewModel
-            )
-            
-            title = Strings.Nfc.List.title
-        }
-        
-        static func create(uuid: String, readOnly: Bool? = nil) -> UIViewController {
-            let viewModel = ViewModel(uuid: uuid, readOnly: readOnly)
-            return ViewController(viewModel: viewModel)
+
+import SwiftUI
+
+extension NfcTagsListFeature {
+    struct Screen: SwiftUI.View {
+        @EnvironmentObject private var router: AppRouter
+
+        @StateObject private var viewModel = ViewModel()
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                VStack(spacing: 0) {
+                    SuplaCore.TopBar(
+                        navigationIcon: .back,
+                        title: Strings.Nfc.List.title,
+                        onNavigationIconTap: router.back
+                    )
+
+                    View(
+                        viewState: state,
+                        delegate: viewModel
+                    )
+                }
+            }
         }
     }
 }

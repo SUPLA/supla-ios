@@ -16,20 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import CoreData
 import SwiftUI
 
-extension ProfilesListFeature {
+extension CarPlayAddFeature {
     struct Screen: SwiftUI.View {
         @EnvironmentObject private var router: AppRouter
 
-        @StateObject private var viewModel = ViewModel()
+        @StateObject private var viewModel: ViewModel
+
+        init(id: NSManagedObjectID? = nil) {
+            self._viewModel = StateObject(wrappedValue: ViewModel(id: id))
+        }
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
                 VStack(spacing: 0) {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
-                        title: Strings.Profiles.Title.short,
+                        title: BrandingConfiguration.actionsLabel,
                         onNavigationIconTap: router.back
                     )
 

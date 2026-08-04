@@ -17,21 +17,25 @@
  */
     
 extension CallNfcActionFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<NfcTagItemRepository> private var nfcTagItemRepository
         @Singleton<ReadNfcItem.UseCase> private var readNfcItemUseCase
         @Singleton<ProfileRepository> private var profileRepository
-        @Singleton<SuplaAppCoordinator> private var coordinator
         @Singleton<SingleCall> private var singleCall
+        @Singleton<AppRouter> private var router
         
         private let url: URL
+        private var loaded = false
         
         init(url: URL) {
             self.url = url
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewAppear() {
+            guard !loaded else { return }
+            loaded = true
+
             guard let tagId = url.nfcTagId() else {
                 state.step = .failure(type: .unknownUrl)
                 return
@@ -72,7 +76,7 @@ extension CallNfcActionFeature {
                     
                     try? await Task.sleep(nanoseconds: 2_000_000_000)
                     
-                    await MainActor.run { coordinator.dismiss() }
+                    await MainActor.run { router.back() }
                 } catch {
                     await nfcTagItemRepository.addCallItem(toTagWithUuid: tag.uuid, result: .failure)
                     await MainActor.run { handleError(error, uuid: tagId) }
@@ -81,17 +85,15 @@ extension CallNfcActionFeature {
         }
         
         func onClose() {
-            coordinator.dismiss()
+            router.back()
         }
         
         func configureTag(_ uuid: String) {
-            coordinator.dismiss()
-            coordinator.navigateToEditNfcTag(uuid: uuid)
+            router.replaceCurrent(with: .editNfcTag(uuid: uuid, readOnly: nil))
         }
         
         func addTag(_ uuid: String) {
-            coordinator.dismiss()
-            coordinator.navigateToEditNfcTag(uuid: uuid)
+            router.replaceCurrent(with: .editNfcTag(uuid: uuid, readOnly: nil))
         }
         
         private func handleError(_ error: Error, uuid: String) {

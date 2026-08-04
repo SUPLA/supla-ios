@@ -18,18 +18,22 @@
 
 import SwiftUI
 
-extension ProfilesListFeature {
+extension EditTagFeature {
     struct Screen: SwiftUI.View {
         @EnvironmentObject private var router: AppRouter
 
-        @StateObject private var viewModel = ViewModel()
+        @StateObject private var viewModel: ViewModel
+
+        init(uuid: String, readOnly: Bool? = nil) {
+            self._viewModel = StateObject(wrappedValue: ViewModel(uuid: uuid, readOnly: readOnly))
+        }
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
                 VStack(spacing: 0) {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
-                        title: Strings.Profiles.Title.short,
+                        title: Strings.Nfc.List.title,
                         onNavigationIconTap: router.back
                     )
 

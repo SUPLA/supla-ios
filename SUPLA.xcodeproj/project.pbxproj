@@ -395,19 +395,19 @@
 		A52DD5AB2F3B645F00B3B332 /* CallNfcActionFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DD5AA2F3B645B00B3B332 /* CallNfcActionFeature.swift */; };
 		A52DD5AD2F3B64C200B3B332 /* CallNfcActionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DD5AC2F3B64BA00B3B332 /* CallNfcActionVM.swift */; };
 		A52DD5AF2F3B64E300B3B332 /* CallNfcActionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DD5AE2F3B64DE00B3B332 /* CallNfcActionViewState.swift */; };
-		A52DD5B12F3B66A700B3B332 /* CallNfcActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DD5B02F3B66A100B3B332 /* CallNfcActionVC.swift */; };
+		A52DD5B32F3B66A700B3B332 /* CallNfcActionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DD5B22F3B66A700B3B332 /* CallNfcActionScreen.swift */; };
 		A52F03D52DB8F1AC00472ED1 /* CarPlayListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03D42DB8F1A100472ED1 /* CarPlayListViewState.swift */; };
 		A52F03D72DB8F33000472ED1 /* CarPlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03D62DB8F32800472ED1 /* CarPlayListView.swift */; };
 		A52F03D92DBA196600472ED1 /* CarPlayListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03D82DBA195F00472ED1 /* CarPlayListVM.swift */; };
-		A52F03DB2DBA19B800472ED1 /* CarPlayListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03DA2DBA19B100472ED1 /* CarPlayListVC.swift */; };
 		A52F03DD2DBA265200472ED1 /* CarPlayAddFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03DC2DBA264800472ED1 /* CarPlayAddFeature.swift */; };
 		A52F03DF2DBA266500472ED1 /* CarPlayAddViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03DE2DBA265D00472ED1 /* CarPlayAddViewState.swift */; };
 		A52F03E12DBA2A9000472ED1 /* CarPlayAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E02DBA2A8B00472ED1 /* CarPlayAddView.swift */; };
 		A52F03E32DBA63B400472ED1 /* SegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E22DBA63B100472ED1 /* SegmentedPicker.swift */; };
 		A52F03E52DBA668C00472ED1 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E42DBA668700472ED1 /* EmptyListView.swift */; };
 		A52F03E72DBA6F1700472ED1 /* CarPlayAddVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E62DBA6F1300472ED1 /* CarPlayAddVM.swift */; };
-		A52F03E92DBA6F4A00472ED1 /* CarPlayAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03E82DBA6F4400472ED1 /* CarPlayAddVC.swift */; };
+		A52F03EB2DBA19B800472ED1 /* CarPlayListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03EC2DBA19B100472ED1 /* CarPlayListScreen.swift */; };
 		A52F03EC2DBBA08700472ED1 /* SubjectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03EB2DBBA08400472ED1 /* SubjectPicker.swift */; };
+		A52F03ED2DBA6F4A00472ED1 /* CarPlayAddScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52F03EE2DBA6F4400472ED1 /* CarPlayAddScreen.swift */; };
 		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
 		A530EDF72A5404A200F8DAEE /* UIFont+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF62A5404A200F8DAEE /* UIFont+Supla.swift */; };
 		A530EDFA2A54063F00F8DAEE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */; };
@@ -936,7 +936,6 @@
 		A59AB8C52F55D11F00565952 /* ReadNfcItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8C42F55D11700565952 /* ReadNfcItemUseCase.swift */; };
 		A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8C62A30902D00D91F1F /* ChannelValueRepositoryMock.swift */; };
 		A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8C82A30906100D91F1F /* GroupRepositoryMock.swift */; };
-		A59AB8C92F55DC7000565952 /* NfcTagDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8C82F55DC6900565952 /* NfcTagDetailVC.swift */; };
 		A59AB8CB2A30911A00D91F1F /* ElectricityMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8CA2A30911A00D91F1F /* ElectricityMeasurementItemRepositoryMock.swift */; };
 		A59AB8CB2F56D6AA00565952 /* ButtonColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8CA2F56D6A700565952 /* ButtonColors.swift */; };
 		A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8CC2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift */; };
@@ -945,6 +944,7 @@
 		A59AB8D02F586F6700565952 /* LabeledText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8CF2F586F6100565952 /* LabeledText.swift */; };
 		A59AB8D12A3091EE00D91F1F /* SceneRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8D02A3091EE00D91F1F /* SceneRepositoryMock.swift */; };
 		A59AB8D32A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8D22A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift */; };
+		A59AB8D32F55DC7000565952 /* NfcTagDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8D22F55DC7000565952 /* NfcTagDetailScreen.swift */; };
 		A59AB8D52A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8D42A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift */; };
 		A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8D82A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift */; };
 		A59AB8DC2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8DB2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift */; };
@@ -1136,18 +1136,18 @@
 		A5BF4F602F3C85DC00F5DE81 /* NfcTagsListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F5F2F3C85D400F5DE81 /* NfcTagsListViewState.swift */; };
 		A5BF4F622F3C860D00F5DE81 /* NfcTagsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F612F3C860600F5DE81 /* NfcTagsListView.swift */; };
 		A5BF4F642F3C863C00F5DE81 /* NfcTagsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F632F3C863500F5DE81 /* NfcTagsListVM.swift */; };
-		A5BF4F662F3C867000F5DE81 /* NfcTagsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F652F3C866C00F5DE81 /* NfcTagsListVC.swift */; };
 		A5BF4F682F3CB36F00F5DE81 /* ListItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F672F3CB35F00F5DE81 /* ListItemRow.swift */; };
 		A5BF4F6A2F3CBBB800F5DE81 /* ListItemProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F692F3CBBB000F5DE81 /* ListItemProfile.swift */; };
 		A5BF4F792F3CC2A000F5DE81 /* EditTagFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F782F3CC29900F5DE81 /* EditTagFeature.swift */; };
 		A5BF4F7B2F3CC2B800F5DE81 /* EditTagViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F7A2F3CC2B100F5DE81 /* EditTagViewState.swift */; };
 		A5BF4F7D2F3CC2E100F5DE81 /* EditTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F7C2F3CC2DB00F5DE81 /* EditTagView.swift */; };
 		A5BF4F7F2F3CC30E00F5DE81 /* EditTagVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F7E2F3CC30B00F5DE81 /* EditTagVM.swift */; };
-		A5BF4F812F3CC32900F5DE81 /* EditTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F802F3CC32600F5DE81 /* EditTagVC.swift */; };
 		A5BF4F852F3DCA4E00F5DE81 /* PrepareNfcTagUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F842F3DCA4200F5DE81 /* PrepareNfcTagUseCase.swift */; };
 		A5BF4F872F3E142700F5DE81 /* URL+NfcTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F862F3E141B00F5DE81 /* URL+NfcTag.swift */; };
 		A5BF4F8B2F3F283100F5DE81 /* ReadNfcItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F8A2F3F282900F5DE81 /* ReadNfcItemsUseCase.swift */; };
 		A5BF4F8D2F3F2B0C00F5DE81 /* SANfcTagItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F8C2F3F2AFB00F5DE81 /* SANfcTagItem+Ext.swift */; };
+		A5BF4F912F3C867000F5DE81 /* NfcTagsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F902F3C867000F5DE81 /* NfcTagsListScreen.swift */; };
+		A5BF4F932F3CC32900F5DE81 /* EditTagScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F922F3CC32900F5DE81 /* EditTagScreen.swift */; };
 		A5C2D94F2EAA0B96007BAA0B /* GroupUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */; };
 		A5C2D9512EAA6795007BAA0B /* SpacesAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C2D9502EAA6790007BAA0B /* SpacesAlertDialog.swift */; };
 		A5C31A8B2EF0A8E300E4B4FD /* CircularColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */; };
@@ -1216,7 +1216,7 @@
 		A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */; };
 		A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */; };
 		A5D712652C37EB8F00A8EF52 /* LockScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712642C37EB8F00A8EF52 /* LockScreenView.swift */; };
-		A5D712672C37EBE700A8EF52 /* LockScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712662C37EBE700A8EF52 /* LockScreenVC.swift */; };
+		A5D7126B2C37EBE700A8EF52 /* LockScreenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7126A2C37EBE700A8EF52 /* LockScreenScreen.swift */; };
 		A5D712692C37ECF400A8EF52 /* UnlockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712682C37ECF400A8EF52 /* UnlockAction.swift */; };
 		A5D7126C2C380D7700A8EF52 /* CheckPinUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7126B2C380D7700A8EF52 /* CheckPinUseCase.swift */; };
 		A5D7126E2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7126D2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift */; };
@@ -1537,7 +1537,7 @@
 		A5F5C3F62C36827B0058E255 /* PinSetupViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3F52C36827A0058E255 /* PinSetupViewState.swift */; };
 		A5F5C3F82C3683270058E255 /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3F72C3683270058E255 /* PinSetupView.swift */; };
 		A5F5C3FA2C36963B0058E255 /* PinTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3F92C36963B0058E255 /* PinTextField.swift */; };
-		A5F5C3FC2C3698040058E255 /* PinSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3FB2C3698040058E255 /* PinSetupVC.swift */; };
+		A5F5C3FC2C3698040058E255 /* PinSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3FB2C3698040058E255 /* PinSetupScreen.swift */; };
 		A5F775BB2FD6B765001003C4 /* LegacyDimmerSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */; };
 		A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */; };
 		A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */; };
@@ -1559,6 +1559,7 @@
 		A6B2D10E3E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
+		AE535357276927690077BFFB /* LocationOrderingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535358276927690077BFFB /* LocationOrderingScreen.swift */; };
 		AE74528F2827F09400A3AFAD /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528E2827F09400A3AFAD /* Dimens.swift */; };
 		AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CAAFC275BF87D0024095F /* BaseViewController.m */; };
 		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
@@ -2222,19 +2223,19 @@
 		A52DD5AA2F3B645B00B3B332 /* CallNfcActionFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallNfcActionFeature.swift; sourceTree = "<group>"; };
 		A52DD5AC2F3B64BA00B3B332 /* CallNfcActionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallNfcActionVM.swift; sourceTree = "<group>"; };
 		A52DD5AE2F3B64DE00B3B332 /* CallNfcActionViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallNfcActionViewState.swift; sourceTree = "<group>"; };
-		A52DD5B02F3B66A100B3B332 /* CallNfcActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallNfcActionVC.swift; sourceTree = "<group>"; };
+		A52DD5B22F3B66A700B3B332 /* CallNfcActionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallNfcActionScreen.swift; sourceTree = "<group>"; };
 		A52F03D42DB8F1A100472ED1 /* CarPlayListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListViewState.swift; sourceTree = "<group>"; };
 		A52F03D62DB8F32800472ED1 /* CarPlayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListView.swift; sourceTree = "<group>"; };
 		A52F03D82DBA195F00472ED1 /* CarPlayListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListVM.swift; sourceTree = "<group>"; };
-		A52F03DA2DBA19B100472ED1 /* CarPlayListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListVC.swift; sourceTree = "<group>"; };
 		A52F03DC2DBA264800472ED1 /* CarPlayAddFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddFeature.swift; sourceTree = "<group>"; };
 		A52F03DE2DBA265D00472ED1 /* CarPlayAddViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddViewState.swift; sourceTree = "<group>"; };
 		A52F03E02DBA2A8B00472ED1 /* CarPlayAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddView.swift; sourceTree = "<group>"; };
 		A52F03E22DBA63B100472ED1 /* SegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPicker.swift; sourceTree = "<group>"; };
 		A52F03E42DBA668700472ED1 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		A52F03E62DBA6F1300472ED1 /* CarPlayAddVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddVM.swift; sourceTree = "<group>"; };
-		A52F03E82DBA6F4400472ED1 /* CarPlayAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddVC.swift; sourceTree = "<group>"; };
 		A52F03EB2DBBA08400472ED1 /* SubjectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectPicker.swift; sourceTree = "<group>"; };
+		A52F03EC2DBA19B100472ED1 /* CarPlayListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayListScreen.swift; sourceTree = "<group>"; };
+		A52F03EE2DBA6F4400472ED1 /* CarPlayAddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayAddScreen.swift; sourceTree = "<group>"; };
 		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
 		A530EDF62A5404A200F8DAEE /* UIFont+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Supla.swift"; sourceTree = "<group>"; };
 		A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -2787,7 +2788,6 @@
 		A59AB8C42F55D11700565952 /* ReadNfcItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNfcItemUseCase.swift; sourceTree = "<group>"; };
 		A59AB8C62A30902D00D91F1F /* ChannelValueRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelValueRepositoryMock.swift; sourceTree = "<group>"; };
 		A59AB8C82A30906100D91F1F /* GroupRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepositoryMock.swift; sourceTree = "<group>"; };
-		A59AB8C82F55DC6900565952 /* NfcTagDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagDetailVC.swift; sourceTree = "<group>"; };
 		A59AB8CA2A30911A00D91F1F /* ElectricityMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A59AB8CA2F56D6A700565952 /* ButtonColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonColors.swift; sourceTree = "<group>"; };
 		A59AB8CC2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
@@ -2796,6 +2796,7 @@
 		A59AB8CF2F586F6100565952 /* LabeledText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledText.swift; sourceTree = "<group>"; };
 		A59AB8D02A3091EE00D91F1F /* SceneRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRepositoryMock.swift; sourceTree = "<group>"; };
 		A59AB8D22A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
+		A59AB8D22F55DC7000565952 /* NfcTagDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagDetailScreen.swift; sourceTree = "<group>"; };
 		A59AB8D42A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHumidityMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A59AB8D82A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatMeasurementItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A59AB8DB2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllProfileDataUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2988,18 +2989,18 @@
 		A5BF4F5F2F3C85D400F5DE81 /* NfcTagsListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagsListViewState.swift; sourceTree = "<group>"; };
 		A5BF4F612F3C860600F5DE81 /* NfcTagsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagsListView.swift; sourceTree = "<group>"; };
 		A5BF4F632F3C863500F5DE81 /* NfcTagsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagsListVM.swift; sourceTree = "<group>"; };
-		A5BF4F652F3C866C00F5DE81 /* NfcTagsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagsListVC.swift; sourceTree = "<group>"; };
 		A5BF4F672F3CB35F00F5DE81 /* ListItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRow.swift; sourceTree = "<group>"; };
 		A5BF4F692F3CBBB000F5DE81 /* ListItemProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemProfile.swift; sourceTree = "<group>"; };
 		A5BF4F782F3CC29900F5DE81 /* EditTagFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagFeature.swift; sourceTree = "<group>"; };
 		A5BF4F7A2F3CC2B100F5DE81 /* EditTagViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewState.swift; sourceTree = "<group>"; };
 		A5BF4F7C2F3CC2DB00F5DE81 /* EditTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
 		A5BF4F7E2F3CC30B00F5DE81 /* EditTagVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagVM.swift; sourceTree = "<group>"; };
-		A5BF4F802F3CC32600F5DE81 /* EditTagVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagVC.swift; sourceTree = "<group>"; };
 		A5BF4F842F3DCA4200F5DE81 /* PrepareNfcTagUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNfcTagUseCase.swift; sourceTree = "<group>"; };
 		A5BF4F862F3E141B00F5DE81 /* URL+NfcTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+NfcTag.swift"; sourceTree = "<group>"; };
 		A5BF4F8A2F3F282900F5DE81 /* ReadNfcItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNfcItemsUseCase.swift; sourceTree = "<group>"; };
 		A5BF4F8C2F3F2AFB00F5DE81 /* SANfcTagItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SANfcTagItem+Ext.swift"; sourceTree = "<group>"; };
+		A5BF4F902F3C867000F5DE81 /* NfcTagsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcTagsListScreen.swift; sourceTree = "<group>"; };
+		A5BF4F922F3CC32900F5DE81 /* EditTagScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagScreen.swift; sourceTree = "<group>"; };
 		A5C2D94D2EAA0B8F007BAA0B /* GroupUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUpdatesObserver.swift; sourceTree = "<group>"; };
 		A5C2D9502EAA6790007BAA0B /* SpacesAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesAlertDialog.swift; sourceTree = "<group>"; };
 		A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorSelector.swift; sourceTree = "<group>"; };
@@ -3049,7 +3050,7 @@
 		A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewState.swift; sourceTree = "<group>"; };
 		A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVM.swift; sourceTree = "<group>"; };
 		A5D712642C37EB8F00A8EF52 /* LockScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenView.swift; sourceTree = "<group>"; };
-		A5D712662C37EBE700A8EF52 /* LockScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVC.swift; sourceTree = "<group>"; };
+		A5D7126A2C37EBE700A8EF52 /* LockScreenScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenScreen.swift; sourceTree = "<group>"; };
 		A5D712682C37ECF400A8EF52 /* UnlockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockAction.swift; sourceTree = "<group>"; };
 		A5D7126B2C380D7700A8EF52 /* CheckPinUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPinUseCase.swift; sourceTree = "<group>"; };
 		A5D7126D2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarVisibilityController.swift; sourceTree = "<group>"; };
@@ -3347,7 +3348,7 @@
 		A5F5C3F52C36827A0058E255 /* PinSetupViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupViewState.swift; sourceTree = "<group>"; };
 		A5F5C3F72C3683270058E255 /* PinSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupView.swift; sourceTree = "<group>"; };
 		A5F5C3F92C36963B0058E255 /* PinTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTextField.swift; sourceTree = "<group>"; };
-		A5F5C3FB2C3698040058E255 /* PinSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupVC.swift; sourceTree = "<group>"; };
+		A5F5C3FB2C3698040058E255 /* PinSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupScreen.swift; sourceTree = "<group>"; };
 		A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDimmerSettingsVC.swift; sourceTree = "<group>"; };
 		A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration10to11ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemInitialMigrationPolicy.swift; sourceTree = "<group>"; };
@@ -3370,6 +3371,7 @@
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
+		AE535358276927690077BFFB /* LocationOrderingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingScreen.swift; sourceTree = "<group>"; };
 		AE74528E2827F09400A3AFAD /* Dimens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
 		AE7CAAFB275BF87D0024095F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = UI/BaseViewController.h; sourceTree = "<group>"; };
 		AE7CAAFC275BF87D0024095F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = UI/BaseViewController.m; sourceTree = "<group>"; };
@@ -4574,7 +4576,7 @@
 		A52DD5A72F3B640500B3B332 /* Call */ = {
 			isa = PBXGroup;
 			children = (
-				A52DD5B02F3B66A100B3B332 /* CallNfcActionVC.swift */,
+				A52DD5B22F3B66A700B3B332 /* CallNfcActionScreen.swift */,
 				A52DD5AE2F3B64DE00B3B332 /* CallNfcActionViewState.swift */,
 				A52DD5AC2F3B64BA00B3B332 /* CallNfcActionVM.swift */,
 				A52DD5AA2F3B645B00B3B332 /* CallNfcActionFeature.swift */,
@@ -5522,7 +5524,7 @@
 		A567C75C2DAE5F3D006245B5 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				A52F03DA2DBA19B100472ED1 /* CarPlayListVC.swift */,
+				A52F03EC2DBA19B100472ED1 /* CarPlayListScreen.swift */,
 				A52F03D82DBA195F00472ED1 /* CarPlayListVM.swift */,
 				A52F03D62DB8F32800472ED1 /* CarPlayListView.swift */,
 				A52F03D42DB8F1A100472ED1 /* CarPlayListViewState.swift */,
@@ -5534,7 +5536,7 @@
 		A567C75D2DAE5F46006245B5 /* Add */ = {
 			isa = PBXGroup;
 			children = (
-				A52F03E82DBA6F4400472ED1 /* CarPlayAddVC.swift */,
+				A52F03EE2DBA6F4400472ED1 /* CarPlayAddScreen.swift */,
 				A52F03E62DBA6F1300472ED1 /* CarPlayAddVM.swift */,
 				A52F03E02DBA2A8B00472ED1 /* CarPlayAddView.swift */,
 				A52F03DE2DBA265D00472ED1 /* CarPlayAddViewState.swift */,
@@ -5669,13 +5671,11 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				A59CCE5D301B4C9000BDDEC0 /* AppRoot */,
-				A53E41722F6D79AF00C90914 /* ProfileChooser */,
-				A574E4F62F59B6EA0066B4EA /* ActionSelection */,
-				A5BF4F5B2F3C857900F5DE81 /* Nfc */,
 				A5D7128C2C41079500A8EF52 /* About */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
+				A574E4F62F59B6EA0066B4EA /* ActionSelection */,
 				A5AE6D632E1D492F00BC2B67 /* AddWizard */,
+				A59CCE5D301B4C9000BDDEC0 /* AppRoot */,
 				A5AE7A822A39E6C20097FA8B /* AppSettings */,
 				A5E9CE252C32CE0B00509702 /* Authorization */,
 				A56851B42D6CA15C00942F8B /* CaptionChangeDialog */,
@@ -5691,8 +5691,10 @@
 				A5E9CE302C33DB8800509702 /* LocationOrdering */,
 				A5D7125D2C37EA7200A8EF52 /* LockScreen */,
 				A5F29B592A1E157A00ED700A /* Main */,
+				A5BF4F5B2F3C857900F5DE81 /* Nfc */,
 				A55501F12B83828100FD3296 /* NotificationsLog */,
 				A5F5C3F02C36822A0058E255 /* PinSetup */,
+				A53E41722F6D79AF00C90914 /* ProfileChooser */,
 				A5DB3ACB2E9E3FB5007DAD9B /* ProfilesList */,
 				A5F29B652A1E237700ED700A /* SceneList */,
 				A50716D12D68922F0060FA0D /* StateDialog */,
@@ -6909,7 +6911,7 @@
 		A5BF4F5C2F3C859400F5DE81 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				A5BF4F652F3C866C00F5DE81 /* NfcTagsListVC.swift */,
+				A5BF4F902F3C867000F5DE81 /* NfcTagsListScreen.swift */,
 				A5BF4F632F3C863500F5DE81 /* NfcTagsListVM.swift */,
 				A5BF4F612F3C860600F5DE81 /* NfcTagsListView.swift */,
 				A5BF4F5F2F3C85D400F5DE81 /* NfcTagsListViewState.swift */,
@@ -6921,7 +6923,7 @@
 		A5BF4F772F3CC28600F5DE81 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				A5BF4F802F3CC32600F5DE81 /* EditTagVC.swift */,
+				A5BF4F922F3CC32900F5DE81 /* EditTagScreen.swift */,
 				A5BF4F7E2F3CC30B00F5DE81 /* EditTagVM.swift */,
 				A5BF4F7C2F3CC2DB00F5DE81 /* EditTagView.swift */,
 				A5BF4F7A2F3CC2B100F5DE81 /* EditTagViewState.swift */,
@@ -7021,7 +7023,7 @@
 				A5D712602C37EAA400A8EF52 /* LockScreenViewState.swift */,
 				A5D712622C37EB4900A8EF52 /* LockScreenVM.swift */,
 				A5D712642C37EB8F00A8EF52 /* LockScreenView.swift */,
-				A5D712662C37EBE700A8EF52 /* LockScreenVC.swift */,
+				A5D7126A2C37EBE700A8EF52 /* LockScreenScreen.swift */,
 				A5D712682C37ECF400A8EF52 /* UnlockAction.swift */,
 			);
 			path = LockScreen;
@@ -7447,6 +7449,7 @@
 			isa = PBXGroup;
 			children = (
 				AE535355276927690077BFFB /* LocationOrderingVC.swift */,
+				AE535358276927690077BFFB /* LocationOrderingScreen.swift */,
 				AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */,
 			);
 			path = LocationOrdering;
@@ -7971,7 +7974,7 @@
 				A5F5C3F32C3682500058E255 /* PinSetupVM.swift */,
 				A5F5C3F52C36827A0058E255 /* PinSetupViewState.swift */,
 				A5F5C3F72C3683270058E255 /* PinSetupView.swift */,
-				A5F5C3FB2C3698040058E255 /* PinSetupVC.swift */,
+				A5F5C3FB2C3698040058E255 /* PinSetupScreen.swift */,
 			);
 			path = PinSetup;
 			sourceTree = "<group>";
@@ -7987,7 +7990,7 @@
 		A5FC78FD2F557D95003BA6B8 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				A59AB8C82F55DC6900565952 /* NfcTagDetailVC.swift */,
+				A59AB8D22F55DC7000565952 /* NfcTagDetailScreen.swift */,
 				A59AB8C22F55CE0700565952 /* NfcTagDetailVM.swift */,
 				A59155002F55869400A3DF61 /* NfcTagDetailView.swift */,
 				A59154FB2F557E7B00A3DF61 /* NfcTagDetailViewState.swift */,
@@ -8515,7 +8518,7 @@
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				A5E160C72D365793003A7C71 /* ImpulseCounterMeasurementsProvider.swift in Sources */,
 				A59AB8CE2F582FCF00565952 /* ActionSelection+View.swift in Sources */,
-				A59AB8C92F55DC7000565952 /* NfcTagDetailVC.swift in Sources */,
+				A59AB8D32F55DC7000565952 /* NfcTagDetailScreen.swift in Sources */,
 				A530EE362A57F65F00F8DAEE /* GetChannelBaseStateUseCase.swift in Sources */,
 				A5BF4F7F2F3CC30E00F5DE81 /* EditTagVM.swift in Sources */,
 				A5BCA9B82E2A488800A5054A /* EspDeviceProtocol.swift in Sources */,
@@ -8626,7 +8629,7 @@
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
 				A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */,
 				A5A160182C2AE9F30049AA73 /* InitializationUseCase.swift in Sources */,
-				A5D712672C37EBE700A8EF52 /* LockScreenVC.swift in Sources */,
+				A5D7126B2C37EBE700A8EF52 /* LockScreenScreen.swift in Sources */,
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */,
 				A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */,
@@ -8647,7 +8650,7 @@
 				A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */,
 				A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */,
 				A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */,
-				A5BF4F662F3C867000F5DE81 /* NfcTagsListVC.swift in Sources */,
+				A5BF4F912F3C867000F5DE81 /* NfcTagsListScreen.swift in Sources */,
 				A55A8DAC2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift in Sources */,
 				A5E9CE372C3430DB00509702 /* Completable+Supla.swift in Sources */,
 				A56364392EE1D67800A702C0 /* ColorPickerView.swift in Sources */,
@@ -8791,7 +8794,7 @@
 				A503ABB12B6A9B43008CDA1F /* GeneralPurposeMeter.swift in Sources */,
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
-				A5BF4F812F3CC32900F5DE81 /* EditTagVC.swift in Sources */,
+				A5BF4F932F3CC32900F5DE81 /* EditTagScreen.swift in Sources */,
 				A5C5F6E82D92B0B700E303B8 /* ChannelListView.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
 				A5862C092CEF2F5F00DFFD55 /* ChannelStateRepository.swift in Sources */,
@@ -8810,7 +8813,7 @@
 				A598CAB52CBEFD0E00A784FA /* LoadElectricityMeterMeasurementsUseCase.swift in Sources */,
 				A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */,
 				A5EF57D42F5F09A600513D3F /* LogoWithSentence.swift in Sources */,
-				A52F03DB2DBA19B800472ED1 /* CarPlayListVC.swift in Sources */,
+				A52F03EB2DBA19B800472ED1 /* CarPlayListScreen.swift in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
 				A5477DC52AA5C47F00220B4A /* SAChannelValue+Ext.swift in Sources */,
 				A52BFEDC2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift in Sources */,
@@ -8954,7 +8957,7 @@
 				A59E57B42F90FE5200808DBF /* WheelPicker.swift in Sources */,
 				A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */,
 				A50B5D062BEA4DA700918D18 /* RollerShutterWindowState.swift in Sources */,
-				A5F5C3FC2C3698040058E255 /* PinSetupVC.swift in Sources */,
+				A5F5C3FC2C3698040058E255 /* PinSetupScreen.swift in Sources */,
 				A584E2012CAACD9B00232A98 /* ElectricityMeterValueProvider.swift in Sources */,
 				A58316FA2B64507D006113F8 /* ThermometerValueProvider.swift in Sources */,
 				A5F29BC92A26168E00ED700A /* UpdateChannelGroupTotalValueUseCase.swift in Sources */,
@@ -8984,7 +8987,7 @@
 				A5E05BAB2CB469CE00202583 /* ChannelMeasurementsProvider.swift in Sources */,
 				A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */,
 				A5AE6D7B2E1E9F6E00BC2B67 /* AddWizardConfigurationView.swift in Sources */,
-				A52DD5B12F3B66A700B3B332 /* CallNfcActionVC.swift in Sources */,
+				A52DD5B32F3B66A700B3B332 /* CallNfcActionScreen.swift in Sources */,
 				A5882ED82DBF9E7500F1FC4A /* CarPlaySceneDelegate.swift in Sources */,
 				A598CAC12CC13AFB00A784FA /* SwitchWithElectricityMeterValueStringProvider.swift in Sources */,
 				A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */,
@@ -8998,7 +9001,7 @@
 				A5074BC22BCE61E60081B6B1 /* RoofWindowVC.swift in Sources */,
 				A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */,
 				A5882ED32DBF92E300F1FC4A /* UpdateCarPlayItemUseCase.swift in Sources */,
-				A52F03E92DBA6F4A00472ED1 /* CarPlayAddVC.swift in Sources */,
+				A52F03ED2DBA6F4A00472ED1 /* CarPlayAddScreen.swift in Sources */,
 				A54E2AFD2E4612AE003F2926 /* AddWizardManualReconnect.swift in Sources */,
 				A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */,
 				A59E57B62F90FEF400808DBF /* PickerItem.swift in Sources */,
@@ -9070,6 +9073,7 @@
 				A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */,
 				A5D712692C37ECF400A8EF52 /* UnlockAction.swift in Sources */,
 				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
+				AE535357276927690077BFFB /* LocationOrderingScreen.swift in Sources */,
 				A5F29B632A1E18FA00ED700A /* ChannelListVM.swift in Sources */,
 				A5B3CBFB2B62693F00F95AC3 /* DepthValueStringProvider.swift in Sources */,
 				A5EE0C8C2F7D288600D7B14F /* AccessoryTextField.swift in Sources */,

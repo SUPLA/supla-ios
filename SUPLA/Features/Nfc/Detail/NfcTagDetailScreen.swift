@@ -18,19 +18,26 @@
 
 import SwiftUI
 
-extension ProfilesListFeature {
+extension NfcTagDetailFeature {
     struct Screen: SwiftUI.View {
         @EnvironmentObject private var router: AppRouter
 
-        @StateObject private var viewModel = ViewModel()
+        @StateObject private var viewModel: ViewModel
+        @State private var title = Strings.Nfc.List.title
+
+        init(uuid: String) {
+            self._viewModel = StateObject(wrappedValue: ViewModel(uuid: uuid))
+        }
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
                 VStack(spacing: 0) {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
-                        title: Strings.Profiles.Title.short,
-                        onNavigationIconTap: router.back
+                        title: title,
+                        actionIcon: String.Icons.delete,
+                        onNavigationIconTap: router.back,
+                        onActionIconTap: viewModel.onDelete
                     )
 
                     View(
@@ -38,6 +45,12 @@ extension ProfilesListFeature {
                         delegate: viewModel
                     )
                 }
+            }
+            .onAppear {
+                viewModel.setTitleSetter { title = $0 }
+            }
+            .onDisappear {
+                viewModel.setTitleSetter(nil)
             }
         }
     }

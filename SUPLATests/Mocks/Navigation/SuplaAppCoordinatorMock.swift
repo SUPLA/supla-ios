@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -16,12 +15,13 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 
 import XCTest
 @testable import SUPLA
 
 final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
+
     private let navigationControllerMock = NavigationControllerMock()
     
     var navigationController: UINavigationController {
@@ -54,16 +54,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToDeviceCatalog() {
     }
     
-    var navigateToProfileMock: FunctionMock<Int32, Void> = .void()
-    func navigateToProfile(profileId: Int32) {
-        navigateToProfileMock.handle(profileId)
-    }
-    
-    var navigateToProfileWithLockCheckMock: FunctionMock<(Int32, Bool), Void> = .void()
-    func navigateToProfile(profileId: Int32, withLockCheck: Bool) {
-        navigateToProfileWithLockCheckMock.handle((profileId, withLockCheck))
-    }
-    
     func navigateToCreateAccountWeb() {
     }
     
@@ -76,47 +66,16 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToStandardDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
-    var navigateToPinSetupMock: FunctionMock<LockScreenScope, Void> = .void()
-    func navigateToPinSetup(lockScreenScope: LockScreenScope) {
-        navigateToPinSetupMock.handle(lockScreenScope)
-    }
-    
-    var navigateToLockScreenMock: FunctionMock<LockScreenFeature.UnlockAction, Void> = .void()
-    func navigateToLockScreen(unlockAction: LockScreenFeature.UnlockAction) {
-        navigateToLockScreenMock.handle(unlockAction)
-    }
-    
     func navigateToImpulseCounterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
     func navigateToCounterPhoto(channelId: Int32) {
     }
     
-    func navigateToCarPlayList() {
-    }
-    
-    func navigateToCarPlayAdd() {
-    }
-    
-    func navigateToCarPlayEdit(id: NSManagedObjectID) {
-    }
-    
     func navigateToRgbwDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
     }
     
     func navigateToLegacyDimmerSettings(channelId: Int32) {
-    }
-    
-    func navigateToCallNfcAction(url: URL) {
-    }
-    
-    func navigateToNfcTagsList() {
-    }
-
-    func navigateToEditNfcTag(uuid: String, readOnly: Bool?) {
-    }
-
-    func navigateToNfcTagDetail(uuid: String) {
     }
     
     func popToStatus() {

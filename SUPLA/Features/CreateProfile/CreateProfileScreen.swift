@@ -21,17 +21,14 @@ import UIKit
 
 extension CreateProfileFeature {
     struct Screen: SwiftUI.View {
+        @EnvironmentObject private var router: AppRouter
+
         private let profileId: Int32
-        private let onBack: () -> Void
 
         @StateObject private var viewModel: ViewModel
 
-        init(
-            profileId: Int32,
-            onBack: @escaping () -> Void = {}
-        ) {
+        init(profileId: Int32) {
             self.profileId = profileId
-            self.onBack = onBack
             self._viewModel = StateObject(wrappedValue: ViewModel(profileId: profileId))
         }
 
@@ -69,7 +66,7 @@ extension CreateProfileFeature {
 
         private func handleBack(_ state: ViewState) {
             if (state.profileNameVisible) {
-                onBack()
+                router.back()
             } else {
                 closeApplication()
             }

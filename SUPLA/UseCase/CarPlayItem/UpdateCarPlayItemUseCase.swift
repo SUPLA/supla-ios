@@ -31,7 +31,7 @@ struct UpdateCarPlayItem {
                 .compactMap { $0 }
                 .map {
                     $0.caption = caption
-                    $0.action = action
+                    $0.actionRaw = action.carPlayId
                 }
                 .flatMap { self.carPlayItemRepository.save() }
         }
