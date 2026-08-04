@@ -183,6 +183,8 @@ extension MainFeature {
                 router.navigate(to: .profiles)
             case .settings:
                 router.navigate(to: .settings)
+            case .addDevice:
+                router.navigate(to: .addWizard)
             default:
                 break
             }

@@ -20,15 +20,17 @@ import CoreLocation
 import NetworkExtension
 import SharedCore
 import SystemConfiguration.CaptiveNetwork
+import UIKit
 
 extension AddWizardFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, EspConfigurationController, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, EspConfigurationController, ViewDelegate {
         @Singleton<CheckRegistrationEnabled.UseCase> private var checkRegistrationEnabledUseCase
         @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
         @Singleton<ProvideCurrentSsid.UseCase> private var provideCurrentSsidUseCase
         @Singleton<EnableRegistration.UseCase> private var enableRegistrationUseCase
         @Singleton<AwaitConnectivity.UseCase> private var awaitConnectivityUseCase
         @Singleton<CreateEspPassword.UseCase> private var createEspPasswordUseCase
+        @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
         @Singleton<EspConfigurationSession> private var espConfigurationSession
         @Singleton<ConnectToEsp.UseCase> private var connectToEspUseCase
         @Singleton<ConfigureEsp.UseCase> private var configureEspUseCase
@@ -37,19 +39,18 @@ extension AddWizardFeature {
         @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
         @Singleton<ProfileRepository> private var profileRepository
         @Singleton<DisconnectUseCase> private var disconnectUseCase
-        @Singleton<SuplaAppCoordinator> private var coordinator
         @Singleton<DateProvider> private var dateProvider
+        @Singleton<AppRouter> private var router
 
         private lazy var stateHandler: IosEspConfigurationStateHolder = .init(espConfigurationController: self)
         var workingTask: Task<Void, Never>? = nil
+        private lazy var locationManagerDelegate = LocationManagerDelegate(viewModel: self)
         
         private lazy var locationManager: CLLocationManager = {
             let manager = CLLocationManager()
-            manager.delegate = self
+            manager.delegate = locationManagerDelegate
             return manager
         }()
-        
-        var authorizationCallback: (() -> Void)? = nil
         
         init() {
             super.init(state: ViewState())
@@ -74,21 +75,21 @@ extension AddWizardFeature {
             switch (screen) {
             case .configuration:
                 if (stateHandler.isInactive) {
-                    coordinator.dismiss()
+                    close()
                 } else {
                     stateHandler.handle(EspConfigurationEventClose.shared)
                 }
             case .manualConfiguration:
                 stateHandler.handle(EspConfigurationEventClose.shared)
             default:
-                coordinator.dismiss()
+                close()
             }
         }
         
         func onBack(_ screen: Screen) {
             switch (screen) {
             case .welcome:
-                coordinator.dismiss()
+                close()
             case .configuration:
                 if (stateHandler.isInactive) {
                     state.screens = state.screens.pop()
@@ -101,7 +102,7 @@ extension AddWizardFeature {
                 if (state.screens.screens.count > 1) {
                     state.screens = state.screens.pop()
                 } else {
-                    coordinator.dismiss()
+                    close()
                 }
             }
         }
@@ -117,9 +118,9 @@ extension AddWizardFeature {
                 if let finished = suplaAppStateHolder.currentState()?.isFinished, finished {
                     suplaAppStateHolder.handle(event: .connecting)
                 }
-                coordinator.dismiss()
+                close()
             case .message:
-                coordinator.dismiss()
+                close()
             case .manualConfiguration:
                 state.processing = true
                 stateHandler.handle(EspConfigurationEventNetworkConnected.shared)
@@ -184,7 +185,7 @@ extension AddWizardFeature {
             loadActiveProfileUrlUseCase.invoke()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] url in
-                    self?.coordinator.openUrl(url: url.urlString)
+                    self?.router.openUrl(url: url.urlString)
                 })
                 .disposed(by: disposeBag)
         }
@@ -317,7 +318,15 @@ extension AddWizardFeature {
         }
         
         func authorize() {
-            authorizationCallback?()
+            Task { [weak self] in
+                guard let self else { return }
+                await MainActor.run {
+                    self.authorizationCoordinator.authorize(
+                        onAuthorized: { [weak self] in self?.onAuthorize() },
+                        onDismissed: { [weak self] in self?.onAuthorizationCanceled() }
+                    )
+                }
+            }
         }
         
         func back() {
@@ -381,7 +390,7 @@ extension AddWizardFeature {
         }
 
         func close() {
-            coordinator.dismiss()
+            router.back()
         }
         
         func configureEsp() {
@@ -601,8 +610,8 @@ extension AddWizardFeature {
     }
 }
 
-extension AddWizardFeature.ViewModel: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+private extension AddWizardFeature.ViewModel {
+    func onLocationAuthorizationChange(status: CLAuthorizationStatus) {
         SALog.info("[Callback] Location status: \(status)")
         
         if (state.screens.current == .welcome) {
@@ -612,6 +621,18 @@ extension AddWizardFeature.ViewModel: CLLocationManagerDelegate {
                 state.screens = state.screens.just(.message(text: [Strings.AddWizard.missingLocation], action: .location))
             }
         }
+    }
+}
+
+private class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
+    private weak var viewModel: AddWizardFeature.ViewModel?
+
+    init(viewModel: AddWizardFeature.ViewModel) {
+        self.viewModel = viewModel
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        viewModel?.onLocationAuthorizationChange(status: status)
     }
 }
 

@@ -19,6 +19,7 @@
 import Combine
 import Foundation
 import RxSwift
+import UIKit
 
 final class AppRouter: ObservableObject {
     @Singleton<SuplaAppStateHolder> private var stateHolder
@@ -88,6 +89,15 @@ final class AppRouter: ObservableObject {
     func handleDeepLink(_ url: URL) {
         guard let deepLinkRoute = deepLinkParser.parse(url) else { return }
         navigate(to: AppRoute(deepLinkRoute))
+    }
+
+    func openUrl(url: String) {
+        guard let url = URL(string: url) else { return }
+        openUrl(url: url)
+    }
+
+    func openUrl(url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
     func connectionWasLost() {

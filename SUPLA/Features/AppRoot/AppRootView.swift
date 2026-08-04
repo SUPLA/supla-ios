@@ -72,6 +72,7 @@ private extension AppRootView {
             case .settings: SettingsScreen()
             case .locationOrdering: LocationOrderingScreen()
             case .profiles: ProfilesListFeature.Screen()
+            case .addWizard: AddWizardFeature.ScreenFlow()
             case .profile(let profileId, _): CreateProfileFeature.Screen(profileId: profileId)
             case .createAccountWeb: CreateAccountScreen()
             case .removeAccountWeb(let needsRestart, let serverAddress):
