@@ -15,27 +15,24 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
+import SwiftUI
+
 extension CallNfcActionFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        override init(viewModel: CallNfcActionFeature.ViewModel) {
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                viewState: viewModel.state,
-                delegate: viewModel
-            )
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(url: URL) {
+            self._viewModel = StateObject(wrappedValue: ViewModel(url: url))
         }
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            navigationItem.hidesBackButton = true
-        }
-        
-        static func create(url: URL) -> UIViewController {
-            let viewModel = ViewModel(url: url)
-            return ViewController(viewModel: viewModel)
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                View(
+                    viewState: state,
+                    delegate: viewModel
+                )
+            }
         }
     }
 }

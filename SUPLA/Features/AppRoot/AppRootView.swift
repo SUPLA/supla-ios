@@ -61,43 +61,32 @@ private extension AppRootView {
             case .main:
                 MainFeature.Screen()
 
-            case .unlockApp:
-                EmptyView()
+            case .unlockApp(let action):
+                LockScreenFeature.Screen(unlockAction: action)
             }
         }
 
         @ViewBuilder
         private func destination(for route: AppRoute) -> some View {
             switch route {
-            case .settings:
-                SettingsScreen(onBack: router.back)
-                    .navigationBarHidden(true)
-
-            case .profiles:
-                ProfilesListFeature.Screen(onBack: router.back)
-                    .navigationBarHidden(true)
-
-            case .profile(let profileId, _):
-                CreateProfileFeature.Screen(
-                    profileId: profileId,
-                    onBack: router.back
-                )
-                .navigationBarHidden(true)
-
-            case .createAccountWeb:
-                CreateAccountScreen(onBack: router.back)
-                    .navigationBarHidden(true)
-
+            case .settings: SettingsScreen()
+            case .locationOrdering: LocationOrderingScreen()
+            case .profiles: ProfilesListFeature.Screen()
+            case .profile(let profileId, _): CreateProfileFeature.Screen(profileId: profileId)
+            case .createAccountWeb: CreateAccountScreen()
             case .removeAccountWeb(let needsRestart, let serverAddress):
-                AccountRemovalScreen(
-                    needsRestart: needsRestart,
-                    serverAddress: serverAddress,
-                    onBack: router.back
-                )
-                .navigationBarHidden(true)
+                AccountRemovalScreen(needsRestart: needsRestart, serverAddress: serverAddress)
+            case .pinSetup(let scope): PinSetupFeature.Screen(scope: scope)
+            case .lockScreen(let action): LockScreenFeature.Screen(unlockAction: action)
+            case .carPlayList: CarPlayListFeature.Screen()
+            case .carPlayAdd: CarPlayAddFeature.Screen()
+            case .carPlayEdit(let id): CarPlayAddFeature.Screen(id: id)
+            case .callNfcAction(let url): CallNfcActionFeature.Screen(url: url)
+            case .nfcTagsList: NfcTagsListFeature.Screen()
+            case .editNfcTag(let uuid, let readOnly): EditTagFeature.Screen(uuid: uuid, readOnly: readOnly)
+            case .nfcTagDetail(let uuid): NfcTagDetailFeature.Screen(uuid: uuid)
 
-            default:
-                EmptyView()
+            default: EmptyView()
             }
         }
 
@@ -114,6 +103,7 @@ private extension AppRootView {
         private var currentDestination: some View {
             if let route = router.currentRoute {
                 destination(for: route)
+                    .navigationBarHidden(true)
             }
         }
 

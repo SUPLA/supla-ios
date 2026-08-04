@@ -15,24 +15,30 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension CarPlayAddFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                viewState: viewModel.state,
-                delegate: viewModel
-            )
-            
-            title = BrandingConfiguration.actionsLabel
-        }
-        
-        static func create(id: NSManagedObjectID? = nil) -> UIViewController {
-            let viewModel = ViewModel(id: id)
-            return ViewController(viewModel: viewModel)
+
+import SwiftUI
+
+struct LocationOrderingScreen: View {
+    @EnvironmentObject private var router: AppRouter
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            Color.Supla.primaryContainer
+                .ignoresSafeArea(edges: .top)
+
+            VStack(spacing: 0) {
+                SuplaCore.TopBar(
+                    navigationIcon: .back,
+                    title: Strings.Cfg.locationOrdering,
+                    onNavigationIconTap: router.back
+                )
+
+                SuplaCore.ViewControllerHost {
+                    let viewController = LocationOrderingVC()
+                    viewController.bind(viewModel: LocationOrderingVM())
+                    return viewController
+                }
+            }
         }
     }
 }

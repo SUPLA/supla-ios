@@ -23,18 +23,18 @@ import XCTest
 
 final class PinSetupVMTests: XCTestCase {
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
-    private lazy var coordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
+    private lazy var router: AppRouter! = AppRouter()
     
     private lazy var viewModel: PinSetupFeature.ViewModel! = PinSetupFeature.ViewModel()
     
     override func setUp() {
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
-        DiContainer.shared.register(type: SuplaAppCoordinator.self, coordinator!)
+        DiContainer.shared.register(type: AppRouter.self, router!)
     }
     
     override func tearDown() {
         settings = nil
-        coordinator = nil
+        router = nil
         viewModel = nil
     }
 
@@ -51,7 +51,7 @@ final class PinSetupVMTests: XCTestCase {
         XCTAssertEqual(viewModel.state.secondPin, "")
         XCTAssertEqual(viewModel.state.errorString, Strings.PinSetup.different)
         
-        coordinator.verifyPopViewController([])
+        XCTAssertEqual(router.path, [])
     }
     
     func test_shouldSetPin() {
@@ -59,6 +59,7 @@ final class PinSetupVMTests: XCTestCase {
         let pin = "1234"
         viewModel.state.pin = pin
         viewModel.state.secondPin = pin
+        router.navigate(to: .pinSetup(scope: .application))
         
         // when
         viewModel.onSaveClick(.application)
@@ -66,7 +67,7 @@ final class PinSetupVMTests: XCTestCase {
         // then
         XCTAssertEqual(settings.lockScreenSettingsValues, [LockScreenSettings(scope: .application, pinSum: pin.sha1(), biometricAllowed: false)])
         
-        coordinator.verifyPopViewController([true])
+        XCTAssertEqual(router.path, [])
     }
     
     func test_shouldChangeFocus_whenPinFilled() {

@@ -21,10 +21,10 @@ import CoreNFC
 private let MIN_TIME_BETWEEN_RELOADS: TimeInterval = 1
 
 extension NfcTagsListFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton private var prepareNfcTagUseCase: PrepareNfcTag.UseCase
         @Singleton private var readNfcItemsUseCase: ReadNfcItems.UseCase
-        @Singleton private var coordinator: SuplaAppCoordinator
+        @Singleton private var router: AppRouter
         @Singleton private var dateProvider: DateProvider
         
         @Singleton<NfcTagItemRepository> private var nfcTagItemRepository
@@ -35,12 +35,9 @@ extension NfcTagsListFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewAppear() {
             state.nfcState = NFCNDEFReaderSession.readingAvailable ? .available : .unavailable
-            reloadItems()
-        }
-        
-        override func onViewWillAppear() {
+
             if (dateProvider.currentTimestamp() - lastReloadTime) > MIN_TIME_BETWEEN_RELOADS {
                 reloadItems()
             }
@@ -48,7 +45,7 @@ extension NfcTagsListFeature {
         
         func onItemClick(uuid: String) {
             hideDialog()
-            coordinator.navigateToNfcTagDetail(uuid: uuid)
+            router.navigate(to: .nfcTagDetail(uuid: uuid))
         }
         
         func onNewItem() {
@@ -80,7 +77,7 @@ extension NfcTagsListFeature {
             if let tag {
                 await MainActor.run { state.dialog = .duplicate(uuid: uuid, name: tag.name) }
             } else {
-                await MainActor.run { coordinator.navigateToEditNfcTag(uuid: uuid, readOnly: readOnly) }
+                await MainActor.run { router.navigate(to: .editNfcTag(uuid: uuid, readOnly: readOnly)) }
             }
         }
         

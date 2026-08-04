@@ -19,15 +19,15 @@
 import LocalAuthentication
 
 extension PinSetupFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton<GlobalSettings> private var settings
-        @Singleton<SuplaAppCoordinator> private var coordinator
+        @Singleton<AppRouter> private var router
 
         init() {
             super.init(state: ViewState())
         }
 
-        override func onViewDidLoad() {
+        override func onViewAppear() {
             let context = LAContext()
             var error: NSError?
             state.biometricPossible = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
@@ -58,7 +58,7 @@ extension PinSetupFeature {
         private func setupLockScreen(_ scope: LockScreenScope) {
             let pinHash = state.pin.sha1()
             settings.lockScreenSettings = LockScreenSettings(scope: scope, pinSum: pinHash, biometricAllowed: state.biometricAllowed)
-            coordinator.popViewController()
+            router.back()
         }
     }
 }

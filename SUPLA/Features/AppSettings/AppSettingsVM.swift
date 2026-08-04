@@ -23,10 +23,10 @@ import RxSwift
 import UserNotifications
 
 class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
-    @Singleton<GlobalSettings> private var settings
     @Singleton<UserNotificationCenter> private var notificationCenter
-    @Singleton<SuplaAppCoordinator> private var coordinator
     @Singleton<GroupShared.Settings> private var groupSettings
+    @Singleton<GlobalSettings> private var settings
+    @Singleton<AppRouter> private var router
     
     override func defaultViewState() -> AppSettingsViewState { AppSettingsViewState(list: []) }
     
@@ -120,15 +120,15 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             ),
             .arrowButtonItem(
                 title: Strings.Cfg.locationOrdering,
-                callback: { [weak self] in self?.coordinator.navigateToLocationOrdering() }
+                callback: { [weak self] in self?.router.navigate(to: .locationOrdering) }
             ),
             .arrowButtonItem(
                 title: BrandingConfiguration.actionsLabel,
-                callback: { [weak self] in self?.coordinator.navigateToCarPlayList()}
+                callback: { [weak self] in self?.router.navigate(to: .carPlayList) }
             ),
             .arrowButtonItem(
                 title: Strings.Nfc.label,
-                callback: { [weak self] in self?.coordinator.navigateToNfcTagsList()}
+                callback: { [weak self] in self?.router.navigate(to: .nfcTagsList) }
             )
         ])
     }
@@ -167,13 +167,13 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
         let pinSum = lockScreenSettings.pinSum
         
         if (scope == .none) {
-            coordinator.navigateToLockScreen(unlockAction: .turnOffPin)
+            router.navigate(to: .lockScreen(action: .turnOffPin))
         } else if (pinSum != nil && scope == .accounts) {
-            coordinator.navigateToLockScreen(unlockAction: .confirmAuthorizeAccounts)
+            router.navigate(to: .lockScreen(action: .confirmAuthorizeAccounts))
         } else if (pinSum != nil && scope == .application) {
-            coordinator.navigateToLockScreen(unlockAction: .confirmAuthorizeApplication)
+            router.navigate(to: .lockScreen(action: .confirmAuthorizeApplication))
         } else {
-            coordinator.navigateToPinSetup(lockScreenScope: scope)
+            router.navigate(to: .pinSetup(scope: scope))
         }
     }
 }

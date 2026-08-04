@@ -20,24 +20,28 @@ import RxSwift
 import SharedCore
 
 extension CarPlayAddFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, Delegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, Delegate {
         @Singleton<UpdateCarPlayItem.UseCase> private var updateCarPlayItemUseCase
         @Singleton<CreateCarPlayItemUseCase> private var createCarPlayItemUseCase
         @Singleton<CarPlayRefresh.UseCase> private var carPlayRefreshUseCase
         @Singleton<DeleteCarPlayItem.UseCase> private var deleteCarPlayItemUseCase
         @Singleton<CarPlayItemRepository> private var carPlayItemRepository
         @Singleton<ProfileRepository> private var profileRepository
-        @Singleton<SuplaAppCoordinator> private var coordinator
+        @Singleton<AppRouter> private var router
 
         private let id: NSManagedObjectID?
         private var selections: [ActionSelection.Selection] = []
+        private var loaded = false
 
         init(id: NSManagedObjectID?) {
             self.id = id
             super.init(state: ViewState())
         }
 
-        override func onViewDidLoad() {
+        override func onViewAppear() {
+            guard !loaded else { return }
+            loaded = true
+
             if let id {
                 loadForEdit(id)
             } else {
@@ -139,7 +143,7 @@ extension CarPlayAddFeature {
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] in
-                        self?.coordinator.popViewController()
+                        self?.router.back()
                         self?.carPlayRefreshUseCase.post(.refresh)
                     }
                 )
@@ -173,7 +177,7 @@ extension CarPlayAddFeature {
                     .asDriverWithoutError()
                     .drive(
                         onNext: { [weak self] in
-                            self?.coordinator.popViewController()
+                            self?.router.back()
                             self?.carPlayRefreshUseCase.post(.refresh)
                         }
                     )

@@ -19,24 +19,19 @@
 import LocalAuthentication
 
 extension LockScreenFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton<CheckPinUseCase> private var checkPinUseCase
         @Singleton<GlobalSettings> private var settings
-        @Singleton<SuplaAppCoordinator> private var coordinator
+        @Singleton<AppRouter> private var router
         @Singleton<SuplaSchedulers> private var schedulers
         @Singleton<DateProvider> private var dateProvider
         
-        init() {
+        init(unlockAction: UnlockAction? = nil) {
             super.init(state: ViewState())
+            state.unlockAction = unlockAction
         }
         
-        override func onViewDidLoad() {
-            let lockScreenSettings = settings.lockScreenSettings
-            state.biometricAllowed = lockScreenSettings.biometricAllowed
-            state.lockedTime = lockScreenSettings.lockTime
-        }
-        
-        override func onViewAppeared() {
+        override func onViewAppear() {
             let lockScreenSettings = settings.lockScreenSettings
             state.biometricAllowed = lockScreenSettings.biometricAllowed
             state.lockedTime = lockScreenSettings.lockTime
@@ -69,22 +64,6 @@ extension LockScreenFeature {
             }
         }
         
-        func onPinForgotten() {
-            let dialog = SAAlertDialogVC(
-                title: Strings.LockScreen.forgottenCodeTitle,
-                message: Strings.LockScreen.forgottenCodeMessage,
-                positiveText: Strings.LockScreen.forgottenCodeButton,
-                negativeText: nil
-            )
-            
-            dialog.rx.positiveTap
-                .asDriverWithoutError()
-                .drive(onNext: { [unowned dialog] in dialog.dismiss(animated: true) })
-                .disposed(by: disposeBag)
-            
-            coordinator.present(dialog)
-        }
-        
         private func verifyPin(_ pinAction: CheckPinAction) {
             guard let unlockAction = state.unlockAction else { return }
             checkPinUseCase.invoke(unlockAction: unlockAction, pinAction: pinAction)
@@ -97,18 +76,18 @@ extension LockScreenFeature {
                         case .unlocked:
                             switch (unlockAction) {
                             case .authorizeAccountsCreate:
-                                self?.coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID, withLockCheck: false)
+                                self?.router.replaceCurrent(with: .profile(profileId: ProfileDto.INVALID_ID, withLockCheck: false))
                             case .authorizeAccountsEdit(let profileId):
-                                self?.coordinator.navigateToProfile(profileId: profileId, withLockCheck: false)
+                                self?.router.replaceCurrent(with: .profile(profileId: profileId, withLockCheck: false))
                             default: 
-                                self?.coordinator.popViewController()
+                                self?.router.back()
                             }
                         case .unlockedNoAccount:
                             switch (unlockAction) {
                             case .authorizeAccountsCreate:
-                                self?.coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID, withLockCheck: false)
+                                self?.router.replaceCurrent(with: .profile(profileId: ProfileDto.INVALID_ID, withLockCheck: false))
                             case .authorizeApplication:
-                                self?.coordinator.popViewController()
+                                self?.router.back()
                             default: break
                             }
                         case .failure:
