@@ -23,6 +23,7 @@ import RxSwift
 final class AppRouter: ObservableObject {
     @Singleton<SuplaAppStateHolder> private var stateHolder
     @Singleton<SuplaSchedulers> private var schedulers
+    @Singleton<GlobalSettings> private var settings
 
     @Published private(set) var root: AppRoot = .status
     @Published var path: [AppRoute] = []
@@ -66,7 +67,17 @@ final class AppRouter: ObservableObject {
     }
 
     func navigate(to route: AppRoute) {
-        path.append(route)
+        path.append(allowedRoute(for: route))
+    }
+
+    func replaceCurrent(with route: AppRoute) {
+        guard !path.isEmpty else {
+            navigate(to: route)
+            return
+        }
+
+        path.removeLast()
+        path.append(allowedRoute(for: route))
     }
 
     func back() {
@@ -113,5 +124,19 @@ final class AppRouter: ObservableObject {
     private func showConnectionStatus() {
         path.removeAll()
         root = .status
+    }
+
+    private func allowedRoute(for route: AppRoute) -> AppRoute {
+        switch route {
+        case .profile(let profileId, true) where settings.lockScreenSettings.pinForAccountsRequired:
+            if (profileId != ProfileDto.INVALID_ID) {
+                return .lockScreen(action: .authorizeAccountsEdit(profileId: profileId))
+            } else {
+                return .lockScreen(action: .authorizeAccountsCreate)
+            }
+
+        default:
+            return route
+        }
     }
 }

@@ -18,13 +18,13 @@
  */
 
 import RxSwift
+import SwiftUI
 
 protocol SuplaAppCoordinator: Coordinator {
     func attachToWindow(_ window: UIWindow)
     func currentController() -> UIViewController?
     func navigateToSettings()
     func navigateToLocationOrdering()
-    func navigateToProfiles()
     func navigateToAddWizard()
     func navigateToAbout()
     func navigateToNotificationsLog()
@@ -52,7 +52,6 @@ protocol SuplaAppCoordinator: Coordinator {
 
     func popToStatus()
     
-    func showMenu()
     func showLogin()
 
     func openForum()
@@ -114,10 +113,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(viewController)
     }
     
-    func navigateToProfiles() {
-        navigateTo(ProfilesListFeature.ViewController.create())
-    }
-    
     func navigateToAddWizard() {
         let avc = AddWizardFeature.ViewController.create()
         avc.modalPresentationStyle = .fullScreen
@@ -149,7 +144,14 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
                 navigateToLockScreen(unlockAction: .authorizeAccountsCreate)
             }
         } else {
-            navigateTo(CreateProfileFeature.ViewController.create(profileId: profileId))
+            navigateTo(
+                UIHostingController(
+                    rootView: CreateProfileFeature.Screen(
+                        profileId: profileId,
+                        onBack: { [weak self] in self?.popViewController() }
+                    )
+                )
+            )
         }
     }
     
@@ -239,10 +241,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func popToStatus() {
         //        popToViewController(ofClass: StatusFeature.ViewController.self)
-    }
-    
-    func showMenu() {
-        present(SuplaMenuController())
     }
     
     func showLogin() {

@@ -73,6 +73,29 @@ private extension AppRootView {
                 SettingsScreen(onBack: router.back)
                     .navigationBarHidden(true)
 
+            case .profiles:
+                ProfilesListFeature.Screen(onBack: router.back)
+                    .navigationBarHidden(true)
+
+            case .profile(let profileId, _):
+                CreateProfileFeature.Screen(
+                    profileId: profileId,
+                    onBack: router.back
+                )
+                .navigationBarHidden(true)
+
+            case .createAccountWeb:
+                CreateAccountScreen(onBack: router.back)
+                    .navigationBarHidden(true)
+
+            case .removeAccountWeb(let needsRestart, let serverAddress):
+                AccountRemovalScreen(
+                    needsRestart: needsRestart,
+                    serverAddress: serverAddress,
+                    onBack: router.back
+                )
+                .navigationBarHidden(true)
+
             default:
                 EmptyView()
             }

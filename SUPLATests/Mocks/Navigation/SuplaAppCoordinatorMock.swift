@@ -42,11 +42,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
         navigateToLocationOrderingMock.handle(())
     }
     
-    var navigateToProfilesMock: FunctionMock<Void, Void> = .void()
-    func navigateToProfiles() {
-        navigateToProfilesMock.handle(())
-    }
-    
     func navigateToAddWizard() {
     }
     

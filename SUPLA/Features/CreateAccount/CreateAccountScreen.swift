@@ -15,24 +15,28 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension ProfilesListFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                viewState: viewModel.state,
-                delegate: viewModel
-            )
-            
-            title = Strings.Profiles.Title.short
-        }
-        
-        static func create() -> UIViewController {
-            let viewModel = ViewModel()
-            return ViewController(viewModel: viewModel)
+
+import SwiftUI
+
+struct CreateAccountScreen: View {
+    let onBack: () -> Void
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            Color.Supla.primaryContainer
+                .ignoresSafeArea(edges: .top)
+
+            VStack(spacing: 0) {
+                SuplaCore.TopBar(
+                    navigationIcon: .back,
+                    title: Strings.appName,
+                    onNavigationIconTap: onBack
+                )
+
+                SuplaCore.ViewControllerHost {
+                    SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
+                }
+            }
         }
     }
 }
