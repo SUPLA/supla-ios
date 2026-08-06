@@ -108,4 +108,9 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     func findChannelsBy(_ profileId: Int32, function: SharedCore.SuplaFunction) async -> [SAChannel] {
         findChannelsByMock.handle((profileId, function))
     }
+    
+    var findZWaveChannelAvailableMock: FunctionMock<Void, Bool> = .init()
+    func findZWaveChannelAvailable() async -> Bool {
+        findZWaveChannelAvailableMock.handle(())
+    }
 }

@@ -124,7 +124,7 @@ extension MainFeature {
             .init(
                 showMainTabs: !showBottomMenu,
                 selectedTab: selectedTab,
-                zWaveVisible: BrandingConfiguration.Menu.Z_WAVE_OPTION_VISIBLE,
+                zWaveVisible: BrandingConfiguration.Menu.Z_WAVE_OPTION_VISIBLE && viewState.showZWave,
                 deviceCatalogVisible: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE,
                 helpVisible: BrandingConfiguration.Menu.HELP_OPTION_VISIBLE,
                 aboutVisible: BrandingConfiguration.Menu.ABOUT_OPTION_VISIBLE,

@@ -40,6 +40,18 @@ final class AuthorizationCoordinator: ObservableObject {
             onDismissed: onDismissed
         )
     }
+    
+    @MainActor
+    func login(
+        onAuthorized: @escaping () -> Void = {},
+        onDismissed: @escaping () -> Void = {}
+    ) {
+        request = Request(
+            requestType: .login,
+            onAuthorized: onAuthorized,
+            onDismissed: onDismissed
+        )
+    }
 
     @MainActor
     func complete() {

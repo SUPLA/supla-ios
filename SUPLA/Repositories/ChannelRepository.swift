@@ -36,6 +36,7 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
     func getHiddenChannelsSync() -> [SAChannel]
     func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32>
     func findChannelsBy(_ profileId: Int32, function: SuplaFunction) async -> [SAChannel]
+    func findZWaveChannelAvailable() async -> Bool
 }
 
 extension ChannelRepository {
@@ -205,6 +206,25 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 let errorString = String(describing: error)
                 SALog.error("Could not fetch channels: \(errorString)")
                 return []
+            }
+        }
+    }
+    
+    func findZWaveChannelAvailable() async -> Bool {
+        let context = context
+        
+        return await context.perform {
+            let request = SAChannel.fetchRequest()
+                .filtered(by: NSPredicate(format: "visible > 0 AND type = %i AND (flags & %i) > 0 AND profile.isActive = 1", SUPLA_CHANNELTYPE_BRIDGE, SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE))
+                
+            request.fetchLimit = 1
+            
+            do {
+                return try context.fetch(request).count == 1
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not fetch channels: \(errorString)")
+                return false
             }
         }
     }
