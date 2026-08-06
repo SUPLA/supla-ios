@@ -48,8 +48,6 @@
 
 #define PRELOADER_DOT_COUNT 8
 
-static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
-
 @interface SAZWaveConfigurationWizardVC () <SAPickerFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *welcomePage;
 @property (strong, nonatomic) IBOutlet UIView *errorPage;
@@ -186,24 +184,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
--(void) superuserAuthorizationSuccess {
-    [SASuperuserAuthorizationDialog.globalInstance close];
-    [SuplaAppCoordinatorLegacyWrapper push:self];
-}
-
--(void)show {
-    [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
-}
-
-+(SAZWaveConfigurationWizardVC*)globalInstance {
-    if ( _zwaveConfigurationWizardGlobalRef == nil ) {
-        _zwaveConfigurationWizardGlobalRef = [[SAZWaveConfigurationWizardVC alloc]
-                                              initWithNibName:@"SAZWaveConfigurationWizardVC" bundle:nil];
-    }
-    
-    return _zwaveConfigurationWizardGlobalRef;
-}
 
 -(void)onCalCfgResult:(NSNotification *)notification {
     SACalCfgResult *result = [SACalCfgResult notificationToDeviceCalCfgResult:notification];
@@ -993,7 +973,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [_devicesToRestart removeAllObjects];
     
     self.preloaderVisible = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.onFinish) {
+        self.onFinish();
+    }
 }
 
 - (IBAction)nextTouch:(nullable id)sender {
@@ -1242,8 +1224,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
-    [vc presentViewController:alert animated:YES completion:nil];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)btnAddTouch:(id)sender {
@@ -1296,8 +1277,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
-    [vc presentViewController:alert animated:YES completion:nil];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)refreshTouch:(id)sender {

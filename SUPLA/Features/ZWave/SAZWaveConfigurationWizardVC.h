@@ -17,13 +17,11 @@
  */
 
 #import "SAWizardVC.h"
-#import "SASuperuserAuthorizationDialog.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAZWaveConfigurationWizardVC : SAWizardVC <SASuperuserAuthorizationDialogDelegate>
--(void)show;
-+(SAZWaveConfigurationWizardVC*)globalInstance;
+@interface SAZWaveConfigurationWizardVC : SAWizardVC
+@property (nonatomic, copy, nullable) void (^onFinish)(void);
 @end
 
 NS_ASSUME_NONNULL_END

@@ -25,6 +25,7 @@ final class AppRouter: ObservableObject {
     @Singleton<SuplaAppStateHolder> private var stateHolder
     @Singleton<SuplaSchedulers> private var schedulers
     @Singleton<GlobalSettings> private var settings
+    @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
 
     @Published private(set) var root: AppRoot = .status
     @Published var path: [AppRoute] = []
@@ -98,6 +99,26 @@ final class AppRouter: ObservableObject {
 
     func openUrl(url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    func openForum() {
+        openUrl(url: NSLocalizedString("https://en-forum.supla.org", comment: ""))
+    }
+
+    func openCloud() {
+        openUrl(url: "https://cloud.supla.org")
+    }
+
+    func openHomepage() {
+        openUrl(url: "https://www.supla.org")
+    }
+
+    func openZWaveWizard() {
+        Task { @MainActor in
+            authorizationCoordinator.authorize(onAuthorized: { [weak self] in
+                self?.navigate(to: .zWave)
+            })
+        }
     }
 
     func connectionWasLost() {

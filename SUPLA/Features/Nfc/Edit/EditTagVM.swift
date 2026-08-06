@@ -25,7 +25,6 @@ extension EditTagFeature {
         private let uuid: String
         private let readOnly: Bool?
         private var selections: [ActionSelection.Selection] = []
-        private var loaded = false
         
         init(uuid: String, readOnly: Bool? = nil) {
             self.uuid = uuid
@@ -33,10 +32,7 @@ extension EditTagFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewAppear() {
-            guard !loaded else { return }
-            loaded = true
-
+        override func onViewCreated() {
             Task {
                 dispatchPrecondition(condition: .notOnQueue(.main))
                 guard let profiles = try? await profileRepository.getAllProfiles()

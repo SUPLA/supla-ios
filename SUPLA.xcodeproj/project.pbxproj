@@ -57,7 +57,6 @@
 		015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */; };
 		016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 016157B5261CAAFA006AA0E8 /* SAPickerField.m */; };
 		0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0163D0CC257EE483006C73CB /* NetworkExtension.framework */; };
-		01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01642A872549C3EF00E87C46 /* SAMenuItems.m */; };
 		017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017554F522F1A62500EB58B7 /* HomePlusDetailView.m */; };
 		017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */; };
 		017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FA22F1D2BE00EB58B7 /* settings2@3x.png */; };
@@ -224,6 +223,9 @@
 		A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */; };
 		A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */; };
 		A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */; };
+		A5DCA1022F3F000000000001 /* DeviceCatalogScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCA1012F3F000000000001 /* DeviceCatalogScreen.swift */; };
+		A5E000012F3F100000000001 /* ZWaveFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E000012F3F100000000003 /* ZWaveFeature.swift */; };
+		A5E000012F3F100000000002 /* ZWaveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E000012F3F100000000004 /* ZWaveScreen.swift */; };
 		A5074BB52BCCFD2B0081B6B1 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */; };
 		A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB72BCE58CA0081B6B1 /* BaseWindowVM.swift */; };
 		A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB92BCE5C520081B6B1 /* BaseWindowVC.swift */; };
@@ -488,6 +490,7 @@
 		A5425F952F6A880C00794C9D /* NotificationsLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F942F6A880100794C9D /* NotificationsLogView.swift */; };
 		A5425F972F6A881A00794C9D /* NotificationsLogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F962F6A881000794C9D /* NotificationsLogFeature.swift */; };
 		A5425F992F6A886800794C9D /* NotificationsLogViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F982F6A884000794C9D /* NotificationsLogViewState.swift */; };
+		A5DCA1122F3F000000000001 /* NotificationsLogScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCA1112F3F000000000001 /* NotificationsLogScreen.swift */; };
 		A5425F9B2F6A88B600794C9D /* NotificationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F9A2F6A88B100794C9D /* NotificationDto.swift */; };
 		A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */; };
 		A54260272CE769C300BE74FE /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */; };
@@ -590,7 +593,6 @@
 		A55501E82B7F96E600FD3296 /* String+Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E72B7F96E600FD3296 /* String+Icons.swift */; };
 		A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */; };
 		A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */; };
-		A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F42B83842000FD3296 /* NotificationsLogVC.swift */; };
 		A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F82B838E7300FD3296 /* NotificationRepository.swift */; };
 		A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */; };
 		A5552ECE2D53697900A3F6A2 /* VoltageMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552ECD2D53697400A3F6A2 /* VoltageMeasurementsProvider.swift */; };
@@ -1233,7 +1235,7 @@
 		A5D712902C4107C400A8EF52 /* AboutViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */; };
 		A5D712922C41084B00A8EF52 /* AboutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712912C41084B00A8EF52 /* AboutVM.swift */; };
 		A5D712942C41088D00A8EF52 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712932C41088D00A8EF52 /* AboutView.swift */; };
-		A5D712962C41198A00A8EF52 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712952C41198900A8EF52 /* AboutVC.swift */; };
+		A5DCA1322F3F000000000001 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCA1312F3F000000000001 /* AboutScreen.swift */; };
 		A5D712982C411B2E00A8EF52 /* BuildInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712972C411B2E00A8EF52 /* BuildInfo.swift */; };
 		A5D7129A2C4123C200A8EF52 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712992C4123C200A8EF52 /* FunctionMock.swift */; };
 		A5D7129C2C4123EF00A8EF52 /* MockReturns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7129B2C4123EF00A8EF52 /* MockReturns.swift */; };
@@ -1263,7 +1265,7 @@
 		A5DEE9692E9FAD1B000811C7 /* DeveloperInfoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9682E9FAD15000811C7 /* DeveloperInfoFeature.swift */; };
 		A5DEE96E2E9FB783000811C7 /* DeveloperInfoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE96D2E9FB77E000811C7 /* DeveloperInfoViewState.swift */; };
 		A5DEE9702E9FB809000811C7 /* DeveloperInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE96F2E9FB7A7000811C7 /* DeveloperInfoVM.swift */; };
-		A5DEE9722E9FBA0E000811C7 /* DeveloperInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9712E9FBA08000811C7 /* DeveloperInfoVC.swift */; };
+		A5DCA1222F3F000000000001 /* DeveloperInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DCA1212F3F000000000001 /* DeveloperInfoScreen.swift */; };
 		A5DEE9782EA0D14F000811C7 /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */; };
 		A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */; };
 		A5DF8A232D6332D700C210DA /* ContainerLevelSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */; };
@@ -1747,8 +1749,6 @@
 		016157B5261CAAFA006AA0E8 /* SAPickerField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPickerField.m; sourceTree = "<group>"; };
 		0163D0CB257EE483006C73CB /* SUPLA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SUPLA.entitlements; sourceTree = "<group>"; };
 		0163D0CC257EE483006C73CB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
-		01642A862549C3EF00E87C46 /* SAMenuItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMenuItems.h; sourceTree = "<group>"; };
-		01642A872549C3EF00E87C46 /* SAMenuItems.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMenuItems.m; sourceTree = "<group>"; };
 		016D001C266EB11500E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Resources/it.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		016D001E266EB12500E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Resources/it.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		016D0021266EB30E00E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Resources/it.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
@@ -2054,6 +2054,9 @@
 		A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentVC.swift; sourceTree = "<group>"; };
 		A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVM.swift; sourceTree = "<group>"; };
 		A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVC.swift; sourceTree = "<group>"; };
+		A5DCA1012F3F000000000001 /* DeviceCatalogScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogScreen.swift; sourceTree = "<group>"; };
+		A5E000012F3F100000000003 /* ZWaveFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZWaveFeature.swift; sourceTree = "<group>"; };
+		A5E000012F3F100000000004 /* ZWaveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZWaveScreen.swift; sourceTree = "<group>"; };
 		A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		A5074BB72BCE58CA0081B6B1 /* BaseWindowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowVM.swift; sourceTree = "<group>"; };
 		A5074BB92BCE5C520081B6B1 /* BaseWindowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowVC.swift; sourceTree = "<group>"; };
@@ -2317,6 +2320,7 @@
 		A5425F942F6A880100794C9D /* NotificationsLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogView.swift; sourceTree = "<group>"; };
 		A5425F962F6A881000794C9D /* NotificationsLogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogFeature.swift; sourceTree = "<group>"; };
 		A5425F982F6A884000794C9D /* NotificationsLogViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogViewState.swift; sourceTree = "<group>"; };
+		A5DCA1112F3F000000000001 /* NotificationsLogScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogScreen.swift; sourceTree = "<group>"; };
 		A5425F9A2F6A88B100794C9D /* NotificationDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDto.swift; sourceTree = "<group>"; };
 		A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemIssues+iOS.swift"; sourceTree = "<group>"; };
 		A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
@@ -2430,7 +2434,6 @@
 		A55501E72B7F96E600FD3296 /* String+Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Icons.swift"; sourceTree = "<group>"; };
 		A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterIconNameProducer.swift; sourceTree = "<group>"; };
 		A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVM.swift; sourceTree = "<group>"; };
-		A55501F42B83842000FD3296 /* NotificationsLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVC.swift; sourceTree = "<group>"; };
 		A55501F82B838E7300FD3296 /* NotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
 		A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertNotificationUseCase.swift; sourceTree = "<group>"; };
 		A5552ECD2D53697400A3F6A2 /* VoltageMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoltageMeasurementsProvider.swift; sourceTree = "<group>"; };
@@ -3067,7 +3070,7 @@
 		A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewState.swift; sourceTree = "<group>"; };
 		A5D712912C41084B00A8EF52 /* AboutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVM.swift; sourceTree = "<group>"; };
 		A5D712932C41088D00A8EF52 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		A5D712952C41198900A8EF52 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		A5DCA1312F3F000000000001 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		A5D712972C411B2E00A8EF52 /* BuildInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfo.swift; sourceTree = "<group>"; };
 		A5D712992C4123C200A8EF52 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
 		A5D7129B2C4123EF00A8EF52 /* MockReturns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReturns.swift; sourceTree = "<group>"; };
@@ -3098,7 +3101,7 @@
 		A5DEE9682E9FAD15000811C7 /* DeveloperInfoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoFeature.swift; sourceTree = "<group>"; };
 		A5DEE96D2E9FB77E000811C7 /* DeveloperInfoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewState.swift; sourceTree = "<group>"; };
 		A5DEE96F2E9FB7A7000811C7 /* DeveloperInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoVM.swift; sourceTree = "<group>"; };
-		A5DEE9712E9FBA08000811C7 /* DeveloperInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoVC.swift; sourceTree = "<group>"; };
+		A5DCA1212F3F000000000001 /* DeveloperInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoScreen.swift; sourceTree = "<group>"; };
 		A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListView.swift; sourceTree = "<group>"; };
 		A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodSensorIconProducer.swift; sourceTree = "<group>"; };
 		A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerLevelSensorIconNameProducer.swift; sourceTree = "<group>"; };
@@ -3949,8 +3952,6 @@
 				010C877E249A4D55002FE526 /* SAInfoVC.m */,
 				01215A7024C8AECC00429947 /* SALightsourceLifespanSettingsDialog.h */,
 				01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */,
-				01642A862549C3EF00E87C46 /* SAMenuItems.h */,
-				01642A872549C3EF00E87C46 /* SAMenuItems.m */,
 				016157B4261CAAFA006AA0E8 /* SAPickerField.h */,
 				016157B5261CAAFA006AA0E8 /* SAPickerField.m */,
 				019D22EE233CC2D000F17135 /* SAPreloader.h */,
@@ -3971,8 +3972,6 @@
 				01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */,
 				01B57DEA25BDA48F001F0DBC /* SAWizardVC.h */,
 				01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */,
-				0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */,
-				0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */,
 				010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */,
 				010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */,
 				406778521BCBF9F4008DD37F /* SectionCell.h */,
@@ -4092,6 +4091,7 @@
 			children = (
 				A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */,
 				A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */,
+				A5DCA1012F3F000000000001 /* DeviceCatalogScreen.swift */,
 			);
 			path = DeviceCatalog;
 			sourceTree = "<group>";
@@ -5221,8 +5221,8 @@
 				A5425F982F6A884000794C9D /* NotificationsLogViewState.swift */,
 				A5425F962F6A881000794C9D /* NotificationsLogFeature.swift */,
 				A5425F942F6A880100794C9D /* NotificationsLogView.swift */,
+				A5DCA1112F3F000000000001 /* NotificationsLogScreen.swift */,
 				A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */,
-				A55501F42B83842000FD3296 /* NotificationsLogVC.swift */,
 			);
 			path = NotificationsLog;
 			sourceTree = "<group>";
@@ -5701,8 +5701,20 @@
 				A5A15FEB2C298A580049AA73 /* Status */,
 				A56D5AD12A4C68F4004F45DA /* UpdateToken */,
 				A5074BA52BC922E70081B6B1 /* WebContent */,
+				A5E000012F3F100000000005 /* ZWave */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		A5E000012F3F100000000005 /* ZWave */ = {
+			isa = PBXGroup;
+			children = (
+				0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */,
+				0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */,
+				A5E000012F3F100000000003 /* ZWaveFeature.swift */,
+				A5E000012F3F100000000004 /* ZWaveScreen.swift */,
+			);
+			path = ZWave;
 			sourceTree = "<group>";
 		};
 		A5756F8029DC0FFC00C32A1B /* AccountRemoval */ = {
@@ -7092,7 +7104,7 @@
 				A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */,
 				A5D712912C41084B00A8EF52 /* AboutVM.swift */,
 				A5D712932C41088D00A8EF52 /* AboutView.swift */,
-				A5D712952C41198900A8EF52 /* AboutVC.swift */,
+				A5DCA1312F3F000000000001 /* AboutScreen.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -7173,7 +7185,7 @@
 		A5DEE9652E9FAADB000811C7 /* DeveloperInfo */ = {
 			isa = PBXGroup;
 			children = (
-				A5DEE9712E9FBA08000811C7 /* DeveloperInfoVC.swift */,
+				A5DCA1212F3F000000000001 /* DeveloperInfoScreen.swift */,
 				A5DEE96F2E9FB7A7000811C7 /* DeveloperInfoVM.swift */,
 				A5DEE96D2E9FB77E000811C7 /* DeveloperInfoViewState.swift */,
 				A5DEE9682E9FAD15000811C7 /* DeveloperInfoFeature.swift */,
@@ -8479,6 +8491,7 @@
 				A56F8D0B2DA8EBC200F097CE /* SwitchGeneralFeature.swift in Sources */,
 				A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */,
 				A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */,
+				A5DCA1022F3F000000000001 /* DeviceCatalogScreen.swift in Sources */,
 				A5AD701B2C00B1D700A36318 /* ControlButtonType.swift in Sources */,
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
@@ -8647,7 +8660,6 @@
 				A522DB432D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift in Sources */,
 				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
-				A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */,
 				A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */,
 				A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */,
 				A5BF4F912F3C867000F5DE81 /* NfcTagsListScreen.swift in Sources */,
@@ -8748,7 +8760,7 @@
 				A598CAC32CC246DF00A784FA /* ImpulseCounterValueProvider.swift in Sources */,
 				A5DDF92C2D79A8750056B539 /* ContainerGeneralVC.swift in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
-				A5DEE9722E9FBA0E000811C7 /* DeveloperInfoVC.swift in Sources */,
+				A5DCA1222F3F000000000001 /* DeveloperInfoScreen.swift in Sources */,
 				A5E9C20A2DCCBE8C0001F263 /* CellScalingLimit.swift in Sources */,
 				A541493C2B63E0D300B44BD6 /* LineChartData.swift in Sources */,
 				A51BE9072AA8532600718F2F /* ThermostatControlView.swift in Sources */,
@@ -8764,6 +8776,7 @@
 				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5425F952F6A880C00794C9D /* NotificationsLogView.swift in Sources */,
+				A5DCA1122F3F000000000001 /* NotificationsLogScreen.swift in Sources */,
 				A5BF4F682F3CB36F00F5DE81 /* ListItemRow.swift in Sources */,
 				A5B3CC0C2B6291FF00F95AC3 /* GpmValueStringProvider.swift in Sources */,
 				A5425F9B2F6A88B600794C9D /* NotificationDto.swift in Sources */,
@@ -8803,7 +8816,6 @@
 				A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */,
 				A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */,
 				A57668EB2AEA81C00025509D /* ChartRange.swift in Sources */,
-				01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */,
 				01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */,
 				A5F29B9F2A20D32B00ED700A /* GroupRepository.swift in Sources */,
 				A5A67C532FE1334500AD05BB /* SteppedSlider.swift in Sources */,
@@ -8887,7 +8899,9 @@
 				A5074BDF2BCFE5CA0081B6B1 /* SuplaChannelFacadeBlindConfig.swift in Sources */,
 				A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */,
 				A519BFE12DD205C90045EB77 /* ExportCarPlayItemsUseCase.swift in Sources */,
-				A5D712962C41198A00A8EF52 /* AboutVC.swift in Sources */,
+				A5DCA1322F3F000000000001 /* AboutScreen.swift in Sources */,
+				A5E000012F3F100000000001 /* ZWaveFeature.swift in Sources */,
+				A5E000012F3F100000000002 /* ZWaveScreen.swift in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				A5BCA95A2E277BDB00A5054A /* IosEspConfigurationStateHolder.swift in Sources */,
 				A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */,

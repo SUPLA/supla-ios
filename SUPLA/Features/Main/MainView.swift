@@ -185,8 +185,22 @@ extension MainFeature {
                 router.navigate(to: .settings)
             case .addDevice:
                 router.navigate(to: .addWizard)
-            default:
-                break
+            case .zWave:
+                router.openZWaveWizard()
+            case .deviceCatalog:
+                router.navigate(to: .deviceCatalog)
+            case .notifications:
+                router.navigate(to: .notificationsLog)
+            case .cloud:
+                router.openCloud()
+            case .help:
+                router.openForum()
+            case .about:
+                router.navigate(to: .about)
+            case .developerOptions:
+                router.navigate(to: .developerOptions)
+            case .homepage:
+                router.openHomepage()
             }
 
             closeDrawer()
@@ -333,7 +347,7 @@ private struct ViewControllerHost<Controller: UIViewController>: UIViewControlle
             self.lastEffectiveContentOffsetY = contentOffsetY
 
             if (abs(delta) > 0.1) {
-                onScroll(delta)
+                dispatchScroll(delta)
             }
         }
 
@@ -345,7 +359,7 @@ private struct ViewControllerHost<Controller: UIViewController>: UIViewControlle
             let contentShrunk = scrollView.contentSize.height < lastContentHeight - 1
             if (contentShrunk || !scrollView.canScrollVertically) {
                 lastEffectiveContentOffsetY = scrollView.effectiveContentOffsetY
-                onScrollEnded(true)
+                dispatchScrollEnded(atTop: true)
             }
         }
 
@@ -353,10 +367,22 @@ private struct ViewControllerHost<Controller: UIViewController>: UIViewControlle
             switch recognizer.state {
             case .ended, .cancelled, .failed:
                 if let scrollView, scrollView.canScrollVertically {
-                    onScrollEnded(scrollView.isAtTop)
+                    dispatchScrollEnded(atTop: scrollView.isAtTop)
                 }
             default:
                 break
+            }
+        }
+
+        private func dispatchScroll(_ delta: CGFloat) {
+            DispatchQueue.main.async { [onScroll] in
+                onScroll(delta)
+            }
+        }
+
+        private func dispatchScrollEnded(atTop: Bool) {
+            DispatchQueue.main.async { [onScrollEnded] in
+                onScrollEnded(atTop)
             }
         }
     }

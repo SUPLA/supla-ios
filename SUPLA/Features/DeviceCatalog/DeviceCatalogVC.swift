@@ -18,7 +18,7 @@
 import WebKit
 
 class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEvent, DeviceCatalogVM> {
-    @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<AppRouter> private var router
     
     private var userInterfaceStyle: UIUserInterfaceStyle? = nil
 
@@ -57,7 +57,7 @@ class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEve
     override func handle(event: DeviceCatalogViewEvent) {
         switch (event) {
         case .openUrl(let url):
-            coordinator.openUrl(url: url)
+            router.openUrl(url: url)
         }
     }
 }

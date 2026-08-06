@@ -41,6 +41,8 @@ extension SuplaCore {
             }
         }
 
+        func onViewCreated() {}
+
         func onViewAppear() {}
 
         func onViewDisappear() {

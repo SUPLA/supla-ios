@@ -27,6 +27,7 @@ extension SuplaCore {
         private let viewModel: VM
 
         private let content: (S) -> Content
+        @State private var viewCreated = false
 
         init(
             _ viewModel: VM,
@@ -39,6 +40,10 @@ extension SuplaCore {
         var body: some View {
             content(viewModel.state)
                 .onAppear {
+                    if (!viewCreated) {
+                        viewCreated = true
+                        viewModel.onViewCreated()
+                    }
                     viewModel.onViewAppear()
                 }
                 .onDisappear {

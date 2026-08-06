@@ -15,23 +15,5 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension DeveloperInfoFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                viewState: viewModel.state,
-                delegate: viewModel
-            )
-            
-            title = Strings.DeveloperInfo.title
-        }
-        
-        static func create() -> UIViewController {
-            let viewModel = ViewModel()
-            return ViewController(viewModel: viewModel)
-        }
-    }
-}
+
+struct ZWaveFeature {}
