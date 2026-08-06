@@ -15,26 +15,30 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-extension DeveloperInfoFeature {
-    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
-        @Singleton var settings: GlobalSettings
-        
-        init() {
-            super.init(state: ViewState())
-        }
-        
-        override func onViewAppear() {
-            state.screenRotationEnabled = settings.screenRotationEnabled
-            state.developerInfoEnabled = settings.devModeActive
-        }
-        
-        func onOrientationChange(_ enabled: Bool) {
-            settings.screenRotationEnabled = enabled
-        }
-        
-        func onDevInfoChange(_ enabled: Bool) {
-            settings.devModeActive = enabled
+
+import SwiftUI
+
+struct DeviceCatalogScreen: View {
+    @EnvironmentObject private var router: AppRouter
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            Color.Supla.primaryContainer
+                .ignoresSafeArea(edges: .top)
+
+            VStack(spacing: 0) {
+                SuplaCore.TopBar(
+                    navigationIcon: .back,
+                    title: Strings.DeviceCatalog.menu,
+                    onNavigationIconTap: router.back
+                )
+
+                SuplaCore.ViewControllerHost {
+                    let viewController = DeviceCatalogVC()
+                    viewController.navigationBarMaintainedByParent = true
+                    return viewController
+                }
+            }
         }
     }
 }

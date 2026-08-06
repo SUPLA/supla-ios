@@ -51,6 +51,7 @@ extension SuplaCore {
         private var rightControlsWidth: CGFloat {
             height * CGFloat((searchText == nil ? 0 : 1) + (actionIcon == nil ? 0 : 1))
         }
+
         private var titleHorizontalPadding: CGFloat { max(height, rightControlsWidth) }
 
         init(
@@ -121,8 +122,8 @@ extension SuplaCore {
                     HStack(spacing: Distance.tiny) {
                         TextField(searchPrompt, text: searchText)
                             .fontBodyMedium()
-                            .foregroundColor(Color.Supla.onPrimaryContainer)
-                            .accentColor(Color.Supla.onPrimaryContainer)
+                            .foregroundColor(Color.Supla.onBackground)
+                            .accentColor(Color.Supla.onBackground)
                             .focused($searchFocused)
 
                         if (!searchText.wrappedValue.isEmpty) {
@@ -133,8 +134,9 @@ extension SuplaCore {
                     .padding(.trailing, searchText.wrappedValue.isEmpty ? Distance.small : 0)
                     .frame(maxWidth: .infinity)
                     .frame(height: Dimens.buttonHeight)
-                    .background(Color.Supla.onPrimaryContainer.opacity(0.12))
+                    .background(Color.Supla.surface)
                     .clipShape(RoundedRectangle(cornerRadius: Dimens.buttonRadius))
+                    .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
                     .onAppear { searchFocused = true }
 
                     if let actionIcon {
@@ -168,10 +170,10 @@ extension SuplaCore {
                     .renderingMode(.template)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: Dimens.iconSize, height: Dimens.iconSize)
-                    .frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight)
-                    .contentShape(Rectangle())
+                    .foregroundColor(Color.Supla.onBackground)
+                    .frame(width: 12, height: 12)
             }
+            .frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight)
         }
 
         private func onNavigationTap() {

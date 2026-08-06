@@ -31,15 +31,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     
     func currentController() -> UIViewController? { UIViewController() }
     
-    func navigateToAbout() {
-    }
-    
-    func navigateToNotificationsLog() {
-    }
-    
-    func navigateToDeviceCatalog() {
-    }
-    
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
     }
     
@@ -64,12 +55,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func showAuthorization() {
     }
 
-    func openForum() {
-    }
-    
-    func openCloud() {
-    }
-    
     func openUrl(url: String) {
     }
     
@@ -81,9 +66,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     
     func verifyPopViewController(_ parameters: [Bool]) {
         XCTAssertEqual(navigationControllerMock.popViewControllerParameters, parameters)
-    }
-    
-    func navigateToDeveloperOptions() {
     }
 }
 

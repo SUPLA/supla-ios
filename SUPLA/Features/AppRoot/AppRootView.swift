@@ -71,8 +71,12 @@ private extension AppRootView {
             switch route {
             case .settings: SettingsScreen()
             case .locationOrdering: LocationOrderingScreen()
+            case .deviceCatalog: DeviceCatalogScreen()
+            case .notificationsLog: NotificationsLogFeature.Screen()
+            case .about: AboutFeature.Screen()
             case .profiles: ProfilesListFeature.Screen()
             case .addWizard: AddWizardFeature.ScreenFlow()
+            case .zWave: ZWaveFeature.Screen()
             case .profile(let profileId, _): CreateProfileFeature.Screen(profileId: profileId)
             case .createAccountWeb: CreateAccountScreen()
             case .removeAccountWeb(let needsRestart, let serverAddress):
@@ -82,6 +86,7 @@ private extension AppRootView {
             case .carPlayList: CarPlayListFeature.Screen()
             case .carPlayAdd: CarPlayAddFeature.Screen()
             case .carPlayEdit(let id): CarPlayAddFeature.Screen(id: id)
+            case .developerOptions: DeveloperInfoFeature.Screen()
             case .callNfcAction(let url): CallNfcActionFeature.Screen(url: url)
             case .nfcTagsList: NfcTagsListFeature.Screen()
             case .editNfcTag(let uuid, let readOnly): EditTagFeature.Screen(uuid: uuid, readOnly: readOnly)

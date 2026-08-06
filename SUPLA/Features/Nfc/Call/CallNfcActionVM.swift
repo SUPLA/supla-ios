@@ -25,17 +25,13 @@ extension CallNfcActionFeature {
         @Singleton<AppRouter> private var router
         
         private let url: URL
-        private var loaded = false
         
         init(url: URL) {
             self.url = url
             super.init(state: ViewState())
         }
         
-        override func onViewAppear() {
-            guard !loaded else { return }
-            loaded = true
-
+        override func onViewCreated() {
             guard let tagId = url.nfcTagId() else {
                 state.step = .failure(type: .unknownUrl)
                 return

@@ -22,19 +22,13 @@ import SwiftUI
 
 protocol SuplaAppCoordinator: Coordinator {
     func currentController() -> UIViewController?
-    func navigateToAbout()
-    func navigateToNotificationsLog()
-    func navigateToDeviceCatalog()
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
     func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToCounterPhoto(channelId: Int32)
-    func navigateToDeveloperOptions()
     func navigateToLegacyDimmerSettings(channelId: Int32)
 
-    func openForum()
-    func openCloud()
     func openUrl(url: String)
     func openUrl(url: URL)
 }
@@ -73,18 +67,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         return controller
     }
     
-    func navigateToAbout() {
-        navigateTo(AboutFeature.ViewController.create())
-    }
-    
-    func navigateToNotificationsLog() {
-        navigateTo(NotificationsLogFeature.ViewController.create())
-    }
-    
-    func navigateToDeviceCatalog() {
-        navigateTo(DeviceCatalogVC())
-    }
-    
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
         navigateTo(DetailViewController(detailViewType: detailType, channelBase: channelBase))
     }
@@ -105,20 +87,8 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(CounterPhotoFeature.ViewController.create(channelId: channelId))
     }
     
-    func navigateToDeveloperOptions() {
-        navigateTo(DeveloperInfoFeature.ViewController.create())
-    }
-    
     func navigateToLegacyDimmerSettings(channelId: Int32) {
         navigateTo(LegacyDimmerSettingsVC(remoteId: channelId))
-    }
-    
-    func openForum() {
-        openUrl(url: NSLocalizedString("https://en-forum.supla.org", comment: ""))
-    }
-    
-    func openCloud() {
-        openUrl(url: "https://cloud.supla.org")
     }
     
     func openUrl(url: String) {

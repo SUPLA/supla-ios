@@ -41,6 +41,7 @@ enum AppRoute: Hashable {
     case locationOrdering
     case profiles
     case addWizard
+    case zWave
     case about
     case notificationsLog
     case deviceCatalog
@@ -69,7 +70,9 @@ extension AppRoute {
     var connectionTakeoverPolicy: ConnectionTakeoverPolicy {
         switch self {
         case .addWizard,
-             .profile:
+             .zWave,
+             .profile,
+             .deviceCatalog:
             .deferred
 
         default:

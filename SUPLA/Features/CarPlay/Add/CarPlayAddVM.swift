@@ -31,17 +31,13 @@ extension CarPlayAddFeature {
 
         private let id: NSManagedObjectID?
         private var selections: [ActionSelection.Selection] = []
-        private var loaded = false
 
         init(id: NSManagedObjectID?) {
             self.id = id
             super.init(state: ViewState())
         }
 
-        override func onViewAppear() {
-            guard !loaded else { return }
-            loaded = true
-
+        override func onViewCreated() {
             if let id {
                 loadForEdit(id)
             } else {
