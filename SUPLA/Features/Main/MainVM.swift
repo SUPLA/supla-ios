@@ -19,13 +19,17 @@
 extension MainFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<ChannelRepository> private var channelRepository
 
         init(state: ViewState = ViewState()) {
             super.init(state: state)
         }
 
         override func onViewAppear() {
-            Task { await loadProfilesIconVisibility() }
+            Task {
+                await loadProfilesIconVisibility()
+                await loadZWaveChannels()
+            }
         }
 
         private func loadProfilesIconVisibility() async {
@@ -33,6 +37,14 @@ extension MainFeature {
 
             await MainActor.run {
                 state.showProfilesIcon = count > 1
+            }
+        }
+        
+        private func loadZWaveChannels() async {
+            let zWaveAvailable = await channelRepository.findZWaveChannelAvailable()
+            
+            await MainActor.run() {
+                state.showZWave = zWaveAvailable
             }
         }
     }

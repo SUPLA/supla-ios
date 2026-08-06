@@ -159,7 +159,7 @@ final class StatusVMTests: XCTestCase {
         
         // then
         XCTAssertNotNil(authorizationRequest)
-        if case .authorize = authorizationRequest?.requestType {
+        if case .login = authorizationRequest?.requestType {
         } else {
             XCTFail("Expected authorization request")
         }
