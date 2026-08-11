@@ -666,3 +666,7 @@
 "nfc_timeout_dialog_title" = "Time is up!";
 "nfc_timeout_dialog_message" = "Could not link the tag with the device. Try again?";
 "toolbar_search_hint" = "Type 2 characters for search...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Light source lifespan (hours)";
+"light_source_lifespan_settings_reset_counter" = "Reset the light source usage counter";

@@ -26,9 +26,7 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListState, ChannelLis
     private var triggerLogHistoryDownloadTask: Task<Void, Never>? = nil
     
     private lazy var stateViewModel: StateDialogFeature.ViewModel = {
-        let viewModel = StateDialogFeature.ViewModel { [weak self] in
-            self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
-        }
+        let viewModel = StateDialogFeature.ViewModel()
         viewModel.presentationCallback = { [weak self] shown in
             self?.overlay.view.isHidden = !shown
         }

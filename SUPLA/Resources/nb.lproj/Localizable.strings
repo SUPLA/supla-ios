@@ -766,3 +766,7 @@
 "nfc_timeout_dialog_title" = "Tiden er ute!";
 "nfc_timeout_dialog_message" = "Kunne ikke koble taggen til enheten. Vil du prøve igjen?";
 "toolbar_search_hint" = "Skriv inn minst 2 tegn...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Lyskildens levetid (timer)";
+"light_source_lifespan_settings_reset_counter" = "Tilbakestill telleren for lyskildens forbruk";

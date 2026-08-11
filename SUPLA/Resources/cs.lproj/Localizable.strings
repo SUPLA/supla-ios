@@ -767,3 +767,7 @@
 "nfc_timeout_dialog_title" = "Čas vypršel!";
 "nfc_timeout_dialog_message" = "Nepodařilo se propojit tag se zařízením. Chcete to zkusit znovu?";
 "toolbar_search_hint" = "Zadejte alespoň 2 znaky...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Životnost světelného zdroje (hodiny)";
+"light_source_lifespan_settings_reset_counter" = "Restartovat čítač spotřeby světelného zdroje";

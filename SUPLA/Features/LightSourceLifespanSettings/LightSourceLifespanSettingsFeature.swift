@@ -15,17 +15,5 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-class StandardDetailVM: BaseDetailVM<StandardDetailViewState> {
-    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
-    @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<GroupRepository> private var groupRepository
-    
-    init(item: ItemBundle) {
-        super.init(item: item, state: StandardDetailViewState())
-    }
-}
 
-final class StandardDetailViewState: DetailViewState {
-    @Published var title: String? = nil
-}
+struct LightSourceLifespanSettingsFeature {}

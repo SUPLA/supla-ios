@@ -624,6 +624,11 @@ struct Strings {
         static let sceneName = "change_caption_scene_name".toLocalized()
         static let locationName = "change_caption_location_name".toLocalized()
     }
+
+    struct LightSourceLifespan {
+        static let lifespan = "light_source_lifespan_settings_lifespan".toLocalized()
+        static let resetCounter = "light_source_lifespan_settings_reset_counter".toLocalized()
+    }
     
     struct Container {
         static let fillLevel = "container_fill_level".toLocalized()

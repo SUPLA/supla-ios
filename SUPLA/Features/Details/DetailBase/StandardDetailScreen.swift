@@ -15,17 +15,30 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-class StandardDetailVM: BaseDetailVM<StandardDetailViewState> {
-    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
-    @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<GroupRepository> private var groupRepository
-    
-    init(item: ItemBundle) {
-        super.init(item: item, state: StandardDetailViewState())
-    }
-}
 
-final class StandardDetailViewState: DetailViewState {
-    @Published var title: String? = nil
+import SwiftUI
+
+struct StandardDetailFeature {}
+
+extension StandardDetailFeature {
+    struct Screen: SwiftUI.View {
+        let item: ItemBundle
+        let pages: [DetailPage]
+
+        @StateObject private var viewModel: StandardDetailVM
+        
+        init(item: ItemBundle, pages: [DetailPage]) {
+            self.item = item
+            self.pages = pages
+            self._viewModel = StateObject(wrappedValue: StandardDetailVM(item: item))
+        }
+
+        var body: some SwiftUI.View {
+            DetailBaseFeature.BaseScreen(
+                viewModel: viewModel,
+                item: item,
+                pages: pages
+            )
+        }
+    }
 }

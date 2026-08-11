@@ -839,3 +839,7 @@
 "nfc_timeout_dialog_title" = "Vaxt bitdi!";
 "nfc_timeout_dialog_message" = "Teqi cihazla əlaqələndirmək mümkün olmadı. Yenidən cəhd etmək istəyirsiniz?";
 "toolbar_search_hint" = "Ən azı 2 simvol daxil edin...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "İşıq mənbəyinin ömrü (saat)";
+"light_source_lifespan_settings_reset_counter" = "İşıq mənbəyi istifadə sayğacını sıfırla";

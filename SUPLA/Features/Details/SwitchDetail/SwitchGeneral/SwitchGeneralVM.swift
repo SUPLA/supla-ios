@@ -20,7 +20,7 @@ import RxSwift
 import SharedCore
     
 extension SwitchGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver, GroupUpdatesObserver, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ChannelUpdatesObserver, GroupUpdatesObserver, ViewDelegate {
         @Singleton<ElectricityMeterGeneralStateHandler> private var electricityMeterGeneralStateHandler
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<ImpulseCounterGeneralStateHandler> private var impulseCounterGeneralStateHandler
@@ -40,9 +40,31 @@ extension SwitchGeneralFeature {
         private var initialDataLoadStarted: Bool = false
         private var flags: [SuplaRelayFlag] = []
         private var type: SubjectType? = nil
+        private let itemBundle: ItemBundle?
         
-        init() {
+        init(itemBundle: ItemBundle? = nil) {
+            self.itemBundle = itemBundle
             super.init(state: ViewState())
+        }
+
+        override func onViewCreated() {
+            guard let itemBundle else { return }
+
+            switch (itemBundle.subjectType) {
+            case .channel: observeChannel(remoteId: Int(itemBundle.remoteId))
+            case .group: observeGroup(remoteId: itemBundle.remoteId)
+            case .scene: break
+            }
+        }
+
+        override func onViewAppear() {
+            guard let itemBundle else { return }
+
+            loadData(remoteId: itemBundle.remoteId, type: itemBundle.subjectType)
+        }
+
+        func handle(_ disposable: Disposable) {
+            disposable.disposed(by: disposeBag)
         }
      
         func observerDownload(_ remoteId: Int32) {

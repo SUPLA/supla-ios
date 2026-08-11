@@ -81,6 +81,9 @@ private extension AppRootView {
             case .createAccountWeb: CreateAccountScreen()
             case .removeAccountWeb(let needsRestart, let serverAddress):
                 AccountRemovalScreen(needsRestart: needsRestart, serverAddress: serverAddress)
+            case .standardDetail(let item, let pages): StandardDetailFeature.Screen(item: item, pages: pages)
+            case .impulseCounterDetail(let item, let pages): ImpulseCounterDetailFeature.Screen(item: item, pages: pages)
+            case .rgbwDetail(let item, let pages): RgbAndDimmerDetailFeature.Screen(item: item, pages: pages)
             case .pinSetup(let scope): PinSetupFeature.Screen(scope: scope)
             case .lockScreen(let action): LockScreenFeature.Screen(unlockAction: action)
             case .carPlayList: CarPlayListFeature.Screen()

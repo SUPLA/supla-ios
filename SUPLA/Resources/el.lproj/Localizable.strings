@@ -768,3 +768,7 @@
 "nfc_timeout_dialog_title" = "Ο χρόνος έληξε!";
 "nfc_timeout_dialog_message" = "Δεν ήταν δυνατή η σύνδεση της ετικέτας με τη συσκευή. Θέλετε να δοκιμάσετε ξανά;";
 "toolbar_search_hint" = "Πληκτρολογήστε τουλάχιστον 2 χαρακτήρες...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Ζωή πηγής φωτός (ώρες)";
+"light_source_lifespan_settings_reset_counter" = "Επαναφορά μετρητή χρήσης πηγής φωτός";

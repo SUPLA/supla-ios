@@ -190,11 +190,9 @@
 "Enter superuser credentials" = "Inserisci le credenziali di Superuser";
 "The waiting time for basic channel configuration data has expired." = "Tempo di attesa scaduto per la configurazione del canale base";
 "The function of the channel associated with the action trigger cannot be changed." = "La funzione del canale associato alla funzione attiva azioni non può essere modificata";
-"XfF-Xe-aOn.text" = "Durata di vita della sorgente luminosa (ore)";
 "XmM-Te-dni.normalTitle" = "OK";
 "aZZ-F7-rsl.normalTitle" = "CANCELLA";
 "hKG-BE-jQV.text" = "Impostazioni";
-"ykW-dh-QDo.text" = "Reset contatore utilizzo sorgente luminosa";
 "MOE-IP-Z4M.text" = "INDIRIZZO E-MAIL";
 "btP-Nc-v0w.text" = "E-mail o Password errata";
 "cdk-TD-22T.normalTitle" = "CANCELLA";
@@ -801,3 +799,7 @@
 "nfc_timeout_dialog_title" = "Tempo scaduto!";
 "nfc_timeout_dialog_message" = "Impossibile associare il tag al dispositivo. Vuoi riprovare?";
 "toolbar_search_hint" = "Inserisci almeno 2 caratteri...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Durata di vita della sorgente luminosa (ore)";
+"light_source_lifespan_settings_reset_counter" = "Reset contatore utilizzo sorgente luminosa";
