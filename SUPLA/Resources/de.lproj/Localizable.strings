@@ -805,3 +805,7 @@
 "nfc_timeout_dialog_title" = "Zeit abgelaufen!";
 "nfc_timeout_dialog_message" = "Der Tag konnte nicht mit dem Gerät verknüpft werden. Möchten Sie es erneut versuchen?";
 "toolbar_search_hint" = "Geben Sie mindestens 2 Zeichen ein...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Lebensdauer der Lichtquelle (Stunden)";
+"light_source_lifespan_settings_reset_counter" = "Verbrauchszähler der Lichtquelle zurücksetzen";

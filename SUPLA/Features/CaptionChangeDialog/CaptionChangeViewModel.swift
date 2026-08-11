@@ -18,13 +18,13 @@
     
 extension CaptionChangeDialogFeature {
     class ViewModel: SuplaCore.Dialog.ViewModel {
-        
         @Singleton<VibrationService> private var vibrationService
         @Singleton<CaptionChangeUseCase> private var captionChangeUseCase
         @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
         @Singleton<ReadSceneByRemoteIdUseCase> private var readSceneByRemoteIdUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<ReadLocationByRemoteIdUseCase> private var readLocationByRemoteIdUseCase
+        @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
         
         @Published var caption: String = ""
         @Published private(set) var label: String? = nil
@@ -92,13 +92,38 @@ extension CaptionChangeDialogFeature {
             if let viewController {
                 self.remoteId = remoteId
                 self.caption = caption
-                self.label = captionType.label
+                label = captionType.label
                 self.captionType = captionType
                 
                 vibrationService.vibrate()
                 
                 SAAuthorizationDialogVC { [weak self] in self?.present = true }.showAuthorization(viewController)
             }
+        }
+
+        func show(sensorData: RelatedChannelData) {
+            show(remoteId: sensorData.id, caption: sensorData.userCaption, captionType: .channel)
+        }
+
+        func show(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
+            vibrationService.vibrate()
+
+            Task { @MainActor [weak self] in
+                self?.authorizationCoordinator.authorize(
+                    onAuthorized: { [weak self] in
+                        self?.showAuthorized(remoteId: remoteId, caption: caption, captionType: captionType)
+                    }
+                )
+            }
+        }
+
+        private func showAuthorized(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
+            self.remoteId = remoteId
+            self.caption = caption
+            self.label = captionType.label
+            self.captionType = captionType
+
+            present = true
         }
         
         func hide() {
@@ -116,11 +141,10 @@ extension CaptionChangeDialogFeature {
                 })
                 .disposed(by: self)
         }
-        
     }
 }
 
-fileprivate extension CaptionChangeUseCaseImpl.CaptionType {
+private extension CaptionChangeUseCaseImpl.CaptionType {
     var label: String {
         switch (self) {
         case .channel: Strings.ChangeCaption.channelName

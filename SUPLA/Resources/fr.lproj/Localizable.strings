@@ -768,3 +768,7 @@
 "nfc_timeout_dialog_title" = "Temps écoulé !";
 "nfc_timeout_dialog_message" = "Impossible d’associer l’étiquette à l’appareil. Voulez-vous réessayer ?";
 "toolbar_search_hint" = "Saisissez au moins 2 caractères...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Durée de vie de la source lumineuse (heures)";
+"light_source_lifespan_settings_reset_counter" = "Réinitialiser le compteur d\'utilisation de la source lumineuse";

@@ -19,7 +19,7 @@
 extension CounterPhotoFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         
-        @Singleton<SuplaAppCoordinator> var coordinator
+        @Singleton<AppRouter> var router
         
         private var channelId: Int32
         
@@ -29,7 +29,7 @@ extension CounterPhotoFeature {
             
             contentView = View(
                 viewState: state,
-                onUrlClick: coordinator.openUrl(url:),
+                onUrlClick: router.openUrl(url:),
                 onRefresh: { await viewModel.onRefresh(channelId) },
                 onRetry: { viewModel.loadData(channelId) }
             )

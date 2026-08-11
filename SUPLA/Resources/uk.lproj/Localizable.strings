@@ -767,3 +767,7 @@
 "nfc_timeout_dialog_title" = "Час вичерпано!";
 "nfc_timeout_dialog_message" = "Не вдалося пов’язати мітку з пристроєм. Бажаєте спробувати ще раз?";
 "toolbar_search_hint" = "Введіть щонайменше 2 символи...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Термін служби джерела світла (години)";
+"light_source_lifespan_settings_reset_counter" = "Обнулити лічильник споживання джерела світла";

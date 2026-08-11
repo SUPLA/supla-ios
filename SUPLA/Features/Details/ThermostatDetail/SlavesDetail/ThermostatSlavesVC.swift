@@ -21,14 +21,10 @@ import SwiftUI
 extension ThermostatSlavesFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         @Singleton<SuplaAppCoordinator> private var coordinator
+        @Singleton<AppRouter> private var router
         
         private let item: ItemBundle
-        private lazy var stateDialogViewModel: StateDialogFeature.ViewModel = {
-            let viewModel = StateDialogFeature.ViewModel { [weak self] in
-                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
-            }
-            return viewModel
-        }()
+        private let stateDialogViewModel = StateDialogFeature.ViewModel()
         private lazy var captionChangeViewModel = CaptionChangeDialogFeature.ViewModel()
         
         init(viewModel: ViewModel, item: ItemBundle) {
@@ -50,10 +46,10 @@ extension ThermostatSlavesFeature {
                         subjectType: .channel,
                         function: data.function
                     )
-                    self?.coordinator.navigateToStandardDetail(
+                    self?.router.navigate(to: .standardDetail(
                         item: bundle,
                         pages: [.thermostatGeneral, .thermostatHistory]
-                    )
+                    ))
                 }
             )
             

@@ -19,12 +19,7 @@
 extension GateGeneralFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         private let itemBundle: ItemBundle
-        private lazy var stateViewModel: StateDialogFeature.ViewModel = {
-            let viewModel = StateDialogFeature.ViewModel { [weak self] in
-                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
-            }
-            return viewModel
-        }()
+        private let stateViewModel = StateDialogFeature.ViewModel()
         private lazy var captionChangeViewModel = CaptionChangeDialogFeature.ViewModel()
         
         init(itemBundle: ItemBundle, viewModel: ViewModel) {

@@ -20,12 +20,7 @@ extension ValveGeneralFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         
         private var channelId: Int32
-        private lazy var stateViewModel: StateDialogFeature.ViewModel = {
-            let viewModel = StateDialogFeature.ViewModel { [weak self] in
-                self?.showAuthorizationLightSourceLifespanSettings($0, $1, $2)
-            }
-            return viewModel
-        }()
+        private let stateViewModel = StateDialogFeature.ViewModel()
         private lazy var captionChangeViewModel = CaptionChangeDialogFeature.ViewModel()
         
         init(channelId: Int32, viewModel: ViewModel) {

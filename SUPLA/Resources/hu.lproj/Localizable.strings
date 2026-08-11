@@ -807,3 +807,7 @@
 "nfc_timeout_dialog_title" = "Lejárt az idő!";
 "nfc_timeout_dialog_message" = "Nem sikerült a címkét az eszközhöz társítani. Szeretné újra megpróbálni?";
 "toolbar_search_hint" = "Írjon be legalább 2 karaktert...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "A fényforrás élettartama (óra)";
+"light_source_lifespan_settings_reset_counter" = "A fényforrás-használati számláló visszaállítása";

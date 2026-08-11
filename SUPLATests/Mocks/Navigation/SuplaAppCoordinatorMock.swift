@@ -34,31 +34,10 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
     }
     
-    func navigateToStandardDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
-    }
-    
-    func navigateToImpulseCounterDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
-    }
-    
     func navigateToCounterPhoto(channelId: Int32) {
     }
     
-    func navigateToRgbwDetail(item: SUPLA.ItemBundle, pages: [SUPLA.DetailPage]) {
-    }
-    
     func navigateToLegacyDimmerSettings(channelId: Int32) {
-    }
-    
-    func showMenu() {
-    }
-    
-    func showAuthorization() {
-    }
-
-    func openUrl(url: String) {
-    }
-    
-    func openUrl(url: URL) {
     }
     
     func start(animated: Bool) {

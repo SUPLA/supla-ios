@@ -16,10 +16,27 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class BaseDetailVM<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
+import Combine
+
+protocol DetailViewState: ObservableObject {
+    var title: String? { get set }
+}
+
+class BaseDetailVM<S: DetailViewState>: SuplaCore.ViewModel<S> {
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
     @Singleton<GetCaptionUseCase> private var getCaptionUseCase
+
+    private let item: ItemBundle
+
+    init(item: ItemBundle, state: S) {
+        self.item = item
+        super.init(state: state)
+    }
+
+    override func onViewCreated() {
+        loadData(remoteId: item.remoteId, type: item.subjectType)
+    }
 
     func loadData(remoteId: Int32, type: SubjectType) {
         switch (type) {
@@ -33,23 +50,21 @@ class BaseDetailVM<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .asDriverWithoutError()
             .drive(onNext: { [weak self] in self?.handleChannel($0) })
-            .disposed(by: self)
+            .disposed(by: disposeBag)
     }
 
     func handleChannel(_ channel: SAChannel) {
-        setTitle(getCaptionUseCase.invoke(data: channel.shareable).string)
+        state.title = getCaptionUseCase.invoke(data: channel.shareable).string
     }
     
     private func loadGroup(_ remoteId: Int32) {
         readGroupByRemoteIdUseCase.invoke(remoteId: remoteId)
             .asDriverWithoutError()
             .drive(onNext: { [weak self] in self?.handleGroup($0) })
-            .disposed(by: self)
+            .disposed(by: disposeBag)
     }
     
     private func handleGroup(_ group: SAChannelGroup) {
-        setTitle(getCaptionUseCase.invoke(data: group.shareable).string)
+        state.title = getCaptionUseCase.invoke(data: group.shareable).string
     }
-
-    func setTitle(_ title: String) { fatalError("setTitle(_:) has not been implemented") }
 }

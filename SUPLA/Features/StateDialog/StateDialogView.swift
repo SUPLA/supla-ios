@@ -21,6 +21,11 @@ import SwiftUI
 extension StateDialogFeature {
     struct Dialog: View {
         @ObservedObject var viewModel: ViewModel
+        @StateObject private var lifespanSettingsViewModel = LightSourceLifespanSettingsFeature.ViewModel()
+
+        init(viewModel: ViewModel) {
+            self.viewModel = viewModel
+        }
 
         var body: some View {
             SuplaCore.Dialog.Base(onDismiss: viewModel.onDismiss) {
@@ -45,7 +50,7 @@ extension StateDialogFeature {
                 }.fixedSize(horizontal: false, vertical: true)
 
                 if (viewModel.showLifespanSettingsButton) {
-                    Button(action: viewModel.onLifespanSettingsButton, label: {
+                    Button(action: showLifespanSettings, label: {
                         Text(Strings.State.lightsourceSettings)
                             .fontLabelSmall()
                             .foregroundColor(.Supla.primary)
@@ -66,6 +71,21 @@ extension StateDialogFeature {
                     onNext: viewModel.onNext
                 )
             }
+            .overlay {
+                if (lifespanSettingsViewModel.present) {
+                    LightSourceLifespanSettingsFeature.DialogView(viewModel: lifespanSettingsViewModel)
+                }
+            }
+        }
+
+        private func showLifespanSettings() {
+            guard let settings = viewModel.lifespanSettings else { return }
+
+            lifespanSettingsViewModel.show(
+                remoteId: settings.remoteId,
+                title: settings.title,
+                lightSourceLifespan: settings.lightSourceLifespan
+            )
         }
     }
 }

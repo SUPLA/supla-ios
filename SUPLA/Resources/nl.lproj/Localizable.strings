@@ -767,3 +767,7 @@
 "nfc_timeout_dialog_title" = "Tijd verstreken!";
 "nfc_timeout_dialog_message" = "De tag kon niet met het apparaat worden gekoppeld. Wil je het opnieuw proberen?";
 "toolbar_search_hint" = "Voer minimaal 2 tekens in...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Levensduur lichtbron (uren)";
+"light_source_lifespan_settings_reset_counter" = "Gebruiksteller lichtbron resetten";

@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -23,14 +22,9 @@ import SwiftUI
 protocol SuplaAppCoordinator: Coordinator {
     func currentController() -> UIViewController?
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
-    func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
-    func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
     func navigateToCounterPhoto(channelId: Int32)
     func navigateToLegacyDimmerSettings(channelId: Int32)
 
-    func openUrl(url: String)
-    func openUrl(url: URL)
 }
 
 protocol NavigationSubcontroller {
@@ -71,34 +65,12 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         navigateTo(DetailViewController(detailViewType: detailType, channelBase: channelBase))
     }
     
-    func navigateToStandardDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(StandardDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(ImpulseCounterDetailVC(item: item, pages: pages))
-    }
-    
-    func navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage]) {
-        navigateTo(RgbAndDimmerDetailVC(item: item, pages: pages))
-    }
-    
     func navigateToCounterPhoto(channelId: Int32) {
         navigateTo(CounterPhotoFeature.ViewController.create(channelId: channelId))
     }
     
     func navigateToLegacyDimmerSettings(channelId: Int32) {
         navigateTo(LegacyDimmerSettingsVC(remoteId: channelId))
-    }
-    
-    func openUrl(url: String) {
-        if let url = URL(string: url) {
-            openUrl(url: url)
-        }
-    }
-    
-    func openUrl(url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

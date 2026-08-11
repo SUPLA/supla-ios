@@ -46,6 +46,7 @@
 - (void) setSceneCaption:(int)sceneId caption:(NSString*)caption;
 - (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption;
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
+- (void) setLightsourceLifespanWithChannelId: (int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 
 @end
 

@@ -20,7 +20,7 @@ import Foundation
 import SwiftUI
 
 class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
-    @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<AppRouter> private var router
     
     private lazy var overlay: UIHostingController = {
         let view = UIHostingController(rootView: GroupListView(captionChangeDialogViewModel: captionChangeViewModel))
@@ -45,13 +45,13 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
     override func handle(event: GroupListViewEvent) {
         switch (event) {
         case let .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: channelBase):
-            coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
+            router.navigate(to: .legacyDetail(type: legacyDetailType, channelRemoteId: channelBase.remote_id))
         case let .navigateToStandardDetail(item, pages):
-            coordinator.navigateToStandardDetail(item: item, pages: pages)
+            router.navigate(to: .standardDetail(item: item, pages: pages))
         case let .navigateToRgbwDetail(item, pages):
-            coordinator.navigateToRgbwDetail(item: item, pages: pages)
+            router.navigate(to: .rgbwDetail(item: item, pages: pages))
         case let .open(url):
-            coordinator.openUrl(url: url)
+            router.openUrl(url: url)
         }
     }
     

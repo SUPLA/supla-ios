@@ -768,3 +768,7 @@
 "nfc_timeout_dialog_title" = "Čas je potekel!";
 "nfc_timeout_dialog_message" = "Oznake ni bilo mogoče povezati z napravo. Ali želite poskusiti znova?";
 "toolbar_search_hint" = "Vnesite vsaj 2 znaka...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Življenjska doba svetlobnega vira (ure)";
+"light_source_lifespan_settings_reset_counter" = "Ponastavite števec porabe svetlobnega vira";

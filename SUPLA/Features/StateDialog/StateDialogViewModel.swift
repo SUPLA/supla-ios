@@ -41,13 +41,22 @@ extension StateDialogFeature {
         private var timer: Timer? = nil
         private var lastRefreshTime: TimeInterval? = nil
         
-        private let lifespanSettingsCallback: (Int32, String, Int32) -> Void
         private var lightSourceLifespan: Int32 = 0
-        
-        init(lifespanSettingsCallback: @escaping (_ remoteId: Int32, _ caption: String, _ lifesourceLifespan: Int32) -> Void) {
-            self.lifespanSettingsCallback = lifespanSettingsCallback
+
+        var lifespanSettings: LifespanSettings? {
+            if (!showLifespanSettingsButton || channels.indices.contains(currentIdx) == false) {
+                return nil
+            }
+            let channel = channels[currentIdx]
+            return LifespanSettings(
+                remoteId: channel.remoteId,
+                title: channel.caption,
+                lightSourceLifespan: lightSourceLifespan
+            )
+        }
+
+        override init() {
             super.init()
-            
             observeNotification(name: NSNotification.Name("KSA-N17"), selector: #selector(onStateEvent))
         }
         
@@ -62,7 +71,6 @@ extension StateDialogFeature {
             online: Bool = false,
             loading: Bool = false
         ) {
-            self.lifespanSettingsCallback = { _, _, _ in }
             super.init()
             
             self.title = title
@@ -111,11 +119,6 @@ extension StateDialogFeature {
             }
             publish()
             startRefreshing()
-        }
-        
-        func onLifespanSettingsButton() {
-            present = false
-            lifespanSettingsCallback(channels[currentIdx].remoteId, channels[currentIdx].caption, lightSourceLifespan)
         }
         
         private func handleChannels(_ channels: [ChannelData]) {
@@ -192,13 +195,11 @@ extension StateDialogFeature {
             }
         }
     }
-}
 
-extension UIViewController {
-    func showAuthorizationLightSourceLifespanSettings(_ remoteId: Int32, _ caption: String, _ lifesourceLifespan: Int32) {
-        SAAuthorizationDialogVC {
-            SALightsourceLifespanSettingsDialog.globalInstance().show(remoteId, title: caption, lifesourceLifespan: lifesourceLifespan, vc: self)
-        }.showAuthorization(self)
+    struct LifespanSettings {
+        let remoteId: Int32
+        let title: String
+        let lightSourceLifespan: Int32
     }
 }
 

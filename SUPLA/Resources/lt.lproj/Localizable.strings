@@ -769,3 +769,7 @@
 "nfc_timeout_dialog_title" = "Laikas baigėsi!";
 "nfc_timeout_dialog_message" = "Nepavyko susieti žymos su įrenginiu. Ar norite bandyti dar kartą?";
 "toolbar_search_hint" = "Įveskite bent 2 simbolius...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Šviesos šaltinio eksploatavimo laikas (valandos)";
+"light_source_lifespan_settings_reset_counter" = "Atkurti šviesis šaltinio sunaudojimo skaitiklį";

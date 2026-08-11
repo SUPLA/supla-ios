@@ -24,7 +24,7 @@ import SharedCore
 import SwiftUI
 
 class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
-    @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<AppRouter> private var router
     
     static let cellIdForScene = "SceneCell"
 
@@ -49,7 +49,7 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     override func handle(event: SceneListViewEvent) {
         switch (event) {
-        case .open(let url): coordinator.openUrl(url: url)
+        case .open(let url): router.openUrl(url: url)
         }
     }
     
