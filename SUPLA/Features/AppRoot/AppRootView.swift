@@ -112,6 +112,7 @@ private extension AppRootView {
         private var currentDestination: some View {
             if let route = router.currentRoute {
                 destination(for: route)
+                    .id(route)
                     .navigationBarHidden(true)
             }
         }

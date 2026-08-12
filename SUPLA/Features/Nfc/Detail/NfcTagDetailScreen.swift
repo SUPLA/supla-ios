@@ -35,9 +35,8 @@ extension NfcTagDetailFeature {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
                         title: title,
-                        actionIcon: String.Icons.delete,
-                        onNavigationIconTap: router.back,
-                        onActionIconTap: viewModel.onDelete
+                        actionIcon: .icon(String.Icons.delete, viewModel.onDelete),
+                        onNavigationIconTap: router.back
                     )
 
                     View(

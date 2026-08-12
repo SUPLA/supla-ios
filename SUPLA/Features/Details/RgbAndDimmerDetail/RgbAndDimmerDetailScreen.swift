@@ -47,13 +47,10 @@ extension RgbAndDimmerDetailFeature {
         private func topBarAction(
             state: RgbAndDimmerDetailViewState,
             page: DetailPage
-        ) -> DetailTopBarAction? {
+        ) -> SuplaCore.TopBar.ActionIcon? {
             guard state.showSettings else { return nil }
 
-            return DetailTopBarAction(
-                icon: String.Icons.settings,
-                onTap: { router.navigate(to: .legacyDimmerSettings(channelId: item.remoteId)) }
-            )
+            return .icon(String.Icons.settings, { router.navigate(to: .legacyDimmerSettings(channelId: item.remoteId)) })
         }
     }
 }

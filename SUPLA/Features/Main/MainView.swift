@@ -101,9 +101,8 @@ extension MainFeature {
             SuplaCore.TopBar(
                 navigationIcon: .menu,
                 title: Strings.appName,
-                actionIcon: viewState.showProfilesIcon ? "profile-navbar" : nil,
+                actionIcon: viewState.showProfilesIcon ? .icon("profile-navbar", openProfileChooser) : nil,
                 onNavigationIconTap: openDrawer,
-                onActionIconTap: openProfileChooser,
                 onSearchActiveChange: onSearchActiveChange
             )
             .offset(y: activeTopBarBehavior.offset)

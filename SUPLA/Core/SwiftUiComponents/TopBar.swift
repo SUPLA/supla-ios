@@ -34,13 +34,27 @@ extension SuplaCore {
             }
         }
 
+        enum ActionIcon {
+            case icon(String, () -> Void)
+            case more([ActionItem])
+
+            init(icon: String, onTap: @escaping () -> Void) {
+                self = .icon(icon, onTap)
+            }
+        }
+
+        struct ActionItem: Identifiable {
+            let id = UUID()
+            let title: String
+            let action: () -> Void
+        }
+
         let navigationIcon: NavigationIcon
         let title: String
-        let actionIcon: String?
+        let actionIcon: ActionIcon?
         let searchText: Binding<String>?
         let searchPrompt: String
         let onNavigationIconTap: () -> Void
-        let onActionIconTap: () -> Void
         let onSearchActiveChange: (Bool) -> Void
 
         @State private var searchOpened = false
@@ -57,11 +71,10 @@ extension SuplaCore {
         init(
             navigationIcon: NavigationIcon,
             title: String,
-            actionIcon: String? = nil,
+            actionIcon: ActionIcon? = nil,
             searchText: Binding<String>? = nil,
             searchPrompt: String = Strings.Notifications.searchPrompt,
             onNavigationIconTap: @escaping () -> Void = {},
-            onActionIconTap: @escaping () -> Void = {},
             onSearchActiveChange: @escaping (Bool) -> Void = { _ in }
         ) {
             self.navigationIcon = navigationIcon
@@ -70,7 +83,6 @@ extension SuplaCore {
             self.searchText = searchText
             self.searchPrompt = searchPrompt
             self.onNavigationIconTap = onNavigationIconTap
-            self.onActionIconTap = onActionIconTap
             self.onSearchActiveChange = onSearchActiveChange
         }
 
@@ -99,7 +111,7 @@ extension SuplaCore {
                     }
 
                     if let actionIcon {
-                        toolbarButton(icon: actionIcon, action: onActionIconTap)
+                        actionButton(actionIcon)
                     } else {
                         Color.clear
                             .frame(width: height, height: height)
@@ -140,7 +152,7 @@ extension SuplaCore {
                     .onAppear { searchFocused = true }
 
                     if let actionIcon {
-                        toolbarButton(icon: actionIcon, action: onActionIconTap)
+                        actionButton(actionIcon)
                     } else {
                         Color.clear
                             .frame(width: height, height: height)
@@ -151,17 +163,37 @@ extension SuplaCore {
             }
         }
 
+        @ViewBuilder
+        private func actionButton(_ actionIcon: ActionIcon) -> some View {
+            switch actionIcon {
+            case let .icon(icon, action):
+                toolbarButton(icon: icon, action: action)
+            case let .more(items):
+                Menu {
+                    ForEach(items) { item in
+                        Button(item.title, action: item.action)
+                    }
+                } label: {
+                    toolbarIcon(String.Icons.more)
+                }
+            }
+        }
+
         private func toolbarButton(icon: String, action: @escaping () -> Void) -> some View {
             Button(action: action) {
-                Image(icon)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: Dimens.iconSize, height: Dimens.iconSize)
-                    .frame(width: height, height: height)
-                    .contentShape(Rectangle())
-                    .foregroundColor(.Supla.onPrimaryContainer)
+                toolbarIcon(icon)
             }
+        }
+
+        private func toolbarIcon(_ icon: String) -> some View {
+            Image(icon)
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+                .frame(width: height, height: height)
+                .contentShape(Rectangle())
+                .foregroundColor(.Supla.onPrimaryContainer)
         }
 
         private func clearSearchButton(_ searchText: Binding<String>) -> some View {

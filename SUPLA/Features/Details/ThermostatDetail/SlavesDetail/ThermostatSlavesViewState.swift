@@ -23,6 +23,7 @@ extension ThermostatSlavesFeature {
         @Published var master: ThermostatData? = nil
         @Published var slaves: [ThermostatData] = []
         @Published var scale: CGFloat = 1
+        @Published var alertDialogState: SuplaCore.AlertDialogState? = nil
         
         var relatedIds: [Int32] = []
     }
