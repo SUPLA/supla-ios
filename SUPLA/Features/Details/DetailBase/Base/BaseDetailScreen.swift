@@ -134,6 +134,12 @@ extension DetailBaseFeature {
                 VerticalBlindsFeature.Screen(itemBundle: item)
             case .garageDoor:
                 GarageDoorFeature.Screen(itemBundle: item)
+            case .electricityMeterGeneral:
+                ElectricityMeterGeneralFeature.Screen(itemBundle: item)
+            case .electricityMeterHistory:
+                ElectricityMeterHistoryFeature.Screen(itemBundle: item)
+            case .electricityMeterSettings:
+                ElectricityMeterSettingsFeature.Screen(itemBundle: item)
             default:
                 EmptyView()
             }

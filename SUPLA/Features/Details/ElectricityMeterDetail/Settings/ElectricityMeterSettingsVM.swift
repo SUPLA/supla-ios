@@ -17,22 +17,26 @@
  */
 
 extension ElectricityMeterSettingsFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<UserStateHolder> private var userStateHolder
         @Singleton<GetCaptionUseCase> private var getCaptionsUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<RefreshElectricityMeterAggregatedValue.UseCase> private var refreshElectricityMeterAggregatedValueUseCase
 
         private var availableBalancingOptions: [ElectricityMeterBalanceType] = []
-        private var remoteId: Int32 = 0
-        private var profileId: Int32 = 0
+        private let item: ItemBundle
 
-        init() {
+        init(item: ItemBundle) {
+            self.item = item
             super.init(state: ViewState())
         }
 
-        func loadData(_ remoteId: Int32) {
-            readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+        override func onViewAppear() {
+            loadData()
+        }
+
+        private func loadData() {
+            readChannelByRemoteIdUseCase.invoke(remoteId: item.remoteId)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] in self?.self.handleChannel($0) }
@@ -41,7 +45,7 @@ extension ElectricityMeterSettingsFeature {
         }
 
         func metricOnListChange(_ type: ElectricityMeterMeasurementType?) {
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: item.profileId, remoteId: item.remoteId)
             guard let type, settings.metricOnList != type else { return }
 
             let availableAggregations = type.aggregationOptions
@@ -55,19 +59,19 @@ extension ElectricityMeterSettingsFeature {
                 metricOnListBalancing: selectedBalancing,
                 metricOnListAggregation: selectedAggregation
             )
-            userStateHolder.setElectricityMeterSettings(updatedSettings, profileId: profileId, remoteId: remoteId)
+            userStateHolder.setElectricityMeterSettings(updatedSettings, profileId: item.profileId, remoteId: item.remoteId)
 
             state.metricOnList = state.metricOnList?.changing(path: \.selected, to: type)
             state.metricOnListAggregation = availableAggregations.selectableList(selected: selectedAggregation)
             state.metricOnListBalancing = availableBalancings.selectableList(selected: selectedBalancing)
 
             Task {
-                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
+                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: item.profileId, remoteId: item.remoteId)
             }
         }
 
         func metricOnListAggregationChange(_ aggregation: ListValueAggregation?) {
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: item.profileId, remoteId: item.remoteId)
             guard let aggregation, settings.metricOnListAggregation != aggregation else { return }
 
             let availableBalancings = balancingOptions(settings.metricOnList, aggregation)
@@ -77,34 +81,34 @@ extension ElectricityMeterSettingsFeature {
                 metricOnListBalancing: selectedBalancing,
                 metricOnListAggregation: aggregation
             )
-            userStateHolder.setElectricityMeterSettings(updatedSettings, profileId: profileId, remoteId: remoteId)
+            userStateHolder.setElectricityMeterSettings(updatedSettings, profileId: item.profileId, remoteId: item.remoteId)
 
             state.metricOnListAggregation = state.metricOnListAggregation?.changing(path: \.selected, to: aggregation)
             state.metricOnListBalancing = availableBalancings.selectableList(selected: selectedBalancing)
 
             Task {
-                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
+                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: item.profileId, remoteId: item.remoteId)
             }
         }
 
         func metricOnListBalancingChange(_ type: ElectricityMeterBalanceType?) {
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: item.profileId, remoteId: item.remoteId)
             guard let type, settings.metricOnListBalancing != type else { return }
 
-            userStateHolder.setElectricityMeterSettings(settings.copy(metricOnListBalancing: type), profileId: profileId, remoteId: remoteId)
+            userStateHolder.setElectricityMeterSettings(settings.copy(metricOnListBalancing: type), profileId: item.profileId, remoteId: item.remoteId)
 
             state.metricOnListBalancing = state.metricOnListBalancing?.changing(path: \.selected, to: type)
 
             Task {
-                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: profileId, remoteId: remoteId)
+                await refreshElectricityMeterAggregatedValueUseCase.invoke(profileId: item.profileId, remoteId: item.remoteId)
             }
         }
 
         func currentMonthBalancingChange(_ type: ElectricityMeterBalanceType?) {
             guard let type else { return }
 
-            let settings = userStateHolder.getElectricityMeterSettings(profileId: profileId, remoteId: remoteId)
-            userStateHolder.setElectricityMeterSettings(settings.copy(currentMonthBalancing: type), profileId: profileId, remoteId: remoteId)
+            let settings = userStateHolder.getElectricityMeterSettings(profileId: item.profileId, remoteId: item.remoteId)
+            userStateHolder.setElectricityMeterSettings(settings.copy(currentMonthBalancing: type), profileId: item.profileId, remoteId: item.remoteId)
 
             state.currentMonthBalancing?.selected = type
         }
@@ -129,9 +133,6 @@ extension ElectricityMeterSettingsFeature {
 
             let availableBalancings = balancingOptions(selectedMetric, settings.metricOnListAggregation)
             let selectedBalancing = availableBalancings.selected(item: settings.metricOnListBalancing)
-
-            remoteId = channel.remote_id
-            profileId = channel.profile.id
 
             state.channelName = getCaptionsUseCase.invoke(data: channel.shareable).string
             state.metricOnList = availableMetrics.selectableList(selected: selectedMetric)
