@@ -1468,15 +1468,16 @@
 		A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */; };
 		A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */; };
 		A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */; };
-		A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */; };
+		A5F21B012F42B10000000001 /* ElectricityMeterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */; };
+		A5F21B032F42B10000000003 /* ElectricityMeterHistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */; };
 		A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */; };
 		A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */; };
 		A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */; };
-		A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */; };
 		A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */; };
 		A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */; };
 		A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */; };
 		A5EDE2402CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */; };
+		A5F21B052F42B10000000005 /* ElectricityMeterSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */; };
 		A5EE0C812F7A672600D7B14F /* ScheduleProgramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C802F7A672100D7B14F /* ScheduleProgramButton.swift */; };
 		A5EE0C842F7A8B8100D7B14F /* ScheduleTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C832F7A8B7A00D7B14F /* ScheduleTable.swift */; };
 		A5EE0C862F7AA6B300D7B14F /* ScheduleDetailBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C852F7AA6AD00D7B14F /* ScheduleDetailBox.swift */; };
@@ -3317,15 +3318,16 @@
 		A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaElectricityMeasurementType.swift; sourceTree = "<group>"; };
 		A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralView.swift; sourceTree = "<group>"; };
 		A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralVM.swift; sourceTree = "<group>"; };
-		A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterGeneralVC.swift; sourceTree = "<group>"; };
+		A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryScreen.swift; sourceTree = "<group>"; };
 		A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterHistoryVC.swift; sourceTree = "<group>"; };
 		A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryVM.swift; sourceTree = "<group>"; };
 		A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryFeature.swift; sourceTree = "<group>"; };
-		A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterSettingsVC.swift; sourceTree = "<group>"; };
 		A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsVM.swift; sourceTree = "<group>"; };
 		A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsView.swift; sourceTree = "<group>"; };
 		A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsViewState.swift; sourceTree = "<group>"; };
 		A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsFeature.swift; sourceTree = "<group>"; };
+		A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsScreen.swift; sourceTree = "<group>"; };
 		A5EE0C802F7A672100D7B14F /* ScheduleProgramButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleProgramButton.swift; sourceTree = "<group>"; };
 		A5EE0C832F7A8B7A00D7B14F /* ScheduleTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTable.swift; sourceTree = "<group>"; };
 		A5EE0C852F7AA6AD00D7B14F /* ScheduleDetailBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailBox.swift; sourceTree = "<group>"; };
@@ -7604,8 +7606,8 @@
 		A5EDE21A2CA560E200BEDAE4 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				A5EDE2292CA5706A00BEDAE4 /* ElecrticityMeterGeneralVC.swift */,
 				A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */,
+				A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */,
 				A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */,
 				A5EDE21D2CA56A4A00BEDAE4 /* ElectricityMeterGeneralViewState.swift */,
 				A5EDE21B2CA5692A00BEDAE4 /* ElectricityMeterGeneralFeature.swift */,
@@ -7642,6 +7644,7 @@
 				A5E05B9E2CB3C94000202583 /* ElectricityMeterChartType.swift */,
 				A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */,
 				A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */,
+				A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */,
 				A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */,
 			);
 			path = History;
@@ -7650,8 +7653,8 @@
 		A5EDE22C2CA5734300BEDAE4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A5EDE2372CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift */,
 				A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */,
+				A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */,
 				A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */,
 				A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */,
 				A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */,
@@ -8787,6 +8790,7 @@
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */,
 				A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */,
+				A5F21B032F42B10000000003 /* ElectricityMeterHistoryScreen.swift in Sources */,
 				A5CA8ACC2E701DEA005B55F4 /* TemperaturePrecisionCell.swift in Sources */,
 				A539C2732D6778BA00D9DD47 /* ValveGeneralViewState.swift in Sources */,
 				A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */,
@@ -9114,7 +9118,7 @@
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
 				A59CCE60301B4D9500BDDEC0 /* MainDrawer.swift in Sources */,
 				A59CCE61301B4D9500BDDEC0 /* MainTabBar.swift in Sources */,
-				A5EDE22A2CA5707200BEDAE4 /* ElecrticityMeterGeneralVC.swift in Sources */,
+				A5F21B012F42B10000000001 /* ElectricityMeterGeneralScreen.swift in Sources */,
 				A519CCB02D38515A00F858A4 /* ImpulseCounterGeneralView.swift in Sources */,
 				A5AE6D732E1E66AB00BC2B67 /* AddWizardWelcomeView.swift in Sources */,
 				A50B5D522BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift in Sources */,
@@ -9685,11 +9689,11 @@
 				A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */,
 				A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */,
 				A5882ECD2DBF51DA00F1FC4A /* ReadCarPlayItemsUseCase.swift in Sources */,
-				A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */,
 				A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */,
 				A585421D2D7F7B2900D314A2 /* ControlLevel.swift in Sources */,
 				A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */,
 				A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */,
+				A5F21B052F42B10000000005 /* ElectricityMeterSettingsScreen.swift in Sources */,
 				B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */,
 				B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */,
 				B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */,

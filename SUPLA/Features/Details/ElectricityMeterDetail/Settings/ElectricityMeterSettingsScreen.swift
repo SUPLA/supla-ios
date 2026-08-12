@@ -15,30 +15,24 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
+import SwiftUI
+
 extension ElectricityMeterSettingsFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        private let item: ItemBundle
-        
-        init(viewModel: ViewModel, item: ItemBundle) {
-            self.item = item
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                viewState: state,
-                delegate: viewModel
-            )
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: ViewModel(item: itemBundle))
         }
-        
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            
-            viewModel.loadData(item.remoteId)
-        }
-        
-        static func create(item: ItemBundle) -> UIViewController {
-            ViewController(viewModel: ViewModel(), item: item)
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                ElectricityMeterSettingsFeature.View(
+                    viewState: state,
+                    delegate: viewModel
+                )
+            }
         }
     }
 }
