@@ -85,15 +85,10 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
             )
             viewModel.bind(dialog.rx.positiveTap) { [weak self, unowned dialog] in
                 dialog.dismiss(animated: true)
-                self?.viewModel.showAuthorizationDialog()
+                guard let self else { return }
+                self.viewModel.authorizeAndStartCalibration(self.itemBundle.remoteId, self.itemBundle.subjectType)
             }
             present(dialog, animated: true)
-        case .showAuthorizationDialog:
-            let dialog = SAAuthorizationDialogVC { [weak self] in
-                guard let self = self else { return }
-                self.viewModel.startCalibration(self.itemBundle.remoteId, self.itemBundle.subjectType)
-            }
-            dialog.showAuthorization(self)
         }
     }
     

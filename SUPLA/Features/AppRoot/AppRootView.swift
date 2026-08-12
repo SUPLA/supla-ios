@@ -33,7 +33,7 @@ struct AppRootView: View {
 
 private extension AppRootView {
     struct Content: View {
-        @EnvironmentObject private var authorizationCoordinator: AuthorizationCoordinator
+        @EnvironmentObject private var authorizationCoordinator: AuthorizationCoordinatorImpl
         @EnvironmentObject private var router: AppRouter
 
         @ObservedObject var state: AppRootViewState

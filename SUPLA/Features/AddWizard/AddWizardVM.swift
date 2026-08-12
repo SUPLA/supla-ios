@@ -318,15 +318,10 @@ extension AddWizardFeature {
         }
         
         func authorize() {
-            Task { [weak self] in
-                guard let self else { return }
-                await MainActor.run {
-                    self.authorizationCoordinator.authorize(
-                        onAuthorized: { [weak self] in self?.onAuthorize() },
-                        onDismissed: { [weak self] in self?.onAuthorizationCanceled() }
-                    )
-                }
-            }
+            authorizationCoordinator.authorize(
+                onAuthorized: { [weak self] in self?.onAuthorize() },
+                onDismissed: { [weak self] in self?.onAuthorizationCanceled() }
+            )
         }
         
         func back() {

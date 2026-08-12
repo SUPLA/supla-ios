@@ -112,6 +112,28 @@ extension DetailBaseFeature {
                 HeatpolGeneralDetailFeature.Screen(itemBundle: item)
             case .thermostatHeatpolHistory:
                 HeatpolHistoryDetailFeature.Screen(itemBundle: item)
+            case .thermometerHistory:
+                ThermometerHistoryDetailFeature.Screen(itemBundle: item)
+            case .humidityHistory:
+                HumidityHistoryDetailFeature.Screen(itemBundle: item)
+            case .gpmHistory:
+                GpmHistoryDetailFeature.Screen(itemBundle: item)
+            case .rollerShutter:
+                RollerShutterFeature.Screen(itemBundle: item)
+            case .roofWindow:
+                RoofWindowFeature.Screen(itemBundle: item)
+            case .facadeBlind:
+                FacadeBlindsFeature.Screen(itemBundle: item)
+            case .terraceAwning:
+                TerraceAwningFeature.Screen(itemBundle: item)
+            case .projectorScreen:
+                ProjectorScreenFeature.Screen(itemBundle: item)
+            case .curtain:
+                CurtainFeature.Screen(itemBundle: item)
+            case .verticalBlind:
+                VerticalBlindsFeature.Screen(itemBundle: item)
+            case .garageDoor:
+                GarageDoorFeature.Screen(itemBundle: item)
             default:
                 EmptyView()
             }

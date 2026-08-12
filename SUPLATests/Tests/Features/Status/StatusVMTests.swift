@@ -25,7 +25,7 @@ final class StatusVMTests: XCTestCase {
     private lazy var stateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     private lazy var appRouter: AppRouter! = AppRouter()
-    private lazy var authorizationCoordinator: AuthorizationCoordinator! = AuthorizationCoordinator()
+    private lazy var authorizationCoordinator: AuthorizationCoordinatorImpl! = AuthorizationCoordinatorImpl()
     private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
     private lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
     
@@ -180,7 +180,7 @@ final class StatusVMTests: XCTestCase {
         XCTAssertEqual(viewModel.state.stateText, .initializing)
     }
 
-    private func waitForAuthorizationRequest() async -> AuthorizationCoordinator.Request? {
+    private func waitForAuthorizationRequest() async -> AuthorizationCoordinatorImpl.Request? {
         let stepNanoseconds: UInt64 = 10_000_000
         let timeoutNanoseconds: UInt64 = 1_000_000_000
         var elapsedNanoseconds: UInt64 = 0

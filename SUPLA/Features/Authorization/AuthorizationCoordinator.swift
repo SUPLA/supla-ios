@@ -18,7 +18,35 @@
 
 import SwiftUI
 
-final class AuthorizationCoordinator: ObservableObject {
+protocol AuthorizationCoordinator: AnyObject {
+    func authorize(
+        onAuthorized: @escaping () -> Void,
+        onDismissed: @escaping () -> Void
+    )
+
+    func login(
+        onAuthorized: @escaping () -> Void,
+        onDismissed: @escaping () -> Void
+    )
+}
+
+extension AuthorizationCoordinator {
+    func authorize(
+        onAuthorized: @escaping () -> Void = {},
+        onDismissed: @escaping () -> Void = {}
+    ) {
+        authorize(onAuthorized: onAuthorized, onDismissed: onDismissed)
+    }
+
+    func login(
+        onAuthorized: @escaping () -> Void = {},
+        onDismissed: @escaping () -> Void = {}
+    ) {
+        login(onAuthorized: onAuthorized, onDismissed: onDismissed)
+    }
+}
+
+final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordinator {
 
     struct Request: Identifiable {
         let id = UUID()
@@ -29,28 +57,30 @@ final class AuthorizationCoordinator: ObservableObject {
 
     @Published var request: Request?
 
-    @MainActor
     func authorize(
         onAuthorized: @escaping () -> Void = {},
         onDismissed: @escaping () -> Void = {}
     ) {
-        request = Request(
-            requestType: .authorize,
-            onAuthorized: onAuthorized,
-            onDismissed: onDismissed
-        )
+        Task { @MainActor in
+            request = Request(
+                requestType: .authorize,
+                onAuthorized: onAuthorized,
+                onDismissed: onDismissed
+            )
+        }
     }
     
-    @MainActor
     func login(
         onAuthorized: @escaping () -> Void = {},
         onDismissed: @escaping () -> Void = {}
     ) {
-        request = Request(
-            requestType: .login,
-            onAuthorized: onAuthorized,
-            onDismissed: onDismissed
-        )
+        Task { @MainActor in
+            request = Request(
+                requestType: .login,
+                onAuthorized: onAuthorized,
+                onDismissed: onDismissed
+            )
+        }
     }
 
     @MainActor

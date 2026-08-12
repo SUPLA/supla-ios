@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var disconnectUseCase: DisconnectUseCase
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
     @Singleton private var appRouter: AppRouter
-    @Singleton private var authorizationCoordinator: AuthorizationCoordinator
+    @Singleton private var authorizationCoordinator: AuthorizationCoordinatorImpl
 
     var window: UIWindow?
 

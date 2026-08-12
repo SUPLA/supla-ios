@@ -114,11 +114,9 @@ final class AppRouter: ObservableObject {
     }
 
     func openZWaveWizard() {
-        Task { @MainActor in
-            authorizationCoordinator.authorize(onAuthorized: { [weak self] in
-                self?.navigate(to: .zWave)
-            })
-        }
+        authorizationCoordinator.authorize(onAuthorized: { [weak self] in
+            self?.navigate(to: .zWave)
+        })
     }
 
     func connectionWasLost() {
