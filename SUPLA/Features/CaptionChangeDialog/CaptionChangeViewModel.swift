@@ -108,13 +108,11 @@ extension CaptionChangeDialogFeature {
         func show(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
             vibrationService.vibrate()
 
-            Task { @MainActor [weak self] in
-                self?.authorizationCoordinator.authorize(
-                    onAuthorized: { [weak self] in
-                        self?.showAuthorized(remoteId: remoteId, caption: caption, captionType: captionType)
-                    }
-                )
-            }
+            authorizationCoordinator.authorize(
+                onAuthorized: { [weak self] in
+                    self?.showAuthorized(remoteId: remoteId, caption: caption, captionType: captionType)
+                }
+            )
         }
 
         private func showAuthorized(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {

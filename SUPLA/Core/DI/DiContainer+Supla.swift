@@ -24,7 +24,8 @@ extension DiContainer {
 
         register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
         register(AppRouter.self, AppRouter())
-        register(AuthorizationCoordinator.self, AuthorizationCoordinator())
+        let authorizationCoordinator = registerAndGet(AuthorizationCoordinatorImpl.self, AuthorizationCoordinatorImpl()) // Used in SceneDelegate
+        register(AuthorizationCoordinator.self, authorizationCoordinator)
         register(DetailTopBarCoordinator.self, DetailTopBarCoordinator())
         let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())

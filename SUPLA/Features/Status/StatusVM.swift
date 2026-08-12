@@ -83,9 +83,7 @@ extension StatusFeature {
         
         private func handleErrorState(_ reason: SuplaAppState.Reason?) {
             if (reason?.shouldAuthorize == true) {
-                Task { @MainActor [weak self] in
-                    self?.authorizationCoordinator.login()
-                }
+                authorizationCoordinator.login()
             }
             
             if (reason == .appInBackground) {

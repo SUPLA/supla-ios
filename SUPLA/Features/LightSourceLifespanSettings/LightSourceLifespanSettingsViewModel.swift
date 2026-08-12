@@ -42,17 +42,15 @@ extension LightSourceLifespanSettingsFeature {
         }
 
         func show(remoteId: Int32, title: String, lightSourceLifespan: Int32) {
-            Task { @MainActor [weak self] in
-                self?.authorizationCoordinator.authorize(
-                    onAuthorized: { [weak self] in
-                        self?.showAuthorized(
-                            remoteId: remoteId,
-                            title: title,
-                            lightSourceLifespan: lightSourceLifespan
-                        )
-                    }
-                )
-            }
+            authorizationCoordinator.authorize(
+                onAuthorized: { [weak self] in
+                    self?.showAuthorized(
+                        remoteId: remoteId,
+                        title: title,
+                        lightSourceLifespan: lightSourceLifespan
+                    )
+                }
+            )
         }
 
         func hide() {
