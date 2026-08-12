@@ -63,10 +63,6 @@ extension SwitchGeneralFeature {
             loadData(remoteId: itemBundle.remoteId, type: itemBundle.subjectType)
         }
 
-        func handle(_ disposable: Disposable) {
-            disposable.disposed(by: disposeBag)
-        }
-     
         func observerDownload(_ remoteId: Int32) {
             downloadEventsManager.observeProgress(remoteId: remoteId)
                 .asDriverWithoutError()

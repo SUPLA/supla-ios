@@ -19,16 +19,25 @@
 import SharedCore
     
 extension ThermostatSlavesFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ChannelUpdatesObserver, ViewDelegate {
         @Singleton private var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCase
         @Singleton private var globalSettings: GlobalSettings
+
+        private let itemBundle: ItemBundle
         
-        init() {
+        init(itemBundle: ItemBundle) {
+            self.itemBundle = itemBundle
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewCreated() {
             state.scale = CGFloat(globalSettings.channelHeight.factor())
+
+            observeChannel(remoteId: Int(itemBundle.remoteId))
+        }
+
+        override func onViewAppear() {
+            loadData(itemBundle.remoteId)
         }
         
         func loadData(_ remoteId: Int32) {
@@ -46,9 +55,22 @@ extension ThermostatSlavesFeature {
                 loadData(remoteId)
             }
         }
-        
+
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             handle(channel: channelWithChildren)
+        }
+
+        func onInfoAction(_ issueMessage: String) {
+            state.alertDialogState = SuplaCore.AlertDialogState(
+                header: Strings.General.warning,
+                message: issueMessage,
+                positiveButtonText: Strings.General.ok,
+                negativeButtonText: nil
+            )
+        }
+
+        func onAlertDismissed() {
+            state.alertDialogState = nil
         }
         
         private func handle(channel: ChannelWithChildren) {

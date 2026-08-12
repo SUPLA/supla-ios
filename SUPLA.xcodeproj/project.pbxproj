@@ -334,8 +334,10 @@
 		A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */; };
 		A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */; };
 		A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */; };
+		A5F210022F42010000000002 /* ThermostatGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */; };
+		A5F210032F42010000000003 /* ThermostatGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */; };
 		A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */; };
-		A51BE8F92AA71EB900718F2F /* ScheduleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F82AA71EB900718F2F /* ScheduleDetailVC.swift */; };
+		A5F212012F42210000000001 /* ThermostatScheduleDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */; };
 		A51BE8FC2AA7300A00718F2F /* ThermometerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */; };
 		A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */; };
 		A51BE9032AA746C100718F2F /* UIRoundedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9022AA746C100718F2F /* UIRoundedControlButtonView.swift */; };
@@ -376,7 +378,7 @@
 		A52BFED42B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */; };
 		A52BFED72B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */; };
 		A52BFEDC2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */; };
-		A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */; };
+		A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */; };
 		A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */; };
 		A52BFEE82B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */; };
 		A52BFEEA2B17277C00A2F64C /* ClientUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */; };
@@ -412,6 +414,8 @@
 		A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */; };
 		A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */; };
 		A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */; };
+		A5F200022F42000000000002 /* SwitchTimerDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */; };
+		A5F200032F42000000000003 /* SwitchTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */; };
 		A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */; };
 		A530EE062A5575D700F8DAEE /* DeviceStateUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE052A5575D700F8DAEE /* DeviceStateUIView.swift */; };
 		A530EE082A557EE400F8DAEE /* UICircleControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE072A557EE400F8DAEE /* UICircleControlButtonView.swift */; };
@@ -661,6 +665,10 @@
 		A55E7B772E8EBCA200DFA94D /* BrandingConfiguration+ProjectorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */; };
 		A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */; };
 		A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */; };
+		A5F214022F42410000000002 /* ThermostatHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */; };
+		A5F214032F42410000000003 /* ThermostatHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */; };
+		A5F216022F42610000000002 /* HeatpolHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */; };
+		A5F216032F42610000000003 /* HeatpolHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */; };
 		A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorView.swift */; };
 		A56233DA2AB061EB001CB948 /* SACustomDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D92AB061EB001CB948 /* SACustomDialogVC.swift */; };
 		A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233E22AB1903C001CB948 /* Float+Ext.swift */; };
@@ -879,7 +887,7 @@
 		A594ADC72C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADC62C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift */; };
 		A594ADC92C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADC82C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift */; };
 		A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */; };
-		A594ADCE2C9C401700780EF3 /* ThermostatSlavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCD2C9C401700780EF3 /* ThermostatSlavesVC.swift */; };
+		A5F211012F42110000000001 /* ThermostatSlavesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */; };
 		A594ADD02C9C402B00780EF3 /* ThermostatSlavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */; };
 		A594ADD22C9C439F00780EF3 /* ThermostatSlavesViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */; };
 		A594ADD42C9C451400780EF3 /* ThermostatSlavesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */; };
@@ -1316,6 +1324,9 @@
 		A5E100012F41000000000001 /* DetailBaseFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000007 /* DetailBaseFeature.swift */; };
 		A5E100012F41000000000002 /* BaseDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000008 /* BaseDetailScreen.swift */; };
 		A5E100012F41000000000003 /* DetailTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000009 /* DetailTabBar.swift */; };
+		A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */; };
+		A5F216062F42610000000006 /* HeatpolGeneralDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216042F42610000000004 /* HeatpolGeneralDetailFeature.swift */; };
+		A5F216072F42610000000007 /* HeatpolGeneralDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216052F42610000000005 /* HeatpolGeneralDetailScreen.swift */; };
 		A5E100012F41000000000004 /* StandardDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F4100000000000A /* StandardDetailScreen.swift */; };
 		A5E100012F41000000000005 /* ImpulseCounterDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F4100000000000B /* ImpulseCounterDetailScreen.swift */; };
 		A5E100012F41000000000006 /* RgbAndDimmerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F4100000000000C /* RgbAndDimmerDetailScreen.swift */; };
@@ -2165,8 +2176,12 @@
 		A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVM.swift; sourceTree = "<group>"; };
 		A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVC.swift; sourceTree = "<group>"; };
+		A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralFeature.swift; sourceTree = "<group>"; };
+		A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F216042F42610000000004 /* HeatpolGeneralDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolGeneralDetailFeature.swift; sourceTree = "<group>"; };
+		A5F216052F42610000000005 /* HeatpolGeneralDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolGeneralDetailScreen.swift; sourceTree = "<group>"; };
 		A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVM.swift; sourceTree = "<group>"; };
-		A51BE8F82AA71EB900718F2F /* ScheduleDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVC.swift; sourceTree = "<group>"; };
+		A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatScheduleDetailScreen.swift; sourceTree = "<group>"; };
 		A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValues.swift; sourceTree = "<group>"; };
 		A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementValue.swift; sourceTree = "<group>"; };
 		A51BE9022AA746C100718F2F /* UIRoundedControlButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedControlButtonView.swift; sourceTree = "<group>"; };
@@ -2208,7 +2223,7 @@
 		A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfigEventsManagerMock.swift; sourceTree = "<group>"; };
 		A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaDeviceConfig+Mock.swift"; sourceTree = "<group>"; };
 		A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVM.swift; sourceTree = "<group>"; };
-		A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVC.swift; sourceTree = "<group>"; };
+		A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailScreen.swift; sourceTree = "<group>"; };
 		A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippleNumberSelectorView.swift; sourceTree = "<group>"; };
 		A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVMTests.swift; sourceTree = "<group>"; };
 		A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -2244,6 +2259,8 @@
 		A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVM.swift; sourceTree = "<group>"; };
 		A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVC.swift; sourceTree = "<group>"; };
+		A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailFeature.swift; sourceTree = "<group>"; };
+		A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailScreen.swift; sourceTree = "<group>"; };
 		A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelByRemoteIdUseCase.swift; sourceTree = "<group>"; };
 		A530EE052A5575D700F8DAEE /* DeviceStateUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateUIView.swift; sourceTree = "<group>"; };
 		A530EE072A557EE400F8DAEE /* UICircleControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircleControlButtonView.swift; sourceTree = "<group>"; };
@@ -2502,6 +2519,10 @@
 		A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandingConfiguration+ProjectorScreen.swift"; sourceTree = "<group>"; };
 		A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVC.swift; sourceTree = "<group>"; };
+		A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A56233D72AB054EA001CB948 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		A56233D92AB061EB001CB948 /* SACustomDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACustomDialogVC.swift; sourceTree = "<group>"; };
 		A56233E22AB1903C001CB948 /* Float+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Ext.swift"; sourceTree = "<group>"; };
@@ -2734,7 +2755,7 @@
 		A594ADC62C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideChannelDetailTypeUseCase.swift; sourceTree = "<group>"; };
 		A594ADC82C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideGroupDetailTypeUseCase.swift; sourceTree = "<group>"; };
 		A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesVM.swift; sourceTree = "<group>"; };
-		A594ADCD2C9C401700780EF3 /* ThermostatSlavesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesVC.swift; sourceTree = "<group>"; };
+		A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesScreen.swift; sourceTree = "<group>"; };
 		A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesView.swift; sourceTree = "<group>"; };
 		A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesViewState.swift; sourceTree = "<group>"; };
 		A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesFeature.swift; sourceTree = "<group>"; };
@@ -3153,6 +3174,7 @@
 		A5E100012F41000000000007 /* DetailBaseFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBaseFeature.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000008 /* BaseDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailScreen.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000009 /* DetailTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTabBar.swift; sourceTree = "<group>"; };
+		A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopBarCoordinator.swift; sourceTree = "<group>"; };
 		A5E100012F4100000000000A /* StandardDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailScreen.swift; sourceTree = "<group>"; };
 		A5E100012F4100000000000B /* ImpulseCounterDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterDetailScreen.swift; sourceTree = "<group>"; };
 		A5E100012F4100000000000C /* RgbAndDimmerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbAndDimmerDetailScreen.swift; sourceTree = "<group>"; };
@@ -4395,6 +4417,7 @@
 		A51BE8E92AA70D9600718F2F /* ThermostatDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A5F216082F42610000000008 /* HeatpolGeneralDetail */,
 				A5A3251E2E817CA100E60812 /* HeatpolHistoryDetail */,
 				A594ADCA2C9C3FD100780EF3 /* SlavesDetail */,
 				A52BFEDA2B0F8EFC00A2F64C /* TimerDetail */,
@@ -4413,6 +4436,8 @@
 				A51BE8FA2AA72FE200718F2F /* UI */,
 				A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */,
 				A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */,
+				A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */,
+				A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */,
 				A56233F62AB85B37001CB948 /* DelayedThermostatActionSubject.swift */,
 				A57C88342ACB4903000B0F10 /* ThermostatProgramInfo.swift */,
 			);
@@ -4425,7 +4450,7 @@
 				A5E9451C2F8527FB008C68FC /* data */,
 				A57C4AB12AAF372B00D9C695 /* dialogs */,
 				A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */,
-				A51BE8F82AA71EB900718F2F /* ScheduleDetailVC.swift */,
+				A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */,
 				A56233FA2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift */,
 				A50A86522F76C7EE00B4A09C /* ThermostatScheduleDetailView.swift */,
 				A50A86502F76C7A000B4A09C /* ThermostatScheduleDetailViewState.swift */,
@@ -4548,7 +4573,7 @@
 				A59E57AC2F8F82C700808DBF /* ThermostatTimerDetailViewState.swift */,
 				A59E57AA2F8F828C00808DBF /* ThermostatTimerDetailFeature.swift */,
 				A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */,
-				A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */,
+				A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */,
 			);
 			path = TimerDetail;
 			sourceTree = "<group>";
@@ -4620,6 +4645,8 @@
 		A530EDFE2A5440AF00F8DAEE /* TimerDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */,
+				A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */,
 				A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */,
 				A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */,
 				A530EE462A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift */,
@@ -5416,6 +5443,8 @@
 			children = (
 				A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */,
 				A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */,
+				A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */,
+				A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */,
 			);
 			path = HistoryDetail;
 			sourceTree = "<group>";
@@ -5444,6 +5473,7 @@
 				A5E100012F41000000000007 /* DetailBaseFeature.swift */,
 				A5E100012F41000000000008 /* BaseDetailScreen.swift */,
 				A5E100012F41000000000009 /* DetailTabBar.swift */,
+				A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */,
 				A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */,
 			);
 			path = Base;
@@ -6040,7 +6070,7 @@
 			isa = PBXGroup;
 			children = (
 				A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */,
-				A594ADCD2C9C401700780EF3 /* ThermostatSlavesVC.swift */,
+				A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */,
 				A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */,
 				A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */,
 				A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */,
@@ -6563,8 +6593,19 @@
 			children = (
 				A5A325212E817CE800E60812 /* HeatpolHistoryDetailVC.swift */,
 				A5A3251F2E817CD700E60812 /* HeatpolHistoryDetailVM.swift */,
+				A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */,
+				A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */,
 			);
 			path = HeatpolHistoryDetail;
+			sourceTree = "<group>";
+		};
+		A5F216082F42610000000008 /* HeatpolGeneralDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A5F216042F42610000000004 /* HeatpolGeneralDetailFeature.swift */,
+				A5F216052F42610000000005 /* HeatpolGeneralDetailScreen.swift */,
+			);
+			path = HeatpolGeneralDetail;
 			sourceTree = "<group>";
 		};
 		A5A87A612F1650490047233B /* DimmerCct */ = {
@@ -8763,7 +8804,7 @@
 				A51BE9072AA8532600718F2F /* ThermostatControlView.swift in Sources */,
 				01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */,
 				A598CAC92CC2569A00A784FA /* SwitchWithImpulseCounterValueProvider.swift in Sources */,
-				A594ADCE2C9C401700780EF3 /* ThermostatSlavesVC.swift in Sources */,
+				A5F211012F42110000000001 /* ThermostatSlavesScreen.swift in Sources */,
 				0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */,
 				A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */,
 				A5A325202E817CE400E60812 /* HeatpolHistoryDetailVM.swift in Sources */,
@@ -8880,10 +8921,16 @@
 				A584E1FA2CAA76AB00232A98 /* ElectricityMeterGeneralState.swift in Sources */,
 				A5E5553A2E2A816D00E829C7 /* AwaitConnectivityUseCase.swift in Sources */,
 				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
+				A5F200022F42000000000002 /* SwitchTimerDetailFeature.swift in Sources */,
+				A5F200032F42000000000003 /* SwitchTimerDetailScreen.swift in Sources */,
 				A58D1B822CDCE29900B5A019 /* KotlinInt+iOS.swift in Sources */,
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
 				A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */,
 				A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */,
+				A5F214022F42410000000002 /* ThermostatHistoryDetailFeature.swift in Sources */,
+				A5F214032F42410000000003 /* ThermostatHistoryDetailScreen.swift in Sources */,
+				A5F216022F42610000000002 /* HeatpolHistoryDetailFeature.swift in Sources */,
+				A5F216032F42610000000003 /* HeatpolHistoryDetailScreen.swift in Sources */,
 				A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
@@ -8902,6 +8949,9 @@
 				A5E100012F41000000000001 /* DetailBaseFeature.swift in Sources */,
 				A5E100012F41000000000002 /* BaseDetailScreen.swift in Sources */,
 				A5E100012F41000000000003 /* DetailTabBar.swift in Sources */,
+				A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */,
+				A5F216062F42610000000006 /* HeatpolGeneralDetailFeature.swift in Sources */,
+				A5F216072F42610000000007 /* HeatpolGeneralDetailScreen.swift in Sources */,
 				A5E100012F41000000000004 /* StandardDetailScreen.swift in Sources */,
 				A5E100012F41000000000005 /* ImpulseCounterDetailScreen.swift in Sources */,
 				A5E100012F41000000000006 /* RgbAndDimmerDetailScreen.swift in Sources */,
@@ -8920,6 +8970,8 @@
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */,
 				A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */,
+				A5F210022F42010000000002 /* ThermostatGeneralFeature.swift in Sources */,
+				A5F210032F42010000000003 /* ThermostatGeneralScreen.swift in Sources */,
 				A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */,
 				A54637B32D37E8B400D746F5 /* ImpulseCounterGeneralFeature.swift in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
@@ -9292,7 +9344,7 @@
 				A57C88352ACB4903000B0F10 /* ThermostatProgramInfo.swift in Sources */,
 				A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */,
 				A5A14A402B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift in Sources */,
-				A51BE8F92AA71EB900718F2F /* ScheduleDetailVC.swift in Sources */,
+				A5F212012F42210000000001 /* ThermostatScheduleDetailScreen.swift in Sources */,
 				A5CF3D6E2DD4BC8900207384 /* IconResult.swift in Sources */,
 				A5E05B9B2CAFF82B00202583 /* ElectricityMeasurement.swift in Sources */,
 				A574E5022F5B16D40066B4EA /* IconOnCircle.swift in Sources */,
@@ -9540,7 +9592,7 @@
 				A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */,
 				A55A8DB72BAC766A00C540D4 /* SALabeledTextField.swift in Sources */,
 				A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */,
-				A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */,
+				A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */,
 				A5882ECD2DBF51DA00F1FC4A /* ReadCarPlayItemsUseCase.swift in Sources */,
 				A5EDE23C2CA574A700BEDAE4 /* ElecrticityMeterSettingsVC.swift in Sources */,
 				A5EDE23D2CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift in Sources */,

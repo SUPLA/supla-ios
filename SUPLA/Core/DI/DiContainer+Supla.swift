@@ -25,6 +25,7 @@ extension DiContainer {
         register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
         register(AppRouter.self, AppRouter())
         register(AuthorizationCoordinator.self, AuthorizationCoordinator())
+        register(DetailTopBarCoordinator.self, DetailTopBarCoordinator())
         let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())
         register(SuplaClientProvider.self, SuplaClientProviderImpl())

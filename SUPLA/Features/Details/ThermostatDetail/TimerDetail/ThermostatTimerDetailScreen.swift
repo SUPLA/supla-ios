@@ -15,14 +15,24 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-final class HumidityHistoryDetailVC: BaseHistoryDetailVC {
-    
-    init(remoteId: Int32) {
-        super.init(remoteId: remoteId, viewModel: HumidityHistoryDetailVM())
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+import SwiftUI
+
+extension ThermostatTimerDetailFeature {
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: ViewModel(item: itemBundle))
+        }
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                ThermostatTimerDetailFeature.View(
+                    state: state,
+                    delegate: viewModel
+                )
+            }
+        }
     }
 }

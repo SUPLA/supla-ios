@@ -18,23 +18,15 @@
 
 import SwiftUI
 
-protocol NavigationItemProvider: AnyObject {
-    var navigationItem: UINavigationItem { get }
-}
-
-struct DetailTopBarAction {
-    let icon: String
-    let onTap: () -> Void
-}
-
 extension DetailBaseFeature {
     struct BaseScreen<S: DetailViewState, VM: BaseDetailVM<S>>: SwiftUI.View {
         @Singleton<GlobalSettings> private var settings
+        @Singleton<DetailTopBarCoordinator> private var topBarCoordinator
 
         private let item: ItemBundle
         private let pages: [DetailPage]
         private let viewModel: VM
-        private let topBarActionProvider: (S, DetailPage) -> DetailTopBarAction?
+        private let topBarActionProvider: (S, DetailPage) -> SuplaCore.TopBar.ActionIcon?
 
         @State private var selectedPage: DetailPage
 
@@ -42,7 +34,7 @@ extension DetailBaseFeature {
             viewModel: VM,
             item: ItemBundle,
             pages: [DetailPage],
-            topBarActionProvider: @escaping (S, DetailPage) -> DetailTopBarAction? = { _, _ in nil }
+            topBarActionProvider: @escaping (S, DetailPage) -> SuplaCore.TopBar.ActionIcon? = { _, _ in nil }
         ) {
             self.viewModel = viewModel
             self.item = item
@@ -84,6 +76,12 @@ extension DetailBaseFeature {
                     }
                 }
             }
+            .onChange(of: selectedPage) { _ in
+                topBarCoordinator.clearAction()
+            }
+            .onDisappear {
+                topBarCoordinator.clearAction()
+            }
         }
 
         private var selectedContent: some SwiftUI.View {
@@ -98,6 +96,22 @@ extension DetailBaseFeature {
             switch page {
             case .switchGeneral:
                 SwitchGeneralFeature.Screen(itemBundle: item)
+            case .switchTimer:
+                SwitchTimerDetailFeature.Screen(itemBundle: item)
+            case .thermostatGeneral:
+                ThermostatGeneralFeature.Screen(itemBundle: item)
+            case .thermostatList:
+                ThermostatSlavesFeature.Screen(itemBundle: item)
+            case .schedule:
+                ThermostatScheduleDetailFeature.Screen(itemBundle: item)
+            case .thermostatTimer:
+                ThermostatTimerDetailFeature.Screen(itemBundle: item)
+            case .thermostatHistory:
+                ThermostatHistoryDetailFeature.Screen(itemBundle: item)
+            case .thermostatHeatpolGeneral:
+                HeatpolGeneralDetailFeature.Screen(itemBundle: item)
+            case .thermostatHeatpolHistory:
+                HeatpolHistoryDetailFeature.Screen(itemBundle: item)
             default:
                 EmptyView()
             }
@@ -135,21 +149,21 @@ extension DetailBaseFeature {
 private struct DetailTopBar<S: DetailViewState>: SwiftUI.View {
     @EnvironmentObject private var router: AppRouter
     @ObservedObject var state: S
+    @ObservedObject private var topBarCoordinator: DetailTopBarCoordinator = DiContainer.shared.resolve(
+        type: DetailTopBarCoordinator.self
+    )!
 
     let selectedPage: DetailPage
-    let actionProvider: (S, DetailPage) -> DetailTopBarAction?
+    let actionProvider: (S, DetailPage) -> SuplaCore.TopBar.ActionIcon?
 
     var body: some SwiftUI.View {
-        let action = actionProvider(state, selectedPage)
+        let action = actionProvider(state, selectedPage) ?? topBarCoordinator.action
 
         SuplaCore.TopBar(
             navigationIcon: .back,
             title: state.title ?? "",
-            actionIcon: action?.icon,
-            onNavigationIconTap: router.back,
-            onActionIconTap: {
-                action?.onTap()
-            }
+            actionIcon: action,
+            onNavigationIconTap: router.back
         )
     }
 }

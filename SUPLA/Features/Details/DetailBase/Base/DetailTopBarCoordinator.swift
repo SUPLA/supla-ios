@@ -15,14 +15,17 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-final class HumidityHistoryDetailVC: BaseHistoryDetailVC {
-    
-    init(remoteId: Int32) {
-        super.init(remoteId: remoteId, viewModel: HumidityHistoryDetailVM())
+
+import Combine
+
+final class DetailTopBarCoordinator: ObservableObject {
+    @Published private(set) var action: SuplaCore.TopBar.ActionIcon? = nil
+
+    func setAction(_ action: SuplaCore.TopBar.ActionIcon) {
+        self.action = action
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    func clearAction() {
+        action = nil
     }
 }

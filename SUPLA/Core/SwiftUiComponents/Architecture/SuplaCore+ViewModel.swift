@@ -27,15 +27,15 @@ extension SuplaCore {
 
         let eventSelector: Selector?
 
-        init(state: S, eventSelector: Selector? = nil) {
+        init(state: S, eventSelector: Selector? = nil, eventName: NSNotification.Name? = nil) {
             self.state = state
             self.eventSelector = eventSelector
 
-            if let eventSelector {
+            if let eventSelector, let eventName {
                 NotificationCenter.default.addObserver(
                     self,
                     selector: eventSelector,
-                    name: NSNotification.Name.saEvent,
+                    name: eventName,
                     object: nil
                 )
             }
@@ -48,6 +48,10 @@ extension SuplaCore {
         func onViewDisappear() {
             // release all disposables when going to background
             visibilityScopedDisposeBag = DisposeBag()
+        }
+
+        func handle(_ disposable: Disposable) {
+            disposable.disposed(by: disposeBag)
         }
 
         deinit {

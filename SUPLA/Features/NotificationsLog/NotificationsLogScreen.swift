@@ -35,10 +35,9 @@ extension NotificationsLogFeature {
                         SuplaCore.TopBar(
                             navigationIcon: .back,
                             title: Strings.Notifications.menu,
-                            actionIcon: String.Icons.delete,
+                            actionIcon: .icon(String.Icons.delete, viewModel.showDeleteDialog),
                             searchText: searchBinding,
-                            onNavigationIconTap: router.back,
-                            onActionIconTap: viewModel.showDeleteDialog
+                            onNavigationIconTap: router.back
                         )
 
                         View(

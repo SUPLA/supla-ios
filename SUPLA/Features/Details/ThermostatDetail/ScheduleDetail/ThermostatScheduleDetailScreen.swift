@@ -19,27 +19,20 @@
 import SwiftUI
 
 extension ThermostatScheduleDetailFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        private let item: ItemBundle
-     
-        init(item: ItemBundle, viewModel: ThermostatScheduleDetailFeature.ViewModel) {
-            self.item = item
-            super.init(viewModel: viewModel)
-            
-            contentView = View(
-                state: viewModel.state,
-                delegate: viewModel
-            )
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: ViewModel(item: itemBundle))
         }
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            viewModel.observeConfig()
-        }
-        
-        static func create(item: ItemBundle) -> UIViewController {
-            let viewModel = ViewModel(item: item)
-            return ViewController(item: item, viewModel: viewModel)
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                ThermostatScheduleDetailFeature.View(
+                    state: state,
+                    delegate: viewModel
+                )
+            }
         }
     }
 }

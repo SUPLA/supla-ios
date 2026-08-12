@@ -31,7 +31,7 @@ class AppRootVM: SuplaCore.ViewModel<AppRootViewState> {
     private var eventNotificationDismissTask: Task<Void, Never>?
 
     init(state: AppRootViewState = AppRootViewState()) {
-        super.init(state: state, eventSelector: #selector(onEvent))
+        super.init(state: state, eventSelector: #selector(onEvent), eventName: NSNotification.Name.saEvent)
         observeChangesForIconsReload()
     }
 

@@ -15,14 +15,17 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
-final class HumidityHistoryDetailVC: BaseHistoryDetailVC {
-    
-    init(remoteId: Int32) {
-        super.init(remoteId: remoteId, viewModel: HumidityHistoryDetailVM())
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+import SwiftUI
+
+extension SwitchTimerDetailFeature {
+    struct Screen: SwiftUI.View {
+        let itemBundle: ItemBundle
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewControllerHost {
+                SwitchTimerDetailVC(remoteId: itemBundle.remoteId)
+            }
+        }
     }
 }

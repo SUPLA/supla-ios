@@ -33,8 +33,8 @@ extension ElectricityMeterHistoryFeature {
             return view
         }()
         
-        init(viewModel: ViewModel, item: ItemBundle, navigationItemProvider: NavigationItemProvider) {
-            super.init(remoteId: item.remoteId, navigationItemProvider: navigationItemProvider, viewModel: viewModel)
+        init(viewModel: ViewModel, item: ItemBundle) {
+            super.init(remoteId: item.remoteId, viewModel: viewModel)
             
             setupView()
         }
@@ -72,8 +72,8 @@ extension ElectricityMeterHistoryFeature {
             ])
         }
         
-        static func create(item: ItemBundle, navigationItemProvider: NavigationItemProvider) -> UIViewController {
-            ViewController(viewModel: ViewModel(), item: item, navigationItemProvider: navigationItemProvider)
+        static func create(item: ItemBundle) -> UIViewController {
+            ViewController(viewModel: ViewModel(), item: item)
         }
     }
 }

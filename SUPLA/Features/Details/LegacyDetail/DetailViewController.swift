@@ -86,6 +86,8 @@ class DetailViewController: BaseViewController {
         _detailView.detailWillHide()
     }
     
+    override func hidesNavigationBar() -> Bool { true }
+
     override func shouldUpdateTitleFont() -> Bool { !inNewDetail }
     
     @objc private func onAppDidEnterBackground(_ notification: Notification) {

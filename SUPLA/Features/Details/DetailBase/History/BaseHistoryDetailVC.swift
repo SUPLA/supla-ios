@@ -22,6 +22,8 @@ import RxSwift
 import SwiftUI
 
 class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent, BaseHistoryDetailVM> {
+    @Singleton<DetailTopBarCoordinator> private var topBarCoordinator
+
     let remoteId: Int32
     
     private var dataSetsRowState = DataSetsViewState()
@@ -79,11 +81,8 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         return view
     }()
     
-    private unowned var navigationItemProvider: NavigationItemProvider
-    
-    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider, viewModel: BaseHistoryDetailVM) {
+    init(remoteId: Int32, viewModel: BaseHistoryDetailVM) {
         self.remoteId = remoteId
-        self.navigationItemProvider = navigationItemProvider
         super.init(viewModel: viewModel)
     }
     
@@ -102,20 +101,19 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let barButton = UIBarButtonItem(image: .iconMore, style: .plain, target: nil, action: nil)
-        let deleteAction = UIAction(title: Strings.Charts.historyDeleteData, handler: { [weak self] (_) in
-            if let self = self {
+
+        topBarCoordinator.setAction(.more([
+            SuplaCore.TopBar.ActionItem(title: Strings.Charts.historyDeleteData) { [weak self] in
+                guard let self else { return }
                 self.viewModel.deleteAndDownloadData(remoteId: self.remoteId)
             }
-        })
-        barButton.menu = UIMenu(children: [deleteAction])
-        navigationItemProvider.navigationItem.rightBarButtonItem = barButton
+        ]))
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationItemProvider.navigationItem.rightBarButtonItem = nil
+
+        topBarCoordinator.clearAction()
     }
     
     override func handle(event: BaseHistoryDetailViewEvent) {
@@ -204,6 +202,8 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     }
     
     private func setupView() {
+        view.clipsToBounds = true
+
         addChild(dataSetsRowController)
         
         view.addSubview(dataSetsRowController.view)

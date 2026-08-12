@@ -47,13 +47,9 @@ extension ImpulseCounterDetailFeature {
         private func topBarAction(
             state: ImpulseCounterDetailViewState,
             page: DetailPage
-        ) -> DetailTopBarAction? {
+        ) -> SuplaCore.TopBar.ActionIcon? {
             guard state.hasPhoto, let channelId = state.channelId else { return nil }
-
-            return DetailTopBarAction(
-                icon: String.Icons.ocrPhoto,
-                onTap: { router.navigate(to: .counterPhoto(channelId: channelId)) }
-            )
+            return .icon(String.Icons.ocrPhoto, { router.navigate(to: .counterPhoto(channelId: channelId)) })
         }
     }
 }

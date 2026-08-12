@@ -20,12 +20,17 @@ import SharedCore
 import SwiftUI
 
 extension ThermostatSlavesFeature {
+    protocol ViewDelegate: AnyObject {
+        func onInfoAction(_ issueMessage: String)
+        func onAlertDismissed()
+    }
+
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
         @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
 
-        let onInfoAction: (String) -> Void
+        let delegate: ViewDelegate?
         let onStatusAction: (Int32) -> Void
 
         let onCaptionLongPress: (ThermostatData) -> Void
@@ -39,7 +44,7 @@ extension ThermostatSlavesFeature {
                             .padding([.bottom], Distance.tiny)
                         ThermostatRow(
                             data: master,
-                            onInfoAction: onInfoAction,
+                            onInfoAction: { delegate?.onInfoAction($0) },
                             onStatusAction: onStatusAction,
                             onCaptionLongPress: onCaptionLongPress,
                             onSlaveClick: { _ in }
@@ -51,7 +56,7 @@ extension ThermostatSlavesFeature {
                     LazyList(items: viewState.slaves) {
                         ThermostatRow(
                             data: $0,
-                            onInfoAction: onInfoAction,
+                            onInfoAction: { delegate?.onInfoAction($0) },
                             onStatusAction: onStatusAction,
                             onCaptionLongPress: onCaptionLongPress,
                             onSlaveClick: onSlaveClick
@@ -65,6 +70,14 @@ extension ThermostatSlavesFeature {
 
                 if captionChangeDialogViewModel.present {
                     CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+                }
+
+                if let alertDialogState = viewState.alertDialogState {
+                    SuplaCore.AlertDialog(
+                        state: alertDialogState,
+                        onDismiss: { delegate?.onAlertDismissed() },
+                        onPrimaryButtonClick: { delegate?.onAlertDismissed() }
+                    )
                 }
             }.environment(\.scaleFactor, viewState.scale)
         }
@@ -234,7 +247,7 @@ extension ThermostatSlavesFeature {
         viewState: viewState,
         stateDialogViewModel: stateDialogViewModel,
         captionChangeDialogViewModel: captionChangeDialogViewModel,
-        onInfoAction: { _ in },
+        delegate: nil,
         onStatusAction: { _ in },
         onCaptionLongPress: { _ in },
         onSlaveClick: { _ in }
