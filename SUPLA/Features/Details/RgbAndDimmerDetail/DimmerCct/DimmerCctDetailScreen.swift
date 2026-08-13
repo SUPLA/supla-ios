@@ -16,38 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-@testable import SUPLA
+import SwiftUI
 
-final class AuthorizationCoordinatorMock: AuthorizationCoordinator {
-    var authorizeCalls = 0
-    var loginCalls = 0
-    var authorizeAccepted = true
-    var loginAccepted = true
-    var isVisible = false
+extension DimmerCctDetailFeature {
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
 
-    func authorize(
-        onAuthorized: @escaping () -> Void,
-        onDismissed: @escaping () -> Void
-    ) {
-        authorizeCalls += 1
-
-        if (authorizeAccepted) {
-            onAuthorized()
-        } else {
-            onDismissed()
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: ViewModel(itemBundle: itemBundle))
         }
-    }
 
-    func login(
-        onAuthorized: @escaping () -> Void,
-        onDismissed: @escaping () -> Void
-    ) {
-        loginCalls += 1
-
-        if (loginAccepted) {
-            onAuthorized()
-        } else {
-            onDismissed()
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                DimmerCctDetailFeature.View(
+                    viewState: state,
+                    delegate: viewModel
+                )
+            }
         }
     }
 }

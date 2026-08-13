@@ -54,7 +54,7 @@ enum AppRoute: Hashable {
     case rgbwDetail(item: ItemBundle, pages: [DetailPage])
     case pinSetup(scope: LockScreenScope)
     case lockScreen(action: LockScreenFeature.UnlockAction)
-    case counterPhoto(channelId: Int32)
+    case counterPhoto(item: ItemBundle)
     case carPlayList
     case carPlayAdd
     case carPlayEdit(id: NSManagedObjectID)

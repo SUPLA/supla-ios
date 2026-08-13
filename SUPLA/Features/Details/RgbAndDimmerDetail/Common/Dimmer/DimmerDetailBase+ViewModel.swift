@@ -22,7 +22,7 @@ import RxSwift
 private let REFRESH_DELAY_S: Double = 3
 
 extension DimmerDetailBase {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
         @Singleton var delayedRgbwActionSubject: DelayedRgbwActionSubject
         @Singleton var dateProvider: DateProvider
         
@@ -40,6 +40,7 @@ extension DimmerDetailBase {
         
         @Inject private var loadingTimeoutManager: LoadingTimeoutManager
         
+        private let itemBundle: ItemBundle
         var remoteId: Int32? = nil
         var type: SubjectType? = nil
         var changing: Bool = false
@@ -48,6 +49,11 @@ extension DimmerDetailBase {
         private var profileId: Int32? = nil
         private var rgbColor: HsvColor? = nil
         private let updateRelay = PublishRelay<Void>()
+
+        init(state: ViewState, itemBundle: ItemBundle) {
+            self.itemBundle = itemBundle
+            super.init(state: state)
+        }
         
         var actionData: RgbwActionData? {
             guard let remoteId, let type, let brightness = state.value.brightness else { return nil }
@@ -65,7 +71,7 @@ extension DimmerDetailBase {
             fatalError("getOriginalButtonIcon(_:): Not implemented")
         }
         
-        override func onViewDidLoad() {
+        override func onViewCreated() {
             loadingTimeoutManager.watch(
                 stateProvider: { [weak self] in self?.state.loadingState }
             ) { [weak self] in
@@ -81,15 +87,28 @@ extension DimmerDetailBase {
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in self?.reloadData() })
                 .disposed(by: disposeBag)
+
+            switch (itemBundle.subjectType) {
+            case .channel:
+                observeChannel(remoteId: Int(itemBundle.remoteId))
+            case .group:
+                observeGroup(remoteId: itemBundle.remoteId)
+            case .scene:
+                break
+            }
         }
-        
-        func loadData(remoteId: Int32, type: SubjectType) {
-            self.remoteId = remoteId
-            self.type = type
-            
-            switch (type) {
-            case .channel: loadChannel(remoteId)
-            case .group: loadGroup(remoteId)
+
+        override func onViewAppear() {
+            loadData()
+        }
+
+        private func loadData() {
+            remoteId = itemBundle.remoteId
+            type = itemBundle.subjectType
+
+            switch (itemBundle.subjectType) {
+            case .channel: loadChannel(itemBundle.remoteId)
+            case .group: loadGroup(itemBundle.remoteId)
             case .scene: break
             }
         }

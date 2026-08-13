@@ -115,7 +115,7 @@
         return [_dimmerCalibrationTool onMenubarBackButtonPressed];
     }
 
-    [SuplaAppCoordinatorLegacyWrapper finish];
+    [AppRouterLegacyWrapper finish];
     return YES;
 }
 
@@ -133,4 +133,3 @@
     }
 }
 @end
-

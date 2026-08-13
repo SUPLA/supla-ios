@@ -16,4 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct HeatpolGeneralDetailFeature {}
+import SwiftUI
+
+extension RgbDetailFeature {
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: ViewModel(itemBundle: itemBundle))
+        }
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                RgbDetailFeature.View(
+                    viewState: state,
+                    delegate: viewModel
+                )
+            }
+        }
+    }
+}

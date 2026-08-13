@@ -22,7 +22,7 @@ import RxSwift
 private let REFRESH_DELAY_S: Double = 3
 
 extension RgbDetailFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
         @Singleton private var updateColorListItemOrderUseCase: UpdateColorListItemOrder.UseCase
         @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
         @Singleton private var reorderColorListItemsUseCase: ReorderColorListItems.UseCase
@@ -41,6 +41,7 @@ extension RgbDetailFeature {
         
         @Inject private var loadingTimeoutManager: LoadingTimeoutManager
         
+        private let itemBundle: ItemBundle
         private var remoteId: Int32? = nil
         private var type: SubjectType? = nil
         private var profileId: Int32? = nil
@@ -65,11 +66,12 @@ extension RgbDetailFeature {
         
         private let updateRelay = PublishRelay<Void>()
         
-        init() {
+        init(itemBundle: ItemBundle) {
+            self.itemBundle = itemBundle
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewCreated() {
             loadingTimeoutManager.watch(
                 stateProvider: { [weak self] in self?.state.loadingState }
             ) { [weak self] in
@@ -85,19 +87,32 @@ extension RgbDetailFeature {
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in self?.reloadData() })
                 .disposed(by: disposeBag)
+
+            switch (itemBundle.subjectType) {
+            case .channel:
+                observeChannel(remoteId: Int(itemBundle.remoteId))
+            case .group:
+                observeGroup(remoteId: itemBundle.remoteId)
+            case .scene:
+                break
+            }
         }
-        
-        func loadData(remoteId: Int32, type: SubjectType) {
-            self.remoteId = remoteId
-            self.type = type
-            
-            switch (type) {
-            case .channel: loadChannel(remoteId)
-            case .group: loadGroup(remoteId)
+
+        override func onViewAppear() {
+            loadData()
+        }
+
+        private func loadData() {
+            remoteId = itemBundle.remoteId
+            type = itemBundle.subjectType
+
+            switch (itemBundle.subjectType) {
+            case .channel: loadChannel(itemBundle.remoteId)
+            case .group: loadGroup(itemBundle.remoteId)
             case .scene: break
             }
             
-            colorListItemRepository.deleteUnusedColors(byRemoteId: remoteId, forSubject: type, andType: .rgb)
+            colorListItemRepository.deleteUnusedColors(byRemoteId: itemBundle.remoteId, forSubject: itemBundle.subjectType, andType: .rgb)
                 .subscribe()
                 .disposed(by: disposeBag)
         }

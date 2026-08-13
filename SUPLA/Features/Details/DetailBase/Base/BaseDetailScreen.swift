@@ -109,7 +109,7 @@ extension DetailBaseFeature {
             case .thermostatHistory:
                 ThermostatHistoryDetailFeature.Screen(itemBundle: item)
             case .thermostatHeatpolGeneral:
-                HeatpolGeneralDetailFeature.Screen(itemBundle: item)
+                DetailViewControllerScreen(itemBundle: item, detailViewType: .thermostat_hp)
             case .thermostatHeatpolHistory:
                 HeatpolHistoryDetailFeature.Screen(itemBundle: item)
             case .thermometerHistory:
@@ -156,6 +156,12 @@ extension DetailBaseFeature {
                 GateGeneralFeature.Screen(itemBundle: item)
             case .recuperatorGeneral:
                 RecuperatorGeneralFeature.Screen(itemBundle: item)
+            case .rgb:
+                RgbDetailFeature.Screen(itemBundle: item)
+            case .dimmer:
+                DimmerDetailFeature.Screen(itemBundle: item)
+            case .dimmerCct:
+                DimmerCctDetailFeature.Screen(itemBundle: item)
             default:
                 EmptyView()
             }

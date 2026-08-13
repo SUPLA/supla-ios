@@ -15,39 +15,19 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
+import SwiftUI
 
-@testable import SUPLA
+struct DetailViewControllerScreen: SwiftUI.View {
+    let itemBundle: ItemBundle
+    let detailViewType: LegacyDetailType
 
-final class AuthorizationCoordinatorMock: AuthorizationCoordinator {
-    var authorizeCalls = 0
-    var loginCalls = 0
-    var authorizeAccepted = true
-    var loginAccepted = true
-    var isVisible = false
-
-    func authorize(
-        onAuthorized: @escaping () -> Void,
-        onDismissed: @escaping () -> Void
-    ) {
-        authorizeCalls += 1
-
-        if (authorizeAccepted) {
-            onAuthorized()
-        } else {
-            onDismissed()
-        }
-    }
-
-    func login(
-        onAuthorized: @escaping () -> Void,
-        onDismissed: @escaping () -> Void
-    ) {
-        loginCalls += 1
-
-        if (loginAccepted) {
-            onAuthorized()
-        } else {
-            onDismissed()
+    var body: some SwiftUI.View {
+        SuplaCore.ViewControllerHost {
+            DetailViewController(
+                detailViewType: detailViewType,
+                remoteId: itemBundle.remoteId
+            )
         }
     }
 }

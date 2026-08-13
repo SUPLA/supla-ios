@@ -49,7 +49,7 @@ extension ImpulseCounterDetailFeature {
             page: DetailPage
         ) -> SuplaCore.TopBar.ActionIcon? {
             guard state.hasPhoto, let channelId = state.channelId else { return nil }
-            return .icon(String.Icons.ocrPhoto, { router.navigate(to: .counterPhoto(channelId: channelId)) })
+            return .icon(String.Icons.ocrPhoto, { router.navigate(to: .counterPhoto(item: item)) })
         }
     }
 }

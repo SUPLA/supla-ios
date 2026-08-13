@@ -16,19 +16,27 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import SwiftUI
+import Foundation
 
-extension HeatpolGeneralDetailFeature {
-    struct Screen: SwiftUI.View {
-        let itemBundle: ItemBundle
+@objc
+final class AuthorizationCoordinatorLegacyWrapper: NSObject {
+    typealias Callback = @convention(block) () -> Void
 
-        var body: some SwiftUI.View {
-            SuplaCore.ViewControllerHost {
-                DetailViewController(
-                    detailViewType: .thermostat_hp,
-                    remoteId: itemBundle.remoteId
-                )
-            }
-        }
+    @Singleton<AuthorizationCoordinator> private static var authorizationCoordinator
+
+    @objc(authorizeWithOnAuthorized:onDismissed:)
+    static func authorize(
+        onAuthorized: @escaping Callback,
+        onDismissed: @escaping Callback
+    ) {
+        authorizationCoordinator.authorize(
+            onAuthorized: onAuthorized,
+            onDismissed: onDismissed
+        )
+    }
+
+    @objc
+    static func isAuthorizationVisible() -> Bool {
+        authorizationCoordinator.isVisible
     }
 }

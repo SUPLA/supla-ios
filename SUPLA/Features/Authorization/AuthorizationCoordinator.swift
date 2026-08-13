@@ -19,6 +19,8 @@
 import SwiftUI
 
 protocol AuthorizationCoordinator: AnyObject {
+    var isVisible: Bool { get }
+
     func authorize(
         onAuthorized: @escaping () -> Void,
         onDismissed: @escaping () -> Void
@@ -56,6 +58,10 @@ final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordin
     }
 
     @Published var request: Request?
+
+    var isVisible: Bool {
+        request != nil
+    }
 
     func authorize(
         onAuthorized: @escaping () -> Void = {},
