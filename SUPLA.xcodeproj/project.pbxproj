@@ -323,7 +323,7 @@
 		A51474662EA66C230044DEF2 /* RelatedChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */; };
 		A51474682EA771740044DEF2 /* GateGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474672EA771700044DEF2 /* GateGeneralView.swift */; };
 		A514746A2EA7741B0044DEF2 /* GateGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474692EA774180044DEF2 /* GateGeneralVM.swift */; };
-		A514746C2EA785EB0044DEF2 /* GateGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746B2EA785E70044DEF2 /* GateGeneralVC.swift */; };
+		A5F21B152F42B10000000015 /* GateGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B142F42B10000000014 /* GateGeneralScreen.swift */; };
 		A514746E2EA7AE620044DEF2 /* OrientationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */; };
 		A51474702EA8DA080044DEF2 /* ReadGroupWithChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */; };
 		A517DFED2CFD9C2300D6148C /* SAProfileServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */; };
@@ -473,7 +473,7 @@
 		A539C2732D6778BA00D9DD47 /* ValveGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2722D6778B100D9DD47 /* ValveGeneralViewState.swift */; };
 		A539C2752D67795C00D9DD47 /* ValveGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2742D67795100D9DD47 /* ValveGeneralView.swift */; };
 		A539C2772D67798E00D9DD47 /* ValveGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2762D67798B00D9DD47 /* ValveGeneralVM.swift */; };
-		A539C2792D6779D200D9DD47 /* ValveGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2782D6779CE00D9DD47 /* ValveGeneralVC.swift */; };
+		A5F21B112F42B10000000011 /* ValveGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */; };
 		A539C27C2D686A7C00D9DD47 /* ListItemIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27B2D686A7800D9DD47 /* ListItemIcon.swift */; };
 		A539C27E2D686AB400D9DD47 /* ListItemInfoIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */; };
 		A539C2802D686AD300D9DD47 /* ListItemIssueIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */; };
@@ -1284,7 +1284,7 @@
 		A5DDF9262D79A7710056B539 /* ContainerGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF9252D79A7690056B539 /* ContainerGeneralViewState.swift */; };
 		A5DDF9282D79A7CF0056B539 /* ContainerGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF9272D79A7C90056B539 /* ContainerGeneralView.swift */; };
 		A5DDF92A2D79A8070056B539 /* ContainerGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF9292D79A8020056B539 /* ContainerGeneralVM.swift */; };
-		A5DDF92C2D79A8750056B539 /* ContainerGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF92B2D79A86F0056B539 /* ContainerGeneralVC.swift */; };
+		A5F21B132F42B10000000013 /* ContainerGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */; };
 		A5DDF92E2D79CA550056B539 /* ContainerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF92D2D79CA4F0056B539 /* ContainerIconView.swift */; };
 		A5DEE9332E9E66A7000811C7 /* ProfilesListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9322E9E669E000811C7 /* ProfilesListVM.swift */; };
 		A5DEE9372E9E7A9F000811C7 /* UpdateProfilesOrderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9362E9E7A7D000811C7 /* UpdateProfilesOrderUseCase.swift */; };
@@ -1600,7 +1600,7 @@
 		A6B2D10A3E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */; };
 		A6B2D10C3E6A4C1800D1BEEF /* RecuperatorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */; };
 		A6B2D10D3E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */; };
-		A6B2D10E3E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */; };
+		A5F21B172F42B10000000017 /* RecuperatorGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE535357276927690077BFFB /* LocationOrderingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535358276927690077BFFB /* LocationOrderingScreen.swift */; };
@@ -2193,7 +2193,7 @@
 		A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedChannelsView.swift; sourceTree = "<group>"; };
 		A51474672EA771700044DEF2 /* GateGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralView.swift; sourceTree = "<group>"; };
 		A51474692EA774180044DEF2 /* GateGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralVM.swift; sourceTree = "<group>"; };
-		A514746B2EA785E70044DEF2 /* GateGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralVC.swift; sourceTree = "<group>"; };
+		A5F21B142F42B10000000014 /* GateGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralScreen.swift; sourceTree = "<group>"; };
 		A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObserver.swift; sourceTree = "<group>"; };
 		A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGroupWithChannelsUseCase.swift; sourceTree = "<group>"; };
 		A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAProfileServer+Mock.swift"; sourceTree = "<group>"; };
@@ -2345,7 +2345,7 @@
 		A539C2722D6778B100D9DD47 /* ValveGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralViewState.swift; sourceTree = "<group>"; };
 		A539C2742D67795100D9DD47 /* ValveGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralView.swift; sourceTree = "<group>"; };
 		A539C2762D67798B00D9DD47 /* ValveGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralVM.swift; sourceTree = "<group>"; };
-		A539C2782D6779CE00D9DD47 /* ValveGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralVC.swift; sourceTree = "<group>"; };
+		A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralScreen.swift; sourceTree = "<group>"; };
 		A539C27B2D686A7800D9DD47 /* ListItemIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIcon.swift; sourceTree = "<group>"; };
 		A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemInfoIcon.swift; sourceTree = "<group>"; };
 		A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIssueIcon.swift; sourceTree = "<group>"; };
@@ -3160,7 +3160,7 @@
 		A5DDF9252D79A7690056B539 /* ContainerGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralViewState.swift; sourceTree = "<group>"; };
 		A5DDF9272D79A7C90056B539 /* ContainerGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralView.swift; sourceTree = "<group>"; };
 		A5DDF9292D79A8020056B539 /* ContainerGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralVM.swift; sourceTree = "<group>"; };
-		A5DDF92B2D79A86F0056B539 /* ContainerGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralVC.swift; sourceTree = "<group>"; };
+		A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralScreen.swift; sourceTree = "<group>"; };
 		A5DDF92D2D79CA4F0056B539 /* ContainerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerIconView.swift; sourceTree = "<group>"; };
 		A5DEE9322E9E669E000811C7 /* ProfilesListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListVM.swift; sourceTree = "<group>"; };
 		A5DEE9362E9E7A7D000811C7 /* UpdateProfilesOrderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfilesOrderUseCase.swift; sourceTree = "<group>"; };
@@ -3449,7 +3449,7 @@
 		A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralViewState.swift; sourceTree = "<group>"; };
 		A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralView.swift; sourceTree = "<group>"; };
 		A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralVM.swift; sourceTree = "<group>"; };
-		A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralVC.swift; sourceTree = "<group>"; };
+		A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralScreen.swift; sourceTree = "<group>"; };
 		AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -4457,7 +4457,7 @@
 		A51474592EA65D400044DEF2 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				A514746B2EA785E70044DEF2 /* GateGeneralVC.swift */,
+				A5F21B142F42B10000000014 /* GateGeneralScreen.swift */,
 				A51474692EA774180044DEF2 /* GateGeneralVM.swift */,
 				A51474672EA771700044DEF2 /* GateGeneralView.swift */,
 				A514745C2EA65FEA0044DEF2 /* GateGeneralViewState.swift */,
@@ -4895,7 +4895,7 @@
 		A539C26F2D67782600D9DD47 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				A539C2782D6779CE00D9DD47 /* ValveGeneralVC.swift */,
+				A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */,
 				A539C2762D67798B00D9DD47 /* ValveGeneralVM.swift */,
 				A539C2742D67795100D9DD47 /* ValveGeneralView.swift */,
 				A539C2722D6778B100D9DD47 /* ValveGeneralViewState.swift */,
@@ -7277,7 +7277,7 @@
 			isa = PBXGroup;
 			children = (
 				A58542192D7F3E4500D314A2 /* UI */,
-				A5DDF92B2D79A86F0056B539 /* ContainerGeneralVC.swift */,
+				A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */,
 				A5DDF9292D79A8020056B539 /* ContainerGeneralVM.swift */,
 				A5DDF9272D79A7C90056B539 /* ContainerGeneralView.swift */,
 				A5DDF9232D79A74A0056B539 /* ContainerGeneralFeature.swift */,
@@ -8155,7 +8155,7 @@
 			isa = PBXGroup;
 			children = (
 				A5D4227C2FE0232500822D0F /* View */,
-				A6B2D1053E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift */,
+				A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */,
 				A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */,
 				A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */,
 				A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */,
@@ -8883,7 +8883,7 @@
 				A517DFF32D03241D00D6148C /* KotlinBoolean+iOS.swift in Sources */,
 				A5AE7A8B2A3ADF330097FA8B /* TitleSwitchCell.swift in Sources */,
 				A598CAC32CC246DF00A784FA /* ImpulseCounterValueProvider.swift in Sources */,
-				A5DDF92C2D79A8750056B539 /* ContainerGeneralVC.swift in Sources */,
+				A5F21B132F42B10000000013 /* ContainerGeneralScreen.swift in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				A5DCA1222F3F000000000001 /* DeveloperInfoScreen.swift in Sources */,
 				A5E9C20A2DCCBE8C0001F263 /* CellScalingLimit.swift in Sources */,
@@ -8971,8 +8971,8 @@
 				A50162592F921A6400FB2899 /* RoundedControlButton.swift in Sources */,
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
-				A514746C2EA785EB0044DEF2 /* GateGeneralVC.swift in Sources */,
-				A6B2D10E3E6A4C1800D1BEEF /* RecuperatorGeneralVC.swift in Sources */,
+				A5F21B152F42B10000000015 /* GateGeneralScreen.swift in Sources */,
+				A5F21B172F42B10000000017 /* RecuperatorGeneralScreen.swift in Sources */,
 				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
 				A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
@@ -9400,7 +9400,7 @@
 				A5F217092F42710000000009 /* HumidityHistoryDetailFeature.swift in Sources */,
 				A5F2170B2F4271000000000B /* HumidityHistoryDetailScreen.swift in Sources */,
 				A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */,
-				A539C2792D6779D200D9DD47 /* ValveGeneralVC.swift in Sources */,
+				A5F21B112F42B10000000011 /* ValveGeneralScreen.swift in Sources */,
 				A503ABB32B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift in Sources */,
 				A57668ED2AEA85150025509D /* Array+Ext.swift in Sources */,
 				A505EC4A2CF88C2600E69BDB /* ProfileServerRepository.swift in Sources */,
