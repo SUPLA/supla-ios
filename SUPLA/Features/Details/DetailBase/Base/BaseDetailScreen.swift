@@ -148,6 +148,14 @@ extension DetailBaseFeature {
                 CounterPhotoFeature.Screen(itemBundle: item)
             case .impulseCounterSettings:
                 ImpulseCounterSettingsFeature.Screen(itemBundle: item)
+            case .valveGeneral:
+                ValveGeneralFeature.Screen(itemBundle: item)
+            case .containerGeneral:
+                ContainerGeneralFeature.Screen(itemBundle: item)
+            case .gateGeneral:
+                GateGeneralFeature.Screen(itemBundle: item)
+            case .recuperatorGeneral:
+                RecuperatorGeneralFeature.Screen(itemBundle: item)
             default:
                 EmptyView()
             }

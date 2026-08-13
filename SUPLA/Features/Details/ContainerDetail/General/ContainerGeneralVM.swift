@@ -19,7 +19,8 @@
 import RxSwift
     
 extension ContainerGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ChannelUpdatesObserver {
+        @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<CallSuplaClientOperationUseCase> private var callSuplaClientOperationUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
@@ -28,12 +29,23 @@ extension ContainerGeneralFeature {
         @Singleton<LoadChannelConfigUseCase> private var loadChannelConfigUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
-        
-        init() {
+
+        private let itemBundle: ItemBundle
+
+        init(itemBundle: ItemBundle) {
+            self.itemBundle = itemBundle
             super.init(state: ViewState())
         }
-        
-        func loadData(_ remoteId: Int32) {
+
+        override func onViewCreated() {
+            observeChannel(remoteId: Int(itemBundle.remoteId))
+        }
+
+        override func onViewAppear() {
+            loadData(itemBundle.remoteId)
+        }
+
+        private func loadData(_ remoteId: Int32) {
             Observable.zip(
                 readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
                 loadChannelConfigUseCase.invoke(remoteId: remoteId)
@@ -49,12 +61,10 @@ extension ContainerGeneralFeature {
             loadData(channelWithChildren.remoteId)
         }
         
-        func onMuteClick(_ viewController: UIViewController?) {
+        func onMuteClick() {
             vibrationService.vibrate()
             if (state.muteAuthorizationNeeded) {
-                if let viewController {
-                    SAAuthorizationDialogVC { [weak self] in self?.muteAlarmSound() }.showAuthorization(viewController)
-                }
+                authorizationCoordinator.authorize(onAuthorized: { [weak self] in self?.muteAlarmSound() })
             } else {
                 muteAlarmSound()
             }

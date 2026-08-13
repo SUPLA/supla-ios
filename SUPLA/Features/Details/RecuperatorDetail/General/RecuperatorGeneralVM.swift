@@ -19,7 +19,7 @@
 import SharedCore
 
 extension RecuperatorGeneralFeature {
-    final class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    final class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         private let item: ItemBundle
 
         init(item: ItemBundle) {
@@ -27,7 +27,7 @@ extension RecuperatorGeneralFeature {
             super.init(state: ViewState())
         }
 
-        override func onViewWillAppear() {
+        override func onViewAppear() {
             state.isOff = false
             state.mode = .manual
             state.supplyOutsideTemperature = "14.0°"

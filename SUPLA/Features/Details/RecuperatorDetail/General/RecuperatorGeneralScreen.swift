@@ -16,19 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import SharedCore
+import SwiftUI
 
 extension RecuperatorGeneralFeature {
-    final class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
-        
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            contentView = View(viewState: state, delegate: viewModel)
+    struct Screen: SwiftUI.View {
+        @StateObject private var viewModel: ViewModel
+
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: ViewModel(item: itemBundle))
         }
-        
-        static func create(itemBundle: ItemBundle) -> UIViewController {
-            let viewModel = ViewModel(item: itemBundle)
-            return ViewController(viewModel: viewModel)
+
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                RecuperatorGeneralFeature.View(
+                    viewState: state,
+                    delegate: viewModel
+                )
+            }
         }
     }
 }
