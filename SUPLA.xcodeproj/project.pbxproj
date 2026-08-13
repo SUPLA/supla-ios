@@ -339,7 +339,7 @@
 		A519CCB22D38559100F858A4 /* ImpulseCounterGeneralStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */; };
 		A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */; };
 		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
-		A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */; };
+		A5F21B072F42B10000000007 /* ImpulseCounterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */; };
 		A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* index_7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */; };
 		A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */; };
@@ -1340,7 +1340,7 @@
 		A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */; };
 		A5E0DF8A2CECA2FA00362451 /* CounterPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */; };
 		A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */; };
-		A5E0DF8E2CECAD3000362451 /* CounterPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */; };
+		A5F21B0D2F42B1000000000D /* CounterPhotoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */; };
 		A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */; };
 		A5E100012F41000000000001 /* DetailBaseFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000007 /* DetailBaseFeature.swift */; };
 		A5E100012F41000000000002 /* BaseDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000008 /* BaseDetailScreen.swift */; };
@@ -1366,6 +1366,8 @@
 		A5E160BC2D315D40003A7C71 /* SAHumidityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */; };
 		A5E160BF2D354698003A7C71 /* ImpulseCounterHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */; };
 		A5E160C12D354974003A7C71 /* ImpulseCounterHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */; };
+		A5F21B092F42B10000000009 /* ImpulseCounterHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */; };
+		A5F21B0B2F42B1000000000B /* ImpulseCounterHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */; };
 		A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */; };
 		A5E160C52D35B1B3003A7C71 /* ImpulseCounterMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */; };
 		A5E160C72D365793003A7C71 /* ImpulseCounterMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */; };
@@ -1616,10 +1618,10 @@
 		AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
 		B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */; };
-		B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */; };
 		B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */; };
 		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
 		B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */; };
+		A5F21B0F2F42B1000000000F /* ImpulseCounterSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */; };
 		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
 		B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000003 /* EspRepositoryMock.swift */; };
 		B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */; };
@@ -2205,7 +2207,7 @@
 		A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralStateHandler.swift; sourceTree = "<group>"; };
 		A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedMeasurements.swift; sourceTree = "<group>"; };
 		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
-		A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralVC.swift; sourceTree = "<group>"; };
+		A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralScreen.swift; sourceTree = "<group>"; };
 		A519CCC02D393EE300F858A4 /* index_7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVM.swift; sourceTree = "<group>"; };
@@ -3214,7 +3216,7 @@
 		A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVM.swift; sourceTree = "<group>"; };
 		A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoView.swift; sourceTree = "<group>"; };
 		A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoViewState.swift; sourceTree = "<group>"; };
-		A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVC.swift; sourceTree = "<group>"; };
+		A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoScreen.swift; sourceTree = "<group>"; };
 		A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrImageNamingProvider.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000007 /* DetailBaseFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBaseFeature.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000008 /* BaseDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailScreen.swift; sourceTree = "<group>"; };
@@ -3239,6 +3241,8 @@
 		A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAHumidityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailVC.swift; sourceTree = "<group>"; };
+		A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImpulseCounterLogUseCase.swift; sourceTree = "<group>"; };
 		A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurement.swift; sourceTree = "<group>"; };
 		A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurementsProvider.swift; sourceTree = "<group>"; };
@@ -3470,10 +3474,10 @@
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsFeature.swift; sourceTree = "<group>"; };
-		B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVC.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVM.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsViewState.swift; sourceTree = "<group>"; };
+		A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsScreen.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
 		B2A100001111111100000003 /* EspRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepositoryMock.swift; sourceTree = "<group>"; };
 		B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCaseTests.swift; sourceTree = "<group>"; };
@@ -5016,7 +5020,7 @@
 		A54637AF2D37D5FB00D746F5 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				A519CCBA2D38ED2B00F858A4 /* ImpulseCounterGeneralVC.swift */,
+				A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */,
 				A519CCAF2D38514B00F858A4 /* ImpulseCounterGeneralView.swift */,
 				A54637BC2D37FF5600D746F5 /* ImpulseCounterGeneralViewState.swift */,
 				A54637B22D37E8AA00D746F5 /* ImpulseCounterGeneralFeature.swift */,
@@ -7365,7 +7369,7 @@
 		A5E0DF842CECA1A800362451 /* CounterPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				A5E0DF8D2CECAD2B00362451 /* CounterPhotoVC.swift */,
+				A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */,
 				A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */,
 				A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */,
 				A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */,
@@ -7398,6 +7402,8 @@
 			children = (
 				A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */,
 				A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */,
+				A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */,
+				A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -8186,8 +8192,8 @@
 		B1DCC0000000000000000001 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				B1DCC0000000000000000003 /* ImpulseCounterSettingsVC.swift */,
 				B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */,
+				A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */,
 				B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */,
 				B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */,
 				B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */,
@@ -8672,6 +8678,8 @@
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A5E9CE272C32CE3500509702 /* SALoginDialogVC.swift in Sources */,
 				A5E160BF2D354698003A7C71 /* ImpulseCounterHistoryDetailVM.swift in Sources */,
+				A5F21B092F42B10000000009 /* ImpulseCounterHistoryDetailFeature.swift in Sources */,
+				A5F21B0B2F42B1000000000B /* ImpulseCounterHistoryDetailScreen.swift in Sources */,
 				A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */,
 				A584E2092CAD5EDD00232A98 /* ElectricityMeterValueStringProvider.swift in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
@@ -8890,7 +8898,7 @@
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
 				A5E84F1C2EE6FD73002F26F8 /* ExecuteRgbActionUseCase.swift in Sources */,
 				A599E8F92CD3AB9100C83A2B /* (null) in Sources */,
-				A519CCBB2D38ED3000F858A4 /* ImpulseCounterGeneralVC.swift in Sources */,
+				A5F21B072F42B10000000007 /* ImpulseCounterGeneralScreen.swift in Sources */,
 				A54637BB2D37F26100D746F5 /* ActivityIndicator.swift in Sources */,
 				A5425F952F6A880C00794C9D /* NotificationsLogView.swift in Sources */,
 				A5DCA1122F3F000000000001 /* NotificationsLogScreen.swift in Sources */,
@@ -9443,7 +9451,7 @@
 				A52BFEBB2B074D7900A2F64C /* SuplaDeviceConfig.swift in Sources */,
 				A5BF4F6A2F3CBBB800F5DE81 /* ListItemProfile.swift in Sources */,
 				A5F29BB82A24D16000ED700A /* ChannelGroupRelationRepository.swift in Sources */,
-				A5E0DF8E2CECAD3000362451 /* CounterPhotoVC.swift in Sources */,
+				A5F21B0D2F42B1000000000D /* CounterPhotoScreen.swift in Sources */,
 				A5BF4F5E2F3C85B100F5DE81 /* NfcTagsListFeature.swift in Sources */,
 				A5477DBB2AA202A800220B4A /* SAChannelRelation+Ext.swift in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
@@ -9695,8 +9703,8 @@
 				A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */,
 				A5F21B052F42B10000000005 /* ElectricityMeterSettingsScreen.swift in Sources */,
 				B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */,
-				B1DCC0000000000000000102 /* ImpulseCounterSettingsVC.swift in Sources */,
 				B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */,
+				A5F21B0F2F42B1000000000F /* ImpulseCounterSettingsScreen.swift in Sources */,
 				B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */,
 				B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */,
 				A5C347892EAF955400075244 /* SAChannelState+Printable.swift in Sources */,

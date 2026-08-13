@@ -140,6 +140,14 @@ extension DetailBaseFeature {
                 ElectricityMeterHistoryFeature.Screen(itemBundle: item)
             case .electricityMeterSettings:
                 ElectricityMeterSettingsFeature.Screen(itemBundle: item)
+            case .impulseCounterGeneral:
+                ImpulseCounterGeneralFeature.Screen(itemBundle: item)
+            case .impulseCounterHistory:
+                ImpulseCounterHistoryDetailFeature.Screen(itemBundle: item)
+            case .impulseCounterOcr:
+                CounterPhotoFeature.Screen(itemBundle: item)
+            case .impulseCounterSettings:
+                ImpulseCounterSettingsFeature.Screen(itemBundle: item)
             default:
                 EmptyView()
             }
