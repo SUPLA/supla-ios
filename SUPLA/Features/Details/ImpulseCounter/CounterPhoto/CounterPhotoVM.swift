@@ -20,7 +20,8 @@ import RxSwift
 import SharedCore
 
 extension CounterPhotoFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
+        @Singleton<AppRouter> private var router
         @Singleton<SuplaSchedulers> var schedulers
         @Singleton<UserStateHolder> var userStateHolder
         @Singleton<ValuesFormatter> var valuesFormatter
@@ -31,37 +32,46 @@ extension CounterPhotoFeature {
         @Singleton<LoadActiveProfileUrlUseCase> var loadActiveProfileUrlUseCase
         
         private let dateFormatter = ISO8601DateFormatter()
-        
-        init() {
+        private let item: ItemBundle
+
+        init(item: ItemBundle) {
+            self.item = item
             super.init(state: ViewState())
         }
-        
-        func onRefresh(_ remoteId: Int32) async {
-            Task {
-                do {
-                    if let data = try getLoadingObservable(remoteId).subscribeSynchronous() {
-                        await updateView(data: data, remoteId: remoteId)
-                    }
-                } catch {
-                    await setError()
+
+        override func onViewCreated() {
+            loadData()
+        }
+
+        func onUrlClick(_ url: String) {
+            router.openUrl(url: url)
+        }
+
+        func onRefresh() async {
+            do {
+                if let data = try getLoadingObservable(item.remoteId).subscribeSynchronous() {
+                    await updateView(data: data)
                 }
+            } catch {
+                await setError()
             }
         }
         
-        func loadData(_ remoteId: Int32) {
+        func loadData() {
             state.loading = true
-            getLoadingObservable(remoteId)
+            getLoadingObservable(item.remoteId)
                 .asDriver()
                 .drive(onNext: { [weak self] result in
-                    self?.state.loading = false
+                    guard let self else { return }
+                    state.loading = false
                     switch result {
                     case .success(let data):
-                        self?.state.loadingError = false
-                        self?.handlePhoto(latest: data.0)
-                        self?.handlePhotos(photos: data.1)
-                        self?.state.configurationAddress = "\(data.2.urlString)/channels/\(remoteId)/ocr-settings"
+                        state.loadingError = false
+                        handlePhoto(latest: data.0)
+                        handlePhotos(photos: data.1)
+                        state.configurationAddress = "\(data.2.urlString)/channels/\(item.remoteId)/ocr-settings"
                     case .error:
-                        self?.state.loadingError = true
+                        state.loadingError = true
                     }
                 })
                 .disposed(by: disposeBag)
@@ -114,11 +124,11 @@ extension CounterPhotoFeature {
         }
         
         @MainActor
-        private func updateView(data: (ImpulseCounterPhotoDto, [ImpulseCounterPhotoDto], CloudUrl), remoteId: Int32) {
+        private func updateView(data: (ImpulseCounterPhotoDto, [ImpulseCounterPhotoDto], CloudUrl)) {
             state.loadingError = false
             handlePhoto(latest: data.0)
             handlePhotos(photos: data.1)
-            state.configurationAddress = "\(data.2.urlString)/channels/\(remoteId)/ocr-settings"
+            state.configurationAddress = "\(data.2.urlString)/channels/\(item.remoteId)/ocr-settings"
         }
         
         @MainActor

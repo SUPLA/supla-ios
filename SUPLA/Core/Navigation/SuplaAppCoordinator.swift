@@ -22,7 +22,6 @@ import SwiftUI
 protocol SuplaAppCoordinator: Coordinator {
     func currentController() -> UIViewController?
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase)
-    func navigateToCounterPhoto(channelId: Int32)
     func navigateToLegacyDimmerSettings(channelId: Int32)
 
 }
@@ -63,10 +62,6 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
         navigateTo(DetailViewController(detailViewType: detailType, channelBase: channelBase))
-    }
-    
-    func navigateToCounterPhoto(channelId: Int32) {
-        navigateTo(CounterPhotoFeature.ViewController.create(channelId: channelId))
     }
     
     func navigateToLegacyDimmerSettings(channelId: Int32) {

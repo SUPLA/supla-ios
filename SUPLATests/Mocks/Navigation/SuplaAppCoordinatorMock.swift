@@ -34,9 +34,6 @@ final class SuplaAppCoordinatorMock: SuplaAppCoordinator {
     func navigateToLegacyDetail(_ detailType: LegacyDetailType, channelBase: SAChannelBase) {
     }
     
-    func navigateToCounterPhoto(channelId: Int32) {
-    }
-    
     func navigateToLegacyDimmerSettings(channelId: Int32) {
     }
     
