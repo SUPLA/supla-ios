@@ -22,4 +22,14 @@ struct ItemBundle: Equatable, Hashable {
     let deviceId: Int32
     let subjectType: SubjectType
     let function: Int32
+
+    static func from(remoteId: Int32) -> ItemBundle {
+        ItemBundle(
+            remoteId: remoteId,
+            profileId: 0,
+            deviceId: 0,
+            subjectType: .channel,
+            function: 0
+        )
+    }
 }

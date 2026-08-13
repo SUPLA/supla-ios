@@ -97,6 +97,7 @@ extension SuplaCore {
         override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
         
         var navigationBarHidden: Bool { false }
+        var navigationBarMaintainedByParent: Bool = false
         var toolbarFont: UIFont { .suplaSubtitleFont }
         
         override func viewDidLoad() {
@@ -117,7 +118,7 @@ extension SuplaCore {
         override func viewWillLayoutSubviews() {
             super.viewWillLayoutSubviews()
             
-            if (!navigationBarHidden) {
+            if (!navigationBarHidden && !navigationBarMaintainedByParent) {
                 setupToolbar(toolbarFont: toolbarFont)
             }
         }

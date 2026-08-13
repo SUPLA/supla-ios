@@ -25,8 +25,8 @@ extension DimmerCctDetailFeature {
     class ViewModel: DimmerDetailBase.ViewModel, ViewDelegate {
         @Singleton private var insertColorListItemUseCase: InsertColorListItem.UseCase
         
-        init() {
-            super.init(state: DimmerDetailBase.ViewState())
+        init(itemBundle: ItemBundle) {
+            super.init(state: DimmerDetailBase.ViewState(), itemBundle: itemBundle)
         }
         
         override func onSavedColorSelected(color: SavedColor) {

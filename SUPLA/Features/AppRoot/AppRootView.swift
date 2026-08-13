@@ -90,12 +90,14 @@ private extension AppRootView {
             case .carPlayAdd: CarPlayAddFeature.Screen()
             case .carPlayEdit(let id): CarPlayAddFeature.Screen(id: id)
             case .developerOptions: DeveloperInfoFeature.Screen()
+            case .legacyDimmerSettings(let channelId): LegacyDimmerSettingsScreen(channelId: channelId)
             case .callNfcAction(let url): CallNfcActionFeature.Screen(url: url)
             case .nfcTagsList: NfcTagsListFeature.Screen()
             case .editNfcTag(let uuid, let readOnly): EditTagFeature.Screen(uuid: uuid, readOnly: readOnly)
             case .nfcTagDetail(let uuid): NfcTagDetailFeature.Screen(uuid: uuid)
-
-            default: EmptyView()
+            case .legacyDetail(let type, let channelRemoteId):
+                DetailViewControllerScreen(itemBundle: ItemBundle.from(remoteId: channelRemoteId), detailViewType: type)
+            case .counterPhoto(let item): CounterPhotoFeature.Screen(itemBundle: item)
             }
         }
 

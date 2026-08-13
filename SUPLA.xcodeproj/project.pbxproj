@@ -228,16 +228,12 @@
 		A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB92BCE5C520081B6B1 /* BaseWindowVC.swift */; };
 		A5074BC02BCE61C20081B6B1 /* RoofWindowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BBF2BCE61C20081B6B1 /* RoofWindowVM.swift */; };
 		A5074BC22BCE61E60081B6B1 /* RoofWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC12BCE61E60081B6B1 /* RoofWindowVC.swift */; };
-		A5F219012F42910000000001 /* RoofWindowFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219002F42910000000000 /* RoofWindowFeature.swift */; };
-		A5F219032F42910000000003 /* RoofWindowScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219022F42910000000002 /* RoofWindowScreen.swift */; };
 		A5074BC52BCE66070081B6B1 /* DefaultWindowDimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */; };
 		A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC62BCE66930081B6B1 /* BaseWallWindowDimens.swift */; };
 		A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC82BCE682C0081B6B1 /* BaseWallWindowView.swift */; };
 		A5074BCC2BCE6F690081B6B1 /* FacadeBlindsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BCB2BCE6F690081B6B1 /* FacadeBlindsView.swift */; };
 		A5074BCF2BCE72250081B6B1 /* FacadeBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BCE2BCE72250081B6B1 /* FacadeBlindsVM.swift */; };
 		A5074BD12BCE72400081B6B1 /* FacadeBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BD02BCE72400081B6B1 /* FacadeBlindsVC.swift */; };
-		A5F219052F42910000000005 /* FacadeBlindsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219042F42910000000004 /* FacadeBlindsFeature.swift */; };
-		A5F219072F42910000000007 /* FacadeBlindsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219062F42910000000006 /* FacadeBlindsScreen.swift */; };
 		A5074BD32BCE98760081B6B1 /* SlatTiltSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BD22BCE98760081B6B1 /* SlatTiltSlider.swift */; };
 		A5074BD62BCE9DD40081B6B1 /* ShadowValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BD52BCE9DD40081B6B1 /* ShadowValues.swift */; };
 		A5074BDB2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BDA2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift */; };
@@ -271,16 +267,12 @@
 		A50B5D262BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D252BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift */; };
 		A50B5D292BF49F2700918D18 /* TerraceAwningVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D282BF49F2700918D18 /* TerraceAwningVM.swift */; };
 		A50B5D2B2BF49F3000918D18 /* TerraceAwningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D2A2BF49F3000918D18 /* TerraceAwningVC.swift */; };
-		A5F219092F42910000000009 /* TerraceAwningFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219082F42910000000008 /* TerraceAwningFeature.swift */; };
-		A5F2190B2F4291000000000B /* TerraceAwningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2190A2F4291000000000A /* TerraceAwningScreen.swift */; };
 		A50B5D2D2BF49F7700918D18 /* TerraceAwningWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */; };
 		A50B5D302BF4A10200918D18 /* TerraceAwningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D2F2BF4A10200918D18 /* TerraceAwningView.swift */; };
 		A50B5D332BF54FF300918D18 /* TerraceAwningVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D322BF54FF300918D18 /* TerraceAwningVMTests.swift */; };
 		A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D352BFB6CD100918D18 /* ProjectorScreenVM.swift */; };
 		A50B5D382BFB6D1400918D18 /* ProjectorScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */; };
 		A50B5D3A2BFB6E3500918D18 /* ProjectorScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D392BFB6E3500918D18 /* ProjectorScreenVC.swift */; };
-		A5F2190D2F4291000000000D /* ProjectorScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2190C2F4291000000000C /* ProjectorScreenFeature.swift */; };
-		A5F2190F2F4291000000000F /* ProjectorScreenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2190E2F4291000000000E /* ProjectorScreenScreen.swift */; };
 		A50B5D3D2BFB6EA200918D18 /* ProjectorScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D3C2BFB6EA200918D18 /* ProjectorScreenView.swift */; };
 		A50B5D3F2BFC8BEA00918D18 /* ProjectorScreenColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D3E2BFC8BEA00918D18 /* ProjectorScreenColors.swift */; };
 		A50B5D412BFC914000918D18 /* TerraceAwningColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D402BFC914000918D18 /* TerraceAwningColors.swift */; };
@@ -308,8 +300,6 @@
 		A50E5D702BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D6F2BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift */; };
 		A50E5D732BFF543500303BAE /* CurtainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D722BFF543500303BAE /* CurtainVM.swift */; };
 		A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D742BFF543D00303BAE /* CurtainVC.swift */; };
-		A5F219112F42910000000011 /* CurtainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219102F42910000000010 /* CurtainFeature.swift */; };
-		A5F219132F42910000000013 /* CurtainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219122F42910000000012 /* CurtainScreen.swift */; };
 		A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D762BFF548200303BAE /* CurtainWindowState.swift */; };
 		A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D792BFF552C00303BAE /* CurtainView.swift */; };
 		A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */; };
@@ -323,7 +313,6 @@
 		A51474662EA66C230044DEF2 /* RelatedChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */; };
 		A51474682EA771740044DEF2 /* GateGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474672EA771700044DEF2 /* GateGeneralView.swift */; };
 		A514746A2EA7741B0044DEF2 /* GateGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474692EA774180044DEF2 /* GateGeneralVM.swift */; };
-		A5F21B152F42B10000000015 /* GateGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B142F42B10000000014 /* GateGeneralScreen.swift */; };
 		A514746E2EA7AE620044DEF2 /* OrientationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */; };
 		A51474702EA8DA080044DEF2 /* ReadGroupWithChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */; };
 		A517DFED2CFD9C2300D6148C /* SAProfileServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */; };
@@ -339,15 +328,11 @@
 		A519CCB22D38559100F858A4 /* ImpulseCounterGeneralStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */; };
 		A519CCB52D38577500F858A4 /* SummarizedMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */; };
 		A519CCB92D38E3D800F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */; };
-		A5F21B072F42B10000000007 /* ImpulseCounterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */; };
 		A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* index_7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */; };
 		A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */; };
 		A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */; };
-		A5F210022F42010000000002 /* ThermostatGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */; };
-		A5F210032F42010000000003 /* ThermostatGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */; };
 		A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */; };
-		A5F212012F42210000000001 /* ThermostatScheduleDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */; };
 		A51BE8FC2AA7300A00718F2F /* ThermometerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */; };
 		A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */; };
 		A51BE9032AA746C100718F2F /* UIRoundedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9022AA746C100718F2F /* UIRoundedControlButtonView.swift */; };
@@ -388,7 +373,6 @@
 		A52BFED42B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */; };
 		A52BFED72B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */; };
 		A52BFEDC2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */; };
-		A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */; };
 		A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */; };
 		A52BFEE82B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */; };
 		A52BFEEA2B17277C00A2F64C /* ClientUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */; };
@@ -424,8 +408,6 @@
 		A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */; };
 		A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */; };
 		A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */; };
-		A5F200022F42000000000002 /* SwitchTimerDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */; };
-		A5F200032F42000000000003 /* SwitchTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */; };
 		A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */; };
 		A530EE062A5575D700F8DAEE /* DeviceStateUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE052A5575D700F8DAEE /* DeviceStateUIView.swift */; };
 		A530EE082A557EE400F8DAEE /* UICircleControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE072A557EE400F8DAEE /* UICircleControlButtonView.swift */; };
@@ -473,7 +455,6 @@
 		A539C2732D6778BA00D9DD47 /* ValveGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2722D6778B100D9DD47 /* ValveGeneralViewState.swift */; };
 		A539C2752D67795C00D9DD47 /* ValveGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2742D67795100D9DD47 /* ValveGeneralView.swift */; };
 		A539C2772D67798E00D9DD47 /* ValveGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2762D67798B00D9DD47 /* ValveGeneralVM.swift */; };
-		A5F21B112F42B10000000011 /* ValveGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */; };
 		A539C27C2D686A7C00D9DD47 /* ListItemIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27B2D686A7800D9DD47 /* ListItemIcon.swift */; };
 		A539C27E2D686AB400D9DD47 /* ListItemInfoIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */; };
 		A539C2802D686AD300D9DD47 /* ListItemIssueIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */; };
@@ -491,8 +472,6 @@
 		A540581A2CE34B5200EC98C8 /* EditTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54058192CE34B4500EC98C8 /* EditTextCell.swift */; };
 		A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */; };
 		A54149302B63059200B44BD6 /* GpmHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541492F2B63059200B44BD6 /* GpmHistoryDetailVC.swift */; };
-		A5F217012F42710000000001 /* GpmHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217002F42710000000000 /* GpmHistoryDetailFeature.swift */; };
-		A5F217032F42710000000003 /* GpmHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217022F42710000000002 /* GpmHistoryDetailScreen.swift */; };
 		A54149332B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149322B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift */; };
 		A54149352B63B91B00B44BD6 /* GeneralPurposeMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149342B63B91B00B44BD6 /* GeneralPurposeMeasurement.swift */; };
 		A54149372B63BC0500B44BD6 /* DownloadGeneralPurposeMeasurementLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54149362B63BC0500B44BD6 /* DownloadGeneralPurposeMeasurementLogUseCase.swift */; };
@@ -619,8 +598,6 @@
 		A558E6BF2FD03CB600FE599E /* RgbAndDimmerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */; };
 		A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */; };
 		A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D762BA84DCE00C540D4 /* RollerShutterVC.swift */; };
-		A5F218012F42810000000001 /* RollerShutterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F218002F42810000000000 /* RollerShutterFeature.swift */; };
-		A5F218032F42810000000003 /* RollerShutterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F218022F42810000000002 /* RollerShutterScreen.swift */; };
 		A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D782BA850B800C540D4 /* SAChannelGroup+Ext.swift */; };
 		A55A8D7D2BA9A15200C540D4 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */; };
 		A55A8D802BA9AD8000C540D4 /* RollerShutterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D7F2BA9AD8000C540D4 /* RollerShutterView.swift */; };
@@ -679,10 +656,6 @@
 		A55E7B772E8EBCA200DFA94D /* BrandingConfiguration+ProjectorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */; };
 		A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */; };
 		A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */; };
-		A5F214022F42410000000002 /* ThermostatHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */; };
-		A5F214032F42410000000003 /* ThermostatHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */; };
-		A5F216022F42610000000002 /* HeatpolHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */; };
-		A5F216032F42610000000003 /* HeatpolHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */; };
 		A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorView.swift */; };
 		A56233DA2AB061EB001CB948 /* SACustomDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D92AB061EB001CB948 /* SACustomDialogVC.swift */; };
 		A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233E22AB1903C001CB948 /* Float+Ext.swift */; };
@@ -708,11 +681,9 @@
 		A56364272EE1736F00A702C0 /* Color+HSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364262EE1736400A702C0 /* Color+HSV.swift */; };
 		A56364292EE190FD00A702C0 /* RgbDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364282EE190F800A702C0 /* RgbDetailView.swift */; };
 		A563642B2EE191D000A702C0 /* RgbDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563642A2EE191C800A702C0 /* RgbDetailVM.swift */; };
-		A563642D2EE192A800A702C0 /* RgbDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563642C2EE192A300A702C0 /* RgbDetailVC.swift */; };
 		A563642F2EE1935C00A702C0 /* DimmerDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563642E2EE1935700A702C0 /* DimmerDetailFeature.swift */; };
 		A56364332EE1A0D900A702C0 /* DimmerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364322EE1A0D300A702C0 /* DimmerDetailView.swift */; };
 		A56364352EE1A14900A702C0 /* DimmerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364342EE1A14500A702C0 /* DimmerDetailVM.swift */; };
-		A56364372EE1A21700A702C0 /* DimmerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364362EE1A21200A702C0 /* DimmerDetailVC.swift */; };
 		A56364392EE1D67800A702C0 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364382EE1D67400A702C0 /* ColorPickerView.swift */; };
 		A563643B2EE2F0C600A702C0 /* LinearColorSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563643A2EE2F0BF00A702C0 /* LinearColorSelector.swift */; };
 		A563643D2EE2F86900A702C0 /* ColorSelectorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A563643C2EE2F86600A702C0 /* ColorSelectorPoint.swift */; };
@@ -862,15 +833,11 @@
 		A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */; };
 		A58A63072C07163E00A9D02D /* VerticalBlindWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */; };
 		A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */; };
-		A5F219152F42910000000015 /* VerticalBlindsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219142F42910000000014 /* VerticalBlindsFeature.swift */; };
-		A5F219172F42910000000017 /* VerticalBlindsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219162F42910000000016 /* VerticalBlindsScreen.swift */; };
 		A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630D2C071B0600A9D02D /* VerticalBlindsView.swift */; };
 		A58A63132C09B56000A9D02D /* VerticalBlindsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63122C09B56000A9D02D /* VerticalBlindsVMTests.swift */; };
 		A58A63172C09BFAF00A9D02D /* GarageDoorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63162C09BFAF00A9D02D /* GarageDoorVM.swift */; };
 		A58A63192C09C03500A9D02D /* GarageDoorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63182C09C03500A9D02D /* GarageDoorState.swift */; };
 		A58A631B2C09C09100A9D02D /* GarageDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631A2C09C09100A9D02D /* GarageDoorVC.swift */; };
-		A5F219192F42910000000019 /* GarageDoorFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219182F42910000000018 /* GarageDoorFeature.swift */; };
-		A5F2191B2F4291000000001B /* GarageDoorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2191A2F4291000000001A /* GarageDoorScreen.swift */; };
 		A58A631D2C09C0D600A9D02D /* GarageDoorColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */; };
 		A58A631F2C09C0F200A9D02D /* GarageDoorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */; };
 		A58A63222C09E6C400A9D02D /* GarageDoorVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */; };
@@ -905,7 +872,6 @@
 		A594ADC72C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADC62C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift */; };
 		A594ADC92C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADC82C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift */; };
 		A594ADCC2C9C3FF400780EF3 /* ThermostatSlavesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */; };
-		A5F211012F42110000000001 /* ThermostatSlavesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */; };
 		A594ADD02C9C402B00780EF3 /* ThermostatSlavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */; };
 		A594ADD22C9C439F00780EF3 /* ThermostatSlavesViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */; };
 		A594ADD42C9C451400780EF3 /* ThermostatSlavesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */; };
@@ -981,6 +947,7 @@
 		A59CCBA43018C41A00BDDEC0 /* SuplaCore+ViewModelHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCBA33018C40A00BDDEC0 /* SuplaCore+ViewModelHost.swift */; };
 		A59CCBA63018D58A00BDDEC0 /* CredentialsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCBA53018D58500BDDEC0 /* CredentialsDialog.swift */; };
 		A59CCBA83018EFB100BDDEC0 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCBA73018EFA700BDDEC0 /* AuthorizationCoordinator.swift */; };
+		A59CCBA93018F40000BDDEC0 /* AuthorizationCoordinatorLegacyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCBAA3018F40000BDDEC0 /* AuthorizationCoordinatorLegacyWrapper.swift */; };
 		A59CCE5E301B4C9100BDDEC0 /* AppRootVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCE60301B4C9100BDDEC0 /* AppRootVM.swift */; };
 		A59CCE5F301B4C9100BDDEC0 /* AppRootViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCE61301B4C9100BDDEC0 /* AppRootViewState.swift */; };
 		A59CCE60301B4D9500BDDEC0 /* MainDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59CCE5E301B4D9500BDDEC0 /* MainDrawer.swift */; };
@@ -1026,6 +993,7 @@
 		A5A23C2F2ABDAF8E00233542 /* ValuesFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C2E2ABDAF8E00233542 /* ValuesFormatterTests.swift */; };
 		A5A23C312ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C302ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift */; };
 		A5A23C342ABE1B8700233542 /* SAChannelRelation+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C332ABE1B8700233542 /* SAChannelRelation+Mock.swift */; };
+		A5A2C724302DC954004F6721 /* DetailViewControllerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A2C723302DC94F004F6721 /* DetailViewControllerScreen.swift */; };
 		A5A324A72E7C255800E60812 /* KotlinFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A324A62E7C255100E60812 /* KotlinFloat.swift */; };
 		A5A325192E81316B00E60812 /* ValueFormat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325182E81316000E60812 /* ValueFormat+Ext.swift */; };
 		A5A3251B2E8154AE00E60812 /* HomePlusThermostatValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3251A2E8154A400E60812 /* HomePlusThermostatValueProvider.swift */; };
@@ -1123,7 +1091,6 @@
 		A5B5937B2F1793140054E6F9 /* DimmerCctDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5937A2F1793080054E6F9 /* DimmerCctDetailFeature.swift */; };
 		A5B5937D2F17932D0054E6F9 /* DimmerCctDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5937C2F1793270054E6F9 /* DimmerCctDetailView.swift */; };
 		A5B5937F2F1793A60054E6F9 /* DimmerCctDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B5937E2F17939E0054E6F9 /* DimmerCctDetailVM.swift */; };
-		A5B593812F1793D40054E6F9 /* DimmerCctDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593802F1793CB0054E6F9 /* DimmerCctDetailVC.swift */; };
 		A5B593832F179EE50054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593822F179ED70054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift */; };
 		A5B593852F179F3F0054E6F9 /* DimmerCctGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B593842F179F360054E6F9 /* DimmerCctGroupActivePercentageProvider.swift */; };
 		A5B8A4782CB869E8002FA7B2 /* ElectricityChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */; };
@@ -1184,9 +1151,6 @@
 		A5C5F6F12D93EC3300E303B8 /* SuplaCoreDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F02D93EC2F00E303B8 /* SuplaCoreDialogView.swift */; };
 		A5C5F6F32D93ED2900E303B8 /* SuplaCoreAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F22D93ED2500E303B8 /* SuplaCoreAlertDialog.swift */; };
 		A5C5F6F52D940B4B00E303B8 /* CaptionChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F42D940B4400E303B8 /* CaptionChangeViewModel.swift */; };
-		A5F100042F41000000000004 /* LightSourceLifespanSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F100012F41000000000001 /* LightSourceLifespanSettingsFeature.swift */; };
-		A5F100052F41000000000005 /* LightSourceLifespanSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F100022F41000000000002 /* LightSourceLifespanSettingsViewModel.swift */; };
-		A5F100062F41000000000006 /* LightSourceLifespanSettingsDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F100032F41000000000003 /* LightSourceLifespanSettingsDialogView.swift */; };
 		A5C5F6F72D9426DF00E303B8 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F62D9426DC00E303B8 /* GroupListView.swift */; };
 		A5C5F6F92D9428C600E303B8 /* SceneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6F82D9428C100E303B8 /* SceneListView.swift */; };
 		A5C5F6FB2D94294600E303B8 /* ReadSceneByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */; };
@@ -1251,7 +1215,6 @@
 		A5D7127A2C3E8F8500A8EF52 /* InitializationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712792C3E8F8500A8EF52 /* InitializationUseCaseTests.swift */; };
 		A5D712812C3EA2E300A8EF52 /* LockScreenVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712802C3EA2E300A8EF52 /* LockScreenVMTests.swift */; };
 		A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */; };
-		A5F21A012F42A10000000001 /* AuthorizationCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21A002F42A10000000000 /* AuthorizationCoordinatorMock.swift */; };
 		A5D712882C3EB24900A8EF52 /* PinSetupVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */; };
 		A5D7128B2C3EB58D00A8EF52 /* StatusVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128A2C3EB58D00A8EF52 /* StatusVMTests.swift */; };
 		A5D7128E2C4107AF00A8EF52 /* AboutFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */; };
@@ -1264,8 +1227,6 @@
 		A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837C72AF0F154002A420D /* PullToRefreshView.swift */; };
 		A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D12AF1061C002A420D /* ThermometerHistoryDetailVM.swift */; };
 		A5D837D42AF1062B002A420D /* ThermometerHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */; };
-		A5F217052F42710000000005 /* ThermometerHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217042F42710000000004 /* ThermometerHistoryDetailFeature.swift */; };
-		A5F217072F42710000000007 /* ThermometerHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217062F42710000000006 /* ThermometerHistoryDetailScreen.swift */; };
 		A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */; };
 		A5D837DB2AF106A8002A420D /* BaseHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */; };
 		A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */; };
@@ -1284,7 +1245,6 @@
 		A5DDF9262D79A7710056B539 /* ContainerGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF9252D79A7690056B539 /* ContainerGeneralViewState.swift */; };
 		A5DDF9282D79A7CF0056B539 /* ContainerGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF9272D79A7C90056B539 /* ContainerGeneralView.swift */; };
 		A5DDF92A2D79A8070056B539 /* ContainerGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF9292D79A8020056B539 /* ContainerGeneralVM.swift */; };
-		A5F21B132F42B10000000013 /* ContainerGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */; };
 		A5DDF92E2D79CA550056B539 /* ContainerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DDF92D2D79CA4F0056B539 /* ContainerIconView.swift */; };
 		A5DEE9332E9E66A7000811C7 /* ProfilesListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9322E9E669E000811C7 /* ProfilesListVM.swift */; };
 		A5DEE9372E9E7A9F000811C7 /* UpdateProfilesOrderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9362E9E7A7D000811C7 /* UpdateProfilesOrderUseCase.swift */; };
@@ -1340,14 +1300,10 @@
 		A5E0DF882CECA1E700362451 /* CounterPhotoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */; };
 		A5E0DF8A2CECA2FA00362451 /* CounterPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */; };
 		A5E0DF8C2CECAB9800362451 /* CounterPhotoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */; };
-		A5F21B0D2F42B1000000000D /* CounterPhotoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */; };
 		A5E0DF902CECC04D00362451 /* OcrImageNamingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */; };
 		A5E100012F41000000000001 /* DetailBaseFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000007 /* DetailBaseFeature.swift */; };
 		A5E100012F41000000000002 /* BaseDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000008 /* BaseDetailScreen.swift */; };
 		A5E100012F41000000000003 /* DetailTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F41000000000009 /* DetailTabBar.swift */; };
-		A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */; };
-		A5F216062F42610000000006 /* HeatpolGeneralDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216042F42610000000004 /* HeatpolGeneralDetailFeature.swift */; };
-		A5F216072F42610000000007 /* HeatpolGeneralDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216052F42610000000005 /* HeatpolGeneralDetailScreen.swift */; };
 		A5E100012F41000000000004 /* StandardDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F4100000000000A /* StandardDetailScreen.swift */; };
 		A5E100012F41000000000005 /* ImpulseCounterDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F4100000000000B /* ImpulseCounterDetailScreen.swift */; };
 		A5E100012F41000000000006 /* RgbAndDimmerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E100012F4100000000000C /* RgbAndDimmerDetailScreen.swift */; };
@@ -1357,8 +1313,6 @@
 		A5E160A72D3108F3003A7C71 /* ContainerValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */; };
 		A5E160AF2D313C16003A7C71 /* HumidityHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160AE2D313C00003A7C71 /* HumidityHistoryDetailVM.swift */; };
 		A5E160B12D31415D003A7C71 /* HumidityHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B02D314153003A7C71 /* HumidityHistoryDetailVC.swift */; };
-		A5F217092F42710000000009 /* HumidityHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217082F42710000000008 /* HumidityHistoryDetailFeature.swift */; };
-		A5F2170B2F4271000000000B /* HumidityHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2170A2F4271000000000A /* HumidityHistoryDetailScreen.swift */; };
 		A5E160B32D31532A003A7C71 /* HumidityMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */; };
 		A5E160B62D31555B003A7C71 /* HumidityMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */; };
 		A5E160B82D3159AD003A7C71 /* DownloadHumidityLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160B72D3159A5003A7C71 /* DownloadHumidityLogUseCase.swift */; };
@@ -1366,8 +1320,6 @@
 		A5E160BC2D315D40003A7C71 /* SAHumidityMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */; };
 		A5E160BF2D354698003A7C71 /* ImpulseCounterHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */; };
 		A5E160C12D354974003A7C71 /* ImpulseCounterHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */; };
-		A5F21B092F42B10000000009 /* ImpulseCounterHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */; };
-		A5F21B0B2F42B1000000000B /* ImpulseCounterHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */; };
 		A5E160C32D35B100003A7C71 /* DownloadImpulseCounterLogUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */; };
 		A5E160C52D35B1B3003A7C71 /* ImpulseCounterMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */; };
 		A5E160C72D365793003A7C71 /* ImpulseCounterMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */; };
@@ -1470,8 +1422,6 @@
 		A5EDE2242CA56C5100BEDAE4 /* SuplaElectricityMeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */; };
 		A5EDE2262CA56F4A00BEDAE4 /* ElectricityMeterGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */; };
 		A5EDE2282CA5701C00BEDAE4 /* ElectricityMeterGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */; };
-		A5F21B012F42B10000000001 /* ElectricityMeterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */; };
-		A5F21B032F42B10000000003 /* ElectricityMeterHistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */; };
 		A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */; };
 		A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */; };
 		A5EDE2352CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */; };
@@ -1479,7 +1429,6 @@
 		A5EDE23E2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */; };
 		A5EDE23F2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */; };
 		A5EDE2402CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE2382CA574A700BEDAE4 /* ElectricityMeterSettingsVM.swift */; };
-		A5F21B052F42B10000000005 /* ElectricityMeterSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */; };
 		A5EE0C812F7A672600D7B14F /* ScheduleProgramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C802F7A672100D7B14F /* ScheduleProgramButton.swift */; };
 		A5EE0C842F7A8B8100D7B14F /* ScheduleTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C832F7A8B7A00D7B14F /* ScheduleTable.swift */; };
 		A5EE0C862F7AA6B300D7B14F /* ScheduleDetailBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C852F7AA6AD00D7B14F /* ScheduleDetailBox.swift */; };
@@ -1488,6 +1437,9 @@
 		A5EE0C8C2F7D288600D7B14F /* AccessoryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EE0C8B2F7D288000D7B14F /* AccessoryTextField.swift */; };
 		A5EF57D42F5F09A600513D3F /* LogoWithSentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF57D32F5F099E00513D3F /* LogoWithSentence.swift */; };
 		A5EF57D62F5F104600513D3F /* DotsLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF57D52F5F104200513D3F /* DotsLoadingIndicator.swift */; };
+		A5F100042F41000000000004 /* LightSourceLifespanSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F100012F41000000000001 /* LightSourceLifespanSettingsFeature.swift */; };
+		A5F100052F41000000000005 /* LightSourceLifespanSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F100022F41000000000002 /* LightSourceLifespanSettingsViewModel.swift */; };
+		A5F100062F41000000000006 /* LightSourceLifespanSettingsDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F100032F41000000000003 /* LightSourceLifespanSettingsDialogView.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
@@ -1495,6 +1447,56 @@
 		A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */; };
 		A5F14B7E29DEE4D800682FA6 /* AccountRemovalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7F29DEE4D800682FA6 /* AccountRemovalScreen.swift */; };
 		A5F14B8029DEE4D800682FA6 /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B8129DEE4D800682FA6 /* CreateAccountScreen.swift */; };
+		A5F200022F42000000000002 /* SwitchTimerDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */; };
+		A5F200032F42000000000003 /* SwitchTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */; };
+		A5F210022F42010000000002 /* ThermostatGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */; };
+		A5F210032F42010000000003 /* ThermostatGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */; };
+		A5F211012F42110000000001 /* ThermostatSlavesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */; };
+		A5F212012F42210000000001 /* ThermostatScheduleDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */; };
+		A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */; };
+		A5F214022F42410000000002 /* ThermostatHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */; };
+		A5F214032F42410000000003 /* ThermostatHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */; };
+		A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */; };
+		A5F216022F42610000000002 /* HeatpolHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */; };
+		A5F216032F42610000000003 /* HeatpolHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */; };
+		A5F217012F42710000000001 /* GpmHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217002F42710000000000 /* GpmHistoryDetailFeature.swift */; };
+		A5F217032F42710000000003 /* GpmHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217022F42710000000002 /* GpmHistoryDetailScreen.swift */; };
+		A5F217052F42710000000005 /* ThermometerHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217042F42710000000004 /* ThermometerHistoryDetailFeature.swift */; };
+		A5F217072F42710000000007 /* ThermometerHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217062F42710000000006 /* ThermometerHistoryDetailScreen.swift */; };
+		A5F217092F42710000000009 /* HumidityHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217082F42710000000008 /* HumidityHistoryDetailFeature.swift */; };
+		A5F2170B2F4271000000000B /* HumidityHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2170A2F4271000000000A /* HumidityHistoryDetailScreen.swift */; };
+		A5F218012F42810000000001 /* RollerShutterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F218002F42810000000000 /* RollerShutterFeature.swift */; };
+		A5F218032F42810000000003 /* RollerShutterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F218022F42810000000002 /* RollerShutterScreen.swift */; };
+		A5F219012F42910000000001 /* RoofWindowFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219002F42910000000000 /* RoofWindowFeature.swift */; };
+		A5F219032F42910000000003 /* RoofWindowScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219022F42910000000002 /* RoofWindowScreen.swift */; };
+		A5F219052F42910000000005 /* FacadeBlindsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219042F42910000000004 /* FacadeBlindsFeature.swift */; };
+		A5F219072F42910000000007 /* FacadeBlindsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219062F42910000000006 /* FacadeBlindsScreen.swift */; };
+		A5F219092F42910000000009 /* TerraceAwningFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219082F42910000000008 /* TerraceAwningFeature.swift */; };
+		A5F2190B2F4291000000000B /* TerraceAwningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2190A2F4291000000000A /* TerraceAwningScreen.swift */; };
+		A5F2190D2F4291000000000D /* ProjectorScreenFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2190C2F4291000000000C /* ProjectorScreenFeature.swift */; };
+		A5F2190F2F4291000000000F /* ProjectorScreenScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2190E2F4291000000000E /* ProjectorScreenScreen.swift */; };
+		A5F219112F42910000000011 /* CurtainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219102F42910000000010 /* CurtainFeature.swift */; };
+		A5F219132F42910000000013 /* CurtainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219122F42910000000012 /* CurtainScreen.swift */; };
+		A5F219152F42910000000015 /* VerticalBlindsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219142F42910000000014 /* VerticalBlindsFeature.swift */; };
+		A5F219172F42910000000017 /* VerticalBlindsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219162F42910000000016 /* VerticalBlindsScreen.swift */; };
+		A5F219192F42910000000019 /* GarageDoorFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219182F42910000000018 /* GarageDoorFeature.swift */; };
+		A5F2191B2F4291000000001B /* GarageDoorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2191A2F4291000000001A /* GarageDoorScreen.swift */; };
+		A5F21A012F42A10000000001 /* AuthorizationCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21A002F42A10000000000 /* AuthorizationCoordinatorMock.swift */; };
+		A5F21B012F42B10000000001 /* ElectricityMeterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */; };
+		A5F21B032F42B10000000003 /* ElectricityMeterHistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */; };
+		A5F21B052F42B10000000005 /* ElectricityMeterSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */; };
+		A5F21B072F42B10000000007 /* ImpulseCounterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */; };
+		A5F21B092F42B10000000009 /* ImpulseCounterHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */; };
+		A5F21B0B2F42B1000000000B /* ImpulseCounterHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */; };
+		A5F21B0D2F42B1000000000D /* CounterPhotoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */; };
+		A5F21B0F2F42B1000000000F /* ImpulseCounterSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */; };
+		A5F21B112F42B10000000011 /* ValveGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */; };
+		A5F21B132F42B10000000013 /* ContainerGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */; };
+		A5F21B152F42B10000000015 /* GateGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B142F42B10000000014 /* GateGeneralScreen.swift */; };
+		A5F21B172F42B10000000017 /* RecuperatorGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */; };
+		A5F21B192F42B10000000019 /* RgbDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B182F42B10000000018 /* RgbDetailScreen.swift */; };
+		A5F21B1B2F42B1000000001B /* DimmerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B1A2F42B1000000001A /* DimmerDetailScreen.swift */; };
+		A5F21B1D2F42B1000000001D /* DimmerCctDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B1C2F42B1000000001C /* DimmerCctDetailScreen.swift */; };
 		A5F237992DDB18EF00E090E9 /* UserIconsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */; };
 		A5F2379B2DDB21EF00E090E9 /* CarPlayItemRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */; };
 		A5F2379D2DDB24E000E090E9 /* UserIconsUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */; };
@@ -1583,6 +1585,8 @@
 		A5F5C3FA2C36963B0058E255 /* PinTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3F92C36963B0058E255 /* PinTextField.swift */; };
 		A5F5C3FC2C3698040058E255 /* PinSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F5C3FB2C3698040058E255 /* PinSetupScreen.swift */; };
 		A5F775BB2FD6B765001003C4 /* LegacyDimmerSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */; };
+		A5F775BC2FD6C100001003C4 /* LegacyDimmerSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F775BD2FD6C100001003C4 /* LegacyDimmerSettingsScreen.swift */; };
+		A5F775BE2FD6C400001003C4 /* AppRouterLegacyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F775BF2FD6C400001003C4 /* AppRouterLegacyWrapper.swift */; };
 		A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */; };
 		A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */; };
 		A5FC78F82F51C69A003BA6B8 /* ActionId.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FC78F72F51C68F003BA6B8 /* ActionId.swift */; };
@@ -1600,7 +1604,6 @@
 		A6B2D10A3E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */; };
 		A6B2D10C3E6A4C1800D1BEEF /* RecuperatorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */; };
 		A6B2D10D3E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */; };
-		A5F21B172F42B10000000017 /* RecuperatorGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE535357276927690077BFFB /* LocationOrderingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535358276927690077BFFB /* LocationOrderingScreen.swift */; };
@@ -1621,7 +1624,6 @@
 		B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */; };
 		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
 		B1DCC0000000000000000105 /* ImpulseCounterSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */; };
-		A5F21B0F2F42B1000000000F /* ImpulseCounterSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */; };
 		B1DCC0000000000000000201 /* TriggerLogHistoryDownloadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */; };
 		B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000003 /* EspRepositoryMock.swift */; };
 		B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */; };
@@ -2099,16 +2101,12 @@
 		A5074BB92BCE5C520081B6B1 /* BaseWindowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowVC.swift; sourceTree = "<group>"; };
 		A5074BBF2BCE61C20081B6B1 /* RoofWindowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowVM.swift; sourceTree = "<group>"; };
 		A5074BC12BCE61E60081B6B1 /* RoofWindowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowVC.swift; sourceTree = "<group>"; };
-		A5F219002F42910000000000 /* RoofWindowFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowFeature.swift; sourceTree = "<group>"; };
-		A5F219022F42910000000002 /* RoofWindowScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowScreen.swift; sourceTree = "<group>"; };
 		A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowDimens.swift; sourceTree = "<group>"; };
 		A5074BC62BCE66930081B6B1 /* BaseWallWindowDimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWallWindowDimens.swift; sourceTree = "<group>"; };
 		A5074BC82BCE682C0081B6B1 /* BaseWallWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWallWindowView.swift; sourceTree = "<group>"; };
 		A5074BCB2BCE6F690081B6B1 /* FacadeBlindsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsView.swift; sourceTree = "<group>"; };
 		A5074BCE2BCE72250081B6B1 /* FacadeBlindsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsVM.swift; sourceTree = "<group>"; };
 		A5074BD02BCE72400081B6B1 /* FacadeBlindsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsVC.swift; sourceTree = "<group>"; };
-		A5F219042F42910000000004 /* FacadeBlindsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsFeature.swift; sourceTree = "<group>"; };
-		A5F219062F42910000000006 /* FacadeBlindsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsScreen.swift; sourceTree = "<group>"; };
 		A5074BD22BCE98760081B6B1 /* SlatTiltSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlatTiltSlider.swift; sourceTree = "<group>"; };
 		A5074BD52BCE9DD40081B6B1 /* ShadowValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowValues.swift; sourceTree = "<group>"; };
 		A5074BDA2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelShadingSystemBaseConfig.swift; sourceTree = "<group>"; };
@@ -2141,16 +2139,12 @@
 		A50B5D252BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChannelMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
 		A50B5D282BF49F2700918D18 /* TerraceAwningVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningVM.swift; sourceTree = "<group>"; };
 		A50B5D2A2BF49F3000918D18 /* TerraceAwningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningVC.swift; sourceTree = "<group>"; };
-		A5F219082F42910000000008 /* TerraceAwningFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningFeature.swift; sourceTree = "<group>"; };
-		A5F2190A2F4291000000000A /* TerraceAwningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningScreen.swift; sourceTree = "<group>"; };
 		A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningWindowState.swift; sourceTree = "<group>"; };
 		A50B5D2F2BF4A10200918D18 /* TerraceAwningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningView.swift; sourceTree = "<group>"; };
 		A50B5D322BF54FF300918D18 /* TerraceAwningVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningVMTests.swift; sourceTree = "<group>"; };
 		A50B5D352BFB6CD100918D18 /* ProjectorScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenVM.swift; sourceTree = "<group>"; };
 		A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenState.swift; sourceTree = "<group>"; };
 		A50B5D392BFB6E3500918D18 /* ProjectorScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenVC.swift; sourceTree = "<group>"; };
-		A5F2190C2F4291000000000C /* ProjectorScreenFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenFeature.swift; sourceTree = "<group>"; };
-		A5F2190E2F4291000000000E /* ProjectorScreenScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenScreen.swift; sourceTree = "<group>"; };
 		A50B5D3C2BFB6EA200918D18 /* ProjectorScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenView.swift; sourceTree = "<group>"; };
 		A50B5D3E2BFC8BEA00918D18 /* ProjectorScreenColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenColors.swift; sourceTree = "<group>"; };
 		A50B5D402BFC914000918D18 /* TerraceAwningColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningColors.swift; sourceTree = "<group>"; };
@@ -2178,8 +2172,6 @@
 		A50E5D6F2BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
 		A50E5D722BFF543500303BAE /* CurtainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainVM.swift; sourceTree = "<group>"; };
 		A50E5D742BFF543D00303BAE /* CurtainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainVC.swift; sourceTree = "<group>"; };
-		A5F219102F42910000000010 /* CurtainFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainFeature.swift; sourceTree = "<group>"; };
-		A5F219122F42910000000012 /* CurtainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainScreen.swift; sourceTree = "<group>"; };
 		A50E5D762BFF548200303BAE /* CurtainWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainWindowState.swift; sourceTree = "<group>"; };
 		A50E5D792BFF552C00303BAE /* CurtainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainView.swift; sourceTree = "<group>"; };
 		A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
@@ -2193,7 +2185,6 @@
 		A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedChannelsView.swift; sourceTree = "<group>"; };
 		A51474672EA771700044DEF2 /* GateGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralView.swift; sourceTree = "<group>"; };
 		A51474692EA774180044DEF2 /* GateGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralVM.swift; sourceTree = "<group>"; };
-		A5F21B142F42B10000000014 /* GateGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralScreen.swift; sourceTree = "<group>"; };
 		A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObserver.swift; sourceTree = "<group>"; };
 		A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGroupWithChannelsUseCase.swift; sourceTree = "<group>"; };
 		A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAProfileServer+Mock.swift"; sourceTree = "<group>"; };
@@ -2207,17 +2198,11 @@
 		A519CCB12D38558800F858A4 /* ImpulseCounterGeneralStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralStateHandler.swift; sourceTree = "<group>"; };
 		A519CCB42D38576F00F858A4 /* SummarizedMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizedMeasurements.swift; sourceTree = "<group>"; };
 		A519CCB82D38E3C600F858A4 /* LoadImpulseCounterMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImpulseCounterMeasurementsUseCase.swift; sourceTree = "<group>"; };
-		A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralScreen.swift; sourceTree = "<group>"; };
 		A519CCC02D393EE300F858A4 /* index_7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVM.swift; sourceTree = "<group>"; };
 		A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVC.swift; sourceTree = "<group>"; };
-		A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralFeature.swift; sourceTree = "<group>"; };
-		A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralScreen.swift; sourceTree = "<group>"; };
-		A5F216042F42610000000004 /* HeatpolGeneralDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolGeneralDetailFeature.swift; sourceTree = "<group>"; };
-		A5F216052F42610000000005 /* HeatpolGeneralDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolGeneralDetailScreen.swift; sourceTree = "<group>"; };
 		A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVM.swift; sourceTree = "<group>"; };
-		A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatScheduleDetailScreen.swift; sourceTree = "<group>"; };
 		A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValues.swift; sourceTree = "<group>"; };
 		A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementValue.swift; sourceTree = "<group>"; };
 		A51BE9022AA746C100718F2F /* UIRoundedControlButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedControlButtonView.swift; sourceTree = "<group>"; };
@@ -2259,7 +2244,6 @@
 		A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfigEventsManagerMock.swift; sourceTree = "<group>"; };
 		A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaDeviceConfig+Mock.swift"; sourceTree = "<group>"; };
 		A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVM.swift; sourceTree = "<group>"; };
-		A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailScreen.swift; sourceTree = "<group>"; };
 		A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippleNumberSelectorView.swift; sourceTree = "<group>"; };
 		A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVMTests.swift; sourceTree = "<group>"; };
 		A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -2295,8 +2279,6 @@
 		A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVM.swift; sourceTree = "<group>"; };
 		A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVC.swift; sourceTree = "<group>"; };
-		A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailFeature.swift; sourceTree = "<group>"; };
-		A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailScreen.swift; sourceTree = "<group>"; };
 		A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelByRemoteIdUseCase.swift; sourceTree = "<group>"; };
 		A530EE052A5575D700F8DAEE /* DeviceStateUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateUIView.swift; sourceTree = "<group>"; };
 		A530EE072A557EE400F8DAEE /* UICircleControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircleControlButtonView.swift; sourceTree = "<group>"; };
@@ -2345,7 +2327,6 @@
 		A539C2722D6778B100D9DD47 /* ValveGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralViewState.swift; sourceTree = "<group>"; };
 		A539C2742D67795100D9DD47 /* ValveGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralView.swift; sourceTree = "<group>"; };
 		A539C2762D67798B00D9DD47 /* ValveGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralVM.swift; sourceTree = "<group>"; };
-		A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralScreen.swift; sourceTree = "<group>"; };
 		A539C27B2D686A7800D9DD47 /* ListItemIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIcon.swift; sourceTree = "<group>"; };
 		A539C27D2D686AAE00D9DD47 /* ListItemInfoIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemInfoIcon.swift; sourceTree = "<group>"; };
 		A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIssueIcon.swift; sourceTree = "<group>"; };
@@ -2363,8 +2344,6 @@
 		A54058192CE34B4500EC98C8 /* EditTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCell.swift; sourceTree = "<group>"; };
 		A541492D2B63055700B44BD6 /* GpmHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A541492F2B63059200B44BD6 /* GpmHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A5F217002F42710000000000 /* GpmHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailFeature.swift; sourceTree = "<group>"; };
-		A5F217022F42710000000002 /* GpmHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A54149322B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementItemRepository.swift; sourceTree = "<group>"; };
 		A54149342B63B91B00B44BD6 /* GeneralPurposeMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurement.swift; sourceTree = "<group>"; };
 		A54149362B63BC0500B44BD6 /* DownloadGeneralPurposeMeasurementLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadGeneralPurposeMeasurementLogUseCase.swift; sourceTree = "<group>"; };
@@ -2501,8 +2480,6 @@
 		A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbAndDimmerDetailVM.swift; sourceTree = "<group>"; };
 		A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVM.swift; sourceTree = "<group>"; };
 		A55A8D762BA84DCE00C540D4 /* RollerShutterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVC.swift; sourceTree = "<group>"; };
-		A5F218002F42810000000000 /* RollerShutterFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterFeature.swift; sourceTree = "<group>"; };
-		A5F218022F42810000000002 /* RollerShutterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterScreen.swift; sourceTree = "<group>"; };
 		A55A8D782BA850B800C540D4 /* SAChannelGroup+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelGroup+Ext.swift"; sourceTree = "<group>"; };
 		A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		A55A8D7F2BA9AD8000C540D4 /* RollerShutterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterView.swift; sourceTree = "<group>"; };
@@ -2559,10 +2536,6 @@
 		A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandingConfiguration+ProjectorScreen.swift"; sourceTree = "<group>"; };
 		A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailFeature.swift; sourceTree = "<group>"; };
-		A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailScreen.swift; sourceTree = "<group>"; };
-		A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailFeature.swift; sourceTree = "<group>"; };
-		A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A56233D72AB054EA001CB948 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		A56233D92AB061EB001CB948 /* SACustomDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACustomDialogVC.swift; sourceTree = "<group>"; };
 		A56233E22AB1903C001CB948 /* Float+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Ext.swift"; sourceTree = "<group>"; };
@@ -2597,11 +2570,9 @@
 		A56364262EE1736400A702C0 /* Color+HSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+HSV.swift"; sourceTree = "<group>"; };
 		A56364282EE190F800A702C0 /* RgbDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailView.swift; sourceTree = "<group>"; };
 		A563642A2EE191C800A702C0 /* RgbDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailVM.swift; sourceTree = "<group>"; };
-		A563642C2EE192A300A702C0 /* RgbDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailVC.swift; sourceTree = "<group>"; };
 		A563642E2EE1935700A702C0 /* DimmerDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailFeature.swift; sourceTree = "<group>"; };
 		A56364322EE1A0D300A702C0 /* DimmerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailView.swift; sourceTree = "<group>"; };
 		A56364342EE1A14500A702C0 /* DimmerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailVM.swift; sourceTree = "<group>"; };
-		A56364362EE1A21200A702C0 /* DimmerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailVC.swift; sourceTree = "<group>"; };
 		A56364382EE1D67400A702C0 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		A563643A2EE2F0BF00A702C0 /* LinearColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearColorSelector.swift; sourceTree = "<group>"; };
 		A563643C2EE2F86600A702C0 /* ColorSelectorPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectorPoint.swift; sourceTree = "<group>"; };
@@ -2756,15 +2727,11 @@
 		A58A63042C0715E500A9D02D /* VerticalBlindsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalBlindsVM.swift; path = SUPLA/Features/Details/WindowDetail/VerticalBlind/VerticalBlindsVM.swift; sourceTree = SOURCE_ROOT; };
 		A58A63062C07163E00A9D02D /* VerticalBlindWindowState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindWindowState.swift; sourceTree = "<group>"; };
 		A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVC.swift; sourceTree = "<group>"; };
-		A5F219142F42910000000014 /* VerticalBlindsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsFeature.swift; sourceTree = "<group>"; };
-		A5F219162F42910000000016 /* VerticalBlindsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsScreen.swift; sourceTree = "<group>"; };
 		A58A630D2C071B0600A9D02D /* VerticalBlindsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsView.swift; sourceTree = "<group>"; };
 		A58A63122C09B56000A9D02D /* VerticalBlindsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVMTests.swift; sourceTree = "<group>"; };
 		A58A63162C09BFAF00A9D02D /* GarageDoorVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVM.swift; sourceTree = "<group>"; };
 		A58A63182C09C03500A9D02D /* GarageDoorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorState.swift; sourceTree = "<group>"; };
 		A58A631A2C09C09100A9D02D /* GarageDoorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVC.swift; sourceTree = "<group>"; };
-		A5F219182F42910000000018 /* GarageDoorFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageDoorFeature.swift; sourceTree = "<group>"; };
-		A5F2191A2F4291000000001A /* GarageDoorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageDoorScreen.swift; sourceTree = "<group>"; };
 		A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorColors.swift; sourceTree = "<group>"; };
 		A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorView.swift; sourceTree = "<group>"; };
 		A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVMTests.swift; sourceTree = "<group>"; };
@@ -2799,7 +2766,6 @@
 		A594ADC62C9C2ACC00780EF3 /* ProvideChannelDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideChannelDetailTypeUseCase.swift; sourceTree = "<group>"; };
 		A594ADC82C9C2C6A00780EF3 /* ProvideGroupDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideGroupDetailTypeUseCase.swift; sourceTree = "<group>"; };
 		A594ADCB2C9C3FF400780EF3 /* ThermostatSlavesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesVM.swift; sourceTree = "<group>"; };
-		A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesScreen.swift; sourceTree = "<group>"; };
 		A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesView.swift; sourceTree = "<group>"; };
 		A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesViewState.swift; sourceTree = "<group>"; };
 		A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesFeature.swift; sourceTree = "<group>"; };
@@ -2874,6 +2840,7 @@
 		A59CCBA33018C40A00BDDEC0 /* SuplaCore+ViewModelHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaCore+ViewModelHost.swift"; sourceTree = "<group>"; };
 		A59CCBA53018D58500BDDEC0 /* CredentialsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsDialog.swift; sourceTree = "<group>"; };
 		A59CCBA73018EFA700BDDEC0 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
+		A59CCBAA3018F40000BDDEC0 /* AuthorizationCoordinatorLegacyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinatorLegacyWrapper.swift; sourceTree = "<group>"; };
 		A59CCE5E301B4D9500BDDEC0 /* MainDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDrawer.swift; sourceTree = "<group>"; };
 		A59CCE5F301B4D9500BDDEC0 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		A59CCE60301B4C9100BDDEC0 /* AppRootVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootVM.swift; sourceTree = "<group>"; };
@@ -2919,6 +2886,7 @@
 		A5A23C2E2ABDAF8E00233542 /* ValuesFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesFormatterTests.swift; sourceTree = "<group>"; };
 		A5A23C302ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelWithChildrenUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A23C332ABE1B8700233542 /* SAChannelRelation+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelRelation+Mock.swift"; sourceTree = "<group>"; };
+		A5A2C723302DC94F004F6721 /* DetailViewControllerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerScreen.swift; sourceTree = "<group>"; };
 		A5A324A62E7C255100E60812 /* KotlinFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinFloat.swift; sourceTree = "<group>"; };
 		A5A325182E81316000E60812 /* ValueFormat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueFormat+Ext.swift"; sourceTree = "<group>"; };
 		A5A3251A2E8154A400E60812 /* HomePlusThermostatValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueProvider.swift; sourceTree = "<group>"; };
@@ -3015,7 +2983,6 @@
 		A5B5937A2F1793080054E6F9 /* DimmerCctDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailFeature.swift; sourceTree = "<group>"; };
 		A5B5937C2F1793270054E6F9 /* DimmerCctDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailView.swift; sourceTree = "<group>"; };
 		A5B5937E2F17939E0054E6F9 /* DimmerCctDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailVM.swift; sourceTree = "<group>"; };
-		A5B593802F1793CB0054E6F9 /* DimmerCctDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailVC.swift; sourceTree = "<group>"; };
 		A5B593822F179ED70054E6F9 /* DimmerCctAndRgbGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctAndRgbGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
 		A5B593842F179F360054E6F9 /* DimmerCctGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
 		A5B8A4772CB869D8002FA7B2 /* ElectricityChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityChartMarkerView.swift; sourceTree = "<group>"; };
@@ -3077,9 +3044,6 @@
 		A5C5F6F02D93EC2F00E303B8 /* SuplaCoreDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreDialogView.swift; sourceTree = "<group>"; };
 		A5C5F6F22D93ED2500E303B8 /* SuplaCoreAlertDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCoreAlertDialog.swift; sourceTree = "<group>"; };
 		A5C5F6F42D940B4400E303B8 /* CaptionChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeViewModel.swift; sourceTree = "<group>"; };
-		A5F100012F41000000000001 /* LightSourceLifespanSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSourceLifespanSettingsFeature.swift; sourceTree = "<group>"; };
-		A5F100022F41000000000002 /* LightSourceLifespanSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSourceLifespanSettingsViewModel.swift; sourceTree = "<group>"; };
-		A5F100032F41000000000003 /* LightSourceLifespanSettingsDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSourceLifespanSettingsDialogView.swift; sourceTree = "<group>"; };
 		A5C5F6F62D9426DC00E303B8 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
 		A5C5F6F82D9428C100E303B8 /* SceneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListView.swift; sourceTree = "<group>"; };
 		A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSceneByRemoteIdUseCase.swift; sourceTree = "<group>"; };
@@ -3126,7 +3090,6 @@
 		A5D712792C3E8F8500A8EF52 /* InitializationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCaseTests.swift; sourceTree = "<group>"; };
 		A5D712802C3EA2E300A8EF52 /* LockScreenVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVMTests.swift; sourceTree = "<group>"; };
 		A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppCoordinatorMock.swift; sourceTree = "<group>"; };
-		A5F21A002F42A10000000000 /* AuthorizationCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinatorMock.swift; sourceTree = "<group>"; };
 		A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupVMTests.swift; sourceTree = "<group>"; };
 		A5D7128A2C3EB58D00A8EF52 /* StatusVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVMTests.swift; sourceTree = "<group>"; };
 		A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFeature.swift; sourceTree = "<group>"; };
@@ -3139,8 +3102,6 @@
 		A5D837C72AF0F154002A420D /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		A5D837D12AF1061C002A420D /* ThermometerHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A5F217042F42710000000004 /* ThermometerHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailFeature.swift; sourceTree = "<group>"; };
-		A5F217062F42710000000006 /* ThermometerHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryDetailVC.swift; sourceTree = "<group>"; };
 		A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsUseCase.swift; sourceTree = "<group>"; };
@@ -3160,7 +3121,6 @@
 		A5DDF9252D79A7690056B539 /* ContainerGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralViewState.swift; sourceTree = "<group>"; };
 		A5DDF9272D79A7C90056B539 /* ContainerGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralView.swift; sourceTree = "<group>"; };
 		A5DDF9292D79A8020056B539 /* ContainerGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralVM.swift; sourceTree = "<group>"; };
-		A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralScreen.swift; sourceTree = "<group>"; };
 		A5DDF92D2D79CA4F0056B539 /* ContainerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerIconView.swift; sourceTree = "<group>"; };
 		A5DEE9322E9E669E000811C7 /* ProfilesListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListVM.swift; sourceTree = "<group>"; };
 		A5DEE9362E9E7A7D000811C7 /* UpdateProfilesOrderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfilesOrderUseCase.swift; sourceTree = "<group>"; };
@@ -3216,12 +3176,10 @@
 		A5E0DF872CECA1E300362451 /* CounterPhotoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoVM.swift; sourceTree = "<group>"; };
 		A5E0DF892CECA2F600362451 /* CounterPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoView.swift; sourceTree = "<group>"; };
 		A5E0DF8B2CECAB8D00362451 /* CounterPhotoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoViewState.swift; sourceTree = "<group>"; };
-		A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoScreen.swift; sourceTree = "<group>"; };
 		A5E0DF8F2CECC04C00362451 /* OcrImageNamingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrImageNamingProvider.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000007 /* DetailBaseFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBaseFeature.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000008 /* BaseDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDetailScreen.swift; sourceTree = "<group>"; };
 		A5E100012F41000000000009 /* DetailTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTabBar.swift; sourceTree = "<group>"; };
-		A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopBarCoordinator.swift; sourceTree = "<group>"; };
 		A5E100012F4100000000000A /* StandardDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailScreen.swift; sourceTree = "<group>"; };
 		A5E100012F4100000000000B /* ImpulseCounterDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterDetailScreen.swift; sourceTree = "<group>"; };
 		A5E100012F4100000000000C /* RgbAndDimmerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbAndDimmerDetailScreen.swift; sourceTree = "<group>"; };
@@ -3231,8 +3189,6 @@
 		A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerValueStringProvider.swift; sourceTree = "<group>"; };
 		A5E160AE2D313C00003A7C71 /* HumidityHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5E160B02D314153003A7C71 /* HumidityHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A5F217082F42710000000008 /* HumidityHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailFeature.swift; sourceTree = "<group>"; };
-		A5F2170A2F4271000000000A /* HumidityHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A5E160B22D315323003A7C71 /* HumidityMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityMeasurement.swift; sourceTree = "<group>"; };
 		A5E160B42D315400003A7C71 /* SUPLA 20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 20.xcdatamodel"; sourceTree = "<group>"; };
 		A5E160B52D315545003A7C71 /* HumidityMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityMeasurementItemRepository.swift; sourceTree = "<group>"; };
@@ -3241,8 +3197,6 @@
 		A5E160BB2D315D3A003A7C71 /* SAHumidityMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAHumidityMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5E160BE2D35468A003A7C71 /* ImpulseCounterHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5E160C02D35496D003A7C71 /* ImpulseCounterHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailFeature.swift; sourceTree = "<group>"; };
-		A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A5E160C22D35B0F5003A7C71 /* DownloadImpulseCounterLogUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImpulseCounterLogUseCase.swift; sourceTree = "<group>"; };
 		A5E160C42D35B1AB003A7C71 /* ImpulseCounterMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurement.swift; sourceTree = "<group>"; };
 		A5E160C62D365786003A7C71 /* ImpulseCounterMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterMeasurementsProvider.swift; sourceTree = "<group>"; };
@@ -3322,8 +3276,6 @@
 		A5EDE2232CA56C4300BEDAE4 /* SuplaElectricityMeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaElectricityMeasurementType.swift; sourceTree = "<group>"; };
 		A5EDE2252CA56F4300BEDAE4 /* ElectricityMeterGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralView.swift; sourceTree = "<group>"; };
 		A5EDE2272CA5701000BEDAE4 /* ElectricityMeterGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralVM.swift; sourceTree = "<group>"; };
-		A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralScreen.swift; sourceTree = "<group>"; };
-		A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryScreen.swift; sourceTree = "<group>"; };
 		A5EDE22D2CA5745300BEDAE4 /* ElecrticityMeterHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElecrticityMeterHistoryVC.swift; sourceTree = "<group>"; };
 		A5EDE22E2CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryVM.swift; sourceTree = "<group>"; };
 		A5EDE2312CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryFeature.swift; sourceTree = "<group>"; };
@@ -3331,7 +3283,6 @@
 		A5EDE2392CA574A700BEDAE4 /* ElectricityMeterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsView.swift; sourceTree = "<group>"; };
 		A5EDE23A2CA574A700BEDAE4 /* ElectricityMeterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsViewState.swift; sourceTree = "<group>"; };
 		A5EDE23B2CA574A700BEDAE4 /* ElectricityMeterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsFeature.swift; sourceTree = "<group>"; };
-		A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsScreen.swift; sourceTree = "<group>"; };
 		A5EE0C802F7A672100D7B14F /* ScheduleProgramButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleProgramButton.swift; sourceTree = "<group>"; };
 		A5EE0C832F7A8B7A00D7B14F /* ScheduleTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTable.swift; sourceTree = "<group>"; };
 		A5EE0C852F7AA6AD00D7B14F /* ScheduleDetailBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailBox.swift; sourceTree = "<group>"; };
@@ -3340,6 +3291,9 @@
 		A5EE0C8B2F7D288000D7B14F /* AccessoryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryTextField.swift; sourceTree = "<group>"; };
 		A5EF57D32F5F099E00513D3F /* LogoWithSentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoWithSentence.swift; sourceTree = "<group>"; };
 		A5EF57D52F5F104200513D3F /* DotsLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsLoadingIndicator.swift; sourceTree = "<group>"; };
+		A5F100012F41000000000001 /* LightSourceLifespanSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSourceLifespanSettingsFeature.swift; sourceTree = "<group>"; };
+		A5F100022F41000000000002 /* LightSourceLifespanSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSourceLifespanSettingsViewModel.swift; sourceTree = "<group>"; };
+		A5F100032F41000000000003 /* LightSourceLifespanSettingsDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightSourceLifespanSettingsDialogView.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
@@ -3347,6 +3301,56 @@
 		A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVMTests.swift; sourceTree = "<group>"; };
 		A5F14B7F29DEE4D800682FA6 /* AccountRemovalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalScreen.swift; sourceTree = "<group>"; };
 		A5F14B8129DEE4D800682FA6 /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
+		A5F200002F42000000000000 /* SwitchTimerDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailFeature.swift; sourceTree = "<group>"; };
+		A5F200012F42000000000001 /* SwitchTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailScreen.swift; sourceTree = "<group>"; };
+		A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralFeature.swift; sourceTree = "<group>"; };
+		A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F211002F42110000000000 /* ThermostatSlavesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesScreen.swift; sourceTree = "<group>"; };
+		A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatScheduleDetailScreen.swift; sourceTree = "<group>"; };
+		A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailScreen.swift; sourceTree = "<group>"; };
+		A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopBarCoordinator.swift; sourceTree = "<group>"; };
+		A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F217002F42710000000000 /* GpmHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F217022F42710000000002 /* GpmHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F217042F42710000000004 /* ThermometerHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F217062F42710000000006 /* ThermometerHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F217082F42710000000008 /* HumidityHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F2170A2F4271000000000A /* HumidityHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F218002F42810000000000 /* RollerShutterFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterFeature.swift; sourceTree = "<group>"; };
+		A5F218022F42810000000002 /* RollerShutterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterScreen.swift; sourceTree = "<group>"; };
+		A5F219002F42910000000000 /* RoofWindowFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowFeature.swift; sourceTree = "<group>"; };
+		A5F219022F42910000000002 /* RoofWindowScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowScreen.swift; sourceTree = "<group>"; };
+		A5F219042F42910000000004 /* FacadeBlindsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsFeature.swift; sourceTree = "<group>"; };
+		A5F219062F42910000000006 /* FacadeBlindsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsScreen.swift; sourceTree = "<group>"; };
+		A5F219082F42910000000008 /* TerraceAwningFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningFeature.swift; sourceTree = "<group>"; };
+		A5F2190A2F4291000000000A /* TerraceAwningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningScreen.swift; sourceTree = "<group>"; };
+		A5F2190C2F4291000000000C /* ProjectorScreenFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenFeature.swift; sourceTree = "<group>"; };
+		A5F2190E2F4291000000000E /* ProjectorScreenScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenScreen.swift; sourceTree = "<group>"; };
+		A5F219102F42910000000010 /* CurtainFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainFeature.swift; sourceTree = "<group>"; };
+		A5F219122F42910000000012 /* CurtainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainScreen.swift; sourceTree = "<group>"; };
+		A5F219142F42910000000014 /* VerticalBlindsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsFeature.swift; sourceTree = "<group>"; };
+		A5F219162F42910000000016 /* VerticalBlindsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsScreen.swift; sourceTree = "<group>"; };
+		A5F219182F42910000000018 /* GarageDoorFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageDoorFeature.swift; sourceTree = "<group>"; };
+		A5F2191A2F4291000000001A /* GarageDoorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageDoorScreen.swift; sourceTree = "<group>"; };
+		A5F21A002F42A10000000000 /* AuthorizationCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinatorMock.swift; sourceTree = "<group>"; };
+		A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryScreen.swift; sourceTree = "<group>"; };
+		A5F21B042F42B10000000004 /* ElectricityMeterSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterSettingsScreen.swift; sourceTree = "<group>"; };
+		A5F21B062F42B10000000006 /* ImpulseCounterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B082F42B10000000008 /* ImpulseCounterHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailFeature.swift; sourceTree = "<group>"; };
+		A5F21B0A2F42B1000000000A /* ImpulseCounterHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterHistoryDetailScreen.swift; sourceTree = "<group>"; };
+		A5F21B0C2F42B1000000000C /* CounterPhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterPhotoScreen.swift; sourceTree = "<group>"; };
+		A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsScreen.swift; sourceTree = "<group>"; };
+		A5F21B102F42B10000000010 /* ValveGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValveGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B122F42B10000000012 /* ContainerGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B142F42B10000000014 /* GateGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralScreen.swift; sourceTree = "<group>"; };
+		A5F21B182F42B10000000018 /* RgbDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbDetailScreen.swift; sourceTree = "<group>"; };
+		A5F21B1A2F42B1000000001A /* DimmerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerDetailScreen.swift; sourceTree = "<group>"; };
+		A5F21B1C2F42B1000000001C /* DimmerCctDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerCctDetailScreen.swift; sourceTree = "<group>"; };
 		A5F237982DDB18E400E090E9 /* UserIconsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCaseTests.swift; sourceTree = "<group>"; };
 		A5F2379A2DDB21E300E090E9 /* CarPlayItemRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayItemRepositoryMock.swift; sourceTree = "<group>"; };
 		A5F2379C2DDB24D100E090E9 /* UserIconsUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconsUseCasesMocks.swift; sourceTree = "<group>"; };
@@ -3433,6 +3437,8 @@
 		A5F5C3F92C36963B0058E255 /* PinTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTextField.swift; sourceTree = "<group>"; };
 		A5F5C3FB2C3698040058E255 /* PinSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupScreen.swift; sourceTree = "<group>"; };
 		A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDimmerSettingsVC.swift; sourceTree = "<group>"; };
+		A5F775BD2FD6C100001003C4 /* LegacyDimmerSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDimmerSettingsScreen.swift; sourceTree = "<group>"; };
+		A5F775BF2FD6C400001003C4 /* AppRouterLegacyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterLegacyWrapper.swift; sourceTree = "<group>"; };
 		A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration10to11ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemInitialMigrationPolicy.swift; sourceTree = "<group>"; };
 		A5FC78F72F51C68F003BA6B8 /* ActionId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionId.swift; sourceTree = "<group>"; };
@@ -3449,7 +3455,6 @@
 		A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralViewState.swift; sourceTree = "<group>"; };
 		A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralView.swift; sourceTree = "<group>"; };
 		A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralVM.swift; sourceTree = "<group>"; };
-		A5F21B162F42B10000000016 /* RecuperatorGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralScreen.swift; sourceTree = "<group>"; };
 		AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3477,7 +3482,6 @@
 		B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVM.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000006 /* ImpulseCounterSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsViewState.swift; sourceTree = "<group>"; };
-		A5F21B0E2F42B1000000000E /* ImpulseCounterSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsScreen.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerLogHistoryDownloadUseCaseTests.swift; sourceTree = "<group>"; };
 		B2A100001111111100000003 /* EspRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepositoryMock.swift; sourceTree = "<group>"; };
 		B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCaseTests.swift; sourceTree = "<group>"; };
@@ -4479,7 +4483,6 @@
 		A51BE8E92AA70D9600718F2F /* ThermostatDetail */ = {
 			isa = PBXGroup;
 			children = (
-				A5F216082F42610000000008 /* HeatpolGeneralDetail */,
 				A5A3251E2E817CA100E60812 /* HeatpolHistoryDetail */,
 				A594ADCA2C9C3FD100780EF3 /* SlavesDetail */,
 				A52BFEDA2B0F8EFC00A2F64C /* TimerDetail */,
@@ -5576,7 +5579,7 @@
 		A563640E2EDF9B4B00A702C0 /* Dimmer */ = {
 			isa = PBXGroup;
 			children = (
-				A56364362EE1A21200A702C0 /* DimmerDetailVC.swift */,
+				A5F21B1A2F42B1000000001A /* DimmerDetailScreen.swift */,
 				A56364342EE1A14500A702C0 /* DimmerDetailVM.swift */,
 				A56364322EE1A0D300A702C0 /* DimmerDetailView.swift */,
 				A563642E2EE1935700A702C0 /* DimmerDetailFeature.swift */,
@@ -5589,7 +5592,7 @@
 			children = (
 				A55AE5FA2EEAB7FE006E0AA9 /* ColorBox.swift */,
 				A55AE5F82EEA1D02006E0AA9 /* RgbColorDialog.swift */,
-				A563642C2EE192A300A702C0 /* RgbDetailVC.swift */,
+				A5F21B182F42B10000000018 /* RgbDetailScreen.swift */,
 				A563642A2EE191C800A702C0 /* RgbDetailVM.swift */,
 				A56364282EE190F800A702C0 /* RgbDetailView.swift */,
 				A56364242EE1720200A702C0 /* RgbDetailViewState.swift */,
@@ -5639,16 +5642,6 @@
 				A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */,
 			);
 			path = CaptionChangeDialog;
-			sourceTree = "<group>";
-		};
-		A5F100002F41000000000000 /* LightSourceLifespanSettings */ = {
-			isa = PBXGroup;
-			children = (
-				A5F100012F41000000000001 /* LightSourceLifespanSettingsFeature.swift */,
-				A5F100022F41000000000002 /* LightSourceLifespanSettingsViewModel.swift */,
-				A5F100032F41000000000003 /* LightSourceLifespanSettingsDialogView.swift */,
-			);
-			path = LightSourceLifespanSettings;
 			sourceTree = "<group>";
 		};
 		A56D5AD12A4C68F4004F45DA /* UpdateToken */ = {
@@ -6670,19 +6663,10 @@
 			path = HeatpolHistoryDetail;
 			sourceTree = "<group>";
 		};
-		A5F216082F42610000000008 /* HeatpolGeneralDetail */ = {
-			isa = PBXGroup;
-			children = (
-				A5F216042F42610000000004 /* HeatpolGeneralDetailFeature.swift */,
-				A5F216052F42610000000005 /* HeatpolGeneralDetailScreen.swift */,
-			);
-			path = HeatpolGeneralDetail;
-			sourceTree = "<group>";
-		};
 		A5A87A612F1650490047233B /* DimmerCct */ = {
 			isa = PBXGroup;
 			children = (
-				A5B593802F1793CB0054E6F9 /* DimmerCctDetailVC.swift */,
+				A5F21B1C2F42B1000000001C /* DimmerCctDetailScreen.swift */,
 				A5B5937E2F17939E0054E6F9 /* DimmerCctDetailVM.swift */,
 				A5B5937C2F1793270054E6F9 /* DimmerCctDetailView.swift */,
 				A5B5937A2F1793080054E6F9 /* DimmerCctDetailFeature.swift */,
@@ -7414,6 +7398,7 @@
 				A5E200042F70000000200004 /* AppRoute.swift */,
 				A5E200052F70000000200005 /* DeepLinkRoute.swift */,
 				A5E200062F70000000200006 /* AppRouter.swift */,
+				A5F775BF2FD6C400001003C4 /* AppRouterLegacyWrapper.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -7561,6 +7546,7 @@
 			isa = PBXGroup;
 			children = (
 				A59CCBA73018EFA700BDDEC0 /* AuthorizationCoordinator.swift */,
+				A59CCBAA3018F40000BDDEC0 /* AuthorizationCoordinatorLegacyWrapper.swift */,
 				A59CCBA53018D58500BDDEC0 /* CredentialsDialog.swift */,
 				A5E200122F70000000200012 /* CredentialsFeature.swift */,
 				A5E200132F70000000200013 /* CredentialsViewState.swift */,
@@ -7675,6 +7661,16 @@
 				A5EE0C832F7A8B7A00D7B14F /* ScheduleTable.swift */,
 			);
 			path = Schedule;
+			sourceTree = "<group>";
+		};
+		A5F100002F41000000000000 /* LightSourceLifespanSettings */ = {
+			isa = PBXGroup;
+			children = (
+				A5F100012F41000000000001 /* LightSourceLifespanSettingsFeature.swift */,
+				A5F100022F41000000000002 /* LightSourceLifespanSettingsViewModel.swift */,
+				A5F100032F41000000000003 /* LightSourceLifespanSettingsDialogView.swift */,
+			);
+			path = LightSourceLifespanSettings;
 			sourceTree = "<group>";
 		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
@@ -8054,6 +8050,7 @@
 			isa = PBXGroup;
 			children = (
 				A57B03C42B29D67700C22966 /* Helper */,
+				A5A2C723302DC94F004F6721 /* DetailViewControllerScreen.swift */,
 				AEF1F9B927726D56008E441A /* DetailViewController.swift */,
 			);
 			path = LegacyDetail;
@@ -8114,6 +8111,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F775BA2FD6B758001003C4 /* LegacyDimmerSettingsVC.swift */,
+				A5F775BD2FD6C100001003C4 /* LegacyDimmerSettingsScreen.swift */,
 			);
 			path = LegacySettings;
 			sourceTree = "<group>";
@@ -8759,7 +8757,7 @@
 				A58472062C2EC7E500713D36 /* DisconnectUseCase.swift in Sources */,
 				A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */,
 				A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */,
-				A5B593812F1793D40054E6F9 /* DimmerCctDetailVC.swift in Sources */,
+				A5F21B1D2F42B1000000001D /* DimmerCctDetailScreen.swift in Sources */,
 				A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */,
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
 				A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */,
@@ -8790,6 +8788,7 @@
 				A56364392EE1D67800A702C0 /* ColorPickerView.swift in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				A59CCBA83018EFB100BDDEC0 /* AuthorizationCoordinator.swift in Sources */,
+				A59CCBA93018F40000BDDEC0 /* AuthorizationCoordinatorLegacyWrapper.swift in Sources */,
 				A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */,
 				A5F219152F42910000000015 /* VerticalBlindsFeature.swift in Sources */,
 				A5F219172F42910000000017 /* VerticalBlindsScreen.swift in Sources */,
@@ -8972,6 +8971,7 @@
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
 				A5F21B152F42B10000000015 /* GateGeneralScreen.swift in Sources */,
+				A5A2C724302DC954004F6721 /* DetailViewControllerScreen.swift in Sources */,
 				A5F21B172F42B10000000017 /* RecuperatorGeneralScreen.swift in Sources */,
 				A584E1F62CA6897400232A98 /* SummaryCard.swift in Sources */,
 				A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */,
@@ -9039,8 +9039,6 @@
 				A5E100012F41000000000002 /* BaseDetailScreen.swift in Sources */,
 				A5E100012F41000000000003 /* DetailTabBar.swift in Sources */,
 				A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */,
-				A5F216062F42610000000006 /* HeatpolGeneralDetailFeature.swift in Sources */,
-				A5F216072F42610000000007 /* HeatpolGeneralDetailScreen.swift in Sources */,
 				A5E100012F41000000000004 /* StandardDetailScreen.swift in Sources */,
 				A5E100012F41000000000005 /* ImpulseCounterDetailScreen.swift in Sources */,
 				A5E100012F41000000000006 /* RgbAndDimmerDetailScreen.swift in Sources */,
@@ -9661,6 +9659,8 @@
 				A5843DE42C1088C800DA0784 /* ShadingSystemPositionPresentation.swift in Sources */,
 				A50B5D2D2BF49F7700918D18 /* TerraceAwningWindowState.swift in Sources */,
 				A5F775BB2FD6B765001003C4 /* LegacyDimmerSettingsVC.swift in Sources */,
+				A5F775BC2FD6C100001003C4 /* LegacyDimmerSettingsScreen.swift in Sources */,
+				A5F775BE2FD6C400001003C4 /* AppRouterLegacyWrapper.swift in Sources */,
 				A5FC78FF2F557DB2003BA6B8 /* NfcTagDetailFeature.swift in Sources */,
 				A584E1FC2CAA770800232A98 /* ElectricityMeterGeneralStateHandler.swift in Sources */,
 				A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */,
@@ -9734,7 +9734,7 @@
 				A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */,
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
 				A5C5F6F12D93EC3300E303B8 /* SuplaCoreDialogView.swift in Sources */,
-				A563642D2EE192A800A702C0 /* RgbDetailVC.swift in Sources */,
+				A5F21B192F42B10000000019 /* RgbDetailScreen.swift in Sources */,
 				A5AE6D7D2E1FA6B900BC2B67 /* AddWizardMessageView.swift in Sources */,
 				A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */,
 				A5DEE9692E9FAD1B000811C7 /* DeveloperInfoFeature.swift in Sources */,
@@ -9793,7 +9793,7 @@
 				A5DEE9382E9E6E01000811C7 /* ProfilesListScreen.swift in Sources */,
 				A5DEE9332E9E66A7000811C7 /* ProfilesListVM.swift in Sources */,
 				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
-				A56364372EE1A21700A702C0 /* DimmerDetailVC.swift in Sources */,
+				A5F21B1B2F42B1000000001B /* DimmerDetailScreen.swift in Sources */,
 				A54637A72D37A94A00D746F5 /* ImpulseCounterChartMarkerView.swift in Sources */,
 				A57668F72AEAA8870025509D /* ChartParameters.swift in Sources */,
 				A5DDF9242D79A7530056B539 /* ContainerGeneralFeature.swift in Sources */,
