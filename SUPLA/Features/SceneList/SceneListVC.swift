@@ -97,6 +97,6 @@ extension SceneListVC: SceneCellDelegate {
     func onInfoIconTapped(_ channel: SAChannel) {} // Not relevant for scene
     
     func onCaptionLongPress(_ remoteId: Int32) {
-        captionChangeViewModel.show(self, sceneRemoteId: remoteId)
+        captionChangeViewModel.show(sceneRemoteId: remoteId)
     }
 }

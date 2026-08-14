@@ -298,7 +298,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
     }
     
     func sectionCaptionLongPressed(_ remoteId: Int32) {
-        captionChangeViewModel.show(self, locationRemoteId: remoteId)
+        captionChangeViewModel.show(locationRemoteId: remoteId)
     }
     
     // MARK: UITableViewDelegate

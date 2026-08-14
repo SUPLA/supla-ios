@@ -83,6 +83,6 @@ extension GroupListVC: SAChannelCellDelegate {
     func channelButtonClicked(_ cell: SAChannelCell!) {}
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
-        captionChangeViewModel.show(self, groupRemoteId: remoteId)
+        captionChangeViewModel.show(groupRemoteId: remoteId)
     }
 }

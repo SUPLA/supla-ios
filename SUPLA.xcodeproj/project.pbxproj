@@ -68,7 +68,6 @@
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
 		018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2823281F0C00888CB7 /* SAExtendedValue.m */; };
-		01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */; };
 		0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0194D809264DC8580094A857 /* SAZWaveNodeIdResult.m */; };
 		0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0196E82C258CEEEC0016E8DC /* InfoPlist.strings */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
@@ -101,7 +100,6 @@
 		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
 		01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D32F3125C999CF00793A72 /* btnbackl@2x.png */; };
 		01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3FF6624A20E26000EBE77 /* backbtn@3x.png */; };
-		01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */; };
 		01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */; };
 		01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A105249C0EAC006B3757 /* vlinfo@3.png */; };
 		01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A107249C0F40006B3757 /* vlrestore@3.png */; };
@@ -617,8 +615,6 @@
 		A55A8DA42BAC2B0E00C540D4 /* SAAlertDialogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DA32BAC2B0E00C540D4 /* SAAlertDialogVM.swift */; };
 		A55A8DA62BAC4F5500C540D4 /* AuthorizeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DA52BAC4F5500C540D4 /* AuthorizeUseCase.swift */; };
 		A55A8DA82BAC50B100C540D4 /* NotificationCenterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DA72BAC50B100C540D4 /* NotificationCenterWrapper.swift */; };
-		A55A8DAA2BAC608C00C540D4 /* SAAuthorizationDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DA92BAC608C00C540D4 /* SAAuthorizationDialogVC.swift */; };
-		A55A8DAC2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DAB2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift */; };
 		A55A8DAF2BAC64A700C540D4 /* SADialogTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DAE2BAC64A700C540D4 /* SADialogTitleLabel.swift */; };
 		A55A8DB12BAC65AA00C540D4 /* SADialogPositiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DB02BAC65AA00C540D4 /* SADialogPositiveButton.swift */; };
 		A55A8DB32BAC65E500C540D4 /* SADialogNegativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DB22BAC65E500C540D4 /* SADialogNegativeButton.swift */; };
@@ -633,7 +629,6 @@
 		A55A8DC72BB3139E00C540D4 /* ExecuteRollerShutterActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DC62BB3139E00C540D4 /* ExecuteRollerShutterActionUseCaseTests.swift */; };
 		A55A8DCB2BB4349600C540D4 /* GetGroupOnlineSummaryUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DCA2BB4349600C540D4 /* GetGroupOnlineSummaryUseCaseTests.swift */; };
 		A55A8DCD2BB43CB600C540D4 /* ChannelGroupRelationRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DCC2BB43CB600C540D4 /* ChannelGroupRelationRepositoryMock.swift */; };
-		A55A8DD12BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DD02BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift */; };
 		A55A8DD52BB44EFC00C540D4 /* RollerShutterValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DD42BB44EFC00C540D4 /* RollerShutterValueTests.swift */; };
 		A55AE5EF2EE970F4006E0AA9 /* InsertColorListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55AE5EE2EE970E8006E0AA9 /* InsertColorListItemUseCase.swift */; };
 		A55AE5F12EE97549006E0AA9 /* UpdateColorListItemOrderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55AE5F02EE9753F006E0AA9 /* UpdateColorListItemOrderUseCase.swift */; };
@@ -1399,10 +1394,6 @@
 		A5E9C20B2DCCBE920001F263 /* CellScalingLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9C2092DCCBE8C0001F263 /* CellScalingLimit.swift */; };
 		A5E9C20C2DCCBF710001F263 /* View+ScaleFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */; };
 		A5E9CE242C32BB8700509702 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE232C32BB8700509702 /* LoginUseCase.swift */; };
-		A5E9CE272C32CE3500509702 /* SALoginDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE262C32CE3500509702 /* SALoginDialogVC.swift */; };
-		A5E9CE292C32CE4700509702 /* SALoginDialogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE282C32CE4700509702 /* SALoginDialogVM.swift */; };
-		A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE2A2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift */; };
-		A5E9CE2D2C32CE6D00509702 /* SACredentialsDialogBaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE2C2C32CE6D00509702 /* SACredentialsDialogBaseVM.swift */; };
 		A5E9CE332C342ADC00509702 /* ReconnectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE322C342ADC00509702 /* ReconnectUseCase.swift */; };
 		A5E9CE372C3430DB00509702 /* Completable+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE362C3430DB00509702 /* Completable+Supla.swift */; };
 		A5E9CE392C35385700509702 /* SuplaAppStateHolderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE382C35385700509702 /* SuplaAppStateHolderMock.swift */; };
@@ -1806,7 +1797,6 @@
 		0178248D28426C8F004313C2 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		017D392229244A66005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		017D392329244A66005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
-		017D392529244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		017D392629244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
 		017D392C29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		017D393129244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
@@ -1823,8 +1813,6 @@
 		018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatHPExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2723281F0C00888CB7 /* SAExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAExtendedValue.h; sourceTree = "<group>"; };
 		018CFD2823281F0C00888CB7 /* SAExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAExtendedValue.m; sourceTree = "<group>"; };
-		01943EBF249D1C8800DA2B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/SASuperuserAuthorizationDialog.xib; sourceTree = "<group>"; };
-		01943EC2249D1C8D00DA2B8F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		0194D808264DC8580094A857 /* SAZWaveNodeIdResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNodeIdResult.h; sourceTree = "<group>"; };
 		0194D809264DC8580094A857 /* SAZWaveNodeIdResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeIdResult.m; sourceTree = "<group>"; };
 		0196E82B258CEEEC0016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1915,8 +1903,6 @@
 		01D32F3125C999CF00793A72 /* btnbackl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnbackl@2x.png"; sourceTree = "<group>"; };
 		01D3FF6624A20E26000EBE77 /* backbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backbtn@3x.png"; sourceTree = "<group>"; };
 		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
-		01D6A0EF249BD2F7006B3757 /* SASuperuserAuthorizationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASuperuserAuthorizationDialog.h; sourceTree = "<group>"; };
-		01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SASuperuserAuthorizationDialog.m; sourceTree = "<group>"; };
 		01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAVLCalibrationTool.h; sourceTree = "<group>"; };
 		01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAVLCalibrationTool.m; sourceTree = "<group>"; };
 		01D6A105249C0EAC006B3757 /* vlinfo@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vlinfo@3.png"; sourceTree = "<group>"; };
@@ -2433,7 +2419,6 @@
 		A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 		A54EFE482F449FD5001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		A54EFE492F449FE4001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
-		A54EFE4B2F449FE7001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		A54EFE4C2F449FE8001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
 		A54EFE4E2F449FEF001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		A54EFE4F2F449FEF001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
@@ -2500,8 +2485,6 @@
 		A55A8DA32BAC2B0E00C540D4 /* SAAlertDialogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAlertDialogVM.swift; sourceTree = "<group>"; };
 		A55A8DA52BAC4F5500C540D4 /* AuthorizeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeUseCase.swift; sourceTree = "<group>"; };
 		A55A8DA72BAC50B100C540D4 /* NotificationCenterWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterWrapper.swift; sourceTree = "<group>"; };
-		A55A8DA92BAC608C00C540D4 /* SAAuthorizationDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAuthorizationDialogVC.swift; sourceTree = "<group>"; };
-		A55A8DAB2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAuthorizationDialogVM.swift; sourceTree = "<group>"; };
 		A55A8DAE2BAC64A700C540D4 /* SADialogTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADialogTitleLabel.swift; sourceTree = "<group>"; };
 		A55A8DB02BAC65AA00C540D4 /* SADialogPositiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADialogPositiveButton.swift; sourceTree = "<group>"; };
 		A55A8DB22BAC65E500C540D4 /* SADialogNegativeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADialogNegativeButton.swift; sourceTree = "<group>"; };
@@ -2516,7 +2499,6 @@
 		A55A8DC62BB3139E00C540D4 /* ExecuteRollerShutterActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteRollerShutterActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A55A8DCA2BB4349600C540D4 /* GetGroupOnlineSummaryUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupOnlineSummaryUseCaseTests.swift; sourceTree = "<group>"; };
 		A55A8DCC2BB43CB600C540D4 /* ChannelGroupRelationRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelGroupRelationRepositoryMock.swift; sourceTree = "<group>"; };
-		A55A8DD02BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAAuthorizationDialogVMTests.swift; sourceTree = "<group>"; };
 		A55A8DD42BB44EFC00C540D4 /* RollerShutterValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterValueTests.swift; sourceTree = "<group>"; };
 		A55AE5EE2EE970E8006E0AA9 /* InsertColorListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertColorListItemUseCase.swift; sourceTree = "<group>"; };
 		A55AE5F02EE9753F006E0AA9 /* UpdateColorListItemOrderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateColorListItemOrderUseCase.swift; sourceTree = "<group>"; };
@@ -2560,7 +2542,6 @@
 		A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardUseCasesMocks.swift; sourceTree = "<group>"; };
 		A56363CE2EDF180A00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		A56363CF2EDF180C00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
-		A56363D12EDF181200A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
 		A56363D42EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		A56363D52EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAInfoVC.strings; sourceTree = "<group>"; };
@@ -3254,10 +3235,6 @@
 		A5E9451D2F852803008C68FC /* ThermostatScheduleDetailBoxValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatScheduleDetailBoxValue.swift; sourceTree = "<group>"; };
 		A5E9C2092DCCBE8C0001F263 /* CellScalingLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellScalingLimit.swift; sourceTree = "<group>"; };
 		A5E9CE232C32BB8700509702 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
-		A5E9CE262C32CE3500509702 /* SALoginDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SALoginDialogVC.swift; sourceTree = "<group>"; };
-		A5E9CE282C32CE4700509702 /* SALoginDialogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SALoginDialogVM.swift; sourceTree = "<group>"; };
-		A5E9CE2A2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACredentialsDialogBaseVC.swift; sourceTree = "<group>"; };
-		A5E9CE2C2C32CE6D00509702 /* SACredentialsDialogBaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACredentialsDialogBaseVM.swift; sourceTree = "<group>"; };
 		A5E9CE322C342ADC00509702 /* ReconnectUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectUseCase.swift; sourceTree = "<group>"; };
 		A5E9CE362C3430DB00509702 /* Completable+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+Supla.swift"; sourceTree = "<group>"; };
 		A5E9CE382C35385700509702 /* SuplaAppStateHolderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppStateHolderMock.swift; sourceTree = "<group>"; };
@@ -3494,45 +3471,34 @@
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F40AA59F28AD3D5000DE173D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5A128AD3D9700DE173D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5A328AD3E8A00DE173D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5A428AD3F9F00DE173D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5A828AD49F100DE173D /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5AA28AD4A3000DE173D /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5AC28AD4B2A00DE173D /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5AD28AD4BEC00DE173D /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5B128AD852D00DE173D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5B328AD857400DE173D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5B528AD867200DE173D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5B628AD874900DE173D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5BA28AE739600DE173D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5BC28AE73C800DE173D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5BE28AE74A300DE173D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5BF28AE754F00DE173D /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5C328AE83BD00DE173D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5C528AE83ED00DE173D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5C728AE84B600DE173D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5C828AE858500DE173D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5CC28AE92CA00DE173D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5CE28AE93D800DE173D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5D028AE944200DE173D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5D128AE948A00DE173D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5D528AEA49C00DE173D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5D728AEA4C500DE173D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5D928AEA5CF00DE173D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5DA28AEA69A00DE173D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F40AA5DE28AEB5F700DE173D /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F40AA5E028AEB63300DE173D /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F40AA5E228AEB6F600DE173D /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F40AA5E328AEB77800DE173D /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F49D9BB528A8442B00AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 		F49D9BB728A8589300AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F49D9BB928A85A6100AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F49D9BBA28A90AEC00AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F4CD6F8728ABE0C3006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		F4CD6F8928ABE122006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
-		F4CD6F8B28ABE31F006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F4CD6F8C28ABE477006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F4CD6F9028ABFD70006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 		F4D3907C29324B570066014D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -3610,7 +3576,6 @@
 				010714C62656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
-				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
 				406778541BCBF9F4008DD37F /* SectionCell.xib */,
 				40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */,
@@ -4034,8 +3999,6 @@
 				01511CF824F50B470081A1EC /* SAPreloaderPopup.m */,
 				01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */,
 				01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */,
-				01D6A0EF249BD2F7006B3757 /* SASuperuserAuthorizationDialog.h */,
-				01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */,
 				0122613722F396440013E6A2 /* SAThermostatCalendar.h */,
 				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
 				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
@@ -5449,7 +5412,6 @@
 		A55A8DCF2BB440FC00C540D4 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
-				A55A8DD02BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -7561,12 +7523,6 @@
 				A5E200132F70000000200013 /* CredentialsViewState.swift */,
 				A5E200142F70000000200014 /* CredentialsView.swift */,
 				A5E200152F70000000200015 /* CredentialsVM.swift */,
-				A55A8DA92BAC608C00C540D4 /* SAAuthorizationDialogVC.swift */,
-				A55A8DAB2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift */,
-				A5E9CE262C32CE3500509702 /* SALoginDialogVC.swift */,
-				A5E9CE282C32CE4700509702 /* SALoginDialogVM.swift */,
-				A5E9CE2A2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift */,
-				A5E9CE2C2C32CE6D00509702 /* SACredentialsDialogBaseVM.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -8369,7 +8325,6 @@
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */,
 				A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */,
-				01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
 				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
@@ -8694,7 +8649,6 @@
 				A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */,
 				A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
-				A5E9CE272C32CE3500509702 /* SALoginDialogVC.swift in Sources */,
 				A5E160BF2D354698003A7C71 /* ImpulseCounterHistoryDetailVM.swift in Sources */,
 				A5F21B092F42B10000000009 /* ImpulseCounterHistoryDetailFeature.swift in Sources */,
 				A5F21B0B2F42B1000000000B /* ImpulseCounterHistoryDetailScreen.swift in Sources */,
@@ -8735,7 +8689,6 @@
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
 				A5E0DF862CECA1D500362451 /* CounterPhotoFeature.swift in Sources */,
 				A54E2AFF2E4615FF003F2926 /* SettingsButton.swift in Sources */,
-				A55A8DAA2BAC608C00C540D4 /* SAAuthorizationDialogVC.swift in Sources */,
 				A5E2000E2F7000000020000E /* CredentialsFeature.swift in Sources */,
 				A5E2000F2F7000000020000F /* CredentialsViewState.swift in Sources */,
 				A5E200102F70000000200010 /* CredentialsView.swift in Sources */,
@@ -8803,7 +8756,6 @@
 				A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */,
 				A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */,
 				A5BF4F912F3C867000F5DE81 /* NfcTagsListScreen.swift in Sources */,
-				A55A8DAC2BAC60A200C540D4 /* SAAuthorizationDialogVM.swift in Sources */,
 				A5E9CE372C3430DB00509702 /* Completable+Supla.swift in Sources */,
 				A56364392EE1D67800A702C0 /* ColorPickerView.swift in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
@@ -8999,7 +8951,6 @@
 				A54E2A5D2E437025003F2926 /* AuthorizeEspUseCase.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				A55A8D982BAB28CC00C540D4 /* ScopeFunctions.swift in Sources */,
-				A5E9CE292C32CE4700509702 /* SALoginDialogVM.swift in Sources */,
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				A5552EDE2D537DF500A3F6A2 /* ElectricityMeterConfigDto.swift in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
@@ -9183,7 +9134,6 @@
 				A5882ED32DBF92E300F1FC4A /* UpdateCarPlayItemUseCase.swift in Sources */,
 				A52F03ED2DBA6F4A00472ED1 /* CarPlayAddScreen.swift in Sources */,
 				A54E2AFD2E4612AE003F2926 /* AddWizardManualReconnect.swift in Sources */,
-				A5E9CE2B2C32CE5D00509702 /* SACredentialsDialogBaseVC.swift in Sources */,
 				A59E57B62F90FEF400808DBF /* PickerItem.swift in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				A52F03D72DB8F33000472ED1 /* CarPlayListView.swift in Sources */,
@@ -9590,11 +9540,9 @@
 				A5E05BCE2CB7154B00202583 /* NSDecimalNumber+Ext.swift in Sources */,
 				A56233ED2AB38CED001CB948 /* TemperatureChangeStep.swift in Sources */,
 				A51BE90F2AAAFB1400718F2F /* SetChannelConfigUseCase.swift in Sources */,
-				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
 				A57668D12AE918100025509D /* SuplaCloudService.swift in Sources */,
 				A55AE5F12EE97549006E0AA9 /* UpdateColorListItemOrderUseCase.swift in Sources */,
 				A55BE8D62F979EFC00362562 /* BorderedButtonStyle.swift in Sources */,
-				A5E9CE2D2C32CE6D00509702 /* SACredentialsDialogBaseVM.swift in Sources */,
 				A5DEE9672E9FAB5B000811C7 /* DeveloperInfoView.swift in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				A5882ECF2DBF5F9300F1FC4A /* SACarPlayItem+Ext.swift in Sources */,
@@ -9998,7 +9946,6 @@
 				A5FA80122FA1000000000012 /* AppRouterMock.swift in Sources */,
 				A5EC52422C0F2E280022F055 /* SuplaChannelFacadeBlindConfig+Mock.swift in Sources */,
 				A5519B3A2B6D362A00811747 /* HumidityValueProviderTest.swift in Sources */,
-				A55A8DD12BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift in Sources */,
 				A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */,
 				A5F237992DDB18EF00E090E9 /* UserIconsUseCaseTests.swift in Sources */,
 				A5D712882C3EB24900A8EF52 /* PinSetupVMTests.swift in Sources */,
@@ -10258,29 +10205,6 @@
 				A54EFE512F449FF0001C9BA8 /* hu */,
 			);
 			name = SADiwCalibrationTool.xib;
-			sourceTree = "<group>";
-		};
-		01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01943EBF249D1C8800DA2B8F /* Base */,
-				01943EC2249D1C8D00DA2B8F /* pl */,
-				F49D9BB528A8442B00AC8995 /* sk-SK */,
-				F4CD6F8B28ABE31F006DAAD7 /* el */,
-				F4CD6F9028ABFD70006DAAD7 /* pt-PT */,
-				F40AA5A328AD3E8A00DE173D /* fr */,
-				F40AA5AC28AD4B2A00DE173D /* lt */,
-				F40AA5B528AD867200DE173D /* de */,
-				F40AA5BE28AE74A300DE173D /* cs */,
-				F40AA5C728AE84B600DE173D /* es */,
-				F40AA5CE28AE93D800DE173D /* nb */,
-				F40AA5D928AEA5CF00DE173D /* nl */,
-				F40AA5E228AEB6F600DE173D /* sl */,
-				017D392529244A67005F45FA /* uk */,
-				A56363D12EDF181200A702C0 /* az */,
-				A54EFE4B2F449FE7001C9BA8 /* hu */,
-			);
-			name = SASuperuserAuthorizationDialog.xib;
 			sourceTree = "<group>";
 		};
 		0196E82C258CEEEC0016E8DC /* InfoPlist.strings */ = {
