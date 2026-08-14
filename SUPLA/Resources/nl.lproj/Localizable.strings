@@ -49,10 +49,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Afstandssensor";
 "Depth sensor" = "Dieptesensor";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Wist u dat Supla een open en gratis project is, ontwikkeld door de gemeenschap? Als deze app je bevalt, neem dan even de tijd om haar te beoordelen. Dank u voor uw steun!";
-"Rate Now" = "Beoordeel het nu";
-"Later" = "Later";
-"No thanks" = "Nee, dank je";
 "Mail sensor" = "Postsensor";
 "Window opening sensor" = "Raamopeningssensor";
 "Add I/O device" = "Apparaat toevoegen";
@@ -771,3 +767,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "Levensduur lichtbron (uren)";
 "light_source_lifespan_settings_reset_counter" = "Gebruiksteller lichtbron resetten";
+
+/* App Rate */
+"rate_app_message" = "Wist u dat Supla een open en gratis project is, ontwikkeld door de gemeenschap? Als deze app je bevalt, neem dan even de tijd om haar te beoordelen. Dank u voor uw steun!";
+"rate_app_rate_now" = "Beoordeel het nu";
+"rate_app_later" = "Later";
+"rate_app_no_thanks" = "Nee, dank je";

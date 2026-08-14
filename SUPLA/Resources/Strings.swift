@@ -19,7 +19,7 @@
 import Foundation
 
 struct Strings {
-    static let appName = NSLocalizedString("supla", comment: "Application name")
+    static let appName = NSLocalizedString("SUPLA", comment: "Application name")
     
     struct Cfg {
         static let appConfigTitle = NSLocalizedString("App Settings", comment: "title headline for settings view")
@@ -628,6 +628,13 @@ struct Strings {
     struct LightSourceLifespan {
         static let lifespan = "light_source_lifespan_settings_lifespan".toLocalized()
         static let resetCounter = "light_source_lifespan_settings_reset_counter".toLocalized()
+    }
+
+    struct RateApp {
+        static let message = "rate_app_message".toLocalized()
+        static let rateNow = "rate_app_rate_now".toLocalized()
+        static let later = "rate_app_later".toLocalized()
+        static let noThanks = "rate_app_no_thanks".toLocalized()
     }
     
     struct Container {

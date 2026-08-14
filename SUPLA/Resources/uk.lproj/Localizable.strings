@@ -49,10 +49,6 @@
 "Dimmer" = "Регулятор освітленості";
 "Distance sensor" = "Датчик відстані";
 "Depth sensor" = "Датчик глибини";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Чи знаєте ви, що Supla є відкритим і безкоштовним проєктом, розробленим спільнотою? Якщо вам подобається ця програма, будь ласка, знайдіть час, щоб оцінити її. Дякуємо вам за підтримку!";
-"Rate Now" = "Оцінити зараз";
-"Later" = "Пізніше";
-"No thanks" = "Ні, дякую";
 "Mail sensor" = "Датчик пошти";
 "Window opening sensor" = "Датчик відкриття вікна";
 "Add I/O device" = "Додайте пристрій";
@@ -771,3 +767,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "Термін служби джерела світла (години)";
 "light_source_lifespan_settings_reset_counter" = "Обнулити лічильник споживання джерела світла";
+
+/* App Rate */
+"rate_app_message" = "Чи знаєте ви, що Supla є відкритим і безкоштовним проєктом, розробленим спільнотою? Якщо вам подобається ця програма, будь ласка, знайдіть час, щоб оцінити її. Дякуємо вам за підтримку!";
+"rate_app_rate_now" = "Оцінити зараз";
+"rate_app_later" = "Пізніше";
+"rate_app_no_thanks" = "Ні, дякую";

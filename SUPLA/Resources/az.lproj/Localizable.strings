@@ -49,10 +49,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Məsafə sensoru";
 "Depth sensor" = "Dərinlik sensoru";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Bilirdinizmi ki, Supla açıq və pulsuz bir layihədir və icma tərəfindən hazırlanmışdır? Əgər tətbiqi bəyənirsinizsə, onu qiymətləndirməyə bir an ayırın. Dəstəyiniz üçün təşəkkürlər!";
-"Rate Now" = "İndi Qiymətləndir";
-"Later" = "Sonra";
-"No thanks" = "Yox, təşəkkür";
 "Mail sensor" = "Poçt sensoru";
 "Window opening sensor" = "Pəncərə açılma sensoru";
 "Add I/O device" = "I/O cihazı əlavə et";
@@ -843,3 +839,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "İşıq mənbəyinin ömrü (saat)";
 "light_source_lifespan_settings_reset_counter" = "İşıq mənbəyi istifadə sayğacını sıfırla";
+
+/* App Rate */
+"rate_app_message" = "Bilirdinizmi ki, Supla açıq və pulsuz bir layihədir və icma tərəfindən hazırlanmışdır? Əgər tətbiqi bəyənirsinizsə, onu qiymətləndirməyə bir an ayırın. Dəstəyiniz üçün təşəkkürlər!";
+"rate_app_rate_now" = "İndi Qiymətləndir";
+"rate_app_later" = "Sonra";
+"rate_app_no_thanks" = "Yox, təşəkkür";

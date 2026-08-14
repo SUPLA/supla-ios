@@ -49,10 +49,6 @@
 "Dimmer" = "Zatemnilnik";
 "Distance sensor" = "Senzor razdalje";
 "Depth sensor" = "Senzor globine";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Ali ste vedeli, da je Supla odprt in brezplačen skupnostni projekt? Če vam je ta aplikacija všeč, si vzemite trenutek in jo ocenite. Hvala za vašo podporo!";
-"Rate Now" = "Ocenite zdaj";
-"Later" = "Pozneje";
-"No thanks" = "Ne, hvala";
 "Mail sensor" = "Senzor pošte";
 "Window opening sensor" = "Senzor odprtja oken";
 "Add I/O device" = "Dodajte napravo";
@@ -772,3 +768,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "Življenjska doba svetlobnega vira (ure)";
 "light_source_lifespan_settings_reset_counter" = "Ponastavite števec porabe svetlobnega vira";
+
+/* App Rate */
+"rate_app_message" = "Ali ste vedeli, da je Supla odprt in brezplačen skupnostni projekt? Če vam je ta aplikacija všeč, si vzemite trenutek in jo ocenite. Hvala za vašo podporo!";
+"rate_app_rate_now" = "Ocenite zdaj";
+"rate_app_later" = "Pozneje";
+"rate_app_no_thanks" = "Ne, hvala";

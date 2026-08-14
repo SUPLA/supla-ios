@@ -42,6 +42,7 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var migratedForAppGroups: Bool { get set }
     var devModeActive: Bool { get set }
     var screenRotationEnabled: Bool { get set }
+    var rateAppConfigTime: Int { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -287,6 +288,12 @@ class GlobalSettingsImpl: GlobalSettings {
         set {
             defaults.set(newValue, forKey: screenRotationKey)
         }
+    }
+
+    private let rateAppConfigTimeKey = "rate_time"
+    var rateAppConfigTime: Int {
+        get { defaults.integer(forKey: rateAppConfigTimeKey) }
+        set { defaults.set(newValue, forKey: rateAppConfigTimeKey) }
     }
     
     private func exists(_ key: String) -> Bool {

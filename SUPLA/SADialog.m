@@ -112,7 +112,7 @@
 }
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {
-    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    UIViewController *rootVC = [AppRouterLegacyWrapper currentViewController];
     return rootVC == vc;
 }
 
@@ -120,7 +120,7 @@
     dialogVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     dialogVC.modalInPresentation = YES;
     
-    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    UIViewController *rootVC = [AppRouterLegacyWrapper currentViewController];
     [rootVC presentViewController: dialogVC animated:true completion: nil];
 }
 

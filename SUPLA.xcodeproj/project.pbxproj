@@ -155,7 +155,9 @@
 		4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */; };
 		4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
-		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
+		A5FA70042FA0000000000004 /* RateAppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FA70012FA0000000000001 /* RateAppFeature.swift */; };
+		A5FA70052FA0000000000005 /* RateAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FA70022FA0000000000002 /* RateAppViewModel.swift */; };
+		A5FA70062FA0000000000006 /* RateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FA70032FA0000000000003 /* RateAppView.swift */; };
 		40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */; };
 		40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B397D71BCEA25700BE7D5A /* CFNetwork.framework */; };
 		40B397DE1BCED5EB00BE7D5A /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397DD1BCED5EB00BE7D5A /* OpenSans-Bold.ttf */; };
@@ -986,7 +988,6 @@
 		A5A1600F2C2AC18F0049AA73 /* SuplaAppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1600E2C2AC18F0049AA73 /* SuplaAppEvent.swift */; };
 		A5A160112C2AD0F70049AA73 /* SuplaAppStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160102C2AD0F70049AA73 /* SuplaAppStateHolder.swift */; };
 		A5A160132C2AD4470049AA73 /* Synchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160122C2AD4470049AA73 /* Synchronization.swift */; };
-		A5A160152C2ADE270049AA73 /* SuplaAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160142C2ADE270049AA73 /* SuplaAppCoordinator.swift */; };
 		A5A160182C2AE9F30049AA73 /* InitializationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A160172C2AE9F30049AA73 /* InitializationUseCase.swift */; };
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
 		A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */; };
@@ -1214,9 +1215,10 @@
 		A5D712772C3E769300A8EF52 /* SingleTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712762C3E769300A8EF52 /* SingleTestCase.swift */; };
 		A5D7127A2C3E8F8500A8EF52 /* InitializationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712792C3E8F8500A8EF52 /* InitializationUseCaseTests.swift */; };
 		A5D712812C3EA2E300A8EF52 /* LockScreenVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712802C3EA2E300A8EF52 /* LockScreenVMTests.swift */; };
-		A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */; };
 		A5D712882C3EB24900A8EF52 /* PinSetupVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */; };
 		A5D7128B2C3EB58D00A8EF52 /* StatusVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128A2C3EB58D00A8EF52 /* StatusVMTests.swift */; };
+		A5FA80022FA1000000000002 /* RateAppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FA80012FA1000000000001 /* RateAppViewModelTests.swift */; };
+		A5FA80122FA1000000000012 /* AppRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FA80112FA1000000000011 /* AppRouterMock.swift */; };
 		A5D7128E2C4107AF00A8EF52 /* AboutFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */; };
 		A5D712902C4107C400A8EF52 /* AboutViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */; };
 		A5D712922C41084B00A8EF52 /* AboutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712912C41084B00A8EF52 /* AboutVM.swift */; };
@@ -2002,8 +2004,9 @@
 		4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnnextr2@2x.png"; sourceTree = "<group>"; };
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
-		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
-		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
+		A5FA70012FA0000000000001 /* RateAppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppFeature.swift; sourceTree = "<group>"; };
+		A5FA70022FA0000000000002 /* RateAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewModel.swift; sourceTree = "<group>"; };
+		A5FA70032FA0000000000003 /* RateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppView.swift; sourceTree = "<group>"; };
 		40AC4F382094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		40B397D71BCEA25700BE7D5A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -2879,7 +2882,6 @@
 		A5A1600E2C2AC18F0049AA73 /* SuplaAppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppEvent.swift; sourceTree = "<group>"; };
 		A5A160102C2AD0F70049AA73 /* SuplaAppStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppStateHolder.swift; sourceTree = "<group>"; };
 		A5A160122C2AD4470049AA73 /* Synchronization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synchronization.swift; sourceTree = "<group>"; };
-		A5A160142C2ADE270049AA73 /* SuplaAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppCoordinator.swift; sourceTree = "<group>"; };
 		A5A160172C2AE9F30049AA73 /* InitializationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCase.swift; sourceTree = "<group>"; };
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
 		A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelConfigTests.swift; sourceTree = "<group>"; };
@@ -3089,9 +3091,10 @@
 		A5D712762C3E769300A8EF52 /* SingleTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTestCase.swift; sourceTree = "<group>"; };
 		A5D712792C3E8F8500A8EF52 /* InitializationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCaseTests.swift; sourceTree = "<group>"; };
 		A5D712802C3EA2E300A8EF52 /* LockScreenVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVMTests.swift; sourceTree = "<group>"; };
-		A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppCoordinatorMock.swift; sourceTree = "<group>"; };
 		A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupVMTests.swift; sourceTree = "<group>"; };
 		A5D7128A2C3EB58D00A8EF52 /* StatusVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVMTests.swift; sourceTree = "<group>"; };
+		A5FA80012FA1000000000001 /* RateAppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewModelTests.swift; sourceTree = "<group>"; };
+		A5FA80112FA1000000000011 /* AppRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterMock.swift; sourceTree = "<group>"; };
 		A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFeature.swift; sourceTree = "<group>"; };
 		A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewState.swift; sourceTree = "<group>"; };
 		A5D712912C41084B00A8EF52 /* AboutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVM.swift; sourceTree = "<group>"; };
@@ -3706,10 +3709,8 @@
 				01EFD948236CA94400893489 /* NSData+AES.h */,
 				01EFD949236CA94400893489 /* NSData+AES.m */,
 				401CA1BC1BA067DB00117AF4 /* Supporting Files */,
-				40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */,
 				015A9844265595E300B6E6C6 /* UIButton+SUPLA.h */,
 				015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */,
-				40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */,
 				015A983F2655958500B6E6C6 /* NSDictionary+SUPLA.h */,
 				01A4D4F2269210E300F3DCD1 /* SAFormatter.h */,
 				01A4D4F3269210E300F3DCD1 /* SAFormatter.m */,
@@ -5786,6 +5787,7 @@
 				A5F5C3F02C36822A0058E255 /* PinSetup */,
 				A53E41722F6D79AF00C90914 /* ProfileChooser */,
 				A5DB3ACB2E9E3FB5007DAD9B /* ProfilesList */,
+				A5FA70002FA0000000000000 /* RateApp */,
 				A5F29B652A1E237700ED700A /* SceneList */,
 				A50716D12D68922F0060FA0D /* StateDialog */,
 				A5A15FEB2C298A580049AA73 /* Status */,
@@ -5822,7 +5824,7 @@
 			isa = PBXGroup;
 			children = (
 				A5C6905E2DD7760300194C1B /* GroupSharedSettingsMock.swift */,
-				A5D712832C3EA39B00A8EF52 /* Navigation */,
+				A5FA80102FA1000000000010 /* Navigation */,
 				A54A066A2AF528F200C03DBC /* Events */,
 				A54A06672AF527CD00C03DBC /* Config */,
 				A54A06592AF4E3A300C03DBC /* Native */,
@@ -5848,6 +5850,14 @@
 				A5F5C3E52C35501D0058E255 /* SuplaAppProviderMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A5FA80102FA1000000000010 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				A5FA80112FA1000000000011 /* AppRouterMock.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		A57668BF2AE799590025509D /* Chart */ = {
@@ -6490,7 +6500,6 @@
 			children = (
 				A5E200072F70000000200007 /* SwiftUI */,
 				A5A15FE72C2985780049AA73 /* Coordinator.swift */,
-				A5A160142C2ADE270049AA73 /* SuplaAppCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -7159,20 +7168,20 @@
 			path = LockScreen;
 			sourceTree = "<group>";
 		};
-		A5D712832C3EA39B00A8EF52 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
 		A5D712862C3EB23500A8EF52 /* PinSetup */ = {
 			isa = PBXGroup;
 			children = (
 				A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */,
 			);
 			path = PinSetup;
+			sourceTree = "<group>";
+		};
+		A5FA80002FA1000000000000 /* RateApp */ = {
+			isa = PBXGroup;
+			children = (
+				A5FA80012FA1000000000001 /* RateAppViewModelTests.swift */,
+			);
+			path = RateApp;
 			sourceTree = "<group>";
 		};
 		A5D712892C3EB58100A8EF52 /* Status */ = {
@@ -7673,6 +7682,16 @@
 			path = LightSourceLifespanSettings;
 			sourceTree = "<group>";
 		};
+		A5FA70002FA0000000000000 /* RateApp */ = {
+			isa = PBXGroup;
+			children = (
+				A5FA70012FA0000000000001 /* RateAppFeature.swift */,
+				A5FA70022FA0000000000002 /* RateAppViewModel.swift */,
+				A5FA70032FA0000000000003 /* RateAppView.swift */,
+			);
+			path = RateApp;
+			sourceTree = "<group>";
+		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -7702,6 +7721,7 @@
 				A56362B32EDED2A700A702C0 /* AddWizard */,
 				A5D712892C3EB58100A8EF52 /* Status */,
 				A5D712862C3EB23500A8EF52 /* PinSetup */,
+				A5FA80002FA1000000000000 /* RateApp */,
 				A5D7127F2C3EA2C400A8EF52 /* LockScreen */,
 				A5E40B622B86240A00DB6ABE /* Details */,
 				A5F14B7B29DEE4C200682FA6 /* AccountRemoval */,
@@ -8794,7 +8814,9 @@
 				A5F219172F42910000000017 /* VerticalBlindsScreen.swift in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				A5CF3D642DD4A95700207384 /* UserIconData.swift in Sources */,
-				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
+				A5FA70042FA0000000000004 /* RateAppFeature.swift in Sources */,
+				A5FA70052FA0000000000005 /* RateAppViewModel.swift in Sources */,
+				A5FA70062FA0000000000006 /* RateAppView.swift in Sources */,
 				A5EDE2322CA5745300BEDAE4 /* ElectricityMeterHistoryVM.swift in Sources */,
 				A5EDE2342CA5745300BEDAE4 /* ElectricityMeterHistoryFeature.swift in Sources */,
 				A5F21B032F42B10000000003 /* ElectricityMeterHistoryScreen.swift in Sources */,
@@ -9540,7 +9562,6 @@
 				AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */,
 				A5D837E12AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift in Sources */,
 				A5B8A4852CBD0AC3002FA7B2 /* ElectricityDataSelectionView.swift in Sources */,
-				A5A160152C2ADE270049AA73 /* SuplaAppCoordinator.swift in Sources */,
 				A5E200012F70000000200001 /* AppRoute.swift in Sources */,
 				A5E200022F70000000200002 /* DeepLinkRoute.swift in Sources */,
 				A5E200032F70000000200003 /* AppRouter.swift in Sources */,
@@ -9855,7 +9876,6 @@
 				A5E05BD62CB80CCF00202583 /* AggregatedValue+Ext.swift in Sources */,
 				A519BFDF2DCDE3570045EB77 /* KeychainTests.swift in Sources */,
 				A59AB8BF2A30820900D91F1F /* ChannelRepositoryMock.swift in Sources */,
-				A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */,
 				A5F21A012F42A10000000001 /* AuthorizationCoordinatorMock.swift in Sources */,
 				A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */,
 				A54A06772AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift in Sources */,
@@ -9974,6 +9994,8 @@
 				A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */,
 				A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */,
 				A5D7128B2C3EB58D00A8EF52 /* StatusVMTests.swift in Sources */,
+				A5FA80022FA1000000000002 /* RateAppViewModelTests.swift in Sources */,
+				A5FA80122FA1000000000012 /* AppRouterMock.swift in Sources */,
 				A5EC52422C0F2E280022F055 /* SuplaChannelFacadeBlindConfig+Mock.swift in Sources */,
 				A5519B3A2B6D362A00811747 /* HumidityValueProviderTest.swift in Sources */,
 				A55A8DD12BB4411400C540D4 /* SAAuthorizationDialogVMTests.swift in Sources */,

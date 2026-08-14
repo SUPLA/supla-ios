@@ -176,6 +176,16 @@ class GlobalSettingsMock: GlobalSettings {
         get { false }
         set { }
     }
+
+    var rateAppConfigTimeReturns: Int = 0
+    var rateAppConfigTimeValues: [Int] = []
+    var rateAppConfigTime: Int {
+        get { rateAppConfigTimeReturns }
+        set {
+            rateAppConfigTimeReturns = newValue
+            rateAppConfigTimeValues.append(newValue)
+        }
+    }
     
     var firstNfcScan: Bool {
         false

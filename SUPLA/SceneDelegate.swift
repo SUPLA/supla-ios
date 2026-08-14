@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var disconnectUseCase: DisconnectUseCase
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
     @Singleton private var appRouter: AppRouter
-    @Singleton private var authorizationCoordinator: AuthorizationCoordinatorImpl
+    @Singleton private var authorizationCoordinator: AuthorizationCoordinator
 
     var window: UIWindow?
 
@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let rootView = AppRootView()
             .environmentObject(appRouter)
-            .environmentObject(authorizationCoordinator)
+            .environmentObject(authorizationCoordinator as! AuthorizationCoordinatorImpl)
 
         let hostingController = UIHostingController(rootView: rootView)
         let window = UIWindow(windowScene: windowScene)

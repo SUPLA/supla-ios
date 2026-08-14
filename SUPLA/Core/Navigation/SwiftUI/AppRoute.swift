@@ -69,7 +69,8 @@ enum AppRoute: Hashable {
 extension AppRoute {
     var connectionTakeoverPolicy: ConnectionTakeoverPolicy {
         switch self {
-        case .addWizard,
+        case .settings,
+             .addWizard,
              .zWave,
              .profile,
              .deviceCatalog:

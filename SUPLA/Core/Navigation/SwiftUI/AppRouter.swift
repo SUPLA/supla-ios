@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import UIKit
 
-final class AppRouter: ObservableObject {
+class AppRouter: ObservableObject {
     @Singleton<SuplaAppStateHolder> private var stateHolder
     @Singleton<SuplaSchedulers> private var schedulers
     @Singleton<GlobalSettings> private var settings

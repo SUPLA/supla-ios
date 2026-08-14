@@ -49,10 +49,6 @@
 "Dimmer" = "Stmievač";
 "Distance sensor" = "Snímač vzdialenosti";
 "Depth sensor" = "Snímač hĺbky";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Viete, že Supla je otvorený a bezplatný projekt, rozvíjaný komunitou? Ak sa Ti táto aplikácia páči, venuj chvíľu jej ohodnoteniu. Ďakujeme za Tvoju podporu!";
-"Rate Now" = "Ohodnotiť teraz";
-"Later" = "Neskôr";
-"No thanks" = "Nie, ďakujem";
 "Mail sensor" = "Snímač pošty";
 "Window opening sensor" = "Snímač otvorenia okna";
 "Add I/O device" = "Pridať zariadenie";
@@ -770,3 +766,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "Životnosť svetelného zdroja (hodiny)";
 "light_source_lifespan_settings_reset_counter" = "Resetovať počítadlo spotreby svetelného zdroja";
+
+/* App Rate */
+"rate_app_message" = "Viete, že Supla je otvorený a bezplatný projekt, rozvíjaný komunitou? Ak sa Ti táto aplikácia páči, venuj chvíľu jej ohodnoteniu. Ďakujeme za Tvoju podporu!";
+"rate_app_rate_now" = "Ohodnotiť teraz";
+"rate_app_later" = "Neskôr";
+"rate_app_no_thanks" = "Nie, ďakujem";

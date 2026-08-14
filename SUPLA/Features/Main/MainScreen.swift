@@ -39,6 +39,9 @@ extension MainFeature {
                     showBottomMenu = settings.showBottomMenu
                     showBottomLabels = settings.showBottomLabels
                 }
+                .overlay {
+                    RateAppFeature.Dialog()
+                }
             }
         }
     }

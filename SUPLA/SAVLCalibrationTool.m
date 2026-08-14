@@ -270,7 +270,7 @@ typedef struct {
             break;
         case VL_MSG_CONFIG_COMPLETE:
             [self cleanConfigStartedAtTime];
-            [SuplaAppCoordinatorLegacyWrapper finish];
+            [AppRouterLegacyWrapper finish];
             break;
         default:
             break;
@@ -341,12 +341,12 @@ typedef struct {
 
 - (void) onSaveYesButtonTapped {
     [super onSaveYesButtonTapped];
-    [SuplaAppCoordinatorLegacyWrapper finish];
+    [AppRouterLegacyWrapper finish];
 }
 
 - (void) onSaveNoButtonTapped {
     [super onSaveNoButtonTapped];
-    [SuplaAppCoordinatorLegacyWrapper finish];
+    [AppRouterLegacyWrapper finish];
 }
 
 @end
