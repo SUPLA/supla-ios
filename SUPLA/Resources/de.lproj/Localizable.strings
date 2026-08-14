@@ -49,10 +49,6 @@
 "Dimmer" = "Helligkeitsregler";
 "Distance sensor" = "Abstandssensor";
 "Depth sensor" = "Tiefensensor";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Wusstest Du, dass Supla ein offenes und kostenloses Gemeinschaftsprojekt ist? Wenn Dir diese App gefällt, nimm Dir bitte einen Moment Zeit, um sie zu bewerten. Danke für Deine Unterstützung!";
-"Rate Now" = "Bewerten";
-"Later" = "Später";
-"No thanks" = "Nein danke";
 "Mail sensor" = "Posteinwurferkennung";
 "Window opening sensor" = "Fensteröffnungssensor";
 "Add I/O device" = "Gerät hinzufügen";
@@ -809,3 +805,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "Lebensdauer der Lichtquelle (Stunden)";
 "light_source_lifespan_settings_reset_counter" = "Verbrauchszähler der Lichtquelle zurücksetzen";
+
+/* App Rate */
+"rate_app_message" = "Wusstest Du, dass Supla ein offenes und kostenloses Gemeinschaftsprojekt ist? Wenn Dir diese App gefällt, nimm Dir bitte einen Moment Zeit, um sie zu bewerten. Danke für Deine Unterstützung!";
+"rate_app_rate_now" = "Bewerten";
+"rate_app_later" = "Später";
+"rate_app_no_thanks" = "Nein danke";

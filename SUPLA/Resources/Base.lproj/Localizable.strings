@@ -40,3 +40,9 @@
 /* General */
 "general_error" = "Error";
 "general_hour_format" = "h:mm:ss a";
+
+/* App Rate */
+"rate_app_message" = "Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!";
+"rate_app_rate_now" = "Rate Now";
+"rate_app_later" = "Later";
+"rate_app_no_thanks" = "No thanks";

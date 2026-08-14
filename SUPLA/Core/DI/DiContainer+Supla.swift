@@ -22,10 +22,8 @@ extension DiContainer {
     @objc static func start() {
         // MARK: General
 
-        register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
         register(AppRouter.self, AppRouter())
-        let authorizationCoordinator = registerAndGet(AuthorizationCoordinatorImpl.self, AuthorizationCoordinatorImpl()) // Used in SceneDelegate
-        register(AuthorizationCoordinator.self, authorizationCoordinator)
+        register(AuthorizationCoordinator.self, AuthorizationCoordinatorImpl())
         register(DetailTopBarCoordinator.self, DetailTopBarCoordinator())
         let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())

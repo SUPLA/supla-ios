@@ -51,10 +51,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Atstumo jutiklis";
 "Depth sensor" = "Gilio jutiklis";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Ar žinote, kad Supla tai atviras ir nemokamas projektas, kurį vysto bendruomenė? Jei Jums patinka ši programėlė, skirkite šiek tiek laiko ir įvertinkite ją. Ačiū už Jūsų palaikymą!";
-"Rate Now" = "Įvertinti dabar";
-"Later" = "Vėliau";
-"No thanks" = "Ne, ačiū";
 "Mail sensor" = "Pašto jutiklis";
 "Window opening sensor" = "Lango atidarymo jutiklis";
 "Add I/O device" = "Pridėti įrenginį";
@@ -773,3 +769,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "Šviesos šaltinio eksploatavimo laikas (valandos)";
 "light_source_lifespan_settings_reset_counter" = "Atkurti šviesis šaltinio sunaudojimo skaitiklį";
+
+/* App Rate */
+"rate_app_message" = "Ar žinote, kad Supla tai atviras ir nemokamas projektas, kurį vysto bendruomenė? Jei Jums patinka ši programėlė, skirkite šiek tiek laiko ir įvertinkite ją. Ačiū už Jūsų palaikymą!";
+"rate_app_rate_now" = "Įvertinti dabar";
+"rate_app_later" = "Vėliau";
+"rate_app_no_thanks" = "Ne, ačiū";

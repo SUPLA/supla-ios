@@ -49,10 +49,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Távolságmérő";
 "Depth sensor" = "Mélységérzékelő";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Tudtad, hogy a Supla egy nyíltforráskódú, ingyenes, a közösség által fejlesztett projekt? Ha tetszik az alkalmazás, szánj egy percet az értékelésére. Köszönjük a támogatásodat!";
-"Rate Now" = "Értékelj minket";
-"Later" = "Később";
-"No thanks" = "Köszönöm, nem";
 "Mail sensor" = "Postaláda érzékelő";
 "Window opening sensor" = "Ablak nyitásérzékelő";
 "Add I/O device" = "Eszköz hozzáadása";
@@ -811,3 +807,9 @@
 /* Light source lifespan settings */
 "light_source_lifespan_settings_lifespan" = "A fényforrás élettartama (óra)";
 "light_source_lifespan_settings_reset_counter" = "A fényforrás-használati számláló visszaállítása";
+
+/* App Rate */
+"rate_app_message" = "Tudtad, hogy a Supla egy nyíltforráskódú, ingyenes, a közösség által fejlesztett projekt? Ha tetszik az alkalmazás, szánj egy percet az értékelésére. Köszönjük a támogatásodat!";
+"rate_app_rate_now" = "Értékelj minket";
+"rate_app_later" = "Később";
+"rate_app_no_thanks" = "Köszönöm, nem";

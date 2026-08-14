@@ -61,7 +61,3 @@ class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEve
         }
     }
 }
-
-extension DeviceCatalogVC: NavigationSubcontroller {
-    func screenTakeoverAllowed() -> Bool { false }
-}

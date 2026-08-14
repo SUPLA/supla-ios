@@ -34,7 +34,6 @@
 #import "SATempHumidityMeasurementItem+CoreDataClass.h"
 #import "SAElectricityMeasurementItem+CoreDataClass.h"
 #import "SAEvent.h"
-#import "SARateApp.h"
 #import "SingleCallWrapper.h"
 #import "SuplaConfigIntegrator.h"
 #import "SAGeneralPurposeMeasurementItem+CoreDataClass.h"
