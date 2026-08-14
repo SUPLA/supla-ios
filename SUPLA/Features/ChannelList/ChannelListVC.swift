@@ -147,8 +147,7 @@ extension ChannelListVC: SAChannelCellDelegate {
     func channelButtonClicked(_ cell: SAChannelCell!) {}
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
-        vibrationService.vibrate()
-        captionChangeViewModel.show(self, channelRemoteId: remoteId)
+        captionChangeViewModel.show(channelRemoteId: remoteId)
     }
     
     func infoIconPressed(_ remoteId: Int32) {
@@ -166,8 +165,7 @@ extension ChannelListVC: BaseCellDelegate {
     }
     
     func onCaptionLongPress(_ remoteId: Int32) {
-        vibrationService.vibrate()
-        captionChangeViewModel.show(self, channelRemoteId: remoteId)
+        captionChangeViewModel.show(channelRemoteId: remoteId)
     }
     
     func onInfoIconTapped(_ channel: SAChannel) {

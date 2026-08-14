@@ -46,59 +46,42 @@ extension CaptionChangeDialogFeature {
             self.error = error
         }
 
-        func show(_ viewController: UIViewController?, channelRemoteId: Int32) {
+        func show(channelRemoteId: Int32) {
             readChannelByRemoteIdUseCase.invoke(remoteId: channelRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
-                    self?.show(viewController, remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .channel)
+                    self?.show(remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .channel)
                 })
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, groupRemoteId: Int32) {
+        func show(groupRemoteId: Int32) {
             readGroupByRemoteIdUseCase.invoke(remoteId: groupRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
-                    self?.show(viewController, remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .group)
+                    self?.show(remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .group)
                 })
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, sceneRemoteId: Int32) {
+        func show(sceneRemoteId: Int32) {
             readSceneByRemoteIdUseCase.invoke(remoteId: sceneRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
-                    self?.show(viewController, remoteId: $0.sceneId, caption: $0.caption ?? "", captionType: .scene)
+                    self?.show(remoteId: $0.sceneId, caption: $0.caption ?? "", captionType: .scene)
                 })
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, locationRemoteId: Int32) {
+        func show(locationRemoteId: Int32) {
             readLocationByRemoteIdUseCase.invoke(remoteId: locationRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
                     if let locationId = $0.location_id?.int32Value {
-                        self?.show(viewController, remoteId: locationId, caption: $0.caption ?? "", captionType: .location)
+                        self?.show(remoteId: locationId, caption: $0.caption ?? "", captionType: .location)
                     }
                 })
                 .disposed(by: self)
-        }
-        
-        func show(_ viewController: UIViewController?, sensorData: RelatedChannelData) {
-            show(viewController, remoteId: sensorData.id, caption: sensorData.userCaption, captionType: .channel)
-        }
-        
-        func show(_ viewController: UIViewController?, remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
-            if let viewController {
-                self.remoteId = remoteId
-                self.caption = caption
-                label = captionType.label
-                self.captionType = captionType
-                
-                vibrationService.vibrate()
-                
-                SAAuthorizationDialogVC { [weak self] in self?.present = true }.showAuthorization(viewController)
-            }
         }
 
         func show(sensorData: RelatedChannelData) {

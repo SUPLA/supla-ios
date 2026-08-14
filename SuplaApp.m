@@ -20,7 +20,6 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "NSData+AES.h"
-#import "SASuperuserAuthorizationDialog.h"
 #import "NSNumber+SUPLA.h"
 #import "SUPLA-Swift.h"
 #import "AuthProfileItem+CoreDataClass.h"
