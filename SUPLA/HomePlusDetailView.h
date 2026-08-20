@@ -19,7 +19,6 @@
 #import <UIKit/UIKit.h>
 #import "DetailView.h"
 #import "SAThermostatCalendar.h"
-#import "SAPreloader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @import DGCharts;

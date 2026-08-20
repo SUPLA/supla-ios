@@ -71,7 +71,7 @@ extension CarPlayListFeature {
             ListItemRow {
                 ListItemIcon(iconResult: data.icon)
                 VStack(alignment: .leading, spacing: 6) {
-                    CellCaption(text: data.caption)
+                    ListItemTitle(text: data.caption)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     if let action = data.action {
                         Text(Strings.CarPlay.action.arguments(action.name ?? "nil"))

@@ -22,10 +22,14 @@ enum CollapsedFlag: Int16 {
     case channel = 0x1
     case group = 0x2
     case scene = 0x4
+
+    func isCollapsed(_ collapsed: Int16) -> Bool {
+        (collapsed & rawValue) > 0
+    }
 }
 
 extension _SALocation {
     func isCollapsed(flag: CollapsedFlag) -> Bool {
-        return collapsed & flag.rawValue > 0
+        return flag.isCollapsed(collapsed)
     }
 }

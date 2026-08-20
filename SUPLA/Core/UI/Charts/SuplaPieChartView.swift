@@ -65,7 +65,7 @@ class SuplaPieChartView: UIView {
         view.legend.enabled = false
         view.chartDescription.enabled = false
         view.noDataTextColor = .onBackground
-        view.noDataFont = .body2
+        view.noDataFont = .bodyMedium
         view.drawMarkers = true
         view.holeColor = .background
         

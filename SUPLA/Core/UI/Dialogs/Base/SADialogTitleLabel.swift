@@ -29,7 +29,7 @@ final class SADialogTitleLabel: UILabel {
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        font = .h6
+        font = .headlineSmall
         textAlignment = .center
         numberOfLines = 0
     }

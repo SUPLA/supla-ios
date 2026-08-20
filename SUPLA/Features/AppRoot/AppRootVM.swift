@@ -110,14 +110,12 @@ class AppRootVM: SuplaCore.ViewModel<AppRootViewState> {
     }
 
     private func observeChangesForIconsReload() {
-        Observable.combineLatest(
+        Observable.merge(
             updateEventsManager.observeChannelsUpdate(),
             updateEventsManager.observeGroupsUpdate(),
-            updateEventsManager.observeScenesUpdate(),
-            resultSelector: { _, _, _ in
-                return ()
-            }
-        ).asDriverWithoutError()
+            updateEventsManager.observeScenesUpdate()
+        )
+        .asDriverWithoutError()
             .debounce(.seconds(2))
             .drive(onNext: { [weak self] in self?.downloadUserIconsManager.download() })
             .disposed(by: disposeBag)

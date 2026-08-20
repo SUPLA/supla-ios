@@ -16,27 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
 import SharedCore
+import XCTest
 
 @testable import SUPLA
 
 final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithChildren> {
+    private lazy var useCase: ReadChannelWithChildrenUseCase! = ReadChannelWithChildrenUseCaseImpl()
     
-    private lazy var useCase: ReadChannelWithChildrenUseCase! = { ReadChannelWithChildrenUseCaseImpl() }()
-    
-    private lazy var profileRepository: ProfileRepositoryMock! = { ProfileRepositoryMock() }()
-    private lazy var channelRepository: ChannelRepositoryMock! = { ChannelRepositoryMock() }()
-    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = {
-        ChannelRelationRepositoryMock()
-    }()
+    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
+    private lazy var channelRepository: ChannelRepositoryMock! = ChannelRepositoryMock()
+    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = ChannelRelationRepositoryMock()
+    private lazy var createChannelWithChildrenUseCase: CreateChannelWithChildrenUseCaseMock! = CreateChannelWithChildrenUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
         DiContainer.shared.register(type: (any ChannelRelationRepository).self, channelRelationRepository!)
+        DiContainer.shared.register(type: (any CreateChannelWithChildrenUseCase).self, createChannelWithChildrenUseCase!)
         
         super.setUp()
     }
@@ -46,6 +45,7 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithCh
         profileRepository = nil
         channelRepository = nil
         channelRelationRepository = nil
+        createChannelWithChildrenUseCase = nil
         super.tearDown()
     }
     
@@ -62,6 +62,9 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithCh
         let relation2 = SAChannelRelation.mock(channelId, channelId: 2, type: .auxThermometerFloor)
         channelRelationRepository.getAllRelationsWithParentReturns = Observable.just([relation1, relation2])
         
+        let channelWithChildren = ChannelWithChildren(channel: channels[0])
+        createChannelWithChildrenUseCase.invokeMock.returns = .single(channelWithChildren)
+        
         // when
         useCase.invoke(remoteId: channelId)
             .subscribe(observer)
@@ -70,15 +73,9 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithCh
         // then
         assertEventsCount(2)
         assertEvents([
-            .next(
-                ChannelWithChildren(channel: channels[0], children: [
-                    ChannelChild(channel: channels[1], relation: relation1),
-                    ChannelChild(channel: channels[2], relation: relation2)
-                ])
-            ),
+            .next(channelWithChildren),
             .completed
         ])
-        
     }
     
     private func mockChannels(_ parentId: Int32) -> [SAChannel] {

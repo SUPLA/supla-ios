@@ -67,7 +67,6 @@ class DetailViewController: BaseViewController {
         } else {
             addChildView(_detailView)
             title = _detailView.channelBase?.getNonEmptyCaption() ?? ""
-            setupToolbar()
         }
         
         NotificationCenter.default.addObserver(self,

@@ -177,7 +177,7 @@ struct ScheduleTable<Value: ScheduleDetailBoxValue>: View {
         var maxWidth: CGFloat = 0
         var maxHeigth: CGFloat = 0
         for day in DayOfWeek.allCases {
-            let size = textSize(day.shortText(), font: .caption)
+            let size = textSize(day.shortText(), font: .bodySmall)
             maxWidth = max(maxWidth, size.width)
             maxHeigth = max(maxHeigth, size.height)
         }
@@ -189,7 +189,7 @@ struct ScheduleTable<Value: ScheduleDetailBoxValue>: View {
         var maxWidth: CGFloat = 0
         var maxHeigth: CGFloat = 0
         for hour in 0...23 {
-            let size = textSize(hour.hourString, font: .caption)
+            let size = textSize(hour.hourString, font: .bodySmall)
             maxWidth = max(maxWidth, size.width)
             maxHeigth = max(maxHeigth, size.height)
         }

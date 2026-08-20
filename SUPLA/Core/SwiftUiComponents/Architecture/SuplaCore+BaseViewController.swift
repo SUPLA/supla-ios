@@ -98,7 +98,6 @@ extension SuplaCore {
         
         var navigationBarHidden: Bool { false }
         var navigationBarMaintainedByParent: Bool = false
-        var toolbarFont: UIFont { .suplaSubtitleFont }
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -113,14 +112,6 @@ extension SuplaCore {
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
             NotificationCenter.default.removeObserver(self)
-        }
-        
-        override func viewWillLayoutSubviews() {
-            super.viewWillLayoutSubviews()
-            
-            if (!navigationBarHidden && !navigationBarMaintainedByParent) {
-                setupToolbar(toolbarFont: toolbarFont)
-            }
         }
         
         func observeNotification(name: NSNotification.Name?, selector: Selector) {

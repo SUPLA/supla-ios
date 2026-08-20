@@ -16,162 +16,231 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import RxSwift
+import SharedCore
 
-class ChannelListViewModel: BaseTableViewModel<ChannelListState, ChannelListViewEvent> {
-    @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
-    @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
-    @Singleton<ProvideChannelDetailTypeUseCase> private var provideDetailTypeUseCase
-    @Singleton<UpdateEventsManager> private var updateEventsManager
-    @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
-    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
-    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
-    
-    var channelListViewState = ChannelListViewState()
-    var presentationCallback: ((Bool) -> Void)? = nil
-    
-    override init() {
-        super.init()
-        
-        updateEventsManager.observeChannelsUpdate()
-            .subscribe(
-                onNext: { self.reloadTable() }
-            )
-            .disposed(by: self)
-    }
-    
-    override func defaultViewState() -> ChannelListState { ChannelListState() }
-    
-    override func reloadTable() {
-        createProfileChannelsListUseCase.invoke()
-            .subscribe(
-                onNext: { self.listItems.accept($0) },
-                onError: { SALog.error("Creating channels list failed with error: \(String(describing: $0))") }
-            )
-            .disposed(by: self)
-    }
-    
-    override func swapItems(firstItem: Int32, secondItem: Int32, locationCaption: String) {
-        swapChannelPositionsUseCase
-            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationCaption: locationCaption)
-            .subscribe(onNext: { self.reloadTable() })
-            .disposed(by: self)
-    }
-    
-    override func onClicked(onItem item: Any) {
-        guard let item = item as? SAChannel else { return }
-        
-        readChannelWithChildrenUseCase
-            .invoke(remoteId: item.remote_id)
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] in self?.handleClickedItem($0) }
-            )
-            .disposed(by: self)
-    }
-    
-    override func getCollapsedFlag() -> CollapsedFlag { .channel }
-    
-    func onButtonClicked(buttonType: CellButtonType, data: Any?) {
-        if let channelWithChildren = data as? ChannelWithChildren {
-            channelBaseActionUseCase.invoke(channelWithChildren.channel, buttonType)
-                .asDriverWithoutError()
-                .drive(
-                    onNext: { [weak self] result in
-                        let remoteId = channelWithChildren.remoteId
-                        switch result {
-                        case .valveFlooding:
-                            self?.showAlertDialog(Strings.Valve.warningFlooding, remoteId, .open)
-                        case .valveManuallyClosed:
-                            self?.showAlertDialog(Strings.Valve.warningManuallyClosed, remoteId, .open)
-                        case .valveMotorProblemOpening:
-                            self?.showAlertDialog(Strings.Valve.warningMotorProblemOpening, remoteId, .open)
-                        case .valveMotorProblemClosing:
-                            self?.showAlertDialog(Strings.Valve.warningMotorProblemClosing, remoteId, .close)
-                        case .overcurrentRelayOff:
-                            self?.showAlertDialog(Strings.SwitchDetail.overcurrentQuestion, remoteId, .turnOn)
-                        case .success: break // Nothing to do
-                        }
-                    }
+extension ChannelListFeature {
+    class ViewModel: MainListViewModel<ChannelListFeature.ViewState>, ChannelListFeature.ViewDelegate {
+        @Singleton<CreateProfileChannelsList.UseCase> private var createProfileChannelsListUseCase
+        @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+        @Singleton<ProvideChannelDetailTypeUseCase> private var provideDetailTypeUseCase
+        @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
+        @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
+        @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
+        @Singleton<ToggleLocationUseCase> private var toggleLocationUseCase
+        @Singleton<UpdateEventsManager> private var updateEventsManager
+        @Singleton<ChannelToMainListItem.UseCase> private var channelToMainListItemUseCase
+        @Singleton<TriggerLogHistoryDownload.UseCase> private var triggerLogHistoryDownloadUseCase
+        @Singleton<AppRouter> private var router
+
+        private var triggerLogHistoryDownloadTask: Task<Void, Never>? = nil
+
+        init(state: ChannelListFeature.ViewState = ChannelListFeature.ViewState()) {
+            super.init(state: state)
+            observeStructureUpdates()
+            observeChannelUpdates()
+        }
+
+        override func onViewAppear() {
+            loadItems()
+            startTriggerLogHistoryDownload()
+        }
+
+        override func onViewDisappear() {
+            super.onViewDisappear()
+            stopTriggerLogHistoryDownload()
+        }
+
+        func onItemClick(_ item: MainListItem) {
+            switch (item) {
+            case .channel, .hvacThermostat, .heatpolThermostat, .doubleValue:
+                readChannelWithChildrenUseCase
+                    .invoke(remoteId: item.remoteId)
+                    .asDriverWithoutError()
+                    .drive(onNext: { [weak self] in self?.handleClickedItem($0) })
+                    .disposed(by: disposeBag)
+            default:
+                break
+            }
+        }
+
+        func onIssueClick(_ issues: ListItemIssues) {
+            if (issues.hasMessage()) {
+                state.alertDialogState = ChannelListAlertDialogState(
+                    message: issues.message,
+                    remoteId: nil,
+                    action: nil,
+                    positiveButtonText: Strings.General.ok,
+                    negativeButtonText: nil
                 )
-                .disposed(by: self)
+            }
         }
-    }
-    
-    func dismissAlertDialog() {
-        if let callback = presentationCallback { callback(false) }
-        channelListViewState.alertDialogState = nil
-    }
-    
-    func showAlert(_ message: String) {
-        showAlertDialog(message, positiveButtonText: Strings.General.ok, negativeButtonText: nil)
-    }
-    
-    func onNoContentButtonClicked() {
-        send(event: .showAddWizard)
-    }
-    
-    func forceAction(_ action: ActionId?, remoteId: Int32?) {
-        dismissAlertDialog()
-        if let action, let remoteId {
-            executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
+
+        func onLeftButtonClick(_ item: MainListItem) {
+            onButtonClicked(buttonType: .leftButton, item: item)
+        }
+
+        func onRightButtonClick(_ item: MainListItem) {
+            onButtonClicked(buttonType: .rightButton, item: item)
+        }
+
+        func onMove(_ sourceItem: MainListItem, _ destinationItem: MainListItem) {
+            guard let locationCaption = sourceItem.locationCaption else { return }
+
+            loadItems(after:
+                swapChannelPositionsUseCase
+                    .invoke(
+                        firstRemoteId: sourceItem.remoteId,
+                        secondRemoteId: destinationItem.remoteId,
+                        locationCaption: locationCaption
+                    )
+            )
+        }
+
+        func onLocationClick(_ item: LocationListItem) {
+            loadItems(after: toggleLocationUseCase.invoke(remoteId: item.remoteId, collapsedFlag: .channel))
+        }
+
+        func onAlertConfirmed(_ remoteId: Int32?, _ action: ActionId?) {
+            state.alertDialogState = nil
+            if let action, let remoteId {
+                executeSimpleActionUseCase
+                    .invoke(action: action, type: .channel, remoteId: remoteId)
+                    .asDriverWithoutError()
+                    .drive()
+                    .disposed(by: disposeBag)
+            }
+        }
+
+        func onAlertDismissed() {
+            state.alertDialogState = nil
+        }
+
+        func onAddDeviceClick() {
+            router.navigate(to: .addWizard)
+        }
+
+        func onDeviceCatalogClick() {
+            router.navigate(to: .deviceCatalog)
+        }
+
+        private func loadItems(after observable: Observable<Void> = Observable.just(())) {
+            state.loading = !state.listLoaded
+            observable
+                .flatMapFirstWeak(with: self) { owner, _ in
+                    owner.createProfileChannelsListUseCase.invoke()
+                }
+                .asDriver()
+                .drive(onNext: { [weak self] result in
+                    guard let self else { return }
+                    state.loading = false
+                    state.listLoaded = true
+
+                    switch result {
+                    case .success(let items):
+                        state.items = items
+                    case .error(let error):
+                        SALog.error("Creating channels list failed with error: \(String(describing: error))")
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
+
+        private func observeStructureUpdates() {
+            loadItems(after: updateEventsManager.observeChannelsUpdate())
+        }
+
+        private func observeChannelUpdates() {
+            updateEventsManager
+                .observeAllChannels()
+                .flatMapFirstWeak(with: self) { owner, remoteId in
+                    owner.readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+                }
+                .compactMap { [weak self] channelWithChildren in
+                    self?.channelToMainListItemUseCase.invoke(channelWithChildren)
+                }
                 .asDriverWithoutError()
-                .drive()
-                .disposed(by: self)
+                .drive(onNext: { [weak self] item in self?.updateItem(item) })
+                .disposed(by: disposeBag)
         }
-    }
-    
-    private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
-        let channel = channelWithChildren.channel
-        if (!isAvailableInOffline(channel, children: channelWithChildren.children) && channel.status().offline) {
-            return // do not open details for offline channels
-        }
-        
-        guard
-            let detailType = provideDetailTypeUseCase.invoke(channelWithChildren: channelWithChildren)
-        else {
-            return
-        }
-        
-        switch (detailType) {
-        case let .legacy(type: legacyDetailType):
-            send(event: .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: channel))
-        case let .standardDetail(pages):
-            send(event: .navigateToStandardDetail(item: channel.item(), pages: pages))
-        case let .impulseCounterDetail(pages):
-            send(event: .navigateToImpulseCounterDetail(item: channel.item(), pages: pages))
-        case let .rgbwDetail(pages):
-            send(event: .navigateToRgbwDetail(item: channel.item(), pages: pages))
-        }
-    }
-    
-    private func showAlertDialog(
-        _ message: String,
-        _ remoteId: Int32? = nil,
-        _ action: ActionId? = nil,
-        positiveButtonText: String? = Strings.General.yes,
-        negativeButtonText: String? = Strings.General.no
-    ) {
-        if let callback = presentationCallback { callback(true) }
-        
-        channelListViewState.alertDialogState = ChannelListAlertDialogState(
-            message: message,
-            remoteId: remoteId,
-            action: action,
-            positiveButtonText: positiveButtonText,
-            negativeButtonText: negativeButtonText
-        )
-    }
-}
 
-enum ChannelListViewEvent: ViewEvent {
-    case navigateToLegacyDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToImpulseCounterDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
-    case showAddWizard
-}
+        private func updateItem(_ item: MainListItem) {
+            guard let index = state.items.firstIndex(where: { $0.key == item.key }) else { return }
+            state.items[index] = item
+        }
 
-struct ChannelListState: ViewState {
-    var overlayHidden: Bool = true
+        private func startTriggerLogHistoryDownload() {
+            guard triggerLogHistoryDownloadTask == nil else { return }
+
+            let useCase = triggerLogHistoryDownloadUseCase
+            triggerLogHistoryDownloadTask = Task { [useCase] in
+                while !Task.isCancelled {
+                    await useCase.invoke()
+
+                    do {
+                        try await Task.sleep(nanoseconds: 15 * 1_000_000_000)
+                    } catch {
+                        return
+                    }
+                }
+            }
+        }
+
+        private func stopTriggerLogHistoryDownload() {
+            triggerLogHistoryDownloadTask?.cancel()
+            triggerLogHistoryDownloadTask = nil
+        }
+
+        private func onButtonClicked(buttonType: CellButtonType, item: MainListItem) {
+            channelBaseActionUseCase
+                .invoke(item.remoteId, buttonType)
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] result in
+                    switch result {
+                    case .valveFlooding:
+                        self?.showAlertDialog(Strings.Valve.warningFlooding, item.remoteId, .open)
+                    case .valveManuallyClosed:
+                        self?.showAlertDialog(Strings.Valve.warningManuallyClosed, item.remoteId, .open)
+                    case .valveMotorProblemOpening:
+                        self?.showAlertDialog(Strings.Valve.warningMotorProblemOpening, item.remoteId, .open)
+                    case .valveMotorProblemClosing:
+                        self?.showAlertDialog(Strings.Valve.warningMotorProblemClosing, item.remoteId, .close)
+                    case .overcurrentRelayOff:
+                        self?.showAlertDialog(Strings.SwitchDetail.overcurrentQuestion, item.remoteId, .turnOn)
+                    case .success:
+                        break
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
+
+        private func handleClickedItem(_ channelWithChildren: ChannelWithChildren) {
+            let channel = channelWithChildren.channel
+            if (!isAvailableInOffline(channel, children: channelWithChildren.children) && channel.status().offline) {
+                return
+            }
+
+            guard let detailType = provideDetailTypeUseCase.invoke(channelWithChildren: channelWithChildren) else {
+                return
+            }
+
+            navigateToDetail(detailType, item: channel.item(), remoteId: channel.remote_id)
+        }
+
+        private func showAlertDialog(
+            _ message: String,
+            _ remoteId: Int32? = nil,
+            _ action: ActionId? = nil,
+            positiveButtonText: String? = Strings.General.yes,
+            negativeButtonText: String? = Strings.General.no
+        ) {
+            state.alertDialogState = ChannelListAlertDialogState(
+                message: message,
+                remoteId: remoteId,
+                action: action,
+                positiveButtonText: positiveButtonText,
+                negativeButtonText: negativeButtonText
+            )
+        }
+    }
 }

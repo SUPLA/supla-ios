@@ -112,21 +112,23 @@ extension ThermostatSlavesFeature {
                     }.padding([.leading], Dimens.distanceSmall)
                     VStack(alignment: .leading, spacing: scaleFactor.scale(Dimens.distanceSmall)) {
                         HStack {
-                            CellValue(text: data.value)
+                            ListItemValue(value: data.value)
                             if (data.indicatorIcon == .off) {
                                 Text("Off").fontBodyMedium()
                             } else {
-                                SetpointIndicator(icon: data.indicatorIcon)
+                                SetpointIndicator(data.indicatorIcon)
                                 if let subValue = data.subValue {
-                                    Text(subValue).fontBodyMedium()
+                                    SetpointText(subValue)
                                 }
                             }
                             ChildChannelIcon(icon: data.pumpSwitchIcon)
                             ChildChannelIcon(icon: data.sourceSwitchIcon)
                         }
-                        CellCaption(text: data.caption)
-                            .padding([.trailing], Dimens.distanceSmall)
-                            .onLongPressGesture { onCaptionLongPress(data) }
+                        ListItemTitle(
+                            text: data.caption,
+                            onLongClick: { onCaptionLongPress(data) }
+                        )
+                        .padding([.trailing], Dimens.distanceSmall)
                     }
                     Spacer()
                 }
@@ -152,19 +154,6 @@ extension ThermostatSlavesFeature {
             .padding([.top, .bottom], Dimens.distanceTiny)
             .background(Color.Supla.surface)
             .onTapGesture { onSlaveClick(data) }
-        }
-    }
-
-    struct SetpointIndicator: SwiftUI.View {
-        let icon: ThermostatIndicatorIcon?
-
-        var body: some SwiftUI.View {
-            if let iconResource = icon?.resourceName {
-                Image(iconResource)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
-            }
         }
     }
 

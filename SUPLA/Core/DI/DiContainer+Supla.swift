@@ -15,7 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SharedCore
 
 extension DiContainer {
@@ -48,12 +48,12 @@ extension DiContainer {
         register(BuildInfo.self, BuildInfoImpl())
         register(SecureSettings.Interface.self, SecureSettings.Implementation())
         register(SharedCore.ThermometerValueFormatter.self, SharedCore.ThermometerValueFormatter(preferences: globalSettings))
-        
+
         register(GroupShared.Settings.self, GroupShared.Implementation())
         if #available(iOS 17.0, *) {
             register(ExportCarPlayItems.UseCase.self, ExportCarPlayItems.Implementation())
         }
-        
+
         // Managers
         register(UpdateEventsManager.self, UpdateEventsManagerImpl())
         register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
@@ -61,7 +61,7 @@ extension DiContainer {
         register(DownloadEventsManager.self, DownloadEventsManagerImpl())
         register(ApplicationEventsManager.self, ApplicationEventsManagerImpl())
         register(SuplaClientAsyncChannelsManager.self, SuplaClientAsyncChannelsManagerImpl())
-        
+
         // MARK: Repositories
 
         register((any ProfileRepository).self, ProfileRepositoryImpl())
@@ -104,13 +104,14 @@ extension DiContainer {
         register((any EspRepository).self, EspRepositoryImpl())
         register((any ColorListItemRepository).self, ColorListItemRepositoryImpl())
         register((any NfcTagItemRepository).self, NfcTagItemRepositoryImpl())
-        
+
         // MARK: Usecases
 
         // Usecases - Channel
         register(UpdateChannelUseCase.self, UpdateChannelUseCaseImpl())
         register(SwapChannelPositionsUseCase.self, SwapChannelPositionsUseCaseImpl())
-        register(CreateProfileChannelsListUseCase.self, CreateProfileChannelsListUseCaseImpl())
+        register(ChannelToMainListItem.UseCase.self, ChannelToMainListItem.Implementation())
+        register(CreateProfileChannelsList.UseCase.self, CreateProfileChannelsList.Implementation())
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
         register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
         register(ReadChannelWithChildrenTreeUseCase.self, ReadChannelWithChildrenTreeUseCaseImpl())
@@ -289,14 +290,14 @@ extension DiContainer {
         register(TriggerLogHistoryDownload.UseCase.self, TriggerLogHistoryDownload.Implementation())
         register(RefreshImpulseCounterAggregatedValue.UseCase.self, RefreshImpulseCounterAggregatedValue.Implementation())
         register(RefreshElectricityMeterAggregatedValue.UseCase.self, RefreshElectricityMeterAggregatedValue.Implementation())
-        
+
         // MARK: Features
-        
+
         // Electricity
         register(ElectricityMeterGeneralStateHandler.self, ElectricityMeterGeneralStateHandlerImpl())
         // Impulse Counter
         register(ImpulseCounterGeneralStateHandler.self, ImpulseCounterGeneralStateHandlerImpl())
-        
+
         // MARK: Shared
 
         // level 0
@@ -352,7 +353,7 @@ extension DiContainer {
                 base64Helper: base64Helper
             )
         )
-        
+
         // level 2
         register(
             GetChannelIssuesForListUseCase.self,
@@ -371,12 +372,12 @@ extension DiContainer {
                 getChannelSpecificIssuesUseCase: getChannelSpecificIssuesUseCase
             )
         )
-        
+
         // MARK: Not singletons
 
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
     }
-    
+
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: UpdateEventsManager.self)
     }

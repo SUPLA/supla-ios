@@ -44,7 +44,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     private lazy var historyDisabledLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         label.text = Strings.Charts.historyDisabled
         label.textAlignment = .center
@@ -357,7 +357,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
     private lazy var rangeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption
+        label.font = .labelSmall
         label.textColor = .onSurfaceVariant
         label.text = Strings.Charts.rangeLabel.uppercased()
         return label
@@ -367,7 +367,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputView = rangePicker
-        textField.font = .body2
+        textField.font = .bodyMedium
         textField.layer.borderColor = UIColor.onBackground.cgColor
         textField.backgroundColor = UIColor.background
         textField.borderStyle = .roundedRect
@@ -385,7 +385,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
     private lazy var aggregationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption
+        label.font = .labelSmall
         label.textColor = .onSurfaceVariant
         label.text = Strings.Charts.dataTypeLabel.uppercased()
         return label
@@ -395,7 +395,7 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputView = aggregationPicker
-        textField.font = .body2
+        textField.font = .bodyMedium
         textField.layer.borderColor = UIColor.onBackground.cgColor
         textField.backgroundColor = UIColor.background
         textField.borderStyle = .roundedRect
@@ -558,7 +558,7 @@ private class BottomPaginationView: UIView {
     private lazy var rangeTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption
+        label.font = .labelSmall
         label.textAlignment = .center
         return label
     }()
@@ -720,7 +720,7 @@ private class RangeSelectionView: UIView {
     
     private func textField() -> SATextField {
         let field = SATextField(height: 32)
-        field.font = .body2
+        field.font = .bodyMedium
         field.textAlignment = .center
         field.backgroundColor = .surface
         field.isUserInteractionEnabled = true

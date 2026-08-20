@@ -15,35 +15,121 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
+import SharedCore
 import SwiftUI
 
-struct ChannelListView: View {
-    
-    @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
-    @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
-    @ObservedObject var channelListViewState: ChannelListViewState
-    
-    let onAlertConfirmed: (Int32?, ActionId?) -> Void
-    let onAlertDismissed: () -> Void
-    
-    var body: some View {
-        if (stateDialogViewModel.present) {
-            StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
+extension ChannelListFeature {
+    protocol ViewDelegate {
+        func onItemClick(_ item: MainListItem)
+        func onIssueClick(_ issues: ListItemIssues)
+        func onLeftButtonClick(_ item: MainListItem)
+        func onRightButtonClick(_ item: MainListItem)
+        func onMove(_ sourceItem: MainListItem, _ destinationItem: MainListItem)
+        func onLocationClick(_ item: LocationListItem)
+        func onAddDeviceClick()
+        func onDeviceCatalogClick()
+        func onAlertConfirmed(_ remoteId: Int32?, _ action: ActionId?)
+        func onAlertDismissed()
+    }
+
+    struct View: SwiftUI.View {
+        @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
+        @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
+        @ObservedObject var viewState: ChannelListFeature.ViewState
+        let delegate: ViewDelegate?
+
+        let onScroll: (CGFloat) -> Void
+        let onScrollEnded: (Bool) -> Void
+
+        var body: some SwiftUI.View {
+            ZStack {
+                content
+                    .background(Color.Supla.background)
+
+                if (stateDialogViewModel.present) {
+                    StateDialogFeature.Dialog(viewModel: stateDialogViewModel)
+                }
+                if (captionChangeDialogViewModel.present) {
+                    CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+                }
+                if let alertDialogState = viewState.alertDialogState {
+                    SuplaCore.AlertDialog(
+                        header: Strings.General.warning,
+                        message: alertDialogState.message,
+                        onDismiss: { delegate?.onAlertDismissed() },
+                        primaryButtonData: .optional(alertDialogState.positiveButtonText),
+                        secondaryButtonText: alertDialogState.negativeButtonText,
+                        onPrimaryButtonClick: { delegate?.onAlertConfirmed(alertDialogState.remoteId, alertDialogState.action) },
+                        onSecondaryButtonClick: { delegate?.onAlertDismissed() }
+                    )
+                }
+            }
         }
-        if (captionChangeDialogViewModel.present) {
-            CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+
+        @ViewBuilder
+        private var content: some SwiftUI.View {
+            if (viewState.loading) {
+                LoadingContent()
+            } else if (viewState.items.isEmpty) {
+                NoContentView(
+                    showDeviceCatalog: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE,
+                    onAddDeviceClick: { delegate?.onAddDeviceClick() },
+                    onDeviceCatalogClick: { delegate?.onDeviceCatalogClick() }
+                )
+            } else {
+                ChannelListTable(
+                    items: viewState.items,
+                    callbacks: tableCallbacks,
+                    onScroll: onScroll,
+                    onScrollEnded: onScrollEnded
+                )
+            }
         }
-        if let alertDialogState = channelListViewState.alertDialogState {
-            SuplaCore.AlertDialog(
-                header: Strings.General.warning,
-                message: alertDialogState.message,
-                onDismiss: {},
-                primaryButtonData: .optional(alertDialogState.positiveButtonText),
-                secondaryButtonText: alertDialogState.negativeButtonText,
-                onPrimaryButtonClick: { onAlertConfirmed(alertDialogState.remoteId, alertDialogState.action) },
-                onSecondaryButtonClick: onAlertDismissed
+
+        private var tableCallbacks: ChannelListTableView.Callbacks {
+            ChannelListTableView.Callbacks(
+                onItemClick: { item in delegate?.onItemClick(item) },
+                onInfoClick: { item in stateDialogViewModel.show(remoteId: item.remoteId) },
+                onIssueClick: { _, issues in delegate?.onIssueClick(issues) },
+                onTitleLongClick: { item in captionChangeDialogViewModel.show(channelRemoteId: item.remoteId) },
+                onLocationClick: { item in delegate?.onLocationClick(item) },
+                onLocationLongClick: { item in captionChangeDialogViewModel.show(locationRemoteId: item.remoteId) },
+                onLeftButtonClick: { item in delegate?.onLeftButtonClick(item) },
+                onRightButtonClick: { item in delegate?.onRightButtonClick(item) },
+                onMove: { sourceItem, destinationItem in delegate?.onMove(sourceItem, destinationItem) }
             )
         }
+    }
+}
+
+private struct LoadingContent: SwiftUI.View {
+    var body: some SwiftUI.View {
+        VStack {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+private struct NoContentView: SwiftUI.View {
+    let showDeviceCatalog: Bool
+    let onAddDeviceClick: () -> Void
+    let onDeviceCatalogClick: () -> Void
+
+    var body: some SwiftUI.View {
+        VStack(spacing: Distance.small) {
+            EmptyListView()
+
+            if (showDeviceCatalog) {
+                TitleButton(title: Strings.DeviceCatalog.menu, action: onDeviceCatalogClick)
+                    .borderedButtonStyle()
+            }
+
+            TitleButton(title: Strings.Menu.addDevice, action: onAddDeviceClick)
+                .borderedButtonStyle()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

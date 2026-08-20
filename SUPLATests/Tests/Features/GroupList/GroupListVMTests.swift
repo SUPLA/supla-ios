@@ -231,7 +231,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
     func test_shouldReloadTable_whenLocationToggled() {
         // given
         let remoteId: Int32 = 123
-        toggleLocationUseCase.observable = Observable.just(())
+        toggleLocationUseCase.invokeMock.returns = .single(Observable.just(()))
         
         // when
         viewModel.toggleLocation(remoteId: remoteId)
@@ -239,9 +239,9 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         // then
         XCTAssertEqual(stateObserver.events.count, 0)
         XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertEqual(toggleLocationUseCase.remoteIdArray[0], remoteId)
-        XCTAssertEqual(toggleLocationUseCase.collapsedFlagArray[0], .group)
+
+        XCTAssertEqual(toggleLocationUseCase.invokeMock.parameters[0].0, remoteId)
+        XCTAssertEqual(toggleLocationUseCase.invokeMock.parameters[0].1, .group)
         
         XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
     }

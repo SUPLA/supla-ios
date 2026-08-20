@@ -76,7 +76,7 @@ final class SwitchTimerConfigurationView: UIView {
     private lazy var headerView: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .subtitle2
+        label.font = .titleSmall
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -87,7 +87,7 @@ final class SwitchTimerConfigurationView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.selectedSegmentIndex = 0
         view.addTarget(self, action: #selector(updateInfoText), for: .valueChanged)
-        view.setTitleTextAttributes([.font: UIFont.body2], for: .normal)
+        view.setTitleTextAttributes([.font: UIFont.bodyMedium], for: .normal)
         return view
     }()
     
@@ -119,7 +119,7 @@ final class SwitchTimerConfigurationView: UIView {
     private lazy var infoTextView: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .body2
+        view.font = .bodyMedium
         view.textAlignment = .center
         view.numberOfLines = 2
         return view

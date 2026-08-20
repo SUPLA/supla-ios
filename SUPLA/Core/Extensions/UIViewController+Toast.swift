@@ -90,7 +90,7 @@ private class UIToastView: UIView {
     private lazy var labelView: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         return label
     }()

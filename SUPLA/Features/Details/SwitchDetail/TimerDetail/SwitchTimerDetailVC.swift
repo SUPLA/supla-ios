@@ -43,14 +43,14 @@ class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, Swit
     private lazy var progressTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .h5
+        label.font = .headlineMedium
         return label
     }()
     
     private lazy var progressEndHourLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body1
+        label.font = .bodyLarge
         return label
     }()
     
@@ -64,7 +64,7 @@ class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, Swit
     private lazy var editButton: UIPlainButton = {
         let button = UIPlainButton()
         button.setAttributedTitle(Strings.TimerDetail.editTime)
-        button.titleLabel?.font = .body2
+        button.titleLabel?.font = .bodyMedium
         button.icon = .pencil
         button.textColor = .onBackground
         return button

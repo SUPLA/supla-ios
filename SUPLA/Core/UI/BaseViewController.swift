@@ -61,10 +61,6 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         super.viewWillAppear(animated)
         overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
         
-        if (!navigationBarHidden && !navigationBarMaintainedByParent) {
-            setupToolbar(toolbarFont: getToolbarFont())
-        }
-        
         viewModel.onViewWillAppear()
         
         stateDisposable = viewModel.stateObservable()
@@ -100,7 +96,6 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
     func handle(state: S) { } // default empty implementation
-    func getToolbarFont() -> UIFont { .suplaSubtitleFont }
     
     func observeNotification(name: NSNotification.Name?, selector: Selector) {
         NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)

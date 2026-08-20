@@ -26,7 +26,7 @@ final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDia
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textAlignment = .center
         label.numberOfLines = 0
         return label

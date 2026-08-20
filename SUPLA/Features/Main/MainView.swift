@@ -48,6 +48,12 @@ extension MainFeature {
 
                     content
 
+                    Color.Supla.primaryContainer
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .frame(maxHeight: .infinity, alignment: .top)
+                        .ignoresSafeArea(edges: .top)
+                        .allowsHitTesting(false)
+
                     Color.black
                         .opacity(drawerOpened ? 0.32 : 0)
                         .ignoresSafeArea()
@@ -209,10 +215,10 @@ extension MainFeature {
         private var selectedContent: some SwiftUI.View {
             switch selectedTab {
             case .channels:
-                ViewControllerHost(
+                ChannelListFeature.Screen(
                     onScroll: onContentScroll,
                     onScrollEnded: onContentScrollEnded
-                ) { ChannelListVC() }
+                )
 
             case .groups:
                 ViewControllerHost(

@@ -96,7 +96,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func setupView() {
         currentTemperatureView.font = .cellValueFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
-        setpointTemperatureView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .lower(1)))
+        setpointTemperatureView.font = .formLabelFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
         
         container.addSubview(thermostatIconView)
         container.addSubview(currentTemperatureView)
