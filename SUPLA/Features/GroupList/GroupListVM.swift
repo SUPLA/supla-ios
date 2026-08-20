@@ -16,83 +16,142 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import RxSwift
 
-class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEvent> {
-    @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
-    @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
-    @Singleton<ProvideGroupDetailTypeUseCase> private var provideDetailTypeUseCase
-    @Singleton<UpdateEventsManager> private var updateEventsManager
-    @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
-    
-    override init() {
-        super.init()
-        
-        updateEventsManager.observeGroupsUpdate()
-            .subscribe(
-                onNext: { self.reloadTable() }
+extension GroupListFeature {
+    class ViewModel: MainListViewModel<GroupListFeature.ViewState>, GroupListFeature.ViewDelegate {
+        @Singleton<CreateProfileGroupsList.UseCase> private var createProfileGroupsListUseCase
+        @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
+        @Singleton<ProvideGroupDetailTypeUseCase> private var provideDetailTypeUseCase
+        @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
+        @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
+        @Singleton<ToggleLocationUseCase> private var toggleLocationUseCase
+        @Singleton<UpdateEventsManager> private var updateEventsManager
+        @Singleton<GroupToMainListItem.UseCase> private var groupToMainListItemUseCase
+        @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
+        @Singleton<AppRouter> private var router
+
+        init(state: GroupListFeature.ViewState = GroupListFeature.ViewState()) {
+            super.init(state: state)
+            observeStructureUpdates()
+            observeGroupUpdates()
+        }
+
+        override func onViewAppear() {
+            loadItems()
+        }
+
+        func onItemClick(_ item: MainListItem) {
+            guard case .group = item else { return }
+
+            readGroupByRemoteIdUseCase
+                .invoke(remoteId: item.remoteId)
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] in self?.handleClickedItem($0) })
+                .disposed(by: disposeBag)
+        }
+
+        func onLeftButtonClick(_ item: MainListItem) {
+            onButtonClicked(buttonType: .leftButton, item: item)
+        }
+
+        func onRightButtonClick(_ item: MainListItem) {
+            onButtonClicked(buttonType: .rightButton, item: item)
+        }
+
+        func onMove(_ sourceItem: MainListItem, _ destinationItem: MainListItem) {
+            guard let locationCaption = sourceItem.locationCaption else { return }
+
+            loadItems(after:
+                swapGroupPositionsUseCase
+                    .invoke(
+                        firstRemoteId: sourceItem.remoteId,
+                        secondRemoteId: destinationItem.remoteId,
+                        locationCaption: locationCaption
+                    )
             )
-            .disposed(by: self)
-    }
-    
-    override func defaultViewState() -> GroupListViewState { GroupListViewState() }
-    
-    override func reloadTable() {
-        createProfileGroupsListUseCase.invoke()
-            .subscribe(onNext: { self.listItems.accept($0) })
-            .disposed(by: self)
-    }
-    
-    override func swapItems(firstItem: Int32, secondItem: Int32, locationCaption: String) {
-        swapGroupPositionsUseCase
-            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationCaption: locationCaption)
-            .subscribe(onNext: { self.reloadTable() })
-            .disposed(by: self)
-    }
-    
-    override func onClicked(onItem item: Any) {
-        guard let item = item as? SAChannelGroup else { return }
-        
-        if (!isAvailableInOffline(item) && item.status().offline) {
-            return // do not open details for offline channels
         }
-        
-        guard
-            let detailType = provideDetailTypeUseCase.invoke(group: item)
-        else {
-            return
+
+        func onLocationClick(_ item: LocationListItem) {
+            loadItems(after: toggleLocationUseCase.invoke(remoteId: item.remoteId, collapsedFlag: .group))
         }
-        
-        switch (detailType) {
-        case let .legacy(type: legacyDetailType):
-            send(event: .navigateToLegacyDetail(legacy: legacyDetailType, channelBase: item))
-        case let .standardDetail(pages):
-            send(event: .navigateToStandardDetail(item: item.item(), pages: pages))
-        case let .rgbwDetail(pages):
-            send(event: .navigateToRgbwDetail(item: item.item(), pages: pages))
-        default: break
+
+        func onNoContentButtonClick() {
+            loadActiveProfileUrlUseCase
+                .invoke()
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] url in self?.router.openUrl(url: url.url) })
+                .disposed(by: disposeBag)
         }
-    }
-    
-    override func getCollapsedFlag() -> CollapsedFlag { .group }
-    
-    func onNoContentButtonClicked() {
-        loadActiveProfileUrlUseCase.invoke()
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] url in
-                    self?.send(event: .open(url: url.url))
+
+        private func loadItems(after observable: Observable<Void> = Observable.just(())) {
+            state.loading = !state.listLoaded
+            observable
+                .flatMapFirstWeak(with: self) { owner, _ in
+                    owner.createProfileGroupsListUseCase.invoke()
                 }
-            )
-            .disposed(by: self)
+                .asDriver()
+                .drive(onNext: { [weak self] result in
+                    guard let self else { return }
+                    state.loading = false
+                    state.listLoaded = true
+
+                    switch result {
+                    case .success(let items):
+                        state.items = items
+                    case .error(let error):
+                        SALog.error("Creating groups list failed with error: \(String(describing: error))")
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
+
+        private func observeStructureUpdates() {
+            loadItems(after: updateEventsManager.observeGroupsUpdate())
+        }
+
+        private func observeGroupUpdates() {
+            updateEventsManager
+                .observeAllGroups()
+                .flatMapFirstWeak(with: self) { owner, remoteId in
+                    owner.readGroupByRemoteIdUseCase.invoke(remoteId: remoteId)
+                }
+                .compactMap { [weak self] group in
+                    self?.groupToMainListItemUseCase.invoke(group)
+                }
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] item in self?.updateItem(item) })
+                .disposed(by: disposeBag)
+        }
+
+        private func updateItem(_ item: MainListItem) {
+            guard let index = state.items.firstIndex(where: { $0.key == item.key }) else { return }
+            state.items[index] = item
+        }
+
+        private func onButtonClicked(buttonType: CellButtonType, item: MainListItem) {
+            guard case .group = item else { return }
+
+            readGroupByRemoteIdUseCase
+                .invoke(remoteId: item.remoteId)
+                .flatMapFirstWeak(with: self) { owner, group in
+                    owner.channelBaseActionUseCase.invoke(group, buttonType)
+                }
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+        }
+
+        private func handleClickedItem(_ group: SAChannelGroup) {
+            if (!isAvailableInOffline(group) && group.status().offline) {
+                return
+            }
+
+            guard let detailType = provideDetailTypeUseCase.invoke(group: group) else {
+                return
+            }
+
+            navigateToDetail(detailType, item: group.item(), remoteId: group.remote_id)
+        }
     }
 }
-
-enum GroupListViewEvent: ViewEvent {
-    case navigateToLegacyDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case navigateToStandardDetail(item: ItemBundle, pages: [DetailPage])
-    case navigateToRgbwDetail(item: ItemBundle, pages: [DetailPage])
-    case open(url: URL)
-}
-
-struct GroupListViewState: ViewState {}

@@ -70,7 +70,7 @@ extension ChannelListFeature {
         @ViewBuilder
         private var content: some SwiftUI.View {
             if (viewState.loading) {
-                LoadingContent()
+                MainListLoadingContent()
             } else if (viewState.items.isEmpty) {
                 NoContentView(
                     showDeviceCatalog: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE,
@@ -78,7 +78,7 @@ extension ChannelListFeature {
                     onDeviceCatalogClick: { delegate?.onDeviceCatalogClick() }
                 )
             } else {
-                ChannelListTable(
+                MainListTable(
                     items: viewState.items,
                     callbacks: tableCallbacks,
                     onScroll: onScroll,
@@ -87,8 +87,8 @@ extension ChannelListFeature {
             }
         }
 
-        private var tableCallbacks: ChannelListTableView.Callbacks {
-            ChannelListTableView.Callbacks(
+        private var tableCallbacks: MainListTableView.Callbacks {
+            MainListTableView.Callbacks(
                 onItemClick: { item in delegate?.onItemClick(item) },
                 onInfoClick: { item in stateDialogViewModel.show(remoteId: item.remoteId) },
                 onIssueClick: { _, issues in delegate?.onIssueClick(issues) },
@@ -100,16 +100,6 @@ extension ChannelListFeature {
                 onMove: { sourceItem, destinationItem in delegate?.onMove(sourceItem, destinationItem) }
             )
         }
-    }
-}
-
-private struct LoadingContent: SwiftUI.View {
-    var body: some SwiftUI.View {
-        VStack {
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

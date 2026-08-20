@@ -364,7 +364,7 @@ final class ChannelListVMTests: SuplaCore.ViewModelTest<ChannelListFeature.ViewS
             remoteId: remoteId,
             profileId: profileId,
             userCaption: "Location",
-            collapsed: 0
+            collapsed: false
         )
     }
 

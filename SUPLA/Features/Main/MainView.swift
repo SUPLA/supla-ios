@@ -221,10 +221,10 @@ extension MainFeature {
                 )
 
             case .groups:
-                ViewControllerHost(
+                GroupListFeature.Screen(
                     onScroll: onContentScroll,
                     onScrollEnded: onContentScrollEnded
-                ) { GroupListVC() }
+                )
 
             case .scenes:
                 ViewControllerHost(

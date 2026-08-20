@@ -59,7 +59,7 @@ struct MainListItemView: SwiftUI.View {
         case .location(let item):
             LocationListItemView(
                 caption: item.userCaption,
-                collapsed: CollapsedFlag.channel.isCollapsed(item.collapsed),
+                collapsed: item.collapsed,
                 inSearch: false,
                 onClick: onLocationClick,
                 onLongClick: onLocationLongClick

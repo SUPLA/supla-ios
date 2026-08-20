@@ -21,14 +21,14 @@ import SharedCore
 import SwiftUI
 import UIKit
 
-struct ChannelListTable: UIViewRepresentable {
+struct MainListTable: UIViewRepresentable {
     let items: [MainListItem]
-    let callbacks: ChannelListTableView.Callbacks
+    let callbacks: MainListTableView.Callbacks
     let onScroll: (CGFloat) -> Void
     let onScrollEnded: (Bool) -> Void
 
-    func makeUIView(context: Context) -> ChannelListTableView {
-        let view = ChannelListTableView()
+    func makeUIView(context: Context) -> MainListTableView {
+        let view = MainListTableView()
         view.callbacks = callbacks
         view.onScroll = onScroll
         view.onScrollEnded = onScrollEnded
@@ -36,7 +36,7 @@ struct ChannelListTable: UIViewRepresentable {
         return view
     }
 
-    func updateUIView(_ uiView: ChannelListTableView, context: Context) {
+    func updateUIView(_ uiView: MainListTableView, context: Context) {
         uiView.callbacks = callbacks
         uiView.onScroll = onScroll
         uiView.onScrollEnded = onScrollEnded
@@ -44,7 +44,7 @@ struct ChannelListTable: UIViewRepresentable {
     }
 }
 
-final class ChannelListTableView: UIView {
+final class MainListTableView: UIView {
     struct Callbacks {
         var onItemClick: (MainListItem) -> Void = { _ in }
         var onInfoClick: (MainListItem) -> Void = { _ in }
@@ -65,7 +65,7 @@ final class ChannelListTableView: UIView {
     var onScroll: (CGFloat) -> Void = { _ in }
     var onScrollEnded: (Bool) -> Void = { _ in }
 
-    private let cellIdentifier = "ListCell"
+    private let cellIdentifier = "MainListCell"
     private var items: [MainListItem] = []
     private var scaleFactor: CGFloat = 1
     private var showChannelInfo = false
@@ -82,7 +82,7 @@ final class ChannelListTableView: UIView {
         view.dragDelegate = self
         view.dropDelegate = self
         view.dragInteractionEnabled = true
-        view.register(ListCell.self, forCellReuseIdentifier: cellIdentifier)
+        view.register(MainListCell.self, forCellReuseIdentifier: cellIdentifier)
         return view
     }()
 
@@ -145,14 +145,14 @@ final class ChannelListTableView: UIView {
     private func refreshVisibleCells(atRows rows: [Int]) {
         rows
             .map { IndexPath(row: $0, section: 0) }
-            .compactMap { indexPath -> (ListCell, IndexPath)? in
-                guard let cell = tableView.cellForRow(at: indexPath) as? ListCell else { return nil }
+            .compactMap { indexPath -> (MainListCell, IndexPath)? in
+                guard let cell = tableView.cellForRow(at: indexPath) as? MainListCell else { return nil }
                 return (cell, indexPath)
             }
             .forEach { cell, indexPath in configure(cell, at: indexPath) }
     }
 
-    private func configure(_ cell: ListCell, at indexPath: IndexPath) {
+    private func configure(_ cell: MainListCell, at indexPath: IndexPath) {
         let item = items[indexPath.row]
         cell.configure(
             item: item,
@@ -211,19 +211,19 @@ final class ChannelListTableView: UIView {
     }
 }
 
-extension ChannelListTableView: UITableViewDataSource {
+extension MainListTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MainListCell
         configure(cell, at: indexPath)
         return cell
     }
 }
 
-extension ChannelListTableView: UITableViewDelegate {
+extension MainListTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard items.indices.contains(indexPath.row) else { return Dimens.ListItem.itemHeight }
 
@@ -267,7 +267,7 @@ extension ChannelListTableView: UITableViewDelegate {
     }
 }
 
-extension ChannelListTableView: UITableViewDragDelegate {
+extension MainListTableView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard items.indices.contains(indexPath.row), items[indexPath.row].draggable else { return [] }
 
@@ -280,7 +280,7 @@ extension ChannelListTableView: UITableViewDragDelegate {
     }
 }
 
-extension ChannelListTableView: UITableViewDropDelegate {
+extension MainListTableView: UITableViewDropDelegate {
     func tableView(
         _ tableView: UITableView,
         dropSessionDidUpdate session: UIDropSession,
@@ -315,7 +315,7 @@ extension ChannelListTableView: UITableViewDropDelegate {
     }
 }
 
-final class ListCell: MGSwipeTableCell, MoveableCell {
+final class MainListCell: MGSwipeTableCell, MoveableCell {
     struct Callbacks {
         var onItemClick: () -> Void
         var onInfoClick: () -> Void

@@ -19,42 +19,58 @@
 import Foundation
 import RxSwift
 
-protocol CreateProfileGroupsListUseCase {
-    func invoke() -> Observable<[List]>
+struct CreateProfileGroupsList {
+    protocol UseCase {
+        func invoke() -> Observable<[MainListItem]>
+    }
+
+    final class Implementation: UseCase {
+        @Singleton<GroupRepository> private var groupRepository
+        @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<GroupToMainListItem.UseCase> private var groupToMainListItemUseCase
+
+        func invoke() -> Observable<[MainListItem]> {
+            profileRepository
+                .getActiveProfile()
+                .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
+                .map { self.toList($0) }
+        }
+
+        private func toList(_ groups: [SAChannelGroup]) -> [MainListItem] {
+            guard let firstGroup = groups.first, var lastLocation = firstGroup.location else {
+                return []
+            }
+
+            var items = [MainListItem]()
+            items.append(lastLocation.groupListItem)
+
+            for group in groups {
+                guard let location = group.location else { continue }
+
+                if (lastLocation.caption != location.caption) {
+                    lastLocation = location
+                    items.append(lastLocation.groupListItem)
+                }
+
+                if (!lastLocation.isCollapsed(flag: .group)) {
+                    items.append(groupToMainListItemUseCase.invoke(group, location: lastLocation))
+                }
+            }
+
+            return items
+        }
+    }
 }
 
-final class CreateProfileGroupsListUseCaseImpl: CreateProfileGroupsListUseCase {
-    
-    @Singleton<GroupRepository> private var groupRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke() -> Observable<[List]> {
-        return profileRepository
-            .getActiveProfile()
-            .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
-            .map { self.toList($0) }
-    }
-    
-    private func toList(_ channels: [SAChannelGroup]) -> [List] {
-        if (channels.isEmpty) {
-            return [.list(items: [])]
-        }
-        
-        var lastLocation: _SALocation = channels[0].location!
-        var items = [ListItem]()
-        items.append(.location(location: lastLocation))
-        
-        for channel in channels {
-            if (lastLocation.caption != channel.location!.caption) {
-                items.append(.location(location: channel.location!))
-                lastLocation = channel.location!
-            }
-            
-            if (!lastLocation.isCollapsed(flag: .group)) {
-                items.append(.channelBase(channelBase: channel, children: []))
-            }
-        }
-        
-        return [.list(items: items)]
+private extension _SALocation {
+    var groupListItem: MainListItem {
+        .location(
+            LocationListItem(
+                remoteId: location_id?.int32Value ?? 0,
+                profileId: profile.id,
+                userCaption: caption ?? "",
+                collapsed: isCollapsed(flag: .group)
+            )
+        )
     }
 }
