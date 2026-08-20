@@ -1507,10 +1507,14 @@
 		A5F29B1A3034F10000C0DE01 /* ChannelListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B173034F10000C0DE01 /* ChannelListFeature.swift */; };
 		A5F29B1B3034F10000C0DE01 /* ChannelListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B183034F10000C0DE01 /* ChannelListScreen.swift */; };
 		A5F29B1C3034F10000C0DE01 /* ChannelListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B193034F10000C0DE01 /* ChannelListVM.swift */; };
-		A5F29B1E3034F20000C0DE01 /* ChannelListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B1D3034F20000C0DE01 /* ChannelListTableView.swift */; };
+		A5F29B1E3034F20000C0DE01 /* MainListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B1D3034F20000C0DE01 /* MainListTableView.swift */; };
+		A5F29B233034F30000C0DE01 /* GroupListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B203034F30000C0DE01 /* GroupListFeature.swift */; };
+		A5F29B243034F30000C0DE01 /* GroupListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B213034F30000C0DE01 /* GroupListScreen.swift */; };
+		A5F29B253034F30000C0DE01 /* GroupListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B223034F30000C0DE01 /* GroupListViewState.swift */; };
+		A5F29B273034F40000C0DE01 /* GroupToMainListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B263034F40000C0DE01 /* GroupToMainListItemUseCase.swift */; };
+		A5F29B293034F40000C0DE01 /* MainListLoadingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B283034F40000C0DE01 /* MainListLoadingContent.swift */; };
 		A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */; };
 		A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5C2A1E161500ED700A /* MainVM.swift */; };
-		A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B662A1E268E00ED700A /* GroupListVC.swift */; };
 		A5F29B692A1E269800ED700A /* GroupListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B682A1E269800ED700A /* GroupListVM.swift */; };
 		A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B6A2A1E26AA00ED700A /* SceneListVC.swift */; };
 		A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B6C2A1E26B400ED700A /* SceneListVM.swift */; };
@@ -3365,10 +3369,14 @@
 		A5F29B173034F10000C0DE01 /* ChannelListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListFeature.swift; sourceTree = "<group>"; };
 		A5F29B183034F10000C0DE01 /* ChannelListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListScreen.swift; sourceTree = "<group>"; };
 		A5F29B193034F10000C0DE01 /* ChannelListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVM.swift; sourceTree = "<group>"; };
-		A5F29B1D3034F20000C0DE01 /* ChannelListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListTableView.swift; sourceTree = "<group>"; };
+		A5F29B1D3034F20000C0DE01 /* MainListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListTableView.swift; sourceTree = "<group>"; };
+		A5F29B203034F30000C0DE01 /* GroupListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListFeature.swift; sourceTree = "<group>"; };
+		A5F29B213034F30000C0DE01 /* GroupListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListScreen.swift; sourceTree = "<group>"; };
+		A5F29B223034F30000C0DE01 /* GroupListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewState.swift; sourceTree = "<group>"; };
+		A5F29B263034F40000C0DE01 /* GroupToMainListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupToMainListItemUseCase.swift; sourceTree = "<group>"; };
+		A5F29B283034F40000C0DE01 /* MainListLoadingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListLoadingContent.swift; sourceTree = "<group>"; };
 		A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A5F29B5C2A1E161500ED700A /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
-		A5F29B662A1E268E00ED700A /* GroupListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListVC.swift; sourceTree = "<group>"; };
 		A5F29B682A1E269800ED700A /* GroupListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListVM.swift; sourceTree = "<group>"; };
 		A5F29B6A2A1E26AA00ED700A /* SceneListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListVC.swift; sourceTree = "<group>"; };
 		A5F29B6C2A1E26B400ED700A /* SceneListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListVM.swift; sourceTree = "<group>"; };
@@ -7781,7 +7789,6 @@
 				A5F29B173034F10000C0DE01 /* ChannelListFeature.swift */,
 				A5F29B183034F10000C0DE01 /* ChannelListScreen.swift */,
 				A5F29B193034F10000C0DE01 /* ChannelListVM.swift */,
-				A5F29B1D3034F20000C0DE01 /* ChannelListTableView.swift */,
 				A56F8D122DA9356600F097CE /* ChannelListViewState.swift */,
 				A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */,
 				A58A9BFF2AA0ACFC00D28848 /* Cells */,
@@ -7792,8 +7799,10 @@
 		A5F29B642A1E236000ED700A /* GroupList */ = {
 			isa = PBXGroup;
 			children = (
+				A5F29B203034F30000C0DE01 /* GroupListFeature.swift */,
+				A5F29B213034F30000C0DE01 /* GroupListScreen.swift */,
+				A5F29B223034F30000C0DE01 /* GroupListViewState.swift */,
 				A5C5F6F62D9426DC00E303B8 /* GroupListView.swift */,
-				A5F29B662A1E268E00ED700A /* GroupListVC.swift */,
 				A5F29B682A1E269800ED700A /* GroupListVM.swift */,
 			);
 			path = GroupList;
@@ -8015,6 +8024,7 @@
 				A50B5D462BFCB9A500918D18 /* ActivePercentage */,
 				A5074BEF2BDA721A0081B6B1 /* TotalValue */,
 				A5F29B9C2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift */,
+				A5F29B263034F40000C0DE01 /* GroupToMainListItemUseCase.swift */,
 				A5F29BBD2A24DB1300ED700A /* UpdateGroupUseCase.swift */,
 				A5F29BBF2A24DDB100ED700A /* UpdateChannelGroupRelationUseCase.swift */,
 				A5F29BC32A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift */,
@@ -8273,6 +8283,8 @@
 			isa = PBXGroup;
 			children = (
 				C0DE1570000000000000001B /* MainListViewModel.swift */,
+				A5F29B1D3034F20000C0DE01 /* MainListTableView.swift */,
+				A5F29B283034F40000C0DE01 /* MainListLoadingContent.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -8695,7 +8707,6 @@
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
 				A5BF4F5A2F3C808100F5DE81 /* NfcTagItemRepository.swift in Sources */,
-				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
 				A56286AB30343BA200851CED /* HeatpolThermostatListItemView.swift in Sources */,
 				A51474642EA66B5E0044DEF2 /* RelatedChannelItemView.swift in Sources */,
 				A522DB452D0CD7F700163BA2 /* PasswordTextField.swift in Sources */,
@@ -9271,7 +9282,12 @@
 				A530EE0D2A56C65D00F8DAEE /* UIImage+Supla.swift in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */,
-				A5F29B1E3034F20000C0DE01 /* ChannelListTableView.swift in Sources */,
+				A5F29B1E3034F20000C0DE01 /* MainListTableView.swift in Sources */,
+				A5F29B233034F30000C0DE01 /* GroupListFeature.swift in Sources */,
+				A5F29B243034F30000C0DE01 /* GroupListScreen.swift in Sources */,
+				A5F29B253034F30000C0DE01 /* GroupListViewState.swift in Sources */,
+				A5F29B273034F40000C0DE01 /* GroupToMainListItemUseCase.swift in Sources */,
+				A5F29B293034F40000C0DE01 /* MainListLoadingContent.swift in Sources */,
 				A54E2AF12E44B4E3003F2926 /* CreateEspPasswordUseCase.swift in Sources */,
 				A5C2D9512EAA6795007BAA0B /* SpacesAlertDialog.swift in Sources */,
 				A562869E3033311700851CED /* DoubleIconValueListItemView.swift in Sources */,

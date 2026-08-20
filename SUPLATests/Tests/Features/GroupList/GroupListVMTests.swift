@@ -17,269 +17,279 @@
  */
 
 import RxSwift
-import RxTest
+import SharedCore
 import XCTest
 
 @testable import SUPLA
 
-final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEvent> {
-    private lazy var viewModel: GroupListViewModel! = GroupListViewModel()
-    
-    private lazy var createProfileGroupsListUseCase: CreateProfileGroupsListUseCaseMock! = CreateProfileGroupsListUseCaseMock()
+final class GroupListVMTests: SuplaCore.ViewModelTest<GroupListFeature.ViewState> {
+    private lazy var viewModel: GroupListFeature.ViewModel! = GroupListFeature.ViewModel()
 
-    private lazy var swapGroupPositionsUseCase: SwapGroupPositionsUseCaseMock! = SwapGroupPositionsUseCaseMock()
-
-    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
-
+    private lazy var createProfileGroupsListUseCase: CreateProfileGroupsList.Mock! = CreateProfileGroupsList.Mock()
+    private lazy var readGroupByRemoteIdUseCase: ReadGroupByRemoteIdUseCaseMock! = ReadGroupByRemoteIdUseCaseMock()
     private lazy var provideDetailTypeUseCase: ProvideGroupDetailTypeUseCaseMock! = ProvideGroupDetailTypeUseCaseMock()
-
+    private lazy var channelBaseActionUseCase: ChannelBaseActionUseCaseMock! = ChannelBaseActionUseCaseMock()
+    private lazy var swapGroupPositionsUseCase: SwapGroupPositionsUseCaseMock! = SwapGroupPositionsUseCaseMock()
+    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
     private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
-
+    private lazy var groupToMainListItemUseCase: GroupToMainListItem.Mock! = GroupToMainListItem.Mock()
     private lazy var loadActiveProfileUrlUseCase: LoadActiveProfileUrlUseCaseMock! = LoadActiveProfileUrlUseCaseMock()
-    
+    private lazy var router: AppRouterMock! = AppRouterMock()
+
     override func setUp() {
-        DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, createProfileGroupsListUseCase!)
-        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, swapGroupPositionsUseCase!)
+        updateEventsManager.observeAllChannelsMock.returns = .single(Observable.empty())
+        updateEventsManager.observeAllGroupsMock.returns = .single(Observable.empty())
+        updateEventsManager.observeAllScenesMock.returns = .single(Observable.empty())
+
+        DiContainer.shared.register(type: CreateProfileGroupsList.UseCase.self, createProfileGroupsListUseCase!)
+        DiContainer.shared.register(type: ReadGroupByRemoteIdUseCase.self, readGroupByRemoteIdUseCase!)
         DiContainer.shared.register(type: ProvideGroupDetailTypeUseCase.self, provideDetailTypeUseCase!)
+        DiContainer.shared.register(type: ChannelBaseActionUseCase.self, channelBaseActionUseCase!)
+        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, swapGroupPositionsUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
+        DiContainer.shared.register(type: GroupToMainListItem.UseCase.self, groupToMainListItemUseCase!)
         DiContainer.shared.register(type: LoadActiveProfileUrlUseCase.self, loadActiveProfileUrlUseCase!)
+        DiContainer.shared.register(type: AppRouter.self, router!)
     }
-    
+
     override func tearDown() {
         viewModel = nil
-        
         createProfileGroupsListUseCase = nil
-        swapGroupPositionsUseCase = nil
+        readGroupByRemoteIdUseCase = nil
         provideDetailTypeUseCase = nil
+        channelBaseActionUseCase = nil
+        swapGroupPositionsUseCase = nil
         toggleLocationUseCase = nil
         updateEventsManager = nil
+        groupToMainListItemUseCase = nil
         loadActiveProfileUrlUseCase = nil
-        
+        router = nil
+
         super.tearDown()
     }
-    
-    func test_shouldReloadTable_onGroupUpdate() {
+
+    func test_shouldReloadItems_onGroupStructureUpdate() {
         // given
+        let items = [groupItem(remoteId: 1)]
         updateEventsManager.observeGroupUpdatesObservable = Observable.just(())
-        
+        createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just(items))
+
         // when
-        observe(viewModel)
-        
+        _ = viewModel
+
         // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
+        createProfileGroupsListUseCase.invokeMock.verifyCalls(1)
+        XCTAssertEqual(viewModel.state.items, items)
+        XCTAssertFalse(viewModel.state.loading)
+        XCTAssertTrue(viewModel.state.listLoaded)
     }
-    
-    func test_shouldUpdateListItems_onTableReload() {
+
+    func test_shouldUpdateListItems_onViewAppear() {
         // given
-        let list: [List] = [.list(items: [])]
-        createProfileGroupsListUseCase.observable = Observable.just(list)
-        
-        let listObserver = scheduler.createObserver([List].self)
-        
+        let items = [MainListItem.location(locationItem(remoteId: 10)), groupItem(remoteId: 1)]
+        createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just(items))
+
         // when
-        observe(viewModel)
-        viewModel.listItems.subscribe(listObserver).disposed(by: disposeBag)
-        viewModel.reloadTable()
-        
+        viewModel.onViewAppear()
+
         // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
-        XCTAssertEqual(listObserver.events.count, 2)
+        createProfileGroupsListUseCase.invokeMock.verifyCalls(1)
+        XCTAssertEqual(viewModel.state.items, items)
+        XCTAssertFalse(viewModel.state.loading)
+        XCTAssertTrue(viewModel.state.listLoaded)
     }
-    
-    func test_shouldSwipeItemsAndReloadTable() {
+
+    func test_shouldUpdateSingleItem_onGroupUpdate() {
         // given
+        let groupUpdates = PublishSubject<Int32>()
+        let initialItem = groupItem(remoteId: 1, title: "Old")
+        let updatedItem = groupItem(remoteId: 1, title: "New")
+        let group = group(remoteId: 1)
+
+        updateEventsManager.observeAllGroupsMock.returns = .single(groupUpdates.asObservable())
+        createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just([initialItem]))
+        readGroupByRemoteIdUseCase.returns = Observable.just(group)
+        groupToMainListItemUseCase.invokeMock.returns = .single(updatedItem)
+
+        viewModel.onViewAppear()
+
+        // when
+        groupUpdates.onNext(1)
+
+        // then
+        XCTAssertEqual(readGroupByRemoteIdUseCase.remoteIdArray, [1])
+        groupToMainListItemUseCase.invokeMock.verifyCalls(1)
+        createProfileGroupsListUseCase.invokeMock.verifyCalls(1)
+        XCTAssertEqual(viewModel.state.items, [updatedItem])
+    }
+
+    func test_shouldSwipeItemsAndReloadList() {
+        // given
+        let firstItem = groupItem(remoteId: 2, locationCaption: "Caption")
+        let secondItem = groupItem(remoteId: 4, locationCaption: "Caption")
+        let reloadedItems = [secondItem, firstItem]
+
         swapGroupPositionsUseCase.observable = Observable.just(())
-        let firstItemId: Int32 = 2
-        let secondItemId: Int32 = 4
-        let locationCaption = "Caption"
-        
+        createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just(reloadedItems))
+
         // when
-        observe(viewModel)
-        viewModel.swapItems(firstItem: firstItemId, secondItem: secondItemId, locationCaption: locationCaption)
-        
+        viewModel.onMove(firstItem, secondItem)
+
         // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertEqual(swapGroupPositionsUseCase.firstRemoteIdArray[0], firstItemId)
-        XCTAssertEqual(swapGroupPositionsUseCase.secondRemoteIdArray[0], secondItemId)
-        XCTAssertEqual(swapGroupPositionsUseCase.locationCaptionArray[0], locationCaption)
-        
-        XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
+        XCTAssertEqual(swapGroupPositionsUseCase.firstRemoteIdArray, [2])
+        XCTAssertEqual(swapGroupPositionsUseCase.secondRemoteIdArray, [4])
+        XCTAssertEqual(swapGroupPositionsUseCase.locationCaptionArray, ["Caption"])
+        createProfileGroupsListUseCase.invokeMock.verifyCalls(1)
+        XCTAssertEqual(viewModel.state.items, reloadedItems)
     }
-    
+
+    func test_shouldReloadList_whenLocationToggled() {
+        // given
+        let location = locationItem(remoteId: 123)
+        let items = [MainListItem.location(location)]
+
+        toggleLocationUseCase.invokeMock.returns = .single(Observable.just(()))
+        createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just(items))
+
+        // when
+        viewModel.onLocationClick(location)
+
+        // then
+        XCTAssertTuples(toggleLocationUseCase.invokeMock.parameters, [(123, .group)])
+        createProfileGroupsListUseCase.invokeMock.verifyCalls(1)
+        XCTAssertEqual(viewModel.state.items, items)
+    }
+
     func test_shouldOpenLegacyDetail_whenGroupIsOnline() {
         // given
-        let group = SAChannelGroup(testContext: nil)
-        group.online = 1
-        
+        let group = group(remoteId: 321, function: SUPLA_CHANNELFNC_THERMOMETER, online: true)
+        readGroupByRemoteIdUseCase.returns = Observable.just(group)
         provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
-        
-        // when
-        observe(viewModel)
-        viewModel.onClicked(onItem: group)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
-        
-        XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToLegacyDetail(legacy: .thermostat_hp, channelBase: group))
-        ])
-    }
-    
-    func test_shouldNotOpenLegacyDetail_whenGroupIsOffline() {
-        // given
-        let group = SAChannelGroup(testContext: nil)
-        
-        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
-        
-        // when
-        observe(viewModel)
-        viewModel.onClicked(onItem: group)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-    }
-    
-    func test_shouldOpenWindowDetail_whenGroupIsOnline() {
-        // given
-        let remoteId: Int32 = 123
-        let profileId: Int32 = 1
-        let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
-        let profile = AuthProfileItem(testContext: nil)
-        profile.id = profileId
-        let group = SAChannelGroup(testContext: nil)
-        group.profile = profile
-        group.remote_id = remoteId
-        group.func = function
-        group.online = 1
-        
-        let pages: [DetailPage] = [.facadeBlind]
-        
-        provideDetailTypeUseCase.detailType = .standardDetail(pages: pages)
-        
-        // when
-        observe(viewModel)
-        viewModel.onClicked(onItem: group)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
-        
-        let itemBundle = ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: 0, subjectType: .group, function: function)
-        XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(item: itemBundle, pages: pages))
-        ])
-    }
-    
-    func test_shouldOpenWindowDetail_whenGroupIsOffline() {
-        // given
-        let remoteId: Int32 = 123
-        let profileId: Int32 = 1
-        let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
-        let profile = AuthProfileItem(testContext: nil)
-        profile.id = profileId
-        let group = SAChannelGroup(testContext: nil)
-        group.profile = profile
-        group.remote_id = remoteId
-        group.func = function
-        group.online = 0
-        
-        let pages: [DetailPage] = [.facadeBlind]
-        
-        provideDetailTypeUseCase.detailType = .standardDetail(pages: pages)
-        
-        // when
-        observe(viewModel)
-        viewModel.onClicked(onItem: group)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
-        
-        let itemBundle = ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: 0, subjectType: .group, function: function)
-        XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(item: itemBundle, pages: pages))
-        ])
-    }
-    
-    func test_shouldNotOpenLegacyDetail_whenNotAssinged() {
-        // given
-        let group = SAChannelGroup(testContext: nil)
-        group.online = 1
-        
-        // when
-        observe(viewModel)
-        viewModel.onClicked(onItem: group)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertEqual(provideDetailTypeUseCase.channelBaseArray.count, 1)
-    }
-    
-    func test_shouldReloadTable_whenLocationToggled() {
-        // given
-        let remoteId: Int32 = 123
-        toggleLocationUseCase.invokeMock.returns = .single(Observable.just(()))
-        
-        // when
-        viewModel.toggleLocation(remoteId: remoteId)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 0)
-        XCTAssertEqual(eventObserver.events.count, 0)
 
-        XCTAssertEqual(toggleLocationUseCase.invokeMock.parameters[0].0, remoteId)
-        XCTAssertEqual(toggleLocationUseCase.invokeMock.parameters[0].1, .group)
-        
-        XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
+        // when
+        viewModel.onItemClick(groupItem(remoteId: 321))
+
+        // then
+        XCTAssertEqual(readGroupByRemoteIdUseCase.remoteIdArray, [321])
+        XCTAssertEqual(provideDetailTypeUseCase.channelBaseArray.count, 1)
+        XCTAssertEqual(router.navigateMock.parameters, [
+            .legacyDetail(type: .thermostat_hp, channelRemoteId: 321)
+        ])
     }
-    
+
+    func test_shouldNotOpenDetail_whenGroupIsOfflineAndUnavailableOffline() {
+        // given
+        let group = group(remoteId: 321, function: SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL, online: false)
+        readGroupByRemoteIdUseCase.returns = Observable.just(group)
+        provideDetailTypeUseCase.detailType = .legacy(type: .thermostat_hp)
+
+        // when
+        viewModel.onItemClick(groupItem(remoteId: 321))
+
+        // then
+        XCTAssertEqual(provideDetailTypeUseCase.channelBaseArray.count, 0)
+        XCTAssertEqual(router.navigateMock.parameters, [])
+    }
+
+    func test_shouldOpenStandardDetail() {
+        // given
+        let remoteId: Int32 = 322
+        let profileId: Int32 = 1
+        let function: Int32 = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        let group = group(remoteId: remoteId, profileId: profileId, function: function, online: true)
+
+        readGroupByRemoteIdUseCase.returns = Observable.just(group)
+        provideDetailTypeUseCase.detailType = .standardDetail(pages: [.facadeBlind])
+
+        // when
+        viewModel.onItemClick(groupItem(remoteId: remoteId))
+
+        // then
+        XCTAssertEqual(router.navigateMock.parameters, [
+            .standardDetail(
+                item: ItemBundle(remoteId: remoteId, profileId: profileId, deviceId: 0, subjectType: .group, function: function),
+                pages: [.facadeBlind]
+            )
+        ])
+    }
+
+    func test_leftButtonClicked() {
+        // given
+        let item = groupItem(remoteId: 321)
+        let group = group(remoteId: 321)
+
+        readGroupByRemoteIdUseCase.returns = Observable.just(group)
+        channelBaseActionUseCase.returns = Observable.just(.success)
+
+        // when
+        viewModel.onLeftButtonClick(item)
+
+        // then
+        XCTAssertEqual(readGroupByRemoteIdUseCase.remoteIdArray, [321])
+        XCTAssertEqual(channelBaseActionUseCase.parameters.count, 1)
+        XCTAssertEqual(channelBaseActionUseCase.parameters.first?.1, .leftButton)
+    }
+
     func test_shouldLoadSuplaCloudUrl() {
         // given
         let url: CloudUrl = .suplaCloud
         loadActiveProfileUrlUseCase.returns = .just(url)
-        
+
         // when
-        observe(viewModel)
-        viewModel.onNoContentButtonClicked()
-        
+        viewModel.onNoContentButtonClick()
+
         // then
-        assertEvents(expected: [
-            .open(url: url.url)
-        ])
-        assertStates(expected: [
-            GroupListViewState()
-        ])
+        XCTAssertEqual(router.openUrlMock.parameters, [url.url])
     }
-    
-    func test_shouldLoadPrivateCloudUrl() {
-        // given
-        let url = URL(string: "https://test.url")!
-        let cloudUrl: CloudUrl = .privateCloud(url: url)
-        loadActiveProfileUrlUseCase.returns = .just(cloudUrl)
-        
-        // when
-        observe(viewModel)
-        viewModel.onNoContentButtonClicked()
-        
-        // then
-        assertEvents(expected: [
-            .open(url: url)
-        ])
-        assertStates(expected: [
-            GroupListViewState()
-        ])
+
+    private func groupItem(
+        remoteId: Int32,
+        profileId: Int32 = 1,
+        function: Int32 = SUPLA_CHANNELFNC_LIGHTSWITCH,
+        locationCaption: String = "Location",
+        title: String = "Title"
+    ) -> MainListItem {
+        .group(
+            DefaultListItem(
+                remoteId: remoteId,
+                profileId: profileId,
+                userCaption: title,
+                function: SuplaFunction.companion.from(value: function),
+                locationCaption: locationCaption,
+                locationId: 1,
+                status: .group(onlinePercentage: 1, activePercentage: 0),
+                title: title,
+                icon: .suplaIcon(name: ""),
+                value: nil
+            )
+        )
+    }
+
+    private func locationItem(remoteId: Int32, profileId: Int32 = 1) -> LocationListItem {
+        LocationListItem(
+            remoteId: remoteId,
+            profileId: profileId,
+            userCaption: "Location",
+            collapsed: false
+        )
+    }
+
+    private func group(
+        remoteId: Int32,
+        profileId: Int32 = 1,
+        function: Int32 = SUPLA_CHANNELFNC_LIGHTSWITCH,
+        online: Bool = true
+    ) -> SAChannelGroup {
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = profileId
+
+        let group = SAChannelGroup(testContext: nil)
+        group.profile = profile
+        group.remote_id = remoteId
+        group.func = function
+        group.online = online ? 100 : 0
+
+        return group
     }
 }

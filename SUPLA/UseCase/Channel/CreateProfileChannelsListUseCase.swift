@@ -96,7 +96,7 @@ private extension _SALocation {
                 remoteId: location_id?.int32Value ?? 0,
                 profileId: profile.id,
                 userCaption: caption ?? "",
-                collapsed: collapsed
+                collapsed: isCollapsed(flag: .channel)
             )
         )
     }

@@ -217,7 +217,19 @@ struct LocationListItem: Equatable {
     let remoteId: Int32
     let profileId: Int32
     let userCaption: String
-    let collapsed: Int16
+    let collapsed: Bool
+
+    init(
+        remoteId: Int32,
+        profileId: Int32,
+        userCaption: String,
+        collapsed: Bool
+    ) {
+        self.remoteId = remoteId
+        self.profileId = profileId
+        self.userCaption = userCaption
+        self.collapsed = collapsed
+    }
 }
 
 struct HvacThermostatListItem: Equatable {

@@ -210,7 +210,8 @@ extension DiContainer {
         register(ProvideGroupDetailTypeUseCase.self, ProvideGroupDetailTypeUseCaseImpl())
         // Usecases - Group
         register(SwapGroupPositionsUseCase.self, SwapGroupPositionsUseCaseImpl())
-        register(CreateProfileGroupsListUseCase.self, CreateProfileGroupsListUseCaseImpl())
+        register(GroupToMainListItem.UseCase.self, GroupToMainListItem.Implementation())
+        register(CreateProfileGroupsList.UseCase.self, CreateProfileGroupsList.Implementation())
         register(ReadGroupByRemoteIdUseCase.self, ReadGroupByRemoteIdUseCaseImpl())
         register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
         register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())

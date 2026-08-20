@@ -272,7 +272,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
                 remoteId: location.location_id?.int32Value ?? 0,
                 profileId: location.profile.id,
                 userCaption: location.caption ?? "",
-                collapsed: location.collapsed
+                collapsed: location.isCollapsed(flag: .channel)
             )
         )
     }

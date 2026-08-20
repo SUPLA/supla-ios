@@ -20,14 +20,28 @@ import RxSwift
 
 @testable import SUPLA
 
-final class CreateProfileGroupsListUseCaseMock: CreateProfileGroupsListUseCase {
-    
-    var observable: Observable<[List]> = Observable.empty()
-    var invokeCounter = 0
-    
-    func invoke() -> Observable<[List]> {
-        invokeCounter += 1
-        return observable
+extension CreateProfileGroupsList {
+    final class Mock: CreateProfileGroupsList.UseCase {
+        var invokeMock: FunctionMock<Void, Observable<[MainListItem]>> = .init()
+
+        func invoke() -> Observable<[MainListItem]> {
+            invokeMock.handle(())
+        }
+    }
+}
+
+extension GroupToMainListItem {
+    final class Mock: GroupToMainListItem.UseCase {
+        var invokeMock: FunctionMock<SAChannelGroup, MainListItem?> = .init()
+        var invokeWithLocationMock: FunctionMock<(SAChannelGroup, _SALocation), MainListItem> = .init()
+
+        func invoke(_ group: SAChannelGroup) -> MainListItem? {
+            invokeMock.handle(group)
+        }
+
+        func invoke(_ group: SAChannelGroup, location: _SALocation) -> MainListItem {
+            invokeWithLocationMock.handle((group, location))
+        }
     }
 }
 
