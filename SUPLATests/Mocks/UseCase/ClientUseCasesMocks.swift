@@ -31,6 +31,15 @@ extension ExecuteSimpleAction {
     }
 }
 
+extension TriggerLogHistoryDownload {
+    final class Mock: TriggerLogHistoryDownload.UseCase {
+        var invokeMock: FunctionMock<Void, Void> = .void()
+
+        func invoke() async {
+            invokeMock.handle(())
+        }
+    }
+}
 
 final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
     var parameters: [(SUPLA.SubjectType, Int32, SuplaHvacMode?, Float?, Float?, Int32?)] = []

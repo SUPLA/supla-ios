@@ -49,7 +49,7 @@ class UIFilledButton: UIButton {
         layer.cornerRadius = Dimens.buttonRadius
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
         
-        titleLabel?.font = .button
+        titleLabel?.font = .labelLarge
     }
     
     private func getBackgroundColor() -> UIColor {

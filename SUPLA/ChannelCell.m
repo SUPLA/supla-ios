@@ -107,7 +107,7 @@
         constraint.constant *= scaleFactor;
     }
     
-    self.durationTimer.font = UIFont.body2;
+    self.durationTimer.font = UIFont.bodyMedium;
     self.durationTimer.textColor = UIColor.gray;
     
     [self.caption setFont: UIFont.cellCaptionFont];

@@ -44,12 +44,14 @@ final class GetChannelBaseIconUseCaseMock: GetChannelBaseIconUseCase {
 final class ChannelBaseActionUseCaseMock: ChannelBaseActionUseCase {
     var returns: Observable<ChannelBaseActionResult> = .empty()
     var parameters: [(SAChannelBase, CellButtonType)] = []
+    var remoteIdMock: FunctionMock<(Int32, CellButtonType), Observable<ChannelBaseActionResult>> = .init()
+
     func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
         parameters.append((channelBase, buttonType))
         return returns
     }
     
     func invoke(_ remoteId: Int32, _ buttonType: CellButtonType) -> Observable<ChannelBaseActionResult> {
-        return .empty()
+        remoteIdMock.handle((remoteId, buttonType))
     }
 }

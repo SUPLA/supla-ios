@@ -15,22 +15,24 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
 struct RelatedChannelItemView: View {
     let data: RelatedChannelData
     let onInfoClick: (RelatedChannelData) -> Void
     let onCaptionLongPress: (RelatedChannelData) -> Void
-    
+
     var body: some View {
         ListItemRow {
             ListItemIcon(iconResult: data.icon)
-            CellCaption(text: data.caption)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, Distance.tiny)
-                .padding(.trailing, Distance.small)
-                .onLongPressGesture { onCaptionLongPress(data) }
+            ListItemTitle(
+                text: data.caption,
+                onLongClick: { onCaptionLongPress(data) }
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, Distance.tiny)
+            .padding(.trailing, Distance.small)
             ListItemIssueIcon(icon: data.batteryIcon)
                 .padding(.trailing, Distance.small)
             if (data.showChannelStateIcon) {

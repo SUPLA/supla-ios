@@ -51,7 +51,6 @@ final class ReadChannelWithChildrenUseCaseImpl: ReadChannelWithChildrenUseCase {
     }
     
     private func createChannelWithChildren(_ parentId: Int32, _ relations: [SAChannelRelation], _ channels: [SAChannel]) -> ChannelWithChildren? {
-        
         guard let parent = channels.first(where: { $0.remote_id == parentId }) else { return nil }
         return createChannelWithChildrenUseCase.invoke(parent, allChannels: channels, relations: relations)
     }

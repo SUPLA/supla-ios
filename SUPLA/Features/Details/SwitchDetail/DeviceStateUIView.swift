@@ -41,7 +41,7 @@ final class DeviceStateUIView: UIStackView {
     
     private lazy var labelView: UILabel = {
         let label = UILabel()
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .gray
         return label
     }()

@@ -22,40 +22,40 @@ import CoreFoundation
 
 extension Font {
     enum Supla {
-        static let displayLarge: Font = .custom("OpenSans-Light", size: 60)
-        static let displayMedium: Font = .custom("OpenSans", size: 48)
-        static let displaySmall: Font = .custom("OpenSans", size: 34)
+        static let displayLarge: Font = .custom(FontName.OpenSans.Light, size: FontSize.displayLarge)
+        static let displayMedium: Font = .custom(FontName.OpenSans.Regular, size: FontSize.displayMedium)
+        static let displaySmall: Font = .custom(FontName.OpenSans.Regular, size: FontSize.displaySmall)
 
-        static let headlineLarge: Font = .custom("OpenSans", size: 34)
-        static let headlineMedium: Font = .custom("OpenSans", size: 24)
-        static let headlineSmall: Font = .custom("OpenSans", size: 17)
+        static let headlineLarge: Font = .custom(FontName.OpenSans.Regular, size: FontSize.headlineLarge)
+        static let headlineMedium: Font = .custom(FontName.OpenSans.Regular, size: FontSize.headlineMedium)
+        static let headlineSmall: Font = .custom(FontName.OpenSans.Regular, size: FontSize.headlineSmall)
 
-        static let titleLarge: Font = .custom("OpenSans-SemiBold", size: 20)
-        static let titleMedium: Font = .custom("OpenSans-SemiBold", size: 16)
-        static let titleSmall: Font = .custom("OpenSans-SemiBold", size: 14)
+        static let titleLarge: Font = .custom(FontName.OpenSans.SemiBold, size: FontSize.titleLarge)
+        static let titleMedium: Font = .custom(FontName.OpenSans.SemiBold, size: FontSize.titleMedium)
+        static let titleSmall: Font = .custom(FontName.OpenSans.SemiBold, size: FontSize.titleSmall)
 
-        static let bodyLarge: Font = .custom("OpenSans", size: 16)
-        static let bodyMedium: Font = .custom("OpenSans", size: 14)
-        static let bodySmall: Font = .custom("OpenSans", size: 12)
-        static let bodySmallBold: Font = .custom("OpenSans-Bold", size: 12)
-        static let bodySmallSemiBold: Font = .custom("OpenSans-SemiBold", size: 12)
+        static let bodyLarge: Font = .custom(FontName.OpenSans.Regular, size: FontSize.bodyLarge)
+        static let bodyMedium: Font = .custom(FontName.OpenSans.Regular, size: FontSize.bodyMedium)
+        static let bodySmall: Font = .custom(FontName.OpenSans.Regular, size: FontSize.bodySmall)
+        static let bodySmallBold: Font = .custom(FontName.OpenSans.Bold, size: FontSize.bodySmall)
+        static let bodySmallSemiBold: Font = .custom(FontName.OpenSans.SemiBold, size: FontSize.bodySmall)
 
-        static let labelLarge: Font = .custom("OpenSans-Medium", size: 17)
-        static let labelMedium: Font = .custom("OpenSans-SemiBold", size: 14)
-        static let labelSmall: Font = .custom("OpenSans-SemiBold", size: 10)
-        
-        static let captionSmall: Font = .custom("OpenSans", size: 9)
+        static let labelLarge: Font = .custom(FontName.OpenSans.Medium, size: FontSize.labelLarge)
+        static let labelMedium: Font = .custom(FontName.OpenSans.SemiBold, size: FontSize.labelMedium)
+        static let labelSmall: Font = .custom(FontName.OpenSans.SemiBold, size: FontSize.labelSmall)
 
-        static func cellValue(_ scale: CGFloat, limit: CellScalingLimit = .none) -> Font {
-            .custom("Quicksand-Regular", size: scale.scale(Dimens.Fonts.value, limit: limit))
+        static let captionSmall: Font = .custom(FontName.OpenSans.Regular, size: 9)
+
+        static func bodyMedium(_ scale: CGFloat, limit: CellScalingLimit = .none) -> Font {
+            .custom(FontName.OpenSans.Regular, size: scale.scale(FontSize.bodyMedium, limit: limit))
         }
 
-        static func cellSubValue(_ scale: CGFloat, limit: CellScalingLimit = .none) -> Font {
-            .custom("OpenSans", size: scale.scale(Dimens.Fonts.label, limit: limit))
+        static func listItemCaption(_ scale: CGFloat) -> Font {
+            .custom(FontName.OpenSans.Bold, size: scale.scale(Dimens.Fonts.caption, limit: .lower(1)))
         }
 
-        static func cellCaption(_ scale: CGFloat, limit: CellScalingLimit = .none) -> Font {
-            .custom("OpenSans-Bold", size: scale.scale(Dimens.Fonts.caption, limit: limit))
+        static func listItemValue(_ scale: CGFloat) -> Font {
+            .custom(FontName.OpenSans.Regular, size: scale.scale(Dimens.Fonts.value, limit: .lower(1)))
         }
     }
 }

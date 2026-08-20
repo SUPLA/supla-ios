@@ -77,7 +77,7 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = Strings.Main.noEntries
-        label.font = .h4
+        label.font = .headlineLarge
         label.textColor = .gray
         return label
     }()
@@ -125,8 +125,6 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         super.viewWillAppear(animated)
         viewModel.reloadTable()
     }
-    
-    override func getToolbarFont() -> UIFont { .suplaTitleBarFont }
     
     func setupTableView() {
         tableView.register(UINib(nibName: Nibs.locationCell, bundle: nil), forCellReuseIdentifier: cellIdForLocation)

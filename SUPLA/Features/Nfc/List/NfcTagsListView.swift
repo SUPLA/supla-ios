@@ -140,7 +140,7 @@ extension NfcTagsListFeature {
                 ListItemIcon(iconResult: data.icon)
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(alignment: .center, spacing: Distance.tiny) {
-                        CellCaption(text: data.name)
+                        ListItemTitle(text: data.name)
                         if (data.readOnly) {
                             Image(.Icons.lock)
                                 .resizable()

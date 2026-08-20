@@ -31,35 +31,10 @@
     self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
 }
 
-- (void)updateNavBarFont {
-    if (![self shouldUpdateTitleFont]) {
-        return;
-    }
-    UIFont *font;
-    if(self.navigationController.viewControllers.count > 1 &&
-       self.navigationController.topViewController == self) {
-        font = [UIFont suplaSubtitleFont];
-    } else {
-        font = [UIFont suplaTitleBarFont];
-    }
-    
-    self.navigationController.navigationBar.titleTextAttributes = @{
-        UITextAttributeFont: font,
-        UITextAttributeTextColor: [UIColor whiteColor]
-    };
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
-    
     [self.navigationController setNavigationBarHidden: [self hidesNavigationBar]
                                              animated: animated];
-    [self updateNavBarFont];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear: animated];
-    [self updateNavBarFont];
 }
 
 - (BOOL)hidesNavigationBar {

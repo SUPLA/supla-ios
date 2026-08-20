@@ -19,6 +19,7 @@
 import Foundation
 import RxSwift
 import SharedCore
+import SwiftUI
 
 protocol BaseCellData {
     var showInfoIcon: Bool { get }
@@ -287,8 +288,8 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         contentView.backgroundColor = .surface
         
         captionView.font = .cellCaptionFont.withSize(scale(Dimens.Fonts.caption, limit: .lower(1)))
-        timerView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .upper(1)))
-        initiatorView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label))
+        timerView.font = .bodyMedium.withSize(scale(FontSize.bodyMedium, limit: .upper(1)))
+        initiatorView.font = .bodyMedium.withSize(scale(FontSize.bodyMedium))
         
         leftSwipeSettings.transition = MGSwipeTransition.rotate3D
         rightSwipeSettings.transition = MGSwipeTransition.rotate3D
@@ -353,8 +354,8 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
             initiatorView.topAnchor.constraint(equalTo: topAnchor, constant: scale(Dimens.ListItem.verticalPadding)),
             
             separatorView.heightAnchor.constraint(equalToConstant: Dimens.ListItem.separatorHeight),
-            separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.ListItem.separatorInset),
-            separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.ListItem.separatorInset),
+            separatorView.leftAnchor.constraint(equalTo: leftAnchor),
+            separatorView.rightAnchor.constraint(equalTo: rightAnchor),
             separatorView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
             
             leftStatusIndicatorView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

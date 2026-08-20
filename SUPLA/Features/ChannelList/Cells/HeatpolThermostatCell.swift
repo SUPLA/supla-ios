@@ -75,7 +75,7 @@ final class HeatpolThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func setupView() {
         firstValueView.font = .cellValueFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
-        secondValueView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .lower(1)))
+        secondValueView.font = .formLabelFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
         
         container.addSubview(iconView)
         container.addSubview(firstValueView)
