@@ -77,7 +77,7 @@ extension ChannelWithChildren {
     var function: Int32 { channel.func }
 }
 
-extension ChannelWithChildren: BaseCellData {
+extension ChannelWithChildren {
     var showInfoIcon: Bool {
         (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.value?.status.online == true)
             || channel.state != nil

@@ -227,10 +227,10 @@ extension MainFeature {
                 )
 
             case .scenes:
-                ViewControllerHost(
+                SceneListFeature.Screen(
                     onScroll: onContentScroll,
                     onScrollEnded: onContentScrollEnded
-                ) { SceneListVC() }
+                )
             }
         }
     }

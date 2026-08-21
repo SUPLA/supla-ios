@@ -113,6 +113,8 @@ enum MainListItem: Equatable, Identifiable {
         switch (self) {
         case .channel(let item), .group(let item):
             item.leftButtonTitle
+        case .scene(let item):
+            item.leftButtonTitle
         case .hvacThermostat(let item):
             item.base.leftButtonTitle
         case .heatpolThermostat(let item):
@@ -127,6 +129,8 @@ enum MainListItem: Equatable, Identifiable {
     var rightButtonTitle: String? {
         switch (self) {
         case .channel(let item), .group(let item):
+            item.rightButtonTitle
+        case .scene(let item):
             item.rightButtonTitle
         case .hvacThermostat(let item):
             item.base.rightButtonTitle
@@ -211,6 +215,32 @@ struct SceneListItem: Equatable {
     let status: ListItemStatus
     let icon: IconResult
     let estimatedTimerEndDate: Date?
+    let leftButtonTitle: String?
+    let rightButtonTitle: String?
+
+    init(
+        remoteId: Int32,
+        profileId: Int32,
+        userCaption: String,
+        locationCaption: String,
+        locationId: Int,
+        status: ListItemStatus,
+        icon: IconResult,
+        estimatedTimerEndDate: Date?,
+        leftButtonTitle: String? = nil,
+        rightButtonTitle: String? = nil
+    ) {
+        self.remoteId = remoteId
+        self.profileId = profileId
+        self.userCaption = userCaption
+        self.locationCaption = locationCaption
+        self.locationId = locationId
+        self.status = status
+        self.icon = icon
+        self.estimatedTimerEndDate = estimatedTimerEndDate
+        self.leftButtonTitle = leftButtonTitle
+        self.rightButtonTitle = rightButtonTitle
+    }
 }
 
 struct LocationListItem: Equatable {

@@ -235,8 +235,6 @@ extension DiContainer {
         register(ActivateProfileUseCase.self, ActivateProfileUseCaseImpl())
         register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
         register(UpdateProfilesOrder.UseCase.self, UpdateProfilesOrder.Implementation())
-        // Usecases - Profile
-        register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
         register(RestoreProfileFromDefaults.UseCase.self, RestoreProfileFromDefaults.Implementation())
         // Usecases - Notification
@@ -251,6 +249,8 @@ extension DiContainer {
         // UseCases - ProfileServer
         register(ReadOrCreateProfileServerUseCase.self, ReadOrCreateProfileServerUseCaseImpl())
         // UseCases - Scene
+        register(SceneToMainListItem.UseCase.self, SceneToMainListItem.Implementation())
+        register(CreateProfileScenesList.UseCase.self, CreateProfileScenesList.Implementation())
         register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
         register(ReadSceneByRemoteIdUseCase.self, ReadSceneByRemoteIdUseCaseImpl())
         register(GetSceneIconUseCase.self, GetSceneIconUseCaseImpl())

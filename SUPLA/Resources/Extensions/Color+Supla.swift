@@ -43,6 +43,7 @@ extension Color {
         
         static let outline = Color(UIColor.outline)
         static let separator = Color("Colors/separator")
+        static let separatorList = Color("Colors/separator_list")
         
         static let blue = Color(UIColor.blue)
         static let disabled = Color(UIColor.disabled)

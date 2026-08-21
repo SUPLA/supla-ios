@@ -31,8 +31,8 @@ struct SceneListItemView: View {
             itemEstimatedEndDate: item.estimatedTimerEndDate,
             statusIndicator: ListItemStatusIndicator(
                 status: item.status,
-                hasLeftButton: false,
-                hasRightButton: false
+                hasLeftButton: item.leftButtonTitle != nil,
+                hasRightButton: item.rightButtonTitle != nil
             ),
             onInfoClick: onInfoClick,
             onIssueClick: onIssueClick,

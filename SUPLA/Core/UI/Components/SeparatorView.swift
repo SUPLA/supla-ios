@@ -15,11 +15,32 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
+import SwiftUI
 
-import Foundation
+struct SeparatorView : View {
+    let style: SeparatorStyle
+    
+    init(style: SeparatorStyle = .default) {
+        self.style = style
+    }
+    
+    var body: some View {
+        Rectangle()
+            .fill(Color.Supla.separator)
+            .frame(height: Dimens.ListItem.separatorHeight)
+    }
+}
 
-struct Nibs {
-    static let locationCell = "SectionCell"
-    static let channelCell = "ChannelCell"
-    static let homePlusCell = "HomePlusCell"
+enum SeparatorStyle {
+    case `default`, light, outline, list
+    
+    var color: Color {
+        switch (self) {
+        case .default: .Supla.separator
+        case .light: .Supla.grayLight
+        case .outline: .Supla.outline
+        case .list: .Supla.separatorList
+        }
+    }
 }
