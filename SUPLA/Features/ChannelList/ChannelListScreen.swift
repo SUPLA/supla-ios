@@ -20,7 +20,7 @@ import SwiftUI
 
 extension ChannelListFeature {
     struct Screen: SwiftUI.View {
-        @StateObject private var viewModel = ViewModel()
+        @ObservedObject private var viewModel: ViewModel
         @StateObject var stateDialogViewModel = StateDialogFeature.ViewModel()
         @StateObject var captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
 
@@ -28,9 +28,11 @@ extension ChannelListFeature {
         let onScrollEnded: (Bool) -> Void
 
         init(
+            viewModel: ViewModel = ViewModel(),
             onScroll: @escaping (CGFloat) -> Void = { _ in },
             onScrollEnded: @escaping (Bool) -> Void = { _ in }
         ) {
+            self.viewModel = viewModel
             self.onScroll = onScroll
             self.onScrollEnded = onScrollEnded
         }

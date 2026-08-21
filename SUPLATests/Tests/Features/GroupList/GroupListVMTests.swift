@@ -100,6 +100,31 @@ final class GroupListVMTests: SuplaCore.ViewModelTest<GroupListFeature.ViewState
         XCTAssertTrue(viewModel.state.listLoaded)
     }
 
+    func test_shouldNotReloadList_whenSearchTextIsShorterThanTwoCharacters() {
+        // when
+        viewModel.onSearchTextChanged("a")
+
+        // then
+        createProfileGroupsListUseCase.invokeMock.verifyCalls(0)
+        XCTAssertEqual(viewModel.state.searchText, "a")
+        XCTAssertFalse(viewModel.state.filterActive)
+    }
+
+    func test_shouldReloadListWithFilter_whenSearchTextHasAtLeastTwoCharacters() {
+        // given
+        let items = [groupItem(remoteId: 1)]
+        createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just(items))
+
+        // when
+        viewModel.onSearchTextChanged("ab")
+
+        // then
+        XCTAssertEqual(createProfileGroupsListUseCase.invokeMock.parameters, ["ab"])
+        XCTAssertEqual(viewModel.state.items, items)
+        XCTAssertEqual(viewModel.state.searchText, "ab")
+        XCTAssertTrue(viewModel.state.filterActive)
+    }
+
     func test_shouldUpdateSingleItem_onGroupUpdate() {
         // given
         let groupUpdates = PublishSubject<Int32>()

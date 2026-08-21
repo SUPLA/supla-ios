@@ -119,6 +119,39 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         ])
     }
 
+    func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
+        // given
+        let profile = profile()
+        profileRepository.activeProfileObservable = Observable.just(profile)
+
+        let location1 = location(
+            profile: profile,
+            caption: "Kitchen",
+            remoteId: 1,
+            collapsed: CollapsedFlag.group.rawValue
+        )
+        let group1 = group(remoteId: 1, profile: profile, location: location1)
+        let group1Item = groupItem(remoteId: 1, title: "Lights")
+
+        groupRepository.allVisibleGroupsObservable = Observable.just([group1])
+        groupToMainListItemUseCase.invokeWithLocationMock.returns = .single(group1Item)
+
+        // when
+        useCase.invoke(filter: "Kitchen").subscribe(observer).disposed(by: disposeBag)
+
+        // then
+        assertEvents([
+            .next([
+                locationItem(location1, inSearch: true),
+                group1Item
+            ]),
+            .completed
+        ])
+        assertMappedItems([
+            (group1, location1)
+        ])
+    }
+
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
         // given
         let profile = profile()
@@ -164,13 +197,13 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         }
     }
 
-    private func locationItem(_ location: _SALocation) -> MainListItem {
+    private func locationItem(_ location: _SALocation, inSearch: Bool = false) -> MainListItem {
         .location(
             LocationListItem(
                 remoteId: location.location_id?.int32Value ?? 0,
                 profileId: location.profile.id,
                 userCaption: location.caption ?? "",
-                collapsed: location.isCollapsed(flag: .group)
+                collapsed: inSearch ? false : location.isCollapsed(flag: .group)
             )
         )
     }

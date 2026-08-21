@@ -27,6 +27,7 @@ struct MainListItemView: SwiftUI.View {
     let onItemClick: () -> Void
     let onLocationClick: () -> Void
     let onLocationLongClick: () -> Void
+    let inSearch: Bool
 
     init(
         item: MainListItem,
@@ -35,7 +36,8 @@ struct MainListItemView: SwiftUI.View {
         onTitleLongClick: @escaping () -> Void = {},
         onItemClick: @escaping () -> Void = {},
         onLocationClick: @escaping () -> Void = {},
-        onLocationLongClick: @escaping () -> Void = {}
+        onLocationLongClick: @escaping () -> Void = {},
+        inSearch: Bool = false
     ) {
         self.item = item
         self.onInfoClick = onInfoClick
@@ -44,6 +46,7 @@ struct MainListItemView: SwiftUI.View {
         self.onItemClick = onItemClick
         self.onLocationClick = onLocationClick
         self.onLocationLongClick = onLocationLongClick
+        self.inSearch = inSearch
     }
 
     var body: some SwiftUI.View {
@@ -60,7 +63,7 @@ struct MainListItemView: SwiftUI.View {
             LocationListItemView(
                 caption: item.userCaption,
                 collapsed: item.collapsed,
-                inSearch: false,
+                inSearch: inSearch,
                 onClick: onLocationClick,
                 onLongClick: onLocationLongClick
             )

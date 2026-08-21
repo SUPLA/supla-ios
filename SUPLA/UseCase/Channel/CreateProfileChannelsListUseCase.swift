@@ -20,7 +20,7 @@ import RxSwift
 
 struct CreateProfileChannelsList {
     protocol UseCase {
-        func invoke() -> Observable<[MainListItem]>
+        func invoke(filter: String?) -> Observable<[MainListItem]>
     }
 
     final class Implementation: UseCase {
@@ -30,7 +30,7 @@ struct CreateProfileChannelsList {
         @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
         @Singleton<ChannelToMainListItem.UseCase> private var channelToMainListItemUseCase
 
-        func invoke() -> Observable<[MainListItem]> {
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
             return profileRepository
                 .getActiveProfile()
                 .flatMapFirst { profile in
@@ -39,12 +39,16 @@ struct CreateProfileChannelsList {
                     return Observable.zip(
                         self.channelRepository.getAllVisibleChannels(forProfile: profile, withUnavailable: !settings.hideUnavailableChannels),
                         self.channelRelationRepository.getParentsMap(for: profile),
-                        resultSelector: { channels, listOfParents in self.toList(channels, listOfParents) }
+                        resultSelector: { channels, listOfParents in self.toList(channels, listOfParents, filter: filter) }
                     )
                 }
         }
 
-        private func toList(_ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> [MainListItem] {
+        private func toList(
+            _ channels: [SAChannel],
+            _ parentsMap: [Int32: [SAChannelRelation]],
+            filter: String?
+        ) -> [MainListItem] {
             if (channels.isEmpty) {
                 return []
             }
@@ -55,9 +59,9 @@ struct CreateProfileChannelsList {
                 return result
             }
 
-            var lastLocation: _SALocation = channels[0].location!
+            var displayedLocation: _SALocation?
             var items = [MainListItem]()
-            items.append(lastLocation.listItem)
+            let inSearch = MainListFilter.isSearchable(filter)
 
             for channel in channels {
                 if (allChildrenIds.contains(channel.remote_id)) {
@@ -65,38 +69,69 @@ struct CreateProfileChannelsList {
                     continue
                 }
 
-                if (lastLocation.caption != channel.location!.caption) {
-                    lastLocation = channel.location!
-                    items.append(lastLocation.listItem)
+                let channelLocation = channel.location!
+                let mappingLocation = displayedLocation?.caption == channelLocation.caption ? displayedLocation! : channelLocation
+                let item = channelItem(channel, channels, parentsMap, location: mappingLocation)
+                if (inSearch && !itemMatches(item, location: channelLocation, filter: filter)) {
+                    continue
                 }
 
-                if (!lastLocation.isCollapsed(flag: .channel)) {
-                    if let childrenRelations = parentsMap[channel.remote_id] {
-                        let channelWithChildren = createChannelWithChildrenUseCase.invoke(
-                            channel,
-                            allChannels: channels,
-                            relations: childrenRelations
-                        )
-                        items.append(channelToMainListItemUseCase.invoke(channelWithChildren, location: lastLocation))
-                    } else {
-                        items.append(channelToMainListItemUseCase.invoke(ChannelWithChildren(channel: channel), location: lastLocation))
+                if (displayedLocation?.location_id != channelLocation.location_id) {
+                    if (displayedLocation == nil || displayedLocation?.caption != channelLocation.caption) {
+                        displayedLocation = channelLocation
+                        items.append(channelLocation.listItem(inSearch: inSearch))
                     }
+                }
+
+                if let displayedLocation, inSearch || !displayedLocation.isCollapsed(flag: .channel) {
+                    items.append(item)
                 }
             }
 
             return items
         }
+
+        private func channelItem(
+            _ channel: SAChannel,
+            _ channels: [SAChannel],
+            _ parentsMap: [Int32: [SAChannelRelation]],
+            location: _SALocation
+        ) -> MainListItem {
+            if let childrenRelations = parentsMap[channel.remote_id] {
+                let channelWithChildren = createChannelWithChildrenUseCase.invoke(
+                    channel,
+                    allChannels: channels,
+                    relations: childrenRelations
+                )
+                return channelToMainListItemUseCase.invoke(channelWithChildren, location: location)
+            } else {
+                return channelToMainListItemUseCase.invoke(ChannelWithChildren(channel: channel), location: location)
+            }
+        }
+
+        private func itemMatches(_ item: MainListItem, location: _SALocation, filter: String?) -> Bool {
+            guard let filter else { return true }
+
+            return MainListFilter.matches(item, filter: filter)
+                || MainListFilter.matches(location.caption, filter: filter)
+        }
+    }
+}
+
+extension CreateProfileChannelsList.UseCase {
+    func invoke() -> Observable<[MainListItem]> {
+        invoke(filter: nil)
     }
 }
 
 private extension _SALocation {
-    var listItem: MainListItem {
+    func listItem(inSearch: Bool) -> MainListItem {
         .location(
             LocationListItem(
                 remoteId: location_id?.int32Value ?? 0,
                 profileId: profile.id,
                 userCaption: caption ?? "",
-                collapsed: isCollapsed(flag: .channel)
+                collapsed: inSearch ? false : isCollapsed(flag: .channel)
             )
         )
     }

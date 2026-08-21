@@ -20,16 +20,18 @@ import SwiftUI
 
 extension GroupListFeature {
     struct Screen: SwiftUI.View {
-        @StateObject private var viewModel = ViewModel()
+        @ObservedObject private var viewModel: ViewModel
         @StateObject private var captionChangeDialogViewModel = CaptionChangeDialogFeature.ViewModel()
 
         let onScroll: (CGFloat) -> Void
         let onScrollEnded: (Bool) -> Void
 
         init(
+            viewModel: ViewModel = ViewModel(),
             onScroll: @escaping (CGFloat) -> Void = { _ in },
             onScrollEnded: @escaping (Bool) -> Void = { _ in }
         ) {
+            self.viewModel = viewModel
             self.onScroll = onScroll
             self.onScrollEnded = onScrollEnded
         }

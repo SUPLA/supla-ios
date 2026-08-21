@@ -21,7 +21,7 @@ import RxSwift
 
 struct CreateProfileScenesList {
     protocol UseCase {
-        func invoke() -> Observable<[MainListItem]>
+        func invoke(filter: String?) -> Observable<[MainListItem]>
     }
 
     final class Implementation: UseCase {
@@ -29,47 +29,69 @@ struct CreateProfileScenesList {
         @Singleton<ProfileRepository> private var profileRepository
         @Singleton<SceneToMainListItem.UseCase> private var sceneToMainListItemUseCase
 
-        func invoke() -> Observable<[MainListItem]> {
-            profileRepository
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            return profileRepository
                 .getActiveProfile()
                 .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
-                .map { self.toList($0) }
+                .map { self.toList($0, filter: filter) }
         }
 
-        private func toList(_ scenes: [SAScene]) -> [MainListItem] {
-            guard let firstScene = scenes.first, var lastLocation = firstScene.location else {
+        private func toList(_ scenes: [SAScene], filter: String?) -> [MainListItem] {
+            guard !scenes.isEmpty else {
                 return []
             }
 
             var items = [MainListItem]()
-            items.append(lastLocation.sceneListItem)
+            var displayedLocation: _SALocation?
+            let inSearch = MainListFilter.isSearchable(filter)
 
             for scene in scenes {
                 guard let location = scene.location else { continue }
 
-                if (lastLocation.caption != location.caption) {
-                    lastLocation = location
-                    items.append(lastLocation.sceneListItem)
+                let mappingLocation = displayedLocation?.caption == location.caption ? displayedLocation! : location
+                let item = sceneToMainListItemUseCase.invoke(scene, location: mappingLocation)
+                if (inSearch && !itemMatches(item, location: location, filter: filter)) {
+                    continue
                 }
 
-                if (!lastLocation.isCollapsed(flag: .scene)) {
-                    items.append(sceneToMainListItemUseCase.invoke(scene, location: lastLocation))
+                if (displayedLocation?.location_id != location.location_id) {
+                    if (displayedLocation == nil || displayedLocation?.caption != location.caption) {
+                        displayedLocation = location
+                        items.append(location.sceneListItem(inSearch: inSearch))
+                    }
+                }
+
+                if let displayedLocation, inSearch || !displayedLocation.isCollapsed(flag: .scene) {
+                    items.append(item)
                 }
             }
 
             return items
         }
+
+        private func itemMatches(_ item: MainListItem, location: _SALocation, filter: String?) -> Bool {
+            guard let filter else { return true }
+
+            return MainListFilter.matches(item, filter: filter)
+                || MainListFilter.matches(location.caption, filter: filter)
+        }
+    }
+}
+
+extension CreateProfileScenesList.UseCase {
+    func invoke() -> Observable<[MainListItem]> {
+        invoke(filter: nil)
     }
 }
 
 private extension _SALocation {
-    var sceneListItem: MainListItem {
+    func sceneListItem(inSearch: Bool) -> MainListItem {
         .location(
             LocationListItem(
                 remoteId: location_id?.int32Value ?? 0,
                 profileId: profile.id,
                 userCaption: caption ?? "",
-                collapsed: isCollapsed(flag: .scene)
+                collapsed: inSearch ? false : isCollapsed(flag: .scene)
             )
         )
     }

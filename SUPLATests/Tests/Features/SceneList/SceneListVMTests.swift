@@ -97,6 +97,31 @@ final class SceneListVMTests: SuplaCore.ViewModelTest<SceneListFeature.ViewState
         XCTAssertTrue(viewModel.state.listLoaded)
     }
 
+    func test_shouldNotReloadList_whenSearchTextIsShorterThanTwoCharacters() {
+        // when
+        viewModel.onSearchTextChanged("a")
+
+        // then
+        createProfileScenesListUseCase.invokeMock.verifyCalls(0)
+        XCTAssertEqual(viewModel.state.searchText, "a")
+        XCTAssertFalse(viewModel.state.filterActive)
+    }
+
+    func test_shouldReloadListWithFilter_whenSearchTextHasAtLeastTwoCharacters() {
+        // given
+        let items = [sceneItem(remoteId: 1)]
+        createProfileScenesListUseCase.invokeMock.returns = .single(Observable.just(items))
+
+        // when
+        viewModel.onSearchTextChanged("ab")
+
+        // then
+        XCTAssertEqual(createProfileScenesListUseCase.invokeMock.parameters, ["ab"])
+        XCTAssertEqual(viewModel.state.items, items)
+        XCTAssertEqual(viewModel.state.searchText, "ab")
+        XCTAssertTrue(viewModel.state.filterActive)
+    }
+
     func test_shouldUpdateSingleItem_onSceneUpdate() {
         // given
         let sceneUpdates = PublishSubject<Int32>()

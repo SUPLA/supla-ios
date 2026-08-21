@@ -30,6 +30,7 @@ extension GroupListFeature {
         @Singleton<GroupToMainListItem.UseCase> private var groupToMainListItemUseCase
         @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
         @Singleton<AppRouter> private var router
+        private var filterString: String? = nil
 
         init(state: GroupListFeature.ViewState = GroupListFeature.ViewState()) {
             super.init(state: state)
@@ -73,7 +74,18 @@ extension GroupListFeature {
         }
 
         func onLocationClick(_ item: LocationListItem) {
+            guard !state.filterActive else { return }
             loadItems(after: toggleLocationUseCase.invoke(remoteId: item.remoteId, collapsedFlag: .group))
+        }
+
+        func onSearchTextChanged(_ text: String) {
+            let searchableFilter = MainListFilter.searchableFilter(text)
+            state.searchText = text
+            state.filterActive = searchableFilter != nil
+
+            guard filterString != searchableFilter else { return }
+            filterString = searchableFilter
+            loadItems()
         }
 
         func onNoContentButtonClick() {
@@ -88,7 +100,7 @@ extension GroupListFeature {
             state.loading = !state.listLoaded
             observable
                 .flatMapFirstWeak(with: self) { owner, _ in
-                    owner.createProfileGroupsListUseCase.invoke()
+                    owner.createProfileGroupsListUseCase.invoke(filter: owner.filterString)
                 }
                 .asDriver()
                 .drive(onNext: { [weak self] result in

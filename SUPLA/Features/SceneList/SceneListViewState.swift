@@ -23,5 +23,7 @@ extension SceneListFeature {
         @Published var items: [MainListItem] = []
         @Published var loading: Bool = true
         @Published var listLoaded: Bool = false
+        @Published var searchText: String = ""
+        @Published var filterActive: Bool = false
     }
 }

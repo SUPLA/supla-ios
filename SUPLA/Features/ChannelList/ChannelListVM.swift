@@ -34,6 +34,7 @@ extension ChannelListFeature {
         @Singleton<AppRouter> private var router
 
         private var triggerLogHistoryDownloadTask: Task<Void, Never>? = nil
+        private var filterString: String? = nil
 
         init(state: ChannelListFeature.ViewState = ChannelListFeature.ViewState()) {
             super.init(state: state)
@@ -98,7 +99,18 @@ extension ChannelListFeature {
         }
 
         func onLocationClick(_ item: LocationListItem) {
+            guard !state.filterActive else { return }
             loadItems(after: toggleLocationUseCase.invoke(remoteId: item.remoteId, collapsedFlag: .channel))
+        }
+
+        func onSearchTextChanged(_ text: String) {
+            let searchableFilter = MainListFilter.searchableFilter(text)
+            state.searchText = text
+            state.filterActive = searchableFilter != nil
+
+            guard filterString != searchableFilter else { return }
+            filterString = searchableFilter
+            loadItems()
         }
 
         func onAlertConfirmed(_ remoteId: Int32?, _ action: ActionId?) {
@@ -128,7 +140,7 @@ extension ChannelListFeature {
             state.loading = !state.listLoaded
             observable
                 .flatMapFirstWeak(with: self) { owner, _ in
-                    owner.createProfileChannelsListUseCase.invoke()
+                    owner.createProfileChannelsListUseCase.invoke(filter: owner.filterString)
                 }
                 .asDriver()
                 .drive(onNext: { [weak self] result in

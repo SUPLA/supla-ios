@@ -448,7 +448,6 @@
 		A539C2802D686AD300D9DD47 /* ListItemIssueIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */; };
 		A539C2822D686B1400D9DD47 /* ListItemDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539C2812D686B1100D9DD47 /* ListItemDot.swift */; };
 		A53E416C2F6C0E3E00C90914 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */; };
-		A53E416E2F6D3E9D00C90914 /* ToolbarSearchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */; };
 		A53E41742F6D79C000C90914 /* ProfileChooserFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41732F6D79B900C90914 /* ProfileChooserFeature.swift */; };
 		A53E41762F6D79DB00C90914 /* ProfileChooserViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41752F6D79D300C90914 /* ProfileChooserViewState.swift */; };
 		A53E41782F6D7A1F00C90914 /* ProfileChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E41772F6D7A1B00C90914 /* ProfileChooserView.swift */; };
@@ -2320,7 +2319,6 @@
 		A539C27F2D686ACE00D9DD47 /* ListItemIssueIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIssueIcon.swift; sourceTree = "<group>"; };
 		A539C2812D686B1100D9DD47 /* ListItemDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDot.swift; sourceTree = "<group>"; };
 		A53E416B2F6C0E3A00C90914 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
-		A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarSearchHandler.swift; sourceTree = "<group>"; };
 		A53E41732F6D79B900C90914 /* ProfileChooserFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserFeature.swift; sourceTree = "<group>"; };
 		A53E41752F6D79D300C90914 /* ProfileChooserViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserViewState.swift; sourceTree = "<group>"; };
 		A53E41772F6D7A1B00C90914 /* ProfileChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooserView.swift; sourceTree = "<group>"; };
@@ -3940,18 +3938,18 @@
 		407E7C331BBEB81B00D8878C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4031AD011BBC2A4900CF9D8B /* Assets */,
+				A530EE0B2A56C5C700F8DAEE /* Extensions */,
+				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
+				40DE1A421BCD6F06004CF43B /* Localizable.strings */,
 				A5E557A12E3CDF3500E829C7 /* RootCA */,
-				A5E2D6B02DCA238B00EBDADB /* LocalizedStringResource+Ext.swift */,
+				A5074BD42BCE9DB60081B6B1 /* Values */,
+				A5AE7A802A39AF410097FA8B /* Default.strings */,
 				A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */,
 				A598CAD22CC6E5CE00A784FA /* LocalizedStringId+Ext.swift */,
-				A5074BD42BCE9DB60081B6B1 /* Values */,
-				A530EE0B2A56C5C700F8DAEE /* Extensions */,
-				401CA1CC1BA067DB00117AF4 /* Resources.xcassets */,
-				4031AD011BBC2A4900CF9D8B /* Assets */,
-				40DE1A421BCD6F06004CF43B /* Localizable.strings */,
-				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
+				A5E2D6B02DCA238B00EBDADB /* LocalizedStringResource+Ext.swift */,
 				AEF79D902713088100D7554B /* Strings.swift */,
-				A5AE7A802A39AF410097FA8B /* Default.strings */,
+				401CA1CC1BA067DB00117AF4 /* Resources.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -6528,7 +6526,6 @@
 				A5B8A47D2CBD07FE002FA7B2 /* SuplaCore+Dialog.swift */,
 				A5A160062C2AB3ED0049AA73 /* SuplaCore+BaseViewModel.swift */,
 				A5A160082C2AB42F0049AA73 /* SuplaCore+BaseViewController.swift */,
-				A53E416D2F6D3E9400C90914 /* ToolbarSearchHandler.swift */,
 				A59CCBA13018C35B00BDDEC0 /* SuplaCore+ViewModel.swift */,
 				A59CCBA33018C40A00BDDEC0 /* SuplaCore+ViewModelHost.swift */,
 				A53E41812F90000300C90914 /* SuplaCore+ViewControllerHost.swift */,
@@ -9756,7 +9753,6 @@
 				A5AE6D7D2E1FA6B900BC2B67 /* AddWizardMessageView.swift in Sources */,
 				A54637B12D37E49E00D746F5 /* ImpulseCounterGeneralVM.swift in Sources */,
 				A5DEE9692E9FAD1B000811C7 /* DeveloperInfoFeature.swift in Sources */,
-				A53E416E2F6D3E9D00C90914 /* ToolbarSearchHandler.swift in Sources */,
 				A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */,
 				A5E84F182EE6EB84002F26F8 /* RgbBaseValue+iOS.swift in Sources */,
 				A5B5937B2F1793140054E6F9 /* DimmerCctDetailFeature.swift in Sources */,
