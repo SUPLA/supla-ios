@@ -56,6 +56,7 @@ extension SceneListFeature {
                 MainListTable(
                     items: viewState.items,
                     callbacks: tableCallbacks,
+                    inSearch: viewState.filterActive,
                     onScroll: onScroll,
                     onScrollEnded: onScrollEnded
                 )

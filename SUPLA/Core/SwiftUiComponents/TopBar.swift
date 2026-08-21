@@ -53,11 +53,12 @@ extension SuplaCore {
         let title: String
         let actionIcon: ActionIcon?
         let searchText: Binding<String>?
+        let searchActive: Binding<Bool>?
         let searchPrompt: String
         let onNavigationIconTap: () -> Void
         let onSearchActiveChange: (Bool) -> Void
 
-        @State private var searchOpened = false
+        @State private var internalSearchOpened = false
         @FocusState private var searchFocused: Bool
 
         static let height: CGFloat = 56
@@ -73,6 +74,7 @@ extension SuplaCore {
             title: String,
             actionIcon: ActionIcon? = nil,
             searchText: Binding<String>? = nil,
+            searchActive: Binding<Bool>? = nil,
             searchPrompt: String = Strings.Notifications.searchPrompt,
             onNavigationIconTap: @escaping () -> Void = {},
             onSearchActiveChange: @escaping (Bool) -> Void = { _ in }
@@ -81,6 +83,7 @@ extension SuplaCore {
             self.title = title
             self.actionIcon = actionIcon
             self.searchText = searchText
+            self.searchActive = searchActive
             self.searchPrompt = searchPrompt
             self.onNavigationIconTap = onNavigationIconTap
             self.onSearchActiveChange = onSearchActiveChange
@@ -226,6 +229,19 @@ extension SuplaCore {
             searchOpened = false
             searchFocused = false
             onSearchActiveChange(false)
+        }
+
+        private var searchOpened: Bool {
+            get {
+                searchActive?.wrappedValue ?? internalSearchOpened
+            }
+            nonmutating set {
+                if let searchActive {
+                    searchActive.wrappedValue = newValue
+                } else {
+                    internalSearchOpened = newValue
+                }
+            }
         }
     }
 }

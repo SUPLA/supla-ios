@@ -29,6 +29,7 @@ extension SceneListFeature {
         @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
         @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
         @Singleton<AppRouter> private var router
+        private var filterString: String? = nil
 
         init(state: SceneListFeature.ViewState = SceneListFeature.ViewState()) {
             super.init(state: state)
@@ -72,7 +73,18 @@ extension SceneListFeature {
         }
 
         func onLocationClick(_ item: LocationListItem) {
+            guard !state.filterActive else { return }
             loadItems(after: toggleLocationUseCase.invoke(remoteId: item.remoteId, collapsedFlag: .scene))
+        }
+
+        func onSearchTextChanged(_ text: String) {
+            let searchableFilter = MainListFilter.searchableFilter(text)
+            state.searchText = text
+            state.filterActive = searchableFilter != nil
+
+            guard filterString != searchableFilter else { return }
+            filterString = searchableFilter
+            loadItems()
         }
 
         func onNoContentButtonClick() {
@@ -87,7 +99,7 @@ extension SceneListFeature {
             state.loading = !state.listLoaded
             observable
                 .flatMapFirstWeak(with: self) { owner, _ in
-                    owner.createProfileScenesListUseCase.invoke()
+                    owner.createProfileScenesListUseCase.invoke(filter: owner.filterString)
                 }
                 .asDriver()
                 .drive(onNext: { [weak self] result in

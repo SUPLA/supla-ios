@@ -32,7 +32,13 @@ extension MainFeature {
 
         @State private var drawerOpened = false
         @State private var profileChooserOpened = false
-        @State private var topBarSearchActive = false
+        @State private var channelsSearchActive = false
+        @State private var groupsSearchActive = false
+        @State private var scenesSearchActive = false
+
+        @StateObject private var channelListViewModel = ChannelListFeature.ViewModel()
+        @StateObject private var groupListViewModel = GroupListFeature.ViewModel()
+        @StateObject private var sceneListViewModel = SceneListFeature.ViewModel()
 
         @StateObject private var channelsTopBarBehavior = CollapsibleTopBarBehavior(height: SuplaCore.TopBar.height)
         @StateObject private var groupsTopBarBehavior = CollapsibleTopBarBehavior(height: SuplaCore.TopBar.height)
@@ -108,10 +114,64 @@ extension MainFeature {
                 navigationIcon: .menu,
                 title: Strings.appName,
                 actionIcon: viewState.showProfilesIcon ? .icon("profile-navbar", openProfileChooser) : nil,
+                searchText: activeSearchTextBinding,
+                searchActive: activeSearchActiveBinding,
                 onNavigationIconTap: openDrawer,
                 onSearchActiveChange: onSearchActiveChange
             )
             .offset(y: activeTopBarBehavior.offset)
+        }
+
+        private var activeSearchTextBinding: Binding<String> {
+            Binding(
+                get: {
+                    switch selectedTab {
+                    case .channels:
+                        channelListViewModel.state.searchText
+                    case .groups:
+                        groupListViewModel.state.searchText
+                    case .scenes:
+                        sceneListViewModel.state.searchText
+                    }
+                },
+                set: {
+                    switch selectedTab {
+                    case .channels:
+                        channelListViewModel.onSearchTextChanged($0)
+                    case .groups:
+                        groupListViewModel.onSearchTextChanged($0)
+                    case .scenes:
+                        sceneListViewModel.onSearchTextChanged($0)
+                    }
+                }
+            )
+        }
+
+        private var activeSearchActiveBinding: Binding<Bool> {
+            Binding(
+                get: { activeSearchActive },
+                set: {
+                    switch selectedTab {
+                    case .channels:
+                        channelsSearchActive = $0
+                    case .groups:
+                        groupsSearchActive = $0
+                    case .scenes:
+                        scenesSearchActive = $0
+                    }
+                }
+            )
+        }
+
+        private var activeSearchActive: Bool {
+            switch selectedTab {
+            case .channels:
+                channelsSearchActive
+            case .groups:
+                groupsSearchActive
+            case .scenes:
+                scenesSearchActive
+            }
         }
 
         private var activeTopBarBehavior: CollapsibleTopBarBehavior {
@@ -158,14 +218,13 @@ extension MainFeature {
         }
 
         private func onSearchActiveChange(_ active: Bool) {
-            topBarSearchActive = active
             if (active) {
                 activeTopBarBehavior.expand()
             }
         }
 
         private func onContentScroll(_ delta: CGFloat) {
-            activeTopBarBehavior.scroll(delta: delta, canCollapse: !topBarSearchActive)
+            activeTopBarBehavior.scroll(delta: delta, canCollapse: !activeSearchActive)
         }
 
         private func onContentScrollEnded(atTop: Bool) {
@@ -216,18 +275,21 @@ extension MainFeature {
             switch selectedTab {
             case .channels:
                 ChannelListFeature.Screen(
+                    viewModel: channelListViewModel,
                     onScroll: onContentScroll,
                     onScrollEnded: onContentScrollEnded
                 )
 
             case .groups:
                 GroupListFeature.Screen(
+                    viewModel: groupListViewModel,
                     onScroll: onContentScroll,
                     onScrollEnded: onContentScrollEnded
                 )
 
             case .scenes:
                 SceneListFeature.Screen(
+                    viewModel: sceneListViewModel,
                     onScroll: onContentScroll,
                     onScrollEnded: onContentScrollEnded
                 )

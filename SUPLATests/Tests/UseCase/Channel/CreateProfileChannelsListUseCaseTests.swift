@@ -145,6 +145,41 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         ])
     }
 
+    func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
+        // given
+        let profile = profile()
+        profileRepository.activeProfileObservable = Observable.just(profile)
+
+        let location1 = location(
+            profile: profile,
+            caption: "Kitchen",
+            remoteId: 1,
+            collapsed: CollapsedFlag.channel.rawValue
+        )
+        let channel1 = channel(remoteId: 1, profile: profile, location: location1)
+        let channel1Item = channelItem(remoteId: 1, title: "Light")
+
+        settings.hideUnavailableChannelsMock.returns = .single(false)
+        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1]))
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
+        channelToMainListItemUseCase.invokeWithLocationMock.returns = .single(channel1Item)
+
+        // when
+        useCase.invoke(filter: "Kitchen").subscribe(observer).disposed(by: disposeBag)
+
+        // then
+        assertEvents([
+            .next([
+                locationItem(location1, inSearch: true),
+                channel1Item
+            ]),
+            .completed
+        ])
+        assertMappedItems([
+            (ChannelWithChildren(channel: channel1), location1)
+        ])
+    }
+
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
         // given
         let profile = profile()
@@ -266,13 +301,13 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         return channel
     }
 
-    private func locationItem(_ location: _SALocation) -> MainListItem {
+    private func locationItem(_ location: _SALocation, inSearch: Bool = false) -> MainListItem {
         .location(
             LocationListItem(
                 remoteId: location.location_id?.int32Value ?? 0,
                 profileId: location.profile.id,
                 userCaption: location.caption ?? "",
-                collapsed: location.isCollapsed(flag: .channel)
+                collapsed: inSearch ? false : location.isCollapsed(flag: .channel)
             )
         )
     }

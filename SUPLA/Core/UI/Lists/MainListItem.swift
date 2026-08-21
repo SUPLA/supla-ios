@@ -299,3 +299,48 @@ extension DefaultListItem {
             lhs.rightButtonTitle == rhs.rightButtonTitle
     }
 }
+
+enum MainListFilter {
+    static func searchableFilter(_ filter: String?) -> String? {
+        guard let filter else { return nil }
+
+        return isSearchable(filter) ? filter : nil
+    }
+
+    static func isSearchable(_ filter: String?) -> Bool {
+        (filter?.count ?? 0) > 1
+    }
+
+    static func matches(_ item: MainListItem, filter: String) -> Bool {
+        matches(item.searchableText, filter: filter)
+    }
+
+    static func matches(_ text: String?, filter: String?) -> Bool {
+        guard let filter else { return false }
+        return matches(text, filter: filter)
+    }
+
+    private static func matches(_ text: String?, filter: String) -> Bool {
+        guard let text, !text.isEmpty else { return false }
+        return text.range(of: filter, options: [.caseInsensitive, .diacriticInsensitive]) != nil
+    }
+}
+
+private extension MainListItem {
+    var searchableText: String {
+        switch self {
+        case .channel(let item), .group(let item):
+            return item.title
+        case .scene(let item):
+            return item.userCaption
+        case .location(let item):
+            return item.userCaption
+        case .hvacThermostat(let item):
+            return item.base.title
+        case .heatpolThermostat(let item):
+            return item.base.title
+        case .doubleValue(let item):
+            return item.base.title
+        }
+    }
+}

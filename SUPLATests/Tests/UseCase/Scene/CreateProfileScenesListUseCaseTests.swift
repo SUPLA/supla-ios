@@ -118,6 +118,39 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         ])
     }
 
+    func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
+        // given
+        let profile = profile()
+        profileRepository.activeProfileObservable = Observable.just(profile)
+
+        let location1 = location(
+            profile: profile,
+            caption: "Kitchen",
+            remoteId: 1,
+            collapsed: CollapsedFlag.scene.rawValue
+        )
+        let scene1 = scene(remoteId: 1, profile: profile, location: location1)
+        let scene1Item = sceneItem(remoteId: 1, title: "Morning")
+
+        sceneRepository.allVisibleScenesObservable = Observable.just([scene1])
+        sceneToMainListItemUseCase.invokeWithLocationMock.returns = .single(scene1Item)
+
+        // when
+        useCase.invoke(filter: "Kitchen").subscribe(observer).disposed(by: disposeBag)
+
+        // then
+        assertEvents([
+            .next([
+                locationItem(location1, inSearch: true),
+                scene1Item
+            ]),
+            .completed
+        ])
+        assertMappedItems([
+            (scene1, location1)
+        ])
+    }
+
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
         // given
         let profile = profile()
@@ -163,13 +196,13 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         }
     }
 
-    private func locationItem(_ location: _SALocation) -> MainListItem {
+    private func locationItem(_ location: _SALocation, inSearch: Bool = false) -> MainListItem {
         .location(
             LocationListItem(
                 remoteId: location.location_id?.int32Value ?? 0,
                 profileId: location.profile.id,
                 userCaption: location.caption ?? "",
-                collapsed: location.isCollapsed(flag: .scene)
+                collapsed: inSearch ? false : location.isCollapsed(flag: .scene)
             )
         )
     }

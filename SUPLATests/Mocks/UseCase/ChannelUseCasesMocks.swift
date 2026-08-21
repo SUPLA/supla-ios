@@ -22,10 +22,10 @@ import RxSwift
 
 extension CreateProfileChannelsList {
     final class Mock: CreateProfileChannelsList.UseCase {
-        var invokeMock: FunctionMock<Void, Observable<[MainListItem]>> = .init()
+        var invokeMock: FunctionMock<String?, Observable<[MainListItem]>> = .init()
 
-        func invoke() -> Observable<[MainListItem]> {
-            invokeMock.handle(())
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            invokeMock.handle(filter)
         }
     }
 }

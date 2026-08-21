@@ -116,6 +116,46 @@ final class ChannelListVMTests: SuplaCore.ViewModelTest<ChannelListFeature.ViewS
         XCTAssertTrue(viewModel.state.listLoaded)
     }
 
+    func test_shouldNotReloadList_whenSearchTextIsShorterThanTwoCharacters() {
+        // when
+        viewModel.onSearchTextChanged("a")
+
+        // then
+        createProfileChannelsListUseCase.invokeMock.verifyCalls(0)
+        XCTAssertEqual(viewModel.state.searchText, "a")
+        XCTAssertFalse(viewModel.state.filterActive)
+    }
+
+    func test_shouldReloadListWithFilter_whenSearchTextHasAtLeastTwoCharacters() {
+        // given
+        let items = [channelItem(remoteId: 1)]
+        createProfileChannelsListUseCase.invokeMock.returns = .single(Observable.just(items))
+
+        // when
+        viewModel.onSearchTextChanged("ab")
+
+        // then
+        XCTAssertEqual(createProfileChannelsListUseCase.invokeMock.parameters, ["ab"])
+        XCTAssertEqual(viewModel.state.items, items)
+        XCTAssertEqual(viewModel.state.searchText, "ab")
+        XCTAssertTrue(viewModel.state.filterActive)
+    }
+
+    func test_shouldPassSearchTextWithoutTrimming() {
+        // given
+        let items = [channelItem(remoteId: 1)]
+        createProfileChannelsListUseCase.invokeMock.returns = .single(Observable.just(items))
+
+        // when
+        viewModel.onSearchTextChanged("  ")
+
+        // then
+        XCTAssertEqual(createProfileChannelsListUseCase.invokeMock.parameters, ["  "])
+        XCTAssertEqual(viewModel.state.items, items)
+        XCTAssertEqual(viewModel.state.searchText, "  ")
+        XCTAssertTrue(viewModel.state.filterActive)
+    }
+
     func test_shouldUpdateSingleItem_onChannelUpdate() {
         // given
         let channelUpdates = PublishSubject<Int32>()

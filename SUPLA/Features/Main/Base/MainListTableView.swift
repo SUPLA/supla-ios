@@ -24,12 +24,14 @@ import UIKit
 struct MainListTable: UIViewRepresentable {
     let items: [MainListItem]
     let callbacks: MainListTableView.Callbacks
+    let inSearch: Bool
     let onScroll: (CGFloat) -> Void
     let onScrollEnded: (Bool) -> Void
 
     func makeUIView(context: Context) -> MainListTableView {
         let view = MainListTableView()
         view.callbacks = callbacks
+        view.inSearch = inSearch
         view.onScroll = onScroll
         view.onScrollEnded = onScrollEnded
         view.update(items: items)
@@ -38,6 +40,7 @@ struct MainListTable: UIViewRepresentable {
 
     func updateUIView(_ uiView: MainListTableView, context: Context) {
         uiView.callbacks = callbacks
+        uiView.inSearch = inSearch
         uiView.onScroll = onScroll
         uiView.onScrollEnded = onScrollEnded
         uiView.update(items: items)
@@ -62,11 +65,13 @@ final class MainListTableView: UIView {
     @Singleton<VibrationService> private var vibrationService
 
     var callbacks = Callbacks()
+    var inSearch = false
     var onScroll: (CGFloat) -> Void = { _ in }
     var onScrollEnded: (Bool) -> Void = { _ in }
 
     private let cellIdentifier = "MainListCell"
     private var items: [MainListItem] = []
+    private var renderedInSearch = false
     private var scaleFactor: CGFloat = 1
     private var showChannelInfo = false
     private var lastEffectiveContentOffsetY: CGFloat?
@@ -100,14 +105,16 @@ final class MainListTableView: UIView {
 
     func update(items: [MainListItem]) {
         let showChannelInfoChanged = showChannelInfo != settings.showChannelInfo
+        let inSearchChanged = renderedInSearch != inSearch
         showChannelInfo = settings.showChannelInfo
+        renderedInSearch = inSearch
 
         guard self.items.map(\.key) != items.map(\.key) else {
             let changedRows = self.items
                 .enumerated()
                 .compactMap { index, item in item != items[index] ? index : nil }
             self.items = items
-            if (showChannelInfoChanged) {
+            if (showChannelInfoChanged || inSearchChanged) {
                 tableView.reloadData()
             } else {
                 refreshVisibleCells(atRows: changedRows)
@@ -158,6 +165,7 @@ final class MainListTableView: UIView {
             item: item,
             scaleFactor: scaleFactor,
             showChannelInfo: showChannelInfo,
+            inSearch: inSearch,
             callbacks: .init(
                 onItemClick: { [weak self] in self?.callbacks.onItemClick(item) },
                 onInfoClick: { [weak self] in self?.callbacks.onInfoClick(item) },
@@ -364,12 +372,24 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         hideSwipe(animated: false)
     }
 
-    func configure(item: MainListItem, scaleFactor: CGFloat, showChannelInfo: Bool, callbacks: Callbacks) {
+    func configure(
+        item: MainListItem,
+        scaleFactor: CGFloat,
+        showChannelInfo: Bool,
+        inSearch: Bool,
+        callbacks: Callbacks
+    ) {
         self.item = item
         self.callbacks = callbacks
 
         setupButtons(for: item)
-        setupContent(for: item, scaleFactor: scaleFactor, showChannelInfo: showChannelInfo, callbacks: callbacks)
+        setupContent(
+            for: item,
+            scaleFactor: scaleFactor,
+            showChannelInfo: showChannelInfo,
+            inSearch: inSearch,
+            callbacks: callbacks
+        )
     }
 
     func movementEnabled() -> Bool {
@@ -414,7 +434,13 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         }
     }
 
-    private func setupContent(for item: MainListItem, scaleFactor: CGFloat, showChannelInfo: Bool, callbacks: Callbacks) {
+    private func setupContent(
+        for item: MainListItem,
+        scaleFactor: CGFloat,
+        showChannelInfo: Bool,
+        inSearch: Bool,
+        callbacks: Callbacks
+    ) {
         let rootView = MainListItemView(
             item: item,
             onInfoClick: callbacks.onInfoClick,
@@ -430,7 +456,8 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
                 if case .location(let locationItem) = item {
                     callbacks.onLocationLongClick(locationItem)
                 }
-            }
+            },
+            inSearch: inSearch
         )
         .environment(\.scaleFactor, scaleFactor)
         .environment(\.showChannelInfo, showChannelInfo)
