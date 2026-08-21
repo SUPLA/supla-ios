@@ -70,9 +70,7 @@ struct LocationListItemView: View {
                 }
             }
 
-            Rectangle()
-                .fill(Color.Supla.separator)
-                .frame(height: Dimens.ListItem.separatorHeight)
+            SeparatorView(style: .list)
         }
     }
 }

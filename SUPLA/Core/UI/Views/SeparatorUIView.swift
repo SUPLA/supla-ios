@@ -18,13 +18,13 @@
 
 import Foundation
 
-final class SeparatorView: UIView {
+final class SeparatorUIView: UIView {
     
     override var intrinsicContentSize: CGSize {
         get { CGSize(width: UIView.noIntrinsicMetric, height: 1) }
     }
     
-    init(color: UIColor = .separatorLight) {
+    init(color: UIColor = .grayLight) {
         super.init(frame: .zero)
         
         backgroundColor = color

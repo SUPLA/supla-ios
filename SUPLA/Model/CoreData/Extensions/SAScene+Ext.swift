@@ -33,7 +33,3 @@ extension SAScene {
         SharedCore.Scene(remoteId: sceneId, caption: caption ?? "")
     }
 }
-
-extension SAScene: BaseCellData {
-    var showInfoIcon: Bool { false }
-}

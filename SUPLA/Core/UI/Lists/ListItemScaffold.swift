@@ -97,10 +97,11 @@ struct ListItemScaffold<Content: View>: View {
                 statusIndicator.view(side: .end)
             }
         }
+        .overlay(alignment: .bottom) {
+            SeparatorView(style: .list)
+        }
         .onTapGesture(perform: onItemClick)
         .background(Color.Supla.surface)
-        .padding(.bottom, 1)
-        .background(Color.Supla.background)
     }
 }
 

@@ -120,12 +120,10 @@
 		01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855D22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m */; };
 		01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */; };
 		01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */; };
-		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
 		01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */; };
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
 		26C7E013F5AF9D5366ACDB82 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
-		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
 		401CA1CD1BA067DB00117AF4 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1CC1BA067DB00117AF4 /* Resources.xcassets */; };
 		401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1DB1BA067DB00117AF4 /* SUPLATests.m */; };
@@ -139,8 +137,6 @@
 		405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */; };
 		4067782C1BCBC647008DD37F /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4067782A1BCBC647008DD37F /* menu@2x.png */; };
 		4067782D1BCBC647008DD37F /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4067782B1BCBC647008DD37F /* menu@3x.png */; };
-		406778551BCBF9F4008DD37F /* SectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 406778531BCBF9F4008DD37F /* SectionCell.m */; };
-		406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 406778541BCBF9F4008DD37F /* SectionCell.xib */; };
 		406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 406C92D31BCD8518007BA87A /* btnOK@2x.png */; };
 		4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077ACE120A21BB100BD2216 /* CreateAccountVC.m */; };
 		407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D4AFA1BC6D6AA009A5505 /* btnOK@3x.png */; };
@@ -158,7 +154,6 @@
 		40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B610CB20C7E263002B762A /* SAUIChannelStatus.m */; };
 		40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
 		40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */; };
-		40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BE3E611BCA7AEF00153680 /* ChannelCell.xib */; };
 		40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA4F20C007A300ACEE42 /* SAChannelValue+CoreDataClass.m */; };
 		40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA5120C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m */; };
 		40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */; };
@@ -218,7 +213,6 @@
 		A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */; };
 		A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */; };
 		A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */; };
-		A5074BB52BCCFD2B0081B6B1 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */; };
 		A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB72BCE58CA0081B6B1 /* BaseWindowVM.swift */; };
 		A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB92BCE5C520081B6B1 /* BaseWindowVC.swift */; };
 		A5074BC02BCE61C20081B6B1 /* RoofWindowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BBF2BCE61C20081B6B1 /* RoofWindowVM.swift */; };
@@ -478,7 +472,6 @@
 		A5425F9B2F6A88B600794C9D /* NotificationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5425F9A2F6A88B100794C9D /* NotificationDto.swift */; };
 		A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */; };
 		A54260272CE769C300BE74FE /* LocalizedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */; };
-		A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */; };
 		A54637A52D37A39C00D746F5 /* AggregationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637A42D37A39100D746F5 /* AggregationResult.swift */; };
 		A54637A72D37A94A00D746F5 /* ImpulseCounterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637A62D37A94300D746F5 /* ImpulseCounterChartMarkerView.swift */; };
 		A54637AA2D37B0DE00D746F5 /* MarkerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54637A92D37B0DA00D746F5 /* MarkerRowView.swift */; };
@@ -648,7 +641,7 @@
 		A55E7B772E8EBCA200DFA94D /* BrandingConfiguration+ProjectorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */; };
 		A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */; };
 		A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */; };
-		A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorView.swift */; };
+		A56233D82AB054EA001CB948 /* SeparatorUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorUIView.swift */; };
 		A56233DA2AB061EB001CB948 /* SACustomDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D92AB061EB001CB948 /* SACustomDialogVC.swift */; };
 		A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233E22AB1903C001CB948 /* Float+Ext.swift */; };
 		A56233E52AB1AB69001CB948 /* UIIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233E42AB1AB69001CB948 /* UIIconButton.swift */; };
@@ -846,13 +839,12 @@
 		A58A631D2C09C0D600A9D02D /* GarageDoorColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */; };
 		A58A631F2C09C0F200A9D02D /* GarageDoorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */; };
 		A58A63222C09E6C400A9D02D /* GarageDoorVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */; };
-		A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9BF92A9F77BB00D28848 /* BaseCell.swift */; };
 		A58A9BFE2AA0A4BD00D28848 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9BFD2AA0A4BD00D28848 /* UIView+Ext.swift */; };
-		A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */; };
 		A58A9C052AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C042AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift */; };
 		A58A9C072AA1D64A00D28848 /* ChannelRelationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */; };
 		A58B2CB42AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */; };
 		A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */; };
+		A58B70843037245E00C3E561 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B70833037245900C3E561 /* SeparatorView.swift */; };
 		A58D1B7E2CDCB11B00B5A019 /* IssueIcon+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B7D2CDCB11600B5A019 /* IssueIcon+iOS.swift */; };
 		A58D1B802CDCD58900B5A019 /* KotlinByteArray+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B7F2CDCD58100B5A019 /* KotlinByteArray+iOS.swift */; };
 		A58D1B822CDCE29900B5A019 /* KotlinInt+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D1B812CDCE29000B5A019 /* KotlinInt+iOS.swift */; };
@@ -964,7 +956,6 @@
 		A59E57B62F90FEF400808DBF /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57B52F90FEF100808DBF /* PickerItem.swift */; };
 		A59E57B72F90FF0B00808DBF /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57B52F90FEF100808DBF /* PickerItem.swift */; };
 		A59E57BA2F911D5400808DBF /* TimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57B92F911D4D00808DBF /* TimerProgressView.swift */; };
-		A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A302B60F76A004B1598 /* IconValueCell.swift */; };
 		A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */; };
 		A5A14A3A2B612F1C004B1598 /* ChannelConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */; };
 		A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A3C2B6134C4004B1598 /* InsertChannelConfigUseCase.swift */; };
@@ -1001,7 +992,6 @@
 		A5A324A72E7C255800E60812 /* KotlinFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A324A62E7C255100E60812 /* KotlinFloat.swift */; };
 		A5A325192E81316B00E60812 /* ValueFormat+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325182E81316000E60812 /* ValueFormat+Ext.swift */; };
 		A5A3251B2E8154AE00E60812 /* HomePlusThermostatValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3251A2E8154A400E60812 /* HomePlusThermostatValueProvider.swift */; };
-		A5A3251D2E815EB400E60812 /* HeatpolThermostatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3251C2E815EA900E60812 /* HeatpolThermostatCell.swift */; };
 		A5A325202E817CE400E60812 /* HeatpolHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3251F2E817CD700E60812 /* HeatpolHistoryDetailVM.swift */; };
 		A5A325222E817CED00E60812 /* HeatpolHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325212E817CE800E60812 /* HeatpolHistoryDetailVC.swift */; };
 		A5A325242E8183BA00E60812 /* ThermostatMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A325232E8183B500E60812 /* ThermostatMeasurement.swift */; };
@@ -1513,10 +1503,13 @@
 		A5F29B253034F30000C0DE01 /* GroupListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B223034F30000C0DE01 /* GroupListViewState.swift */; };
 		A5F29B273034F40000C0DE01 /* GroupToMainListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B263034F40000C0DE01 /* GroupToMainListItemUseCase.swift */; };
 		A5F29B293034F40000C0DE01 /* MainListLoadingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B283034F40000C0DE01 /* MainListLoadingContent.swift */; };
+		A5F29B2B3034F50000C0DE01 /* SceneListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B2A3034F50000C0DE01 /* SceneListFeature.swift */; };
+		A5F29B2D3034F50000C0DE01 /* SceneListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B2C3034F50000C0DE01 /* SceneListScreen.swift */; };
+		A5F29B2F3034F50000C0DE01 /* SceneListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B2E3034F50000C0DE01 /* SceneListViewState.swift */; };
+		A5F29B313034F50000C0DE01 /* SceneToMainListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B303034F50000C0DE01 /* SceneToMainListItemUseCase.swift */; };
 		A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */; };
 		A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B5C2A1E161500ED700A /* MainVM.swift */; };
 		A5F29B692A1E269800ED700A /* GroupListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B682A1E269800ED700A /* GroupListVM.swift */; };
-		A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B6A2A1E26AA00ED700A /* SceneListVC.swift */; };
 		A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B6C2A1E26B400ED700A /* SceneListVM.swift */; };
 		A5F29B6F2A1E305500ED700A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B6E2A1E305500ED700A /* Repository.swift */; };
 		A5F29B742A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B732A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift */; };
@@ -1528,14 +1521,10 @@
 		A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B862A1F960000ED700A /* ToggleLocationUseCase.swift */; };
 		A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B882A1F985A00ED700A /* LocationRepository.swift */; };
 		A5F29B8B2A209EC900ED700A /* NSFetchRequest+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B8A2A209EC900ED700A /* NSFetchRequest+Ext.swift */; };
-		A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B8C2A20AD8100ED700A /* Nibs.swift */; };
-		A5F29B902A20B23E00ED700A /* BaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B8F2A20B23E00ED700A /* BaseTableViewModel.swift */; };
 		A5F29B932A20B56500ED700A /* CreateProfileScenesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B922A20B56500ED700A /* CreateProfileScenesListUseCase.swift */; };
 		A5F29B982A20B9D200ED700A /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B972A20B9D200ED700A /* ChannelRepository.swift */; };
-		A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B992A20C26900ED700A /* BaseTableViewController.swift */; };
 		A5F29B9D2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B9C2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift */; };
 		A5F29B9F2A20D32B00ED700A /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29B9E2A20D32B00ED700A /* GroupRepository.swift */; };
-		A5F29BA12A20D6DD00ED700A /* ChannelBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BA02A20D6DD00ED700A /* ChannelBaseTableViewController.swift */; };
 		A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BA22A234BFA00ED700A /* ObservableType+Ext.swift */; };
 		A5F29BA62A248ED800ED700A /* ListsEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BA52A248ED800ED700A /* ListsEventsManager.swift */; };
 		A5F29BA82A24B0FC00ED700A /* UpdateSceneStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BA72A24B0FC00ED700A /* UpdateSceneStateUseCase.swift */; };
@@ -1562,7 +1551,6 @@
 		A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift */; };
 		A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */; };
 		A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */; };
-		A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */; };
 		A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */; };
 		A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */; };
 		A5F29BE22A27628300ED700A /* SwapScenePositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */; };
@@ -1626,7 +1614,6 @@
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
 		AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */; };
 		AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1F9B927726D56008E441A /* DetailViewController.swift */; };
-		AEF6A5D028BBD1EC0019684A /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */; };
 		AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */; };
 		AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
@@ -1964,7 +1951,6 @@
 		01F8856622E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAImpulseCounterMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
 		01F8856722E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SATemperatureMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAThermostatMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
-		01F9111022EF989100BFF91D /* HomePlusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusCell.xib; sourceTree = "<group>"; };
 		01FCDA76264F28C4002D776F /* SAZWaveNodeResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNodeResult.h; sourceTree = "<group>"; };
 		01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeResult.m; sourceTree = "<group>"; };
 		01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNode.h; sourceTree = "<group>"; };
@@ -1974,8 +1960,6 @@
 		3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.debug.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
-		4017E1291BB9CE2900570AC8 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
-		4017E12A1BB9CE2900570AC8 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		401CA1B91BA067DB00117AF4 /* SUPLA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUPLA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		401CA1BE1BA067DB00117AF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		401CA1CC1BA067DB00117AF4 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
@@ -1992,9 +1976,6 @@
 		405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard_ok@2x.png"; sourceTree = "<group>"; };
 		4067782A1BCBC647008DD37F /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		4067782B1BCBC647008DD37F /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
-		406778521BCBF9F4008DD37F /* SectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionCell.h; sourceTree = "<group>"; };
-		406778531BCBF9F4008DD37F /* SectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionCell.m; sourceTree = "<group>"; };
-		406778541BCBF9F4008DD37F /* SectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionCell.xib; sourceTree = "<group>"; };
 		406C92D31BCD8518007BA87A /* btnOK@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnOK@2x.png"; sourceTree = "<group>"; };
 		407004261BB5706500F6187F /* SUPLA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SUPLA.xcdatamodel; sourceTree = "<group>"; };
 		4077ACE020A21BB100BD2216 /* CreateAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountVC.h; sourceTree = "<group>"; };
@@ -2026,7 +2007,6 @@
 		40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroupRelation+CoreDataClass.m"; sourceTree = "<group>"; };
 		40BBA34F20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroupRelation+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroupRelation+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40BE3E611BCA7AEF00153680 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		40C7BA4E20C007A300ACEE42 /* SAChannelValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		40C7BA4F20C007A300ACEE42 /* SAChannelValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		40C7BA5020C007A300ACEE42 /* SAChannelValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -2106,7 +2086,6 @@
 		A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentVC.swift; sourceTree = "<group>"; };
 		A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVM.swift; sourceTree = "<group>"; };
 		A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVC.swift; sourceTree = "<group>"; };
-		A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		A5074BB72BCE58CA0081B6B1 /* BaseWindowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowVM.swift; sourceTree = "<group>"; };
 		A5074BB92BCE5C520081B6B1 /* BaseWindowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowVC.swift; sourceTree = "<group>"; };
 		A5074BBF2BCE61C20081B6B1 /* RoofWindowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowVM.swift; sourceTree = "<group>"; };
@@ -2365,7 +2344,6 @@
 		A5425F9A2F6A88B100794C9D /* NotificationDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDto.swift; sourceTree = "<group>"; };
 		A54260212CE38CC300BE74FE /* ListItemIssues+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListItemIssues+iOS.swift"; sourceTree = "<group>"; };
 		A54260262CE769BD00BE74FE /* LocalizedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedString+Ext.swift"; sourceTree = "<group>"; };
-		A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleIconValueCell.swift; sourceTree = "<group>"; };
 		A54637A42D37A39100D746F5 /* AggregationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationResult.swift; sourceTree = "<group>"; };
 		A54637A62D37A94300D746F5 /* ImpulseCounterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterChartMarkerView.swift; sourceTree = "<group>"; };
 		A54637A92D37B0DA00D746F5 /* MarkerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerRowView.swift; sourceTree = "<group>"; };
@@ -2542,7 +2520,7 @@
 		A55E7B752E8EBC8F00DFA94D /* BrandingConfiguration+ProjectorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrandingConfiguration+ProjectorScreen.swift"; sourceTree = "<group>"; };
 		A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVC.swift; sourceTree = "<group>"; };
-		A56233D72AB054EA001CB948 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		A56233D72AB054EA001CB948 /* SeparatorUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorUIView.swift; sourceTree = "<group>"; };
 		A56233D92AB061EB001CB948 /* SACustomDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SACustomDialogVC.swift; sourceTree = "<group>"; };
 		A56233E22AB1903C001CB948 /* Float+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+Ext.swift"; sourceTree = "<group>"; };
 		A56233E42AB1AB69001CB948 /* UIIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIconButton.swift; sourceTree = "<group>"; };
@@ -2751,14 +2729,13 @@
 		A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorColors.swift; sourceTree = "<group>"; };
 		A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorView.swift; sourceTree = "<group>"; };
 		A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVMTests.swift; sourceTree = "<group>"; };
-		A58A9BF92A9F77BB00D28848 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A58A9BFD2AA0A4BD00D28848 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatCell.swift; sourceTree = "<group>"; };
 		A58A9C022AA1C9D700D28848 /* SUPLA 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 15.xcdatamodel"; sourceTree = "<group>"; };
 		A58A9C042AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCase.swift; sourceTree = "<group>"; };
 		A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationRepository.swift; sourceTree = "<group>"; };
 		A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTemperaturesListUseCaseTests.swift; sourceTree = "<group>"; };
 		A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseUseCasesMocks.swift; sourceTree = "<group>"; };
+		A58B70833037245900C3E561 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		A58D1B7D2CDCB11600B5A019 /* IssueIcon+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IssueIcon+iOS.swift"; sourceTree = "<group>"; };
 		A58D1B7F2CDCD58100B5A019 /* KotlinByteArray+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KotlinByteArray+iOS.swift"; sourceTree = "<group>"; };
 		A58D1B812CDCE29000B5A019 /* KotlinInt+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KotlinInt+iOS.swift"; sourceTree = "<group>"; };
@@ -2867,7 +2844,6 @@
 		A59E57B32F90FE4C00808DBF /* WheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPicker.swift; sourceTree = "<group>"; };
 		A59E57B52F90FEF100808DBF /* PickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItem.swift; sourceTree = "<group>"; };
 		A59E57B92F911D4D00808DBF /* TimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgressView.swift; sourceTree = "<group>"; };
-		A5A14A302B60F76A004B1598 /* IconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueCell.swift; sourceTree = "<group>"; };
 		A5A14A322B61005F004B1598 /* SUPLA 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 16.xcdatamodel"; sourceTree = "<group>"; };
 		A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
 		A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelConfigRepository.swift; sourceTree = "<group>"; };
@@ -2905,7 +2881,6 @@
 		A5A324A62E7C255100E60812 /* KotlinFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinFloat.swift; sourceTree = "<group>"; };
 		A5A325182E81316000E60812 /* ValueFormat+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueFormat+Ext.swift"; sourceTree = "<group>"; };
 		A5A3251A2E8154A400E60812 /* HomePlusThermostatValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueProvider.swift; sourceTree = "<group>"; };
-		A5A3251C2E815EA900E60812 /* HeatpolThermostatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolThermostatCell.swift; sourceTree = "<group>"; };
 		A5A3251F2E817CD700E60812 /* HeatpolHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A5A325212E817CE800E60812 /* HeatpolHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailVC.swift; sourceTree = "<group>"; };
 		A5A325232E8183B500E60812 /* ThermostatMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatMeasurement.swift; sourceTree = "<group>"; };
@@ -3375,10 +3350,13 @@
 		A5F29B223034F30000C0DE01 /* GroupListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewState.swift; sourceTree = "<group>"; };
 		A5F29B263034F40000C0DE01 /* GroupToMainListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupToMainListItemUseCase.swift; sourceTree = "<group>"; };
 		A5F29B283034F40000C0DE01 /* MainListLoadingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListLoadingContent.swift; sourceTree = "<group>"; };
+		A5F29B2A3034F50000C0DE01 /* SceneListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListFeature.swift; sourceTree = "<group>"; };
+		A5F29B2C3034F50000C0DE01 /* SceneListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListScreen.swift; sourceTree = "<group>"; };
+		A5F29B2E3034F50000C0DE01 /* SceneListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListViewState.swift; sourceTree = "<group>"; };
+		A5F29B303034F50000C0DE01 /* SceneToMainListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneToMainListItemUseCase.swift; sourceTree = "<group>"; };
 		A5F29B572A1CB7DC00ED700A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A5F29B5C2A1E161500ED700A /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
 		A5F29B682A1E269800ED700A /* GroupListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListVM.swift; sourceTree = "<group>"; };
-		A5F29B6A2A1E26AA00ED700A /* SceneListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListVC.swift; sourceTree = "<group>"; };
 		A5F29B6C2A1E26B400ED700A /* SceneListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListVM.swift; sourceTree = "<group>"; };
 		A5F29B6E2A1E305500ED700A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A5F29B732A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
@@ -3390,14 +3368,10 @@
 		A5F29B862A1F960000ED700A /* ToggleLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLocationUseCase.swift; sourceTree = "<group>"; };
 		A5F29B882A1F985A00ED700A /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
 		A5F29B8A2A209EC900ED700A /* NSFetchRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Ext.swift"; sourceTree = "<group>"; };
-		A5F29B8C2A20AD8100ED700A /* Nibs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nibs.swift; sourceTree = "<group>"; };
-		A5F29B8F2A20B23E00ED700A /* BaseTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewModel.swift; sourceTree = "<group>"; };
 		A5F29B922A20B56500ED700A /* CreateProfileScenesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileScenesListUseCase.swift; sourceTree = "<group>"; };
 		A5F29B972A20B9D200ED700A /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
-		A5F29B992A20C26900ED700A /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		A5F29B9C2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileGroupsListUseCase.swift; sourceTree = "<group>"; };
 		A5F29B9E2A20D32B00ED700A /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
-		A5F29BA02A20D6DD00ED700A /* ChannelBaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseTableViewController.swift; sourceTree = "<group>"; };
 		A5F29BA22A234BFA00ED700A /* ObservableType+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Ext.swift"; sourceTree = "<group>"; };
 		A5F29BA52A248ED800ED700A /* ListsEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsEventsManager.swift; sourceTree = "<group>"; };
 		A5F29BA72A24B0FC00ED700A /* UpdateSceneStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSceneStateUseCase.swift; sourceTree = "<group>"; };
@@ -3424,7 +3398,6 @@
 		A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHumidityMeasurementItemRepository.swift; sourceTree = "<group>"; };
 		A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatMeasurementItemRepository.swift; sourceTree = "<group>"; };
 		A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBagContainer.swift; sourceTree = "<group>"; };
-		A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCell+Ext.swift"; sourceTree = "<group>"; };
 		A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapChannelPositionsUseCase.swift; sourceTree = "<group>"; };
 		A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapGroupPositionsUseCase.swift; sourceTree = "<group>"; };
 		A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCase.swift; sourceTree = "<group>"; };
@@ -3492,7 +3465,6 @@
 		AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 11.xcdatamodel"; sourceTree = "<group>"; };
 		AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVM.swift; sourceTree = "<group>"; };
 		AEF1F9B927726D56008E441A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
 		AEF6A5D128BBD35B0019684A /* SUPLA 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 13.xcdatamodel"; sourceTree = "<group>"; };
 		AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVM.swift; sourceTree = "<group>"; };
 		AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVC.swift; sourceTree = "<group>"; };
@@ -3620,13 +3592,10 @@
 			isa = PBXGroup;
 			children = (
 				A57777D029E6A319004513E6 /* CreateAccountVC.xib */,
-				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
-				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
 				010714C62656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
-				406778541BCBF9F4008DD37F /* SectionCell.xib */,
 				40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */,
 				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
 				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
@@ -4012,8 +3981,6 @@
 			children = (
 				AEB195DC276E59B60091D314 /* Transitions */,
 				AED6395C270CA37A00E5105B /* Controls */,
-				4017E1291BB9CE2900570AC8 /* ChannelCell.h */,
-				4017E12A1BB9CE2900570AC8 /* ChannelCell.m */,
 				4006E9081DC62D0A00C4456D /* DetailView.h */,
 				4006E9091DC62D0A00C4456D /* DetailView.m */,
 				017554F422F1A62500EB58B7 /* HomePlusDetailView.h */,
@@ -4058,8 +4025,6 @@
 				01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */,
 				010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */,
 				010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */,
-				406778521BCBF9F4008DD37F /* SectionCell.h */,
-				406778531BCBF9F4008DD37F /* SectionCell.m */,
 				012119122368B597004C1993 /* xib */,
 				AE7CAAFB275BF87D0024095F /* BaseViewController.h */,
 				AE7CAAFC275BF87D0024095F /* BaseViewController.m */,
@@ -4578,7 +4543,6 @@
 			children = (
 				A5CE73252B45A6C8003F882C /* Esp */,
 				A57668CB2AE8F75C0025509D /* SuplaCloud */,
-				A52ACD4529CB92E30092729F /* WebApi */,
 				A52ACD4329CB92C50092729F /* SuplaClient */,
 			);
 			path = Networking;
@@ -4596,13 +4560,6 @@
 				A58472072C2ED60E00713D36 /* SuplaAppProvider.swift */,
 			);
 			name = SuplaClient;
-			sourceTree = "<group>";
-		};
-		A52ACD4529CB92E30092729F /* WebApi */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WebApi;
 			sourceTree = "<group>";
 		};
 		A52BFEAB2B050D0000A2F64C /* TextFields */ = {
@@ -4700,6 +4657,7 @@
 		A530EDEE2A53F79900F8DAEE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A58B70833037245900C3E561 /* SeparatorView.swift */,
 				A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */,
 			);
 			path = Components;
@@ -4860,7 +4818,7 @@
 				A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */,
 				A51BE9062AA8532600718F2F /* ThermostatControlView.swift */,
 				A51BE9082AAA5E4D00718F2F /* GreenPointLayers.swift */,
-				A56233D72AB054EA001CB948 /* SeparatorView.swift */,
+				A56233D72AB054EA001CB948 /* SeparatorUIView.swift */,
 				A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */,
 				A57668C42AE79BA40025509D /* HorizontalyScrollableView.swift */,
 				A5D837C72AF0F154002A420D /* PullToRefreshView.swift */,
@@ -6102,21 +6060,8 @@
 		A58A9BF82A9F77A400D28848 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				A58A9BF92A9F77BB00D28848 /* BaseCell.swift */,
 				A5477DCE2AA616FD00220B4A /* CellButton.swift */,
 				A5E9C2092DCCBE8C0001F263 /* CellScalingLimit.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		A58A9BFF2AA0ACFC00D28848 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				A5A3251C2E815EA900E60812 /* HeatpolThermostatCell.swift */,
-				A54260282CE7715700BE74FE /* DoubleIconValueCell.swift */,
-				A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */,
-				A5A14A302B60F76A004B1598 /* IconValueCell.swift */,
-				A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -7376,13 +7321,6 @@
 			path = Ocr;
 			sourceTree = "<group>";
 		};
-		A5E0DF802CEC986800362451 /* File */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = File;
-			sourceTree = "<group>";
-		};
 		A5E0DF842CECA1A800362451 /* CounterPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -7708,7 +7646,6 @@
 				A57C4AB62AAF4F7600D9C695 /* FilteredTapGestureDelegate.swift */,
 				A585421E2D80663C00D314A2 /* LogWrapper.swift */,
 				A5D7126D2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift */,
-				A5F29B8C2A20AD8100ED700A /* Nibs.swift */,
 				A52BFEB02B06163B00A2F64C /* SADateTimePicker.swift */,
 				A5F14B7529DED44600682FA6 /* ViewEvent.swift */,
 				A573B39129DEB25900EBAFC4 /* ViewState.swift */,
@@ -7791,7 +7728,6 @@
 				A5F29B193034F10000C0DE01 /* ChannelListVM.swift */,
 				A56F8D122DA9356600F097CE /* ChannelListViewState.swift */,
 				A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */,
-				A58A9BFF2AA0ACFC00D28848 /* Cells */,
 			);
 			path = ChannelList;
 			sourceTree = "<group>";
@@ -7811,9 +7747,10 @@
 		A5F29B652A1E237700ED700A /* SceneList */ = {
 			isa = PBXGroup;
 			children = (
+				A5F29B2A3034F50000C0DE01 /* SceneListFeature.swift */,
+				A5F29B2C3034F50000C0DE01 /* SceneListScreen.swift */,
+				A5F29B2E3034F50000C0DE01 /* SceneListViewState.swift */,
 				A5C5F6F82D9428C100E303B8 /* SceneListView.swift */,
-				AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */,
-				A5F29B6A2A1E26AA00ED700A /* SceneListVC.swift */,
 				A5F29B6C2A1E26B400ED700A /* SceneListVM.swift */,
 			);
 			path = SceneList;
@@ -7918,7 +7855,6 @@
 				A56EC92D2CEF1CD800A6E2CB /* ChannelState */,
 				A530EE3C2A58412400F8DAEE /* Client */,
 				A5F29BE92A27785F00ED700A /* Detail */,
-				A5E0DF802CEC986800362451 /* File */,
 				A5F29B9B2A20D2DD00ED700A /* Group */,
 				A5E490582A3FA137006801FE /* Icon */,
 				A5BCA9552E26828600A5054A /* Infrastructure */,
@@ -7950,9 +7886,6 @@
 			isa = PBXGroup;
 			children = (
 				A58A9BF82A9F77A400D28848 /* Cells */,
-				A5F29B8F2A20B23E00ED700A /* BaseTableViewModel.swift */,
-				A5F29B992A20C26900ED700A /* BaseTableViewController.swift */,
-				A5F29BA02A20D6DD00ED700A /* ChannelBaseTableViewController.swift */,
 				A5F29BE52A27739000ED700A /* MoveableCell.swift */,
 				A594ADC42C9C19E900780EF3 /* ListOnlineState.swift */,
 			);
@@ -7965,6 +7898,7 @@
 				A5E13B712DBC2E0700C6DE14 /* GetSceneIconUseCase.swift */,
 				A5C5F6FA2D94293D00E303B8 /* ReadSceneByRemoteIdUseCase.swift */,
 				A5F29B922A20B56500ED700A /* CreateProfileScenesListUseCase.swift */,
+				A5F29B303034F50000C0DE01 /* SceneToMainListItemUseCase.swift */,
 				A5F29BA72A24B0FC00ED700A /* UpdateSceneStateUseCase.swift */,
 				A5F29BA92A24B23000ED700A /* UpdateSceneUseCase.swift */,
 				A5F29BAB2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift */,
@@ -8059,7 +7993,6 @@
 			isa = PBXGroup;
 			children = (
 				A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */,
-				A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -8431,7 +8364,6 @@
 				0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */,
 				A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
-				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
 				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
 				A531D3E02E74539700714850 /* clock@3x.png in Resources */,
 				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
@@ -8443,7 +8375,6 @@
 				010714C42656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib in Resources */,
 				A57C4ABA2AAF539600D9C695 /* OpenSans-SemiBold.ttf in Resources */,
 				0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */,
-				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
@@ -8490,7 +8421,6 @@
 				405AC4311BC158E8004F7311 /* Quicksand-Light.ttf in Resources */,
 				01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
-				01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8633,7 +8563,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF6A5D028BBD1EC0019684A /* SceneCell.swift in Sources */,
 				C0DE15700000000000000001 /* ListItemScaffold.swift in Sources */,
 				C0DE15700000000000000002 /* ListItemStatusIndicator.swift in Sources */,
 				C0DE15700000000000000008 /* MainListItem.swift in Sources */,
@@ -8685,7 +8614,7 @@
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56286A630334EE500851CED /* FontSize.swift in Sources */,
 				A5F29B1A3034F10000C0DE01 /* ChannelListFeature.swift in Sources */,
-				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
+				A56233D82AB054EA001CB948 /* SeparatorUIView.swift in Sources */,
 				A50716D92D6893BA0060FA0D /* StateDialogItem.swift in Sources */,
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
 				A52F03E32DBA63B400472ED1 /* SegmentedPicker.swift in Sources */,
@@ -8841,12 +8770,10 @@
 				A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */,
 				A5E05B9F2CB3C94900202583 /* ElectricityMeterChartType.swift in Sources */,
 				A5A15FE82C2985780049AA73 /* Coordinator.swift in Sources */,
-				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				A598CAD62CC6E92400A784FA /* Int+SuplaChannelFunction.swift in Sources */,
 				011021C425CC39AC00621D41 /* SARegistrationEnabled.m in Sources */,
 				A505EC412CF71FE100E69BDB /* CreateProfileScreen.swift in Sources */,
 				A58472062C2EC7E500713D36 /* DisconnectUseCase.swift in Sources */,
-				A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */,
 				A530EE222A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift in Sources */,
 				A5F21B1D2F42B1000000001D /* DimmerCctDetailScreen.swift in Sources */,
 				A5E05BB52CB470F500202583 /* TemperatureMeasurementsProvider.swift in Sources */,
@@ -8917,7 +8844,6 @@
 				A5A87A682F1660B10047233B /* DimmerDetailBase+State.swift in Sources */,
 				A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */,
 				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
-				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
 				A5EDE2212CA56B4B00BEDAE4 /* SummaryCardData.swift in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
 				A5C690402DD7515800194C1B /* Int16+Ext.swift in Sources */,
@@ -9060,7 +8986,6 @@
 				A5D712612C37EAA400A8EF52 /* LockScreenViewState.swift in Sources */,
 				A550F2872D521ADF0011463B /* VoltageMeasurementItemRepository.swift in Sources */,
 				A50162592F921A6400FB2899 /* RoundedControlButton.swift in Sources */,
-				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
 				A5F21B152F42B10000000015 /* GateGeneralScreen.swift in Sources */,
 				A5A2C724302DC954004F6721 /* DetailViewControllerScreen.swift in Sources */,
@@ -9073,7 +8998,6 @@
 				A5552EDE2D537DF500A3F6A2 /* ElectricityMeterConfigDto.swift in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
-				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
 				A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */,
 				A53E417E2F715F4400C90914 /* RestoreProfileFromDefaultsUseCase.swift in Sources */,
 				A505EC362CF71BD500E69BDB /* ProfileDto.swift in Sources */,
@@ -9111,7 +9035,6 @@
 				A5F214032F42410000000003 /* ThermostatHistoryDetailScreen.swift in Sources */,
 				A5F216022F42610000000002 /* HeatpolHistoryDetailFeature.swift in Sources */,
 				A5F216032F42610000000003 /* HeatpolHistoryDetailScreen.swift in Sources */,
-				A54260292CE7715E00BE74FE /* DoubleIconValueCell.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
 				A5B5937D2F17932D0054E6F9 /* DimmerCctDetailView.swift in Sources */,
@@ -9164,7 +9087,6 @@
 				A501625E2F924D5C00FB2899 /* ThermostatTimerDetailConfiguration.swift in Sources */,
 				A5E05BC12CB5336600202583 /* SAElectricityMeasurementItem+Ext.swift in Sources */,
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
-				A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */,
 				A5D837E32AF3A728002A420D /* LinkedList.swift in Sources */,
 				A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */,
 				A52BFEF02B1754FD00A2F64C /* DeleteProfileUseCase.swift in Sources */,
@@ -9276,11 +9198,9 @@
 				A5A15FE32C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift in Sources */,
 				A54E2A5B2E436320003F2926 /* EspRequestResult.swift in Sources */,
 				A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */,
-				A5F29BA12A20D6DD00ED700A /* ChannelBaseTableViewController.swift in Sources */,
 				A5B8A47A2CB86AF7002FA7B2 /* ChartStyle.swift in Sources */,
 				A5F5C3F82C3683270058E255 /* PinSetupView.swift in Sources */,
 				A530EE0D2A56C65D00F8DAEE /* UIImage+Supla.swift in Sources */,
-				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */,
 				A5F29B1E3034F20000C0DE01 /* MainListTableView.swift in Sources */,
 				A5F29B233034F30000C0DE01 /* GroupListFeature.swift in Sources */,
@@ -9454,7 +9374,6 @@
 				A562870F30347B8000851CED /* HomePlusThermostatValueStringProvider.swift in Sources */,
 				A5D7126E2C3D2F2000A8EF52 /* NavigationBarVisibilityController.swift in Sources */,
 				A57668DD2AE995590025509D /* GeneralError.swift in Sources */,
-				A5074BB52BCCFD2B0081B6B1 /* IconCell.swift in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				A5A15FFD2C2A161E0049AA73 /* SuplaCore.swift in Sources */,
 				A56233EB2AB31A45001CB948 /* CALayer+Ext.swift in Sources */,
@@ -9623,11 +9542,9 @@
 				A56364352EE1A14900A702C0 /* DimmerDetailVM.swift in Sources */,
 				A5A160132C2AD4470049AA73 /* Synchronization.swift in Sources */,
 				A5812CBC2BBC305200FC5998 /* NightModeCell.swift in Sources */,
-				A5A3251D2E815EB400E60812 /* HeatpolThermostatCell.swift in Sources */,
 				A5E05BBD2CB5274000202583 /* ElectricityConsumptionProvider.swift in Sources */,
 				A59CCBA23018C36000BDDEC0 /* SuplaCore+ViewModel.swift in Sources */,
 				A5BF4F622F3C860D00F5DE81 /* NfcTagsListView.swift in Sources */,
-				A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */,
 				A5F29BD22A26239C00ED700A /* TemperatureMeasurementItemRepository.swift in Sources */,
 				A5741D842DC0EE0100ED6C18 /* CarPlayRefreshUseCase.swift in Sources */,
 				A562866D303320E200851CED /* IconValueListItemView.swift in Sources */,
@@ -9650,6 +9567,10 @@
 				A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */,
 				A5A15FF12C298B700049AA73 /* StatusView.swift in Sources */,
 				A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */,
+				A5F29B2B3034F50000C0DE01 /* SceneListFeature.swift in Sources */,
+				A5F29B2D3034F50000C0DE01 /* SceneListScreen.swift in Sources */,
+				A5F29B2F3034F50000C0DE01 /* SceneListViewState.swift in Sources */,
+				A5F29B313034F50000C0DE01 /* SceneToMainListItemUseCase.swift in Sources */,
 				A530EE1E2A56FD4300F8DAEE /* StaircaseTimerIconNameProducer.swift in Sources */,
 				A55A8D9B2BAB802B00C540D4 /* RollerShutterAction.swift in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
@@ -9657,7 +9578,6 @@
 				A59E57AB2F8F829300808DBF /* ThermostatTimerDetailFeature.swift in Sources */,
 				A5B3CBED2B625D6000F95AC3 /* WindValueProvider.swift in Sources */,
 				A5F5C3EA2C3580000058E255 /* LockScreenScope.swift in Sources */,
-				A5F29B902A20B23E00ED700A /* BaseTableViewModel.swift in Sources */,
 				A584E2072CABCE3F00232A98 /* SAExectricityMeterExtendedValue+Ext.swift in Sources */,
 				A55A8DA42BAC2B0E00C540D4 /* SAAlertDialogVM.swift in Sources */,
 				A5E05BB12CB46E6800202583 /* SATemperatureMeasurementItem+Ext.swift in Sources */,
@@ -9705,6 +9625,7 @@
 				A57668EF2AEA9F150025509D /* DownloadTemperatureLogUseCase.swift in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */,
+				A58B70843037245E00C3E561 /* SeparatorView.swift in Sources */,
 				A5B8A4872CBD0B4F002FA7B2 /* ElectricityDataSelectionVM.swift in Sources */,
 				A5A325262E81861300E60812 /* DownloadThermostatHeatpolLogUseCase.swift in Sources */,
 				A5EC52402C0F22F40022F055 /* RequestChannelConfigUseCase.swift in Sources */,
@@ -9868,7 +9789,6 @@
 				A56233F32AB3A386001CB948 /* CreateTemperaturesListUseCase.swift in Sources */,
 				A53636512DD36CE500D470CE /* SuplaCloud+ChannelFunction.swift in Sources */,
 				A5E039E72CA18E350018CEB7 /* Bool+Ext.swift in Sources */,
-				A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
 				A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */,
 				A55BE8D82F97A9D500362562 /* FilledButtonStyle.swift in Sources */,

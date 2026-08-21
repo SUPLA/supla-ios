@@ -16,79 +16,116 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-import RxCocoa
-import RxDataSources
+import RxSwift
 
-class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
-    @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
-    @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
-    @Singleton<UpdateEventsManager> private var updateEventsManager
-    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
-    @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
-    
-    override init() {
-        super.init()
-        
-        updateEventsManager.observeScenesUpdate()
-            .subscribe(
-                onNext: { self.reloadTable() }
+extension SceneListFeature {
+    class ViewModel: MainListViewModel<SceneListFeature.ViewState>, SceneListFeature.ViewDelegate {
+        @Singleton<CreateProfileScenesList.UseCase> private var createProfileScenesListUseCase
+        @Singleton<ReadSceneByRemoteIdUseCase> private var readSceneByRemoteIdUseCase
+        @Singleton<SceneToMainListItem.UseCase> private var sceneToMainListItemUseCase
+        @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
+        @Singleton<ToggleLocationUseCase> private var toggleLocationUseCase
+        @Singleton<UpdateEventsManager> private var updateEventsManager
+        @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
+        @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
+        @Singleton<AppRouter> private var router
+
+        init(state: SceneListFeature.ViewState = SceneListFeature.ViewState()) {
+            super.init(state: state)
+            observeStructureUpdates()
+            observeSceneUpdates()
+        }
+
+        override func onViewAppear() {
+            loadItems()
+        }
+
+        func onLeftButtonClick(_ item: MainListItem) {
+            guard case .scene = item else { return }
+            executeSimpleActionUseCase
+                .invoke(action: .interrupt, type: .scene, remoteId: item.remoteId)
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+        }
+
+        func onRightButtonClick(_ item: MainListItem) {
+            guard case .scene = item else { return }
+            executeSimpleActionUseCase
+                .invoke(action: .execute, type: .scene, remoteId: item.remoteId)
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+        }
+
+        func onMove(_ sourceItem: MainListItem, _ destinationItem: MainListItem) {
+            guard let locationCaption = sourceItem.locationCaption else { return }
+
+            loadItems(after:
+                swapScenePositionsUseCase
+                    .invoke(
+                        firstRemoteId: sourceItem.remoteId,
+                        secondRemoteId: destinationItem.remoteId,
+                        locationCaption: locationCaption
+                    )
             )
-            .disposed(by: self)
-    }
-    
-    override func defaultViewState() -> SceneListViewState { SceneListViewState() }
-    
-    override func reloadTable() {
-        createProfileScenesListUseCase.invoke()
-            .subscribe(onNext: { self.listItems.accept($0) })
-            .disposed(by: self)
-    }
-    
-    override func swapItems(firstItem: Int32, secondItem: Int32, locationCaption: String) {
-        swapScenePositionsUseCase
-            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationCaption: locationCaption)
-            .subscribe(onNext: { self.reloadTable() })
-            .disposed(by: self)
-    }
-    
-    override func getCollapsedFlag() -> CollapsedFlag { .scene }
-    
-    func onButtonClicked(buttonType: CellButtonType, sceneId: Int32) {
-        switch (buttonType) {
-        case .leftButton:
-            abortScene(sceneId: sceneId)
-        case .rightButton:
-            executeScene(sceneId: sceneId)
+        }
+
+        func onLocationClick(_ item: LocationListItem) {
+            loadItems(after: toggleLocationUseCase.invoke(remoteId: item.remoteId, collapsedFlag: .scene))
+        }
+
+        func onNoContentButtonClick() {
+            loadActiveProfileUrlUseCase
+                .invoke()
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] url in self?.router.openUrl(url: url.url) })
+                .disposed(by: disposeBag)
+        }
+
+        private func loadItems(after observable: Observable<Void> = Observable.just(())) {
+            state.loading = !state.listLoaded
+            observable
+                .flatMapFirstWeak(with: self) { owner, _ in
+                    owner.createProfileScenesListUseCase.invoke()
+                }
+                .asDriver()
+                .drive(onNext: { [weak self] result in
+                    guard let self else { return }
+                    state.loading = false
+                    state.listLoaded = true
+
+                    switch result {
+                    case .success(let items):
+                        state.items = items
+                    case .error(let error):
+                        SALog.error("Creating scenes list failed with error: \(String(describing: error))")
+                    }
+                })
+                .disposed(by: disposeBag)
+        }
+
+        private func observeStructureUpdates() {
+            loadItems(after: updateEventsManager.observeScenesUpdate())
+        }
+
+        private func observeSceneUpdates() {
+            updateEventsManager
+                .observeAllScenes()
+                .flatMapFirstWeak(with: self) { owner, remoteId in
+                    owner.readSceneByRemoteIdUseCase.invoke(remoteId: remoteId)
+                }
+                .compactMap { [weak self] scene in
+                    self?.sceneToMainListItemUseCase.invoke(scene)
+                }
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] item in self?.updateItem(item) })
+                .disposed(by: disposeBag)
+        }
+
+        private func updateItem(_ item: MainListItem) {
+            guard let index = state.items.firstIndex(where: { $0.key == item.key }) else { return }
+            state.items[index] = item
         }
     }
-    
-    func onNoContentButtonClicked() {
-        loadActiveProfileUrlUseCase.invoke()
-            .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] url in
-                    self?.send(event: .open(url: url.url))
-                }
-            )
-            .disposed(by: self)
-    }
-    
-    private func executeScene(sceneId: Int32) {
-        executeSimpleActionUseCase.invoke(action: .execute, type: .scene, remoteId: sceneId)
-            .subscribe()
-            .disposed(by: self)
-    }
-    
-    private func abortScene(sceneId: Int32) {
-        executeSimpleActionUseCase.invoke(action: .interrupt, type: .scene, remoteId: sceneId)
-            .subscribe()
-            .disposed(by: self)
-    }
 }
-
-enum SceneListViewEvent: ViewEvent {
-    case open(url: URL)
-}
-
-struct SceneListViewState: ViewState {}

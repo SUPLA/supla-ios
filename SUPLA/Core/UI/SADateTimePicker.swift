@@ -67,7 +67,7 @@ final class SADateTimePicker: UIView {
         return view
     }()
     
-    private lazy var separatorView = SeparatorView()
+    private lazy var separatorView = SeparatorUIView()
     
     private lazy var saveButton: UIFilledButton = {
         let button = UIFilledButton()

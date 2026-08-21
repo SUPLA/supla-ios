@@ -19,42 +19,58 @@
 import Foundation
 import RxSwift
 
-protocol CreateProfileScenesListUseCase {
-    func invoke() -> Observable<[List]>
+struct CreateProfileScenesList {
+    protocol UseCase {
+        func invoke() -> Observable<[MainListItem]>
+    }
+
+    final class Implementation: UseCase {
+        @Singleton<SceneRepository> private var sceneRepository
+        @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<SceneToMainListItem.UseCase> private var sceneToMainListItemUseCase
+
+        func invoke() -> Observable<[MainListItem]> {
+            profileRepository
+                .getActiveProfile()
+                .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
+                .map { self.toList($0) }
+        }
+
+        private func toList(_ scenes: [SAScene]) -> [MainListItem] {
+            guard let firstScene = scenes.first, var lastLocation = firstScene.location else {
+                return []
+            }
+
+            var items = [MainListItem]()
+            items.append(lastLocation.sceneListItem)
+
+            for scene in scenes {
+                guard let location = scene.location else { continue }
+
+                if (lastLocation.caption != location.caption) {
+                    lastLocation = location
+                    items.append(lastLocation.sceneListItem)
+                }
+
+                if (!lastLocation.isCollapsed(flag: .scene)) {
+                    items.append(sceneToMainListItemUseCase.invoke(scene, location: lastLocation))
+                }
+            }
+
+            return items
+        }
+    }
 }
 
-final class CreateProfileScenesListUseCaseImpl: CreateProfileScenesListUseCase {
-    
-    @Singleton<SceneRepository> private var sceneRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke() -> Observable<[List]> {
-        return profileRepository
-            .getActiveProfile()
-            .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
-            .map { self.toList($0) }
-    }
-    
-    private func toList(_ scenes: [SAScene]) -> [List] {
-        if (scenes.isEmpty) {
-            return [.list(items: [])]
-        }
-        
-        var lastLocation: _SALocation = scenes[0].location!
-        var items = [ListItem]()
-        items.append(.location(location: lastLocation))
-        
-        for scene in scenes {
-            if (lastLocation.caption != scene.location!.caption) {
-                items.append(.location(location: scene.location!))
-                lastLocation = scene.location!
-            }
-            
-            if (!lastLocation.isCollapsed(flag: .scene)) {
-                items.append(.scene(scene: scene))
-            }
-        }
-        
-        return [.list(items: items)]
+private extension _SALocation {
+    var sceneListItem: MainListItem {
+        .location(
+            LocationListItem(
+                remoteId: location_id?.int32Value ?? 0,
+                profileId: profile.id,
+                userCaption: caption ?? "",
+                collapsed: isCollapsed(flag: .scene)
+            )
+        )
     }
 }
