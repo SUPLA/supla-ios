@@ -22,16 +22,17 @@ import SwiftUI
 import UIKit
 
 struct MainListTable: UIViewRepresentable {
+    @Environment(\.listSearchText) private var listSearchText
+
     let items: [MainListItem]
     let callbacks: MainListTableView.Callbacks
-    let inSearch: Bool
     let onScroll: (CGFloat) -> Void
     let onScrollEnded: (Bool) -> Void
 
     func makeUIView(context: Context) -> MainListTableView {
         let view = MainListTableView()
         view.callbacks = callbacks
-        view.inSearch = inSearch
+        view.searchText = listSearchText
         view.onScroll = onScroll
         view.onScrollEnded = onScrollEnded
         view.update(items: items)
@@ -40,7 +41,7 @@ struct MainListTable: UIViewRepresentable {
 
     func updateUIView(_ uiView: MainListTableView, context: Context) {
         uiView.callbacks = callbacks
-        uiView.inSearch = inSearch
+        uiView.searchText = listSearchText
         uiView.onScroll = onScroll
         uiView.onScrollEnded = onScrollEnded
         uiView.update(items: items)
@@ -65,13 +66,13 @@ final class MainListTableView: UIView {
     @Singleton<VibrationService> private var vibrationService
 
     var callbacks = Callbacks()
-    var inSearch = false
+    var searchText: String?
     var onScroll: (CGFloat) -> Void = { _ in }
     var onScrollEnded: (Bool) -> Void = { _ in }
 
     private let cellIdentifier = "MainListCell"
     private var items: [MainListItem] = []
-    private var renderedInSearch = false
+    private var renderedSearchText: String?
     private var scaleFactor: CGFloat = 1
     private var showChannelInfo = false
     private var lastEffectiveContentOffsetY: CGFloat?
@@ -105,16 +106,16 @@ final class MainListTableView: UIView {
 
     func update(items: [MainListItem]) {
         let showChannelInfoChanged = showChannelInfo != settings.showChannelInfo
-        let inSearchChanged = renderedInSearch != inSearch
+        let searchTextChanged = renderedSearchText != searchText
         showChannelInfo = settings.showChannelInfo
-        renderedInSearch = inSearch
+        renderedSearchText = searchText
 
         guard self.items.map(\.key) != items.map(\.key) else {
             let changedRows = self.items
                 .enumerated()
                 .compactMap { index, item in item != items[index] ? index : nil }
             self.items = items
-            if (showChannelInfoChanged || inSearchChanged) {
+            if (showChannelInfoChanged || searchTextChanged) {
                 tableView.reloadData()
             } else {
                 refreshVisibleCells(atRows: changedRows)
@@ -165,7 +166,7 @@ final class MainListTableView: UIView {
             item: item,
             scaleFactor: scaleFactor,
             showChannelInfo: showChannelInfo,
-            inSearch: inSearch,
+            searchText: searchText,
             callbacks: .init(
                 onItemClick: { [weak self] in self?.callbacks.onItemClick(item) },
                 onInfoClick: { [weak self] in self?.callbacks.onInfoClick(item) },
@@ -376,7 +377,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         item: MainListItem,
         scaleFactor: CGFloat,
         showChannelInfo: Bool,
-        inSearch: Bool,
+        searchText: String?,
         callbacks: Callbacks
     ) {
         self.item = item
@@ -387,7 +388,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
             for: item,
             scaleFactor: scaleFactor,
             showChannelInfo: showChannelInfo,
-            inSearch: inSearch,
+            searchText: searchText,
             callbacks: callbacks
         )
     }
@@ -438,7 +439,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         for item: MainListItem,
         scaleFactor: CGFloat,
         showChannelInfo: Bool,
-        inSearch: Bool,
+        searchText: String?,
         callbacks: Callbacks
     ) {
         let rootView = MainListItemView(
@@ -456,11 +457,11 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
                 if case .location(let locationItem) = item {
                     callbacks.onLocationLongClick(locationItem)
                 }
-            },
-            inSearch: inSearch
+            }
         )
         .environment(\.scaleFactor, scaleFactor)
         .environment(\.showChannelInfo, showChannelInfo)
+        .environment(\.listSearchText, searchText)
 
         if let hostingController {
             hostingController.rootView = AnyView(rootView)

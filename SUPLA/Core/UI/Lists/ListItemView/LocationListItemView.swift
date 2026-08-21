@@ -19,22 +19,23 @@
 import SwiftUI
 
 struct LocationListItemView: View {
+    @Environment(\.listSearchText) private var listSearchText
+
     let caption: String
     let collapsed: Bool
-    let inSearch: Bool
     let onClick: () -> Void
     let onLongClick: () -> Void
+
+    private var inSearch: Bool { listSearchText != nil }
 
     init(
         caption: String,
         collapsed: Bool,
-        inSearch: Bool,
         onClick: @escaping () -> Void = {},
         onLongClick: @escaping () -> Void = {}
     ) {
         self.caption = caption
         self.collapsed = collapsed
-        self.inSearch = inSearch
         self.onClick = onClick
         self.onLongClick = onLongClick
     }
@@ -42,7 +43,7 @@ struct LocationListItemView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: Distance.default) {
-                Text(caption)
+                HighlightedTextBySearch(text: caption, searchText: listSearchText)
                     .font(.Supla.headlineSmall)
                     .foregroundColor(.Supla.onBackground)
                     .lineLimit(1)
@@ -77,9 +78,10 @@ struct LocationListItemView: View {
 
 #Preview {
     VStack(spacing: 0) {
-        LocationListItemView(caption: "Leaving Room", collapsed: true, inSearch: false)
-        LocationListItemView(caption: "Sleeping Room", collapsed: false, inSearch: false)
-        LocationListItemView(caption: "Sleeping Room", collapsed: false, inSearch: true)
+        LocationListItemView(caption: "Leaving Room", collapsed: true)
+        LocationListItemView(caption: "Sleeping Room", collapsed: false)
+        LocationListItemView(caption: "Sleeping Room", collapsed: false)
+            .environment(\.listSearchText, "Room")
     }
     .background(Color.Supla.background)
 }

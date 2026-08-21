@@ -500,6 +500,7 @@
 		A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547821E2CA2B4BB00CD3010 /* UiSettings.swift */; };
 		A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */; };
 		A54782222CA2C13400CD3010 /* View+ShowChannelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */; };
+		A5F8A0013039000000C0DE01 /* View+ListSearchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */; };
 		A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */; };
 		A54A064C2AF3E55700C03DBC /* SuplaSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A064B2AF3E55700C03DBC /* SuplaSchedulers.swift */; };
 		A54A064F2AF3ED6200C03DBC /* RequestHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A064E2AF3ED6200C03DBC /* RequestHelperTests.swift */; };
@@ -1389,6 +1390,7 @@
 		A5E9C20B2DCCBE920001F263 /* CellScalingLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9C2092DCCBE8C0001F263 /* CellScalingLimit.swift */; };
 		A5E9C20C2DCCBF710001F263 /* View+ScaleFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */; };
 		A5E9C20D2DCCBF710001F263 /* View+ShowChannelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */; };
+		A5F8A0023039000000C0DE01 /* View+ListSearchText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */; };
 		A5E9CE242C32BB8700509702 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE232C32BB8700509702 /* LoginUseCase.swift */; };
 		A5E9CE332C342ADC00509702 /* ReconnectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE322C342ADC00509702 /* ReconnectUseCase.swift */; };
 		A5E9CE372C3430DB00509702 /* Completable+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9CE362C3430DB00509702 /* Completable+Supla.swift */; };
@@ -1630,6 +1632,7 @@
 		C0DE15700000000000000004 /* ListItemTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000014 /* ListItemTitle.swift */; };
 		C0DE15700000000000000005 /* ListItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000015 /* ListItemValue.swift */; };
 		C0DE15700000000000000006 /* ListItemMainRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000016 /* ListItemMainRow.swift */; };
+		A5F8A0033039000000C0DE01 /* HighlightedTextBySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8A0043039000000C0DE01 /* HighlightedTextBySearch.swift */; };
 		C0DE15700000000000000007 /* ListItemIssuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000017 /* ListItemIssuesView.swift */; };
 		C0DE15700000000000000008 /* MainListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000018 /* MainListItem.swift */; };
 		C0DE1570000000000000000A /* MainListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE1570000000000000001A /* MainListItemView.swift */; };
@@ -2371,6 +2374,7 @@
 		A547821E2CA2B4BB00CD3010 /* UiSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiSettings.swift; sourceTree = "<group>"; };
 		A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScaleFactor.swift"; sourceTree = "<group>"; };
 		A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ShowChannelInfo.swift"; sourceTree = "<group>"; };
+		A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ListSearchText.swift"; sourceTree = "<group>"; };
 		A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponseProvider.swift; sourceTree = "<group>"; };
 		A54A064B2AF3E55700C03DBC /* SuplaSchedulers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaSchedulers.swift; sourceTree = "<group>"; };
 		A54A064E2AF3ED6200C03DBC /* RequestHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelperTests.swift; sourceTree = "<group>"; };
@@ -3482,6 +3486,7 @@
 		C0DE15700000000000000014 /* ListItemTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTitle.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000015 /* ListItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemValue.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000016 /* ListItemMainRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemMainRow.swift; sourceTree = "<group>"; };
+		A5F8A0043039000000C0DE01 /* HighlightedTextBySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedTextBySearch.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000017 /* ListItemIssuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemIssuesView.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000018 /* MainListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItem.swift; sourceTree = "<group>"; };
 		C0DE1570000000000000001A /* MainListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemView.swift; sourceTree = "<group>"; };
@@ -5517,6 +5522,7 @@
 				C0DE15700000000000000014 /* ListItemTitle.swift */,
 				C0DE15700000000000000015 /* ListItemValue.swift */,
 				C0DE15700000000000000016 /* ListItemMainRow.swift */,
+				A5F8A0043039000000C0DE01 /* HighlightedTextBySearch.swift */,
 				C0DE15700000000000000017 /* ListItemIssuesView.swift */,
 			);
 			path = Components;
@@ -6503,6 +6509,7 @@
 				A5C5F6E32D91F1AD00E303B8 /* View+If.swift */,
 				A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */,
 				A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */,
+				A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */,
 				A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */,
 				A5A1600A2C2AB4520049AA73 /* Architecture */,
 				A5A1601B2C2BEE7F0049AA73 /* Button */,
@@ -8569,6 +8576,7 @@
 				C0DE15700000000000000004 /* ListItemTitle.swift in Sources */,
 				C0DE15700000000000000005 /* ListItemValue.swift in Sources */,
 				C0DE15700000000000000006 /* ListItemMainRow.swift in Sources */,
+				A5F8A0033039000000C0DE01 /* HighlightedTextBySearch.swift in Sources */,
 				C0DE15700000000000000007 /* ListItemIssuesView.swift in Sources */,
 				A55A8DBB2BB2E30900C540D4 /* ThreadHandler.swift in Sources */,
 				01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */,
@@ -9100,6 +9108,7 @@
 				A5E160AF2D313C16003A7C71 /* HumidityHistoryDetailVM.swift in Sources */,
 				A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */,
 				A54782222CA2C13400CD3010 /* View+ShowChannelInfo.swift in Sources */,
+				A5F8A0013039000000C0DE01 /* View+ListSearchText.swift in Sources */,
 				A5E0DF7E2CEC8E7A00362451 /* StoreChannelOcrPhotoUseCase.swift in Sources */,
 				A5B8A4832CBD0A3A002FA7B2 /* ElectricityDataSelectionState.swift in Sources */,
 				A56F8D0F2DA8ED8600F097CE /* SwitchGeneralScreen.swift in Sources */,
@@ -10086,6 +10095,7 @@
 				A5C690362DD7366400194C1B /* IntValueParser.swift in Sources */,
 				A5E9C20C2DCCBF710001F263 /* View+ScaleFactor.swift in Sources */,
 				A5E9C20D2DCCBF710001F263 /* View+ShowChannelInfo.swift in Sources */,
+				A5F8A0023039000000C0DE01 /* View+ListSearchText.swift in Sources */,
 				A5CA8AD42E703C34005B55F4 /* DoubleFormatter.swift in Sources */,
 				A5E9C2072DCCBE050001F263 /* Dimens.swift in Sources */,
 				A5E2D6972DCA038500EBDADB /* ActionParameters.swift in Sources */,

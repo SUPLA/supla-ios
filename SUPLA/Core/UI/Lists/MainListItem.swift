@@ -322,7 +322,7 @@ enum MainListFilter {
 
     private static func matches(_ text: String?, filter: String) -> Bool {
         guard let text, !text.isEmpty else { return false }
-        return text.range(of: filter, options: [.caseInsensitive, .diacriticInsensitive]) != nil
+        return text.range(of: filter, options: [.caseInsensitive]) != nil
     }
 }
 

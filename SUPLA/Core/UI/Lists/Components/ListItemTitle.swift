@@ -20,6 +20,7 @@ import SwiftUI
 
 struct ListItemTitle: View {
     @Environment(\.scaleFactor) private var scaleFactor
+    @Environment(\.listSearchText) private var listSearchText
 
     let text: String
     let onLongClick: () -> Void
@@ -39,7 +40,7 @@ struct ListItemTitle: View {
     }
 
     var body: some View {
-        Text(text)
+        HighlightedTextBySearch(text: text, searchText: listSearchText)
             .lineLimit(maxLines)
             .truncationMode(.tail)
             .font(Font.Supla.listItemCaption(scaleFactor))
