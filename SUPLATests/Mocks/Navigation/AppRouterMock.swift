@@ -85,9 +85,4 @@ final class AppRouterMock: AppRouter {
     override func connectionWasLost() {
         connectionWasLostMock.handle(())
     }
-
-    var blockingRouteDidFinishMock: FunctionMock<Void, Void> = .void()
-    override func blockingRouteDidFinish() {
-        blockingRouteDidFinishMock.handle(())
-    }
 }

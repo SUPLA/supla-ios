@@ -32,7 +32,6 @@ class AppRouter: ObservableObject {
 
     private let deepLinkParser: DeepLinkParser
     private var stateDisposable: Disposable?
-    private var pendingConnectionTakeover = false
 
     init(deepLinkParser: DeepLinkParser = DeepLinkParser()) {
         self.deepLinkParser = deepLinkParser
@@ -88,7 +87,10 @@ class AppRouter: ObservableObject {
     }
 
     func handleDeepLink(_ url: URL) {
-        guard let deepLinkRoute = deepLinkParser.parse(url) else { return }
+        guard let deepLinkRoute = deepLinkParser.parse(url),
+              !shouldBlock(deepLinkRoute)
+        else { return }
+        
         navigate(to: AppRoute(deepLinkRoute))
     }
 
@@ -124,15 +126,9 @@ class AppRouter: ObservableObject {
         case .allowed:
             showConnectionStatus()
 
-        case .deferred:
-            pendingConnectionTakeover = true
+        case .blocked:
+            break
         }
-    }
-
-    func blockingRouteDidFinish() {
-        guard pendingConnectionTakeover else { return }
-        pendingConnectionTakeover = false
-        showConnectionStatus()
     }
 
     private func handle(appState: SuplaAppState) {
@@ -154,6 +150,17 @@ class AppRouter: ObservableObject {
     private func showConnectionStatus() {
         path.removeAll()
         root = .status
+    }
+
+    private func shouldBlock(_ deepLinkRoute: DeepLinkRoute) -> Bool {
+        switch deepLinkRoute {
+        case .callNfcAction:
+            isAddWizardActive
+        }
+    }
+
+    private var isAddWizardActive: Bool {
+        path.contains(.addWizard) || stateHolder.currentState() == .finished(reason: .addWizardStarted)
     }
 
     private func allowedRoute(for route: AppRoute) -> AppRoute {

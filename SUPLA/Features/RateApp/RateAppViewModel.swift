@@ -61,6 +61,8 @@ extension RateAppFeature {
         }
 
         private func initialize() async {
+            guard BrandingConfiguration.ASK_FOR_RATE else { return }
+
             let rateTime = settings.rateAppConfigTime
             if (rateTime == -1) {
                 // User declined to provide feedback
