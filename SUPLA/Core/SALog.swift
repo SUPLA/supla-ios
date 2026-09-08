@@ -35,9 +35,9 @@ class SALogWrapper: NSObject {
 
         console.format = "[$L] $C $DHH:mm:ss.SSS$d $c $N.$F - $M"
         SALog.addDestination(console)
-        #if DEBUG
-        SALog.addDestination(OSLogDestination())
-        #endif
+//        #if DEBUG
+//        SALog.addDestination(OSLogDestination())
+//        #endif
     }
 }
 

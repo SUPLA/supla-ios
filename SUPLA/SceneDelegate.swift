@@ -16,7 +16,36 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Combine
 import SwiftUI
+
+private final class StatusBarHostingController<Content: View>: UIHostingController<Content> {
+    private let appRouter: AppRouter
+    private var cancellable: AnyCancellable?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        appRouter.root == .status ? .darkContent : .lightContent
+    }
+
+    override var childForStatusBarStyle: UIViewController? {
+        nil
+    }
+
+    init(rootView: Content, appRouter: AppRouter) {
+        self.appRouter = appRouter
+        super.init(rootView: rootView)
+        cancellable = appRouter.$root
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.setNeedsStatusBarAppearanceUpdate()
+            }
+    }
+
+    @available(*, unavailable)
+    @MainActor dynamic required init?(coder aDecoder: NSCoder) {
+        nil
+    }
+}
 
 private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
 private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
@@ -54,7 +83,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(appRouter)
             .environmentObject(authorizationCoordinator as! AuthorizationCoordinatorImpl)
 
-        let hostingController = UIHostingController(rootView: rootView)
+        let hostingController = StatusBarHostingController(rootView: rootView, appRouter: appRouter)
         let window = UIWindow(windowScene: windowScene)
         window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
         window.rootViewController = hostingController

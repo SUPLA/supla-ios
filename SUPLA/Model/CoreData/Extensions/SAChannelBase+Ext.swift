@@ -19,7 +19,14 @@
 import SharedCore
 
 extension SAChannelBase {
-    func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> FetchIconData {
+    private var subfunction: ThermostatSubfunction? {
+        if let channel = self as? SAChannel {
+            return channel.isHvacThermostat() ? channel.value?.asThermostatValue().subfunction : nil
+        }
+        return nil
+    }
+    
+    func getIconData(type: IconType = .single) -> FetchIconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
         return FetchIconData(
             function: self.func,
@@ -32,7 +39,7 @@ extension SAChannelBase {
         )
     }
 
-    func getIconData(state: ChannelState, type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> FetchIconData {
+    func getIconData(state: ChannelState, type: IconType = .single) -> FetchIconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
         return FetchIconData(
             function: self.func,

@@ -34,6 +34,7 @@
 -(BOOL) isClientRegistered;
 -(BOOL) isClientWorking;
 -(BOOL) isClientAuthorized;
+-(SASuplaClient *_Nullable) optionalSuplaClient;
 
 @end
 

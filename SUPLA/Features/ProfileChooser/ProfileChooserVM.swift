@@ -42,14 +42,20 @@ extension ProfileChooserFeature {
         }
         
         func onProfileSelected(_ profile: ProfileDto) {
+            SALog.info("Profile selected: \(profile.name)")
             activateProfileUseCase.invoke(profileId: profile.id, force: false)
                 .subscribe(on: schedulers.background)
                 .observe(on: schedulers.main)
-                .asDriverWithoutError()
-                .drive(
-                    onCompleted: { [weak self] in self?.onDismissed() }
+                .subscribe(
+                    onCompleted: { [weak self] in
+                        SALog.debug("Profile activated")
+                        self?.onDismissed()
+                    },
+                    onError: {
+                        SALog.error("Got error while activating profile: \(String(describing: $0))")
+                    }
                 )
-                .disposed(by: disposeBag)
+                //.disposed(by: disposeBag)
         }
     }
 }

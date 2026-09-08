@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Combine
 import RxSwift
 
 extension SuplaCore {
@@ -24,12 +25,16 @@ extension SuplaCore {
 
         let disposeBag = DisposeBag()
         var visibilityScopedDisposeBag = DisposeBag()
+        private var stateChangeCancellable: AnyCancellable?
 
         let eventSelector: Selector?
 
         init(state: S, eventSelector: Selector? = nil, eventName: NSNotification.Name? = nil) {
             self.state = state
             self.eventSelector = eventSelector
+            stateChangeCancellable = state.objectWillChange.sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
 
             if let eventSelector, let eventName {
                 NotificationCenter.default.addObserver(

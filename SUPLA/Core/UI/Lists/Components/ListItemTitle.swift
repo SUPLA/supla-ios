@@ -18,6 +18,15 @@
 
 import SwiftUI
 
+struct ListItemTitleFramePreferenceKey: PreferenceKey {
+    static let coordinateSpaceName = "ListItemTitleFrame"
+    static var defaultValue: CGRect = .null
+
+    static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
+        value = nextValue()
+    }
+}
+
 struct ListItemTitle: View {
     @Environment(\.scaleFactor) private var scaleFactor
     @Environment(\.listSearchText) private var listSearchText
@@ -47,5 +56,13 @@ struct ListItemTitle: View {
             .foregroundColor(Color.Supla.onBackground)
             .onTapGesture(perform: onItemClick)
             .onLongPressGesture(perform: onLongClick)
+            .background {
+                GeometryReader { proxy in
+                    Color.clear.preference(
+                        key: ListItemTitleFramePreferenceKey.self,
+                        value: proxy.frame(in: .named(ListItemTitleFramePreferenceKey.coordinateSpaceName))
+                    )
+                }
+            }
     }
 }
