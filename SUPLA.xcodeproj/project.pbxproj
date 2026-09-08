@@ -672,6 +672,7 @@
 		A562870F30347B8000851CED /* HomePlusThermostatValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */; };
 		A56362B52EDED2BB00A702C0 /* AddWizardVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */; };
 		A56362B72EDED55D00A702C0 /* AddWizardUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */; };
+		C0DE20260908000100000102 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260908000100000101 /* AppRouterTests.swift */; };
 		A563640A2EDF8F8A00A702C0 /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364092EDF8F8A00A702C0 /* StandardDetailVM.swift */; };
 		A56364122EDF9BF900A702C0 /* RgbDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364112EDF9BF300A702C0 /* RgbDetailFeature.swift */; };
 		A56364252EE1720900A702C0 /* RgbDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364242EE1720200A702C0 /* RgbDetailViewState.swift */; };
@@ -2551,6 +2552,7 @@
 		A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueStringProvider.swift; sourceTree = "<group>"; };
 		A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVMTests.swift; sourceTree = "<group>"; };
 		A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardUseCasesMocks.swift; sourceTree = "<group>"; };
+		C0DE20260908000100000101 /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 		A56363CE2EDF180A00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		A56363CF2EDF180C00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
 		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
@@ -5154,9 +5156,18 @@
 			children = (
 				A55A8DCE2BB440F700C540D4 /* UI */,
 				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
+				C0DE20260908000100000103 /* Navigation */,
 				A54A065F2AF50DEC00C03DBC /* Networking */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		C0DE20260908000100000103 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE20260908000100000101 /* AppRouterTests.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		A54A06922AFB740900C03DBC /* Other */ = {
@@ -9969,6 +9980,7 @@
 				A55A8DD52BB44EFC00C540D4 /* RollerShutterValueTests.swift in Sources */,
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
+				C0DE20260908000100000102 /* AppRouterTests.swift in Sources */,
 				A54A06692AF527DB00C03DBC /* UserStateHolderMock.swift in Sources */,
 				A5D7129C2C4123EF00A8EF52 /* MockReturns.swift in Sources */,
 				A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */,

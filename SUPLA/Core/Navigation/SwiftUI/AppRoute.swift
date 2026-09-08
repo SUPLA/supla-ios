@@ -33,7 +33,7 @@ enum MainTab: Hashable {
 
 enum ConnectionTakeoverPolicy: Hashable {
     case allowed
-    case deferred
+    case blocked
 }
 
 enum AppRoute: Hashable {
@@ -73,11 +73,9 @@ extension AppRoute {
              .addWizard,
              .zWave,
              .profile,
-             .deviceCatalog:
-            .deferred
+             .deviceCatalog: .blocked
 
-        default:
-            .allowed
+        default: .allowed
         }
     }
 }
@@ -85,12 +83,8 @@ extension AppRoute {
 extension AppRoot {
     var connectionTakeoverPolicy: ConnectionTakeoverPolicy {
         switch self {
-        case .unlockApp:
-            .deferred
-
-        case .status,
-             .main:
-            .allowed
+        case .unlockApp: .blocked
+        case .status, .main: .allowed
         }
     }
 }
