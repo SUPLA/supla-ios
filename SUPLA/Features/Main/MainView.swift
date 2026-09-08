@@ -99,7 +99,7 @@ extension MainFeature {
                         }
                     } else {
                         VStack(spacing: 0) {
-                            selectedContent
+                            selectedContentWithBottomSafeArea
                             if (showBottomMenu) {
                                 MainTabBar(selectedTab: $selectedTab, axis: .horizontal, showLabels: showBottomLabels)
                             }
@@ -107,6 +107,11 @@ extension MainFeature {
                     }
                 }
             }
+        }
+
+        private var selectedContentWithBottomSafeArea: some SwiftUI.View {
+            selectedContent
+                .ignoresSafeArea(edges: showBottomMenu ? [] : .bottom)
         }
 
         private var topBar: some SwiftUI.View {

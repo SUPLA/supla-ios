@@ -143,6 +143,23 @@ enum MainListItem: Equatable, Identifiable {
         }
     }
 
+    var online: Bool {
+        switch (self) {
+        case .channel(let item), .group(let item):
+            item.status.online
+        case .scene(let item):
+            item.status.online
+        case .hvacThermostat(let item):
+            item.base.status.online
+        case .heatpolThermostat(let item):
+            item.base.status.online
+        case .doubleValue(let item):
+            item.base.status.online
+        case .location:
+            false
+        }
+    }
+
     var draggable: Bool {
         switch (self) {
         case .location: false

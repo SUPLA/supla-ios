@@ -458,6 +458,13 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
     }
 
     private func setupButtons(for item: MainListItem) {
+        guard item.online else {
+            leftButtons = []
+            rightButtons = []
+            hideSwipe(animated: false)
+            return
+        }
+
         if let leftButtonTitle = item.leftButtonTitle {
             leftButton.setTitle(leftButtonTitle, for: .normal)
             leftButton.buttonWidth = Dimens.ListItem.buttonWidth
