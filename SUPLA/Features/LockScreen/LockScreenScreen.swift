@@ -19,24 +19,57 @@
 import SwiftUI
 
 extension LockScreenFeature {
+    enum Presentation {
+        case root
+        case pushed
+    }
+
     struct Screen: SwiftUI.View {
+        @EnvironmentObject private var router: AppRouter
+
         @StateObject private var viewModel: ViewModel
         @State private var showForgottenCodeDialog = false
 
-        init(unlockAction: UnlockAction) {
+        private let presentation: Presentation
+
+        init(unlockAction: UnlockAction, presentation: Presentation = .root) {
+            self.presentation = presentation
             self._viewModel = StateObject(wrappedValue: ViewModel(unlockAction: unlockAction))
         }
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
-                View(
-                    viewState: state,
-                    onPinChange: viewModel.onPinChange,
-                    onBiometricShow: viewModel.onViewAppear,
-                    onPinForgotten: { showForgottenCodeDialog = true }
-                )
+                content(state)
             }
             .overlay(forgottenCodeDialog)
+        }
+
+        @ViewBuilder
+        private func content(_ state: ViewState) -> some SwiftUI.View {
+            switch presentation {
+            case .root:
+                lockScreenContent(state)
+
+            case .pushed:
+                VStack(spacing: 0) {
+                    SuplaCore.TopBar(
+                        navigationIcon: .back,
+                        title: Strings.LockScreen.enterPin,
+                        onNavigationIconTap: router.back
+                    )
+
+                    lockScreenContent(state)
+                }
+            }
+        }
+
+        private func lockScreenContent(_ state: ViewState) -> some SwiftUI.View {
+            View(
+                viewState: state,
+                onPinChange: viewModel.onPinChange,
+                onBiometricShow: viewModel.onViewAppear,
+                onPinForgotten: { showForgottenCodeDialog = true }
+            )
         }
 
         @ViewBuilder

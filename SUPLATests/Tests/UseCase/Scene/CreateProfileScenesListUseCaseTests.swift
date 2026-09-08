@@ -112,8 +112,9 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        sceneToMainListItemUseCase.invokeWithLocationMock.verifyCalls(1)
+        sceneToMainListItemUseCase.invokeWithLocationMock.verifyCalls(2)
         assertMappedItems([
+            (scene1, location1),
             (scene2, location2)
         ])
     }

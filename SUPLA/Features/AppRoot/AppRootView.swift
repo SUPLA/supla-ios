@@ -62,7 +62,7 @@ private extension AppRootView {
                 MainFeature.Screen()
 
             case .unlockApp(let action):
-                LockScreenFeature.Screen(unlockAction: action)
+                LockScreenFeature.Screen(unlockAction: action, presentation: .root)
             }
         }
 
@@ -85,7 +85,7 @@ private extension AppRootView {
             case .impulseCounterDetail(let item, let pages): ImpulseCounterDetailFeature.Screen(item: item, pages: pages)
             case .rgbwDetail(let item, let pages): RgbAndDimmerDetailFeature.Screen(item: item, pages: pages)
             case .pinSetup(let scope): PinSetupFeature.Screen(scope: scope)
-            case .lockScreen(let action): LockScreenFeature.Screen(unlockAction: action)
+            case .lockScreen(let action): LockScreenFeature.Screen(unlockAction: action, presentation: .pushed)
             case .carPlayList: CarPlayListFeature.Screen()
             case .carPlayAdd: CarPlayAddFeature.Screen()
             case .carPlayEdit(let id): CarPlayAddFeature.Screen(id: id)

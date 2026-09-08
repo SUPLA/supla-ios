@@ -35,8 +35,8 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
     
     private lazy var reconnectUseCase: ReconnectUseCaseMock! = ReconnectUseCaseMock()
     
-    private lazy var useCase: ActivateProfileUseCaseImpl! = {
-        ActivateProfileUseCaseImpl()
+    private lazy var useCase: ActivateProfileUseCase! = {
+        ActivateProfileUseCase()
     }()
     
     override func setUp() {

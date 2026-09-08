@@ -20,7 +20,7 @@ extension CreateProfileFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton<SaveOrCreateProfileUseCase> private var saveOrCreateProfileUseCase
         @Singleton<ReadProfileByIdUseCase> private var readProfileByIdUseCase
-        @Singleton<DeleteProfileUseCase> private var deleteProfileUseCase
+        @Singleton<ProfileSessionManager> private var profileSessionManager
         @Singleton<SuplaSchedulers> private var schedulers
         @Singleton<AppRouter> private var router
         @Singleton<GlobalSettings> var settings
@@ -82,24 +82,22 @@ extension CreateProfileFeature {
             
             state.loading = true
             
-            deleteProfileUseCase.invoke(profileId: profileId)
-                .observe(on: schedulers.main)
-                .subscribe(
-                    onNext: { [weak self] result in
-                        self?.state.loading = false
-                        
-                        if (result.restartNeeded || result.reauthNeeded) {
-                            self?.router.setRoot(.status)
-                        } else {
-                            self?.router.back()
-                        }
-                    },
-                    onError: { [weak self] error in
-                        self?.state.loading = false
-                        self?.state.presentRemovalFailure = true
+            profileSessionManager.deleteProfile(
+                profileId: profileId,
+                onSuccess: { [weak self] result in
+                    self?.state.loading = false
+                    
+                    if (result.restartNeeded || result.reauthNeeded) {
+                        self?.router.setRoot(.status)
+                    } else {
+                        self?.router.back()
                     }
-                )
-                .disposed(by: disposeBag)
+                },
+                onError: { [weak self] _ in
+                    self?.state.loading = false
+                    self?.state.presentRemovalFailure = true
+                }
+            )
         }
         
         func removeAccount() {
@@ -107,25 +105,23 @@ extension CreateProfileFeature {
             
             state.loading = true
             
-            deleteProfileUseCase.invoke(profileId: profileId)
-                .observe(on: schedulers.main)
-                .subscribe(
-                    onNext: { [weak self] result in
-                        self?.state.loading = false
-                        
-                        self?.router.replaceCurrent(
-                            with: .removeAccountWeb(
-                                needsRestart: result.restartNeeded,
-                                serverAddress: result.serverAddress
-                            )
+            profileSessionManager.deleteProfile(
+                profileId: profileId,
+                onSuccess: { [weak self] result in
+                    self?.state.loading = false
+                    
+                    self?.router.replaceCurrent(
+                        with: .removeAccountWeb(
+                            needsRestart: result.restartNeeded,
+                            serverAddress: result.serverAddress
                         )
-                    },
-                    onError: { [weak self] error in
-                        self?.state.loading = false
-                        self?.state.presentRemovalFailure = true
-                    }
-                )
-                .disposed(by: disposeBag)
+                    )
+                },
+                onError: { [weak self] _ in
+                    self?.state.loading = false
+                    self?.state.presentRemovalFailure = true
+                }
+            )
         }
         
         func save() {
