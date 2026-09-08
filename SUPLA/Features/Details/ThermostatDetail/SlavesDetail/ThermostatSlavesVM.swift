@@ -199,10 +199,9 @@ private extension ChannelWithChildren {
 
 private func getChannelIcon(_ channel: SAChannel?) -> IconResult? {
     guard let channel = channel else { return nil }
-    @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
     
-    let subfunction: ThermostatSubfunction? = channel.isHvacThermostat() ? channel.value?.asThermostatValue().subfunction : nil
-    return getChannelIconUseCase.invoke(channel: channel, subfunction: subfunction)
+    @Singleton var getChannelIconUseCase: GetChannelBaseIconUseCase
+    return getChannelIconUseCase.invoke(channel: channel)
 }
 
 private extension GetChannelValueStringUseCase {

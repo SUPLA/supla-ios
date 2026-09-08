@@ -139,6 +139,7 @@ class AppRouter: ObservableObject {
         switch appState {
         case .initialization,
              .connecting,
+             .disconnecting,
              .finished:
             connectionWasLost()
 

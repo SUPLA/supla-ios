@@ -278,7 +278,14 @@ extension MainListTableView: UITableViewDelegate {
 
 extension MainListTableView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        guard items.indices.contains(indexPath.row), items[indexPath.row].draggable else { return [] }
+        guard
+            items.indices.contains(indexPath.row),
+            items[indexPath.row].draggable,
+            let cell = tableView.cellForRow(at: indexPath) as? MainListCell,
+            !cell.isTitleFrameHit(at: session.location(in: cell.contentView))
+        else {
+            return []
+        }
 
         vibrationService.vibrate()
 
@@ -341,6 +348,30 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
     private var item: MainListItem?
     private var callbacks: Callbacks?
     private var hostingController: UIHostingController<AnyView>?
+    private var titleFrame: CGRect = .null
+    private var shouldHandleTitleInteractions: Bool {
+        item?.draggable == true
+    }
+
+    private lazy var titleInteractionView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.isHidden = true
+        view.addGestureRecognizer(titleTapRecognizer)
+        view.addGestureRecognizer(titleLongPressRecognizer)
+        return view
+    }()
+
+    private lazy var titleTapRecognizer: UITapGestureRecognizer = {
+        UITapGestureRecognizer(target: self, action: #selector(onTitleTap))
+    }()
+
+    private lazy var titleLongPressRecognizer: UILongPressGestureRecognizer = {
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(onTitleLongPress(_:)))
+        recognizer.minimumPressDuration = 0.3
+        recognizer.cancelsTouchesInView = true
+        return recognizer
+    }()
 
     private lazy var leftButton: CellButton = {
         let button = CellButton(title: "", backgroundColor: .primary)!
@@ -364,10 +395,17 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         setupView()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateFallbackTitleInteractionViewFrameIfNeeded()
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         item = nil
         callbacks = nil
+        titleFrame = .null
+        updateTitleInteractionViewFrame(titleFrame)
         leftButtons = []
         rightButtons = []
         hideSwipe(animated: false)
@@ -391,6 +429,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
             searchText: searchText,
             callbacks: callbacks
         )
+        updateFallbackTitleInteractionViewFrameIfNeeded()
     }
 
     func movementEnabled() -> Bool {
@@ -415,6 +454,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         contentView.backgroundColor = .surface
         leftSwipeSettings.transition = MGSwipeTransition.rotate3D
         rightSwipeSettings.transition = MGSwipeTransition.rotate3D
+        contentView.addSubview(titleInteractionView)
     }
 
     private func setupButtons(for item: MainListItem) {
@@ -446,7 +486,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
             item: item,
             onInfoClick: callbacks.onInfoClick,
             onIssueClick: callbacks.onIssueClick,
-            onTitleLongClick: callbacks.onTitleLongClick,
+            onTitleLongClick: {},
             onItemClick: callbacks.onItemClick,
             onLocationClick: {
                 if case .location(let locationItem) = item {
@@ -462,6 +502,11 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         .environment(\.scaleFactor, scaleFactor)
         .environment(\.showChannelInfo, showChannelInfo)
         .environment(\.listSearchText, searchText)
+        .coordinateSpace(name: ListItemTitleFramePreferenceKey.coordinateSpaceName)
+        .onPreferenceChange(ListItemTitleFramePreferenceKey.self) { [weak self] titleFrame in
+            self?.titleFrame = titleFrame
+            self?.updateTitleInteractionViewFrame(titleFrame)
+        }
 
         if let hostingController {
             hostingController.rootView = AnyView(rootView)
@@ -479,6 +524,42 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
             ])
 
             self.hostingController = hostingController
+        }
+
+        contentView.bringSubviewToFront(titleInteractionView)
+    }
+
+    func isTitleFrameHit(at point: CGPoint) -> Bool {
+        shouldHandleTitleInteractions && !titleInteractionView.isHidden && titleInteractionView.frame.contains(point)
+    }
+
+    private func updateTitleInteractionViewFrame(_ frame: CGRect) {
+        titleInteractionView.isHidden = !shouldHandleTitleInteractions || frame.isNull
+        titleInteractionView.frame = frame.insetBy(dx: -Distance.tiny, dy: -Distance.tiny)
+    }
+
+    private func updateFallbackTitleInteractionViewFrameIfNeeded() {
+        if titleFrame.isNull {
+            updateTitleInteractionViewFrame(
+                CGRect(
+                    x: Distance.default,
+                    y: contentView.bounds.height - Dimens.ListItem.verticalPadding - Dimens.iconSize,
+                    width: max(0, contentView.bounds.width - 2 * Distance.default),
+                    height: Dimens.iconSize
+                )
+            )
+        } else {
+            updateTitleInteractionViewFrame(titleFrame)
+        }
+    }
+
+    @objc private func onTitleTap() {
+        callbacks?.onItemClick()
+    }
+
+    @objc private func onTitleLongPress(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            callbacks?.onTitleLongClick()
         }
     }
 

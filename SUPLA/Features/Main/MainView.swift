@@ -220,6 +220,8 @@ extension MainFeature {
         private func onSearchActiveChange(_ active: Bool) {
             if (active) {
                 activeTopBarBehavior.expand()
+            } else {
+                activeSearchTextBinding.wrappedValue = ""
             }
         }
 

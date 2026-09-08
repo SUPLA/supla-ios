@@ -53,7 +53,8 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         ImpulseCounterValueStringProvider(),
         SwitchWithImpulseCounterValueStringProvider(),
         ContainerValueStringProvider(),
-        HomePlusThermostatValueStringProvider()
+        HomePlusThermostatValueStringProvider(),
+        HvacThermostatValueStringProvider()
     ]
     
     func invoke(_ channelWithChildren: ChannelWithChildren, valueType: ValueType = .first, withUnit: Bool = true) -> String {
