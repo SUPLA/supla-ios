@@ -66,4 +66,11 @@ class SuplaAppApiMock: NSObject, SuplaAppApi {
         return isClientAuthroziedReturns
     }
     
+    var optionalSuplaClientCalls = 0
+    var optionalSuplaClientReturns: SASuplaClient?
+    func optionalSuplaClient() -> SASuplaClient? {
+        optionalSuplaClientCalls += 1
+        return optionalSuplaClientReturns
+    }
+    
 }

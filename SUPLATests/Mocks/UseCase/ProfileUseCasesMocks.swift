@@ -31,7 +31,7 @@ final class DeleteAllProfileDataUseCaseMock: DeleteAllProfileDataUseCase {
 final class DeleteProfileUseCaseMock: DeleteProfileUseCase {
     var parameters: [Int32] = []
     var returns: Observable<DeleteProfileResult> = .empty()
-    func invoke(profileId: Int32) -> Observable<DeleteProfileResult> {
+    override func invoke(profileId: Int32) -> Observable<DeleteProfileResult> {
         parameters.append(profileId)
         return returns
     }
@@ -49,9 +49,35 @@ final class SaveOrCreateProfileUseCaseMock: SaveOrCreateProfileUseCase {
 final class ActivateProfileUseCaseMock: ActivateProfileUseCase {
     var parameters: [(Int32, Bool)] = []
     var returns: Completable = .empty()
-    func invoke(profileId: Int32, force: Bool) -> Completable {
+    override func invoke(profileId: Int32, force: Bool) -> Completable {
         parameters.append((profileId, force))
         return returns
+    }
+}
+
+final class ProfileSessionManagerMock: ProfileSessionManager {
+    var activateProfileParameters: [(Int32, Bool)] = []
+    func activateProfile(profileId: Int32, force: Bool) {
+        activateProfileParameters.append((profileId, force))
+    }
+    
+    var deleteProfileParameters: [Int32] = []
+    var deleteProfileResult: DeleteProfileResult?
+    var deleteProfileError: Error?
+    func deleteProfile(
+        profileId: Int32,
+        onSuccess: @escaping (DeleteProfileResult) -> Void,
+        onError: @escaping (Error) -> Void
+    ) {
+        deleteProfileParameters.append(profileId)
+        
+        if let deleteProfileResult {
+            onSuccess(deleteProfileResult)
+        }
+        
+        if let deleteProfileError {
+            onError(deleteProfileError)
+        }
     }
 }
 

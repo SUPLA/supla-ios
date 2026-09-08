@@ -37,7 +37,9 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     
     private lazy var suplaAppStateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     
-    private lazy var useCase: DeleteProfileUseCase! = DeleteProfileUseCaseImpl()
+    private lazy var useCase: DeleteProfileUseCase! = DeleteProfileUseCase(
+        activateProfileUseCase: activateProfileUseCase
+    )
     
     override func setUp() {
         super.setUp()
@@ -45,7 +47,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: SingleCall.self, singleCall!)
         DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, deleteAllProfileDataUseCase!)
-        DiContainer.shared.register(type: ActivateProfileUseCase.self, activateProfileUseCase!)
         DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase!)

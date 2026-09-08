@@ -141,6 +141,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, false)])
         createChannelWithChildrenUseCase.invokeMock.verifyCalls(0)
         assertMappedItems([
+            (ChannelWithChildren(channel: channel1), location1),
             (ChannelWithChildren(channel: channel2), location2)
         ])
     }

@@ -367,8 +367,7 @@
 		A52BFEEA2B17277C00A2F64C /* ClientUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */; };
 		A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */; };
 		A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */; };
-		A52BFEF02B1754FD00A2F64C /* DeleteProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */; };
-		A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */; };
+		A5F219AA2F700000000000AA /* ProfileSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219AB2F700000000000AB /* ProfileSessionManager.swift */; };
 		A52BFEF42B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */; };
 		A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */; };
 		A52BFEF82B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */; };
@@ -2241,8 +2240,7 @@
 		A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUseCasesMocks.swift; sourceTree = "<group>"; };
 		A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadProfileByIdUseCase.swift; sourceTree = "<group>"; };
 		A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrCreateProfileUseCase.swift; sourceTree = "<group>"; };
-		A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileUseCase.swift; sourceTree = "<group>"; };
-		A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateProfileUseCase.swift; sourceTree = "<group>"; };
+		A5F219AB2F700000000000AB /* ProfileSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSessionManager.swift; sourceTree = "<group>"; };
 		A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrCreateProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthInfo+Mock.swift"; sourceTree = "<group>"; };
 		A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateProfileUseCaseTests.swift; sourceTree = "<group>"; };
@@ -8013,8 +8011,7 @@
 				A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */,
 				A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */,
 				A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */,
-				A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */,
-				A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */,
+				A5F219AB2F700000000000AB /* ProfileSessionManager.swift */,
 				A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */,
 			);
 			path = Profile;
@@ -8749,7 +8746,7 @@
 				A5E200102F70000000200010 /* CredentialsView.swift in Sources */,
 				A5E200112F70000000200011 /* CredentialsVM.swift in Sources */,
 				A5B8A47E2CBD0806002FA7B2 /* SuplaCore+Dialog.swift in Sources */,
-				A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */,
+				A5F219AA2F700000000000AA /* ProfileSessionManager.swift in Sources */,
 				A539C2752D67795C00D9DD47 /* ValveGeneralView.swift in Sources */,
 				A530EE182A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift in Sources */,
 				A503ABAF2B6A9944008CDA1F /* DownloadGeneralPurposeMeterLogUseCase.swift in Sources */,
@@ -9097,7 +9094,6 @@
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
 				A5D837E32AF3A728002A420D /* LinkedList.swift in Sources */,
 				A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */,
-				A52BFEF02B1754FD00A2F64C /* DeleteProfileUseCase.swift in Sources */,
 				A50B5D042BEA4CDA00918D18 /* RoofWindowState.swift in Sources */,
 				A56364332EE1A0D900A702C0 /* DimmerDetailView.swift in Sources */,
 				A59E57AF2F8F831100808DBF /* ThermostatTimerDetailView.swift in Sources */,

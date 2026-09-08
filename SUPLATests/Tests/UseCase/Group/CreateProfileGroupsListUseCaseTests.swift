@@ -113,8 +113,9 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        groupToMainListItemUseCase.invokeWithLocationMock.verifyCalls(1)
+        groupToMainListItemUseCase.invokeWithLocationMock.verifyCalls(2)
         assertMappedItems([
+            (group1, location1),
             (group2, location2)
         ])
     }

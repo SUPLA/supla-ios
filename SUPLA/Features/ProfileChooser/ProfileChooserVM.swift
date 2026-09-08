@@ -18,9 +18,7 @@
     
 extension ProfileChooserFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
-        @Singleton var activateProfileUseCase: ActivateProfileUseCase
-        @Singleton<SuplaSchedulers> private var schedulers
-        
+        @Singleton<ProfileSessionManager> private var profileSessionManager
         @Singleton<ProfileRepository> var profileRepository
 
         private let onDismissed: () -> Void
@@ -43,19 +41,8 @@ extension ProfileChooserFeature {
         
         func onProfileSelected(_ profile: ProfileDto) {
             SALog.info("Profile selected: \(profile.name)")
-            activateProfileUseCase.invoke(profileId: profile.id, force: false)
-                .subscribe(on: schedulers.background)
-                .observe(on: schedulers.main)
-                .subscribe(
-                    onCompleted: { [weak self] in
-                        SALog.debug("Profile activated")
-                        self?.onDismissed()
-                    },
-                    onError: {
-                        SALog.error("Got error while activating profile: \(String(describing: $0))")
-                    }
-                )
-                //.disposed(by: disposeBag)
+            onDismissed()
+            profileSessionManager.activateProfile(profileId: profile.id, force: false)
         }
     }
 }

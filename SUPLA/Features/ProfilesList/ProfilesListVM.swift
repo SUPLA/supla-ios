@@ -19,7 +19,7 @@
 extension ProfilesListFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<UpdateProfilesOrder.UseCase> private var updateProfilesOrderUseCase
-        @Singleton<ActivateProfileUseCase> private var activateProfileUseCase
+        @Singleton<ProfileSessionManager> private var profileSessionManager
         @Singleton<ProfileRepository> private var profileRepository
         @Singleton<AppRouter> private var router
         
@@ -45,14 +45,8 @@ extension ProfilesListFeature {
         }
         
         func onActivateProfile(_ profile: ProfileDto) {
-            activateProfileUseCase.invoke(profileId: profile.id, force: true)
-                .asDriverWithoutError()
-                .drive(
-                    onCompleted: { [weak self] in
-                        self?.router.setRoot(.status)
-                    }
-                )
-                .disposed(by: disposeBag)
+            router.setRoot(.status)
+            profileSessionManager.activateProfile(profileId: profile.id, force: true)
         }
         
         func onMoved(_ from: IndexSet, _ to: Int) {

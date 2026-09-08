@@ -18,19 +18,113 @@
 
 import RxSwift
 
-protocol DeleteProfileUseCase {
-    func invoke(profileId: Int32) -> Observable<DeleteProfileResult>
+protocol ProfileSessionManager {
+    func activateProfile(profileId: Int32, force: Bool)
+    func deleteProfile(
+        profileId: Int32,
+        onSuccess: @escaping (DeleteProfileResult) -> Void,
+        onError: @escaping (Error) -> Void
+    )
 }
 
-final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
+final class ProfileSessionManagerImpl: ProfileSessionManager {
+    private let activateProfileUseCase: ActivateProfileUseCase
+    private let deleteProfileUseCase: DeleteProfileUseCase
+    
+    @Singleton<SuplaSchedulers> private var schedulers
+    
+    private let disposeBag = DisposeBag()
+    
+    init(
+        activateProfileUseCase: ActivateProfileUseCase = ActivateProfileUseCase(),
+        deleteProfileUseCase: DeleteProfileUseCase? = nil
+    ) {
+        self.activateProfileUseCase = activateProfileUseCase
+        self.deleteProfileUseCase = deleteProfileUseCase ?? DeleteProfileUseCase(
+            activateProfileUseCase: activateProfileUseCase
+        )
+    }
+    
+    func activateProfile(profileId: Int32, force: Bool) {
+        activateProfileUseCase.invoke(profileId: profileId, force: force)
+            .subscribe(on: schedulers.background)
+            .subscribe(
+                onCompleted: {
+                    SALog.debug("Profile activated")
+                },
+                onError: {
+                    SALog.error("Profile activation failed: \(String(describing: $0))")
+                }
+            )
+            .disposed(by: disposeBag)
+    }
+
+    func deleteProfile(
+        profileId: Int32,
+        onSuccess: @escaping (DeleteProfileResult) -> Void,
+        onError: @escaping (Error) -> Void
+    ) {
+        deleteProfileUseCase.invoke(profileId: profileId)
+            .subscribe(on: schedulers.background)
+            .observe(on: schedulers.main)
+            .subscribe(
+                onNext: onSuccess,
+                onError: {
+                    SALog.error("Profile deletion failed: \(String(describing: $0))")
+                    onError($0)
+                }
+            )
+            .disposed(by: disposeBag)
+    }
+}
+
+class ActivateProfileUseCase {
+    @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<RuntimeConfig> private var runtimeConfig
+    @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
+    @Singleton<ReconnectUseCase> private var reconnectUseCase
+    
+    func invoke(profileId: Int32, force: Bool) -> Completable {
+        profileRepository.getProfile(withId: profileId)
+            .flatMapCompletable {
+                guard let profile = $0 else {
+                    return Completable.complete()
+                }
+           
+                if (profile.isActive && !force) {
+                    return Completable.complete()
+                }
+                
+                return self.activateProfile(profile)
+            }
+    }
+    
+    private func activateProfile(_ profile: AuthProfileItem) -> Completable {
+        profileRepository.markProfileActive(profile.objectID)
+            .flatMapCompletable { _ in
+                var config = self.runtimeConfig
+                config.activeProfileId = profile.objectID
+                self.cloudConfigHolder.clean()
+                
+                return self.reconnectUseCase.invoke()
+            }
+    }
+}
+
+class DeleteProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<SingleCall> private var singleCall
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
-    @Singleton<ActivateProfileUseCase> private var activateProfileUseCase
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
     @Singleton<DisconnectUseCase> private var disconnectUseCase
     @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
+    
+    private let activateProfileUseCase: ActivateProfileUseCase
+    
+    init(activateProfileUseCase: ActivateProfileUseCase = ActivateProfileUseCase()) {
+        self.activateProfileUseCase = activateProfileUseCase
+    }
     
     func invoke(profileId: Int32) -> Observable<DeleteProfileResult> {
         profileRepository.getProfile(withId: profileId)
@@ -103,7 +197,6 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                             }
                     )
                 } else {
-                    // Removing last account
                     return self.removeLocally(profile: profile)
                         .map {
                             var config = self.runtimeConfig
