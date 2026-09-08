@@ -20,6 +20,7 @@ class HvacThermostatValueStringProvider: ChannelValueStringProvider {
     @Singleton<SharedCore.ThermometerValueFormatter> private var formatter
     @Singleton<HomePlusThermostatValueProvider> var homePlusThermostatValueProvider
     @Singleton<ThermometerValueProvider> private var thermometerValueProvider
+    @Singleton<ThermometerAndHumidityValueProvider> private var thermometerAndHumidityValueProvider
 
     func handle(_ channel: ChannelWithChildren) -> Bool {
         channel.function == SUPLA_CHANNELFNC_HVAC_THERMOSTAT ||
@@ -31,7 +32,15 @@ class HvacThermostatValueStringProvider: ChannelValueStringProvider {
         guard let mainThermometer = channel.children.first(where: { $0.relationType == .mainThermometer })
         else { return NO_VALUE_TEXT }
 
-        let valueTemperature = thermometerValueProvider.value(mainThermometer.channel, valueType: .first)
-        return formatter.format(value: valueTemperature, format: ValueFormatKt.withUnit(withUnit: withUnit))
+        switch (mainThermometer.channel.func) {
+        case SUPLA_CHANNELFNC_THERMOMETER:
+            let value = thermometerValueProvider.value(mainThermometer.channel, valueType: .first)
+            return formatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            let value = thermometerAndHumidityValueProvider.value(mainThermometer.channel, valueType: .first)
+            return formatter.format(value: value, format: ValueFormatKt.withUnit(withUnit: withUnit))
+        default:
+            return NO_VALUE_TEXT
+        }
     }
 }
