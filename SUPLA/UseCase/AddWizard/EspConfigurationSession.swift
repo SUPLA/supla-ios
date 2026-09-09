@@ -19,6 +19,7 @@
 protocol EspConfigurationSession: AnyObject {
     var useSecureLayer: Bool { get set }
     var sessionCookie: HTTPCookie? { get set }
+    var certificateCommonName: String? { get set }
     
     func reset()
 }
@@ -26,9 +27,11 @@ protocol EspConfigurationSession: AnyObject {
 class EspConfigurationSessionImpl: EspConfigurationSession {
     var useSecureLayer: Bool = false
     var sessionCookie: HTTPCookie? = nil
+    var certificateCommonName: String? = nil
     
     func reset() {
         useSecureLayer = false
         sessionCookie = nil
+        certificateCommonName = nil
     }
 }

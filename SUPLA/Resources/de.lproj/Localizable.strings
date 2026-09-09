@@ -272,6 +272,9 @@
 "channel_caption_flood_sensor" = "Flutsensor";
 "channel_caption_motion_sensor" = "Bewegungssensor";
 "channel_caption_binary_sensor" = "Binärsensor";
+"channel_caption_smoke_sensor" = "Rauchsensor";
+"channel_caption_carbon_monoxide_sensor" = "Kohlenmonoxidsensor";
+"channel_caption_gas_sensor" = "Gassensor";
 "channel_caption_invisible" = "Verborgen";
 "channel_offline" = "Das Kanal ist offline";
 "channel_not_found" = "Kanal nicht gefunden";
@@ -689,6 +692,14 @@
 "wizard_result_compat_error" = "Das Gerät, mit dem die Verbindung hergestellt wurde, ist mit diesem Assistenten nicht kompatibel!";
 "wizard_result_conn_error" = "Es gelang nicht, die Verbindung mit dem Gerät herzustellen!";
 "wizard_result_failed" = "Die Konfiguration war nicht erfolgreich!";
+"wizard_result_certificate_untrusted" = "Das Zertifikat des Geräts ist nicht vertrauenswürdig. Stellen Sie sicher, dass Sie eine Verbindung mit dem richtigen Gerät herstellen und dass dessen Software aktuell ist.";
+"wizard_result_certificate_expired" = "Das Zertifikat des Geräts ist abgelaufen. Aktualisieren Sie die Gerätesoftware oder kontaktieren Sie den Support. Prüfen Sie auch, ob Datum und Uhrzeit auf dem Telefon korrekt sind.";
+"wizard_result_certificate_not_yet_valid" = "Das Zertifikat des Geräts ist noch nicht gültig. Prüfen Sie Datum und Uhrzeit auf dem Telefon und dem Gerät und versuchen Sie es erneut.";
+"wizard_result_certificate_revoked" = "Das Zertifikat des Geräts wurde widerrufen. Aus Sicherheitsgründen kann keine Verbindung hergestellt werden. Aktualisieren Sie die Gerätesoftware oder kontaktieren Sie den Support.";
+"wizard_result_certificate_host_mismatch" = "Das Zertifikat passt nicht zu diesem Gerät. Stellen Sie sicher, dass die App eine Verbindung mit dem richtigen Gerät herstellt.";
+"wizard_result_certificate_pin_mismatch" = "Das Zertifikat des Geräts unterscheidet sich vom erwarteten Zertifikat. Aktualisieren Sie die App und die Gerätesoftware und versuchen Sie es erneut.";
+"wizard_result_certificate_unsupported_security" = "Das Gerät verwendet nicht unterstützte Sicherheitseinstellungen. Aktualisieren Sie die Gerätesoftware und versuchen Sie es erneut.";
+"wizard_result_certificate_different_names" = "Das Gerät hat ein falsches Zertifikat - die Namen stimmen nicht überein (Zertifikat: %1$@, Gerät: %2$@)";
 "wizard_reconnect_timeout" = "Für die Rückkehr zum Grundversorgungs-WiFi-Netz wurde das Zeitlimit überschritten!";
 "wizard_done" = "Die Konfiguration wurde erfolgreich abgeschlossen :)";
 "wizard_done_explanations" = "Wenn das Gerät nicht in der App erscheint, wiederholen Sie dieses Hinzufügungsverfahren noch einmal und lesen Sie „Bisheriger Status“, das oben zu sehen ist, ab. Er enthält eine Information, warum das Gerät sich nicht mit dem Server verbunden hat. Meldung „SSID not found“ bedeutet, dass der eingeführte Name des WiFi-Netzwerks 2,4 GHz nicht gefunden wurde oder dieses Netzwerk sich außerhalb der Reichweite befindet.";

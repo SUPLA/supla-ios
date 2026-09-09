@@ -89,6 +89,13 @@ extension LocalizedStringId {
         case .channelCaptionBinarySensor: Strings.General.Channel.captionBinarySensor
         case .channelCaptionUnknown: NSLocalizedString("Not supported function", comment: "")
         case .channelCaptionHvacHrv: Strings.General.Channel.captionHvacHrv
+        case .channelCaptionSepticTank: Strings.General.Channel.captionSepticTank
+        case .channelCaptionWaterTank: Strings.General.Channel.captionWaterTank
+        case .channelCaptionContainerLevelSensor: Strings.General.Channel.captionContainerLevelSensor
+        case .channelCaptionFloodSensor: Strings.General.Channel.captionFloodSensor
+        case .channelCaptionSmokeSensor: Strings.General.Channel.captionSmokeSensor
+        case .channelCaptionCarbonMonoxideSensor: Strings.General.Channel.captionCarbonMonoxideSensor
+        case .channelCaptionGasSensor: Strings.General.Channel.captionGasSensor
 
         case .channelBatteryLevel: Strings.General.Channel.batteryLevel
         case .channelBatteryLevelWithInfo: Strings.General.Channel.batteryLevelWithInfo
@@ -103,12 +110,7 @@ extension LocalizedStringId {
         case .thermostatBatterCoverOpen: Strings.ThermostatDetail.batteryCoverOpen
         case .thermostatClockError: Strings.ThermostatDetail.clockError
         case .thermostatCalibrationError: Strings.ThermostatDetail.calibrationError
-            
-        case .channelCaptionSepticTank: Strings.General.Channel.captionSepticTank
-        case .channelCaptionWaterTank: Strings.General.Channel.captionWaterTank
-        case .channelCaptionContainerLevelSensor: Strings.General.Channel.captionContainerLevelSensor
-        case .channelCaptionFloodSensor: Strings.General.Channel.captionFloodSensor
-            
+
         case .floodSensorActive: Strings.Valve.floodingAlarmMessage
         case .valveManuallyClosed: Strings.Valve.warningManuallyClosedShort
         case .valveFlooding: Strings.Valve.warningFloodingShort
@@ -140,6 +142,14 @@ extension LocalizedStringId {
         case .addWizardStateConnecting: Strings.AddWizard.stateConnecting
         case .addWizardStateConfiguring: Strings.AddWizard.stateConfiguring
         case .addWizardStateFinishing: Strings.AddWizard.stateFinishing
+        case .addWizardCertificateErrorUntrusted: Strings.AddWizard.certificateErrorUntrusted
+        case .addWizardCertificateErrorExpired: Strings.AddWizard.certificateErrorExpired
+        case .addWizardCertificateErrorNotYetValid: Strings.AddWizard.certificateErrorNotYetValid
+        case .addWizardCertificateErrorRevoked: Strings.AddWizard.certificateErrorRevoked
+        case .addWizardCertificateErrorHostMismatch: Strings.AddWizard.certificateErrorHostMismatch
+        case .addWizardCertificateErrorPinMismatch: Strings.AddWizard.certificateErrorPinMismatch
+        case .addWizardCertificateErrorUnsupportedSecurity: Strings.AddWizard.certificateErrorUnsupportedSecurity
+        case .addWizardCertificateErrorDifferentNames: Strings.AddWizard.certificateErrorDifferentNames
             
         case .channelStateUptime: Strings.State.uptimeValue
         case .channelStateBatteryPowered: Strings.State.batteryPowered
