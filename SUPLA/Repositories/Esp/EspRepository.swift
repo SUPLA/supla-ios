@@ -18,6 +18,7 @@
 
 import Alamofire
 import Collections
+import SharedCore
 
 protocol EspRepository {
     func get() async -> Esp.RequestResult
@@ -187,13 +188,19 @@ private extension AFDataResponse where Success == String {
     var locationHeader: String? {
         response?.headers["Location"]
     }
+
+    var commonNameHeader: String? {
+        response?.headers["CN"]
+    }
 }
 
 private func responseToResult(response: AFDataResponse<String>, requestType: String) -> Esp.RequestResult {
     let code = response.response?.statusCode
     SALog.info("\(requestType) request finished with status code: \(code ?? 0)")
 
-    if (code == 301 && response.locationHeader?.starts(with: "https://") ?? false) {
+    if let certificateError = differentCommonNamesError(response: response) {
+        return certificateError
+    } else if (code == 301 && response.locationHeader?.starts(with: "https://") ?? false) {
         return .secureConnectionNeeded
     } else if (code == 303 && response.locationHeader == "/setup") {
         return .setupNeeded
@@ -210,8 +217,7 @@ private func responseToResult(response: AFDataResponse<String>, requestType: Str
                 return .success(code, value)
             }
         case .failure(let error):
-            SALog.error("GET request failed with error \(error)")
-            return .failure(code, error)
+            return handleRequestFailure(code, error)
         }
     }
 }
@@ -220,15 +226,16 @@ private func getToResult(response: AFDataResponse<String>) -> Esp.RequestResult 
     let code = response.response?.statusCode
     SALog.info("Login request finished with status code: \(code ?? 0)")
 
-    if (code == 403) {
+    if let certificateError = differentCommonNamesError(response: response) {
+        return certificateError
+    } else if (code == 403) {
         return .temporarilyLocked
     } else {
         switch response.result {
         case .success(let value):
             return .success(code, value)
         case .failure(let error):
-            SALog.error("GET request failed with error \(error)")
-            return .failure(code, error)
+            return handleRequestFailure(code, error)
         }
     }
 }
@@ -237,7 +244,9 @@ private func postToResult(response: AFDataResponse<String>) -> Esp.RequestResult
     let code = response.response?.statusCode
     SALog.info("Login request finished with status code: \(code ?? 0)")
 
-    if (code == 301 && response.locationHeader?.starts(with: "https://") ?? false) {
+    if let certificateError = differentCommonNamesError(response: response) {
+        return certificateError
+    } else if (code == 301 && response.locationHeader?.starts(with: "https://") ?? false) {
         return .secureConnectionNeeded
     } else if (code == 303 && response.locationHeader == "/") {
         return .success(code, "")
@@ -248,10 +257,44 @@ private func postToResult(response: AFDataResponse<String>) -> Esp.RequestResult
         case .success:
             return .failure(code, InvalidCredentialsError())
         case .failure(let error):
-            SALog.error("GET request failed with error \(error)")
-            return .failure(code, error)
+            return handleRequestFailure(code, error)
         }
     }
+}
+
+private func handleRequestFailure(_ code: Int?, _ error: Error) -> Esp.RequestResult {
+    if let certificateErrorType = error.toCertificateErrorType() {
+        return .certificateError(certificateErrorType)
+    }
+
+    SALog.error("Request failed with error \(error)")
+    return .failure(code, error)
+}
+
+private func differentCommonNamesError(response: AFDataResponse<String>) -> Esp.RequestResult? {
+    @Singleton<EspConfigurationSession> var espConfigurationSession
+
+    guard espConfigurationSession.useSecureLayer,
+          case .success = response.result
+    else {
+        return nil
+    }
+
+    let certificateCommonName = espConfigurationSession.certificateCommonName
+    let commonNameHeader = response.commonNameHeader
+    if let certificateCommonName,
+       let commonNameHeader,
+       certificateCommonName == commonNameHeader
+    {
+        return nil
+    }
+
+    return .certificateError(
+        CertificateErrorType.DifferentCommonNames(
+            certificateName: certificateCommonName,
+            headerName: commonNameHeader
+        )
+    )
 }
 
 private func retrieveCookie(_ response: AFDataResponse<String>) {
@@ -279,6 +322,96 @@ class UnknownEspError: Error {
     init(code: Int?, message: String) {
         self.code = code
         self.message = message
+    }
+}
+
+private extension Error {
+    func toCertificateErrorType() -> CertificateErrorType? {
+        if let validationError = self as? EspCertificateValidationError {
+            switch validationError {
+            case .expired:
+                return CertificateErrorType.CertificateExpired.shared
+            case .notYetValid:
+                return CertificateErrorType.CertificateNotYetValid.shared
+            case .untrusted:
+                return CertificateErrorType.UntrustedCertificate.shared
+            }
+        }
+
+        if let afError = asAFError {
+            if case .serverTrustEvaluationFailed(let reason) = afError {
+                return reason.toCertificateErrorType()
+            }
+
+            return afError.underlyingError?.toCertificateErrorType()
+        }
+
+        let nsError = self as NSError
+        if let underlyingError = nsError.userInfo[NSUnderlyingErrorKey] as? Error,
+           let type = underlyingError.toCertificateErrorType()
+        {
+            return type
+        }
+
+        if localizedDescription.lowercased().contains("certificate pinning failure") {
+            return CertificateErrorType.CertificatePinMismatch.shared
+        }
+
+        guard nsError.domain == NSURLErrorDomain else {
+            return nil
+        }
+
+        switch nsError.code {
+        case NSURLErrorServerCertificateHasBadDate:
+            return CertificateErrorType.CertificateExpired.shared
+        case NSURLErrorServerCertificateNotYetValid:
+            return CertificateErrorType.CertificateNotYetValid.shared
+        case NSURLErrorServerCertificateUntrusted,
+             NSURLErrorServerCertificateHasUnknownRoot:
+            return CertificateErrorType.UntrustedCertificate.shared
+        case NSURLErrorSecureConnectionFailed:
+            return localizedDescription.isUnsupportedSecurityMessage ?
+                CertificateErrorType.UnsupportedSecurity.shared :
+                CertificateErrorType.UntrustedCertificate.shared
+        default:
+            return nil
+        }
+    }
+}
+
+private extension AFError.ServerTrustFailureReason {
+    func toCertificateErrorType() -> CertificateErrorType {
+        switch self {
+        case .certificatePinningFailed:
+            return CertificateErrorType.CertificatePinMismatch.shared
+        case .hostValidationFailed:
+            return CertificateErrorType.CertificateHostMismatch.shared
+        case .revocationCheckFailed:
+            return CertificateErrorType.CertificateRevoked.shared
+        case .policyApplicationFailed,
+             .settingAnchorCertificatesFailed,
+             .revocationPolicyCreationFailed:
+            return CertificateErrorType.UnsupportedSecurity.shared
+        case .trustEvaluationFailed(let error):
+            return error?.toCertificateErrorType() ?? CertificateErrorType.UntrustedCertificate.shared
+        case .customEvaluationFailed(let error):
+            return error.toCertificateErrorType() ?? CertificateErrorType.UntrustedCertificate.shared
+        case .defaultEvaluationFailed,
+             .noRequiredEvaluator,
+             .noCertificatesFound,
+             .noPublicKeysFound,
+             .publicKeyPinningFailed:
+            return CertificateErrorType.UntrustedCertificate.shared
+        }
+    }
+}
+
+private extension String {
+    var isUnsupportedSecurityMessage: Bool {
+        let message = lowercased()
+        return message.contains("protocol") ||
+            message.contains("cipher") ||
+            message.contains("algorithm")
     }
 }
 

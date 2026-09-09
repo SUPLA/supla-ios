@@ -297,6 +297,9 @@
 "channel_caption_flood_sensor" = "Daşqın sensoru";
 "channel_caption_motion_sensor" = "Hərəkət sensoru";
 "channel_caption_binary_sensor" = "İkili sensor";
+"channel_caption_smoke_sensor" = "Tüstü sensoru";
+"channel_caption_carbon_monoxide_sensor" = "Dəm qazı sensoru";
+"channel_caption_gas_sensor" = "Qaz sensoru";
 "channel_caption_invisible" = "Gizli";
 "channel_offline" = "Kanal offline vəziyyətdədir";
 "channel_not_found" = "Kanal tapılmadı";
@@ -722,6 +725,14 @@
 "wizard_result_compat_error" = "Qoşulmuş cihaz bu Wizard ilə uyğun deyil!";
 "wizard_result_conn_error" = "Cihazla qoşulma qurula bilmir!";
 "wizard_result_failed" = "Konfiqurasiya uğursuz oldu!";
+"wizard_result_certificate_untrusted" = "Cihaz sertifikatına etibar edilmir. Düzgün cihaza qoşulduğunuzdan və onun proqram təminatının aktual olduğundan əmin olun.";
+"wizard_result_certificate_expired" = "Cihaz sertifikatının müddəti bitib. Cihazın proqram təminatını yeniləyin və ya dəstək xidməti ilə əlaqə saxlayın. Telefonda tarix və saatın düzgün olduğunu da yoxlayın.";
+"wizard_result_certificate_not_yet_valid" = "Cihaz sertifikatı hələ etibarlı deyil. Telefonda və cihazda tarix və saatı yoxlayın, sonra yenidən cəhd edin.";
+"wizard_result_certificate_revoked" = "Cihaz sertifikatı ləğv edilib. Təhlükəsizlik səbəbi ilə bağlantı qurula bilmir. Cihazın proqram təminatını yeniləyin və ya dəstək xidməti ilə əlaqə saxlayın.";
+"wizard_result_certificate_host_mismatch" = "Sertifikat bu cihaza uyğun deyil. Tətbiqin düzgün cihaza qoşulduğundan əmin olun.";
+"wizard_result_certificate_pin_mismatch" = "Cihaz sertifikatı gözləniləndən fərqlidir. Tətbiqi və cihazın proqram təminatını yeniləyin, sonra yenidən cəhd edin.";
+"wizard_result_certificate_unsupported_security" = "Cihaz dəstəklənməyən təhlükəsizlik parametrlərindən istifadə edir. Cihazın proqram təminatını yeniləyin və yenidən cəhd edin.";
+"wizard_result_certificate_different_names" = "Cihazın sertifikatı yanlışdır - adlar eyni deyil (sertifikat: %1$@, cihaz: %2$@)";
 "wizard_reconnect_timeout" = "Əsas Wi-Fi şəbəkəsinə qayıtma vaxt limiti bitdi!";
 "wizard_done" = "Tənzimləmələr I/O cihazına köçürüldü.";
 "wizard_done_explanations" = "Yeni I/O cihazınız Supla tətbiqində görünmürsə, \“Add I/O Device\” wizard-ını yenidən işə salın və səhifədəki \“Previous State\” məlumatına baxın. \“SSID Not Found\” 2.4 GHz şəbəkənin əhatə dairəsində olmadığını və ya adının düzgün olmadığını göstərir.";

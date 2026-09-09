@@ -297,6 +297,9 @@
 "channel_caption_flood_sensor" = "Czujnik zalania";
 "channel_caption_motion_sensor" = "Czujnik ruchu";
 "channel_caption_binary_sensor" = "Czujnik binarny";
+"channel_caption_smoke_sensor" = "Czujnik dymu";
+"channel_caption_carbon_monoxide_sensor" = "Czujnik tlenku węgla";
+"channel_caption_gas_sensor" = "Czujnik gazu";
 "channel_caption_invisible" = "Ukryty";
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";
@@ -723,6 +726,14 @@
 "wizard_result_compat_error" = "Urządzenie z którym nawiązano połączenie nie jest kompatybilne z tym kreatorem!";
 "wizard_result_conn_error" = "Nie można nawiązać połączenia z urządzeniem!";
 "wizard_result_failed" = "Konfiguracja zakończona niepowodzeniem!";
+"wizard_result_certificate_untrusted" = "Certyfikat urządzenia nie jest zaufany. Upewnij się, że łączysz się z właściwym urządzeniem i że jego oprogramowanie jest aktualne.";
+"wizard_result_certificate_expired" = "Certyfikat urządzenia wygasł. Zaktualizuj oprogramowanie urządzenia lub skontaktuj się z pomocą techniczną. Sprawdź też, czy data i godzina w telefonie są prawidłowe.";
+"wizard_result_certificate_not_yet_valid" = "Certyfikat urządzenia nie jest jeszcze ważny. Sprawdź datę i godzinę w telefonie oraz urządzeniu, a następnie spróbuj ponownie.";
+"wizard_result_certificate_revoked" = "Certyfikat urządzenia został unieważniony. Ze względów bezpieczeństwa nie można nawiązać połączenia. Zaktualizuj oprogramowanie urządzenia lub skontaktuj się z pomocą techniczną.";
+"wizard_result_certificate_host_mismatch" = "Certyfikat nie pasuje do tego urządzenia. Upewnij się, że aplikacja łączy się z właściwym urządzeniem.";
+"wizard_result_certificate_pin_mismatch" = "Certyfikat urządzenia różni się od oczekiwanego. Zaktualizuj aplikację i oprogramowanie urządzenia, a następnie spróbuj ponownie.";
+"wizard_result_certificate_unsupported_security" = "Urządzenie używa nieobsługiwanych zabezpieczeń. Zaktualizuj oprogramowanie urządzenia i spróbuj ponownie.";
+"wizard_result_certificate_different_names" = "Urządzenie ma nieprawidłowy certyfikat — nazwa jest nieprawidłowa (certyfikat: %1$@, urządzenie: %2$@)";
 "wizard_reconnect_timeout" = "Przekroczono czas oczekiwania na powrót do podstawowej sieci Wi-Fi!";
 "wizard_done" = "Ustawienia zostały przesłane do urządzenia.";
 "wizard_done_explanations" = "Jeśli urządzenie nie pojawi się w aplikacji, powtórz niniejszą procedurę dodawania jeszcze raz i odczytaj „Poprzedni status” widoczny powyżej. Zawiera on informację umożliwiającą ustalenie dlaczego urządzenie nie połączyło się z serwerem. Komunikat \"SSID not found\" oznacza, że wprowadzona nazwa sieci Wi-Fi 2,4 GHz nie została odnaleziona lub sieć ta jest poza zasięgiem.";

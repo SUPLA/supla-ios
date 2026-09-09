@@ -288,6 +288,9 @@
 "channel_caption_flood_sensor" = "Potvynio jutiklis";
 "channel_caption_motion_sensor" = "Judesio jutiklis";
 "channel_caption_binary_sensor" = "Dvejetainis jutiklis";
+"channel_caption_smoke_sensor" = "Dūmų jutiklis";
+"channel_caption_carbon_monoxide_sensor" = "Anglies monoksido jutiklis";
+"channel_caption_gas_sensor" = "Dujų jutiklis";
 "channel_caption_container" = "Konteineris";
 "channel_caption_septic_tank" = "Septikas";
 "channel_caption_invisible" = "Paslėptas";
@@ -652,6 +655,14 @@
 "wizard_result_compat_error" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
 "wizard_result_conn_error" = "Negalima užmegzti ryšio su įrenginiu!";
 "wizard_result_failed" = "Nepavyko sėkmingai baigti konfigūravimo!";
+"wizard_result_certificate_untrusted" = "Įrenginio sertifikatas nėra patikimas. Įsitikinkite, kad jungiatės prie tinkamo įrenginio ir kad jo programinė įranga yra atnaujinta.";
+"wizard_result_certificate_expired" = "Įrenginio sertifikato galiojimas baigėsi. Atnaujinkite įrenginio programinę įrangą arba susisiekite su pagalba. Taip pat patikrinkite, ar telefone teisinga data ir laikas.";
+"wizard_result_certificate_not_yet_valid" = "Įrenginio sertifikatas dar negalioja. Patikrinkite datą ir laiką telefone bei įrenginyje, tada bandykite dar kartą.";
+"wizard_result_certificate_revoked" = "Įrenginio sertifikatas buvo atšauktas. Saugumo sumetimais ryšio užmegzti negalima. Atnaujinkite įrenginio programinę įrangą arba susisiekite su pagalba.";
+"wizard_result_certificate_host_mismatch" = "Sertifikatas neatitinka šio įrenginio. Įsitikinkite, kad programa jungiasi prie tinkamo įrenginio.";
+"wizard_result_certificate_pin_mismatch" = "Įrenginio sertifikatas skiriasi nuo tikėtino. Atnaujinkite programą ir įrenginio programinę įrangą, tada bandykite dar kartą.";
+"wizard_result_certificate_unsupported_security" = "Įrenginys naudoja nepalaikomus saugumo nustatymus. Atnaujinkite įrenginio programinę įrangą ir bandykite dar kartą.";
+"wizard_result_certificate_different_names" = "Įrenginio sertifikatas neteisingas - pavadinimai nesutampa (sertifikatas: %1$@, įrenginys: %2$@)";
 "wizard_reconnect_timeout" = "Viršytas grįžimo prie pagrindinio Wi-Fi tinklo laukimo laikas!";
 "wizard_done" = "Įrenginio konfigūravimas baigtas sėkmingai :)";
 "wizard_done_explanations" = "Jei įrenginys nebus matomas programoje, pakartokite šią pridėjimo procedūrą dar kartą ir nuskaitykite žemiau matomą „Ankstesnį statusą“. Jame yra informacija, kuri leidžia nustatyti, kodėl įrenginys neprisijungė prie serverio. Pranešimas “SSID not found“ reiškia, kad įvestas Wi-Fi 2,4 GHz tinklo pavadinimas nebuvo rastas arba tinklas neprieinamas.";

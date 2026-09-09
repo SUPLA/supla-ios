@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.3.2 effective-5.10 (swiftlang-6.3.2.1.108 clang-2100.1.1.101)
-// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -module-name SharedCore
+// swift-module-flags: -target x86_64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -module-name SharedCore
 // swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.2
 import Foundation
 @_exported import SharedCore
@@ -107,6 +107,8 @@ public enum Skie {
     public enum AddWizardFinalAction {
     }
     public enum EspConfigurationError {
+    }
+    public enum CertificateErrorType {
     }
     public enum EspConfigurationEvent {
     }
@@ -963,6 +965,9 @@ extension SharedCore.__Icon {
   case channelCaptionFloodSensor
   case channelCaptionMotionSensor
   case channelCaptionBinarySensor
+  case channelCaptionSmokeSensor
+  case channelCaptionCarbonMonoxideSensor
+  case channelCaptionGasSensor
   case channelStatusAwaiting
   case channelStatusUpdating
   case channelStatusNotAvailable
@@ -997,6 +1002,14 @@ extension SharedCore.__Icon {
   case addWizardResultFailed
   case addWizardReconnectTimeout
   case addWizardDeviceTemporarilyLocked
+  case addWizardCertificateErrorUntrusted
+  case addWizardCertificateErrorExpired
+  case addWizardCertificateErrorNotYetValid
+  case addWizardCertificateErrorRevoked
+  case addWizardCertificateErrorHostMismatch
+  case addWizardCertificateErrorPinMismatch
+  case addWizardCertificateErrorUnsupportedSecurity
+  case addWizardCertificateErrorDifferentNames
   case addWizardStatePreparing
   case addWizardStateConnecting
   case addWizardStateConfiguring
@@ -1299,6 +1312,9 @@ extension SharedCore.__ValueUnit {
   case floodSensor
   case motionSensor
   case binarySensor
+  case smokeSensor
+  case carbonMonoxideSensor
+  case gasSensor
   public var hasThermostatSubfunction: Swift.Bool {
     get
   }
@@ -1975,6 +1991,7 @@ public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_andro
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.AddWizardFinalAction.__Sealed? where __Sealed : SharedCore.AddWizardFinalAction
 extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
   @frozen public enum __Sealed : Swift.Hashable {
+    case certificateError(SharedCore.EspConfigurationError.CertificateError)
     case combined(SharedCore.EspConfigurationError.Combined)
     case communication(SharedCore.EspConfigurationError.Communication)
     case compatibility(SharedCore.EspConfigurationError.Compatibility)
@@ -1998,6 +2015,25 @@ extension SharedCore.Skie.supla_android__shared_core.EspConfigurationError {
 }
 public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed where __Sealed : SharedCore.EspConfigurationError
 @_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.EspConfigurationError.__Sealed? where __Sealed : SharedCore.EspConfigurationError
+extension SharedCore.Skie.supla_android__shared_core.CertificateErrorType {
+  @frozen public enum __Sealed : Swift.Hashable {
+    case certificateExpired(SharedCore.CertificateErrorType.CertificateExpired)
+    case certificateHostMismatch(SharedCore.CertificateErrorType.CertificateHostMismatch)
+    case certificateNotYetValid(SharedCore.CertificateErrorType.CertificateNotYetValid)
+    case certificatePinMismatch(SharedCore.CertificateErrorType.CertificatePinMismatch)
+    case certificateRevoked(SharedCore.CertificateErrorType.CertificateRevoked)
+    case differentCommonNames(SharedCore.CertificateErrorType.DifferentCommonNames)
+    case unsupportedSecurity(SharedCore.CertificateErrorType.UnsupportedSecurity)
+    case untrustedCertificate(SharedCore.CertificateErrorType.UntrustedCertificate)
+    public static func == (a: SharedCore.Skie.supla_android__shared_core.CertificateErrorType.__Sealed, b: SharedCore.Skie.supla_android__shared_core.CertificateErrorType.__Sealed) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public func onEnum<__Sealed>(of sealed: __Sealed) -> SharedCore.Skie.supla_android__shared_core.CertificateErrorType.__Sealed where __Sealed : SharedCore.CertificateErrorType
+@_disfavoredOverload public func onEnum<__Sealed>(of sealed: __Sealed?) -> SharedCore.Skie.supla_android__shared_core.CertificateErrorType.__Sealed? where __Sealed : SharedCore.CertificateErrorType
 extension SharedCore.Skie.supla_android__shared_core.EspConfigurationEvent {
   @frozen public enum __Sealed : Swift.Hashable {
     case authorized(SharedCore.EspConfigurationEventAuthorized)
@@ -2200,6 +2236,7 @@ extension Swift.Bool {
     get
   }
   public func forFalse(value: Any?) -> Any?
+  public func forFalse(valueProvider: @escaping () -> Any?) -> Any?
   public func forTrue(value: Any?) -> Any?
   public func forTrue(valueProvider: @escaping () -> Any?) -> Any?
 }

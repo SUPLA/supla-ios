@@ -16,12 +16,21 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import SharedCore
+
+enum EspCertificateValidationError: Error {
+    case expired
+    case notYetValid
+    case untrusted
+}
+
 extension Esp {
     enum RequestResult {
         case success(Int?, String)
         case setupNeeded
         case credentialsNeeded
         case temporarilyLocked
+        case certificateError(CertificateErrorType)
         case secureConnectionNeeded
         case cancelled
         case failure(Int?, Error)

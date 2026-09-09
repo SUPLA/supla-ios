@@ -300,6 +300,9 @@
 "channel_caption_flood_sensor" = "Sensore allagamento";
 "channel_caption_motion_sensor" = "Sensore di movimento";
 "channel_caption_binary_sensor" = "Sensore binario";
+"channel_caption_smoke_sensor" = "Sensore di fumo";
+"channel_caption_carbon_monoxide_sensor" = "Sensore di monossido di carbonio";
+"channel_caption_gas_sensor" = "Sensore di gas";
 "channel_caption_container" = "Contenitore";
 "channel_caption_septic_tank" = "Fossa settica";
 "channel_caption_invisible" = "Nascosto";
@@ -682,6 +685,14 @@
 "wizard_result_compat_error" = "Il dispositivo con il quale è stata stabilita la connessione non è compatibile con questa procedura guidata!";
 "wizard_result_conn_error" = "Impossibile stabilire una connessione con il dispositivo!";
 "wizard_result_failed" = "Configurazione fallita!";
+"wizard_result_certificate_untrusted" = "Il certificato del dispositivo non è attendibile. Assicurati di connetterti al dispositivo corretto e che il suo software sia aggiornato.";
+"wizard_result_certificate_expired" = "Il certificato del dispositivo è scaduto. Aggiorna il software del dispositivo o contatta il supporto. Verifica anche che data e ora del telefono siano corrette.";
+"wizard_result_certificate_not_yet_valid" = "Il certificato del dispositivo non è ancora valido. Verifica data e ora sul telefono e sul dispositivo, quindi riprova.";
+"wizard_result_certificate_revoked" = "Il certificato del dispositivo è stato revocato. Per motivi di sicurezza, non è possibile stabilire la connessione. Aggiorna il software del dispositivo o contatta il supporto.";
+"wizard_result_certificate_host_mismatch" = "Il certificato non corrisponde a questo dispositivo. Assicurati che l’app si connetta al dispositivo corretto.";
+"wizard_result_certificate_pin_mismatch" = "Il certificato del dispositivo è diverso da quello previsto. Aggiorna l’app e il software del dispositivo, quindi riprova.";
+"wizard_result_certificate_unsupported_security" = "Il dispositivo usa impostazioni di sicurezza non supportate. Aggiorna il software del dispositivo e riprova.";
+"wizard_result_certificate_different_names" = "Il dispositivo ha un certificato errato - i nomi non corrispondono (certificato: %1$@, dispositivo: %2$@)";
 "wizard_reconnect_timeout" = "Il tempo di attesa per il ritorno alla rete basilare Wi-Fi è stato superato!";
 "wizard_done" = "Configurazione del dispositivo terminata con successo :)";
 "wizard_done_explanations" = "Se il tuo nuovo dispositivo I/O non viene visualizzato nell'app Supla, esegui nuovamente la procedura guidata \"Aggiungi dispositivo I/O\" e fai riferimento alle informazioni sullo \"Stato precedente\" in questa pagina per la risoluzione dei problemi. Viene visualizzato \"SSID Not Found\" quando la rete Wi-Fi scelta non è disponibile o il suo nome non è corretto";

@@ -402,6 +402,7 @@ extension AddWizardFeature {
                     case .credentialsNeeded: stateHandler.handle(EspConfigurationEventCredentialsNeeded.shared)
                     case .setupNeeded: stateHandler.handle(EspConfigurationEventSetupNeeded.shared)
                     case .temporarilyLocked: stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.TemporarilyLocked.shared))
+                    case .certificateError(let type): stateHandler.handle(EspConfigurationEventEspConfigurationFailure(error: EspConfigurationError.CertificateError(type: type)))
                     case .success(let result):
                         state.deviceParameters = result.parameters
                         if (result.needsCloudConfig) {

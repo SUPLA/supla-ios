@@ -286,6 +286,9 @@
 "channel_caption_flood_sensor" = "Vloedsensor";
 "channel_caption_motion_sensor" = "Bewegingssensor";
 "channel_caption_binary_sensor" = "Binaire sensor";
+"channel_caption_smoke_sensor" = "Rooksensor";
+"channel_caption_carbon_monoxide_sensor" = "Koolmonoxidesensor";
+"channel_caption_gas_sensor" = "Gassensor";
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
 "channel_caption_invisible" = "Verborgen";
@@ -650,6 +653,14 @@
 "wizard_result_compat_error" = "Het apparaat waarmee u verbonden bent, is niet compatibel met deze wizard!";
 "wizard_result_conn_error" = "U kunt geen verbinding maken met het apparaat!";
 "wizard_result_failed" = "Configuratie mislukt!";
+"wizard_result_certificate_untrusted" = "Het certificaat van het apparaat wordt niet vertrouwd. Controleer of u verbinding maakt met het juiste apparaat en of de software up-to-date is.";
+"wizard_result_certificate_expired" = "Het certificaat van het apparaat is verlopen. Werk de apparaatsoftware bij of neem contact op met ondersteuning. Controleer ook of de datum en tijd op de telefoon juist zijn.";
+"wizard_result_certificate_not_yet_valid" = "Het certificaat van het apparaat is nog niet geldig. Controleer de datum en tijd op de telefoon en het apparaat en probeer het opnieuw.";
+"wizard_result_certificate_revoked" = "Het certificaat van het apparaat is ingetrokken. Om veiligheidsredenen kan de verbinding niet worden gemaakt. Werk de apparaatsoftware bij of neem contact op met ondersteuning.";
+"wizard_result_certificate_host_mismatch" = "Het certificaat komt niet overeen met dit apparaat. Controleer of de app verbinding maakt met het juiste apparaat.";
+"wizard_result_certificate_pin_mismatch" = "Het certificaat van het apparaat wijkt af van het verwachte certificaat. Werk de app en de apparaatsoftware bij en probeer het opnieuw.";
+"wizard_result_certificate_unsupported_security" = "Het apparaat gebruikt beveiligingsinstellingen die niet worden ondersteund. Werk de apparaatsoftware bij en probeer het opnieuw.";
+"wizard_result_certificate_different_names" = "Het apparaat heeft een onjuist certificaat - de namen komen niet overeen (certificaat: %1$@, apparaat: %2$@)";
 "wizard_reconnect_timeout" = "Wachttijd voor terugkeer naar primair WiFi-netwerk overschreden!";
 "wizard_done" = "De apparaatconfiguratie is geslaagd :)";
 "wizard_done_explanations" = "Als het toestel niet in de toepassing verschijnt, herhaalt u deze toevoegingsprocedure nogmaals en leest u de hierboven getoonde \"Vorige status\". Dit bevat informatie om te bepalen waarom het toestel geen verbinding maakte met de server. De melding \"SSID niet gevonden\" betekent dat de ingevoerde 2,4 GHz WiFi-netwerknaam niet is gevonden of dat het netwerk buiten bereik is.";

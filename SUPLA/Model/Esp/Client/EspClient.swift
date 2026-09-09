@@ -70,8 +70,35 @@ private class CustomServerTrustManager: ServerTrustManager, @unchecked Sendable 
     
     init(certificate: SecCertificate) {
         super.init(allHostsMustBeEvaluated: false, evaluators: [
-            CustomServerTrustManager.trustedHost: PinnedCertificatesTrustEvaluator(certificates: [certificate], acceptSelfSignedCertificates: true, performDefaultValidation: false, validateHost: false)
+            CustomServerTrustManager.trustedHost: EspServerTrustEvaluator(certificate: certificate)
         ])
+    }
+}
+
+private final class EspServerTrustEvaluator: ServerTrustEvaluating, @unchecked Sendable {
+    @Singleton<EspConfigurationSession> private var espConfigurationSession
+
+    private let rootCertificate: SecCertificate
+
+    init(certificate: SecCertificate) {
+        rootCertificate = certificate
+    }
+
+    func evaluate(_ trust: SecTrust, forHost host: String) throws {
+        guard let leafCertificate = trust.af.certificates.first else {
+            throw EspCertificateValidationError.untrusted
+        }
+
+        try trust.af.apply(policy: SecPolicyCreateBasicX509())
+        try trust.af.setAnchorCertificates([rootCertificate])
+        try trust.af.evaluate()
+        espConfigurationSession.certificateCommonName = leafCertificate.commonName
+    }
+}
+
+private extension SecCertificate {
+    var commonName: String? {
+        SecCertificateCopySubjectSummary(self) as String?
     }
 }
 

@@ -114,6 +114,9 @@
 "channel_caption_flood_sensor" = "Flood sensor";
 "channel_caption_motion_sensor" = "Motion sensor";
 "channel_caption_binary_sensor" = "Binary sensor";
+"channel_caption_smoke_sensor" = "Smoke sensor";
+"channel_caption_carbon_monoxide_sensor" = "Carbon monoxide sensor";
+"channel_caption_gas_sensor" = "Gas sensor";
 "channel_caption_invisible" = "Hidden";
 "channel_caption_hvac_hrv" = "Heat recovery ventilation";
 "channel_offline" = "Channel is offline";
@@ -550,6 +553,14 @@
 "wizard_result_compat_error" = "The connected device is not compatible with this Wizard!";
 "wizard_result_conn_error" = "Connection with the device cannot be set!";
 "wizard_result_failed" = "Configuration Failed!";
+"wizard_result_certificate_untrusted" = "The device certificate is not trusted. Make sure you are connecting to the right device and that its software is up to date.";
+"wizard_result_certificate_expired" = "The device certificate has expired. Update the device software or contact support. Also check that the date and time on your phone are correct.";
+"wizard_result_certificate_not_yet_valid" = "The device certificate is not valid yet. Check the date and time on your phone and device, then try again.";
+"wizard_result_certificate_revoked" = "The device certificate has been revoked. For security reasons, the connection cannot be established. Update the device software or contact support.";
+"wizard_result_certificate_host_mismatch" = "The certificate does not match this device. Make sure the app is connecting to the correct device.";
+"wizard_result_certificate_pin_mismatch" = "The device certificate differs from the expected one. Update the app and device software, then try again.";
+"wizard_result_certificate_unsupported_security" = "The device uses unsupported security settings. Update the device software and try again.";
+"wizard_result_certificate_different_names" = "Device has wrong certificate - names are not equal (certificate: %1$@, device: %2$@)";
 "wizard_reconnect_timeout" = "Basic Wi-Fi Network return timeout!";
 "wizard_configure_timeout" = "Device configuration completion timeout!";
 "wizard_done" = "The settings have been transferred to the I/O device.";

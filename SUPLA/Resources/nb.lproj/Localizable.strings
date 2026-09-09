@@ -286,6 +286,9 @@
 "channel_caption_flood_sensor" = "Flomsensor";
 "channel_caption_motion_sensor" = "Bevegelsessensor";
 "channel_caption_binary_sensor" = "Binærsensor";
+"channel_caption_smoke_sensor" = "Røyksensor";
+"channel_caption_carbon_monoxide_sensor" = "Karbonmonoksidsensor";
+"channel_caption_gas_sensor" = "Gassensor";
 "channel_caption_container" = "Beholder";
 "channel_caption_septic_tank" = "Septiktank";
 "channel_caption_invisible" = "Skjult";
@@ -649,6 +652,14 @@
 "wizard_result_compat_error" = "Enheten som er koblet til er ikke kompatibel med denne assistenten!";
 "wizard_result_conn_error" = "Kunne ikke koble til enheten!";
 "wizard_result_failed" = "Konfigurasjon mislykket!";
+"wizard_result_certificate_untrusted" = "Enhetens sertifikat er ikke klarert. Kontroller at du kobler til riktig enhet og at programvaren er oppdatert.";
+"wizard_result_certificate_expired" = "Enhetens sertifikat er utløpt. Oppdater enhetens programvare eller kontakt brukerstøtte. Kontroller også at dato og klokkeslett på telefonen er riktig.";
+"wizard_result_certificate_not_yet_valid" = "Enhetens sertifikat er ikke gyldig ennå. Kontroller dato og klokkeslett på telefonen og enheten, og prøv igjen.";
+"wizard_result_certificate_revoked" = "Enhetens sertifikat er tilbakekalt. Av sikkerhetsgrunner kan forbindelsen ikke opprettes. Oppdater enhetens programvare eller kontakt brukerstøtte.";
+"wizard_result_certificate_host_mismatch" = "Sertifikatet samsvarer ikke med denne enheten. Kontroller at appen kobler til riktig enhet.";
+"wizard_result_certificate_pin_mismatch" = "Enhetens sertifikat er forskjellig fra det forventede. Oppdater appen og enhetens programvare, og prøv igjen.";
+"wizard_result_certificate_unsupported_security" = "Enheten bruker sikkerhetsinnstillinger som ikke støttes. Oppdater enhetens programvare og prøv igjen.";
+"wizard_result_certificate_different_names" = "Enheten har feil sertifikat - navnene samsvarer ikke (sertifikat: %1$@, enhet: %2$@)";
 "wizard_reconnect_timeout" = "Ventetiden for returnering til basis trådløs nettverk er overskredet!";
 "wizard_done" = "Konfigurering av enheten ble vellykket :)";
 "wizard_done_explanations" = "Hvis enheten ikke vises i applikasjonen, gjenta denne tilleggsprosedyren igjen og les \"Forrige status\" vist ovenfor. Den inneholder informasjon som gjør det mulig å finne ut hvorfor enheten ikke klarte å koble til serveren. Meldingen \"SSID not found\" betyr at det angitte navnet på 2,4 GHz WiFi-nettverket ikke ble funnet eller at nettverket er utenfor rekkevidde.";
