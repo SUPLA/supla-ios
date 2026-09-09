@@ -257,6 +257,9 @@
 "channel_caption_flood_sensor" = "Árvízérzékelő";
 "channel_caption_motion_sensor" = "Mozgásérzékelő";
 "channel_caption_binary_sensor" = "Bináris érzékelő";
+"channel_caption_smoke_sensor" = "Füstérzékelő";
+"channel_caption_carbon_monoxide_sensor" = "Szén-monoxid-érzékelő";
+"channel_caption_gas_sensor" = "Gázérzékelő";
 "channel_caption_invisible" = "Rejtett";
 "channel_offline" = "A csatorna offline állapotban van";
 "channel_not_found" = "Csatorna nem található";
@@ -692,6 +695,14 @@
 "wizard_result_compat_error" = "A csatlakoztatott eszköz nem kompatibilis ezzel a varázslóval!";
 "wizard_result_conn_error" = "Nem lehet csatlakozni az eszközhöz!";
 "wizard_result_failed" = "Az újrakonfigurálás nem sikerült";
+"wizard_result_certificate_untrusted" = "Az eszköz tanúsítványa nem megbízható. Győződjön meg arról, hogy a megfelelő eszközhöz csatlakozik, és hogy annak szoftvere naprakész.";
+"wizard_result_certificate_expired" = "Az eszköz tanúsítványa lejárt. Frissítse az eszköz szoftverét, vagy lépjen kapcsolatba a támogatással. Ellenőrizze azt is, hogy a telefon dátuma és ideje helyes-e.";
+"wizard_result_certificate_not_yet_valid" = "Az eszköz tanúsítványa még nem érvényes. Ellenőrizze a dátumot és az időt a telefonon és az eszközön, majd próbálja újra.";
+"wizard_result_certificate_revoked" = "Az eszköz tanúsítványát visszavonták. Biztonsági okokból a kapcsolat nem hozható létre. Frissítse az eszköz szoftverét, vagy lépjen kapcsolatba a támogatással.";
+"wizard_result_certificate_host_mismatch" = "A tanúsítvány nem illik ehhez az eszközhöz. Győződjön meg arról, hogy az alkalmazás a megfelelő eszközhöz csatlakozik.";
+"wizard_result_certificate_pin_mismatch" = "Az eszköz tanúsítványa eltér a várt tanúsítványtól. Frissítse az alkalmazást és az eszköz szoftverét, majd próbálja újra.";
+"wizard_result_certificate_unsupported_security" = "Az eszköz nem támogatott biztonsági beállításokat használ. Frissítse az eszköz szoftverét, majd próbálja újra.";
+"wizard_result_certificate_different_names" = "Az eszköz tanúsítványa hibás - a nevek nem egyeznek (tanúsítvány: %1$@, eszköz: %2$@)";
 "wizard_reconnect_timeout" = "Az elsődleges Wi-Fi hálózathoz való visszatérés várakozási ideje túllépve!";
 "wizard_configure_timeout" = "Az eszközkonfiguráció befejezésének várakozási ideje túllépve!";
 "wizard_done" = "Az eszköz konfigurálása sikeres :)";

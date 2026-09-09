@@ -286,6 +286,9 @@
 "channel_caption_flood_sensor" = "Povodňový senzor";
 "channel_caption_motion_sensor" = "Pohybový senzor";
 "channel_caption_binary_sensor" = "Binární senzor";
+"channel_caption_smoke_sensor" = "Snímač kouře";
+"channel_caption_carbon_monoxide_sensor" = "Snímač oxidu uhelnatého";
+"channel_caption_gas_sensor" = "Snímač plynu";
 "channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie: %d%%";
@@ -650,6 +653,14 @@
 "wizard_result_compat_error" = "Zařízení, které jste připojili, není kompatibilní s tímto průvodcem!";
 "wizard_result_conn_error" = "Nelze se připojit k zařízení! Ujistěte se, že došlo k připojení vykonívajícího zařízení k Wi-Fi síti.";
 "wizard_result_failed" = "Konfigurace se nezdařila!";
+"wizard_result_certificate_untrusted" = "Certifikát zařízení není důvěryhodný. Ujistěte se, že se připojujete ke správnému zařízení a že jeho software je aktuální.";
+"wizard_result_certificate_expired" = "Platnost certifikátu zařízení vypršela. Aktualizujte software zařízení nebo kontaktujte podporu. Zkontrolujte také, zda je v telefonu správné datum a čas.";
+"wizard_result_certificate_not_yet_valid" = "Certifikát zařízení ještě není platný. Zkontrolujte datum a čas v telefonu a zařízení a zkuste to znovu.";
+"wizard_result_certificate_revoked" = "Certifikát zařízení byl odvolán. Z bezpečnostních důvodů nelze navázat připojení. Aktualizujte software zařízení nebo kontaktujte podporu.";
+"wizard_result_certificate_host_mismatch" = "Certifikát neodpovídá tomuto zařízení. Ujistěte se, že se aplikace připojuje ke správnému zařízení.";
+"wizard_result_certificate_pin_mismatch" = "Certifikát zařízení se liší od očekávaného. Aktualizujte aplikaci i software zařízení a zkuste to znovu.";
+"wizard_result_certificate_unsupported_security" = "Zařízení používá nepodporované nastavení zabezpečení. Aktualizujte software zařízení a zkuste to znovu.";
+"wizard_result_certificate_different_names" = "Zařízení má nesprávný certifikát - názvy se neshodují (certifikát: %1$@, zařízení: %2$@)";
 "wizard_reconnect_timeout" = "Doba čekání na návrat do základní sítě Wi-Fi byla překročena!";
 "wizard_done" = "Konfigurace zařízení byla úspěšně dokončena :)";
 "wizard_done_explanations" = "Pokud se zařízení v aplikaci nezobrazí, zopakujte tento postup přidání znovu a přečtěte si výše uvedený \"Předchozí stav\". Obsahuje informace, díky nímž lze zjistit, proč se zařízení nepřipojilo k serveru. Zpráva  \"SSID not found“ znamená, že zadaný název sítě Wi-Fi 2,4 GHz nebyl nalezen nebo je síť mimo dosah.";

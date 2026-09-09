@@ -286,6 +286,9 @@
 "channel_caption_flood_sensor" = "Senzor poplave";
 "channel_caption_motion_sensor" = "Senzor gibanja";
 "channel_caption_binary_sensor" = "Binarni senzor";
+"channel_caption_smoke_sensor" = "Senzor dima";
+"channel_caption_carbon_monoxide_sensor" = "Senzor ogljikovega monoksida";
+"channel_caption_gas_sensor" = "Senzor plina";
 "channel_caption_container" = "Posoda";
 "channel_caption_septic_tank" = "Greznica";
 "channel_caption_invisible" = "Skrit";
@@ -651,6 +654,14 @@
 "wizard_result_compat_error" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
 "wizard_result_conn_error" = "Povezave z napravo ni mogoče nastaviti!";
 "wizard_result_failed" = "Konfiguracija ni bila uspešna!";
+"wizard_result_certificate_untrusted" = "Potrdilo naprave ni zaupanja vredno. Preverite, ali se povezujete s pravo napravo in ali je njena programska oprema posodobljena.";
+"wizard_result_certificate_expired" = "Potrdilo naprave je poteklo. Posodobite programsko opremo naprave ali se obrnite na podporo. Preverite tudi, ali sta datum in ura v telefonu pravilna.";
+"wizard_result_certificate_not_yet_valid" = "Potrdilo naprave še ni veljavno. Preverite datum in uro v telefonu ter napravi, nato poskusite znova.";
+"wizard_result_certificate_revoked" = "Potrdilo naprave je bilo preklicano. Iz varnostnih razlogov povezave ni mogoče vzpostaviti. Posodobite programsko opremo naprave ali se obrnite na podporo.";
+"wizard_result_certificate_host_mismatch" = "Potrdilo se ne ujema s to napravo. Preverite, ali se aplikacija povezuje s pravo napravo.";
+"wizard_result_certificate_pin_mismatch" = "Potrdilo naprave se razlikuje od pričakovanega. Posodobite aplikacijo in programsko opremo naprave, nato poskusite znova.";
+"wizard_result_certificate_unsupported_security" = "Naprava uporablja nepodprte varnostne nastavitve. Posodobite programsko opremo naprave in poskusite znova.";
+"wizard_result_certificate_different_names" = "Naprava ima napačno potrdilo - imena se ne ujemajo (potrdilo: %1$@, naprava: %2$@)";
 "wizard_reconnect_timeout" = "Čakalna doba za vrnitev v primarno omrežje Wi-Fi je prekoračena!";
 "wizard_done" = "Konfiguracija naprave je bila uspešna :)";
 "wizard_done_explanations" = "Če se naprava ne prikaže v aplikaciji, ponovite ta postopek dodajanja še enkrat in preberite \"Prejšnje stanje\", prikazano zgoraj. Vsebuje informacije, na podlagi katerih je mogoče ugotoviti, zakaj naprava ni vzpostavila povezave s strežnikom. Sporočilo »SSID not found« pomeni, da vnesenega imena 2,4 GHz Wi-Fi omrežja ni bilo mogoče najti ali pa je omrežje izven dosega.";

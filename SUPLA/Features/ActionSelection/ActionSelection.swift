@@ -32,14 +32,14 @@ enum ActionSelection {
         var icon: IconResult?
         var isLocation: Bool
     }
-    
+
     struct Selection: Hashable {
         let profileId: Int32
         let subjectType: SubjectType
         let subjectId: Int32
         let caption: String
         let action: ActionId
-        
+
         init(profileId: Int32, subjectType: SubjectType, subjectId: Int32, action: ActionId) {
             self.profileId = profileId
             self.subjectType = subjectType
@@ -47,7 +47,7 @@ enum ActionSelection {
             self.caption = ""
             self.action = action
         }
-        
+
         init(profileId: Int32, subjectType: SubjectType, subjectId: Int32, caption: String, action: ActionId) {
             self.profileId = profileId
             self.subjectType = subjectType
@@ -125,7 +125,7 @@ extension Array where Element == ActionSelection.Selection {
     func lastSubjectType(_ profileId: Int32) -> SubjectType? {
         last { $0.profileId == profileId }?.subjectType
     }
-    
+
     func lastSubjectId(_ profileId: Int32, _ subjectType: SubjectType) -> Int32? {
         last { $0.profileId == profileId && $0.subjectType == subjectType }?.subjectId
     }
@@ -278,7 +278,10 @@ private extension SharedCore.SuplaFunction {
              .heatOrColdSourceSwitch,
              .none,
              .motionSensor,
-             .binarySensor: []
+             .binarySensor,
+             .smokeSensor,
+             .carbonMonoxideSensor,
+             .gasSensor: []
 
         case .controllingTheDoorLock,
              .controllingTheGatewayLock: [.open]

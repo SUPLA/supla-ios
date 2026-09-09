@@ -17,6 +17,7 @@
  */
     
 import Alamofire
+import SharedCore
 import SwiftSoup
 
 private let TAG_RESULT_MESSAGE = "#msg"
@@ -48,7 +49,7 @@ enum ConfigureEsp {
                 return .failed
             }
             let getResult: Esp.RequestResult? = await repeated(GET_REPEATS) { await espRepository.get() }
-            guard let html = getResult?.html else { return getResult?.result ?? .connectionError }
+            guard let html = getResult?.html else { return getResult?.error ?? .connectionError }
             guard let document = try? SwiftSoup.parse(html)
             else {
                 SALog.warning("Could not connect to the ESP device")
@@ -80,6 +81,9 @@ enum ConfigureEsp {
             
             guard let postResult = await repeated(POST_REPEATS, { await espRepository.post(espData.fieldMap) })
             else { return .failed }
+            if let error = postResult.error {
+                return error
+            }
             if (!postResult.successful) {
                 return .failed
             }
@@ -88,9 +92,9 @@ enum ConfigureEsp {
                 guard let postHtml = postResult.html else { return .failed }
                 await checkResultAndReboot(espData, postHtml)
             } else {
-                guard let getResult = await repeated(POST_REPEATS, { await espRepository.get() }),
-                      let postHtml = getResult.html
+                guard let getResult = await repeated(POST_REPEATS, { await espRepository.get() })
                 else { return .failed }
+                guard let postHtml = getResult.html else { return getResult.error ?? .failed }
                 
                 await checkResultAndReboot(espData, postHtml)
             }
@@ -124,6 +128,7 @@ enum ConfigureEsp {
         case setupNeeded
         case credentialsNeeded
         case temporarilyLocked
+        case certificateError(CertificateErrorType)
     }
 }
 
@@ -149,11 +154,12 @@ private extension Esp.RequestResult {
         }
     }
     
-    var result: ConfigureEsp.Result? {
+    var error: ConfigureEsp.Result? {
         switch self {
         case .setupNeeded: .setupNeeded
         case .credentialsNeeded: .credentialsNeeded
         case .temporarilyLocked: .temporarilyLocked
+        case .certificateError(let type): .certificateError(type)
         default: nil
         }
     }
