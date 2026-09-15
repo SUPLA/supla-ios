@@ -46,6 +46,7 @@ private extension AppRootView {
                     rootView
                     navigationLink
                 }
+                .navigationBarHidden(true)
             }
             .navigationViewStyle(.stack)
             .overlay(alignment: .bottom) { eventNotificationOverlay }
