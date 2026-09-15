@@ -115,7 +115,7 @@ extension SuplaCore {
 
                     if let actionIcon {
                         actionButton(actionIcon)
-                    } else {
+                    } else if (searchText == nil) {
                         Color.clear
                             .frame(width: height, height: height)
                     }
