@@ -26,6 +26,8 @@ class IosEspConfigurationStateHolder: SharedCore.EspConfigurationStateHolder {
         state is Idle || state is Finished || state is ConfigurationFailure || state is Canceled
     }
     
+    var currentState: EspConfigurationState { state }
+    
     init(espConfigurationController: EspConfigurationController) {
         self.espConfigurationController = espConfigurationController
     }
@@ -40,6 +42,15 @@ class IosEspConfigurationStateHolder: SharedCore.EspConfigurationStateHolder {
     func setState(state: any EspConfigurationState) {
         SALog.info("State changed to \(state)")
         self.state = state
-        espConfigurationController.updateProgress(progress: state.progress, descriptionLabel: state.progressLabel)
+        // On iOS WiFi scann is not allowed so we're asking to connect to a network with specific ESSID.
+        // Each connection try take some time (about 3 secs), so we want show that on progress bar.
+        // The connection state has progress 0.5, so we shift down everything before 0.5 dividing by two.
+        // Everything above 0.5 is shifted up, so we get internal half of the progress for the connection checks.
+        let progress = state.progress <= 0.5 ? (state.progress / 2) : state.progress + 1 - (state.progress / 2)
+        
+        // 0 ...................... 0.25 ...................... 0.5 ...................... 0.75 ...................... 1
+        //      progress by state     |        progress by state + ssid connection try       |    progress by state    |
+        
+        espConfigurationController.updateProgress(progress: progress, descriptionLabel: state.progressLabel)
     }
 }
