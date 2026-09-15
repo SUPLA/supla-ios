@@ -418,7 +418,11 @@ extension AddWizardFeature {
             if (state.autoMode) {
                 workingTask = Task {
                     dispatchPrecondition(condition: .notOnQueue(.main))
-                    let result = await connectToEspUseCase.invoke()
+                    let result = await connectToEspUseCase.invoke { [weak self] progress in
+                        if let self {
+                            self.state.progress = (self.stateHandler.currentState.progress / 2) + Float(0.5 * progress)
+                        }
+                    }
                     
                     await MainActor.run {
                         switch (result) {
