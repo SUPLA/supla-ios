@@ -49,6 +49,7 @@ private final class StatusBarHostingController<Content: View>: UIHostingControll
 
 private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
 private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
+private let BACKGROUND_DISCONNECT_TIMEOUT_S: TimeInterval = 3
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var settings: GlobalSettings
@@ -150,7 +151,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
 
-        disconnectUseCase.invokeSynchronous(reason: .appInBackground)
+        waitForDisconnectInBackground(reason: .appInBackground)
+    }
+
+    private func waitForDisconnectInBackground(reason: SuplaAppState.Reason) {
+        var backgroundTask = UIBackgroundTaskIdentifier.invalid
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "Disconnect") {
+            if (backgroundTask != .invalid) {
+                UIApplication.shared.endBackgroundTask(backgroundTask)
+                backgroundTask = .invalid
+            }
+        }
+
+        let group = DispatchGroup()
+        group.enter()
+
+        let disconnectUseCase = disconnectUseCase
+        DispatchQueue.global(qos: .userInitiated).async {
+            disconnectUseCase.invokeSynchronous(reason: reason)
+            group.leave()
+        }
+
+        let deadline = Date().addingTimeInterval(BACKGROUND_DISCONNECT_TIMEOUT_S)
+        while (group.wait(timeout: .now()) == .timedOut && Date() < deadline) {
+            RunLoop.current.run(mode: .default, before: Date().addingTimeInterval(0.01))
+        }
+
+        if (backgroundTask != .invalid) {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            backgroundTask = .invalid
+        }
     }
 
     private func handleDeepLink(_ url: URL) {
