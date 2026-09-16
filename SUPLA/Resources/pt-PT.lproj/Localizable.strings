@@ -295,6 +295,10 @@
 "channel_offline" = "O canal está offline";
 "channel_battery_level" = "Nível de bateria: %d%%";
 "channel_battery_level_with_info" = "Nível de bateria (%d - %@): %d%%";
+"channel_battery_low" = "Nível de bateria baixo";
+"channel_battery_low_with_info" = "Nível de bateria baixo (%d - %@)";
+"channel_battery_state_low_value" = "baixo";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning" = "A vida útil do radiador UV é de %.01f%%. Planeia substituí-lo.";
 "channel_uv_error" = "A vida útil do radiador UV é de %.01f%%. Substitua o radiador.";
 "channel_lightsource_warning" = "A vida útil da fonte de luz é de %.01f%%.";
@@ -567,6 +571,7 @@
 /* State */
 "state_channel_id" = "ID do Canal";
 "state_battery_level" = "Nível de bateria";
+"battery_state" = "Estado da bateria";
 "state_power_supply" = "Alimentação";
 "channel_state_battery_powered" = "a bateria";
 "channel_state_main_powered" = "de rede";

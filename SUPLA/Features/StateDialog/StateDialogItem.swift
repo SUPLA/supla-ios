@@ -24,6 +24,7 @@ extension StateDialogFeature {
         case ipAddress
         case macAddress
         case batteryLevel
+        case batteryState
         case powerSupply
         case wifiRssi
         case wifiSignal
@@ -47,6 +48,7 @@ extension StateDialogFeature {
             case .ipAddress: Strings.State.ipAddress
             case .macAddress: Strings.State.macAddress
             case .batteryLevel: Strings.State.batteryLevel
+            case .batteryState: Strings.State.batteryState
             case .powerSupply: Strings.State.powerSupply
             case .wifiRssi: Strings.State.wifiRssi
             case .wifiSignal: Strings.State.wifiSignalStrength
@@ -64,10 +66,11 @@ extension StateDialogFeature {
         
         func extract(from value: SharedCore.SuplaChannelStatePrintable) -> String? {
             switch self {
-            case .channelId: value.channelIdString?.string
+            case .channelId: value.channelIdString.string
             case .ipAddress: value.ipV4
             case .macAddress: value.macAddress
             case .batteryLevel: value.batteryLevelString?.string
+            case .batteryState: value.batteryStateString?.string
             case .powerSupply: value.batteryPoweredString?.string
             case .wifiRssi: value.wifiRssiString?.string
             case .wifiSignal: value.wifiSignalStrengthString?.string

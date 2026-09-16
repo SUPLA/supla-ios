@@ -59,11 +59,12 @@ extension SAChannel {
     var batteryInfo: BatteryInfo? {
         guard let state else { return nil }
 
-        if state.batteryPowered != nil || state.batteryLevel != nil {
+        if state.batteryPowered != nil || state.batteryLevel != nil || state.batteryState != nil {
             return BatteryInfo(
                 batteryPowered: KotlinBoolean.from(state.batteryPowered?.boolValue),
                 level: KotlinInt.from(state.batteryLevel),
-                health: KotlinInt.from(state.batteryHealth)
+                health: KotlinInt.from(state.batteryHealth),
+                state: SharedCore.BatteryState.companion.from(value: KotlinInt.from(state.batteryState))
             )
         }
 

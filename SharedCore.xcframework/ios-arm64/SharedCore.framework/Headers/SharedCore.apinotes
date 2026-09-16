@@ -1392,10 +1392,10 @@ Classes:
   - Selector: "fromValue:"
     MethodKind: "Instance"
     SwiftName: "from(value:)"
-    ResultType: "SharedCoreBatteryState * _Nonnull"
+    ResultType: "SharedCoreBatteryState * _Nullable"
     Parameters:
     - Position: 0
-      Type: "int32_t"
+      Type: "SharedCoreInt * _Nullable"
 - Name: "SharedCoreLocalizedStringEmpty"
   SwiftName: "LocalizedStringEmpty"
   Methods:

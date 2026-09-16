@@ -48,6 +48,7 @@ enum CoreDataMigrationVersion: String, CaseIterable {
     case version26 = "SUPLA 26"
     case version27 = "SUPLA 27"
     case version28 = "SUPLA 28"
+    case version29 = "SUPLA 29"
 
     static var current: CoreDataMigrationVersion {
         guard let latest = allCases.last else {
@@ -88,7 +89,8 @@ enum CoreDataMigrationVersion: String, CaseIterable {
         case .version25: .version26
         case .version26: .version27
         case .version27: .version28
-        case .version28: nil
+        case .version28: .version29
+        case .version29: nil
         }
     }
 }

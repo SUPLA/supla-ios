@@ -295,6 +295,10 @@
 "channel_offline" = "Kanalen er offline";
 "channel_battery_level" = "Batterinivå: %d%%";
 "channel_battery_level_with_info" = "Batterinivå (%d - %@): %d%%";
+"channel_battery_low" = "Lavt batterinivå";
+"channel_battery_low_with_info" = "Lavt batterinivå (%d - %@)";
+"channel_battery_state_low_value" = "lav";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning" = "Levetiden til uv-lampen er %.01f%%.";
 "channel_uv_error" = "Levetiden til uv-lampen er %.01f%%. Bytt varmeapparatet ut.";
 "channel_lightsource_warning" = "Levetiden til lyskilden er %.01f%%.";
@@ -564,6 +568,7 @@
 /* State */
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batterinivå";
+"battery_state" = "Batteristatus";
 "state_power_supply" = "Strømforsyning";
 "channel_state_battery_powered" = "batteri";
 "channel_state_main_powered" = "nettstrøm";

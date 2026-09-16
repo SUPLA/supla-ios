@@ -295,6 +295,10 @@
 "channel_offline" = "Канал не в мережі";
 "channel_battery_level" = "Рівень заряду батареї: %d%%";
 "channel_battery_level_with_info" = "Рівень заряду батареї (%d - %@): %d%%";
+"channel_battery_low" = "Низький рівень заряду батареї";
+"channel_battery_low_with_info" = "Низький рівень заряду батареї (%d - %@)";
+"channel_battery_state_low_value" = "низький";
+"channel_battery_state_normal_value" = "нормальний";
 "channel_uv_warning" = "Термін служби УФ-випромінювача становить %.01f%%. Заплануйте його заміну.";
 "channel_uv_error" = "Термін служби УФ-випромінювача становить %.01f%%. Замінити випромінювач.";
 "channel_lightsource_warning" = "Термін служби джерела світла становить %.01f%%.";
@@ -566,6 +570,7 @@
 /* State */
 "state_channel_id" = "Ідентифікатор каналу";
 "state_battery_level" = "Рівень заряду батареї";
+"battery_state" = "Стан батареї";
 "state_power_supply" = "Живлення";
 "channel_state_battery_powered" = "від батареї";
 "channel_state_main_powered" = "від мережі";

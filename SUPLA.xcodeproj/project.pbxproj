@@ -367,7 +367,6 @@
 		A52BFEEA2B17277C00A2F64C /* ClientUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */; };
 		A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */; };
 		A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */; };
-		A5F219AA2F700000000000AA /* ProfileSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219AB2F700000000000AB /* ProfileSessionManager.swift */; };
 		A52BFEF42B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */; };
 		A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */; };
 		A52BFEF82B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */; };
@@ -672,7 +671,6 @@
 		A562870F30347B8000851CED /* HomePlusThermostatValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */; };
 		A56362B52EDED2BB00A702C0 /* AddWizardVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */; };
 		A56362B72EDED55D00A702C0 /* AddWizardUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */; };
-		C0DE20260908000100000102 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260908000100000101 /* AppRouterTests.swift */; };
 		A563640A2EDF8F8A00A702C0 /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364092EDF8F8A00A702C0 /* StandardDetailVM.swift */; };
 		A56364122EDF9BF900A702C0 /* RgbDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364112EDF9BF300A702C0 /* RgbDetailFeature.swift */; };
 		A56364252EE1720900A702C0 /* RgbDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56364242EE1720200A702C0 /* RgbDetailViewState.swift */; };
@@ -1471,6 +1469,7 @@
 		A5F219172F42910000000017 /* VerticalBlindsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219162F42910000000016 /* VerticalBlindsScreen.swift */; };
 		A5F219192F42910000000019 /* GarageDoorFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219182F42910000000018 /* GarageDoorFeature.swift */; };
 		A5F2191B2F4291000000001B /* GarageDoorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2191A2F4291000000001A /* GarageDoorScreen.swift */; };
+		A5F219AA2F700000000000AA /* ProfileSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F219AB2F700000000000AB /* ProfileSessionManager.swift */; };
 		A5F21A012F42A10000000001 /* AuthorizationCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21A002F42A10000000000 /* AuthorizationCoordinatorMock.swift */; };
 		A5F21B012F42B10000000001 /* ElectricityMeterGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */; };
 		A5F21B032F42B10000000003 /* ElectricityMeterHistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */; };
@@ -1638,6 +1637,7 @@
 		C0DE15700000000000000008 /* MainListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000018 /* MainListItem.swift */; };
 		C0DE1570000000000000000A /* MainListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE1570000000000000001A /* MainListItemView.swift */; };
 		C0DE1570000000000000000B /* MainListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE1570000000000000001B /* MainListViewModel.swift */; };
+		C0DE20260908000100000102 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260908000100000101 /* AppRouterTests.swift */; };
 		D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */; };
 /* End PBXBuildFile section */
 
@@ -2241,7 +2241,6 @@
 		A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUseCasesMocks.swift; sourceTree = "<group>"; };
 		A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadProfileByIdUseCase.swift; sourceTree = "<group>"; };
 		A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrCreateProfileUseCase.swift; sourceTree = "<group>"; };
-		A5F219AB2F700000000000AB /* ProfileSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSessionManager.swift; sourceTree = "<group>"; };
 		A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrCreateProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthInfo+Mock.swift"; sourceTree = "<group>"; };
 		A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateProfileUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2552,7 +2551,6 @@
 		A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueStringProvider.swift; sourceTree = "<group>"; };
 		A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVMTests.swift; sourceTree = "<group>"; };
 		A56362B62EDED55300A702C0 /* AddWizardUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardUseCasesMocks.swift; sourceTree = "<group>"; };
-		C0DE20260908000100000101 /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 		A56363CE2EDF180A00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		A56363CF2EDF180C00A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
 		A56363D22EDF181300A702C0 /* az */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = az; path = Resources/az.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
@@ -3027,6 +3025,7 @@
 		A5C31A8A2EF0A8DD00E4B4FD /* CircularColorSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularColorSelector.swift; sourceTree = "<group>"; };
 		A5C31A8C2EF0BBCA00E4B4FD /* Comparable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Ext.swift"; sourceTree = "<group>"; };
 		A5C347882EAF954A00075244 /* SAChannelState+Printable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelState+Printable.swift"; sourceTree = "<group>"; };
+		A5C4FED0305A7F7200A0E55B /* SUPLA 29.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 29.xcdatamodel"; sourceTree = "<group>"; };
 		A5C5F6E12D91760400E303B8 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		A5C5F6E32D91F1AD00E303B8 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
 		A5C5F6E72D92B0B200E303B8 /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
@@ -3323,6 +3322,7 @@
 		A5F219162F42910000000016 /* VerticalBlindsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsScreen.swift; sourceTree = "<group>"; };
 		A5F219182F42910000000018 /* GarageDoorFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageDoorFeature.swift; sourceTree = "<group>"; };
 		A5F2191A2F4291000000001A /* GarageDoorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageDoorScreen.swift; sourceTree = "<group>"; };
+		A5F219AB2F700000000000AB /* ProfileSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSessionManager.swift; sourceTree = "<group>"; };
 		A5F21A002F42A10000000000 /* AuthorizationCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinatorMock.swift; sourceTree = "<group>"; };
 		A5F21B002F42B10000000000 /* ElectricityMeterGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterGeneralScreen.swift; sourceTree = "<group>"; };
 		A5F21B022F42B10000000002 /* ElectricityMeterHistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterHistoryScreen.swift; sourceTree = "<group>"; };
@@ -3493,6 +3493,7 @@
 		C0DE15700000000000000018 /* MainListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItem.swift; sourceTree = "<group>"; };
 		C0DE1570000000000000001A /* MainListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemView.swift; sourceTree = "<group>"; };
 		C0DE1570000000000000001B /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
+		C0DE20260908000100000101 /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -5160,14 +5161,6 @@
 				A54A065F2AF50DEC00C03DBC /* Networking */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		C0DE20260908000100000103 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				C0DE20260908000100000101 /* AppRouterTests.swift */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		A54A06922AFB740900C03DBC /* Other */ = {
@@ -8237,6 +8230,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		C0DE20260908000100000103 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE20260908000100000101 /* AppRouterTests.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -10762,6 +10763,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A5C4FED0305A7F7200A0E55B /* SUPLA 29.xcdatamodel */,
 				A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */,
 				A5CBF6352F9B7B3D00830C68 /* SUPLA 27.xcdatamodel */,
 				A5BF4F582F3C7C7100F5DE81 /* SUPLA 26.xcdatamodel */,
@@ -10791,7 +10793,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */;
+			currentVersion = A5C4FED0305A7F7200A0E55B /* SUPLA 29.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -306,6 +306,10 @@
 "scene_inactive" = "Səhnə aktiv deyil";
 "channel_battery_level" = "Batareya səviyyəsi: %d%%";
 "channel_battery_level_with_info" = "Batareya səviyyəsi (%d - %@): %d%%";
+"channel_battery_low" = "Batareya səviyyəsi aşağıdır";
+"channel_battery_low_with_info" = "Batareya səviyyəsi aşağıdır (%d - %@)";
+"channel_battery_state_low_value" = "aşağı";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning1" = "UV radiatorunun ömrü %.01f%% təşkil edir. Onun əvəzini planlaşdırın.";
 "channel_uv_warning2" = "UV radiatorunun ömrü %.01f%% təşkil edir. Radiatoru dəyişdirin.";
 "channel_lightsource_warning" = "İşıq mənbəyinin ömrü %.01f%% təşkil edir.";
@@ -630,6 +634,7 @@
 /* State */
 "state_channel_id" = "Kanal ID";
 "state_battery_level" = "Batareya səviyyəsi";
+"battery_state" = "Batareya vəziyyəti";
 "state_power_supply" = "Enerji təchizatı";
 "channel_state_battery_powered" = "batareya";
 "channel_state_main_powered" = "şəbəkə";
