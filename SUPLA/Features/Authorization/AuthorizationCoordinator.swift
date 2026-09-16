@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Foundation
 import SwiftUI
 
 protocol AuthorizationCoordinator: AnyObject {
@@ -30,6 +31,8 @@ protocol AuthorizationCoordinator: AnyObject {
         onAuthorized: @escaping () -> Void,
         onDismissed: @escaping () -> Void
     )
+
+    func cancelPendingRequest()
 }
 
 extension AuthorizationCoordinator {
@@ -89,6 +92,16 @@ final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordin
         }
     }
 
+    func cancelPendingRequest() {
+        if Thread.isMainThread {
+            cancelPendingRequestOnMain()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.cancelPendingRequestOnMain()
+            }
+        }
+    }
+
     @MainActor
     func complete() {
         let request = request
@@ -103,5 +116,12 @@ final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordin
         request?.onDismissed()
 
         self.request = nil
+    }
+
+    private func cancelPendingRequestOnMain() {
+        let request = request
+        self.request = nil
+
+        request?.onDismissed()
     }
 }

@@ -24,6 +24,7 @@ final class AuthorizationCoordinatorMock: AuthorizationCoordinator {
     var authorizeAccepted = true
     var loginAccepted = true
     var isVisible = false
+    var cancelPendingRequestCalls = 0
 
     func authorize(
         onAuthorized: @escaping () -> Void,
@@ -49,5 +50,9 @@ final class AuthorizationCoordinatorMock: AuthorizationCoordinator {
         } else {
             onDismissed()
         }
+    }
+
+    func cancelPendingRequest() {
+        cancelPendingRequestCalls += 1
     }
 }

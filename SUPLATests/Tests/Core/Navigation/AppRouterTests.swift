@@ -22,14 +22,23 @@ import XCTest
 
 final class AppRouterTests: XCTestCase {
     private lazy var stateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
+    private lazy var authorizationCoordinator: AuthorizationCoordinatorImpl! = AuthorizationCoordinatorImpl()
+    private lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
     private lazy var router: AppRouter! = AppRouter()
 
     override func setUp() {
         DiContainer.shared.register(type: SuplaAppStateHolder.self, stateHolder!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: AuthorizationCoordinator.self, authorizationCoordinator!)
+        DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
     }
 
     override func tearDown() {
         stateHolder = nil
+        settings = nil
+        authorizationCoordinator = nil
+        schedulers = nil
         router = nil
     }
 
@@ -70,5 +79,43 @@ final class AppRouterTests: XCTestCase {
         // then
         XCTAssertEqual(router.path, [.callNfcAction(url: url)])
         stateHolder.currentStateMock.verifyCalls(1)
+    }
+
+    func test_shouldBlockConnectionTakeover_forRoutesPreservedOnDisconnect() {
+        XCTAssertEqual(AppRoute.about.connectionTakeoverPolicy, .blocked)
+        XCTAssertEqual(AppRoute.notificationsLog.connectionTakeoverPolicy, .blocked)
+    }
+
+    @MainActor
+    func test_shouldCancelPendingAuthorization_whenConnectionStatusShown() async {
+        // given
+        router.openZWaveWizard()
+        let authorizationRequest = await waitForAuthorizationRequest()
+        XCTAssertNotNil(authorizationRequest)
+
+        // when
+        router.connectionWasLost()
+        authorizationCoordinator.complete()
+
+        // then
+        XCTAssertNil(authorizationCoordinator.request)
+        XCTAssertEqual(router.path, [])
+    }
+
+    private func waitForAuthorizationRequest() async -> AuthorizationCoordinatorImpl.Request? {
+        let stepNanoseconds: UInt64 = 10_000_000
+        let timeoutNanoseconds: UInt64 = 1_000_000_000
+        var elapsedNanoseconds: UInt64 = 0
+
+        while elapsedNanoseconds < timeoutNanoseconds {
+            if let request = await MainActor.run(body: { authorizationCoordinator.request }) {
+                return request
+            }
+
+            try? await Task.sleep(nanoseconds: stepNanoseconds)
+            elapsedNanoseconds += stepNanoseconds
+        }
+
+        return await MainActor.run(body: { authorizationCoordinator.request })
     }
 }
