@@ -692,6 +692,43 @@ extension SharedCore.SkieSwiftOptionalMutableStateFlow where T : Swift._Objectiv
   convenience public init(_ flow: SharedCore.SkieSwiftMutableStateFlow<T>)
   convenience public init(_ flow: SharedCore.SkieSwiftOptionalMutableStateFlow<T>)
 }
+@frozen public enum BatteryState : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case normal
+  case low
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__BatteryState.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__BatteryState, result: inout SharedCore.BatteryState?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__BatteryState, result: inout SharedCore.BatteryState?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__BatteryState?) -> SharedCore.BatteryState
+  public func _bridgeToObjectiveC() -> SharedCore.__BatteryState
+  public typealias _ObjectiveCType = SharedCore.__BatteryState
+  public typealias Companion = SharedCore.__BatteryState.Companion
+  public static func == (a: SharedCore.BatteryState, b: SharedCore.BatteryState) -> Swift.Bool
+  public typealias AllCases = [SharedCore.BatteryState]
+  nonisolated public static var allCases: [SharedCore.BatteryState] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.BatteryState {
+  public func toKotlinEnum() -> SharedCore.__BatteryState
+}
+extension SharedCore.__BatteryState {
+  public func toSwiftEnum() -> SharedCore.BatteryState
+}
 @frozen public enum SuplaEventType : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case unknown
   case controllingTheGatewayLock
@@ -971,6 +1008,8 @@ extension SharedCore.__Icon {
   case channelStatusAwaiting
   case channelStatusUpdating
   case channelStatusNotAvailable
+  case channelBatteryLow
+  case channelBatteryLowWithInfo
   case channelBatteryLevel
   case channelBatteryLevelWithInfo
   case motorProblem
@@ -1017,6 +1056,8 @@ extension SharedCore.__Icon {
   case channelStateUptime
   case channelStateBatteryPowered
   case channelStateMainsPowered
+  case channelStateBatteryLowValue
+  case channelStateBatteryNormalValue
   case lastConnectionResetCauseUnknown
   case lastConnectionResetCauseActivityTimeout
   case lastConnectionResetCauseWifiConnectionLost
@@ -2194,13 +2235,16 @@ extension SharedCore.SuplaChannelStatePrintable {
   public var batteryPoweredString: (any SharedCore.LocalizedString)? {
     get
   }
+  public var batteryStateString: (any SharedCore.LocalizedString)? {
+    get
+  }
   public var bridgeNodeOnlineString: (any SharedCore.LocalizedString)? {
     get
   }
   public var bridgeNodeSignalStrengthString: (any SharedCore.LocalizedString)? {
     get
   }
-  public var channelIdString: (any SharedCore.LocalizedString)? {
+  public var channelIdString: any SharedCore.LocalizedString {
     get
   }
   public var connectionUptimeString: (any SharedCore.LocalizedString)? {
@@ -2312,6 +2356,8 @@ public var WeightKiloPrecision: Swift.Int32 {
   get
 }
 public func exactPrecision(value: Swift.Int32) -> Swift.Int32
+extension SharedCore.BatteryState : Swift.Sendable {}
+extension SharedCore.BatteryState : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaEventType : Swift.Sendable {}
 extension SharedCore.SuplaEventType : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaChannelAvailabilityStatus : Swift.Sendable {}

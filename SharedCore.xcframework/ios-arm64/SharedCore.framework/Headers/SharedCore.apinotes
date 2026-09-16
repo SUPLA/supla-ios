@@ -298,8 +298,6 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "nextByte()"
     ResultType: "int8_t"
-- Name: "SharedCoreKotlinNothing"
-  SwiftName: "KotlinNothing"
 - Name: "SharedCoreKotlinEnum"
   SwiftName: "KotlinEnum"
   Properties:
@@ -344,6 +342,8 @@ Classes:
     ResultType: "NSString * _Nonnull"
 - Name: "SharedCoreKotlinEnumCompanion"
   SwiftName: "KotlinEnumCompanion"
+- Name: "SharedCoreKotlinNothing"
+  SwiftName: "KotlinNothing"
 - Name: "SharedCoreSkieColdFlowIterator"
   SwiftName: "SkieColdFlowIterator"
   SwiftPrivate: true
@@ -1018,6 +1018,14 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "batteryPoweredForPrintable"
     Type: "SharedCoreBoolean * _Nullable"
+  - Name: "batteryState"
+    PropertyKind: "Instance"
+    SwiftName: "batteryState"
+    Type: "SharedCoreBatteryState * _Nullable"
+  - Name: "batteryStateForPrintable"
+    PropertyKind: "Instance"
+    SwiftName: "batteryStateForPrintable"
+    Type: "SharedCoreBatteryState * _Nullable"
   - Name: "bridgeNodeOnline"
     PropertyKind: "Instance"
     SwiftName: "bridgeNodeOnline"
@@ -1086,6 +1094,10 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "macAddress"
     Type: "NSString * _Nullable"
+  - Name: "rawBatterState"
+    PropertyKind: "Instance"
+    SwiftName: "rawBatterState"
+    Type: "int8_t"
   - Name: "rawBatteryHealth"
     PropertyKind: "Instance"
     SwiftName: "rawBatteryHealth"
@@ -1179,9 +1191,9 @@ Classes:
     SwiftName: "wifiSignalStrengthForPrintable"
     Type: "SharedCoreInt * _Nullable"
   Methods:
-  - Selector: "initWithChannelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:"
+  - Selector: "initWithChannelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawBatterState:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:"
     MethodKind: "Instance"
-    SwiftName: "init(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"
+    SwiftName: "init(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawBatterState:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"
     Parameters:
     - Position: 0
       Type: "int32_t"
@@ -1206,20 +1218,22 @@ Classes:
     - Position: 10
       Type: "int8_t"
     - Position: 11
-      Type: "int32_t"
+      Type: "int8_t"
     - Position: 12
       Type: "int32_t"
     - Position: 13
-      Type: "int8_t"
+      Type: "int32_t"
     - Position: 14
       Type: "int8_t"
     - Position: 15
-      Type: "int32_t"
+      Type: "int8_t"
     - Position: 16
       Type: "int32_t"
-  - Selector: "doCopyChannelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:"
+    - Position: 17
+      Type: "int32_t"
+  - Selector: "doCopyChannelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawBatterState:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"
+    SwiftName: "doCopy(channelId:fields:rawDefaultIconField:rawIpv4:rawMacAddress:rawBatteryLevel:rawBatteryPowered:rawBatterState:rawWifiRssi:rawWifiSignalStrength:rawBridgeNodeOnline:rawBridgeNodeSignalStrength:rawUptime:rawConnectionUptime:rawBatteryHealth:rawLastConnectionResetCause:rawLightSourceLifespan:rawLightSourceLifespanLeft:)"
     ResultType: "SharedCoreSuplaChannelState * _Nonnull"
     Parameters:
     - Position: 0
@@ -1245,16 +1259,18 @@ Classes:
     - Position: 10
       Type: "int8_t"
     - Position: 11
-      Type: "int32_t"
+      Type: "int8_t"
     - Position: 12
       Type: "int32_t"
     - Position: 13
-      Type: "int8_t"
+      Type: "int32_t"
     - Position: 14
       Type: "int8_t"
     - Position: 15
-      Type: "int32_t"
+      Type: "int8_t"
     - Position: 16
+      Type: "int32_t"
+    - Position: 17
       Type: "int32_t"
   - Selector: "isEqual:"
     MethodKind: "Instance"
@@ -1285,6 +1301,10 @@ Classes:
   - Name: "FIELD_BATTERYPOWERED"
     PropertyKind: "Instance"
     SwiftName: "FIELD_BATTERYPOWERED"
+    Type: "int32_t"
+  - Name: "FIELD_BATTERY_STATE"
+    PropertyKind: "Instance"
+    SwiftName: "FIELD_BATTERY_STATE"
     Type: "int32_t"
   - Name: "FIELD_BRIDGENODEONLINE"
     PropertyKind: "Instance"
@@ -1339,6 +1359,43 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "serializer()"
     ResultType: "id<SharedCoreKotlinx_serialization_coreKSerializer> _Nonnull"
+- Name: "SharedCoreBatteryState"
+  SwiftBridge: "BatteryState"
+  SwiftName: "__BatteryState"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value_"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "normal"
+    PropertyKind: "Class"
+    SwiftName: "normal"
+    Type: "SharedCoreBatteryState * _Nonnull"
+  - Name: "low"
+    PropertyKind: "Class"
+    SwiftName: "low"
+    Type: "SharedCoreBatteryState * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreBatteryStateCompanion"
+  SwiftName: "__BatteryState.Companion"
+  Properties:
+  - Name: "TAG"
+    PropertyKind: "Instance"
+    SwiftName: "TAG"
+    Type: "NSString * _Nonnull"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreBatteryState * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreLocalizedStringEmpty"
   SwiftName: "LocalizedStringEmpty"
   Methods:
@@ -2253,6 +2310,14 @@ Classes:
     PropertyKind: "Class"
     SwiftName: "channelStatusNotAvailable"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelBatteryLow"
+    PropertyKind: "Class"
+    SwiftName: "channelBatteryLow"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelBatteryLowWithInfo"
+    PropertyKind: "Class"
+    SwiftName: "channelBatteryLowWithInfo"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "channelBatteryLevel"
     PropertyKind: "Class"
     SwiftName: "channelBatteryLevel"
@@ -2436,6 +2501,14 @@ Classes:
   - Name: "channelStateMainsPowered"
     PropertyKind: "Class"
     SwiftName: "channelStateMainsPowered"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelStateBatteryLowValue"
+    PropertyKind: "Class"
+    SwiftName: "channelStateBatteryLowValue"
+    Type: "SharedCoreLocalizedStringId * _Nonnull"
+  - Name: "channelStateBatteryNormalValue"
+    PropertyKind: "Class"
+    SwiftName: "channelStateBatteryNormalValue"
     Type: "SharedCoreLocalizedStringId * _Nonnull"
   - Name: "lastConnectionResetCauseUnknown"
     PropertyKind: "Class"
@@ -5020,10 +5093,14 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "level"
     Type: "SharedCoreInt * _Nullable"
+  - Name: "state"
+    PropertyKind: "Instance"
+    SwiftName: "state"
+    Type: "SharedCoreBatteryState * _Nullable"
   Methods:
-  - Selector: "initWithBatteryPowered:level:health:"
+  - Selector: "initWithBatteryPowered:level:health:state:"
     MethodKind: "Instance"
-    SwiftName: "init(batteryPowered:level:health:)"
+    SwiftName: "init(batteryPowered:level:health:state:)"
     Parameters:
     - Position: 0
       Type: "SharedCoreBoolean * _Nullable"
@@ -5031,9 +5108,11 @@ Classes:
       Type: "SharedCoreInt * _Nullable"
     - Position: 2
       Type: "SharedCoreInt * _Nullable"
-  - Selector: "doCopyBatteryPowered:level:health:"
+    - Position: 3
+      Type: "SharedCoreBatteryState * _Nullable"
+  - Selector: "doCopyBatteryPowered:level:health:state:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(batteryPowered:level:health:)"
+    SwiftName: "doCopy(batteryPowered:level:health:state:)"
     ResultType: "SharedCoreBatteryInfo * _Nonnull"
     Parameters:
     - Position: 0
@@ -5042,6 +5121,8 @@ Classes:
       Type: "SharedCoreInt * _Nullable"
     - Position: 2
       Type: "SharedCoreInt * _Nullable"
+    - Position: 3
+      Type: "SharedCoreBatteryState * _Nullable"
   - Selector: "isEqual:"
     MethodKind: "Instance"
     SwiftName: "isEqual(_:)"
@@ -8012,7 +8093,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8039,7 +8120,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8066,7 +8147,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8093,7 +8174,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8120,7 +8201,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8147,7 +8228,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8174,7 +8255,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8201,7 +8282,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:"
     MethodKind: "Instance"
@@ -8228,7 +8309,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:finalAction:"
     MethodKind: "Instance"
@@ -8257,7 +8338,7 @@ Classes:
   - Name: "progressLabel"
     PropertyKind: "Instance"
     SwiftName: "progressLabel"
-    Type: "id<SharedCoreLocalizedString> _Nullable"
+    Type: "id<SharedCoreLocalizedString> _Nonnull"
   Methods:
   - Selector: "initWithStateHolder:espConfigurationController:finalAction:reconnect:"
     MethodKind: "Instance"
@@ -10212,6 +10293,13 @@ Classes:
     Parameters:
     - Position: 0
       Type: "id<SharedCoreSuplaChannelStatePrintable> _Nonnull"
+  - Selector: "batteryStateString:"
+    MethodKind: "Class"
+    SwiftName: "batteryStateString(_:)"
+    ResultType: "id<SharedCoreLocalizedString> _Nullable"
+    Parameters:
+    - Position: 0
+      Type: "id<SharedCoreSuplaChannelStatePrintable> _Nonnull"
   - Selector: "bridgeNodeOnlineString:"
     MethodKind: "Class"
     SwiftName: "bridgeNodeOnlineString(_:)"
@@ -10229,7 +10317,7 @@ Classes:
   - Selector: "channelIdString:"
     MethodKind: "Class"
     SwiftName: "channelIdString(_:)"
-    ResultType: "id<SharedCoreLocalizedString> _Nullable"
+    ResultType: "id<SharedCoreLocalizedString> _Nonnull"
     Parameters:
     - Position: 0
       Type: "id<SharedCoreSuplaChannelStatePrintable> _Nonnull"
@@ -10869,6 +10957,16 @@ Protocols:
     MethodKind: "Instance"
     SwiftName: "next()"
     ResultType: "id _Nullable"
+- Name: "SharedCoreKotlinComparable"
+  SwiftName: "KotlinComparable"
+  Methods:
+  - Selector: "compareToOther:"
+    MethodKind: "Instance"
+    SwiftName: "compareTo(other:)"
+    ResultType: "int32_t"
+    Parameters:
+    - Position: 0
+      Type: "id _Nullable"
 - Name: "SharedCoreKotlinAnnotation"
   SwiftName: "KotlinAnnotation"
 - Name: "SharedCoreKotlinKClass"
@@ -10907,16 +11005,6 @@ Protocols:
   SwiftName: "KotlinKAnnotatedElement"
 - Name: "SharedCoreKotlinKDeclarationContainer"
   SwiftName: "KotlinKDeclarationContainer"
-- Name: "SharedCoreKotlinComparable"
-  SwiftName: "KotlinComparable"
-  Methods:
-  - Selector: "compareToOther:"
-    MethodKind: "Instance"
-    SwiftName: "compareTo(other:)"
-    ResultType: "int32_t"
-    Parameters:
-    - Position: 0
-      Type: "id _Nullable"
 - Name: "SharedCoreSkie_DispatcherDelegate"
   SwiftName: "Skie_DispatcherDelegate"
   SwiftPrivate: true
@@ -11047,6 +11135,10 @@ Protocols:
     PropertyKind: "Instance"
     SwiftName: "batteryPoweredForPrintable"
     Type: "SharedCoreBoolean * _Nullable"
+  - Name: "batteryStateForPrintable"
+    PropertyKind: "Instance"
+    SwiftName: "batteryStateForPrintable"
+    Type: "SharedCoreBatteryState * _Nullable"
   - Name: "bridgeNodeOnlineForPrintable"
     PropertyKind: "Instance"
     SwiftName: "bridgeNodeOnlineForPrintable"
