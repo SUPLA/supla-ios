@@ -70,8 +70,8 @@ final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordin
         onAuthorized: @escaping () -> Void = {},
         onDismissed: @escaping () -> Void = {}
     ) {
-        Task { @MainActor in
-            request = Request(
+        performOnMainSync {
+            self.request = Request(
                 requestType: .authorize,
                 onAuthorized: onAuthorized,
                 onDismissed: onDismissed
@@ -83,8 +83,8 @@ final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordin
         onAuthorized: @escaping () -> Void = {},
         onDismissed: @escaping () -> Void = {}
     ) {
-        Task { @MainActor in
-            request = Request(
+        performOnMainSync {
+            self.request = Request(
                 requestType: .login,
                 onAuthorized: onAuthorized,
                 onDismissed: onDismissed
@@ -93,12 +93,17 @@ final class AuthorizationCoordinatorImpl: ObservableObject, AuthorizationCoordin
     }
 
     func cancelPendingRequest() {
+        performOnMainSync {
+            self.cancelPendingRequestOnMain()
+        }
+    }
+
+    private func performOnMainSync(_ action: @escaping () -> Void) {
+        // Synchronized to avoid race condition when creating and canceling requests
         if Thread.isMainThread {
-            cancelPendingRequestOnMain()
+            action()
         } else {
-            DispatchQueue.main.async { [weak self] in
-                self?.cancelPendingRequestOnMain()
-            }
+            DispatchQueue.main.sync(execute: action)
         }
     }
 
