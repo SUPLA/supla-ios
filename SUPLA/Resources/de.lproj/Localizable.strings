@@ -281,6 +281,10 @@
 "scene_inactive" = "Szene ist nicht active";
 "channel_battery_level" = "Batteriefüllstand: %d%%";
 "channel_battery_level_with_info" = "Batteriefüllstand (%d - %@): %d%%";
+"channel_battery_low" = "Batteriestand niedrig";
+"channel_battery_low_with_info" = "Batteriestand niedrig (%d - %@)";
+"channel_battery_state_low_value" = "niedrig";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Planen Sie den Austausch.";
 "channel_uv_error" = "Lebensdauer des UV-Strahlers beträgt %.01f%%. Den Strahler austauschen.";
 "channel_lightsource_warning" = "Lebensdauer der Lichtquelle beträgt %.01f%%.";
@@ -597,6 +601,7 @@
 /* State */
 "state_channel_id" = "Kanal-ID";
 "state_battery_level" = "Batteriefüllstand";
+"battery_state" = "Batteriezustand";
 "state_power_supply" = "Stromversorgung";
 "channel_state_battery_powered" = "Batterie";
 "channel_state_main_powered" = "Netz";

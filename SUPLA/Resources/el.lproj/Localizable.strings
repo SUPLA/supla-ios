@@ -295,6 +295,10 @@
 "channel_offline" = "Το κανάλι είναι εκτός σύνδεσης";
 "channel_battery_level" = "Επίπεδο μπαταρίας: %d%%";
 "channel_battery_level_with_info" = "Επίπεδο μπαταρίας (%d - %@): %d%%";
+"channel_battery_low" = "Χαμηλό επίπεδο μπαταρίας";
+"channel_battery_low_with_info" = "Χαμηλό επίπεδο μπαταρίας (%d - %@)";
+"channel_battery_state_low_value" = "χαμηλό";
+"channel_battery_state_normal_value" = "κανονικό";
 "channel_uv_warning" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Προγραμματίστε την αντικατάστασή του.";
 "channel_uv_error" = "Η διάρκεια ζωής του θερμαντικού σώματος uv είναι %.01f%%. Αντικαταστήστε το θερμαντικό σώμα.";
 "channel_lightsource_warning" = "Η διάρκεια ζωής της πηγής φωτός είναι %.01f%%.";
@@ -566,6 +570,7 @@
 /* State */
 "state_channel_id" = "Αναγνωριστικό καναλιού";
 "state_battery_level" = "Επίπεδο μπαταρίας";
+"battery_state" = "Κατάσταση μπαταρίας";
 "state_power_supply" = "Τροφοδοσία";
 "channel_state_battery_powered" = "μπαταρίας";
 "channel_state_main_powered" = "ρεύματος";

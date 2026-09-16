@@ -296,6 +296,10 @@
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería: %d%%";
 "channel_battery_level_with_info" = "Nivel de batería (%d - %@): %d%%";
+"channel_battery_low" = "Nivel de batería bajo";
+"channel_battery_low_with_info" = "Nivel de batería bajo (%d - %@)";
+"channel_battery_state_low_value" = "bajo";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning" = "La vida útil de la lámpara ultravioleta es %.01f %%. Planee su reemplazo.";
 "channel_uv_error" = "La vida útil de la lámpara ultravioleta es %.01f %%. Reemplácela.";
 "channel_lightsource_warning" = "La vida útil de la fuente de luz es %.01f %%.";
@@ -565,6 +569,7 @@
 /* State */
 "state_channel_id" = "ID del Canal";
 "state_battery_level" = "Nivel de batería";
+"battery_state" = "Estado de la batería";
 "state_power_supply" = "Alimentación";
 "channel_state_battery_powered" = "a pilas";
 "channel_state_main_powered" = "de red";

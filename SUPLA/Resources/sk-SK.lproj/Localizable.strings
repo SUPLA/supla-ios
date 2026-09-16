@@ -295,6 +295,10 @@
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie: %d%%";
 "channel_battery_level_with_info" = "Úroveň batérie (%d - %@): %d%%";
+"channel_battery_low" = "Nízka úroveň batérie";
+"channel_battery_low_with_info" = "Nízka úroveň batérie (%d - %@)";
+"channel_battery_state_low_value" = "nízka";
+"channel_battery_state_normal_value" = "normálna";
 "channel_uv_warning" = "Životnosť UV žiariča je %.01f%%. Naplánujte jeho výmenu.";
 "channel_uv_error" = "Životnosť UV žiariča je %.01f%%. Vymeň žiarič.";
 "channel_lightsource_warning" = "Životnosť svetelného zdroja je %.01f%%.";
@@ -564,6 +568,7 @@
 /* State */
 "state_channel_id" = "ID kanála";
 "state_battery_level" = "Úroveň batérie";
+"battery_state" = "Stav batérie";
 "state_power_supply" = "Napájanie";
 "channel_state_battery_powered" = "batériové";
 "channel_state_main_powered" = "sieťové";

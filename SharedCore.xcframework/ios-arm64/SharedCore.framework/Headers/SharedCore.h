@@ -2273,7 +2273,7 @@ __attribute__((swift_name("BatteryState.Companion")))
 + (instancetype)alloc __attribute__((unavailable));
 + (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
 + (instancetype)companion __attribute__((swift_name("init()")));
-- (SharedCoreBatteryState *)fromValue:(int32_t)value __attribute__((swift_name("from(value:)")));
+- (SharedCoreBatteryState * _Nullable)fromValue:(SharedCoreInt * _Nullable)value __attribute__((swift_name("from(value:)")));
 @end
 
 __attribute__((objc_subclassing_restricted))

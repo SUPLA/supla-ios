@@ -99,6 +99,10 @@ extension LocalizedStringId {
 
         case .channelBatteryLevel: Strings.General.Channel.batteryLevel
         case .channelBatteryLevelWithInfo: Strings.General.Channel.batteryLevelWithInfo
+        case .channelBatteryLow: Strings.General.Channel.batteryLow
+        case .channelBatteryLowWithInfo: Strings.General.Channel.batteryLowWithInfo
+        case .channelStateBatteryLowValue: Strings.General.Channel.batteryStateLowValue
+        case .channelStateBatteryNormalValue: Strings.General.Channel.batteryStateNormalValue
 
         case .motorProblem: Strings.RollerShutterDetail.motorProblem
         case .calibrationLost: Strings.RollerShutterDetail.calibrationLost

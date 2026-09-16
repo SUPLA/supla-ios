@@ -295,6 +295,10 @@
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau: %d%%";
 "channel_battery_level_with_info" = "Batterijniveau (%d - %@): %d%%";
+"channel_battery_low" = "Batterijniveau laag";
+"channel_battery_low_with_info" = "Batterijniveau laag (%d - %@)";
+"channel_battery_state_low_value" = "laag";
+"channel_battery_state_normal_value" = "normaal";
 "channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
 "channel_uv_error" = "De levensduur van het uv-belichtingstoestel bedraagt %.01f%%. Vervang de stralingsbuis.";
 "channel_lightsource_warning" = "De levensduur van de lichtbron is %.01f%%.";
@@ -565,6 +569,7 @@
 /* State */
 "state_channel_id" = "Kanaal id";
 "state_battery_level" = "Batterijniveau";
+"battery_state" = "Batterijstatus";
 "state_power_supply" = "Voeding";
 "channel_state_battery_powered" = "batterij";
 "channel_state_main_powered" = "netstroom";

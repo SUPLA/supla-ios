@@ -295,6 +295,10 @@
 "channel_offline" = "La chaîne est hors ligne";
 "channel_battery_level" = "Livello batteria: %d%%";
 "channel_battery_level_with_info" = "Livello batteria (%d - %@): %d%%";
+"channel_battery_low" = "Niveau de batterie faible";
+"channel_battery_low_with_info" = "Niveau de batterie faible (%d - %@)";
+"channel_battery_state_low_value" = "faible";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning" = "La durée de vie de l'illuminateur uv est de %.01f%%. Planifiez son remplacement.";
 "channel_uv_error" = "La durée de vie de l'illuminateur uv est de %.01f%%. Remplacez le radiateur.";
 "channel_lightsource_warning" = "La durée de vie de la source lumineuse est de %.01f%%.";
@@ -566,6 +570,7 @@
 /* State */
 "state_channel_id" = "Id du canal";
 "state_battery_level" = "Niveau de batterie";
+"battery_state" = "État de la batterie";
 "state_power_supply" = "Alimentation";
 "channel_state_battery_powered" = "par pile";
 "channel_state_main_powered" = "sur secteur";

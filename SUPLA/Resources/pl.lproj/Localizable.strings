@@ -306,6 +306,10 @@
 "scene_inactive" = "Scena jest nieaktywna";
 "channel_battery_level" = "Poziom baterii: %d%%";
 "channel_battery_level_with_info" = "Poziom baterii (%d - %@): %d%%";
+"channel_battery_low" = "Niski poziom baterii";
+"channel_battery_low_with_info" = "Niski poziom baterii (%d - %@)";
+"channel_battery_state_low_value" = "niski";
+"channel_battery_state_normal_value" = "normalny";
 "channel_uv_warning1" = "Żywotność promiennika uv wynosi %.01f%%. Zaplanuj jego wymianę.";
 "channel_uv_warning2" = "Żywotność promiennika uv wynosi %.01f%%. Wymień promiennik.";
 "channel_lightsource_warning" = "Żywotność źródła światła wynosi %.01f%%.";
@@ -631,6 +635,7 @@
 /* State */
 "state_channel_id" = "Id kanału";
 "state_battery_level" = "Poziom baterii";
+"battery_state" = "Stan baterii";
 "state_power_supply" = "Zasilanie";
 "channel_state_battery_powered" = "bateryjne";
 "channel_state_main_powered" = "sieciowe";

@@ -297,6 +297,10 @@
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis: %d%%";
 "channel_battery_level_with_info" = "Baterijos lygis (%d - %@): %d%%";
+"channel_battery_low" = "Žemas baterijos lygis";
+"channel_battery_low_with_info" = "Žemas baterijos lygis (%d - %@)";
+"channel_battery_state_low_value" = "žema";
+"channel_battery_state_normal_value" = "normali";
 "channel_uv_warning" = "UV spinduolio tarnavimo laikas tai %.01f%%. Suplanuoti jo pakeitimą.";
 "channel_uv_error" = "UV spinduolio tarnavimo laikas tai %.01f%%. Pakeisti spinduolį.";
 "channel_lightsource_warning" = "Šviesos šaltinio tarnavimo laikas tai %.01f%%.";
@@ -567,6 +571,7 @@
 /* State */
 "state_channel_id" = "Kanalo ID";
 "state_battery_level" = "Baterijos lygis";
+"battery_state" = "Baterijos būsena";
 "state_power_supply" = "Maitinimas";
 "channel_state_battery_powered" = "iš baterijų";
 "channel_state_main_powered" = "iš tinklo";

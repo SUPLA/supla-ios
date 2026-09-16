@@ -398,6 +398,10 @@ struct Strings {
             
             static let batteryLevel = "channel_battery_level".toLocalized()
             static let batteryLevelWithInfo = "channel_battery_level_with_info".toLocalized()
+            static let batteryLow = "channel_battery_low".toLocalized()
+            static let batteryLowWithInfo = "channel_battery_low_with_info".toLocalized()
+            static let batteryStateLowValue = "channel_battery_state_low_value".toLocalized()
+            static let batteryStateNormalValue = "channel_battery_state_normal_value".toLocalized()
             
             static let statusAwaiting = "channel_status_awaiting".toLocalized()
             static let statusUpdating = "channel_status_updating".toLocalized()
@@ -596,6 +600,7 @@ struct Strings {
         static let ipAddress = "state_ip_address".toLocalized()
         static let macAddress = "state_mac_address".toLocalized()
         static let batteryLevel = "state_battery_level".toLocalized()
+        static let batteryState = "battery_state".toLocalized()
         static let wifiRssi = "state_wifi_rssi".toLocalized()
         static let wifiSignalStrength = "state_wifi_signal_strength".toLocalized()
         static let bridgeNodeOnline = "state_bridge_node_online".toLocalized()
