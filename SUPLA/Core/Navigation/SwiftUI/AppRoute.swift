@@ -73,6 +73,8 @@ extension AppRoute {
              .addWizard,
              .zWave,
              .profile,
+             .about,
+             .notificationsLog,
              .deviceCatalog: .blocked
 
         default: .allowed

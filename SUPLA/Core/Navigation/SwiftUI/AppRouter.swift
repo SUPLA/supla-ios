@@ -148,6 +148,7 @@ class AppRouter: ObservableObject {
     }
 
     private func showConnectionStatus() {
+        authorizationCoordinator.cancelPendingRequest()
         path.removeAll()
         root = .status
     }
