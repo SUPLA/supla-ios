@@ -49,7 +49,33 @@ private final class StatusBarHostingController<Content: View>: UIHostingControll
 
 private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
 private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
-private let BACKGROUND_DISCONNECT_TIMEOUT_S: TimeInterval = 3
+
+struct BackgroundDisconnectState {
+    private(set) var isInProgress = false
+    private var pendingActivationEvent: SuplaAppEvent?
+
+    mutating func start() -> Bool {
+        pendingActivationEvent = nil
+
+        guard !isInProgress else { return false }
+
+        isInProgress = true
+        return true
+    }
+
+    mutating func handleActivation(_ event: SuplaAppEvent) -> SuplaAppEvent? {
+        guard isInProgress else { return event }
+
+        pendingActivationEvent = event
+        return nil
+    }
+
+    mutating func finish() -> SuplaAppEvent? {
+        isInProgress = false
+        defer { pendingActivationEvent = nil }
+        return pendingActivationEvent
+    }
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var settings: GlobalSettings
@@ -62,6 +88,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     private var wasInBackground = true
+    private var backgroundDisconnectState = BackgroundDisconnectState()
+    private var backgroundTask = UIBackgroundTaskIdentifier.invalid
     private var backgroundUnlockedTime: Double {
         #if DEBUG
         BACKGROUND_UNLOCKED_TIME_DEBUG_S
@@ -128,16 +156,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
+        let activationEvent: SuplaAppEvent
         if wasInBackground && settings.lockScreenSettings.pinForAppRequired,
            let backgroundEntryTime = settings.backgroundEntryTime,
            dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
         {
-            suplaAppStateHolder.handle(event: .lock)
+            activationEvent = .lock
         } else {
-            suplaAppStateHolder.handle(event: .onStart)
+            activationEvent = .onStart
         }
 
         wasInBackground = false
+
+        if let event = backgroundDisconnectState.handleActivation(activationEvent) {
+            suplaAppStateHolder.handle(event: event)
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -151,36 +184,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
 
-        waitForDisconnectInBackground(reason: .appInBackground)
+        disconnectInBackground(reason: .appInBackground)
     }
 
-    private func waitForDisconnectInBackground(reason: SuplaAppState.Reason) {
-        var backgroundTask = UIBackgroundTaskIdentifier.invalid
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "Disconnect") {
-            if (backgroundTask != .invalid) {
-                UIApplication.shared.endBackgroundTask(backgroundTask)
-                backgroundTask = .invalid
-            }
-        }
+    private func disconnectInBackground(reason: SuplaAppState.Reason) {
+        guard backgroundDisconnectState.start() else { return }
 
-        let group = DispatchGroup()
-        group.enter()
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "Disconnect") { [weak self] in
+            self?.endBackgroundTask()
+        }
 
         let disconnectUseCase = disconnectUseCase
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             disconnectUseCase.invokeSynchronous(reason: reason)
-            group.leave()
-        }
 
-        let deadline = Date().addingTimeInterval(BACKGROUND_DISCONNECT_TIMEOUT_S)
-        while (group.wait(timeout: .now()) == .timedOut && Date() < deadline) {
-            RunLoop.current.run(mode: .default, before: Date().addingTimeInterval(0.01))
+            DispatchQueue.main.async {
+                self?.backgroundDisconnectDidFinish()
+            }
         }
+    }
 
-        if (backgroundTask != .invalid) {
-            UIApplication.shared.endBackgroundTask(backgroundTask)
-            backgroundTask = .invalid
+    private func backgroundDisconnectDidFinish() {
+        let activationEvent = backgroundDisconnectState.finish()
+        endBackgroundTask()
+
+        if let activationEvent {
+            suplaAppStateHolder.handle(event: activationEvent)
         }
+    }
+
+    private func endBackgroundTask() {
+        guard backgroundTask != .invalid else { return }
+
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = .invalid
     }
 
     private func handleDeepLink(_ url: URL) {
