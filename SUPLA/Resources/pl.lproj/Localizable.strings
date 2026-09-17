@@ -540,7 +540,7 @@
 "lock_screen_pin_locked" = "Zbyt wiele błędnych prób. Pin został zablokowany na %@.";
 
 /* Device Catalog */
-"device_list_url" = "https://www.supla.org/pl/devices";
+"device_list_url" = "https://supla.org/pl/devices";
 
 /* About */
 "about_version" = "wersja %@";

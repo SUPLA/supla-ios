@@ -507,7 +507,7 @@
 "lock_screen_pin_locked" = "Zu viele Fehlversuche. PIN-Eingabe für %@ gesperrt.";
 
 /* Device Catalog */
-"device_list_url" = "https://www.supla.org/de/devices";
+"device_list_url" = "https://supla.org/de/devices";
 
 /* About */
 "about_version" = "version %@";

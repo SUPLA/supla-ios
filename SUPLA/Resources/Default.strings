@@ -368,7 +368,7 @@
 "lock_screen_pin_locked" = "To many failures. PIN entry locked for %@.";
 
 /* Device Catalog */
-"device_list_url" = "https://www.supla.org/en/devices";
+"device_list_url" = "https://supla.org/en/devices";
 
 /* About */
 "about_version" = "version %@";
