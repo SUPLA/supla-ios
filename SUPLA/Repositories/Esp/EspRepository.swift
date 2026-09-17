@@ -18,6 +18,7 @@
 
 import Alamofire
 import Collections
+import Security
 import SharedCore
 
 protocol EspRepository {
@@ -355,6 +356,19 @@ private extension Error {
 
         if localizedDescription.lowercased().contains("certificate pinning failure") {
             return CertificateErrorType.CertificatePinMismatch.shared
+        }
+
+        if nsError.domain == NSOSStatusErrorDomain {
+            switch OSStatus(nsError.code) {
+            case errSecCertificateExpired:
+                return CertificateErrorType.CertificateExpired.shared
+            case errSecCertificateNotValidYet:
+                return CertificateErrorType.CertificateNotYetValid.shared
+            case errSecCertificateRevoked:
+                return CertificateErrorType.CertificateRevoked.shared
+            default:
+                return nil
+            }
         }
 
         guard nsError.domain == NSURLErrorDomain else {
