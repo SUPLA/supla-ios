@@ -1638,6 +1638,7 @@
 		C0DE1570000000000000000A /* MainListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE1570000000000000001A /* MainListItemView.swift */; };
 		C0DE1570000000000000000B /* MainListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE1570000000000000001B /* MainListViewModel.swift */; };
 		C0DE20260908000100000102 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260908000100000101 /* AppRouterTests.swift */; };
+		C0DE20260917000100000102 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260917000100000101 /* SceneDelegateTests.swift */; };
 		D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */; };
 /* End PBXBuildFile section */
 
@@ -3494,6 +3495,7 @@
 		C0DE1570000000000000001A /* MainListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemView.swift; sourceTree = "<group>"; };
 		C0DE1570000000000000001B /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
 		C0DE20260908000100000101 /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
+		C0DE20260917000100000101 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -5155,6 +5157,7 @@
 		A54A06912AFB73C000C03DBC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C0DE20260917000100000101 /* SceneDelegateTests.swift */,
 				A55A8DCE2BB440F700C540D4 /* UI */,
 				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
 				C0DE20260908000100000103 /* Navigation */,
@@ -9982,6 +9985,7 @@
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
 				C0DE20260908000100000102 /* AppRouterTests.swift in Sources */,
+				C0DE20260917000100000102 /* SceneDelegateTests.swift in Sources */,
 				A54A06692AF527DB00C03DBC /* UserStateHolderMock.swift in Sources */,
 				A5D7129C2C4123EF00A8EF52 /* MockReturns.swift in Sources */,
 				A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */,
