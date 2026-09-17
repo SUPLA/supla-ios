@@ -538,9 +538,6 @@
 "biometric_prompt_subtitle" = "Barmaq izi ilə açın";
 "lock_screen_pin_locked" = "Çox sayda səhv. PIN daxil etmə %@ müddətinə bloklandı.";
 
-/* Device Catalog */
-"device_list_url" = "https://www.supla.org/az/devices";
-
 /* About */
 "about_version" = "versiya %@";
 "about_license" = "Bu proqram pulsuz proqram təminatıdır; onu GNU Ümumi İcazə Sazişi şərtlərinə uyğun olaraq yenidən paylaya və/və ya dəyişdirə bilərsiniz; Free Software Foundation tərəfindən nəşr edilmiş; ya Lisenziyanın 2-ci versiyası, ya da (sizin seçiminizlə) istənilən daha sonrakı versiya.\n\nBu proqram faydalı olacağı ümidilə paylanır, amma HEÇ BİR ZƏMANƏT olmadan; hətta TİCARİLİK və ya MÜƏYYƏN MƏQSƏD ÜÇÜN YARARLI OLMAZLIQ zəmanəti daxil deyil. Daha ətraflı məlumat üçün GNU Ümumi İcazə Sazişinə baxın.\n\nBu proqramla birlikdə GNU Ümumi İcazə Sazişi nüsxəsini almalı idiniz; əgər almamısınızsa, Free Software Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA  02111–1307, ABŞ-a yazın.";
