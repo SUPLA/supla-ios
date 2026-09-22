@@ -63,7 +63,7 @@ struct MainListItemView: SwiftUI.View {
                 onClick: onLocationClick,
                 onLongClick: onLocationLongClick
             )
-        case .channel(let item), .group(let item):
+        case .default(let item):
             IconValueListItemView(
                 item: item,
                 onInfoClick: onInfoClick,

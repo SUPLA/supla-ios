@@ -43,8 +43,6 @@ extension GroupListFeature {
         }
 
         func onItemClick(_ item: MainListItem) {
-            guard case .group = item else { return }
-
             readGroupByRemoteIdUseCase
                 .invoke(remoteId: item.remoteId)
                 .asDriverWithoutError()
@@ -142,8 +140,6 @@ extension GroupListFeature {
         }
 
         private func onButtonClicked(buttonType: CellButtonType, item: MainListItem) {
-            guard case .group = item else { return }
-
             readGroupByRemoteIdUseCase
                 .invoke(remoteId: item.remoteId)
                 .flatMapFirstWeak(with: self) { owner, group in

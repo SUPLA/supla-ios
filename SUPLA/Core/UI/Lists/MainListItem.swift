@@ -20,8 +20,7 @@ import Foundation
 import SharedCore
 
 enum MainListItem: Equatable, Identifiable {
-    case channel(DefaultListItem)
-    case group(DefaultListItem)
+    case `default`(DefaultListItem)
     case scene(SceneListItem)
     case location(LocationListItem)
     case hvacThermostat(HvacThermostatListItem)
@@ -32,8 +31,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var key: String {
         switch (self) {
-        case .channel(let item): "C\(item.remoteId)"
-        case .group(let item): "G\(item.remoteId)"
+        case .default(let item): "C\(item.remoteId)"
         case .scene(let item): "S\(item.remoteId)"
         case .location(let item): "L\(item.remoteId)"
         case .hvacThermostat(let item): "C\(item.base.remoteId)"
@@ -44,7 +42,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var remoteId: Int32 {
         switch (self) {
-        case .channel(let item), .group(let item): item.remoteId
+        case .default(let item): item.remoteId
         case .scene(let item): item.remoteId
         case .location(let item): item.remoteId
         case .hvacThermostat(let item): item.base.remoteId
@@ -55,7 +53,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var profileId: Int32 {
         switch (self) {
-        case .channel(let item), .group(let item): item.profileId
+        case .default(let item): item.profileId
         case .scene(let item): item.profileId
         case .location(let item): item.profileId
         case .hvacThermostat(let item): item.base.profileId
@@ -66,7 +64,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var userCaption: String {
         switch (self) {
-        case .channel(let item), .group(let item): item.userCaption
+        case .default(let item): item.userCaption
         case .scene(let item): item.userCaption
         case .location(let item): item.userCaption
         case .hvacThermostat(let item): item.base.userCaption
@@ -77,7 +75,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var locationCaption: String? {
         switch (self) {
-        case .channel(let item), .group(let item):
+        case .default(let item):
             item.locationCaption
         case .scene(let item):
             item.locationCaption
@@ -94,7 +92,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var locationId: Int32? {
         switch (self) {
-        case .channel(let item), .group(let item):
+        case .default(let item):
             item.locationId
         case .scene(let item):
             Int32(item.locationId)
@@ -111,7 +109,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var leftButtonTitle: String? {
         switch (self) {
-        case .channel(let item), .group(let item):
+        case .default(let item):
             item.leftButtonTitle
         case .scene(let item):
             item.leftButtonTitle
@@ -128,7 +126,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var rightButtonTitle: String? {
         switch (self) {
-        case .channel(let item), .group(let item):
+        case .default(let item):
             item.rightButtonTitle
         case .scene(let item):
             item.rightButtonTitle
@@ -145,7 +143,7 @@ enum MainListItem: Equatable, Identifiable {
 
     var online: Bool {
         switch (self) {
-        case .channel(let item), .group(let item):
+        case .default(let item):
             item.status.online
         case .scene(let item):
             item.status.online
@@ -346,7 +344,7 @@ enum MainListFilter {
 private extension MainListItem {
     var searchableText: String {
         switch self {
-        case .channel(let item), .group(let item):
+        case .default(let item):
             return item.title
         case .scene(let item):
             return item.userCaption

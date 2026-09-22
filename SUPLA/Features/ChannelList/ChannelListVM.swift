@@ -53,16 +53,11 @@ extension ChannelListFeature {
         }
 
         func onItemClick(_ item: MainListItem) {
-            switch (item) {
-            case .channel, .hvacThermostat, .heatpolThermostat, .doubleValue:
-                readChannelWithChildrenUseCase
-                    .invoke(remoteId: item.remoteId)
-                    .asDriverWithoutError()
-                    .drive(onNext: { [weak self] in self?.handleClickedItem($0) })
-                    .disposed(by: disposeBag)
-            default:
-                break
-            }
+            readChannelWithChildrenUseCase
+                .invoke(remoteId: item.remoteId)
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] in self?.handleClickedItem($0) })
+                .disposed(by: disposeBag)
         }
 
         func onIssueClick(_ issues: ListItemIssues) {

@@ -81,7 +81,7 @@ struct ChannelToMainListItem {
                  .hvacDomesticHotWater:
                 createHvacThermostatListItem(channelWithChildren: channelWithChildren, base: base)
             default:
-                MainListItem.channel(base)
+                MainListItem.default(base)
             }
         }
 

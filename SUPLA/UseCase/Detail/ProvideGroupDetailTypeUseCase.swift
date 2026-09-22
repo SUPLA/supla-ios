@@ -22,6 +22,9 @@ protocol ProvideGroupDetailTypeUseCase {
 
 final class ProvideGroupDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, ProvideGroupDetailTypeUseCase {
     func invoke(group: SAChannelGroup) -> DetailType? {
-        provide(group)
+        switch (group.func) {
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: .standardDetail(pages: [.thermostatHeatpolGeneral])
+        default: provide(group)
+        }
     }
 }

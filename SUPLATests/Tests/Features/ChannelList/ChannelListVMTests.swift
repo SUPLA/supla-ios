@@ -383,7 +383,7 @@ final class ChannelListVMTests: SuplaCore.ViewModelTest<ChannelListFeature.ViewS
         locationCaption: String = "Location",
         title: String = "Title"
     ) -> MainListItem {
-        .channel(
+        .default(
             DefaultListItem(
                 remoteId: remoteId,
                 profileId: profileId,
