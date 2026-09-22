@@ -16,15 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 import UIKit
 
 @objc
 class DetailViewController: BaseViewController {
-    
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
     
     var interactionController: UIViewControllerInteractiveTransitioning? {
         return _panController
@@ -34,26 +33,22 @@ class DetailViewController: BaseViewController {
     private var _panController: UIPercentDrivenInteractiveTransition?
     private var inNewDetail = false
     
-    init(detailViewType: LegacyDetailType, channelBase: SAChannelBase) {
+    init(detailViewType: LegacyDetailType, remoteId: Int32, subjectType: SubjectType) {
         super.init(nibName: nil, bundle: nil)
-        _detailView = self.detailView(forDetailType: detailViewType)!
+        _detailView = detailView(forDetailType: detailViewType)!
         _detailView.detailViewInit()
-        _detailView.channelBase = channelBase
-        
-        _detailView.viewController = self
-    }
-    
-    init(detailViewType: LegacyDetailType, remoteId: Int32) {
-        super.init(nibName: nil, bundle: nil)
-        _detailView = self.detailView(forDetailType: detailViewType)!
-        _detailView.detailViewInit()
-        _detailView.channelBase = try! readChannelByRemoteIdUseCase.invoke(remoteId: remoteId).subscribeSynchronous()
+        if (subjectType == .channel) {
+            _detailView.channelBase = try! readChannelByRemoteIdUseCase.invoke(remoteId: remoteId).subscribeSynchronous()
+        } else if (subjectType == .group) {
+            _detailView.channelBase = try! readGroupByRemoteIdUseCase.invoke(remoteId: remoteId).subscribeSynchronous()
+        }
         
         _detailView.viewController = self
         
         inNewDetail = true
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -95,7 +90,7 @@ class DetailViewController: BaseViewController {
     }
     
     private func detailView(forDetailType detailType: LegacyDetailType) -> SADetailView? {
-        switch(detailType) {
+        switch (detailType) {
         case .thermostat_hp:
             return Bundle.main.loadNibNamed("HomePlusDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .digiglass:

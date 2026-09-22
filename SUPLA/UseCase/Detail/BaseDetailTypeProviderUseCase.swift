@@ -74,9 +74,6 @@ class BaseDetailTypeProviderUseCase {
         case SUPLA_CHANNELFNC_HUMIDITY:
             return .standardDetail(pages: [.humidityHistory])
         case
-            SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-            return .legacy(type: .thermostat_hp)
-        case
             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL,
             SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
             return .legacy(type: .digiglass)

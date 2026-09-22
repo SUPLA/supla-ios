@@ -314,7 +314,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
     }
 
     private func channelItem(remoteId: Int32, title: String) -> MainListItem {
-        .channel(
+        .default(
             DefaultListItem(
                 remoteId: remoteId,
                 profileId: 1,

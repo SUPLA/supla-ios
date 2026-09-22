@@ -210,7 +210,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
     }
 
     private func groupItem(remoteId: Int32, profileId: Int32 = 1, title: String = "Title") -> MainListItem {
-        .group(
+        .default(
             DefaultListItem(
                 remoteId: remoteId,
                 profileId: profileId,

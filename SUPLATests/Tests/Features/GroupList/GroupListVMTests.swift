@@ -275,7 +275,7 @@ final class GroupListVMTests: SuplaCore.ViewModelTest<GroupListFeature.ViewState
         locationCaption: String = "Location",
         title: String = "Title"
     ) -> MainListItem {
-        .group(
+        .default(
             DefaultListItem(
                 remoteId: remoteId,
                 profileId: profileId,

@@ -26,7 +26,8 @@ struct DetailViewControllerScreen: SwiftUI.View {
         SuplaCore.ViewControllerHost {
             DetailViewController(
                 detailViewType: detailViewType,
-                remoteId: itemBundle.remoteId
+                remoteId: itemBundle.remoteId,
+                subjectType: itemBundle.subjectType
             )
         }
     }
