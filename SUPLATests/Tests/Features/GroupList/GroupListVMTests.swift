@@ -153,18 +153,19 @@ final class GroupListVMTests: SuplaCore.ViewModelTest<GroupListFeature.ViewState
         // given
         let firstItem = groupItem(remoteId: 2, locationCaption: "Caption")
         let secondItem = groupItem(remoteId: 4, locationCaption: "Caption")
-        let reloadedItems = [secondItem, firstItem]
+        let movedItems = [secondItem, firstItem]
+        let reloadedItems = movedItems
 
-        swapGroupPositionsUseCase.observable = Observable.just(())
+        swapGroupPositionsUseCase.invokeMock.returns = .single(Observable.just(()))
         createProfileGroupsListUseCase.invokeMock.returns = .single(Observable.just(reloadedItems))
 
         // when
-        viewModel.onMove(firstItem, secondItem)
+        viewModel.onMove(movedItems, firstItem.remoteId)
 
         // then
-        XCTAssertEqual(swapGroupPositionsUseCase.firstRemoteIdArray, [2])
-        XCTAssertEqual(swapGroupPositionsUseCase.secondRemoteIdArray, [4])
-        XCTAssertEqual(swapGroupPositionsUseCase.locationCaptionArray, ["Caption"])
+        XCTAssertEqual(swapGroupPositionsUseCase.invokeMock.parameters.count, 1)
+        XCTAssertEqual(swapGroupPositionsUseCase.invokeMock.parameters.first?.0, movedItems)
+        XCTAssertEqual(swapGroupPositionsUseCase.invokeMock.parameters.first?.1, firstItem.remoteId)
         createProfileGroupsListUseCase.invokeMock.verifyCalls(1)
         XCTAssertEqual(viewModel.state.items, reloadedItems)
     }

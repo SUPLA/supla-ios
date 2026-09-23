@@ -31,9 +31,25 @@ protocol SceneRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater w
     func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void>
 }
 
 final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        let request = SAScene.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile.isActive = 1 AND location.location_id IN %@", locationIds))
+            .ordered(by: "sceneId")
+
+        return query(request)
+            .flatMapFirst { scenes in
+                let positions = orderedRemoteIds.enumerated().reduce(into: [Int32: Int32]()) { result, entry in
+                    result[entry.element] = Int32(entry.offset)
+                }
+                scenes.forEach { $0.sortOrder = positions[$0.sceneId] ?? 0 }
+                return self.save()
+            }
+    }
+
 
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
         getAllVisibleScenes(forProfileId: profile.id)

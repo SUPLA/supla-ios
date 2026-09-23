@@ -22,7 +22,7 @@ extension SceneListFeature {
     protocol ViewDelegate {
         func onLeftButtonClick(_ item: MainListItem)
         func onRightButtonClick(_ item: MainListItem)
-        func onMove(_ sourceItem: MainListItem, _ destinationItem: MainListItem)
+        func onMove(_ items: [MainListItem], _ movedItemId: Int32)
         func onLocationClick(_ item: LocationListItem)
         func onNoContentButtonClick()
     }
@@ -70,7 +70,7 @@ extension SceneListFeature {
                 onLocationLongClick: { item in captionChangeDialogViewModel.show(locationRemoteId: item.remoteId) },
                 onLeftButtonClick: { item in delegate?.onLeftButtonClick(item) },
                 onRightButtonClick: { item in delegate?.onRightButtonClick(item) },
-                onMove: { sourceItem, destinationItem in delegate?.onMove(sourceItem, destinationItem) }
+                onMove: { items, movedItemId in delegate?.onMove(items, movedItemId) }
             )
         }
     }

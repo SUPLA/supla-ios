@@ -78,7 +78,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
         channelRelationRepository.getParentsMapReturns = Observable.just([1: [relation]])
         createChannelWithChildrenUseCase.invokeMock.returns = .single(channel1WithChildren)
-        channelToMainListItemUseCase.invokeWithLocationMock.returns = .many([channel1Item, channel2Item])
+        channelToMainListItemUseCase.invokeMock.returns = .many([channel1Item, channel2Item])
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -98,10 +98,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.0, channel1)
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.1, [channel1, channel2, channel3])
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [relation])
-        assertMappedItems([
-            (channel1WithChildren, location1),
-            (ChannelWithChildren(channel: channel2), location2)
-        ])
+        assertMappedItems([channel1WithChildren, ChannelWithChildren(channel: channel2)])
     }
 
     func test_shouldNotProvideItems_whenLocationIsCollapsed() {
@@ -124,7 +121,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         settings.hideUnavailableChannelsMock.returns = .single(true)
         channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2]))
         channelRelationRepository.getParentsMapReturns = Observable.just([:])
-        channelToMainListItemUseCase.invokeWithLocationMock.returns = .single(channel2Item)
+        channelToMainListItemUseCase.invokeMock.returns = .single(channel2Item)
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -140,10 +137,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         ])
         XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, false)])
         createChannelWithChildrenUseCase.invokeMock.verifyCalls(0)
-        assertMappedItems([
-            (ChannelWithChildren(channel: channel1), location1),
-            (ChannelWithChildren(channel: channel2), location2)
-        ])
+        assertMappedItems([ChannelWithChildren(channel: channel1), ChannelWithChildren(channel: channel2)])
     }
 
     func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
@@ -163,7 +157,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         settings.hideUnavailableChannelsMock.returns = .single(false)
         channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1]))
         channelRelationRepository.getParentsMapReturns = Observable.just([:])
-        channelToMainListItemUseCase.invokeWithLocationMock.returns = .single(channel1Item)
+        channelToMainListItemUseCase.invokeMock.returns = .single(channel1Item)
 
         // when
         useCase.invoke(filter: "Kitchen").subscribe(observer).disposed(by: disposeBag)
@@ -176,9 +170,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        assertMappedItems([
-            (ChannelWithChildren(channel: channel1), location1)
-        ])
+        assertMappedItems([ChannelWithChildren(channel: channel1)])
     }
 
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
@@ -187,18 +179,20 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
 
         let location1 = location(profile: profile, caption: "Location 1", remoteId: 1)
-        let channel1 = channel(remoteId: 1, profile: profile, location: location1)
+        let channel1 = channel(remoteId: 1, profile: profile, location: location1, position: 1)
+        let channel2 = channel(remoteId: 2, profile: profile, location: location1, position: 3)
 
         let location2 = location(profile: profile, caption: "Location 1", remoteId: 2)
-        let channel2 = channel(remoteId: 2, profile: profile, location: location2)
+        let channel3 = channel(remoteId: 3, profile: profile, location: location2, position: 2)
 
-        let channel1Item = channelItem(remoteId: 1, title: "Channel 1")
-        let channel2Item = channelItem(remoteId: 2, title: "Channel 2")
+        let channel1Item = channelItem(remoteId: 1, title: "Channel 1", locationId: 1)
+        let channel2Item = channelItem(remoteId: 2, title: "Channel 2", locationId: 1)
+        let channel3Item = channelItem(remoteId: 3, title: "Channel 3", locationId: 2)
 
         settings.hideUnavailableChannelsMock.returns = .single(false)
-        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2]))
+        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
         channelRelationRepository.getParentsMapReturns = Observable.just([:])
-        channelToMainListItemUseCase.invokeWithLocationMock.returns = .many([channel1Item, channel2Item])
+        channelToMainListItemUseCase.invokeMock.returns = .many([channel1Item, channel3Item, channel2Item])
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -208,14 +202,16 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             .next([
                 locationItem(location1),
                 channel1Item,
+                channel3Item,
                 channel2Item
             ]),
             .completed
         ])
         XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
         assertMappedItems([
-            (ChannelWithChildren(channel: channel1), location1),
-            (ChannelWithChildren(channel: channel2), location1)
+            ChannelWithChildren(channel: channel1),
+            ChannelWithChildren(channel: channel3),
+            ChannelWithChildren(channel: channel2)
         ])
     }
 
@@ -250,7 +246,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             1: [relation1, relation2]
         ])
         createChannelWithChildrenUseCase.invokeMock.returns = .single(channel1WithChildren)
-        channelToMainListItemUseCase.invokeWithLocationMock.returns = .single(channel1Item)
+        channelToMainListItemUseCase.invokeMock.returns = .single(channel1Item)
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -268,9 +264,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.0, channel1)
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.1, [channel1, channel2, channel3])
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [relation1, relation2])
-        assertMappedItems([
-            (channel1WithChildren, location1)
-        ])
+        assertMappedItems([channel1WithChildren])
     }
 
     private func profile(id: Int32 = 1) -> AuthProfileItem {
@@ -293,12 +287,18 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         return location
     }
 
-    private func channel(remoteId: Int32, profile: AuthProfileItem, location: _SALocation) -> SAChannel {
+    private func channel(
+        remoteId: Int32,
+        profile: AuthProfileItem,
+        location: _SALocation,
+        position: Int32 = 0
+    ) -> SAChannel {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.profile = profile
         channel.location = location
         channel.location_id = location.location_id?.int32Value ?? 0
+        channel.position = position
         return channel
     }
 
@@ -313,7 +313,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         )
     }
 
-    private func channelItem(remoteId: Int32, title: String) -> MainListItem {
+    private func channelItem(remoteId: Int32, title: String, locationId: Int32 = 1) -> MainListItem {
         .default(
             DefaultListItem(
                 remoteId: remoteId,
@@ -321,7 +321,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
                 userCaption: title,
                 function: SuplaFunction.companion.from(value: SUPLA_CHANNELFNC_LIGHTSWITCH),
                 locationCaption: "Location",
-                locationId: 1,
+                locationId: locationId,
                 status: .channel(.online),
                 title: title,
                 icon: .suplaIcon(name: ""),
@@ -330,14 +330,14 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         )
     }
 
-    private func assertMappedItems(_ expected: [(SUPLA.ChannelWithChildren, _SALocation)]) {
-        let parameters = channelToMainListItemUseCase.invokeWithLocationMock.parameters
+    private func assertMappedItems(_ expected: [SUPLA.ChannelWithChildren]) {
+        let parameters = channelToMainListItemUseCase.invokeMock.parameters
         XCTAssertEqual(parameters.count, expected.count)
 
         for (parameter, expectedItem) in zip(parameters, expected) {
-            XCTAssertEqual(parameter.0.channel, expectedItem.0.channel)
-            XCTAssertEqual(parameter.0.children, expectedItem.0.children)
-            XCTAssertEqual(parameter.1, expectedItem.1)
+            XCTAssertEqual(parameter.channel, expectedItem.channel)
+            XCTAssertEqual(parameter.children, expectedItem.children)
         }
+        channelToMainListItemUseCase.invokeWithLocationMock.verifyCalls(0)
     }
 }

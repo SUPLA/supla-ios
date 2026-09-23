@@ -59,7 +59,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         let group2Item = groupItem(remoteId: 2, title: "Group 2")
 
         groupRepository.allVisibleGroupsObservable = Observable.just([group1, group2])
-        groupToMainListItemUseCase.invokeWithLocationMock.returns = .many([group1Item, group2Item])
+        groupToMainListItemUseCase.invokeMock.returns = .many([group1Item, group2Item])
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -75,10 +75,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
             .completed
         ])
         XCTAssertEqual(groupRepository.allVisibleGroupsProfilesArray, [profile])
-        assertMappedItems([
-            (group1, location1),
-            (group2, location2)
-        ])
+        assertMappedItems([group1, group2])
     }
 
     func test_shouldNotProvideItems_whenLocationIsCollapsed() {
@@ -99,7 +96,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         let group2Item = groupItem(remoteId: 2, title: "Group 2")
 
         groupRepository.allVisibleGroupsObservable = Observable.just([group1, group2])
-        groupToMainListItemUseCase.invokeWithLocationMock.returns = .single(group2Item)
+        groupToMainListItemUseCase.invokeMock.returns = .single(group2Item)
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -113,11 +110,8 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        groupToMainListItemUseCase.invokeWithLocationMock.verifyCalls(2)
-        assertMappedItems([
-            (group1, location1),
-            (group2, location2)
-        ])
+        groupToMainListItemUseCase.invokeMock.verifyCalls(2)
+        assertMappedItems([group1, group2])
     }
 
     func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
@@ -135,7 +129,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         let group1Item = groupItem(remoteId: 1, title: "Lights")
 
         groupRepository.allVisibleGroupsObservable = Observable.just([group1])
-        groupToMainListItemUseCase.invokeWithLocationMock.returns = .single(group1Item)
+        groupToMainListItemUseCase.invokeMock.returns = .single(group1Item)
 
         // when
         useCase.invoke(filter: "Kitchen").subscribe(observer).disposed(by: disposeBag)
@@ -148,9 +142,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        assertMappedItems([
-            (group1, location1)
-        ])
+        assertMappedItems([group1])
     }
 
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
@@ -159,16 +151,18 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
 
         let location1 = location(profile: profile, caption: "Location", remoteId: 1)
-        let group1 = group(remoteId: 1, profile: profile, location: location1)
+        let group1 = group(remoteId: 1, profile: profile, location: location1, position: 1)
+        let group2 = group(remoteId: 2, profile: profile, location: location1, position: 3)
 
         let location2 = location(profile: profile, caption: "Location", remoteId: 2)
-        let group2 = group(remoteId: 2, profile: profile, location: location2)
+        let group3 = group(remoteId: 3, profile: profile, location: location2, position: 2)
 
-        let group1Item = groupItem(remoteId: 1, title: "Group 1")
-        let group2Item = groupItem(remoteId: 2, title: "Group 2")
+        let group1Item = groupItem(remoteId: 1, title: "Group 1", locationId: 1)
+        let group2Item = groupItem(remoteId: 2, title: "Group 2", locationId: 1)
+        let group3Item = groupItem(remoteId: 3, title: "Group 3", locationId: 2)
 
-        groupRepository.allVisibleGroupsObservable = Observable.just([group1, group2])
-        groupToMainListItemUseCase.invokeWithLocationMock.returns = .many([group1Item, group2Item])
+        groupRepository.allVisibleGroupsObservable = Observable.just([group1, group2, group3])
+        groupToMainListItemUseCase.invokeMock.returns = .many([group1Item, group3Item, group2Item])
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -178,24 +172,22 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
             .next([
                 locationItem(location1),
                 group1Item,
+                group3Item,
                 group2Item
             ]),
             .completed
         ])
-        assertMappedItems([
-            (group1, location1),
-            (group2, location1)
-        ])
+        assertMappedItems([group1, group3, group2])
     }
 
-    private func assertMappedItems(_ expected: [(SAChannelGroup, _SALocation)]) {
-        let parameters = groupToMainListItemUseCase.invokeWithLocationMock.parameters
+    private func assertMappedItems(_ expected: [SAChannelGroup]) {
+        let parameters = groupToMainListItemUseCase.invokeMock.parameters
         XCTAssertEqual(parameters.count, expected.count)
 
         for index in expected.indices {
-            XCTAssertEqual(parameters[index].0, expected[index].0)
-            XCTAssertEqual(parameters[index].1, expected[index].1)
+            XCTAssertEqual(parameters[index], expected[index])
         }
+        groupToMainListItemUseCase.invokeWithLocationMock.verifyCalls(0)
     }
 
     private func locationItem(_ location: _SALocation, inSearch: Bool = false) -> MainListItem {
@@ -209,7 +201,12 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         )
     }
 
-    private func groupItem(remoteId: Int32, profileId: Int32 = 1, title: String = "Title") -> MainListItem {
+    private func groupItem(
+        remoteId: Int32,
+        profileId: Int32 = 1,
+        title: String = "Title",
+        locationId: Int32 = 1
+    ) -> MainListItem {
         .default(
             DefaultListItem(
                 remoteId: remoteId,
@@ -217,7 +214,7 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
                 userCaption: title,
                 function: SuplaFunction.companion.from(value: SUPLA_CHANNELFNC_LIGHTSWITCH),
                 locationCaption: "Location",
-                locationId: 1,
+                locationId: locationId,
                 status: .group(onlinePercentage: 1, activePercentage: 0),
                 title: title,
                 icon: .suplaIcon(name: ""),
@@ -246,11 +243,17 @@ final class CreateProfileGroupsListTests: UseCaseTest<[MainListItem]> {
         return location
     }
 
-    private func group(remoteId: Int32, profile: AuthProfileItem, location: _SALocation) -> SAChannelGroup {
+    private func group(
+        remoteId: Int32,
+        profile: AuthProfileItem,
+        location: _SALocation,
+        position: Int32 = 0
+    ) -> SAChannelGroup {
         let group = SAChannelGroup(testContext: nil)
         group.profile = profile
         group.location = location
         group.remote_id = remoteId
+        group.position = position
         return group
     }
 }

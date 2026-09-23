@@ -20,47 +20,24 @@ import Foundation
 import RxSwift
 
 protocol SwapScenePositionsUseCase {
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void>
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void>
 }
 
 final class SwapScenePositionsUseCaseImpl: SwapScenePositionsUseCase {
-    
+
     @Singleton<SceneRepository> private var sceneRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        return profileRepository.getActiveProfile()
-            .flatMapFirst { profile in
-                self.sceneRepository.getAllVisibleScenes(forProfile: profile, inLocation: locationCaption)
-            }
-            .map { scenes in
-                if (scenes.count < 2) {
-                    return false // nothing to do, there is at most only one channel
-                }
-                guard
-                    let firstScene = scenes.first(where: { $0.sceneId == firstRemoteId }),
-                    let secondScene = scenes.first(where: { $0.sceneId == secondRemoteId }),
-                    let sourcePosition = scenes.firstIndex(of: firstScene),
-                    let destinationPosition = scenes.firstIndex(of: secondScene)
-                else {
-                    return false
-                }
-                
-                var newList = scenes
-                newList.remove(at: sourcePosition)
-                newList.insert(firstScene, at: destinationPosition)
-                for position in 0...newList.count-1 {
-                    newList[position].sortOrder = Int32(position)
-                }
-                
-                return true
-            }
-            .flatMapFirst { save in
-                if (save) {
-                    return self.sceneRepository.save()
-                } else {
-                    return Observable.just(())
-                }
-            }
+
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        guard let sectionItems = items.reorderableSectionItems(
+            movedItemId: movedItemId,
+            isItem: { if case .scene = $0 { true } else { false } }
+        ) else {
+            return .just(())
+        }
+
+        return sceneRepository.updatePositions(
+            locationIds: sectionItems.distinctLocationIds,
+            orderedRemoteIds: sectionItems.map(\.remoteId)
+        )
     }
 }

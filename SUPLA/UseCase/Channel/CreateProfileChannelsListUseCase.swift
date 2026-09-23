@@ -59,32 +59,38 @@ struct CreateProfileChannelsList {
                 return result
             }
 
-            var displayedLocation: _SALocation?
             var items = [MainListItem]()
             let inSearch = MainListFilter.isSearchable(filter)
 
-            for channel in channels {
-                if (allChildrenIds.contains(channel.remote_id)) {
-                    // skip channels which have parent ID.
-                    continue
-                }
-
-                let channelLocation = channel.location!
-                let mappingLocation = displayedLocation?.caption == channelLocation.caption ? displayedLocation! : channelLocation
-                let item = channelItem(channel, channels, parentsMap, location: mappingLocation)
-                if (inSearch && !itemMatches(item, location: channelLocation, filter: filter)) {
-                    continue
-                }
-
-                if (displayedLocation?.location_id != channelLocation.location_id) {
-                    if (displayedLocation == nil || displayedLocation?.caption != channelLocation.caption) {
-                        displayedLocation = channelLocation
-                        items.append(channelLocation.listItem(inSearch: inSearch))
+            for section in channels.toLocationSections(
+                locationOf: { $0.location },
+                positionOf: { $0.position }
+            ) {
+                let visibleChannels = section.items.compactMap { channel -> MainListItem? in
+                    if allChildrenIds.contains(channel.remote_id) {
+                        return nil
                     }
+
+                    guard let item = channelItem(channel, channels, parentsMap) else { return nil }
+                    if inSearch && !itemMatches(item, location: channel.location!, filter: filter) {
+                        return nil
+                    }
+
+                    return item
                 }
 
-                if let displayedLocation, inSearch || !displayedLocation.isCollapsed(flag: .channel) {
-                    items.append(item)
+                guard
+                    !visibleChannels.isEmpty,
+                    let location = section.items
+                        .compactMap(\.location)
+                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                else {
+                    continue
+                }
+
+                items.append(location.listItem(inSearch: inSearch))
+                if inSearch || !location.isCollapsed(flag: .channel) {
+                    items.append(contentsOf: visibleChannels)
                 }
             }
 
@@ -94,18 +100,17 @@ struct CreateProfileChannelsList {
         private func channelItem(
             _ channel: SAChannel,
             _ channels: [SAChannel],
-            _ parentsMap: [Int32: [SAChannelRelation]],
-            location: _SALocation
-        ) -> MainListItem {
+            _ parentsMap: [Int32: [SAChannelRelation]]
+        ) -> MainListItem? {
             if let childrenRelations = parentsMap[channel.remote_id] {
                 let channelWithChildren = createChannelWithChildrenUseCase.invoke(
                     channel,
                     allChannels: channels,
                     relations: childrenRelations
                 )
-                return channelToMainListItemUseCase.invoke(channelWithChildren, location: location)
+                return channelToMainListItemUseCase.invoke(channelWithChildren)
             } else {
-                return channelToMainListItemUseCase.invoke(ChannelWithChildren(channel: channel), location: location)
+                return channelToMainListItemUseCase.invoke(ChannelWithChildren(channel: channel))
             }
         }
 

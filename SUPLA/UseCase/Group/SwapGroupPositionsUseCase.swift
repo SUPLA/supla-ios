@@ -20,47 +20,24 @@ import Foundation
 import RxSwift
 
 protocol SwapGroupPositionsUseCase {
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void>
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void>
 }
 
 final class SwapGroupPositionsUseCaseImpl: SwapGroupPositionsUseCase {
-    
+
     @Singleton<GroupRepository> private var groupRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        return profileRepository.getActiveProfile()
-            .flatMapFirst { profile in
-                self.groupRepository.getAllVisibleGroups(forProfile: profile, inLocation: locationCaption)
-            }
-            .map { groups in
-                if (groups.count < 2) {
-                    return false // nothing to do, there is at most only one channel
-                }
-                guard
-                    let firstGroup = groups.first(where: { $0.remote_id == firstRemoteId }),
-                    let secondGroup = groups.first(where: { $0.remote_id == secondRemoteId }),
-                    let sourcePosition = groups.firstIndex(of: firstGroup),
-                    let destinationPosition = groups.firstIndex(of: secondGroup)
-                else {
-                    return false
-                }
-                
-                var newList = groups
-                newList.remove(at: sourcePosition)
-                newList.insert(firstGroup, at: destinationPosition)
-                for position in 0...newList.count-1 {
-                    newList[position].position = Int32(position)
-                }
-                
-                return true
-            }
-            .flatMapFirst { save in
-                if (save) {
-                    return self.groupRepository.save()
-                } else {
-                    return Observable.just(())
-                }
-            }
+
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        guard let sectionItems = items.reorderableSectionItems(
+            movedItemId: movedItemId,
+            isItem: \.draggable
+        ) else {
+            return .just(())
+        }
+
+        return groupRepository.updatePositions(
+            locationIds: sectionItems.distinctLocationIds,
+            orderedRemoteIds: sectionItems.map(\.remoteId)
+        )
     }
 }

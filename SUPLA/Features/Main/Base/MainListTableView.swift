@@ -58,7 +58,7 @@ final class MainListTableView: UIView {
         var onLocationLongClick: (LocationListItem) -> Void = { _ in }
         var onLeftButtonClick: (MainListItem) -> Void = { _ in }
         var onRightButtonClick: (MainListItem) -> Void = { _ in }
-        var onMove: (MainListItem, MainListItem) -> Void = { _, _ in }
+        var onMove: ([MainListItem], Int32) -> Void = { _, _ in }
     }
 
     @Singleton<RuntimeConfig> private var runtimeConfig
@@ -181,30 +181,23 @@ final class MainListTableView: UIView {
     }
 
     private func isMoveAllowed(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) -> Bool {
-        guard
-            items.indices.contains(sourceIndexPath.row),
-            items.indices.contains(destinationIndexPath.row)
-        else {
-            return false
-        }
+        guard !MainListFilter.isSearchable(searchText) else { return false }
 
-        let source = items[sourceIndexPath.row]
-        let destination = items[destinationIndexPath.row]
-
-        return source.draggable
-            && destination.draggable
-            && source.locationId == destination.locationId
+        return items.canMoveItemWithinSection(
+            from: sourceIndexPath.row,
+            to: destinationIndexPath.row,
+            isItem: \.draggable
+        )
     }
 
     private func moveItem(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         guard isMoveAllowed(from: sourceIndexPath, to: destinationIndexPath) else { return }
 
         let source = items[sourceIndexPath.row]
-        let destination = items[destinationIndexPath.row]
         items.remove(at: sourceIndexPath.row)
         items.insert(source, at: destinationIndexPath.row)
         tableView.moveRow(at: sourceIndexPath, to: destinationIndexPath)
-        callbacks.onMove(source, destination)
+        callbacks.onMove(items, source.remoteId)
     }
 
     private func dispatchScroll(_ delta: CGFloat) {
@@ -279,6 +272,7 @@ extension MainListTableView: UITableViewDelegate {
 extension MainListTableView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard
+            !MainListFilter.isSearchable(searchText),
             items.indices.contains(indexPath.row),
             items[indexPath.row].draggable,
             let cell = tableView.cellForRow(at: indexPath) as? MainListCell,

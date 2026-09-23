@@ -150,18 +150,19 @@ final class SceneListVMTests: SuplaCore.ViewModelTest<SceneListFeature.ViewState
         // given
         let firstItem = sceneItem(remoteId: 2, locationCaption: "Caption")
         let secondItem = sceneItem(remoteId: 4, locationCaption: "Caption")
-        let reloadedItems = [secondItem, firstItem]
+        let movedItems = [secondItem, firstItem]
+        let reloadedItems = movedItems
 
-        swapScenePositionsUseCase.observable = Observable.just(())
+        swapScenePositionsUseCase.invokeMock.returns = .single(Observable.just(()))
         createProfileScenesListUseCase.invokeMock.returns = .single(Observable.just(reloadedItems))
 
         // when
-        viewModel.onMove(firstItem, secondItem)
+        viewModel.onMove(movedItems, firstItem.remoteId)
 
         // then
-        XCTAssertEqual(swapScenePositionsUseCase.firstRemoteIdArray, [2])
-        XCTAssertEqual(swapScenePositionsUseCase.secondRemoteIdArray, [4])
-        XCTAssertEqual(swapScenePositionsUseCase.locationCaptionArray, ["Caption"])
+        XCTAssertEqual(swapScenePositionsUseCase.invokeMock.parameters.count, 1)
+        XCTAssertEqual(swapScenePositionsUseCase.invokeMock.parameters.first?.0, movedItems)
+        XCTAssertEqual(swapScenePositionsUseCase.invokeMock.parameters.first?.1, firstItem.remoteId)
         createProfileScenesListUseCase.invokeMock.verifyCalls(1)
         XCTAssertEqual(viewModel.state.items, reloadedItems)
     }

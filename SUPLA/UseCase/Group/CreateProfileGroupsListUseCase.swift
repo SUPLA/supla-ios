@@ -42,27 +42,39 @@ struct CreateProfileGroupsList {
             }
 
             var items = [MainListItem]()
-            var displayedLocation: _SALocation?
             let inSearch = MainListFilter.isSearchable(filter)
 
-            for group in groups {
-                guard let location = group.location else { continue }
+            for section in groups.toLocationSections(
+                locationOf: { $0.location },
+                positionOf: { $0.position }
+            ) {
+                let visibleGroups = section.items.compactMap { group -> MainListItem? in
+                    guard
+                        let location = group.location,
+                        let item = groupToMainListItemUseCase.invoke(group)
+                    else {
+                        return nil
+                    }
 
-                let mappingLocation = displayedLocation?.caption == location.caption ? displayedLocation! : location
-                let item = groupToMainListItemUseCase.invoke(group, location: mappingLocation)
-                if (inSearch && !itemMatches(item, location: location, filter: filter)) {
+                    if inSearch && !itemMatches(item, location: location, filter: filter) {
+                        return nil
+                    }
+
+                    return item
+                }
+
+                guard
+                    !visibleGroups.isEmpty,
+                    let location = section.items
+                        .compactMap(\.location)
+                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                else {
                     continue
                 }
 
-                if (displayedLocation?.location_id != location.location_id) {
-                    if (displayedLocation == nil || displayedLocation?.caption != location.caption) {
-                        displayedLocation = location
-                        items.append(location.groupListItem(inSearch: inSearch))
-                    }
-                }
-
-                if let displayedLocation, inSearch || !displayedLocation.isCollapsed(flag: .group) {
-                    items.append(item)
+                items.append(location.groupListItem(inSearch: inSearch))
+                if inSearch || !location.isCollapsed(flag: .group) {
+                    items.append(contentsOf: visibleGroups)
                 }
             }
 

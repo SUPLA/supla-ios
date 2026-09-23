@@ -35,6 +35,7 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
     func getHiddenChannelsSync() -> [SAChannel]
     func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32>
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void>
     func findChannelsBy(_ profileId: Int32, function: SuplaFunction) async -> [SAChannel]
     func findZWaveChannelAvailable() async -> Bool
 }
@@ -50,6 +51,21 @@ extension ChannelRepository {
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile.isActive = 1 AND location.location_id IN %@", locationIds))
+            .ordered(by: "remote_id")
+
+        return query(request)
+            .flatMapFirst { channels in
+                let positions = orderedRemoteIds.enumerated().reduce(into: [Int32: Int32]()) { result, entry in
+                    result[entry.element] = Int32(entry.offset)
+                }
+                channels.forEach { $0.position = positions[$0.remote_id] ?? 0 }
+                return self.save()
+            }
+    }
+
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]> {
         getAllVisibleChannels(forProfileId: profile.id, withUnavailable: withUnavailable)
     }

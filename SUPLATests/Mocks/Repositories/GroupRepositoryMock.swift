@@ -21,6 +21,11 @@ import RxSwift
 @testable import SUPLA
 
 final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupRepository {
+    var updatePositionsMock: FunctionMock<([Int32], [Int32]), Observable<Void>> = .init()
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        updatePositionsMock.handle((locationIds, orderedRemoteIds))
+    }
+
     
     var allVisibleGroupsObservable: Observable<[SAChannelGroup]> = Observable.empty()
     var allVisibleGroupsProfilesArray: [AuthProfileItem] = []
