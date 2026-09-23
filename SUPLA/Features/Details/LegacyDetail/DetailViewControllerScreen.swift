@@ -19,12 +19,47 @@
 import SwiftUI
 
 struct DetailViewControllerScreen: SwiftUI.View {
-    let itemBundle: ItemBundle
-    let detailViewType: LegacyDetailType
+    @EnvironmentObject private var router: AppRouter
+    @StateObject private var holder: ControllerHolder
+
+    private let showsTopBar: Bool
+
+    init(itemBundle: ItemBundle, detailViewType: LegacyDetailType, showsTopBar: Bool = false) {
+        _holder = StateObject(
+            wrappedValue: ControllerHolder(itemBundle: itemBundle, detailViewType: detailViewType)
+        )
+        self.showsTopBar = showsTopBar
+    }
 
     var body: some SwiftUI.View {
+        if (showsTopBar) {
+            SuplaCore.TopBarContainer {
+                SuplaCore.TopBar(
+                    navigationIcon: .back,
+                    title: holder.viewController.detailTitle,
+                    onNavigationIconTap: router.back
+                )
+            } content: {
+                content
+            }
+        } else {
+            content
+        }
+    }
+
+    private var content: some SwiftUI.View {
         SuplaCore.ViewControllerHost {
-            DetailViewController(
+            holder.viewController
+        }
+    }
+}
+
+private extension DetailViewControllerScreen {
+    final class ControllerHolder: ObservableObject {
+        let viewController: DetailViewController
+
+        init(itemBundle: ItemBundle, detailViewType: LegacyDetailType) {
+            viewController = DetailViewController(
                 detailViewType: detailViewType,
                 remoteId: itemBundle.remoteId,
                 subjectType: itemBundle.subjectType

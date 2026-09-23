@@ -26,25 +26,20 @@ extension NotificationsLogFeature {
         @State private var searchText = ""
 
         var body: some SwiftUI.View {
-            ZStack(alignment: .top) {
-                Color.Supla.primaryContainer
-                    .ignoresSafeArea(edges: .top)
-
-                SuplaCore.ViewModelHost(viewModel) { state in
-                    VStack(spacing: 0) {
-                        SuplaCore.TopBar(
-                            navigationIcon: .back,
-                            title: Strings.Notifications.menu,
-                            actionIcon: .icon(String.Icons.delete, viewModel.showDeleteDialog),
-                            searchText: searchBinding,
-                            onNavigationIconTap: router.back
-                        )
-
-                        View(
-                            state: state,
-                            delegate: viewModel
-                        )
-                    }
+            SuplaCore.ViewModelHost(viewModel) { state in
+                SuplaCore.TopBarContainer {
+                    SuplaCore.TopBar(
+                        navigationIcon: .back,
+                        title: Strings.Notifications.menu,
+                        actionIcon: .icon(String.Icons.delete, viewModel.showDeleteDialog),
+                        searchText: searchBinding,
+                        onNavigationIconTap: router.back
+                    )
+                } content: {
+                    View(
+                        state: state,
+                        delegate: viewModel
+                    )
                 }
             }
         }

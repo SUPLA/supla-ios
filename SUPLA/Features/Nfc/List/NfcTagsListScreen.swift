@@ -26,13 +26,13 @@ extension NfcTagsListFeature {
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
-                VStack(spacing: 0) {
+                SuplaCore.TopBarContainer {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
                         title: Strings.Nfc.List.title,
                         onNavigationIconTap: router.back
                     )
-
+                } content: {
                     View(
                         viewState: state,
                         delegate: viewModel

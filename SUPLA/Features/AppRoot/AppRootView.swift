@@ -97,7 +97,11 @@ private extension AppRootView {
             case .editNfcTag(let uuid, let readOnly): EditTagFeature.Screen(uuid: uuid, readOnly: readOnly)
             case .nfcTagDetail(let uuid): NfcTagDetailFeature.Screen(uuid: uuid)
             case .legacyDetail(let type, let channelRemoteId):
-                DetailViewControllerScreen(itemBundle: ItemBundle.from(remoteId: channelRemoteId), detailViewType: type)
+                DetailViewControllerScreen(
+                    itemBundle: ItemBundle.from(remoteId: channelRemoteId),
+                    detailViewType: type,
+                    showsTopBar: true
+                )
             case .counterPhoto(let item): CounterPhotoFeature.Screen(itemBundle: item)
             }
         }

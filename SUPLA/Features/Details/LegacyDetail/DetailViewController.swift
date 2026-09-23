@@ -32,6 +32,8 @@ class DetailViewController: BaseViewController {
     private var _detailView: SADetailView!
     private var _panController: UIPercentDrivenInteractiveTransition?
     private var inNewDetail = false
+
+    var detailTitle: String { _detailView.channelBase?.getNonEmptyCaption() ?? "" }
     
     init(detailViewType: LegacyDetailType, remoteId: Int32, subjectType: SubjectType) {
         super.init(nibName: nil, bundle: nil)
@@ -61,7 +63,7 @@ class DetailViewController: BaseViewController {
             _detailView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         } else {
             addChildView(_detailView)
-            title = _detailView.channelBase?.getNonEmptyCaption() ?? ""
+            title = detailTitle
         }
         
         NotificationCenter.default.addObserver(self,

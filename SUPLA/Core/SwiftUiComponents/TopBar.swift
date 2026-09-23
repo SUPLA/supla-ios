@@ -19,6 +19,35 @@
 import SwiftUI
 
 extension SuplaCore {
+    struct TopBarContainer<TopBarContent: View, Content: View>: View {
+        private let topBar: TopBarContent
+        private let content: Content
+
+        init(
+            @ViewBuilder topBar: () -> TopBarContent,
+            @ViewBuilder content: () -> Content
+        ) {
+            self.topBar = topBar()
+            self.content = content()
+        }
+
+        var body: some View {
+            ZStack(alignment: .top) {
+                Color.Supla.background
+                    .ignoresSafeArea()
+
+                Color.Supla.primaryContainer
+                    .frame(height: TopBar.height)
+                    .ignoresSafeArea(edges: .top)
+
+                VStack(spacing: 0) {
+                    topBar
+                    content
+                }
+            }
+        }
+    }
+
     struct TopBar: View {
         enum NavigationIcon {
             case back
