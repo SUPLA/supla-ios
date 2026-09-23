@@ -25,23 +25,18 @@ extension DeveloperInfoFeature {
         @StateObject private var viewModel = ViewModel()
 
         var body: some SwiftUI.View {
-            ZStack(alignment: .top) {
-                Color.Supla.primaryContainer
-                    .ignoresSafeArea(edges: .top)
-
-                SuplaCore.ViewModelHost(viewModel) { state in
-                    VStack(spacing: 0) {
-                        SuplaCore.TopBar(
-                            navigationIcon: .back,
-                            title: Strings.DeveloperInfo.title,
-                            onNavigationIconTap: router.back
-                        )
-
-                        View(
-                            viewState: state,
-                            delegate: viewModel
-                        )
-                    }
+            SuplaCore.ViewModelHost(viewModel) { state in
+                SuplaCore.TopBarContainer {
+                    SuplaCore.TopBar(
+                        navigationIcon: .back,
+                        title: Strings.DeveloperInfo.title,
+                        onNavigationIconTap: router.back
+                    )
+                } content: {
+                    View(
+                        viewState: state,
+                        delegate: viewModel
+                    )
                 }
             }
         }

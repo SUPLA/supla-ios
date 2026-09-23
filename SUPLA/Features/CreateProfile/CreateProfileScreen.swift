@@ -34,13 +34,13 @@ extension CreateProfileFeature {
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
-                VStack(spacing: 0) {
+                SuplaCore.TopBarContainer {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
                         title: title(state),
                         onNavigationIconTap: { handleBack(state) }
                     )
-
+                } content: {
                     View(
                         viewState: state,
                         onAdvancedAuthorizationChange: viewModel.onToggleAdvancedState(_:),

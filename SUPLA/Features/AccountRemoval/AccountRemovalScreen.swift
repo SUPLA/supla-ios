@@ -25,25 +25,20 @@ struct AccountRemovalScreen: View {
     let serverAddress: String?
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.Supla.primaryContainer
-                .ignoresSafeArea(edges: .top)
-
-            VStack(spacing: 0) {
-                SuplaCore.TopBar(
-                    navigationIcon: .back,
-                    title: "",
-                    onNavigationIconTap: router.back
+        SuplaCore.TopBarContainer {
+            SuplaCore.TopBar(
+                navigationIcon: .back,
+                title: "",
+                onNavigationIconTap: router.back
+            )
+        } content: {
+            SuplaCore.ViewControllerHost {
+                let viewController = AccountRemovalVC(
+                    needsRestart: needsRestart,
+                    serverAddress: serverAddress
                 )
-
-                SuplaCore.ViewControllerHost {
-                    let viewController = AccountRemovalVC(
-                        needsRestart: needsRestart,
-                        serverAddress: serverAddress
-                    )
-                    viewController.navigationBarMaintainedByParent = true
-                    return viewController
-                }
+                viewController.navigationBarMaintainedByParent = true
+                return viewController
             }
         }
     }

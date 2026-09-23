@@ -51,13 +51,13 @@ extension LockScreenFeature {
                 lockScreenContent(state)
 
             case .pushed:
-                VStack(spacing: 0) {
+                SuplaCore.TopBarContainer {
                     SuplaCore.TopBar(
                         navigationIcon: .back,
                         title: Strings.LockScreen.enterPin,
                         onNavigationIconTap: router.back
                     )
-
+                } content: {
                     lockScreenContent(state)
                 }
             }

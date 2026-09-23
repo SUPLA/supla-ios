@@ -22,22 +22,17 @@ struct LocationOrderingScreen: View {
     @EnvironmentObject private var router: AppRouter
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.Supla.primaryContainer
-                .ignoresSafeArea(edges: .top)
-
-            VStack(spacing: 0) {
-                SuplaCore.TopBar(
-                    navigationIcon: .back,
-                    title: Strings.Cfg.locationOrdering,
-                    onNavigationIconTap: router.back
-                )
-
-                SuplaCore.ViewControllerHost {
-                    let viewController = LocationOrderingVC()
-                    viewController.bind(viewModel: LocationOrderingVM())
-                    return viewController
-                }
+        SuplaCore.TopBarContainer {
+            SuplaCore.TopBar(
+                navigationIcon: .back,
+                title: Strings.Cfg.locationOrdering,
+                onNavigationIconTap: router.back
+            )
+        } content: {
+            SuplaCore.ViewControllerHost {
+                let viewController = LocationOrderingVC()
+                viewController.bind(viewModel: LocationOrderingVM())
+                return viewController
             }
         }
     }

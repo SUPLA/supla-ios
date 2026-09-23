@@ -22,20 +22,15 @@ struct CreateAccountScreen: View {
     @EnvironmentObject private var router: AppRouter
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.Supla.primaryContainer
-                .ignoresSafeArea(edges: .top)
-
-            VStack(spacing: 0) {
-                SuplaCore.TopBar(
-                    navigationIcon: .back,
-                    title: Strings.appName,
-                    onNavigationIconTap: router.back
-                )
-
-                SuplaCore.ViewControllerHost {
-                    SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
-                }
+        SuplaCore.TopBarContainer {
+            SuplaCore.TopBar(
+                navigationIcon: .back,
+                title: Strings.appName,
+                onNavigationIconTap: router.back
+            )
+        } content: {
+            SuplaCore.ViewControllerHost {
+                SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
             }
         }
     }

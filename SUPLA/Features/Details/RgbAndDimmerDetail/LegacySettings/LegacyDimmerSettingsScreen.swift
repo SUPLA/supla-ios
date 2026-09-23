@@ -26,22 +26,16 @@ struct LegacyDimmerSettingsScreen: View {
     }
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.Supla.primaryContainer
-                .ignoresSafeArea(edges: .top)
-
-            VStack(spacing: 0) {
-                SuplaCore.TopBar(
-                    navigationIcon: .back,
-                    title: "Dimmer settings".toLocalized(),
-                    onNavigationIconTap: holder.viewController.handleBack
-                )
-
-                SuplaCore.ViewControllerHost {
-                    holder.viewController.navigationBarMaintainedByParent = true
-                    return holder.viewController
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        SuplaCore.TopBarContainer {
+            SuplaCore.TopBar(
+                navigationIcon: .back,
+                title: "Dimmer settings".toLocalized(),
+                onNavigationIconTap: holder.viewController.handleBack
+            )
+        } content: {
+            SuplaCore.ViewControllerHost {
+                holder.viewController.navigationBarMaintainedByParent = true
+                return holder.viewController
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
