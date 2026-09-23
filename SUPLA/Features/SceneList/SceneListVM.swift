@@ -59,16 +59,10 @@ extension SceneListFeature {
                 .disposed(by: disposeBag)
         }
 
-        func onMove(_ sourceItem: MainListItem, _ destinationItem: MainListItem) {
-            guard let locationCaption = sourceItem.locationCaption else { return }
-
+        func onMove(_ items: [MainListItem], _ movedItemId: Int32) {
             loadItems(after:
                 swapScenePositionsUseCase
-                    .invoke(
-                        firstRemoteId: sourceItem.remoteId,
-                        secondRemoteId: destinationItem.remoteId,
-                        locationCaption: locationCaption
-                    )
+                    .invoke(items: items, movedItemId: movedItemId)
             )
         }
 

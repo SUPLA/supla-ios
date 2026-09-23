@@ -46,18 +46,10 @@ extension GroupToMainListItem {
 }
 
 final class SwapGroupPositionsUseCaseMock: SwapGroupPositionsUseCase {
-    
-    var observable: Observable<Void> = Observable.empty()
-    var firstRemoteIdArray: [Int32] = []
-    var secondRemoteIdArray: [Int32] = []
-    var locationCaptionArray: [String] = []
-    
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        firstRemoteIdArray.append(firstRemoteId)
-        secondRemoteIdArray.append(secondRemoteId)
-        locationCaptionArray.append(locationCaption)
-        
-        return observable
+    var invokeMock: FunctionMock<([MainListItem], Int32), Observable<Void>> = .init()
+
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        invokeMock.handle((items, movedItemId))
     }
 }
 

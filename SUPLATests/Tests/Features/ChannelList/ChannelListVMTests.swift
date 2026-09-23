@@ -203,16 +203,19 @@ final class ChannelListVMTests: SuplaCore.ViewModelTest<ChannelListFeature.ViewS
         // given
         let firstItem = channelItem(remoteId: 2, locationCaption: "Caption")
         let secondItem = channelItem(remoteId: 4, locationCaption: "Caption")
-        let reloadedItems = [secondItem, firstItem]
+        let movedItems = [secondItem, firstItem]
+        let reloadedItems = movedItems
 
         swapChannelPositionsUseCase.invokeMock.returns = .single(Observable.just(()))
         createProfileChannelsListUseCase.invokeMock.returns = .single(Observable.just(reloadedItems))
 
         // when
-        viewModel.onMove(firstItem, secondItem)
+        viewModel.onMove(movedItems, firstItem.remoteId)
 
         // then
-        XCTAssertTuples(swapChannelPositionsUseCase.invokeMock.parameters, [(2, 4, "Caption")])
+        XCTAssertEqual(swapChannelPositionsUseCase.invokeMock.parameters.count, 1)
+        XCTAssertEqual(swapChannelPositionsUseCase.invokeMock.parameters.first?.0, movedItems)
+        XCTAssertEqual(swapChannelPositionsUseCase.invokeMock.parameters.first?.1, firstItem.remoteId)
         createProfileChannelsListUseCase.invokeMock.verifyCalls(1)
         XCTAssertEqual(viewModel.state.items, reloadedItems)
     }

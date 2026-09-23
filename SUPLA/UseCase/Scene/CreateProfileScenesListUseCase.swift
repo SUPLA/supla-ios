@@ -42,27 +42,39 @@ struct CreateProfileScenesList {
             }
 
             var items = [MainListItem]()
-            var displayedLocation: _SALocation?
             let inSearch = MainListFilter.isSearchable(filter)
 
-            for scene in scenes {
-                guard let location = scene.location else { continue }
+            for section in scenes.toLocationSections(
+                locationOf: { $0.location },
+                positionOf: { $0.sortOrder }
+            ) {
+                let visibleScenes = section.items.compactMap { scene -> MainListItem? in
+                    guard
+                        let location = scene.location,
+                        let item = sceneToMainListItemUseCase.invoke(scene)
+                    else {
+                        return nil
+                    }
 
-                let mappingLocation = displayedLocation?.caption == location.caption ? displayedLocation! : location
-                let item = sceneToMainListItemUseCase.invoke(scene, location: mappingLocation)
-                if (inSearch && !itemMatches(item, location: location, filter: filter)) {
+                    if inSearch && !itemMatches(item, location: location, filter: filter) {
+                        return nil
+                    }
+
+                    return item
+                }
+
+                guard
+                    !visibleScenes.isEmpty,
+                    let location = section.items
+                        .compactMap(\.location)
+                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                else {
                     continue
                 }
 
-                if (displayedLocation?.location_id != location.location_id) {
-                    if (displayedLocation == nil || displayedLocation?.caption != location.caption) {
-                        displayedLocation = location
-                        items.append(location.sceneListItem(inSearch: inSearch))
-                    }
-                }
-
-                if let displayedLocation, inSearch || !displayedLocation.isCollapsed(flag: .scene) {
-                    items.append(item)
+                items.append(location.sceneListItem(inSearch: inSearch))
+                if inSearch || !location.isCollapsed(flag: .scene) {
+                    items.append(contentsOf: visibleScenes)
                 }
             }
 

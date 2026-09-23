@@ -29,9 +29,25 @@ protocol GroupRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater w
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void>
 }
 
 class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        let request = SAChannelGroup.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile.isActive = 1 AND location.location_id IN %@", locationIds))
+            .ordered(by: "remote_id")
+
+        return query(request)
+            .flatMapFirst { groups in
+                let positions = orderedRemoteIds.enumerated().reduce(into: [Int32: Int32]()) { result, entry in
+                    result[entry.element] = Int32(entry.offset)
+                }
+                groups.forEach { $0.position = positions[$0.remote_id] ?? 0 }
+                return self.save()
+            }
+    }
+
     
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         getAllVisibleGroups(forProfileId: profile.id)

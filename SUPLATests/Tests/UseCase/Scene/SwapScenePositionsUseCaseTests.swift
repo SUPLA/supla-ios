@@ -5,123 +5,87 @@
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import XCTest
 
 @testable import SUPLA
 
 final class SwapScenePositionsUseCaseTests: UseCaseTest<Void> {
-    
-    private lazy var useCase: SwapScenePositionsUseCase! = { SwapScenePositionsUseCaseImpl() }()
-    
-    private lazy var sceneRepository: SceneRepositoryMock! = {
-        SceneRepositoryMock()
-    }()
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    
+    private lazy var useCase: SwapScenePositionsUseCase! = SwapScenePositionsUseCaseImpl()
+    private lazy var sceneRepository: SceneRepositoryMock! = SceneRepositoryMock()
+
     override func setUp() {
         DiContainer.shared.register(type: (any SceneRepository).self, sceneRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
-    
+
     override func tearDown() {
         useCase = nil
         sceneRepository = nil
-        profileRepository = nil
-        
         super.tearDown()
     }
-    
-    func test_shouldSwapPositions() {
-        // given
-        let locationCaption = "Caption"
-        let profile = AuthProfileItem(testContext: nil)
-        profileRepository.activeProfileObservable = Observable.just(profile)
-        
-        let scene1 = SAScene(testContext: nil)
-        scene1.sceneId = 1
-        
-        let scene2 = SAScene(testContext: nil)
-        scene2.sceneId = 2
-        
-        sceneRepository.allVisibleScenesInLocationObservable = Observable.just([ scene1, scene2 ])
-        sceneRepository.saveObservable = Observable.just(())
-        
-        // when
-        useCase.invoke(firstRemoteId: scene1.sceneId, secondRemoteId: scene2.sceneId, locationCaption: locationCaption).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
+
+    func test_shouldReorderAllScenesInMergedLocationSection() {
+        let items = [
+            location(remoteId: 1, caption: "Kitchen"),
+            scene(remoteId: 22, locationId: 2),
+            scene(remoteId: 11, locationId: 1),
+            scene(remoteId: 33, locationId: 2),
+            location(remoteId: 3, caption: "Office"),
+            scene(remoteId: 44, locationId: 3)
+        ]
+        sceneRepository.updatePositionsMock.returns = .single(.just(()))
+
+        useCase.invoke(items: items, movedItemId: 11).subscribe(observer).disposed(by: disposeBag)
+
         XCTAssertEqual(observer.events.count, 2)
-        XCTAssertEqual(scene1.sortOrder, 1)
-        XCTAssertEqual(scene2.sortOrder, 0)
-        
-        XCTAssertEqual(sceneRepository.allVisibleScenesInLocationProfiles, [profile])
-        XCTAssertEqual(sceneRepository.allVisibleScenesInLocationCaptions, [locationCaption])
-        XCTAssertEqual(sceneRepository.saveCounter, 1)
+        XCTAssertEqual(sceneRepository.updatePositionsMock.parameters.count, 1)
+        XCTAssertEqual(sceneRepository.updatePositionsMock.parameters.first?.0, [2, 1])
+        XCTAssertEqual(sceneRepository.updatePositionsMock.parameters.first?.1, [22, 11, 33])
     }
-    
-    func test_shouldNotSwap_whenGroupWasNotFound() {
-        // given
-        let locationCaption = "Caption"
-        let profile = AuthProfileItem(testContext: nil)
-        profileRepository.activeProfileObservable = Observable.just(profile)
-        
-        let scene1 = SAScene(testContext: nil)
-        scene1.sceneId = 1
-        
-        let scene2 = SAScene(testContext: nil)
-        scene2.sceneId = 2
-        
-        sceneRepository.allVisibleScenesInLocationObservable = Observable.just([ scene1, scene2 ])
-        sceneRepository.saveObservable = Observable.just(())
-        
-        // when
-        useCase.invoke(firstRemoteId: scene1.sceneId, secondRemoteId: 3, locationCaption: locationCaption).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
-        XCTAssertEqual(observer.events.count, 2)
-        XCTAssertEqual(scene1.sortOrder, 0)
-        XCTAssertEqual(scene2.sortOrder, 0)
-        
-        XCTAssertEqual(sceneRepository.allVisibleScenesInLocationProfiles, [profile])
-        XCTAssertEqual(sceneRepository.allVisibleScenesInLocationCaptions, [locationCaption])
-        XCTAssertEqual(sceneRepository.saveCounter, 0)
+
+    func test_shouldNotIncludeSeparateSectionWithTheSameLocationCaption() {
+        let items = [
+            location(remoteId: 1, caption: "Kitchen"),
+            scene(remoteId: 11, locationId: 1),
+            location(remoteId: 2, caption: "Kitchen"),
+            scene(remoteId: 22, locationId: 2)
+        ]
+        sceneRepository.updatePositionsMock.returns = .single(.just(()))
+
+        useCase.invoke(items: items, movedItemId: 11).subscribe(observer).disposed(by: disposeBag)
+
+        XCTAssertEqual(sceneRepository.updatePositionsMock.parameters.count, 1)
+        XCTAssertEqual(sceneRepository.updatePositionsMock.parameters.first?.0, [1])
+        XCTAssertEqual(sceneRepository.updatePositionsMock.parameters.first?.1, [11])
     }
-    
-    func test_shouldNotSwap_whenThereIsOnlyOneGroup() {
-        // given
-        let locationCaption = "Caption"
-        let profile = AuthProfileItem(testContext: nil)
-        profileRepository.activeProfileObservable = Observable.just(profile)
-        
-        let scene1 = SAScene(testContext: nil)
-        scene1.sceneId = 1
-        
-        sceneRepository.allVisibleScenesInLocationObservable = Observable.just([ scene1 ])
-        sceneRepository.saveObservable = Observable.just(())
-        
-        // when
-        useCase.invoke(firstRemoteId: scene1.sceneId, secondRemoteId: 3, locationCaption: locationCaption).subscribe(observer).disposed(by: disposeBag)
-        
-        // then
+
+    func test_shouldNotReorderWhenLocationHeaderIsMissing() {
+        let items = [scene(remoteId: 11, locationId: 1)]
+
+        useCase.invoke(items: items, movedItemId: 11).subscribe(observer).disposed(by: disposeBag)
+
         XCTAssertEqual(observer.events.count, 2)
-        
-        XCTAssertEqual(sceneRepository.allVisibleScenesInLocationProfiles, [profile])
-        XCTAssertEqual(sceneRepository.allVisibleScenesInLocationCaptions, [locationCaption])
-        XCTAssertEqual(sceneRepository.saveCounter, 0)
+        sceneRepository.updatePositionsMock.verifyCalls(0)
+    }
+
+    private func location(remoteId: Int32, caption: String) -> MainListItem {
+        .location(LocationListItem(remoteId: remoteId, profileId: 1, userCaption: caption, collapsed: false))
+    }
+
+    private func scene(remoteId: Int32, locationId: Int) -> MainListItem {
+        .scene(
+            SceneListItem(
+                remoteId: remoteId,
+                profileId: 1,
+                userCaption: "Scene \(remoteId)",
+                locationCaption: "Kitchen",
+                locationId: locationId,
+                status: .scene,
+                icon: .suplaIcon(name: ""),
+                estimatedTimerEndDate: nil
+            )
+        )
     }
 }

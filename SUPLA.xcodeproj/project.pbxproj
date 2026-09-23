@@ -667,6 +667,10 @@
 		A56286AD3034423100851CED /* LocationListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AC3034422A00851CED /* LocationListItemView.swift */; };
 		A56286AF30344A7900851CED /* SceneListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AE30344A7500851CED /* SceneListItem.swift */; };
 		A562870D30346F2500851CED /* CreateProfileChannelsListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870C30346F1D00851CED /* CreateProfileChannelsListUseCase.swift */; };
+		B3D000023109000000000002 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000013109000000000001 /* LocationSection.swift */; };
+		B3D000043109000000000004 /* LocationSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000033109000000000003 /* LocationSectionTests.swift */; };
+		B3D000063109000000000006 /* MainListItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000053109000000000005 /* MainListItemSection.swift */; };
+		B3D000083109000000000008 /* MainListItemSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000073109000000000007 /* MainListItemSectionTests.swift */; };
 		A562870F30346F2500851CED /* ChannelToMainListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30346F2500851CED /* ChannelToMainListItemUseCase.swift */; };
 		A562870F30347B8000851CED /* HomePlusThermostatValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */; };
 		A56362B52EDED2BB00A702C0 /* AddWizardVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */; };
@@ -2548,6 +2552,10 @@
 		A56286AC3034422A00851CED /* LocationListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListItemView.swift; sourceTree = "<group>"; };
 		A56286AE30344A7500851CED /* SceneListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListItem.swift; sourceTree = "<group>"; };
 		A562870C30346F1D00851CED /* CreateProfileChannelsListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileChannelsListUseCase.swift; sourceTree = "<group>"; };
+		B3D000013109000000000001 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
+		B3D000033109000000000003 /* LocationSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSectionTests.swift; sourceTree = "<group>"; };
+		B3D000053109000000000005 /* MainListItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSection.swift; sourceTree = "<group>"; };
+		B3D000073109000000000007 /* MainListItemSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSectionTests.swift; sourceTree = "<group>"; };
 		A562870E30346F2500851CED /* ChannelToMainListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToMainListItemUseCase.swift; sourceTree = "<group>"; };
 		A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueStringProvider.swift; sourceTree = "<group>"; };
 		A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVMTests.swift; sourceTree = "<group>"; };
@@ -4850,6 +4858,8 @@
 		A534D6202FB335EE007AAC73 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				B3D000013109000000000001 /* LocationSection.swift */,
+				B3D000053109000000000005 /* MainListItemSection.swift */,
 				A58189072FB606310056B401 /* RefreshElectricityMeterAggregatedValueUseCase.swift */,
 				A5C82FC12FB34FE90044C57B /* TriggerLogHistoryDownloadUseCase.swift */,
 				A534D6212FB3360B007AAC73 /* RefreshImpulseCounterAggregatedValueUseCase.swift */,
@@ -5931,6 +5941,8 @@
 		A58188D62FB5C4AC0056B401 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				B3D000033109000000000003 /* LocationSectionTests.swift */,
+				B3D000073109000000000007 /* MainListItemSectionTests.swift */,
 				A5E40B742B86A00000DB6ABE /* RefreshImpulseCounterAggregatedValueUseCaseTests.swift */,
 				A58189092FB606440056B401 /* RefreshElectricityMeterAggregatedValueUseCaseTests.swift */,
 				B1DCC0000000000000000202 /* TriggerLogHistoryDownloadUseCaseTests.swift */,
@@ -9765,6 +9777,8 @@
 				A5A9CAA02EE845E3009C0030 /* ColorListItemRepository.swift in Sources */,
 				A562870F30346F2500851CED /* ChannelToMainListItemUseCase.swift in Sources */,
 				A562870D30346F2500851CED /* CreateProfileChannelsListUseCase.swift in Sources */,
+				B3D000023109000000000002 /* LocationSection.swift in Sources */,
+				B3D000063109000000000006 /* MainListItemSection.swift in Sources */,
 				A530EE062A5575D700F8DAEE /* DeviceStateUIView.swift in Sources */,
 				A5AE6D832E1FEA2500BC2B67 /* DeviceParametersTable.swift in Sources */,
 				A5D7126C2C380D7700A8EF52 /* CheckPinUseCase.swift in Sources */,
@@ -9851,6 +9865,8 @@
 				A58E45F42EAFB58D001F241C /* LocalizedStringTests.swift in Sources */,
 				A50B5D0F2BECB61900918D18 /* ExecuteFacadeBlindActionUseCaseTests.swift in Sources */,
 				A59AB8DF2A309BBE00D91F1F /* CreateProfileGroupsListUseCaseTests.swift in Sources */,
+				B3D000043109000000000004 /* LocationSectionTests.swift in Sources */,
+				B3D000083109000000000008 /* MainListItemSectionTests.swift in Sources */,
 				A5F5C3E42C3545F90058E255 /* Observable+Test.swift in Sources */,
 				A54A064F2AF3ED6200C03DBC /* RequestHelperTests.swift in Sources */,
 				A54A06822AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift in Sources */,

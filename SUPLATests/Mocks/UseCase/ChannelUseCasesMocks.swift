@@ -54,10 +54,10 @@ final class CreateChannelWithChildrenUseCaseMock: CreateChannelWithChildrenUseCa
 }
 
 final class SwapChannelPositionsUseCaseMock: SwapChannelPositionsUseCase {
-    var invokeMock: FunctionMock<(Int32, Int32, String), Observable<Void>> = .init()
+    var invokeMock: FunctionMock<([MainListItem], Int32), Observable<Void>> = .init()
     
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        invokeMock.handle((firstRemoteId, secondRemoteId, locationCaption))
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        invokeMock.handle((items, movedItemId))
     }
 }
 

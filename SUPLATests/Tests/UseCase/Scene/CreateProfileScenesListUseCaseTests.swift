@@ -59,7 +59,7 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         let scene2Item = sceneItem(remoteId: 2, title: "Scene 2")
 
         sceneRepository.allVisibleScenesObservable = Observable.just([scene1, scene2])
-        sceneToMainListItemUseCase.invokeWithLocationMock.returns = .many([scene1Item, scene2Item])
+        sceneToMainListItemUseCase.invokeMock.returns = .many([scene1Item, scene2Item])
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -74,10 +74,7 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        assertMappedItems([
-            (scene1, location1),
-            (scene2, location2)
-        ])
+        assertMappedItems([scene1, scene2])
     }
 
     func test_shouldNotProvideItems_whenLocationIsCollapsed() {
@@ -98,7 +95,7 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         let scene2Item = sceneItem(remoteId: 2, title: "Scene 2")
 
         sceneRepository.allVisibleScenesObservable = Observable.just([scene1, scene2])
-        sceneToMainListItemUseCase.invokeWithLocationMock.returns = .single(scene2Item)
+        sceneToMainListItemUseCase.invokeMock.returns = .single(scene2Item)
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -112,11 +109,8 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        sceneToMainListItemUseCase.invokeWithLocationMock.verifyCalls(2)
-        assertMappedItems([
-            (scene1, location1),
-            (scene2, location2)
-        ])
+        sceneToMainListItemUseCase.invokeMock.verifyCalls(2)
+        assertMappedItems([scene1, scene2])
     }
 
     func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
@@ -134,7 +128,7 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         let scene1Item = sceneItem(remoteId: 1, title: "Morning")
 
         sceneRepository.allVisibleScenesObservable = Observable.just([scene1])
-        sceneToMainListItemUseCase.invokeWithLocationMock.returns = .single(scene1Item)
+        sceneToMainListItemUseCase.invokeMock.returns = .single(scene1Item)
 
         // when
         useCase.invoke(filter: "Kitchen").subscribe(observer).disposed(by: disposeBag)
@@ -147,9 +141,7 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        assertMappedItems([
-            (scene1, location1)
-        ])
+        assertMappedItems([scene1])
     }
 
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
@@ -158,16 +150,18 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
 
         let location1 = location(profile: profile, caption: "Location", remoteId: 1)
-        let scene1 = scene(remoteId: 1, profile: profile, location: location1)
+        let scene1 = scene(remoteId: 1, profile: profile, location: location1, sortOrder: 1)
+        let scene2 = scene(remoteId: 2, profile: profile, location: location1, sortOrder: 3)
 
         let location2 = location(profile: profile, caption: "Location", remoteId: 2)
-        let scene2 = scene(remoteId: 2, profile: profile, location: location2)
+        let scene3 = scene(remoteId: 3, profile: profile, location: location2, sortOrder: 2)
 
-        let scene1Item = sceneItem(remoteId: 1, title: "Scene 1")
-        let scene2Item = sceneItem(remoteId: 2, title: "Scene 2")
+        let scene1Item = sceneItem(remoteId: 1, title: "Scene 1", locationId: 1)
+        let scene2Item = sceneItem(remoteId: 2, title: "Scene 2", locationId: 1)
+        let scene3Item = sceneItem(remoteId: 3, title: "Scene 3", locationId: 2)
 
-        sceneRepository.allVisibleScenesObservable = Observable.just([scene1, scene2])
-        sceneToMainListItemUseCase.invokeWithLocationMock.returns = .many([scene1Item, scene2Item])
+        sceneRepository.allVisibleScenesObservable = Observable.just([scene1, scene2, scene3])
+        sceneToMainListItemUseCase.invokeMock.returns = .many([scene1Item, scene3Item, scene2Item])
 
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -177,24 +171,22 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
             .next([
                 locationItem(location1),
                 scene1Item,
+                scene3Item,
                 scene2Item
             ]),
             .completed
         ])
-        assertMappedItems([
-            (scene1, location1),
-            (scene2, location1)
-        ])
+        assertMappedItems([scene1, scene3, scene2])
     }
 
-    private func assertMappedItems(_ expected: [(SAScene, _SALocation)]) {
-        let parameters = sceneToMainListItemUseCase.invokeWithLocationMock.parameters
+    private func assertMappedItems(_ expected: [SAScene]) {
+        let parameters = sceneToMainListItemUseCase.invokeMock.parameters
         XCTAssertEqual(parameters.count, expected.count)
 
         for index in expected.indices {
-            XCTAssertEqual(parameters[index].0, expected[index].0)
-            XCTAssertEqual(parameters[index].1, expected[index].1)
+            XCTAssertEqual(parameters[index], expected[index])
         }
+        sceneToMainListItemUseCase.invokeWithLocationMock.verifyCalls(0)
     }
 
     private func locationItem(_ location: _SALocation, inSearch: Bool = false) -> MainListItem {
@@ -208,14 +200,19 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         )
     }
 
-    private func sceneItem(remoteId: Int32, profileId: Int32 = 1, title: String = "Title") -> MainListItem {
+    private func sceneItem(
+        remoteId: Int32,
+        profileId: Int32 = 1,
+        title: String = "Title",
+        locationId: Int = 1
+    ) -> MainListItem {
         .scene(
             SceneListItem(
                 remoteId: remoteId,
                 profileId: profileId,
                 userCaption: title,
                 locationCaption: "Location",
-                locationId: 1,
+                locationId: locationId,
                 status: .scene,
                 icon: .suplaIcon(name: ""),
                 estimatedTimerEndDate: nil,
@@ -245,11 +242,17 @@ final class CreateProfileScenesListTests: UseCaseTest<[MainListItem]> {
         return location
     }
 
-    private func scene(remoteId: Int32, profile: AuthProfileItem, location: _SALocation) -> SAScene {
+    private func scene(
+        remoteId: Int32,
+        profile: AuthProfileItem,
+        location: _SALocation,
+        sortOrder: Int32 = 0
+    ) -> SAScene {
         let scene = SAScene(testContext: nil)
         scene.profile = profile
         scene.location = location
         scene.sceneId = remoteId
+        scene.sortOrder = sortOrder
         return scene
     }
 }
