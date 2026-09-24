@@ -75,11 +75,13 @@ extension LockScreenFeature {
                         switch ($0) {
                         case .unlocked:
                             switch (unlockAction) {
+                            case .authorizeApplication:
+                                self?.router.setRoot(.status)
                             case .authorizeAccountsCreate:
                                 self?.router.replaceCurrent(with: .profile(profileId: ProfileDto.INVALID_ID, withLockCheck: false))
                             case .authorizeAccountsEdit(let profileId):
                                 self?.router.replaceCurrent(with: .profile(profileId: profileId, withLockCheck: false))
-                            default: 
+                            default:
                                 self?.router.back()
                             }
                         case .unlockedNoAccount:
@@ -87,7 +89,7 @@ extension LockScreenFeature {
                             case .authorizeAccountsCreate:
                                 self?.router.replaceCurrent(with: .profile(profileId: ProfileDto.INVALID_ID, withLockCheck: false))
                             case .authorizeApplication:
-                                self?.router.back()
+                                self?.router.setRoot(.status)
                             default: break
                             }
                         case .failure:

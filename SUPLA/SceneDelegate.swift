@@ -19,12 +19,23 @@
 import Combine
 import SwiftUI
 
+extension AppRoot {
+    var statusBarStyle: UIStatusBarStyle {
+        switch self {
+        case .status, .unlockApp:
+            .darkContent
+        case .main:
+            .lightContent
+        }
+    }
+}
+
 private final class StatusBarHostingController<Content: View>: UIHostingController<Content> {
     private let appRouter: AppRouter
     private var cancellable: AnyCancellable?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        appRouter.root == .status ? .darkContent : .lightContent
+        appRouter.root.statusBarStyle
     }
 
     override var childForStatusBarStyle: UIViewController? {
