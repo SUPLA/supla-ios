@@ -73,6 +73,7 @@ extension ChannelListFeature {
                 MainListLoadingContent()
             } else if (viewState.items.isEmpty) {
                 NoContentView(
+                    showActions: !viewState.filterActive,
                     showDeviceCatalog: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE,
                     onAddDeviceClick: { delegate?.onAddDeviceClick() },
                     onDeviceCatalogClick: { delegate?.onDeviceCatalogClick() }
@@ -105,6 +106,7 @@ extension ChannelListFeature {
 }
 
 private struct NoContentView: SwiftUI.View {
+    let showActions: Bool
     let showDeviceCatalog: Bool
     let onAddDeviceClick: () -> Void
     let onDeviceCatalogClick: () -> Void
@@ -113,13 +115,15 @@ private struct NoContentView: SwiftUI.View {
         VStack(spacing: Distance.small) {
             EmptyListView()
 
-            if (showDeviceCatalog) {
-                TitleButton(title: Strings.DeviceCatalog.menu, action: onDeviceCatalogClick)
+            if (showActions) {
+                if (showDeviceCatalog) {
+                    TitleButton(title: Strings.DeviceCatalog.menu, action: onDeviceCatalogClick)
+                        .borderedButtonStyle()
+                }
+
+                TitleButton(title: Strings.Menu.addDevice, action: onAddDeviceClick)
                     .borderedButtonStyle()
             }
-
-            TitleButton(title: Strings.Menu.addDevice, action: onAddDeviceClick)
-                .borderedButtonStyle()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
