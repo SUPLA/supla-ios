@@ -51,7 +51,10 @@ extension SceneListFeature {
             if (viewState.loading) {
                 MainListLoadingContent()
             } else if (viewState.items.isEmpty) {
-                NoContentView(onButtonClick: { delegate?.onNoContentButtonClick() })
+                NoContentView(
+                    showActions: !viewState.filterActive,
+                    onButtonClick: { delegate?.onNoContentButtonClick() }
+                )
             } else {
                 MainListTable(
                     items: viewState.items,
@@ -77,14 +80,17 @@ extension SceneListFeature {
 }
 
 private struct NoContentView: SwiftUI.View {
+    let showActions: Bool
     let onButtonClick: () -> Void
 
     var body: some SwiftUI.View {
         VStack(spacing: Distance.small) {
             EmptyListView()
 
-            TitleButton(title: Strings.Scenes.emptyListButton, action: onButtonClick)
-                .borderedButtonStyle()
+            if (showActions) {
+                TitleButton(title: Strings.Scenes.emptyListButton, action: onButtonClick)
+                    .borderedButtonStyle()
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

@@ -35,6 +35,7 @@ struct EmptyListView: View {
             Text(Strings.Main.noEntries)
                 .if(size == .normal) { $0.fontHeadlineLarge() }
                 .if(size == .small) { $0.fontTitleLarge() }
+                .foregroundColor(Color.Supla.onSurfaceVariant)
         }
     }
     
