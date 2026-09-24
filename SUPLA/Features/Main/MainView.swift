@@ -100,7 +100,7 @@ extension MainFeature {
                     } else {
                         VStack(spacing: 0) {
                             selectedContentWithBottomSafeArea
-                            if (showBottomMenu) {
+                            if (showBottomMenu && !activeSearchActive) {
                                 MainTabBar(selectedTab: $selectedTab, axis: .horizontal, showLabels: showBottomLabels)
                             }
                         }
