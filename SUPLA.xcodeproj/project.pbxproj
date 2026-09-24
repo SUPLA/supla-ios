@@ -667,10 +667,6 @@
 		A56286AD3034423100851CED /* LocationListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AC3034422A00851CED /* LocationListItemView.swift */; };
 		A56286AF30344A7900851CED /* SceneListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AE30344A7500851CED /* SceneListItem.swift */; };
 		A562870D30346F2500851CED /* CreateProfileChannelsListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870C30346F1D00851CED /* CreateProfileChannelsListUseCase.swift */; };
-		B3D000023109000000000002 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000013109000000000001 /* LocationSection.swift */; };
-		B3D000043109000000000004 /* LocationSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000033109000000000003 /* LocationSectionTests.swift */; };
-		B3D000063109000000000006 /* MainListItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000053109000000000005 /* MainListItemSection.swift */; };
-		B3D000083109000000000008 /* MainListItemSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000073109000000000007 /* MainListItemSectionTests.swift */; };
 		A562870F30346F2500851CED /* ChannelToMainListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30346F2500851CED /* ChannelToMainListItemUseCase.swift */; };
 		A562870F30347B8000851CED /* HomePlusThermostatValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */; };
 		A56362B52EDED2BB00A702C0 /* AddWizardVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */; };
@@ -1631,6 +1627,10 @@
 		B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000003 /* EspRepositoryMock.swift */; };
 		B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */; };
 		B2A100001111111100000009 /* CreateEspPasswordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */; };
+		B3D000023109000000000002 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000013109000000000001 /* LocationSection.swift */; };
+		B3D000043109000000000004 /* LocationSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000033109000000000003 /* LocationSectionTests.swift */; };
+		B3D000063109000000000006 /* MainListItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000053109000000000005 /* MainListItemSection.swift */; };
+		B3D000083109000000000008 /* MainListItemSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000073109000000000007 /* MainListItemSectionTests.swift */; };
 		C0DE15700000000000000001 /* ListItemScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000011 /* ListItemScaffold.swift */; };
 		C0DE15700000000000000002 /* ListItemStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000012 /* ListItemStatusIndicator.swift */; };
 		C0DE15700000000000000003 /* ListItemRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000013 /* ListItemRect.swift */; };
@@ -2552,10 +2552,6 @@
 		A56286AC3034422A00851CED /* LocationListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListItemView.swift; sourceTree = "<group>"; };
 		A56286AE30344A7500851CED /* SceneListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListItem.swift; sourceTree = "<group>"; };
 		A562870C30346F1D00851CED /* CreateProfileChannelsListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileChannelsListUseCase.swift; sourceTree = "<group>"; };
-		B3D000013109000000000001 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
-		B3D000033109000000000003 /* LocationSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSectionTests.swift; sourceTree = "<group>"; };
-		B3D000053109000000000005 /* MainListItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSection.swift; sourceTree = "<group>"; };
-		B3D000073109000000000007 /* MainListItemSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSectionTests.swift; sourceTree = "<group>"; };
 		A562870E30346F2500851CED /* ChannelToMainListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToMainListItemUseCase.swift; sourceTree = "<group>"; };
 		A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueStringProvider.swift; sourceTree = "<group>"; };
 		A56362B42EDED2B500A702C0 /* AddWizardVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardVMTests.swift; sourceTree = "<group>"; };
@@ -3492,6 +3488,10 @@
 		B2A100001111111100000003 /* EspRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepositoryMock.swift; sourceTree = "<group>"; };
 		B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCaseTests.swift; sourceTree = "<group>"; };
 		B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEspPasswordUseCaseTests.swift; sourceTree = "<group>"; };
+		B3D000013109000000000001 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
+		B3D000033109000000000003 /* LocationSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSectionTests.swift; sourceTree = "<group>"; };
+		B3D000053109000000000005 /* MainListItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSection.swift; sourceTree = "<group>"; };
+		B3D000073109000000000007 /* MainListItemSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSectionTests.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000011 /* ListItemScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemScaffold.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000012 /* ListItemStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemStatusIndicator.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000013 /* ListItemRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRect.swift; sourceTree = "<group>"; };
@@ -10505,7 +10505,7 @@
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 286;
+				CURRENT_PROJECT_VERSION = 287;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10549,7 +10549,7 @@
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 286;
+				CURRENT_PROJECT_VERSION = 287;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
