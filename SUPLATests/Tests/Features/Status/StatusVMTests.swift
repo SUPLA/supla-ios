@@ -132,6 +132,19 @@ final class StatusVMTests: XCTestCase {
         XCTAssertEqual(viewModel.state.viewType, .connecting)
         XCTAssertEqual(viewModel.state.stateText, .disconnecting)
     }
+
+    func test_shouldShowApplicationLockAsRoot_whenLocked() {
+        // given
+        appRouter.navigate(to: .settings)
+        stateHolder.stateReturns = .just(.locked)
+
+        // when
+        viewModel.onViewAppear()
+
+        // then
+        XCTAssertEqual(appRouter.root, .unlockApp(action: .authorizeApplication))
+        XCTAssertEqual(appRouter.path, [])
+    }
     
     func test_shouldDisconnectAndGoToProfile() {
         // given

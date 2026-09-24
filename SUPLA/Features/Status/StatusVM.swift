@@ -48,7 +48,7 @@ extension StatusFeature {
                         self?.state.viewType = .connecting
                         self?.state.stateText = .disconnecting
                     case .locked:
-                        self?.router.navigate(to: .lockScreen(action: .authorizeApplication))
+                        self?.router.setRoot(.unlockApp(action: .authorizeApplication))
                     }
                 })
                 .disposedWhenDisappear(by: self)

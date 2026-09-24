@@ -47,11 +47,11 @@ class LockScreenVMTests: XCTestCase {
         viewModel = nil
     }
     
-    func test_shouldVerifyPin_andCloseScreen() {
+    func test_shouldVerifyPin_andShowConnectionStatus() {
         // given
         let pin = "1234"
         checkPinUseCase.returns = .just(.unlocked)
-        router.navigate(to: .lockScreen(action: .authorizeApplication))
+        router.setRoot(.unlockApp(action: .authorizeApplication))
         
         // when
         viewModel.setUnlockAction(.authorizeApplication)
@@ -60,6 +60,7 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(LockScreenFeature.UnlockAction.authorizeApplication, CheckPinAction.checkPin(pin: pin))])
+        XCTAssertEqual(router.root, .status)
         XCTAssertEqual(router.path, [])
     }
     
@@ -97,13 +98,13 @@ class LockScreenVMTests: XCTestCase {
         XCTAssertEqual(router.path, [.profile(profileId: profileId, withLockCheck: false)])
     }
     
-    func test_shouldVerifyPin_andDoNothingWhenNoAccount() {
+    func test_shouldVerifyPin_andShowConnectionStatusWhenNoAccount() {
         // given
         let pin = "1234"
         let action: LockScreenFeature.UnlockAction = .authorizeApplication
         
         checkPinUseCase.returns = .just(.unlockedNoAccount)
-        router.navigate(to: .lockScreen(action: action))
+        router.setRoot(.unlockApp(action: action))
         
         // when
         viewModel.setUnlockAction(action)
@@ -112,6 +113,7 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
+        XCTAssertEqual(router.root, .status)
         XCTAssertEqual(router.path, [])
     }
     

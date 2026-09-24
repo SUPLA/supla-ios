@@ -21,6 +21,14 @@
 import XCTest
 
 final class SceneDelegateTests: XCTestCase {
+    func test_shouldUseDarkStatusBarOnApplicationLockScreen() {
+        XCTAssertEqual(AppRoot.unlockApp(action: .authorizeApplication).statusBarStyle, .darkContent)
+    }
+
+    func test_shouldUseLightStatusBarOnMainScreen() {
+        XCTAssertEqual(AppRoot.main.statusBarStyle, .lightContent)
+    }
+
     func test_shouldDeferActivationUntilBackgroundDisconnectFinishes() {
         var state = BackgroundDisconnectState()
 
