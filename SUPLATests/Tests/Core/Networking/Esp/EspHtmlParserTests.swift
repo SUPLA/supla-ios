@@ -42,6 +42,13 @@ class EspHtmlParserTests: XCTestCase {
     }()
     private lazy var documentCsrf: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataCsrf, encoding: .utf8)!)
     
+    private lazy var fileDataQuota: Data! = {
+        let testBundle = Bundle(for: type(of: self))
+        let file = testBundle.url(forResource: "index_quota", withExtension: "html")!
+        return try! Data(contentsOf: file)
+    }()
+    private lazy var documentQuota: SwiftSoup.Document! = try! SwiftSoup.parse(String(data: fileDataQuota, encoding: .utf8)!)
+    
     private lazy var parser: EspHtmlParser! = EspHtmlParser()
     
     override func tearDown() {
@@ -138,6 +145,22 @@ class EspHtmlParserTests: XCTestCase {
         XCTAssertEqual(result.version, "SuplaDevice GG v7.8.17")
         XCTAssertEqual(result.guid, "C85A6230A251518F61CFDE8704B6A7D8")
         XCTAssertEqual(result.mac, "30:C9:22:D2:BE:E8")
+    }
+    
+    func test_shouldLoadQuotaDeviceParameters() {
+        // given
+        let html = String(decoding: fileDataQuota, as: UTF8.self)
+        let inputs = parser.findInputs(document: documentQuota)
+        
+        // when
+        let result = parser.prepareResult(document: html, fieldMap: inputs)
+        
+        // then
+        XCTAssertEqual(result.name, "ZAMEL mSRW-01")
+        XCTAssertEqual(result.state, "WiFi Network \"M&Msd\" Not found,WiFi - Connecting...,WiFi Network \"M&Msd\" Not found,WiFi - Connecting...")
+        XCTAssertEqual(result.version, "2.8.62")
+        XCTAssertEqual(result.guid, "DF572A7DF11A5F74A6F533285BE66675")
+        XCTAssertEqual(result.mac, "48:55:19:DA:0A:E1")
     }
     
     private let inputsMapThermostat: [String: String] = [

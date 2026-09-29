@@ -953,6 +953,7 @@
 		A59E57B62F90FEF400808DBF /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57B52F90FEF100808DBF /* PickerItem.swift */; };
 		A59E57B72F90FF0B00808DBF /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57B52F90FEF100808DBF /* PickerItem.swift */; };
 		A59E57BA2F911D5400808DBF /* TimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E57B92F911D4D00808DBF /* TimerProgressView.swift */; };
+		A5A10DF7306BBC5400DE390E /* index_quota.html in Resources */ = {isa = PBXBuildFile; fileRef = A5A10DF6306BBC4A00DE390E /* index_quota.html */; };
 		A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */; };
 		A5A14A3A2B612F1C004B1598 /* ChannelConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */; };
 		A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A3C2B6134C4004B1598 /* InsertChannelConfigUseCase.swift */; };
@@ -2849,6 +2850,7 @@
 		A59E57B32F90FE4C00808DBF /* WheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPicker.swift; sourceTree = "<group>"; };
 		A59E57B52F90FEF100808DBF /* PickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerItem.swift; sourceTree = "<group>"; };
 		A59E57B92F911D4D00808DBF /* TimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgressView.swift; sourceTree = "<group>"; };
+		A5A10DF6306BBC4A00DE390E /* index_quota.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_quota.html; sourceTree = "<group>"; };
 		A5A14A322B61005F004B1598 /* SUPLA 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 16.xcdatamodel"; sourceTree = "<group>"; };
 		A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
 		A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelConfigRepository.swift; sourceTree = "<group>"; };
@@ -7088,6 +7090,7 @@
 		A5CE732A2B469B5F003F882C /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				A5A10DF6306BBC4A00DE390E /* index_quota.html */,
 				A5D182482FBB4A710038F5BC /* index_csrf.html */,
 				A5D180D42FBB25C70038F5BC /* device_login.html */,
 				A5CE732B2B469C02003F882C /* index_arduino.html */,
@@ -8462,6 +8465,7 @@
 				A5CE732C2B469C02003F882C /* index_arduino.html in Resources */,
 				A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */,
 				A5D180D52FBB25C70038F5BC /* device_login.html in Resources */,
+				A5A10DF7306BBC5400DE390E /* index_quota.html in Resources */,
 				A5D182492FBB4A820038F5BC /* index_csrf.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
