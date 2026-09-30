@@ -343,7 +343,8 @@
 		A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9122AAAFFEB00718F2F /* SuplaChannelConfig.swift */; };
 		A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9152AAB022400718F2F /* DayOfWeek.swift */; };
 		A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9172AAB027400718F2F /* QuarterOfHour.swift */; };
-		A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */; };
+		A51BE91B2AAB0DF900718F2F /* NativeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE91A2AAB0DF900718F2F /* NativeConfig.swift */; };
+		A5C0DE012026093000000001 /* NativeConfigMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0DE012026093000000002 /* NativeConfigMocks.swift */; };
 		A522DB3A2D0B09E600163BA2 /* GetChannelBatteryIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522DB392D0B09E500163BA2 /* GetChannelBatteryIconUseCase.swift */; };
 		A522DB3E2D0B1EF700163BA2 /* SAElectricityMeterExtendedValue+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522DB3D2D0B1EF400163BA2 /* SAElectricityMeterExtendedValue+Ext.swift */; };
 		A522DB432D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522DB422D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift */; };
@@ -2229,8 +2230,8 @@
 		A51BE9122AAAFFEB00718F2F /* SuplaChannelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelConfig.swift; sourceTree = "<group>"; };
 		A51BE9152AAB022400718F2F /* DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		A51BE9172AAB027400718F2F /* QuarterOfHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterOfHour.swift; sourceTree = "<group>"; };
-		A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuplaConfigIntegrator.m; sourceTree = "<group>"; };
-		A51BE91C2AAB0E0900718F2F /* SuplaConfigIntegrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuplaConfigIntegrator.h; sourceTree = "<group>"; };
+		A51BE91A2AAB0DF900718F2F /* NativeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeConfig.swift; sourceTree = "<group>"; };
+		A5C0DE012026093000000002 /* NativeConfigMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeConfigMocks.swift; sourceTree = "<group>"; };
 		A522DB392D0B09E500163BA2 /* GetChannelBatteryIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBatteryIconUseCase.swift; sourceTree = "<group>"; };
 		A522DB3D2D0B1EF400163BA2 /* SAElectricityMeterExtendedValue+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAElectricityMeterExtendedValue+Ext.swift"; sourceTree = "<group>"; };
 		A522DB422D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterPhaseSequence.swift; sourceTree = "<group>"; };
@@ -4577,8 +4578,7 @@
 		A51BE9192AAB0DBB00718F2F /* Integration */ = {
 			isa = PBXGroup;
 			children = (
-				A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */,
-				A51BE91C2AAB0E0900718F2F /* SuplaConfigIntegrator.h */,
+				A51BE91A2AAB0DF900718F2F /* NativeConfig.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -5113,6 +5113,7 @@
 		A54A06592AF4E3A300C03DBC /* Native */ = {
 			isa = PBXGroup;
 			children = (
+				A5C0DE012026093000000002 /* NativeConfigMocks.swift */,
 				A54A065A2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift */,
 				A54A065C2AF4E58F00C03DBC /* CStructsConstructor.m */,
 				A54A065E2AF4E5A600C03DBC /* CStructsConstructor.h */,
@@ -9868,7 +9869,7 @@
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				A5AD70212C00B6AF00A36318 /* WindowVerticalControls.swift in Sources */,
-				A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */,
+				A51BE91B2AAB0DF900718F2F /* NativeConfig.swift in Sources */,
 				A58E45F62EB11D7A001F241C /* MotionSensorIconNameProducer.swift in Sources */,
 				A5CF3D6C2DD4BB9200207384 /* UserIcon+Ext.swift in Sources */,
 				A5C31A8B2EF0A8E300E4B4FD /* CircularColorSelector.swift in Sources */,
@@ -9930,6 +9931,7 @@
 				A5519B302B6D30D000811747 /* WeightValueProviderTest.swift in Sources */,
 				A55A8DC72BB3139E00C540D4 /* ExecuteRollerShutterActionUseCaseTests.swift in Sources */,
 				A54A065D2AF4E58F00C03DBC /* CStructsConstructor.m in Sources */,
+				A5C0DE012026093000000001 /* NativeConfigMocks.swift in Sources */,
 				A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */,
 				A50B5D332BF54FF300918D18 /* TerraceAwningVMTests.swift in Sources */,
 				A594ADD82C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift in Sources */,

@@ -36,10 +36,10 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
     static func from(remoteId: Int32, channelFunc: Int32?, crc32: Int64, suplaConfig: TChannelConfig_WeeklySchedule) -> SuplaChannelWeeklyScheduleConfig {
         
         let programConfigurations: SuplaWeeklyScheduleProgramSet
-        let size = SUPLA_WEEKLY_SCHEDULE_PROGRAMS_MAX_SIZE
+        let size = TChannelConfig_WeeklySchedule.programCount
         if channelFunc?.isRelayScheduleFunction == true {
             programConfigurations = .relay((0..<size).map { programId in
-                let program = SuplaConfigIntegrator.getProgramWith(programId, fromConfig: suplaConfig)
+                let program = suplaConfig.program(at: programId)
                 return SuplaRelayWeeklyScheduleProgram(
                     program: SuplaScheduleProgram.from(value: UInt8(programId + 1)),
                     mode: SuplaRelayMode.companion.from(value: Int32(program.Mode)),
@@ -49,7 +49,7 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
             })
         } else {
             programConfigurations = .hvac((0..<size).map { programId in
-                let program = SuplaConfigIntegrator.getProgramWith(programId, fromConfig: suplaConfig)
+                let program = suplaConfig.program(at: programId)
                 return SuplaHvacWeeklyScheduleProgram(
                     program: SuplaScheduleProgram.from(value: UInt8(programId + 1)),
                     mode: SuplaHvacMode.companion.from(byte: Int32(program.Mode)),
@@ -60,26 +60,18 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
         }
         
         var schedule: [SuplaWeeklyScheduleEntry] = []
-        for index in 0..<SuplaConfigIntegrator.suplaWeeklyScheduleValuesSize(suplaConfig) {
-            let dayOfWeek = (index / 2 / 24) % 7
-            let hour = (index / 2) % 24
-            let quarterOfHour = (index % 2) * 2
-            let program = SuplaConfigIntegrator.getQuarterProgram(for: index, inConfig: suplaConfig)
-            
+        for index in 0..<TChannelConfig_WeeklySchedule.quarterCount {
+            let dayOfWeek = index / 4 / 24
+            let hour = (index / 4) % 24
+            let quarterOfHour = index % 4
+            let program = suplaConfig.program(atQuarter: index)
+
             schedule.append(
                 SuplaWeeklyScheduleEntry(
                     dayOfWeek: DayOfWeek.from(value: UInt8(dayOfWeek)),
                     hour: UInt8(hour),
                     quarterOfHour: QuarterOfHour.from(value: UInt8(quarterOfHour + 1)),
-                    program: SuplaScheduleProgram.from(value: program & 0xF)
-                )
-            )
-            schedule.append(
-                SuplaWeeklyScheduleEntry(
-                    dayOfWeek: DayOfWeek.from(value: UInt8(dayOfWeek)),
-                    hour: UInt8(hour),
-                    quarterOfHour: QuarterOfHour.from(value: UInt8(quarterOfHour + 2)),
-                    program: SuplaScheduleProgram.from(value: (program & 0xF0) >> 4)
+                    program: SuplaScheduleProgram.from(value: program)
                 )
             )
         }

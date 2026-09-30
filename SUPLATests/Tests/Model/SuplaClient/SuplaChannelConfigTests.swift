@@ -152,13 +152,13 @@ class SuplaChannelConfigTests: XCTestCase {
         config.Func = SUPLA_CHANNELFNC_POWERSWITCH
         config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
         config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
-        SuplaConfigIntegrator.setRelayProgramWith(
-            0,
-            withMode: UInt8(SUPLA_RELAY_MODE_START_ON),
-            withDuration: 120,
-            withOppositeDuration: 30,
-            in: &config
-        )
+        var nativeWeeklyConfig = TChannelConfig_WeeklySchedule()
+        var program = TWeeklyScheduleProgram()
+        program.Mode = UInt8(SUPLA_RELAY_MODE_START_ON)
+        program.RelayModeDurationS = 120
+        program.RelayOppositeModeDurationS = 30
+        nativeWeeklyConfig.setProgram(program, at: 0)
+        config.setPayload(nativeWeeklyConfig)
 
         // when
         let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
@@ -178,6 +178,19 @@ class SuplaChannelConfigTests: XCTestCase {
                 oppositeModeDurationS: 30
             )
         )
+    }
+
+    func test_shouldReplaceProgramInQuarterAndHandleScheduleBoundaries() {
+        var config = TChannelConfig_WeeklySchedule()
+
+        config.setProgram(1, atQuarter: 0)
+        config.setProgram(2, atQuarter: 0)
+        config.setProgram(3, atQuarter: 1)
+        config.setProgram(4, atQuarter: TChannelConfig_WeeklySchedule.quarterCount - 1)
+
+        XCTAssertEqual(config.program(atQuarter: 0), 2)
+        XCTAssertEqual(config.program(atQuarter: 1), 3)
+        XCTAssertEqual(config.program(atQuarter: TChannelConfig_WeeklySchedule.quarterCount - 1), 4)
     }
     
     func test_shouldGetGeneralPurposeMeterConfig() {
@@ -306,11 +319,11 @@ class SuplaChannelConfigTests: XCTestCase {
     }
     
     private func getHvacConfig() -> TSCS_ChannelConfig {
-        return SuplaConfigIntegrator.mockHvacConfig()
+        NativeConfigMocks.hvacConfig()
     }
     
     private func getWeeklScheduleConfig() -> TSCS_ChannelConfig {
-        return SuplaConfigIntegrator.mockWeeklyScheduleConfig()
+        NativeConfigMocks.weeklyScheduleConfig()
     }
     
     private func getGpMeterConfig() -> TSCS_ChannelConfig {
