@@ -114,6 +114,7 @@ enum LegacyDetailType: Hashable {
 enum DetailPage: Hashable {
     // Switches
     case switchGeneral
+    case switchSchedule
     case switchTimer
     
     // Thermostat
@@ -163,6 +164,7 @@ enum DetailPage: Hashable {
     
     // Gate
     case gateGeneral
+    case gateSchedule
     
     // HRV
     case recuperatorGeneral

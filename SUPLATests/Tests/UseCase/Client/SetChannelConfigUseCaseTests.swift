@@ -54,14 +54,14 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
             remoteId: 123,
             channelFunc: nil,
             crc32: 0,
-            programConfigurations: [
-                SuplaWeeklyScheduleProgram(
+            programConfigurations: .hvac([
+                SuplaHvacWeeklyScheduleProgram(
                     program: .program1,
                     mode: .cool,
                     setpointTemperatureHeat: nil,
                     setpointTemperatureCool: 1200
                 )
-            ],
+            ]),
             schedule: [
                 SuplaWeeklyScheduleEntry(
                     dayOfWeek: .sunday,
@@ -97,6 +97,36 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(config.Quarters.0, 0x22)
         XCTAssertEqual(config.Quarters.1, 0)
     }
+
+    func test_shouldSetRelayWeeklyScheduleConfig() {
+        // given
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+            remoteId: 123,
+            channelFunc: SUPLA_CHANNELFNC_POWERSWITCH,
+            crc32: 0,
+            programConfigurations: .relay([
+                SuplaRelayWeeklyScheduleProgram(
+                    program: .program1,
+                    mode: .startOff,
+                    modeDurationS: 45,
+                    oppositeModeDurationS: 15
+                )
+            ]),
+            schedule: []
+        )
+
+        // when
+        useCase.invoke(remoteId: 123, config: weeklyConfig).subscribe(observer).disposed(by: disposeBag)
+
+        // then
+        assertEvents([.next(.failure), .completed])
+
+        var parameters = suplaClientProvider.suplaClientMock.setChannelConfigParameters[0].pointee
+        let config = extract(pointee: &(parameters.Config))
+        XCTAssertEqual(config.Program.0.Mode, UInt8(SUPLA_RELAY_MODE_START_OFF))
+        XCTAssertEqual(config.Program.0.RelayModeDurationS, 45)
+        XCTAssertEqual(config.Program.0.RelayOppositeModeDurationS, 15)
+    }
     
     func test_shouldBrakeWithFatalError_whenInvalidProgramSet() {
         // given
@@ -104,14 +134,14 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
             remoteId: 123,
             channelFunc: nil,
             crc32: 0,
-            programConfigurations: [
-                SuplaWeeklyScheduleProgram(
+            programConfigurations: .hvac([
+                SuplaHvacWeeklyScheduleProgram(
                     program: .off,
                     mode: .cool,
                     setpointTemperatureHeat: nil,
                     setpointTemperatureCool: 1200
                 )
-            ],
+            ]),
             schedule: []
         )
         

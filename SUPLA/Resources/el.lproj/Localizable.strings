@@ -359,6 +359,20 @@
 "switch_detail_state_off" = "απενεργ.";
 "overcurrent_warning" = "La alimentación se desactivo al superar el umbral establecido de corriente permitida.";
 "overcurrent_question" = "La alimentación se desactivo al superar el umbral establecido de corriente permitida. ¿Estás seguro de que deseas encenderlo?";
+"schedule_program_default" = "Προεπιλογή";
+"schedule_program_turn_on_seconds" = "Ενεργοποίηση για %ds";
+"schedule_program_turn_off_seconds" = "Απενεργοποίηση για %ds";
+"schedule_program_cycle" = "Κύκλος";
+"schedule_program_force_on" = "Εξαναγκασμός ON";
+"schedule_program_force_off" = "Εξαναγκασμός OFF";
+"relay_schedule_program_operation_type" = "Τύπος λειτουργίας";
+"relay_schedule_program_mode_start_on" = "Ενεργοποίηση μία φορά";
+"relay_schedule_program_mode_start_off" = "Απενεργοποίηση μία φορά";
+"relay_schedule_program_mode_forced_on" = "Εξαναγκασμένη ενεργοποίηση";
+"relay_schedule_program_mode_forced_off" = "Εξαναγκασμένη απενεργοποίηση";
+"relay_schedule_program_mode_automatic" = "Αυτόματα";
+"relay_schedule_program_first_duration" = "Πρώτη διάρκεια (%@)";
+"relay_schedule_program_second_duration" = "Δεύτερη διάρκεια (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Ο χρόνος πρέπει να είναι μεγαλύτερος από 0";

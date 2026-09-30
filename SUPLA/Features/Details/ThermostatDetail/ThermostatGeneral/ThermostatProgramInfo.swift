@@ -66,7 +66,7 @@ extension ThermostatProgramInfo.Builder {
         
         @Singleton<DateProvider> var dateProvider
         
-        if (!isOnline || config.schedule.isEmpty || config.programConfigurations.isEmpty) {
+        if (!isOnline || config.schedule.isEmpty || config.programConfigurations.hvacPrograms?.isEmpty != false) {
             return []
         }
         if (!flags.contains(.weeklySchedule)) {
@@ -170,11 +170,11 @@ extension ThermostatProgramInfo.Builder {
         ]
     }
     
-    fileprivate func getProgram(program: SuplaScheduleProgram?) -> SuplaWeeklyScheduleProgram? {
+    fileprivate func getProgram(program: SuplaScheduleProgram?) -> SuplaHvacWeeklyScheduleProgram? {
         if (program == .off) {
-            return SuplaWeeklyScheduleProgram.OFF
+            return SuplaHvacWeeklyScheduleProgram.OFF
         } else {
-            return channelConfig!.programConfigurations.first { $0.program == program }
+            return channelConfig!.programConfigurations.hvacPrograms?.first { $0.program == program }
         }
     }
 }

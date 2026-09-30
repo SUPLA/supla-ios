@@ -185,6 +185,58 @@ extension SuplaCore.Dialog {
             .padding(Distance.default)
         }
     }
+
+    struct HorizontalButtons: SwiftUI.View {
+        let onSecondaryClick: () -> Void
+        let onPrimaryClick: () -> Void
+        let processing: Bool
+        let primaryDisabled: Bool
+        let secondaryButtonText: String
+        let primaryButtonData: ButtonData
+
+        init(
+            onSecondaryClick: @escaping () -> Void,
+            onPrimaryClick: @escaping () -> Void,
+            processing: Bool = false,
+            primaryDisabled: Bool = false,
+            secondaryText: String = Strings.General.cancel,
+            primaryButtonData: ButtonData = .default(Strings.General.ok)
+        ) {
+            self.onSecondaryClick = onSecondaryClick
+            self.onPrimaryClick = onPrimaryClick
+            self.processing = processing
+            self.primaryDisabled = primaryDisabled
+            self.secondaryButtonText = secondaryText
+            self.primaryButtonData = primaryButtonData
+        }
+
+        var body: some SwiftUI.View {
+            HStack(spacing: Distance.default) {
+                TitleButton(
+                    title: secondaryButtonText,
+                    fullWidth: true,
+                    action: onSecondaryClick
+                )
+                .textButtonStyle()
+                .disabled(processing)
+
+                if processing {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                        .frame(minHeight: ButtonSize.default.height)
+                } else {
+                    TitleButton(
+                        title: primaryButtonData.title,
+                        fullWidth: true,
+                        action: onPrimaryClick
+                    )
+                    .filledButtonStyle(colors: primaryButtonData.colors)
+                    .disabled(primaryDisabled)
+                }
+            }
+            .padding(Distance.default)
+        }
+    }
     
     struct ButtonData {
         let title: String

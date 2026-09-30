@@ -345,6 +345,20 @@
 "switch_detail_state_off" = "ausgeschaltet";
 "overcurrent_warning" = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet.";
 "overcurrent_question" = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet. Möchten Sie wirklich die Versorgung einschalten?";
+"schedule_program_default" = "Standard";
+"schedule_program_turn_on_seconds" = "Für %ds einschalten";
+"schedule_program_turn_off_seconds" = "Für %ds ausschalten";
+"schedule_program_cycle" = "Zyklus";
+"schedule_program_force_on" = "EIN erzwingen";
+"schedule_program_force_off" = "AUS erzwingen";
+"relay_schedule_program_operation_type" = "Betriebsart";
+"relay_schedule_program_mode_start_on" = "Einmal einschalten";
+"relay_schedule_program_mode_start_off" = "Einmal ausschalten";
+"relay_schedule_program_mode_forced_on" = "Erzwungen ein";
+"relay_schedule_program_mode_forced_off" = "Erzwungen aus";
+"relay_schedule_program_mode_automatic" = "Automatisch";
+"relay_schedule_program_first_duration" = "Erste Dauer (%@)";
+"relay_schedule_program_second_duration" = "Zweite Dauer (%@)";
 
 /* Timer Detail */
 "timer_detail_header" = "Bestimmen Sie bitte die Zeit, zu der das Gerät ein- oder ausgeschaltet werden sollte";

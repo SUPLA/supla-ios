@@ -83,7 +83,7 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
     func test_shouldOpenProgramEditDialog_forHeat() {
         // given
         let program = ScheduleDetailProgram(
-            scheduleProgram: SuplaWeeklyScheduleProgram(
+            scheduleProgram: SuplaHvacWeeklyScheduleProgram(
                 program: .program2,
                 mode: .heat,
                 setpointTemperatureHeat: 2200,
@@ -115,7 +115,7 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
     func test_shouldOpenProgramEditDialog_forCool() {
         // given
         let program = ScheduleDetailProgram(
-            scheduleProgram: SuplaWeeklyScheduleProgram(
+            scheduleProgram: SuplaHvacWeeklyScheduleProgram(
                 program: .program3,
                 mode: .cool,
                 setpointTemperatureHeat: nil,
@@ -192,7 +192,7 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         ]
         let programs = [
             ScheduleDetailProgram(
-                scheduleProgram: SuplaWeeklyScheduleProgram(
+                scheduleProgram: SuplaHvacWeeklyScheduleProgram(
                     program: .program2,
                     mode: .heat,
                     setpointTemperatureHeat: 2200,

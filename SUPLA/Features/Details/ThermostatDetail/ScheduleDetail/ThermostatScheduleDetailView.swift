@@ -43,92 +43,56 @@ extension ThermostatScheduleDetailFeature {
         @ObservedObject var state: ViewState
         let delegate: ViewDelegate?
 
-        @ObservedObject private var orientationObserver = OrientationObserver()
-
         var body: some SwiftUI.View {
-            BackgroundStack(alignment: .top) {
-                if (orientationObserver.orientation.isLandscape) {
-                    HStack(spacing: Distance.tiny) {
-                        ProgramButtonsLandscape()
-                        ScheduleTableView()
-                            .padding(.vertical, Distance.small)
-                    }
-                } else {
-                    VStack(spacing: Distance.tiny) {
-                        ProgramButtonsPortrait()
-                        ScheduleTableView()
-                            .padding(.horizontal, Distance.default)
-                    }
-                    .padding(.vertical, Distance.small)
-                }
-                
-                if let state = state.editProgramState {
-                    ThermostatScheduleDetailFeature.EditProgramDialog(
-                        state: state,
-                        onDismiss: { delegate?.onProgramDialogDismiss() },
-                        onChange: { delegate?.onProgramDialogChange($0, $1) },
-                        onModeChange: { delegate?.onProgramDialogModeChange($0) },
-                        onPlus: { delegate?.onProgramDialogPlus($0, $1) },
-                        onMinus: { delegate?.onProgramDialogMinus($0, $1) },
-                        onSave: { delegate?.onProgramDialogSave($0, $1) }
+            WeeklyScheduleEditor(
+                programs: state.programs.map { WeeklyScheduleProgram(program: $0.scheduleProgram, icon: $0.icon) },
+                activeProgram: state.activeProgram,
+                schedule: state.schedule.mapValues {
+                    WeeklyScheduleBoxValue(
+                        $0.firstQuarterProgram,
+                        $0.secondQuarterProgram,
+                        $0.thirdQuarterProgram,
+                        $0.fourthQuarterProgram
                     )
-                }
-                
-                if let state = state.editQuartersState {
-                    ThermostatScheduleDetailFeature.EditQuartersDialog(
-                        state: state,
-                        onDismiss: { delegate?.onQuartersDialogDismiss() },
-                        onProgramChange: { delegate?.onQuartersDialogProgramChange($0) },
-                        onQuarterChange: { delegate?.onQuartersDialogQuarterChange($0) },
-                        onSave: { delegate?.onQuartersDialogSave() }
-                    )
-                }
-            }
-        }
-
-        private func ProgramButtonsPortrait() -> some SwiftUI.View {
-            ScrollView(.horizontal) {
-                HStack(spacing: Distance.tiny) {
-                    ForEach(state.programs.indices, id: \.self) { index in
-                        ProgramButton(index)
-                    }
-                }
-                .padding(.horizontal, Distance.default)
-            }
-            .hideScrollIndicators()
-        }
-
-        private func ProgramButtonsLandscape() -> some SwiftUI.View {
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: Distance.tiny) {
-                    ForEach(state.programs.indices, id: \.self) { index in
-                        ProgramButton(index)
-                    }
-                }
-                .padding(.vertical, Distance.small)
-            }
-            .hideScrollIndicators()
-        }
-
-        @ViewBuilder
-        private func ScheduleTableView() -> some SwiftUI.View {
-            ScheduleTable(
-                schedule: state.schedule,
+                },
                 currentDay: state.currentDay,
                 currentHour: state.currentHour,
-                onFingerMoved: { delegate?.onBoxTap($0) },
-                onFingerMoveFinished: { delegate?.onBoxTapFinished() },
-                onFingerLongPressed: { delegate?.onShowQuartersDialog($0) }
-            )
-        }
-        
-        @ViewBuilder
-        private func ProgramButton(_ index: Int) -> some SwiftUI.View {
-            let program = state.programs[index]
-            ScheduleProgramButton(
-                state: program.buttonState(state.activeProgram),
-                action: { delegate?.onProgramTap(program) },
-                onLongPress: { delegate?.onShowProgramDialog(program) }
+                onProgramTap: { program in
+                    if let original = state.programs.first(where: { $0.scheduleProgram.program == program.program }) {
+                        delegate?.onProgramTap(original)
+                    }
+                },
+                onProgramLongPress: { program in
+                    if let original = state.programs.first(where: { $0.scheduleProgram.program == program.program }) {
+                        delegate?.onShowProgramDialog(original)
+                    }
+                },
+                onBoxTap: { delegate?.onBoxTap($0) },
+                onBoxTapFinished: { delegate?.onBoxTapFinished() },
+                onBoxLongPress: { delegate?.onShowQuartersDialog($0) },
+                dialogs: {
+                    if let editProgramState = state.editProgramState {
+                        AnyView(ThermostatScheduleDetailFeature.EditProgramDialog(
+                            state: editProgramState,
+                            onDismiss: { delegate?.onProgramDialogDismiss() },
+                            onChange: { delegate?.onProgramDialogChange($0, $1) },
+                            onModeChange: { delegate?.onProgramDialogModeChange($0) },
+                            onPlus: { delegate?.onProgramDialogPlus($0, $1) },
+                            onMinus: { delegate?.onProgramDialogMinus($0, $1) },
+                            onSave: { delegate?.onProgramDialogSave($0, $1) }
+                        ))
+                    } else if let editQuartersState = state.editQuartersState {
+                        AnyView(ThermostatScheduleDetailFeature.EditQuartersDialog(
+                            state: editQuartersState,
+                            onDismiss: { delegate?.onQuartersDialogDismiss() },
+                            onProgramChange: { delegate?.onQuartersDialogProgramChange($0) },
+                            onQuarterChange: { delegate?.onQuartersDialogQuarterChange($0) },
+                            onSave: { delegate?.onQuartersDialogSave() }
+                        ))
+                    } else {
+                        AnyView(EmptyView())
+                    }
+                }
             )
         }
     }

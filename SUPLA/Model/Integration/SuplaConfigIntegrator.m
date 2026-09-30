@@ -29,6 +29,14 @@
     weeklyConfig->Program[programId].SetpointTemperatureCool = coolTemp;
 }
 
++ (void) setRelayProgramWith: (UInt8) programId withMode: (UInt8) mode withDuration: (UInt16) duration withOppositeDuration: (UInt16) oppositeDuration inConfig: (TSCS_ChannelConfig*) config {
+    TChannelConfig_WeeklySchedule* weeklyConfig = (TChannelConfig_WeeklySchedule*) config->Config;
+
+    weeklyConfig->Program[programId].Mode = mode;
+    weeklyConfig->Program[programId].RelayModeDurationS = duration;
+    weeklyConfig->Program[programId].RelayOppositeModeDurationS = oppositeDuration;
+}
+
 + (TWeeklyScheduleProgram) getProgramWith: (int) programId fromConfig: (TChannelConfig_WeeklySchedule) config {
     return config.Program[programId];
 }

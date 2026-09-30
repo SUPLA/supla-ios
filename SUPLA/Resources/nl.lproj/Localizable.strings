@@ -358,6 +358,20 @@
 "switch_detail_state_off" = "uitgeschakeld";
 "overcurrent_warning" = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden.";
 "overcurrent_question" = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden. Weet je zeker dat je de stroom aan wilt zetten?";
+"schedule_program_default" = "Standaard";
+"schedule_program_turn_on_seconds" = "Schakel %ds in";
+"schedule_program_turn_off_seconds" = "Schakel %ds uit";
+"schedule_program_cycle" = "Cyclus";
+"schedule_program_force_on" = "Forceer AAN";
+"schedule_program_force_off" = "Forceer UIT";
+"relay_schedule_program_operation_type" = "Bewerkingstype";
+"relay_schedule_program_mode_start_on" = "Eenmaal inschakelen";
+"relay_schedule_program_mode_start_off" = "Eenmaal uitschakelen";
+"relay_schedule_program_mode_forced_on" = "Geforceerd aan";
+"relay_schedule_program_mode_forced_off" = "Geforceerd uit";
+"relay_schedule_program_mode_automatic" = "Automatisch";
+"relay_schedule_program_first_duration" = "Eerste duur (%@)";
+"relay_schedule_program_second_duration" = "Tweede duur (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Tijd moet groter zijn dan 0";

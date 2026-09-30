@@ -24,12 +24,11 @@ protocol DelayedWeeklyScheduleConfigSubject {
 }
 
 final class DelayedWeeklyScheduleConfigSubjectImpl: DelayedCommandSubject<WeeklyScheduleConfigData>, DelayedWeeklyScheduleConfigSubject {
-    
     @Singleton<SetChannelConfigUseCase> private var setChannelConfigUseCase
-    
+
     override func execute(data: WeeklyScheduleConfigData) -> Observable<RequestResult> {
         SALog.debug("Executing delayed weekly schedule config")
-        
+
         return setChannelConfigUseCase.invoke(
             remoteId: data.remoteId,
             config: SuplaChannelWeeklyScheduleConfig(
@@ -45,10 +44,10 @@ final class DelayedWeeklyScheduleConfigSubjectImpl: DelayedCommandSubject<Weekly
 
 struct WeeklyScheduleConfigData: DelayableData, Equatable {
     let remoteId: Int32
-    let programs: [SuplaWeeklyScheduleProgram]
+    let programs: SuplaWeeklyScheduleProgramSet
     let schedule: [SuplaWeeklyScheduleEntry]
     var sent: Bool = false
-    
+
     func sentState() -> DelayableData {
         var copy = self
         copy.sent = true

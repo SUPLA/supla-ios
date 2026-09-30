@@ -37,7 +37,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     
     func test_shouldGetDescription_whenProgramIsOff() {
         // given
-        let program = SuplaWeeklyScheduleProgram(program: .off, mode: .off, setpointTemperatureHeat: nil, setpointTemperatureCool: nil)
+        let program = SuplaHvacWeeklyScheduleProgram(program: .off, mode: .off, setpointTemperatureHeat: nil, setpointTemperatureCool: nil)
         
         // when
         let result = program.description
@@ -48,7 +48,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     
     func test_shouldGetDescription_whenModeIsHeat() {
         // given
-        let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 1200, setpointTemperatureCool: nil)
+        let program = SuplaHvacWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 1200, setpointTemperatureCool: nil)
         groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
         groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
@@ -61,7 +61,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     
     func test_shouldGetDescription_whenModeIsCool() {
         // given
-        let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2300)
+        let program = SuplaHvacWeeklyScheduleProgram(program: .program1, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2300)
         groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
         groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
@@ -74,7 +74,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     
     func test_shouldGetDescription_whenModeIsAuto() {
         // given
-        let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .heatCool, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
+        let program = SuplaHvacWeeklyScheduleProgram(program: .program1, mode: .heatCool, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
         groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
         groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
@@ -87,7 +87,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     
     func test_shouldGetDescriptionNoValue_whenModeIsDry() {
         // given
-        let program = SuplaWeeklyScheduleProgram(program: .program1, mode: .dry, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
+        let program = SuplaHvacWeeklyScheduleProgram(program: .program1, mode: .dry, setpointTemperatureHeat: 1800, setpointTemperatureCool: 2100)
         groupSharedSettingsMock.temperatureUnitMock.returns = .single(.celsius)
         groupSharedSettingsMock.temperaturePrecisionMock.returns = .single(1)
         
