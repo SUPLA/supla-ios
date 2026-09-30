@@ -363,6 +363,20 @@
 "switch_detail_state_off" = "desligado";
 "overcurrent_warning" = "A potência foi desligada quando o limiar definido de corrente admissível foi ultrapassado.";
 "overcurrent_question" = "A potência foi desligada quando o limiar definido de corrente admissível foi ultrapassado. Tem certeza que quer ligar a energia?";
+"schedule_program_default" = "Predefinido";
+"schedule_program_turn_on_seconds" = "Ativar durante %ds";
+"schedule_program_turn_off_seconds" = "Desativar durante %ds";
+"schedule_program_cycle" = "Ciclo";
+"schedule_program_force_on" = "Forçar ativação";
+"schedule_program_force_off" = "Forçar desativação";
+"relay_schedule_program_operation_type" = "Tipo de operação";
+"relay_schedule_program_mode_start_on" = "Ativar uma vez";
+"relay_schedule_program_mode_start_off" = "Desativar uma vez";
+"relay_schedule_program_mode_forced_on" = "Ativação forçada";
+"relay_schedule_program_mode_forced_off" = "Desativação forçada";
+"relay_schedule_program_mode_automatic" = "Automático";
+"relay_schedule_program_first_duration" = "Primeira duração (%@)";
+"relay_schedule_program_second_duration" = "Segunda duração (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "O tempo deve ser superior a 0";

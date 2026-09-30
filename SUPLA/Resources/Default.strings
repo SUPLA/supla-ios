@@ -196,6 +196,20 @@
 "switch_detail_state_offline" = "offline";
 "overcurrent_warning" = "The power was turned off after the set threshold of the allowable current was exceeded.";
 "overcurrent_question" = "The power was turned off after exceeding the set threshold of the allowable current. Are you sure you want to power on?";
+"schedule_program_default" = "Default";
+"schedule_program_turn_on_seconds" = "Turn on %ds";
+"schedule_program_turn_off_seconds" = "Turn off %ds";
+"schedule_program_cycle" = "Cycle";
+"schedule_program_force_on" = "Force ON";
+"schedule_program_force_off" = "Force OFF";
+"relay_schedule_program_operation_type" = "Operation type";
+"relay_schedule_program_mode_start_on" = "Turn on once";
+"relay_schedule_program_mode_start_off" = "Turn off once";
+"relay_schedule_program_mode_forced_on" = "Forced on";
+"relay_schedule_program_mode_forced_off" = "Forced off";
+"relay_schedule_program_mode_automatic" = "Automatic";
+"relay_schedule_program_first_duration" = "First duration (%@)";
+"relay_schedule_program_second_duration" = "Second duration (%@)";
 
 /* Timer Detail */
 "timer_detail_header" = "Define time for which device should stay:";

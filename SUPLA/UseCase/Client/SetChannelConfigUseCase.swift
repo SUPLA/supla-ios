@@ -54,20 +54,38 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
     
     private func setPrograms(scheduleConfig: SuplaChannelWeeklyScheduleConfig, suplaConfig:  UnsafeMutablePointer<TSCS_ChannelConfig>!) {
         
-        for program in scheduleConfig.programConfigurations {
-            let programId = program.program.rawValue
-            if (programId < 1 || programId > 4) {
-                fatalError("Trying to set invalid program \(program.program)")
+        switch scheduleConfig.programConfigurations {
+        case .relay(let programs):
+            for program in programs {
+                let programId = validatedProgramId(program.program)
+                SuplaConfigIntegrator.setRelayProgramWith(
+                    programId - 1,
+                    withMode: UInt8(program.mode.value),
+                    withDuration: program.modeDurationS,
+                    withOppositeDuration: program.oppositeModeDurationS,
+                    in: suplaConfig
+                )
             }
-            
-            SuplaConfigIntegrator.setProgramWith(
-                programId - 1,
-                withMode: UInt8(program.mode.value),
-                withHeatTemp: program.setpointTemperatureHeat ?? 0,
-                withCoolTemp: program.setpointTemperatureCool ?? 0,
-                in: suplaConfig
-            )
+        case .hvac(let programs):
+            for program in programs {
+                let programId = validatedProgramId(program.program)
+                SuplaConfigIntegrator.setProgramWith(
+                    programId - 1,
+                    withMode: UInt8(program.mode.value),
+                    withHeatTemp: program.setpointTemperatureHeat ?? 0,
+                    withCoolTemp: program.setpointTemperatureCool ?? 0,
+                    in: suplaConfig
+                )
+            }
         }
+    }
+
+    private func validatedProgramId(_ program: SuplaScheduleProgram) -> UInt8 {
+        let programId = program.rawValue
+        guard (1...4).contains(programId) else {
+            fatalError("Trying to set invalid program \(program)")
+        }
+        return programId
     }
     
     private func setQuarters(scheduleConfig: SuplaChannelWeeklyScheduleConfig, suplaConfig: UnsafeMutablePointer<TSCS_ChannelConfig>!) {

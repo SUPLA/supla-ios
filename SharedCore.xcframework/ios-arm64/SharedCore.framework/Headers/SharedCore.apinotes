@@ -1867,6 +1867,46 @@ Classes:
     Parameters:
     - Position: 0
       Type: "BOOL"
+- Name: "SharedCoreSuplaButtonMode"
+  SwiftBridge: "SuplaButtonMode"
+  SwiftName: "__SuplaButtonMode"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value_"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "notSet"
+    PropertyKind: "Class"
+    SwiftName: "notSet"
+    Type: "SharedCoreSuplaButtonMode * _Nonnull"
+  - Name: "locked"
+    PropertyKind: "Class"
+    SwiftName: "locked"
+    Type: "SharedCoreSuplaButtonMode * _Nonnull"
+  - Name: "cmdWeeklySchedule"
+    PropertyKind: "Class"
+    SwiftName: "cmdWeeklySchedule"
+    Type: "SharedCoreSuplaButtonMode * _Nonnull"
+  - Name: "cmdSwitchToManual"
+    PropertyKind: "Class"
+    SwiftName: "cmdSwitchToManual"
+    Type: "SharedCoreSuplaButtonMode * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreSuplaButtonModeCompanion"
+  SwiftName: "__SuplaButtonMode.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreSuplaButtonMode * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
 - Name: "SharedCoreSuplaHvacMode"
   SwiftBridge: "SuplaHvacMode"
   SwiftName: "__SuplaHvacMode"
@@ -1932,6 +1972,62 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "from(byte:)"
     ResultType: "SharedCoreSuplaHvacMode * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "int32_t"
+- Name: "SharedCoreSuplaRelayMode"
+  SwiftBridge: "SuplaRelayMode"
+  SwiftName: "__SuplaRelayMode"
+  SwiftPrivate: true
+  Properties:
+  - Name: "value_"
+    PropertyKind: "Instance"
+    SwiftName: "value"
+    Type: "int32_t"
+  - Name: "notSet"
+    PropertyKind: "Class"
+    SwiftName: "notSet"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "startOn"
+    PropertyKind: "Class"
+    SwiftName: "startOn"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "startOff"
+    PropertyKind: "Class"
+    SwiftName: "startOff"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "forcedOn"
+    PropertyKind: "Class"
+    SwiftName: "forcedOn"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "forcedOff"
+    PropertyKind: "Class"
+    SwiftName: "forcedOff"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "automatic"
+    PropertyKind: "Class"
+    SwiftName: "automatic"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "cmdWeeklySchedule"
+    PropertyKind: "Class"
+    SwiftName: "cmdWeeklySchedule"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Name: "cmdSwitchToManual"
+    PropertyKind: "Class"
+    SwiftName: "cmdSwitchToManual"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "SharedCoreSuplaRelayModeCompanion"
+  SwiftName: "__SuplaRelayMode.Companion"
+  Methods:
+  - Selector: "fromValue:"
+    MethodKind: "Instance"
+    SwiftName: "from(value:)"
+    ResultType: "SharedCoreSuplaRelayMode * _Nonnull"
     Parameters:
     - Position: 0
       Type: "int32_t"
@@ -8852,6 +8948,10 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "flags"
     Type: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
+  - Name: "mode"
+    PropertyKind: "Instance"
+    SwiftName: "mode"
+    Type: "SharedCoreSuplaRelayMode * _Nonnull"
   - Name: "on"
     PropertyKind: "Instance"
     SwiftName: "on"
@@ -8861,9 +8961,9 @@ Classes:
     SwiftName: "status"
     Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
   Methods:
-  - Selector: "initWithStatus:on:flags:"
+  - Selector: "initWithStatus:on:flags:mode:"
     MethodKind: "Instance"
-    SwiftName: "init(status:on:flags:)"
+    SwiftName: "init(status:on:flags:mode:)"
     Parameters:
     - Position: 0
       Type: "SharedCoreSuplaChannelAvailabilityStatus * _Nonnull"
@@ -8871,9 +8971,11 @@ Classes:
       Type: "BOOL"
     - Position: 2
       Type: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
-  - Selector: "doCopyStatus:on:flags:"
+    - Position: 3
+      Type: "SharedCoreSuplaRelayMode * _Nonnull"
+  - Selector: "doCopyStatus:on:flags:mode:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(status:on:flags:)"
+    SwiftName: "doCopy(status:on:flags:mode:)"
     ResultType: "SharedCoreRelayValue * _Nonnull"
     Parameters:
     - Position: 0
@@ -8882,6 +8984,8 @@ Classes:
       Type: "BOOL"
     - Position: 2
       Type: "NSArray<SharedCoreSuplaRelayFlag *> * _Nonnull"
+    - Position: 3
+      Type: "SharedCoreSuplaRelayMode * _Nonnull"
   - Selector: "isEqual:"
     MethodKind: "Instance"
     SwiftName: "isEqual(_:)"
@@ -8921,6 +9025,10 @@ Classes:
   - Name: "overcurrentRelayOff"
     PropertyKind: "Class"
     SwiftName: "overcurrentRelayOff"
+    Type: "SharedCoreSuplaRelayFlag * _Nonnull"
+  - Name: "weeklyScheduleEnabled"
+    PropertyKind: "Class"
+    SwiftName: "weeklyScheduleEnabled"
     Type: "SharedCoreSuplaRelayFlag * _Nonnull"
   Methods:
   - Selector: "initWithName:ordinal:"

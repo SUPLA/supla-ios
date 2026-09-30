@@ -359,6 +359,20 @@
 "switch_detail_state_off" = "désactivé";
 "overcurrent_warning" = "L'alimentation a été coupée après avoir dépassé le seuil de limite de courant fixé.";
 "overcurrent_question" = "L'alimentation a été coupée lorsque la limite de courant fixée a été dépassée. Êtes-vous sûr de vouloir mettre l'appareil sous tension?";
+"schedule_program_default" = "Par défaut";
+"schedule_program_turn_on_seconds" = "Activer pendant %ds";
+"schedule_program_turn_off_seconds" = "Désactiver pendant %ds";
+"schedule_program_cycle" = "Cycle";
+"schedule_program_force_on" = "Forcer activation";
+"schedule_program_force_off" = "Forcer désactivation";
+"relay_schedule_program_operation_type" = "Type d’opération";
+"relay_schedule_program_mode_start_on" = "Activer une fois";
+"relay_schedule_program_mode_start_off" = "Désactiver une fois";
+"relay_schedule_program_mode_forced_on" = "Activation forcée";
+"relay_schedule_program_mode_forced_off" = "Désactivation forcée";
+"relay_schedule_program_mode_automatic" = "Automatique";
+"relay_schedule_program_first_duration" = "Première durée (%@)";
+"relay_schedule_program_second_duration" = "Deuxième durée (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Le temps doit être supérieur à 0";

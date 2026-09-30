@@ -338,6 +338,20 @@
 "switch_detail_state_offline" = "offline";
 "overcurrent_warning" = "Az áramellátás a megengedett áramerősség beállított küszöbértékének túllépése után kikapcsolt.";
 "overcurrent_question" = "Az áramellátás a megengedett áramerősség beállított küszöbértékének túllépése után kikapcsolt. Biztos benne, hogy be akarja kapcsolni az áramellátást?";
+"schedule_program_default" = "Alapértelmezett";
+"schedule_program_turn_on_seconds" = "Bekapcsolás %ds időre";
+"schedule_program_turn_off_seconds" = "Kikapcsolás %ds időre";
+"schedule_program_cycle" = "Ciklus";
+"schedule_program_force_on" = "Kényszerített BE";
+"schedule_program_force_off" = "Kényszerített KI";
+"relay_schedule_program_operation_type" = "Művelet típusa";
+"relay_schedule_program_mode_start_on" = "Egyszeri bekapcsolás";
+"relay_schedule_program_mode_start_off" = "Egyszeri kikapcsolás";
+"relay_schedule_program_mode_forced_on" = "Kényszerített bekapcsolás";
+"relay_schedule_program_mode_forced_off" = "Kényszerített kikapcsolás";
+"relay_schedule_program_mode_automatic" = "Automatikus";
+"relay_schedule_program_first_duration" = "Első időtartam (%@)";
+"relay_schedule_program_second_duration" = "Második időtartam (%@)";
 
 /* Timer Detail */
 "timer_detail_header" = "Add meg, mennyi ideig maradjon az eszköz ebben az állapotban:";

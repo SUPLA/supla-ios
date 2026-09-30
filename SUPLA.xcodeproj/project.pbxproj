@@ -122,7 +122,9 @@
 		01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */; };
 		01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */; };
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
+		04D4FFF49E92542E186D02A4 /* RelayScheduleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AEF242EF94F74FD9460E6 /* RelayScheduleScreen.swift */; };
 		26C7E013F5AF9D5366ACDB82 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */; };
+		39538CDCC5A3AD5E1055B03E /* RelayScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C93785C771786FFCCF06958 /* RelayScheduleView.swift */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
 		401CA1CD1BA067DB00117AF4 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1CC1BA067DB00117AF4 /* Resources.xcassets */; };
@@ -173,8 +175,14 @@
 		40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A281BCCFF8A004CF43B /* settings@2x.png */; };
 		40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A421BCD6F06004CF43B /* Localizable.strings */; };
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
+		436A44A71A5CB44B93225E0D /* WeeklyScheduleProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C397550E5CE1A8D6868CF8 /* WeeklyScheduleProgram.swift */; };
+		D10000000000000000000001 /* ScheduleProgramDialogHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10000000000000000000002 /* ScheduleProgramDialogHeader.swift */; };
 		6878DA9EFD3348F1A08DD4C4 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */; };
+		69658929AF53A6A28FCB7441 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D04D04BEF38C6D3D9AD4BB1 /* DelayedWeeklyScheduleConfigSubject.swift */; };
 		6E8004D328493463009A917A /* AuthProfileItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */; };
+		869350A1443344FC1696CB06 /* WeeklyScheduleEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C122B1C02D1D061AEF2F /* WeeklyScheduleEditor.swift */; };
+		97810EE89490414E7EE3F4D0 /* RelayScheduleFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F742C5B2E9AEF332AA9496 /* RelayScheduleFeature.swift */; };
+		994C8B0FB7D10818D0ABAB80 /* WeeklyScheduleBoxValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5321C05CE094A81C94BFE3 /* WeeklyScheduleBoxValue.swift */; };
 		A50162592F921A6400FB2899 /* RoundedControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50162582F921A5A00FB2899 /* RoundedControlButton.swift */; };
 		A501625C2F9240C300FB2899 /* ThermostatTimerDetailInProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501625B2F9240B500FB2899 /* ThermostatTimerDetailInProgress.swift */; };
 		A501625E2F924D5C00FB2899 /* ThermostatTimerDetailConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A501625D2F924D5400FB2899 /* ThermostatTimerDetailConfiguration.swift */; };
@@ -651,7 +659,6 @@
 		A56233F52AB856B3001CB948 /* DelayedCommandSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233F42AB856B3001CB948 /* DelayedCommandSubject.swift */; };
 		A56233F72AB85B37001CB948 /* DelayedThermostatActionSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233F62AB85B37001CB948 /* DelayedThermostatActionSubject.swift */; };
 		A56233F92AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233F82AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift */; };
-		A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FA2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift */; };
 		A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FC2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift */; };
 		A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */; };
 		A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */; };
@@ -1632,6 +1639,7 @@
 		B3D000043109000000000004 /* LocationSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000033109000000000003 /* LocationSectionTests.swift */; };
 		B3D000063109000000000006 /* MainListItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000053109000000000005 /* MainListItemSection.swift */; };
 		B3D000083109000000000008 /* MainListItemSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000073109000000000007 /* MainListItemSectionTests.swift */; };
+		BE16124B24AE10DA69CD99A5 /* RelayScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C521012C3F8CA293B8803B7 /* RelayScheduleVM.swift */; };
 		C0DE15700000000000000001 /* ListItemScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000011 /* ListItemScaffold.swift */; };
 		C0DE15700000000000000002 /* ListItemStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000012 /* ListItemStatusIndicator.swift */; };
 		C0DE15700000000000000003 /* ListItemRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000013 /* ListItemRect.swift */; };
@@ -1966,6 +1974,8 @@
 		01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNode.m; sourceTree = "<group>"; };
 		19B1F34767F27EEE981B8B6E /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
 		2277CA485ED9869269CE1D2C /* Pods-SUPLAWidgetsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.release.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.release.xcconfig"; sourceTree = "<group>"; };
+		35C397550E5CE1A8D6868CF8 /* WeeklyScheduleProgram.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleProgram.swift; sourceTree = "<group>"; };
+		D10000000000000000000002 /* ScheduleProgramDialogHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScheduleProgramDialogHeader.swift; sourceTree = "<group>"; };
 		3616FCA4905708694B5F620F /* Pods-SUPLAWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLAWidgetsExtension.debug.xcconfig"; path = "Target Support Files/Pods-SUPLAWidgetsExtension/Pods-SUPLAWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
@@ -2050,8 +2060,13 @@
 		40DE1A441BCD6F09004CF43B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A471BCD7207004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		5C521012C3F8CA293B8803B7 /* RelayScheduleVM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RelayScheduleVM.swift; sourceTree = "<group>"; };
+		5E5321C05CE094A81C94BFE3 /* WeeklyScheduleBoxValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleBoxValue.swift; sourceTree = "<group>"; };
+		6D04D04BEF38C6D3D9AD4BB1 /* DelayedWeeklyScheduleConfigSubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DelayedWeeklyScheduleConfigSubject.swift; sourceTree = "<group>"; };
 		6E8004D228493463009A917A /* AuthProfileItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthProfileItem+Ext.swift"; sourceTree = "<group>"; };
+		734AEF242EF94F74FD9460E6 /* RelayScheduleScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RelayScheduleScreen.swift; sourceTree = "<group>"; };
 		7AF645FAC8C2C22E566D1529 /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C93785C771786FFCCF06958 /* RelayScheduleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RelayScheduleView.swift; sourceTree = "<group>"; };
 		8D1D82631E74BEA3AED0C657 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
 		904303CDF9D5FB56AB70C1B7 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
 		90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLAWidgetsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2539,7 +2554,6 @@
 		A56233F42AB856B3001CB948 /* DelayedCommandSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedCommandSubject.swift; sourceTree = "<group>"; };
 		A56233F62AB85B37001CB948 /* DelayedThermostatActionSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedThermostatActionSubject.swift; sourceTree = "<group>"; };
 		A56233F82AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteThermostatActionUseCase.swift; sourceTree = "<group>"; };
-		A56233FA2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedWeeklyScheduleConfigSubject.swift; sourceTree = "<group>"; };
 		A56233FC2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationRepositoryMock.swift; sourceTree = "<group>"; };
 		A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatIconNameProducer.swift; sourceTree = "<group>"; };
 		A56234002ABACEAF001CB948 /* SAChannel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Ext.swift"; sourceTree = "<group>"; };
@@ -3494,6 +3508,7 @@
 		B3D000033109000000000003 /* LocationSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSectionTests.swift; sourceTree = "<group>"; };
 		B3D000053109000000000005 /* MainListItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSection.swift; sourceTree = "<group>"; };
 		B3D000073109000000000007 /* MainListItemSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSectionTests.swift; sourceTree = "<group>"; };
+		B4F742C5B2E9AEF332AA9496 /* RelayScheduleFeature.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RelayScheduleFeature.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000011 /* ListItemScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemScaffold.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000012 /* ListItemStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemStatusIndicator.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000013 /* ListItemRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRect.swift; sourceTree = "<group>"; };
@@ -3506,6 +3521,7 @@
 		C0DE1570000000000000001B /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
 		C0DE20260908000100000101 /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 		C0DE20260917000100000101 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
+		E0A9C122B1C02D1D061AEF2F /* WeeklyScheduleEditor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleEditor.swift; sourceTree = "<group>"; };
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -3660,6 +3676,18 @@
 				01CEAC1D25B99DAC009C3BFD /* SADigiglassValue.m */,
 			);
 			name = Value;
+			sourceTree = "<group>";
+		};
+		14BB043B6EF763DFA0FED389 /* RelaySchedule */ = {
+			isa = PBXGroup;
+			children = (
+				B4F742C5B2E9AEF332AA9496 /* RelayScheduleFeature.swift */,
+				7C93785C771786FFCCF06958 /* RelayScheduleView.swift */,
+				5C521012C3F8CA293B8803B7 /* RelayScheduleVM.swift */,
+				734AEF242EF94F74FD9460E6 /* RelayScheduleScreen.swift */,
+			);
+			name = RelaySchedule;
+			path = RelaySchedule;
 			sourceTree = "<group>";
 		};
 		401CA1B01BA067DB00117AF4 = {
@@ -4510,7 +4538,6 @@
 				A57C4AB12AAF372B00D9C695 /* dialogs */,
 				A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */,
 				A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */,
-				A56233FA2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift */,
 				A50A86522F76C7EE00B4A09C /* ThermostatScheduleDetailView.swift */,
 				A50A86502F76C7A000B4A09C /* ThermostatScheduleDetailViewState.swift */,
 				A50A864E2F76C72100B4A09C /* ThermostatScheduleDetailFeature.swift */,
@@ -4941,6 +4968,7 @@
 				A5F29BE42A2768F000ED700A /* LegacyDetail */,
 				A51BE8E92AA70D9600718F2F /* ThermostatDetail */,
 				A5D837C92AF10335002A420D /* ThermometerDetail */,
+				14BB043B6EF763DFA0FED389 /* RelaySchedule */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -7651,6 +7679,11 @@
 			children = (
 				A5EE0C852F7AA6AD00D7B14F /* ScheduleDetailBox.swift */,
 				A5EE0C832F7A8B7A00D7B14F /* ScheduleTable.swift */,
+				35C397550E5CE1A8D6868CF8 /* WeeklyScheduleProgram.swift */,
+				D10000000000000000000002 /* ScheduleProgramDialogHeader.swift */,
+				5E5321C05CE094A81C94BFE3 /* WeeklyScheduleBoxValue.swift */,
+				E0A9C122B1C02D1D061AEF2F /* WeeklyScheduleEditor.swift */,
+				6D04D04BEF38C6D3D9AD4BB1 /* DelayedWeeklyScheduleConfigSubject.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -8832,7 +8865,6 @@
 				A50B5D0A2BEA4EC700918D18 /* ShadingBlindMarker.swift in Sources */,
 				A5D712902C4107C400A8EF52 /* AboutViewState.swift in Sources */,
 				A522DB432D0B237B00163BA2 /* ElectricityMeterPhaseSequence.swift in Sources */,
-				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
 				A5E039E92CA1F85C0018CEB7 /* LazyList.swift in Sources */,
 				A5E556C82E3CA18200E829C7 /* ObjectContainer.swift in Sources */,
@@ -9856,6 +9888,15 @@
 				A54E2AF82E44D4A7003F2926 /* View+onSubmit.swift in Sources */,
 				A5A15FF92C299D230049AA73 /* Color+Supla.swift in Sources */,
 				A50B5D222BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift in Sources */,
+				436A44A71A5CB44B93225E0D /* WeeklyScheduleProgram.swift in Sources */,
+				D10000000000000000000001 /* ScheduleProgramDialogHeader.swift in Sources */,
+				994C8B0FB7D10818D0ABAB80 /* WeeklyScheduleBoxValue.swift in Sources */,
+				869350A1443344FC1696CB06 /* WeeklyScheduleEditor.swift in Sources */,
+				97810EE89490414E7EE3F4D0 /* RelayScheduleFeature.swift in Sources */,
+				39538CDCC5A3AD5E1055B03E /* RelayScheduleView.swift in Sources */,
+				BE16124B24AE10DA69CD99A5 /* RelayScheduleVM.swift in Sources */,
+				04D4FFF49E92542E186D02A4 /* RelayScheduleScreen.swift in Sources */,
+				69658929AF53A6A28FCB7441 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

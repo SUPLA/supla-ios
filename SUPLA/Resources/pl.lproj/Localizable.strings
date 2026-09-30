@@ -376,6 +376,20 @@
 "switch_detail_state_off" = "wyłączony";
 "overcurrent_warning" = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu.";
 "overcurrent_question" = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu. Czy na pewno chcesz włączyć zasilanie?";
+"schedule_program_default" = "Domyślny";
+"schedule_program_turn_on_seconds" = "Włącz %ds";
+"schedule_program_turn_off_seconds" = "Wyłącz %ds";
+"schedule_program_cycle" = "Cykl";
+"schedule_program_force_on" = "Wymuś ON";
+"schedule_program_force_off" = "Wymuś OFF";
+"relay_schedule_program_operation_type" = "Typ operacji";
+"relay_schedule_program_mode_start_on" = "Włącz raz";
+"relay_schedule_program_mode_start_off" = "Wyłącz raz";
+"relay_schedule_program_mode_forced_on" = "Wymuś włączenie";
+"relay_schedule_program_mode_forced_off" = "Wymuś wyłączenie";
+"relay_schedule_program_mode_automatic" = "Automatyczny";
+"relay_schedule_program_first_duration" = "Pierwszy czas trwania (%@)";
+"relay_schedule_program_second_duration" = "Drugi czas trwania (%@)";
 
 /* Timer Detail */
 "timer_detail_header" = "Określ czas, w którym urządzenie powinno być:";

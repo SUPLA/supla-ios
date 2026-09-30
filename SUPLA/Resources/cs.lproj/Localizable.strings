@@ -357,6 +357,20 @@
 "switch_detail_state_off" = "vypnutý";
 "overcurrent_warning" = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení.";
 "overcurrent_question" = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení. Jste si jisti, že chcete zapnout napájení?";
+"schedule_program_default" = "Výchozí";
+"schedule_program_turn_on_seconds" = "Zapnout na %ds";
+"schedule_program_turn_off_seconds" = "Vypnout na %ds";
+"schedule_program_cycle" = "Cyklus";
+"schedule_program_force_on" = "Vynutit ZAP";
+"schedule_program_force_off" = "Vynutit VYP";
+"relay_schedule_program_operation_type" = "Typ operace";
+"relay_schedule_program_mode_start_on" = "Jednou zapnout";
+"relay_schedule_program_mode_start_off" = "Jednou vypnout";
+"relay_schedule_program_mode_forced_on" = "Vynuceně zapnuto";
+"relay_schedule_program_mode_forced_off" = "Vynuceně vypnuto";
+"relay_schedule_program_mode_automatic" = "Automaticky";
+"relay_schedule_program_first_duration" = "První doba trvání (%@)";
+"relay_schedule_program_second_duration" = "Druhá doba trvání (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas musí být větší než 0";

@@ -358,6 +358,20 @@
 "switch_detail_state_off" = "deaktivert";
 "overcurrent_warning" = "Strømmen ble slått av etter at den innstilte terskelen for den tillatte strømmen ble overskredet.";
 "overcurrent_question" = "Strømmen ble slått av etter at den innstilte terskelen for den tillatte strømmen ble overskredet. Er du sikker på at du vil slå på?";
+"schedule_program_default" = "Standard";
+"schedule_program_turn_on_seconds" = "Slå på i %ds";
+"schedule_program_turn_off_seconds" = "Slå av i %ds";
+"schedule_program_cycle" = "Syklus";
+"schedule_program_force_on" = "Tving PÅ";
+"schedule_program_force_off" = "Tving AV";
+"relay_schedule_program_operation_type" = "Operasjonstype";
+"relay_schedule_program_mode_start_on" = "Slå på én gang";
+"relay_schedule_program_mode_start_off" = "Slå av én gang";
+"relay_schedule_program_mode_forced_on" = "Tvunget på";
+"relay_schedule_program_mode_forced_off" = "Tvunget av";
+"relay_schedule_program_mode_automatic" = "Automatisk";
+"relay_schedule_program_first_duration" = "Første varighet (%@)";
+"relay_schedule_program_second_duration" = "Andre varighet (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Tiden må være større enn 0";

@@ -103,20 +103,20 @@ class SuplaChannelConfigTests: XCTestCase {
         
         let weeklyConfig = result as! SuplaChannelWeeklyScheduleConfig
         XCTAssertEqual(
-            weeklyConfig.programConfigurations[0],
-            SuplaWeeklyScheduleProgram(program: .program1, mode: .notSet, setpointTemperatureHeat: 200, setpointTemperatureCool: 100)
+            weeklyConfig.programConfigurations.hvacPrograms![0],
+            SuplaHvacWeeklyScheduleProgram(program: .program1, mode: .notSet, setpointTemperatureHeat: 200, setpointTemperatureCool: 100)
         )
         XCTAssertEqual(
-            weeklyConfig.programConfigurations[1],
-            SuplaWeeklyScheduleProgram(program: .program2, mode: .notSet, setpointTemperatureHeat: 400, setpointTemperatureCool: 200)
+            weeklyConfig.programConfigurations.hvacPrograms![1],
+            SuplaHvacWeeklyScheduleProgram(program: .program2, mode: .notSet, setpointTemperatureHeat: 400, setpointTemperatureCool: 200)
         )
         XCTAssertEqual(
-            weeklyConfig.programConfigurations[2],
-            SuplaWeeklyScheduleProgram(program: .program3, mode: .dry, setpointTemperatureHeat: 600, setpointTemperatureCool: 300)
+            weeklyConfig.programConfigurations.hvacPrograms![2],
+            SuplaHvacWeeklyScheduleProgram(program: .program3, mode: .dry, setpointTemperatureHeat: 600, setpointTemperatureCool: 300)
         )
         XCTAssertEqual(
-            weeklyConfig.programConfigurations[3],
-            SuplaWeeklyScheduleProgram(program: .program4, mode: .dry, setpointTemperatureHeat: 800, setpointTemperatureCool: 400)
+            weeklyConfig.programConfigurations.hvacPrograms![3],
+            SuplaHvacWeeklyScheduleProgram(program: .program4, mode: .dry, setpointTemperatureHeat: 800, setpointTemperatureCool: 400)
         )
         
         for idx in 0..<627 {
@@ -143,6 +143,41 @@ class SuplaChannelConfigTests: XCTestCase {
                 XCTAssertEqual(entry.program, .off)
             }
         }
+    }
+
+    func test_shouldGetWeeklyScheduleConfigForRelay() {
+        // given
+        var config = TSCS_ChannelConfig()
+        config.ChannelId = 123
+        config.Func = SUPLA_CHANNELFNC_POWERSWITCH
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
+        SuplaConfigIntegrator.setRelayProgramWith(
+            0,
+            withMode: UInt8(SUPLA_RELAY_MODE_START_ON),
+            withDuration: 120,
+            withOppositeDuration: 30,
+            in: &config
+        )
+
+        // when
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
+
+        // then
+        XCTAssertTrue(type(of: result) == SuplaChannelWeeklyScheduleConfig.self)
+        XCTAssertEqual(result.remoteId, 123)
+        XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_POWERSWITCH)
+
+        let weeklyConfig = result as! SuplaChannelWeeklyScheduleConfig
+        XCTAssertEqual(
+            weeklyConfig.programConfigurations.relayPrograms![0],
+            SuplaRelayWeeklyScheduleProgram(
+                program: .program1,
+                mode: .startOn,
+                modeDurationS: 120,
+                oppositeModeDurationS: 30
+            )
+        )
     }
     
     func test_shouldGetGeneralPurposeMeterConfig() {

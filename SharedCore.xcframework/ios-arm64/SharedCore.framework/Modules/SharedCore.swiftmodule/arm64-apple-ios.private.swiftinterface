@@ -832,6 +832,45 @@ extension SharedCore.SuplaChannelAvailabilityStatus {
 extension SharedCore.__SuplaChannelAvailabilityStatus {
   public func toSwiftEnum() -> SharedCore.SuplaChannelAvailabilityStatus
 }
+@frozen public enum SuplaButtonMode : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case notSet
+  case locked
+  case cmdWeeklySchedule
+  case cmdSwitchToManual
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaButtonMode.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaButtonMode, result: inout SharedCore.SuplaButtonMode?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaButtonMode, result: inout SharedCore.SuplaButtonMode?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaButtonMode?) -> SharedCore.SuplaButtonMode
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaButtonMode
+  public typealias _ObjectiveCType = SharedCore.__SuplaButtonMode
+  public typealias Companion = SharedCore.__SuplaButtonMode.Companion
+  public static func == (a: SharedCore.SuplaButtonMode, b: SharedCore.SuplaButtonMode) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaButtonMode]
+  nonisolated public static var allCases: [SharedCore.SuplaButtonMode] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaButtonMode {
+  public func toKotlinEnum() -> SharedCore.__SuplaButtonMode
+}
+extension SharedCore.__SuplaButtonMode {
+  public func toSwiftEnum() -> SharedCore.SuplaButtonMode
+}
 @frozen public enum SuplaHvacMode : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case unknown
   case notSet
@@ -877,6 +916,49 @@ extension SharedCore.SuplaHvacMode {
 }
 extension SharedCore.__SuplaHvacMode {
   public func toSwiftEnum() -> SharedCore.SuplaHvacMode
+}
+@frozen public enum SuplaRelayMode : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case notSet
+  case startOn
+  case startOff
+  case forcedOn
+  case forcedOff
+  case automatic
+  case cmdWeeklySchedule
+  case cmdSwitchToManual
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int32 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaRelayMode.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayMode, result: inout SharedCore.SuplaRelayMode?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayMode, result: inout SharedCore.SuplaRelayMode?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaRelayMode?) -> SharedCore.SuplaRelayMode
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaRelayMode
+  public typealias _ObjectiveCType = SharedCore.__SuplaRelayMode
+  public typealias Companion = SharedCore.__SuplaRelayMode.Companion
+  public static func == (a: SharedCore.SuplaRelayMode, b: SharedCore.SuplaRelayMode) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaRelayMode]
+  nonisolated public static var allCases: [SharedCore.SuplaRelayMode] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaRelayMode {
+  public func toKotlinEnum() -> SharedCore.__SuplaRelayMode
+}
+extension SharedCore.__SuplaRelayMode {
+  public func toSwiftEnum() -> SharedCore.SuplaRelayMode
 }
 @frozen public enum ThermostatSubfunction : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case notSet
@@ -1644,6 +1726,7 @@ extension SharedCore.__SuplaShadingSystemFlag {
 }
 @frozen public enum SuplaRelayFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case overcurrentRelayOff
+  case weeklyScheduleEnabled
   public var name: Swift.String {
     get
   }
@@ -2373,8 +2456,12 @@ extension SharedCore.SuplaEventType : Swift.Sendable {}
 extension SharedCore.SuplaEventType : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaChannelAvailabilityStatus : Swift.Sendable {}
 extension SharedCore.SuplaChannelAvailabilityStatus : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaButtonMode : Swift.Sendable {}
+extension SharedCore.SuplaButtonMode : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaHvacMode : Swift.Sendable {}
 extension SharedCore.SuplaHvacMode : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaRelayMode : Swift.Sendable {}
+extension SharedCore.SuplaRelayMode : Swift.BitwiseCopyable {}
 extension SharedCore.ThermostatSubfunction : Swift.Sendable {}
 extension SharedCore.ThermostatSubfunction : Swift.BitwiseCopyable {}
 extension SharedCore.Icon : Swift.Sendable {}

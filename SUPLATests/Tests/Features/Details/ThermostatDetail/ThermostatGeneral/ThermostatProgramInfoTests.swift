@@ -320,7 +320,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: nil,
                 icon: SuplaHvacMode.off.icon,
                 iconColor: SuplaHvacMode.off.uiColor,
-                description: SuplaWeeklyScheduleProgram.OFF.description,
+                description: SuplaHvacWeeklyScheduleProgram.OFF.description,
                 manualActive: false
             )
         ])

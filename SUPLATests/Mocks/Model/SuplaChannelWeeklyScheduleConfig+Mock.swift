@@ -30,32 +30,32 @@ extension SuplaChannelWeeklyScheduleConfig {
             remoteId: remoteId,
             channelFunc: channelFunc,
             crc32: 0,
-            programConfigurations: withPrograms ? mockProgramConfigurations() : [],
+            programConfigurations: .hvac(withPrograms ? mockProgramConfigurations() : []),
             schedule: withSchedule ? mockSchedule(secondProgram: secondProgram) : []
         )
     }
     
-    fileprivate static func mockProgramConfigurations() -> [SuplaWeeklyScheduleProgram] {
+    fileprivate static func mockProgramConfigurations() -> [SuplaHvacWeeklyScheduleProgram] {
         return [
-            SuplaWeeklyScheduleProgram(
+            SuplaHvacWeeklyScheduleProgram(
                 program: .program1,
                 mode: .cool,
                 setpointTemperatureHeat: nil,
                 setpointTemperatureCool: 1200
             ),
-            SuplaWeeklyScheduleProgram(
+            SuplaHvacWeeklyScheduleProgram(
                 program: .program2,
                 mode: .cool,
                 setpointTemperatureHeat: nil,
                 setpointTemperatureCool: 2100
             ),
-            SuplaWeeklyScheduleProgram(
+            SuplaHvacWeeklyScheduleProgram(
                 program: .program3,
                 mode: .cool,
                 setpointTemperatureHeat: nil,
                 setpointTemperatureCool: 2300
             ),
-            SuplaWeeklyScheduleProgram(
+            SuplaHvacWeeklyScheduleProgram(
                 program: .program4,
                 mode: .cool,
                 setpointTemperatureHeat: nil,

@@ -45,12 +45,21 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 
             case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: .standardDetail(pages: [.thermostatHeatpolGeneral, .thermostatHeatpolHistory])
 
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+                 SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+                 SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+                 SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK: .standardDetail(pages: getGateDetailPages(channelWithChildren))
+
             default: provide(channelWithChildren.channel)
         }
     }
 
     private func getSwitchDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
         var list: [DetailPage] = [.switchGeneral]
+
+        if (channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE) > 0) {
+            list.append(.switchSchedule)
+        }
 
         if (channelWithChildren.supportsTimer) {
             list.append(.switchTimer)
@@ -64,6 +73,14 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
             list.append(.impulseCounterSettings)
         }
 
+        return list
+    }
+
+    private func getGateDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
+        var list: [DetailPage] = [.gateGeneral]
+        if (channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE) > 0) {
+            list.append(.gateSchedule)
+        }
         return list
     }
 
