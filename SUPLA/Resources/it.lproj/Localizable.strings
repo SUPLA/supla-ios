@@ -372,6 +372,20 @@
 "switch_detail_state_off" = "disabilitato";
 "overcurrent_warning" = "L'alimentazione è stata spenta a causa del superamento della soglia di corrente impostata";
 "overcurrent_question" = "L'alimentazione è stata spenta a causa del superamento della soglia di corrente impostata. Sei sicuro di voler riattivare l'alimentazione?";
+"schedule_program_default" = "Predefinito";
+"schedule_program_turn_on_seconds" = "Attiva per %ds";
+"schedule_program_turn_off_seconds" = "Disattiva per %ds";
+"schedule_program_cycle" = "Ciclo";
+"schedule_program_force_on" = "Forza attivazione";
+"schedule_program_force_off" = "Forza disattivazione";
+"relay_schedule_program_operation_type" = "Tipo di operazione";
+"relay_schedule_program_mode_start_on" = "Attiva una volta";
+"relay_schedule_program_mode_start_off" = "Disattiva una volta";
+"relay_schedule_program_mode_forced_on" = "Attivazione forzata";
+"relay_schedule_program_mode_forced_off" = "Disattivazione forzata";
+"relay_schedule_program_mode_automatic" = "Automatico";
+"relay_schedule_program_first_duration" = "Prima durata (%@)";
+"relay_schedule_program_second_duration" = "Seconda durata (%@)";
 
 /* Timer Detail */
 "timer_detail_header" = "Specifica il tempo in cui il dispositivo deve essere:";

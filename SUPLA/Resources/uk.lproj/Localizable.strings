@@ -359,6 +359,20 @@
 "switch_detail_state_off" = "вимкнений";
 "overcurrent_warning" = "Відключення живлення відбулося після перевищення встановленого порогу допустимої сили струму.";
 "overcurrent_question" = "Живлення відключено після перевищення встановленого порогу допустимої сили струму. Ви впевнені, що хочете увімкнути живлення?";
+"schedule_program_default" = "За замовчуванням";
+"schedule_program_turn_on_seconds" = "Увімкнути на %ds";
+"schedule_program_turn_off_seconds" = "Вимкнути на %ds";
+"schedule_program_cycle" = "Цикл";
+"schedule_program_force_on" = "Примусово УВІМК";
+"schedule_program_force_off" = "Примусово ВИМК";
+"relay_schedule_program_operation_type" = "Тип операції";
+"relay_schedule_program_mode_start_on" = "Увімкнути один раз";
+"relay_schedule_program_mode_start_off" = "Вимкнути один раз";
+"relay_schedule_program_mode_forced_on" = "Примусово увімкнено";
+"relay_schedule_program_mode_forced_off" = "Примусово вимкнено";
+"relay_schedule_program_mode_automatic" = "Автоматично";
+"relay_schedule_program_first_duration" = "Перша тривалість (%@)";
+"relay_schedule_program_second_duration" = "Друга тривалість (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Час має бути більшим за 0";

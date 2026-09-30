@@ -38,7 +38,7 @@ extension ThermostatScheduleDetailFeature {
         @Published var editProgramState: EditProgramState? = nil
         @Published var editQuartersState: EditQuartersState? = nil
         
-        var suplaPrograms: [SuplaWeeklyScheduleProgram] {
+        var suplaPrograms: [SuplaHvacWeeklyScheduleProgram] {
             programs.filter { $0.scheduleProgram.program != .off }
                 .map { $0.scheduleProgram }
         }
@@ -86,7 +86,7 @@ extension ThermostatScheduleDetailFeature {
             self.currentHour = currentHour
         }
         
-        func temperature(setpointType: SetpointType, _ program: SuplaWeeklyScheduleProgram) -> Float? {
+        func temperature(setpointType: SetpointType, _ program: SuplaHvacWeeklyScheduleProgram) -> Float? {
             if (setpointType == .heat) {
                 let suplaTemperature = program.setpointTemperatureHeat?.fromSuplaTemperature()
                 return alignTemperature(suplaTemperature)

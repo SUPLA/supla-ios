@@ -359,6 +359,20 @@
 "switch_detail_state_off" = "izklopljeno";
 "overcurrent_warning" = "Napeljava je bila onemogočena po prekoračitvi nastavljenega praga dovoljenega električnega toka.";
 "overcurrent_question" = "Napajanje je bilo izključeno po prekoračitvi nastavljenega praga dovoljenega električnega toka. Ste prepričani, da želite vključiti napajanje?";
+"schedule_program_default" = "Privzeto";
+"schedule_program_turn_on_seconds" = "Vklopi za %ds";
+"schedule_program_turn_off_seconds" = "Izklopi za %ds";
+"schedule_program_cycle" = "Cikel";
+"schedule_program_force_on" = "Prisili VKLOP";
+"schedule_program_force_off" = "Prisili IZKLOP";
+"relay_schedule_program_operation_type" = "Vrsta operacije";
+"relay_schedule_program_mode_start_on" = "Vklopi enkrat";
+"relay_schedule_program_mode_start_off" = "Izklopi enkrat";
+"relay_schedule_program_mode_forced_on" = "Prisilno vklopljeno";
+"relay_schedule_program_mode_forced_off" = "Prisilno izklopljeno";
+"relay_schedule_program_mode_automatic" = "Samodejno";
+"relay_schedule_program_first_duration" = "Prvo trajanje (%@)";
+"relay_schedule_program_second_duration" = "Drugo trajanje (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas mora biti večji od 0";

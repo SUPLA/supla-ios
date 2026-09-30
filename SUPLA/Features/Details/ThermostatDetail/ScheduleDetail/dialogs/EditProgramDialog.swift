@@ -174,7 +174,7 @@ extension ThermostatScheduleDetailFeature {
         
         var body: some SwiftUI.View {
             SuplaCore.Dialog.Base(onDismiss: onDismiss, alignment: .leading, width: 300) {
-                Header()
+                ScheduleProgramDialogHeader(program: state.program)
                 
                 if (state.modes.items.count > 1) {
                     LabelText(text: Strings.ThermostatDetail.modeWeeklySchedule)
@@ -216,19 +216,6 @@ extension ThermostatScheduleDetailFeature {
                     primaryDisabled: state.saveDisabled
                 )
             }
-        }
-        
-        private func Header() -> some SwiftUI.View {
-            HStack(alignment: .center) {
-                state.program.color
-                    .frame(width: 16, height: 16)
-                    .clipShape(Circle())
-                Text(Strings.ThermostatDetail.editProgramDialogHeader.arguments(state.program.rawValue))
-                    .fontTitleLarge()
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-            }
-            .padding(Distance.default)
         }
         
         @ViewBuilder

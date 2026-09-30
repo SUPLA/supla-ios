@@ -96,6 +96,8 @@ extension DetailBaseFeature {
             switch page {
             case .switchGeneral:
                 SwitchGeneralFeature.Screen(itemBundle: item)
+            case .switchSchedule:
+                RelayScheduleFeature.Screen(itemBundle: item)
             case .switchTimer:
                 SwitchTimerDetailFeature.Screen(itemBundle: item)
             case .thermostatGeneral:
@@ -154,6 +156,8 @@ extension DetailBaseFeature {
                 ContainerGeneralFeature.Screen(itemBundle: item)
             case .gateGeneral:
                 GateGeneralFeature.Screen(itemBundle: item)
+            case .gateSchedule:
+                RelayScheduleFeature.Screen(itemBundle: item)
             case .recuperatorGeneral:
                 RecuperatorGeneralFeature.Screen(itemBundle: item)
             case .rgb:

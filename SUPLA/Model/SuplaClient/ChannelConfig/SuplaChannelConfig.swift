@@ -98,7 +98,7 @@ private extension TSCS_ChannelConfig {
     }
     
     func isWeeklyConfig() -> Bool {
-        isHvac()
+        isWeeklyScheduleFunction()
             && ConfigType == UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
             && ConfigSize == MemoryLayout<TChannelConfig_WeeklySchedule>.size
     }
@@ -147,6 +147,26 @@ private extension TSCS_ChannelConfig {
              SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER: return true
             
         default: return false
+        }
+    }
+
+    private func isWeeklyScheduleFunction() -> Bool {
+        switch Func {
+        case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
+             SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL,
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER,
+             SUPLA_CHANNELFNC_PUMPSWITCH,
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            true
+        default:
+            false
         }
     }
     

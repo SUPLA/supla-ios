@@ -28,6 +28,8 @@
 
 + (void) setProgramWith: (UInt8) programId withMode: (UInt8) mode withHeatTemp: (short) heatTemp withCoolTemp: (short) coolTemp inConfig: (TSCS_ChannelConfig*) config;
 
++ (void) setRelayProgramWith: (UInt8) programId withMode: (UInt8) mode withDuration: (UInt16) duration withOppositeDuration: (UInt16) oppositeDuration inConfig: (TSCS_ChannelConfig*) config;
+
 + (TWeeklyScheduleProgram) getProgramWith: (int) programId fromConfig: (TChannelConfig_WeeklySchedule) config;
 
 + (void) setQuarterProgram: (UInt8) program forIndex: (int) index inConfig: (TSCS_ChannelConfig*) config;

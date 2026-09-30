@@ -24,7 +24,8 @@ private let REFRESH_DELAY_S: Double = 3
 
 extension ThermostatScheduleDetailFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
-        @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
+        @Singleton<DelayedWeeklyScheduleConfigSubject> var delayedWeeklyScheduleConfigSubject
+        @Singleton<DateProvider> private var dateProvider
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
         @Singleton<DeviceConfigEventsManager> private var deviceConfigEventsManager
@@ -32,7 +33,6 @@ extension ThermostatScheduleDetailFeature {
         @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
         @Singleton<GlobalSettings> private var globalSettings
         @Singleton<SuplaSchedulers> private var schedulers
-        @Singleton<DateProvider> private var dateProvider
         
         private let reloadConfigRelay = PublishRelay<Void>()
         private let item: ItemBundle
@@ -202,7 +202,7 @@ extension ThermostatScheduleDetailFeature {
                   let program = state.programs.first(where: { $0.scheduleProgram.program == programState.program })
             else { return }
             
-            let updatedProgram: SuplaWeeklyScheduleProgram? =
+            let updatedProgram: SuplaHvacWeeklyScheduleProgram? =
                 switch (programState.modes.selected) {
                 case .heat:
                     program.scheduleProgram.copy(
@@ -346,10 +346,10 @@ extension ThermostatScheduleDetailFeature {
         }
         
         private func publishChanges() {
-            dealyedWeeklyScheduleConfigSubject.emit(
-                data: WeeklyScheduleConfigData(
+            delayedWeeklyScheduleConfigSubject.emit(data:
+                WeeklyScheduleConfigData(
                     remoteId: item.remoteId,
-                    programs: state.suplaPrograms,
+                    programs: .hvac(state.suplaPrograms),
                     schedule: state.suplaSchedule
                 )
             )
@@ -375,7 +375,7 @@ private extension String {
 struct ScheduleDetailProgram: Equatable, Changeable, Identifiable {
     var id: UInt8 { scheduleProgram.program.rawValue }
     
-    var scheduleProgram: SuplaWeeklyScheduleProgram
+    var scheduleProgram: SuplaHvacWeeklyScheduleProgram
     var icon: String? = nil
     
     var text: String { scheduleProgram.description }
@@ -393,7 +393,7 @@ private extension SuplaChannelWeeklyScheduleConfig {
     func viewProgramsList() -> [ScheduleDetailProgram] {
         var result: [ScheduleDetailProgram] = []
         
-        for program in programConfigurations {
+        for program in programConfigurations.hvacPrograms ?? [] {
             result.append(ScheduleDetailProgram(
                 scheduleProgram: program,
                 icon: getProgramIcon(program)
@@ -401,7 +401,7 @@ private extension SuplaChannelWeeklyScheduleConfig {
         }
         
         result.append(ScheduleDetailProgram(
-            scheduleProgram: SuplaWeeklyScheduleProgram.OFF,
+            scheduleProgram: SuplaHvacWeeklyScheduleProgram.OFF,
             icon: SuplaHvacMode.off.icon
         ))
         
@@ -437,7 +437,7 @@ private extension SuplaChannelWeeklyScheduleConfig {
         return result
     }
     
-    private func getProgramIcon(_ program: SuplaWeeklyScheduleProgram) -> String? {
+    private func getProgramIcon(_ program: SuplaHvacWeeklyScheduleProgram) -> String? {
         if (channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL) {
             return program.mode.icon
         }

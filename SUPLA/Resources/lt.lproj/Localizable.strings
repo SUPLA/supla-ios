@@ -360,6 +360,20 @@
 "switch_detail_state_off" = "išjungtas";
 "overcurrent_warning" = "Maitinimas buvo atjungtas viršijus nustatytą leistinos elektros srovės ribą.";
 "overcurrent_question" = "Maitinimas buvo atjungtas viršijus nustatytą leistinos elektros srovės ribą. Ar tikrai norite įjungti maitinimą?";
+"schedule_program_default" = "Numatytasis";
+"schedule_program_turn_on_seconds" = "Įjungti %ds";
+"schedule_program_turn_off_seconds" = "Išjungti %ds";
+"schedule_program_cycle" = "Ciklas";
+"schedule_program_force_on" = "Priverstinai ĮJUNGTI";
+"schedule_program_force_off" = "Priverstinai IŠJUNGTI";
+"relay_schedule_program_operation_type" = "Operacijos tipas";
+"relay_schedule_program_mode_start_on" = "Įjungti vieną kartą";
+"relay_schedule_program_mode_start_off" = "Išjungti vieną kartą";
+"relay_schedule_program_mode_forced_on" = "Priverstinai įjungta";
+"relay_schedule_program_mode_forced_off" = "Priverstinai išjungta";
+"relay_schedule_program_mode_automatic" = "Automatinis";
+"relay_schedule_program_first_duration" = "Pirmoji trukmė (%@)";
+"relay_schedule_program_second_duration" = "Antroji trukmė (%@)";
 
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Laikas turi būti didesnis nei 0";

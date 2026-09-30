@@ -375,6 +375,20 @@
 "switch_detail_state_off" = "sönük";
 "overcurrent_warning" = "İcazə verilən cari həddi aşdıqdan sonra enerji söndürüldü.";
 "overcurrent_question" = "İcazə verilən cari həddi aşdıqdan sonra enerji söndürüldü. Yenidən açmaq istəyirsiniz?";
+"schedule_program_default" = "Standart";
+"schedule_program_turn_on_seconds" = "%ds yandır";
+"schedule_program_turn_off_seconds" = "%ds söndür";
+"schedule_program_cycle" = "Dövr";
+"schedule_program_force_on" = "Məcburi ON";
+"schedule_program_force_off" = "Məcburi OFF";
+"relay_schedule_program_operation_type" = "Əməliyyat növü";
+"relay_schedule_program_mode_start_on" = "Bir dəfə yandır";
+"relay_schedule_program_mode_start_off" = "Bir dəfə söndür";
+"relay_schedule_program_mode_forced_on" = "Məcburi yandırma";
+"relay_schedule_program_mode_forced_off" = "Məcburi söndürmə";
+"relay_schedule_program_mode_automatic" = "Avtomatik";
+"relay_schedule_program_first_duration" = "Birinci müddət (%@)";
+"relay_schedule_program_second_duration" = "İkinci müddət (%@)";
 
 /* Timer Detail */
 "timer_detail_header" = "Cihaz nə qədər işləməlidir:";

@@ -279,6 +279,26 @@ struct Strings {
         static let antifreezeActive = "thermostat_detail_antifreeze_active".toLocalized()
         static let overheatActive = "thermostat_detail_overheat_active".toLocalized()
     }
+
+    struct Schedule {
+        static let programDefault = "schedule_program_default".toLocalized()
+        static let programTurnOnSeconds = "schedule_program_turn_on_seconds".toLocalized()
+        static let programTurnOffSeconds = "schedule_program_turn_off_seconds".toLocalized()
+        static let programCycle = "schedule_program_cycle".toLocalized()
+        static let programForceOn = "schedule_program_force_on".toLocalized()
+        static let programForceOff = "schedule_program_force_off".toLocalized()
+    }
+
+    struct RelaySchedule {
+        static let operationType = "relay_schedule_program_operation_type".toLocalized()
+        static let modeStartOn = "relay_schedule_program_mode_start_on".toLocalized()
+        static let modeStartOff = "relay_schedule_program_mode_start_off".toLocalized()
+        static let modeForcedOn = "relay_schedule_program_mode_forced_on".toLocalized()
+        static let modeForcedOff = "relay_schedule_program_mode_forced_off".toLocalized()
+        static let modeAutomatic = "relay_schedule_program_mode_automatic".toLocalized()
+        static let firstDuration = "relay_schedule_program_first_duration".toLocalized()
+        static let secondDuration = "relay_schedule_program_second_duration".toLocalized()
+    }
     
     struct Notifications {
         static let menu = "menu_notifications".toLocalized()
