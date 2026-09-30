@@ -74,7 +74,7 @@ struct ListItemScaffold<Content: View>: View {
                 onLongClick: onTitleLongClick,
                 onItemClick: onItemClick
             )
-            .padding(.horizontal, Distance.default)
+            .padding(.horizontal, titlePadding)
             .padding(.bottom, scaleFactor.scale(Dimens.ListItem.verticalPadding))
         }
         .overlay(alignment: .leading) {
@@ -102,6 +102,22 @@ struct ListItemScaffold<Content: View>: View {
         }
         .onTapGesture(perform: onItemClick)
         .background(Color.Supla.surface)
+    }
+
+    private var titlePadding: CGFloat {
+        if (scaleFactor >= 1) {
+            Distance.default
+        } else {
+            showInfoIcon || !issues.isEmpty() ? titlePaddingForNearestRowWithIcons : titlePaddingForNearestRowWithoutIcons
+        }
+    }
+    
+    private var titlePaddingForNearestRowWithIcons: CGFloat {
+        Dimens.iconInfoSize + Dimens.ListItem.statusIndicatorSize + 3 * Distance.small
+    }
+    
+    private var titlePaddingForNearestRowWithoutIcons: CGFloat {
+        Dimens.iconInfoSize + 2 * Distance.small
     }
 }
 

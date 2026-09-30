@@ -23,7 +23,13 @@ struct ListItemTitleFramePreferenceKey: PreferenceKey {
     static var defaultValue: CGRect = .null
 
     static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
-        value = nextValue()
+        let next = nextValue()
+
+        guard !next.isNull else {
+            return
+        }
+
+        value = next
     }
 }
 

@@ -342,7 +342,6 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
     private var item: MainListItem?
     private var callbacks: Callbacks?
     private var hostingController: UIHostingController<AnyView>?
-    private var titleFrame: CGRect = .null
     private var shouldHandleTitleInteractions: Bool {
         item?.draggable == true
     }
@@ -356,9 +355,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         return view
     }()
 
-    private lazy var titleTapRecognizer: UITapGestureRecognizer = {
-        UITapGestureRecognizer(target: self, action: #selector(onTitleTap))
-    }()
+    private lazy var titleTapRecognizer: UITapGestureRecognizer = .init(target: self, action: #selector(onTitleTap))
 
     private lazy var titleLongPressRecognizer: UILongPressGestureRecognizer = {
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(onTitleLongPress(_:)))
@@ -389,17 +386,11 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         setupView()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updateFallbackTitleInteractionViewFrameIfNeeded()
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
         item = nil
         callbacks = nil
-        titleFrame = .null
-        updateTitleInteractionViewFrame(titleFrame)
+        updateTitleInteractionViewFrame(.null)
         leftButtons = []
         rightButtons = []
         hideSwipe(animated: false)
@@ -423,7 +414,6 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
             searchText: searchText,
             callbacks: callbacks
         )
-        updateFallbackTitleInteractionViewFrameIfNeeded()
     }
 
     func movementEnabled() -> Bool {
@@ -505,7 +495,6 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         .environment(\.listSearchText, searchText)
         .coordinateSpace(name: ListItemTitleFramePreferenceKey.coordinateSpaceName)
         .onPreferenceChange(ListItemTitleFramePreferenceKey.self) { [weak self] titleFrame in
-            self?.titleFrame = titleFrame
             self?.updateTitleInteractionViewFrame(titleFrame)
         }
 
@@ -535,23 +524,22 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
     }
 
     private func updateTitleInteractionViewFrame(_ frame: CGRect) {
-        titleInteractionView.isHidden = !shouldHandleTitleInteractions || frame.isNull
-        titleInteractionView.frame = frame.insetBy(dx: -Distance.tiny, dy: -Distance.tiny)
-    }
-
-    private func updateFallbackTitleInteractionViewFrameIfNeeded() {
-        if titleFrame.isNull {
-            updateTitleInteractionViewFrame(
-                CGRect(
-                    x: Distance.default,
-                    y: contentView.bounds.height - Dimens.ListItem.verticalPadding - Dimens.iconSize,
-                    width: max(0, contentView.bounds.width - 2 * Distance.default),
-                    height: Dimens.iconSize
-                )
-            )
-        } else {
-            updateTitleInteractionViewFrame(titleFrame)
+        guard
+            shouldHandleTitleInteractions,
+            !frame.isNull,
+            !frame.isInfinite,
+            !frame.isEmpty
+        else {
+            titleInteractionView.isHidden = true
+            titleInteractionView.frame = .zero
+            return
         }
+
+        titleInteractionView.frame = frame.insetBy(
+            dx: -Distance.tiny,
+            dy: -Distance.tiny
+        )
+        titleInteractionView.isHidden = false
     }
 
     @objc private func onTitleTap() {
