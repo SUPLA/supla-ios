@@ -33,13 +33,14 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
         }
         
         return Observable.create { observer in
+            var weeklyConfig = TChannelConfig_WeeklySchedule()
+            self.setPrograms(scheduleConfig: scheduleConfig, nativeConfig: &weeklyConfig)
+            self.setQuarters(scheduleConfig: scheduleConfig, nativeConfig: &weeklyConfig)
+
             var config = TSCS_ChannelConfig()
-            self.setPrograms(scheduleConfig: scheduleConfig, suplaConfig: &config)
-            self.setQuarters(scheduleConfig: scheduleConfig, suplaConfig: &config)
-            
             config.ChannelId = remoteId
             config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
-            config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
+            config.setPayload(weeklyConfig)
             
             if (self.suplaClientProvider.provide()?.setChannelConfig(&config) == true) {
                 observer.onNext(.success)
@@ -52,30 +53,28 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
         }
     }
     
-    private func setPrograms(scheduleConfig: SuplaChannelWeeklyScheduleConfig, suplaConfig:  UnsafeMutablePointer<TSCS_ChannelConfig>!) {
-        
+    private func setPrograms(
+        scheduleConfig: SuplaChannelWeeklyScheduleConfig,
+        nativeConfig: inout TChannelConfig_WeeklySchedule
+    ) {
         switch scheduleConfig.programConfigurations {
         case .relay(let programs):
             for program in programs {
-                let programId = validatedProgramId(program.program)
-                SuplaConfigIntegrator.setRelayProgramWith(
-                    programId - 1,
-                    withMode: UInt8(program.mode.value),
-                    withDuration: program.modeDurationS,
-                    withOppositeDuration: program.oppositeModeDurationS,
-                    in: suplaConfig
-                )
+                let programId = Int(validatedProgramId(program.program) - 1)
+                var nativeProgram = TWeeklyScheduleProgram()
+                nativeProgram.Mode = UInt8(program.mode.value)
+                nativeProgram.RelayModeDurationS = program.modeDurationS
+                nativeProgram.RelayOppositeModeDurationS = program.oppositeModeDurationS
+                nativeConfig.setProgram(nativeProgram, at: programId)
             }
         case .hvac(let programs):
             for program in programs {
-                let programId = validatedProgramId(program.program)
-                SuplaConfigIntegrator.setProgramWith(
-                    programId - 1,
-                    withMode: UInt8(program.mode.value),
-                    withHeatTemp: program.setpointTemperatureHeat ?? 0,
-                    withCoolTemp: program.setpointTemperatureCool ?? 0,
-                    in: suplaConfig
-                )
+                let programId = Int(validatedProgramId(program.program) - 1)
+                var nativeProgram = TWeeklyScheduleProgram()
+                nativeProgram.Mode = UInt8(program.mode.value)
+                nativeProgram.SetpointTemperatureHeat = program.setpointTemperatureHeat ?? 0
+                nativeProgram.SetpointTemperatureCool = program.setpointTemperatureCool ?? 0
+                nativeConfig.setProgram(nativeProgram, at: programId)
             }
         }
     }
@@ -88,22 +87,17 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
         return programId
     }
     
-    private func setQuarters(scheduleConfig: SuplaChannelWeeklyScheduleConfig, suplaConfig: UnsafeMutablePointer<TSCS_ChannelConfig>!) {
-        
+    private func setQuarters(
+        scheduleConfig: SuplaChannelWeeklyScheduleConfig,
+        nativeConfig: inout TChannelConfig_WeeklySchedule
+    ) {
         for quarter in scheduleConfig.schedule {
-            let dayOfWeek = Int32(quarter.dayOfWeek.rawValue)
-            let hour = Int32(quarter.hour)
-            let quarterOfHour = Int32(quarter.quarterOfHour.rawValue)
-            
-            let index = (dayOfWeek * 24 + hour) * 2 + quarterOfHour / 3
-            let program: UInt8
-            if (quarterOfHour == 1 || quarterOfHour == 3) {
-                program = quarter.program.rawValue
-            } else {
-                program = quarter.program.rawValue << 4
-            }
-            
-            SuplaConfigIntegrator.setQuarterProgram(program, for: index, in: suplaConfig)
+            let dayOfWeek = Int(quarter.dayOfWeek.rawValue)
+            let hour = Int(quarter.hour)
+            let quarterOfHour = Int(quarter.quarterOfHour.rawValue)
+            let index = (dayOfWeek * 24 + hour) * 4 + quarterOfHour - 1
+
+            nativeConfig.setProgram(quarter.program.rawValue, atQuarter: index)
         }
     }
 }

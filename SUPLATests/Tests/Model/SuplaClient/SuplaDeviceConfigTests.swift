@@ -23,7 +23,7 @@ class SuplaDeviceConfigTests: XCTestCase {
     
     func test_shouldParseDeviceConfig_allFields() {
         // given
-        let config = SuplaConfigIntegrator.mockDeviceConfig(withUserInterfaceField: true)
+        let config = NativeConfigMocks.deviceConfig(includingUserInterface: true)
         
         // when
         let result = SuplaDeviceConfig(config: config)
@@ -64,7 +64,7 @@ class SuplaDeviceConfigTests: XCTestCase {
     
     func test_shouldParseDeviceConfig_notAllFields() {
         // given
-        let config = SuplaConfigIntegrator.mockDeviceConfig(withUserInterfaceField: false)
+        let config = NativeConfigMocks.deviceConfig(includingUserInterface: false)
         
         // when
         let result = SuplaDeviceConfig(config: config)
