@@ -33,7 +33,6 @@
 #import "SAElectricityMeasurementItem+CoreDataClass.h"
 #import "SAEvent.h"
 #import "SingleCallWrapper.h"
-#import "SuplaConfigIntegrator.h"
 #import "SAGeneralPurposeMeasurementItem+CoreDataClass.h"
 #import "SAGeneralPurposeMeterItem+CoreDataClass.h"
 #import "SAChannelConfig+CoreDataClass.h"

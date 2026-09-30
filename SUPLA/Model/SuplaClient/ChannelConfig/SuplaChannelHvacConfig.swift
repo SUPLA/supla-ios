@@ -366,17 +366,7 @@ struct SuplaHvacTemperatures: Codable {
     }
     
     private static func getTemperature(_ temperatures: THVACTemperatureCfg, _ index: UInt32) -> Int16? {
-        if ((temperatures.Index & index) > 0) {
-            let size = Mirror(reflecting: temperatures.Temperature).children.count
-            
-            for a in 0..<size {
-                if ((1 << a) == index) {
-                    return SuplaConfigIntegrator.extractTemperature(from: temperatures, for: Int32(a))
-                }
-            }
-        }
-        
-        return nil
+        temperatures.temperature(for: index)
     }
     
     enum CodingKeys: String, CodingKey {

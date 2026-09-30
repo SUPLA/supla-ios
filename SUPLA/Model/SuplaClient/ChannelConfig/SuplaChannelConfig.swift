@@ -29,7 +29,7 @@ class SuplaChannelConfig: Codable {
     
     static func from(suplaConfig: TSCS_ChannelConfig, crc32: Int64) -> SuplaChannelConfig {
         if (suplaConfig.isContainerConfig()) {
-            var config: TChannelConfig_Container = suplaConfig.cast()
+            var config: TChannelConfig_Container = suplaConfig.payload()
             return SuplaChannelContainerConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
@@ -42,7 +42,7 @@ class SuplaChannelConfig: Codable {
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
                 crc32: crc32,
-                suplaConfig: suplaConfig.cast()
+                suplaConfig: suplaConfig.payload()
             )
         }
         if (suplaConfig.isWeeklyConfig()) {
@@ -50,14 +50,14 @@ class SuplaChannelConfig: Codable {
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
                 crc32: crc32,
-                suplaConfig: suplaConfig.cast()
+                suplaConfig: suplaConfig.payload()
             )
         }
         if (suplaConfig.isGpMeterConfig()) {
             return SuplaChannelGeneralPurposeMeterConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 function: suplaConfig.Func,
-                config: suplaConfig.cast(),
+                config: suplaConfig.payload(),
                 crc32: crc32
             )
         }
@@ -65,13 +65,13 @@ class SuplaChannelConfig: Codable {
             return SuplaChannelGeneralPurposeMeasurementConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 function: suplaConfig.Func,
-                config: suplaConfig.cast(),
+                config: suplaConfig.payload(),
                 crc32: crc32
             )
         }
         if (suplaConfig.isRollerShutterConfig()) {
             return SuplaChannelRollerShutterConfig.from(
-                suplaConfig.cast(),
+                suplaConfig.payload(),
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
                 crc32: crc32
@@ -79,7 +79,7 @@ class SuplaChannelConfig: Codable {
         }
         if (suplaConfig.isFacadeBlindConfig()) {
             return SuplaChannelFacadeBlindConfig.from(
-                suplaConfig.cast(),
+                suplaConfig.payload(),
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
                 crc32: crc32
@@ -131,13 +131,6 @@ private extension TSCS_ChannelConfig {
         isContainer()
             && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
             && ConfigSize == MemoryLayout<TChannelConfig_Container>.size
-    }
-    
-    func cast<T>() -> T {
-        var config = Config
-        return withUnsafePointer(to: &config) { pointee in
-            UnsafeRawPointer(pointee).assumingMemoryBound(to: T.self).pointee
-        }
     }
     
     private func isHvac() -> Bool {
