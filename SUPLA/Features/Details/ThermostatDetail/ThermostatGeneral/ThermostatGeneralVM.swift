@@ -23,7 +23,7 @@ import SharedCore
 private let REFRESH_DELAY_S: Double = 3
 
 class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
-    @Singleton<ReadChannelWithChildrenTreeUseCase> private var readChannelWithChildrenTreeUseCase
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
     @Singleton<CheckIsSlaveThermostat.UseCase> private var checkIsSlaveThermostatUseCase
     @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
@@ -101,7 +101,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     func triggerDataLoad(remoteId: Int32) {
-        readChannelWithChildrenTreeUseCase.invoke(remoteId: remoteId)
+        readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
             .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
             .disposed(by: self)
     }

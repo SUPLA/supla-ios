@@ -77,6 +77,44 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithCh
             .completed
         ])
     }
+
+    func test_shouldLoadAllLevelsOfChildren() {
+        // given
+        let profile = AuthProfileItem(testContext: nil)
+        let channels = [
+            SAChannel.mock(1),
+            SAChannel.mock(2),
+            SAChannel.mock(3),
+            SAChannel.mock(4)
+        ]
+        let relation1 = SAChannelRelation.mock(1, channelId: 2, type: .meter)
+        let relation2 = SAChannelRelation.mock(1, channelId: 3, type: .masterThermostat)
+        let relation3 = SAChannelRelation.mock(3, channelId: 4, type: .mainThermometer)
+
+        profileRepository.activeProfileObservable = Observable.just(profile)
+        channelRepository.allVisibleChannelsMock.returns = .single(Observable.just(channels))
+        channelRelationRepository.getParentsMapReturns = Observable.just([
+            1: [relation1, relation2],
+            3: [relation3]
+        ])
+        DiContainer.shared.register(type: CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
+
+        // when
+        useCase.invoke(remoteId: 1)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+
+        // then
+        assertEvents([
+            .next(ChannelWithChildren(channel: channels[0], children: [
+                ChannelChild(channel: channels[1], relation: relation1),
+                ChannelChild(channel: channels[2], relation: relation2, children: [
+                    ChannelChild(channel: channels[3], relation: relation3)
+                ])
+            ])),
+            .completed
+        ])
+    }
     
     private func mockChannels(_ parentId: Int32) -> [SAChannel] {
         return [
