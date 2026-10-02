@@ -47,8 +47,7 @@ struct ReadGroupWithChannels {
                             guard let channel = channels.first(where: { $0.remote_id == relation.channel_id }) else {
                                 return ChannelInGroup.invisible(remoteId: relation.channel_id)
                             }
-                            let childrenRelations = parentsMap[relation.channel_id] ?? []
-                            let channelWithChildren = self.createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, relations: childrenRelations)
+                            let channelWithChildren = self.createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, parentsMap: parentsMap)
                             return ChannelInGroup.visible(channel: channelWithChildren)
                         }
                     

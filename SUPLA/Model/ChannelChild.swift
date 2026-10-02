@@ -28,6 +28,10 @@ struct ChannelChild: Equatable {
     }
     
     var withChildren: ChannelWithChildren { ChannelWithChildren(channel: channel, children: children) }
+
+    var onlineState: ListOnlineState {
+        channel.onlineState.mergeWith(children.onlineState)
+    }
     
     init(channel: SAChannel, relation: SAChannelRelation, children: [ChannelChild] = []) {
         self.channel = channel
@@ -45,21 +49,8 @@ extension Array where Element == ChannelChild {
     }
     
     var onlineState: ListOnlineState {
-        map { $0.channel.value?.status.online }
-            .compactMap { $0 }
-            .reduce(.unknown) { result, online in
-                if (result == .unknown && online) {
-                    .online
-                } else if (result == .unknown) {
-                    .offline
-                } else if (result == .online && !online) {
-                    .partiallyOnline
-                } else if (result == .offline && online) {
-                    .partiallyOnline
-                } else {
-                    result
-                }
-            }
+        map(\.onlineState)
+            .reduce(.unknown) { $0.mergeWith($1) }
     }
 }
 

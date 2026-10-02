@@ -32,26 +32,20 @@ final class ReadChannelWithChildrenUseCaseImpl: ReadChannelWithChildrenUseCase {
     func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
         profileRepository.getActiveProfile()
             .flatMap { profile in
-                self.channelRelationRepository
-                    .getAllRelations(for: profile, with: remoteId)
-                    .map { (profile, $0) }
+                Observable.zip(
+                    self.channelRelationRepository.getParentsMap(for: profile),
+                    self.channelRepository.getAllVisibleChannels(forProfile: profile),
+                    resultSelector: { ($0, $1) }
+                )
             }
-            .flatMap { profile, relations in
-                var ids = relations.map { $0.channel_id }
-                ids.append(remoteId)
-                
-                return self.channelRepository
-                    .getAllChannels(forProfile: profile, with: ids)
-                    .map { (relations, $0) }
-            }
-            .map { relations, channels in
-                self.createChannelWithChildren(remoteId, relations, channels)
+            .map { parentsMap, channels in
+                self.createChannelWithChildren(remoteId, parentsMap, channels)
             }
             .compactMap { $0 }
     }
     
-    private func createChannelWithChildren(_ parentId: Int32, _ relations: [SAChannelRelation], _ channels: [SAChannel]) -> ChannelWithChildren? {
+    private func createChannelWithChildren(_ parentId: Int32, _ parentsMap: [Int32: [SAChannelRelation]], _ channels: [SAChannel]) -> ChannelWithChildren? {
         guard let parent = channels.first(where: { $0.remote_id == parentId }) else { return nil }
-        return createChannelWithChildrenUseCase.invoke(parent, allChannels: channels, relations: relations)
+        return createChannelWithChildrenUseCase.invoke(parent, allChannels: channels, parentsMap: parentsMap)
     }
 }

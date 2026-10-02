@@ -45,15 +45,17 @@ final class CreateChannelWithChildrenUseCaseTests: UseCaseTest<Void> {
             SAChannel.mock(14),
             SAChannel(testContext: nil)
         ]
-        let relations = [
-            SAChannelRelation.mock(1, channelId: 10, type: .default),
-            SAChannelRelation.mock(channelId, channelId: 11, type: .mainThermometer),
-            SAChannelRelation.mock(channelId, channelId: 12, type: .meter),
-            SAChannelRelation.mock(2, channelId: 13, type: .auxThermometerFloor)
+        let parentsMap = [
+            1: [SAChannelRelation.mock(1, channelId: 10, type: .default)],
+            channelId: [
+                SAChannelRelation.mock(channelId, channelId: 11, type: .mainThermometer),
+                SAChannelRelation.mock(channelId, channelId: 12, type: .meter)
+            ],
+            2: [SAChannelRelation.mock(2, channelId: 13, type: .auxThermometerFloor)]
         ]
         
         // when
-        let result = useCase.invoke(channel, allChannels: allChannels, relations: relations)
+        let result = useCase.invoke(channel, allChannels: allChannels, parentsMap: parentsMap)
         
         // then
         XCTAssertEqual(result.channel, channel)

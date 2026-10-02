@@ -62,18 +62,11 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
     }
     
     func valueOrNil(_ channelWithChildren: ChannelWithChildren, valueType: ValueType = .first, withUnit: Bool = true) -> String? {
-        let provider = providers.first { $0.handle(channelWithChildren) }
-        let channel = channelWithChildren.channel
-        
-        if (provider != nil && channel.status().offline) {
-            return NO_VALUE_TEXT
+        if let provider = providers.first(where: { $0.handle(channelWithChildren) }) {
+            return provider.valueWithOfflineCheck(channelWithChildren, valueType: valueType, withUnit: withUnit)
         }
         
-        if let provider {
-            return provider.value(channelWithChildren, valueType: valueType, withUnit: withUnit)
-        }
-        
-        SALog.debug("No value provider for channel function `\(channel.func)`")
+        SALog.debug("No value provider for channel function `\(channelWithChildren.function)`")
         return nil
     }
 }
@@ -82,4 +75,14 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
 protocol ChannelValueStringProvider {
     func handle(_ channel: ChannelWithChildren) -> Bool
     func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String
+}
+
+private extension ChannelValueStringProvider {
+    func valueWithOfflineCheck(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+        if (channel.channel.status().offline) {
+            return NO_VALUE_TEXT
+        }
+        
+        return value(channel, valueType: valueType, withUnit: withUnit)
+    }
 }

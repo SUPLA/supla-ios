@@ -46,10 +46,10 @@ extension ChannelToMainListItem {
 }
 
 final class CreateChannelWithChildrenUseCaseMock: CreateChannelWithChildrenUseCase {
-    var invokeMock: FunctionMock<(SAChannel, [SAChannel], [SAChannelRelation]), SUPLA.ChannelWithChildren> = .init()
+    var invokeMock: FunctionMock<(SAChannel, [SAChannel], [Int32: [SAChannelRelation]]), SUPLA.ChannelWithChildren> = .init()
 
-    func invoke(_ channel: SAChannel, allChannels: [SAChannel], relations: [SAChannelRelation]) -> SUPLA.ChannelWithChildren {
-        invokeMock.handle((channel, allChannels, relations))
+    func invoke(_ channel: SAChannel, allChannels: [SAChannel], parentsMap: [Int32: [SAChannelRelation]]) -> SUPLA.ChannelWithChildren {
+        invokeMock.handle((channel, allChannels, parentsMap))
     }
 }
 

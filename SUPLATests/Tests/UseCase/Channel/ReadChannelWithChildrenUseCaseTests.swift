@@ -56,11 +56,11 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<SUPLA.ChannelWithCh
         let channels = mockChannels(channelId)
         
         profileRepository.activeProfileObservable = Observable.just(profile)
-        channelRepository.getAllChannelsReturns = Observable.just(channels)
+        channelRepository.allVisibleChannelsMock.returns = .single(Observable.just(channels))
         
         let relation1 = SAChannelRelation.mock(channelId, channelId: 1, type: .mainThermometer)
         let relation2 = SAChannelRelation.mock(channelId, channelId: 2, type: .auxThermometerFloor)
-        channelRelationRepository.getAllRelationsWithParentReturns = Observable.just([relation1, relation2])
+        channelRelationRepository.getParentsMapReturns = Observable.just([channelId: [relation1, relation2]])
         
         let channelWithChildren = ChannelWithChildren(channel: channels[0])
         createChannelWithChildrenUseCase.invokeMock.returns = .single(channelWithChildren)

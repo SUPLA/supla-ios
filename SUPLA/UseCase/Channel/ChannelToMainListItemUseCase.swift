@@ -48,7 +48,7 @@ struct ChannelToMainListItem {
                 function: function,
                 locationCaption: location.caption ?? "",
                 locationId: location.location_id?.int32Value ?? 0,
-                status: .channel(channel.value?.status.onlineState ?? .offline),
+                status: .channel(channelWithChildren.onlineState),
                 title: getCaptionUseCase.invoke(data: channel.shareable).string,
                 icon: getChannelBaseIconUseCase.invoke(channel: channel),
                 value: getChannelValueStringUseCase.valueOrNil(channelWithChildren),

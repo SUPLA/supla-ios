@@ -97,7 +97,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.count, 1)
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.0, channel1)
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.1, [channel1, channel2, channel3])
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [relation])
+        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [1: [relation]])
         assertMappedItems([channel1WithChildren, ChannelWithChildren(channel: channel2)])
     }
 
@@ -263,7 +263,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.count, 1)
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.0, channel1)
         XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.1, [channel1, channel2, channel3])
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [relation1, relation2])
+        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [1: [relation1, relation2]])
         assertMappedItems([channel1WithChildren])
     }
 

@@ -19,26 +19,40 @@
 import Foundation
 
 protocol CreateChannelWithChildrenUseCase {
-    func invoke(_ channel: SAChannel, allChannels: [SAChannel], relations: [SAChannelRelation]) -> ChannelWithChildren
+    func invoke(_ channel: SAChannel, allChannels: [SAChannel], parentsMap: [Int32: [SAChannelRelation]]) -> ChannelWithChildren
 }
 
 final class CreateChannelWithChildrenUseCaseImpl: CreateChannelWithChildrenUseCase {
-    
-    func invoke(_ channel: SAChannel, allChannels: [SAChannel], relations: [SAChannelRelation]) -> ChannelWithChildren {
-        let childrenIds = relations.map { $0.channel_id }
-        let childrenChannels = allChannels.filter { childrenIds.contains($0.remote_id) }
-        
-        var children: [ChannelChild] = []
-        for child in childrenChannels {
-            let relation = relations
-                .first { $0.channel_id == child.remote_id }
-            
-            if let relation {
-                children.append(ChannelChild(channel: child, relation: relation))
-            }
+
+    func invoke(_ channel: SAChannel, allChannels: [SAChannel], parentsMap: [Int32: [SAChannelRelation]]) -> ChannelWithChildren {
+        let channelsById = allChannels.reduce(into: [Int32: SAChannel]()) { result, channel in
+            result[channel.remote_id] = channel
         }
-        
-        return ChannelWithChildren(channel: channel, children: children)
+        return ChannelWithChildren(
+            channel: channel,
+            children: makeChildren(for: channel.remote_id, parentsMap: parentsMap, channelsById: channelsById, ancestors: [])
+        )
     }
-    
+
+    private func makeChildren(
+        for parentId: Int32,
+        parentsMap: [Int32: [SAChannelRelation]],
+        channelsById: [Int32: SAChannel],
+        ancestors: Set<Int32>
+    ) -> [ChannelChild] {
+        (parentsMap[parentId] ?? []).compactMap { relation in
+            let childId = relation.channel_id
+            guard !ancestors.contains(childId), let child = channelsById[childId] else { return nil }
+            return ChannelChild(
+                channel: child,
+                relation: relation,
+                children: makeChildren(
+                    for: childId,
+                    parentsMap: parentsMap,
+                    channelsById: channelsById,
+                    ancestors: ancestors.union([parentId])
+                )
+            )
+        }
+    }
 }

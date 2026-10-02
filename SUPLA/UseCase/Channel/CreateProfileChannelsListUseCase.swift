@@ -102,11 +102,11 @@ struct CreateProfileChannelsList {
             _ channels: [SAChannel],
             _ parentsMap: [Int32: [SAChannelRelation]]
         ) -> MainListItem? {
-            if let childrenRelations = parentsMap[channel.remote_id] {
+            if parentsMap[channel.remote_id] != nil {
                 let channelWithChildren = createChannelWithChildrenUseCase.invoke(
                     channel,
                     allChannels: channels,
-                    relations: childrenRelations
+                    parentsMap: parentsMap
                 )
                 return channelToMainListItemUseCase.invoke(channelWithChildren)
             } else {
