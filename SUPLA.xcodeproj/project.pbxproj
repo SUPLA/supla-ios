@@ -877,8 +877,6 @@
 		A594ADD02C9C402B00780EF3 /* ThermostatSlavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */; };
 		A594ADD22C9C439F00780EF3 /* ThermostatSlavesViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */; };
 		A594ADD42C9C451400780EF3 /* ThermostatSlavesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */; };
-		A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD52C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift */; };
-		A594ADD82C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD72C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift */; };
 		A594ADDA2C9D5E0B00780EF3 /* ChannelWithChildrenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594ADD92C9D5E0B00780EF3 /* ChannelWithChildrenTests.swift */; };
 		A59683882ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59683872ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift */; };
 		A596838A2ABE1FD10005E73C /* SAChannel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */; };
@@ -2783,8 +2781,6 @@
 		A594ADCF2C9C402B00780EF3 /* ThermostatSlavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesView.swift; sourceTree = "<group>"; };
 		A594ADD12C9C439F00780EF3 /* ThermostatSlavesViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesViewState.swift; sourceTree = "<group>"; };
 		A594ADD32C9C451400780EF3 /* ThermostatSlavesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesFeature.swift; sourceTree = "<group>"; };
-		A594ADD52C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelWithChildrenTreeUseCase.swift; sourceTree = "<group>"; };
-		A594ADD72C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelWithChildrenTreeUseCaseTests.swift; sourceTree = "<group>"; };
 		A594ADD92C9D5E0B00780EF3 /* ChannelWithChildrenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelWithChildrenTests.swift; sourceTree = "<group>"; };
 		A59683872ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelWithChildrenUseCaseTests.swift; sourceTree = "<group>"; };
 		A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Mock.swift"; sourceTree = "<group>"; };
@@ -6455,7 +6451,6 @@
 				A5E40B5A2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift */,
 				A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */,
 				A50B5D252BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift */,
-				A594ADD72C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -8001,7 +7996,6 @@
 				A57668E42AEA67E00025509D /* LoadChannelWithChildrenMeasurementsDateRangeUseCase.swift */,
 				A57668DE2AE99CCD0025509D /* LoadChannelWithChildrenMeasurementsUseCase.swift */,
 				A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */,
-				A594ADD52C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift */,
 				A56233EF2AB3949D001CB948 /* ReadChannelWithChildrenUseCase.swift */,
 				A54737582D89B89700B2E227 /* RemoveHiddenChannelsUseCase.swift */,
 				A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */,
@@ -9182,7 +9176,6 @@
 				A519CCB22D38559100F858A4 /* ImpulseCounterGeneralStateHandler.swift in Sources */,
 				A52F03DD2DBA265200472ED1 /* CarPlayAddFeature.swift in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
-				A594ADD62C9D43DE00780EF3 /* ReadChannelWithChildrenTreeUseCase.swift in Sources */,
 				A5F29B762A1E33D500ED700A /* FetchedResultsControllerEntityObserver.swift in Sources */,
 				A56286A330333A7100851CED /* SetpointTemperature.swift in Sources */,
 				A5BCA95D2E2781B900A5054A /* EnableRegistrationUseCase.swift in Sources */,
@@ -9934,7 +9927,6 @@
 				A5C0DE012026093000000001 /* NativeConfigMocks.swift in Sources */,
 				A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */,
 				A50B5D332BF54FF300918D18 /* TerraceAwningVMTests.swift in Sources */,
-				A594ADD82C9D504B00780EF3 /* ReadChannelWithChildrenTreeUseCaseTests.swift in Sources */,
 				A59AB8AE2A3071A300D91F1F /* GroupListVMTests.swift in Sources */,
 				A5E40B5D2B86075500DB6ABE /* ValueProviderMocks.swift in Sources */,
 				A54A06752AF8D61000C03DBC /* LinkedListTests.swift in Sources */,

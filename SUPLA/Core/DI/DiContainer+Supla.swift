@@ -114,7 +114,6 @@ extension DiContainer {
         register(CreateProfileChannelsList.UseCase.self, CreateProfileChannelsList.Implementation())
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
         register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
-        register(ReadChannelWithChildrenTreeUseCase.self, ReadChannelWithChildrenTreeUseCaseImpl())
         register(DownloadChannelMeasurementsUseCase.self, DownloadChannelMeasurementsUseCaseImpl())
         register(DownloadTemperatureLogUseCase.self,
                  DownloadTemperatureLogUseCaseImpl(temperatureMeasurementItemRepository))

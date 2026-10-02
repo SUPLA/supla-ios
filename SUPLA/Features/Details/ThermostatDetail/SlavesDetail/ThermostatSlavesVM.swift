@@ -20,7 +20,7 @@ import SharedCore
     
 extension ThermostatSlavesFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState>, ChannelUpdatesObserver, ViewDelegate {
-        @Singleton private var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCase
+        @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
         @Singleton private var globalSettings: GlobalSettings
 
         private let itemBundle: ItemBundle
@@ -41,7 +41,7 @@ extension ThermostatSlavesFeature {
         }
         
         func loadData(_ remoteId: Int32) {
-            readChannelWithChildrenTreeUseCase.invoke(remoteId: remoteId)
+            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] in self?.handle(channel: $0) },
