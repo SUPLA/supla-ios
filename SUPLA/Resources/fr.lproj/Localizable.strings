@@ -668,8 +668,8 @@
 "wizard_result_certificate_unsupported_security" = "Le dispositif utilise des paramètres de sécurité non pris en charge. Mettez à jour le logiciel du dispositif et réessayez.";
 "wizard_result_certificate_different_names" = "Le dispositif possède un certificat incorrect - les noms ne correspondent pas (certificat : %1$@, dispositif : %2$@)";
 "wizard_reconnect_timeout" = "Le délai d'attente pour revenir au réseau Wi-Fi de base est dépassé !";
-"wizard_done" = "Configuration du dispositif est terminée avec succès :)";
-"wizard_done_explanations" = "Si l'appareil n'apparaît pas dans l'application, répétez à nouveau cette procédure d'ajout et lisez le « Statut précédent » indiqué ci-dessus. Il contient des informations permettant de déterminer pourquoi l'appareil ne s'est pas connecté au serveur. Le message « SSID non trouvé » signifie que le nom du réseau Wi-Fi 2,4 GHz saisi n'a pas été trouvé ou que le réseau est hors de portée.";
+"wizard_done" = "Les paramètres ont été transférés vers l’appareil I/O.";
+"wizard_done_explanations" = "Si l'appareil n'apparaît pas dans l'application, relancez l'assistant d'ajout d'appareil et consultez le « Statut précédent » affiché ci-dessus. Il contient des informations qui aident à déterminer pourquoi l'appareil n'a pas pu se connecter au serveur. Le message « SSID non trouvé » signifie que le réseau Wi-Fi 2,4 GHz sélectionné est hors de portée ou que son nom est incorrect.";
 "wizard_iodev_data" = "Données du dispositif";
 "wizard_iodev_name" = "Nom";
 "wizard_iodev_laststate" = "Statut précédent";

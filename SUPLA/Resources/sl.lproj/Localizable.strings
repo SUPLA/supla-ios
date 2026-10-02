@@ -668,8 +668,8 @@
 "wizard_result_certificate_unsupported_security" = "Naprava uporablja nepodprte varnostne nastavitve. Posodobite programsko opremo naprave in poskusite znova.";
 "wizard_result_certificate_different_names" = "Naprava ima napačno potrdilo - imena se ne ujemajo (potrdilo: %1$@, naprava: %2$@)";
 "wizard_reconnect_timeout" = "Čakalna doba za vrnitev v primarno omrežje Wi-Fi je prekoračena!";
-"wizard_done" = "Konfiguracija naprave je bila uspešna :)";
-"wizard_done_explanations" = "Če se naprava ne prikaže v aplikaciji, ponovite ta postopek dodajanja še enkrat in preberite \"Prejšnje stanje\", prikazano zgoraj. Vsebuje informacije, na podlagi katerih je mogoče ugotoviti, zakaj naprava ni vzpostavila povezave s strežnikom. Sporočilo »SSID not found« pomeni, da vnesenega imena 2,4 GHz Wi-Fi omrežja ni bilo mogoče najti ali pa je omrežje izven dosega.";
+"wizard_done" = "Nastavitve so bile prenesene na napravo I/O.";
+"wizard_done_explanations" = "Če se naprava ne prikaže v aplikaciji, znova zaženite čarovnika za dodajanje naprave in preberite zgoraj prikazano »Prejšnje stanje«. Vsebuje informacije, ki pomagajo ugotoviti, zakaj se naprava ni mogla povezati s strežnikom. Sporočilo »SSID not found« pomeni, da je izbrano omrežje Wi-Fi 2,4 GHz zunaj dosega ali pa je ime omrežja napačno.";
 "wizard_iodev_data" = "Podatki o napravi";
 "wizard_iodev_name" = "Ime";
 "wizard_iodev_laststate" = "Prejšnji status";

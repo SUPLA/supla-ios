@@ -700,7 +700,7 @@
 "wizard_result_certificate_different_names" = "Il dispositivo ha un certificato errato - i nomi non corrispondono (certificato: %1$@, dispositivo: %2$@)";
 "wizard_reconnect_timeout" = "Il tempo di attesa per il ritorno alla rete basilare Wi-Fi è stato superato!";
 "wizard_done" = "Configurazione del dispositivo terminata con successo :)";
-"wizard_done_explanations" = "Se il tuo nuovo dispositivo I/O non viene visualizzato nell'app Supla, esegui nuovamente la procedura guidata \"Aggiungi dispositivo I/O\" e fai riferimento alle informazioni sullo \"Stato precedente\" in questa pagina per la risoluzione dei problemi. Viene visualizzato \"SSID Not Found\" quando la rete Wi-Fi scelta non è disponibile o il suo nome non è corretto";
+"wizard_done_explanations" = "Se il dispositivo non appare nell'app, avvia di nuovo la procedura guidata per aggiungere un dispositivo e consulta lo «Stato precedente» mostrato sopra. Contiene informazioni utili per determinare perché il dispositivo non è riuscito a connettersi al server. Il messaggio «SSID non trovato» indica che la rete Wi-Fi a 2,4 GHz selezionata è fuori portata oppure che il nome della rete è errato.";
 "wizard_iodev_data" = "Dati del dispositivo";
 "wizard_iodev_name" = "Nome";
 "wizard_iodev_laststate" = "Stato precedente";

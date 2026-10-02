@@ -670,7 +670,7 @@
 "wizard_result_certificate_different_names" = "Įrenginio sertifikatas neteisingas - pavadinimai nesutampa (sertifikatas: %1$@, įrenginys: %2$@)";
 "wizard_reconnect_timeout" = "Viršytas grįžimo prie pagrindinio Wi-Fi tinklo laukimo laikas!";
 "wizard_done" = "Įrenginio konfigūravimas baigtas sėkmingai :)";
-"wizard_done_explanations" = "Jei įrenginys nebus matomas programoje, pakartokite šią pridėjimo procedūrą dar kartą ir nuskaitykite žemiau matomą „Ankstesnį statusą“. Jame yra informacija, kuri leidžia nustatyti, kodėl įrenginys neprisijungė prie serverio. Pranešimas “SSID not found“ reiškia, kad įvestas Wi-Fi 2,4 GHz tinklo pavadinimas nebuvo rastas arba tinklas neprieinamas.";
+"wizard_done_explanations" = "Jei įrenginys programoje nerodomas, dar kartą paleiskite įrenginio pridėjimo vedlį ir perskaitykite aukščiau rodomą „Ankstesnę būseną“. Joje pateikta informacija padeda nustatyti, kodėl įrenginiui nepavyko prisijungti prie serverio. Pranešimas „SSID not found“ reiškia, kad pasirinktas 2,4 GHz Wi-Fi tinklas yra už ryšio zonos ribų arba jo pavadinimas neteisingas.";
 "wizard_iodev_data" = "Įrenginio duomenys";
 "wizard_iodev_name" = "Pavadinimas";
 "wizard_iodev_laststate" = "Ankstesnis statusas";

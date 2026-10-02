@@ -667,8 +667,8 @@
 "wizard_result_certificate_unsupported_security" = "Zařízení používá nepodporované nastavení zabezpečení. Aktualizujte software zařízení a zkuste to znovu.";
 "wizard_result_certificate_different_names" = "Zařízení má nesprávný certifikát - názvy se neshodují (certifikát: %1$@, zařízení: %2$@)";
 "wizard_reconnect_timeout" = "Doba čekání na návrat do základní sítě Wi-Fi byla překročena!";
-"wizard_done" = "Konfigurace zařízení byla úspěšně dokončena :)";
-"wizard_done_explanations" = "Pokud se zařízení v aplikaci nezobrazí, zopakujte tento postup přidání znovu a přečtěte si výše uvedený \"Předchozí stav\". Obsahuje informace, díky nímž lze zjistit, proč se zařízení nepřipojilo k serveru. Zpráva  \"SSID not found“ znamená, že zadaný název sítě Wi-Fi 2,4 GHz nebyl nalezen nebo je síť mimo dosah.";
+"wizard_done" = "Nastavení byla přenesena do I/O zařízení.";
+"wizard_done_explanations" = "Pokud se zařízení v aplikaci nezobrazí, spusťte znovu průvodce přidáním zařízení a přečtěte si výše uvedený „Předchozí stav“. Obsahuje informace, které pomohou zjistit, proč se zařízení nepřipojilo k serveru. Zpráva „SSID not found“ znamená, že vybraná síť Wi-Fi 2,4 GHz je mimo dosah nebo je její název nesprávný.";
 "wizard_iodev_data" = "Data zařízení";
 "wizard_iodev_name" = "Název";
 "wizard_iodev_laststate" = "Předchozí stav";

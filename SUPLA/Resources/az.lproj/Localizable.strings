@@ -737,7 +737,7 @@
 "wizard_result_certificate_different_names" = "Cihazın sertifikatı yanlışdır - adlar eyni deyil (sertifikat: %1$@, cihaz: %2$@)";
 "wizard_reconnect_timeout" = "Əsas Wi-Fi şəbəkəsinə qayıtma vaxt limiti bitdi!";
 "wizard_done" = "Tənzimləmələr I/O cihazına köçürüldü.";
-"wizard_done_explanations" = "Yeni I/O cihazınız Supla tətbiqində görünmürsə, \“Add I/O Device\” wizard-ını yenidən işə salın və səhifədəki \“Previous State\” məlumatına baxın. \“SSID Not Found\” 2.4 GHz şəbəkənin əhatə dairəsində olmadığını və ya adının düzgün olmadığını göstərir.";
+"wizard_done_explanations" = "Yeni I/O cihazınız Supla tətbiqində görünmürsə, cihaz əlavə etmək sehrbazını yenidən başladın və yuxarıda göstərilən “Previous State” məlumatını oxuyun. Bu məlumat cihazın serverə niyə qoşulmadığını müəyyən etməyə kömək edir. “SSID Not Found” mesajı seçilmiş 2,4 GHz Wi-Fi şəbəkəsinin əhatə dairəsində olmadığını və ya şəbəkə adının səhv olduğunu bildirir.";
 "wizard_iodev_data" = "Cihaz parametrləri";
 "wizard_iodev_name" = "Ad";
 "wizard_iodev_laststate" = "Əvvəlki vəziyyət";

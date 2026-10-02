@@ -710,8 +710,8 @@
 "wizard_result_certificate_different_names" = "Az eszköz tanúsítványa hibás - a nevek nem egyeznek (tanúsítvány: %1$@, eszköz: %2$@)";
 "wizard_reconnect_timeout" = "Az elsődleges Wi-Fi hálózathoz való visszatérés várakozási ideje túllépve!";
 "wizard_configure_timeout" = "Az eszközkonfiguráció befejezésének várakozási ideje túllépve!";
-"wizard_done" = "Az eszköz konfigurálása sikeres :)";
-"wizard_done_explanations" = "Ha a készülék nem jelenik meg az alkalmazásban, ismételje meg ezt az eljárást, és olvassa el a fenti „Előző állapotot”. Ez azt jelzi, hogy a készülék miért nem csatlakozott a szerverhez. Az \"SSID not found\" üzenet azt jelenti, hogy a megadott 2,4 GHz-es Wi-Fi nevet nem találták meg, vagy a hálózat nem érhető el.";
+"wizard_done" = "A beállítások átkerültek az I/O-eszközre.";
+"wizard_done_explanations" = "Ha az eszköz nem jelenik meg az alkalmazásban, indítsa el újra az eszköz hozzáadására szolgáló varázslót, és olvassa el a fent látható „Előző állapot” részt. Ez segít megállapítani, miért nem tudott az eszköz csatlakozni a szerverhez. Az „SSID not found” üzenet azt jelenti, hogy a kiválasztott 2,4 GHz-es Wi-Fi-hálózat hatótávolságon kívül van, vagy a neve hibás.";
 "wizard_iodev_data" = "Eszköz adatok";
 "wizard_iodev_name" = "Megnevezés";
 "wizard_iodev_firmware" = "Firmware";

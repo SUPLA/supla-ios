@@ -667,7 +667,7 @@
 "wizard_result_certificate_different_names" = "Enheten har feil sertifikat - navnene samsvarer ikke (sertifikat: %1$@, enhet: %2$@)";
 "wizard_reconnect_timeout" = "Ventetiden for returnering til basis trådløs nettverk er overskredet!";
 "wizard_done" = "Konfigurering av enheten ble vellykket :)";
-"wizard_done_explanations" = "Hvis enheten ikke vises i applikasjonen, gjenta denne tilleggsprosedyren igjen og les \"Forrige status\" vist ovenfor. Den inneholder informasjon som gjør det mulig å finne ut hvorfor enheten ikke klarte å koble til serveren. Meldingen \"SSID not found\" betyr at det angitte navnet på 2,4 GHz WiFi-nettverket ikke ble funnet eller at nettverket er utenfor rekkevidde.";
+"wizard_done_explanations" = "Hvis enheten ikke vises i appen, start veiviseren for å legge til en enhet på nytt, og les «Forrige status» som vises ovenfor. Den inneholder informasjon som kan hjelpe deg med å finne ut hvorfor enheten ikke kunne koble til serveren. Meldingen «SSID not found» betyr at det valgte 2,4 GHz Wi-Fi-nettverket er utenfor rekkevidde, eller at nettverksnavnet er feil.";
 "wizard_iodev_data" = "Opplysninger om enheten";
 "wizard_iodev_name" = "Navn";
 "wizard_iodev_laststate" = "Forrige status";

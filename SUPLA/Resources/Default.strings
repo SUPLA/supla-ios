@@ -569,7 +569,7 @@
 "wizard_reconnect_timeout" = "Basic Wi-Fi Network return timeout!";
 "wizard_configure_timeout" = "Device configuration completion timeout!";
 "wizard_done" = "The settings have been transferred to the I/O device.";
-"wizard_done_explanations" = "If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4GHz network is ether not in range or its name was incorrect.";
+"wizard_done_explanations" = "If your I/O device does not appear in the Supla app, run the “Add I/O Device” wizard again and read the “Previous State” shown above. It contains information that can help determine why the device could not connect to the server. “SSID Not Found” means the selected 2.4 GHz Wi-Fi network is out of range or its name is incorrect.";
 "wizard_iodev_data" = "Device parameters";
 "wizard_iodev_name" = "Name";
 "wizard_iodev_firmware" = "Firmware";

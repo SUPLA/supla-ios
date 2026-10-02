@@ -741,7 +741,7 @@
 "wizard_result_certificate_different_names" = "Urządzenie ma nieprawidłowy certyfikat — nazwa jest nieprawidłowa (certyfikat: %1$@, urządzenie: %2$@)";
 "wizard_reconnect_timeout" = "Przekroczono czas oczekiwania na powrót do podstawowej sieci Wi-Fi!";
 "wizard_done" = "Ustawienia zostały przesłane do urządzenia.";
-"wizard_done_explanations" = "Jeśli urządzenie nie pojawi się w aplikacji, powtórz niniejszą procedurę dodawania jeszcze raz i odczytaj „Poprzedni status” widoczny powyżej. Zawiera on informację umożliwiającą ustalenie dlaczego urządzenie nie połączyło się z serwerem. Komunikat \"SSID not found\" oznacza, że wprowadzona nazwa sieci Wi-Fi 2,4 GHz nie została odnaleziona lub sieć ta jest poza zasięgiem.";
+"wizard_done_explanations" = "Jeśli urządzenie nie pojawi się w aplikacji, ponownie uruchom kreator dodawania urządzenia i odczytaj „Poprzedni status” widoczny powyżej. Zawiera on informacje pomagające ustalić, dlaczego urządzenie nie połączyło się z serwerem. Komunikat „SSID not found” oznacza, że wybrana sieć Wi-Fi 2,4 GHz jest poza zasięgiem lub jej nazwa jest nieprawidłowa.";
 "wizard_iodev_data" = "Dane urządzenia";
 "wizard_iodev_name" = "Nazwa";
 "wizard_iodev_laststate" = "Poprzedni status";

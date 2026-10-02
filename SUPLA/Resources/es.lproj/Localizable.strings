@@ -667,8 +667,8 @@
 "wizard_result_certificate_unsupported_security" = "El dispositivo usa ajustes de seguridad no compatibles. Actualice el software del dispositivo y vuelva a intentarlo.";
 "wizard_result_certificate_different_names" = "El dispositivo tiene un certificado incorrecto - los nombres no coinciden (certificado: %1$@, dispositivo: %2$@)";
 "wizard_reconnect_timeout" = "¡Se ha superado el tiempo de espera para reconectar a la red Wi-Fi Base!";
-"wizard_done" = "Configuración del dispositivo completada con éxito :)";
-"wizard_done_explanations" = "Si el dispositivo no aparece en la aplicación, repite este procedimiento de adición nuevamente y lee el \"Estado anterior\" que se muestra arriba. Contiene información que permite determinar por qué el dispositivo no pudo conectarse al servidor. El mensaje \"SSID no encontrado\" significa que no se encontró el nombre ingresado de la red Wi-Fi de 2,4 GHz o que la red está fuera del alcance.";
+"wizard_done" = "La configuración se ha transferido al dispositivo de E/S.";
+"wizard_done_explanations" = "Si el dispositivo no aparece en la aplicación, vuelve a ejecutar el asistente para añadir dispositivos y consulta el «Estado anterior» que se muestra arriba. Contiene información que ayuda a determinar por qué el dispositivo no pudo conectarse al servidor. El mensaje «SSID no encontrado» significa que la red Wi-Fi de 2,4 GHz seleccionada está fuera de alcance o que el nombre de la red es incorrecto.";
 "wizard_iodev_data" = "Datos del dispositivo";
 "wizard_iodev_name" = "Nombre";
 "wizard_iodev_laststate" = "Estado anterior";

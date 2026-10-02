@@ -706,8 +706,8 @@
 "wizard_result_certificate_unsupported_security" = "Das Gerät verwendet nicht unterstützte Sicherheitseinstellungen. Aktualisieren Sie die Gerätesoftware und versuchen Sie es erneut.";
 "wizard_result_certificate_different_names" = "Das Gerät hat ein falsches Zertifikat - die Namen stimmen nicht überein (Zertifikat: %1$@, Gerät: %2$@)";
 "wizard_reconnect_timeout" = "Für die Rückkehr zum Grundversorgungs-WiFi-Netz wurde das Zeitlimit überschritten!";
-"wizard_done" = "Die Konfiguration wurde erfolgreich abgeschlossen :)";
-"wizard_done_explanations" = "Wenn das Gerät nicht in der App erscheint, wiederholen Sie dieses Hinzufügungsverfahren noch einmal und lesen Sie „Bisheriger Status“, das oben zu sehen ist, ab. Er enthält eine Information, warum das Gerät sich nicht mit dem Server verbunden hat. Meldung „SSID not found“ bedeutet, dass der eingeführte Name des WiFi-Netzwerks 2,4 GHz nicht gefunden wurde oder dieses Netzwerk sich außerhalb der Reichweite befindet.";
+"wizard_done" = "Die Einstellungen wurden auf das I/O-Gerät übertragen.";
+"wizard_done_explanations" = "Wenn das Gerät nicht in der App erscheint, starten Sie den Assistenten zum Hinzufügen des Geräts erneut und lesen Sie den oben angezeigten „Vorherigen Status“. Er enthält Informationen dazu, warum das Gerät keine Verbindung zum Server herstellen konnte. Die Meldung „SSID not found“ bedeutet, dass das ausgewählte 2,4-GHz-WLAN außerhalb der Reichweite ist oder sein Name falsch eingegeben wurde.";
 "wizard_iodev_data" = "Daten des Gerätes";
 "wizard_iodev_name" = "Name";
 "wizard_iodev_laststate" = "Vorheriger Status";
