@@ -72,7 +72,7 @@ struct SetpointText: View {
 
     var body: some View {
         Text(text)
-            .fontBodyMedium(scaleFactor)
+            .fontBodyMedium(max(1, scaleFactor))
             .textColor(.Supla.onBackground)
     }
 }

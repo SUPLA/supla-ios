@@ -67,6 +67,29 @@ struct ThermostatListItemView: View {
                 base: DefaultListItem(
                     remoteId: 0,
                     profileId: 0,
+                    userCaption: "Thermomenters",
+                    function: .thermometer,
+                    locationCaption: "Default",
+                    locationId: 0,
+                    status: .group(onlinePercentage: 1, activePercentage: 0.5),
+                    title: "Thermomenters",
+                    icon: .originalSuplaIcon(name: .Icons.fncThermometerWater),
+                    value: "23.3 C"
+                ),
+                subValue: "24.0 C",
+                indicatorIcon: .heating
+            ),
+            onInfoClick: {},
+            onIssueClick: { _ in },
+            onTitleLongClick: {},
+            onItemClick: {}
+        )
+        .environment(\.scaleFactor, 0.75)
+        ThermostatListItemView(
+            item: HvacThermostatListItem(
+                base: DefaultListItem(
+                    remoteId: 0,
+                    profileId: 0,
                     userCaption: "Thermomenter",
                     function: .thermometer,
                     locationCaption: "Default",
