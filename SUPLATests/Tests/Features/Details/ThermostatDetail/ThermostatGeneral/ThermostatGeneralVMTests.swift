@@ -27,7 +27,7 @@ import XCTest
 final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
     private lazy var viewModel: ThermostatGeneralVM! = ThermostatGeneralVM()
     
-    private lazy var readChannelWithChildrenTreeUseCase: ReadChannelWithChildrenTreeUseCaseMock! = ReadChannelWithChildrenTreeUseCaseMock()
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
 
     private lazy var createTemperaturesListUseCase: CreateTemperaturesListUseCaseMock! = CreateTemperaturesListUseCaseMock()
 
@@ -48,7 +48,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     private lazy var checkIsSlaveThermostatUseCase: CheckIsSlaveThermostatUseCaseMock! = CheckIsSlaveThermostatUseCaseMock()
     
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelWithChildrenTreeUseCase.self, readChannelWithChildrenTreeUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, createTemperaturesListUseCase!)
         DiContainer.shared.register(type: ChannelConfigEventsManager.self, channelConfigEventsManager!)
         DiContainer.shared.register(type: DeviceConfigEventsManager.self, deviceConfigEventsManager!)
@@ -68,7 +68,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     override func tearDown() {
         viewModel = nil
         
-        readChannelWithChildrenTreeUseCase = nil
+        readChannelWithChildrenUseCase = nil
         createTemperaturesListUseCase = nil
         channelConfigEventsManager = nil
         deviceConfigEventsManager = nil
@@ -101,7 +101,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2°")
         ]
         
-        readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))
         createTemperaturesListUseCase.returns = measurements
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
@@ -188,7 +188,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
-        readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = measurements
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
@@ -278,7 +278,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
-        readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = measurements
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
@@ -357,7 +357,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             MeasurementValue(id: 1, icon: .suplaIcon(name: .Icons.fncUnknown), value: "21.2")
         ]
         
-        readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = measurements
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
@@ -427,7 +427,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         channel.value = channelValue
         
-        readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
@@ -475,7 +475,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channelValue.online = SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
         channel.value = channelValue
         
-        readChannelWithChildrenTreeUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))

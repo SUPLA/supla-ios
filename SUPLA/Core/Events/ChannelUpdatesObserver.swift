@@ -28,7 +28,7 @@ extension ChannelUpdatesObserver {
         @Singleton<UpdateEventsManager> var updateEventsManager
 
         handle(
-            updateEventsManager.observeChannelWithChildrenTree(remoteId: remoteId)
+            updateEventsManager.observeChannelWithChildren(remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in self?.onChannelUpdate($0) })
         )

@@ -90,15 +90,6 @@ final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
     }
 }
 
-final class ReadChannelWithChildrenTreeUseCaseMock: ReadChannelWithChildrenTreeUseCase {
-    var returns: Observable<SUPLA.ChannelWithChildren> = Observable.empty()
-    var parameters: [Int32] = []
-    func invoke(remoteId: Int32) -> Observable<SUPLA.ChannelWithChildren> {
-        parameters.append(remoteId)
-        return returns
-    }
-}
-
 final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
     var parameters: [SUPLA.ChannelWithChildren] = []
     func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren, type: SUPLA.DownloadEventsManagerDataType) {
