@@ -1642,10 +1642,12 @@ typedef struct {
 #define ACTION_DISABLE 210
 #define ACTION_SEND 220
 #define ACTION_HVAC_SET_PARAMETERS 230
-#define ACTION_HVAC_SWITCH_TO_PROGRAM_MODE 231
-#define ACTION_HVAC_SWITCH_TO_MANUAL_MODE 232
+#define ACTION_SWITCH_TO_PROGRAM_MODE 231
+#define ACTION_SWITCH_TO_MANUAL_MODE 232
 #define ACTION_HVAC_SET_TEMPERATURES 233
 #define ACTION_HVAC_SET_TEMPERATURE 234
+#define ACTION_SET_AT_PARAMETERS 236
+#define ACTION_SET_RELAY_PARAMETERS 237
 #define ACTION_READ 1000
 #define ACTION_SET 2000
 #define ACTION_EXECUTE 3000
@@ -1685,6 +1687,16 @@ typedef struct {
       SetpointTemperatureCool;    // * 0.01 - Celcius degree used for coolingx
   unsigned _supla_int16_t Flags;  // SUPLA_HVAC_VALUE_FLAG_
 } TAction_HVAC_Parameters;
+
+typedef struct {
+  unsigned char Mode;  // SUPLA_BUTTON_MODE_
+  char Reserved[15];
+} TAction_AT_Parameters;
+
+typedef struct {
+  unsigned char Mode;  // SUPLA_RELAY_MODE_
+  char Reserved[15];
+} TAction_Relay_Parameters;
 
 typedef struct {
   _supla_int_t ActionId;
@@ -3237,6 +3249,11 @@ typedef struct {
 } TChannelConfig_ActionTrigger;  // v. >= 16
 
 // Weekly schedule definition for HVAC, Relay, AT channels
+#define SUPLA_WEEKLY_SCHEDULE_PROGRAM_MODE_TYPE_NOT_SUPPORTED 0
+#define SUPLA_WEEKLY_SCHEDULE_PROGRAM_MODE_TYPE_HVAC 1
+#define SUPLA_WEEKLY_SCHEDULE_PROGRAM_MODE_TYPE_RELAY 2
+#define SUPLA_WEEKLY_SCHEDULE_PROGRAM_MODE_TYPE_BUTTON 3
+
 typedef struct {
   unsigned char Mode;  // for HVAC: SUPLA_HVAC_MODE_
                        // for AT: SUPLA_BUTTON_MODE_
@@ -4057,6 +4074,15 @@ void PROTO_ICACHE_FLASH sproto_set_null_terminated_string(
 void PROTO_ICACHE_FLASH sproto__set_null_terminated_string(
     const char *src, char *dest, unsigned _supla_int16_t *dest_size,
     unsigned int max_size);
+
+char PROTO_ICACHE_FLASH supla_weekly_schedule_is_relay_function(
+    _supla_int_t func);
+char PROTO_ICACHE_FLASH supla_weekly_schedule_is_function_supported(
+    _supla_int_t func);
+unsigned char PROTO_ICACHE_FLASH
+supla_weekly_schedule_get_program_mode_type(_supla_int_t func);
+char PROTO_ICACHE_FLASH supla_action_mode_from_text(
+    _supla_int_t action_id, const char *name, unsigned char *mode);
 
 #ifdef __cplusplus
 }
