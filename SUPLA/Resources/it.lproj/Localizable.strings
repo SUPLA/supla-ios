@@ -389,6 +389,7 @@
 
 /* Timer Detail */
 "timer_detail_header" = "Specifica il tempo in cui il dispositivo deve essere:";
+"details_timer_disabled_forced_mode" = "Il timer conto alla rovescia è disattivato in modalità accensione/spegnimento forzata.";
 "timer_detail_edit_header" = "Modifica il tempo in cui il dispositivo sarà %@";
 "timer_detail_edit_header_on" = "acceso";
 "timer_detail_edit_header_off" = "spento";

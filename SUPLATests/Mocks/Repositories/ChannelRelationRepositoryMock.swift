@@ -57,6 +57,11 @@ final class ChannelRelationRepositoryMock: BaseRepositoryMock<SAChannelRelation>
         getParentsMapParameters.append(profile)
         return getParentsMapReturns
     }
+
+    var observeParentsMapMock: FunctionMock<AuthProfileItem, Observable<[Int32: [SAChannelRelation]]>> = .init()
+    func observeParentsMap(for profile: AuthProfileItem) -> Observable<[Int32: [SAChannelRelation]]> {
+        observeParentsMapMock.handle(profile)
+    }
     
     func deleteSync(_ remoteId: Int32, _ profile: AuthProfileItem) {
     }

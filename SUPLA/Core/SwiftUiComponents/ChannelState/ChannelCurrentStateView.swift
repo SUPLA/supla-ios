@@ -18,7 +18,7 @@
     
 import SwiftUI
 
-struct DeviceState {
+struct ChannelCurrentState {
     
     struct Data {
         let label: String

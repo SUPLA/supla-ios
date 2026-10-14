@@ -30,72 +30,73 @@ struct ElectricityMeterGeneralBaseView: View {
     @Binding var vectorBalancedValues: [ElectricityMeterGeneralState.MeaurementTypeValue]?
     @Binding var electricGridParameters: [ElectricityMeterGeneralState.MeaurementTypeValue]?
     @Binding var showIntroduction: Bool
-    
-    var onIntroductionClose: () -> Void = { }
+
+    var topPadding: CGFloat = Distance.default
+    var onIntroductionClose: () -> Void = {}
 
     @State private var space: CGFloat? = nil
     @State private var offset: Double = 0
 
     var body: some View {
-        BackgroundStack {
-            GeometryReader { gp in
-                ZStack {
-                    ScrollView(.vertical) {
-                        VStack(alignment: .leading, spacing: 0) {
-                            EnergySummaryBox(
-                                forwardEnergy: totalForwardActiveEnergy,
-                                reverseEnergy: totalReverseActiveEnergy,
-                                labelSuffix: Strings.ElectricityMeter.totalSufix,
-                                loading: .constant(false)
-                            )
-                            EnergySummaryBox(
-                                forwardEnergy: currentMonthForwardActiveEnergy,
-                                reverseEnergy: currentMonthReverseActiveEnergy,
-                                labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
-                                loading: $currentMonthDownloading
-                            )
+        GeometryReader { gp in
+            ZStack {
+                ScrollView(.vertical) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        EnergySummaryBox(
+                            forwardEnergy: totalForwardActiveEnergy,
+                            reverseEnergy: totalReverseActiveEnergy,
+                            labelSuffix: Strings.ElectricityMeter.totalSufix,
+                            topPadding: topPadding,
+                            loading: .constant(false)
+                        )
+                        EnergySummaryBox(
+                            forwardEnergy: currentMonthForwardActiveEnergy,
+                            reverseEnergy: currentMonthReverseActiveEnergy,
+                            labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
+                            topPadding: totalForwardActiveEnergy == nil && totalReverseActiveEnergy == nil ? topPadding : Distance.default,
+                            loading: $currentMonthDownloading
+                        )
 
-                            if (online) {
-                                PhasesView(
-                                    types: phaseMeasurementTypes,
-                                    values: phaseMeasurementValues,
-                                    parentWidth: gp.size.width,
-                                    offset: offset
-                                )
-                                .id(showIntroduction)
-                                .onAppear {
-                                    if (showIntroduction) {
-                                        withAnimation(.easeInOut(duration: 1).repeatForever()) {
-                                            offset = 100
-                                        }
+                        if (online) {
+                            PhasesView(
+                                types: phaseMeasurementTypes,
+                                values: phaseMeasurementValues,
+                                parentWidth: gp.size.width,
+                                offset: offset
+                            )
+                            .id(showIntroduction)
+                            .onAppear {
+                                if (showIntroduction) {
+                                    withAnimation(.easeInOut(duration: 1).repeatForever()) {
+                                        offset = 100
                                     }
                                 }
-                                SingleValueTable(
-                                    header: Strings.ElectricityMeter.phaseToPhaseBalance,
-                                    values: vectorBalancedValues,
-                                    parentWidth: gp.size.width
-                                )
-                                SingleValueTable(
-                                    header: Strings.ElectricityMeter.electricGridParameters,
-                                    values: electricGridParameters,
-                                    parentWidth: gp.size.width
-                                )
-                            } else {
-                                ChannelOfflineView()
                             }
+                            SingleValueTable(
+                                header: Strings.ElectricityMeter.phaseToPhaseBalance,
+                                values: vectorBalancedValues,
+                                parentWidth: gp.size.width
+                            )
+                            SingleValueTable(
+                                header: Strings.ElectricityMeter.electricGridParameters,
+                                values: electricGridParameters,
+                                parentWidth: gp.size.width
+                            )
+                        } else {
+                            ChannelOfflineView()
                         }
                     }
+                }
 
-                    if (showIntroduction) {
-                        InfoView(
-                            offset: offset,
-                            onClose: {
-                                showIntroduction = false
-                                offset = 0
-                                onIntroductionClose()
-                            }
-                        )
-                    }
+                if (showIntroduction) {
+                    InfoView(
+                        offset: offset,
+                        onClose: {
+                            showIntroduction = false
+                            offset = 0
+                            onIntroductionClose()
+                        }
+                    )
                 }
             }
         }
@@ -450,14 +451,14 @@ private struct SinglePhaseDataValuesView: View {
         self.isLast = isLast
         self.onItemSelected = onItemSelected
         self.selectedType = selectedType
-        
+
         let attributes = [NSAttributedString.Key.font: UIFont.bodyMedium]
         self.valueMaxWidth = measurements.map { $0.value ?? "" }.reduce(0.0) { result, item in
             let size = item.size(withAttributes: attributes).width
             return size > result ? size : result
         } + Distance.tiny
 
-        self.showEnergyLabelForType = showLabel.ifTrue { measurements.first(where: {$0.type.showEnergyLabel})?.type }
+        self.showEnergyLabelForType = showLabel.ifTrue { measurements.first(where: { $0.type.showEnergyLabel })?.type }
     }
 
     var body: some View {

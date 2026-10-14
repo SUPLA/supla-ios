@@ -20,12 +20,20 @@ import Foundation
 import RxSwift
 
 protocol ChannelValueRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannelValue {
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelValue]>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelValue>
     func updateAggregatedValue(_ profileId: Int32, _ remoteId: Int32, _ value: String) async
 }
 
 final class ChannelValueRepositoryImpl: Repository<SAChannelValue>, ChannelValueRepository {
+
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelValue]> {
+        let request = SAChannelValue.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .ordered(by: "channel_id")
+        return continuousQuery(request)
+    }
     
     func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelValue> {
         queryItem(NSPredicate(format: "channel_id = %i AND profile = %@", remoteId, profile))

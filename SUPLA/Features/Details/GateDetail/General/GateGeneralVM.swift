@@ -23,6 +23,7 @@ extension GateGeneralFeature {
         @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
         @Singleton private var getChannelBaseStateUseCase: GetChannelBaseStateUseCase
         @Singleton private var executeSimpleActionUseCase: ExecuteSimpleAction.UseCase
+        @Singleton private var executeRelayActionUseCase: ExecuteRelayAction.UseCase
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
         
         private let itemBundle: ItemBundle
@@ -66,6 +67,25 @@ extension GateGeneralFeature {
         func onOpenClose() {
             triggerAction(.openClose)
         }
+
+        func onManual() {
+            triggerAction(.switchToManualMode)
+        }
+
+        func onWeekly() {
+            triggerAction(.switchToProgramMode)
+        }
+
+        func onAuto() {
+            executeRelayActionUseCase.invoke(
+                type: itemBundle.subjectType,
+                remoteId: itemBundle.remoteId,
+                mode: .automatic
+            )
+            .asDriverWithoutError()
+            .drive()
+            .disposed(by: disposeBag)
+        }
         
         func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
             loadChannel(channelWithChildren.remoteId)
@@ -92,7 +112,7 @@ extension GateGeneralFeature {
             let showOpenAndClose = channelWithChildren.hasSensor && supportsOpenAndClose(channel.func)
             
             state.offline = channel.status().offline
-            state.deviceStateData = .init(
+            state.channelCurrentStateData = .init(
                 label: Strings.SwitchDetail.stateLabel,
                 icon: getChannelBaseIconUseCase.invoke(channel: channel),
                 value: getDeviceStateValue(channel.status(), channelState)
@@ -104,15 +124,31 @@ extension GateGeneralFeature {
                     icon: getChannelBaseIconUseCase.stateIcon(channel, state: .default(value: .opened)),
                     label: Strings.General.open,
                     active: channelState.value == .opened,
-                    type: .positive
+                    colors: .primaryColors
                 )
                 state.closeButtonState = .init(
                     icon: getChannelBaseIconUseCase.stateIcon(channel, state: .default(value: .closed)),
                     label: Strings.General.close,
                     active: channelState.value == .closed,
-                    type: .positive
+                    colors: .errorColors
                 )
             }
+            handleOperationButtons(channelWithChildren)
+        }
+
+        private func handleOperationButtons(_ channelWithChildren: ChannelWithChildren) {
+            let channel = channelWithChildren.channel
+            let relayValue = channel.value?.asRelayValue()
+            let weeklyAllowed = channel.flags & Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE) != 0
+            let autoAllowed = channel.flags & Int64(SUPLA_CHANNEL_FLAG_RELAY_MODE_AUTOMATIC_SUPPORTED) != 0
+            let weeklyActive = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
+
+            state.manualAllowed = weeklyAllowed || autoAllowed
+            state.manualActive = !weeklyActive && relayValue?.mode != .automatic
+            state.weeklyAllowed = weeklyAllowed
+            state.weeklyActive = weeklyActive
+            state.autoAllowed = autoAllowed
+            state.autoActive = !weeklyActive && relayValue?.mode == .automatic
         }
         
         private func getDeviceStateValue(_ status: SuplaChannelAvailabilityStatus, _ state: ChannelState) -> String {
@@ -146,19 +182,25 @@ extension GateGeneralFeature {
             state.mainButtonLabel = mainButtonLabel(groupWithChannels.group.func.suplaFuntion)
             state.relatedChannelsData = groupWithChannels.relatedChannelData
             state.showOpenAndCloseWarning = supportsOpenAndClose(groupWithChannels.group.func) && showOpenAndClose && gateWithoutSensor
+            state.manualAllowed = false
+            state.manualActive = false
+            state.weeklyAllowed = false
+            state.weeklyActive = false
+            state.autoAllowed = false
+            state.autoActive = false
             
             if (showOpenAndClose) {
                 state.openButtonState = .init(
                     icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .opened)),
                     label: Strings.General.open,
                     active: groupState == .opened,
-                    type: .positive
+                    colors: .primaryColors
                 )
                 state.closeButtonState = .init(
                     icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .closed)),
                     label: Strings.General.close,
                     active: groupState == .closed,
-                    type: .positive
+                    colors: .errorColors
                 )
             }
         }

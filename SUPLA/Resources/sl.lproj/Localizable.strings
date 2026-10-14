@@ -377,6 +377,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas mora biti večji od 0";
 "timer_detail_header" = "Določite čas, ko naj bo naprava:";
+"details_timer_disabled_forced_mode" = "Odštevalnik časa je onemogočen v načinu prisilnega vklopa/izklopa.";
 "timer_detail_turned_on" = "Vklopljena";
 "timer_detail_edit_header_on" = "vklopljena";
 "timer_detail_info_on" = "vklopljena";

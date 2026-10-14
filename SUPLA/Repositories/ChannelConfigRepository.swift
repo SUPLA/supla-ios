@@ -20,12 +20,20 @@
 import RxSwift
 
 protocol ChannelConfigRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannelConfig {
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelConfig]>
     func deleteAllFor(channel: SAChannel, profile: AuthProfileItem) -> Observable<Void>
     func getConfig(channelRemoteId: Int32) -> Observable<SAChannelConfig?>
     func deleteAllFor(profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class ChannelConfigRepositoryImpl: Repository<SAChannelConfig>, ChannelConfigRepository {
+
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelConfig]> {
+        let request = SAChannelConfig.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .ordered(by: "channel.remote_id")
+        return continuousQuery(request)
+    }
     
     func getConfig(channelRemoteId: Int32) -> Observable<SAChannelConfig?> {
         queryItem(NSPredicate(format: "profile.isActive = 1 AND channel.remote_id = %d", channelRemoteId))

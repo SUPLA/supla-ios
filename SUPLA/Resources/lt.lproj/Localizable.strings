@@ -378,6 +378,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Laikas turi būti didesnis nei 0";
 "timer_detail_header" = "Nurodykite laiką, kada įrenginys turi būti:";
+"details_timer_disabled_forced_mode" = "Atgalinės atskaitos laikmatis išjungtas priverstinio įjungimo / išjungimo režimu.";
 "timer_detail_turned_on" = "Įjungtas";
 "timer_detail_edit_header_on" = "įjungtas";
 "timer_detail_info_on" = "įjungtas";

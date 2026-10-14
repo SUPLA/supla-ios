@@ -377,6 +377,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Le temps doit être supérieur à 0";
 "timer_detail_header" = "Spécifiez l\'heure à laquelle l\'appareil doit être :";
+"details_timer_disabled_forced_mode" = "Le compte à rebours est désactivé en mode marche/arrêt forcé.";
 "timer_detail_turned_on" = "Activé";
 "timer_detail_edit_header_on" = "activé";
 "timer_detail_info_on" = "activé";

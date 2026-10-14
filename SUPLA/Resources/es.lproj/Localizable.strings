@@ -377,6 +377,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "La hora debe ser mayor que 0";
 "timer_detail_header" = "Especifica la hora en la que el dispositivo debe estar:";
+"details_timer_disabled_forced_mode" = "El temporizador de cuenta atrás está desactivado en el modo de encendido/apagado forzado.";
 "timer_detail_turned_on" = "Encendido";
 "timer_detail_edit_header_on" = "encendido";
 "timer_detail_info_on" = "encendido";

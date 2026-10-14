@@ -21,6 +21,11 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelExtendedValueRepositorMock: BaseRepositoryMock<SAChannelExtendedValue>, ChannelExtendedValueRepository {
+
+    var observeAllMock: FunctionMock<AuthProfileItem, Observable<[SAChannelExtendedValue]>> = .init()
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelExtendedValue]> {
+        observeAllMock.handle(profile)
+    }
     
     var getChannelValueMock: FunctionMock<(AuthProfileItem, Int32), Observable<SAChannelExtendedValue>> = .init()
     func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelExtendedValue> {

@@ -34,6 +34,21 @@ extension Reactive where Base: NSManagedObjectContext {
             }
         }
     }
+
+    func continuousEntities<T: NSFetchRequestResult>(fetchRequest: NSFetchRequest<T>,
+                  sectionNameKeyPath: String? = nil,
+                  cacheName: String? = nil) -> Observable<[T]> {
+        Observable.create { observer in
+            let observerAdapter = ContinuousFetchedResultsControllerEntityObserver(
+                observer: observer,
+                fetchRequest: fetchRequest,
+                managedObjectContext: self.base,
+                sectionNameKeyPath: sectionNameKeyPath,
+                cacheName: cacheName
+            )
+            return Disposables.create { observerAdapter.dispose() }
+        }
+    }
     
     func save() -> Observable<Void> {
         return Observable.create { observer in

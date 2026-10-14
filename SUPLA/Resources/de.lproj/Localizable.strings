@@ -362,6 +362,7 @@
 
 /* Timer Detail */
 "timer_detail_header" = "Bestimmen Sie bitte die Zeit, zu der das Gerät ein- oder ausgeschaltet werden sollte";
+"details_timer_disabled_forced_mode" = "Der Countdown-Timer ist im erzwungenen Ein-/Aus-Modus deaktiviert.";
 "timer_detail_edit_header" = "Bearbeiten Sie die Zeit, zu der das Gerät %@ wird";
 "timer_detail_edit_header_on" = "eingeschaltet";
 "timer_detail_edit_header_off" = "ausgeschaltet";

@@ -89,10 +89,9 @@ extension ContainerGeneralFeature {
                 if (soundOn) {
                     VStack {
                         Spacer()
-                        RoundedControlButton(
+                        SuplaButton(
                             .suplaIcon(name: .Icons.soundOff),
-                            type: .neutral,
-                            color: .Supla.primary,
+                            colors: .primaryColors.copy(content: .Supla.primary),
                             action: onMuteClick
                         ).frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight)
                     }

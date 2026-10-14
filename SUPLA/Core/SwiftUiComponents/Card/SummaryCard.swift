@@ -22,12 +22,20 @@ struct DoubleSummaryCard: View {
     var label: String
     var firstData: SummaryCardData
     var secondData: SummaryCardData
+    var topPadding: CGFloat
     @Binding var loading: Bool
     
-    init(label: String, firstData: SummaryCardData, secondData: SummaryCardData, loading: Binding<Bool> = .constant(false)) {
+    init(
+        label: String,
+        firstData: SummaryCardData,
+        secondData: SummaryCardData,
+        topPadding: CGFloat = Distance.default,
+        loading: Binding<Bool> = .constant(false)
+    ) {
         self.label = label
         self.firstData = firstData
         self.secondData = secondData
+        self.topPadding = topPadding
         self._loading = loading
     }
 
@@ -65,7 +73,14 @@ struct DoubleSummaryCard: View {
                 ActivityIndicator(isAnimating: $loading, style: .medium)
             }
 
-        }.suplaCard()
+        }.suplaCard(
+            padding: .init(
+                top: topPadding,
+                leading: Distance.default,
+                bottom: 0,
+                trailing: Distance.default
+            )
+        )
     }
 }
 
@@ -73,12 +88,20 @@ struct SingleSummaryCard: View {
     var label: String
     var icon: String?
     var data: SummaryCardData
+    var topPadding: CGFloat
     @Binding var loading: Bool
     
-    init(label: String, icon: String? = nil, data: SummaryCardData, loading: Binding<Bool> = .constant(false)) {
+    init(
+        label: String,
+        icon: String? = nil,
+        data: SummaryCardData,
+        topPadding: CGFloat = Distance.default,
+        loading: Binding<Bool> = .constant(false)
+    ) {
         self.label = label
         self.icon = icon
         self.data = data
+        self.topPadding = topPadding
         self._loading = loading
     }
 
@@ -104,7 +127,14 @@ struct SingleSummaryCard: View {
                 ActivityIndicator(isAnimating: $loading, style: .medium)
             }
 
-        }.suplaCard()
+        }.suplaCard(
+            padding: .init(
+                top: topPadding,
+                leading: Distance.default,
+                bottom: 0,
+                trailing: Distance.default
+            )
+        )
     }
 }
 

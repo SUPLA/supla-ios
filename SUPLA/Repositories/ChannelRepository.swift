@@ -22,6 +22,7 @@ import RxSwift
 
 protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]>
+    func observeAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllVisibleChannels(forProfileId profileId: Int32, withUnavailable: Bool) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
@@ -51,6 +52,13 @@ extension ChannelRepository {
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
+    func observeAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id == %d", profile.id))
+            .ordered(by: "remote_id")
+        return continuousQuery(request)
+    }
+
     func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "profile.isActive = 1 AND location.location_id IN %@", locationIds))

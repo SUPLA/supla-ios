@@ -393,6 +393,7 @@
 
 /* Timer Detail */
 "timer_detail_header" = "Określ czas, w którym urządzenie powinno być:";
+"details_timer_disabled_forced_mode" = "Timer odliczający jest wyłączony w trybie wymuszonego włączenia/wyłączenia.";
 "timer_detail_edit_header" = "Edytuj czas, w którym urządzenie będzie %@";
 "timer_detail_edit_header_on" = "włączone";
 "timer_detail_edit_header_off" = "wyłączone";

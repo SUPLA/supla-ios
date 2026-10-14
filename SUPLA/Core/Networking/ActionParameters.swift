@@ -56,4 +56,14 @@ public enum ActionParameters {
         setpointTemperatureHeat: Float?,
         setpointTemperatureCool: Float?
     )
+    case at(
+        subjectType: SubjectType,
+        subjectId: Int32,
+        mode: SuplaRelayMode
+    )
+    case relay(
+        subjectType: SubjectType,
+        subjectId: Int32,
+        mode: SuplaRelayMode
+    )
 }

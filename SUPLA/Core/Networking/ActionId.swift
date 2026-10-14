@@ -42,6 +42,8 @@ public enum ActionId: Equatable, CaseIterable, Codable, Sendable, ScopeFunctions
     case up
     case down
     case setHvacParameters
+    case switchToProgramMode
+    case switchToManualMode
     case execute
     case interrupt
     case interruptAndExecute
@@ -79,6 +81,8 @@ extension ActionId {
         case .up: 170
         case .down: 180
         case .setHvacParameters: 230
+        case .switchToProgramMode: 231
+        case .switchToManualMode: 232
         case .execute: 3000
         case .interrupt: 3001
         case .interruptAndExecute: 302
@@ -110,6 +114,8 @@ extension ActionId {
         case .up: Strings.General.reveal
         case .down: Strings.General.shut
         case .setHvacParameters: nil
+        case .switchToProgramMode: nil
+        case .switchToManualMode: nil
         case .execute: Strings.Scenes.ActionButtons.execute
         case .interrupt: Strings.Scenes.ActionButtons.abort
         case .interruptAndExecute: Strings.Scenes.ActionButtons.abortAndExecute
@@ -151,6 +157,8 @@ extension ActionId {
         case .up: .default(value: .opened)
         case .down: .default(value: .closed)
         case .setHvacParameters: .default(value: .on)
+        case .switchToProgramMode: .default(value: .notUsed)
+        case .switchToManualMode: .default(value: .notUsed)
         case .execute: .default(value: .notUsed)
         case .interrupt: .default(value: .notUsed)
         case .interruptAndExecute: .default(value: .notUsed)
@@ -187,6 +195,8 @@ extension ActionId {
         case .up: 21
         case .down: 22
         case .setHvacParameters: 23
+        case .switchToProgramMode: 24
+        case .switchToManualMode: 25
         }
     }
 }

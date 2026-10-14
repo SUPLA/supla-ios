@@ -381,6 +381,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "O tempo deve ser superior a 0";
 "timer_detail_header" = "Defina o tempo para o dispositivo estar:";
+"details_timer_disabled_forced_mode" = "O temporizador de contagem decrescente está desativado no modo ligado/desligado forçado.";
 "timer_detail_turned_on" = "Ligado";
 "timer_detail_edit_header_on" = "ligado";
 "timer_detail_info_on" = "ligado";

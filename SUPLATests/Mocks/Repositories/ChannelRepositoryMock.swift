@@ -21,6 +21,11 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelRepository {
+    var observeAllVisibleChannelsMock: FunctionMock<AuthProfileItem, Observable<[SAChannel]>> = .init()
+    func observeAllVisibleChannels(forProfile profile: AuthProfileItem) -> RxSwift.Observable<[SAChannel]> {
+        observeAllVisibleChannelsMock.handle(profile)
+    }
+
     var updatePositionsMock: FunctionMock<([Int32], [Int32]), Observable<Void>> = .init()
     func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
         updatePositionsMock.handle((locationIds, orderedRemoteIds))

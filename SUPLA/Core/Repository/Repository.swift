@@ -45,6 +45,11 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
         return context.rx.entities(fetchRequest: request)
             .subscribe(on: scheduler)
     }
+
+    func continuousQuery(_ request: NSFetchRequest<T>) -> Observable<[T]> {
+        context.rx.continuousEntities(fetchRequest: request)
+            .subscribe(on: scheduler)
+    }
     
     func queryItem(_ predicate: NSPredicate) -> Observable<T?> {
         return context.rx.first(ofType: T.self, with: predicate)

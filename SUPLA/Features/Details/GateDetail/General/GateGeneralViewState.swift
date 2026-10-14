@@ -21,12 +21,18 @@ import SharedCore
 
 extension GateGeneralFeature {
     class ViewState: ObservableObject {
-        @Published var deviceStateData: DeviceState.Data? = nil
+        @Published var channelCurrentStateData: ChannelCurrentState.Data? = nil
         @Published var relatedChannelsData: [RelatedChannelData]? = nil
         @Published var issues: [ChannelIssueItem] = []
         @Published var mainButtonLabel: String = Strings.General.stepByStep
         @Published var closeButtonState: SwitchButtonState? = nil
         @Published var openButtonState: SwitchButtonState? = nil
+        @Published var manualAllowed: Bool = false
+        @Published var manualActive: Bool = false
+        @Published var weeklyAllowed: Bool = false
+        @Published var weeklyActive: Bool = false
+        @Published var autoAllowed: Bool = false
+        @Published var autoActive: Bool = false
         @Published var showOpenAndCloseWarning: Bool = false
         @Published var offline: Bool = false
     }

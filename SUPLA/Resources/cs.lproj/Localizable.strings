@@ -375,6 +375,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas musí být větší než 0";
 "timer_detail_header" = "Zadejte čas, kdy má být zařízení:";
+"details_timer_disabled_forced_mode" = "Odpočet času je v režimu nuceného zapnutí/vypnutí zakázán";
 "timer_detail_turned_on" = "Zapnuté";
 "timer_detail_edit_header_on" = "zapnuté";
 "timer_detail_info_on" = "zapnuté";
