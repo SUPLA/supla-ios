@@ -247,7 +247,7 @@ extension ThermostatTimerDetailFeature {
             state.coolSetpoint = thermostatValue.setpointTemperatureCool
             state.updateValues()
             
-            state.deviceStateData = DeviceState.Data(
+            state.channelCurrentStateData = ChannelCurrentState.Data(
                 label: ThermostatStateHelper.endDateText(timerEndDate),
                 icon: thermostatValue.mode.icon.map { .suplaIcon(name: $0) },
                 value: ThermostatStateHelper.currentStateValue(thermostatValue.mode, heatSetpoint: state.heatSetpoint, coolSetpoint: state.coolSetpoint),

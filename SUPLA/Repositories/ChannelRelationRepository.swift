@@ -25,10 +25,22 @@ protocol ChannelRelationRepository: RepositoryProtocol, RemoveHiddenChannelsUseC
     func getAllRelations(for profile: AuthProfileItem, with parentId: Int32) -> Observable<[SAChannelRelation]>
     func deleteRemovableRelations(for profile: AuthProfileItem) -> Observable<Void>
     func getParentsMap(for profile: AuthProfileItem) -> Observable<[Int32: [SAChannelRelation]]>
+    func observeParentsMap(for profile: AuthProfileItem) -> Observable<[Int32: [SAChannelRelation]]>
     func findParentsOf(childId: Int32) -> Observable<[SAChannelRelation]>
 }
 
 final class ChannelRelationRepositoryImpl: Repository<SAChannelRelation>, ChannelRelationRepository {
+
+    func observeParentsMap(for profile: AuthProfileItem) -> Observable<[Int32: [SAChannelRelation]]> {
+        let request = SAChannelRelation.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .ordered(by: "channel_id")
+        return continuousQuery(request).map { relations in
+            relations.reduce(into: [Int32: [SAChannelRelation]]()) { map, relation in
+                map[relation.parent_id, default: []].append(relation)
+            }
+        }
+    }
     
     func getRelation(
         for profile: AuthProfileItem,

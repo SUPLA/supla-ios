@@ -37,7 +37,7 @@ extension ThermostatTimerDetailFeature {
         @Published var coolValue: CGFloat
         @Published var setpointInChange: SetpointType
         
-        @Published var deviceStateData: DeviceState.Data? = nil
+        @Published var channelCurrentStateData: ChannelCurrentState.Data? = nil
         @Published var timerEndTime: Date? = nil
         
         @Published var loadingState: LoadingState = .init()
@@ -59,7 +59,7 @@ extension ThermostatTimerDetailFeature {
             heatValue: CGFloat = 0,
             coolValue: CGFloat = 0,
             setpointInChange: SetpointType = .heat,
-            deviceStateData: DeviceState.Data? = nil,
+            channelCurrentStateData: ChannelCurrentState.Data? = nil,
             timerEndTime: Date? = nil,
             loadingState: LoadingState = .init(),
             offline: Bool = true
@@ -74,7 +74,7 @@ extension ThermostatTimerDetailFeature {
             self.heatValue = heatValue
             self.coolValue = coolValue
             self.setpointInChange = setpointInChange
-            self.deviceStateData = deviceStateData
+            self.channelCurrentStateData = channelCurrentStateData
             self.timerEndTime = timerEndTime
             self.loadingState = loadingState
             self.offline = offline

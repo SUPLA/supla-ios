@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_lock_temporary.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

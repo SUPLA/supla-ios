@@ -20,11 +20,15 @@ import SwiftUI
 
 extension SwitchTimerDetailFeature {
     struct Screen: SwiftUI.View {
-        let itemBundle: ItemBundle
+        @StateObject private var viewModel: SwitchTimerDetailVM
+
+        init(itemBundle: ItemBundle) {
+            _viewModel = StateObject(wrappedValue: SwitchTimerDetailVM(remoteId: itemBundle.remoteId))
+        }
 
         var body: some SwiftUI.View {
-            SuplaCore.ViewControllerHost {
-                SwitchTimerDetailVC(remoteId: itemBundle.remoteId)
+            SuplaCore.ViewModelHost(viewModel) { state in
+                SwitchTimerDetailFeature.View(state: state, delegate: viewModel)
             }
         }
     }

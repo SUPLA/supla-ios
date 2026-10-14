@@ -19,11 +19,19 @@
 import RxSwift
 
 protocol ChannelStateRepository: RepositoryProtocol, RemoveHiddenChannelsUseCaseImpl.Deletable where T == SAChannelState {
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelState]>
     func getState(for channelId: Int32, and profile: AuthProfileItem) -> Observable<SAChannelState?>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class ChannelStateRepositoryImpl: Repository<SAChannelState>, ChannelStateRepository {
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelState]> {
+        let request = SAChannelState.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .ordered(by: "channel.remote_id")
+        return continuousQuery(request)
+    }
+
     func getState(for channelId: Int32, and profile: AuthProfileItem) -> Observable<SAChannelState?> {
         return queryItem(NSPredicate(format: "profile = %@ AND channel.remote_id = %d", profile, channelId))
     }

@@ -56,13 +56,13 @@ extension ValveGeneralFeature {
                             icon: .originalSuplaIcon(name: "valve-closed"),
                             label: Strings.General.close,
                             active: viewState.isClosed,
-                            type: .negative
+                            colors: .errorColors
                         ),
                         rightButton: SwitchButtonState(
                             icon: .originalSuplaIcon(name: "valve-open"),
                             label: Strings.General.open,
                             active: !viewState.isClosed,
-                            type: .positive
+                            colors: .primaryColors
                         ),
                         enabled: !viewState.offline,
                         onLeftButtonClick: { delegate?.onCloseClick() },

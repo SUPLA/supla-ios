@@ -24,12 +24,23 @@ extension SwitchGeneralFeature {
         @Published var online: Bool = false
         @Published var on: Bool = false
         
-        @Published var stateLabel: String = ""
-        @Published var stateValue: String = ""
-        @Published var stateIcon: IconResult? = nil
+        @Published var channelCurrentStateData: ChannelCurrentState.Data? = nil
         
         @Published var offButtonState: SwitchButtonState? = nil
         @Published var onButtonState: SwitchButtonState? = nil
+        @Published var forceSupported: Bool = false
+        @Published var forceActive: Bool = false
+        @Published var forceButtonDisabled: Bool = false
+        @Published var lockIconType: LockIconType = .opened
+
+        @Published var manualAllowed: Bool = false
+        @Published var manualActive: Bool = false
+        @Published var weeklyAllowed: Bool = false
+        @Published var weeklyActive: Bool = false
+        @Published var autoAllowed: Bool = false
+        @Published var autoActive: Bool = false
+
+        @Published var channelProgramState: [ChannelProgramState.Data] = []
         
         @Published var showElectricityState: Bool = false
         @Published var showImpulseCounterState: Bool = false

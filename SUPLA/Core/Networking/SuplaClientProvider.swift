@@ -116,6 +116,28 @@ extension SuplaClientProtocol {
                 parameters: &parameters,
                 length: Int32(MemoryLayout<TAction_HVAC_Parameters>.size)
             )
+        case let .at(subjectType, subjectId, mode):
+            var parameters = TAction_AT_Parameters()
+            parameters.Mode = UInt8(mode.value)
+
+            return executeAction(
+                Int32(ACTION_SET_AT_PARAMETERS),
+                subjecType: subjectType.rawValue,
+                subjectId: subjectId,
+                parameters: &parameters,
+                length: Int32(MemoryLayout<TAction_AT_Parameters>.size)
+            )
+        case let .relay(subjectType, subjectId, mode):
+            var parameters = TAction_Relay_Parameters()
+            parameters.Mode = UInt8(mode.value)
+
+            return executeAction(
+                Int32(ACTION_SET_RELAY_PARAMETERS),
+                subjecType: subjectType.rawValue,
+                subjectId: subjectId,
+                parameters: &parameters,
+                length: Int32(MemoryLayout<TAction_Relay_Parameters>.size)
+            )
         }
     }
 }

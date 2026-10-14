@@ -337,7 +337,7 @@ extension RgbDetailFeature {
             
             state.offline = channel.status().offline
             state.value = rgbValue
-            state.deviceStateData = .init(
+            state.channelCurrentStateData = .init(
                 label: Strings.SwitchDetail.stateLabel,
                 icon: getChannelBaseIconUseCase.invoke(channel: channel),
                 value: getDeviceStateValue(channel.status(), channelState)
@@ -347,13 +347,13 @@ extension RgbDetailFeature {
                 icon: getButtonIcon(channel, .on),
                 label: Strings.General.turnOn,
                 active: value?.colorBrightness ?? 0 > 0,
-                type: .positive
+                colors: .primaryColors
             )
             state.offButtonState = .init(
                 icon: getButtonIcon(channel, .off),
                 label: Strings.General.turnOff,
                 active: value?.colorBrightness ?? 0 == 0,
-                type: .negative
+                colors: .errorColors
             )
             state.loadingState = state.loadingState.copy(loading: false)
             state.savedColors = colorListItems.compactMap { $0.savedColor }
@@ -420,15 +420,15 @@ extension RgbDetailFeature {
                 icon: getButtonIcon(group, .on),
                 label: Strings.General.turnOn,
                 active: groupStateValue == .on,
-                type: .positive
+                colors: .primaryColors
             )
             state.offButtonState = .init(
                 icon: getButtonIcon(group, .off),
                 label: Strings.General.turnOff,
                 active: groupStateValue == .off,
-                type: .negative
+                colors: .errorColors
             )
-            state.deviceStateData = .init(
+            state.channelCurrentStateData = .init(
                 label: Strings.SwitchDetail.stateLabel,
                 icon: getChannelBaseIconUseCase.invoke(channel: group),
                 value: getDeviceStateValue(group.status(), .default(value: groupStateValue ?? .off))

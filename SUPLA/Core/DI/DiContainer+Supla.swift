@@ -113,6 +113,10 @@ extension DiContainer {
         register(ChannelToMainListItem.UseCase.self, ChannelToMainListItem.Implementation())
         register(CreateProfileChannelsList.UseCase.self, CreateProfileChannelsList.Implementation())
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
+        register(ObserveGroupWithChannels.UseCase.self, ObserveGroupWithChannels.Implementation())
+        register(ObserveChannelsTreeSnapshot.UseCase.self, ObserveChannelsTreeSnapshot.Implementation())
+        register(ObserveChannelWithChildren.UseCase.self, ObserveChannelWithChildren.Implementation())
+        register(ObserveRelayProgramState.UseCase.self, ObserveRelayProgramState.Implementation())
         register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
         register(DownloadChannelMeasurementsUseCase.self, DownloadChannelMeasurementsUseCaseImpl())
         register(DownloadTemperatureLogUseCase.self,
@@ -196,6 +200,7 @@ extension DiContainer {
         register(SetChannelConfigUseCase.self, SetChannelConfigUseCaseImpl())
         register(GetDeviceConfigUseCase.self, GetDeviceConfigUseCaseImpl())
         register(ExecuteThermostatActionUseCase.self, ExecuteThermostatActionUseCaseImpl())
+        register(ExecuteRelayAction.UseCase.self, ExecuteRelayAction.Implementation())
         register(CallSuplaClientOperationUseCase.self, CallSuplaClientOperationUseCaseImpl())
         register(ExecuteRollerShutterActionUseCase.self, ExecuteRollerShutterActionUseCaseImpl())
         register(AuthorizeUseCase.self, AuthorizeUseCaseImpl())

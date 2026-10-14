@@ -52,6 +52,11 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {
         groupObservable
     }
+
+    var observeGroupMock: FunctionMock<(AuthProfileItem, Int32), Observable<SAChannelGroup>> = .init()
+    func observeGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {
+        observeGroupMock.handle((profile, remoteId))
+    }
     
     var groupByIdMock: FunctionMock<(Int32, Int32), Observable<SAChannelGroup?>> = .init()
     func getGroup(for profileId: Int32, with remoteId: Int32) -> Observable<SAChannelGroup?> {

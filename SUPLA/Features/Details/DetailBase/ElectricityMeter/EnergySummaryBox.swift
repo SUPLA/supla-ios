@@ -22,12 +22,20 @@ struct EnergySummaryBox: View {
     var forwardEnergy: SummaryCardData?
     var reverseEnergy: SummaryCardData?
     var labelSuffix: String?
+    var topPadding: CGFloat
     @Binding var loading: Bool
     
-    init(forwardEnergy: SummaryCardData? = nil, reverseEnergy: SummaryCardData? = nil, labelSuffix: String? = nil, loading: Binding<Bool>) {
+    init(
+        forwardEnergy: SummaryCardData? = nil,
+        reverseEnergy: SummaryCardData? = nil,
+        labelSuffix: String? = nil,
+        topPadding: CGFloat = Distance.default,
+        loading: Binding<Bool>
+    ) {
         self.forwardEnergy = forwardEnergy
         self.reverseEnergy = reverseEnergy
         self.labelSuffix = labelSuffix
+        self.topPadding = topPadding
         self._loading = loading
     }
     
@@ -39,59 +47,74 @@ struct EnergySummaryBox: View {
                 label: label,
                 firstData: forwardEnergy,
                 secondData: reverseEnergy,
+                topPadding: topPadding,
                 loading: $loading
             )
         } else if let forwardEnergy = forwardEnergy {
             let label = if let labelSuffix { "\(Strings.ElectricityMeter.forwardActiveEnergy) \(labelSuffix)" } else { Strings.ElectricityMeter.forwardedEnergy }
-            SingleSummaryCard(label: label, icon: .Icons.forwardEnergy, data: forwardEnergy, loading: $loading)
+            SingleSummaryCard(
+                label: label,
+                icon: .Icons.forwardEnergy,
+                data: forwardEnergy,
+                topPadding: topPadding,
+                loading: $loading
+            )
         } else if let reverseEnergy = reverseEnergy {
             let label = if let labelSuffix { "\(Strings.ElectricityMeter.reverseActiveEnergy) \(labelSuffix)" } else { Strings.ElectricityMeter.reverseActiveEnergy }
-            SingleSummaryCard(label: label, icon: .Icons.forwardEnergy, data: reverseEnergy, loading: $loading)
+            SingleSummaryCard(
+                label: label,
+                icon: .Icons.forwardEnergy,
+                data: reverseEnergy,
+                topPadding: topPadding,
+                loading: $loading
+            )
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            EnergySummaryBox(
-                forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
-                reverseEnergy: SummaryCardData(energy: "23,45 kWh", price: "15,00 PLN"),
-                labelSuffix: Strings.ElectricityMeter.totalSufix,
-                loading: .constant(true)
-            )
-            EnergySummaryBox(
-                forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
-                reverseEnergy: SummaryCardData(energy: "23,45 kWh"),
-                labelSuffix: Strings.ElectricityMeter.totalSufix,
-                loading: .constant(false)
-            )
-            EnergySummaryBox(
-                forwardEnergy: SummaryCardData(energy: "12,34 kWh"),
-                reverseEnergy: SummaryCardData(energy: "23,45 kWh"),
-                labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
-                loading: .constant(false)
-            )
-            EnergySummaryBox(
-                forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
-                labelSuffix: Strings.ElectricityMeter.totalSufix,
-                loading: .constant(false)
-            )
-            EnergySummaryBox(
-                forwardEnergy: SummaryCardData(energy: "12,34 kWh"),
-                labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
-                loading: .constant(false)
-            )
-            EnergySummaryBox(
-                reverseEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
-                labelSuffix: Strings.ElectricityMeter.totalSufix,
-                loading: .constant(false)
-            )
-            EnergySummaryBox(
-                reverseEnergy: SummaryCardData(energy: "12,34 kWh"),
-                labelSuffix: Strings.ElectricityMeter.totalSufix,
-                loading: .constant(false)
-            )
-        }.previewLayout(.sizeThatFits)
+        ScrollView {
+            VStack {
+                EnergySummaryBox(
+                    forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                    reverseEnergy: SummaryCardData(energy: "23,45 kWh", price: "15,00 PLN"),
+                    labelSuffix: Strings.ElectricityMeter.totalSufix,
+                    loading: .constant(true)
+                )
+                EnergySummaryBox(
+                    forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                    reverseEnergy: SummaryCardData(energy: "23,45 kWh"),
+                    labelSuffix: Strings.ElectricityMeter.totalSufix,
+                    loading: .constant(false)
+                )
+                EnergySummaryBox(
+                    forwardEnergy: SummaryCardData(energy: "12,34 kWh"),
+                    reverseEnergy: SummaryCardData(energy: "23,45 kWh"),
+                    labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
+                    loading: .constant(false)
+                )
+                EnergySummaryBox(
+                    forwardEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                    labelSuffix: Strings.ElectricityMeter.totalSufix,
+                    loading: .constant(false)
+                )
+                EnergySummaryBox(
+                    forwardEnergy: SummaryCardData(energy: "12,34 kWh"),
+                    labelSuffix: Strings.ElectricityMeter.currentMonthSuffix,
+                    loading: .constant(false)
+                )
+                EnergySummaryBox(
+                    reverseEnergy: SummaryCardData(energy: "12,34 kWh", price: "15,00 PLN"),
+                    labelSuffix: Strings.ElectricityMeter.totalSufix,
+                    loading: .constant(false)
+                )
+                EnergySummaryBox(
+                    reverseEnergy: SummaryCardData(energy: "12,34 kWh"),
+                    labelSuffix: Strings.ElectricityMeter.totalSufix,
+                    loading: .constant(false)
+                )
+            }.previewLayout(.sizeThatFits)
+        }
     }
 }

@@ -22,21 +22,29 @@ struct ImpulseCounterGeneralBaseView: View {
     let online: Bool
     let totalData: SummaryCardData?
     let currentMonthData: SummaryCardData?
+    var topPadding: CGFloat = Distance.default
     @Binding var currentMonthDownloading: Bool
 
     var body: some View {
-        BackgroundStack {
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 0) {
-                    if let totalData {
-                        SingleSummaryCard(label: Strings.ImpulseCounter.meterValue, data: totalData)
-                    }
-                    if let currentMonthData {
-                        SingleSummaryCard(label: Strings.ImpulseCounter.currentMonthConsumption, data: currentMonthData, loading: $currentMonthDownloading)
-                    }
-                    if (!online) {
-                        ChannelOfflineView()
-                    }
+        ScrollView(.vertical) {
+            VStack(alignment: .leading, spacing: 0) {
+                if let totalData {
+                    SingleSummaryCard(
+                        label: Strings.ImpulseCounter.meterValue,
+                        data: totalData,
+                        topPadding: topPadding
+                    )
+                }
+                if let currentMonthData {
+                    SingleSummaryCard(
+                        label: Strings.ImpulseCounter.currentMonthConsumption,
+                        data: currentMonthData,
+                        topPadding: totalData == nil ? topPadding : Distance.default,
+                        loading: $currentMonthDownloading
+                    )
+                }
+                if (!online) {
+                    ChannelOfflineView()
                 }
             }
         }

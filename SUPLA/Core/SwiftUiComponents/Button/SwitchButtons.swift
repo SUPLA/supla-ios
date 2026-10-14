@@ -22,7 +22,7 @@ struct SwitchButtonState {
     let icon: IconResult?
     let label: String
     let active: Bool
-    let type: RoundedControlButtonType
+    let colors: SuplaButtonColors
 }
 
 struct SwitchButtons: View {
@@ -72,7 +72,7 @@ struct SwitchButtons: View {
 struct SwitchButton: View {
     let label: String
     let icon: IconResult?
-    let type: RoundedControlButtonType
+    let colors: SuplaButtonColors
     let active: Bool
     let fullWidth: Bool
     let onClick: () -> Void
@@ -82,7 +82,7 @@ struct SwitchButton: View {
         fullWidth: Bool = true,
         onClick: @escaping () -> Void
     ) {
-        self.type = state.type
+        self.colors = state.colors
         self.label = state.label
         self.icon = state.icon
         self.active = state.active
@@ -92,7 +92,7 @@ struct SwitchButton: View {
     
     init(
         _ label: String,
-        type: RoundedControlButtonType = .neutral,
+        colors: SuplaButtonColors = .buttonColors,
         active: Bool = false,
         fullWidth: Bool = true,
         onClick: @escaping () -> Void
@@ -100,14 +100,14 @@ struct SwitchButton: View {
         self.label = label
         self.icon = nil
         self.active = active
-        self.type = type
+        self.colors = colors
         self.fullWidth = fullWidth
         self.onClick = onClick
     }
 
     var body: some View {
-        RoundedControlButton(
-            type: type,
+        SuplaButton(
+            colors: colors,
             active: active,
             fullWidth: fullWidth,
             action: onClick
@@ -133,7 +133,7 @@ struct SwitchButton: View {
                 icon: .originalSuplaIcon(name: .Icons.fncDimmerOff),
                 label: "Title icon",
                 active: false,
-                type: .positive
+                colors: .primaryColors
             ),
             onClick: {}
         )
@@ -142,7 +142,7 @@ struct SwitchButton: View {
                 icon: .originalSuplaIcon(name: .Icons.fncDimmerOff),
                 label: "Title icon",
                 active: true,
-                type: .positive
+                colors: .primaryColors
             ),
             onClick: {}
         )

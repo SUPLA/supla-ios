@@ -92,7 +92,7 @@ extension DimmerDetailFeature {
 
 #Preview {
     let viewState = DimmerDetailBase.ViewState()
-    viewState.deviceStateData = DeviceState.Data(
+    viewState.channelCurrentStateData = ChannelCurrentState.Data(
         label: Strings.SwitchDetail.stateLabel,
         icon: .suplaIcon(name: "dimmer-on"),
         value: Strings.General.on
@@ -101,13 +101,13 @@ extension DimmerDetailFeature {
         icon: .originalSuplaIcon(name: "dimmer-on"),
         label: Strings.General.turnOn,
         active: true,
-        type: .positive
+        colors: .primaryColors
     )
     viewState.offButtonState = .init(
         icon: .originalSuplaIcon(name: "dimmer-off"),
         label: Strings.General.turnOff,
         active: false,
-        type: .positive
+        colors: .errorColors
     )
     viewState.value = .single(brightness: 50, cct: 25)
     viewState.loadingState = viewState.loadingState.copy(loading: false)

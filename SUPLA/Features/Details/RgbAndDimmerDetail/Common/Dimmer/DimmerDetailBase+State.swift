@@ -18,7 +18,7 @@
     
 extension DimmerDetailBase {
     class ViewState: ObservableObject {
-        @Published var deviceStateData: DeviceState.Data? = nil
+        @Published var channelCurrentStateData: ChannelCurrentState.Data? = nil
         @Published var issues: [ChannelIssueItem] = []
         @Published var offButtonState: SwitchButtonState? = nil
         @Published var onButtonState: SwitchButtonState? = nil

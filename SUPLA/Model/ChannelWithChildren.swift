@@ -17,6 +17,7 @@
  */
 
 import Foundation
+import CoreData
 import SharedCore
 
 struct ChannelWithChildren: Equatable {
@@ -69,6 +70,59 @@ struct ChannelWithChildren: Equatable {
             }
         }
         return children
+    }
+}
+
+struct ChannelWithChildrenSignature: Equatable {
+    private struct Node: Equatable {
+        let channel: CoreDataEntitySignature
+        let value: CoreDataEntitySignature?
+        let state: CoreDataEntitySignature?
+        let extendedValue: CoreDataEntitySignature?
+        let config: CoreDataEntitySignature?
+        let relation: CoreDataEntitySignature?
+        let children: [Node]
+
+        init(channel: SAChannel, relation: SAChannelRelation? = nil, children: [ChannelChild]) {
+            self.channel = CoreDataEntitySignature(channel)
+            value = channel.value.map(CoreDataEntitySignature.init)
+            state = channel.state.map(CoreDataEntitySignature.init)
+            extendedValue = channel.ev.map(CoreDataEntitySignature.init)
+            config = channel.config.map(CoreDataEntitySignature.init)
+            self.relation = relation.map(CoreDataEntitySignature.init)
+            self.children = children.map { Node(channel: $0.channel, relation: $0.relation, children: $0.children) }
+        }
+    }
+
+    private let root: Node
+
+    init(_ channelWithChildren: ChannelWithChildren) {
+        root = Node(channel: channelWithChildren.channel, children: channelWithChildren.children)
+    }
+}
+
+private struct CoreDataEntitySignature: Equatable {
+    private let entityName: String
+    private let attributes: NSDictionary
+
+    init(_ object: NSManagedObject) {
+        entityName = object.entity.name ?? ""
+
+        var attributeNames = Set<String>()
+        var entity: NSEntityDescription? = object.entity
+        while let current = entity {
+            attributeNames.formUnion(current.attributesByName.keys)
+            entity = current.superentity
+        }
+
+        let values = object.dictionaryWithValues(forKeys: attributeNames.sorted()).mapValues { value in
+            (value as? NSCopying)?.copy(with: nil) ?? value
+        }
+        attributes = NSDictionary(dictionary: values)
+    }
+
+    static func == (lhs: CoreDataEntitySignature, rhs: CoreDataEntitySignature) -> Bool {
+        lhs.entityName == rhs.entityName && lhs.attributes.isEqual(rhs.attributes)
     }
 }
 

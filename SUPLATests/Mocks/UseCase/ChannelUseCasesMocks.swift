@@ -90,6 +90,16 @@ final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
     }
 }
 
+extension ObserveChannelWithChildren {
+    final class Mock: UseCase {
+        var invokeMock: FunctionMock<Int32, Observable<SUPLA.ChannelWithChildren>> = .init()
+
+        func invoke(remoteId: Int32) -> Observable<SUPLA.ChannelWithChildren> {
+            invokeMock.handle(remoteId)
+        }
+    }
+}
+
 final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
     var parameters: [SUPLA.ChannelWithChildren] = []
     func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren, type: SUPLA.DownloadEventsManagerDataType) {

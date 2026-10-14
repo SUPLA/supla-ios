@@ -20,6 +20,11 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelStateRepositoryMock: BaseRepositoryMock<SAChannelState>, ChannelStateRepository {
+
+    var observeAllMock: FunctionMock<AuthProfileItem, Observable<[SAChannelState]>> = .init()
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelState]> {
+        observeAllMock.handle(profile)
+    }
     
     let getStateMock: FunctionMock<(Int32, AuthProfileItem), Observable<SAChannelState?>> = .init()
     func getState(for channelId: Int32, and profile: AuthProfileItem) -> Observable<SAChannelState?> {

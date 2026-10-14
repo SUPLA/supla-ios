@@ -377,6 +377,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Час має бути більшим за 0";
 "timer_detail_header" = "Вкажіть час, коли пристрій повинен бути:";
+"details_timer_disabled_forced_mode" = "Таймер зворотного відліку вимкнено в режимі примусового ввімкнення/вимкнення.";
 "timer_detail_turned_on" = "Ввімкнений";
 "timer_detail_edit_header_on" = "ввімкнений";
 "timer_detail_info_on" = "ввімкнений";

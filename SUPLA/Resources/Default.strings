@@ -213,6 +213,7 @@
 
 /* Timer Detail */
 "timer_detail_header" = "Define time for which device should stay:";
+"details_timer_disabled_forced_mode" = "Countdown timer is disabled in forced on/off mode.";
 "timer_detail_edit_header" = "Edit turned %@ time";
 "timer_detail_edit_header_on" = "on";
 "timer_detail_edit_header_off" = "off";

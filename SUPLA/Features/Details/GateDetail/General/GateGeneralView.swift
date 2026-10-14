@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension GateGeneralFeature {
-    protocol ViewDelegate {
+    protocol ViewDelegate: OperationButtonsDelegate {
         func onOpen()
         func onClose()
         func onOpenClose()
@@ -39,8 +39,8 @@ extension GateGeneralFeature {
         var body: some SwiftUI.View {
             BackgroundStack(alignment: .top) {
                 VStack {
-                    if let stateData = viewState.deviceStateData {
-                        DeviceState.View(data: stateData)
+                    if let stateData = viewState.channelCurrentStateData {
+                        ChannelCurrentState.View(data: stateData)
                         ChannelIssuesView(issues: viewState.issues)
                         Spacer()
                     }
@@ -65,6 +65,18 @@ extension GateGeneralFeature {
                             icon: IssueIcon.Warning.shared,
                             message: Strings.GateDetail.openAndCloseWarning,
                             alignment: .center
+                        )
+                    }
+
+                    if (viewState.manualAllowed || viewState.weeklyAllowed || viewState.autoAllowed) {
+                        OperationButtons(
+                            manualAllowed: viewState.manualAllowed,
+                            manualActive: viewState.manualActive,
+                            weeklyAllowed: viewState.weeklyAllowed,
+                            weeklyActive: viewState.weeklyActive,
+                            autoAllowed: viewState.autoAllowed,
+                            autoActive: viewState.autoActive,
+                            delegate: delegate
                         )
                     }
                     
@@ -104,9 +116,9 @@ extension GateGeneralFeature {
                     )
                 }
                 
-                RoundedControlButton(
+                SuplaButton(
                     viewState.mainButtonLabel,
-                    type: .positive,
+                    colors: .primaryColors,
                     action: { delegate?.onOpenClose() }
                 )
                 .frame(height: Dimens.buttonHeight)
@@ -130,9 +142,9 @@ extension GateGeneralFeature {
                     .disabled(viewState.offline)
                 }
                 
-                RoundedControlButton(
+                SuplaButton(
                     viewState.mainButtonLabel,
-                    type: .positive,
+                    colors: .primaryColors,
                     action: { delegate?.onOpenClose() }
                 )
                 .frame(height: Dimens.buttonHeight)
@@ -153,7 +165,7 @@ extension GateGeneralFeature {
 
 #Preview("Single gate") {
     let viewState = GateGeneralFeature.ViewState()
-    viewState.deviceStateData = DeviceState.Data(
+    viewState.channelCurrentStateData = ChannelCurrentState.Data(
         label: Strings.SwitchDetail.stateLabel,
         icon: .originalSuplaIcon(name: "gate-open"),
         value: Strings.General.open
@@ -162,14 +174,18 @@ extension GateGeneralFeature {
         icon: .originalSuplaIcon(name: "gate-open"),
         label: Strings.General.open,
         active: true,
-        type: .positive
+        colors: .primaryColors
     )
     viewState.closeButtonState = .init(
         icon: .originalSuplaIcon(name: "gate-closed"),
         label: Strings.General.close,
         active: false,
-        type: .positive
+        colors: .primaryColors
     )
+    viewState.manualAllowed = true
+    viewState.manualActive = true
+    viewState.weeklyAllowed = true
+    viewState.autoAllowed = true
     
     return GateGeneralFeature.View(
         viewState: viewState,
@@ -209,13 +225,13 @@ extension GateGeneralFeature {
         icon: .originalSuplaIcon(name: "gate-open"),
         label: Strings.General.open,
         active: true,
-        type: .positive
+        colors: .primaryColors
     )
     viewState.closeButtonState = .init(
         icon: .originalSuplaIcon(name: "gate-closed"),
         label: Strings.General.close,
         active: false,
-        type: .positive
+        colors: .errorColors
     )
     
     return GateGeneralFeature.View(

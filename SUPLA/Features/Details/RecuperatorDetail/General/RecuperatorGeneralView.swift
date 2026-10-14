@@ -168,17 +168,17 @@ extension RecuperatorGeneralFeature {
 
         private func OptionButtons() -> some SwiftUI.View {
             HStack(spacing: Distance.small) {
-                RoundedControlButton(
+                SuplaButton(
                     "Ventilation",
                     fullWidth: true,
                     action: { delegate?.onVentilationClick() }
                 )
-                RoundedControlButton(
+                SuplaButton(
                     "Empty house",
                     fullWidth: true,
                     action: { delegate?.onEmptyHouseClick() }
                 )
-                RoundedControlButton(
+                SuplaButton(
                     "Open window",
                     fullWidth: true,
                     action: { delegate?.onOpenWindowClick() }
@@ -188,22 +188,23 @@ extension RecuperatorGeneralFeature {
         
         private func ModeButtons() -> some SwiftUI.View {
             HStack(spacing: Distance.small) {
-                RoundedControlButton(
+                let powerButtonColors: SuplaButtonColors = viewState.isOff ?
+                    .errorColors.copy(content: .Supla.error) : .primaryColors.copy(content: .Supla.primary)
+                SuplaButton(
                     .suplaIcon(name: .Icons.powerButton),
-                    type: viewState.isOff ? .negative : .positive,
-                    color: viewState.isOff ? .Supla.error : .Supla.primary,
+                    colors: powerButtonColors,
                     action: { delegate?.onPowerClick() }
                 )
-                RoundedControlButton(
+                SuplaButton(
                     Strings.ThermostatDetail.modeManual,
-                    type: .positive,
+                    colors: .primaryColors,
                     active: viewState.mode == .manual,
                     fullWidth: true,
                     action: { delegate?.onManualClick() }
                 )
-                RoundedControlButton(
+                SuplaButton(
                     Strings.ThermostatDetail.modeWeeklySchedule,
-                    type: .positive,
+                    colors: .primaryColors,
                     active: viewState.mode == .program,
                     fullWidth: true,
                     action: { delegate?.onProgramClick() }

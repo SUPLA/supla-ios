@@ -17,115 +17,155 @@
  */
 
 import RxSwift
+import SharedCore
+import SwiftUI
 
-class SwitchTimerDetailVM: BaseViewModel<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent>, DeviceStateHelperVMI {
-    
-    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.ViewState>, SwitchTimerDetailFeature.ViewDelegate, DeviceStateHelperVMI {
+    @Singleton<ObserveChannelWithChildren.UseCase> private var observeChannelWithChildrenUseCase
     @Singleton<StartTimerUseCase> private var startTimerUseCase
-    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleAxtionUseCase
+    @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<ObserveRelayProgramState.UseCase> private var observeRelayProgramStateUseCase
     @Singleton<DateProvider> private var dateProvider
-    
-    override func defaultViewState() -> SwitchTimerDetailViewState { SwitchTimerDetailViewState() }
-    
-    func loadChannel(remoteId: Int32) {
-        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .asDriverWithoutError()
-            .drive(onNext: { [weak self] in self?.handleChannel(channel: $0) })
-            .disposed(by: self)
+    @Singleton<RuntimeConfig> private var runtimeConfig
+
+    private let remoteId: Int32
+
+    init(remoteId: Int32) {
+        self.remoteId = remoteId
+        super.init(state: SwitchTimerDetailFeature.ViewState())
+
+        state.setTimeInSeconds(runtimeConfig.getLastTimerValue(remoteId: remoteId))
     }
-    
-    func startTimer(remoteId: Int32, action: TimerTargetAction, durationInSecs: Int) {
-        startTimerUseCase.invoke(remoteId: remoteId, turnOn: action == .turnOn, durationInSecs: Int32(durationInSecs))
-            .subscribe(onError: { [weak self] in self?.handleStartTimerError(error: $0) })
-            .disposed(by: self)
+
+    override func onViewAppear() {
+        let channel = observeChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+        let programState = observeRelayProgramStateUseCase.invoke(remoteId: remoteId)
+
+        Observable.combineLatest(channel, programState)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] channelWithChildren, programState in
+                self?.handleChannel(channelWithChildren.channel, programState: programState)
+            })
+            .disposedWhenDisappear(by: self)
     }
-    
-    func stopTimer(remoteId: Int32) {
-        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { [weak self] in
-                guard let self = self else { return Observable.just(()) }
-                return self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 > 0)
-            }
+
+    func onEditTimer() {
+        if let timerEndDate = state.deviceState?.timerEndDate {
+            state.setTimeInSeconds(Int(timerEndDate.timeIntervalSince(dateProvider.currentDate())))
+        }
+        state.editMode = true
+    }
+
+    func onStopTimer() {
+        guard let deviceState = state.deviceState else { return }
+        doAbort(turnOn: deviceState.isOn)
             .asDriverWithoutError()
             .drive()
-            .disposed(by: self)
+            .disposed(by: disposeBag)
     }
-    
-    func cancelTimer(remoteId: Int32) {
-        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { [weak self] in
-                guard let self = self else { return Observable.just(()) }
-                return self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 == 0)
-            }
+
+    func onCancelTimer() {
+        guard let deviceState = state.deviceState else { return }
+        doAbort(turnOn: !deviceState.isOn)
             .asDriverWithoutError()
             .drive()
-            .disposed(by: self)
+            .disposed(by: disposeBag)
     }
-    
-    func startEditMode() {
-        updateView() { $0.changing(path: \.editMode, to: true) }
+
+    func onTargetActionChange(_ action: TimerTargetAction) {
+        guard state.deviceState != nil else { return }
+        state.targetAction = action
     }
-    
-    func stopEditMode() {
-        updateView() { $0.changing(path: \.editMode, to: false) }
+
+    func onTimeChange(_ timeInSeconds: Int) {
+        runtimeConfig.setLastTimerValue(remoteId: remoteId, value: timeInSeconds)
     }
-    
+
+    func onStartTimer() {
+        guard state.deviceState?.isOnline == true, !state.timerStartDisabled else { return }
+
+        startTimerUseCase.invoke(
+            remoteId: remoteId,
+            turnOn: state.targetAction == .turnOn,
+            durationInSecs: Int32(state.timeInSeconds)
+        )
+        .subscribe(onError: { [weak self] error in
+            if (error is StartTimerUseCaseImpl.InvalidTimeError) {
+                self?.state.invalidTimeAlertPresented = true
+            }
+        })
+        .disposed(by: disposeBag)
+
+        state.editMode = false
+    }
+
+    func onCancelEditMode() {
+        state.editMode = false
+    }
+
+    func onInvalidTimeAlertDismiss() {
+        state.invalidTimeAlertPresented = false
+    }
+
     func calculateProgressViewData(startTime: Date, endTime: Date) -> ProgressViewData? {
         let leftTime = endTime.timeIntervalSince(dateProvider.currentDate())
-        if (leftTime < 0) {
-            return nil
-        }
-        
+        if (leftTime < 0) { return nil }
+
         let wholeTime = endTime.timeIntervalSince(startTime)
         return ProgressViewData(
             progres: 1 - leftTime / wholeTime,
             leftTimeValues: TimeValues.from(time: leftTime + 1)
         )
     }
-    
-    private func doAbort(remoteId: Int32, turnOn: Bool) -> Observable<Void> {
-        executeSimpleAxtionUseCase.invoke(
+
+    private func handleChannel(_ channel: SAChannel, programState: [ChannelProgramState.Data]) {
+        let deviceState = createDeviceState(from: channel)
+
+        state.deviceState = deviceState
+        state.channelCurrentStateData = createChannelCurrentStateData(from: deviceState)
+        let relayValue = channel.value?.asRelayValue()
+        let weeklyScheduleEnabled = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
+        let forced = relayValue?.mode == .forcedOn || relayValue?.mode == .forcedOff
+        state.timerStartDisabled = forced
+        state.channelProgramState = deviceState.isOnline && weeklyScheduleEnabled ? programState : []
+    }
+
+    private func doAbort(turnOn: Bool) -> Observable<Void> {
+        executeSimpleActionUseCase.invoke(
             action: turnOn ? .turnOn : .turnOff,
             type: .channel,
             remoteId: remoteId
         )
     }
-    
-    private func handleChannel(channel: SAChannel) {
-        updateView { state in
-            let deviceState = createDeviceState(from: channel)
-            var editMode = state.editMode
-            if (editMode && deviceState.timerEndDate != nil) {
-                // To avoid screen blinking, edit mode is canceled when new timer values will come
-                editMode = false
-            }
-            var targetAction = state.targetAction
-            if (targetAction == nil) {
-                targetAction = deviceState.isOn ? .turnOff : .turnOn
-            }
-            
-            return state
-                .changing(path: \.deviceState, to: deviceState)
-                .changing(path: \.editMode, to: editMode)
-                .changing(path: \.targetAction, to: targetAction)
-        }
-    }
-    
-    private func handleStartTimerError(error: Error) {
-        if (error is StartTimerUseCaseImpl.InvalidTimeError) {
-            send(event: .showInvalidTime)
-        }
-    }
-}
 
-enum SwitchTimerDetailViewEvent: ViewEvent {
-    case showInvalidTime
-}
+    private func createChannelCurrentStateData(from deviceState: DeviceStateViewState) -> ChannelCurrentState.Data {
+        let label: String
+        if let timerEndDate = deviceState.timerEndDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = Strings.General.hourFormat
+            label = .init(
+                format: Strings.SwitchDetail.stateLabelForTimer,
+                dateFormatter.string(from: timerEndDate)
+            )
+        } else {
+            label = Strings.SwitchDetail.stateLabel
+        }
 
-struct SwitchTimerDetailViewState: ViewState {
-    var deviceState: DeviceStateViewState? = nil
-    var editMode: Bool = false
-    var targetAction: TimerTargetAction? = nil
+        let value = if (!deviceState.isOnline) {
+            Strings.SwitchDetail.stateOffline
+        } else if (deviceState.isOn) {
+            Strings.SwitchDetail.stateOn
+        } else {
+            Strings.SwitchDetail.stateOff
+        }
+
+        return ChannelCurrentState.Data(
+            label: label,
+            icon: getChannelBaseIconUseCase.invoke(iconData: deviceState.iconData),
+            value: value
+        )
+    }
 }
 
 struct ProgressViewData {
@@ -137,8 +177,8 @@ struct TimeValues {
     let hours: Int
     let minutes: Int
     let seconds: Int
-    
+
     static func from(time: TimeInterval) -> TimeValues {
-        TimeValues (hours: Int(time/3600), minutes: Int((time / 60)) % 60, seconds: Int(time) % 60)
+        TimeValues(hours: Int(time / 3600), minutes: Int(time / 60) % 60, seconds: Int(time) % 60)
     }
 }

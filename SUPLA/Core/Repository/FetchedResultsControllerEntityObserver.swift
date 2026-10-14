@@ -75,3 +75,62 @@ extension FetchedResultsControllerEntityObserver : Disposable {
         frc.delegate = nil
     }
 }
+
+final class ContinuousFetchedResultsControllerEntityObserver<T: NSFetchRequestResult>: NSObject, NSFetchedResultsControllerDelegate, Disposable {
+    private let observer: AnyObserver<[T]>
+    private let frc: NSFetchedResultsController<T>
+    private let lock = NSLock()
+    private var disposed = false
+
+    init(
+        observer: AnyObserver<[T]>,
+        fetchRequest: NSFetchRequest<T>,
+        managedObjectContext context: NSManagedObjectContext,
+        sectionNameKeyPath: String?,
+        cacheName: String?
+    ) {
+        self.observer = observer
+        self.frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: sectionNameKeyPath,
+            cacheName: cacheName
+        )
+        super.init()
+
+        context.perform { [weak self] in
+            guard let self, !self.isDisposed else { return }
+            self.frc.delegate = self
+            do {
+                try self.frc.performFetch()
+                self.sendNextElement()
+            } catch {
+                self.observer.on(.error(error))
+            }
+        }
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        sendNextElement()
+    }
+
+    private var isDisposed: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return disposed
+    }
+
+    private func sendNextElement() {
+        guard !isDisposed else { return }
+        observer.on(.next(frc.fetchedObjects ?? []))
+    }
+
+    func dispose() {
+        lock.lock()
+        disposed = true
+        lock.unlock()
+        frc.managedObjectContext.perform { [frc] in
+            frc.delegate = nil
+        }
+    }
+}

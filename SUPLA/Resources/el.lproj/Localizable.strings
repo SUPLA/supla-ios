@@ -377,6 +377,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Ο χρόνος πρέπει να είναι μεγαλύτερος από 0";
 "timer_detail_header" = "Καθορίστε την ώρα που θα πρέπει να είναι η συσκευή:";
+"details_timer_disabled_forced_mode" = "Ο χρονοδιακόπτης αντίστροφης μέτρησης είναι απενεργοποιημένος στη λειτουργία αναγκαστικής ενεργοποίησης/απενεργοποίησης";
 "timer_detail_turned_on" = "Ενεργοποιημένο";
 "timer_detail_edit_header_on" = "ενεργοποιημένο";
 "timer_detail_info_on" = "ενεργοποιημένο";

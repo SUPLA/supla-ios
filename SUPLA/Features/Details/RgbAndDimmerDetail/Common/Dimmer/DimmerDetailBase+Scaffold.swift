@@ -64,8 +64,8 @@ extension DimmerDetailBase {
         @ViewBuilder
         private func portrait() -> some SwiftUI.View {
             VStack(spacing: 0) {
-                if let stateData = viewState.deviceStateData {
-                    DeviceState.View(data: stateData)
+                if let stateData = viewState.channelCurrentStateData {
+                    ChannelCurrentState.View(data: stateData)
                 }
                 ChannelIssuesView(issues: viewState.issues)
 
@@ -83,8 +83,8 @@ extension DimmerDetailBase {
         private func landscape() -> some SwiftUI.View {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    if let stateData = viewState.deviceStateData {
-                        DeviceState.View(data: stateData)
+                    if let stateData = viewState.channelCurrentStateData {
+                        ChannelCurrentState.View(data: stateData)
                     }
                     ChannelIssuesView(issues: viewState.issues)
                     
@@ -111,9 +111,8 @@ extension DimmerDetailBase {
             }
             .frame(maxWidth: .infinity)
             .overlay(alignment: .topTrailing) {
-                RoundedControlButton(
+                SuplaButton(
                     .suplaIcon(name: viewState.selectorType.swapIcon),
-                    type: .neutral,
                     action: { delegate?.toggleSelectorType() }
                 )
                 .frame(width: Dimens.buttonHeight, height: Dimens.buttonHeight, alignment: .topTrailing)

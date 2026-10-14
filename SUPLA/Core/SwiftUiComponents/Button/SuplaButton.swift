@@ -21,8 +21,8 @@ import SwiftUI
 let standardPadding = EdgeInsets(top: 0, leading: Distance.default, bottom: 0, trailing: Distance.default)
 let roundedPadding = EdgeInsets(top: 0, leading: Distance.tiny, bottom: 0, trailing: Distance.tiny)
 
-struct RoundedControlButton<Content: View>: View {
-    let type: RoundedControlButtonType
+struct SuplaButton<Content: View>: View {
+    let colors: SuplaButtonColors
     let active: Bool
     let fullWidth: Bool
     let action: () -> Void
@@ -32,14 +32,14 @@ struct RoundedControlButton<Content: View>: View {
     @Environment(\.isEnabled) private var isEnabled
 
     init(
-        type: RoundedControlButtonType = .neutral,
+        colors: SuplaButtonColors = .buttonColors,
         active: Bool = false,
         fullWidth: Bool = false,
         padding: EdgeInsets = standardPadding,
         action: @escaping () -> Void,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.type = type
+        self.colors = colors
         self.active = active
         self.fullWidth = fullWidth
         self.padding = padding
@@ -49,13 +49,13 @@ struct RoundedControlButton<Content: View>: View {
 
     init(
         _ label: String,
-        type: RoundedControlButtonType = .neutral,
+        colors: SuplaButtonColors = .buttonColors,
         active: Bool = false,
         fullWidth: Bool = false,
         padding: EdgeInsets = standardPadding,
         action: @escaping () -> Void,
     ) where Content == AnyView {
-        self.type = type
+        self.colors = colors
         self.active = active
         self.fullWidth = fullWidth
         self.padding = padding
@@ -70,14 +70,13 @@ struct RoundedControlButton<Content: View>: View {
     
     init(
         _ icon: IconResult,
-        type: RoundedControlButtonType = .neutral,
+        colors: SuplaButtonColors = .buttonColors,
         active: Bool = false,
         fullWidth: Bool = false,
-        color: Color? = nil,
         padding: EdgeInsets = roundedPadding,
         action: @escaping () -> Void,
     ) where Content == AnyView {
-        self.type = type
+        self.colors = colors
         self.active = active
         self.fullWidth = fullWidth
         self.padding = padding
@@ -86,7 +85,6 @@ struct RoundedControlButton<Content: View>: View {
             AnyView(
                 icon.image
                     .resizable()
-                    .if(color != nil) { $0.foregroundColor(color!) }
                     .frame(width: Dimens.iconSize, height: Dimens.iconSize)
             )
         }
@@ -105,64 +103,38 @@ struct RoundedControlButton<Content: View>: View {
                 .if(fullWidth) { $0.frame(maxWidth: .infinity) }
         }
         .buttonStyle(
-            RoundedControlButtonStyle(
-                isSelected: isEnabled && active,
-                type: type,
-                padding: padding
+            SuplaButtonStyle(
+                isSelected: active,
+                colors: colors,
+                padding: padding,
             )
         )
     }
 }
 
-enum RoundedControlButtonType {
-    case positive, negative, neutral
-
-    var pressedColor: Color {
-        switch (self) {
-        case .positive: return .Supla.primary
-        case .negative: return .Supla.error
-        case .neutral: return .Supla.onBackground
-        }
-    }
-
-    var textColor: UIColor {
-        switch (self) {
-        case .positive: return .onBackground
-        case .negative: return .negativeBorder
-        case .neutral: return .black
-        }
-    }
-
-    var inactiveColor: UIColor {
-        switch (self) {
-        case .positive: return .onBackground
-        case .negative: return .onBackground
-        case .neutral: return .black
-        }
-    }
-}
-
-private struct RoundedControlButtonStyle: ButtonStyle {
+private struct SuplaButtonStyle: ButtonStyle {
     let isSelected: Bool
-    let type: RoundedControlButtonType
+    let colors: SuplaButtonColors
     let padding: EdgeInsets
+
+    @Environment(\.isEnabled) private var isEnabled
     
     init(
         isSelected: Bool,
-        type: RoundedControlButtonType,
-        padding: EdgeInsets = standardPadding
+        colors: SuplaButtonColors,
+        padding: EdgeInsets = standardPadding,
     ) {
         self.isSelected = isSelected
-        self.type = type
+        self.colors = colors
         self.padding = padding
     }
 
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed || isSelected
         let radius = Dimens.buttonHeight / 2
-        let borderColor = pressed ? type.pressedColor : Color.Supla.disabled
-        let foregroundColor = pressed ? type.pressedColor : Color.Supla.onBackground
-
+        let borderColor = colors.border(active: isSelected, disabled: !isEnabled)
+        let foregroundColor = colors.content(active: isSelected, disabled: !isEnabled)
+        
         configuration.label
             .padding(padding)
             .foregroundColor(foregroundColor)
@@ -219,42 +191,71 @@ private struct InnerShadowRounded: View {
 
 #Preview {
     VStack(spacing: Distance.small) {
-        RoundedControlButton(
-            "Inactive",
-            active: false,
-            action: {}
-        )
-        RoundedControlButton(
-            "Negative",
-            type: .negative,
-            active: true,
-            action: {}
-        )
-        RoundedControlButton(
-            "Positive",
-            type: .positive,
-            active: true,
-            action: {}
-        )
-        RoundedControlButton(
-            "Neutral",
-            type: .neutral,
-            active: true,
-            action: {}
-        )
-        RoundedControlButton(
+        HStack {
+            SuplaButton(
+                "Neutral",
+                active: false,
+                action: {}
+            )
+            SuplaButton(
+                "Neutral",
+                active: true,
+                action: {}
+            )
+            SuplaButton(
+                "Neutral",
+                active: true,
+                action: {}
+            ).disabled(true)
+        }
+
+        HStack {
+            SuplaButton(
+                "Negative",
+                colors: .errorColors,
+                active: false,
+                action: {}
+            )
+            SuplaButton(
+                "Negative",
+                colors: .errorColors,
+                active: true,
+                action: {}
+            )
+        }
+        HStack {
+            SuplaButton(
+                "Positive",
+                colors: .primaryColors,
+                active: false,
+                action: {}
+            )
+            SuplaButton(
+                "Positive",
+                colors: .primaryColors,
+                active: true,
+                action: {}
+            )
+        }
+        SuplaButton(
             "Neutral full width",
-            type: .neutral,
             active: false,
             fullWidth: true,
             action: {}
         )
-        RoundedControlButton(
-            .suplaIcon(name: .Icons.soundOff),
-            type: .positive,
-            color: .Supla.primary,
-            action: {}
-        )
+        HStack {
+            SuplaButton(
+                .suplaIcon(name: .Icons.soundOff),
+                colors: .primaryColors.copy(content: .Supla.primary),
+                action: {}
+            )
+            SuplaButton(
+                .suplaIcon(name: .Icons.soundOff),
+                colors: .primaryColors.copy(borderDisabledAndPressed: .Supla.primary),
+                active: true,
+                action: {}
+            ).disabled(true)
+        }
     }
     .padding(Distance.default)
 }

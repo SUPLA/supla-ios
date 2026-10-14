@@ -20,15 +20,17 @@ import RxSwift
 import SharedCore
     
 extension SwitchGeneralFeature {
-    class ViewModel: SuplaCore.ViewModel<ViewState>, ChannelUpdatesObserver, GroupUpdatesObserver, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<ElectricityMeterGeneralStateHandler> private var electricityMeterGeneralStateHandler
         @Singleton<DownloadChannelMeasurementsUseCase> private var downloadChannelMeasurementsUseCase
         @Singleton<ImpulseCounterGeneralStateHandler> private var impulseCounterGeneralStateHandler
-        @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
-        @Singleton<ReadGroupWithChannels.UseCase> private var readGroupWithChannelsUseCase
+        @Singleton<ObserveChannelWithChildren.UseCase> private var observeChannelWithChildrenUseCase
+        @Singleton<ObserveGroupWithChannels.UseCase> private var observeGroupWithChannelsUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
         @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
+        @Singleton<ExecuteRelayAction.UseCase> private var executeRelayActionUseCase
         @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+        @Singleton<ObserveRelayProgramState.UseCase> private var observeRelayProgramStateUseCase
         @Singleton<DownloadEventsManager> private var downloadEventsManager
         @Singleton<DateProvider> private var dateProvider
         @Singleton<GlobalSettings> private var settings
@@ -39,28 +41,17 @@ extension SwitchGeneralFeature {
         private var remoteId: Int32? = nil
         private var initialDataLoadStarted: Bool = false
         private var flags: [SuplaRelayFlag] = []
+        private var weeklyScheduleEnabled = false
         private var type: SubjectType? = nil
         private let itemBundle: ItemBundle?
         
         init(itemBundle: ItemBundle? = nil) {
             self.itemBundle = itemBundle
             super.init(state: ViewState())
-        }
 
-        override func onViewCreated() {
-            guard let itemBundle else { return }
-
-            switch (itemBundle.subjectType) {
-            case .channel: observeChannel(remoteId: Int(itemBundle.remoteId))
-            case .group: observeGroup(remoteId: itemBundle.remoteId)
-            case .scene: break
+            if let itemBundle {
+                observeData(remoteId: itemBundle.remoteId, type: itemBundle.subjectType)
             }
-        }
-
-        override func onViewAppear() {
-            guard let itemBundle else { return }
-
-            loadData(remoteId: itemBundle.remoteId, type: itemBundle.subjectType)
         }
 
         func observerDownload(_ remoteId: Int32) {
@@ -70,12 +61,14 @@ extension SwitchGeneralFeature {
                 .disposed(by: disposeBag)
         }
         
-        func loadData(remoteId: Int32, type: SubjectType) {
+        private func observeData(remoteId: Int32, type: SubjectType) {
             self.remoteId = remoteId
             self.type = type
             switch (type) {
-            case .channel: loadChannel(remoteId: remoteId)
-            case .group: loadGroup(remoteId)
+            case .channel:
+                observerDownload(remoteId)
+                observeChannelAndProgramState(remoteId: remoteId)
+            case .group: observeGroup(remoteId)
             case .scene: break
             }
         }
@@ -98,8 +91,42 @@ extension SwitchGeneralFeature {
             performAction(action: .turnOn)
         }
 
+        func onForce() {
+            guard let remoteId, let type else { return }
+
+            if state.forceActive {
+                performAction(action: weeklyScheduleEnabled ? .switchToProgramMode : .switchToManualMode)
+            } else {
+                executeRelayActionUseCase.invoke(
+                    type: type,
+                    remoteId: remoteId,
+                    mode: state.on ? .forcedOn : .forcedOff
+                )
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+            }
+        }
+
         func onTurnOff() {
             performAction(action: .turnOff)
+        }
+
+        func onManual() {
+            performAction(action: .switchToManualMode)
+        }
+
+        func onWeekly() {
+            performAction(action: .switchToProgramMode)
+        }
+
+        func onAuto() {
+            guard let remoteId, let type else { return }
+
+            executeRelayActionUseCase.invoke(type: type, remoteId: remoteId, mode: .automatic)
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
         }
         
         func onIntroductionClose() {
@@ -111,23 +138,24 @@ extension SwitchGeneralFeature {
             state.alertDialogState = nil
         }
         
-        func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
-            loadChannel(remoteId: channelWithChildren.remoteId)
-        }
-        
-        func onGroupUpdate(_ groupId: Int32) {
-            loadGroup(groupId)
-        }
-        
-        private func loadChannel(remoteId: Int32, downloadingFinished: Bool = false) {
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+        private func observeChannelAndProgramState(remoteId: Int32) {
+            let channel = observeChannelWithChildrenUseCase.invoke(remoteId: remoteId)
                 .flatMapFirst { toChannelWithMeasurements($0) }
+
+            Observable.combineLatest(channel, observeRelayProgramStateUseCase.invoke(remoteId: remoteId))
+                .observe(on: MainScheduler.instance)
                 .asDriverWithoutError()
-                .drive(onNext: { [weak self] in self?.handleChannel($0.0, $0.1, downloadingFinished) })
+                .drive(onNext: { [weak self] channelWithMeasurements, channelProgramState in
+                    self?.handleChannel(channelWithMeasurements.0, channelWithMeasurements.1, channelProgramState)
+                })
                 .disposed(by: disposeBag)
         }
-        
-        private func handleChannel(_ channel: ChannelWithChildren, _ measurements: SummarizedMeasurements?, _ downloadingFinished: Bool) {
+
+        private func handleChannel(
+            _ channel: ChannelWithChildren,
+            _ measurements: SummarizedMeasurements?,
+            _ channelProgramState: [ChannelProgramState.Data]
+        ) {
             let showElectricityState = channel.isOrHasElectricityMeter
             let showImpulseCounterState = channel.isOrHasImpulseCounter
 
@@ -137,47 +165,80 @@ extension SwitchGeneralFeature {
             if (showImpulseCounterState) {
                 impulseCounterGeneralStateHandler.updateState(impulseCounterState, channel, measurements as? ImpulseCounterMeasurements)
             }
-            if (downloadingFinished) {
-                electricityState.currentMonthDownloading = false
-                impulseCounterState.currentMonthDownloading = false
-            }
-            
-            if (initialDataLoadStarted) {
+            if (!initialDataLoadStarted) {
                 downloadChannelMeasurementsUseCase.invoke(channel)
                 initialDataLoadStarted = true
             }
             
             let online = channel.channel.status().online
             let on = channel.channel.value?.hiValue() ?? 0 > 0
-            
-            flags = channel.channel.value?.asRelayValue().flags ?? []
+            let relayValue = channel.channel.value?.asRelayValue()
+            let forceSupported = channel.channel.flags & Int64(SUPLA_CHANNEL_FLAG_RELAY_MODE_FORCED_SUPPORTED) != 0
+            let forced = relayValue?.mode == .forcedOn || relayValue?.mode == .forcedOff
+            let weeklyActive = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
             state.online = online
             state.on = on
-            state.stateValue =
-                if (!online) {
-                    Strings.SwitchDetail.stateOffline
-                } else if (on) {
-                    Strings.SwitchDetail.stateOn
-                } else {
-                    Strings.SwitchDetail.stateOff
-                }
+            state.forceSupported = forceSupported
+            state.forceActive = forceSupported && forced
+            state.forceButtonDisabled = weeklyActive
+            state.lockIconType = lockIconType(forced: forced, weeklyActive: weeklyActive)
+            state.channelCurrentStateData = .init(
+                label: createStateLabel(channel.channel),
+                icon: getChannelBaseIconUseCase.invoke(channel: channel.channel),
+                value: stateValue(online: online, on: on)
+            )
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channel.shareable)
-            state.stateLabel = createStateLabel(channel.channel)
-            state.stateIcon = getChannelBaseIconUseCase.invoke(channel: channel.channel)
             state.showElectricityState = showElectricityState
             state.showImpulseCounterState = showImpulseCounterState
             state.offButtonState = .init(
                 icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .default(value: .off))),
                 label: Strings.General.turnOff,
                 active: !on,
-                type: .negative
+                colors: .errorColors
             )
             state.onButtonState = .init(
                 icon: getChannelBaseIconUseCase.invoke(iconData: channel.channel.getIconData(state: .default(value: .on))),
                 label: Strings.General.turnOn,
                 active: on,
-                type: .positive
+                colors: .primaryColors
             )
+            handleOperationButtons(relayValue, channel.channel.flags)
+            state.channelProgramState = online && weeklyScheduleEnabled ? channelProgramState : []
+        }
+
+        private func lockIconType(forced: Bool, weeklyActive: Bool) -> LockIconType {
+            return if forced && weeklyActive {
+                .temporaryClosed
+            } else if forced {
+                .closed
+            } else {
+                .opened
+            }
+        }
+
+        private func stateValue(online: Bool, on: Bool) -> String {
+            if (!online) {
+                Strings.SwitchDetail.stateOffline
+            } else if (on) {
+                Strings.SwitchDetail.stateOn
+            } else {
+                Strings.SwitchDetail.stateOff
+            }
+        }
+
+        private func handleOperationButtons(_ relayValue: RelayValue?, _ channelFlags: Int64) {
+            let weeklyAllowed = channelFlags & Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE) != 0
+            let autoAllowed = channelFlags & Int64(SUPLA_CHANNEL_FLAG_RELAY_MODE_AUTOMATIC_SUPPORTED) != 0
+            let weeklyActive = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
+
+            weeklyScheduleEnabled = weeklyActive
+            flags = relayValue?.flags ?? []
+            state.manualAllowed = weeklyAllowed || autoAllowed
+            state.manualActive = !weeklyActive && relayValue?.mode != .automatic
+            state.weeklyAllowed = weeklyAllowed
+            state.weeklyActive = weeklyActive
+            state.autoAllowed = autoAllowed
+            state.autoActive = !weeklyActive && relayValue?.mode == .automatic
         }
         
         private func createStateLabel(_ channel: SAChannel) -> String {
@@ -196,8 +257,8 @@ extension SwitchGeneralFeature {
             return Strings.SwitchDetail.stateLabel
         }
         
-        private func loadGroup(_ remoteId: Int32) {
-            readGroupWithChannelsUseCase.invoke(remoteId: remoteId)
+        private func observeGroup(_ remoteId: Int32) {
+            observeGroupWithChannelsUseCase.invoke(remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] groupWithChannels in
                     self?.handleGroup(groupWithChannels)
@@ -210,6 +271,7 @@ extension SwitchGeneralFeature {
             
             state.online = true
             state.issues = []
+            state.channelCurrentStateData = nil
             state.showElectricityState = false
             state.showImpulseCounterState = false
             state.relatedChannelsData = groupWithChannels.relatedChannelData
@@ -217,14 +279,27 @@ extension SwitchGeneralFeature {
                 icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .off)),
                 label: Strings.General.turnOff,
                 active: groupState == .off,
-                type: .negative
+                colors: .errorColors
             )
             state.onButtonState = .init(
                 icon: getChannelBaseIconUseCase.stateIcon(groupWithChannels.group, state: .default(value: .on)),
                 label: Strings.General.turnOn,
                 active: groupState == .on,
-                type: .positive
+                colors: .primaryColors
             )
+            state.forceSupported = false
+            state.forceActive = false
+            state.forceButtonDisabled = false
+            state.lockIconType = .opened
+
+            state.manualAllowed = false
+            state.manualActive = false
+            state.weeklyAllowed = false
+            state.weeklyActive = false
+            state.autoAllowed = false
+            state.autoActive = false
+            state.channelProgramState = []
+            weeklyScheduleEnabled = false
         }
 
         private func performAction(action: ActionId) {
@@ -242,9 +317,8 @@ extension SwitchGeneralFeature {
                 electricityState.currentMonthDownloading = true
                 impulseCounterState.currentMonthDownloading = true
             default:
-                if let remoteId {
-                    loadChannel(remoteId: remoteId, downloadingFinished: true)
-                }
+                electricityState.currentMonthDownloading = false
+                impulseCounterState.currentMonthDownloading = false
             }
         }
     }

@@ -17,336 +17,184 @@
  */
 
 import RxSwift
-import RxTest
 import XCTest
 
 @testable import SUPLA
 
-final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent> {
-    private lazy var viewModel: SwitchTimerDetailVM! = SwitchTimerDetailVM()
-    
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
+final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature.ViewState> {
+    private var viewModel: SwitchTimerDetailVM!
+    private var observeChannelWithChildrenUseCase = ObserveChannelWithChildren.Mock()
+    private var getChannelBaseStateUseCase = GetChannelBaseStateUseCaseMock()
+    private var getChannelBaseIconUseCase = GetChannelBaseIconUseCaseMock()
+    private var startTimerUseCase = StartTimerUseCaseMock()
+    private var executeSimpleActionUseCase = ExecuteSimpleAction.Mock()
+    private var dateProvider = DateProviderMock()
+    private var runtimeConfig = RuntimeConfigImpl()
+    private var suplaClientProvider = SuplaClientProviderMock()
 
-    private lazy var getChannelBaseStateUseCase: GetChannelBaseStateUseCaseMock! = GetChannelBaseStateUseCaseMock()
-
-    private lazy var startTimerUseCase: StartTimerUseCaseMock! = StartTimerUseCaseMock()
-
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleAction.Mock! = ExecuteSimpleAction.Mock()
-
-    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
-    
-    private lazy var suplaClientProvider: SuplaClientProviderMock! = SuplaClientProviderMock()
-    
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
-        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase!)
-        DiContainer.shared.register(type: StartTimerUseCase.self, startTimerUseCase!)
-        DiContainer.shared.register(type: ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
-        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
+        super.setUp()
+        DiContainer.shared.register(type: ObserveChannelWithChildren.UseCase.self, observeChannelWithChildrenUseCase)
+        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase)
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCase)
+        DiContainer.shared.register(type: StartTimerUseCase.self, startTimerUseCase)
+        DiContainer.shared.register(type: ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider)
+        DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider)
+
+        viewModel = SwitchTimerDetailVM(remoteId: 123)
     }
-    
+
     override func tearDown() {
         viewModel = nil
-        
-        readChannelByRemoteIdUseCase = nil
-        getChannelBaseStateUseCase = nil
-        startTimerUseCase = nil
-        executeSimpleActionUseCase = nil
-        dateProvider = nil
-        suplaClientProvider = nil
-        
         super.tearDown()
     }
-    
-    func test_loadChannel() {
-        // given
-        var suplaTimer = TTimerState_ExtendedValue()
-        suplaTimer.CountdownEndsAt = 122
-        
-        var suplaExtendedValue = TSuplaChannelExtendedValue()
-        suplaExtendedValue.type = CChar(EV_TYPE_TIMER_STATE_V1)
-        suplaExtendedValue.size = UInt32(MemoryLayout<TTimerState_ExtendedValue>.size)
-        _ = withUnsafeMutablePointer(to: &suplaExtendedValue.value) {
-            $0.withMemoryRebound(to: CChar.self, capacity: MemoryLayout<TTimerState_ExtendedValue>.size) { ptr in
-                memcpy(ptr, &suplaTimer, MemoryLayout<TTimerState_ExtendedValue>.size)
-            }
-        }
-        
-        let isOnline = true
-        let function: Int32 = 123
-        let altIcon: Int32 = 2
+
+    func test_observeChannel() throws {
         let startTime = Date()
-        let extendedValue = SAChannelExtendedValue(testContext: nil)
-        extendedValue.timerStartTime = startTime
-        extendedValue.setValueWith(&suplaExtendedValue)
-        
-        let channel = createChannelWithHiValue(1, isOnline: isOnline)
-        channel.func = function
-        channel.alticon = altIcon
-        channel.ev = extendedValue
-        
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+        let channel = createChannelWithTimer(endsAt: 122, startTime: startTime, isOn: true, isOnline: true)
+        observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: channel)))
         getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(0)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
-        
-        // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: 123)
-        
-        // thena
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        assertState(1, withPath: \.deviceState?.isOnline, equalTo: isOnline)
-        assertState(1, withPath: \.deviceState?.isOn, equalTo: true)
-        assertState(1, withPath: \.deviceState?.timerStartDate, equalTo: startTime)
-        assertState(1, withPath: \.deviceState?.timerEndDate?.timeIntervalSince1970, equalTo: 122)
-        assertState(1, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
-        assertState(1, withPath: \.deviceState?.iconData.function, equalTo: function)
-        assertState(1, withPath: \.deviceState?.iconData.state, equalTo: .default(value: .opened))
-        assertState(1, withPath: \.editMode, equalTo: false)
-        
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
+
+        let observation = observe(viewModel.state.$deviceState, count: 1)
+        viewModel.onViewAppear()
+        wait(for: [observation.exp], timeout: 1)
+
+        let deviceState = try XCTUnwrap(observation.receivedValues.first ?? nil)
+        XCTAssertEqual(deviceState.isOnline, true)
+        XCTAssertEqual(deviceState.isOn, true)
+        XCTAssertEqual(deviceState.timerStartDate, startTime)
+        XCTAssertEqual(deviceState.timerEndDate?.timeIntervalSince1970, 122)
+        XCTAssertEqual(deviceState.iconData.state, .default(value: .opened))
+        XCTAssertEqual(viewModel.state.targetAction, .turnOn)
+        XCTAssertEqual(observeChannelWithChildrenUseCase.invokeMock.parameters, [123])
         XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
+        XCTAssertEqual(getChannelBaseIconUseCase.parameters.count, 1)
     }
-    
-    func test_shouldLoadChannelAndSetEditModeToFalse() {
-        // given
-        var suplaTimer = TTimerState_ExtendedValue()
-        suplaTimer.CountdownEndsAt = 122
-        
-        var suplaExtendedValue = TSuplaChannelExtendedValue()
-        suplaExtendedValue.type = CChar(EV_TYPE_TIMER_STATE_V1)
-        suplaExtendedValue.size = UInt32(MemoryLayout<TTimerState_ExtendedValue>.size)
-        _ = withUnsafeMutablePointer(to: &suplaExtendedValue.value) {
-            $0.withMemoryRebound(to: CChar.self, capacity: MemoryLayout<TTimerState_ExtendedValue>.size) { ptr in
-                memcpy(ptr, &suplaTimer, MemoryLayout<TTimerState_ExtendedValue>.size)
-            }
-        }
-        
-        let isOnline = true
-        let function: Int32 = 123
-        let altIcon: Int32 = 2
-        let startTime = Date()
-        let extendedValue = SAChannelExtendedValue(testContext: nil)
-        extendedValue.timerStartTime = startTime
-        extendedValue.setValueWith(&suplaExtendedValue)
-        
-        let channel = createChannelWithHiValue(1, isOnline: isOnline)
-        channel.func = function
-        channel.alticon = altIcon
-        channel.ev = extendedValue
-        
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
+
+    func test_observeChannel_preservesEditModeWhenTimerValuesArrive() {
+        let channel = createChannelWithTimer(endsAt: 122, startTime: Date(), isOn: true, isOnline: true)
+        observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: channel)))
         getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(0)
         suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
-        
-        // when
-        observe(viewModel)
-        viewModel.startEditMode()
-        viewModel.loadChannel(remoteId: 123)
-        
-        // thena
-        assertObserverItems(statesCount: 3, eventsCount: 0)
-        assertState(1, withPath: \.editMode, equalTo: true)
-        assertState(2, withPath: \.deviceState?.isOnline, equalTo: isOnline)
-        assertState(2, withPath: \.deviceState?.isOn, equalTo: true)
-        assertState(2, withPath: \.deviceState?.timerStartDate, equalTo: startTime)
-        assertState(2, withPath: \.deviceState?.timerEndDate?.timeIntervalSince1970, equalTo: 122)
-        assertState(2, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
-        assertState(2, withPath: \.deviceState?.iconData.function, equalTo: function)
-        assertState(2, withPath: \.deviceState?.iconData.state, equalTo: .default(value: .opened))
-        assertState(2, withPath: \.editMode, equalTo: false)
-        
-        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
-        XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
+
+        let observation = observe(viewModel.state.$editMode, count: 1)
+        viewModel.onEditTimer()
+        viewModel.onViewAppear()
+        wait(for: [observation.exp], timeout: 1)
+
+        XCTAssertEqual(observation.receivedValues, [true])
     }
-    
-    func test_shouldStopEditMode() {
-        // when
-        observe(viewModel)
-        viewModel.startEditMode()
-        viewModel.stopEditMode()
-        
-        // then
-        assertObserverItems(statesCount: 3, eventsCount: 0)
-        assertState(0, withPath: \.editMode, equalTo: false)
-        assertState(1, withPath: \.editMode, equalTo: true)
-        assertState(2, withPath: \.editMode, equalTo: false)
+
+    func test_startTimer() {
+        setOnlineDeviceState()
+        viewModel.state.setTimeInSeconds(322)
+        viewModel.state.targetAction = .turnOn
+
+        viewModel.onStartTimer()
+
+        XCTAssertEqual(startTimerUseCase.remoteIdsArray, [123])
+        XCTAssertEqual(startTimerUseCase.turnOnsArray, [true])
+        XCTAssertEqual(startTimerUseCase.durationsArray, [322])
     }
-    
-    func test_startTimer_notInEditMode() {
-        // given
-        let remoteId: Int32 = 123
-        let action = TimerTargetAction.turnOn
-        let duration = 322
-        
-        // when
-        observe(viewModel)
-        viewModel.startTimer(remoteId: remoteId, action: action, durationInSecs: duration)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 0)
-        
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], true)
-        XCTAssertEqual(startTimerUseCase.durationsArray[0], Int32(duration))
+
+    func test_startTimer_invalidTimePresentsAlert() {
+        setOnlineDeviceState()
+        startTimerUseCase.returns = .error(StartTimerUseCaseImpl.InvalidTimeError())
+        viewModel.state.setTimeInSeconds(322)
+        let observation = observe(viewModel.state.$invalidTimeAlertPresented, count: 1)
+
+        viewModel.onStartTimer()
+        wait(for: [observation.exp], timeout: 1)
+
+        XCTAssertEqual(observation.receivedValues, [true])
     }
-    
-    func test_startTimer_informAboutWrongTime() {
-        // given
-        let remoteId: Int32 = 123
-        let action = TimerTargetAction.turnOn
-        let duration = 322
-        
-        startTimerUseCase.returns = Observable.error(StartTimerUseCaseImpl.InvalidTimeError())
-        
-        // when
-        observe(viewModel)
-        viewModel.startTimer(remoteId: remoteId, action: action, durationInSecs: duration)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 1)
-        
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], true)
-        XCTAssertEqual(startTimerUseCase.durationsArray[0], Int32(duration))
-        
-        assertEvent(0, equalTo: .showInvalidTime)
-    }
-    
-    func test_startTimer_informAboutWrongTime_editMode() {
-        // given
-        let remoteId: Int32 = 123
-        let action = TimerTargetAction.turnOn
-        let duration = 322
-        
-        let channel = createChannelWithHiValue(0)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        startTimerUseCase.returns = Observable.error(StartTimerUseCaseImpl.InvalidTimeError())
-        
-        // when
-        observe(viewModel)
-        viewModel.startEditMode()
-        viewModel.startTimer(remoteId: remoteId, action: action, durationInSecs: duration)
-        
-        // then
-        assertObserverItems(statesCount: 2, eventsCount: 1)
-        
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], true)
-        XCTAssertEqual(startTimerUseCase.durationsArray[0], Int32(duration))
-        
-        assertEvent(0, equalTo: .showInvalidTime)
-    }
-    
-    func test_stopTimer_channelOn() {
-        // given
-        let remoteId: Int32 = 123
-        
-        let channel = createChannelWithHiValue(1)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        
-        // when
-        observe(viewModel)
-        viewModel.stopTimer(remoteId: remoteId)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
+
+    func test_stopTimer_usesCurrentRelayState() {
+        observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: createChannelWithHiValue(1))))
+        viewModel.onViewAppear()
+
+        viewModel.onStopTimer()
+
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (ActionId.turnOn, SUPLA.SubjectType.channel, remoteId)
+            (ActionId.turnOn, SUPLA.SubjectType.channel, 123)
         ])
     }
-    
-    func test_stopTimer_channelOff() {
-        // given
-        let remoteId: Int32 = 123
-        
-        let channel = createChannelWithHiValue(0)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        
-        // when
-        observe(viewModel)
-        viewModel.stopTimer(remoteId: remoteId)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
+
+    func test_cancelTimer_usesOppositeRelayState() {
+        observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: createChannelWithHiValue(0))))
+        viewModel.onViewAppear()
+
+        viewModel.onCancelTimer()
+
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (ActionId.turnOff, SUPLA.SubjectType.channel, remoteId)
+            (ActionId.turnOn, SUPLA.SubjectType.channel, 123)
         ])
     }
-    
-    func test_cancelTimer_channelOn() {
-        // given
-        let remoteId: Int32 = 123
-        
-        let channel = createChannelWithHiValue(1)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        
-        // when
-        observe(viewModel)
-        viewModel.cancelTimer(remoteId: remoteId)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (ActionId.turnOff, SUPLA.SubjectType.channel, remoteId)
-        ])
-    }
-    
-    func test_cancelTimer_channelOff() {
-        // given
-        let remoteId: Int32 = 123
-        
-        let channel = createChannelWithHiValue(0)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        
-        // when
-        observe(viewModel)
-        viewModel.cancelTimer(remoteId: remoteId)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (ActionId.turnOn, SUPLA.SubjectType.channel, remoteId)
-        ])
-    }
-    
+
     func test_shouldCalculateProgressData() {
-        // given
-        let startDate = Date(timeIntervalSince1970: 20)
-        let endDate = Date(timeIntervalSince1970: 50)
-        
         dateProvider.currentDateReturns = Date(timeIntervalSince1970: 35)
-        
-        // when
-        observe(viewModel)
-        let progressData = viewModel.calculateProgressViewData(startTime: startDate, endTime: endDate)
-        
-        // then
-        assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        
-        XCTAssertEqual(progressData!.progres, 0.5)
-        XCTAssertEqual(progressData!.leftTimeValues.seconds, 16)
-        XCTAssertEqual(progressData!.leftTimeValues.minutes, 0)
-        XCTAssertEqual(progressData!.leftTimeValues.hours, 0)
+
+        let progressData = viewModel.calculateProgressViewData(
+            startTime: Date(timeIntervalSince1970: 20),
+            endTime: Date(timeIntervalSince1970: 50)
+        )
+
+        XCTAssertEqual(progressData?.progres, 0.5)
+        XCTAssertEqual(progressData?.leftTimeValues.seconds, 16)
+        XCTAssertEqual(progressData?.leftTimeValues.minutes, 0)
+        XCTAssertEqual(progressData?.leftTimeValues.hours, 0)
     }
-    
+
+    private func setOnlineDeviceState() {
+        let iconData = FetchIconData(function: SUPLA_CHANNELFNC_POWERSWITCH, altIcon: 0, profileId: 0)
+        viewModel.state.deviceState = DeviceStateViewState(
+            isOnline: true,
+            isOn: false,
+            timerEndDate: nil,
+            timerStartDate: nil,
+            iconData: iconData
+        )
+    }
+
+    private func createChannelWithTimer(endsAt: UInt32, startTime: Date, isOn: Bool, isOnline: Bool) -> SAChannel {
+        var suplaTimer = TTimerState_ExtendedValue()
+        suplaTimer.CountdownEndsAt = endsAt
+
+        var suplaExtendedValue = TSuplaChannelExtendedValue()
+        suplaExtendedValue.type = CChar(EV_TYPE_TIMER_STATE_V1)
+        suplaExtendedValue.size = UInt32(MemoryLayout<TTimerState_ExtendedValue>.size)
+        _ = withUnsafeMutablePointer(to: &suplaExtendedValue.value) {
+            $0.withMemoryRebound(to: CChar.self, capacity: MemoryLayout<TTimerState_ExtendedValue>.size) { pointer in
+                memcpy(pointer, &suplaTimer, MemoryLayout<TTimerState_ExtendedValue>.size)
+            }
+        }
+
+        let extendedValue = SAChannelExtendedValue(testContext: nil)
+        extendedValue.timerStartTime = startTime
+        extendedValue.setValueWith(&suplaExtendedValue)
+
+        let channel = createChannelWithHiValue(isOn ? 1 : 0, isOnline: isOnline)
+        channel.func = 123
+        channel.alticon = 2
+        channel.ev = extendedValue
+        return channel
+    }
+
     private func createChannelWithHiValue(_ value: Int8, isOnline: Bool = false) -> SAChannel {
         var suplaValue = TSuplaChannelValue_B()
         suplaValue.value = (value, value, value, value, value, value, value, value)
-        
-        let value = SAChannelValue(testContext: nil)
-        value.setValueWith(&suplaValue)
-        value.online = isOnline ? SUPLA_CHANNEL_ONLINE_FLAG_ONLINE : SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
-        
+
+        let channelValue = SAChannelValue(testContext: nil)
+        channelValue.setValueWith(&suplaValue)
+        channelValue.online = isOnline ? SUPLA_CHANNEL_ONLINE_FLAG_ONLINE : SUPLA_CHANNEL_ONLINE_FLAG_OFFLINE
+
         let channel = SAChannel(testContext: nil)
-        channel.value = value
-        
+        channel.value = channelValue
         return channel
     }
 }

@@ -41,7 +41,7 @@ extension ThermostatTimerDetailFeature {
             BackgroundStack(alignment: .topLeading) {
                 if (state.isTimerRunning && !state.isTimerEditing) {
                     ThermostatTimerDetailFeature.InProgressView(
-                        deviceStateData: state.deviceStateData,
+                        channelCurrentStateData: state.channelCurrentStateData,
                         timerEndTime: state.timerEndTime,
                         delegate: delegate
                     )
@@ -103,7 +103,7 @@ extension ThermostatTimerDetailFeature {
             availableModes: [.off, .heating],
             selectedMode: .off,
             timeSelectionMode: .calendar,
-            deviceStateData: DeviceState.Data(label: "STATE UNTIL 17.04.2026 00:59:", icon: .suplaIcon(name: .Icons.powerButton), value: "OFF"),
+            channelCurrentStateData: ChannelCurrentState.Data(label: "STATE UNTIL 17.04.2026 00:59:", icon: .suplaIcon(name: .Icons.powerButton), value: "OFF"),
             timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 154),
             loadingState: .init(initialLoading: false, loading: false)
         )

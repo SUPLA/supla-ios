@@ -375,6 +375,7 @@
 /* Timer Detail */
 "timer_detail_wrong_time_message" = "Čas musí byť väčší ako 0";
 "timer_detail_header" = "Zadajte čas, kedy má byť zariadenie:";
+"details_timer_disabled_forced_mode" = "Odpočítavací časovač je v režime núteného zapnutia/vypnutia vypnutý.";
 "timer_detail_turned_on" = "Zapnuté";
 "timer_detail_edit_header_on" = "zapnuté";
 "timer_detail_info_on" = "zapnuté";

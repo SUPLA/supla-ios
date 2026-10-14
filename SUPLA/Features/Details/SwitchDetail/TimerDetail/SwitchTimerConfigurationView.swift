@@ -16,262 +16,137 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-import RxCocoa
-import RxRelay
+import SwiftUI
 
-final class SwitchTimerConfigurationView: UIView {
-    
+struct SwitchTimerConfigurationView: SwiftUI.View {
+    @ObservedObject var state: SwitchTimerDetailFeature.ViewState
+    let delegate: SwitchTimerDetailFeature.ViewDelegate?
+
     private let timeFormat = "%02d:%02d:%02d"
-    
-    var header: String? = nil {
-        didSet { headerView.text = header }
-    }
-    
-    var enabled: Bool = true {
-        didSet {
-            startButton.isEnabled = enabled
-        }
-    }
-    
-    var editMode: Bool = false {
-        didSet {
-            updateInfoText()
-        }
-    }
-    
-    var action: TimerTargetAction {
-        get {
-            if (actionSwitch.selectedSegmentIndex == 0) {
-                return .turnOn
-            } else {
-                return .turnOff
-            }
-        }
-        set {
-            actionSwitch.selectedSegmentIndex = newValue.rawValue
-        }
-    }
-    
-    var timeInSeconds: Int {
-        get { calculateTimeInSeconds() }
-        set {
-            numberSelectorView.value = TrippleNumberSelectorView.Value(valueForHours: newValue)
-            updateInfoText()
-        }
-    }
-    
-    var actionObservable: Observable<Int> { actionSwitch.rx.value.asObservable() }
-    
-    var cancelObservable: Observable<Void> { cancelRelay.asObservable() }
-    
-    var startObservable: Observable<Void> { startRelay.asObservable() }
-    
-    var timeObservable: Observable<Int> {
-        numberSelectorView.valueObservable
-            .map { $0.toHoursInSec() }
-            .do(onNext: { _ in self.updateInfoText() })
-    }
-    
-    private lazy var headerView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .titleSmall
-        label.textAlignment = .center
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private lazy var actionSwitch: UISegmentedControl = {
-        let view = UISegmentedControl(items: [Strings.TimerDetail.turnedOn, Strings.TimerDetail.turnedOff])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.selectedSegmentIndex = 0
-        view.addTarget(self, action: #selector(updateInfoText), for: .valueChanged)
-        view.setTitleTextAttributes([.font: UIFont.bodyMedium], for: .normal)
-        return view
-    }()
-    
-    private lazy var numberSelectorView: TrippleNumberSelectorView = {
-        let view = TrippleNumberSelectorView()
-        view.firstColumnCount = 24
-        view.secondColumnCount = 60
-        view.thirdColumnCount = 60
-        view.firstColumnValueFormatter = {
-            if ($0 == 1) {
-                Strings.TimerDetail.hourPattern.arguments($0)
-            } else {
-                Strings.TimerDetail.hoursPattern.arguments($0)
-            }
-        }
-        view.secondColumnValueFormatter = { Strings.TimerDetail.minutePattern.arguments($0) }
-        view.thirdColumnValueFormatter = { Strings.TimerDetail.secondPattern.arguments($0) }
-        return view
-    }()
-    
-    
-    private lazy var divider: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .background
-        return view
-    }()
-    
-    private lazy var infoTextView: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .bodyMedium
-        view.textAlignment = .center
-        view.numberOfLines = 2
-        return view
-    }()
-    
-    private lazy var editCancelButton: UIBorderedButton = {
-        let button = UIBorderedButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setAttributedTitle(Strings.TimerDetail.editCancel)
-        return button
-    }()
-    
-    private lazy var startButton: UIFilledButton = {
-        let button = UIFilledButton()
-        button.setAttributedTitle(Strings.General.start)
-        return button
-    }()
-    
-    private lazy var normalModeConstraints: [NSLayoutConstraint] = {[
-        numberSelectorView.topAnchor.constraint(equalTo: actionSwitch.bottomAnchor, constant: Dimens.distanceDefault),
-        startButton.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: Dimens.distanceDefault)
-    ]}()
-    private lazy var editModeConstraints: [NSLayoutConstraint] = {[
-        numberSelectorView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Dimens.distanceDefault),
-        editCancelButton.topAnchor.constraint(equalTo: numberSelectorView.bottomAnchor, constant: Dimens.distanceDefault),
-        startButton.topAnchor.constraint(equalTo: editCancelButton.bottomAnchor, constant: Dimens.distanceDefault)
-    ]}()
-    
-    private let cancelRelay = PublishRelay<Void>()
-    private let startRelay = PublishRelay<Void>()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
-    }
-    
-    private func setupView() {
-        addSubview(headerView)
-        addSubview(actionSwitch)
-        addSubview(numberSelectorView)
-        addSubview(divider)
-        addSubview(infoTextView)
-        addSubview(editCancelButton)
-        addSubview(startButton)
-        backgroundColor = .surface
 
-        startButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onStartTapped)))
-        editCancelButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCancelEditTapped)))
-        
-        setupLayout()
-        updateInfoText()
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: topAnchor, constant: Dimens.distanceDefault),
-            headerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimens.distanceDefault),
-            headerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimens.distanceDefault),
-            
-            actionSwitch.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Dimens.distanceDefault),
-            actionSwitch.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimens.distanceDefault),
-            actionSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimens.distanceDefault),
-            actionSwitch.heightAnchor.constraint(equalToConstant: 44),
-            
-            numberSelectorView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            divider.topAnchor.constraint(equalTo: numberSelectorView.bottomAnchor, constant: Dimens.distanceDefault),
-            divider.leftAnchor.constraint(equalTo: leftAnchor),
-            divider.rightAnchor.constraint(equalTo: rightAnchor),
-            divider.heightAnchor.constraint(equalToConstant: 1),
-            
-            infoTextView.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: Dimens.distanceDefault),
-            infoTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimens.distanceDefault),
-            infoTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimens.distanceDefault),
-            
-            editCancelButton.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
-            editCancelButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
-            
-            startButton.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
-            startButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
-            startButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimens.distanceDefault)
-        ])
-    }
-    
-    @objc
-    private func updateInfoText() {
-        if (editMode) {
-            NSLayoutConstraint.deactivate(normalModeConstraints)
-            NSLayoutConstraint.activate(editModeConstraints)
-        } else {
-            NSLayoutConstraint.activate(normalModeConstraints)
-            NSLayoutConstraint.deactivate(editModeConstraints)
-        }
-        infoTextView.isHidden = editMode
-        actionSwitch.isHidden = editMode
-        divider.isHidden = editMode
-        editCancelButton.isHidden = !editMode
-        
-        startButton.setAttributedTitle(editMode ? Strings.TimerDetail.save : Strings.General.start)
-        
-        if (actionSwitch.selectedSegmentIndex == 0) {
-            infoTextView.text = Strings.TimerDetail.info.arguments(
-                Strings.TimerDetail.infoOn,
-                timeString(),
-                Strings.TimerDetail.infoNextOff
+    var body: some SwiftUI.View {
+        VStack(spacing: Distance.default) {
+            Text(header)
+                .fontTitleSmall()
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+
+            if (!state.editMode) {
+                SuplaCore.SegmentedPicker(
+                    selected: actionBinding,
+                    items: [TimerTargetAction.turnOn, .turnOff]
+                )
+                .frame(height: 44)
+            }
+
+            TimePicker()
+
+            if (!state.editMode) {
+                Rectangle()
+                    .fill(Color.Supla.background)
+                    .frame(height: 1)
+
+                Text(infoText)
+                    .fontBodyMedium()
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+            } else {
+                TitleButton(title: Strings.TimerDetail.editCancel, fullWidth: true) {
+                    delegate?.onCancelEditMode()
+                }
+                .borderedButtonStyle()
+            }
+
+            TitleButton(
+                title: state.editMode ? Strings.TimerDetail.save : Strings.General.start,
+                fullWidth: true,
+                action: { delegate?.onStartTimer() }
             )
-        } else if (actionSwitch.selectedSegmentIndex == 1) {
-            infoTextView.text = Strings.TimerDetail.info.arguments(
-                Strings.TimerDetail.infoOff,
-                timeString(),
-                Strings.TimerDetail.infoNextOn
-            )
+            .filledButtonStyle()
+            .disabled(state.deviceState?.isOnline != true || state.timerStartDisabled)
         }
-        
-        needsUpdateConstraints()
+        .padding(Distance.default)
+        .background(Color.Supla.surface)
     }
-    
-    private func calculateTimeInSeconds() -> Int {
-        return numberSelectorView.value.toHoursInSec()
+
+    private var header: String {
+        guard !state.timerStartDisabled else { return Strings.TimerDetail.disabledForcedMode }
+        guard (state.editMode) else { return Strings.TimerDetail.header }
+        let headerArgument = state.deviceState?.isOn == true
+            ? Strings.TimerDetail.editHeaderOn
+            : Strings.TimerDetail.editHeaderOff
+        return Strings.TimerDetail.editHeader.arguments(headerArgument)
     }
-    
-    private func timeString() -> String {
-        String.init(
-            format: timeFormat,
-            numberSelectorView.value.firstValue,
-            numberSelectorView.value.secondValue,
-            numberSelectorView.value.thirdValue
+
+    private var actionBinding: Binding<TimerTargetAction> {
+        Binding(
+            get: { state.targetAction },
+            set: { delegate?.onTargetActionChange($0) }
         )
     }
-    
-    @objc
-    private func onStartTapped() {
-        startRelay.accept(())
+
+    private var infoText: String {
+        let actionText = state.targetAction == .turnOn ? Strings.TimerDetail.infoOn : Strings.TimerDetail.infoOff
+        let nextActionText = state.targetAction == .turnOn ? Strings.TimerDetail.infoNextOff : Strings.TimerDetail.infoNextOn
+        let time = String(format: timeFormat, state.hours, state.minutes, state.seconds)
+        return Strings.TimerDetail.info.arguments(actionText, time, nextActionText)
     }
-    
-    @objc
-    private func onCancelEditTapped() {
-        cancelRelay.accept(())
+
+    private func TimePicker() -> some SwiftUI.View {
+        HStack(spacing: 0) {
+            SuplaCore.WheelPicker(selected: hoursBinding, items: (0..<24).map { $0.asHourPickerItem })
+            SuplaCore.WheelPicker(selected: minutesBinding, items: (0..<60).map { $0.asMinutePickerItem })
+            SuplaCore.WheelPicker(selected: secondsBinding, items: (0..<60).map {
+                NumberPickerItem(id: $0, pattern: Strings.TimerDetail.secondPattern)
+            })
+        }
+        .frame(height: 160)
+    }
+
+    private var hoursBinding: Binding<HourPickerItem> {
+        Binding(
+            get: { state.hours.asHourPickerItem },
+            set: {
+                state.hours = $0.id
+                delegate?.onTimeChange(state.timeInSeconds)
+            }
+        )
+    }
+
+    private var minutesBinding: Binding<NumberPickerItem> {
+        Binding(
+            get: { state.minutes.asMinutePickerItem },
+            set: {
+                state.minutes = $0.id
+                delegate?.onTimeChange(state.timeInSeconds)
+            }
+        )
+    }
+
+    private var secondsBinding: Binding<NumberPickerItem> {
+        Binding(
+            get: { NumberPickerItem(id: state.seconds, pattern: Strings.TimerDetail.secondPattern) },
+            set: {
+                state.seconds = $0.id
+                delegate?.onTimeChange(state.timeInSeconds)
+            }
+        )
     }
 }
 
-enum TimerTargetAction: Int {
+enum TimerTargetAction: Int, PickerItem {
     case turnOn = 0
     case turnOff = 1
-}
 
-extension TimerTargetAction {
+    var id: Int { rawValue }
+
+    var label: String {
+        switch self {
+        case .turnOn: Strings.TimerDetail.turnedOn
+        case .turnOff: Strings.TimerDetail.turnedOff
+        }
+    }
+
     static func from(value: Int) -> TimerTargetAction {
         switch(value) {
         case 0: return .turnOn

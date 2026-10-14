@@ -355,6 +355,7 @@
 
 /* Timer Detail */
 "timer_detail_header" = "Add meg, mennyi ideig maradjon az eszköz ebben az állapotban:";
+"details_timer_disabled_forced_mode" = "A visszaszámláló időzítő kényszerített be-/kikapcsolási módban le van tiltva.";
 "timer_detail_edit_header" = "Módosítsa az időpontot, amikor a készülék %1$@ állapotban van";
 "timer_detail_edit_header_on" = "bekapcsolt";
 "timer_detail_edit_header_off" = "kikapcsolt";

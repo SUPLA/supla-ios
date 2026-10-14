@@ -20,6 +20,11 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelConfigRepositoryMock: BaseRepositoryMock<SAChannelConfig>, ChannelConfigRepository {
+
+    var observeAllMock: FunctionMock<AuthProfileItem, Observable<[SAChannelConfig]>> = .init()
+    func observeAll(for profile: AuthProfileItem) -> Observable<[SAChannelConfig]> {
+        observeAllMock.handle(profile)
+    }
     
     var deleteAllParameters: [(SAChannel, AuthProfileItem)] = []
     var deleteAllReturns: Observable<Void> = .empty()

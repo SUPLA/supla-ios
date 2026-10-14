@@ -199,6 +199,7 @@ struct Strings {
     
     struct TimerDetail {
         static let header = "timer_detail_header".toLocalized()
+        static let disabledForcedMode = "details_timer_disabled_forced_mode".toLocalized()
         static let editHeader = "timer_detail_edit_header".toLocalized()
         static let editHeaderOn = "timer_detail_edit_header_on".toLocalized()
         static let editHeaderOff = "timer_detail_edit_header_off".toLocalized()

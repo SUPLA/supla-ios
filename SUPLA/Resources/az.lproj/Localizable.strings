@@ -392,6 +392,7 @@
 
 /* Timer Detail */
 "timer_detail_header" = "Cihaz nə qədər işləməlidir:";
+"details_timer_disabled_forced_mode" = "Geri sayım taymeri məcburi açıq/söndürülmüş rejimdə deaktivdir";
 "timer_detail_edit_header" = "Turn %@ vaxtını redaktə et";
 "timer_detail_edit_header_on" = "açıq";
 "timer_detail_edit_header_off" = "bağlı";

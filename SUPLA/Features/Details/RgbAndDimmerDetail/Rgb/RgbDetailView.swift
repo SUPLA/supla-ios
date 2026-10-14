@@ -68,8 +68,8 @@ extension RgbDetailFeature {
         @ViewBuilder
         private func portrait() -> some SwiftUI.View {
             VStack(spacing: 0) {
-                if let stateData = viewState.deviceStateData {
-                    DeviceState.View(data: stateData)
+                if let stateData = viewState.channelCurrentStateData {
+                    ChannelCurrentState.View(data: stateData)
                 }
                 ChannelIssuesView(issues: viewState.issues)
 
@@ -91,8 +91,8 @@ extension RgbDetailFeature {
         private func landscape() -> some SwiftUI.View {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    if let stateData = viewState.deviceStateData {
-                        DeviceState.View(data: stateData)
+                    if let stateData = viewState.channelCurrentStateData {
+                        ChannelCurrentState.View(data: stateData)
                     }
                     ChannelIssuesView(issues: viewState.issues)
                     colorAndBrightnessBox()
@@ -199,7 +199,7 @@ extension RgbDetailFeature {
 
 #Preview {
     let viewState = RgbDetailFeature.ViewState()
-    viewState.deviceStateData = DeviceState.Data(
+    viewState.channelCurrentStateData = ChannelCurrentState.Data(
         label: Strings.SwitchDetail.stateLabel,
         icon: .suplaIcon(name: "rgb-on"),
         value: Strings.General.on
@@ -208,13 +208,13 @@ extension RgbDetailFeature {
         icon: .originalSuplaIcon(name: "rgb-on"),
         label: Strings.General.turnOn,
         active: true,
-        type: .positive
+        colors: .primaryColors
     )
     viewState.offButtonState = .init(
         icon: .originalSuplaIcon(name: "rgb-off"),
         label: Strings.General.turnOff,
         active: false,
-        type: .positive
+        colors: .errorColors
     )
     viewState.value = .single(color: HsvColor(hue: 0, saturation: 1, value: 1))
     viewState.savedColors = [

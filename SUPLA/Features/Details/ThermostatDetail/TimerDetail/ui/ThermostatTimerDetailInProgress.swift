@@ -21,7 +21,7 @@ import SwiftUI
 extension ThermostatTimerDetailFeature {
     
     struct InProgressView : SwiftUI.View {
-        let deviceStateData: DeviceState.Data?
+        let channelCurrentStateData: ChannelCurrentState.Data?
         let timerEndTime: Date?
         let delegate: ViewDelegate?
         
@@ -41,20 +41,20 @@ extension ThermostatTimerDetailFeature {
         private func LandscapeView() -> some SwiftUI.View {
             HStack(alignment: .center, spacing: Distance.default) {
                 VStack {
-                    if let deviceStateData {
-                        Text(deviceStateData.label.uppercased())
+                    if let channelCurrentStateData {
+                        Text(channelCurrentStateData.label.uppercased())
                             .fontBodyMedium()
                             .textColor(Color.Supla.onSurfaceVariant)
                         
                         HStack(spacing: Distance.tiny) {
-                            if let icon = deviceStateData.icon {
+                            if let icon = channelCurrentStateData.icon {
                                 icon.image
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 25, height: 25)
                             }
                             
-                            Text(deviceStateData.value)
+                            Text(channelCurrentStateData.value)
                                 .font(.Supla.bodyMedium.bold())
                         }
                     }
@@ -75,8 +75,8 @@ extension ThermostatTimerDetailFeature {
         
         private func PortraitView() -> some SwiftUI.View {
             VStack(spacing: 0) {
-                if let deviceStateData {
-                    DeviceState.View(data: deviceStateData)
+                if let channelCurrentStateData {
+                    ChannelCurrentState.View(data: channelCurrentStateData)
                 }
                 Spacer()
                 VStack(spacing: Distance.default) {
@@ -160,7 +160,7 @@ extension ThermostatTimerDetailFeature {
 
 #Preview {
     ThermostatTimerDetailFeature.InProgressView(
-        deviceStateData: DeviceState.Data(
+        channelCurrentStateData: ChannelCurrentState.Data(
             label: "STATE UNTIL 17.04.2026 00:59:",
             icon: .suplaIcon(name: .Icons.powerButton),
             value: "OFF"
@@ -172,7 +172,7 @@ extension ThermostatTimerDetailFeature {
 
 #Preview("with days") {
     ThermostatTimerDetailFeature.InProgressView(
-        deviceStateData: DeviceState.Data(
+        channelCurrentStateData: ChannelCurrentState.Data(
             label: "STATE UNTIL 17.04.2026 00:59:",
             icon: .suplaIcon(name: .Icons.powerButton),
             value: "OFF"
@@ -187,7 +187,7 @@ extension ThermostatTimerDetailFeature {
 #Preview("(Landscape)", traits: .landscapeRight) {
     BackgroundStack(alignment: .top) {
         ThermostatTimerDetailFeature.InProgressView(
-            deviceStateData: DeviceState.Data(
+            channelCurrentStateData: ChannelCurrentState.Data(
                 label: "STATE UNTIL 17.04.2026 00:59:",
                 icon: .suplaIcon(name: .Icons.powerButton),
                 value: "OFF"
