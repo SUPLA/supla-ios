@@ -54,7 +54,7 @@ struct ChannelToMainListItem {
                 value: getChannelValueStringUseCase.valueOrNil(channelWithChildren),
                 issues: getChannelIssuesForListUseCase.invoke(channelWithChildren: channelWithChildren.shareable),
                 processing: isProcessing(channelWithChildren),
-                estimatedTimerEndDate: channel.getTimerEndDate(),
+                estimatedTimerEndDate: channel.timerEndDate,
                 infoSupported: channelWithChildren.showInfoIcon,
                 leftButtonTitle: channelWithChildren.leftButtonTitle,
                 rightButtonTitle: channelWithChildren.rightButtonTitle

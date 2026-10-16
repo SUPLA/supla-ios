@@ -20,7 +20,7 @@ import RxSwift
 import SharedCore
 import SwiftUI
 
-final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.ViewState>, SwitchTimerDetailFeature.ViewDelegate, DeviceStateHelperVMI {
+final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.ViewState>, SwitchTimerDetailFeature.ViewDelegate {
     @Singleton<ObserveChannelWithChildren.UseCase> private var observeChannelWithChildrenUseCase
     @Singleton<StartTimerUseCase> private var startTimerUseCase
     @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
@@ -51,30 +51,27 @@ final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.Vi
     }
 
     func onEditTimer() {
-        if let timerEndDate = state.deviceState?.timerEndDate {
+        if let timerEndDate = state.timerEndDate {
             state.setTimeInSeconds(Int(timerEndDate.timeIntervalSince(dateProvider.currentDate())))
         }
         state.editMode = true
     }
 
     func onStopTimer() {
-        guard let deviceState = state.deviceState else { return }
-        doAbort(turnOn: deviceState.isOn)
+        doAbort(turnOn: state.isOn)
             .asDriverWithoutError()
             .drive()
             .disposed(by: disposeBag)
     }
 
     func onCancelTimer() {
-        guard let deviceState = state.deviceState else { return }
-        doAbort(turnOn: !deviceState.isOn)
+        doAbort(turnOn: !state.isOn)
             .asDriverWithoutError()
             .drive()
             .disposed(by: disposeBag)
     }
 
     func onTargetActionChange(_ action: TimerTargetAction) {
-        guard state.deviceState != nil else { return }
         state.targetAction = action
     }
 
@@ -83,7 +80,7 @@ final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.Vi
     }
 
     func onStartTimer() {
-        guard state.deviceState?.isOnline == true, !state.timerStartDisabled else { return }
+        guard state.isOnline == true, !state.timerStartDisabled else { return }
 
         startTimerUseCase.invoke(
             remoteId: remoteId,
@@ -120,15 +117,22 @@ final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.Vi
     }
 
     private func handleChannel(_ channel: SAChannel, programState: [ChannelProgramState.Data]) {
-        let deviceState = createDeviceState(from: channel)
+        let value = channel.value?.asRelayValue()
+        let isOn = value?.on ?? false
+        let isOnline = value?.status.online ?? false
+        
+        let forced = value?.mode == .forcedOn || value?.mode == .forcedOff
 
-        state.deviceState = deviceState
-        state.channelCurrentStateData = createChannelCurrentStateData(from: deviceState)
-        let relayValue = channel.value?.asRelayValue()
-        let weeklyScheduleEnabled = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
-        let forced = relayValue?.mode == .forcedOn || relayValue?.mode == .forcedOff
+        state.isOn = isOn
+        state.isOnline = isOnline
+        state.timerEndDate = channel.timerEndDate
+        state.timerStartDate = channel.ev?.timerStartTime
+        state.channelCurrentStateData = ChannelCurrentState.Data.from(channel, isOnline, isOn)
         state.timerStartDisabled = forced
-        state.channelProgramState = deviceState.isOnline && weeklyScheduleEnabled ? programState : []
+        
+        let weeklyScheduleEnabled = value?.flags.contains(.weeklyScheduleEnabled) == true
+        state.channelProgramState = state.isOnline && weeklyScheduleEnabled && !forced && state.timerEndDate == nil ? programState : []
+        state.channelProgramState = value?.showProgram(programState, state.timerEndDate) ?? []
     }
 
     private func doAbort(turnOn: Bool) -> Observable<Void> {
@@ -136,34 +140,6 @@ final class SwitchTimerDetailVM: SuplaCore.ViewModel<SwitchTimerDetailFeature.Vi
             action: turnOn ? .turnOn : .turnOff,
             type: .channel,
             remoteId: remoteId
-        )
-    }
-
-    private func createChannelCurrentStateData(from deviceState: DeviceStateViewState) -> ChannelCurrentState.Data {
-        let label: String
-        if let timerEndDate = deviceState.timerEndDate {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Strings.General.hourFormat
-            label = .init(
-                format: Strings.SwitchDetail.stateLabelForTimer,
-                dateFormatter.string(from: timerEndDate)
-            )
-        } else {
-            label = Strings.SwitchDetail.stateLabel
-        }
-
-        let value = if (!deviceState.isOnline) {
-            Strings.SwitchDetail.stateOffline
-        } else if (deviceState.isOn) {
-            Strings.SwitchDetail.stateOn
-        } else {
-            Strings.SwitchDetail.stateOff
-        }
-
-        return ChannelCurrentState.Data(
-            label: label,
-            icon: getChannelBaseIconUseCase.invoke(iconData: deviceState.iconData),
-            value: value
         )
     }
 }

@@ -66,6 +66,7 @@ struct WeeklyScheduleEditor: View {
                     ProgramButtonsLandscape()
                     Table().padding(.vertical, Distance.small)
                 }
+                .padding(.leading, Distance.small)
             } else {
                 VStack(spacing: Distance.tiny) {
                     ProgramButtonsPortrait()

@@ -78,6 +78,7 @@ extension GateGeneralFeature {
                             autoActive: viewState.autoActive,
                             delegate: delegate
                         )
+                        .padding([.leading, .trailing], Distance.default)
                     }
                     
                     if (orientationObserver.orientation.isLandscape) {

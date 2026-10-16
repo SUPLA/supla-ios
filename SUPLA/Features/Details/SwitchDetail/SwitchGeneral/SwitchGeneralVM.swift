@@ -176,17 +176,13 @@ extension SwitchGeneralFeature {
             let forceSupported = channel.channel.flags & Int64(SUPLA_CHANNEL_FLAG_RELAY_MODE_FORCED_SUPPORTED) != 0
             let forced = relayValue?.mode == .forcedOn || relayValue?.mode == .forcedOff
             let weeklyActive = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
+            
             state.online = online
             state.on = on
             state.forceSupported = forceSupported
             state.forceActive = forceSupported && forced
             state.forceButtonDisabled = weeklyActive
             state.lockIconType = lockIconType(forced: forced, weeklyActive: weeklyActive)
-            state.channelCurrentStateData = .init(
-                label: createStateLabel(channel.channel),
-                icon: getChannelBaseIconUseCase.invoke(channel: channel.channel),
-                value: stateValue(online: online, on: on)
-            )
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channel.shareable)
             state.showElectricityState = showElectricityState
             state.showImpulseCounterState = showImpulseCounterState
@@ -203,7 +199,8 @@ extension SwitchGeneralFeature {
                 colors: .primaryColors
             )
             handleOperationButtons(relayValue, channel.channel.flags)
-            state.channelProgramState = online && weeklyScheduleEnabled ? channelProgramState : []
+            state.channelCurrentStateData = ChannelCurrentState.Data.from(channel.channel, online, on)
+            state.channelProgramState = relayValue?.showProgram(channelProgramState, channel.channel.timerEndDate) ?? []
         }
 
         private func lockIconType(forced: Bool, weeklyActive: Bool) -> LockIconType {
@@ -239,22 +236,6 @@ extension SwitchGeneralFeature {
             state.weeklyActive = weeklyActive
             state.autoAllowed = autoAllowed
             state.autoActive = !weeklyActive && relayValue?.mode == .automatic
-        }
-        
-        private func createStateLabel(_ channel: SAChannel) -> String {
-            if
-                let state = channel.ev?.timerState,
-                let timerEndTime = state.countdownEndsAt,
-                timerEndTime.timeIntervalSince1970 > dateProvider.currentTimestamp()
-            {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = Strings.General.hourFormat
-                let dateString = dateFormatter.string(from: timerEndTime)
-                    
-                return .init(format: Strings.SwitchDetail.stateLabelForTimer, dateString)
-            }
-            
-            return Strings.SwitchDetail.stateLabel
         }
         
         private func observeGroup(_ remoteId: Int32) {
