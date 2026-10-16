@@ -41,17 +41,3 @@ enum CellButtonType {
     case rightButton
 }
 
-struct CellButtonSettings {
-    let visible: Bool
-    let title: String?
-    
-    init(visible: Bool) {
-        self.visible = visible
-        self.title = nil
-    }
-    
-    init(visible: Bool, title: String) {
-        self.visible = visible
-        self.title = title
-    }
-}

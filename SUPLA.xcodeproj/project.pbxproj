@@ -430,7 +430,6 @@
 		A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */; };
 		A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */; };
 		A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */; };
-		A530EE532A5D437C00F8DAEE /* UITimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */; };
 		A531D3E02E74539700714850 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A531D3DF2E74539700714850 /* clock@3x.png */; };
 		A534D61C2FB30F4D007AAC73 /* ListValueAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */; };
 		A534D61F2FB32DAB007AAC73 /* ImpulseCounterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A534D61E2FB32DA7007AAC73 /* ImpulseCounterSettings.swift */; };
@@ -499,7 +498,6 @@
 		A5477DC92AA5E6EE00220B4A /* ChannelWithChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DC82AA5E6EE00220B4A /* ChannelWithChildren.swift */; };
 		A5477DCB2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DCA2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift */; };
 		A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DCE2AA616FD00220B4A /* CellButton.swift */; };
-		A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547821E2CA2B4BB00CD3010 /* UiSettings.swift */; };
 		A54782212CA2C13400CD3010 /* View+ScaleFactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */; };
 		A54782222CA2C13400CD3010 /* View+ShowChannelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */; };
 		A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */; };
@@ -608,7 +606,6 @@
 		A55A8DAF2BAC64A700C540D4 /* SADialogTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DAE2BAC64A700C540D4 /* SADialogTitleLabel.swift */; };
 		A55A8DB12BAC65AA00C540D4 /* SADialogPositiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DB02BAC65AA00C540D4 /* SADialogPositiveButton.swift */; };
 		A55A8DB32BAC65E500C540D4 /* SADialogNegativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DB22BAC65E500C540D4 /* SADialogNegativeButton.swift */; };
-		A55A8DB72BAC766A00C540D4 /* SALabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DB62BAC766A00C540D4 /* SALabeledTextField.swift */; };
 		A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DB82BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift */; };
 		A55A8DBB2BB2E30900C540D4 /* ThreadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DBA2BB2E30900C540D4 /* ThreadHandler.swift */; };
 		A55A8DBD2BB2EC5600C540D4 /* AuthorizeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8DBC2BB2EC5600C540D4 /* AuthorizeUseCaseTests.swift */; };
@@ -741,7 +738,6 @@
 		A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */; };
 		A57668C12AE7996D0025509D /* HistoryDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668C02AE7996D0025509D /* HistoryDataSet.swift */; };
 		A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668C22AE799AC0025509D /* ChartEntryType.swift */; };
-		A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668C42AE79BA40025509D /* HorizontalyScrollableView.swift */; };
 		A57668C82AE7CE890025509D /* SuplaCombinedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668C72AE7CE890025509D /* SuplaCombinedChartView.swift */; };
 		A57668CD2AE8F87D0025509D /* SuplaCloudConfigHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668CC2AE8F87D0025509D /* SuplaCloudConfigHolder.swift */; };
 		A57668CF2AE914140025509D /* TemperatureMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668CE2AE914140025509D /* TemperatureMeasurement.swift */; };
@@ -1057,7 +1053,6 @@
 		A5B3A4B32BB552590001D006 /* BaseWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A4B22BB552590001D006 /* BaseWindowView.swift */; };
 		A5B3A4B52BB558B70001D006 /* RoofWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A4B42BB558B70001D006 /* RoofWindowView.swift */; };
 		A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A4B82BB57B690001D006 /* RoofWindowDimensBuilder.swift */; };
-		A5B3A4BB2BB5B8F20001D006 /* WindowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3A4BA2BB5B8F20001D006 /* WindowType.swift */; };
 		A5B3CBDF2B62504D00F95AC3 /* GetChannelValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBDE2B62504D00F95AC3 /* GetChannelValueUseCase.swift */; };
 		A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBE12B62525500F95AC3 /* DefaultDoubleValueProvider.swift */; };
 		A5B3CBE52B62546800F95AC3 /* DoubleValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBE42B62546800F95AC3 /* DoubleValueParser.swift */; };
@@ -1071,7 +1066,6 @@
 		A5B3CBF62B625E2400F95AC3 /* HumidityValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBF52B625E2400F95AC3 /* HumidityValueProvider.swift */; };
 		A5B3CBF82B6260DD00F95AC3 /* GetChannelValueStringUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBF72B6260DD00F95AC3 /* GetChannelValueStringUseCase.swift */; };
 		A5B3CBFB2B62693F00F95AC3 /* DepthValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBFA2B62693F00F95AC3 /* DepthValueStringProvider.swift */; };
-		A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBFD2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift */; };
 		A5B3CC002B62770F00F95AC3 /* DistanceValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBFF2B62770F00F95AC3 /* DistanceValueStringProvider.swift */; };
 		A5B3CC022B627ADC00F95AC3 /* HumidityValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC012B627ADC00F95AC3 /* HumidityValueStringProvider.swift */; };
 		A5B3CC042B627F3800F95AC3 /* PressureValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CC032B627F3800F95AC3 /* PressureValueStringProvider.swift */; };
@@ -2326,7 +2320,6 @@
 		A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBorderedButton.swift; sourceTree = "<group>"; };
 		A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCase.swift; sourceTree = "<group>"; };
 		A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlainButton.swift; sourceTree = "<group>"; };
-		A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITimerProgressView.swift; sourceTree = "<group>"; };
 		A531D3DF2E74539700714850 /* clock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@3x.png"; sourceTree = "<group>"; };
 		A534D61B2FB30F46007AAC73 /* ListValueAggregation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListValueAggregation.swift; sourceTree = "<group>"; };
 		A534D61D2FB327A8007AAC73 /* SUPLA 28.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 28.xcdatamodel"; sourceTree = "<group>"; };
@@ -2396,7 +2389,6 @@
 		A5477DC82AA5E6EE00220B4A /* ChannelWithChildren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelWithChildren.swift; sourceTree = "<group>"; };
 		A5477DCA2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelWithChildrenUseCase.swift; sourceTree = "<group>"; };
 		A5477DCE2AA616FD00220B4A /* CellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButton.swift; sourceTree = "<group>"; };
-		A547821E2CA2B4BB00CD3010 /* UiSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiSettings.swift; sourceTree = "<group>"; };
 		A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ScaleFactor.swift"; sourceTree = "<group>"; };
 		A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ShowChannelInfo.swift"; sourceTree = "<group>"; };
 		A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponseProvider.swift; sourceTree = "<group>"; };
@@ -2514,7 +2506,6 @@
 		A55A8DAE2BAC64A700C540D4 /* SADialogTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADialogTitleLabel.swift; sourceTree = "<group>"; };
 		A55A8DB02BAC65AA00C540D4 /* SADialogPositiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADialogPositiveButton.swift; sourceTree = "<group>"; };
 		A55A8DB22BAC65E500C540D4 /* SADialogNegativeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADialogNegativeButton.swift; sourceTree = "<group>"; };
-		A55A8DB62BAC766A00C540D4 /* SALabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SALabeledTextField.swift; sourceTree = "<group>"; };
 		A55A8DB82BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupOnlineSummaryUseCase.swift; sourceTree = "<group>"; };
 		A55A8DBA2BB2E30900C540D4 /* ThreadHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHandler.swift; sourceTree = "<group>"; };
 		A55A8DBC2BB2EC5600C540D4 /* AuthorizeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2654,7 +2645,6 @@
 		A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettingsMock.swift; sourceTree = "<group>"; };
 		A57668C02AE7996D0025509D /* HistoryDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataSet.swift; sourceTree = "<group>"; };
 		A57668C22AE799AC0025509D /* ChartEntryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryType.swift; sourceTree = "<group>"; };
-		A57668C42AE79BA40025509D /* HorizontalyScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalyScrollableView.swift; sourceTree = "<group>"; };
 		A57668C72AE7CE890025509D /* SuplaCombinedChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCombinedChartView.swift; sourceTree = "<group>"; };
 		A57668CC2AE8F87D0025509D /* SuplaCloudConfigHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCloudConfigHolder.swift; sourceTree = "<group>"; };
 		A57668CE2AE914140025509D /* TemperatureMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureMeasurement.swift; sourceTree = "<group>"; };
@@ -2970,7 +2960,6 @@
 		A5B3A4B22BB552590001D006 /* BaseWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWindowView.swift; sourceTree = "<group>"; };
 		A5B3A4B42BB558B70001D006 /* RoofWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowView.swift; sourceTree = "<group>"; };
 		A5B3A4B82BB57B690001D006 /* RoofWindowDimensBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowDimensBuilder.swift; sourceTree = "<group>"; };
-		A5B3A4BA2BB5B8F20001D006 /* WindowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowType.swift; sourceTree = "<group>"; };
 		A5B3CBDE2B62504D00F95AC3 /* GetChannelValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelValueUseCase.swift; sourceTree = "<group>"; };
 		A5B3CBE12B62525500F95AC3 /* DefaultDoubleValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDoubleValueProvider.swift; sourceTree = "<group>"; };
 		A5B3CBE42B62546800F95AC3 /* DoubleValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleValueParser.swift; sourceTree = "<group>"; };
@@ -2984,7 +2973,6 @@
 		A5B3CBF52B625E2400F95AC3 /* HumidityValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityValueProvider.swift; sourceTree = "<group>"; };
 		A5B3CBF72B6260DD00F95AC3 /* GetChannelValueStringUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelValueStringUseCase.swift; sourceTree = "<group>"; };
 		A5B3CBFA2B62693F00F95AC3 /* DepthValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthValueStringProvider.swift; sourceTree = "<group>"; };
-		A5B3CBFD2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDistanceValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CBFF2B62770F00F95AC3 /* DistanceValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CC012B627ADC00F95AC3 /* HumidityValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityValueStringProvider.swift; sourceTree = "<group>"; };
 		A5B3CC032B627F3800F95AC3 /* PressureValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressureValueStringProvider.swift; sourceTree = "<group>"; };
@@ -4233,7 +4221,6 @@
 				A5074BC32BCE64A30081B6B1 /* WindowView */,
 				A5B3A4B72BB57B4D0001D006 /* RoofWindow */,
 				A5B3A4B62BB57B410001D006 /* RollerShutter */,
-				A5B3A4BA2BB5B8F20001D006 /* WindowType.swift */,
 				A50B5D012BEA41D700918D18 /* WindowGroupedValue.swift */,
 				A5EC52492C10432D0022F055 /* BaseBlindsViewModel.swift */,
 			);
@@ -4628,7 +4615,6 @@
 			isa = PBXGroup;
 			children = (
 				A52BFEAC2B050D2500A2F64C /* SATextField.swift */,
-				A55A8DB62BAC766A00C540D4 /* SALabeledTextField.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -4868,12 +4854,10 @@
 			children = (
 				A5EF57D52F5F104200513D3F /* DotsLoadingIndicator.swift */,
 				A5EF57D32F5F099E00513D3F /* LogoWithSentence.swift */,
-				A530EE522A5D437C00F8DAEE /* UITimerProgressView.swift */,
 				A51BE9062AA8532600718F2F /* ThermostatControlView.swift */,
 				A51BE9082AAA5E4D00718F2F /* GreenPointLayers.swift */,
 				A56233D72AB054EA001CB948 /* SeparatorUIView.swift */,
 				A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */,
-				A57668C42AE79BA40025509D /* HorizontalyScrollableView.swift */,
 				A5D837C72AF0F154002A420D /* PullToRefreshView.swift */,
 				A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */,
 				A55A8D852BAAF52500C540D4 /* IssueView.swift */,
@@ -6571,7 +6555,6 @@
 				A598CAB22CBE90AE00A784FA /* Divider.swift */,
 				A5A160022C2AAEDE0049AA73 /* Text.swift */,
 				A50D00012F9000010000000A /* TopBar.swift */,
-				A547821E2CA2B4BB00CD3010 /* UiSettings.swift */,
 				A5C5F6E32D91F1AD00E303B8 /* View+If.swift */,
 				A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */,
 				A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */,
@@ -6931,7 +6914,6 @@
 			isa = PBXGroup;
 			children = (
 				A5C6E26C304EE36000F64D31 /* HvacThermostatValueStringProvider.swift */,
-				A5B3CBFD2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift */,
 				A5E160A62D3108EB003A7C71 /* ContainerValueStringProvider.swift */,
 				A5B3CBFA2B62693F00F95AC3 /* DepthValueStringProvider.swift */,
 				A5B3CBFF2B62770F00F95AC3 /* DistanceValueStringProvider.swift */,
@@ -8763,7 +8745,6 @@
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
 				A5C2D94F2EAA0B96007BAA0B /* GroupUpdatesObserver.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
-				A547821F2CA2B4D400CD3010 /* UiSettings.swift in Sources */,
 				A5BF4F852F3DCA4E00F5DE81 /* PrepareNfcTagUseCase.swift in Sources */,
 				A5B593852F179F3F0054E6F9 /* DimmerCctGroupActivePercentageProvider.swift in Sources */,
 				A5741D532E40AA6B0089DBD0 /* EspConfigurationSession.swift in Sources */,
@@ -9114,7 +9095,6 @@
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				A5552EDE2D537DF500A3F6A2 /* ElectricityMeterConfigDto.swift in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
-				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
 				A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */,
 				A53E417E2F715F4400C90914 /* RestoreProfileFromDefaultsUseCase.swift in Sources */,
 				A505EC362CF71BD500E69BDB /* ProfileDto.swift in Sources */,
@@ -9632,7 +9612,6 @@
 				A56364292EE190FD00A702C0 /* RgbDetailView.swift in Sources */,
 				A550F28F2D5236E50011463B /* DownloadPowerActiveLogUseCase.swift in Sources */,
 				A5882ED12DBF75A500F1FC4A /* UpdateCarPlayOrderUseCase.swift in Sources */,
-				A530EE532A5D437C00F8DAEE /* UITimerProgressView.swift in Sources */,
 				A5A15FFF2C2AA44B0049AA73 /* StatusFeature.swift in Sources */,
 				A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */,
 				A54260222CE38CC900BE74FE /* ListItemIssues+iOS.swift in Sources */,
@@ -9702,7 +9681,6 @@
 				A584E2072CABCE3F00232A98 /* SAExectricityMeterExtendedValue+Ext.swift in Sources */,
 				A55A8DA42BAC2B0E00C540D4 /* SAAlertDialogVM.swift in Sources */,
 				A5E05BB12CB46E6800202583 /* SATemperatureMeasurementItem+Ext.swift in Sources */,
-				A5B3A4BB2BB5B8F20001D006 /* WindowType.swift in Sources */,
 				A5E0DF732CEBDBD000362451 /* CheckOcrPhotoExistsUseCase.swift in Sources */,
 				A5E05BCE2CB7154B00202583 /* NSDecimalNumber+Ext.swift in Sources */,
 				A56233ED2AB38CED001CB948 /* TemperatureChangeStep.swift in Sources */,
@@ -9717,7 +9695,6 @@
 				A53E417A2F6D7AB100C90914 /* ProfileChooserVM.swift in Sources */,
 				A5E2D6B22DCA239A00EBDADB /* LocalizedStringResource+Ext.swift in Sources */,
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
-				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
 				A5DF8A272D63442B00C210DA /* WaterTankIconNameProducer.swift in Sources */,
 				A598CAD32CC6E5DA00A784FA /* LocalizedStringId+Ext.swift in Sources */,
 				A58542272D8074D600D314A2 /* ChannelIssuesView.swift in Sources */,
@@ -9832,7 +9809,6 @@
 				A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */,
 				A50716D52D6892520060FA0D /* StateDialogFeature.swift in Sources */,
 				A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */,
-				A55A8DB72BAC766A00C540D4 /* SALabeledTextField.swift in Sources */,
 				A5E160A32D306A8D003A7C71 /* ContainerIconNameProducer.swift in Sources */,
 				A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */,
 				A5882ECD2DBF51DA00F1FC4A /* ReadCarPlayItemsUseCase.swift in Sources */,
