@@ -39,11 +39,6 @@ struct Dimens {
 
     static let elementOffset = CGFloat(8)
 
-    struct Form {
-        static let elementSpacing = CGFloat(16)
-        static let verticalMargin = CGFloat(11)
-    }
-
     struct Fonts {
         static let caption = CGFloat(11)
         static let value = CGFloat(20)

@@ -245,10 +245,6 @@ private extension Completable {
     }
 }
 
-enum ShadingSystemOrientation {
-    case vertical, horizontal
-}
-
 enum BaseWindowViewEvent: ViewEvent {
     case showCalibrationDialog
 }
