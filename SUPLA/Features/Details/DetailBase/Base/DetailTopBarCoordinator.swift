@@ -22,10 +22,14 @@ final class DetailTopBarCoordinator: ObservableObject {
     @Published private(set) var action: SuplaCore.TopBar.ActionIcon? = nil
 
     func setAction(_ action: SuplaCore.TopBar.ActionIcon) {
-        self.action = action
+        DispatchQueue.main.async { [weak self] in
+            self?.action = action
+        }
     }
 
     func clearAction() {
-        action = nil
+        DispatchQueue.main.async { [weak self] in
+            self?.action = nil
+        }
     }
 }

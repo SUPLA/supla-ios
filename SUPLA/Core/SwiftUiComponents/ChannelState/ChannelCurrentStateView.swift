@@ -39,19 +39,22 @@ struct ChannelCurrentState {
         let icon: IconResult?
         let iconColor: Color?
         let stateValue: String
+        let padding: EdgeInsets?
         
         init(stateLabel: String, icon: IconResult?, stateValue: String) {
             self.stateLabel = stateLabel
             self.icon = icon
             self.iconColor = nil
             self.stateValue = stateValue
+            self.padding = nil
         }
         
-        init(data: Data) {
+        init(data: Data, padding: EdgeInsets? = nil) {
             self.stateLabel = data.label
             self.icon = data.icon
             self.stateValue = data.value
             self.iconColor = data.iconColor
+            self.padding = padding
         }
         
         var body: some SwiftUI.View {
@@ -73,7 +76,40 @@ struct ChannelCurrentState {
                     .font(.Supla.bodyMedium.bold())
                 Spacer()
             }
-            .padding([.leading, .trailing, .top], Distance.default)
+            .padding(padding ?? .init(top: Distance.default, leading: Distance.default, bottom: 0, trailing: Distance.default))
+        }
+    }
+}
+
+extension ChannelCurrentState.Data {
+    static func from(_ channel: SAChannel, _ isOnline: Bool, _ isOn: Bool) -> ChannelCurrentState.Data {
+        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
+        
+        let value = if (!isOnline) {
+            Strings.SwitchDetail.stateOffline
+        } else if (isOn) {
+            Strings.SwitchDetail.stateOn
+        } else {
+            Strings.SwitchDetail.stateOff
+        }
+        
+        return ChannelCurrentState.Data(
+            label: label(channel.timerEndDate),
+            icon: getChannelBaseIconUseCase.invoke(channel: channel),
+            value: value
+        )
+    }
+    
+    private static func label(_ timerEndDate: Date?) -> String {
+        if let timerEndDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = Strings.General.hourFormat
+            return .init(
+                format: Strings.SwitchDetail.stateLabelForTimer,
+                dateFormatter.string(from: timerEndDate)
+            )
+        } else {
+            return Strings.SwitchDetail.stateLabel
         }
     }
 }

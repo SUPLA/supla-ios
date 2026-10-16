@@ -70,43 +70,55 @@ extension RelayScheduleFeature {
     private struct QuartersDialog: SwiftUI.View {
         @ObservedObject var state: QuartersState
         let delegate: ViewDelegate?
-        @ObservedObject private var orientationObserver = OrientationObserver()
 
         var body: some SwiftUI.View {
-            let width: CGFloat = orientationObserver.orientation.isLandscape ? 500 : 300
-            SuplaCore.Dialog.Base(onDismiss: { delegate?.onQuartersDismiss() }, width: width) {
-                SuplaCore.Dialog.Header(title: Strings.ThermostatDetail.editQuartersDialogHeader.arguments(state.key.hour))
-                FlowHStack(data: state.programs) { _, program in
-                    ScheduleProgramButton(
-                        state: program.buttonState(state.activeProgram),
-                        action: { delegate?.onQuartersProgramChange(program.program) }
-                    )
-                }
-                .padding(.vertical, Distance.tiny)
-                .padding(.horizontal, Distance.default)
-                .background(Color.Supla.background)
+            GeometryReader { geometry in
+                let width: CGFloat = geometry.size.width > geometry.size.height ? 500 : 300
+                let maxHeight = max(0, geometry.size.height - Distance.default * 2)
 
-                Text(state.key.dayOfWeek.fullText().uppercased())
-                    .fontBodyMedium()
-                    .padding(.horizontal, Distance.default)
-                    .padding(.vertical, Distance.small)
+                SuplaCore.Dialog.Base(onDismiss: { delegate?.onQuartersDismiss() }, width: width) {
+                    VStack(spacing: 0) {
+                        ScrollView(.vertical) {
+                            VStack(spacing: 0) {
+                                SuplaCore.Dialog.Header(title: Strings.ThermostatDetail.editQuartersDialogHeader.arguments(state.key.hour))
+                                FlowHStack(data: state.programs) { _, program in
+                                    ScheduleProgramButton(
+                                        state: program.buttonState(state.activeProgram),
+                                        action: { delegate?.onQuartersProgramChange(program.program) }
+                                    )
+                                }
+                                .padding(.vertical, Distance.tiny)
+                                .padding(.horizontal, Distance.default)
+                                .background(Color.Supla.background)
 
-                ForEach(QuarterOfHour.allCases, id: \.self) { quarter in
-                    HStack(spacing: Distance.default) {
-                        Text(state.key.hour.toHour(withMinutes: quarter.minutes())).fontBodyMedium()
-                        state.hourPrograms.programForQuarter(quarter).color
-                            .frame(maxWidth: .infinity, maxHeight: 36)
-                            .clipShape(RoundedRectangle(cornerRadius: Dimens.radiusSmall))
-                            .onTapGesture { delegate?.onQuartersChange(quarter) }
+                                Text(state.key.dayOfWeek.fullText().uppercased())
+                                    .fontBodyMedium()
+                                    .padding(.horizontal, Distance.default)
+                                    .padding(.vertical, Distance.small)
+
+                                ForEach(QuarterOfHour.allCases, id: \.self) { quarter in
+                                    HStack(spacing: Distance.default) {
+                                        Text(state.key.hour.toHour(withMinutes: quarter.minutes())).fontBodyMedium()
+                                        state.hourPrograms.programForQuarter(quarter).color
+                                            .frame(maxWidth: .infinity, maxHeight: 36)
+                                            .clipShape(RoundedRectangle(cornerRadius: Dimens.radiusSmall))
+                                            .onTapGesture { delegate?.onQuartersChange(quarter) }
+                                    }
+                                    .padding(.horizontal, Distance.default)
+                                    .padding(.bottom, Distance.tiny)
+                                }
+                            }
+                        }
+                        .frame(maxHeight: .infinity)
+                        .hideScrollIndicators()
+
+                        SuplaCore.Dialog.HorizontalButtons(
+                            onSecondaryClick: { delegate?.onQuartersDismiss() },
+                            onPrimaryClick: { delegate?.onQuartersSave() }
+                        )
                     }
-                    .padding(.horizontal, Distance.default)
-                    .padding(.bottom, Distance.tiny)
+                    .frame(maxHeight: maxHeight)
                 }
-
-                SuplaCore.Dialog.HorizontalButtons(
-                    onSecondaryClick: { delegate?.onQuartersDismiss() },
-                    onPrimaryClick: { delegate?.onQuartersSave() }
-                )
             }
         }
     }

@@ -21,28 +21,25 @@ import XCTest
 
 @testable import SUPLA
 
-final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature.ViewState> {
+final class SwitchTimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature.ViewState> {
     private var viewModel: SwitchTimerDetailVM!
     private var observeChannelWithChildrenUseCase = ObserveChannelWithChildren.Mock()
-    private var getChannelBaseStateUseCase = GetChannelBaseStateUseCaseMock()
     private var getChannelBaseIconUseCase = GetChannelBaseIconUseCaseMock()
+    private var observeRelayProgramStateUseCase = ObserveRelayProgramStateUseCaseMock()
     private var startTimerUseCase = StartTimerUseCaseMock()
     private var executeSimpleActionUseCase = ExecuteSimpleAction.Mock()
     private var dateProvider = DateProviderMock()
     private var runtimeConfig = RuntimeConfigImpl()
-    private var suplaClientProvider = SuplaClientProviderMock()
 
     override func setUp() {
         super.setUp()
         DiContainer.shared.register(type: ObserveChannelWithChildren.UseCase.self, observeChannelWithChildrenUseCase)
-        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase)
+        DiContainer.shared.register(type: ObserveRelayProgramState.UseCase.self, observeRelayProgramStateUseCase)
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCase)
         DiContainer.shared.register(type: StartTimerUseCase.self, startTimerUseCase)
         DiContainer.shared.register(type: ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase)
         DiContainer.shared.register(type: DateProvider.self, dateProvider)
         DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig)
-        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider)
-
         viewModel = SwitchTimerDetailVM(remoteId: 123)
     }
 
@@ -51,47 +48,54 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
         super.tearDown()
     }
 
-    func test_observeChannel() throws {
+    func test_observeChannel() {
         let startTime = Date()
         let channel = createChannelWithTimer(endsAt: 122, startTime: startTime, isOn: true, isOnline: true)
         observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: channel)))
-        getChannelBaseStateUseCase.returns = .default(value: .opened)
+        let icon = IconResult.suplaIcon(name: .Icons.fncGpm1)
+        getChannelBaseIconUseCase.returns = icon
         dateProvider.currentTimestampReturns = .single(0)
-        suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
 
-        let observation = observe(viewModel.state.$deviceState, count: 1)
         viewModel.onViewAppear()
-        wait(for: [observation.exp], timeout: 1)
 
-        let deviceState = try XCTUnwrap(observation.receivedValues.first ?? nil)
-        XCTAssertEqual(deviceState.isOnline, true)
-        XCTAssertEqual(deviceState.isOn, true)
-        XCTAssertEqual(deviceState.timerStartDate, startTime)
-        XCTAssertEqual(deviceState.timerEndDate?.timeIntervalSince1970, 122)
-        XCTAssertEqual(deviceState.iconData.state, .default(value: .opened))
+        XCTAssertEqual(viewModel.state.isOnline, true)
+        XCTAssertEqual(viewModel.state.isOn, true)
+        XCTAssertEqual(viewModel.state.timerStartDate, startTime)
+        XCTAssertEqual(viewModel.state.timerEndDate?.timeIntervalSince1970, 122)
+        XCTAssertEqual(viewModel.state.channelCurrentStateData?.icon, icon)
+        XCTAssertEqual(viewModel.state.channelCurrentStateData?.value, Strings.SwitchDetail.stateOn)
         XCTAssertEqual(viewModel.state.targetAction, .turnOn)
         XCTAssertEqual(observeChannelWithChildrenUseCase.invokeMock.parameters, [123])
-        XCTAssertEqual(getChannelBaseStateUseCase.parameters, [channel])
         XCTAssertEqual(getChannelBaseIconUseCase.parameters.count, 1)
+        XCTAssertEqual(observeRelayProgramStateUseCase.parameters, [123])
     }
 
     func test_observeChannel_preservesEditModeWhenTimerValuesArrive() {
         let channel = createChannelWithTimer(endsAt: 122, startTime: Date(), isOn: true, isOnline: true)
         observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: channel)))
-        getChannelBaseStateUseCase.returns = .default(value: .opened)
         dateProvider.currentTimestampReturns = .single(0)
-        suplaClientProvider.suplaClientMock.getServerTimeDiffInSecMock.returns = .single(0)
 
-        let observation = observe(viewModel.state.$editMode, count: 1)
         viewModel.onEditTimer()
         viewModel.onViewAppear()
-        wait(for: [observation.exp], timeout: 1)
 
-        XCTAssertEqual(observation.receivedValues, [true])
+        XCTAssertTrue(viewModel.state.editMode)
+    }
+
+    func test_editTimer_usesRemainingDuration() {
+        let channel = createChannelWithTimer(endsAt: 122, startTime: Date(), isOn: true, isOnline: true)
+        observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: channel)))
+        dateProvider.currentTimestampReturns = .single(0)
+        dateProvider.currentDateReturns = Date(timeIntervalSince1970: 100)
+
+        viewModel.onViewAppear()
+        viewModel.onEditTimer()
+
+        XCTAssertEqual(viewModel.state.timeInSeconds, 22)
+        XCTAssertTrue(viewModel.state.editMode)
     }
 
     func test_startTimer() {
-        setOnlineDeviceState()
+        viewModel.state.isOnline = true
         viewModel.state.setTimeInSeconds(322)
         viewModel.state.targetAction = .turnOn
 
@@ -103,7 +107,7 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
     }
 
     func test_startTimer_invalidTimePresentsAlert() {
-        setOnlineDeviceState()
+        viewModel.state.isOnline = true
         startTimerUseCase.returns = .error(StartTimerUseCaseImpl.InvalidTimeError())
         viewModel.state.setTimeInSeconds(322)
         let observation = observe(viewModel.state.$invalidTimeAlertPresented, count: 1)
@@ -116,6 +120,7 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
 
     func test_stopTimer_usesCurrentRelayState() {
         observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: createChannelWithHiValue(1))))
+        dateProvider.currentTimestampReturns = .single(0)
         viewModel.onViewAppear()
 
         viewModel.onStopTimer()
@@ -127,6 +132,7 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
 
     func test_cancelTimer_usesOppositeRelayState() {
         observeChannelWithChildrenUseCase.invokeMock.returns = .single(.just(ChannelWithChildren(channel: createChannelWithHiValue(0))))
+        dateProvider.currentTimestampReturns = .single(0)
         viewModel.onViewAppear()
 
         viewModel.onCancelTimer()
@@ -150,17 +156,6 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
         XCTAssertEqual(progressData?.leftTimeValues.hours, 0)
     }
 
-    private func setOnlineDeviceState() {
-        let iconData = FetchIconData(function: SUPLA_CHANNELFNC_POWERSWITCH, altIcon: 0, profileId: 0)
-        viewModel.state.deviceState = DeviceStateViewState(
-            isOnline: true,
-            isOn: false,
-            timerEndDate: nil,
-            timerStartDate: nil,
-            iconData: iconData
-        )
-    }
-
     private func createChannelWithTimer(endsAt: UInt32, startTime: Date, isOn: Bool, isOnline: Bool) -> SAChannel {
         var suplaTimer = TTimerState_ExtendedValue()
         suplaTimer.CountdownEndsAt = endsAt
@@ -179,7 +174,7 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
         extendedValue.setValueWith(&suplaExtendedValue)
 
         let channel = createChannelWithHiValue(isOn ? 1 : 0, isOnline: isOnline)
-        channel.func = 123
+        channel.func = SUPLA_CHANNELFNC_POWERSWITCH
         channel.alticon = 2
         channel.ev = extendedValue
         return channel
@@ -196,5 +191,15 @@ final class TimerDetailVMTests: SuplaCore.ViewModelTest<SwitchTimerDetailFeature
         let channel = SAChannel(testContext: nil)
         channel.value = channelValue
         return channel
+    }
+}
+
+private final class ObserveRelayProgramStateUseCaseMock: ObserveRelayProgramState.UseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<[ChannelProgramState.Data]> = .just([])
+
+    func invoke(remoteId: Int32) -> Observable<[ChannelProgramState.Data]> {
+        parameters.append(remoteId)
+        return returns
     }
 }

@@ -24,6 +24,13 @@ protocol OperationButtonsDelegate {
     func onAuto()
 }
 
+enum OperationButtonsStyle: Equatable {
+    case text
+    case icons
+}
+
+private let automaticModePadding = EdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 14)
+
 struct OperationButtons: View {
     let manualAllowed: Bool
     let manualActive: Bool
@@ -31,56 +38,95 @@ struct OperationButtons: View {
     let weeklyActive: Bool
     let autoAllowed: Bool
     let autoActive: Bool
+    var style: OperationButtonsStyle = .text
 
     let delegate: OperationButtonsDelegate?
 
     var body: some View {
         HStack(spacing: Distance.tiny) {
             if (manualAllowed) {
-                SuplaButton(
-                    Strings.ThermostatDetail.modeManual,
-                    colors: .primaryColors,
+                OperationButton(
+                    style: style,
+                    text: Strings.ThermostatDetail.modeManual,
+                    icon: .suplaIcon(name: .Icons.manual),
                     active: manualActive,
-                    fullWidth: true,
-                    padding: roundedPadding,
                     action: { delegate?.onManual() }
                 )
             }
 
             if (weeklyAllowed) {
-                SuplaButton(
-                    Strings.ThermostatDetail.modeWeeklySchedule,
-                    colors: .primaryColors,
+                OperationButton(
+                    style: style,
+                    text: Strings.ThermostatDetail.modeWeeklySchedule,
+                    icon: .suplaIcon(name: .Icons.schedule),
                     active: weeklyActive,
-                    fullWidth: true,
-                    padding: roundedPadding,
                     action: { delegate?.onWeekly() }
                 )
             }
 
             if (autoAllowed) {
-                SuplaButton(
-                    Strings.RelaySchedule.modeAutomatic,
-                    colors: .primaryColors,
+                OperationButton(
+                    style: style,
+                    text: Strings.RelaySchedule.modeAutomatic,
+                    iconLabel: "A",
                     active: autoActive,
-                    fullWidth: true,
-                    padding: roundedPadding,
                     action: { delegate?.onAuto() }
                 )
             }
         }
-        .padding([.leading, .trailing], Distance.default)
+    }
+}
+
+struct OperationButton: View {
+    let style: OperationButtonsStyle
+    let text: String
+    var icon: IconResult? = nil
+    var iconLabel: String? = nil
+    let active: Bool
+    let action: () -> Void
+
+    var body: some View {
+        if (style == .icons), let icon {
+            SuplaButton(
+                icon,
+                colors: .primaryColors,
+                active: active,
+                action: action
+            )
+        } else {
+            SuplaButton(
+                style == .icons ? (iconLabel ?? "A") : text,
+                colors: .primaryColors,
+                active: active,
+                fullWidth: style == .text,
+                padding: style == .icons ? automaticModePadding : roundedPadding,
+                action: action
+            )
+        }
     }
 }
 
 #Preview {
-    OperationButtons(
-        manualAllowed: true,
-        manualActive: true,
-        weeklyAllowed: true,
-        weeklyActive: false,
-        autoAllowed: true,
-        autoActive: false,
-        delegate: nil
-    )
+    VStack {
+        OperationButtons(
+            manualAllowed: true,
+            manualActive: true,
+            weeklyAllowed: true,
+            weeklyActive: false,
+            autoAllowed: true,
+            autoActive: false,
+            delegate: nil
+        )
+
+        OperationButtons(
+            manualAllowed: true,
+            manualActive: true,
+            weeklyAllowed: true,
+            weeklyActive: false,
+            autoAllowed: true,
+            autoActive: false,
+            style: .icons,
+            delegate: nil
+        )
+    }
 }

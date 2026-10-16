@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct ChannelProgramState {
+enum ChannelProgramState {
     struct Data {
         let label: String
         let description: String?
@@ -49,6 +49,15 @@ struct ChannelProgramState {
 
     struct View: SwiftUI.View {
         let data: [Data]
+        let padding: EdgeInsets?
+
+        init(
+            data: [Data],
+            padding: EdgeInsets? = nil
+        ) {
+            self.data = data
+            self.padding = padding
+        }
 
         var body: some SwiftUI.View {
             VStack(alignment: .leading, spacing: Distance.tiny) {
@@ -96,28 +105,48 @@ struct ChannelProgramState {
                     }
                 }
             }
-            .frame(maxWidth: .infinity, minHeight: 80, alignment: .leading)
-            .padding(.horizontal, Distance.default)
-            .padding(.top, Distance.small)
+            .frame(maxWidth: .infinity, minHeight: 50, alignment: .leading)
+            .padding(padding ?? .init(top: Distance.small, leading: Distance.default, bottom: Distance.default, trailing: 0))
         }
     }
 }
 
 #Preview("Current and next program") {
-    ChannelProgramState.View(data: [
-        .init(
-            label: Strings.ThermostatDetail.programCurrent,
-            description: Strings.Schedule.programForceOn,
-            time: Strings.General.time_just_minutes.arguments(12),
-            icon: Image(systemName: "power"),
-            iconColor: .green
-        ),
-        .init(
-            label: Strings.ThermostatDetail.programNext,
-            description: Strings.Schedule.programForceOff,
-            icon: Image(systemName: "power"),
-            iconColor: .red
+    VStack(spacing: 0) {
+        ChannelProgramState.View(data: [
+            .init(
+                label: Strings.ThermostatDetail.programCurrent,
+                description: Strings.Schedule.programForceOn,
+                time: Strings.General.time_just_minutes.arguments(12),
+                icon: Image(systemName: "power"),
+                iconColor: .green
+            ),
+            .init(
+                label: Strings.ThermostatDetail.programNext,
+                description: Strings.Schedule.programForceOff,
+                icon: Image(systemName: "power"),
+                iconColor: .red
+            )
+        ])
+
+        ChannelProgramState.View(
+            data: [
+                .init(
+                    label: Strings.ThermostatDetail.programCurrent,
+                    description: Strings.Schedule.programForceOn,
+                    time: Strings.General.time_just_minutes.arguments(12),
+                    icon: Image(systemName: "power"),
+                    iconColor: .green
+                ),
+                .init(
+                    label: Strings.ThermostatDetail.programNext,
+                    description: Strings.Schedule.programForceOff,
+                    icon: Image(systemName: "power"),
+                    iconColor: .red
+                )
+            ],
+            padding: .zero
         )
-    ])
+    }
     .background(Color.Supla.background)
 }

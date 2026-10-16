@@ -321,7 +321,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.sensorIssue, to: SensorIssue.build(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.status().online && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.status().online, data.3))
-                .changing(path: \.timerEndDate, to: channel.channel.getTimerEndDate())
+                .changing(path: \.timerEndDate, to: channel.channel.timerEndDate)
                 .changing(path: \.currentPower, to: thermostatValue.state.power?.intValue)
             
             changedState = handleSetpoints(changedState, channel: channel.channel)

@@ -20,8 +20,9 @@ import SwiftUI
 
 extension SwitchTimerDetailFeature {
     final class ViewState: ObservableObject {
-        @Published var deviceState: DeviceStateViewState?
-        @Published var channelCurrentStateData: ChannelCurrentState.Data?
+        @Published var isOn: Bool = false
+        @Published var isOnline: Bool = false
+        @Published var channelCurrentStateData: ChannelCurrentState.Data? = nil
         @Published var channelProgramState: [ChannelProgramState.Data] = []
         @Published var timerStartDisabled = false
         @Published var editMode = false
@@ -30,6 +31,10 @@ extension SwitchTimerDetailFeature {
         @Published var minutes = 0
         @Published var seconds = 0
         @Published var invalidTimeAlertPresented = false
+        
+        @Published var timerStartDate: Date? = nil
+        @Published var timerEndDate: Date? = nil
+        
         let referenceDate = Date()
 
         var timeInSeconds: Int { hours * 3600 + minutes * 60 + seconds }

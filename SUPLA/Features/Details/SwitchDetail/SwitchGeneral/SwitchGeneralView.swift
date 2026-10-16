@@ -34,6 +34,7 @@ extension SwitchGeneralFeature {
         @ObservedObject var icState: ImpulseCounterGeneralState
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
         @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
+        @ObservedObject var orientationObserver = OrientationObserver()
 
         var delegate: ViewDelegate?
 
@@ -97,46 +98,7 @@ extension SwitchGeneralFeature {
                         Spacer()
                     }
 
-                    if (viewState.manualAllowed || viewState.weeklyAllowed || viewState.autoAllowed) {
-                        OperationButtons(
-                            manualAllowed: viewState.manualAllowed,
-                            manualActive: viewState.manualActive,
-                            weeklyAllowed: viewState.weeklyAllowed,
-                            weeklyActive: viewState.weeklyActive,
-                            autoAllowed: viewState.autoAllowed,
-                            autoActive: viewState.autoActive,
-                            delegate: delegate
-                        )
-                        .padding(.top, Distance.default)
-                    }
-
-                    HStack(spacing: Distance.tiny) {
-                        if let leftButton = viewState.offButtonState {
-                            SwitchButton(
-                                state: leftButton,
-                                onClick: { delegate?.onTurnOff() }
-                            )
-                            .disabled(!viewState.online || viewState.forceActive)
-                        }
-
-                        if (viewState.forceSupported) {
-                            LockSuplaButton(
-                                pressed: viewState.forceActive,
-                                type: viewState.lockIconType,
-                                onClick: { delegate?.onForce() }
-                            )
-                            .disabled(viewState.forceButtonDisabled)
-                        }
-
-                        if let rightButton = viewState.onButtonState {
-                            SwitchButton(
-                                state: rightButton,
-                                onClick: { delegate?.onTurnOn() }
-                            )
-                            .disabled(!viewState.online || viewState.forceActive)
-                        }
-                    }
-                    .padding(Distance.default)
+                    Buttons()
                 }
 
                 if let alertDialogState = viewState.alertDialogState {
@@ -156,6 +118,104 @@ extension SwitchGeneralFeature {
                     CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
                 }
             }
+        }
+        
+        
+        @ViewBuilder
+        private func Buttons() -> some SwiftUI.View {
+            if (orientationObserver.orientation.isLandscape) {
+                ButtonsLandscape()
+            } else {
+                ButtonsPortrait()
+            }
+        }
+        
+        @ViewBuilder
+        private func ButtonsPortrait() -> some SwiftUI.View {
+            if (viewState.manualAllowed || viewState.weeklyAllowed || viewState.autoAllowed) {
+                OperationButtons(
+                    manualAllowed: viewState.manualAllowed,
+                    manualActive: viewState.manualActive,
+                    weeklyAllowed: viewState.weeklyAllowed,
+                    weeklyActive: viewState.weeklyActive,
+                    autoAllowed: viewState.autoAllowed,
+                    autoActive: viewState.autoActive,
+                    delegate: delegate
+                )
+                .padding([.top, .leading, .trailing], Distance.default)
+            }
+
+            HStack(spacing: Distance.tiny) {
+                if let leftButton = viewState.offButtonState {
+                    SwitchButton(
+                        state: leftButton,
+                        onClick: { delegate?.onTurnOff() }
+                    )
+                    .disabled(!viewState.online || viewState.forceActive)
+                }
+
+                if (viewState.forceSupported) {
+                    LockSuplaButton(
+                        pressed: viewState.forceActive,
+                        type: viewState.lockIconType,
+                        onClick: { delegate?.onForce() }
+                    )
+                    .disabled(viewState.forceButtonDisabled)
+                }
+
+                if let rightButton = viewState.onButtonState {
+                    SwitchButton(
+                        state: rightButton,
+                        onClick: { delegate?.onTurnOn() }
+                    )
+                    .disabled(!viewState.online || viewState.forceActive)
+                }
+            }
+            .padding(Distance.default)
+        }
+        
+        @ViewBuilder
+        private func ButtonsLandscape() -> some SwiftUI.View {
+            HStack(spacing: Distance.tiny) {
+                if (viewState.manualAllowed || viewState.weeklyAllowed || viewState.autoAllowed) {
+                    OperationButtons(
+                        manualAllowed: viewState.manualAllowed,
+                        manualActive: viewState.manualActive,
+                        weeklyAllowed: viewState.weeklyAllowed,
+                        weeklyActive: viewState.weeklyActive,
+                        autoAllowed: viewState.autoAllowed,
+                        autoActive: viewState.autoActive,
+                        style: .icons,
+                        delegate: delegate
+                    )
+                }
+                
+                if let leftButton = viewState.offButtonState {
+                    SwitchButton(
+                        state: leftButton,
+                        onClick: { delegate?.onTurnOff() }
+                    )
+                    .disabled(!viewState.online || viewState.forceActive)
+                }
+
+                if (viewState.forceSupported) {
+                    LockSuplaButton(
+                        pressed: viewState.forceActive,
+                        type: viewState.lockIconType,
+                        onClick: { delegate?.onForce() }
+                    )
+                    .disabled(viewState.forceButtonDisabled)
+                }
+
+                if let rightButton = viewState.onButtonState {
+                    SwitchButton(
+                        state: rightButton,
+                        onClick: { delegate?.onTurnOn() }
+                    )
+                    .disabled(!viewState.online || viewState.forceActive)
+                }
+            }
+            .padding(Distance.default)
         }
     }
 }

@@ -221,7 +221,7 @@ extension ThermostatTimerDetailFeature {
         private func handleData(_ channel: SAChannel, _ config: SuplaChannelHvacConfig) {
             SALog.debug("Handle data")
             let currentDate = dateProvider.currentDate()
-            let timerEndDate = channel.getTimerEndDate()
+            let timerEndDate = channel.timerEndDate
             let isTimerOn = timerEndDate != nil && timerEndDate!.timeIntervalSince1970 > currentDate.timeIntervalSince1970
             
             guard let minTemperature = config.minTemperature,

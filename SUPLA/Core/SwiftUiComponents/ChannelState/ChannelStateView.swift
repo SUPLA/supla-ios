@@ -21,12 +21,24 @@ import SwiftUI
 struct ChannelStateView: SwiftUI.View {
     let currentState: ChannelCurrentState.Data?
     let programState: [ChannelProgramState.Data]
+    
+    let padding: EdgeInsets?
+    
+    init(
+        currentState: ChannelCurrentState.Data?,
+        programState: [ChannelProgramState.Data],
+        padding: EdgeInsets? = nil
+    ) {
+        self.currentState = currentState
+        self.programState = programState
+        self.padding = padding
+    }
 
     var body: some SwiftUI.View {
         if !programState.isEmpty {
-            ChannelProgramState.View(data: programState)
+            ChannelProgramState.View(data: programState, padding: padding)
         } else if let currentState {
-            ChannelCurrentState.View(data: currentState)
+            ChannelCurrentState.View(data: currentState, padding: padding)
         }
     }
 }

@@ -29,14 +29,23 @@ extension SAChannel {
         ItemBundle(remoteId: remote_id, profileId: profile.id, deviceId: device_id, subjectType: .channel, function: self.func)
     }
 
-    func getTimerEndDate() -> Date? {
-        if let state = ev?.timerState {
-            return state.countdownEndsAt
-        } else {
-            return nil
-        }
-    }
+    var timerEndDate: Date? {
+        @Singleton<DateProvider> var dateProvider
 
+        let value = value?.asRelayValue()
+        let forced = value?.mode == .forcedOn || value?.mode == .forcedOff
+
+        if
+            let state = ev?.timerState,
+            let timerEndTime = state.countdownEndsAt,
+            !forced, timerEndTime.timeIntervalSince1970 > dateProvider.currentTimestamp()
+        {
+            return timerEndTime
+        }
+
+        return nil
+    }
+    
     @objc func isFacadeBlindClosed() -> Bool {
         if (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND) {
             value?.asFacadeBlindValue().position ?? 0 >= 100
