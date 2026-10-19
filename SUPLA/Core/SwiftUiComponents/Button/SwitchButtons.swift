@@ -34,22 +34,29 @@ struct SwitchButtons: View {
     let onRightButtonClick: () -> Void
     let onLeftButtonClick: () -> Void
     
+    let padding: EdgeInsets?
+    let spacing: CGFloat?
+    
     init(
         leftButton: SwitchButtonState?,
         rightButton: SwitchButtonState?,
         enabled: Bool = false,
+        padding: EdgeInsets? = nil,
+        spacing: CGFloat? = nil,
         onLeftButtonClick: @escaping () -> Void = {},
         onRightButtonClick: @escaping () -> Void = {}
     ) {
         self.leftButton = leftButton
         self.rightButton = rightButton
         self.enabled = enabled
+        self.padding = padding
+        self.spacing = spacing
         self.onLeftButtonClick = onLeftButtonClick
         self.onRightButtonClick = onRightButtonClick
     }
 
     var body: some View {
-        HStack(spacing: Distance.default) {
+        HStack(spacing: spacing ?? Distance.default) {
             if let leftButton {
                 SwitchButton(
                     state: leftButton,
@@ -65,8 +72,10 @@ struct SwitchButtons: View {
                 .disabled(!enabled)
             }
         }
-        .padding(Distance.default)
+        .padding(padding ?? SwitchButtons.defaultPadding)
     }
+    
+    private static let defaultPadding = EdgeInsets(top: Distance.default, leading: Distance.default, bottom: Distance.default, trailing: Distance.default)
 }
 
 struct SwitchButton: View {

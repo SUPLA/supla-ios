@@ -154,13 +154,16 @@ extension RelayScheduleFeature {
                         onPlus: { delegate?.onProgramSettingsDurationPlus(.relayMode) }
                     )
                     .padding(.bottom, Distance.small)
-                    DurationControl(
-                        label: Strings.RelaySchedule.secondDuration.arguments(state.mode.oppositeStateLabel),
-                        value: state.oppositeDuration,
-                        onChange: { delegate?.onProgramSettingsOppositeDurationChange($0) },
-                        onMinus: { delegate?.onProgramSettingsDurationMinus(.oppositeMode) },
-                        onPlus: { delegate?.onProgramSettingsDurationPlus(.oppositeMode) }
-                    )
+                    if state.showsOppositeDuration {
+                        DurationControl(
+                            label: Strings.RelaySchedule.secondDuration.arguments(state.mode.oppositeStateLabel),
+                            value: state.oppositeDuration,
+                            enabled: state.oppositeDurationEnabled,
+                            onChange: { delegate?.onProgramSettingsOppositeDurationChange($0) },
+                            onMinus: { delegate?.onProgramSettingsDurationMinus(.oppositeMode) },
+                            onPlus: { delegate?.onProgramSettingsDurationPlus(.oppositeMode) }
+                        )
+                    }
                 }
 
                 SuplaCore.Dialog.HorizontalButtons(
@@ -173,6 +176,7 @@ extension RelayScheduleFeature {
         private func DurationControl(
             label: String,
             value: String,
+            enabled: Bool = true,
             onChange: @escaping (String) -> Void,
             onMinus: @escaping () -> Void,
             onPlus: @escaping () -> Void
@@ -183,7 +187,7 @@ extension RelayScheduleFeature {
                 HStack(spacing: Distance.tiny) {
                     IconButton(name: .Icons.minus, action: onMinus)
                         .filledButtonStyle()
-                        .disabled((UInt16(value) ?? 0) == 0)
+                        .disabled(!enabled || (UInt16(value) ?? 0) == 0)
                         .clipShape(Circle())
                     AccessoryTextField(
                         text: Binding(get: { value }, set: onChange),
@@ -191,9 +195,10 @@ extension RelayScheduleFeature {
                     )
                     .keyboardType(.numberPad)
                     .frame(width: 120)
+                    .disabled(!enabled)
                     IconButton(name: .Icons.plus, action: onPlus)
                         .filledButtonStyle()
-                        .disabled((UInt16(value) ?? 0) == UInt16.max)
+                        .disabled(!enabled || (UInt16(value) ?? 0) == UInt16.max)
                         .clipShape(Circle())
                 }
             }
@@ -276,8 +281,11 @@ private func relaySchedulePreviewSchedule() -> [ScheduleDetailBoxKey: WeeklySche
     state.programSettings = RelayScheduleFeature.ProgramSettings(
         program: relaySchedulePreviewPrograms[0].program,
         mode: .startOn,
-        duration: "20",
-        oppositeDuration: "10"
+        duration: "0",
+        oppositeDuration: "0",
+        availableModes: [.startOn, .startOff],
+        durationSupported: true,
+        oppositeDurationSupported: true
     )
     return RelayScheduleFeature.View(state: state, delegate: nil)
 }

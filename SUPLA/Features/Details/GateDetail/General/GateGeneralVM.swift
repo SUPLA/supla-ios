@@ -15,13 +15,16 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+import RxSwift
+import SharedCore
     
 extension GateGeneralFeature {
-    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
-        @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
-        @Singleton private var readGroupWithChannelsUseCase: ReadGroupWithChannels.UseCase
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
+        @Singleton<ObserveChannelWithChildren.UseCase> private var observeChannelWithChildrenUseCase
+        @Singleton<ObserveGroupWithChannels.UseCase> private var observeGroupWithChannelsUseCase
         @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
         @Singleton private var getChannelBaseStateUseCase: GetChannelBaseStateUseCase
+        @Singleton<ObserveRelayProgramState.UseCase> private var observeRelayProgramStateUseCase
         @Singleton private var executeSimpleActionUseCase: ExecuteSimpleAction.UseCase
         @Singleton private var executeRelayActionUseCase: ExecuteRelayAction.UseCase
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
@@ -31,27 +34,10 @@ extension GateGeneralFeature {
         init(itemBundle: ItemBundle) {
             self.itemBundle = itemBundle
             super.init(state: ViewState())
-        }
-
-        override func onViewCreated() {
+            
             switch (itemBundle.subjectType) {
-            case .channel:
-                observeChannel(remoteId: Int(itemBundle.remoteId))
-            case .group:
-                observeGroup(remoteId: itemBundle.remoteId)
-            case .scene:
-                break
-            }
-        }
-
-        override func onViewAppear() {
-            loadData()
-        }
-
-        private func loadData() {
-            switch (itemBundle.subjectType) {
-            case .channel: loadChannel(itemBundle.remoteId)
-            case .group: loadGroup(itemBundle.remoteId)
+            case .channel: observeChannelAndProgramState(remoteId: itemBundle.remoteId)
+            case .group: observeGroup(remoteId: itemBundle.remoteId)
             case .scene: break
             }
         }
@@ -66,6 +52,23 @@ extension GateGeneralFeature {
         
         func onOpenClose() {
             triggerAction(.openClose)
+        }
+
+        func onForce() {
+            guard itemBundle.subjectType == .channel else { return }
+
+            if state.forceActive {
+                triggerAction(state.weeklyActive ? .switchToProgramMode : .switchToManualMode)
+            } else {
+                executeRelayActionUseCase.invoke(
+                    type: itemBundle.subjectType,
+                    remoteId: itemBundle.remoteId,
+                    mode: state.currentlyOpen ? .forcedOn : .forcedOff
+                )
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: disposeBag)
+            }
         }
 
         func onManual() {
@@ -87,36 +90,51 @@ extension GateGeneralFeature {
             .disposed(by: disposeBag)
         }
         
-        func onChannelUpdate(_ channelWithChildren: ChannelWithChildren) {
-            loadChannel(channelWithChildren.remoteId)
-        }
-        
-        func onGroupUpdate(_ groupId: Int32) {
-            loadGroup(groupId)
-        }
-        
-        private func loadChannel(_ remoteId: Int32) {
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+        private func observeChannelAndProgramState(remoteId: Int32) {
+            let channel = observeChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+
+            Observable.combineLatest(channel, observeRelayProgramStateUseCase.invoke(remoteId: remoteId))
+                .observe(on: MainScheduler.instance)
                 .asDriverWithoutError()
-                .drive(
-                    onNext: { [weak self] channel in
-                        self?.handleChannel(channel)
-                    }
-                )
+                .drive(onNext: { [weak self] channel, programState in
+                    self?.handleChannel(channel, programState)
+                })
+                .disposed(by: disposeBag)
+        }
+
+        private func observeGroup(remoteId: Int32) {
+            observeGroupWithChannelsUseCase.invoke(remoteId: remoteId)
+                .asDriverWithoutError()
+                .drive(onNext: { [weak self] groupWithChannels in
+                    self?.handleGroup(groupWithChannels)
+                })
                 .disposed(by: disposeBag)
         }
         
-        private func handleChannel(_ channelWithChildren: ChannelWithChildren) {
+        private func handleChannel(
+            _ channelWithChildren: ChannelWithChildren,
+            _ channelProgramState: [ChannelProgramState.Data]
+        ) {
             let channel = channelWithChildren.channel
             let channelState = getChannelBaseStateUseCase.invoke(channelBase: channel)
             let showOpenAndClose = channelWithChildren.hasSensor && supportsOpenAndClose(channel.func)
+            let relayValue = channel.value?.asRelayValue()
+            let forceSupported = channel.flags & Int64(SUPLA_CHANNEL_FLAG_RELAY_MODE_FORCED_SUPPORTED) != 0
+            let forced = relayValue?.mode == .forcedOn || relayValue?.mode == .forcedOff
+            let weeklyActive = relayValue?.flags.contains(.weeklyScheduleEnabled) == true
             
             state.offline = channel.status().offline
+            state.currentlyOpen = channelState.value == .opened || channelState.value == .partialyOpened
+            state.forceSupported = forceSupported
+            state.forceActive = forceSupported && forced
+            state.forceButtonDisabled = weeklyActive
+            state.lockIconType = lockIconType(forced: forced, weeklyActive: weeklyActive)
             state.channelCurrentStateData = .init(
                 label: Strings.SwitchDetail.stateLabel,
                 icon: getChannelBaseIconUseCase.invoke(channel: channel),
                 value: getDeviceStateValue(channel.status(), channelState)
             )
+            state.channelProgramState = relayValue?.showProgram(channelProgramState, channel.timerEndDate) ?? []
             state.issues = getAllChannelIssuesUseCase.invoke(channelWithChildren: channelWithChildren.shareable)
             state.mainButtonLabel = mainButtonLabel(channel.func.suplaFuntion)
             if (showOpenAndClose) {
@@ -150,6 +168,16 @@ extension GateGeneralFeature {
             state.autoAllowed = autoAllowed
             state.autoActive = !weeklyActive && relayValue?.mode == .automatic
         }
+
+        private func lockIconType(forced: Bool, weeklyActive: Bool) -> LockIconType {
+            if forced && weeklyActive {
+                .temporaryClosed
+            } else if forced {
+                .closed
+            } else {
+                .opened
+            }
+        }
         
         private func getDeviceStateValue(_ status: SuplaChannelAvailabilityStatus, _ state: ChannelState) -> String {
             if (status.offline) {
@@ -162,15 +190,6 @@ extension GateGeneralFeature {
             case .partialyOpened: Strings.General.State.partiallyOpened
             default: ""
             }
-        }
-        
-        private func loadGroup(_ remoteId: Int32) {
-            readGroupWithChannelsUseCase.invoke(remoteId: remoteId)
-                .asDriverWithoutError()
-                .drive(onNext: { [weak self] groupWithChannels in
-                    self?.handleGroup(groupWithChannels)
-                })
-                .disposed(by: disposeBag)
         }
         
         private func handleGroup(_ groupWithChannels: ReadGroupWithChannels.GroupWithChannels) {
@@ -188,6 +207,10 @@ extension GateGeneralFeature {
             state.weeklyActive = false
             state.autoAllowed = false
             state.autoActive = false
+            state.forceSupported = false
+            state.forceActive = false
+            state.forceButtonDisabled = false
+            state.lockIconType = .opened
             
             if (showOpenAndClose) {
                 state.openButtonState = .init(

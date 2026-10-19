@@ -18,6 +18,7 @@
 
 import RxRelay
 import RxSwift
+import SharedCore
 import SwiftUI
 
 extension RelayScheduleFeature {
@@ -28,10 +29,13 @@ extension RelayScheduleFeature {
         @Singleton<DeviceConfigEventsManager> private var deviceConfigEventsManager
         @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
         @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
+        @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<SuplaSchedulers> private var schedulers
 
         private let reloadRelay = PublishRelay<Void>()
         private let item: ItemBundle
+        private var programSettingsConstraints = RelayProgramSettingsConstraints()
+        private var automaticModeSupported = false
 
         init(item: ItemBundle) {
             self.item = item
@@ -49,11 +53,20 @@ extension RelayScheduleFeature {
 
         func onProgramLongPress(_ program: WeeklyScheduleProgram) {
             guard let relayProgram = state.programs.first(where: { $0.program == program.program }), relayProgram.program != .off else { return }
+            let availableModes = programSettingsConstraints.modes
+                .filter { $0 != .automatic || automaticModeSupported }
+            let selectedMode = relayProgram.mode.isProgramMode && availableModes.contains(relayProgram.mode)
+                ? relayProgram.mode
+                : (availableModes.first ?? .startOn)
+            
             state.programSettings = ProgramSettings(
                 program: relayProgram.program,
-                mode: relayProgram.mode.isProgramMode ? relayProgram.mode : .startOn,
+                mode: selectedMode,
                 duration: String(relayProgram.modeDurationS),
-                oppositeDuration: String(relayProgram.oppositeModeDurationS)
+                oppositeDuration: String(relayProgram.oppositeModeDurationS),
+                availableModes: availableModes,
+                durationSupported: programSettingsConstraints.durationSupported,
+                oppositeDurationSupported: programSettingsConstraints.oppositeDurationSupported
             )
         }
 
@@ -103,6 +116,7 @@ extension RelayScheduleFeature {
             guard state.programSettings?.availableModes.contains(mode) == true else { return }
             state.programSettings?.mode = mode
         }
+
         func onProgramSettingsDurationChange(_ value: String) { updateDuration(.relayMode, value: value) }
         func onProgramSettingsOppositeDurationChange(_ value: String) { updateDuration(.oppositeMode, value: value) }
         func onProgramSettingsDurationMinus(_ duration: ProgramDuration) { changeDuration(duration, by: -1) }
@@ -113,8 +127,8 @@ extension RelayScheduleFeature {
                   let current = state.programs.first(where: { $0.program == settings.program }) else { return }
             let updated = current.copy(
                 mode: settings.mode,
-                modeDurationS: UInt16(settings.duration) ?? 0,
-                oppositeModeDurationS: UInt16(settings.oppositeDuration) ?? 0
+                modeDurationS: settings.showsDurations ? UInt16(settings.duration) ?? 0 : 0,
+                oppositeModeDurationS: settings.oppositeDurationEnabled ? UInt16(settings.oppositeDuration) ?? 0 : 0
             )
             state.programs = state.programs.map {
                 $0.program == updated.program ? updated : $0
@@ -137,8 +151,15 @@ extension RelayScheduleFeature {
         private func updateDuration(_ duration: ProgramDuration, value: String) {
             guard value.allSatisfy(\.isNumber), value.isEmpty || UInt16(value) != nil else { return }
             switch duration {
-            case .relayMode: state.programSettings?.duration = value
-            case .oppositeMode: state.programSettings?.oppositeDuration = value
+            case .relayMode:
+                guard state.programSettings?.showsDurations == true else { return }
+                state.programSettings?.duration = value
+                if (UInt16(value) ?? 0) == 0 {
+                    state.programSettings?.oppositeDuration = "0"
+                }
+            case .oppositeMode:
+                guard state.programSettings?.oppositeDurationEnabled == true else { return }
+                state.programSettings?.oppositeDuration = value
             }
         }
 
@@ -147,12 +168,13 @@ extension RelayScheduleFeature {
                 channelConfigEventsManager.observeConfig(id: item.remoteId)
                     .filter { $0.config is SuplaChannelWeeklyScheduleConfig },
                 deviceConfigEventsManager.observeConfig(id: item.deviceId),
-                resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config) }
+                readChannelByRemoteIdUseCase.invoke(remoteId: item.remoteId),
+                resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config, $2) }
             )
             .asDriverWithoutError()
             .debounce(.milliseconds(50))
-            .drive(onNext: { [weak self] config, result, deviceConfig in
-                self?.onConfigLoaded(config, result: result, deviceConfig: deviceConfig)
+            .drive(onNext: { [weak self] config, result, deviceConfig, channel in
+                self?.onConfigLoaded(config, result: result, deviceConfig: deviceConfig, channel: channel)
             })
             .disposed(by: disposeBag)
 
@@ -171,7 +193,14 @@ extension RelayScheduleFeature {
             getChannelConfigUseCase.invoke(remoteId: item.remoteId, type: .weeklyScheduleConfig).subscribe().disposed(by: disposeBag)
         }
 
-        private func onConfigLoaded(_ config: SuplaChannelWeeklyScheduleConfig, result: SuplaConfigResult, deviceConfig: SuplaDeviceConfig?) {
+        private func onConfigLoaded(
+            _ config: SuplaChannelWeeklyScheduleConfig,
+            result: SuplaConfigResult,
+            deviceConfig: SuplaDeviceConfig?,
+            channel: SAChannel
+        ) {
+            programSettingsConstraints = RelayProgramSettingsConstraints(function: channel.func.suplaFuntion)
+            automaticModeSupported = channel.flags & Int64(SUPLA_CHANNEL_FLAG_RELAY_MODE_AUTOMATIC_SUPPORTED) != 0
             guard result == .resultTrue, !state.changing else { return }
             if let last = state.lastInteractionTime, last + 3 >= dateProvider.currentTimestamp() {
                 reloadRelay.accept(())
@@ -222,14 +251,67 @@ extension RelayScheduleFeature {
 
     final class ProgramSettings: ObservableObject {
         let program: SuplaScheduleProgram
+        let availableModes: [SuplaRelayMode]
+        private let durationSupported: Bool
+        private let oppositeDurationSupported: Bool
         @Published var mode: SuplaRelayMode
         @Published var duration: String
         @Published var oppositeDuration: String
-        init(program: SuplaScheduleProgram, mode: SuplaRelayMode, duration: String, oppositeDuration: String) {
+        init(
+            program: SuplaScheduleProgram,
+            mode: SuplaRelayMode,
+            duration: String,
+            oppositeDuration: String,
+            availableModes: [SuplaRelayMode],
+            durationSupported: Bool,
+            oppositeDurationSupported: Bool
+        ) {
             self.program = program; self.mode = mode; self.duration = duration; self.oppositeDuration = oppositeDuration
+            self.availableModes = availableModes
+            self.durationSupported = durationSupported
+            self.oppositeDurationSupported = oppositeDurationSupported
         }
-        var availableModes: [SuplaRelayMode] { [.startOn, .startOff, .forcedOn, .forcedOff, .automatic] }
-        var showsDurations: Bool { mode == .startOn || mode == .startOff }
+
+        var showsDurations: Bool {
+            durationSupported && (mode == .startOn || mode == .startOff)
+        }
+
+        var showsOppositeDuration: Bool {
+            showsDurations && oppositeDurationSupported
+        }
+
+        var oppositeDurationEnabled: Bool {
+            showsOppositeDuration && (UInt16(duration) ?? 0) > 0
+        }
+    }
+}
+
+private struct RelayProgramSettingsConstraints {
+    let modes: [SuplaRelayMode]
+    let durationSupported: Bool
+    let oppositeDurationSupported: Bool
+
+    init() {
+        self.modes = [.startOn, .startOff, .forcedOn, .forcedOff, .automatic]
+        self.durationSupported = true
+        self.oppositeDurationSupported = true
+    }
+
+    init(function: SuplaFunction) {
+        switch function {
+        case .controllingTheGate, .controllingTheGarageDoor, .controllingTheDoorLock, .controllingTheGatewayLock:
+            self.modes = [.startOn, .forcedOff]
+            self.durationSupported = false
+            self.oppositeDurationSupported = false
+        case .staircaseTimer:
+            self.modes = [.startOn, .startOff, .forcedOn, .forcedOff, .automatic]
+            self.durationSupported = true
+            self.oppositeDurationSupported = false
+        default:
+            self.modes = [.startOn, .startOff, .forcedOn, .forcedOff, .automatic]
+            self.durationSupported = true
+            self.oppositeDurationSupported = true
+        }
     }
 }
 
