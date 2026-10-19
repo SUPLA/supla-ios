@@ -40,37 +40,21 @@ extension ThermostatTimerDetailFeature {
         
         private func LandscapeView() -> some SwiftUI.View {
             HStack(alignment: .center, spacing: Distance.default) {
-                VStack {
-                    if let channelCurrentStateData {
-                        Text(channelCurrentStateData.label.uppercased())
-                            .fontBodyMedium()
-                            .textColor(Color.Supla.onSurfaceVariant)
-                        
-                        HStack(spacing: Distance.tiny) {
-                            if let icon = channelCurrentStateData.icon {
-                                icon.image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
-                            }
-                            
-                            Text(channelCurrentStateData.value)
-                                .font(.Supla.bodyMedium.bold())
-                        }
-                    }
-                    Spacer()
-                    EditTimerButton()
-                }
-                .padding(.vertical, Distance.default)
                 TimerView()
                 VStack(spacing: Distance.small) {
+                    if let channelCurrentStateData {
+                        ChannelCurrentState.View(data: channelCurrentStateData)
+                    }
+                    Spacer()
+                    
+                    EditTimerButton()
                     Spacer()
                     Text(Strings.TimerDetail.cancelThermostat)
                         .fontBodyMedium()
                     CancelButtons()
-                    Spacer()
                 }
             }
+            .padding(.leading, Distance.small)
         }
         
         private func PortraitView() -> some SwiftUI.View {
@@ -159,33 +143,7 @@ extension ThermostatTimerDetailFeature {
 }
 
 #Preview {
-    ThermostatTimerDetailFeature.InProgressView(
-        channelCurrentStateData: ChannelCurrentState.Data(
-            label: "STATE UNTIL 17.04.2026 00:59:",
-            icon: .suplaIcon(name: .Icons.powerButton),
-            value: "OFF"
-        ),
-        timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 154),
-        delegate: nil
-    )
-}
-
-#Preview("with days") {
-    ThermostatTimerDetailFeature.InProgressView(
-        channelCurrentStateData: ChannelCurrentState.Data(
-            label: "STATE UNTIL 17.04.2026 00:59:",
-            icon: .suplaIcon(name: .Icons.powerButton),
-            value: "OFF"
-        ),
-        timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 100054),
-        delegate: nil
-    )
-}
-
-#if swift(>=5.9)
-@available(iOS 17.0, *)
-#Preview("(Landscape)", traits: .landscapeRight) {
-    BackgroundStack(alignment: .top) {
+    DetailPreviewScaffold {
         ThermostatTimerDetailFeature.InProgressView(
             channelCurrentStateData: ChannelCurrentState.Data(
                 label: "STATE UNTIL 17.04.2026 00:59:",
@@ -195,7 +153,39 @@ extension ThermostatTimerDetailFeature {
             timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 154),
             delegate: nil
         )
-        .safeAreaPadding()
+    }
+}
+
+#Preview("with days") {
+    DetailPreviewScaffold {
+        ThermostatTimerDetailFeature.InProgressView(
+            channelCurrentStateData: ChannelCurrentState.Data(
+                label: "STATE UNTIL 17.04.2026 00:59:",
+                icon: .suplaIcon(name: .Icons.powerButton),
+                value: "OFF"
+            ),
+            timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 100054),
+            delegate: nil
+        )
+    }
+}
+
+#if swift(>=5.9)
+@available(iOS 17.0, *)
+#Preview("(Landscape)", traits: .landscapeRight) {
+    DetailPreviewScaffold {
+        BackgroundStack(alignment: .top) {
+            ThermostatTimerDetailFeature.InProgressView(
+                channelCurrentStateData: ChannelCurrentState.Data(
+                    label: "STATE UNTIL 17.04.2026 00:59:",
+                    icon: .suplaIcon(name: .Icons.powerButton),
+                    value: "OFF"
+                ),
+                timerEndTime: Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 154),
+                delegate: nil
+            )
+            .safeAreaPadding()
+        }
     }
 }
 #endif // swift(>=5.9)

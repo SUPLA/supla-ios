@@ -184,7 +184,7 @@ enum SuplaWeeklyScheduleProgramSet: Equatable {
 private extension SuplaRelayMode {
     func scheduleDescription(duration: UInt16?, oppositeDuration: UInt16?) -> String {
         switch self {
-        case .notSet: NO_VALUE_TEXT
+        case .notSet: Strings.Schedule.programDefault
         case .startOn: relayDescription(Strings.General.turnOn, duration: duration, oppositeDuration: oppositeDuration)
         case .startOff: relayDescription(Strings.General.turnOff, duration: duration, oppositeDuration: oppositeDuration)
         case .forcedOn: Strings.Schedule.programForceOn

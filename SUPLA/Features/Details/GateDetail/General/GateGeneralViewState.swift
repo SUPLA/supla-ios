@@ -22,6 +22,7 @@ import SharedCore
 extension GateGeneralFeature {
     class ViewState: ObservableObject {
         @Published var channelCurrentStateData: ChannelCurrentState.Data? = nil
+        @Published var channelProgramState: [ChannelProgramState.Data] = []
         @Published var relatedChannelsData: [RelatedChannelData]? = nil
         @Published var issues: [ChannelIssueItem] = []
         @Published var mainButtonLabel: String = Strings.General.stepByStep
@@ -35,5 +36,10 @@ extension GateGeneralFeature {
         @Published var autoActive: Bool = false
         @Published var showOpenAndCloseWarning: Bool = false
         @Published var offline: Bool = false
+        @Published var currentlyOpen: Bool = false
+        @Published var forceSupported: Bool = false
+        @Published var forceActive: Bool = false
+        @Published var forceButtonDisabled: Bool = false
+        @Published var lockIconType: LockIconType = .opened
     }
 }

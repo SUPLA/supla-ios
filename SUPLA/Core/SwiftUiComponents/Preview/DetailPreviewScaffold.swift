@@ -35,7 +35,7 @@ struct DetailPreviewScaffold<Content: SwiftUI.View>: SwiftUI.View {
 
                 if (geometry.size.width > geometry.size.height) {
                     HStack(spacing: 0) {
-                        Color.Supla.surface
+                        Color.Supla.outline
                             .frame(width: mainTabBarWidth)
 
                         content
@@ -47,7 +47,7 @@ struct DetailPreviewScaffold<Content: SwiftUI.View>: SwiftUI.View {
                         content
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                        Color.Supla.surface
+                        Color.Supla.outline
                             .frame(height: mainTabBarHeight)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
