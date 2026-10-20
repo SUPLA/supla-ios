@@ -715,7 +715,14 @@
 "add_wizard_repeat" = "Yenidən cəhd et";
 "add_wizard_remember_passwd" = "Şifrəni yadda saxla";
 "add_wizard_auto_mode" = "Avto rejim";
-"add_wizard_manual_mode_message" = "Zəhmət olmasa, konfiqurasiya üçün I/O Cihazınızın Wi-Fi-ını (məsələn, SUPLA-A220A63612B1 kimi) seçmək üçün aşağıdakı Sistem Parametrləri qısa yolundan istifadə edin.\n\nKonfiqurasiya Wi-Fi adı adətən istehsalçının adını ehtiva edir, məsələn, SUPLA, ZAMEL, NICE, HEATPOL və s.\n\nBağlantı qurulduqda, tətbiqə qayıdın və **BAŞLA** düyməsini basaraq əlavə etmə prosedurunu davam etdirin.";
+"add_wizard_manual_mode_message" = "Telefonunuzu əlavə etdiyiniz cihazın Wi-Fi şəbəkəsinə müvəqqəti qoşun.";
+"add_wizard_manual_mode_step_1_title" = "iPhone-da Parametrləri açın";
+"add_wizard_manual_mode_step_1_message" = "Sonra **Wi-Fi** seçin.";
+"add_wizard_manual_mode_step_2_title" = "Cihazınızın şəbəkəsini seçin";
+"add_wizard_manual_mode_step_2_message" = "Adında adətən SUPLA, ZAMEL, NICE və ya HEATPOL olur.";
+"add_wizard_manual_mode_example_network" = "məs. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "SUPLA tətbiqinə qayıdın";
+"add_wizard_manual_mode_step_3_message" = "Şəbəkənin yanında ✓ işarəsi göründükdə buraya qayıdın və **BAŞLAT** düyməsinə toxunun.";
 "add_wizard_manual_mode_settings" = "Sistem parametrlərinə keçin";
 "add_wizard_location_service_off" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün cihazınızda yer xidmətləri aktivləşdirilməlidir. Sistem parametrlərinizə keçin və onun aktiv olduğundan əmin olun (Parametrlər -> Məxfilik və Təhlükəsizlik -> Yer Xidmətləri).";
 "add_wizard_missing_location" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün SUPLA tətbiqinə yerə giriş lazımdır. Sistem parametrlərinizdə SUPLA tətbiqinin yerinizə daxil olmasına icazə verin.";

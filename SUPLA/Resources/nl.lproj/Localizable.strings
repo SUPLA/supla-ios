@@ -646,7 +646,14 @@
 "add_wizard_is_not_available" = "De Toevoegen-Wizard is alleen beschikbaar als er op basis van het ingevoerde e-mailadres! een verbinding met de server tot stand is gebracht (Schakel geavanceerde opties in uw accountconfiguratie uit)";
 "add_wizard_remember_passwd" = "Wachtwoord onthouden";
 "add_wizard_auto_mode" = "Automatische modus";
-"add_wizard_manual_mode_message" = "Gebruik de snelkoppeling Systeeminstellingen hieronder om uw I/O-apparaat-Wi-Fi te selecteren voor configuratie, zoals SUPLA-A220A63612B1.\n\nDe naam van het configuratie-Wi-Fi bevat meestal de naam van de fabrikant, bijv. SUPLA, ZAMEL, NICE, HEATPOL enz.\n\nWanneer de verbinding tot stand is gebracht, ga terug naar de applicatie en vervolg de toevoegingsprocedure door op de knop **STARTEN** te drukken.";
+"add_wizard_manual_mode_message" = "Verbind uw telefoon tijdelijk met het Wi-Fi-netwerk van het apparaat dat u toevoegt.";
+"add_wizard_manual_mode_step_1_title" = "Open Instellingen op uw iPhone";
+"add_wizard_manual_mode_step_1_message" = "Selecteer vervolgens **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Selecteer het netwerk van uw apparaat";
+"add_wizard_manual_mode_step_2_message" = "De naam bevat meestal SUPLA, ZAMEL, NICE of HEATPOL.";
+"add_wizard_manual_mode_example_network" = "bijv. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Ga terug naar de SUPLA-app";
+"add_wizard_manual_mode_step_3_message" = "Zodra er een vinkje ✓ naast het netwerk verschijnt, keert u terug naar dit scherm en tikt u op **OPSTARTEN**.";
 "add_wizard_manual_mode_settings" = "Ga naar systeemvoorkeuren";
 "add_wizard_location_service_off" = "Om de wizard \"Apparaat toevoegen\" correct te laten werken, moeten locatieservices op uw apparaat zijn ingeschakeld. Ga naar uw systeeminstellingen en zorg ervoor dat deze zijn ingeschakeld (Instellingen -> Privacy en beveiliging -> Locatieservices).";
 "add_wizard_missing_location" = "De SUPLA-app vereist locatietoegang om de wizard \"Apparaat toevoegen\" correct te laten werken. Geef de SUPLA-app toegang tot uw locatie in uw systeeminstellingen.";

@@ -646,7 +646,14 @@
 "add_wizard_is_not_available" = "¡El Asistente para agregar solo está disponible cuando se ha establecido la conexión con el servidor usando una cuenta de correo electrónico! (Desactiva las opciones avanzadas en la configuración de tu cuenta)";
 "add_wizard_remember_passwd" = "Recordar la contraseña";
 "add_wizard_auto_mode" = "Modo automático";
-"add_wizard_manual_mode_message" = "Por favor, utiliza el acceso directo de Configuración del sistema a continuación para seleccionar el Wi-Fi de tu dispositivo de E/S para la configuración, como SUPLA-A220A63612B1.\n\nEl nombre del Wi-Fi de configuración generalmente contiene el nombre del fabricante, por ejemplo, SUPLA, ZAMEL, NICE, HEATPOL, etc.\n\nCuando la conexión se haya establecido, regresa a la aplicación y continúa el procedimiento de adición presionando el botón **START**.";
+"add_wizard_manual_mode_message" = "Conecta temporalmente tu teléfono a la red Wi-Fi del dispositivo que estás añadiendo.";
+"add_wizard_manual_mode_step_1_title" = "Abre Ajustes en tu iPhone";
+"add_wizard_manual_mode_step_1_message" = "Después, selecciona **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Selecciona la red de tu dispositivo";
+"add_wizard_manual_mode_step_2_message" = "Su nombre suele incluir SUPLA, ZAMEL, NICE o HEATPOL.";
+"add_wizard_manual_mode_example_network" = "p. ej. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Vuelve a la aplicación SUPLA";
+"add_wizard_manual_mode_step_3_message" = "Cuando aparezca una marca de verificación ✓ junto a la red, vuelve aquí y pulsa **START**.";
 "add_wizard_manual_mode_settings" = "Proceda a los ajustes del sistema";
 "add_wizard_location_service_off" = "Para que el Asistente para agregar dispositivo funcione correctamente, los servicios de ubicación deben estar habilitados en su dispositivo. Vaya a la configuración de su sistema y asegúrese de que estén habilitados (Configuración -> Privacidad y seguridad -> Servicios de ubicación).";
 "add_wizard_missing_location" = "La aplicación SUPLA requiere acceso a la ubicación para que el Asistente para agregar dispositivo funcione correctamente. Permita que la aplicación SUPLA acceda a su ubicación en la configuración del sistema.";

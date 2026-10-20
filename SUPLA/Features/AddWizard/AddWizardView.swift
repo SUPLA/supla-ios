@@ -107,8 +107,7 @@ extension AddWizardFeature {
                         progressLabel: state.progressLabel,
                         onCancel: { delegate?.onCancel(screen) },
                         onBack: { delegate?.onBack(screen) },
-                        onNext: { delegate?.onNext(screen) },
-                        onSettings: { delegate?.onWifiSettings() }
+                        onNext: { delegate?.onNext(screen) }
                     )
                 case .manualReconnect:
                     AddWizardFeature.AddWizardManualReconnect(

@@ -35,6 +35,25 @@ extension AddWizardFeature {
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step1Welcome)
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.step1Continue)
+                AddWizardFeature.AddWizardWifiNotice {
+                    HStack(spacing: Distance.default) {
+                        Image(String.Icons.wifi)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
+
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(Strings.AddWizard.wifiRequired)
+                                .fontBodyMedium()
+                            Text(Strings.AddWizard.wifiEnableInSettings)
+                                .fontBodyMedium()
+                        }
+
+                        Spacer(minLength: 0)
+                    }
+                }
+                .padding(.horizontal, Distance.default)
+                .padding(.top, Distance.default)
             }
         }
     }

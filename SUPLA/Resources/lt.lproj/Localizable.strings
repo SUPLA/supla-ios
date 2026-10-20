@@ -648,7 +648,14 @@
 "add_wizard_is_not_available" = "Pridėjimo vedlys prieinamas tik tada, kai pagal įvestą el. pašto adresą užmegztas ryšys su serveriu! (Savo paskyros konfigūracijoje išjunkite išplėstines parinktis)";
 "add_wizard_remember_passwd" = "Išsaugoti slaptažodį";
 "add_wizard_auto_mode" = "Automatinis režimas";
-"add_wizard_manual_mode_message" = "Norėdami pasirinkti I/O įrenginio „Wi-Fi“ ryšį konfigūravimui, pvz., SUPLA-A220A63612B1, naudokite nuorodą į sistemos nustatymus, esančią žemiau.\n\nKonfigūracijos „Wi-Fi“ pavadinime paprastai būna gamintojo pavadinimas, pvz., SUPLA, ZAMEL, NICE, HEATPOL ir t. t.\n\nKai ryšys bus nustatytas, grįžkite į programą ir tęskite pridėjimo procedūrą paspausdami mygtuką **STARTAS**.";
+"add_wizard_manual_mode_message" = "Laikinai prijunkite telefoną prie pridedamo įrenginio „Wi-Fi“ tinklo.";
+"add_wizard_manual_mode_step_1_title" = "Atidarykite „iPhone“ nustatymus";
+"add_wizard_manual_mode_step_1_message" = "Tada pasirinkite **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Pasirinkite įrenginio tinklą";
+"add_wizard_manual_mode_step_2_message" = "Jo pavadinime paprastai būna SUPLA, ZAMEL, NICE arba HEATPOL.";
+"add_wizard_manual_mode_example_network" = "pvz., SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Grįžkite į SUPLA programą";
+"add_wizard_manual_mode_step_3_message" = "Kai šalia tinklo pasirodys varnelė ✓, grįžkite čia ir bakstelėkite **STARTAS**.";
 "add_wizard_manual_mode_settings" = "Eikite į iOS sistemos nustatymus";
 "add_wizard_location_service_off" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, jūsų įrenginyje turi būti įjungtos vietos nustatymo paslaugos. Eikite į sistemos nustatymus ir įsitikinkite, kad jos įjungtos (Nustatymai -> Privatumas ir sauga -> Vietos nustatymo paslaugos).";
 "add_wizard_missing_location" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, SUPLA programėlei reikalingas vietos nustatymo priėjimas. Leiskite SUPLA programėlei pasiekti jūsų vietą sistemos nustatymuose.";

@@ -689,7 +689,14 @@
 "add_wizard_is_not_available" = "A Hozzáadás varázsló csak akkor érhető el, ha a megadott e-mail cím alapján létrejött a kapcsolat a szerverrel! (A speciális beállítások letiltása a fiókkonfigurációban)";
 "add_wizard_remember_passwd" = "Emlékezzen a jelszavamra";
 "add_wizard_auto_mode" = "Automatikus mód";
-"add_wizard_manual_mode_message" = "Kérjük, használd az alábbi Rendszerbeállítások parancsikont, és válaszd ki az I/O eszköz Wi-Fi hálózatát a konfiguráláshoz, például: SUPLA-A220A63612B1.\n\nA konfigurációs Wi-Fi név általában tartalmazza a gyártó nevét, pl. SUPLA, ZAMEL, NICE, HEATPOL stb.\n\nMiután a kapcsolat létrejött, térj vissza az alkalmazásba, és folytasd a hozzáadási folyamatot a **START** gomb megnyomásával.";
+"add_wizard_manual_mode_message" = "Csatlakoztasd ideiglenesen a telefonodat a hozzáadni kívánt eszköz Wi-Fi-hálózatához.";
+"add_wizard_manual_mode_step_1_title" = "Nyisd meg a Beállításokat az iPhone-odon";
+"add_wizard_manual_mode_step_1_message" = "Ezután válaszd a **Wi-Fi** lehetőséget.";
+"add_wizard_manual_mode_step_2_title" = "Válaszd ki az eszköz hálózatát";
+"add_wizard_manual_mode_step_2_message" = "A neve általában tartalmazza a SUPLA, ZAMEL, NICE vagy HEATPOL nevet.";
+"add_wizard_manual_mode_example_network" = "pl. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Térj vissza a SUPLA alkalmazásba";
+"add_wizard_manual_mode_step_3_message" = "Amint megjelenik egy pipa ✓ a hálózat mellett, térj vissza ide, és koppints a **START** gombra.";
 "add_wizard_manual_mode_settings" = "Ugrás a rendszerbeállításokhoz";
 "add_wizard_location_service_off" = "Az Eszköz hozzáadása varázsló megfelelő működéséhez a helymeghatározási szolgáltatásokat engedélyezni kell az eszközön. Menj a rendszerbeállításokba, és győződj meg róla, hogy be van kapcsolva (Beállítások -> Adatvédelem és biztonság -> Helymeghatározás).";
 "add_wizard_missing_location" = "A SUPLA alkalmazásnak helyhozzáférésre van szüksége az Eszköz hozzáadása varázsló megfelelő működéséhez. Engedélyezd a SUPLA alkalmazás számára a helyhozzáférést a rendszerbeállításokban.";

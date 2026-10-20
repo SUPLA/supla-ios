@@ -1036,6 +1036,8 @@
 		A5AE6D702E1DBA6E00BC2B67 /* AddWizardScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D6F2E1DBA6500BC2B67 /* AddWizardScaffold.swift */; };
 		A5AE6D732E1E66AB00BC2B67 /* AddWizardWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D722E1E66A400BC2B67 /* AddWizardWelcomeView.swift */; };
 		A5AE6D752E1E7A4500BC2B67 /* AddWizardContentText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */; };
+		A5E210022F85000000000002 /* AddWizardWifiNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E210012F85000000000001 /* AddWizardWifiNotice.swift */; };
+		A5E210042F85000000000004 /* AddWizardStepNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E210032F85000000000003 /* AddWizardStepNumber.swift */; };
 		A5AE6D772E1E834E00BC2B67 /* AddWizardNetworkSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D762E1E834400BC2B67 /* AddWizardNetworkSelectionView.swift */; };
 		A5AE6D792E1E8F1D00BC2B67 /* TextFieldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D782E1E8F1900BC2B67 /* TextFieldLabel.swift */; };
 		A5AE6D7B2E1E9F6E00BC2B67 /* AddWizardConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D7A2E1E9F6900BC2B67 /* AddWizardConfigurationView.swift */; };
@@ -2933,6 +2935,8 @@
 		A5AE6D6F2E1DBA6500BC2B67 /* AddWizardScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardScaffold.swift; sourceTree = "<group>"; };
 		A5AE6D722E1E66A400BC2B67 /* AddWizardWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardWelcomeView.swift; sourceTree = "<group>"; };
 		A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardContentText.swift; sourceTree = "<group>"; };
+		A5E210012F85000000000001 /* AddWizardWifiNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardWifiNotice.swift; sourceTree = "<group>"; };
+		A5E210032F85000000000003 /* AddWizardStepNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardStepNumber.swift; sourceTree = "<group>"; };
 		A5AE6D762E1E834400BC2B67 /* AddWizardNetworkSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardNetworkSelectionView.swift; sourceTree = "<group>"; };
 		A5AE6D782E1E8F1900BC2B67 /* TextFieldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLabel.swift; sourceTree = "<group>"; };
 		A5AE6D7A2E1E9F6900BC2B67 /* AddWizardConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardConfigurationView.swift; sourceTree = "<group>"; };
@@ -6771,6 +6775,8 @@
 		A5AE6D6E2E1DB98200BC2B67 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A5E210012F85000000000001 /* AddWizardWifiNotice.swift */,
+				A5E210032F85000000000003 /* AddWizardStepNumber.swift */,
 				A5AE6D822E1FEA1E00BC2B67 /* DeviceParametersTable.swift */,
 				A5AE6D802E1FDB1A00BC2B67 /* AddWizardRepeatButton.swift */,
 				A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */,
@@ -9742,6 +9748,8 @@
 				A5AE6D6B2E1D4B8D00BC2B67 /* AddWizardVM.swift in Sources */,
 				A5F425442F5EC5260076F5B9 /* NfcError.swift in Sources */,
 				A5AE6D752E1E7A4500BC2B67 /* AddWizardContentText.swift in Sources */,
+				A5E210022F85000000000002 /* AddWizardWifiNotice.swift in Sources */,
+				A5E210042F85000000000004 /* AddWizardStepNumber.swift in Sources */,
 				A563642B2EE191D000A702C0 /* RgbDetailVM.swift in Sources */,
 				A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */,
 				A50716D52D6892520060FA0D /* StateDialogFeature.swift in Sources */,

@@ -115,6 +115,7 @@ extension String {
         static let noPhoto = "icon_no_photo"
         static let moveHandle = "order"
         static let findWifi = "icon_find_wifi"
+        static let wifi = "icon_wifi"
         static let replay = "icon_replay"
         static let wifiSettings = "icon_wifi_settings"
         static let locationProblem = "icon_location_problem"

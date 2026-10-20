@@ -537,6 +537,8 @@
 "enabling_registration_timeout" = "Timeout for enabling registration has expired!";
 "add_wizard_step_1_welcome" = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps.";
 "add_wizard_step_1_continue" = "Press **Next** to continue.";
+"add_wizard_wifi_required" = "Wi-Fi is required to add a device.";
+"add_wizard_wifi_enable_in_settings" = "You can enable it in Settings.";
 "add_wizard_step_2_message" = "Enter Wi-Fi Network name and password to use with new I/O Device";
 "add_wizard_network_name" = "Network name";
 "add_wizard_step_3_message_1" = "Connect your device to the power supply. The device should, by default, operate in configuration mode, indicated by the status LED flashing as follows.";
@@ -547,7 +549,14 @@
 "add_wizard_is_not_available" = "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)";
 "add_wizard_remember_passwd" = "Remember password";
 "add_wizard_auto_mode" = "Auto mode";
-"add_wizard_manual_mode_message" = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1.\n\nConfiguration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc.\n\nWhen the connection has been set, go back to the application and continue adding procedure by pressing the **START** button.";
+"add_wizard_manual_mode_message" = "Temporarily connect your phone to the Wi-Fi network of the device you are adding.";
+"add_wizard_manual_mode_step_1_title" = "Open Settings on your iPhone";
+"add_wizard_manual_mode_step_1_message" = "Then select **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Select your device's network";
+"add_wizard_manual_mode_step_2_message" = "Its name usually includes SUPLA, ZAMEL, NICE or HEATPOL.";
+"add_wizard_manual_mode_example_network" = "e.g. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Return to the SUPLA app";
+"add_wizard_manual_mode_step_3_message" = "Once a checkmark ✓ appears next to the network, return here and tap **START**.";
 "add_wizard_manual_mode_settings" = "Go to the system settings";
 "add_wizard_location_service_off" = "For the Add Device Wizard to work properly, location services must be enabled on your device. Go to your system settings and make sure it's enabled (Settings -> Privacy & Security -> Location Services).";
 "add_wizard_missing_location" = "The SUPLA app requires location access for the Add Device Wizard to function properly. Allow the SUPLA app to access your location in your system settings.";
