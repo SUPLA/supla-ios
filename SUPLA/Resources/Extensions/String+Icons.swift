@@ -185,6 +185,7 @@ extension String {
         static let fncGpmCo3 = "fnc_gpm_co_3"
         static let fncGpmCash1 = "fnc_gpm_cash_1"
         static let fncGpmCash2 = "fnc_gpm_cash_2"
+        static let fncGpmCar1 = "fnc_gpm_car_1"
         // Heatmeter
         static let fncHeatmeter = "fnc_heatmeter"
         // Waterneter

@@ -72,6 +72,7 @@ final class GeneralPurposeMeasurementIconNameProducer: IconNameProducer {
         case 43: .Icons.fncGpmCo3
         case 44: .Icons.fncGpmCash1
         case 45: .Icons.fncGpmCash2
+        case 46: .Icons.fncGpmCar1
         default: .Icons.fncGpm5
         }
     }
