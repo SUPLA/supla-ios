@@ -36,8 +36,10 @@ class SuplaAppProviderMock: SuplaAppProvider {
     }
     
     var initSuplaClientCalls = 0
+    var onInitSuplaClient: (() -> Void)?
     func initSuplaClient() {
         initSuplaClientCalls += 1
+        onInitSuplaClient?()
     }
     
     

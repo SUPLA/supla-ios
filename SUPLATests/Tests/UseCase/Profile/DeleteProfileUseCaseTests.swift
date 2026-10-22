@@ -29,8 +29,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     
     private lazy var activateProfileUseCase: ActivateProfileUseCaseMock! = ActivateProfileUseCaseMock()
     
-    private lazy var runtimeConfig: RuntimeConfigMock! = RuntimeConfigMock()
-    
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     
     private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
@@ -47,7 +45,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: SingleCall.self, singleCall!)
         DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, deleteAllProfileDataUseCase!)
-        DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase!)
         DiContainer.shared.register(type: SuplaAppStateHolder.self, suplaAppStateHolder!)
@@ -60,7 +57,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         singleCall = nil
         deleteAllProfileDataUseCase = nil
         activateProfileUseCase = nil
-        runtimeConfig = nil
         settings = nil
         disconnectUseCase = nil
         suplaAppStateHolder = nil
@@ -147,7 +143,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertEqual(singleCall.registerPushTokenCalls, 1)
         XCTAssertEqual(profileRepository.deleteParameters, [profileEntity])
         XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profileEntity])
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [nil])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [false])
     }
     
@@ -186,7 +181,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertEqual(singleCall.registerPushTokenCalls, 1)
         XCTAssertEqual(profileRepository.deleteParameters, [profile])
         XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
         XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfileDto.id, true)])
     }
@@ -227,7 +221,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
         XCTAssertNil(profileRemoved)
         XCTAssertNil(profileDataRemoved)
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
         XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfileDto.id, true)])
     }

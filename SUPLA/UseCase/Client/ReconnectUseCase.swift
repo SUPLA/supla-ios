@@ -21,6 +21,7 @@ import RxSwift
 
 protocol ReconnectUseCase {
     func invoke() -> Completable
+    func invoke(afterDisconnect action: Completable) -> Completable
 }
 
 final class ReconnectUseCaseImpl: ReconnectUseCase {
@@ -28,8 +29,12 @@ final class ReconnectUseCaseImpl: ReconnectUseCase {
     @Singleton<SuplaAppProvider> private var suplaAppProvider
 
     func invoke() -> Completable {
-        disconnectUseCase
-            .invoke()
+        invoke(afterDisconnect: .empty())
+    }
+
+    func invoke(afterDisconnect action: Completable) -> Completable {
+        disconnectUseCase.invoke()
+            .andThen(action)
             .andThen(
                 Completable.create { completable in
                     self.suplaAppProvider.initSuplaClient()

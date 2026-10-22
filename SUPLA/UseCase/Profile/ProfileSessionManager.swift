@@ -80,7 +80,6 @@ final class ProfileSessionManagerImpl: ProfileSessionManager {
 
 class ActivateProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
     @Singleton<ReconnectUseCase> private var reconnectUseCase
     
@@ -100,14 +99,12 @@ class ActivateProfileUseCase {
     }
     
     private func activateProfile(_ profile: AuthProfileItem) -> Completable {
-        profileRepository.markProfileActive(profile.objectID)
-            .flatMapCompletable { _ in
-                var config = self.runtimeConfig
-                config.activeProfileId = profile.objectID
-                self.cloudConfigHolder.clean()
-                
-                return self.reconnectUseCase.invoke()
-            }
+        let markProfileActive = profileRepository.markProfileActive(profile.objectID)
+            .do(onCompleted: { self.cloudConfigHolder.clean() })
+            .ignoreElements()
+            .asCompletable()
+
+        return reconnectUseCase.invoke(afterDisconnect: markProfileActive)
     }
 }
 
@@ -115,7 +112,6 @@ class DeleteProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<SingleCall> private var singleCall
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
-    @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
     @Singleton<DisconnectUseCase> private var disconnectUseCase
     @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
@@ -199,9 +195,6 @@ class DeleteProfileUseCase {
                 } else {
                     return self.removeLocally(profile: profile)
                         .map {
-                            var config = self.runtimeConfig
-                            
-                            config.activeProfileId = nil
                             self.settings.anyAccountRegistered = false
                             self.suplaAppStateHolder.handle(event: .noAccount)
                             

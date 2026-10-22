@@ -24,8 +24,10 @@ class SuplaCloudConfigHolderMock: SuplaCloudConfigHolder {
     var url: String? = nil
     
     var cleanCalls: Int = 0
+    var onClean: (() -> Void)?
     func clean() {
         cleanCalls += 1
+        onClean?()
     }
     
     var requireUrlCalls: Int = 0

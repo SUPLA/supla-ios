@@ -116,4 +116,9 @@ final class ReconnectUseCaseMock: ReconnectUseCase {
         invokeCounter += 1
         return returns
     }
+
+    func invoke(afterDisconnect action: Completable) -> Completable {
+        invokeCounter += 1
+        return action.andThen(returns)
+    }
 }

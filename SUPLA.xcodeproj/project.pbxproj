@@ -765,7 +765,6 @@
 		A57668FF2AEFB96A0025509D /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57668FE2AEFB96A0025509D /* Double+Ext.swift */; };
 		A57669012AEFD4420025509D /* UserStateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57669002AEFD4420025509D /* UserStateHolder.swift */; };
 		A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CC29E6907C004513E6 /* RuntimeConfig.swift */; };
-		A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */; };
 		A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57777D029E6A319004513E6 /* CreateAccountVC.xib */; };
 		A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */; };
 		A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */; };
@@ -2664,7 +2663,6 @@
 		A57668FE2AEFB96A0025509D /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		A57669002AEFD4420025509D /* UserStateHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateHolder.swift; sourceTree = "<group>"; };
 		A57777CC29E6907C004513E6 /* RuntimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfig.swift; sourceTree = "<group>"; };
-		A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfigMock.swift; sourceTree = "<group>"; };
 		A57777D029E6A319004513E6 /* CreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
 		A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProvider.swift; sourceTree = "<group>"; };
 		A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProviderMock.swift; sourceTree = "<group>"; };
@@ -5858,7 +5856,6 @@
 				A59AB8B92A307FAD00D91F1F /* Repositories */,
 				A59AB89E2A30534F00D91F1F /* UseCase */,
 				A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */,
-				A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */,
 				A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */,
 				A59AB8A32A3058A600D91F1F /* ListsEventsManagerMock.swift */,
 				A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */,
@@ -9908,7 +9905,6 @@
 				A5E40B512B85EB6900DB6ABE /* GeneralPurposeMeterItemRepositoryMock.swift in Sources */,
 				A5E40B732B869D4000DB6ABE /* GeneralPurposeMeasurementItemRepositoryMock.swift in Sources */,
 				A5ABE5BD2ABC5EAB00FFA50B /* ValuesFormatterMock.swift in Sources */,
-				A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */,
 				A54A06842AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift in Sources */,
 				A5E40B5F2B861A1D00DB6ABE /* SAChannelConfig+Mock.swift in Sources */,
 				A5A23C342ABE1B8700233542 /* SAChannelRelation+Mock.swift in Sources */,
