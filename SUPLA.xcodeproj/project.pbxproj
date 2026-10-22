@@ -1035,8 +1035,6 @@
 		A5AE6D702E1DBA6E00BC2B67 /* AddWizardScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D6F2E1DBA6500BC2B67 /* AddWizardScaffold.swift */; };
 		A5AE6D732E1E66AB00BC2B67 /* AddWizardWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D722E1E66A400BC2B67 /* AddWizardWelcomeView.swift */; };
 		A5AE6D752E1E7A4500BC2B67 /* AddWizardContentText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */; };
-		A5E210022F85000000000002 /* AddWizardWifiNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E210012F85000000000001 /* AddWizardWifiNotice.swift */; };
-		A5E210042F85000000000004 /* AddWizardStepNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E210032F85000000000003 /* AddWizardStepNumber.swift */; };
 		A5AE6D772E1E834E00BC2B67 /* AddWizardNetworkSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D762E1E834400BC2B67 /* AddWizardNetworkSelectionView.swift */; };
 		A5AE6D792E1E8F1D00BC2B67 /* TextFieldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D782E1E8F1900BC2B67 /* TextFieldLabel.swift */; };
 		A5AE6D7B2E1E9F6E00BC2B67 /* AddWizardConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE6D7A2E1E9F6900BC2B67 /* AddWizardConfigurationView.swift */; };
@@ -1328,6 +1326,8 @@
 		A5E200102F70000000200010 /* CredentialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E200142F70000000200014 /* CredentialsView.swift */; };
 		A5E200112F70000000200011 /* CredentialsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E200152F70000000200015 /* CredentialsVM.swift */; };
 		A5E200162F70000000200016 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E200172F70000000200017 /* SettingsScreen.swift */; };
+		A5E210022F85000000000002 /* AddWizardWifiNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E210012F85000000000001 /* AddWizardWifiNotice.swift */; };
+		A5E210042F85000000000004 /* AddWizardStepNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E210032F85000000000003 /* AddWizardStepNumber.swift */; };
 		A5E2D6832DC8E07500EBDADB /* GroupSharedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2D6822DC8E06F00EBDADB /* GroupSharedSettings.swift */; };
 		A5E2D6852DC8E58800EBDADB /* GroupSharedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2D6822DC8E06F00EBDADB /* GroupSharedSettings.swift */; };
 		A5E2D6902DC9EC4E00EBDADB /* WidgetAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2D68F2DC9EC4100EBDADB /* WidgetAction.swift */; };
@@ -2933,8 +2933,6 @@
 		A5AE6D6F2E1DBA6500BC2B67 /* AddWizardScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardScaffold.swift; sourceTree = "<group>"; };
 		A5AE6D722E1E66A400BC2B67 /* AddWizardWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardWelcomeView.swift; sourceTree = "<group>"; };
 		A5AE6D742E1E7A4000BC2B67 /* AddWizardContentText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardContentText.swift; sourceTree = "<group>"; };
-		A5E210012F85000000000001 /* AddWizardWifiNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardWifiNotice.swift; sourceTree = "<group>"; };
-		A5E210032F85000000000003 /* AddWizardStepNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardStepNumber.swift; sourceTree = "<group>"; };
 		A5AE6D762E1E834400BC2B67 /* AddWizardNetworkSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardNetworkSelectionView.swift; sourceTree = "<group>"; };
 		A5AE6D782E1E8F1900BC2B67 /* TextFieldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLabel.swift; sourceTree = "<group>"; };
 		A5AE6D7A2E1E9F6900BC2B67 /* AddWizardConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardConfigurationView.swift; sourceTree = "<group>"; };
@@ -3212,6 +3210,8 @@
 		A5E200142F70000000200014 /* CredentialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsView.swift; sourceTree = "<group>"; };
 		A5E200152F70000000200015 /* CredentialsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsVM.swift; sourceTree = "<group>"; };
 		A5E200172F70000000200017 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A5E210012F85000000000001 /* AddWizardWifiNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardWifiNotice.swift; sourceTree = "<group>"; };
+		A5E210032F85000000000003 /* AddWizardStepNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardStepNumber.swift; sourceTree = "<group>"; };
 		A5E2D6812DC8DB4700EBDADB /* SUPLAWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SUPLAWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		A5E2D6822DC8E06F00EBDADB /* GroupSharedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSharedSettings.swift; sourceTree = "<group>"; };
 		A5E2D68F2DC9EC4100EBDADB /* WidgetAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAction.swift; sourceTree = "<group>"; };
@@ -10513,7 +10513,7 @@
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 290;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -10557,7 +10557,7 @@
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 290;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
