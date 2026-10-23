@@ -23,7 +23,7 @@ final class ThermometerValuesState: ObservableObject {
     @Published var measurements: [MeasurementValue] = []
 }
 
-struct ThermometerValues: View {
+struct ThermometerValuesRow: View {
     @ObservedObject var state: ThermometerValuesState
     
     private var useSmallSize: Bool {
@@ -37,24 +37,8 @@ struct ThermometerValues: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(state.measurements) { measurement in
-                HStack(spacing: 0) {
-                    measurement.icon.image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: iconSize, height: iconSize)
-                    Spacer().frame(width: Distance.tiny)
-                    Text(measurement.value)
-                        .font(font)
-                        .textColor(Color.Supla.onBackground)
-                    if let batteryIcon = measurement.batteryIcon?.resource {
-                        Image(uiImage: batteryIcon)
-                            .resizable()
-                            .scaledToFit()
-                            .rotationEffect(Angle(degrees: 90))
-                            .frame(width: Dimens.iconSize, height: Dimens.iconSize)
-                    }
-                }
-                .frame(maxWidth: .infinity)
+                ThermometerMeasurementRow(measurement: measurement, iconSize: iconSize, font: font)
+                    .frame(maxWidth: .infinity)
             }
             
             if (state.measurements.count == 1) {
@@ -67,7 +51,7 @@ struct ThermometerValues: View {
     }
 }
 
-#Preview {
+#Preview("Row") {
     let twoState = ThermometerValuesState()
     twoState.measurements = [
         temperatureValue("20.0"),
@@ -87,9 +71,62 @@ struct ThermometerValues: View {
         humidityValue("85")
     ]
     return VStack {
-        ThermometerValues(state: twoState)
-        ThermometerValues(state: threeState)
-        ThermometerValues(state: fourState)
+        ThermometerValuesRow(state: twoState)
+        ThermometerValuesRow(state: threeState)
+        ThermometerValuesRow(state: fourState)
+    }
+}
+
+struct ThermometerValuesColumn: View {
+    @ObservedObject var state: ThermometerValuesState
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(state.measurements) { measurement in
+                ThermometerMeasurementRow(measurement: measurement, iconSize: Dimens.iconSize, font: .Supla.bodyMedium)
+                    .frame(height: 60)
+            }
+        }
+        .frame(maxHeight: .infinity, alignment: .top)
+        .padding([.leading, .trailing], Distance.small)
+        .background(Color.Supla.surface)
+    }
+}
+
+#Preview("Column") {
+    let state = ThermometerValuesState()
+    state.measurements = [
+        temperatureValue("20.0"),
+        humidityValue("55"),
+        temperatureValue("22.5"),
+        humidityValue("85")
+    ]
+    return ThermometerValuesColumn(state: state)
+}
+
+private struct ThermometerMeasurementRow: View {
+    let measurement: MeasurementValue
+    let iconSize: CGFloat
+    let font: Font
+
+    var body: some View {
+        HStack(spacing: 0) {
+            measurement.icon.image
+                .resizable()
+                .scaledToFit()
+                .frame(width: iconSize, height: iconSize)
+            Spacer().frame(width: Distance.tiny)
+            Text(measurement.value)
+                .font(font)
+                .textColor(Color.Supla.onBackground)
+            if let batteryIcon = measurement.batteryIcon?.resource {
+                Image(uiImage: batteryIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .rotationEffect(Angle(degrees: 90))
+                    .frame(width: Dimens.iconSize, height: Dimens.iconSize)
+            }
+        }
     }
 }
 

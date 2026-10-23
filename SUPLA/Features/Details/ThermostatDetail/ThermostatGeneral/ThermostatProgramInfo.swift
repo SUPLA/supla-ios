@@ -132,6 +132,7 @@ extension ThermostatProgramInfo.Builder {
         @Singleton<ValuesFormatter> var valuesFormatter
         
         let minutesToNextProgram = quartersToNextProgram! * 15 + (15 - (currentMinute! % 15))
+        let currentScheduleProgram = getProgram(program: foundCurrentProgram)
         let nextScheduleProgram = getProgram(program: foundNextProgram)
         let currentTemperatureString = currentTemperature.toTemperatureString(ValueFormat.companion.TemperatureWithDegree)
         
@@ -156,7 +157,7 @@ extension ThermostatProgramInfo.Builder {
                 ),
                 icon: currentMode!.icon,
                 iconColor: currentMode!.uiColor,
-                description: currentMode == .off ? nil : currentTemperatureString,
+                description: currentMode == .off ? nil : currentScheduleProgram?.description,
                 manualActive: thermostatFlags!.contains(.weeklyScheduleTemporalOverride)
             ),
             ThermostatProgramInfo(

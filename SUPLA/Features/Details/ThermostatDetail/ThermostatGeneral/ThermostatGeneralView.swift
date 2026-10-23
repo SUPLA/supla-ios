@@ -34,6 +34,8 @@ extension ThermostatGeneralFeature {
 
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ThermostatGeneralFeature.ViewState
+        @ObservedObject private var orientationObserver = OrientationObserver()
+
         let delegate: ViewDelegate?
 
         private var stepperButtonColors: ButtonColors {
@@ -42,15 +44,79 @@ extension ThermostatGeneralFeature {
 
         var body: some SwiftUI.View {
             ZStack {
-                Color.Supla.background.ignoresSafeArea()
+                if (orientationObserver.orientation.isLandscape) {
+                    landscapeView
+                } else {
+                    portraitView
+                }
+            }
+        }
+
+        @ViewBuilder
+        private var portraitView: some SwiftUI.View {
+            VStack(spacing: 0) {
+                ThermometerValuesRow(state: viewState.thermometerValues)
+                    .shadow(
+                        color: Color(uiColor: ShadowValues.color).opacity(Double(ShadowValues.opacity)),
+                        radius: ShadowValues.radius,
+                        x: ShadowValues.offset.width,
+                        y: ShadowValues.offset.height
+                    )
+                if (viewState.thermostatAutoMode != nil) {
+                    HStack(spacing: Distance.small) {
+                        Spacer()
+                        heatButton
+                        coolButton
+                        heatCoolButton
+                    }
+                    .padding(.top, Distance.small)
+                    .padding(.horizontal, Distance.default)
+                } else {
+                    ChannelStateView(
+                        currentState: viewState.channelCurrentStateData,
+                        programState: viewState.channelProgramState
+                    )
+                }
+                if let sensorIssue = viewState.sensorIssue {
+                    SensorIssueView(issue: sensorIssue)
+                        .padding(.horizontal, Distance.default)
+                        .padding(.top, Distance.default)
+                }
+
+                Spacer(minLength: 0)
+
+                thermostatControl
+
+                Spacer(minLength: 0)
+
+                ChannelIssuesView(issues: viewState.issues, alignment: .center)
+                    .padding(.bottom, Distance.tiny)
+                controlButtons()
+                    .padding(.horizontal, Distance.default)
+                    .padding(.bottom, Distance.default)
+            }
+
+            if viewState.loadingState.loading {
+                SuplaCore.LoadingScrim()
+            }
+        }
+
+        @ViewBuilder
+        private var landscapeView: some SwiftUI.View {
+            HStack(alignment: .center, spacing: 0) {
+                ThermometerValuesColumn(state: viewState.thermometerValues)
+                    .shadow(
+                        color: Color(uiColor: ShadowValues.color).opacity(Double(ShadowValues.opacity)),
+                        radius: ShadowValues.radius,
+                        x: ShadowValues.offset.height,
+                        y: ShadowValues.offset.width
+                    )
+                    .padding(.trailing, Distance.small)
+
+                thermostatControl
+                    .frame(maxWidth: .infinity)
+
                 VStack(spacing: 0) {
-                    ThermometerValues(state: viewState.thermometerValues)
-                        .shadow(
-                            color: Color(uiColor: ShadowValues.color).opacity(Double(ShadowValues.opacity)),
-                            radius: ShadowValues.radius,
-                            x: ShadowValues.offset.width,
-                            y: ShadowValues.offset.height
-                        )
                     if (viewState.thermostatAutoMode != nil) {
                         HStack(spacing: Distance.small) {
                             Spacer()
@@ -63,7 +129,8 @@ extension ThermostatGeneralFeature {
                     } else {
                         ChannelStateView(
                             currentState: viewState.channelCurrentStateData,
-                            programState: viewState.channelProgramState
+                            programState: viewState.channelProgramState,
+                            padding: .init(top: Distance.small, leading: 0, bottom: 0, trailing: 0)
                         )
                     }
                     if let sensorIssue = viewState.sensorIssue {
@@ -71,51 +138,52 @@ extension ThermostatGeneralFeature {
                             .padding(.horizontal, Distance.default)
                             .padding(.top, Distance.default)
                     }
-
-                    Spacer(minLength: 0)
-
-                    ThermostatControlRepresentable(
-                        state: viewState,
-                        onPositionEvent: { delegate?.onPositionEvent($0) }
-                    )
-                    .frame(width: 280, height: 280)
-                    .overlay(alignment: .bottom) {
-                        HStack(spacing: Distance.small) {
-                            if let icon = viewState.pumpSwitchIcon {
-                                icon.image.resizable().scaledToFit()
-                                    .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
-                            }
-                            if !viewState.plusMinusHidden {
-                                minusButton
-
-                                Spacer().frame(width: Distance.small)
-
-                                plusButton
-                            }
-                            
-                            if let icon = viewState.heatOrColdSourceSwitchIcon {
-                                icon.image.resizable().scaledToFit()
-                                    .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
-                            }
-                        }
-                        .offset(y: 10)
-                    }
-
                     Spacer(minLength: 0)
 
                     ChannelIssuesView(issues: viewState.issues, alignment: .center)
                         .padding(.bottom, Distance.tiny)
-                    controlButtons
+                    controlButtons(spacing: Distance.tiny)
                 }
+                .frame(maxWidth: .infinity)
+            }
 
-                if viewState.loadingState.loading {
-                    SuplaCore.LoadingScrim()
-                }
+            if viewState.loadingState.loading {
+                SuplaCore.LoadingScrim()
             }
         }
 
-        private var controlButtons: some SwiftUI.View {
-            HStack(spacing: Distance.small) {
+        @ViewBuilder
+        private var thermostatControl: some SwiftUI.View {
+            ThermostatControlRepresentable(
+                state: viewState,
+                onPositionEvent: { delegate?.onPositionEvent($0) }
+            )
+            .frame(width: 280, height: 280)
+            .overlay(alignment: .bottom) {
+                HStack(spacing: Distance.small) {
+                    if let icon = viewState.pumpSwitchIcon {
+                        icon.image.resizable().scaledToFit()
+                            .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
+                    }
+                    if !viewState.plusMinusHidden {
+                        minusButton
+
+                        Spacer().frame(width: Distance.small)
+
+                        plusButton
+                    }
+
+                    if let icon = viewState.heatOrColdSourceSwitchIcon {
+                        icon.image.resizable().scaledToFit()
+                            .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
+                    }
+                }
+                .offset(y: 10)
+            }
+        }
+
+        private func controlButtons(spacing: CGFloat = Distance.small) -> some SwiftUI.View {
+            HStack(spacing: spacing) {
                 SuplaButton(
                     .suplaIcon(name: .Icons.powerButton),
                     colors: SuplaButtonColors.buttonColors.copy(
@@ -128,7 +196,7 @@ extension ThermostatGeneralFeature {
                 .frame(width: Dimens.buttonHeight)
                 .disabled(!viewState.controlButtonsEnabled)
 
-                HStack(spacing: Distance.small) {
+                HStack(spacing: spacing) {
                     SuplaButton(Strings.ThermostatDetail.modeManual, active: viewState.manualActive, fullWidth: true) {
                         delegate?.onManualButtonTap()
                     }
@@ -139,27 +207,25 @@ extension ThermostatGeneralFeature {
                     .disabled(!viewState.controlButtonsEnabled)
                 }
             }
-            .padding(.horizontal, Distance.default)
-            .frame(height: 96)
             .frame(maxWidth: .infinity)
         }
-        
+
         private var plusButton: some SwiftUI.View {
             IconButton(name: .Icons.plus) {
                 delegate?.onTemperatureChange(.smallUp)
             }
             .borderedButtonStyle(colors: stepperButtonColors, fillColor: Color.Supla.surface, radius: Dimens.iconSize)
-                .disabled(!viewState.plusButtonEnabled)
+            .disabled(!viewState.plusButtonEnabled)
         }
-        
+
         private var minusButton: some SwiftUI.View {
             IconButton(name: .Icons.minus) {
                 delegate?.onTemperatureChange(.smallDown)
             }
             .borderedButtonStyle(colors: stepperButtonColors, fillColor: Color.Supla.surface, radius: Dimens.iconSize)
-                .disabled(!viewState.minusButtonEnabled)
+            .disabled(!viewState.minusButtonEnabled)
         }
-        
+
         private var coolButton: some SwiftUI.View {
             SuplaButton(
                 colors: .secondaryColors,
@@ -174,7 +240,7 @@ extension ThermostatGeneralFeature {
                     .frame(width: Dimens.iconSize, height: Dimens.iconSize)
             }
         }
-        
+
         private var heatButton: some SwiftUI.View {
             SuplaButton(
                 colors: .errorColors,
@@ -189,10 +255,10 @@ extension ThermostatGeneralFeature {
                     .frame(width: Dimens.iconSize, height: Dimens.iconSize)
             }
         }
-        
+
         private var heatCoolButton: some SwiftUI.View {
             let active = viewState.thermostatAutoMode == .heatCool
-            
+
             return SuplaButton(
                 colors: .buttonColors,
                 active: active,
@@ -296,8 +362,7 @@ enum ThermostatAutoMode {
     case heat, cool, heatCool
 }
 
-
-#Preview("Thermostat general") {
+#Preview("Thermostat general in manual mode") {
     let viewState = ThermostatGeneralFeature.ViewState()
     viewState.offline = false
     viewState.mode = .heat
@@ -327,6 +392,44 @@ enum ThermostatAutoMode {
         value: "21°",
         iconColor: .Supla.error
     )
+    viewState.channelProgramState = [ ChannelProgramState.Data(label: "Test") ]
+    viewState.thermometerValues.measurements = [
+        MeasurementValue(
+            id: 1,
+            icon: .suplaIcon(name: .Icons.fncThermometerHome),
+            value: "20.5°",
+            batteryIcon: nil
+        )
+    ]
+
+    return ThermostatGeneralFeature.View(viewState: viewState, delegate: nil)
+}
+
+#Preview("Thermostat general in program mode") {
+    let viewState = ThermostatGeneralFeature.ViewState()
+    viewState.offline = false
+    viewState.mode = .heat
+    viewState.setpointHeat = 21
+    viewState.configMin = 5
+    viewState.configMax = 30
+    viewState.controlButtonsEnabled = true
+    viewState.manualActive = true
+    viewState.sensorIssue = SensorIssue(
+        icon: .suplaIcon(name: .Icons.fncThermometerHome),
+        message: Strings.ThermostatDetail.offBySensor
+    )
+    viewState.pumpSwitchIcon = .suplaIcon(name: "fnc_pump_switch-on")
+    viewState.heatOrColdSourceSwitchIcon = .suplaIcon(name: "fnc_heat_or_cold_source_switch-on")
+    viewState.issues = [
+        SharedCore.ChannelIssueItem.Error(
+            string: localizedString(id: LocalizedStringId.floodSensorActive)
+        ),
+        SharedCore.ChannelIssueItem.Warning(
+            string: localizedString(id: LocalizedStringId.channelBatteryLevel, arg1: 10)
+        )
+    ]
+    viewState.loadingState = viewState.loadingState.copy(loading: false)
+    viewState.channelProgramState = [ ChannelProgramState.Data(label: "CURRENTLY:", description: "21.00 - 25.00", time: "for 45 minutes") ]
     viewState.thermometerValues.measurements = [
         MeasurementValue(
             id: 1,

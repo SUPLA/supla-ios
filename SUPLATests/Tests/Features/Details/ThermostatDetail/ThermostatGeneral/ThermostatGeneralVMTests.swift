@@ -23,7 +23,7 @@ final class ThermostatGeneralVMTests: SuplaCore.ViewModelTest<ThermostatGeneralF
         function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT
     )
 
-    private lazy var viewModel = ThermostatGeneralFeature.ViewModel(itemBundle: item)
+    private lazy var viewModel = ThermostatGeneralFeature.ViewModel(item: item)
     private lazy var readChannelWithChildrenUseCase = ReadChannelWithChildrenUseCaseMock()
     private lazy var createTemperaturesListUseCase = CreateTemperaturesListUseCaseMock()
     private lazy var channelConfigEventsManager = ChannelConfigEventsManagerMock()
