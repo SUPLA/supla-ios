@@ -20,13 +20,10 @@ import SwiftUI
 
 extension ThermostatGeneralFeature {
     struct Screen: SwiftUI.View {
-        let itemBundle: ItemBundle
-
         @StateObject private var viewModel: ViewModel
 
         init(itemBundle: ItemBundle) {
-            self.itemBundle = itemBundle
-            _viewModel = StateObject(wrappedValue: ViewModel(itemBundle: itemBundle))
+            _viewModel = StateObject(wrappedValue: ViewModel(item: itemBundle))
         }
 
         var body: some SwiftUI.View {

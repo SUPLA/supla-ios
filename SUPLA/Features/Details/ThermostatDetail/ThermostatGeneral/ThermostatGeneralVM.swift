@@ -45,8 +45,8 @@ extension ThermostatGeneralFeature {
         private let channelRelay = PublishRelay<ChannelWithChildren>()
         private let itemBundle: ItemBundle
 
-        init(itemBundle: ItemBundle) {
-            self.itemBundle = itemBundle
+        init(item: ItemBundle) {
+            self.itemBundle = item
             super.init(state: ViewState())
 
             observeData(remoteId: itemBundle.remoteId, deviceId: itemBundle.deviceId)
@@ -377,8 +377,8 @@ extension ThermostatGeneralFeature {
             builder.thermostatFlags = value.flags
             builder.currentMode = value.mode
             builder.channelOnline = online
-            if value.subfunction == .heat { builder.currentTemperature = value.setpointTemperatureHeat }
-            if value.subfunction == .cool { builder.currentTemperature = value.setpointTemperatureCool }
+            if value.mode == .heat || value.mode == .heatCool { builder.currentTemperature = value.setpointTemperatureHeat }
+            if value.mode == .cool || value.mode == .heatCool { builder.currentTemperature = value.setpointTemperatureCool }
             return builder.build()
         }
 

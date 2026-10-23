@@ -15,18 +15,17 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
+
 import SwiftUI
 
 extension ThermostatScheduleDetailFeature {
-    
     struct SetpointData: Equatable {
         let plusDisabled: Bool
         let minusDisabled: Bool
         let valueCorrect: Bool
         let initialValue: String
         let updateValue: String
-        
+
         init(plusDisabled: Bool, minusDisabled: Bool, valueCorrect: Bool, initialValue: String, updateValue: String) {
             self.plusDisabled = plusDisabled
             self.minusDisabled = minusDisabled
@@ -34,7 +33,7 @@ extension ThermostatScheduleDetailFeature {
             self.initialValue = initialValue
             self.updateValue = updateValue
         }
-        
+
         init(plusDisabled: Bool, minusDisabled: Bool, valueCorrect: Bool, value: String) {
             self.plusDisabled = plusDisabled
             self.minusDisabled = minusDisabled
@@ -42,7 +41,7 @@ extension ThermostatScheduleDetailFeature {
             self.initialValue = value
             self.updateValue = value
         }
-        
+
         func copy(
             plusDisabled: Bool? = nil,
             minusDisabled: Bool? = nil,
@@ -59,14 +58,14 @@ extension ThermostatScheduleDetailFeature {
             )
         }
     }
-    
+
     struct EditProgramState: Equatable {
         let program: SuplaScheduleProgram
         let modes: SelectableList<SuplaHvacMode>
         let temperatureUnit: TemperatureUnit
         let heatSetpoint: SetpointData?
         let coolSetpoint: SetpointData?
-        
+
         var saveDisabled: Bool {
             if let heatSetpoint, let coolSetpoint {
                 !heatSetpoint.valueCorrect || !coolSetpoint.valueCorrect
@@ -78,7 +77,7 @@ extension ThermostatScheduleDetailFeature {
                 true
             }
         }
-        
+
         init(
             program: SuplaScheduleProgram,
             modes: SelectableList<SuplaHvacMode>,
@@ -92,7 +91,7 @@ extension ThermostatScheduleDetailFeature {
             self.heatSetpoint = heatSetpoint
             self.coolSetpoint = coolSetpoint
         }
-        
+
         func copy(
             program: SuplaScheduleProgram? = nil,
             modes: SelectableList<SuplaHvacMode>? = nil,
@@ -108,7 +107,7 @@ extension ThermostatScheduleDetailFeature {
                 coolSetpoint: coolSetpoint ?? self.coolSetpoint,
             )
         }
-        
+
         func copy(
             setpointType: SetpointType,
             plusDisabled: Bool? = nil,
@@ -138,17 +137,17 @@ extension ThermostatScheduleDetailFeature {
             }
         }
     }
-    
+
     struct EditProgramDialog: SwiftUI.View {
         let state: EditProgramState
-        
+
         let onDismiss: () -> Void
         let onChange: (SetpointType, String) -> Void
         let onModeChange: (SuplaHvacMode) -> Void
         let onPlus: (SetpointType, String) -> Void
         let onMinus: (SetpointType, String) -> Void
         let onSave: (String, String) -> Void
-        
+
         init(
             state: EditProgramState,
             onDismiss: @escaping () -> Void,
@@ -168,14 +167,55 @@ extension ThermostatScheduleDetailFeature {
             self._heatValue = State(initialValue: state.heatSetpoint?.initialValue ?? "")
             self._coolValue = State(initialValue: state.coolSetpoint?.initialValue ?? "")
         }
-        
+
         @State private var heatValue: String
         @State private var coolValue: String
-        
+
         var body: some SwiftUI.View {
-            SuplaCore.Dialog.Base(onDismiss: onDismiss, alignment: .leading, width: 300) {
+            GeometryReader { geometry in
+                let isLandscape = geometry.size.width > geometry.size.height
+                let width: CGFloat = isLandscape ? 560 : 300
+                let maxHeight = max(0, geometry.size.height - Distance.default * 2)
+
+                SuplaCore.Dialog.Base(onDismiss: onDismiss, alignment: .leading, width: width) {
+                    if isLandscape {
+                        VStack(spacing: 0) {
+                            ScrollView(.vertical) {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    programContent
+                                    temperatureEditRow
+                                }
+                            }
+                            .frame(maxHeight: .infinity)
+
+                            HStack(spacing: Distance.tiny) {
+                                TitleButton(title: Strings.General.cancel, fullWidth: true, action: onDismiss)
+                                    .textButtonStyle()
+                                TitleButton(title: Strings.General.ok, fullWidth: true, action: { onSave(heatValue, coolValue) })
+                                    .filledButtonStyle()
+                                    .disabled(state.saveDisabled)
+                            }
+                            .padding(.horizontal, Distance.default)
+                            .padding(.vertical, Distance.small)
+                        }
+                        .frame(maxHeight: maxHeight)
+                    } else {
+                        programContent
+                        temperatureEditColumn
+                        SuplaCore.Dialog.DoubleButtons(
+                            onSecondaryClick: onDismiss,
+                            onPrimaryClick: { onSave(heatValue, coolValue) },
+                            primaryDisabled: state.saveDisabled
+                        )
+                    }
+                }
+            }
+        }
+
+        private var programContent: some SwiftUI.View {
+            VStack(alignment: .leading, spacing: 0) {
                 ScheduleProgramDialogHeader(program: state.program)
-                
+
                 if (state.modes.items.count > 1) {
                     LabelText(text: Strings.ThermostatDetail.modeWeeklySchedule)
                         .padding(.horizontal, Distance.default + Distance.small)
@@ -192,12 +232,17 @@ extension ThermostatScheduleDetailFeature {
                     .padding(.horizontal, Distance.default)
                     .padding(.bottom, Distance.small)
                 }
-                
+            }
+        }
+
+        @ViewBuilder
+        private var temperatureEditRow: some SwiftUI.View {
+            HStack(alignment: .top, spacing: Distance.small) {
                 if let heatSetpoint = state.heatSetpoint,
                    state.modes.selected == .heat || state.modes.selected == .heatCool
                 {
                     TemperatureEdit(type: .heat, heatSetpoint, $heatValue)
-                        .padding(.horizontal, Distance.default)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .onChange(of: heatValue) { onChange(.heat, $0) }
                         .onChange(of: heatSetpoint.updateValue) { heatValue = $0 }
                 }
@@ -205,38 +250,55 @@ extension ThermostatScheduleDetailFeature {
                    state.modes.selected == .cool || state.modes.selected == .heatCool
                 {
                     TemperatureEdit(type: .cool, coolSetpoint, $coolValue)
-                        .padding(.horizontal, Distance.default)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .onChange(of: coolValue) { onChange(.cool, $0) }
                         .onChange(of: coolSetpoint.updateValue) { coolValue = $0 }
                 }
-                
-                SuplaCore.Dialog.DoubleButtons(
-                    onSecondaryClick: onDismiss,
-                    onPrimaryClick: { onSave(heatValue, coolValue) },
-                    primaryDisabled: state.saveDisabled
-                )
+            }
+            .padding(.horizontal, Distance.default)
+        }
+
+        @ViewBuilder
+        private var temperatureEditColumn: some SwiftUI.View {
+            if let heatSetpoint = state.heatSetpoint,
+               state.modes.selected == .heat || state.modes.selected == .heatCool
+            {
+                TemperatureEdit(type: .heat, heatSetpoint, $heatValue)
+                    .onChange(of: heatValue) { onChange(.heat, $0) }
+                    .onChange(of: heatSetpoint.updateValue) { heatValue = $0 }
+                    .padding(.horizontal, Distance.default)
+            }
+            if let coolSetpoint = state.coolSetpoint,
+               state.modes.selected == .cool || state.modes.selected == .heatCool
+            {
+                TemperatureEdit(type: .cool, coolSetpoint, $coolValue)
+                    .onChange(of: coolValue) { onChange(.cool, $0) }
+                    .onChange(of: coolSetpoint.updateValue) { coolValue = $0 }
+                    .padding(.horizontal, Distance.default)
             }
         }
-        
+
         @ViewBuilder
         private func TemperatureEdit(type: SetpointType, _ setpointData: SetpointData, _ value: Binding<String>) -> some SwiftUI.View {
-            Text(type.label)
-                .fontBodyLarge()
-                .textColor(.Supla.onSurfaceVariant)
-            HStack(alignment: .center, spacing: Distance.tiny) {
-                MinusButton(type, value.wrappedValue, setpointData.minusDisabled)
-                AccessoryTextField(
-                    text: value,
-                    error: !setpointData.valueCorrect,
-                    suffix: { AccessoryText(state.temperatureUnit.valueUnit.text) }
-                )
-                .keyboardType(.decimalPad)
-                .frame(width: 120)
-                PlusButton(type, value.wrappedValue, setpointData.plusDisabled)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(type.label)
+                    .fontBodyLarge()
+                    .textColor(.Supla.onSurfaceVariant)
+                HStack(alignment: .center, spacing: Distance.tiny) {
+                    MinusButton(type, value.wrappedValue, setpointData.minusDisabled)
+                    AccessoryTextField(
+                        text: value,
+                        error: !setpointData.valueCorrect,
+                        suffix: { AccessoryText(state.temperatureUnit.valueUnit.text) }
+                    )
+                    .keyboardType(.decimalPad)
+                    .frame(width: 120)
+                    PlusButton(type, value.wrappedValue, setpointData.plusDisabled)
+                }
+                .padding(.vertical, Distance.tiny)
             }
-            .padding(.vertical, Distance.tiny)
         }
-        
+
         private func MinusButton(_ type: SetpointType, _ value: String, _ disabled: Bool) -> some SwiftUI.View {
             IconButton(
                 name: .Icons.minus,
@@ -246,7 +308,7 @@ extension ThermostatScheduleDetailFeature {
             .disabled(disabled)
             .clipShape(Circle())
         }
-        
+
         private func PlusButton(_ type: SetpointType, _ value: String, _ disabled: Bool) -> some SwiftUI.View {
             IconButton(
                 name: .Icons.plus,
@@ -256,7 +318,7 @@ extension ThermostatScheduleDetailFeature {
             .disabled(disabled)
             .clipShape(Circle())
         }
-        
+
         private func filterInput(_ text: String) -> String {
             text.filter { $0.isNumber || $0 == "." || $0 == "," }
         }
