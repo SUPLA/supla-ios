@@ -20,14 +20,21 @@ import SwiftUI
 import SharedCore
 
 struct ChannelIssuesView: SwiftUI.View {
-    var issues: [ChannelIssueItem]
-    
+    let issues: [ChannelIssueItem]
+    let alignment: VerticalAlignment
+
+    init(issues: [ChannelIssueItem], alignment: VerticalAlignment = .top) {
+        self.issues = issues
+        self.alignment = alignment
+    }
+
     var body: some SwiftUI.View {
         ForEach(0 ..< issues.count, id: \.self) { issueIdx in
             ForEach(0 ..< issues[issueIdx].messages.count, id: \.self) { messageIdx in
                 ChannelIssueView(
                     icon: issues[issueIdx].icon,
-                    message: issues[issueIdx].messages[messageIdx].string
+                    message: issues[issueIdx].messages[messageIdx].string,
+                    alignment: alignment
                 )
             }
         }

@@ -227,6 +227,7 @@ extension ThermostatScheduleDetailFeature {
                 MinusButton(type, value.wrappedValue, setpointData.minusDisabled)
                 AccessoryTextField(
                     text: value,
+                    error: !setpointData.valueCorrect,
                     suffix: { AccessoryText(state.temperatureUnit.valueUnit.text) }
                 )
                 .keyboardType(.decimalPad)

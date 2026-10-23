@@ -20,16 +20,19 @@ import SwiftUI
 
 struct AccessoryTextField<Prefix: View, Suffix: View>: View {
     @Binding var text: String
+    let error: Bool
 
     @ViewBuilder let prefix: () -> Prefix
     @ViewBuilder let suffix: () -> Suffix
 
     init(
         text: Binding<String>,
+        error: Bool = false,
         @ViewBuilder prefix: @escaping () -> Prefix = { EmptyView() },
         @ViewBuilder suffix: @escaping () -> Suffix = { EmptyView() }
     ) {
         self._text = text
+        self.error = error
         self.prefix = prefix
         self.suffix = suffix
     }
@@ -52,7 +55,7 @@ struct AccessoryTextField<Prefix: View, Suffix: View>: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: Dimens.radiusDefault)
-                .stroke(Color.Supla.grayLighter)
+                .stroke(error ? Color.Supla.error : Color.Supla.grayLighter)
         )
     }
 }

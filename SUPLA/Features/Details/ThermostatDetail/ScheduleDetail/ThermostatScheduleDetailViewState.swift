@@ -34,6 +34,8 @@ extension ThermostatScheduleDetailFeature {
         @Published var thermostatSubfunction: ThermostatSubfunction? = nil
         @Published var configMin: Float? = nil
         @Published var configMax: Float? = nil
+        @Published var autoOffsetMin: Float? = nil
+        @Published var autoOffsetMax: Float? = nil
         
         @Published var editProgramState: EditProgramState? = nil
         @Published var editQuartersState: EditQuartersState? = nil

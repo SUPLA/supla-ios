@@ -91,28 +91,30 @@ extension ThermostatScheduleDetailFeature {
             
             let heatTemperature = state.temperature(setpointType: .heat, program.scheduleProgram)
             let coolTemperature = state.temperature(setpointType: .cool, program.scheduleProgram)
-            
-            state.editProgramState = EditProgramState(
+            let heatSetpoint = heatTemperature?.let {
+                SetpointData(
+                    plusDisabled: $0 >= configMax,
+                    minusDisabled: $0 <= configMin,
+                    valueCorrect: $0 >= configMin && $0 <= configMax,
+                    value: state.temperatureString($0)
+                )
+            }
+            let coolSetpoint = coolTemperature?.let {
+                SetpointData(
+                    plusDisabled: $0 >= configMax,
+                    minusDisabled: $0 <= configMin,
+                    valueCorrect: $0 >= configMin && $0 <= configMax,
+                    value: state.temperatureString($0)
+                )
+            }
+            let editProgramState = EditProgramState(
                 program: program.scheduleProgram.program,
                 modes: SelectableList(selected: program.scheduleProgram.mode, items: state.availableModes),
                 temperatureUnit: globalSettings.temperatureUnit,
-                heatSetpoint: heatTemperature?.let {
-                    SetpointData(
-                        plusDisabled: $0 >= configMax,
-                        minusDisabled: $0 <= configMin,
-                        valueCorrect: $0 >= configMin && $0 <= configMax,
-                        value: state.temperatureString($0)
-                    )
-                },
-                coolSetpoint: coolTemperature?.let {
-                    SetpointData(
-                        plusDisabled: $0 >= configMax,
-                        minusDisabled: $0 <= configMin,
-                        valueCorrect: $0 >= configMin && $0 <= configMax,
-                        value: state.temperatureString($0)
-                    )
-                }
+                heatSetpoint: heatSetpoint,
+                coolSetpoint: coolSetpoint
             )
+            state.editProgramState = validateCoolTemperature(editProgramState)
         }
         
         func onProgramDialogDismiss() {
@@ -128,7 +130,8 @@ extension ThermostatScheduleDetailFeature {
                     setpointType: setpointType,
                     plusDisabled: false,
                     minusDisabled: true,
-                    valueCorrect: false
+                    valueCorrect: false,
+                    updateValue: value
                 )
             }
             
@@ -137,20 +140,63 @@ extension ThermostatScheduleDetailFeature {
                     setpointType: setpointType,
                     plusDisabled: valueAsFloat >= configMax,
                     minusDisabled: valueAsFloat <= configMin,
-                    valueCorrect: valueAsFloat >= configMin && valueAsFloat <= configMax
+                    valueCorrect: valueAsFloat >= configMin && valueAsFloat <= configMax,
+                    updateValue: value
                 )
             } else {
                 state.editProgramState = state.editProgramState?.copy(
                     setpointType: setpointType,
                     plusDisabled: true,
                     minusDisabled: true,
-                    valueCorrect: false
+                    valueCorrect: false,
+                    updateValue: value
                 )
+            }
+
+            if let editProgramState = state.editProgramState {
+                state.editProgramState = validateCoolTemperature(editProgramState)
             }
         }
         
         func onProgramDialogModeChange(_ mode: SuplaHvacMode) {
-            state.editProgramState = state.editProgramState?.copy(modes: state.editProgramState?.modes.changing(path: \.selected, to: mode))
+            guard let editProgramState = state.editProgramState else { return }
+
+            let updatedState = editProgramState.copy(
+                modes: editProgramState.modes.changing(path: \.selected, to: mode)
+            )
+            state.editProgramState = validateCoolTemperature(updatedState)
+        }
+
+        private func validateCoolTemperature(_ editProgramState: EditProgramState) -> EditProgramState {
+            guard let coolSetpoint = editProgramState.coolSetpoint,
+                  let coolTemperature = coolSetpoint.updateValue.toFloat() else {
+                return editProgramState.copy(setpointType: .cool, valueCorrect: false)
+            }
+
+            let isInRange: Bool
+            if let configMin = state.configMin, let configMax = state.configMax {
+                isInRange = coolTemperature >= configMin && coolTemperature <= configMax
+            } else {
+                isInRange = coolSetpoint.valueCorrect
+            }
+
+            let isGreaterThanHeatTemperature: Bool
+            if editProgramState.modes.selected == .heatCool {
+                isGreaterThanHeatTemperature = editProgramState.heatSetpoint?.updateValue.toFloat()
+                    .map { heatTemperature in
+                        let offset = coolTemperature - heatTemperature
+                        let aboveMinOffset = state.autoOffsetMin.map { offset >= $0 } ?? true
+                        let belowMaxOffset = state.autoOffsetMax.map { offset <= $0 } ?? true
+                        return offset > 0 && aboveMinOffset && belowMaxOffset
+                    } ?? false
+            } else {
+                isGreaterThanHeatTemperature = true
+            }
+
+            return editProgramState.copy(
+                setpointType: .cool,
+                valueCorrect: isInRange && isGreaterThanHeatTemperature
+            )
         }
         
         func onProgramDialogPlus(_ setpointType: SetpointType, _ value: String) {
@@ -179,6 +225,10 @@ extension ThermostatScheduleDetailFeature {
                     updateValue: temperatureString
                 )
             }
+
+            if let editProgramState = state.editProgramState {
+                state.editProgramState = validateCoolTemperature(editProgramState)
+            }
         }
         
         func onProgramDialogMinus(_ setpointType: SetpointType, _ value: String) {
@@ -195,6 +245,10 @@ extension ThermostatScheduleDetailFeature {
                 valueCorrect: temperature >= configMin && temperature <= configMax,
                 updateValue: temperatureString
             )
+
+            if let editProgramState = state.editProgramState {
+                state.editProgramState = validateCoolTemperature(editProgramState)
+            }
         }
         
         func onProgramDialogSave(_ heatValue: String, _ coolValue: String) {
@@ -331,6 +385,8 @@ extension ThermostatScheduleDetailFeature {
             state.programs = weeklyScheduleConfig.viewProgramsList()
             state.configMin = configMin
             state.configMax = configMax
+            state.autoOffsetMin = hvacConfig.temperatures.autoOffsetMin?.fromSuplaTemperature()
+            state.autoOffsetMax = hvacConfig.temperatures.autoOffsetMax?.fromSuplaTemperature()
             state.schedule = weeklyScheduleConfig.viewScheduleBoxes()
             
             if (configs.4.isAutomaticTimeSyncDisabled() == false) {
