@@ -327,8 +327,7 @@
 		A519CCC12D393EE300F858A4 /* index_7.8.17.html in Resources */ = {isa = PBXBuildFile; fileRef = A519CCC02D393EE300F858A4 /* index_7.8.17.html */; };
 		A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */; };
 		A51BE8F32AA7188500718F2F /* ThermostatGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */; };
-		A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */; };
-		A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */; };
+		A51BE8F72AA71E3E00718F2F /* ThermostatScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F62AA71E3E00718F2F /* ThermostatScheduleVM.swift */; };
 		A51BE8FC2AA7300A00718F2F /* ThermometerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */; };
 		A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */; };
 		A51BE9032AA746C100718F2F /* UIRoundedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9022AA746C100718F2F /* UIRoundedControlButtonView.swift */; };
@@ -1618,6 +1617,8 @@
 		AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */; };
 		AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
+		B01000002F43000000000002 /* ThermostatGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01000002F43000000000001 /* ThermostatGeneralView.swift */; };
+		B02000002F43000000000002 /* ThermostatGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02000002F43000000000001 /* ThermostatGeneralViewState.swift */; };
 		B1DCC0000000000000000101 /* ImpulseCounterSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */; };
 		B1DCC0000000000000000103 /* ImpulseCounterSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */; };
 		B1DCC0000000000000000104 /* ImpulseCounterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */; };
@@ -2217,8 +2218,7 @@
 		A519CCC02D393EE300F858A4 /* index_7.8.17.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index_7.8.17.html; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* BaseDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVM.swift; sourceTree = "<group>"; };
-		A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVC.swift; sourceTree = "<group>"; };
-		A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVM.swift; sourceTree = "<group>"; };
+		A51BE8F62AA71E3E00718F2F /* ThermostatScheduleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatScheduleVM.swift; sourceTree = "<group>"; };
 		A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValues.swift; sourceTree = "<group>"; };
 		A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementValue.swift; sourceTree = "<group>"; };
 		A51BE9022AA746C100718F2F /* UIRoundedControlButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRoundedControlButtonView.swift; sourceTree = "<group>"; };
@@ -3490,6 +3490,8 @@
 		AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVC.swift; sourceTree = "<group>"; };
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
+		B01000002F43000000000001 /* ThermostatGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralView.swift; sourceTree = "<group>"; };
+		B02000002F43000000000001 /* ThermostatGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralViewState.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000002 /* ImpulseCounterSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsFeature.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000004 /* ImpulseCounterSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsVM.swift; sourceTree = "<group>"; };
 		B1DCC0000000000000000005 /* ImpulseCounterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseCounterSettingsView.swift; sourceTree = "<group>"; };
@@ -4527,9 +4529,10 @@
 				A5A3252B2E869A0600E60812 /* SensorIssue.swift */,
 				A51BE8FA2AA72FE200718F2F /* UI */,
 				A51BE8F22AA7188500718F2F /* ThermostatGeneralVM.swift */,
-				A51BE8F42AA7190500718F2F /* ThermostatGeneralVC.swift */,
 				A5F210002F42010000000000 /* ThermostatGeneralFeature.swift */,
 				A5F210012F42010000000001 /* ThermostatGeneralScreen.swift */,
+				B01000002F43000000000001 /* ThermostatGeneralView.swift */,
+				B02000002F43000000000001 /* ThermostatGeneralViewState.swift */,
 				A56233F62AB85B37001CB948 /* DelayedThermostatActionSubject.swift */,
 				A57C88342ACB4903000B0F10 /* ThermostatProgramInfo.swift */,
 			);
@@ -4541,7 +4544,7 @@
 			children = (
 				A5E9451C2F8527FB008C68FC /* data */,
 				A57C4AB12AAF372B00D9C695 /* dialogs */,
-				A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */,
+				A51BE8F62AA71E3E00718F2F /* ThermostatScheduleVM.swift */,
 				A5F212002F42210000000000 /* ThermostatScheduleDetailScreen.swift */,
 				A50A86522F76C7EE00B4A09C /* ThermostatScheduleDetailView.swift */,
 				A50A86502F76C7A000B4A09C /* ThermostatScheduleDetailViewState.swift */,
@@ -8781,7 +8784,7 @@
 				A541493A2B63D81000B44BD6 /* ChartData.swift in Sources */,
 				A57668E12AE99DB90025509D /* ChartDataAggregation.swift in Sources */,
 				A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */,
-				A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */,
+				A51BE8F72AA71E3E00718F2F /* ThermostatScheduleVM.swift in Sources */,
 				A59E57AD2F8F82D000808DBF /* ThermostatTimerDetailViewState.swift in Sources */,
 				A52F03D92DBA196600472ED1 /* CarPlayListVM.swift in Sources */,
 				A530EE022A5441F300F8DAEE /* SwitchTimerDetailView.swift in Sources */,
@@ -9168,9 +9171,10 @@
 				A50B5D4C2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift in Sources */,
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */,
-				A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */,
 				A5F210022F42010000000002 /* ThermostatGeneralFeature.swift in Sources */,
 				A5F210032F42010000000003 /* ThermostatGeneralScreen.swift in Sources */,
+				B01000002F43000000000002 /* ThermostatGeneralView.swift in Sources */,
+				B02000002F43000000000002 /* ThermostatGeneralViewState.swift in Sources */,
 				A51BE8E72AA705AD00718F2F /* BaseDetailVM.swift in Sources */,
 				A54637B32D37E8B400D746F5 /* ImpulseCounterGeneralFeature.swift in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
@@ -10049,6 +10053,7 @@
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
 				A57C88372ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift in Sources */,
+				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A5E40B532B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift in Sources */,
 				A5519B3E2B6D37F100811747 /* DistanceValueProviderTest.swift in Sources */,
 				A54A067E2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift in Sources */,
@@ -10072,7 +10077,6 @@
 				A573B0AC2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift in Sources */,
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				A55A8DD52BB44EFC00C540D4 /* RollerShutterValueTests.swift in Sources */,
-				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
 				C0DE20260908000100000102 /* AppRouterTests.swift in Sources */,
 				C0DE20260917000100000102 /* SceneDelegateTests.swift in Sources */,
