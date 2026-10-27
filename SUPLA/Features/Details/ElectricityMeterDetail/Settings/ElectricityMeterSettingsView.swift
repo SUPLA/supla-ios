@@ -52,8 +52,8 @@ extension ElectricityMeterSettingsFeature {
                 VStack(alignment: .leading, spacing: 0) {
                     SettingsView.Header(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
                     
-                    SettingsView.List {
-                        if (viewState.currentMonthBalancing != nil) {
+                    if (viewState.currentMonthBalancing != nil) {
+                        SettingsView.Block {
                             SettingsView.VerticalRow {
                                 SettingsView.Label(text: Strings.ElectricityMeter.lastMonthBalancing)
                                 SuplaCore.Picker(selected: currentMonthBalancing, items: viewState.currentMonthBalancing!.items)
@@ -63,7 +63,7 @@ extension ElectricityMeterSettingsFeature {
                     
                     SettingsView.Header(text: Strings.ElectricityMeter.onList)
                         .padding(.top, Distance.default)
-                    SettingsView.List {
+                    SettingsView.Block {
                         if (viewState.metricOnList != nil) {
                             SettingsView.VerticalRow {
                                 SettingsView.Label(text: Strings.ElectricityMeter.metricOnList)
