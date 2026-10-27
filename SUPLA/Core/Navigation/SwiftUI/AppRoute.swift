@@ -38,6 +38,7 @@ enum ConnectionTakeoverPolicy: Hashable {
 
 enum AppRoute: Hashable {
     case settings
+    case scheduleList
     case locationOrdering
     case profiles
     case addWizard
@@ -70,6 +71,7 @@ extension AppRoute {
     var connectionTakeoverPolicy: ConnectionTakeoverPolicy {
         switch self {
         case .settings,
+             .scheduleList,
              .addWizard,
              .zWave,
              .profile,

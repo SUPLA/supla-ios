@@ -71,6 +71,7 @@ private extension AppRootView {
         private func destination(for route: AppRoute) -> some View {
             switch route {
             case .settings: SettingsScreen()
+            case .scheduleList: ScheduleListFeature.Screen()
             case .locationOrdering: LocationOrderingScreen()
             case .deviceCatalog: DeviceCatalogScreen()
             case .notificationsLog: NotificationsLogFeature.Screen()

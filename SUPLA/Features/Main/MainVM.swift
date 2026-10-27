@@ -28,6 +28,7 @@ extension MainFeature {
         override func onViewAppear() {
             Task {
                 await loadProfilesIconVisibility()
+                await loadScheduleListVisibility()
                 await loadZWaveChannels()
             }
         }
@@ -37,6 +38,13 @@ extension MainFeature {
 
             await MainActor.run {
                 state.showProfilesIcon = count > 1
+            }
+        }
+
+        private func loadScheduleListVisibility() async {
+            let profile = try? await profileRepository.getActiveProfile().map(\.dto).awaitFirstElement()
+            await MainActor.run {
+                state.showScheduleList = profile?.authorizationType == .email
             }
         }
         

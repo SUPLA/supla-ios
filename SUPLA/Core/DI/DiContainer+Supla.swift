@@ -40,6 +40,8 @@ extension DiContainer {
         register(DelayedRgbwActionSubject.self, DelayedRgbwActionSubjectImpl())
         register(SuplaCloudService.self, SuplaCloudServiceImpl())
         register(SuplaCloudConfigHolder.self, SuplaCloudConfigHolderImpl())
+        register(CloudApiTokenStore.self, CloudApiTokenStore())
+        register(CloudApiClient.self, CloudApiClient())
         register(UserStateHolder.self, UserStateHolderImpl())
         register(SessionResponseProvider.self, SessionResponseProviderImpl())
         register(SuplaSchedulers.self, SuplaSchedulersImpl())

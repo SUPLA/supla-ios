@@ -55,25 +55,35 @@ struct SettingsView {
                         .fontBodyMedium()
                 }
                 .onChange(of: checked) { onChange?($0) }
-                .padding([.leading, .trailing], Distance.default)
             }
         }
     }
     
     struct Row<Content: View>: SwiftUI.View {
         let content: () -> Content
-        
+
+        @Environment(\.settingsBlockShowsDivider) private var showDivider
+
         init(@ViewBuilder content: @escaping () -> Content) {
             self.content = content
         }
         
         var body: some View {
-            HStack {
+            HStack(alignment: .center) {
                 content()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding([.top, .bottom], Distance.small)
+            .padding(.horizontal, Distance.small)
+            .padding(.vertical, 4)
             .background(Color.Supla.surface)
+            .overlay(alignment: .bottom) {
+                if showDivider {
+                    Rectangle()
+                        .fill(Color.Supla.background)
+                        .frame(height: 1.5)
+                        .padding(.leading, Distance.small)
+                }
+            }
         }
     }
     

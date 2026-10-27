@@ -231,7 +231,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 ),
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.uiColor,
-                description: "10.0°",
+                description: "21.0°",
                 manualActive: false
             ),
             ThermostatProgramInfo(
@@ -312,7 +312,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 ),
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.uiColor,
-                description: "10.0°",
+                description: "21.0°",
                 manualActive: false
             ),
             ThermostatProgramInfo(

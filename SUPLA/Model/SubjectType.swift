@@ -49,4 +49,21 @@ public enum SubjectType: Int32, Equatable, Hashable, CaseIterable, Identifiable,
         
         fatalError("Subject type for rawValue \(rawValue) not found")
     }
+
+    static func from(_ cloudValue: String) -> SubjectType? {
+        switch cloudValue {
+        case "channel": .channel
+        case "channelGroup": .group
+        case "scene": .scene
+        default: nil
+        }
+    }
+
+    func toCloudString() -> String {
+        switch self {
+        case .channel: "channel"
+        case .group: "channelGroup"
+        case .scene: "scene"
+        }
+    }
 }
