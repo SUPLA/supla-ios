@@ -811,3 +811,11 @@
 "rate_app_rate_now" = "Beoordeel het nu";
 "rate_app_later" = "Later";
 "rate_app_no_thanks" = "Nee, dank je";
+
+/* Cloud schedules */
+"schedules_list_title" = "Schema’s";
+"schedule_default_caption" = "Schema ID%d";
+"schedule_last_execution" = "Laatste uitvoering: %@";
+"schedule_next_execution" = "Volgende uitvoering: %@";
+"schedule_name" = "Schemaname";
+"schedules_login_required" = "Log in bij SUPLA Cloud om schema’s te bekijken.";

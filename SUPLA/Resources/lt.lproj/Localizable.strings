@@ -813,3 +813,11 @@
 "rate_app_rate_now" = "Įvertinti dabar";
 "rate_app_later" = "Vėliau";
 "rate_app_no_thanks" = "Ne, ačiū";
+
+/* Cloud schedules */
+"schedules_list_title" = "Tvarkaraščiai";
+"schedule_default_caption" = "Tvarkaraštis ID%d";
+"schedule_last_execution" = "Paskutinis vykdymas: %@";
+"schedule_next_execution" = "Kitas vykdymas: %@";
+"schedule_name" = "Tvarkaraščio pavadinimas";
+"schedules_login_required" = "Norėdami peržiūrėti tvarkaraščius, prisijunkite prie SUPLA Cloud.";

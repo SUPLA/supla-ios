@@ -21,3 +21,11 @@
 "rate_app_rate_now" = "Rate Now";
 "rate_app_later" = "Later";
 "rate_app_no_thanks" = "No thanks";
+
+/* Cloud schedules */
+"schedules_list_title" = "Schedules";
+"schedule_default_caption" = "Schedule ID%d";
+"schedule_last_execution" = "Last execution: %@";
+"schedule_next_execution" = "Next execution: %@";
+"schedule_name" = "Schedule name";
+"schedules_login_required" = "Sign in to SUPLA Cloud to view schedules.";

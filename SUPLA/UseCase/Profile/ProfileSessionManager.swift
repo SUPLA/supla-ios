@@ -81,6 +81,7 @@ final class ProfileSessionManagerImpl: ProfileSessionManager {
 class ActivateProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
+    @Singleton<CloudApiTokenStore> private var cloudApiTokenStore
     @Singleton<ReconnectUseCase> private var reconnectUseCase
     
     func invoke(profileId: Int32, force: Bool) -> Completable {
@@ -100,7 +101,10 @@ class ActivateProfileUseCase {
     
     private func activateProfile(_ profile: AuthProfileItem) -> Completable {
         let markProfileActive = profileRepository.markProfileActive(profile.objectID)
-            .do(onCompleted: { self.cloudConfigHolder.clean() })
+            .do(onCompleted: {
+                self.cloudConfigHolder.clean()
+                self.cloudApiTokenStore.clean()
+            })
             .ignoreElements()
             .asCompletable()
 

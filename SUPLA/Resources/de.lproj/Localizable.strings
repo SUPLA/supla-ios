@@ -849,3 +849,11 @@
 "rate_app_rate_now" = "Bewerten";
 "rate_app_later" = "Später";
 "rate_app_no_thanks" = "Nein danke";
+
+/* Cloud schedules */
+"schedules_list_title" = "Zeitpläne";
+"schedule_default_caption" = "Zeitplan ID%d";
+"schedule_last_execution" = "Letzte Ausführung: %@";
+"schedule_next_execution" = "Nächste Ausführung: %@";
+"schedule_name" = "Zeitplanname";
+"schedules_login_required" = "Melde dich bei SUPLA Cloud an, um Zeitpläne anzuzeigen.";

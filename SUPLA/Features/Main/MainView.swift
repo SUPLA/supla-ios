@@ -194,6 +194,7 @@ extension MainFeature {
             .init(
                 showMainTabs: !showBottomMenu,
                 selectedTab: selectedTab,
+                scheduleListVisible: viewState.showScheduleList,
                 zWaveVisible: BrandingConfiguration.Menu.Z_WAVE_OPTION_VISIBLE && viewState.showZWave,
                 deviceCatalogVisible: BrandingConfiguration.Menu.DEVICES_OPTION_VISIBLE,
                 helpVisible: BrandingConfiguration.Menu.HELP_OPTION_VISIBLE,
@@ -254,6 +255,8 @@ extension MainFeature {
                 router.navigate(to: .profiles)
             case .settings:
                 router.navigate(to: .settings)
+            case .scheduleList:
+                router.navigate(to: .scheduleList)
             case .addDevice:
                 router.navigate(to: .addWizard)
             case .zWave:

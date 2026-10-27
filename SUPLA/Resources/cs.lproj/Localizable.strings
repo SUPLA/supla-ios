@@ -811,3 +811,11 @@
 "rate_app_rate_now" = "Ohodnoťte teď";
 "rate_app_later" = "Později";
 "rate_app_no_thanks" = "Ne, děkuji";
+
+/* Cloud schedules */
+"schedules_list_title" = "Plány";
+"schedule_default_caption" = "Plán ID%d";
+"schedule_last_execution" = "Poslední spuštění: %@";
+"schedule_next_execution" = "Další spuštění: %@";
+"schedule_name" = "Název plánu";
+"schedules_login_required" = "Pro zobrazení plánů se přihlaste do SUPLA Cloud.";

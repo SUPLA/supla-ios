@@ -17,7 +17,7 @@
  */
     
 extension CaptionChangeDialogFeature {
-    class ViewModel: SuplaCore.Dialog.ViewModel {
+    class ViewModel: SuplaCore.Dialog.ViewModel, CaptionChangeDialogFeature.ViewDelegate {
         @Singleton<VibrationService> private var vibrationService
         @Singleton<CaptionChangeUseCase> private var captionChangeUseCase
         @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
@@ -26,26 +26,11 @@ extension CaptionChangeDialogFeature {
         @Singleton<ReadLocationByRemoteIdUseCase> private var readLocationByRemoteIdUseCase
         @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
         
-        @Published var caption: String = ""
-        @Published private(set) var label: String? = nil
-        @Published private(set) var error: String? = nil
+        @Published var viewState = CaptionChangeDialogFeature.ViewState()
         
         private var remoteId: Int32 = 0
         private var captionType: CaptionChangeUseCaseImpl.CaptionType = .channel
-        private var finishedCallback: ((CaptionChangeUseCaseImpl.CaptionType) -> Void)?
         
-        init(finishedCallback: ((CaptionChangeUseCaseImpl.CaptionType) -> Void)? = nil) {
-            self.finishedCallback = finishedCallback
-            super.init()
-        }
-        
-        init(caption: String = "", label: String? = nil, error: String? = nil) {
-            self.finishedCallback = { _ in }
-            self.caption = caption
-            self.label = label
-            self.error = error
-        }
-
         func show(channelRemoteId: Int32) {
             readChannelByRemoteIdUseCase.invoke(remoteId: channelRemoteId)
                 .asDriverWithoutError()
@@ -100,24 +85,28 @@ extension CaptionChangeDialogFeature {
 
         private func showAuthorized(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
             self.remoteId = remoteId
-            self.caption = caption
-            self.label = captionType.label
+            viewState.caption = caption
+            viewState.label = captionType.label
+            viewState.error = nil
             self.captionType = captionType
 
             present = true
         }
-        
-        func hide() {
+
+        func onCaptionDialogDismiss() {
             present = false
         }
         
+        func onCaptionChanged(_ caption: String) {
+            viewState.caption = caption
+        }
+        
         func onApply() {
-            captionChangeUseCase.invoke(caption: caption, type: captionType, remoteId: remoteId)
+            captionChangeUseCase.invoke(caption: viewState.caption, type: captionType, remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(onCompleted: { [weak self] in
                     if let self {
-                        self.hide()
-                        self.finishedCallback?(self.captionType)
+                        self.onCaptionDialogDismiss()
                     }
                 })
                 .disposed(by: self)

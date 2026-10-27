@@ -23,6 +23,7 @@ extension MainFeature {
         struct Configuration: Equatable {
             let showMainTabs: Bool
             let selectedTab: MainTab
+            let scheduleListVisible: Bool
             let zWaveVisible: Bool
             let deviceCatalogVisible: Bool
             let helpVisible: Bool
@@ -36,6 +37,7 @@ extension MainFeature {
             case scenes
             case profiles
             case settings
+            case scheduleList
             case addDevice
             case zWave
             case deviceCatalog
@@ -68,6 +70,9 @@ extension MainFeature {
 
                         drawerItem(.profiles)
                         drawerItem(.settings)
+                        if configuration.scheduleListVisible {
+                            drawerItem(.scheduleList)
+                        }
                         divider
 
                         drawerItem(.addDevice)
@@ -180,6 +185,8 @@ private extension MainFeature.MainDrawer.Item {
             NSLocalizedString("Your accounts", comment: "")
         case .settings:
             NSLocalizedString("Settings", comment: "")
+        case .scheduleList:
+            Strings.ScheduleList.title
         case .addDevice:
             NSLocalizedString("Add I/O device", comment: "")
         case .zWave:
@@ -213,6 +220,8 @@ private extension MainFeature.MainDrawer.Item {
             UIImage(named: "Menu/icon_profile")
         case .settings:
             UIImage(named: "Menu/icon_settings")
+        case .scheduleList:
+            UIImage(named: "Menu/icon_schedules")
         case .addDevice:
             UIImage(named: "Menu/icon_add_device")
         case .zWave:
@@ -240,6 +249,7 @@ private extension MainFeature.MainDrawer.Item {
         configuration: .init(
             showMainTabs: true,
             selectedTab: .channels,
+            scheduleListVisible: true,
             zWaveVisible: true,
             deviceCatalogVisible: true,
             helpVisible: true,
@@ -257,6 +267,7 @@ private extension MainFeature.MainDrawer.Item {
         configuration: .init(
             showMainTabs: false,
             selectedTab: .channels,
+            scheduleListVisible: true,
             zWaveVisible: true,
             deviceCatalogVisible: true,
             helpVisible: true,

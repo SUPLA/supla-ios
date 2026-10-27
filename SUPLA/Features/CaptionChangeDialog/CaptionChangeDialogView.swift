@@ -19,36 +19,62 @@
 import SwiftUI
 
 extension CaptionChangeDialogFeature {
+    protocol ViewDelegate: AnyObject {
+        func onCaptionChanged(_ caption: String)
+        func onCaptionDialogDismiss()
+        func onApply()
+    }
+
     struct Dialog: View {
-        @ObservedObject var viewModel: ViewModel
+        @ObservedObject var viewState: ViewState
+        let delegate: ViewDelegate?
+
+        init(viewState: ViewState, delegate: ViewDelegate?) {
+            self.viewState = viewState
+            self.delegate = delegate
+        }
 
         var body: some View {
-            SuplaCore.Dialog.Base(onDismiss: viewModel.hide) {
+            SuplaCore.Dialog.Base(onDismiss: { delegate?.onCaptionDialogDismiss() }) {
                 SuplaCore.Dialog.Header(title: Strings.ChangeCaption.header)
                 
                 SuplaCore.Dialog.Content(spacing: 0) {
-                    SuplaCore.Dialog.TextField(value: $viewModel.caption, label: viewModel.label)
+                    SuplaCore.Dialog.TextField(
+                        value: Binding(
+                            get: { viewState.caption },
+                            set: { delegate?.onCaptionChanged($0) }
+                        ),
+                        label: viewState.label
+                    )
                     
-                    if let error = viewModel.error {
+                    if let error = viewState.error {
                         SuplaCore.Dialog.FieldErrorText(error)
                     }
                 }
                 
                 SuplaCore.Dialog.DoubleButtons(
-                    onSecondaryClick: { viewModel.hide() },
-                    onPrimaryClick: { viewModel.onApply() }
+                    onSecondaryClick: { delegate?.onCaptionDialogDismiss() },
+                    onPrimaryClick: { delegate?.onApply() },
+                    processing: viewState.processing
                 )
             }
         }
     }
 }
 
+extension CaptionChangeDialogFeature.Dialog {
+    init(viewModel: CaptionChangeDialogFeature.ViewModel) {
+        self.init(viewState: viewModel.viewState, delegate: viewModel)
+    }
+}
+
 #Preview {
     CaptionChangeDialogFeature.Dialog(
-        viewModel: CaptionChangeDialogFeature.ViewModel(
+        viewState: CaptionChangeDialogFeature.ViewState(
             caption: "Thermostat",
             label: Strings.ChangeCaption.channelName,
             error: "Change failed!"
-        )
+        ),
+        delegate: nil
     )
 }

@@ -25,6 +25,14 @@
 "scenes_action_buttons_abort" = "Abort";
 "scenes_action_buttons_abort_and_execute" = "Abort and execute";
 
+/* Schedule list */
+"schedules_list_title" = "Schedules";
+"schedule_name" = "Schedule name";
+"schedule_default_caption" = "Schedule ID%d";
+"schedule_last_execution" = "Last execution: %@";
+"schedule_next_execution" = "Next execution: %@";
+"schedules_login_required" = "Access requires login";
+
 
 "Cfg.removal.title" = "Delete account?";
 "Cfg.removal.action.logout" = "Forget on this device";

@@ -812,3 +812,11 @@
 "rate_app_rate_now" = "Βαθμολογήστε τώρα";
 "rate_app_later" = "Αργότερα";
 "rate_app_no_thanks" = "Όχι, ευχαριστώ";
+
+/* Cloud schedules */
+"schedules_list_title" = "Προγράμματα";
+"schedule_default_caption" = "Πρόγραμμα ID%d";
+"schedule_last_execution" = "Τελευταία εκτέλεση: %@";
+"schedule_next_execution" = "Επόμενη εκτέλεση: %@";
+"schedule_name" = "Όνομα προγράμματος";
+"schedules_login_required" = "Συνδεθείτε στο SUPLA Cloud για να δείτε τα προγράμματα.";

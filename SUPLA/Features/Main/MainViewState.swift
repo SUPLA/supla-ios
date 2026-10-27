@@ -21,6 +21,7 @@ import SwiftUI
 extension MainFeature {
     class ViewState: ObservableObject {
         @Published var showProfilesIcon = false
+        @Published var showScheduleList = false
         @Published var showZWave = false
     }
 }

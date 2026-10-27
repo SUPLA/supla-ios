@@ -880,3 +880,11 @@
 "rate_app_rate_now" = "İndi Qiymətləndir";
 "rate_app_later" = "Sonra";
 "rate_app_no_thanks" = "Yox, təşəkkür";
+
+/* Cloud schedules */
+"schedules_list_title" = "Cədvəllər";
+"schedule_default_caption" = "Cədvəl ID%d";
+"schedule_last_execution" = "Son icra: %@";
+"schedule_next_execution" = "Növbəti icra: %@";
+"schedule_name" = "Cədvəlin adı";
+"schedules_login_required" = "Cədvəllərə baxmaq üçün SUPLA Cloud-a daxil olun.";

@@ -851,3 +851,11 @@
 "rate_app_rate_now" = "Értékelj minket";
 "rate_app_later" = "Később";
 "rate_app_no_thanks" = "Köszönöm, nem";
+
+/* Cloud schedules */
+"schedules_list_title" = "Ütemezések";
+"schedule_default_caption" = "Ütemezés ID%d";
+"schedule_last_execution" = "Utolsó végrehajtás: %@";
+"schedule_next_execution" = "Következő végrehajtás: %@";
+"schedule_name" = "Ütemezés neve";
+"schedules_login_required" = "Az ütemezések megtekintéséhez jelentkezz be a SUPLA Cloudba.";

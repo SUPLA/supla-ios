@@ -691,6 +691,7 @@
 		A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */; };
 		A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */; };
 		A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */; };
+		C6A000012F00000000000002 /* CaptionChangeDialogState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A000012F00000000000001 /* CaptionChangeDialogState.swift */; };
 		A56851BE2D6DA65F00942F8B /* CaptionChangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */; };
 		A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
 		A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */; };
@@ -1240,7 +1241,7 @@
 		A5DEE9692E9FAD1B000811C7 /* DeveloperInfoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9682E9FAD15000811C7 /* DeveloperInfoFeature.swift */; };
 		A5DEE96E2E9FB783000811C7 /* DeveloperInfoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE96D2E9FB77E000811C7 /* DeveloperInfoViewState.swift */; };
 		A5DEE9702E9FB809000811C7 /* DeveloperInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE96F2E9FB7A7000811C7 /* DeveloperInfoVM.swift */; };
-		A5DEE9782EA0D14F000811C7 /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */; };
+		A5DEE9782EA0D14F000811C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEE9772EA0D13D000811C7 /* SettingsView.swift */; };
 		A5DF8A1F2D631A9700C210DA /* FloodSensorIconProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */; };
 		A5DF8A232D6332D700C210DA /* ContainerLevelSensorIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */; };
 		A5DF8A252D633D0800C210DA /* SepticTankIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF8A242D633D0000C210DA /* SepticTankIconNameProducer.swift */; };
@@ -1635,6 +1636,15 @@
 		B60000000000000000000003 /* ObserveChannelWithChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60000000000000000000004 /* ObserveChannelWithChildrenUseCase.swift */; };
 		B61000000000000000000001 /* ObserveGroupWithChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61000000000000000000002 /* ObserveGroupWithChannelsUseCase.swift */; };
 		B62000000000000000000001 /* ObserveRelayProgramStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62000000000000000000002 /* ObserveRelayProgramStateUseCase.swift */; };
+		B7A000012F00000000000002 /* View+SettingsSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A000012F00000000000001 /* View+SettingsSurface.swift */; };
+		B7A000012F00000000000004 /* SettingsView+Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A000012F00000000000003 /* SettingsView+Block.swift */; };
+		B8A000012F00000000000008 /* CloudApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000001 /* CloudApiClient.swift */; };
+		B8A000012F00000000000009 /* ScheduleListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000003 /* ScheduleListFeature.swift */; };
+		B8A000012F00000000000010 /* ScheduleListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000004 /* ScheduleListViewState.swift */; };
+		B8A000012F00000000000011 /* ScheduleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000005 /* ScheduleListViewModel.swift */; };
+		B8A000012F00000000000012 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000006 /* ScheduleListView.swift */; };
+		B8A000012F00000000000013 /* ScheduleListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000007 /* ScheduleListScreen.swift */; };
+		B8A000012F00000000000016 /* CloudApiTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000017 /* CloudApiTokenStore.swift */; };
 		BE16124B24AE10DA69CD99A5 /* RelayScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C521012C3F8CA293B8803B7 /* RelayScheduleVM.swift */; };
 		C0DE15700000000000000001 /* ListItemScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000011 /* ListItemScaffold.swift */; };
 		C0DE15700000000000000002 /* ListItemStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000012 /* ListItemStatusIndicator.swift */; };
@@ -1658,6 +1668,26 @@
 		D20000000000000000000001 /* SwitchTimerDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000000000000000000002 /* SwitchTimerDetailViewState.swift */; };
 		D37A5D010000000000000002 /* DetailPreviewScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A5D010000000000000001 /* DetailPreviewScaffold.swift */; };
 		D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */; };
+		000000B8A000012F00000140 /* CloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000100 /* CloudApi.swift */; };
+		000000B8A000012F00000141 /* ApiAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000101 /* ApiAuthRequest.swift */; };
+		000000B8A000012F00000142 /* ApiAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000102 /* ApiAuthResponse.swift */; };
+		000000B8A000012F00000143 /* ScheduleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000103 /* ScheduleDto.swift */; };
+		000000B8A000012F00000144 /* ScheduleClosestExecutionsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */; };
+		000000B8A000012F00000145 /* ScheduleExecutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000105 /* ScheduleExecutionDto.swift */; };
+		000000B8A000012F00000146 /* ScheduleConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000106 /* ScheduleConfigDto.swift */; };
+		000000B8A000012F00000147 /* ScheduleConfigActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */; };
+		000000B8A000012F00000148 /* ScheduleStateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000108 /* ScheduleStateDto.swift */; };
+		000000B8A000012F00000149 /* ScheduleStateExecutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */; };
+		000000B8A000012F0000014A /* ScheduleSubjectDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010A /* ScheduleSubjectDto.swift */; };
+		000000B8A000012F0000014B /* ScheduleSubjectTypeDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */; };
+		000000B8A000012F0000014C /* ScheduleSubjectFunctionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */; };
+		000000B8A000012F0000014D /* ScheduleActivityConditionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */; };
+		000000B8A000012F0000014E /* ScheduleSubjectConflictDetailsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */; };
+		000000B8A000012F0000014F /* ScheduleSubjectConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */; };
+		000000B8A000012F00000150 /* ScheduleAlexaConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */; };
+		000000B8A000012F00000151 /* ScheduleGoogleHomeConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */; };
+		000000B8A000012F00000152 /* ScheduleSubjectActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */; };
+		000000B8A000012F00000153 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000113 /* JSONValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2597,6 +2627,7 @@
 		A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUpdatesObserver.swift; sourceTree = "<group>"; };
 		A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogFeature.swift; sourceTree = "<group>"; };
 		A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogView.swift; sourceTree = "<group>"; };
+		C6A000012F00000000000001 /* CaptionChangeDialogState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogState.swift; sourceTree = "<group>"; };
 		A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeUseCase.swift; sourceTree = "<group>"; };
 		A56D5ACC2A4C304C004F45DA /* SingleCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCall.swift; sourceTree = "<group>"; };
 		A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCallWrapper.m; sourceTree = "<group>"; };
@@ -3133,7 +3164,7 @@
 		A5DEE9682E9FAD15000811C7 /* DeveloperInfoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoFeature.swift; sourceTree = "<group>"; };
 		A5DEE96D2E9FB77E000811C7 /* DeveloperInfoViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewState.swift; sourceTree = "<group>"; };
 		A5DEE96F2E9FB7A7000811C7 /* DeveloperInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoVM.swift; sourceTree = "<group>"; };
-		A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListView.swift; sourceTree = "<group>"; };
+		A5DEE9772EA0D13D000811C7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A5DF8A1E2D631A8600C210DA /* FloodSensorIconProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodSensorIconProducer.swift; sourceTree = "<group>"; };
 		A5DF8A222D6332CE00C210DA /* ContainerLevelSensorIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerLevelSensorIconNameProducer.swift; sourceTree = "<group>"; };
 		A5DF8A242D633D0000C210DA /* SepticTankIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SepticTankIconNameProducer.swift; sourceTree = "<group>"; };
@@ -3509,6 +3540,15 @@
 		B60000000000000000000004 /* ObserveChannelWithChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveChannelWithChildrenUseCase.swift; sourceTree = "<group>"; };
 		B61000000000000000000002 /* ObserveGroupWithChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveGroupWithChannelsUseCase.swift; sourceTree = "<group>"; };
 		B62000000000000000000002 /* ObserveRelayProgramStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveRelayProgramStateUseCase.swift; sourceTree = "<group>"; };
+		B7A000012F00000000000001 /* View+SettingsSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SettingsSurface.swift"; sourceTree = "<group>"; };
+		B7A000012F00000000000003 /* SettingsView+Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+Block.swift"; sourceTree = "<group>"; };
+		B8A000012F00000000000001 /* CloudApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudApiClient.swift; sourceTree = "<group>"; };
+		B8A000012F00000000000003 /* ScheduleListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListFeature.swift; sourceTree = "<group>"; };
+		B8A000012F00000000000004 /* ScheduleListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListViewState.swift; sourceTree = "<group>"; };
+		B8A000012F00000000000005 /* ScheduleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListViewModel.swift; sourceTree = "<group>"; };
+		B8A000012F00000000000006 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
+		B8A000012F00000000000007 /* ScheduleListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListScreen.swift; sourceTree = "<group>"; };
+		B8A000012F00000000000017 /* CloudApiTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudApiTokenStore.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000011 /* ListItemScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemScaffold.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000012 /* ListItemStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemStatusIndicator.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000013 /* ListItemRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRect.swift; sourceTree = "<group>"; };
@@ -3566,6 +3606,26 @@
 		F4CD6F8C28ABE477006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4D3907C29324B570066014D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000B8A000012F00000100 /* CloudApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudApi.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000101 /* ApiAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthRequest.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000102 /* ApiAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthResponse.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000103 /* ScheduleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClosestExecutionsDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000105 /* ScheduleExecutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleExecutionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000106 /* ScheduleConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigActionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000108 /* ScheduleStateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStateDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStateExecutionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010A /* ScheduleSubjectDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectTypeDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectFunctionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleActivityConditionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectConflictDetailsDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAlexaConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGoogleHomeConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectActionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000113 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -4594,6 +4654,7 @@
 			isa = PBXGroup;
 			children = (
 				A5CE73252B45A6C8003F882C /* Esp */,
+				B8A000012F00000000000014 /* CloudApi */,
 				A57668CB2AE8F75C0025509D /* SuplaCloud */,
 				A52ACD4329CB92C50092729F /* SuplaClient */,
 			);
@@ -4704,13 +4765,14 @@
 			path = SwitchDetail;
 			sourceTree = "<group>";
 		};
-		A530EDEE2A53F79900F8DAEE /* Components */ = {
+		A530EDEE2A53F79900F8DAEE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A58B70833037245900C3E561 /* SeparatorView.swift */,
-				A5DEE9772EA0D13D000811C7 /* SettingsListView.swift */,
+				A5DEE9772EA0D13D000811C7 /* SettingsView.swift */,
+				B7A000012F00000000000003 /* SettingsView+Block.swift */,
+				B7A000012F00000000000001 /* View+SettingsSurface.swift */,
 			);
-			path = Components;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A530EDF12A54001F00F8DAEE /* SwitchGeneral */ = {
@@ -5691,6 +5753,7 @@
 			children = (
 				A5C5F6F42D940B4400E303B8 /* CaptionChangeViewModel.swift */,
 				A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */,
+				C6A000012F00000000000001 /* CaptionChangeDialogState.swift */,
 				A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */,
 			);
 			path = CaptionChangeDialog;
@@ -5834,6 +5897,7 @@
 				A5D7125D2C37EA7200A8EF52 /* LockScreen */,
 				A5F29B592A1E157A00ED700A /* Main */,
 				A5BF4F5B2F3C857900F5DE81 /* Nfc */,
+				B8A000012F00000000000015 /* ScheduleList */,
 				A55501F12B83828100FD3296 /* NotificationsLog */,
 				A5F5C3F02C36822A0058E255 /* PinSetup */,
 				A53E41722F6D79AF00C90914 /* ProfileChooser */,
@@ -6204,6 +6268,7 @@
 		A59AB8962A2F6D3900D91F1F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				000000B8A000012F00000180 /* CloudApi */,
 				A54AC179308202C300A725D6 /* SharedCore */,
 				A5BCA9B42E2A481600A5054A /* Esp */,
 				A55A8D932BAB147700C540D4 /* SuplaApp */,
@@ -6211,7 +6276,7 @@
 				A51BE9192AAB0DBB00718F2F /* Integration */,
 				A51BE9142AAB021400718F2F /* Calendar */,
 				A5477DB02AA1DB4600220B4A /* SuplaClient */,
-				A5FE675D2A65CC2A00147D1F /* CloudApi */,
+				A5FE675D2A65CC2A00147D1F /* SuplaCloud */,
 				A5E490482A3C61FD006801FE /* AppSettings */,
 				A59AB8982A2F6D5600D91F1F /* Helper */,
 				A59AB8972A2F6D4000D91F1F /* CoreData */,
@@ -6549,28 +6614,30 @@
 		A5A15FF52C299C390049AA73 /* SwiftUiComponents */ = {
 			isa = PBXGroup;
 			children = (
-				D37A5D010000000000000003 /* Preview */,
-				A501625F2F926C5800FB2899 /* Slider */,
-				A5EE0C872F7D00CE00D7B14F /* View+hideScrollIndicator.swift */,
-				A5EE0C822F7A8B6900D7B14F /* Schedule */,
-				D00D00000000000000000013 /* ChannelState */,
 				A5A15FF62C299C8A0049AA73 /* BackgroundStack.swift */,
 				A598CAB22CBE90AE00A784FA /* Divider.swift */,
+				A58B70833037245900C3E561 /* SeparatorView.swift */,
 				A5A160022C2AAEDE0049AA73 /* Text.swift */,
 				A50D00012F9000010000000A /* TopBar.swift */,
+				A5EE0C872F7D00CE00D7B14F /* View+hideScrollIndicator.swift */,
 				A5C5F6E32D91F1AD00E303B8 /* View+If.swift */,
+				A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */,
 				A54782202CA2C12E00CD3010 /* View+ScaleFactor.swift */,
 				A54782232CA2C12E00CD3010 /* View+ShowChannelInfo.swift */,
-				A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */,
 				A598CABA2CC0EE4E00A784FA /* View+SuplaCard.swift */,
 				A5A1600A2C2AB4520049AA73 /* Architecture */,
 				A5A1601B2C2BEE7F0049AA73 /* Button */,
 				A54637B72D37EB4C00D746F5 /* Card */,
 				A58542252D8074AB00D314A2 /* ChannelIssues */,
+				D00D00000000000000000013 /* ChannelState */,
 				A59AB8BD2F559FD200565952 /* Icon */,
 				A539C27A2D686A6D00D9DD47 /* List */,
 				A52F03EA2DBBA06C00472ED1 /* Picker */,
+				D37A5D010000000000000003 /* Preview */,
+				A5EE0C822F7A8B6900D7B14F /* Schedule */,
 				A58542202D806DF400D314A2 /* SensorData */,
+				A530EDEE2A53F79900F8DAEE /* Settings */,
+				A501625F2F926C5800FB2899 /* Slider */,
 				A505EC422CF74B5700E69BDB /* TextField */,
 				A59AB8CC2F582F9600565952 /* View */,
 			);
@@ -7718,7 +7785,6 @@
 				A573B39129DEB25900EBAFC4 /* ViewState.swift */,
 				A530EE482A5C13D700F8DAEE /* Buttons */,
 				A57668C62AE7CE480025509D /* Charts */,
-				A530EDEE2A53F79900F8DAEE /* Components */,
 				A55A8DA02BAC29ED00C540D4 /* Dialogs */,
 				C0DE15700000000000000021 /* Lists */,
 				A5F29B8E2A20B21A00ED700A /* TableView */,
@@ -8190,7 +8256,7 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		A5FE675D2A65CC2A00147D1F /* CloudApi */ = {
+		A5FE675D2A65CC2A00147D1F /* SuplaCloud */ = {
 			isa = PBXGroup;
 			children = (
 				A536364F2DD36B4F00D470CE /* UserIcons */,
@@ -8200,7 +8266,7 @@
 				A5FE675E2A65CC4300147D1F /* Autodiscover.swift */,
 				A5FE67602A65CC9900147D1F /* SuplaCloudClient.swift */,
 			);
-			path = CloudApi;
+			path = SuplaCloud;
 			sourceTree = "<group>";
 		};
 		A6B2D1063E6A4C1800D1BEEF /* RecuperatorDetail */ = {
@@ -8270,6 +8336,27 @@
 			path = AddWizard;
 			sourceTree = "<group>";
 		};
+		B8A000012F00000000000014 /* CloudApi */ = {
+			isa = PBXGroup;
+			children = (
+				B8A000012F00000000000001 /* CloudApiClient.swift */,
+				B8A000012F00000000000017 /* CloudApiTokenStore.swift */,
+			);
+			path = CloudApi;
+			sourceTree = "<group>";
+		};
+		B8A000012F00000000000015 /* ScheduleList */ = {
+			isa = PBXGroup;
+			children = (
+				B8A000012F00000000000003 /* ScheduleListFeature.swift */,
+				B8A000012F00000000000004 /* ScheduleListViewState.swift */,
+				B8A000012F00000000000005 /* ScheduleListViewModel.swift */,
+				B8A000012F00000000000006 /* ScheduleListView.swift */,
+				B8A000012F00000000000007 /* ScheduleListScreen.swift */,
+			);
+			path = ScheduleList;
+			sourceTree = "<group>";
+		};
 		C0DE15700000000000000021 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -8317,6 +8404,34 @@
 			path = Preview;
 			sourceTree = "<group>";
 		};
+		000000B8A000012F00000180 /* CloudApi */ = {
+			isa = PBXGroup;
+			children = (
+				000000B8A000012F00000100 /* CloudApi.swift */,
+				000000B8A000012F00000101 /* ApiAuthRequest.swift */,
+				000000B8A000012F00000102 /* ApiAuthResponse.swift */,
+				000000B8A000012F00000103 /* ScheduleDto.swift */,
+				000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */,
+				000000B8A000012F00000105 /* ScheduleExecutionDto.swift */,
+				000000B8A000012F00000106 /* ScheduleConfigDto.swift */,
+				000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */,
+				000000B8A000012F00000108 /* ScheduleStateDto.swift */,
+				000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */,
+				000000B8A000012F0000010A /* ScheduleSubjectDto.swift */,
+				000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */,
+				000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */,
+				000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */,
+				000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */,
+				000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */,
+				000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */,
+				000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */,
+				000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */,
+				000000B8A000012F00000113 /* JSONValue.swift */,
+			);
+			path = CloudApi;
+			sourceTree = "<group>";
+		};
+
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8881,6 +8996,7 @@
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */,
 				A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */,
+				C6A000012F00000000000002 /* CaptionChangeDialogState.swift in Sources */,
 				A5E557A62E3CE2B200E829C7 /* EspClient.swift in Sources */,
 				A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */,
 				A5F5C3E82C357DF00058E255 /* LockScreenCell.swift in Sources */,
@@ -9280,7 +9396,36 @@
 				A59E57B62F90FEF400808DBF /* PickerItem.swift in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				A52F03D72DB8F33000472ED1 /* CarPlayListView.swift in Sources */,
-				A5DEE9782EA0D14F000811C7 /* SettingsListView.swift in Sources */,
+				A5DEE9782EA0D14F000811C7 /* SettingsView.swift in Sources */,
+				B8A000012F00000000000008 /* CloudApiClient.swift in Sources */,
+				000000B8A000012F00000140 /* CloudApi.swift in Sources */,
+				000000B8A000012F00000141 /* ApiAuthRequest.swift in Sources */,
+				000000B8A000012F00000142 /* ApiAuthResponse.swift in Sources */,
+				000000B8A000012F00000143 /* ScheduleDto.swift in Sources */,
+				000000B8A000012F00000144 /* ScheduleClosestExecutionsDto.swift in Sources */,
+				000000B8A000012F00000145 /* ScheduleExecutionDto.swift in Sources */,
+				000000B8A000012F00000146 /* ScheduleConfigDto.swift in Sources */,
+				000000B8A000012F00000147 /* ScheduleConfigActionDto.swift in Sources */,
+				000000B8A000012F00000148 /* ScheduleStateDto.swift in Sources */,
+				000000B8A000012F00000149 /* ScheduleStateExecutionDto.swift in Sources */,
+				000000B8A000012F0000014A /* ScheduleSubjectDto.swift in Sources */,
+				000000B8A000012F0000014B /* ScheduleSubjectTypeDto.swift in Sources */,
+				000000B8A000012F0000014C /* ScheduleSubjectFunctionDto.swift in Sources */,
+				000000B8A000012F0000014D /* ScheduleActivityConditionDto.swift in Sources */,
+				000000B8A000012F0000014E /* ScheduleSubjectConflictDetailsDto.swift in Sources */,
+				000000B8A000012F0000014F /* ScheduleSubjectConfigDto.swift in Sources */,
+				000000B8A000012F00000150 /* ScheduleAlexaConfigDto.swift in Sources */,
+				000000B8A000012F00000151 /* ScheduleGoogleHomeConfigDto.swift in Sources */,
+				000000B8A000012F00000152 /* ScheduleSubjectActionDto.swift in Sources */,
+				000000B8A000012F00000153 /* JSONValue.swift in Sources */,
+				B8A000012F00000000000016 /* CloudApiTokenStore.swift in Sources */,
+				B8A000012F00000000000009 /* ScheduleListFeature.swift in Sources */,
+				B8A000012F00000000000010 /* ScheduleListViewState.swift in Sources */,
+				B8A000012F00000000000011 /* ScheduleListViewModel.swift in Sources */,
+				B8A000012F00000000000012 /* ScheduleListView.swift in Sources */,
+				B8A000012F00000000000013 /* ScheduleListScreen.swift in Sources */,
+				B7A000012F00000000000004 /* SettingsView+Block.swift in Sources */,
+				B7A000012F00000000000002 /* View+SettingsSurface.swift in Sources */,
 				A5B3CC0A2B6282B800F95AC3 /* WindValueStringProvider.swift in Sources */,
 				A59155012F55869B00A3DF61 /* NfcTagDetailView.swift in Sources */,
 				A5C5F6EA2D93480B00E303B8 /* StateDialogViewModel.swift in Sources */,

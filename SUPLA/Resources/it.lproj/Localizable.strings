@@ -843,3 +843,11 @@
 "rate_app_rate_now" = "Valuta adesso";
 "rate_app_later" = "Più tardi";
 "rate_app_no_thanks" = "No, grazie";
+
+/* Cloud schedules */
+"schedules_list_title" = "Programmazioni";
+"schedule_default_caption" = "Programmazione ID%d";
+"schedule_last_execution" = "Ultima esecuzione: %@";
+"schedule_next_execution" = "Prossima esecuzione: %@";
+"schedule_name" = "Nome programmazione";
+"schedules_login_required" = "Accedi a SUPLA Cloud per visualizzare le programmazioni.";

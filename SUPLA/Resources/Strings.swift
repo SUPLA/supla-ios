@@ -161,6 +161,15 @@ struct Strings {
         }
         static let emptyListButton = "scenes_empty_list_button".toLocalized()
     }
+
+    struct ScheduleList {
+        static let title = "schedules_list_title".toLocalized()
+        static let name = "schedule_name".toLocalized()
+        static let defaultCaption = "schedule_default_caption".toLocalized()
+        static let lastExecution = "schedule_last_execution".toLocalized()
+        static let nextExecution = "schedule_next_execution".toLocalized()
+        static let loginRequired = "schedules_login_required".toLocalized()
+    }
     
     struct Main {
         static let channels = NSLocalizedString("Channels", comment: "")

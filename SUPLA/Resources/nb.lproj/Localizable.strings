@@ -810,3 +810,11 @@
 "rate_app_rate_now" = "Vurder nå";
 "rate_app_later" = "Senere";
 "rate_app_no_thanks" = "Nei takk";
+
+/* Cloud schedules */
+"schedules_list_title" = "Tidsplaner";
+"schedule_default_caption" = "Tidsplan ID%d";
+"schedule_last_execution" = "Siste kjøring: %@";
+"schedule_next_execution" = "Neste kjøring: %@";
+"schedule_name" = "Tidsplannavn";
+"schedules_login_required" = "Logg inn på SUPLA Cloud for å vise tidsplaner.";

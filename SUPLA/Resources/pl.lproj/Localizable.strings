@@ -884,3 +884,11 @@
 "rate_app_rate_now" = "Oceń teraz";
 "rate_app_later" = "Później";
 "rate_app_no_thanks" = "Nie, dziękuję";
+
+/* Cloud schedules */
+"schedules_list_title" = "Harmonogramy";
+"schedule_default_caption" = "Harmonogram ID%d";
+"schedule_last_execution" = "Ostatnie wykonanie: %@";
+"schedule_next_execution" = "Następne wykonanie: %@";
+"schedule_name" = "Nazwa harmonogramu";
+"schedules_login_required" = "Zaloguj się do SUPLA Cloud, aby wyświetlić harmonogramy.";

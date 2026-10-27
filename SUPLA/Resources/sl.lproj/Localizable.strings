@@ -812,3 +812,11 @@
 "rate_app_rate_now" = "Ocenite zdaj";
 "rate_app_later" = "Pozneje";
 "rate_app_no_thanks" = "Ne, hvala";
+
+/* Cloud schedules */
+"schedules_list_title" = "Urniki";
+"schedule_default_caption" = "Urnik ID%d";
+"schedule_last_execution" = "Zadnja izvedba: %@";
+"schedule_next_execution" = "Naslednja izvedba: %@";
+"schedule_name" = "Ime urnika";
+"schedules_login_required" = "Za ogled urnikov se prijavite v SUPLA Cloud.";

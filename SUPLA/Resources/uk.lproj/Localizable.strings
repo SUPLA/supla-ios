@@ -811,3 +811,11 @@
 "rate_app_rate_now" = "Оцінити зараз";
 "rate_app_later" = "Пізніше";
 "rate_app_no_thanks" = "Ні, дякую";
+
+/* Cloud schedules */
+"schedules_list_title" = "Розклади";
+"schedule_default_caption" = "Розклад ID%d";
+"schedule_last_execution" = "Останнє виконання: %@";
+"schedule_next_execution" = "Наступне виконання: %@";
+"schedule_name" = "Назва розкладу";
+"schedules_login_required" = "Увійдіть до SUPLA Cloud, щоб переглянути розклади.";

@@ -813,3 +813,11 @@
 "rate_app_rate_now" = "Avalie agora";
 "rate_app_later" = "Mais tarde";
 "rate_app_no_thanks" = "Não, obrigado";
+
+/* Cloud schedules */
+"schedules_list_title" = "Agendamentos";
+"schedule_default_caption" = "Agendamento ID%d";
+"schedule_last_execution" = "Última execução: %@";
+"schedule_next_execution" = "Próxima execução: %@";
+"schedule_name" = "Nome do agendamento";
+"schedules_login_required" = "Inicie sessão no SUPLA Cloud para ver os agendamentos.";
