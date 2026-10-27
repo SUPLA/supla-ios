@@ -20,22 +20,6 @@ import SwiftUI
 
 struct SettingsView {
     
-    struct List<Content: View>: SwiftUI.View {
-        let content: () -> Content
-        
-        init(@ViewBuilder content: @escaping () -> Content) {
-            self.content = content
-        }
-        
-        var body: some View {
-            VStack(spacing: 1) {
-                content()
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.Supla.background)
-        }
-    }
-    
     struct ItemWithCheckbox: SwiftUI.View {
         let label: String
         let onChange: ((Bool) -> Void)?
@@ -75,7 +59,6 @@ struct SettingsView {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, Distance.small)
             .padding(.vertical, 4)
-            .background(Color.Supla.surface)
             .overlay(alignment: .bottom) {
                 if showDivider {
                     Rectangle()
@@ -92,6 +75,8 @@ struct SettingsView {
         let spacing: CGFloat
         let content: () -> Content
         
+        @Environment(\.settingsBlockShowsDivider) private var showDivider
+        
         init(alignment: HorizontalAlignment = .leading, spacing: CGFloat = 0, @ViewBuilder content: @escaping () -> Content) {
             self.alignment = alignment
             self.spacing = spacing
@@ -103,8 +88,15 @@ struct SettingsView {
                 content()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding([.top, .bottom], Distance.small)
-            .background(Color.Supla.surface)
+            .padding(.vertical, Distance.small)
+            .overlay(alignment: .bottom) {
+                if showDivider {
+                    Rectangle()
+                        .fill(Color.Supla.background)
+                        .frame(height: 1.5)
+                        .padding(.leading, Distance.small)
+                }
+            }
         }
     }
     
@@ -115,7 +107,7 @@ struct SettingsView {
             Text(text.uppercased())
                 .fontBodyMedium()
                 .padding([.leading, .trailing], Distance.default)
-                .padding([.bottom], Distance.small)
+                .padding([.bottom], Distance.tiny)
         }
     }
     

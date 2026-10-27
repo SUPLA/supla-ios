@@ -36,7 +36,7 @@ extension DeveloperInfoFeature {
                         .padding([.leading, .trailing, .top], Distance.default)
                         .padding(.bottom, Distance.small)
                     
-                    SettingsView.List {
+                    SettingsView.Block {
                         SettingsView.ItemWithCheckbox(
                             label: Strings.DeveloperInfo.screenOrientation,
                             checked: $viewState.screenRotationEnabled,

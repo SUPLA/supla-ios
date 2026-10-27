@@ -37,7 +37,7 @@ extension ImpulseCounterSettingsFeature {
                 VStack(alignment: .leading, spacing: 0) {
                     SettingsView.Header(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
 
-                    SettingsView.List {
+                    SettingsView.Block {
                         SettingsView.VerticalRow {
                             SettingsView.Label(text: Strings.ElectricityMeter.settingsListItem)
                             SuplaCore.Picker(
