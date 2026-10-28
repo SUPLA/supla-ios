@@ -160,7 +160,7 @@
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* yesBtn = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Yes", nil)
+                             actionWithTitle:LegacyStrings.yes
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
         [self acceptChanges];
@@ -168,7 +168,7 @@
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            actionWithTitle:LegacyStrings.no
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
     }];
@@ -194,7 +194,7 @@
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* yesBtn = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Yes", nil)
+                             actionWithTitle:LegacyStrings.yes
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
         [self doRestore];
@@ -202,7 +202,7 @@
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            actionWithTitle:LegacyStrings.no
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
     }];
@@ -228,14 +228,14 @@
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* yesBtn = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Yes", nil)
+                             actionWithTitle:LegacyStrings.yes
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
         [self onSaveYesButtonTapped];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            actionWithTitle:LegacyStrings.no
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
         [self onSaveNoButtonTapped];

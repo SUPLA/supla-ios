@@ -102,8 +102,6 @@
 "Close" = "Zapri";
 "Valve" = "Ventil";
 "Warning" = "Opozorilo";
-"Yes" = "Da";
-"No" = "Ne";
 
 "Heat meter" = "Merilnik toplote";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = "Presežen je limit potisnih obvestil, ki znaša %@ na uro.";
 
 /* General */
+"general_yes" = "Da";
+"general_no" = "Ne";
+"general_auto" = "Auto";
 "general_error" = "Napaka";
 "general_warning" = "Opozorilo";
 "turn_on" = "Vklopi";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Preden izključite napredni način izberite email avtentifikacijo s samodejnim zaznavanjem strežnika.";
 
 /* App Settings */
+"settings_appearance" = "Videz";
+"settings_channel_list" = "Seznam kanalov";
+"settings_security" = "Varnost";
+"settings_integrations" = "Integracije";
+"settings_channel_height_compact" = "Kompaktno";
+"settings_channel_height_standard" = "Standardno";
+"settings_channel_height_large" = "Veliko";
 "app_settings.notifications_label" = "Obvestila";
 "app_settings.location_label" = "Lokacija";
 "app_settings.permissions_header" = "Dovoljenja";

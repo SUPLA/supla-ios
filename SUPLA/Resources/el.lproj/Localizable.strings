@@ -102,8 +102,6 @@
 "Close" = "Κλείσιμο";
 "Valve" = "Βαλβίδα";
 "Warning" = "Προειδοποίηση";
-"Yes" = "Ναί";
-"No" = "Όχι";
 
 "Heat meter" = "Μετρητής θερμότητας";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = "Το όριο ειδοποίησης PUSH που είναι %@ ανά ώρα, έχει  ξεπεραστεί.";
 
 /* General */
+"general_yes" = "Ναί";
+"general_no" = "Όχι";
+"general_auto" = "Auto";
 "general_error" = "Λάθος";
 "general_warning" = "Προειδοποίηση";
 "turn_on" = "Ενεργοποίηση";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Πριν απενεργοποιήσετε την λειτουργία για προχωρημένους, επιλέξτε έλεγχος ταυτότητας μέσω ηλεκτρονικού ταχυδρομείου με αυτόματο εντοπισμό διακομιστή.";
 
 /* App Settings */
+"settings_appearance" = "Εμφάνιση";
+"settings_channel_list" = "Λίστα καναλιών";
+"settings_security" = "Ασφάλεια";
+"settings_integrations" = "Ενσωματώσεις";
+"settings_channel_height_compact" = "Συμπαγές";
+"settings_channel_height_standard" = "Τυπικό";
+"settings_channel_height_large" = "Μεγάλο";
 "app_settings.notifications_label" = "Ειδοποιήσεις";
 "app_settings.location_label" = "Τοποθεσία";
 "app_settings.permissions_header" = "Δικαιώματα";

@@ -102,8 +102,6 @@
 "Close" = "Zavrieť";
 "Valve" = "Ventil";
 "Warning" = "Varovanie";
-"Yes" = "Áno";
-"No" = "Nie";
 
 "Heat meter" = "Merač tepla";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = "Bol prekročený hodinový limit pre oznámenia PUSH, ktorý predstavuje %@ za hodinu.";
 
 /* General */
+"general_yes" = "Áno";
+"general_no" = "Nie";
+"general_auto" = "Auto";
 "general_error" = "Chyba";
 "general_warning" = "Varovanie";
 "turn_on" = "Zapnúť";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Pred vypnutím pokročilého režimu vyberte overenie e-mailu s automatickou detekciou servera.";
 
 /* App Settings */
+"settings_appearance" = "Vzhľad";
+"settings_channel_list" = "Zoznam kanálov";
+"settings_security" = "Zabezpečenie";
+"settings_integrations" = "Integrácie";
+"settings_channel_height_compact" = "Kompaktný";
+"settings_channel_height_standard" = "Štandardný";
+"settings_channel_height_large" = "Veľký";
 "app_settings.notifications_label" = "Upozornenia";
 "app_settings.location_label" = "Lokalizácia";
 "app_settings.permissions_header" = "Oprávnenia";

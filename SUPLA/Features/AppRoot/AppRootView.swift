@@ -41,16 +41,32 @@ private extension AppRootView {
         let onEventNotificationRemoved: () -> Void
 
         var body: some View {
-            NavigationView {
-                ZStack {
-                    rootView
-                    navigationLink
-                }
-                .navigationBarHidden(true)
-            }
-            .navigationViewStyle(.stack)
+            navigationContainer
             .overlay(alignment: .bottom) { eventNotificationOverlay }
             .overlay(authorizationDialog)
+        }
+
+        @ViewBuilder
+        private var navigationContainer: some View {
+            if #available(iOS 16.0, *) {
+                NavigationStack(path: $router.path) {
+                    rootView
+                        .navigationDestination(for: AppRoute.self) { route in
+                            destination(for: route)
+                                .navigationBarHidden(true)
+                        }
+                        .navigationBarHidden(true)
+                }
+            } else {
+                NavigationView {
+                    ZStack {
+                        rootView
+                        navigationLink
+                    }
+                    .navigationBarHidden(true)
+                }
+                .navigationViewStyle(.stack)
+            }
         }
 
         @ViewBuilder
@@ -70,7 +86,7 @@ private extension AppRootView {
         @ViewBuilder
         private func destination(for route: AppRoute) -> some View {
             switch route {
-            case .settings: SettingsScreen()
+            case .settings: AppSettingsFeature.Screen()
             case .scheduleList: ScheduleListFeature.Screen()
             case .locationOrdering: LocationOrderingScreen()
             case .deviceCatalog: DeviceCatalogScreen()

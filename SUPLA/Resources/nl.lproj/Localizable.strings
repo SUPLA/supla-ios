@@ -102,8 +102,6 @@
 "Close" = "Sluiten";
 "Valve" = "Klep";
 "Warning" = "Waarschuwing";
-"Yes" = "Ja";
-"No" = "Nee";
 
 "Heat meter" = "Warmtemeter";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = "%@ De limiet voor PUSH-meldingen per uur is overschreden.";
 
 /* General */
+"general_yes" = "Ja";
+"general_no" = "Nee";
+"general_auto" = "Auto";
 "general_error" = "Fout";
 "general_warning" = "Waarschuwing";
 "turn_on" = "Zet in";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Voordat u de geavanceerde modus uitschakelt, selecteert u e-mailauthenticatie met automatische serverdetectie.";
 
 /* App Settings */
+"settings_appearance" = "Uiterlijk";
+"settings_channel_list" = "Kanalenlijst";
+"settings_security" = "Beveiliging";
+"settings_integrations" = "Integraties";
+"settings_channel_height_compact" = "Compact";
+"settings_channel_height_standard" = "Standaard";
+"settings_channel_height_large" = "Groot";
 "app_settings.notifications_label" = "Meldingen";
 "app_settings.location_label" = "Locatie";
 "app_settings.permissions_header" = "Bevoegdheden";

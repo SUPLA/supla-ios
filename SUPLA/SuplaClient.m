@@ -1637,7 +1637,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
                                          preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction* yesBtn = [UIAlertAction
-                                     actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                     actionWithTitle:LegacyStrings.yes
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * action) {
                 if (vibrate) {
@@ -1647,7 +1647,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             }];
             
             UIAlertAction* noBtn = [UIAlertAction
-                                    actionWithTitle:NSLocalizedString(@"No", nil)
+                                    actionWithTitle:LegacyStrings.no
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
             }];

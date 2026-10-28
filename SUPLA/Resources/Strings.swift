@@ -49,6 +49,13 @@ struct Strings {
     }
     
     struct AppSettings {
+        static let appearance = "settings_appearance".toLocalized()
+        static let channelList = "settings_channel_list".toLocalized()
+        static let security = "settings_security".toLocalized()
+        static let integrations = "settings_integrations".toLocalized()
+        static let channelHeightCompact = "settings_channel_height_compact".toLocalized()
+        static let channelHeightStandard = "settings_channel_height_standard".toLocalized()
+        static let channelHeightLarge = "settings_channel_height_large".toLocalized()
         static let temperaturePrecision = "app_settings_temperature_precision".toLocalized()
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
@@ -349,8 +356,9 @@ struct Strings {
         static let warning = "general_warning".toLocalized()
         static let on = "On".toLocalized()
         static let off = "Off".toLocalized()
-        static let yes = NSLocalizedString("Yes", comment: "")
-        static let no = NSLocalizedString("No", comment: "")
+        static let yes = "general_yes".toLocalized()
+        static let no = "general_no".toLocalized()
+        static let auto = "general_auto".toLocalized()
         static let turnOn = "turn_on".toLocalized()
         static let turnOff = "turn_off".toLocalized()
         static let delete = "general_delete".toLocalized()
@@ -933,4 +941,7 @@ class LegacyStrings: NSObject {
     
     @objc static let rgbDetailSettingsUnauthorized = Strings.RgbDetail.settingUnauthorized
     @objc static let rgbDetailAuthorize = Strings.RgbDetail.authorize
+    
+    @objc static let yes = Strings.General.yes
+    @objc static let no = Strings.General.no
 }

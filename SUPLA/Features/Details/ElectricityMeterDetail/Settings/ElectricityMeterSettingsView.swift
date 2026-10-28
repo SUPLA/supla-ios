@@ -50,29 +50,36 @@ extension ElectricityMeterSettingsFeature {
             
             return BackgroundStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    SettingsView.Header(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
+                    SettingsView.Header(Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
                     
                     if (viewState.currentMonthBalancing != nil) {
                         SettingsView.Block {
                             SettingsView.VerticalRow {
-                                SettingsView.Label(text: Strings.ElectricityMeter.lastMonthBalancing)
-                                SuplaCore.Picker(selected: currentMonthBalancing, items: viewState.currentMonthBalancing!.items)
+                                LabelText(text: Strings.ElectricityMeter.lastMonthBalancing)
+                                SuplaCore.Picker(
+                                    selected: currentMonthBalancing,
+                                    items: viewState.currentMonthBalancing!.items,
+                                    padding: SettingsView.pickerDefaultPadding
+                                )
                             }
                         }
                     }
                     
-                    SettingsView.Header(text: Strings.ElectricityMeter.onList)
+                    SettingsView.Header(Strings.ElectricityMeter.onList)
                         .padding(.top, Distance.default)
                     SettingsView.Block {
                         if (viewState.metricOnList != nil) {
                             SettingsView.VerticalRow {
-                                SettingsView.Label(text: Strings.ElectricityMeter.metricOnList)
-                                SuplaCore.Picker(selected: metricOnListBinding, items: viewState.metricOnList!.items)
+                                LabelText(text: Strings.ElectricityMeter.metricOnList)
+                                SuplaCore.Picker(
+                                    selected: metricOnListBinding,
+                                    items: viewState.metricOnList!.items
+                                )
                             }
                         }
                         if (viewState.metricOnListAggregation != nil) {
                             SettingsView.VerticalRow {
-                                SettingsView.Label(text: Strings.ElectricityMeter.metricOnListAggregation)
+                                LabelText(text: Strings.ElectricityMeter.metricOnListAggregation)
                                 SuplaCore.Picker(
                                     selected: metricOnListAggregationBinding,
                                     items: viewState.metricOnListAggregation!.items
@@ -81,7 +88,7 @@ extension ElectricityMeterSettingsFeature {
                         }
                         if (viewState.metricOnListBalancing != nil) {
                             SettingsView.VerticalRow {
-                                SettingsView.Label(text: Strings.ElectricityMeter.metricOnListBalance)
+                                LabelText(text: Strings.ElectricityMeter.metricOnListBalance)
                                 SuplaCore.Picker(
                                     selected: metricOnListBalancingBinding,
                                     items: viewState.metricOnListBalancing!.items
@@ -99,6 +106,10 @@ extension ElectricityMeterSettingsFeature {
 #Preview {
     let state = ElectricityMeterSettingsFeature.ViewState()
     state.channelName = "Electricity Meter"
+    state.currentMonthBalancing = SelectableList(items: [])
+    state.metricOnList = SelectableList(items: [])
+    state.metricOnListAggregation = SelectableList(items: [])
+    state.metricOnListBalancing = SelectableList(items: [])
     
     return ElectricityMeterSettingsFeature.View(
         viewState: state

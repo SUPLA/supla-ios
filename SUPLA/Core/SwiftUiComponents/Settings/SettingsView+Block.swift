@@ -97,3 +97,15 @@ extension SettingsView {
         }
     }
 }
+
+#Preview {
+    BackgroundStack(alignment: .top) {
+        VStack(alignment: .leading, spacing: Distance.small) {
+            SettingsView.Header("Preferences")
+            SettingsView.Block {
+                SettingsView.ItemWithCheckbox(label: "Show channel info", checked: .constant(true))
+                SettingsView.NavigationItem(label: "Location order", onClick: {})
+            }
+        }
+    }
+}

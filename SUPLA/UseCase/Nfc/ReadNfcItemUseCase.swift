@@ -17,6 +17,7 @@
  */
 
 import RxSwift
+import RxSwiftExt
 
 enum ReadNfcItem {
     protocol UseCase {
@@ -91,7 +92,7 @@ enum ReadNfcItem {
 private extension NfcTagItemRepository {
     func findObservable(byUuid uuid: String) -> Observable<NfcTagItemDto> {
         Observable.fromAsync { handler in
-            Task { handler(await self.find(byUuid: uuid)) }
+            let _: Task<Void, Never> = Task { handler(await self.find(byUuid: uuid)) }
         }
         .compactMap { $0 }
     }

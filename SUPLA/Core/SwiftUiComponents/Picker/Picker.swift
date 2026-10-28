@@ -27,21 +27,33 @@ extension SuplaCore {
     struct Picker<T: PickerItem>: View {
         var selected: Binding<T?>
         let items: [T]
+        let padding: EdgeInsets?
 
         private var style: PickerStyle = .text
         @Environment(\.isEnabled) private var isEnabled
-
-        init(selected: Binding<T?>, items: [T]) {
-            self.selected = selected
-            self.items = items
+        
+        private var defaultPadding: EdgeInsets {
+            switch style {
+            case .dialog:
+                return .init(top: Distance.small, leading: Distance.small, bottom: Distance.small, trailing: Distance.small)
+            case .text:
+                return .init(top: 4, leading: Distance.default, bottom: 4, trailing: Distance.default)
+            }
         }
 
-        init(_ selectableList: SelectableList<T>, onChange: @escaping (T?) -> Void) {
+        init(selected: Binding<T?>, items: [T], padding: EdgeInsets? = nil) {
+            self.selected = selected
+            self.items = items
+            self.padding = padding
+        }
+
+        init(_ selectableList: SelectableList<T>, padding: EdgeInsets? = nil, onChange: @escaping (T?) -> Void) {
             self.selected = Binding<T?>(
                 get: { selectableList.selected },
                 set: { onChange($0) }
             )
             self.items = selectableList.items
+            self.padding = padding
         }
 
         var body: some View {
@@ -83,8 +95,7 @@ extension SuplaCore {
                     .frame(width: 16, height: 16)
                     .foregroundColor(isEnabled ? Color.Supla.onBackground : Color.Supla.disabled)
             }
-            .padding([.top, .bottom], 4)
-            .padding([.leading, .trailing], Distance.default)
+            .padding(padding ?? defaultPadding)
         }
 
         private func dialogStyledPickerLabel() -> some View {
@@ -98,8 +109,7 @@ extension SuplaCore {
                     .frame(width: 16, height: 16)
                     .foregroundColor(isEnabled ? Color.Supla.primary : Color.Supla.disabled)
             }
-            .padding([.top, .bottom], Distance.small)
-            .padding([.leading, .trailing], Distance.small)
+            .padding(padding ?? defaultPadding)
             .background(Color.Supla.surface)
             .cornerRadius(Dimens.buttonRadius)
             .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.grayLighter))

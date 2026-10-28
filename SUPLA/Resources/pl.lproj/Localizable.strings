@@ -103,8 +103,6 @@
 "Close" = "Zamknij";
 "Valve" = "Zawór";
 "Warning" = "Ostrzeżenie";
-"Yes" = "Tak";
-"No" = "Nie";
 
 "Heat meter" = "Licznik ciepła";
 
@@ -224,6 +222,9 @@
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
 
 /* General */
+"general_yes" = "Tak";
+"general_no" = "Nie";
+"general_auto" = "Auto";
 "general_error" = "Błąd";
 "general_warning" = "Uwaga";
 "save" = "Zapisz";
@@ -345,6 +346,13 @@
 "create_profile_basic_warning_message" = "Przed wyłączeniem trybu zaawansowanego wybierz uwierzytelnianie email z automatycznym wykrywaniem serwera.";
 
 /* App Settings */
+"settings_appearance" = "Wygląd";
+"settings_channel_list" = "Lista kanałów";
+"settings_security" = "Bezpieczeństwo";
+"settings_integrations" = "Integracje";
+"settings_channel_height_compact" = "Kompaktowy";
+"settings_channel_height_standard" = "Standardowy";
+"settings_channel_height_large" = "Duży";
 "app_settings.permissions_header" = "Uprawnienia";
 "app_settings.notifications_label" = "Powiadomienia";
 "app_settings.location_label" = "Lokalizacja";

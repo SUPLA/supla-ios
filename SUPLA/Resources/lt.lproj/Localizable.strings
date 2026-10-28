@@ -104,8 +104,6 @@
 "Close" = "Uždaryti";
 "Valve" = "Vožtuvas";
 "Warning" = "Įspėjimas";
-"Yes" = "Taip";
-"No" = "Ne";
 
 "Heat meter" = "Šilumos skaitiklis";
 
@@ -224,6 +222,9 @@
 "push_notification_limit_exceeded" = "Viršijamas PUSH pranešimų limitas, kuris per valandą yra %@.";
 
 /* General */
+"general_yes" = "Taip";
+"general_no" = "Ne";
+"general_auto" = "Auto";
 "general_error" = "Klaida";
 "general_warning" = "Įspėjimas";
 "turn_on" = "Įjungti";
@@ -332,6 +333,13 @@
 "create_profile_basic_warning_message" = "Prieš išjungdami išplėstinį režimą, pasirinkite autentifikavimą el. paštu su automatiniu serverio aptikimu.";
 
 /* App Settings */
+"settings_appearance" = "Išvaizda";
+"settings_channel_list" = "Kanalų sąrašas";
+"settings_security" = "Sauga";
+"settings_integrations" = "Integracijos";
+"settings_channel_height_compact" = "Kompaktiškas";
+"settings_channel_height_standard" = "Standartinis";
+"settings_channel_height_large" = "Didelis";
 "app_settings.notifications_label" = "Pranešimai";
 "app_settings.location_label" = "Vieta";
 "app_settings.permissions_header" = "Įgaliojimai";

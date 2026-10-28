@@ -35,11 +35,11 @@ extension ImpulseCounterSettingsFeature {
 
             BackgroundStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 0) {
-                    SettingsView.Header(text: Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
+                    SettingsView.Header(Strings.ElectricityMeter.settingsTitle.arguments(viewState.channelName))
 
                     SettingsView.Block {
                         SettingsView.VerticalRow {
-                            SettingsView.Label(text: Strings.ElectricityMeter.settingsListItem)
+                            LabelText(text: Strings.ElectricityMeter.settingsListItem)
                             SuplaCore.Picker(
                                 selected: listValueAggregationBinding,
                                 items: viewState.listValueAggregation.items

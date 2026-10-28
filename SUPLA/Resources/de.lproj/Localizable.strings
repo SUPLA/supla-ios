@@ -102,8 +102,6 @@
 "Close" = "Schlieβen";
 "Valve" = "Ventil";
 "Warning" = "Warnung";
-"Yes" = "Ja";
-"No" = "Nein";
 
 "Heat meter" = "Wärmezähler";
 
@@ -215,6 +213,9 @@
 "Cfg.removal.dialog.incomplete" = "Bitte die erforderliche Angaben vervollständigen";
 
 /* General */
+"general_yes" = "Ja";
+"general_no" = "Nein";
+"general_auto" = "Auto";
 "general_error" = "Fehler";
 "general_warning" = "Warnung";
 "save" = "Speichern";
@@ -320,6 +321,13 @@
 "create_profile_basic_warning_message" = "Vor Ausschaltung des fortgeschrittenen Modus wählen Sie die E-Mail-Authentifizierung mit automatischer Erkennung des Servers.";
 
 /* App Settings */
+"settings_appearance" = "Darstellung";
+"settings_channel_list" = "Kanalliste";
+"settings_security" = "Sicherheit";
+"settings_integrations" = "Integrationen";
+"settings_channel_height_compact" = "Kompakt";
+"settings_channel_height_standard" = "Standard";
+"settings_channel_height_large" = "Groß";
 "settings_dark_mode" = "Nacht-Modus";
 "settings_lock_screen" = "PIN Eingabe";
 "settings_show_bottom_menu" = "Unteres Menü anzeigen";

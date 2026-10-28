@@ -1209,14 +1209,14 @@
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* yesBtn = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                actionWithTitle:LegacyStrings.yes
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
         [self assignNodeId];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            actionWithTitle:LegacyStrings.no
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
     }];
@@ -1262,14 +1262,14 @@
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* yesBtn = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                actionWithTitle:LegacyStrings.yes
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
         [self zwaveResetAndClear];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            actionWithTitle:LegacyStrings.no
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
     }];

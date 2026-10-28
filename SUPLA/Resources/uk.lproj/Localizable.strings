@@ -102,8 +102,6 @@
 "Close" = "Зачинити";
 "Valve" = "Клапан";
 "Warning" = "Попередження";
-"Yes" = "Так";
-"No" = "Ні";
 
 "Heat meter" = "Теплолічильник";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = "Перевищено ліміт PUSH-сповіщень, який становить %@ на годину.";
 
 /* General */
+"general_yes" = "Так";
+"general_no" = "Ні";
+"general_auto" = "Auto";
 "general_error" = "Помилка";
 "general_warning" = "Попередження";
 "turn_on" = "Ввімкнути";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Перш ніж вимкнути розширений режим, виберіть автентифікацію електронної пошти з автоматичним визначенням сервера.";
 
 /* App Settings */
+"settings_appearance" = "Вигляд";
+"settings_channel_list" = "Список каналів";
+"settings_security" = "Безпека";
+"settings_integrations" = "Інтеграції";
+"settings_channel_height_compact" = "Компактний";
+"settings_channel_height_standard" = "Стандартний";
+"settings_channel_height_large" = "Великий";
 "app_settings.notifications_label" = "Сповіщення";
 "app_settings.location_label" = "Місцезнаходження";
 "app_settings.permissions_header" = "Права";
