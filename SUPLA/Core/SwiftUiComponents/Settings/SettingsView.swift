@@ -20,88 +20,14 @@ import SwiftUI
 
 struct SettingsView {
     
-    struct ItemWithCheckbox: SwiftUI.View {
-        let label: String
-        let onChange: ((Bool) -> Void)?
-        
-        @Binding private var checked: Bool
-        
-        init(label: String, checked: Binding<Bool>, onChange: ((Bool) -> Void)? = nil) {
-            self.label = label
-            self._checked = checked
-            self.onChange = onChange
-        }
-        
-        var body: some View {
-            Row {
-                Toggle(isOn: $checked) {
-                    Text(label)
-                        .fontBodyMedium()
-                }
-                .onChange(of: checked) { onChange?($0) }
-            }
-        }
-    }
-    
-    struct Row<Content: View>: SwiftUI.View {
-        let content: () -> Content
-
-        @Environment(\.settingsBlockShowsDivider) private var showDivider
-
-        init(@ViewBuilder content: @escaping () -> Content) {
-            self.content = content
-        }
-        
-        var body: some View {
-            HStack(alignment: .center) {
-                content()
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, Distance.small)
-            .padding(.vertical, 4)
-            .overlay(alignment: .bottom) {
-                if showDivider {
-                    Rectangle()
-                        .fill(Color.Supla.background)
-                        .frame(height: 1.5)
-                        .padding(.leading, Distance.small)
-                }
-            }
-        }
-    }
-    
-    struct VerticalRow<Content: View>: SwiftUI.View {
-        let alignment: HorizontalAlignment
-        let spacing: CGFloat
-        let content: () -> Content
-        
-        @Environment(\.settingsBlockShowsDivider) private var showDivider
-        
-        init(alignment: HorizontalAlignment = .leading, spacing: CGFloat = 0, @ViewBuilder content: @escaping () -> Content) {
-            self.alignment = alignment
-            self.spacing = spacing
-            self.content = content
-        }
-        
-        var body: some View {
-            VStack(alignment: alignment, spacing: spacing) {
-                content()
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.vertical, Distance.small)
-            .overlay(alignment: .bottom) {
-                if showDivider {
-                    Rectangle()
-                        .fill(Color.Supla.background)
-                        .frame(height: 1.5)
-                        .padding(.leading, Distance.small)
-                }
-            }
-        }
-    }
+    static let pickerDefaultPadding = EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0)
     
     struct Header: View {
         let text: String
+        
+        init(_ text: String) {
+            self.text = text
+        }
         
         var body: some View {
             Text(text.uppercased())
@@ -114,11 +40,27 @@ struct SettingsView {
     struct Label: View {
         let text: String
         
+        init(_ text: String) {
+            self.text = text
+        }
+        
         var body: some View {
-            Text(text.uppercased())
+            Text(text)
                 .fontBodySmall()
-                .padding([.leading, .trailing], Distance.default)
-                .textColor(Color.Supla.onSurfaceVariant)
+        }
+    }
+    
+    struct Description: View {
+        let text: String
+        
+        init(_ text: String) {
+            self.text = text
+        }
+        
+        var body: some View {
+            Text(text)
+                .fontBodySmall()
+                .textColor(.Supla.onSurfaceVariant)
         }
     }
     

@@ -17,22 +17,28 @@
  */
 
 import SwiftUI
+import UIKit
 
-struct SettingsScreen: View {
-    @EnvironmentObject private var router: AppRouter
+extension AppSettingsFeature {
+    struct Screen: SwiftUI.View {
+        @EnvironmentObject private var router: AppRouter
+        @StateObject private var viewModel = ViewModel()
+        @State private var debugIdentity = UUID()
 
-    var body: some View {
-        SuplaCore.TopBarContainer {
-            SuplaCore.TopBar(
-                navigationIcon: .back,
-                title: Strings.Cfg.appConfigTitle,
-                onNavigationIconTap: router.back
-            )
-        } content: {
-            SuplaCore.ViewControllerHost {
-                let viewController = AppSettingsVC()
-                viewController.navigationBarMaintainedByParent = true
-                return viewController
+        var body: some SwiftUI.View {
+            SuplaCore.ViewModelHost(viewModel) { state in
+                SuplaCore.TopBarContainer {
+                    SuplaCore.TopBar(
+                        navigationIcon: .back,
+                        title: Strings.Cfg.appConfigTitle,
+                        onNavigationIconTap: router.back
+                    )
+                } content: {
+                    AppSettingsFeature.View(viewState: state, delegate: viewModel)
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                viewModel.refreshPermissions()
             }
         }
     }

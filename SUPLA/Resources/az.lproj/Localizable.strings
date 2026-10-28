@@ -103,8 +103,6 @@
 "Close" = "Bağla";
 "Valve" = "Valf";
 "Warning" = "Xəbərdarlıq";
-"Yes" = "Bəli";
-"No" = "Xeyr";
 
 "Heat meter" = "İstilik sayğacı";
 
@@ -224,6 +222,9 @@
 "push_notification_limit_exceeded" = "%@ saatlıq push bildiriş limiti aşılmışdır.";
 
 /* General */
+"general_yes" = "Bəli";
+"general_no" = "Xeyr";
+"general_auto" = "Auto";
 "general_error" = "Xəta";
 "general_warning" = "Xəbərdarlıq";
 "save" = "Yadda saxla";
@@ -345,6 +346,13 @@
 "create_profile_basic_warning_message" = "Advanced rejimi söndürmədən əvvəl email autentifikasiyasına keçmək və avtomatik server aşkarlamasını aktivləşdirmək lazımdır.";
 
 /* App Settings */
+"settings_appearance" = "Görünüş";
+"settings_channel_list" = "Kanal siyahısı";
+"settings_security" = "Təhlükəsizlik";
+"settings_integrations" = "İnteqrasiyalar";
+"settings_channel_height_compact" = "Yığcam";
+"settings_channel_height_standard" = "Standart";
+"settings_channel_height_large" = "Böyük";
 "app_settings.permissions_header" = "İcazələr";
 "app_settings.notifications_label" = "Bildirişlər";
 "app_settings.location_label" = "Yerləşdirmə";

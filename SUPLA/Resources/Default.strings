@@ -46,6 +46,9 @@
 "push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
 
 /* General */
+"general_yes" = "Yes";
+"general_no" = "No";
+"general_auto" = "Auto";
 "general_error" = "Error";
 "general_hour_format" = "HH:mm:ss";
 "general_ok" = "OK";
@@ -171,6 +174,13 @@
 "create_profile_basic_warning_message" = "Before turning advanced mode off you need to switch to email authentication and enable automatic server detectio.";
 
 /* App Settings */
+"settings_appearance" = "Appearance";
+"settings_channel_list" = "Channel list";
+"settings_security" = "Security";
+"settings_integrations" = "Integrations";
+"settings_channel_height_compact" = "Compact";
+"settings_channel_height_standard" = "Standard";
+"settings_channel_height_large" = "Large";
 "app_settings.permissions_header" = "Permissions";
 "app_settings.notifications_label" = "Notifications";
 "app_settings.location_label" = "Location";

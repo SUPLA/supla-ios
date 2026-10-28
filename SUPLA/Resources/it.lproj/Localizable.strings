@@ -151,8 +151,6 @@
 "Roof window operation" = "Funzionamento Lucernario";
 "opened / closed the roof window" = "apri / chiudi lucernario";
 "Close" = "Chiudi";
-"Yes" = "Si";
-"No" = "No";
 "Warning" = "Attenzione";
 "App Settings" = "Impostazioni App";
 "Channel height" = "Altezza canale";
@@ -232,6 +230,9 @@
 "push_notification_limit_exceeded" = "È stato superato il limite di notifiche PUSH che risulta %@ all\'ora.";
 
 /* General */
+"general_yes" = "Si";
+"general_no" = "No";
+"general_auto" = "Auto";
 "general_error" = "Errore";
 "general_warning" = "Attenzione";
 "save" = "Salva";
@@ -344,6 +345,13 @@
 "create_profile_basic_warning_message" = "Prima di disattivare la modalità avanzata è necessario selezionare l'autenticazione tramite email ed abilitare il riconoscimento automatico del server.";
 
 /* App Settings */
+"settings_appearance" = "Aspetto";
+"settings_channel_list" = "Elenco canali";
+"settings_security" = "Sicurezza";
+"settings_integrations" = "Integrazioni";
+"settings_channel_height_compact" = "Compatto";
+"settings_channel_height_standard" = "Standard";
+"settings_channel_height_large" = "Grande";
 "app_settings.permissions_header" = "Autorizzazioni";
 "app_settings.notifications_label" = "Notifiche";
 "app_settings.location_label" = "Localizzazione";

@@ -83,8 +83,6 @@
 "Close" = "Zárva";
 "Valve" = "Szelep";
 "Warning" = "Figyelmeztetés";
-"Yes" = "Igen";
-"No" = "Nem";
 
 "Heat meter" = "Hőmennyiségmérő";
 
@@ -181,6 +179,9 @@
 "Phase %d" = "Fázis %d";
 
 /* General */
+"general_yes" = "Igen";
+"general_no" = "Nem";
+"general_auto" = "Auto";
 "general_error" = "Hiba";
 "general_hour_format" = "HH:mm:ss";
 "general_ok" = "Elfogadom";
@@ -305,6 +306,13 @@
 "create_profile_basic_warning_message" = "A haladó üzemmód kikapcsolódása előtt válassza az email hitelesítést automatikus szerver felderítéssel";
 
 /* App Settings */
+"settings_appearance" = "Megjelenés";
+"settings_channel_list" = "Csatornalista";
+"settings_security" = "Biztonság";
+"settings_integrations" = "Integrációk";
+"settings_channel_height_compact" = "Kompakt";
+"settings_channel_height_standard" = "Normál";
+"settings_channel_height_large" = "Nagy";
 "app_settings.permissions_header" = "Jogosultságok";
 "app_settings.notifications_label" = "Értesítések";
 "app_settings.location_label" = "Hely";

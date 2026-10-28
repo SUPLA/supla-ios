@@ -102,8 +102,6 @@
 "Close" = "Fermer";
 "Valve" = "Valve";
 "Warning" = "Avertissement";
-"Yes" = "Oui";
-"No" = "Non";
 
 "Heat meter" = "Compteur de chaleur";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = "La limite de notification PUSH  %@ par heure a été dépassée.";
 
 /* General */
+"general_yes" = "Oui";
+"general_no" = "Non";
+"general_auto" = "Auto";
 "general_error" = "Erreur";
 "general_warning" = "Avertissement";
 "turn_on" = "Activez";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Sélectionnez l'authentification par courriel avec détection automatique du serveur avant de désactiver le mode avancé.";
 
 /* App Settings */
+"settings_appearance" = "Apparence";
+"settings_channel_list" = "Liste des canaux";
+"settings_security" = "Sécurité";
+"settings_integrations" = "Intégrations";
+"settings_channel_height_compact" = "Compact";
+"settings_channel_height_standard" = "Standard";
+"settings_channel_height_large" = "Grand";
 "app_settings.notifications_label" = "Notifications";
 "app_settings.location_label" = "Lieu";
 "app_settings.permissions_header" = "Autorisations";

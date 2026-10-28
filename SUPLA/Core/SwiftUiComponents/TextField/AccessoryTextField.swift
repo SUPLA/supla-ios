@@ -21,6 +21,7 @@ import SwiftUI
 struct AccessoryTextField<Prefix: View, Suffix: View>: View {
     @Binding var text: String
     let error: Bool
+    let height: CGFloat?
 
     @ViewBuilder let prefix: () -> Prefix
     @ViewBuilder let suffix: () -> Suffix
@@ -28,11 +29,13 @@ struct AccessoryTextField<Prefix: View, Suffix: View>: View {
     init(
         text: Binding<String>,
         error: Bool = false,
+        height: CGFloat? = nil,
         @ViewBuilder prefix: @escaping () -> Prefix = { EmptyView() },
         @ViewBuilder suffix: @escaping () -> Suffix = { EmptyView() }
     ) {
         self._text = text
         self.error = error
+        self.height = height
         self.prefix = prefix
         self.suffix = suffix
     }
@@ -43,12 +46,14 @@ struct AccessoryTextField<Prefix: View, Suffix: View>: View {
 
             TextField("", text: $text)
                 .fontBodyLarge()
+                .lineLimit(1)
                 .textFieldStyle(.plain)
                 .foregroundColor(.Supla.onBackground)
 
             suffix()
         }
         .padding(Distance.small)
+        .frame(height: height)
         .background(
             RoundedRectangle(cornerRadius: Dimens.radiusDefault)
                 .fill(Color.Supla.surface)
@@ -89,6 +94,7 @@ struct AccessoryText: View {
                 prefix: { AccessoryText("min")},
                 suffix: { AccessoryText("°C") }
             )
+            AccessoryTextField(text: .constant("test"), height: 32)
         }
     }
     .safeAreaPadding()

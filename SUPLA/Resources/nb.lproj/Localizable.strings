@@ -102,8 +102,6 @@
 "Close" = "Steng";
 "Valve" = "Ventil";
 "Warning" = "Advarsel";
-"Yes" = "Ja";
-"No" = "Nei";
 
 "Heat meter" = "Varmemåler";
 
@@ -222,6 +220,9 @@
 "push_notification_limit_exceeded" = " %@ Grensen for PUSH-varsling per time er overskredet.";
 
 /* General */
+"general_yes" = "Ja";
+"general_no" = "Nei";
+"general_auto" = "Auto";
 "general_error" = "Feil";
 "general_warning" = "Advarsel";
 "turn_on" = "Slå på";
@@ -330,6 +331,13 @@
 "create_profile_basic_warning_message" = "Før du slår av avansert modus, vennligst velg e-postautentisering med automatisk serveroppdagelse.";
 
 /* App Settings */
+"settings_appearance" = "Utseende";
+"settings_channel_list" = "Kanalliste";
+"settings_security" = "Sikkerhet";
+"settings_integrations" = "Integrasjoner";
+"settings_channel_height_compact" = "Kompakt";
+"settings_channel_height_standard" = "Standard";
+"settings_channel_height_large" = "Stor";
 "app_settings.notifications_label" = "Varsler";
 "app_settings.location_label" = "Sted";
 "app_settings.permissions_header" = "Rettigheter:";
